@@ -11,5 +11,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(user,target,ability)
-    --leave blank please! This file will be deleted when the core is updated.
+    target:addEnmity(user, 1, 1800)
+    --leave blank please! This file will be deleted when the core is updated. So Provoke shouldn't work till then?!
 end

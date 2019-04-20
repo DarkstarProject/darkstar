@@ -2384,7 +2384,7 @@ namespace luautils
         CLuaBaseEntity LuaKillerEntity(PTarget);
 
         int8 File[255];
-        PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
+        PMob->objtype == TYPE_PET || PMob->objtype == TYPE_TRUST ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CMobEntity*>(PMob)->GetName()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
         if (PTarget->objtype == TYPE_PC)
@@ -2424,7 +2424,7 @@ namespace luautils
         uint8 weather = PMob->loc.zone->GetWeather();
 
         int8 File[255];
-        PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
+        PMob->objtype == TYPE_PET || PMob->objtype == TYPE_TRUST ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CMobEntity*>(PMob)->GetName()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
         if (prepFile(File, "onMobDisengage"))
@@ -2786,7 +2786,7 @@ namespace luautils
         DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
         int8 File[255];
-        PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
+        PMob->objtype == TYPE_PET || PMob->objtype == TYPE_TRUST ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CMobEntity*>(PMob)->GetName()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
         if (prepFile(File, "onMobDespawn"))
@@ -2906,7 +2906,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, action_t& action, CBattleEntity* taChar)
+    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CBattleEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, action_t& action, CBattleEntity* taChar)
     {
         lua_prepscript("scripts/globals/weaponskills/%s.lua", wskill->getName());
 
@@ -3262,7 +3262,7 @@ namespace luautils
     int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action)
     {
         std::string path = "scripts/globals/abilities/%s.lua";
-        if (PUser->objtype == TYPE_PET || PUser->objtype == TYPE_TRUST) path = "scripts/globals/abilities/pets/%s.lua";
+        if (PUser->objtype == TYPE_PET) path = "scripts/globals/abilities/pets/%s.lua";
         lua_prepscript(path.c_str(), PAbility->getName());
 
         if (prepFile(File, "onUseAbility"))

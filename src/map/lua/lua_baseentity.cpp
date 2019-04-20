@@ -652,6 +652,28 @@ inline int32 CLuaBaseEntity::setLocalVar(lua_State* L)
     return 0;
 }
 
+
+/************************************************************************
+*  Function: modLocalVar()
+*  Purpose : modifies a current local var. Plus number will increase local
+   var and minus will reduce it's value. 
+*  Example : mob:modLocalVar("pop", 5);
+*  Notes   : Modify numbers only - No return
+************************************************************************/
+inline int32 CLuaBaseEntity::modLocalVar(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    const char* var = lua_tostring(L, 1);
+    auto val = (uint32)lua_tointeger(L, 2);
+
+    m_PBaseEntity->SetLocalVar(var, m_PBaseEntity->GetLocalVar(var) + val);
+
+    return 0;
+}
+
 /************************************************************************
 *  Function: resetLocalVars()
 *  Purpose : Reset local variables back to default (ex: on Mob disengage)
@@ -4106,22 +4128,31 @@ inline int32 CLuaBaseEntity::clearGearSetMods(lua_State *L)
 
 inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    auto container = (uint8)lua_tointeger(L, 1); // LOC_INVENTORY etc
-    auto slotID = (uint8)lua_tointeger(L, 2);   // slot in container
-    auto equipID = (uint8)(!lua_isnil(L, 3) ? lua_tointeger(L, 3) : 255); // SLOT_MAIN etc
 
     CItem* PItem = nullptr;
 
-    if (equipID == 255)
-        PItem = PChar->getStorage(container)->GetItem(slotID);
+    if (m_PBaseEntity->objtype == TYPE_TRUST)
+    {
+        //DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3) || lua_tointeger(L, 3) <= 3);
+        PItem = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[lua_tointeger(L, 3)];
+    }
     else
-        PItem = PChar->getEquip((SLOTTYPE)equipID);
+    {
+        DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        auto container = (uint8)lua_tointeger(L, 1); // LOC_INVENTORY etc
+        auto slotID = (uint8)lua_tointeger(L, 2);   // slot in container
+        auto equipID = (uint8)(!lua_isnil(L, 3) ? lua_tointeger(L, 3) : 255); // SLOT_MAIN etc
+
+        if (equipID == 255)
+            PItem = PChar->getStorage(container)->GetItem(slotID);
+        else
+            PItem = PChar->getEquip((SLOTTYPE)equipID);
+    }
 
     if (PItem != nullptr)
     {
@@ -4136,6 +4167,7 @@ inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
     lua_pushnil(L);
     return 1;
 }
+
 
 /************************************************************************
 *  Function: storeWithPorterMoogle()
@@ -13917,6 +13949,30 @@ inline int32 CLuaBaseEntity::useJobAbility(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::useWeaponSkill(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1));
+    //DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || lua_isuserdata(L, 2));
+
+    CBattleEntity* target = nullptr;
+    if (lua_isnil(L, 2))
+        target = (CBattleEntity*)m_PBaseEntity;
+    else
+    {
+        CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+        if (PLuaBaseEntity)
+            target = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
+    }
+    if (target)
+        ((CBattleEntity*)m_PBaseEntity)->PAI->Internal_WeaponSkill(target->targid, lua_tointeger(L, 1));
+
+    /*((CBattleEntity*)m_PBaseEntity)->PAI->Internal_WeaponSkill(((CBattleEntity*)m_PBaseEntity)->
+            GetBattleTargetID(), lua_tointeger(L, 1));*/
+
+    return 0;
+}
+
 /************************************************************************
 *  Function: useMobAbility()
 *  Purpose : Uses a specified Mob Ability or the next one ready in the que
@@ -14318,6 +14374,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLocalVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,modLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetLocalVars),
 
     // Masks and Bitwise Operations
@@ -14941,6 +14998,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,useJobAbility),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,useWeaponSkill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
 

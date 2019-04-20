@@ -20,7 +20,6 @@ function onMobFight(entity, target)
     if(spell == nil) then
         return
     end
-
     if(not entity:hasRecast(1, spell[3])) then
         entity:castSpell(spell[3], target)
         entity:addRecast(1, spell[3], spell[4])

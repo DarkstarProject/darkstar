@@ -573,6 +573,124 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
     CBattleEntity::OnWeaponSkillFinished(state, action);
 
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
+
+    if (objtype == ENTITYTYPE::TYPE_TRUST)
+    {
+        auto PWeaponSkill = state.GetSkill();
+        auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+        int16 tp = state.GetSpentTP();
+        tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill, tp);
+
+        //PLatentEffectContainer->CheckLatentsTP();
+
+        SLOTTYPE damslot = SLOT_MAIN;
+        if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize <= PWeaponSkill->getRange())
+        {
+            if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 221)
+            {
+                damslot = SLOT_RANGED;
+            }
+
+            PAI->TargetFind->reset();
+            //#TODO: revise parameters
+            if (PWeaponSkill->isAoE())
+            {
+                PAI->TargetFind->findWithinArea(PBattleTarget, AOERADIUS_TARGET, 10);
+            }
+            else
+            {
+                PAI->TargetFind->findSingleTarget(PBattleTarget);
+            }
+
+            for (auto&& PTarget : PAI->TargetFind->m_targets)
+            {
+                bool primary = PTarget == PBattleTarget;
+                actionList_t& actionList = action.getNewActionList();
+                actionList.ActionTargetID = PTarget->id;
+
+                actionTarget_t& actionTarget = actionList.getNewActionTarget();
+
+                uint16 tpHitsLanded;
+                uint16 extraHitsLanded;
+                int32 damage;
+                CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(this, PTarget);
+
+                actionTarget.reaction = REACTION_NONE;
+                actionTarget.speceffect = SPECEFFECT_NONE;
+                actionTarget.animation = PWeaponSkill->getAnimationId();
+                actionTarget.messageID = 0;
+                std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(this, PTarget, PWeaponSkill, tp, primary, action, taChar);
+
+                if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
+                {
+                    if (primary && PBattleTarget->objtype == TYPE_MOB)
+                    {
+                        luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
+                    }
+                }
+                else
+                {
+                    actionTarget.messageID = primary ? 224 : 276; //restores mp msg
+                    actionTarget.reaction = REACTION_HIT;
+                    damage = std::max(damage, 0);
+                    actionTarget.param = addMP(damage);
+                }
+
+                if (primary)
+                {
+                    if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 218)
+                    {
+                        
+                    }
+                    if (actionTarget.reaction == REACTION_HIT)
+                    {
+                        if (battleutils::GetScaledItemModifier(this, m_Weapons[damslot], Mod::ADDITIONAL_EFFECT))
+                        {
+                            actionTarget_t dummy;
+                            luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(m_Weapons[damslot]), &dummy, damage);
+                        }
+                        else if (damslot == SLOT_RANGED && m_Weapons[SLOT_AMMO] && battleutils::GetScaledItemModifier(this, m_Weapons[damslot], Mod::ADDITIONAL_EFFECT))
+                        {
+                            actionTarget_t dummy;
+                            //luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(SLOT_AMMO)), &dummy, damage);
+                        }
+                        int wspoints = 1;
+                        if (PWeaponSkill->getPrimarySkillchain() != 0)
+                        {
+                            // NOTE: GetSkillChainEffect is INSIDE this if statement because it
+                            //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
+                            SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill->getPrimarySkillchain(), PWeaponSkill->getSecondarySkillchain(), PWeaponSkill->getTertiarySkillchain());
+                            if (effect != SUBEFFECT_NONE)
+                            {
+                                actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage, taChar);
+                                if (actionTarget.addEffectParam < 0)
+                                {
+                                    actionTarget.addEffectParam = -actionTarget.addEffectParam;
+                                    actionTarget.addEffectMessage = 384 + effect;
+                                }
+                                else
+                                    actionTarget.addEffectMessage = 287 + effect;
+                                actionTarget.additionalEffect = effect;
+
+                                if (effect >= 7)
+                                    wspoints += 1;
+                                else if (effect >= 3)
+                                    wspoints += 2;
+                                else
+                                    wspoints += 4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_TOO_FAR_AWAY));
+        }
+    }
+
 }
 
 

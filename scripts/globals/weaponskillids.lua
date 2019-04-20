@@ -3,6 +3,8 @@
 --
 -- Contains readable values for Weaponskill IDs
 ------------------------------------
+
+
 dsp = dsp or {}
 
 dsp.weaponskill =
@@ -269,3 +271,324 @@ dsp.weaponskill =
     LAST_STAND          = 221,
 }
 dsp.ws = dsp.weaponskill
+
+
+dsp.ws.ele = 
+{
+    FIRE            = 1,
+    FIRE_LIGHT      = 2,
+    EARTH           = 3,
+    WATER           = 4, 
+    WIND            = 5,
+    ICE             = 6,
+    ICE_WATER       = 7,
+    THUNDER         = 8,
+    THUNDER_WIND    = 9,
+    LIGHT           = 10,
+    LIGHT_LIGHT     = 11,
+    DARK            = 12,
+    DARK_EARTH      = 13,
+    DARK_DARK       = 14,
+
+}
+
+
+ele = dsp.ws.ele
+
+dsp.ws.chain =  
+{
+    --                                          LEVEL 1                         LEVEL 2                 LEVEL 3
+    [ele.FIRE]          = {{ele.FIRE},          {ele.EARTH},                     {ele.FIRE_LIGHT},           {}},
+    [ele.FIRE_LIGHT]    = {{ele.FIRE_LIGHT},    {},                              {ele.DARK_EARTH},       {ele.THUNDER_WIND}}, 
+    [ele.EARTH]         = {{ele.EARTH},         {ele.FIRE, ele.WIND, ele.WATER},         {},                 {}},
+    [ele.WATER]         = {{ele.WATER},         {ele.ICE, ele.THUNDER},                  {},                 {}}, 
+    [ele.WIND]          = {{ele.WIND},          {ele.EARTH},                     {ele.DARK_EARTH},           {}},
+    [ele.ICE]           = {{ele.ICE},           {ele.THUNDER, ele.DARK},         {ele.THUNDER_WIND},         {}},
+    [ele.ICE_WATER]     = {{ele.ICE_WATER},     {},                              {ele.FIRE_LIGHT},       {ele.DARK_EARTH}}, 
+    [ele.THUNDER]       = {{ele.THUNDER},       {ele.FIRE, ele.WIND},                    {},                 {}}, 
+    [ele.THUNDER_WIND]  = {{ele.THUNDER_WIND},  {},                              {ele.ICE_WATER},        {ele.FIRE_LIGHT}}, 
+    [ele.LIGHT]         = {{ele.LIGHT},         {ele.WATER, ele.DARK},           {ele.ICE_WATER},            {}}, 
+    [ele.LIGHT_LIGHT]   = {{ele.LIGHT_LIGHT},   {},                                      {},             {ele.LIGHT_LIGHT}},
+    [ele.DARK]          = {{ele.DARK},          {ele.WIND, ele.LIGHT},                   {},                 {}},  
+    [ele.DARK_EARTH]    = {{ele.DARK_EARTH},    {},                              {ele.THUNDER_WIND},     {ele.ICE_WATER}}, 
+    [ele.DARK_DARK]     = {{ele.DARK_DARK},     {},                                      {},             {ele.DARK_DARK}},
+
+}
+
+dsp.ws.sc = 
+{
+    ------------------------------------
+    -- H2H
+    ------------------------------------
+
+    [dsp.ws.COMBO]                          = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.SHOULDER_TACKLE]                = dsp.ws.chain[ele.WATER],
+    [dsp.ws.ONE_INCH_PUNCH]                 = dsp.ws.chain[ele.DARK],
+    [dsp.ws.BACKHAND_BLOW]                  = dsp.ws.chain[ele.WIND],
+    [dsp.ws.RAGING_FISTS]                   = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.SPINNING_ATTACK]                = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.HOWLING_FIST]                   = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.DRAGON_KICK]                    = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.ASURAN_FISTS]                   = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.FINAL_HEAVEN]                   = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.ASCETICS_FURY]                  = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.STRINGING_PUMMEL]               = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.TORNADO_KICK]                   = dsp.ws.chain[ele.ICE],
+    [dsp.ws.VICTORY_SMITE]                  = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.SHIJIN_SPIRAL]                  = dsp.ws.chain[ele.FIRE_LIGHT],
+
+    ------------------------------------
+    -- DAGGER
+    ------------------------------------
+
+    [dsp.ws.WASP_STING]                     = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.VIPER_BITE]                     = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.GUST_SLASH]                     = dsp.ws.chain[ele.WIND],
+    [dsp.ws.SHADOWSTICH]                    = dsp.ws.chain[ele.WATER],
+    [dsp.ws.CYCLONE]                        = dsp.ws.chain[ele.WIND],
+    [dsp.ws.ENERGY_STEAL]                   = {{}, {}, {}},
+    [dsp.ws.ENERGY_DRAIN]                   = {{}, {}, {}},
+    [dsp.ws.DANCING_EDGE]                   = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.SHARK_BITE]                     = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.EVISCERATION]                   = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.MERCY_STROKE]                   = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.MANDALIC_STAB]                  = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.MORDANT_RIME]                   = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.PYRRHIC_KLEOS]                  = dsp.ws.chain[ele.ICE_WATER],
+    [dsp.ws.AEOLIAN_EDGE]                   = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.RUDRAS_STORM]                   = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.EXENTERATOR]                    = dsp.ws.chain[ele.THUNDER_WIND],
+
+    ------------------------------------
+    -- SWORD
+    ------------------------------------
+
+    [dsp.ws.FAST_BLADE]                     = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.BURNING_BLADE]                  = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.RED_LOTUS_BLADE]                = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.FLAT_BLADE]                     = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.SHINING_BLADE]                  = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.SERAPH_BLADE]                   = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.CIRCLE_BLADE]                   = dsp.ws.chain[ele.WATER],
+    [dsp.ws.SPIRIT_WITHIN]                  = {{}, {}, {}}, 
+    [dsp.ws.VORPAL_BLADE]                   = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.SWIFT_BLADE]                    = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.SAVAGE_BLADE]                   = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.KNIGHTS_OF_ROUND]               = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.DEATH_BLOSSOM]                  = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.ATONEMENT]                      = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.EXPIACION]                      = dsp.ws.chain[ele.ICE_WATER],
+    [dsp.ws.SANGUINE_BLADE]                 = {{}, {}, {}},
+    [dsp.ws.CHANT_DU_CYGNE]                 = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.REQUIESCAT]                     = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.URIEL_BLADE]                    = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.GLORY_SLASH]                    = dsp.ws.chain[ele.LIGHT_LIGHT],
+
+    ------------------------------------
+    -- GREAT SWORD
+    ------------------------------------
+
+    [dsp.ws.HARD_SLASH]                     = dsp.ws.chain[ele.HARD_SLASH],
+    [dsp.ws.POWER_SLASH]                    = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.FROSTBITE]                      = dsp.ws.chain[ele.ICE],
+    [dsp.ws.SHOCKWAVE]                      = dsp.ws.chain[ele.WATER],
+    [dsp.ws.CRESCENT_MOON]                  = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.SICKLE_MOON]                    = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.SPINNING_SLASH]                 = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.GROUND_STRIKE]                  = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.HERCULEAN_STRIKE]               = dsp.ws.chain[ele.ICE],
+    [dsp.ws.SCOURGE]                        = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.TORCLEAVER]                     = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.RESOLUTION]                     = dsp.ws.chain[ele.THUNDER_WIND],
+
+    ------------------------------------
+    -- AXE
+    ------------------------------------
+
+    [dsp.ws.RAGING_AXE]                     = dsp.ws.chain[ele.WIND],
+    [dsp.ws.SMASH_AXE]                      = dsp.ws.chain[ele.WATER],
+    [dsp.ws.GALE_AXE]                       = dsp.ws.chain[ele.WIND],
+    [dsp.ws.AVALANCHE_AXE]                  = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.SPINNING_ATTACK]                = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.RAMPAGE]                        = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.CALAMITY]                       = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.MISTRAL_AXE]                    = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.DECIMATION]                     = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.ONSLAUGHT]                      = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.PRIMAL_REND]                    = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.BORA_AXE]                       = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.CLOUDSPLITTER]                  = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.RUINATOR]                       = dsp.ws.chain[ele.ICE_WATER],
+
+    ------------------------------------
+    -- GREAT AXE
+    ------------------------------------
+
+    [dsp.ws.SHIELD_BREAK]                   = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.IRON_TEMPEST]                   = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.STURMWIND]                      = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.ARMOR_BREAK]                    = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.KEEN_EDGE]                      = dsp.ws.chain[ele.DARK],
+    [dsp.ws.WEAPON_BREAK]                   = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.RAGING_RUSH]                    = dsp.ws.chain[ele.ICE],
+    [dsp.ws.FULL_BREAK]                     = dsp.ws.chain[ele.ICE_WATER],
+    [dsp.ws.STEEL_CYCLONE]                  = dsp.ws.chain[ele.ICE_WATER],
+    [dsp.ws.METATRON_TORMENT]               = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.KINGS_JUSTICE]                  = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.FELL_CLEAVE]                    = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.UKKOS_FURY]                     = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.UPHEAVAL]                       = dsp.ws.chain[ele.FIRE_LIGHT],
+
+    ------------------------------------
+    -- SCYTHE
+    ------------------------------------
+
+    [dsp.ws.SLICE]                          = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.DARK_HARVEST]                   = dsp.ws.chain[ele.WATER],
+    [dsp.ws.SHADOW_OF_DEATH]                = dsp.ws.chain[ele.ICE],
+    [dsp.ws.NIGHTMARE_SCYTHE]               = dsp.ws.chain[ele.DARK],
+    [dsp.ws.SPINNING_SCYTHE]                = dsp.ws.chain[ele.WATER],
+    [dsp.ws.VORPAL_SCYTHE]                  = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.GUILLOTINE]                     = dsp.ws.chain[ele.ICE],
+    [dsp.ws.CROSS_REAPER]                   = dsp.ws.chain[ele.ICE_WATER],
+    [dsp.ws.SPIRAL_HELL]                    = dsp.ws.chain[ele.ICE_WATER],
+    [dsp.ws.CATASTROPHE]                    = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.INSURGENCY]                     = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.INFERNAL_SCYTHE]                = dsp.ws.chain[ele.DARK],
+    [dsp.ws.QUIETUS]                        = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.ENTROPY]                        = dsp.ws.chain[ele.DARK_EARTH],
+
+    ------------------------------------
+    -- POLEARM
+    ------------------------------------
+
+    [dsp.ws.DOUBLE_THRUST]                  = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.THUNDER_THRUST]                 = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.RAIDEN_THRUST]                  = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.LEG_SWEEP]                      = dsp.ws.chain[ele.THUDNER],
+    [dsp.ws.PENTA_THRUST]                   = dsp.ws.chain[ele.DARK],
+    [dsp.ws.VORPAL_THRUST]                  = dsp.ws.chain[ele.WATER],
+    [dsp.ws.SKEWER]                         = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.WHEELING_THRUST]                = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.IMPULSE_DRIVE]                  = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.GEIRSKOGUL]                     = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.DRAKESBANE]                     = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.SONIC_THRUST]                   = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.CAMLANNS_TORMENT]               = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.STARDIVER]                      = dsp.ws.chain[ele.DARK_EARTH],
+
+    ------------------------------------
+    -- KATANA
+    ------------------------------------
+
+    [dsp.ws.BLADE_RIN]                      = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.BLADE_RETSU]                    = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.BLADE_TEKI]                     = dsp.ws.chain[ele.WATER],
+    [dsp.ws.BLADE_TO]                       = dsp.ws.chain[ele.ICE],
+    [dsp.ws.BLADE_CHI]                      = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.BLADE_EI]                       = dsp.ws.chain[ele.DARK],
+    [dsp.ws.BLADE_JIN]                      = dsp.ws.chain[ele.WIND],
+    [dsp.ws.BLADE_TEN]                      = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.BLADE_KU]                       = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.BLADE_METSU]                    = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.BLADE_KAMU]                     = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.BLADE_YU]                       = dsp.ws.chain[ele.WATER],
+    [dsp.ws.BLADE_HI]                       = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.BLADE_SHUN]                     = dsp.ws.chain[ele.FIRE_LIGHT],
+
+    ------------------------------------
+    -- GREAT KATANA
+    ------------------------------------
+
+    [dsp.ws.TACHI_ENPI]                     = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.TACHI_HOBAKU]                   = dsp.ws.chain[ele.ICE],
+    [dsp.ws.TACHI_GOTEN]                    = dsp.ws.chain[ele.LIGHT],
+    [dsp.ws.TACHI_KAGERO]                   = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.TACHI_JINPU]                    = dsp.ws.chain[ele.EARTH],
+    [dsp.ws.TACHI_KOKI]                     = dsp.ws.chain[ele.WATER],
+    [dsp.ws.TACHI_YUKIKAZE]                 = dsp.ws.chain[ele.ICE],
+    [dsp.ws.TACHI_GEKKO]                    = dsp.ws.chain[ele.ICE_WATER],
+    [dsp.ws.TACHI_KASHA]                    = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.TACHI_KAITEN]                   = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.TACHI_RANA]                     = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.TACHI_AGEHA]                    = dsp.ws.chain[ele.DARK],
+    [dsp.ws.TACHI_FUDO]                     = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.TACHI_SHOHA]                    = dsp.ws.chain[ele.THUNDER_WIND],
+
+    ------------------------------------
+    -- CLUB
+    ------------------------------------
+
+    [dsp.ws.SHINING_STRIKE]                 = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.SERAPH_STRIKE]                  = dsp.ws.chain[ele.THUDNER],
+    [dsp.ws.BRAINSHAKER]                    = dsp.ws.chain[ele.WATER],
+    [dsp.ws.STARLIGHT]                      = {{}, {}, {}}, 
+    [dsp.ws.MOONLIGHT]                      = {{}, {}, {}},
+    [dsp.ws.SKULLBREAKER]                   = dsp.ws.chain[ele.ICE],
+    [dsp.ws.TRUE_STRIKE]                    = dsp.ws.chain[ele.WIND],
+    [dsp.ws.JUDGMENT]                       = dsp.ws.chain[ele.THUDNER],
+    [dsp.ws.HEXA_STRIKE]                    = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.BLACK_HALO]                     = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.RANDGRITH]                      = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.MYSTIC_BOON]                    = {{}, {}, {}},
+    [dsp.ws.FLASH_NOVA]                     = dsp.ws.chain[ele.ICE],
+    [dsp.ws.DAGAN]                          = {{}, {}, {}},
+    [dsp.ws.REALMRAZER]                     = dsp.ws.chain[ele.FIRE_LIGHT],
+
+    ------------------------------------
+    -- STAFF
+    ------------------------------------
+
+    [dsp.ws.HEAVY_SWING]                    = dsp.ws.chain[ele.THUDNER],
+    [dsp.ws.ROCK_CRUSHER]                   = dsp.ws.chain[ele.THUNDER],
+    [dsp.ws.EARTH_CRUSHER]                  = dsp.ws.chain[ele.WIND],
+    [dsp.ws.STARBURST]                      = dsp.ws.chain[ele.DARK],
+    [dsp.ws.SUNBURST]                       = dsp.ws.chain[ele.DARK],
+    [dsp.ws.SHELL_CRUSHER]                  = dsp.ws.chain[ele.WIND],
+    [dsp.ws.FULL_SWING]                     = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.SPIRIT_TAKER]                   = {{}, {}, {}},
+    [dsp.ws.RETRIBUTION]                    = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.GATE_OF_TARTARUS]               = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.VIDOHUNIR]                      = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.GARLAND_OF_BLISS]               = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.OMNISCIENCE]                    = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.CATACLYSM]                      = dsp.ws.chain[ele.DARK],
+    [dsp.ws.MYRKR]                          = {{}, {}, {}},
+    [dsp.ws.SHATTERSOUL]                    = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.TARTARUS_TORPOR]                = {{}, {}, {}},
+
+    ------------------------------------
+    -- ARCHERY
+    ------------------------------------
+
+    [dsp.ws.FLAMING_ARROW]                  = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.PIERCING_ARROW]                 = dsp.ws.chain[ele.WATER],
+    [dsp.ws.DULLING_ARROW]                  = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.SIDEWINDER]                     = dsp.ws.chain[ele.WATER],
+    [dsp.ws.BLAST_ARROW]                    = dsp.ws.chain[ele.ICE],
+    [dsp.ws.ARCHING_ARROW]                  = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.EMPYREAL_ARROW]                 = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.NAMAS_ARROW]                    = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.REFULGENT_ARROW]                = dsp.ws.chain[ele.WATER],
+    [dsp.ws.JISHNUS_RADIANCE]               = dsp.ws.chain[ele.LIGHT_LIGHT],
+    [dsp.ws.APEX_ARROW]                     = dsp.ws.chain[ele.THUNDER_WIND],
+
+    ------------------------------------
+    -- MARKSMANSHIP
+    ------------------------------------
+
+    [dsp.ws.HOT_SHOT]                       = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.SPLIT_SHOT]                     = dsp.ws.chain[ele.WATER],
+    [dsp.ws.SNIPER_SHOT]                    = dsp.ws.chain[ele.FIRE],
+    [dsp.ws.SLUG_SHOT]                      = dsp.ws.chain[ele.WATER],
+    [dsp.ws.BLAST_SHOT]                     = dsp.ws.chain[ele.ICE],
+    [dsp.ws.HEAVY_SHOT]                     = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.DETONATOR]                      = dsp.ws.chain[ele.FIRE_LIGHT],
+    [dsp.ws.CORONACH]                       = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.TRUEFLIGHT]                     = dsp.ws.chain[ele.THUNDER_WIND],
+    [dsp.ws.LEADEN_SALUTE]                  = dsp.ws.chain[ele.DARK_EARTH],
+    [dsp.ws.NUMBING_SHOT]                   = dsp.ws.chain[ele.ICE],
+    [dsp.ws.WILDFIRE]                       = dsp.ws.chain[ele.DARK_DARK],
+    [dsp.ws.LAST_STAND]                     = dsp.ws.chain[ele.FIRE_LIGHT],
+
+}

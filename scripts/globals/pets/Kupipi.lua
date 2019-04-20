@@ -1,283 +1,333 @@
 -------------------------------------------------
---  Trust: Kupipi
---  Magic: Cure I-VI, Protect/ra I-IV Shell/ra I-IV
---    -na Spells, Slow, Paralyze, Erase, Flash
---  JA: None
---  WS: Starlight, Moonlight
+--  Trust: 	Kupipi
+--  Magic: 	Cure I-VI, Protect/ra I-IV Shell/ra I-IV
+--    		-na Spells, Slow, Paralyze, Erase, Flash
+--  JA: 	None
+--  WS: 	Starlight, Moonlight
+-- 	Notes: 	Cure sleeping party members
 --  Source: http://bg-wiki.com/bg/Category:Trust
 -------------------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/msg")
+require("scripts/globals/weaponskillids")
+require("scripts/globals/pets/TrustUtils")
 
-function onMobSpawn(mob)  
-    local weaponskill = 0
-	local cureCooldown = 12
-	local debuffCooldown = 10
-	local buffCooldown = 7
-	local ailmentCooldown = 15
-	local master = mob:getMaster()
-	local kupipi = mob:getID()
-	mob:setLocalVar("cureTime",0)
-	mob:setLocalVar("debuffTime",0)
-	mob:setLocalVar("ailmentTime",0)
-	mob:setLocalVar("buffTime",0)
-	mob:setLocalVar("paraTime",0)
-	mob:setLocalVar("slowTime",0)
-	mob:setLocalVar("flashTime",0)
+wsList = 
+{
+	dsp.ws.STARLIGHT,
+	dsp.ws.MOONLIGHT
+}
 
-	mob:addListener("TRUST_COMBAT_TICK", "KUPIPI_BUFF_TICK" .. kupipi, function(mob, player, target)
-	    local battletime = os.time()
-		local buffTime = mob:getLocalVar("buffTime")
 
-		if (battletime > buffTime + buffCooldown) then
-		    doBuff(mob, player)
-		end
-	end)
+SPELL = 
+{
+	ID 		= 1;
+	LEVEL 	= 2;
+	MP		= 3;
+	CAST 	= 4;
+	RECAST 	= 5;
+	EFFECT = 6; --REMOVE is only for NA spells and contains the ID for the status effect it cures.
+}
 
-	mob:addListener("TRUST_COMBAT_TICK", "KUPIPI_AILMENT_TICK" .. kupipi, function(mob, player, target)
-	    local battletime = os.time()
-		local ailmentTime = mob:getLocalVar("ailmentTime")
+SPELL.CURE = 
+{
+	--CURE[1] -> CURE I
+	{1, 1, 8, 2, 5},
+	{2, 11, 24, 2, 6},
+	{3, 21, 46, 3, 6}, 
+	{4, 41, 88, 3, 8}, 
+	{5, 61, 135, 3, 10}, 
+	{6, 80, 227, 3, 15}
+}
 
-		if (battletime > ailmentTime + ailmentCooldown) then
-		    local spell = doStatusRemoval(mob, player)
-			if (spell > 0 ) then
-		        mob:castSpell(spell, player)
+SPELL.PROTECT = 
+{
+	{43, 7, 9, 1, 5}, 
+	{44, 27, 28, 1, 5},
+	{45, 47, 46, 2, 6},
+	{46, 63, 65, 2, 6},
+	{47, 76, 84, 2, 10}
+} 
+
+SPELL.PROTECTRA = 
+{
+	{125, 7, 9, 3, 15}, 
+	{126, 27, 28, 4, 16}, 
+	{127, 47, 46, 5, 17},
+	{128, 63, 65, 5, 18},
+	{129, 75, 84, 10, 20}
+}
+
+SPELL.SHELL = 
+{
+	{48, 17, 18, 1, 5}, 
+	{49, 37, 37, 1, 5}, 
+	{50, 57, 56, 2, 6}, 
+	{51, 68, 75, 2, 6}, 
+	{52, 76, 93, 2, 10}
+}
+	
+SPELL.SHELLRA = 
+{
+	{130, 17, 18, 3, 15}, 
+	{131, 37, 37, 4, 16}, 
+	{132, 57, 56, 5, 17}, 
+	{133, 68, 75, 5, 18}, 
+	{134, 75, 93, 6, 19}
+}
+
+SPELL.NA = 
+{
+	-- CURE is used like a NA spell for sleep here 
+	{1, 1, 8, 2, 5, 		dsp.effect.SLEEP_I}, 
+	{14, 6, 8, 1, 5, 		dsp.effect.POISON}, 
+	{15, 9, 12, 1, 5, 		dsp.effect.PARALYSIS}, 
+	{16, 14, 16, 1, 10, 	dsp.effect.BLINDNESS}, 
+	{17, 19, 24, 1, 5, 		dsp.effect.SILENCE}, 
+	{18, 39, 40, 1, 5, 		dsp.effect.PETRIFICATION},
+	{19, 34, 48, 1, 5, 		dsp.effect.DISEASE},
+	{20, 29, 30, 1, 10, 	dsp.effect.CURSE_I},
+	{143, 61, 24, 1, 30, 	0}
+}
+
+
+SPELL.DEBUFF = 
+{
+	{56, 13, 15, 2, 20, 	dsp.effect.SLOW},
+	{58, 4, 6, 3, 10, 		dsp.effect.PARALYSIS},
+	{112, 45, 25, 1, 45, 	dsp.effect.BLINDNESS}
+	
+}
+
+function onMobSpawn(entity)  
+end
+
+function onMobFight(entity, target)
+	local ticktime = os.time()
+	local party = entity:getMaster():getParty(); 
+	if(statusRemovalCheck(entity, party, ticktime)) then
+	elseif(healCheck(entity, party, ticktime)) then 
+	elseif(buffCheck(entity, party, ticktime)) then 
+	elseif(debuffCheck(entity, target, ticktime)) then 
+	else
+		randomWSCheck(entity, entity, wsList)
+	end
+	
+end
+
+function healCheck(entity, party, ticktime)
+	if((ticktime - entity:getLocalVar("heal-tick")) > 0) then 
+		for i, member in pairs(party) do 
+			local hpp = member:getHPP()
+			local heal = 0
+			if(hpp <= 30) then --90 for testing 
+				heal = getEmergencyCure(entity)
+				if(heal ~= 0) then 
+					local tick = castMagic(entity, heal, member) + 3
+					entity:setLocalVar("heal-tick", ticktime + tick)
+					return true
+				end
+			elseif(hpp <= 65) then 
+				heal = getNormalCure(entity)
+				if(heal ~= 0) then 
+					local tick = castMagic(entity, heal, member) + 3
+					entity:setLocalVar("heal-tick", ticktime + tick)
+					return true
+				end
 			end
-			mob:setLocalVar("ailmentTime",battletime)
 		end
-	end)
+		entity:setLocalVar("heal-tick", ticktime + 3)
+	end
+	--entity:setLocalVar("heal-tick", ticktime)
+	return false
+end
 
-	mob:addListener("TRUST_COMBAT_TICK", "KUPIPI_DEBUFF_TICK" .. kupipi, function(mob, player, target)
-	    local battletime = os.time()
-		local debuffTime = mob:getLocalVar("debuffTime")
+function getEmergencyCure(entity)
+    local cureList = SPELL.CURE
+    local mp = entity:getMP()
+	local lvl = entity:getMainLvl()
 
-		if (battletime > debuffTime + debuffCooldown) then
-		    local spell = doDebuff(mob, target)
-			if (spell > 0 ) then
-		        mob:castSpell(spell, target)
-			end
-			mob:setLocalVar("debuffTime",battletime)
+	for i = table.maxn(cureList), 1, -1 do 
+		local spell = cureList[i]
+		if(lvl >= spell[SPELL.LEVEL] and mp >= spell[SPELL.MP] and not 
+				entity:hasRecast(1, spell[SPELL.ID])) then  
+			return spell
 		end
-	end)
+	end
+	return 0
+end
 
-	mob:addListener("TRUST_COMBAT_TICK", "KUPIPI_CURE_TICK" .. kupipi, function(mob, player, target)
-	    local battletime = os.time()
-		local cureTime = mob:getLocalVar("cureTime")
+function getNormalCure(entity)
+	local cureList = SPELL.CURE 
+	local mp = entity:getMP()
+	local lvl = entity:getMainLvl()
+	
+	for i = table.maxn(cureList), 1, -1 do 
+		local spell = cureList[i]
+		-- modify spell lvl so that trust isn't spamming expensive new cure 
+		if(lvl >= ((spell[SPELL.LEVEL]*1.2) + 5) and mp >= spell[SPELL.MP] and not 
+				entity:hasRecast(1, spell[SPELL.ID])) then  
+			return spell
+		end
+	end
+	return 0
 
-		if (battletime > cureTime + cureCooldown) then
-		    local party = player:getParty()
-            for _,member in ipairs(party) do
-                if (member:getHPP() <= 30) then
-					local spell = doEmergencyCure(mob)
-					if (spell > 0) then
-                        mob:castSpell(spell, member)
-					    mob:setLocalVar("cureTime",battletime)
-                        break
+end
+
+function castMagic(entity, spell, target) 
+	if not (entity:hasRecast(1, spell[SPELL.ID])) then 
+		entity:castSpell(spell[SPELL.ID], target)
+		entity:addRecast(1, spell[SPELL.ID], spell[SPELL.RECAST])
+		return spell[SPELL.CAST]
+	end
+	return 0
+end
+
+function statusRemovalCheck(entity, party, ticktime)
+	if((ticktime - entity:getLocalVar("status-tick")) > 0) then 
+		local maxSpell = table.maxn(SPELL.NA)
+		for k, member in pairs(party) do 
+			for i = 1, maxSpell, 1 do 
+				if(i == maxSpell) then 
+					if(member:hasStatusEffectByFlag(dsp.effectFlag.ERASABLE)) then
+						if(canCastSpell(entity, SPELL.NA[i])) then  
+						local tick = castMagic(entity, SPELL.NA[i], member) + 2
+						entity:setLocalVar("status-check", ticktime + tick) 
+						return true
+						end 
 					end
-                elseif (member:getHPP() <= 75) then
-					local spell = doCure(mob)
-					if (spell > 0) then
-                        mob:castSpell(spell, member)
-					    mob:setLocalVar("cureTime",battletime)
-                        break
+				elseif(member:hasStatusEffect(SPELL.NA[i][SPELL.EFFECT])) then 
+					if(canCastSpell(entity, SPELL.NA[i])) then 
+						local tick = castMagic(entity, SPELL.NA[i], member) + 2
+						entity:setLocalVar("status-check", ticktime + tick)
+						return true
 					end
-			    end
-			end
-			mob:setLocalVar("cureTime",battletime - 4)  -- If no member has low HP change global check to 8 seconds
-		end
-	end)
-
-	mob:addListener("TRUST_COMBAT_TICK", "KUPIPI_COMBAT_TICK" .. kupipi, function(mob, target)
-	    if (mob:getTP() > 1000) then
-		    weaponskill = doKupipiWeaponskill(mob)
-			mob:useMobAbility(weaponskill, mob)
-		end
-	end)
-end
-
-function doStatusRemoval(mob, player)
-	local mp = mob:getMP()
-	local lvl = mob:getMainLvl()
-	local spell = 0
-
-	if (player:hasStatusEffect(dsp.effect.POISON) and lvl >= 6 and mp >= 8) then
-	    spell = 14
-	elseif (player:hasStatusEffect(dsp.effect.PARALYSIS) and lvl >= 9 and mp >= 12) then
-	    spell = 15
-	elseif (player:hasStatusEffect(dsp.effect.BLINDNESS) and lvl >= 14 and mp >= 16) then
-	    spell = 16
-	elseif (player:hasStatusEffect(dsp.effect.SILENCE) and lvl >= 19 and mp >= 24) then
-	    spell = 17
-	elseif (player:hasStatusEffect(dsp.effect.CURSE_I) and lvl >= 29 and mp >= 30) then
-	    spell = 20
-	elseif (player:hasStatusEffectByFlag(dsp.effectFlag.ERASABLE) and lvl >= 32 and mp >= 18) then
-	    spell = 143
-	elseif (player:hasStatusEffect(dsp.effect.DISEASE) and lvl >= 34 and mp >= 20) then
-	    spell = 19
-	elseif (player:hasStatusEffect(dsp.effect.PETRIFICATION) and lvl >= 39 and mp >= 40) then
-	    spell = 18
-    end
-
-    return spell
-end
-
-function doKupipiWeaponskill(mob)
-    local wsList = {{43,164}, {1,163}}
-    local newWsList = {}
-	local maxws = 3 -- Maximum number of weaponskills to choose from randomly
-	local wscount = 0
-	local lvl = mob:getMainLvl()
-	local finalWS = 0
-
-	for i = 1, #wsList do
-		if (lvl >= wsList[i][1]) then
-			table.insert(newWsList, wscount + 1, wsList[i][2])
-			wscount = wscount + 1
-			if (wscount >= maxws) then
-				break
+				end
 			end
 		end
+		entity:setLocalVar("status-tick", ticktime + 2) 
 	end
-
-	finalWS = newWsList[math.random(1,#newWsList)]
-	return finalWS
+	
+	return false
 end
 
-function doBuff(mob, player)
-    local proRaList = {{63,65,128}, {47,46,127}, {27,28,126}, {7,9,125}}
-    local proList = {{63,65,46}, {47,46,45}, {27,28,44}, {7,9,43}}
-    local shellRaList = {{68,75,133}, {57,56,132}, {37,37,131}, {17,18,130}}	
-    local shellList = {{68,75,51}, {57,56,50}, {37,37,49}, {17,18,48}}
-	local battletime = os.time()
-    local mp = mob:getMP()
-	local lvl = mob:getMainLvl()
-	local party = player:getParty()
-	local pro = 0
-	local shell = 0
-	local procount = 0
-	local shellcount = 0
-
-    for i,member in pairs(party) do
-        if (not member:hasStatusEffect(dsp.effect.PROTECT)) then
-            procount = procount + 1
-            if (procount >= 2) then -- do protectra instead
-	            for i = 1, #proRaList do
-		            if (lvl >= proRaList[i][1] and mp >= proRaList[i][2]) then
-			            pro = proRaList[i][3]
-			            break
-		            end
-	            end
-                mob:castSpell(pro, mob)
-                mob:setLocalVar("buffTime",battletime)
-                break
-            end
+function buffCheck(entity, party, ticktime)
+	if((ticktime - entity:getLocalVar("buff-tick")) > 0) then 
+		local toProtect = {}
+		local toShell = {}
+		for k, member in pairs(party) do 
+			if not (member:hasStatusEffect(dsp.effect.PROTECT)) then 
+				toProtect[table.maxn(toProtect)+1] = member
+			elseif not (member:hasStatusEffect(dsp.effect.SHELL)) then 
+				toShell[table.maxn(toShell)+1] = member
+			end
 		end
-	end
-
-	if (procount == 1) then
-        for i,member in pairs(party) do
-            if (not member:hasStatusEffect(dsp.effect.PROTECT)) then
-                for i = 1, #proList do
-		            if (lvl >= proList[i][1] and mp >= proList[i][2]) then
-			            pro = proList[i][3]
-			            break
-		            end
-	            end
-                mob:castSpell(pro, member)
-                mob:setLocalVar("buffTime",battletime)
-                break
-		    end
-	    end
-	end
-
-    for i,member in pairs(party) do
-        if (not member:hasStatusEffect(dsp.effect.SHELL)) then
-            shellcount = shellcount + 1
-            if (shellcount >= 2) then
-	            for i = 1, #shellRaList do
-		            if (lvl >= shellRaList[i][1] and mp >= shellRaList[i][2]) then
-			            shell = shellRaList[i][3]
-			            break
-		            end
-	            end
-                mob:castSpell(shell, mob)
-                mob:setLocalVar("buffTime",battletime)
-                break
-            end
+		-- check protect/protectra
+		if(table.maxn(toProtect) > 0) then 
+			if(table.maxn(toProtect) == 1) then 
+				--single protect required
+				local protect = getHighestTierSpell(entity, SPELL.PROTECT)
+				if(protect ~= 0) then 
+					local tick = castMagic(entity, protect, toProtect[1]) + 10
+					entity:setLocalVar("buff-tick", ticktime + tick)
+					return true
+				end
+			else 
+				--protectra required 
+				local protectra = getHighestTierSpell(entity, SPELL.PROTECTRA)
+				if(protectra ~= 0) then 
+					local tick = castMagic(entity, protectra, entity) + 10
+					entity:setLocalVar("buff-tick", ticktime + tick)
+					return true
+				end
+			end
+		-- check shell/shellra
+		elseif(table.maxn(toShell) > 0) then
+			if(table.maxn(toShell) == 1) then 
+				--single shell required
+				local shell = getHighestTierSpell(entity, SPELL.SHELL)
+				if(shell ~= 0) then 
+					local tick = castMagic(entity, shell, toShell[1]) + 10 
+					entity:setLocalVar("buff-tick", ticktime + tick)
+					return true
+				end
+			else
+				--shellra required
+				local shellra = getHighestTierSpell(entity, SPELL.SHELLRA)
+				if(shellra ~= 0) then 
+					local tick = castMagic(entity, shellra, entity) + 10 
+					entity:setLocalVar("buff-tick", ticktime + tick)
+					return true
+				end
+			end
 		end
-	end
 
-	if (shellcount == 1) then
-        for i,member in pairs(party) do
-            if (not member:hasStatusEffect(dsp.effect.SHELL)) then
-                for i = 1, #proList do
-		            if (lvl >= shellList[i][1] and mp >= shellList[i][2]) then
-			            shell = shellList[i][3]
-			            break
-		            end
-	            end
-                mob:castSpell(shell, member)
-                mob:setLocalVar("buffTime",battletime)
-                break
-		    end
-	    end
+		entity:setLocalVar("buff-tick", ticktime + 10)
 	end
+	return false
 end
 
-function doDebuff(mob, target)
-	local paraCooldown = 120
-	local slowCooldown = 180
-	local flashCooldown = 120
-    local battletime = os.time()
-    local paraTime = mob:getLocalVar("paraTime")
-	local slowTime = mob:getLocalVar("slowTime")
-	local flashTime = mob:getLocalVar("flashTime")
-	local mp = mob:getMP()
-	local lvl = mob:getMainLvl()
-	local debuff = 0
-
-	if ((battletime > paraTime + paraCooldown) and not target:hasStatusEffect(dsp.effect.PARALYSIS) and lvl >= 4 and mp >= 6) then
-		mob:setLocalVar("paraTime",battletime)
-	    debuff = 58
-	elseif ((battletime > slowTime + slowCooldown) and not target:hasStatusEffect(dsp.effect.SLOW) and lvl >= 13 and mp >= 15) then
-		mob:setLocalVar("slowTime",battletime)
-	    debuff = 56
-	elseif ((battletime > flashTime + flashCooldown) and not target:hasStatusEffect(dsp.effect.FLASH) and lvl >= 45 and mp >= 25) then
-		mob:setLocalVar("flashTime",battletime)
-	    debuff = 112
-    end
-
-    return debuff
+function debuffCheck(entity, target, ticktime)
+	if((ticktime - entity:getLocalVar("debuff-tick")) > 0) then 
+		if((entity:getMP() * 100 / entity:getMaxMP()) > 70) then 
+			local list = filterToCastableSpellList(entity, target, SPELL.DEBUFF, 
+				function(target, spell)
+					return not target:hasStatusEffect(spell[SPELL.EFFECT]) and target:getHPP() > 40
+				end)
+			if(table.maxn(list) > 0) then 
+				local spell = getRandomSpell(entity, list)
+				local tick = castMagic(entity, spell, target) + 15
+				entity:setLocalVar("debuff-tick", ticktime + tick)
+				return true 
+			end
+		end
+		entity:setLocalVar("debuff-tick", ticktime + 5)
+	end
+	
+	return false;
+	
 end
 
-function doCure(mob)
-    local cureList = {{41,88,4}, {21,46,3}, {11,24,2}, {1,8,1}}
-    local mp = mob:getMP()
-	local lvl = mob:getMainLvl()
-	local cure = 0
+function filterToCastableSpellList(entity, target, spellList, chkfn)
+	local mp = entity:getMP()
+	local lvl = entity:getMainLvl()
+	local castable = {}
+	local i = 1;
 
-	for i = 1, #cureList do
-		if (lvl >= cureList[i][1] and mp >= cureList[i][2]) then
-			cure = cureList[i][3]
-			break
+	for k, spell in pairs(spellList) do 
+		if(lvl >= spell[SPELL.LEVEL] 
+			and mp > spell[SPELL.MP] 
+			and not entity:hasRecast(1, spell[SPELL.ID])
+			and chkfn(target, spell)) then 
+			castable[i] = spell 
+			i = i + 1
 		end
 	end
-
-	return cure
+	return castable
 end
 
-function doEmergencyCure(mob)
-    local cureList = {{61,135,5}, {41,88,4}, {21,46,3}, {11,24,2}, {1,8,1}}
-    local mp = mob:getMP()
-	local lvl = mob:getMainLvl()
-	local cure = 0
+function getHighestTierSpell(entity, spellList)
+	local mp = entity:getMP()
+	local lvl = entity:getMainLvl()
 
-	for i = 1, #cureList do
-		if (lvl >= cureList[i][1] and mp >= cureList[i][2]) then
-			cure = cureList[i][3]
-			break
+	for i = table.maxn(spellList), 1, -1 do 
+		local spell = spellList[i]
+		if(lvl >= spell[SPELL.LEVEL] and mp >= spell[SPELL.MP]) then  
+			return spell
 		end
 	end
+	return 0
+end
 
-	return cure
+function canCastSpell(entity, spell)
+	local mp = entity:getMP()
+	local lvl = entity:getMainLvl()
+
+	return (lvl >= spell[SPELL.LEVEL] and mp >= spell[SPELL.MP] 
+		and not entity:hasRecast(1, spell[SPELL.ID]))
+end
+
+function getRandomSpell(entity, spellList)
+	math.randomseed(os.time())
+	return spellList[math.random(1, table.maxn(spellList))]
 end

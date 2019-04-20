@@ -110,18 +110,19 @@ void CTrustEntity::Die()
 void CTrustEntity::Spawn()
 {
     //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
-    CBattleEntity::Spawn();
+    //CBattleEntity::Spawn();
+    HideName(false);
     ((CCharEntity*)PMaster)->pushPacket(new CTrustSyncPacket((CCharEntity*)PMaster, this));
     luautils::OnMobSpawn(this);
 }
 
 bool CTrustEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
-    if (targetFlags & TARGET_PLAYER && PInitiator->allegiance == allegiance)
-    {
-        return false;
-    }
-    return CMobEntity::ValidTarget(PInitiator, targetFlags);
+    //check the base flags first before rejecting! now self cures can work :)
+    if (CMobEntity::ValidTarget(PInitiator, targetFlags))
+        return true;
+
+    return !(targetFlags & TARGET_PLAYER && PInitiator->allegiance == allegiance);
 }
 
 void CTrustEntity::OnAbility(CAbilityState& state, action_t& action)

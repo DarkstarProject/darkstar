@@ -73,6 +73,7 @@ class CTrustEntity;
 namespace petutils
 {
 	void LoadPetList();
+    void loadTrustMap();
 	void FreePetList();
 
 	void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);

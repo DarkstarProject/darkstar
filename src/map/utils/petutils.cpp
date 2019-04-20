@@ -44,6 +44,7 @@ This file is part of DarkStar-server source code.
 #include "../latent_effect_container.h"
 #include "../mob_spell_list.h"
 #include "../enmity_container.h"
+#include "../utils/itemutils.h"
 #include "../items/item_weapon.h"
 #include "../zone_instance.h"
 
@@ -60,6 +61,50 @@ This file is part of DarkStar-server source code.
 #include "../packets/message_standard.h"
 #include "../packets/pet_sync.h"
 #include "../packets/trust_sync.h"
+
+struct Trust_t
+{
+    look_t      look;
+    string_t    name;
+    uint8       name_prefix;
+    uint16      m_Family;
+    ECOSYSTEM   EcoSystem;
+    uint8 		speed;
+
+    uint8   minLevel;
+    uint8   maxLevel;
+
+    uint8   mJob;
+    uint8   sJob;
+
+    uint16  mainSlot;
+    uint16  subSlot;
+    uint16  rngSlot;
+    
+    // resists
+    int16 slashres;
+    int16 pierceres;
+    int16 hthres;
+    int16 impactres;
+
+    int16 firedef;
+    int16 icedef;
+    int16 winddef;
+    int16 earthdef;
+    int16 thunderdef;
+    int16 waterdef;
+    int16 lightdef;
+    int16 darkdef;
+
+    int16 fireres;
+    int16 iceres;
+    int16 windres;
+    int16 earthres;
+    int16 thunderres;
+    int16 waterres;
+    int16 lightres;
+    int16 darkres;
+};
 
 struct Pet_t
 {
@@ -129,6 +174,7 @@ struct Pet_t
 };
 
 std::map<uint32, Pet_t*> g_PPetMap;
+std::map<uint32, Trust_t*> g_PTrustMap;
 //std::vector<Pet_t*> g_PPetList;
 
 namespace petutils
@@ -252,6 +298,105 @@ namespace petutils
                 //g_PPetList.push_back(Pet);
             }
         }
+
+        loadTrustMap();
+    }
+
+    void loadTrustMap()
+    {
+        const char* query =
+            "select \
+            tl.trustid, \
+            tl.trust_name, \
+            tl.trust_name_prefix, \
+            tl.trust_look, \
+            tl.trust_minLevel, \
+            tl.trust_maxLevel, \
+            tl.trust_mobfamilyid, \
+            tl.trust_mJob, \
+            tl.trust_sJob, \
+            tl.trust_mainSlot, \
+            tl.trust_subSlot, \
+            tl.trust_rngSlot, \
+            mfs.systemid, \
+            mfs.speed, \
+            mfs.Slash, \
+            mfs.Pierce, \
+            mfs.H2H, \
+            mfs.Impact, \
+            mfs.Fire, \
+            mfs.Ice, \
+            mfs.Wind, \
+            mfs.Earth, \
+            mfs.Lightning, \
+            mfs.Water, \
+            mfs.Light, \
+            mfs.Dark \
+            from trust_list tl \
+            inner join mob_family_system mfs on mfs.familyid = tl.trust_mobfamilyid";
+
+        if (Sql_Query(SqlHandle, query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+
+                Trust_t* trust = new Trust_t{};
+
+                //trust_list vars
+
+                uint32 trustId = (uint32)Sql_GetUIntData(SqlHandle, 0);
+                trust->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
+                trust->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 2);
+                memcpy(&trust->look, Sql_GetData(SqlHandle, 3), 20);
+                trust->minLevel = (uint8)Sql_GetUIntData(SqlHandle, 4);
+                trust->maxLevel = (uint8)Sql_GetUIntData(SqlHandle, 5);
+                trust->m_Family = (uint16)Sql_GetUIntData(SqlHandle, 6);
+                trust->mJob = (uint8)Sql_GetUIntData(SqlHandle, 7);
+                trust->sJob = (uint8)Sql_GetUIntData(SqlHandle, 8);
+                trust->mainSlot = (uint16)Sql_GetUIntData(SqlHandle, 9);
+                trust->subSlot = (uint16)Sql_GetUIntData(SqlHandle, 10);
+                trust->rngSlot = (uint16)Sql_GetUIntData(SqlHandle, 11);
+
+                //Mob_Family_System Vars
+
+                trust->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 12);
+                trust->speed = (uint8)Sql_GetUIntData(SqlHandle, 13);
+
+                trust->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 14) * 1000);
+                trust->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 15) * 1000);
+                trust->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 16) * 1000);
+                trust->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 17) * 1000);
+
+                trust->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 18) - 1) * -100);
+                trust->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 19) - 1) * -100);
+                trust->windres = (uint16)((Sql_GetFloatData(SqlHandle, 20) - 1) * -100);
+                trust->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 21) - 1) * -100);
+                trust->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 22) - 1) * -100);
+                trust->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 23) - 1) * -100);
+                trust->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 24) - 1) * -100);
+                trust->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 25) - 1) * -100);
+
+
+                trust->firedef = 0;
+                trust->icedef = 0;
+                trust->winddef = 0;
+                trust->earthdef = 0;
+                trust->thunderdef = 0;
+                trust->waterdef = 0;
+                trust->lightdef = 0;
+                trust->darkdef = 0;
+
+
+
+                /*CItemWeapon* main = (CItemWeapon*)itemutils::GetItem((uint16)0);
+                trust->m_Weapons[SLOT_MAIN] = main;
+                trust->m_Weapons[SLOT_MAIN]->setDmgType();*/
+
+
+                g_PTrustMap.insert(std::pair<uint32, Trust_t*>(trustId, trust));
+            }
+        }
+
     }
 
     /************************************************************************
@@ -272,6 +417,11 @@ namespace petutils
         {
             delete g_PPetMap.begin()->second;
             g_PPetMap.erase(g_PPetMap.begin());
+        }
+        while (!g_PTrustMap.empty())
+        {
+            delete g_PTrustMap.begin()->second;
+            g_PTrustMap.erase(g_PTrustMap.begin());
         }
     }
 
@@ -656,7 +806,7 @@ namespace petutils
         }
     }
 
-    void LoadTrustStats(CTrustEntity* PTrust, Pet_t* petStats)
+    void LoadTrustStats(CTrustEntity* PTrust, Trust_t* petStats)
     {
         // Cargo cult of PC calculations.
 
@@ -833,12 +983,152 @@ namespace petutils
                 sJobStat = 0;
             }
 
+
             // Вывод значения
             ref<uint16>(&PTrust->stats, counter) = (uint16)((raceStat + jobStat + sJobStat));
             counter += 2;
         }
-        PTrust->m_Weapons[SLOT_MAIN]->setDamage(GetTrustWeaponDamage(PTrust));
-        PTrust->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000* (petStats->cmbDelay / 60))));		
+
+        // Skills setup
+
+        for (int32 i = 1; i < 48; ++i)
+        {
+            //ignore unused skills
+            if ((i >= 13 && i <= 21) || (i >= 46 && i <= 47))
+            {
+                PTrust->WorkingSkills.skill[i] = 0x8000;
+                continue;
+            }
+            uint16 MaxMSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PTrust->GetMJob(), PTrust->GetMLevel());
+            uint16 MaxSSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PTrust->GetSJob(), PTrust->GetSLevel());
+            PTrust->WorkingSkills.skill[i] = std::max(MaxMSkill, MaxSSkill);
+            //uint16 skillBonus = 0;
+
+            //// apply arts bonuses
+            //if ((i >= 32 && i <= 35 && PTrust->StatusEffectContainer->HasStatusEffect({ EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE })) ||
+            //    (i >= 35 && i <= 37 && PTrust->StatusEffectContainer->HasStatusEffect({ EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK })))
+            //{
+            //    uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENHANCING_MAGIC, JOB_RDM, PTrust->GetMLevel()); //B+ skill
+            //    uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PTrust->GetMLevel()); // D skill cap
+            //    uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DARK_MAGIC, JOB_RDM, PTrust->GetMLevel()); // E skill cap
+            //    auto currentSkill = std::clamp<uint16>((PTrust->WorkingSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
+            //    uint16 artsBaseline = 0; // Level based baseline to which to raise skills
+            //    uint8 mLevel = PTrust->GetMLevel();
+            //    if (mLevel < 51)
+            //    {
+            //        artsBaseline = (uint16)(5 + 2.7 * (mLevel - 1));
+            //    }
+            //    else if ((mLevel > 50) && (mLevel < 61))
+            //    {
+            //        artsBaseline = (uint16)(137 + 4.7 * (mLevel - 50));
+            //    }
+            //    else if ((mLevel > 60) && (mLevel < 71))
+            //    {
+            //        artsBaseline = (uint16)(184 + 3.7 * (mLevel - 60));
+            //    }
+            //    else if ((mLevel > 70) && (mLevel < 75))
+            //    {
+            //        artsBaseline = (uint16)(221 + 5.0 * (mLevel - 70));
+            //    }
+            //    else if (mLevel >= 75)
+            //    {
+            //        artsBaseline = skillCapD + 36;
+            //    }
+            //    if (currentSkill < skillCapE)
+            //    {
+            //        // If the player's skill is below the E cap
+            //        // give enough bonus points to raise it to the arts baseline
+            //        skillBonus += std::max(artsBaseline - currentSkill, 0);
+            //    }
+            //    else if (currentSkill < skillCapD)
+            //    {
+            //        //if the skill is at or above the E cap but below the D cap
+            //        // raise it up to the B+ skill cap minus the difference between the current skill rank and the scholar base skill cap (D)
+            //        // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
+            //        skillBonus += std::max((artsSkill - skillCapD), 0);
+            //    }
+            //    else if (currentSkill < artsSkill)
+            //    {
+            //        // If the player's skill is at or above the D cap but below the B+ cap
+            //        // give enough bonus points to raise it to the B+ cap
+            //        skillBonus += std::max(artsSkill - currentSkill, 0);
+            //    }
+
+            //    if (PTrust->StatusEffectContainer->HasStatusEffect({ EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE }))
+            //    {
+            //        skillBonus += PTrust->getMod(Mod::LIGHT_ARTS_SKILL);
+            //    }
+            //    else
+            //    {
+            //        skillBonus += PTrust->getMod(Mod::DARK_ARTS_SKILL);
+            //    }
+            //}
+            //else if (i >= 22 && i <= 24)
+            //{
+            //    //if (PTrust->PAutomaton)
+            //    //{
+            //    //    MaxMSkill = battleutils::GetMaxSkill(1, PTrust->GetMLevel()); // A+ capped down to the Automaton's rating
+            //    //}
+            //}
+
+            //skillBonus += PTrust->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PTrust);
+            //meritIndex++;
+/*
+            skillBonus += PTrust->getMod(static_cast<Mod>(i + 79));
+
+            PTrust->WorkingSkills.rank[i] = battleutils::GetSkillRank((SKILLTYPE)i, PTrust->GetMJob());*/
+/*
+            if (MaxMSkill != 0)
+            {
+                auto cap{ PTrust->RealSkills.skill[i] / 10 >= MaxMSkill };
+                PTrust->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxMSkill : skillBonus + PTrust->RealSkills.skill[i] / 10);
+                if (cap) PTrust->WorkingSkills.skill[i] |= 0x8000;
+            }
+            else if (MaxSSkill != 0)
+            {
+                auto cap{ PTrust->RealSkills.skill[i] / 10 >= MaxSSkill };
+                PTrust->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxSSkill : skillBonus + PTrust->RealSkills.skill[i] / 10);
+                if (cap) PTrust->WorkingSkills.skill[i] |= 0x8000;
+            }
+            else
+            {
+                PTrust->WorkingSkills.skill[i] = std::max<uint16>(0, skillBonus) | 0x8000;
+            }*/
+        }
+
+        
+
+        //GetItem in itemuitls makes a copy of the weapon so we are safe to modify the damage
+        CItemWeapon* main;
+
+        if (petStats->mainSlot != 0)
+        {
+            main = (CItemWeapon*)itemutils::GetItem(petStats->mainSlot);
+            PTrust->m_Weapons[SLOT_MAIN] = main;
+            PTrust->m_Weapons[SLOT_MAIN]->setDamage(GetTrustWeaponDamage(PTrust));
+        }
+        else
+        {
+            main = (CItemWeapon*)itemutils::GetUnarmedH2HItem();
+            PTrust->m_Weapons[SLOT_MAIN] = main;
+        }
+
+        if (!main->isTwoHanded() && petStats->subSlot != 0)
+        {
+            CItemWeapon* sub = (CItemWeapon*)itemutils::GetItem(petStats->subSlot);
+            PTrust->m_Weapons[SLOT_SUB] = sub;
+            PTrust->m_Weapons[SLOT_SUB]->setDamage(GetTrustWeaponDamage(PTrust));
+        }
+
+        if (petStats->rngSlot != 0)
+        {
+            CItemWeapon* rng = (CItemWeapon*)itemutils::GetItem(petStats->rngSlot);
+            PTrust->m_Weapons[SLOT_RANGED] = rng;
+            PTrust->m_Weapons[SLOT_RANGED]->setDamage(GetTrustWeaponDamage(PTrust));
+        }
+
+
+        
     }
 
     void LoadAvatarStats(CPetEntity* PPet)
@@ -1762,10 +2052,11 @@ namespace petutils
 
     CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
     {
-        DSP_DEBUG_BREAK_IF(g_PPetMap.count(TrustID) <= 0);
-        Pet_t* PPetData = g_PPetMap[TrustID];
-        //DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
-		//Pet_t* PPetData = g_PPetList.at(TrustID);
+        /*DSP_DEBUG_BREAK_IF(g_PPetMap.count(TrustID) <= 0);
+        Pet_t* PPetData = g_PPetMap[TrustID];*/
+        DSP_DEBUG_BREAK_IF(g_PTrustMap.count(TrustID) <= 0);
+        Trust_t* PPetData = g_PTrustMap[TrustID];
+
         CTrustEntity* PTrust = new CTrustEntity(PMaster);
         PTrust->loc = PMaster->loc;
         PTrust->m_OwnerID.id = PMaster->id;
@@ -1773,18 +2064,16 @@ namespace petutils
 
         // spawn me randomly around master
         PTrust->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, (float)M_PI);
-        Pet_t* trust = PPetData;//do we need to refind trust? g_PPetList.at(TrustID);
+        Trust_t* trust = PPetData;//do we need to refind trust? g_PPetList.at(TrustID);
         PTrust->look = trust->look;
         PTrust->name = trust->name;
         PTrust->m_name_prefix = trust->name_prefix;
         PTrust->m_Family = trust->m_Family;
-        PTrust->m_MobSkillList = trust->m_MobSkillList;
         PTrust->SetMJob(trust->mJob);
         PTrust->SetSJob(trust->sJob); // TODO: This may not be true for some trusts
-        PTrust->m_Element = trust->m_Element;
+        //PTrust->m_Element = trust->m_Element;
         PTrust->m_PetID = TrustID;
         PTrust->status = STATUS_NORMAL;
-        PTrust->m_ModelSize = trust->size;
         PTrust->m_EcoSystem = trust->EcoSystem;
 
         // assume level matches master

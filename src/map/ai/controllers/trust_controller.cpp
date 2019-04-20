@@ -103,7 +103,7 @@ void CTrustController::DoCombatTick(time_point tick)
             }
         }
 		
-		POwner->PAI->EventHandler.triggerListener("TRUST_COMBAT_TICK", POwner, POwner->PMaster, PTarget);
+		POwner->PAI->EventHandler.triggerListener("COMBAT_TICK", POwner, POwner->PMaster, PTarget);
 		luautils::OnMobFight(POwner, PTarget);
     }
 }

@@ -32,7 +32,7 @@ class CTrustEntity : public CMobEntity
 public:
     CTrustEntity(CCharEntity*);
 	~CTrustEntity();
-	uint8 m_Element;
+	//uint8 m_Element;
 	uint32 m_PetID;
 
     virtual void PostTick() override;

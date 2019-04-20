@@ -542,7 +542,7 @@ void CAttack::ProcessDamage()
     }
 
     // Try skill up.
-    if (m_damage > 0)
+    if (m_damage > 0 && m_attacker->objtype != TYPE_TRUST)
     {
         charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[slot]->getSkillType(), m_victim->GetMLevel());
 
