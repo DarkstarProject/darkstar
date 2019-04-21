@@ -135,7 +135,7 @@ function onRegionEnter(player,region)
         switch (region:GetRegionID()): caseof
         {
             [1] = function (x)
-                if (player:getCurrentMission(COP)==DAWN or player:hasCompletedMission(COP,dsp.mission.id.cop.DAWN) or player:hasCompletedMission(COP,THE_LAST_VERSE) ) then
+                if (player:getCurrentMission(COP)==dsp.mission.id.cop.DAWN or player:hasCompletedMission(COP,dsp.mission.id.cop.DAWN) or player:hasCompletedMission(COP,dsp.mission.id.cop.THE_LAST_VERSE) ) then
                    player:startEvent(101);
                 else
                    player:startEvent(155);
