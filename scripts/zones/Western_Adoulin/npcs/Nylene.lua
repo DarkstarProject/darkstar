@@ -1,24 +1,24 @@
 -----------------------------------
 -- Area: Western Adoulin
---  NPC: Nylene
+-- NPC: Nylene
 -- Type: Standard NPC and Quest NPC
---  Involved with Quest: 'A Certain Substitute Patrolman'
 -- !pos 12 0 -82 256
 -----------------------------------
-require("scripts/globals/missions");
-require("scripts/globals/quests");
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 
-local quest_table =
+local involvedQuests =
 {
-    require("scripts/quests/adoulin/a_certain_substitute_patrolman")
+    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN}
 }
+involvedQuests = quests.loadQuests(involvedQuests)
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if not dsp.quests.onTrigger(player, npc, quest_table) then
+    if not quests.onTrigger(player, npc, involvedQuests) then
         if player:getCurrentMission(SOA) >= LIFE_ON_THE_FRONTIER then
             -- Standard dialogue
             player:startEvent(562)
@@ -33,5 +33,5 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    dsp.quests.onEventFinish(player, csid, option, quest_table)
+    quests.onEventFinish(player, csid, option, involvedQuests)
 end;

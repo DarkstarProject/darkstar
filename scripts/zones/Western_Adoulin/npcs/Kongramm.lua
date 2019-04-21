@@ -1,19 +1,19 @@
 -----------------------------------
 -- Area: Western Adoulin
---  NPC: Kongramm
+-- NPC: Kongramm
 -- Type: Standard NPC, Mission NPC, and Quest NPC
---  Involved with Mission: 'A Curse From The Past'
---  Involved with Quests: 'A Certain Substitute Patrolman' and 'Transporting'
+-- Involved with Mission: 'A Curse From The Past'
+-- Involved with Quests: 'Transporting'
 -- !pos 61 32 138 256
 -----------------------------------
-require("scripts/globals/missions");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 
-local quest_table =
+local involvedQuests =
 {
-    require("scripts/quests/adoulin/a_certain_substitute_patrolman")
+    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN}
 }
+involvedQuests = quests.loadQuests(involvedQuests)
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             player:startEvent(149);
         end
     else
-        if not dsp.quests.onTrigger(player, npc, quest_table) then
+        if not quests.onTrigger(player, npc, involvedQuests) then
             if ((Transporting == QUEST_ACCEPTED) and (player:getVar("Transporting_Status") < 1)) then
                 -- Progresses Quest: 'Transporting'
                 player:startEvent(2592);
@@ -48,7 +48,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if not dsp.quests.onEventFinish(player, csid, option, quest_table) then
+    if not quests.onEventFinish(player, csid, option, involvedQuests) then
         if (csid == 148) then
             -- Gave hint for SOA Mission: 'A Curse From the Past'
             player:setVar("SOA_ACFTP_Kongramm", 1);

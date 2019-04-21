@@ -62,23 +62,23 @@ function onTrigger(player,logId,questId,target)
     }
 
     -- fetch a quest table if there is one
-    local quest_table = dsp.quests.getQuestTable(logId, questId)
+    local quest = quests.getQuest(logId, questId)
 
     local quest_status_string = ''
 
     -- show quest status
-    if quest_table then
-        quest_status_string = quest_status_string .. string.format("%s's status for %s quest '%s' is: %s", targ:getName(), logName, quest_table.name, status)
+    if quest then
+        quest_status_string = quest_status_string .. string.format("%s's status for %s quest '%s' is: %s", targ:getName(), logName, quest.name, status)
     else
         quest_status_string = quest_status_string .. string.format("%s's status for %s quest ID %i is: %s", targ:getName(), logName, questId, status )
     end
 
     -- print any known quest vars
-    if quest_table then
-        quest_status_string = quest_status_string .. string.format("\n%s is currently on stage: %i", targ:getName(), dsp.quests.getStage(targ, quest_table))
+    if quest then
+        quest_status_string = quest_status_string .. string.format("\n%s is currently on stage: %i", targ:getName(), quest.getStage(targ))
         local quest_vars_string = ''
-        for name, var in pairs(quest_table.vars.additional) do
-            quest_vars_string = string.format(quest_vars_string.. ", %s: %i", name, dsp.quests.getVar(targ, quest_table, name))
+        for name, var in pairs(quest.vars.additional) do
+            quest_vars_string = string.format(quest_vars_string.. ", %s: %i", name, quest.getVar(targ, name))
         end
         if string.len(quest_vars_string) > 1 then
             quest_vars_string = string.format("\n%s's additional quest vars are".. quest_vars_string, targ:getName())

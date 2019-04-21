@@ -86,7 +86,7 @@ thisQuest.stages =
             {
                 [2550] = function(player, option) -- Rising Solstice starting quest
                     if npcUtil.giveKeyItem(player, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE) then
-                        thisQuest.start(player)
+                        thisQuest.begin(player)
                         return true
                     end
                 end

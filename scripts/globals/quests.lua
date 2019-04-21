@@ -1,3 +1,4 @@
+require("scripts/globals/keyitems")
 require("scripts/globals/log_ids")
 require("scripts/globals/npc_util")
 require("scripts/globals/zone")
@@ -5,7 +6,6 @@ require("scripts/globals/zone")
 dsp = dsp or {}
 dsp.quest = dsp.quest or {} -- "Solid" enum definitions which are currently in use by master
 quests = {}
-dsp.quests = {}
 
 -- These should be tabled enums for rewritten quests, but
 -- these globals are kept so old-style quests will work
@@ -1460,9 +1460,63 @@ quests.newQuest = function()
 
     -- Adds a quest to the player's log and sets their stage to 1
     ---------------------------------------------------------------
-    this.start = function(player)
+    this.begin = function(player)
         player:addQuest(this.log_id, this.quest_id)
         this.advanceStage(player)
+    end
+
+    -- Handles checking a quest to see if control should be diverted
+    -- from the calling NPC
+    ---------------------------------------------------------------
+    this.check = function(player, params)
+        local questTrigger
+        local zoneId = player:getZoneID()
+        local stageZoneTable
+        local playerCurrentStage = this.getStage(player)
+        if this.stages[playerCurrentStage] then
+            stageZoneTable = this.stages[playerCurrentStage][zoneId]
+        end
+        local checks =
+        {
+            [dsp.quest.event.TRADE] = function(player, params)
+                if stageZoneTable['onTrade'] and stageZoneTable['onTrade'][params.targetName] then
+                    return stageZoneTable['onTrade'][params.targetName](player, params.target, params.trade)
+                end
+            end,
+            [dsp.quest.event.TRIGGER] = function(player, params)
+                if stageZoneTable['onTrigger'] and stageZoneTable['onTrigger'][params.targetName] then
+                    return stageZoneTable['onTrigger'][params.targetName](player, params.target)
+                end
+            end,
+            [dsp.quest.event.UPDATE] = function(player, params)
+                if stageZoneTable['onEventUpdate'] and stageZoneTable['onEventUpdate'][params.csid] then
+                    return stageZoneTable['onEventUpdate'][params.csid](player, params.option)
+                end
+            end,
+            [dsp.quest.event.FINISH] = function(player, params)
+                if stageZoneTable['onEventFinish'] and stageZoneTable['onEventFinish'][params.csid] then
+                    return stageZoneTable['onEventFinish'][params.csid](player, params.option)
+                end
+            end,
+            [dsp.quest.event.ZONE_IN] = function(player, params)
+                if stageZoneTable['onZoneIn'] then
+                    return stageZoneTable['onZoneIn'](player, params)
+                end
+            end,
+            [dsp.quest.event.MOB_DEATH] = function(player, params)
+                if stageZoneTable['onMobDeath'] and stageZoneTable['onMobDeath'][targetName] then
+                    return stageZoneTable['onMobDeath'][targetName](params.target, player, params.isKiller, params.isWeaponSkillKill)
+                end
+            end,
+        }
+
+        if stageZoneTable then
+            questTrigger = checks[params.check_type](player, params)
+        end
+
+        if questTrigger then
+            return true
+        end
     end
 
     -- Completes the quest in the player's log, gives out rewards, and cleans up leftover vars and key items
@@ -1516,83 +1570,7 @@ end
 --  QUEST FUNCTIONS
 -----------------------------------
 
-dsp.quests.check = function(player, params)
-    local quest_table = params.quest_table
-    if quest_table then
-        local zoneid = player:getZoneID()
-
-        local cycle = player:getLocalVar("[quests]dialogCycle")
-        local check_type = params.check_type
-
-        local targetName
-        if params.target then
-            targetName = params.target:getName()
-        end
-        if cycle > 0 and not needsCycling then
-            player:setLocalVar("[quests]dialogCycle", 0)
-        end
-        local i = cycle + 1
-        while i <= #quest_table do
-            local quest = quest_table[i]
-            if quest then
-                local exitLoop
-                local stage_zone_table
-                local player_current_stage = quest.getStage(player)
-                if quest.stages[player_current_stage] then
-                    stage_zone_table = quest.stages[player_current_stage][zoneid]
-                end
-                local checks =
-                {
-                    [dsp.quest.event.TRADE] = function(player, params)
-                        if stage_zone_table['onTrade'] and stage_zone_table['onTrade'][targetName] then
-                            return stage_zone_table['onTrade'][targetName](player, params.target, params.trade)
-                        end
-                    end,
-                    [dsp.quest.event.TRIGGER] = function(player, params)
-                        if stage_zone_table['onTrigger'] and stage_zone_table['onTrigger'][targetName] then
-                            return stage_zone_table['onTrigger'][targetName](player, params.target)
-                        end
-                    end,
-                    [dsp.quest.event.UPDATE] = function(player, params)
-                        if stage_zone_table['onEventUpdate'] and stage_zone_table['onEventUpdate'][params.csid] then
-                            return stage_zone_table['onEventUpdate'][params.csid](player, params.option)
-                        end
-                    end,
-                    [dsp.quest.event.FINISH] = function(player, params)
-                        if stage_zone_table['onEventFinish'] and stage_zone_table['onEventFinish'][params.csid] then
-                            return stage_zone_table['onEventFinish'][params.csid](player, params.option)
-                        end
-                    end,
-                    [dsp.quest.event.ZONE_IN] = function(player, params)
-                        if stage_zone_table['onZoneIn'] then
-                            return stage_zone_table['onZoneIn'](player, params)
-                        end
-                    end,
-                    [dsp.quest.event.MOB_DEATH] = function(player, params)
-                        if stage_zone_table['onMobDeath'] and stage_zone_table['onMobDeath'][targetName] then
-                            return stage_zone_table['onMobDeath'][targetName](params.target, player, params.isKiller, params.isWeaponSkillKill)
-                        end
-                    end,
-                }
-                if stage_zone_table then
-                    exitLoop = checks[params.check_type](player, params)
-                end
-                player:setLocalVar("[quests]cycle", i)
-                --print("Player: "..player:getName()..(targetName and " Npc: "..targetName or " Event: "..params.csid).. " \tCycle: "..i.." Quest: "..quest.name)
-                if exitLoop then
-                    return true
-                end
-                i = i + 1
-            else
-                break
-            end
-        end
-    end
-    return false
-end
-
-
-dsp.quests.getQuestTable = function(area_log_id, quest_id)
+quests.getQuest = function(area_log_id, quest_id)
     local quest_filename = 'scripts/quests/'
     local area_dirs =
     {
@@ -1611,55 +1589,87 @@ dsp.quests.getQuestTable = function(area_log_id, quest_id)
     local quest_file = dsp.quest.string[dsp.quest.area[area_log_id]][quest_id]
     if quest_file then
         quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_file)
-        local quest_table = require(quest_filename)
-        if (quest_table) then
-            return quest_table
+        local quest = require(quest_filename)
+        if (quest) then
+            return quest
         else
-            print("dsp.quests.getQuestTable: Unable to include designated file '".. quest_filename .."'")
+            print("quests.getQuest: Unable to include designated file '".. quest_filename .."'")
         end
     else
-        print("dsp.quests.getQuestTable: No quest file defined for quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
+        print("quests.getQuest: No quest file defined for quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
     end
 end
 
-dsp.quests.onTrade = function(player, npc, trade, quest_table)
+quests.loadQuests = function(involvedQuests)
+    local loadedQuests = {}
+    local quest
+    local i = 1 -- Doing i loop instead of pairs so quests kept in scripted order
+    while i <= #involvedQuests do
+        local areaQuestPair = involvedQuests[i]
+        quest = quests.getQuest(areaQuestPair[1], areaQuestPair[2])
+        if quest then
+            loadedQuests[i] = quest
+        else
+            printf("quests.loadQuests: Unable to load quest: " .. areaQuestPair[1]", " .. areaQuestPair[2])
+        end
+        i = i + 1
+    end
+    return loadedQuests
+end
+
+quests.check = function(player, params)
+    local involvedQuests = params.involvedQuests
+    if involvedQuests then
+        local i = 1 -- Doing i loop instead of pairs so quests checked in order
+        while i <= #involvedQuests do
+            local quest = involvedQuests[i]
+            if quest then
+                if quest.check(player, params) then
+                    return true
+                end
+            end
+            i = i + 1
+        end
+    end
+    return false
+end
+
+quests.onTrade = function(player, npc, trade, involvedQuests)
     local params = {}
     params.target = npc
+    params.targetName = npc:getName()
     params.trade = trade
     params.check_type = dsp.quest.event.TRADE
-    params.quest_table = quest_table
-    return dsp.quests.check(player, params)
+    params.involvedQuests = involvedQuests
+    return quests.check(player, params)
 end
 
-dsp.quests.onTrigger = function(player, npc, quest_table)
+quests.onTrigger = function(player, npc, involvedQuests)
     local params = {}
     params.target = npc
+    params.targetName = npc:getName()
     params.trade = trade
     params.check_type = dsp.quest.event.TRIGGER
-    params.quest_table = quest_table
-    return dsp.quests.check(player, params)
+    params.involvedQuests = involvedQuests
+    return quests.check(player, params)
 end
 
-dsp.quests.onEventFinish = function(player, csid, option, quest_table)
+quests.onEventFinish = function(player, csid, option, involvedQuests)
     local params = {}
     params.csid = csid
     params.option = option
     params.check_type = dsp.quest.event.FINISH
-    params.quest_table = quest_table
-    return dsp.quests.check(player, params)
+    params.involvedQuests = involvedQuests
+    return quests.check(player, params)
 end
 
-dsp.quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, quest_table)
+quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, involvedQuests)
     local params = {}
     params.target = mob
+    params.targetName = mob:getName()
     params.isKiller = isKiller
     params.isWeaponSkillKill = isWeaponSkillKill
     params.type = dsp.quest.event.MOB_DEATH
-    params.quest_table = quest_table
-
-    if not entity:isPC() then
-        print("what the fuck even")
-        return false
-    end
-    return dsp.quests.check(entity, params)
+    params.involvedQuests = involvedQuests
+    return quests.check(entity, params)
 end

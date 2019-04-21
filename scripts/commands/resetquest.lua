@@ -53,7 +53,7 @@ function onTrigger(player,logId,questId,target)
     end
 
     -- fetch the quest table
-    local quest = dsp.quests.getQuestTable(logId, questId)
+    local quest = dsp.quests.getQuest(logId, questId)
 
     if quest then
         -- Begin resetting all quest progress to the best of our ability

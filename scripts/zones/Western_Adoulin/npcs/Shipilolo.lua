@@ -1,31 +1,27 @@
 -----------------------------------
 -- Area: Western Adoulin
---  NPC: Shipilolo
+-- NPC: Shipilolo
 -- Type: Standard NPC and Quest NPC
---  Involved with Quests: 'A Certain Substitute Patrolman'
---                        'Fertile Ground'
---                        'The Old Man and the Harpoon'
---                        'Wayward Waypoints'
 -- !pos 84 0 -60 256
 -----------------------------------
 require("scripts/globals/missions")
 require("scripts/globals/quests")
-require("scripts/globals/keyitems")
 
-local quest_table =
+local involvedQuests =
 {
-    require("scripts/quests/adoulin/a_certain_substitute_patrolman"),
-    require("scripts/quests/adoulin/the_old_man_and_the_harpoon"),
-    require("scripts/quests/adoulin/fertile_ground"),
-    require("scripts/quests/adoulin/wayward_waypoints")
+    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN},
+    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON},
+    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.FERTILE_GROUND},
+    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.WAYWARD_WAYPOINTS}
 }
+involvedQuests = quests.loadQuests(involvedQuests)
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if not dsp.quests.onTrigger(player, npc, quest_table) then
+    if not quests.onTrigger(player, npc, involvedQuests) then
         if player:getCurrentMission(SOA) >= LIFE_ON_THE_FRONTIER then
             -- Standard dialogue
             player:startEvent(535);
@@ -40,5 +36,5 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    dsp.quests.onEventFinish(player, csid, option, quest_table)
+    quests.onEventFinish(player, csid, option, involvedQuests)
 end

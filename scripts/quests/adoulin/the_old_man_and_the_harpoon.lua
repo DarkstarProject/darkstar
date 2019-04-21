@@ -82,7 +82,7 @@ thisQuest.stages =
                 [2540] = function(player, option)
                     -- Jorin, starting quest
                     if npcUtil.giveKeyItem(player, dsp.ki.BROKEN_HARPOON) then
-                        thisQuest.start(player)
+                        thisQuest.begin(player)
                         return true
                     end
                 end
