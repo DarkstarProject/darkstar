@@ -83,8 +83,7 @@ thisQuest.stages =
             ['onTrigger'] =
             {
                 ['Shipilolo'] = function(player, npc)
-                    player:startEvent(2850) -- Gives Bottle of Fertilizer X to player
-                    return true
+                    return thisQuest.startEvent(player, 2850) -- Gives Bottle of Fertilizer X to player
                 end
             },
             ['onEventFinish'] =
@@ -92,8 +91,7 @@ thisQuest.stages =
                 [2850] = function(player, option)
                     -- Shipilolo, giving Bottle of Fertilizer X
                     if npcUtil.giveKeyItem(player, dsp.ki.BOTTLE_OF_FERTILIZER_X) then
-                        dsp.quests.advanceStage(player, thisQuest)
-                        return true
+                        return thisQuest.advanceStage(player)
                     end
                 end
             }

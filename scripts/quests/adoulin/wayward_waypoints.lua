@@ -129,8 +129,7 @@ thisQuest.stages =
             ['onTrigger'] =
             {
                 ['Shipilolo'] = function(player, npc)
-                    player:startEvent(79) -- Gives player Waypoint Recalibration Kit
-                    return true
+                    return thisQuest.startEvent(player, 79) -- Gives player Waypoint Recalibration Kit
                 end
             },
             ['onEventFinish'] =
@@ -138,8 +137,7 @@ thisQuest.stages =
                 [79] = function(player, option) -- Shipilolo upgrading waypoint kit
                     if npcUtil.giveKeyItem(player, dsp.ki.WAYPOINT_RECALIBRATION_KIT) then
                         player:delKeyItem(dsp.ki.WAYPOINT_SCANNER_KIT)
-                        thisQuest.advanceStage(player)
-                        return true
+                        return thisQuest.advanceStage(player)
                     end
                 end
             }

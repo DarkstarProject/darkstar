@@ -1311,13 +1311,17 @@ quests.newQuest = function()
             return ret
         end
 
-        local var, vartype
+        local var, vartype, db_name
         if quest.vars.stage == varname then
             var = quest.vars.stage
             vartype = dsp.quest.var.CHAR
+            db_name = quest.vars.stage
         else
             var = quest.vars.additional[varname]
-            vartype = var.type
+            if var then
+                vartype = var.type
+                db_name = var.db_name
+            end
         end
 
         if not var then
@@ -1325,21 +1329,21 @@ quests.newQuest = function()
         else
             if vartype == dsp.quest.var.CHAR then
                 if get then
-                    ret.val = entity:getVar(varname)
+                    ret.val = entity:getVar(db_name)
                 else
-                    entity:setVar(varname, val)
+                    entity:setVar(db_name, val)
                 end
             elseif vartype == dsp.quest.var.LOCAL then
                 if get then
-                    ret.val = entity:getLocalVar(varname)
+                    ret.val = entity:getLocalVar(db_name)
                 else
-                    entity:setLocalVar(varname, val)
+                    entity:setLocalVar(db_name, val)
                 end
             elseif vartype == dsp.quest.var.SERVER then
                 if get then
-                    ret.val = GetServerVariable(varname)
+                    ret.val = GetServerVariable(db_name)
                 else
-                    SetServerVariable(varname, val)
+                    SetServerVariable(db_name, val)
                 end
             end
         end
@@ -1399,20 +1403,21 @@ quests.newQuest = function()
     this.advanceStage = function(entity)
         local message = this.string_key.. ".advanceStage -> "
         local currentStage = this.getStage(entity)
-        return this.setVar(entity, this.vars.stage, currentStage + 1, message)
+        this.setVar(entity, this.vars.stage, currentStage + 1, message)
+        return true
     end
 
     -- Returns true if the player meets all the listed quest requirements
     ---------------------------------------------------------------
     this.checkRequirements = function(player)
-        local questStatusCheck = player:getQuestStatus(this.area, this.quest_id)
+        local questStatusCheck = player:getQuestStatus(this.log_id, this.quest_id)
 
         if questStatusCheck == dsp.quest.status.AVAILABLE
         or (questStatusCheck == dsp.quest.status.COMPLETED and this.repeatable) then
             -- Check all required quests
             if this.requirements.quests then
                 for i, requiredQuest in ipairs(this.requirements.quests) do
-                    local requiredQuestStatus = player:getQuestStatus(requiredQuest.area, requiredQuest.quest_id)
+                    local requiredQuestStatus = player:getQuestStatus(requiredQuest.log_id, requiredQuest.quest_id)
                     if requiredQuestStatus ~= dsp.quest.status.COMPLETED then
                     -- or (required_quest.stage and (dsp.quests.getStage(player, required_quest) < required_quest.stage)) then -- getStage requires a full quest table
                         return false
@@ -1462,7 +1467,7 @@ quests.newQuest = function()
     ---------------------------------------------------------------
     this.begin = function(player)
         player:addQuest(this.log_id, this.quest_id)
-        this.advanceStage(player)
+        return this.advanceStage(player)
     end
 
     -- Handles checking a quest to see if control should be diverted
@@ -1517,6 +1522,13 @@ quests.newQuest = function()
         if questTrigger then
             return true
         end
+    end
+
+    -- Begins an event for the player, with built-in return
+    ---------------------------------------------------------------
+    this.startEvent = function(player, event)
+        player:startEvent(event)
+        return true
     end
 
     -- Completes the quest in the player's log, gives out rewards, and cleans up leftover vars and key items

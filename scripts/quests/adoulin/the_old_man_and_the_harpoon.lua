@@ -72,8 +72,8 @@ thisQuest.stages =
             {
                 ['Jorin'] = function(player, npc)
                     if thisQuest.checkRequirements(player) then
-                        player:startEvent(2540) -- Starting quest, his harpoon is broken
-                        return true
+                        -- Starting quest, his harpoon is broken
+                        return thisQuest.startEvent(player, 2540) 
                     end
                 end
             },
@@ -82,8 +82,7 @@ thisQuest.stages =
                 [2540] = function(player, option)
                     -- Jorin, starting quest
                     if npcUtil.giveKeyItem(player, dsp.ki.BROKEN_HARPOON) then
-                        thisQuest.begin(player)
-                        return true
+                        return thisQuest.begin(player)
                     end
                 end
             }
@@ -97,12 +96,12 @@ thisQuest.stages =
             ['onTrigger'] =
             {
                 ['Jorin'] = function(player, npc)
-                    player:startEvent(2541) -- Begs player to hurry up
-                    return true
+                    -- Begs player to hurry up
+                    return thisQuest.startEvent(player, 2541) 
                 end,
                 ['Shipilolo'] = function(player, npc)
-                    player:startEvent(2543) -- Upgrading Broken Harpoon to Extravagant Harpoon
-                    return true
+                    -- Upgrading Broken Harpoon to Extravagant Harpoon
+                    return thisQuest.startEvent(player, 2543) 
                 end
             },
             ['onEventFinish'] =
@@ -111,8 +110,7 @@ thisQuest.stages =
                     -- Shipilolo, fixes Broken Harpoon and advances quest
                     if npcUtil.giveKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON) then
                         player:delKeyItem(dsp.ki.BROKEN_HARPOON)
-                        thisQuest.advanceStage(player)
-                        return true
+                        return thisQuest.advanceStage(player)
                     end
                 end
             }
@@ -126,8 +124,8 @@ thisQuest.stages =
             ['onTrigger'] =
             {
                 ['Jorin'] = function(player, npc)
-                    player:startEvent(2542) -- Giving Jorin the Extravagant Harpoon
-                    return true
+                    -- Giving Jorin the Extravagant Harpoon
+                    return thisQuest.startEvent(player, 2542) 
                 end
             },
             ['onEventFinish'] =

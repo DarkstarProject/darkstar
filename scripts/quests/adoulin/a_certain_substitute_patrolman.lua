@@ -59,8 +59,7 @@ thisQuest.temporary =
 -----------------------------------
 thisQuest.GO_PATROL = function(player, npc)
     -- Rising Solstice yelling at the player to go patrol
-    player:startEvent(2551)
-    return true
+    return thisQuest.startEvent(player, 2551)
 end
 
 -----------------------------------
@@ -77,8 +76,7 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = function(player, npc)
                     if thisQuest.checkRequirements(player) then
-                        player:startEvent(2550) -- Starts Quest: 'A Certain Substitute Patrolman'
-                        return true
+                        return thisQuest.startEvent(player, 2550) -- Starts Quest: 'A Certain Substitute Patrolman'
                     end
                 end
             },
@@ -86,8 +84,7 @@ thisQuest.stages =
             {
                 [2550] = function(player, option) -- Rising Solstice starting quest
                     if npcUtil.giveKeyItem(player, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE) then
-                        thisQuest.begin(player)
-                        return true
+                        return thisQuest.begin(player)
                     end
                 end
             }
@@ -102,15 +99,13 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Zaoso'] = function(player, npc)
-                    player:startEvent(2553) -- Reports to player, and advances quest
-                    return true
+                    return thisQuest.startEvent(player, 2553) -- Reports to player, and advances quest
                 end
             },
             ['onEventFinish'] =
             {
                 [2553] = function(player, option) -- Zaoso progressing quest
-                    thisQuest.advanceStage(player)
-                    return true
+                    return thisQuest.advanceStage(player)
                 end
             }
         }
@@ -124,15 +119,13 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Clemmar'] = function(player, npc)
-                    player:startEvent(2554) -- Reports to player, and advances quest
-                    return true
+                    return thisQuest.startEvent(player, 2554) -- Reports to player, and advances quest
                 end
             },
             ['onEventFinish'] =
             {
                 [2554] = function(player, option) -- Clemmar progressing quest
-                    thisQuest.advanceStage(player)
-                    return true
+                    return thisQuest.advanceStage(player)
                 end
             }
         }
@@ -146,15 +139,13 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Kongramm'] = function(player, npc)
-                    player:startEvent(2555) -- Reports to player, and advances quest
-                    return true
+                    return thisQuest.startEvent(player, 2555) -- Reports to player, and advances quest
                 end
             },
             ['onEventFinish'] =
             {
                 [2555] = function(player, option) -- Kongramm progressing quest
-                    thisQuest.advanceStage(player)
-                    return true
+                    return thisQuest.advanceStage(player)
                 end
             }
         }
@@ -168,15 +159,13 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Virsaint'] = function(player, npc)
-                    player:startEvent(2556) -- Reports to player, and advances quest
-                    return true
+                    return thisQuest.startEvent(player, 2556) -- Reports to player, and advances quest
                 end
             },
             ['onEventFinish'] =
             {
                 [2556] = function(player, option) -- Virsaint progressing quest
-                    thisQuest.advanceStage(player)
-                    return true
+                    return thisQuest.advanceStage(player)
                 end
             }
         }
@@ -190,15 +179,13 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Shipilolo'] = function(player, npc)
-                    player:startEvent(2557) -- Reports to player, and advances quest
-                    return true
+                    return thisQuest.startEvent(player, 2557) -- Reports to player, and advances quest
                 end
             },
             ['onEventFinish'] =
             {
                 [2557] = function(player, option) -- Shipilolo progressing quest
-                    thisQuest.advanceStage(player)
-                    return true
+                    return thisQuest.advanceStage(player)
                 end
             }
         }
@@ -212,15 +199,13 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Dangueubert'] = function(player, npc)
-                    player:startEvent(2558) -- Reports to player, and advances quest
-                    return true
+                    return thisQuest.startEvent(player, 2558) -- Reports to player, and advances quest
                 end
             },
             ['onEventFinish'] =
             {
                 [2558] = function(player, option) -- Dangueubert progressing quest
-                    thisQuest.advanceStage(player)
-                    return true
+                    return thisQuest.advanceStage(player)
                 end
             }
         }
@@ -234,15 +219,13 @@ thisQuest.stages =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Nylene'] = function(player, npc)
-                    player:startEvent(2559) -- Reports to player, and advances quest
-                    return true
+                    return thisQuest.startEvent(player, 2559) -- Reports to player, and advances quest
                 end
             },
             ['onEventFinish'] =
             {
                 [2559] = function(player, option) -- Nylene progressing quest
-                    thisQuest.advanceStage(player)
-                    return true
+                    return thisQuest.advanceStage(player)
                 end
             }
         }
@@ -255,8 +238,7 @@ thisQuest.stages =
             ['onTrigger'] =
             {
                 ['Rising_Solstice'] = function(player, npc)
-                    player:startEvent(2552) -- Finishes quest
-                    return true
+                    return thisQuest.startEvent(player, 2552) -- Finishes quest
                 end
             },
             ['onEventFinish'] =
