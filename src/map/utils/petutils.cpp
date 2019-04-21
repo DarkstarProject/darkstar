@@ -386,13 +386,6 @@ namespace petutils
                 trust->lightdef = 0;
                 trust->darkdef = 0;
 
-
-
-                /*CItemWeapon* main = (CItemWeapon*)itemutils::GetItem((uint16)0);
-                trust->m_Weapons[SLOT_MAIN] = main;
-                trust->m_Weapons[SLOT_MAIN]->setDmgType();*/
-
-
                 g_PTrustMap.insert(std::pair<uint32, Trust_t*>(trustId, trust));
             }
         }
@@ -1002,98 +995,6 @@ namespace petutils
             uint16 MaxMSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PTrust->GetMJob(), PTrust->GetMLevel());
             uint16 MaxSSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PTrust->GetSJob(), PTrust->GetSLevel());
             PTrust->WorkingSkills.skill[i] = std::max(MaxMSkill, MaxSSkill);
-            //uint16 skillBonus = 0;
-
-            //// apply arts bonuses
-            //if ((i >= 32 && i <= 35 && PTrust->StatusEffectContainer->HasStatusEffect({ EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE })) ||
-            //    (i >= 35 && i <= 37 && PTrust->StatusEffectContainer->HasStatusEffect({ EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK })))
-            //{
-            //    uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENHANCING_MAGIC, JOB_RDM, PTrust->GetMLevel()); //B+ skill
-            //    uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PTrust->GetMLevel()); // D skill cap
-            //    uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DARK_MAGIC, JOB_RDM, PTrust->GetMLevel()); // E skill cap
-            //    auto currentSkill = std::clamp<uint16>((PTrust->WorkingSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
-            //    uint16 artsBaseline = 0; // Level based baseline to which to raise skills
-            //    uint8 mLevel = PTrust->GetMLevel();
-            //    if (mLevel < 51)
-            //    {
-            //        artsBaseline = (uint16)(5 + 2.7 * (mLevel - 1));
-            //    }
-            //    else if ((mLevel > 50) && (mLevel < 61))
-            //    {
-            //        artsBaseline = (uint16)(137 + 4.7 * (mLevel - 50));
-            //    }
-            //    else if ((mLevel > 60) && (mLevel < 71))
-            //    {
-            //        artsBaseline = (uint16)(184 + 3.7 * (mLevel - 60));
-            //    }
-            //    else if ((mLevel > 70) && (mLevel < 75))
-            //    {
-            //        artsBaseline = (uint16)(221 + 5.0 * (mLevel - 70));
-            //    }
-            //    else if (mLevel >= 75)
-            //    {
-            //        artsBaseline = skillCapD + 36;
-            //    }
-            //    if (currentSkill < skillCapE)
-            //    {
-            //        // If the player's skill is below the E cap
-            //        // give enough bonus points to raise it to the arts baseline
-            //        skillBonus += std::max(artsBaseline - currentSkill, 0);
-            //    }
-            //    else if (currentSkill < skillCapD)
-            //    {
-            //        //if the skill is at or above the E cap but below the D cap
-            //        // raise it up to the B+ skill cap minus the difference between the current skill rank and the scholar base skill cap (D)
-            //        // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
-            //        skillBonus += std::max((artsSkill - skillCapD), 0);
-            //    }
-            //    else if (currentSkill < artsSkill)
-            //    {
-            //        // If the player's skill is at or above the D cap but below the B+ cap
-            //        // give enough bonus points to raise it to the B+ cap
-            //        skillBonus += std::max(artsSkill - currentSkill, 0);
-            //    }
-
-            //    if (PTrust->StatusEffectContainer->HasStatusEffect({ EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE }))
-            //    {
-            //        skillBonus += PTrust->getMod(Mod::LIGHT_ARTS_SKILL);
-            //    }
-            //    else
-            //    {
-            //        skillBonus += PTrust->getMod(Mod::DARK_ARTS_SKILL);
-            //    }
-            //}
-            //else if (i >= 22 && i <= 24)
-            //{
-            //    //if (PTrust->PAutomaton)
-            //    //{
-            //    //    MaxMSkill = battleutils::GetMaxSkill(1, PTrust->GetMLevel()); // A+ capped down to the Automaton's rating
-            //    //}
-            //}
-
-            //skillBonus += PTrust->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PTrust);
-            //meritIndex++;
-/*
-            skillBonus += PTrust->getMod(static_cast<Mod>(i + 79));
-
-            PTrust->WorkingSkills.rank[i] = battleutils::GetSkillRank((SKILLTYPE)i, PTrust->GetMJob());*/
-/*
-            if (MaxMSkill != 0)
-            {
-                auto cap{ PTrust->RealSkills.skill[i] / 10 >= MaxMSkill };
-                PTrust->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxMSkill : skillBonus + PTrust->RealSkills.skill[i] / 10);
-                if (cap) PTrust->WorkingSkills.skill[i] |= 0x8000;
-            }
-            else if (MaxSSkill != 0)
-            {
-                auto cap{ PTrust->RealSkills.skill[i] / 10 >= MaxSSkill };
-                PTrust->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxSSkill : skillBonus + PTrust->RealSkills.skill[i] / 10);
-                if (cap) PTrust->WorkingSkills.skill[i] |= 0x8000;
-            }
-            else
-            {
-                PTrust->WorkingSkills.skill[i] = std::max<uint16>(0, skillBonus) | 0x8000;
-            }*/
         }
 
         
@@ -1398,6 +1299,7 @@ namespace petutils
         CTrustEntity* PTrust = LoadTrust(PMaster, TrustID);
         PMaster->PTrusts.insert(PMaster->PTrusts.begin(), PTrust);
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PTrust);
+        PTrust->StatusEffectContainer->CopyConfrontationEffect(PMaster);
         PMaster->loc.zone->InsertPET(PTrust);
         PMaster->PParty->ReloadParty();
     }

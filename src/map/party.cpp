@@ -738,6 +738,8 @@ void CParty::ReloadParty()
         //regular party
         for (uint8 i = 0; i < members.size(); ++i)
         {
+            if (members[i]->objtype != TYPE_PC)
+                continue;
             CCharEntity* PChar = (CCharEntity*)members.at(i);
 
             PChar->PLatentEffectContainer->CheckLatentsPartyJobs();

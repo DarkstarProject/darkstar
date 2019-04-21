@@ -1,8 +1,7 @@
 -----------------------------------------
 -- Spell: Excenmille
 -----------------------------------------
--- require("scripts/globals/trust");
------------------------------------------
+require("scripts/globals/msg");
 
 function onMagicCastingCheck(caster,target,spell)
     if (caster:hasHate()) then
@@ -13,8 +12,6 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    -- Todo: put Trusts's spawn in dialog here or in entity script?
-    -- Todo: automate entity spawn in core for trust spells?
     caster:spawnTrust(4)
     return 0
 end

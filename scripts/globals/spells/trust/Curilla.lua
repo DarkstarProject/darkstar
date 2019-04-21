@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Kupipi
+-- Spell: Curilla
 -----------------------------------------
 require("scripts/globals/msg");
 
@@ -12,6 +12,6 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    caster:spawnTrust(3)
+    caster:spawnTrust(7)
     return 0
 end

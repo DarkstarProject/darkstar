@@ -313,7 +313,7 @@ namespace message
                 {
                     PChar->ForAlliance([](CBattleEntity* PMember)
                     {
-                        ((CCharEntity*)PMember)->ReloadPartyInc();
+                          ((CCharEntity*)PMember)->ReloadPartyInc();
                     });
                 }
             }

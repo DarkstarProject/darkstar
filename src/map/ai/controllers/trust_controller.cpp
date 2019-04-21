@@ -164,11 +164,25 @@ void CTrustController::DoRoamTick(time_point tick)
     }*/
 
     float currentDistance = distance(POwner->loc.p, POwner->PMaster->loc.p);
-
+    
     if (currentDistance > RoamDistance)
     {
-        if (currentDistance < 35.0f && POwner->PAI->PathFind->PathAround(POwner->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+        unsigned int trustNo = 0;
+        CCharEntity* master = (CCharEntity*) ((CTrustEntity*)POwner)->PMaster;
+
+
+        auto trusts = master->PTrusts;
+
+        for (trustNo; trustNo < trusts.size(); trustNo++)
+            if (trusts[trustNo] == POwner)
+                break;
+        trustNo += 1;
+
+        float distanceFromPoint = 2.0f + trustNo;
+
+        if (currentDistance < 35.0f && POwner->PAI->PathFind->PathAround(POwner->PMaster->loc.p, distanceFromPoint, PATHFLAG_RUN | PATHFLAG_WALLHACK))
         {
+            
             POwner->PAI->PathFind->FollowPath();
         }
         else// if (POwner->GetSpeed() > 0)

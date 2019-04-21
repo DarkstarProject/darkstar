@@ -369,20 +369,23 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
     // shouldn't add if target is charmed by the enemy
     if (PTarget->PMaster != nullptr)
     {
-        if (m_findType == FIND_MONSTER_PLAYER){
+        if (m_findType == FIND_MONSTER_PLAYER) {
 
-            if (PTarget->PMaster->objtype == TYPE_MOB){
+            if (PTarget->PMaster->objtype == TYPE_MOB) {
                 return false;
             }
 
         }
-        else if (m_findType == FIND_PLAYER_MONSTER){
+        else if (m_findType == FIND_PLAYER_MONSTER) {
 
-            if (PTarget->PMaster->objtype == TYPE_PC){
+            if (PTarget->PMaster->objtype == TYPE_PC) {
                 return false;
             }
 
         }
+        //Treat trust as a PLAYER_PLAYER for buffs.
+        else if (m_findType == FIND_PLAYER_PLAYER && PTarget->objtype == TYPE_TRUST)
+            return true;
         else if (m_findType == FIND_MONSTER_MONSTER || m_findType == FIND_PLAYER_PLAYER){
             return false;
         }
