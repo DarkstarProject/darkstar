@@ -2,16 +2,22 @@ require("scripts/globals/missions")
 require("scripts/globals/quests")
 require("scripts/globals/zone")
 
-local this_quest = {}
+local thisQuest = quests.newQuest()
 
-this_quest.name = "Fertile Ground"
-this_quest.area = ADOULIN
-this_quest.log_id = dsp.quest.log_id.ADOULIN
-this_quest.quest_id = dsp.quest.id.adoulin.FERTILE_GROUND
+thisQuest.name = "Fertile Ground"
+thisQuest.log_id = dsp.quest.log_id.ADOULIN
+thisQuest.quest_id = dsp.quest.id.adoulin.FERTILE_GROUND
+thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
-this_quest.repeatable = false
+thisQuest.repeatable = false
+thisQuest.varPrefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.vars =
+{
+    stage = thisQuest.varPrefix,
+    additional = {}
+}
 
-this_quest.requirements =
+thisQuest.requirements =
 {
     quests =
     {
@@ -22,12 +28,12 @@ this_quest.requirements =
     },
     fame =
     {
-        ['area'] = this_quest.area,
+        ['area'] = dsp.quest.fame.ADOULIN,
         ['level'] = 2
     }
 }
 
-this_quest.rewards =
+thisQuest.rewards =
 {
     sets =
     {
@@ -35,25 +41,21 @@ this_quest.rewards =
         {
             exp = 500,
             bayld = 300,
-            fame_area = dsp.quests.enums.fame_areas.ADOULIN
+            fame_area = dsp.quest.fame.ADOULIN
         }
     }
 }
 
-this_quest.temporary =
+thisQuest.temporary =
 {
     items = {},
     key_items = {dsp.ki.BOTTLE_OF_FERTILIZER_X}
 }
 
-this_quest.vars =
-{
-    stage = "[Q]["..this_quest.log_id.."]["..this_quest.quest_id.."]",
-    preserve_main_on_complete = false,
-    additional = {}
-}
-
-this_quest.stages =
+-----------------------------------
+-- QUEST STAGES
+-----------------------------------
+thisQuest.stages =
 {
     -- [TODO] Stage 0: Talk to Chalvava, Rala Waterways, to begin the quest
     [dsp.quest.stage.STAGE0] =
@@ -90,7 +92,7 @@ this_quest.stages =
                 [2850] = function(player, option)
                     -- Shipilolo, giving Bottle of Fertilizer X
                     if npcUtil.giveKeyItem(player, dsp.ki.BOTTLE_OF_FERTILIZER_X) then
-                        dsp.quests.advanceStage(player, this_quest)
+                        dsp.quests.advanceStage(player, thisQuest)
                         return true
                     end
                 end
@@ -127,4 +129,4 @@ this_quest.stages =
     }
 }
 
-return this_quest
+return thisQuest

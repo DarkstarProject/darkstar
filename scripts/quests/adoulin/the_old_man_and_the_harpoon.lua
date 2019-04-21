@@ -1,26 +1,25 @@
 require("scripts/globals/missions")
 require("scripts/globals/quests")
-require("scripts/globals/zone")
 
-local this_quest = {}
+local thisQuest = quests.newQuest()
 
-this_quest.name = "The Old Man and the Harpoon"
-this_quest.area = ADOULIN
-this_quest.log_id = dsp.quest.log_id.ADOULIN
-this_quest.quest_id = dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON
+thisQuest.name = "The Old Man and the Harpoon"
+thisQuest.log_id = dsp.quest.log_id.ADOULIN
+thisQuest.quest_id = dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON
+thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
-this_quest.repeatable = false
-this_quest.vars =
+thisQuest.repeatable = false
+thisQuest.varPrefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.vars =
 {
-    stage = "[Q]["..this_quest.log_id.."]["..this_quest.quest_id.."]",
-    preserve_main_on_complete = false, -- do we keep main var on quest completion
+    stage = thisQuest.varPrefix,
     additional =
     {
-        --['name'] = { id = 1, type = dsp.quests.enums.var_types.LOCAL_VAR, repeatable = false, preserve_on_complete = false },
+        --['name'] = { type = dsp.quest.var.CHAR, preserve = false, db_name = 'some_var' },
     }
 }
 
-this_quest.requirements =
+thisQuest.requirements =
 {
     missions =
     {
@@ -32,15 +31,15 @@ this_quest.requirements =
     },
     fame =
     {
-        ['area'] = this_quest.area,
+        ['area'] = dsp.quest.fame.ADOULIN,
         ['level'] = 1
     }
     -- trade = { {item, qty} },
-    -- keyitems = {...},
+    -- key_items = {...},
     -- etc..
 }
 
-this_quest.rewards =
+thisQuest.rewards =
 {
     sets =
     {
@@ -48,18 +47,21 @@ this_quest.rewards =
         {
             exp = 500,
             bayld = 300,
-            fame_area = dsp.quests.enums.fame_areas.ADOULIN
+            fame_area = dsp.quest.fame.ADOULIN
         }
     }
 }
 
-this_quest.temporary =
+thisQuest.temporary =
 {
     items = {},
     key_items = {dsp.ki.BROKEN_HARPOON, dsp.ki.EXTRAVAGANT_HARPOON}
 }
 
-this_quest.stages =
+-----------------------------------
+-- QUEST STAGES
+-----------------------------------
+thisQuest.stages =
 {
     -- Stage 0: Talk to Jorin, Western Adoulin, to get Broken Harpoon KI and start quest
     [dsp.quest.stage.STAGE0] =
@@ -69,8 +71,8 @@ this_quest.stages =
             ['onTrigger'] =
             {
                 ['Jorin'] = function(player, npc)
-                    if dsp.quests.checkRequirements(player, this_quest) then
-                        player:startEvent(2540) -- Starting quest
+                    if thisQuest.checkRequirements(player) then
+                        player:startEvent(2540) -- Starting quest, his harpoon is broken
                         return true
                     end
                 end
@@ -80,8 +82,7 @@ this_quest.stages =
                 [2540] = function(player, option)
                     -- Jorin, starting quest
                     if npcUtil.giveKeyItem(player, dsp.ki.BROKEN_HARPOON) then
-                        player:addQuest(this_quest.log_id, this_quest.quest_id)
-                        dsp.quests.advanceStage(player, this_quest)
+                        thisQuest.start(player)
                         return true
                     end
                 end
@@ -100,7 +101,7 @@ this_quest.stages =
                     return true
                 end,
                 ['Shipilolo'] = function(player, npc)
-                    player:startEvent(2543) -- Upgrading Broken Hapoon to Extravagant Harpoon
+                    player:startEvent(2543) -- Upgrading Broken Harpoon to Extravagant Harpoon
                     return true
                 end
             },
@@ -110,14 +111,14 @@ this_quest.stages =
                     -- Shipilolo, fixes Broken Harpoon and advances quest
                     if npcUtil.giveKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON) then
                         player:delKeyItem(dsp.ki.BROKEN_HARPOON)
-                        dsp.quests.advanceStage(player, this_quest)
+                        thisQuest.advanceStage(player)
                         return true
                     end
                 end
             }
         }
     },
-    -- Stage 2: Talk to Jorin, quest complete
+    -- Stage 2: Talk to Jorin, to give him Extravagant Harpoon and finish quest
     [dsp.quest.stage.STAGE2] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
@@ -125,7 +126,7 @@ this_quest.stages =
             ['onTrigger'] =
             {
                 ['Jorin'] = function(player, npc)
-                    player:startEvent(2542) -- Finishes quest
+                    player:startEvent(2542) -- Giving Jorin the Extravagant Harpoon
                     return true
                 end
             },
@@ -133,7 +134,7 @@ this_quest.stages =
             {
                 [2542] = function(player, option)
                     -- Jorin, finishing quest
-                    if dsp.quests.complete(player, this_quest) then
+                    if thisQuest.complete(player, thisQuest) then
                         player:delKeyItem(dsp.ki.EXTRAVAGANT_HARPOON)
                         return true
                     end
@@ -143,4 +144,4 @@ this_quest.stages =
     }
 }
 
-return this_quest
+return thisQuest

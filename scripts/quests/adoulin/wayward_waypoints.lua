@@ -2,23 +2,26 @@ require("scripts/globals/missions")
 require("scripts/globals/quests")
 require("scripts/globals/zone")
 
-local waypointEventFinish = function(player, waypoint)
-    -- Make sure player is working on stage 1
-    -- Bitmask the bit in the waypoints var for the given waypoint
-    -- Check value of the waypoint var, if all are set, advance to stage 2
-    -- Return true if we did something
-end
+local thisQuest = quests.newQuest()
 
-local this_quest = {}
+thisQuest.name = "Wayward Waypoints"
+thisQuest.log_id = dsp.quest.log_id.ADOULIN
+thisQuest.quest_id = dsp.quest.id.adoulin.WAYWARD_WAYPOINTS
+thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
-this_quest.name = "Wayward Waypoints"
-this_quest.area = ADOULIN
-this_quest.log_id = dsp.quest.log_id.ADOULIN
-this_quest.quest_id = dsp.quest.id.adoulin.WAYWARD_WAYPOINTS
+thisQuest.repeatable = false
+thisQuest.varPrefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.vars =
+{
+    stage = thisQuest.varPrefix,
+    additional =
+    {
+        -- Bitmask of waypoints calibrated during the second stage.
+        ["waypoints"] = {  type = dsp.quest.var.CHAR, preserve = false, db_name = 'waypoints' },
+    }
+}
 
-this_quest.repeatable = false
-
-this_quest.requirements =
+thisQuest.requirements =
 {
     quests =
     { 
@@ -29,12 +32,12 @@ this_quest.requirements =
     },
     fame =
     {
-        ['area'] = this_quest.area,
+        ['area'] = dsp.quest.fame.ADOULIN,
         ['level'] = 4
     }
 }
 
-this_quest.rewards =
+thisQuest.rewards =
 {
     sets =
     {
@@ -43,12 +46,12 @@ this_quest.rewards =
             exp = 1000,
             bayld = 500,
             -- TODO: kinetic_units = 3000, -- Kinetic units need to be implemented before we reward them.
-            fame_area = dsp.quests.enums.fame_areas.ADOULIN
+            fame_area = dsp.quest.fame.ADOULIN
         }
     }
 }
 
-this_quest.temporary =
+thisQuest.temporary =
 {
     items = {},
     key_items =
@@ -58,18 +61,19 @@ this_quest.temporary =
     }
 }
 
-this_quest.vars =
-{
-    stage = "[Q]["..this_quest.log_id.."]["..this_quest.quest_id.."]",
-    preserve_main_on_complete = false, -- do we keep main var on quest completion
-    additional =
-    {
-        -- Bitmask of waypoints calibrated during the second stage.
-        ["waypoints"] = { id = 1, type = dsp.quests.enums.var_types.LOCAL_VAR, repeatable = false, preserve_on_complete = false }, 
-    }
-}
+-- Additional quest functions
+-----------------------------------
+thisQuest.CHECK_WAYPOINT = function(player, waypoint)
+    -- Make sure player is working on stage 1
+    -- Bitmask the bit in the waypoints var for the given waypoint
+    -- Check value of the waypoint var, if all are set, advance to stage 2
+    -- Return true if we did something
+end
 
-this_quest.stages =
+-----------------------------------
+-- QUEST STAGES
+-----------------------------------
+thisQuest.stages =
 {
     -- [TODO] Stage 0: Speak to Sharuru in Eastern Adoulin to start the quest and receive a Waypoint Scanner Kit KI
     [dsp.quest.stage.STAGE0] =
@@ -134,7 +138,7 @@ this_quest.stages =
                 [79] = function(player, option) -- Shipilolo upgrading waypoint kit
                     if npcUtil.giveKeyItem(player, dsp.ki.WAYPOINT_RECALIBRATION_KIT) then
                         player:delKeyItem(dsp.ki.WAYPOINT_SCANNER_KIT)
-                        dsp.quests.advanceStage(player, this_quest)
+                        thisQuest.advanceStage(player)
                         return true
                     end
                 end
@@ -166,4 +170,4 @@ this_quest.stages =
     }
 }
 
-return this_quest
+return thisQuest
