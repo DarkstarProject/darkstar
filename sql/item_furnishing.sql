@@ -498,8 +498,12 @@ INSERT INTO `item_furnishing` VALUES (3714, 'pot_of_white_clematis', 1, 515, 3, 
 INSERT INTO `item_furnishing` VALUES (3715, 'pot_of_pink_clematis', 1, 515, 3, 2);
 INSERT INTO `item_furnishing` VALUES (3717, 'birch_tree', 1, 2854, 3, 5);
 INSERT INTO `item_furnishing` VALUES (3718, 'handful_of_adoulinian_tomatoes', 1, 2849, 5, 6);
+INSERT INTO `item_furnishing` VALUES (3719, 'prishe_statue_ii', 4, 512, 0, 3);
+INSERT INTO `item_furnishing` VALUES (3720, 'arciela_statue', 4, 513, 1, 3);
+INSERT INTO `item_furnishing` VALUES (3721, 'iroha_statue', 4, 514, 2, 3);
 INSERT INTO `item_furnishing` VALUES (3722, 'lion_statue', 4, 515, 3, 3);
 INSERT INTO `item_furnishing` VALUES (3723, 'lilisette_statue', 4, 516, 4, 3);
+INSERT INTO `item_furnishing` VALUES (3724, 'uka_statue', 4, 518, 6, 3);
 INSERT INTO `item_furnishing` VALUES (3725, 'cornelia_statue', 4, 514, 2, 3);
 INSERT INTO `item_furnishing` VALUES (3726, 'aphmau_statue', 4, 517, 5, 3);
 INSERT INTO `item_furnishing` VALUES (3727, 'mumor_statue', 4, 518, 6, 3);
@@ -510,4 +514,4 @@ INSERT INTO `item_furnishing` VALUES (3731, 'azure_chest', 1, 517, 5, 1);
 INSERT INTO `item_furnishing` VALUES (3735, 'aurum_coffer', 5, 540, 6, 7);
 INSERT INTO `item_furnishing` VALUES (3736, 'well', 80, 517, 5, 8);
 INSERT INTO `item_furnishing` VALUES (3737, 'doll_stand', 2, 2855, 6, 15);
-INSERT INTO `item_furnishing` VALUES (3738, 'eastern_umbrella', 1, 517, 5, 2);
+INSERT INTO `item_furnishing` VALUES (3738, 'eastern_umbrella', 1, 521, 5, 2); -- Moghancement: Gardening - From https://ffxiclopedia.fandom.com/wiki/Eastern_Umbrella (BG doesn't show Moghancement)
