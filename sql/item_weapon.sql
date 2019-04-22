@@ -3560,6 +3560,9 @@ INSERT INTO `item_weapon` VALUES (20561,'carnwenhan',2,0,242,242,228,1,1,186,92,
 INSERT INTO `item_weapon` VALUES (20562,'carnwenhan',2,0,242,242,228,1,1,186,92,0);
 INSERT INTO `item_weapon` VALUES (20563,'twashtar',2,0,242,242,228,1,1,176,89,0);
 INSERT INTO `item_weapon` VALUES (20564,'twashtar',2,0,242,242,228,1,1,176,89,0);
+INSERT INTO `item_weapon` VALUES (20573,'aern_dagger',2,0,0,0,0,1,1,180,1,0);  -- Aern Dagger: DMG:1 Delay:180
+INSERT INTO `item_weapon` VALUES (20576,'qutrub_knife',2,0,0,0,0,1,1,180,1,0);  -- Qutrub Knife: DMG:1 Delay:180
+INSERT INTO `item_weapon` VALUES (20577,'chicken_knife_ii',2,0,0,0,0,1,1,200,1,0);  -- Chicken knife II: DMG:1 Delay:200
 INSERT INTO `item_weapon` VALUES (20579,'skinflayer',2,0,242,242,188,1,1,210,116,0);
 INSERT INTO `item_weapon` VALUES (20580,'kustawi',2,0,242,242,188,1,1,195,113,0);
 INSERT INTO `item_weapon` VALUES (20581,'kustawi_+1',2,0,242,242,188,1,1,189,114,0);
@@ -3630,6 +3633,12 @@ INSERT INTO `item_weapon` VALUES (20651,'tizona',3,0,242,242,228,2,1,236,117,0);
 INSERT INTO `item_weapon` VALUES (20652,'tizona',3,0,242,242,228,2,1,236,117,0);
 INSERT INTO `item_weapon` VALUES (20653,'almace',3,0,242,242,215,2,1,224,114,0);
 INSERT INTO `item_weapon` VALUES (20654,'almace',3,0,242,242,215,2,1,224,114,0);
+INSERT INTO `item_weapon` VALUES (20665,'kam_lanaut_s_sword',3,0,0,0,0,2,1,240,1,0); -- Kam'lanaut's sword: DMG:1 Delay:240
+INSERT INTO `item_weapon` VALUES (20666,'blizzard_brand',3,0,0,0,0,2,1,240,1,0); -- Blizzard Brand: DMG:1 Delay:240
+INSERT INTO `item_weapon` VALUES (20667,'blizzard_brand_+1',3,0,0,0,0,2,1,233,2,0); -- DMG:2 Delay:233 Additional effect: Ice damage Enchantment: "Blizzard"
+INSERT INTO `item_weapon` VALUES (20668,'firetongue',3,0,0,0,0,2,1,240,1,0); -- DMG:1 Delay:240
+INSERT INTO `item_weapon` VALUES (20669,'firetongue_+1',3,0,0,0,0,2,1,233,2,0); -- DMG:2 Delay:233 Additional effect: Fire damage Enchantment: "Fire"
+INSERT INTO `item_weapon` VALUES (20674,'aern_sword',3,0,0,0,0,2,1,240,1,0); -- DMG:1 Delay:240
 INSERT INTO `item_weapon` VALUES (20677,'colada',3,0,242,242,201,2,1,240,140,0);
 INSERT INTO `item_weapon` VALUES (20678,'firangi',3,0,242,242,188,2,1,264,170,0);
 INSERT INTO `item_weapon` VALUES (20679,'tanmogayi',3,0,242,242,188,2,1,288,176,0);
@@ -3642,7 +3651,7 @@ INSERT INTO `item_weapon` VALUES (20687,'burtgang',3,0,269,269,255,2,1,264,165,0
 INSERT INTO `item_weapon` VALUES (20688,'tizona',3,0,269,269,255,2,1,236,147,0);
 INSERT INTO `item_weapon` VALUES (20689,'almace',3,0,269,269,255,2,1,224,158,0);
 INSERT INTO `item_weapon` VALUES (20690,'reikiko',3,0,242,242,188,2,1,268,164,0);
-INSERT INTO `item_weapon` VALUES (20694,'fermion_sword',3,0,0,0,0,0,1,240,1,0);
+INSERT INTO `item_weapon` VALUES (20694,'fermion_sword',3,0,0,0,0,2,1,240,1,0);
 INSERT INTO `item_weapon` VALUES (20695,'sequence',3,0,269,269,242,2,1,240,168,0);
 INSERT INTO `item_weapon` VALUES (20696,'combuster',3,0,228,228,188,2,1,277,161,0);
 INSERT INTO `item_weapon` VALUES (20697,'combuster_+1',3,0,228,228,188,2,1,270,162,0);
