@@ -1355,7 +1355,7 @@ quests.newQuest = function()
         if entity:isPC() then
             entity:PrintToPlayer(message)
         end
-        print("[Quest Error] "..entity:getName()..": "..message)
+        print("[Quest Error]".. this.string_key .." "..entity:getName()..": "..message)
     end
 
     ---------------------------------------------------------------
@@ -1418,8 +1418,16 @@ quests.newQuest = function()
             if this.requirements.quests then
                 for i, requiredQuest in ipairs(this.requirements.quests) do
                     local requiredQuestStatus = player:getQuestStatus(requiredQuest.log_id, requiredQuest.quest_id)
-                    if requiredQuestStatus ~= dsp.quest.status.COMPLETED then
-                    -- or (required_quest.stage and (dsp.quests.getStage(player, required_quest) < required_quest.stage)) then -- getStage requires a full quest table
+                    if requiredQuest.stage then
+                        local quest = quests.getQuest(requiredQuest.log_id, requiredQuest.quest_id)
+                        if quest then
+                            if quest.getStage(player) < requiredQuest.stage then
+                                return false
+                            end
+                        else
+                            return false
+                        end
+                    elseif requiredQuestStatus ~= dsp.quest.status.COMPLETED then
                         return false
                     end
                 end
@@ -1531,6 +1539,25 @@ quests.newQuest = function()
         return true
     end
 
+    -- Give KI to player, while going through this quest's wrapper
+    ---------------------------------------------------------------
+    this.giveKeyItem = function(player, key_item)
+        return npcUtil.giveKeyItem(player, key_item)
+    end
+
+    -- Give KI to player, while going through this quest's wrapper
+    ---------------------------------------------------------------
+    this.delKeyItem = function(player, key_item)
+        for _, ki in pairs(this.temporary.key_items) do
+            if ki == key_item then
+                player:delKeyItem(key_item)
+                return true
+            end
+        end
+        error(player, "Key Item " .. key_item .." not listed as temporary in quest file! No action taken.")
+        return false
+    end
+
     -- Completes the quest in the player's log, gives out rewards, and cleans up leftover vars and key items
     ---------------------------------------------------------------
     this.complete = function(player, reward_set)
@@ -1547,7 +1574,7 @@ quests.newQuest = function()
             end
             if reward_set then
                 -- todo: check inventory (including stack space), award items, return false if cant complete
-                rewards_given = npcUtil.completeQuest(player, this.area, this.quest_id, reward_set)
+                rewards_given = npcUtil.completeQuest(player, this.log_id, this.quest_id, reward_set)
                 if not rewards_given then
                     error(player, message.. "Unable to give quest rewards.")
                 end
@@ -1559,7 +1586,7 @@ quests.newQuest = function()
         end
 
         if rewards_given then
-            this.setVar(player, this.vars.stage, 0)
+            this.setVar(player, this.vars.stage, 0) -- Stage should ALWAYS be erased
             for name, var in pairs(this.vars.additional) do
                 if not var.preserve then
                     this.setVar(player, name, 0, message)

@@ -1,6 +1,5 @@
 require("scripts/globals/missions")
 require("scripts/globals/quests")
-require("scripts/globals/zone")
 
 local thisQuest = quests.newQuest()
 
@@ -10,10 +9,10 @@ thisQuest.quest_id = dsp.quest.id.adoulin.FERTILE_GROUND
 thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
 thisQuest.repeatable = false
-thisQuest.varPrefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.var_prefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
 thisQuest.vars =
 {
-    stage = thisQuest.varPrefix,
+    stage = thisQuest.var_prefix,
     additional = {}
 }
 
@@ -22,28 +21,22 @@ thisQuest.requirements =
     quests =
     {
         {
-            ['area'] = ADOULIN,
-            ['quest_id'] = dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON
+            log_id = dsp.quest.log_id.ADOULIN,
+            quest_id = dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON
         }
     },
     fame =
     {
-        ['area'] = dsp.quest.fame.ADOULIN,
-        ['level'] = 2
+        area = dsp.quest.fame.ADOULIN,
+        level = 2
     }
 }
 
 thisQuest.rewards =
 {
-    sets =
-    {
-        [1] =
-        {
-            exp = 500,
-            bayld = 300,
-            fame_area = dsp.quest.fame.ADOULIN
-        }
-    }
+    exp = 500,
+    bayld = 300,
+    fame_area = dsp.quest.fame.ADOULIN
 }
 
 thisQuest.temporary =
@@ -90,7 +83,7 @@ thisQuest.stages =
             {
                 [2850] = function(player, option)
                     -- Shipilolo, giving Bottle of Fertilizer X
-                    if npcUtil.giveKeyItem(player, dsp.ki.BOTTLE_OF_FERTILIZER_X) then
+                    if thisQuest.giveKeyItem(player, dsp.ki.BOTTLE_OF_FERTILIZER_X) then
                         return thisQuest.advanceStage(player)
                     end
                 end

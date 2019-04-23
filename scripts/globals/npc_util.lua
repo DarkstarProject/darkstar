@@ -303,7 +303,10 @@ function npcUtil.completeQuest(player, area, quest, params)
     if params["fame"] == nil then
         params["fame"] = 30
     end
-    if area["fame_area"] ~= nil and type(params["fame"]) == "number" then
+
+    if type(area) == "number" and params["fame_area"] then -- Quest object call
+        player:addFame(params["fame_area"], params["fame"])
+    elseif area["fame_area"] ~= nil and type(params["fame"]) == "number" then
         player:addFame(area, params["fame"])
     elseif params["fameArea"] ~= nil and params["fameArea"]["fame_area"] ~= nil and type(params["fame"]) == "number" then
         player:addFame(params["fameArea"], params["fame"])

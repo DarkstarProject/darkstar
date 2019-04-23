@@ -1,6 +1,5 @@
 require("scripts/globals/missions")
 require("scripts/globals/quests")
-require("scripts/globals/zone")
 
 local thisQuest = quests.newQuest()
 
@@ -25,28 +24,22 @@ thisQuest.requirements =
     missions =
     {
         {
-            ['mission_log'] = ADOULIN,
-            ['mission_id'] = LIFE_ON_THE_FRONTIER
+            mission_log = ADOULIN,
+            mission_id = LIFE_ON_THE_FRONTIER
         }
     },
     fame =
     {
-        ['area'] = dsp.quest.fame.ADOULIN,
-        ['level'] = 1
+        area = dsp.quest.fame.ADOULIN,
+        level = 1
     }
 }
 
 thisQuest.rewards =
 {
-    sets =
-    {
-        [1] =
-        {
-            exp = 1000,
-            bayld = 500,
-            fame_area = dsp.quest.fame.ADOULIN
-        }
-    }
+    exp = 1000,
+    bayld = 500,
+    fame_area = dsp.quest.fame.ADOULIN
 }
 
 thisQuest.temporary =
@@ -83,7 +76,7 @@ thisQuest.stages =
             ['onEventFinish'] =
             {
                 [2550] = function(player, option) -- Rising Solstice starting quest
-                    if npcUtil.giveKeyItem(player, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE) then
+                    if thisQuest.giveKeyItem(player, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE) then
                         return thisQuest.begin(player)
                     end
                 end
@@ -245,8 +238,7 @@ thisQuest.stages =
             {
                 [2552] = function(player, option) -- Rising Solstice finishing quest
                     if thisQuest.complete(player) then
-                        player:delKeyItem(dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE)
-                        return true
+                        return thisQuest.delKeyItem(dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE)
                     end
                 end
             }

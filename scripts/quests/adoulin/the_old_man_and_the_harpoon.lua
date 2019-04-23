@@ -9,10 +9,10 @@ thisQuest.quest_id = dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON
 thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
 thisQuest.repeatable = false
-thisQuest.varPrefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.var_prefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
 thisQuest.vars =
 {
-    stage = thisQuest.varPrefix,
+    stage = thisQuest.var_prefix,
     additional =
     {
         --['name'] = { type = dsp.quest.var.CHAR, preserve = false, db_name = 'some_var' },
@@ -24,32 +24,22 @@ thisQuest.requirements =
     missions =
     {
         {
-            ['mission_log'] = ADOULIN,
-            ['mission_id'] = LIFE_ON_THE_FRONTIER
+            mission_log = ADOULIN,
+            mission_id = LIFE_ON_THE_FRONTIER
         }
-        -- [1] = { ['quest'] = require("scripts/globals/missions/adoulin/life_on_the_frontier"), ['stage'] = x }
     },
     fame =
     {
-        ['area'] = dsp.quest.fame.ADOULIN,
-        ['level'] = 1
+        area = dsp.quest.fame.ADOULIN,
+        level = 1
     }
-    -- trade = { {item, qty} },
-    -- key_items = {...},
-    -- etc..
 }
 
 thisQuest.rewards =
 {
-    sets =
-    {
-        [1] =
-        {
-            exp = 500,
-            bayld = 300,
-            fame_area = dsp.quest.fame.ADOULIN
-        }
-    }
+    exp = 500,
+    bayld = 300,
+    fame_area = dsp.quest.fame.ADOULIN
 }
 
 thisQuest.temporary =
@@ -81,7 +71,7 @@ thisQuest.stages =
             {
                 [2540] = function(player, option)
                     -- Jorin, starting quest
-                    if npcUtil.giveKeyItem(player, dsp.ki.BROKEN_HARPOON) then
+                    if thisQuest.giveKeyItem(player, dsp.ki.BROKEN_HARPOON) then
                         return thisQuest.begin(player)
                     end
                 end
@@ -109,7 +99,7 @@ thisQuest.stages =
                 [2543] = function(player, option)
                     -- Shipilolo, fixes Broken Harpoon and advances quest
                     if npcUtil.giveKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON) then
-                        player:delKeyItem(dsp.ki.BROKEN_HARPOON)
+                        thisQuest.delKeyItem(player, dsp.ki.BROKEN_HARPOON)
                         return thisQuest.advanceStage(player)
                     end
                 end
@@ -133,7 +123,7 @@ thisQuest.stages =
                 [2542] = function(player, option)
                     -- Jorin, finishing quest
                     if thisQuest.complete(player, thisQuest) then
-                        player:delKeyItem(dsp.ki.EXTRAVAGANT_HARPOON)
+                        thisQuest.delKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON)
                         return true
                     end
                 end

@@ -1,6 +1,5 @@
 require("scripts/globals/missions")
 require("scripts/globals/quests")
-require("scripts/globals/zone")
 
 local thisQuest = quests.newQuest()
 
@@ -10,14 +9,14 @@ thisQuest.quest_id = dsp.quest.id.adoulin.WAYWARD_WAYPOINTS
 thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
 thisQuest.repeatable = false
-thisQuest.varPrefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.var_prefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
 thisQuest.vars =
 {
-    stage = thisQuest.varPrefix,
+    stage = thisQuest.var_prefix,
     additional =
     {
         -- Bitmask of waypoints calibrated during the second stage.
-        ["waypoints"] = {  type = dsp.quest.var.CHAR, preserve = false, db_name = 'waypoints' },
+        ["waypoints"] = { type = dsp.quest.var.CHAR, preserve = false, db_name = 'waypoints' },
     }
 }
 
@@ -26,29 +25,23 @@ thisQuest.requirements =
     quests =
     { 
         {
-            ['area'] = ADOULIN,
-            ['quest_id'] = dsp.quest.id.adoulin.MEGALOMANIAC
+            log_id = dsp.quest.log_id.ADOULIN,
+            quest_id = dsp.quest.id.adoulin.MEGALOMANIAC
         } 
     },
     fame =
     {
-        ['area'] = dsp.quest.fame.ADOULIN,
-        ['level'] = 4
+        area = dsp.quest.fame.ADOULIN,
+        level = 4
     }
 }
 
 thisQuest.rewards =
 {
-    sets =
-    {
-        [1] =
-        {
-            exp = 1000,
-            bayld = 500,
-            -- TODO: kinetic_units = 3000, -- Kinetic units need to be implemented before we reward them.
-            fame_area = dsp.quest.fame.ADOULIN
-        }
-    }
+    exp = 1000,
+    bayld = 500,
+    -- TODO: kinetic_units = 3000, -- Kinetic units need to be implemented before we reward them.
+    fame_area = dsp.quest.fame.ADOULIN
 }
 
 thisQuest.temporary =
@@ -135,8 +128,8 @@ thisQuest.stages =
             ['onEventFinish'] =
             {
                 [79] = function(player, option) -- Shipilolo upgrading waypoint kit
-                    if npcUtil.giveKeyItem(player, dsp.ki.WAYPOINT_RECALIBRATION_KIT) then
-                        player:delKeyItem(dsp.ki.WAYPOINT_SCANNER_KIT)
+                    if thisQuest.giveKeyItem(player, dsp.ki.WAYPOINT_RECALIBRATION_KIT) then
+                        thisQuest.delKeyItem(dsp.ki.WAYPOINT_SCANNER_KIT)
                         return thisQuest.advanceStage(player)
                     end
                 end
