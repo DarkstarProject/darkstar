@@ -1651,51 +1651,6 @@ dsp.quest.newQuest = function()
 end
 
 -----------------------------------
---  QUEST FUNCTIONS
------------------------------------
-
-dsp.quest.getQuest = function(area_log_id, quest_id)
-    local area = dsp.quest.area[area_log_id]
-    if area then
-        local quest_string = dsp.quest.string[area][quest_id]
-        if quest_string then -- Verify the quest ID is one we expect
-            if dsp.quest.object[area][quest_id] then
-                -- If we already have the quest loaded, just return it!
-                return dsp.quest.object[area][quest_id]
-            else
-                local quest_filename = 'scripts/quests/'
-                local area_dirs =
-                {
-                    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-                    [dsp.quest.log_id.BASTOK]      = 'bastok',
-                    [dsp.quest.log_id.WINDURST]    = 'windurst',
-                    [dsp.quest.log_id.JEUNO]       = 'jeuno',
-                    [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
-                    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-                    [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
-                    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
-                    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-                    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-                    [dsp.quest.log_id.COALITION]   = 'coalition'
-                }
-                quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_string)
-                local quest = require(quest_filename)
-                if (quest) then
-                    dsp.quest.object[area][quest_id] = quest -- Stash our quest away for others to use!
-                    return quest
-                else
-                    print("dsp.quest.getQuest: Unable to include designated file '".. quest_filename .."'")
-                end
-            end
-        else
-            print("dsp.quest.getQuest: Unknown quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
-        end
-    else
-        print("dsp.quest.getQuest: Unknown area log ID: ".. area_log_id)
-    end
-end
-
------------------------------------
 --  INVOLVED QUESTS OBJECT
 -----------------------------------
 dsp.quest.involvedQuests = function(involvedQuests)
@@ -1798,4 +1753,49 @@ dsp.quest.involvedQuests = function(involvedQuests)
 
     this.involvedQuests = loadQuests(involvedQuests)
     return this
+end
+
+-----------------------------------
+--  OTHER QUEST FUNCTIONS
+-----------------------------------
+
+dsp.quest.getQuest = function(area_log_id, quest_id)
+    local area = dsp.quest.area[area_log_id]
+    if area then
+        local quest_string = dsp.quest.string[area][quest_id]
+        if quest_string then -- Verify the quest ID is one we expect
+            if dsp.quest.object[area][quest_id] then
+                -- If we already have the quest loaded, just return it!
+                return dsp.quest.object[area][quest_id]
+            else
+                local quest_filename = 'scripts/quests/'
+                local area_dirs =
+                {
+                    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
+                    [dsp.quest.log_id.BASTOK]      = 'bastok',
+                    [dsp.quest.log_id.WINDURST]    = 'windurst',
+                    [dsp.quest.log_id.JEUNO]       = 'jeuno',
+                    [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
+                    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
+                    [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
+                    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
+                    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
+                    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
+                    [dsp.quest.log_id.COALITION]   = 'coalition'
+                }
+                quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_string)
+                local quest = require(quest_filename)
+                if (quest) then
+                    dsp.quest.object[area][quest_id] = quest -- Stash our quest away for others to use!
+                    return quest
+                else
+                    print("dsp.quest.getQuest: Unable to include designated file '".. quest_filename .."'")
+                end
+            end
+        else
+            print("dsp.quest.getQuest: Unknown quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
+        end
+    else
+        print("dsp.quest.getQuest: Unknown area log ID: ".. area_log_id)
+    end
 end
