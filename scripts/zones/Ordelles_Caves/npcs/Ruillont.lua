@@ -11,7 +11,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if
-        player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL and
+        player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_RESCUE_DRILL and
         player:getVar("MissionStatus") == 9 and
         npcUtil.tradeHas(trade, 16535) -- bronze sword
     then
@@ -20,12 +20,12 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL then
+    if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_RESCUE_DRILL then
         local missionStatus = player:getVar("MissionStatus")
 
         if missionStatus >= 2 and missionStatus <= 7 then
             player:startEvent(1)
-        elseif missionStatus >= 10 or player:hasCompletedMission(SANDORIA, THE_RESCUE_DRILL) then
+        elseif missionStatus >= 10 or player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.THE_RESCUE_DRILL) then
             player:showText(npc, ID.text.RUILLONT_INITIAL_DIALOG + 9)
         elseif missionStatus >= 8 then
             player:showText(npc, ID.text.RUILLONT_INITIAL_DIALOG)

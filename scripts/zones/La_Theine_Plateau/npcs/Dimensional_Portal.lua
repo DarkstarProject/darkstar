@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) or (DIMENSIONAL_PORTAL_UNLOCK == true) then
+    if (player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH) or (DIMENSIONAL_PORTAL_UNLOCK == true) then
         player:startEvent(204);
     else
         player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE+1); -- Telepoint Disappeared

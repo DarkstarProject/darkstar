@@ -15,7 +15,7 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
     -- TO THE FORSAKEN MINES: Hare Meat
     if (
-        player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and
+        player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.TO_THE_FORSAKEN_MINES and
         npcUtil.tradeHas(trade, 4358) and
         not player:hasItem(563) and
         not GetMobByID(ID.mob.BLIND_MOBY):isSpawned()

@@ -23,7 +23,7 @@ function onZoneIn(player,prevZone)
         player:setPos(356.503,-0.364,-179.607,122)
     end
 
-    if player:getCurrentMission(TOAU) == TEAHOUSE_TUMULT and player:getVar("AhtUrganStatus") == 0 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.TEAHOUSE_TUMULT and player:getVar("AhtUrganStatus") == 0 then
         cs = 10
     end
 

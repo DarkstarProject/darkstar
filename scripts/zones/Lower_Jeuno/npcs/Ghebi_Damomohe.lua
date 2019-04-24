@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     if player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP) ~= QUEST_COMPLETED and npcUtil.tradeHas(trade, 548) then
         -- Finish Quest: Tenshodo Membership (Invitation)
         player:startEvent(108)
-    elseif player:getCurrentMission(COP) == DARKNESS_NAMED and
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and
            not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and
            player:getVar("PXPassGetGems") == 1 and
            (npcUtil.tradeHas(trade, 1692) or npcUtil.tradeHas(trade, 1694) or npcUtil.tradeHas(trade, 1693)) then
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     elseif player:hasKeyItem(dsp.ki.TENSHODO_APPLICATION_FORM) then
         -- Finish Quest: Tenshodo Membership
         player:startEvent(107)
-    elseif player:getCurrentMission(COP) == DARKNESS_NAMED and not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and GetGems == 0 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and GetGems == 0 then
         -- Mission: Darkness Named
         player:startEvent(54)
     elseif (GetGems == 1) then

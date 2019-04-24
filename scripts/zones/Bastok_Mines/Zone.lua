@@ -42,7 +42,7 @@ function onZoneIn(player,prevZone)
     end
 
     -- ENTER THE TALEKEEPER
-    if prevZone == dsp.zone.ZERUHN_MINES and player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 5 then
+    if prevZone == dsp.zone.ZERUHN_MINES and player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 5 then
         cs = 176
     end
 

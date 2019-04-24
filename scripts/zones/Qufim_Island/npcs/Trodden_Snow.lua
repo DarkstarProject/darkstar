@@ -14,7 +14,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     -- Trade Enfeebling Kit
-    if player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD then
+    if player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD then
         local item = 0
         local asaStatus = player:getVar("ASA_Status")
 
@@ -33,7 +33,7 @@ end
 
 function onTrigger(player, npc)
     --ASA 4 CS: Triggers With At Least 3 Counterseals.
-    if player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE then
+    if player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE then
         local completedSeals =
             (player:hasKeyItem(dsp.ki.AMBER_COUNTERSEAL)    and 1 or 0) +
             (player:hasKeyItem(dsp.ki.AZURE_COUNTERSEAL)    and 1 or 0) +
@@ -63,8 +63,8 @@ function onEventFinish(player, csid, option)
             dsp.ki.DOMINAS_AZURE_SEAL
         })
 
-        player:completeMission(ASA, THAT_WHICH_CURDLES_BLOOD)
-        player:addMission(ASA, SUGAR_COATED_DIRECTIVE)
+        player:completeMission(ASA, dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD)
+        player:addMission(ASA, dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE)
 
         player:setVar("ASA_Status", 0)
         player:setVar("ASA4_Amber", "0")
@@ -105,8 +105,8 @@ function onEventFinish(player, csid, option)
         player:delKeyItem(dsp.ki.AZURE_COUNTERSEAL)
 
         -- Advance Mission
-        player:completeMission(ASA, SUGAR_COATED_DIRECTIVE)
-        player:addMission(ASA, ENEMY_OF_THE_EMPIRE_I)
+        player:completeMission(ASA, dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE)
+        player:addMission(ASA, dsp.mission.id.asa.ENEMY_OF_THE_EMPIRE_I)
         player:setVar("ASA_Status", 0)
     end
 end

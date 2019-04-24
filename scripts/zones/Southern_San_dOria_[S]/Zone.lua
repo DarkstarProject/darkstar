@@ -22,7 +22,7 @@ function onZoneIn(player,prevZone)
             cs = 62;
         elseif (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 0) then
             cs = 65;
-        elseif (player:getCurrentMission(WOTG) == CAIT_SITH and
+        elseif (player:getCurrentMission(WOTG) == dsp.mission.id.wotg.CAIT_SITH and
                (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.WRATH_OF_THE_GRIFFON) == QUEST_COMPLETED or
                 player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_MANIFEST_PROBLEM) == QUEST_COMPLETED or
                 player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.BURDEN_OF_SUSPICION) == QUEST_COMPLETED)) then
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 65) then
         player:setVar("DownwardHelix",1);
     elseif (csid == 67) then
-        player:completeMission(WOTG, CAIT_SITH);
-        player:addMission(WOTG, THE_QUEEN_OF_THE_DANCE);
+        player:completeMission(WOTG, dsp.mission.id.wotg.CAIT_SITH);
+        player:addMission(WOTG, dsp.mission.id.wotg.THE_QUEEN_OF_THE_DANCE);
     end
 end;

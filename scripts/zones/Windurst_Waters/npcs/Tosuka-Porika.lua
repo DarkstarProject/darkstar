@@ -32,14 +32,14 @@ function onTrigger(player,npc)
 
     local Fame = player:getFameLevel(WINDURST);
 
-    if (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
         player:startEvent(801);
 
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10) then
         player:startEvent(875); -- COP event
 
     -- Start Past Reflections in First -----------
-    elseif (player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.LOST_FOR_WORDS) then
         MissionStatus = player:getVar("MissionStatus");
         if (MissionStatus == 0) then
             player:startEvent(160); -- First CS for Mission 2-1
@@ -60,7 +60,7 @@ function onTrigger(player,npc)
             player:startEvent(55); -- Show Off Hat
         end
     -- Book is dsp.ki.A_SONG_OF_LOVE, KeyItem ID = 126
-    elseif (chasingStatus == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= THE_JESTER_WHO_D_BE_KING and Fame >= 3 and player:needToZone() == false) then
+    elseif (chasingStatus == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and Fame >= 3 and player:needToZone() == false) then
         player:startEvent(403); --  Add initial cutscene
     elseif (chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
         player:startEvent(412);
@@ -69,11 +69,11 @@ function onTrigger(player,npc)
     elseif (chasingStatus == QUEST_ACCEPTED) then
         player:startEvent(406); --  Add follow up cutscene
         -- Windurst Mission 7-1 --
-    elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 0) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 0) then
         player:startEvent(715,0,dsp.ki.OPTISTERY_RING);
-    elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
         player:startEvent(716,0,dsp.ki.OPTISTERY_RING);
-    elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 2) then
         player:startEvent(724);
     else
         player:startEvent(370); -- Standard Conversation

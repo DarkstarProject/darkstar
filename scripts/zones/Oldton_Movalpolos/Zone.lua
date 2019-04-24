@@ -29,9 +29,9 @@ function onZoneIn(player, prevZone)
         player:setPos(70.956, 5.99, 139.843, 134)
     end
 
-    if player:getCurrentMission(COP) == THREE_PATHS and (louverancePath == 3 or louverancePath == 4) then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and (louverancePath == 3 or louverancePath == 4) then
         cs = 1
-    elseif player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus") == 3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_jabbos_story") == 0 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus") == 3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_jabbos_story") == 0 then
         cs = 57
     end
 

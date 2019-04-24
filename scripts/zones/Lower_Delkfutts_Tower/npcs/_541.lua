@@ -13,7 +13,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if
-        player:getCurrentMission(SANDORIA) == APPOINTMENT_TO_JEUNO and
+        player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and
         player:getVar("MissionStatus") == 4 and
         npcUtil.tradeHas(trade, 549) -- Delkfutt Key
     then
@@ -24,9 +24,9 @@ end
 function onTrigger(player, npc)
     local currentMission = player:getCurrentMission(SANDORIA)
 
-    if currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+    if currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
         player:messageSpecial(ID.text.THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY)
-    elseif currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+    elseif currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
         player:startEvent(0)
     else
         player:messageSpecial(ID.text.DOOR_FIRMLY_SHUT)

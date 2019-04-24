@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WOTG) == THE_QUEEN_OF_THE_DANCE) then
+    if (player:getCurrentMission(WOTG) == dsp.mission.id.wotg.THE_QUEEN_OF_THE_DANCE) then
         if (player:getVar("QueenOfTheDance") == 0) then
             player:startEvent(68);
         elseif (player:getVar("QueenOfTheDance") == 2) then
@@ -34,8 +34,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 152) then
         player:startEvent(153);
     elseif (csid == 153) then
-        player:completeMission(WOTG, THE_QUEEN_OF_THE_DANCE);
-        player:addMission(WOTG, WHILE_THE_CAT_IS_AWAY);
+        player:completeMission(WOTG, dsp.mission.id.wotg.THE_QUEEN_OF_THE_DANCE);
+        player:addMission(WOTG, dsp.mission.id.wotg.WHILE_THE_CAT_IS_AWAY);
         player:delKeyItem(dsp.ki.MAYAKOV_SHOW_TICKET);
         player:setVar("QueenOfTheDance",0);
     end

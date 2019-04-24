@@ -17,9 +17,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    --player:addMission(COP, DAWN);
+    --player:addMission(COP, dsp.mission.id.cop.DAWN);
     --player:setVar("PromathiaStatus",3);
-    if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus")==1) then
         player:startEvent(2);
     elseif (EventTriggerBCNM(player,npc)) then
     end

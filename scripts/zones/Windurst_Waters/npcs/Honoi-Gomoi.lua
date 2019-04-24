@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     local wildCard          = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WILD_CARD)
     local hatInHand         = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND)
 
-    if player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status") == 5 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status") == 5 then
         player:startEvent(874) -- COP event
     elseif (hatInHand == QUEST_ACCEPTED or player:getVar("QuestHatInHand_var2") == 1) and not testflag(player:getVar("QuestHatInHand_var"), 2) then
         player:startEvent(59) -- Show Off Hat

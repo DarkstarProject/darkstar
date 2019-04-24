@@ -13,7 +13,7 @@ require("scripts/globals/npc_util")
 function onTrade(player,npc,trade)
     local missionStatus = player:getVar("MissionStatus")
 
-    if player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and (missionStatus == 4 or missionStatus == 5) and npcUtil.tradeHas(trade, 1181) then
+    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and (missionStatus == 4 or missionStatus == 5) and npcUtil.tradeHas(trade, 1181) then
         player:startEvent(13)
     end
 end

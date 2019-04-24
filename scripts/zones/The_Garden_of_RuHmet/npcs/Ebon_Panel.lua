@@ -20,9 +20,9 @@ function onTrigger(player,npc)
     local Race = player:getRace();
     local xPos = npc:getXPos();
 
-    if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(202);
-    elseif (player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 2) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 2) then
         if (xPos > 99 and xPos < 101) then -- Mithra Tower
             if ( Race==dsp.race.MITHRA ) then
                 player:startEvent(124);

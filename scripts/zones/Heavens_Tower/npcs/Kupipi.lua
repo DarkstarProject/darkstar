@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         end
     end
     if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == dsp.nation.WINDURST and player:getRank() >= 2 and player:hasKeyItem(dsp.ki.PORTAL_CHARM) == false) then -- Trade Rolanberry
-        if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS)) then
+        if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS)) then
             player:startEvent(291); -- Qualifies for the reward immediately
         else
             player:startEvent(292); -- Kupipi owes you the portal charm later
@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 
     if (pNation == dsp.nation.SANDORIA) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
-        if (currentMission == JOURNEY_TO_WINDURST) then
+        if (currentMission == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST) then
             if (MissionStatus == 4) then
                 player:startEvent(238,1,1,1,1,pNation);
             elseif (MissionStatus == 5) then
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
                 player:startEvent(241);
             end
         -- San d'Oria Mission 2-3 Part II - Bastok > Windurst
-        elseif (currentMission == JOURNEY_TO_WINDURST2) then
+        elseif (currentMission == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2) then
             if (MissionStatus == 7) then
                 player:startEvent(242,1,1,1,1,0);
             elseif (MissionStatus == 8) then
@@ -62,7 +62,7 @@ function onTrigger(player,npc)
         end
     elseif (pNation == dsp.nation.BASTOK) then
         -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
-        if (currentMission == THE_EMISSARY_WINDURST) then
+        if (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST) then
             if (MissionStatus == 3) then
                 player:startEvent(238,1,1,1,1,pNation);
             elseif (MissionStatus <= 5) then
@@ -71,7 +71,7 @@ function onTrigger(player,npc)
                 player:startEvent(241);
             end
         -- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-        elseif (currentMission == THE_EMISSARY_WINDURST2) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST2) then
             if (MissionStatus == 7) then
                 player:startEvent(242,1,1,1,1,pNation);
             elseif (MissionStatus == 8) then
@@ -85,21 +85,21 @@ function onTrigger(player,npc)
             player:startEvent(251);
         end
     elseif (pNation == dsp.nation.WINDURST) then
-        if (currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
+        if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS and MissionStatus == 0) then
             player:startEvent(95,0,0,0,dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
-        elseif (currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
+        elseif (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS and MissionStatus == 11) then
             player:startEvent(101,0,0,dsp.ki.ADVENTURERS_CERTIFICATE);
-        elseif (currentMission == THE_THREE_KINGDOMS) then
+        elseif (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
             player:startEvent(97);
-        elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 0) then
+        elseif (currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and MissionStatus == 0) then
             player:startEvent(103,0,0,dsp.ki.STARWAY_STAIRWAY_BAUBLE);
-        elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
+        elseif (currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
             player:startEvent(104);
-        elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
+        elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
             player:startEvent(326);
-        elseif (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
             player:startEvent(293); -- Kupipi repays your favor
-        elseif (player:getCurrentMission(WINDURST) == MOON_READING and MissionStatus >= 3) then
+        elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 3) then
             player:startEvent(400); -- Kupipi in disbelief over player becoming Rank 10
         elseif (pNation == dsp.nation.WINDURST) and (player:getRank() == 10) then
             player:startEvent(408); -- After achieving Windurst Rank 10, Kupipi has more to say

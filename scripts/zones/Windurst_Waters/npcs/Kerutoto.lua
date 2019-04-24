@@ -52,19 +52,19 @@ function onTrigger(player,npc)
     local waking_dreams = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS)
 
     -- Awakening of the Gods --
-    if (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
         player:startEvent(737);
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
         player:startEvent(736);
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
         player:startEvent(738);
 
     -- Three Paths --
-    elseif (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 3) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 3) then
         player:startEvent(876);
 
     -- Waking Dreams --
-    elseif (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date")))) then
+    elseif (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,dsp.mission.id.cop.DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date")))) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
         player:startEvent(918);--918
 

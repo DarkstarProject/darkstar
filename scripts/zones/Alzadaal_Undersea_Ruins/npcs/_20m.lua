@@ -14,10 +14,10 @@ end
 
 function onTrigger(player,npc)
 
-    if player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(dsp.ki.NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:hasKeyItem(dsp.ki.NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1 then
         player:setLocalVar("PathOfDarkness",1)
         player:startEvent(405, 58, -6, 0, 99, 5, 0)
-    elseif player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1 then
+    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1 then
         player:setLocalVar("NashmeirasPlea",1)
         player:startEvent(405, 59, -10, 0, 99, 5, 0)
     elseif player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) then
@@ -84,7 +84,7 @@ function onEventUpdate(player,csid,option,target)
         if party ~= nil then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() then
-                    if v:getCurrentMission(TOAU) < PATH_OF_DARKNESS then
+                    if v:getCurrentMission(TOAU) < dsp.mission.id.toau.PATH_OF_DARKNESS then
                         player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                         player:instanceEntry(target,1)
                         return
@@ -103,7 +103,7 @@ function onEventUpdate(player,csid,option,target)
         if party ~= nil then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() then
-                    if v:getCurrentMission(TOAU) < NASHMEIRAS_PLEA then
+                    if v:getCurrentMission(TOAU) < dsp.mission.id.toau.NASHMEIRAS_PLEA then
                         player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                         player:instanceEntry(target,1)
                         return

@@ -18,7 +18,7 @@ end;
 function onTrigger(player,npc)
 
     -- Windurst 8-2
-    if (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
         player:startEvent(22);
 
     -- Curses, Foiled A_Golem!?

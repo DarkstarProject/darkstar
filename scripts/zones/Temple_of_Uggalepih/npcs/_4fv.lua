@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 5 then
+    if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getVar("MissionStatus") == 5 then
         if
             player:hasKeyItem(dsp.ki.PIECE_OF_A_BROKEN_KEY1) and
             player:hasKeyItem(dsp.ki.PIECE_OF_A_BROKEN_KEY2) and

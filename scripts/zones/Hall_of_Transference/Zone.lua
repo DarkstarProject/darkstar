@@ -28,7 +28,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(274,-82,-62 ,180);
 
-    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
         if (player:getVar("cspromy3") == 1) then
             if (prevZone == dsp.zone.LA_THEINE_PLATEAU) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
