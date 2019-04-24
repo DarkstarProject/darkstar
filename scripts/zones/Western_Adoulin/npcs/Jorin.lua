@@ -6,25 +6,25 @@
 -----------------------------------
 require("scripts/globals/quests")
 
-local involvedQuests =
+local quests =
 {
     {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON}
 }
-involvedQuests = quests.loadQuests(involvedQuests)
+quests = dsp.quest.involvedQuests(quests)
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    if not quests.onTrigger(player, npc, involvedQuests) then
+    if not quests.onTrigger(player, npc) then
         player:startEvent(560) -- Standard dialogue
     end
 end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    quests.onEventFinish(player, csid, option, involvedQuests)
+    quests.onEventFinish(player, csid, option)
 end

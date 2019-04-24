@@ -1233,6 +1233,26 @@ end
 dsp.quest.string = buildQuestStringTable(dsp.quest.id)
 
 -----------------------------------
+--  QUEST OBJECTS TABLE
+-----------------------------------
+
+-- Quest objects inside these tables will be loaded/reloaded as required by NPC scripts and GM commands
+dsp.quest.object =
+{
+    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] = {},
+    [dsp.quest.area[dsp.quest.log_id.BASTOK]] = {},
+    [dsp.quest.area[dsp.quest.log_id.WINDURST]] = {},
+    [dsp.quest.area[dsp.quest.log_id.JEUNO]] = {},
+    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] = {},
+    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] = {},
+    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] = {},
+    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] = {},
+    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] = {},
+    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] = {},
+    [dsp.quest.area[dsp.quest.log_id.COALITION]] = {}
+}
+
+-----------------------------------
 --  DSP QUEST SYSTEM CONSTANTS
 -----------------------------------
 
@@ -1282,7 +1302,7 @@ dsp.quest.event =
 --  QUEST OBJECT
 -----------------------------------
 
-quests.newQuest = function()
+dsp.quest.newQuest = function()
     local this = {}
 
     ---------------------------------------------------------------
@@ -1419,7 +1439,7 @@ quests.newQuest = function()
                 for i, requiredQuest in ipairs(this.requirements.quests) do
                     local requiredQuestStatus = player:getQuestStatus(requiredQuest.log_id, requiredQuest.quest_id)
                     if requiredQuest.stage then
-                        local quest = quests.getQuest(requiredQuest.log_id, requiredQuest.quest_id)
+                        local quest = dsp.quest.getQuest(requiredQuest.log_id, requiredQuest.quest_id)
                         if quest then
                             if quest.getStage(player) < requiredQuest.stage then
                                 return false
@@ -1558,6 +1578,31 @@ quests.newQuest = function()
         return false
     end
 
+    -- Check to see if a trade contains the items and marks
+    -- them as accepted in the container
+    ---------------------------------------------------------------
+    this.tradeHas = function(player, trade, items)
+        -- We technically don't need a player for this function,
+        -- but include it in the arguments for the sake of
+        -- consistency with other quest functions.
+        return npcUtil.tradeHas(trade, items)
+    end
+
+    -- Check to see if a trade contains ONLY items and marks
+    -- them as accepted in the container
+    ---------------------------------------------------------------
+    this.tradeHasExactly = function(player, trade, items)
+        return npcUtil.tradeHasExactly(trade, items)
+    end
+
+    -- Completes a given trade, taking the items marked as
+    -- accepted by tradeHas and tradeHasExactly
+    ---------------------------------------------------------------
+    this.completeTrade = function(player, trade)
+        player:tradeComplete()
+        return true
+    end
+
     -- Completes the quest in the player's log, gives out rewards, and cleans up leftover vars and key items
     ---------------------------------------------------------------
     this.complete = function(player, reward_set)
@@ -1609,106 +1654,148 @@ end
 --  QUEST FUNCTIONS
 -----------------------------------
 
-quests.getQuest = function(area_log_id, quest_id)
-    local quest_filename = 'scripts/quests/'
-    local area_dirs =
-    {
-        [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-        [dsp.quest.log_id.BASTOK]      = 'bastok',
-        [dsp.quest.log_id.WINDURST]    = 'windurst',
-        [dsp.quest.log_id.JEUNO]       = 'jeuno',
-        [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
-        [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-        [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
-        [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
-        [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-        [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-        [dsp.quest.log_id.COALITION]   = 'coalition'
-    }
-    local quest_file = dsp.quest.string[dsp.quest.area[area_log_id]][quest_id]
-    if quest_file then
-        quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_file)
-        local quest = require(quest_filename)
-        if (quest) then
-            return quest
+dsp.quest.getQuest = function(area_log_id, quest_id)
+    local area = dsp.quest.area[area_log_id]
+    if area then
+        local quest_string = dsp.quest.string[area][quest_id]
+        if quest_string then -- Verify the quest ID is one we expect
+            if dsp.quest.object[area][quest_id] then
+                -- If we already have the quest loaded, just return it!
+                return dsp.quest.object[area][quest_id]
+            else
+                local quest_filename = 'scripts/quests/'
+                local area_dirs =
+                {
+                    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
+                    [dsp.quest.log_id.BASTOK]      = 'bastok',
+                    [dsp.quest.log_id.WINDURST]    = 'windurst',
+                    [dsp.quest.log_id.JEUNO]       = 'jeuno',
+                    [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
+                    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
+                    [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
+                    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
+                    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
+                    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
+                    [dsp.quest.log_id.COALITION]   = 'coalition'
+                }
+                quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_string)
+                local quest = require(quest_filename)
+                if (quest) then
+                    dsp.quest.object[area][quest_id] = quest -- Stash our quest away for others to use!
+                    return quest
+                else
+                    print("dsp.quest.getQuest: Unable to include designated file '".. quest_filename .."'")
+                end
+            end
         else
-            print("quests.getQuest: Unable to include designated file '".. quest_filename .."'")
+            print("dsp.quest.getQuest: Unknown quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
         end
     else
-        print("quests.getQuest: No quest file defined for quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
+        print("dsp.quest.getQuest: Unknown area log ID: ".. area_log_id)
     end
 end
 
-quests.loadQuests = function(involvedQuests)
-    local loadedQuests = {}
-    local quest
-    local i = 1 -- Doing i loop instead of pairs so quests kept in scripted order
-    while i <= #involvedQuests do
-        local areaQuestPair = involvedQuests[i]
-        quest = quests.getQuest(areaQuestPair[1], areaQuestPair[2])
-        if quest then
-            loadedQuests[i] = quest
-        else
-            printf("quests.loadQuests: Unable to load quest: " .. areaQuestPair[1]", " .. areaQuestPair[2])
-        end
-        i = i + 1
-    end
-    return loadedQuests
-end
+-----------------------------------
+--  INVOLVED QUESTS OBJECT
+-----------------------------------
+dsp.quest.involvedQuests = function(involvedQuests)
+    local this = {}
 
-quests.check = function(player, params)
-    local involvedQuests = params.involvedQuests
-    if involvedQuests then
+    ---------------------------------------------------------------
+    -- Internal helper functions
+    ---------------------------------------------------------------
+
+    -- Helper function to check all of our involvedQuests for a given quest event
+    local check = function(player, params)
         local i = 1 -- Doing i loop instead of pairs so quests checked in order
-        while i <= #involvedQuests do
-            local quest = involvedQuests[i]
+        while i <= #this.involvedQuests do
+            local areaQuestPair = this.involvedQuests[i]
+            local quest = dsp.quest.getQuest(areaQuestPair[1], areaQuestPair[2])
             if quest then
                 if quest.check(player, params) then
                     return true
                 end
+            else
+
             end
             i = i + 1
         end
+        return false
     end
-    return false
-end
 
-quests.onTrade = function(player, npc, trade, involvedQuests)
-    local params = {}
-    params.target = npc
-    params.targetName = npc:getName()
-    params.trade = trade
-    params.check_type = dsp.quest.event.TRADE
-    params.involvedQuests = involvedQuests
-    return quests.check(player, params)
-end
+    -- Make sure the provided list of involvedQuests is loaded and ready for use
+    local loadQuests = function(involvedQuests)
+        local loadedQuests = {}
+        local quest
+        local i = 1 -- Doing i loop instead of pairs so quests kept in scripted order
+        while i <= #involvedQuests do
+            local areaQuestPair = involvedQuests[i]
+            quest = dsp.quest.getQuest(areaQuestPair[1], areaQuestPair[2])
+            if quest then
+                -- We don't really need to store a copy of the quest inside every NPC.
+                -- We just need to make sure it's been loaded _somewhere_ and we have
+                -- a way of accessing it later, so just store the log_id/quest_id pair.
+                loadedQuests[i] = {areaQuestPair[1], areaQuestPair[2]}
+            else
+                printf("dsp.quest.involedQuests.loadQuests: Unable to load quest: " .. areaQuestPair[1]", " .. areaQuestPair[2])
+            end
+            i = i + 1
+        end
+        return loadedQuests
+    end
 
-quests.onTrigger = function(player, npc, involvedQuests)
-    local params = {}
-    params.target = npc
-    params.targetName = npc:getName()
-    params.trade = trade
-    params.check_type = dsp.quest.event.TRIGGER
-    params.involvedQuests = involvedQuests
-    return quests.check(player, params)
-end
+    ---------------------------------------------------------------
+    -- Public Methods
+    ---------------------------------------------------------------
 
-quests.onEventFinish = function(player, csid, option, involvedQuests)
-    local params = {}
-    params.csid = csid
-    params.option = option
-    params.check_type = dsp.quest.event.FINISH
-    params.involvedQuests = involvedQuests
-    return quests.check(player, params)
-end
+    -- Checks the onTrade events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onTrade = function(player, npc, trade)
+        local params = {}
+        params.target = npc
+        params.targetName = npc:getName()
+        params.trade = trade
+        params.check_type = dsp.quest.event.TRADE
+        params.involvedQuests = involvedQuests
+        return check(player, params)
+    end
 
-quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, involvedQuests)
-    local params = {}
-    params.target = mob
-    params.targetName = mob:getName()
-    params.isKiller = isKiller
-    params.isWeaponSkillKill = isWeaponSkillKill
-    params.type = dsp.quest.event.MOB_DEATH
-    params.involvedQuests = involvedQuests
-    return quests.check(entity, params)
+    -- Checks the onTrigger events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onTrigger = function(player, npc)
+        local params = {}
+        params.target = npc
+        params.targetName = npc:getName()
+        params.trade = trade
+        params.check_type = dsp.quest.event.TRIGGER
+        params.involvedQuests = involvedQuests
+        return check(player, params)
+    end
+
+    -- Checks the onEventFinish events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onEventFinish = function(player, csid, option)
+        local params = {}
+        params.csid = csid
+        params.option = option
+        params.check_type = dsp.quest.event.FINISH
+        params.involvedQuests = involvedQuests
+        return check(player, params)
+    end
+
+    -- Checks the onMobDeath events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill)
+        local params = {}
+        params.target = mob
+        params.targetName = mob:getName()
+        params.isKiller = isKiller
+        params.isWeaponSkillKill = isWeaponSkillKill
+        params.type = dsp.quest.event.MOB_DEATH
+        params.involvedQuests = involvedQuests
+        return check(entity, params)
+    end
+
+    this.involvedQuests = loadQuests(involvedQuests)
+    return this
 end

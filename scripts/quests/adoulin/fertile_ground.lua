@@ -1,7 +1,7 @@
 require("scripts/globals/missions")
 require("scripts/globals/quests")
 
-local thisQuest = quests.newQuest()
+local thisQuest = dsp.quest.newQuest()
 
 thisQuest.name = "Fertile Ground"
 thisQuest.log_id = dsp.quest.log_id.ADOULIN

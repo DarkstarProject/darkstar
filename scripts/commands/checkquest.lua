@@ -62,7 +62,7 @@ function onTrigger(player,logId,questId,target)
     }
 
     -- fetch a quest table if there is one
-    local quest = quests.getQuest(logId, questId)
+    local quest = dsp.quest.getQuest(logId, questId)
 
     local quest_status_string = ''
 

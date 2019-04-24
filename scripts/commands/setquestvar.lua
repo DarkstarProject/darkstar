@@ -38,7 +38,7 @@ function onTrigger(player, logId, questId, var, value, target)
     end
 
     -- validate quest
-    local quest = quests.getQuest(logId, questId)
+    local quest = dsp.quest.getQuest(logId, questId)
     if not quest then
         error(player, "Unable to load quest file!")
         return
