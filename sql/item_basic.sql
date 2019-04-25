@@ -6126,6 +6126,9 @@ INSERT INTO `item_basic` VALUES (6533,0,'beitetsu_coffer','coffer_(beitetsu)',99
 INSERT INTO `item_basic` VALUES (6534,0,'rift_boulder_coffer','coffer_(boulder)',99,30296,0,0,0);
 INSERT INTO `item_basic` VALUES (6535,0,'pinch_of_pungent_powder_ii','pungent_powder_ii',12,1548,0,0,0);
 INSERT INTO `item_basic` VALUES (6536,0,'new_years_pouch','new_years_pouch',1,5736,0,0,0);
+INSERT INTO `item_basic` VALUES (6538,0,'altanas_repast','altanas_repast',1,1580,0,0,0);
+INSERT INTO `item_basic` VALUES (6539,0,'altanas_repast_+1','altanas_repast_+1',1,1576,0,0,0);
+INSERT INTO `item_basic` VALUES (6540,0,'altanas_repast_+2','altanas_repast_+2',1,1576,0,0,0);
 INSERT INTO `item_basic` VALUES (6537,0,'pinch_of_pungent_powder_iii','pungent_powder_iii',12,1548,0,0,0);
 INSERT INTO `item_basic` VALUES (8193,0,'harlequin_head','harlequin_head',1,0,0,1,0);
 INSERT INTO `item_basic` VALUES (8194,0,'valoredge_x-900_head','valoredge_head',1,0,0,1,0);
@@ -7064,10 +7067,12 @@ INSERT INTO `item_basic` VALUES (9534,0,'fragmentation_sphere','fragm._sphere',1
 INSERT INTO `item_basic` VALUES (9535,0,'gravitation_sphere','gravi._sphere',12,4100,0,0,0);
 INSERT INTO `item_basic` VALUES (9536,0,'light_sphere','light_sphere',12,4100,0,0,0);
 INSERT INTO `item_basic` VALUES (9537,0,'darkness_sphere','darkn._sphere',12,4100,0,0,0);
-INSERT INTO `item_basic` VALUES (9538,0,'rusted_identification_card','rusted_i._card',99,4100,0,0,0);
-INSERT INTO `item_basic` VALUES (9539,0,'beastmens_medal','beastmens_medal',99,4100,0,0,0);
-INSERT INTO `item_basic` VALUES (9540,0,'blackened_identification_card','black._i._card',99,4100,0,0,0);
-INSERT INTO `item_basic` VALUES (9541,0,'kindreds_medal','kindreds_medal',99,4100,0,0,0);
+INSERT INTO `item_basic` VALUES (9538,0,'rusted_identification_card','rusted_i._card',99,4100,0,1,0);    -- Obtainable from Goblin Box, Not vendorable
+INSERT INTO `item_basic` VALUES (9539,0,'beastmens_medal','beastmens_medal',99,4100,0,0,0);              -- Obtainable from Goblin Box, Not vendorable
+INSERT INTO `item_basic` VALUES (9540,0,'blackened_identification_card','black._i._card',99,4100,0,1,0); -- Obtainable from Goblin Box, Not vendorable
+INSERT INTO `item_basic` VALUES (9541,0,'kindreds_medal','kindreds_medal',99,4100,0,0,0);                -- Obtainable from Goblin Box, Not vendorable
+INSERT INTO `item_basic` VALUES (9542,0,'old_identification_card','old_i._card',99,4096,0,1,0);          -- Not vendorable
+INSERT INTO `item_basic` VALUES (9543,0,'demons_medal','demons_medal',99,4096,0,1,0);                    -- Not vendorable
 INSERT INTO `item_basic` VALUES (9544,0,'headshard_war','headshard_war',12,4098,65,0,0);
 INSERT INTO `item_basic` VALUES (9545,0,'headshard_mnk','headshard_mnk',12,4098,65,0,0);
 INSERT INTO `item_basic` VALUES (9546,0,'headshard_whm','headshard_whm',12,4098,65,0,0);
@@ -17803,6 +17808,7 @@ INSERT INTO `item_basic` VALUES (21266,0,'gastraphetes','gastraphetes',1,64584,0
 INSERT INTO `item_basic` VALUES (21267,0,'annihilator','annihilator',1,64584,0,1,0);
 INSERT INTO `item_basic` VALUES (21268,0,'death_penalty','death_penalty',1,64584,0,1,0);
 INSERT INTO `item_basic` VALUES (21269,0,'armageddon','armageddon',1,64584,0,1,0);
+INSERT INTO `item_basic` VALUES (21272,0,'troll_gun','troll_gun',1,63552,0,1,0); -- Equippable, Not vendorable, Not sendable, Exclusive, Rare
 INSERT INTO `item_basic` VALUES (21273,0,'nibiru_gun','nibiru_gun',1,30804,0,1,0);
 INSERT INTO `item_basic` VALUES (21274,0,'donar_gun','donar_gun',1,63572,0,1,0);
 INSERT INTO `item_basic` VALUES (21275,0,'homestead_gun','homestead_gun',1,63572,0,1,0);
@@ -18007,6 +18013,7 @@ INSERT INTO `item_basic` VALUES (21504,0,'arasy_sainti','arasy_sainti',1,2082,1,
 INSERT INTO `item_basic` VALUES (21505,0,'arasy_sainti_+1','arasy_sainti_+1',1,2080,1,0,0);
 INSERT INTO `item_basic` VALUES (21506,0,'pair_of_jolt_counter','jolt_counter',1,2082,1,0,0); -- Obtainable from Goblin Box, Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21507,0,'pair_of_jolt_counter_+1','jolt_counter_+1',1,2080,1,0,0);
+INSERT INTO `item_basic` VALUES (21509,0,'premium_mogti','premium_mogti',1,63552,0,1,0); -- Equippable, Not vendorable, Not sendable, Exclusive, Rare
 INSERT INTO `item_basic` VALUES (21511,0,'hepatizon_baghnakhs','hep._baghnakhs',1,2082,0,0,0); -- Obtainable from Goblin Box, Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21512,0,'hepatizon_baghnakhs_+1','hep._baghnakhs_+1',1,2080,0,0,0); -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21513,0,'pair_of_raetic_baghnakhs','raetic_baghnakhs',1,2080,0,0,0);

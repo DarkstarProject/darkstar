@@ -29,6 +29,7 @@ dsp.weaponskill =
     TORNADO_KICK        = 13,
     VICTORY_SMITE       = 14,
     SHIJIN_SPIRAL       = 15,
+    FINAL_PARADISE      = 228,
 
     ------------------------------------
     -- DAGGER
