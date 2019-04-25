@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: !reloadglobal <questLog> <questID>
+-- func: !reloadquest <questLog> <questID>
 -- desc: Attempt to reload specified quest without a restart.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,8 +12,7 @@ cmdprops =
 }
 
 function error(player, msg)
-    player:PrintToPlayer(msg)
-    player:PrintToPlayer("!reloadquest <logID> <questID>")
+    player:PrintToPlayer(msg .. "\nUsage: !reloadquest <logID> <questID>")
 end
 
 function onTrigger(player, logId, quest_string)
@@ -26,9 +25,6 @@ function onTrigger(player, logId, quest_string)
         error(player, "Invalid logID.")
         return
     end
-    
-    local logName = questLog.full_name;
-    logId = questLog.quest_log;
 
     -- validate questId
     local areaQuestIds = dsp.quest.id[area]
@@ -60,9 +56,9 @@ function onTrigger(player, logId, quest_string)
     local quest_filename = quest_filename .. area_dirs[logId] .. '/' .. string.lower(quest_string)
 
     package.loaded[quest_filename] = nil
-    dsp.quest.object[logId][questId] = nil
+    dsp.quest.object[area][questId] = nil
     local quest = require(quest_filename)
-    dsp.quest.object[logId][questId] = quest
+    dsp.quest.object[area][questId] = quest
 
     player:PrintToPlayer(string.format("Quest '".. quest.name .. "' has been reloaded.",String))
 end

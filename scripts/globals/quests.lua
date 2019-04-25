@@ -5,7 +5,6 @@ require("scripts/globals/zone")
 
 dsp = dsp or {}
 dsp.quest = dsp.quest or {} -- "Solid" enum definitions which are currently in use by master
-quests = {}
 
 -- These should be tabled enums for rewritten quests, but
 -- these globals are kept so old-style quests will work
@@ -1554,8 +1553,10 @@ dsp.quest.newQuest = function()
 
     -- Begins an event for the player, with built-in return
     ---------------------------------------------------------------
-    this.startEvent = function(player, event)
-        player:startEvent(event)
+    this.startEvent = function(player, event, params)
+        if not params then params = {} end
+        player:startEvent(event, params[1], params[2], params[3], params[4],
+                                 params[5], params[6], params[7], params[8])
         return true
     end
 
@@ -1565,7 +1566,7 @@ dsp.quest.newQuest = function()
         return npcUtil.giveKeyItem(player, key_item)
     end
 
-    -- Give KI to player, while going through this quest's wrapper
+    -- Remove KI from player, while going through this quest's wrapper
     ---------------------------------------------------------------
     this.delKeyItem = function(player, key_item)
         for _, ki in pairs(this.temporary.key_items) do
