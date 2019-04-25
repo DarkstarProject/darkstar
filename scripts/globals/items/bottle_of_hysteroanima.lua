@@ -14,9 +14,9 @@ function onItemCheck(target)
     local family = target:getSystem()
     local zone = target:getZoneID()
     local validZoneList =
-            {
-                16,17,18,19,20,21,22,23 -- only usable in Promyvion areas
-            }
+        {
+            16,17,18,19,20,21,22,23 -- only usable in Promyvion areas
+        }
 
     for _, validZone in ipairs(validZoneList) do
         if validZone == zone and family == 12 then -- only useable on Empty family mobs
@@ -28,5 +28,5 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.AMNESIA,100, 0, 30)
+    target:addStatusEffect(dsp.effect.AMNESIA,100, 0, math.random(20, 30))
 end
