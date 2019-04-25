@@ -1079,7 +1079,7 @@ INSERT INTO `item_usable` VALUES (5259,'rebirth_feather',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5260,'regain_feather',1,3,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5261,'bottle_of_psychoanima',4,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5262,'bottle_of_hysteroanima',4,1,55,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5263,'bottle_of_terroanima',4,1,0,55,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5263,'bottle_of_terroanima',4,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5264,'bottle_of_yellow_liquid',4,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5265,'mistmelt',4,2,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5266,'blackened_muddy_siredon',4,0,0,0,0,0,0,0);
