@@ -65,7 +65,7 @@ this_quest.constants =
 this_quest.stages =
 {
     -- Stage 0: Talk to Rising Solstice, Western Adoulin, to begin the quest
-    [dsp.quests.enums.stages.STAGE0] =
+    [dsp.quest.stage.STAGE0] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -91,7 +91,7 @@ this_quest.stages =
         }
     },
     -- Stage 1: Talk to Zaoso, Western Adoulin
-    [dsp.quests.enums.stages.STAGE1] =
+    [dsp.quest.stage.STAGE1] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -113,7 +113,7 @@ this_quest.stages =
         }
     },
     -- Stage 2: Talk to Clemmar, Western Adoulin
-    [dsp.quests.enums.stages.STAGE2] =
+    [dsp.quest.stage.STAGE2] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -135,7 +135,7 @@ this_quest.stages =
         }
     },
     -- Stage 3: Talk to Kongramm, Western Adoulin
-    [dsp.quests.enums.stages.STAGE3] =
+    [dsp.quest.stage.STAGE3] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -157,7 +157,7 @@ this_quest.stages =
         }
     },
     -- Stage 4: Talk to Virsaint, Western Adoulin
-    [dsp.quests.enums.stages.STAGE4] =
+    [dsp.quest.stage.STAGE4] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -179,7 +179,7 @@ this_quest.stages =
         }
     },
     -- Stage 5: Talk to Shipilolo, Western Adoulin
-    [dsp.quests.enums.stages.STAGE5] =
+    [dsp.quest.stage.STAGE5] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -201,7 +201,7 @@ this_quest.stages =
         }
     },
     -- Stage 6: Talk to Dangueubert, Western Adoulin
-    [dsp.quests.enums.stages.STAGE6] =
+    [dsp.quest.stage.STAGE6] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -223,7 +223,7 @@ this_quest.stages =
         }
     },
     -- Stage 7: Talk to Nylene, Western Adoulin
-    [dsp.quests.enums.stages.STAGE7] =
+    [dsp.quest.stage.STAGE7] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -245,7 +245,7 @@ this_quest.stages =
         }
     },
     -- Stage 8: Talk to Rising Solstice again, quest complete
-    [dsp.quests.enums.stages.STAGE8] =
+    [dsp.quest.stage.STAGE8] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {

@@ -62,7 +62,7 @@ this_quest.temporary =
 this_quest.stages =
 {
     -- Stage 0: Talk to Jorin, Western Adoulin, to get Broken Harpoon KI and start quest
-    [dsp.quests.enums.stages.STAGE0] =
+    [dsp.quest.stage.STAGE0] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -89,7 +89,7 @@ this_quest.stages =
         }
     },
     -- Stage 1: Talk to Shipilolo, Western Adoulin, to exchange Broken Harpoon KI for Extravagant Harpoon KI
-    [dsp.quests.enums.stages.STAGE1] =
+    [dsp.quest.stage.STAGE1] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -118,7 +118,7 @@ this_quest.stages =
         }
     },
     -- Stage 2: Talk to Jorin, quest complete
-    [dsp.quests.enums.stages.STAGE2] =
+    [dsp.quest.stage.STAGE2] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {

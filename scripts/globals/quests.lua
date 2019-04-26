@@ -1207,6 +1207,38 @@ dsp.quest.id =
     }
 }
 
+-----------------------------------
+--  QUEST STRING KEYS
+-----------------------------------
+
+-- These are the string key counterparts for a quest, and can be used to find the string
+-- key/path that DSP uses for a given quest when all you have is the quest's ID and its area.
+-- Filepaths can be built using "(AREA_FOLDER)/".. dsp.quest.string.(AREA)[(QUEST_ID)],
+-- Where (AREA) is dsp.quest.area[AREAS_LOG_ID] (a string), _not_ the default integer log ID
+local function buildQuestStringTable(dspQuestIDtable)
+    local questStringTable = {}
+    for areaKey, areaQuestTable in pairs(dspQuestIDtable) do
+        local areaQuestStringTable = {}
+        for questStringKey, questID in pairs(areaQuestTable) do
+            areaQuestStringTable[questID] = questStringKey
+        end
+        questStringTable[areaKey] = areaQuestStringTable
+    end
+    return questStringTable
+end
+
+dsp.quest.string = buildQuestStringTable(dsp.quest.id)
+
+-----------------------------------
+--  DSP QUEST SYSTEM CONSTANTS
+-----------------------------------
+
+dsp.quest.stage =
+{
+    STAGE0   =  0, STAGE1  =  1, STAGE2  =  2, STAGE3   =  3, STAGE4   =  4,
+    STAGE5   =  5, STAGE6  =  6, STAGE7  =  7, STAGE8   =  8, STAGE9   =  9,
+    STAGE10  = 10, STAGE11 = 11, STAGE12 = 12, STAGE13  = 13, STAGE14  = 14,
+}
 
 -----------------------------------
 --  QUEST_REWRITE ENUMS
@@ -1242,27 +1274,6 @@ dsp.quests.enums =
         QUEST_ACCEPTED  = 1,
         QUEST_COMPLETED = 2,
     },
-
-    stages =
-    {
-        STAGE0   =  0, STAGE1  =  1, STAGE2  =  2, STAGE3   =  3, STAGE4   =  4,
-        STAGE5   =  5, STAGE6  =  6, STAGE7  =  7, STAGE8   =  8, STAGE9   =  9,
-        STAGE10  = 10, STAGE11 = 11, STAGE12 = 12, STAGE13  = 13, STAGE14  = 14,
-    },
-}
-
--- After writing a "first require" function which builds a reverse
--- 'quest ID' -> 'quest string' lookup table, this table should be removed.
--- Filepaths can then be built using "area_folder/".. dsp.quest.name.area[quest_id]
-dsp.quests.quest_filenames =
-{
-    [dsp.quest.log_id.ADOULIN] =
-    {
-        [dsp.quest.id.adoulin.WAYWARD_WAYPOINTS] = 'wayward_waypoints',
-        [dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN] = 'a_certain_substitute_patrolman',
-        [dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON] = 'the_old_man_and_the_harpoon',
-        [dsp.quest.id.adoulin.FERTILE_GROUND] = 'fertile_ground',
-    }
 }
 
 -----------------------------------
@@ -1558,21 +1569,21 @@ dsp.quests.getQuestTable = function(area_log_id, quest_id)
     local quest_filename = 'scripts/quests/'
     local area_dirs =
     {
-        [dsp.quests.enums.log_ids.SANDORIA]    = 'sandoria',
-        [dsp.quests.enums.log_ids.BASTOK]      = 'bastok',
-        [dsp.quests.enums.log_ids.WINDURST]    = 'windurst',
-        [dsp.quests.enums.log_ids.JEUNO]       = 'jeuno',
-        [dsp.quests.enums.log_ids.OTHER_AREAS] = 'other_areas',
-        [dsp.quests.enums.log_ids.OUTLANDS]    = 'outlands',
-        [dsp.quests.enums.log_ids.AHT_URHGAN]  = 'aht_urhgan',
-        [dsp.quests.enums.log_ids.CRYSTAL_WAR] = 'crystal_war',
-        [dsp.quests.enums.log_ids.ABYSSEA]     = 'abyssea',
-        [dsp.quests.enums.log_ids.ADOULIN]     = 'adoulin',
-        [dsp.quests.enums.log_ids.COALITION]   = 'coalition'
+        [dsp.quest.log_id.SANDORIA]    = 'sandoria',
+        [dsp.quest.log_id.BASTOK]      = 'bastok',
+        [dsp.quest.log_id.WINDURST]    = 'windurst',
+        [dsp.quest.log_id.JEUNO]       = 'jeuno',
+        [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
+        [dsp.quest.log_id.OUTLANDS]    = 'outlands',
+        [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
+        [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
+        [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
+        [dsp.quest.log_id.ADOULIN]     = 'adoulin',
+        [dsp.quest.log_id.COALITION]   = 'coalition'
     }
-    local quest_file = dsp.quests.quest_filenames[area_log_id][quest_id]
+    local quest_file = dsp.quest.string[dsp.quest.area[area_log_id]][quest_id]
     if quest_file then
-        quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. quest_file
+        quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_file)
         local quest_table = require(quest_filename)
         if (quest_table) then
             return quest_table
