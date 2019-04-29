@@ -26,6 +26,12 @@ function moogleTrade(player,npc,trade)
                 player:messageSpecial(zones[player:getZoneID()].text.MOG_LOCKER_OFFSET + 2, getMogLockerExpiryTimestamp(player))
             end
         end
+
+        GiveMoogleABreak = player:getQuestStatus(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK)
+        if GiveMoogleABreak == QUEST_ACCEPTED and trade:hasItemQty(17161, 1) and trade:hasItemQty(13457, 1) then
+            player:startEvent(30007)
+        end
+
         return true
     end
     return false
@@ -42,8 +48,21 @@ function moogleTrigger(player,npc)
             end
         end
 
+        local homeNationFame = player:getFameLevel(player:getNation())
+        GiveMoogleABreak = player:getQuestStatus(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK)
+
         if player:getVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
+        -- Start GiveMoogleABreak
+        elseif player:getLocalVar("QuestSeen") == 0 and GiveMoogleABreak == QUEST_AVAILABLE and homeNationFame >= 3 and
+               player:getVar("MogSafe1Time") + 604800 <= os.time() then -- 604800 One week in Unix epoch
+            player:startEvent(30005,0,0,0,5,0,17161,13457)
+        -- Reminder GiveMoogleABreak
+        elseif player:getLocalVar("QuestSeen") == 0 and GiveMoogleABreak == QUEST_ACCEPTED then
+            player:startEvent(30006,0,0,0,0,0,17161,13457)
+        -- End GiveMoogleABreak
+        elseif player:getLocalVar("QuestSeen") == 0 and GiveMoogleABreak == QUEST_ACCEPTED then
+            player:startEvent(30008)
         else
             player:sendMenu(1)
         end
@@ -64,6 +83,20 @@ function moogleEventFinish(player,csid,option)
         if csid == 30000 then
             player:setVar("MoghouseExplication", 0)
         end
+
+        if csid == 30005 and option == 1 then
+            player:addQuest(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK)
+            player:setLocalVar("QuestSeen", 1)
+            player:setVar("MogSafe1Time", 0)
+        elseif csid == 30005 and option == 2 then
+            player:setLocalVar("QuestSeen", 1)
+        elseif csid == 30007 then
+            -- Hide moogle until zone?
+        elseif csid == 30008 then
+            player:completeQuest(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK)
+            player:changeContainerSize(1, 60)
+        end
+
         return true
     end
     return false
