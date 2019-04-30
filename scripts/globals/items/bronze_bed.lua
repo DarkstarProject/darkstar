@@ -4,7 +4,9 @@
 -----------------------------------------
 
 function onFurniturePlaced(player)
-    player:setVar("MogSafe1Time", os.time())
+    if player:getQuestStatus(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK) == QUEST_ACCEPTED then
+        player:setVar("MogSafe1Time", os.time())
+    end
 end
 
 function onFurnitureRemoved(player)

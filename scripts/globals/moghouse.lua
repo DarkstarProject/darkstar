@@ -49,7 +49,7 @@ function moogleTrigger(player,npc)
         end
 
         local homeNationFame = player:getFameLevel(player:getNation())
-        GiveMoogleABreak = player:getQuestStatus(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK)
+        local GiveMoogleABreak = player:getQuestStatus(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK)
 
         if player:getVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
@@ -97,6 +97,7 @@ function moogleEventFinish(player,csid,option)
         elseif csid == 30008 then
             player:completeQuest(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK)
             player:changeContainerSize(1, 60)
+            player:setVar("MogSafe1Time", 0)
             player:setVar("MogSafeProgress", 0)
         end
 
