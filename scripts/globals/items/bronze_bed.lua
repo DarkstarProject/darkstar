@@ -2,9 +2,11 @@
 -- ID: 5
 -- Item: Bronze Bed
 -----------------------------------------
+require("scripts/globals/quests");
+-----------------------------------------
 
 function onFurniturePlaced(player)
-    if player:getQuestStatus(OTHER_AREAS_LOG,GIVE_A_MOOGLE_A_BREAK) == QUEST_AVAILABLE then
+    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK) == QUEST_AVAILABLE then
         player:setVar("MogSafe1Time", os.time())
     end
 end
