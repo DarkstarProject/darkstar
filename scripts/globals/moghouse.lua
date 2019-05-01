@@ -57,7 +57,7 @@ function moogleTrigger(player,npc)
             end
         end
 
-        local homeNationFame = player:getFame(player:getNation())
+        local homeNationFameLevel = player:getFameLevel(player:getNation())
         local giveMoogleABreak = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
         local theMooglePicnic = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
         local moogleInTheWild = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
@@ -65,7 +65,7 @@ function moogleTrigger(player,npc)
         if player:getVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
 
-        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFame >= 3 and
+        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
                player:getVar("[MS1]NextTally") <= os.time() then
             player:startEvent(30005,0,0,0,5,0,17161,13457)
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
@@ -73,7 +73,7 @@ function moogleTrigger(player,npc)
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
             player:startEvent(30008)
 
-        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_AVAILABLE and homeNationFame >= 5 and
+        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_AVAILABLE and homeNationFameLevel >= 5 and
                 player:getVar("[MS2]NextTally") <= os.time() then
             player:startEvent(30009,0,0,0,4,0,17402,615)
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
@@ -81,7 +81,7 @@ function moogleTrigger(player,npc)
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
             player:startEvent(30012)
 
-        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_AVAILABLE and homeNationFame >= 7 and
+        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_AVAILABLE and homeNationFameLevel >= 7 and
                 player:getVar("[MS3]NextTally") <= os.time() then
             player:startEvent(30013,0,0,0,6,0,13593,12474)
         elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
