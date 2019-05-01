@@ -1126,26 +1126,29 @@ function doElementalNuke(caster, spell, target, spellParams)
     local M = 0;
 
     if (USE_OLD_MAGIC_DAMAGE and spellParams.V ~= nil and spellParams.M ~= nil) then
-        V = spellParams.V;
-        M = spellParams.M;
+        V = spellParams.V; -- base value
+        M = spellParams.M; -- tier multiplier
         local I = spellParams.I; -- inflection point
         local cap = (I * 2) + V;
 
-        --For dINT < 0: DMG = V + dINT (when dINT is a penalty, the tier mult. is always 1)
-        if dINT < 0 then DMG = V + dINT;
+        if (dINT < 0) then 
+            DMG = V + dINT; -- when dINT is a penalty tier multiplier is always 1
+
+            if (DMG <= 0) then
+                return 0;
+            end			
+
+        elseif (dINT < I) then 
+            DMG = V + (dINT * M); -- if dINT > 0 but below inflection point
+
         else
-            --, but after some cap: DMG = cap `
-            if dINT > cap then DMG = cap;
-
-            --, but less than some inflection point: DMG = V + (dINT * M)
-            elseif DMG < I then DMG = V + (dINT * M);
-
-            --, but after some inflection point: DMG = V + (inflectionPoint + (dINT-inflectionPoint) * M / 2))
-            --(above some critical value, adding INT/MND becomes half as effective)
-            else DMG = V + (I + ((dINT - I) / 2) * 1); end
+            DMG = V + (I + ((dINT - I) * (M / 2))); -- above inflection point additional dINT is half as effective
         end
 
-        if DMG < 0 then DMG = 0; end
+        if (DMG > cap) then -- set cap on damage
+            DMG = cap; 
+        end	
+
     else
         local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
         local resistBonus = spellParams.resistBonus;
