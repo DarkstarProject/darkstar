@@ -2,7 +2,7 @@
 -- Area: Dynamis Xarcabard
 --  MOB: Duke Berith
 -----------------------------------
-require("scripts/zones/Dynamis-Xarcabard/TextIDs")
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs")
 mixins =
 {
     require("scripts/mixins/dynamis_beastmen"),
@@ -36,6 +36,6 @@ function onMobDeath(mob, player, isKiller)
     end
 
     if Animate_Trigger == 32767 then
-        player:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE)
+        player:messageSpecial(ID.text.PRISON_OF_SOULS_HAS_SET_FREE)
     end
 end
