@@ -4,7 +4,6 @@
 -- 
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
-require("scripts/zones/Dynamis-Valkurm/MobIDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
 -----------------------------------
