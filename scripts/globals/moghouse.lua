@@ -35,9 +35,9 @@ function moogleTrade(player,npc,trade)
         local moogleInTheWild = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
         if giveMoogleABreak == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {17161, 13457}) then
             player:startEvent(30007)
-        elseif theMooglePicnic == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {17402,615}) then
+        elseif theMooglePicnic == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {17402, 615}) then
             player:startEvent(30011)
-        elseif moogleInTheWild == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {13593,12474}) then
+        elseif moogleInTheWild == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {13593, 12474}) then
             player:startEvent(30015)
         end
 
