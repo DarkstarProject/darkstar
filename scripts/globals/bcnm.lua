@@ -954,7 +954,7 @@ function EventFinishBCNM(player, csid, option)
 
                 -- set other traded item to worn
                 elseif player:hasItem(item) then
-                    --player:createWornItem(item)
+                    player:createWornItem(item)
                 end
             end
 
