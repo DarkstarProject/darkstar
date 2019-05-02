@@ -6127,6 +6127,37 @@ INSERT INTO `item_basic` VALUES (6534,0,'rift_boulder_coffer','coffer_(boulder)'
 INSERT INTO `item_basic` VALUES (6535,0,'pinch_of_pungent_powder_ii','pungent_powder_ii',12,1548,0,0,0);
 INSERT INTO `item_basic` VALUES (6536,0,'new_years_pouch','new_years_pouch',1,5736,0,0,0);
 INSERT INTO `item_basic` VALUES (6537,0,'pinch_of_pungent_powder_iii','pungent_powder_iii',12,1548,0,0,0);
+INSERT INTO `item_basic` VALUES (6538,0,'altanas_repast','altanas_repast',1,1580,0,0,0);
+INSERT INTO `item_basic` VALUES (6539,0,'altanas_repast_+1','altanas_repast_+1',1,1576,0,0,0);
+INSERT INTO `item_basic` VALUES (6540,0,'altanas_repast_+2','altanas_repast_+2',1,1576,0,0,0);
+INSERT INTO `item_basic` VALUES (6541,0,'worn_sack_of_snowslit_stones_+1','worn_sack_(ss+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6542,0,'worn_sack_of_snowslit_stones_+2','worn_sack_(ss+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6543,0,'worn_sack_of_leafslit_stones_+1','worn_sack_(ls+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6544,0,'worn_sack_of_leafslit_stones_+2','worn_sack_(ls+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6545,0,'worn_sack_of_duskslit_stones_+1','worn_sack_(ds+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6546,0,'worn_sack_of_duskslit_stones_+2','worn_sack_(ds+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6547,0,'worn_sack_of_snowtip_stones_+1','worn_sack_(st+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6548,0,'worn_sack_of_snowtip_stones_+2','worn_sack_(st+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6549,0,'worn_sack_of_leaftip_stones_+1','worn_sack_(lt+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6550,0,'worn_sack_of_leaftip_stones_+2','worn_sack_(lt+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6551,0,'worn_sack_of_dusktip_stones_+1','worn_sack_(dt+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6552,0,'worn_sack_of_dusktip_stones_+2','worn_sack_(dt+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6553,0,'worn_sack_of_snowdim_stones_+1','worn_sack_(sd+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6554,0,'worn_sack_of_snowdim_stones_+2','worn_sack_(sd+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6555,0,'worn_sack_of_leafdim_stones_+1','worn_sack_(ld+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6556,0,'worn_sack_of_leafdim_stones_+2','worn_sack_(ld+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6557,0,'worn_sack_of_duskdim_stones_+1','worn_sack_(dd+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6558,0,'worn_sack_of_duskdim_stones_+2','worn_sack_(dd+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6559,0,'worn_sack_of_snoworb_stones_+1','worn_sack_(so+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6560,0,'worn_sack_of_snoworb_stones_+2','worn_sack_(so+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6561,0,'worn_sack_of_leaforb_stones_+1','worn_sack_(lo+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6562,0,'worn_sack_of_leaforb_stones_+2','worn_sack_(lo+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6563,0,'worn_sack_of_duskorb_stones_+1','worn_sack_(do+1)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6564,0,'worn_sack_of_duskorb_stones_+2','worn_sack_(do+2)',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6565,0,'persikos_snow_cone','per._snow_cone',12,13900,0,1,0);
+INSERT INTO `item_basic` VALUES (6566,0,'bonanza_biscuit','bonanza_biscuit',99,30296,0,1,0);
+INSERT INTO `item_basic` VALUES (6567,0,'tropical_crepe','tropical_crepe',12,1548,57,0,0);
+INSERT INTO `item_basic` VALUES (6568,0,'crepe_des_rois','crepe_des_rois',12,1548,57,0,0);
 INSERT INTO `item_basic` VALUES (8193,0,'harlequin_head','harlequin_head',1,0,0,1,0);
 INSERT INTO `item_basic` VALUES (8194,0,'valoredge_x-900_head','valoredge_head',1,0,0,1,0);
 INSERT INTO `item_basic` VALUES (8195,0,'sharpshot_z-500_head','sharpshot_head',1,0,0,1,0);
@@ -7068,6 +7099,8 @@ INSERT INTO `item_basic` VALUES (9538,0,'rusted_identification_card','rusted_i._
 INSERT INTO `item_basic` VALUES (9539,0,'beastmens_medal','beastmens_medal',99,4100,0,0,0);
 INSERT INTO `item_basic` VALUES (9540,0,'blackened_identification_card','black._i._card',99,4100,0,0,0);
 INSERT INTO `item_basic` VALUES (9541,0,'kindreds_medal','kindreds_medal',99,4100,0,0,0);
+INSERT INTO `item_basic` VALUES (9542,0,'old_identification_card','old_i._card',99,4096,0,1,0);          -- Not vendorable
+INSERT INTO `item_basic` VALUES (9543,0,'demons_medal','demons_medal',99,4096,0,1,0);                    -- Not vendorable
 INSERT INTO `item_basic` VALUES (9544,0,'headshard_war','headshard_war',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9545,0,'headshard_mnk','headshard_mnk',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9546,0,'headshard_whm','headshard_whm',12,4100,65,0,0);
@@ -17803,6 +17836,7 @@ INSERT INTO `item_basic` VALUES (21266,0,'gastraphetes','gastraphetes',1,64584,0
 INSERT INTO `item_basic` VALUES (21267,0,'annihilator','annihilator',1,64584,0,1,0);
 INSERT INTO `item_basic` VALUES (21268,0,'death_penalty','death_penalty',1,64584,0,1,0);
 INSERT INTO `item_basic` VALUES (21269,0,'armageddon','armageddon',1,64584,0,1,0);
+INSERT INTO `item_basic` VALUES (21272,0,'troll_gun','troll_gun',1,63552,0,1,0); -- Equippable, Not vendorable, Not sendable, Exclusive, Rare
 INSERT INTO `item_basic` VALUES (21273,0,'nibiru_gun','nibiru_gun',1,30804,0,1,0);
 INSERT INTO `item_basic` VALUES (21274,0,'donar_gun','donar_gun',1,63572,0,1,0);
 INSERT INTO `item_basic` VALUES (21275,0,'homestead_gun','homestead_gun',1,63572,0,1,0);
@@ -18007,6 +18041,7 @@ INSERT INTO `item_basic` VALUES (21504,0,'arasy_sainti','arasy_sainti',1,2084,1,
 INSERT INTO `item_basic` VALUES (21505,0,'arasy_sainti_+1','arasy_sainti_+1',1,2080,1,0,0);
 INSERT INTO `item_basic` VALUES (21506,0,'pair_of_jolt_counter','jolt_counter',1,2084,1,0,0); -- Obtainable from Goblin Box, Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21507,0,'pair_of_jolt_counter_+1','jolt_counter_+1',1,2080,1,0,0);
+INSERT INTO `item_basic` VALUES (21509,0,'premium_mogti','premium_mogti',1,63552,0,1,0); -- Equippable, Not vendorable, Not sendable, Exclusive, Rare
 INSERT INTO `item_basic` VALUES (21511,0,'hepatizon_baghnakhs','hep._baghnakhs',1,2084,0,0,0); -- Obtainable from Goblin Box, Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21512,0,'hepatizon_baghnakhs_+1','hep._baghnakhs_+1',1,2080,0,0,0); -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21513,0,'pair_of_raetic_baghnakhs','raetic_baghnakhs',1,2080,0,0,0);
@@ -18034,6 +18069,12 @@ INSERT INTO `item_basic` VALUES (21562,0,'ajja_knife','ajja_knife',1,63552,0,1,0
 INSERT INTO `item_basic` VALUES (21563,0,'eletta_knife','eletta_knife',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21564,0,'kaja_knife','kaja_knife',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21565,0,'tauret','tauret',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (21573,0,'assassins_knife','assassins_knife',1,2080,2,0,0);
+INSERT INTO `item_basic` VALUES (21574,0,'plunderers_knife','plun._knife',1,2080,2,0,0);
+INSERT INTO `item_basic` VALUES (21575,0,'gandring','gandring',1,2080,2,0,0);
+INSERT INTO `item_basic` VALUES (21576,0,'bards_knife','bards_knife',1,2080,2,0,0);
+INSERT INTO `item_basic` VALUES (21577,0,'bihu_knife','bihu_knife',1,2080,2,0,0);
+INSERT INTO `item_basic` VALUES (21578,0,'barfawc','barfawc',1,2080,2,0,0);
 INSERT INTO `item_basic` VALUES (21579,0,'commodores_knife','comm._knife',1,2080,2,0,0); -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21580,0,'lanun_knife','lanun_knife',1,2080,2,0,0);      -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21581,0,'rostam','rostam',1,2080,2,0,0);                -- Inscribable, Equippable

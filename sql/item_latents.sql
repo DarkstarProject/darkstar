@@ -3174,6 +3174,9 @@ INSERT INTO `item_latents` VALUES(18582, 366, 1, 58, 0); -- Yigit Staff dmg +1
 INSERT INTO `item_latents` VALUES(18582, 6, 2, 58, 0); -- mp% +2
 INSERT INTO `item_latents` VALUES(18684, 366, 2, 58, 0); -- Storm Zamburak dmg +2
 INSERT INTO `item_latents` VALUES(18684, 24, 10, 58, 0); -- ranged att +10
+-- INSERT INTO `item_latents` VALUES(21576, 160, -1, 13, ??); -- Bard's Knife: Song effects: Damage taken -1% - May need to check for all songs (All 30... song types...)
+-- INSERT INTO `item_latents` VALUES(21577, 160, -2, 13, ??); -- Bihu Knife: Song effects: Damage taken -2%
+-- INSERT INTO `item_latents` VALUES(21578, 160, -3, 13, ??); -- Barfawc: Song effects: Damage taken -3%
 
 -- -------------------------------------------------------
 -- Dynamis Divergence gear-still need to add latents once a latent is made for Dynamis Divergence
@@ -3193,6 +3196,12 @@ INSERT INTO `item_latents` VALUES(18684, 24, 10, 58, 0); -- ranged att +10
 -- INSERT INTO `item_latents` VALUES(21525, 25, 40, ??, 0); -- Pitre Fists: Dynamis (D): Automaton: Accuracy+40
 -- INSERT INTO `item_latents` VALUES(21525, 26, 40, ??, 0); -- Pitre Fists: Dynamis (D): Automaton: Ranged Accuracy+40
 -- INSERT INTO `item_latents` VALUES(21525, 30, 40, ??, 0); -- Pitre Fists: Dynamis (D): Automaton: Magic Accuracy+40
+-- INSERT INTO `item_latents` VALUES(21573, 25, 10, ??, 0); -- Assassin's Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21573, 30, 10, ??, 0); -- Assassin's Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21574, 25, 10, ??, 0); -- Plunderer's Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21574, 30, 10, ??, 0); -- Plunderer's Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21576, 25, 10, ??, 0); -- Bard's Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21577, 30, 10, ??, 0); -- Bihu Knife: Dynamis (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21625, 25, 10, ??, 0); -- Duelist's Sword: (D): Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21626, 30, 10, ??, 0); -- Vitiation Sword: (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21628, 25, 10, ??, 0); -- Valor Sword: (D): Accuracy+10
