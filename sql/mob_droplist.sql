@@ -967,7 +967,7 @@ INSERT INTO `mob_droplist` VALUES (170,0,0,1000,5384,100);
 INSERT INTO `mob_droplist` VALUES (171,0,0,1000,880,20);
 INSERT INTO `mob_droplist` VALUES (171,0,0,1000,1614,80);
 INSERT INTO `mob_droplist` VALUES (171,0,0,1000,1639,80);
-INSERT INTO `mob_droplist` VALUES (171,0,0,1000,1740,200); -- iolite (Arch Corse)
+INSERT INTO `mob_droplist` VALUES (171,0,0,1000,1740,200); -- (Arch Corse) iolite
 INSERT INTO `mob_droplist` VALUES (172,0,0,1000,902,110);
 INSERT INTO `mob_droplist` VALUES (172,0,0,1000,1048,60);
 INSERT INTO `mob_droplist` VALUES (172,0,0,1000,17415,330);
@@ -995,7 +995,7 @@ INSERT INTO `mob_droplist` VALUES (173,0,0,1000,19102,20);
 INSERT INTO `mob_droplist` VALUES (174,0,0,1000,914,490);
 INSERT INTO `mob_droplist` VALUES (174,0,0,1000,939,440);
 INSERT INTO `mob_droplist` VALUES (174,0,0,1000,939,220);
-INSERT INTO `mob_droplist` VALUES (174,0,0,1000,15515,230); -- (Argus) peacock amulet
+INSERT INTO `mob_droplist` VALUES (174,0,0,1000,15515,230); -- (Argus) peacock_amulet
 INSERT INTO `mob_droplist` VALUES (175,0,0,1000,921,80);
 INSERT INTO `mob_droplist` VALUES (175,0,0,1000,935,80);
 INSERT INTO `mob_droplist` VALUES (175,0,0,1000,942,100);
@@ -2358,10 +2358,10 @@ INSERT INTO `mob_droplist` VALUES (396,0,0,1000,3226,100);
 INSERT INTO `mob_droplist` VALUES (396,0,0,1000,3228,100);
 INSERT INTO `mob_droplist` VALUES (396,0,0,1000,11519,1000);
 INSERT INTO `mob_droplist` VALUES (396,0,0,1000,16379,490);
+INSERT INTO `mob_droplist` VALUES (397,2,0,1000,17622,0); -- (Brigandish Blade) buccaneers_knife (steal)
 INSERT INTO `mob_droplist` VALUES (397,0,0,1000,1420,1000); -- (Brigandish Blade) gem_of_the_south
 INSERT INTO `mob_droplist` VALUES (397,0,0,1000,1420,300); -- (Brigandish Blade) gem_of_the_south #2
 INSERT INTO `mob_droplist` VALUES (397,0,0,1000,1441,200); -- (Brigandish Blade) lib._abjuration
-INSERT INTO `mob_droplist` VALUES (397,2,0,1000,17622,0); -- (Brigandish Blade) buccaneers_knife (steal)
 INSERT INTO `mob_droplist` VALUES (398,0,0,1000,15468,440);
 INSERT INTO `mob_droplist` VALUES (399,0,0,1000,1620,60);
 INSERT INTO `mob_droplist` VALUES (399,0,0,1000,1621,80);
@@ -5091,7 +5091,7 @@ INSERT INTO `mob_droplist` VALUES (918,1,2,200,1321,240); -- e.abjuration_hn. #2
 INSERT INTO `mob_droplist` VALUES (918,1,2,200,1326,240); -- a.abjuration_hn. #2
 INSERT INTO `mob_droplist` VALUES (918,1,2,200,1328,240); -- a.abjuration_ft. #2
 INSERT INTO `mob_droplist` VALUES (918,1,2,200,1339,280); -- n.abjuration_hd. #2
-INSERT INTO `mob_droplist` VALUES (918,0,0,1000,16942,100);	-- balmung
+INSERT INTO `mob_droplist` VALUES (918,0,0,1000,16942,100); -- balmung
 INSERT INTO `mob_droplist` VALUES (918,0,0,1000,3340,100); -- sweet_tea
 INSERT INTO `mob_droplist` VALUES (919,2,0,1000,1449,0);
 INSERT INTO `mob_droplist` VALUES (919,0,0,1000,1449,150);
@@ -10638,7 +10638,7 @@ INSERT INTO `mob_droplist` VALUES (1826,0,0,1000,856,130);
 INSERT INTO `mob_droplist` VALUES (1826,0,0,1000,4358,110);
 INSERT INTO `mob_droplist` VALUES (1826,2,0,1000,4389,0);
 INSERT INTO `mob_droplist` VALUES (1826,0,0,1000,4389,30);
-INSERT INTO `mob_droplist` VALUES (1826,0,0,1000,13112,20); -- (Jaggedy-eared Jack) rabbit_charm
+INSERT INTO `mob_droplist` VALUES (1826,0,0,1000,13112,15); -- (Jaggedy-eared Jack) rabbit_charm
 INSERT INTO `mob_droplist` VALUES (1827,0,0,1000,5338,100);
 INSERT INTO `mob_droplist` VALUES (1828,0,0,1000,4228,100);
 INSERT INTO `mob_droplist` VALUES (1829,0,0,1000,5334,100);
@@ -19200,7 +19200,7 @@ INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,1162,170);
 INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,4953,100);
 INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,4956,60);
 INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,4962,130);
-INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,16924,13); -- (Sozu Rogberry) hocho
+INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,16924,15); -- (Sozu Rogberry) hocho
 INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,17303,260);
 INSERT INTO `mob_droplist` VALUES (3288,0,0,1000,17304,40);
 INSERT INTO `mob_droplist` VALUES (3289,2,0,1000,748,0);
