@@ -185,6 +185,7 @@ end
     Give item(s) to player.
     If player has inventory space, give items, display message, and return true.
     If not, do not give items, display a message to indicate this, and return false.
+    Optional silent_fail determines if a message should be displayed on failure.
 
     Examples of valid items parameter:
         640                 -- copper ore x1
@@ -192,7 +193,7 @@ end
         { {640,2} }         -- copper ore x2
         { {640,2}, 641 }    -- copper ore x2, tin ore x1
 ******************************************************************************* --]]
-function npcUtil.giveItem(player, items)
+function npcUtil.giveItem(player, items, silent_fail)
     local ID = zones[player:getZoneID()]
 
     -- create table of items, with key/val of itemId/itemQty
@@ -216,7 +217,9 @@ function npcUtil.giveItem(player, items)
 
     -- does player have enough inventory space?
     if player:getFreeSlotsCount() < #givenItems then
-        player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
+        if not silent_fail then
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
+        end
         return false
     end
 
@@ -225,7 +228,9 @@ function npcUtil.giveItem(player, items)
         if player:addItem(v[1], v[2], true) then
             player:messageSpecial(ID.text.ITEM_OBTAINED, v[1])
         elseif #givenItems == 1 then
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
+            if not silent_fail then
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
+            end
             return false
         end
     end

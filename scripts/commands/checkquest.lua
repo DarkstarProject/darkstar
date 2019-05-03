@@ -75,14 +75,29 @@ function onTrigger(player,logId,questId,target)
 
     -- print any known quest vars
     if quest then
-        quest_status_string = quest_status_string .. string.format("\n%s is currently on stage: %i", targ:getName(), quest.getStage(targ))
-        local quest_vars_string = ''
-        for name, var in pairs(quest.vars.additional) do
-            quest_vars_string = string.format(quest_vars_string.. ", %s: %i", name, quest.getVar(targ, name))
+        quest_status_string = quest_status_string .. string.format("\nCurrently on stage: %i", quest.getStage(targ))
+        if quest.vars.additional then
+            local quest_vars_string = ''
+            for name, var in pairs(quest.vars.additional) do
+                quest_vars_string = string.format(quest_vars_string.. ", %s: %i", name, quest.getVar(targ, name))
+            end
+            if string.len(quest_vars_string) > 1 then
+                quest_vars_string = string.format("\n%s's additional quest vars are".. quest_vars_string, targ:getName())
+                quest_status_string = quest_status_string .. quest_vars_string
+            end
         end
-        if string.len(quest_vars_string) > 1 then
-            quest_vars_string = string.format("\n%s's additional quest vars are".. quest_vars_string, targ:getName())
-            quest_status_string = quest_status_string .. quest_vars_string
+
+        local held_items_string = '' -- See if the quest is holding any items for the player
+        local held_item = quest.holdingItem(player)
+        local stack = 1
+        while held_item and held_item > 0 do
+            held_items_string = held_items_string .. string.format(", %i", held_item)
+            stack = stack + 1
+            held_item = quest.holdingItem(player, stack)
+        end
+        if string.len(held_items_string) > 1 then
+            held_items_string = string.format("\nFollowing held for %s".. held_items_string, targ:getName())
+            quest_status_string = quest_status_string .. held_items_string
         end
     end
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
---   NPC: Thierride
+-- NPC: Thierride
 -- Type: Quest Giver
 -- !pos -67 -5 -28 232
 --
@@ -10,6 +10,12 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 local ID = require("scripts/zones/Port_San_dOria/IDs");
+
+local quests =
+{
+    require("scripts/quests/sandoria/the_brugaire_consortium")
+}
+quests = dsp.quest.involvedQuests(quests)
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,14 +27,9 @@ function onTrade(player,npc,trade)
         else
             player:startEvent(526);
         end
-    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED and trade:hasItemQty(595,1) == true and count == 1) then
-        player:tradeComplete();
-        player:startEvent(539);
-        player:setVar("TheBrugaireConsortium-Parcels", 31);
-    else
+    elseif not quests.onTrade(player, npc, trade) then
         player:startEvent(529);
     end
-
 end;
 
 function onTrigger(player,npc)
@@ -62,4 +63,5 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.RABBITER);
     end;
 
+    quests.onEventFinish(player, csid, option)
 end;

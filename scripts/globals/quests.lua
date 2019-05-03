@@ -1,6 +1,7 @@
 require("scripts/globals/keyitems")
 require("scripts/globals/log_ids")
 require("scripts/globals/npc_util")
+require("scripts/globals/titles")
 require("scripts/globals/zone")
 
 dsp = dsp or {}
@@ -1521,6 +1522,91 @@ dsp.quest.newQuest = function()
         return true
     end
 
+    -- Attempt to give item to the player.
+    -- Takes an optional parameter to determine if the default
+    -- item can't be obtained message from npcUtil.giveItem()
+    -- should be silenced (in case quest has custom event)
+    ---------------------------------------------------------------
+    this.giveItem = function(player, item, silent_fail)
+        if npcUtil.giveItem(player, item, silent_fail) then
+            return true
+        else
+            this.holdItem(player, item)
+            return false
+        end
+    end
+
+    -- Returns the item ID of the first item currently being held
+    -- for the player by this quest
+    -- Takes an optional stack parameter to assist in storing
+    -- and returning multiple rewards for the few quests which
+    -- need the capability.
+    ---------------------------------------------------------------
+    this.holdingItem = function(player, stack)
+        if not stack then
+            stack = 1
+        end
+        local item = player:getVar(this.var_prefix .. "[I][".. stack .."]")
+
+        if item > 0 then
+            return item
+        else
+            return false
+        end
+    end
+
+    -- Holds an item for a player
+    -- Optional stack parameter is for the very few quests that
+    -- bestow multiple item rewards.
+    ---------------------------------------------------------------
+    this.holdItem = function(player, item, stack)
+        if not stack then
+            stack = 1
+        end
+        if this.holdingItem(player, stack) then
+            return this.holdItem(player, item, stack + 1)
+        else
+            player:setVar(this.var_prefix .. "[I][".. stack .."]", item)
+            return true
+        end
+    end
+
+    -- Attempts to return an item, or items, to the player
+    -- Optional silent_fail parameter determines if failure message
+    -- should be displayed by npcUtil.giveItem()
+    ---------------------------------------------------------------
+    this.returnItem = function(player, silent_fail)
+        -- There are a small handful of quests that reward multiple
+        -- items as quest rewards, so we need to account for those.
+        local stack = 1
+        local items_held = 0
+        local items = {}
+        local item = this.holdingItem(player, stack)
+
+        while item and item > 0 do
+            items[stack] = item
+            stack = stack + 1
+            items_held = items_held + 1
+            item = this.holdingItem(player, stack)
+        end
+
+        if items_held > 0 then
+            if npcUtil.giveItem(player, items, silent_fail) then
+                stack = 1
+                while stack <= items_held do
+                    player:setVar(this.var_prefix .. "[I][".. stack .."]", 0)
+                    stack = stack + 1
+                end
+                return true
+            else
+                return false
+            end
+        else
+            error(player, "quest.returnItem: " .. player:getName() .." does not have any items held for quest ".. this.name)
+            return false
+        end
+    end
+
     -- Give KI to player, while going through this quest's wrapper
     ---------------------------------------------------------------
     this.giveKeyItem = function(player, key_item)
@@ -1580,7 +1666,18 @@ dsp.quest.newQuest = function()
                 end
             end
             if reward_set then
-                -- todo: check inventory (including stack space), award items, return false if cant complete
+                -- Attempt to reward items first
+                if reward_set["items"] then
+                    -- quest.giveItem will naturally hold items for the player if they're full
+                    if type(reward_set["items"]) == "table" then
+                        for _, item in ipairs(reward_set["items"]) do
+                            this.giveItem(player, item)
+                        end
+                    else
+                        this.giveItem(player, reward_set["items"])
+                    end
+                end
+
                 rewards_given = npcUtil.completeQuest(player, this.log_id, this.quest_id, reward_set)
                 if not rewards_given then
                     error(player, message.. "Unable to give quest rewards.")
@@ -1594,15 +1691,19 @@ dsp.quest.newQuest = function()
 
         if rewards_given then
             this.setVar(player, this.vars.stage, 0) -- Stage should ALWAYS be erased
-            for name, var in pairs(this.vars.additional) do
-                if not var.preserve then
-                    this.setVar(player, name, 0, message)
+            if this.vars.additional then
+                for name, var in pairs(this.vars.additional) do
+                    if not var.preserve then
+                        this.setVar(player, name, 0, message)
+                    end
                 end
             end
 
             -- make certain any forgotten temporary key items have been removed
-            for _, ki in pairs(this.temporary.key_items) do
-                player:delKeyItem(ki)
+            if this.temporary and this.temporary.key_items then
+                for _, ki in pairs(this.temporary.key_items) do
+                    player:delKeyItem(ki)
+                end
             end
 
             return true

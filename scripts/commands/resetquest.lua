@@ -59,11 +59,24 @@ function onTrigger(player,logId,questId,target)
         -- Begin resetting all quest progress to the best of our ability
         targ:delQuest(logId, questId) -- Delete quest status
         targ:setVar(quest.vars.stage, 0) -- Reset stage var
-        for name, var in pairs(quest.vars.additional) do -- Purge any additional quest vars
-            handleQuestVar(targ, quest, name, 0, "resetquest: ", nil)
+        if quest.vars.additional then -- Purge any additional quest vars
+            for name, var in pairs(quest.vars.additional) do 
+                handleQuestVar(targ, quest, name, 0, "resetquest: ", nil)
+            end
         end
-        for _, ki in pairs(quest.temporary.key_items) do -- Delete any temporary key items
-            player:delKeyItem(ki)
+        if quest.temporary and quest.temporary.key_items then -- Delete any temporary key items
+            for _, ki in pairs(quest.temporary.key_items) do
+                player:delKeyItem(ki)
+            end
+        end
+
+        -- Reset any held items being held by the quest for the player
+        local held_item = quest.holdingItem(player)
+        local stack = 1
+        while held_item and held_item > 0 do
+            player:setVar(quest.var_prefix .. "[I][".. stack .."]", 0)
+            stack = stack + 1
+            held_item = quest.holdingItem(player, stack)
         end
         player:PrintToPlayer( string.format("%s's progress for %s quest '%s' has been reset.", targ:getName(), logName, quest.name) )
     else
