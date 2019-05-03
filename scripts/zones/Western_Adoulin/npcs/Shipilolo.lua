@@ -9,10 +9,10 @@ require("scripts/globals/quests")
 
 local quests =
 {
-    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN},
-    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON},
-    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.FERTILE_GROUND},
-    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.WAYWARD_WAYPOINTS}
+    require("scripts/quests/adoulin/a_certain_substitute_patrolman"),
+    require("scripts/quests/adoulin/the_old_man_and_the_harpoon"),
+    require("scripts/quests/adoulin/fertile_ground"),
+    require("scripts/quests/adoulin/wayward_waypoints")
 }
 quests = dsp.quest.involvedQuests(quests)
 -----------------------------------

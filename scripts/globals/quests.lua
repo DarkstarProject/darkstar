@@ -1500,55 +1500,16 @@ dsp.quest.newQuest = function()
     -- Handles checking a quest to see if control should be diverted
     -- from the calling NPC
     ---------------------------------------------------------------
-    this.check = function(player, params)
-        local questTrigger
-        local zoneId = player:getZoneID()
-        local stageZoneTable
+    this.check = function(player, type, target, args)
         local playerCurrentStage = this.getStage(player)
         if this.stages[playerCurrentStage] then
-            stageZoneTable = this.stages[playerCurrentStage][zoneId]
-        end
-        local checks =
-        {
-            [dsp.quest.event.TRADE] = function(player, params)
-                if stageZoneTable['onTrade'] and stageZoneTable['onTrade'][params.targetName] then
-                    return stageZoneTable['onTrade'][params.targetName](player, params.target, params.trade)
-                end
-            end,
-            [dsp.quest.event.TRIGGER] = function(player, params)
-                if stageZoneTable['onTrigger'] and stageZoneTable['onTrigger'][params.targetName] then
-                    return stageZoneTable['onTrigger'][params.targetName](player, params.target)
-                end
-            end,
-            [dsp.quest.event.UPDATE] = function(player, params)
-                if stageZoneTable['onEventUpdate'] and stageZoneTable['onEventUpdate'][params.csid] then
-                    return stageZoneTable['onEventUpdate'][params.csid](player, params.option)
-                end
-            end,
-            [dsp.quest.event.FINISH] = function(player, params)
-                if stageZoneTable['onEventFinish'] and stageZoneTable['onEventFinish'][params.csid] then
-                    return stageZoneTable['onEventFinish'][params.csid](player, params.option)
-                end
-            end,
-            [dsp.quest.event.ZONE_IN] = function(player, params)
-                if stageZoneTable['onZoneIn'] then
-                    return stageZoneTable['onZoneIn'](player, params)
-                end
-            end,
-            [dsp.quest.event.MOB_DEATH] = function(player, params)
-                if stageZoneTable['onMobDeath'] and stageZoneTable['onMobDeath'][targetName] then
-                    return stageZoneTable['onMobDeath'][targetName](params.target, player, params.isKiller, params.isWeaponSkillKill)
-                end
-            end,
-        }
-
-        if stageZoneTable then
-            questTrigger = checks[params.check_type](player, params)
+            local stageZoneTable = this.stages[playerCurrentStage][player:getZoneID()]
+            if stageZoneTable and stageZoneTable[type] and stageZoneTable[type][target] then
+                return stageZoneTable[type][target](player, unpack(args))
+            end
         end
 
-        if questTrigger then
-            return true
-        end
+        return false
     end
 
     -- Begins an event for the player, with built-in return
@@ -1656,48 +1617,21 @@ end
 -----------------------------------
 dsp.quest.involvedQuests = function(involvedQuests)
     local this = {}
+    this.involvedQuests = involvedQuests
 
     ---------------------------------------------------------------
     -- Internal helper functions
     ---------------------------------------------------------------
 
     -- Helper function to check all of our involvedQuests for a given quest event
-    local check = function(player, params)
-        local i = 1 -- Doing i loop instead of pairs so quests checked in order
-        while i <= #this.involvedQuests do
-            local areaQuestPair = this.involvedQuests[i]
-            local quest = dsp.quest.getQuest(areaQuestPair[1], areaQuestPair[2])
-            if quest then
-                if quest.check(player, params) then
-                    return true
-                end
-            else
-
+    local check = function(player, type, target, args)
+        for _, quest in ipairs(this.involvedQuests) do
+            local questResult = quest.check(player, type, target, args)
+            if questResult then
+                return questResult
             end
-            i = i + 1
         end
         return false
-    end
-
-    -- Make sure the provided list of involvedQuests is loaded and ready for use
-    local loadQuests = function(involvedQuests)
-        local loadedQuests = {}
-        local quest
-        local i = 1 -- Doing i loop instead of pairs so quests kept in scripted order
-        while i <= #involvedQuests do
-            local areaQuestPair = involvedQuests[i]
-            quest = dsp.quest.getQuest(areaQuestPair[1], areaQuestPair[2])
-            if quest then
-                -- We don't really need to store a copy of the quest inside every NPC.
-                -- We just need to make sure it's been loaded _somewhere_ and we have
-                -- a way of accessing it later, so just store the log_id/quest_id pair.
-                loadedQuests[i] = {areaQuestPair[1], areaQuestPair[2]}
-            else
-                printf("dsp.quest.involedQuests.loadQuests: Unable to load quest: " .. areaQuestPair[1]", " .. areaQuestPair[2])
-            end
-            i = i + 1
-        end
-        return loadedQuests
     end
 
     ---------------------------------------------------------------
@@ -1707,52 +1641,31 @@ dsp.quest.involvedQuests = function(involvedQuests)
     -- Checks the onTrade events for this list of involved quests
     ---------------------------------------------------------------
     this.onTrade = function(player, npc, trade)
-        local params = {}
-        params.target = npc
-        params.targetName = npc:getName()
-        params.trade = trade
-        params.check_type = dsp.quest.event.TRADE
-        params.involvedQuests = involvedQuests
-        return check(player, params)
+        return check(player, 'onTrade', npc:getName(), {npc, trade})
     end
 
     -- Checks the onTrigger events for this list of involved quests
     ---------------------------------------------------------------
     this.onTrigger = function(player, npc)
-        local params = {}
-        params.target = npc
-        params.targetName = npc:getName()
-        params.trade = trade
-        params.check_type = dsp.quest.event.TRIGGER
-        params.involvedQuests = involvedQuests
-        return check(player, params)
+        return check(player, 'onTrigger', npc:getName(), {npc})
     end
 
     -- Checks the onEventFinish events for this list of involved quests
     ---------------------------------------------------------------
     this.onEventFinish = function(player, csid, option)
-        local params = {}
-        params.csid = csid
-        params.option = option
-        params.check_type = dsp.quest.event.FINISH
-        params.involvedQuests = involvedQuests
-        return check(player, params)
+        return check(player, 'onEventFinish', csid, {option})
     end
 
     -- Checks the onMobDeath events for this list of involved quests
     ---------------------------------------------------------------
     this.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill)
-        local params = {}
-        params.target = mob
-        params.targetName = mob:getName()
-        params.isKiller = isKiller
-        params.isWeaponSkillKill = isWeaponSkillKill
-        params.type = dsp.quest.event.MOB_DEATH
-        params.involvedQuests = involvedQuests
-        return check(entity, params)
+        if entity:isPC() then
+            return check(entity, 'onMobDeath', mob:getName(), {mob, isKiller, isWeaponSkillKill})
+        else
+            return false
+        end
     end
 
-    this.involvedQuests = loadQuests(involvedQuests)
     return this
 end
 
@@ -1794,7 +1707,7 @@ dsp.quest.getQuest = function(area_log_id, quest_id)
                 end
             end
         else
-            print("dsp.quest.getQuest: Unknown quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
+            print("dsp.quest.getQuest: Unknown quest ID: ".. quest_id.. " for area: ".. area)
         end
     else
         print("dsp.quest.getQuest: Unknown area log ID: ".. area_log_id)

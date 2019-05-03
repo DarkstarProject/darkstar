@@ -18,7 +18,7 @@ end
 function onTrigger(player, logId, quest_string)
     -- validate logId
     if type(logId) == "string" then
-        logId = dsp.quest.log_id[logId]
+        logId = dsp.quest.log_id[string.upper(logId)]
     end
     local area = dsp.quest.area[logId]
     if logId == nil or area == nil then

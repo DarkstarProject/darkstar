@@ -58,7 +58,7 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Jorin'] = function(player, npc)
                     if thisQuest.checkRequirements(player) then
@@ -67,7 +67,7 @@ thisQuest.stages =
                     end
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2540] = function(player, option)
                     -- Jorin, starting quest
@@ -83,7 +83,7 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Jorin'] = function(player, npc)
                     -- Begs player to hurry up
@@ -94,7 +94,7 @@ thisQuest.stages =
                     return thisQuest.startEvent(player, 2543) 
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2543] = function(player, option)
                     -- Shipilolo, fixes Broken Harpoon and advances quest
@@ -111,18 +111,18 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Jorin'] = function(player, npc)
                     -- Giving Jorin the Extravagant Harpoon
                     return thisQuest.startEvent(player, 2542) 
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2542] = function(player, option)
                     -- Jorin, finishing quest
-                    if thisQuest.complete(player, thisQuest) then
+                    if thisQuest.complete(player) then
                         thisQuest.delKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON)
                         return true
                     end

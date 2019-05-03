@@ -73,13 +73,13 @@ thisQuest.stages =
     {
         [dsp.zone.EASTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Sharuru'] = function(player, npc)
                     -- TODO: Implement Sharuru's portions of the quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 -- TODO: find Sharuru's events and implement their onFinishes
             }
@@ -102,13 +102,13 @@ thisQuest.stages =
     {
         [dsp.zone.EASTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Sharuru'] = function(player, npc)
                     -- TODO: Implement Sharuru's portions of the quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 -- TODO: find Sharuru's events and implement their onFinishes
             }
@@ -119,13 +119,13 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Shipilolo'] = function(player, npc)
                     return thisQuest.startEvent(player, 79) -- Gives player Waypoint Recalibration Kit
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [79] = function(player, option) -- Shipilolo upgrading waypoint kit
                     if thisQuest.giveKeyItem(player, dsp.ki.WAYPOINT_RECALIBRATION_KIT) then
@@ -147,13 +147,13 @@ thisQuest.stages =
     {
         [dsp.zone.EASTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Sharuru'] = function(player, npc)
                     -- TODO: Implement Sharuru's portions of the quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 -- TODO: find Sharuru's events and implement their onFinishes
             }

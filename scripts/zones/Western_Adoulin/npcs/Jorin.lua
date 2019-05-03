@@ -8,7 +8,7 @@ require("scripts/globals/quests")
 
 local quests =
 {
-    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON}
+    require("scripts/quests/adoulin/the_old_man_and_the_harpoon")
 }
 quests = dsp.quest.involvedQuests(quests)
 -----------------------------------

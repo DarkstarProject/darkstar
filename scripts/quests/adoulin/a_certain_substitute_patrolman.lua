@@ -9,10 +9,10 @@ thisQuest.quest_id = dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN
 thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
 thisQuest.repeatable = false
-thisQuest.varPrefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.var_prefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
 thisQuest.vars =
 {
-    stage = thisQuest.varPrefix,
+    stage = thisQuest.var_prefix,
     additional =
     {
         --['name'] = { type = dsp.quest.var.CHAR, preserve = false, db_name = 'some_var' },
@@ -65,7 +65,7 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = function(player, npc)
                     if thisQuest.checkRequirements(player) then
@@ -73,7 +73,7 @@ thisQuest.stages =
                     end
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2550] = function(player, option) -- Rising Solstice starting quest
                     if thisQuest.giveKeyItem(player, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE) then
@@ -88,14 +88,14 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Zaoso'] = function(player, npc)
                     return thisQuest.startEvent(player, 2553) -- Reports to player, and advances quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2553] = function(player, option) -- Zaoso progressing quest
                     return thisQuest.advanceStage(player)
@@ -108,14 +108,14 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Clemmar'] = function(player, npc)
                     return thisQuest.startEvent(player, 2554) -- Reports to player, and advances quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2554] = function(player, option) -- Clemmar progressing quest
                     return thisQuest.advanceStage(player)
@@ -128,14 +128,14 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Kongramm'] = function(player, npc)
                     return thisQuest.startEvent(player, 2555) -- Reports to player, and advances quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2555] = function(player, option) -- Kongramm progressing quest
                     return thisQuest.advanceStage(player)
@@ -148,14 +148,14 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Virsaint'] = function(player, npc)
                     return thisQuest.startEvent(player, 2556) -- Reports to player, and advances quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2556] = function(player, option) -- Virsaint progressing quest
                     return thisQuest.advanceStage(player)
@@ -168,14 +168,14 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Shipilolo'] = function(player, npc)
                     return thisQuest.startEvent(player, 2557) -- Reports to player, and advances quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2557] = function(player, option) -- Shipilolo progressing quest
                     return thisQuest.advanceStage(player)
@@ -188,14 +188,14 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Dangueubert'] = function(player, npc)
                     return thisQuest.startEvent(player, 2558) -- Reports to player, and advances quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2558] = function(player, option) -- Dangueubert progressing quest
                     return thisQuest.advanceStage(player)
@@ -208,14 +208,14 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = thisQuest.GO_PATROL,
                 ['Nylene'] = function(player, npc)
                     return thisQuest.startEvent(player, 2559) -- Reports to player, and advances quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2559] = function(player, option) -- Nylene progressing quest
                     return thisQuest.advanceStage(player)
@@ -228,13 +228,13 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Rising_Solstice'] = function(player, npc)
                     return thisQuest.startEvent(player, 2552) -- Finishes quest
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2552] = function(player, option) -- Rising Solstice finishing quest
                     if thisQuest.complete(player) then

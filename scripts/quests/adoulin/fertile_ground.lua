@@ -55,14 +55,14 @@ thisQuest.stages =
     {
         [dsp.zone.RALA_WATERWAYS] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Chalvava'] = function(player, npc)
                     -- TODO: Implement Chalvava's portions of the quest
                     return true
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 -- TODO: Implement Chalvava's portions of the quest
             }
@@ -73,13 +73,13 @@ thisQuest.stages =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Shipilolo'] = function(player, npc)
                     return thisQuest.startEvent(player, 2850) -- Gives Bottle of Fertilizer X to player
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 [2850] = function(player, option)
                     -- Shipilolo, giving Bottle of Fertilizer X
@@ -91,7 +91,7 @@ thisQuest.stages =
         },
         [dsp.zone.RALA_WATERWAYS] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Chalvava'] = function(player, npc)
                     -- TODO: Implement Chalvava's portions of the quest
@@ -105,14 +105,14 @@ thisQuest.stages =
     {
         [dsp.zone.RALA_WATERWAYS] =
         {
-            ['onTrigger'] =
+            onTrigger =
             {
                 ['Chalvava'] = function(player, npc)
                     -- TODO: Implement Chalvava's portions of the quest
                     return true
                 end
             },
-            ['onEventFinish'] =
+            onEventFinish =
             {
                 -- TODO: Implement Chalvava's portions of the quest
             }

@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 local quests =
 {
-    {dsp.quest.log_id.ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN}
+    require("scripts/quests/adoulin/a_certain_substitute_patrolman")
 }
 quests = dsp.quest.involvedQuests(quests)
 -----------------------------------
