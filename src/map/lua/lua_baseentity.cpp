@@ -9029,6 +9029,22 @@ inline int32 CLuaBaseEntity::leaveBattlefield(lua_State* L)
 }
 
 /************************************************************************
+*  Function: isInDynamis()
+*  Purpose : Returns true if an entity is in Dynamis
+*  Example : if (player:isInDynamis()) then
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isInDynamis(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->isInDynamis());
+    return 1;
+}
+
+/************************************************************************
 *  Function: isAlive()
 *  Purpose : Returns true if an Entity is alive
 *  Example : if (mob:isAlive())
@@ -14093,6 +14109,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,battlefieldAtCapacity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,enterBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leaveBattlefield),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
 
     // Battle Utilities
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isAlive),

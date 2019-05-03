@@ -443,6 +443,7 @@ public:
     int32 battlefieldAtCapacity(lua_State*);     // 1 if this battlefield is full
     int32 enterBattlefield(lua_State*);    // enter a battlefield entity is registered with
     int32 leaveBattlefield(lua_State*);    // leave battlefield if inside one
+    int32 isInDynamis(lua_State*);         //If player is in Dynamis return true else false
 
 
     // Battle Utilities
