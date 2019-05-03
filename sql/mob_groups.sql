@@ -11304,7 +11304,7 @@ INSERT INTO `mob_groups` VALUES (11527,0,77,0,128,0,0,0,0,0,0); -- Ortlinde
 INSERT INTO `mob_groups` VALUES (11528,0,77,0,128,0,0,0,0,0,0); -- Grimgerde
 INSERT INTO `mob_groups` VALUES (11529,0,77,0,128,0,0,0,0,0,0); -- Waltraute
 
--- available up to 12949
+-- 11530 to 12949 reserved for Dynamis
 
 INSERT INTO `mob_groups` VALUES (12950,4534,45,0,0,0,0,0,92,94,0);
 INSERT INTO `mob_groups` VALUES (12951,4533,45,0,0,0,0,0,92,94,0);
