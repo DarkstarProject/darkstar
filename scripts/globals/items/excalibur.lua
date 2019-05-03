@@ -3,103 +3,28 @@
 -- Item: Excalibur
 -- Additional Effect: Damage proportionate to current HP (25% Current HP)
 -----------------------------------------
-require("scripts/globals/status")
 require("scripts/globals/msg")
+require("scripts/globals/status")
 require("scripts/globals/weaponskills")
-require("scripts/globals/weaponskillids")
 -----------------------------------
 
-local NAME_WEAPONSKILL = "AFTERMATH_EXCALBIUR"
-local NAME_EFFECT_LOSE = "AFTERMATH_LOST_EXCALIBUR"
-
--- https://www.bg-wiki.com/bg/Relic_Aftermath
-local aftermathTable = {}
-
--- Excalibur 75
-aftermathTable[18276] =
-{
-    power=1,
-    duration = function(tp) return math.floor(0.02 * tp) end,
-    mods =
-    {
-        { id=dsp.mod.REGEN, power=10 }
-    }
-}
-aftermathTable[18277] = aftermathTable[18276] -- Excalibur (80)
-aftermathTable[18639] = aftermathTable[18276] -- Excalibur (85)
-aftermathTable[18653] = aftermathTable[18276] -- Excalibur (90)
-aftermathTable[18667] = aftermathTable[18276] -- Excalibur (95)
-aftermathTable[18748] = aftermathTable[18276] -- Excalibur (99)
-aftermathTable[19841] = aftermathTable[18276] -- Excalibur (99/II)
-aftermathTable[20645] = aftermathTable[18276] -- Excalibur (119)
-aftermathTable[20646] = aftermathTable[18276] -- Excalibur (119/II)
-
--- Excalibur (119/III)
-aftermathTable[20685] =
-{
-    power=2,
-    duration = function(tp) return math.floor(0.06 * tp) end,
-    mods =
-    {
-        { id=dsp.mod.REGEN, power=30 },
-        { id=dsp.mod.REFRESH, power=3 }
-    }
-}
-
-function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == dsp.ws.KNIGHTS_OF_ROUND) then -- Knights Of Round onry
-        local itemId = user:getEquipID(dsp.slot.MAIN)
-        if (aftermathTable[itemId]) then
-            -- Apply the effect and add mods
-            addAftermathEffect(user, tp, aftermathTable[itemId])
-            -- Add a listener for when aftermath wears (to remove mods)
-            user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost)
-        end
-    end
-end
-
-function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(dsp.slot.MAIN)
-        if (aftermathTable[itemId]) then
-            -- Remove mods
-            removeAftermathEffect(target, aftermathTable[itemId])
-            -- Remove the effect listener
-            target:removeListener(NAME_EFFECT_LOSE)
-        end
-    end
-end
-
-function onItemCheck(player, param, caster)
-    if (param == dsp.itemCheck.EQUIP) then
-        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill)
-    elseif (param == dsp.itemCheck.UNEQUIP) then
-        -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH))
-        end
-        player:removeListener(NAME_WEAPONSKILL)
-    end
-    
-    return 0
-end
-
-function onAdditionalEffect(player,target,damage)
+function onAdditionalEffect(player, target, damage)
     local chance = 10
 
-    if (math.random(0,99) >= chance) then
-        return 0,0,0
-    else
-        local finalDMG = math.floor(player.getHP(player)/4)
-        if (finalDMG > 0) then
-            local physicalResist = target:getMod(dsp.mod.SLASHRES)/1000
-            finalDMG = finalDMG*physicalResist
-            finalDMG = target:physicalDmgTaken(finalDMG)
+    if math.random(100) <= chance then
+        local finalDMG = math.floor(player.getHP(player) / 4)
+        if finalDMG > 0 then
+            local damageType = player:getWeaponDamageType(dsp.slot.MAIN)
+            local physicalResist = target:getMod(dsp.mod.SLASHRES) / 1000
+            finalDMG = finalDMG * physicalResist
+            finalDMG = target:physicalDmgTaken(finalDMG, damageType)
             finalDMG = finalDMG - target:getMod(dsp.mod.PHALANX)
             finalDMG = utils.clamp(finalDMG, 0, 99999)
             finalDMG = utils.stoneskin(target, finalDMG)
-            target:delHP(finalDMG)
+            target:takeDamage(finalDMG, player, dsp.attackType.PHYSCIAL, damageType)
             return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, finalDMG
         end
     end
+
+    return 0, 0, 0
 end

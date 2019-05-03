@@ -10,14 +10,14 @@ zones[dsp.zone.PROMYVION_MEA] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
     },
     mob =
     {
-        MEA_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16859151] = {1, 3, 16859451},
             [16859198] = {2, 5, 16859454},
@@ -34,7 +34,7 @@ zones[dsp.zone.PROMYVION_MEA] =
     },
     npc =
     {
-        MEA_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = {-122, -4,  197, -117, 4,  202, {46}},    -- floor 1 return
             [21]        = {  -1, -4, -121,    2, 4, -118, {41}},    -- floor 2 return

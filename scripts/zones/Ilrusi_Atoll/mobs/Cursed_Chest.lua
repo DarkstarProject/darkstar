@@ -5,9 +5,6 @@
 require("scripts/globals/status")
 -----------------------------------
 
-function onMobInitialize(mob)
-end
-
 function onMobFight(mob,target)
     local PX = target:getXPos()
     local PY = target:getYPos()

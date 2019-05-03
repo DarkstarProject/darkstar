@@ -5,15 +5,15 @@
 -- Working 100%
 -- Confirmed shop stock, August 2013
 -----------------------------------
-require("scripts/globals/shop");
-local ID = require("scripts/zones/Windurst_Woods/IDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,ID.text.VALERIANO_SHOP_DIALOG);
+    player:showText(npc,ID.text.VALERIANO_SHOP_DIALOG)
 
     local stock =
     {
@@ -31,12 +31,11 @@ function onTrigger(player,npc)
         5059, 28520, -- Scroll of Water Carol II
         4996,123880  -- Scroll of Mage's Ballad III
     }
-    dsp.shop.general(player, stock, WINDURST);
-
-end;
+    dsp.shop.general(player, stock, WINDURST)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

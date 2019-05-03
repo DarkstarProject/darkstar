@@ -36,7 +36,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
 
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:hasCompletedMission(ZILART,THE_CELESTIAL_NEXUS)) then
+        if (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.THE_CELESTIAL_NEXUS)) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         else
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
@@ -55,9 +55,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then
-            player:completeMission(ZILART,THE_CELESTIAL_NEXUS);
-            player:addMission(ZILART,AWAKENING);
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_CELESTIAL_NEXUS) then
+            player:completeMission(ZILART,dsp.mission.id.zilart.THE_CELESTIAL_NEXUS);
+            player:addMission(ZILART,dsp.mission.id.zilart.AWAKENING);
             player:addTitle(dsp.title.BURIER_OF_THE_ILLUSION);
             player:setVar("ZilartStatus",0);
         end

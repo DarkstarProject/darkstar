@@ -12,15 +12,15 @@ local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) and trade:getItemCount() == 1) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) and trade:getItemCount() == 1) then
         player:startEvent(91); -- Ending quest Mysteries I
-    elseif (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) and trade:getItemCount() == 1) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) and trade:getItemCount() == 1) then
         player:startEvent(92); -- Ending quest Mysteries II
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.SILVER_BELL)) then --Magicite Mission active (receive this KI after the first CS with aldo)
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.MYSTERIES_OF_BEADEAUX_I) == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.SILVER_BELL)) then --Magicite Mission active (receive this KI after the first CS with aldo)
         player:startEvent(89); -- Start quests
     else
         player:startEvent(96); -- Standard dialog
@@ -32,22 +32,19 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 89) then
-        player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
-        player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.MYSTERIES_OF_BEADEAUX_I);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.MYSTERIES_OF_BEADEAUX_II);
     elseif (csid == 91) then
         player:addKeyItem(dsp.ki.CORUSCANT_ROSARY);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CORUSCANT_ROSARY);
         player:addFame(JEUNO,30);
         player:tradeComplete(trade);
-        player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.MYSTERIES_OF_BEADEAUX_I);
     elseif (csid == 92) then
         player:addKeyItem(dsp.ki.BLACK_MATINEE_NECKLACE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BLACK_MATINEE_NECKLACE);
         player:addFame(JEUNO,30);
         player:tradeComplete(trade);
-        player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.MYSTERIES_OF_BEADEAUX_II);
     end
 end;
-
-
-

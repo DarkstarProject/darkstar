@@ -10,10 +10,10 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeAdaunel") == 0) then
             player:messageSpecial(ID.text.ADAUNEL_DIALOG);
-            player:setVar("FFR",player:getVar("FFR") - 1);
+            player:addVar("FFR", -1)
             player:setVar("tradeAdaunel",1);
             player:messageSpecial(ID.text.FLYER_ACCEPTED);
             player:tradeComplete();

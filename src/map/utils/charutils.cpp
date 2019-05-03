@@ -912,7 +912,7 @@ namespace charutils
                         PItem->setSignature(EncodedString);
                     }
 
-                    if (PItem->isType(ITEM_FURNISHING) && PItem->getLocationID() == LOC_MOGSAFE)
+                    if (PItem->isType(ITEM_FURNISHING) && (PItem->getLocationID() == LOC_MOGSAFE || PItem->getLocationID() == LOC_MOGSAFE2))
                     {
                         if (((CItemFurnishing*)PItem)->isInstalled()) // способ узнать, что предмет действительно установлен
                         {
@@ -1192,7 +1192,7 @@ namespace charutils
             if (HasItem(PChar, PItem->getID()))
             {
                 if (!silence)
-                    PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, 220));
+                    PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, MsgStd::ItemEx));
                 delete PItem;
                 return ERROR_SLOTID;
             }
@@ -1980,7 +1980,7 @@ namespace charutils
                 PChar->styleItems[i] = 0;
 
         if (PChar->getStyleLocked() != isStyleLocked)
-            PChar->pushPacket(new CMessageStandardPacket(isStyleLocked ? 0x10B : 0x10C));
+            PChar->pushPacket(new CMessageStandardPacket(isStyleLocked ? MsgStd::StyleLockOn : MsgStd::StyleLockOff));
         PChar->setStyleLocked(isStyleLocked);
     }
 
@@ -2285,9 +2285,6 @@ namespace charutils
     void BuildingCharWeaponSkills(CCharEntity* PChar)
     {
         memset(&PChar->m_WeaponSkills, 0, sizeof(PChar->m_WeaponSkills));
-
-        JOBTYPE curMainJob = PChar->GetMJob();
-        JOBTYPE curSubJob = PChar->GetSJob();
 
         CItemWeapon* PItem;
         int main_ws = 0;
@@ -3443,15 +3440,6 @@ namespace charutils
                     {
                         PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, 0, 0, 37));
                         return;
-                    }
-                    uint16 Pzone = PMember->getZone();
-                    if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
-                    {
-                        if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && dsprand::GetRandomNumber(100) < 20 &&
-                            PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
-                        {
-                            PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
-                        }
                     }
                     charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, baseexp, chainactive);
                 }

@@ -31,7 +31,7 @@ function onBcnmLeave(player,instance,leavecode)
     local currentMission = player:getCurrentMission(WINDURST);
     if (leavecode == 2) then
         --printf("win");
-        if (currentMission == MOON_READING) then
+        if (currentMission == dsp.mission.id.windurst.MOON_READING) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
     local MissionStatus = player:getVar("MissionStatus");
 
     if (csid == 32001) then
-        if (currentMission == MOON_READING and MissionStatus == 2) then
+        if (currentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus == 2) then
             player:setVar("MissionStatus",3);
         end
     end

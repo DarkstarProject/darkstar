@@ -1,20 +1,16 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ru_aern
+--   NM: Ru'aern
+-- Note: Spawned by Rubious Crystals for PM 8-1
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs");
-require("scripts/globals/missions");
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/AlTaieu/IDs")
+require("scripts/globals/missions")
 -----------------------------------
-
-function onMobInitialize(mob)
-end;
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
 
-    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
         local aernKills =
         {
             [ID.mob.AERNS_TOWER_SOUTH + 0] = "Ru_aern_1-1KILL",

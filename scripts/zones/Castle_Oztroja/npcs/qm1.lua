@@ -4,30 +4,29 @@
 -- Involved in Quest: True Strength
 -- !pos -100 -71 -132 151
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-local ID = require("scripts/zones/Castle_Oztroja/IDs");
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-
-    if (player:getQuestStatus(BASTOK,TRUE_STRENGTH) == QUEST_ACCEPTED and player:hasItem(1100) == false) then
-        if (trade:hasItemQty(4558,1) and trade:getItemCount() == 1) then -- Trade Yagudo Drink
-            player:tradeComplete();
-            player:messageSpecial(ID.text.SENSE_OF_FOREBODING);
-            SpawnMob(17396140):updateClaim(player);
-        end
+function onTrade(player, npc, trade)
+    if
+        player:getQuestStatus(BASTOK, dsp.quest.id.bastok.TRUE_STRENGTH) == QUEST_ACCEPTED and
+        not player:hasItem(1100) and -- Xalmo's Feather
+        npcUtil.tradeHas(trade, 4558) and -- Yagudo Drink
+        npcUtil.popFromQM(player, npc, ID.mob.HUU_XALMO_THE_SAVAGE, {hide = 0})
+    then
+        player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
+        player:confirmTrade()
     end
+end
 
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

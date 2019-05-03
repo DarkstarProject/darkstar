@@ -39,7 +39,7 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    moonlitPath = player:getQuestStatus(WINDURST,THE_MOONLIT_PATH)
+    moonlitPath = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
 

@@ -10,7 +10,7 @@ local ID = require("scripts/zones/Metalworks/IDs");
 
 function onTrade(player,npc,trade)
 
-    local MeanMachine = player:getQuestStatus(BASTOK,MEAN_MACHINE);
+    local MeanMachine = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MEAN_MACHINE);
 
     if (MeanMachine == QUEST_ACCEPTED) then
         local FreeSlots = player:getFreeSlotsCount();
@@ -31,7 +31,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local MeanMachine = player:getQuestStatus(BASTOK,MEAN_MACHINE);
+    local MeanMachine = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MEAN_MACHINE);
     local Fame = player:getFameLevel(BASTOK);
 
     if (MeanMachine == QUEST_AVAILABLE and Fame >= 2) then
@@ -53,9 +53,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 556) then
-        player:addQuest(BASTOK,MEAN_MACHINE);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.MEAN_MACHINE);
     elseif (csid == 557) then
-        player:completeQuest(BASTOK,MEAN_MACHINE);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.MEAN_MACHINE);
         player:addFame(BASTOK,120);
         player:tradeComplete();
         player:addItem(4869);
@@ -63,5 +63,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-
-

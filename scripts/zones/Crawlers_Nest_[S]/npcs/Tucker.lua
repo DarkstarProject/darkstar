@@ -8,7 +8,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
+    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
     local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
     local SheetsofVellumProgress = player:getVar("SheetsofVellum");
 
@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
+    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
     local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
     local SheetsofVellumProgress = player:getVar("SheetsofVellum");
 

@@ -57,7 +57,7 @@ local nosTrades =
 }
 
 function onTrade(player,npc,trade)
-    local nameOfScience  = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE)
+    local nameOfScience  = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.IN_THE_NAME_OF_SCIENCE)
     local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
     
     if itemInProgress > 0 and npcUtil.tradeHas(trade, nosTrades[itemInProgress].organs) then
@@ -78,8 +78,8 @@ end
 
 function onTrigger(player,npc)
     -- IN THE NAME OF SCIENCE
-    if player:hasCompletedMission(COP, THE_WARRIOR_S_PATH) then
-        local nameOfScience  = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE)
+    if player:hasCompletedMission(COP, dsp.mission.id.cop.THE_WARRIOR_S_PATH) then
+        local nameOfScience  = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.IN_THE_NAME_OF_SCIENCE)
         local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
 
         if nameOfScience == QUEST_AVAILABLE then
@@ -109,7 +109,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 524 then
-        player:addQuest(OTHER_AREAS_LOG, IN_THE_NAME_OF_SCIENCE)
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.IN_THE_NAME_OF_SCIENCE)
     elseif csid == 531 then
         player:confirmTrade()
     elseif csid == 526 then
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         
         if itemComplete > 0 and itemInProgress == itemComplete then
             player:setLocalVar("NAME_OF_SCIENCE_complete", 0)
-            if npcUtil.completeQuest(player, OTHER_AREAS_LOG, IN_THE_NAME_OF_SCIENCE, {item=itemComplete, var={"NAME_OF_SCIENCE_target"}}) then
+            if npcUtil.completeQuest(player, OTHER_AREAS_LOG, dsp.quest.id.otherAreas.IN_THE_NAME_OF_SCIENCE, {item=itemComplete, var={"NAME_OF_SCIENCE_target"}}) then
                 player:confirmTrade()
             end
         else

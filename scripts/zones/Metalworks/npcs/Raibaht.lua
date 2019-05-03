@@ -14,7 +14,7 @@ require("scripts/globals/status")
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 7) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 7) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
@@ -27,13 +27,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local darkLegacy = player:getQuestStatus(BASTOK,DARK_LEGACY);
+    local darkLegacy = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_LEGACY);
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
 
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
         player:startEvent(933);
     elseif (darkLegacy == QUEST_AVAILABLE and mJob == dsp.job.DRK and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(751); -- Start Quest "Dark Legacy"
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     if (csid == 510 and option == 0) then
         player:setVar("TheUsual_Event",1);
     elseif (csid == 751) then
-        player:addQuest(BASTOK,DARK_LEGACY);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.DARK_LEGACY);
         player:setVar("darkLegacyCS",1);
     elseif (csid == 755) then
         if (player:getFreeSlotsCount() == 0) then
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16798); -- Raven Scythe
             player:setVar("darkLegacyCS",0);
             player:addFame(BASTOK,AF1_FAME);
-            player:completeQuest(BASTOK,DARK_LEGACY);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.DARK_LEGACY);
         end
     elseif (csid == 933) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",5,true);

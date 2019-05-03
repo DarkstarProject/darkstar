@@ -15,11 +15,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local rank = getMercenaryRank(player)
+    local rank = dsp.besieged.getMercenaryRank(player)
     local haveimperialIDtag
     local assaultPoints = player:getAssaultPoint(PERIQIA_ASSAULT_POINT)
 
-    if (player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG)) then
+    if player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) then
         haveimperialIDtag = 1
     else
         haveimperialIDtag = 0
@@ -36,9 +36,9 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if (csid == 276) then
+    if csid == 276 then
         local selectiontype = bit.band(option, 0xF)
-        if (selectiontype == 1) then
+        if selectiontype == 1 then
             -- taken assault mission
             player:addAssault(bit.rshift(option,4))
             player:delKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG)

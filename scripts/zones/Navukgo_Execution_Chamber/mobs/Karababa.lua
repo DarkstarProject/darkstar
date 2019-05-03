@@ -6,12 +6,6 @@ require("scripts/globals/status");
 local ID = require("scripts/zones/Navukgo_Execution_Chamber/IDs");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
-
 function onMobFight(mob,target)
     local warp = mob:getLocalVar("warp");
 
@@ -23,9 +17,6 @@ function onMobFight(mob,target)
     elseif (mob:getHPP() <= 20 and warp == 0) then
         mob:setLocalVar("warp",1);
     end
-end;
-
-function onSpellPrecast(mob, spell)
 end;
 
 function onMonsterMagicPrepare(mob, target)

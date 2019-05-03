@@ -1,21 +1,15 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
---  MOB: Battrap
--- Note:  Place Holder for Goblintrap NM
--- !pos 156 0 -438 81
+--  Mob: Battrap
+-- Note: PH for Goblintrap
 -----------------------------------
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/East_Ronfaure_[S]/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-
-    phOnDespawn(mob,GOBLINTRAP_PH,5,3600);
-
-end;
-
+    dsp.mob.phOnDespawn(mob, ID.mob.GOBLINTRAP_PH, 5, 3600) -- 1 hour
+end

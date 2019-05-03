@@ -13,14 +13,14 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local allNewC2000 = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_2000)
-    local legendaryPlanB = player:getQuestStatus(WINDURST,LEGENDARY_PLAN_B)
-    local allNewC3000 = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000)
+    local allNewC2000 = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_2000)
+    local legendaryPlanB = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LEGENDARY_PLAN_B)
+    local allNewC3000 = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_3000)
 
     -- THE ALL NEW C-2000
     if allNewC2000 == QUEST_ACCEPTED then
         if npcUtil.tradeHas(trade, {846, 856, 4368}) then
-            player:startEvent(292, GIL_RATE*200) -- Correct items given, complete quest.
+            player:startEvent(292, GIL_RATE * 200) -- Correct items given, complete quest.
         else
             player:startEvent(288, 0, 856, 846, 4368) -- Incorrect or not enough items.
         end
@@ -45,11 +45,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local allNewC2000 = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_2000)
-    local aGreetingCardian = player:getQuestStatus(WINDURST,A_GREETING_CARDIAN)
+    local allNewC2000 = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_2000)
+    local aGreetingCardian = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.A_GREETING_CARDIAN)
     local aGreetingCardianCS = player:getVar("AGreetingCardian_Event")
-    local legendaryPlanB = player:getQuestStatus(WINDURST,LEGENDARY_PLAN_B)
-    local allNewC3000 = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000)
+    local legendaryPlanB = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LEGENDARY_PLAN_B)
+    local allNewC3000 = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_3000)
 
     -- THE ALL NEW C-3000
     if legendaryPlanB == QUEST_COMPLETED and allNewC3000 == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 4 then
@@ -97,21 +97,21 @@ end
 function onEventFinish(player,csid,option)
     -- THE ALL NEW C-2000
     if csid == 285 and option ~= 2 then  -- option 2 is declining the quest for the second question
-        player:addQuest(WINDURST,THE_ALL_NEW_C_2000)
-    elseif csid == 292 and npcUtil.completeQuest(player, WINDURST, THE_ALL_NEW_C_2000, {fame=80, title=dsp.title.CARDIAN_TUTOR, gil=200}) then
+        player:addQuest(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_2000)
+    elseif csid == 292 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_2000, {fame=80, title=dsp.title.CARDIAN_TUTOR, gil=200}) then
         player:confirmTrade()
 
     -- LEGENDARY PLAN B
     elseif csid == 308 then
-        player:addQuest(WINDURST,LEGENDARY_PLAN_B)
-    elseif csid == 314 and npcUtil.completeQuest(player, WINDURST, LEGENDARY_PLAN_B, {item=12749, gil=700}) then
+        player:addQuest(WINDURST, dsp.quest.id.windurst.LEGENDARY_PLAN_B)
+    elseif csid == 314 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.LEGENDARY_PLAN_B, {item=12749, gil=700}) then
         player:confirmTrade()
         player:needToZone(true)
 
     -- THE ALL NEW C-3000
     elseif csid == 655 then
-        player:addQuest(WINDURST,THE_ALL_NEW_C_3000)
-    elseif csid == 657 and npcUtil.completeQuest(player, WINDURST, THE_ALL_NEW_C_3000, {fame=10, gil=600}) then
+        player:addQuest(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_3000)
+    elseif csid == 657 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_3000, {fame=10, gil=600}) then
         player:confirmTrade()
     end
 end

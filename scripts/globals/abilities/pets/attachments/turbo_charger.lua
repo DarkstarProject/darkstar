@@ -1,32 +1,34 @@
 -----------------------------------
 -- Attachment: Turbo Charger
 -----------------------------------
+require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.HASTE_MAGIC, 500)
+    onUpdate(pet, 0)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.HASTE_MAGIC, 500)
+    updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
-    if maneuvers == 1 then
-        pet:addMod(dsp.mod.HASTE_MAGIC, 1000)
-    elseif maneuvers == 2 then
-        pet:addMod(dsp.mod.HASTE_MAGIC, 500)
-    elseif maneuvers == 3 then
-        pet:addMod(dsp.mod.HASTE_MAGIC, 500)
-    end
+    onUpdate(pet, maneuvers)
 end
 
 function onManeuverLose(pet, maneuvers)
-    if maneuvers == 1 then
-        pet:delMod(dsp.mod.HASTE_MAGIC, 1000)
+    onUpdate(pet, maneuvers - 1)
+end
+
+function onUpdate(pet, maneuvers)
+    if maneuvers == 0 then
+        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 500)
+    elseif maneuvers == 1 then
+        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 1500)
     elseif maneuvers == 2 then
-        pet:delMod(dsp.mod.HASTE_MAGIC, 500)
+        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 2000)
     elseif maneuvers == 3 then
-        pet:delMod(dsp.mod.HASTE_MAGIC, 500)
+        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 2500)
     end
 end

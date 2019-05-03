@@ -18,7 +18,7 @@ function onTrigger(player,npc)
         17335,    8,    -- Rusty Bolt
     }
 
-    if player:getCurrentMission(COP) >= SHELTERING_DOUBT then
+    if player:getCurrentMission(COP) >= dsp.mission.id.cop.SHELTERING_DOUBT then
         table.insert(stock, 18375)    -- Falx
         table.insert(stock, 93240)
         table.insert(stock, 18214)    -- Voulge

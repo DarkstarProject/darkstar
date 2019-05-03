@@ -62,6 +62,7 @@ function onUseAbility(player,target,ability,action)
         player:addItem(stolen)
         target:itemStolen()
         ability:setMsg(dsp.msg.basic.STEAL_SUCCESS) -- Item stolen successfully
+        target:triggerListener("ITEM_STOLEN", target, player, stolen)
     else
         ability:setMsg(dsp.msg.basic.STEAL_FAIL) -- Failed to steal
         action:animation(target:getID(), 182)

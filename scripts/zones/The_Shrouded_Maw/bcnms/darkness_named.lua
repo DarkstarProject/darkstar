@@ -39,7 +39,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
         local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(1000);
-        if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and player:getVar("PromathiaStatus") == 2) then
             player:addTitle(dsp.title.TRANSIENT_DREAMER);
             player:setVar("PromathiaStatus",3);
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)

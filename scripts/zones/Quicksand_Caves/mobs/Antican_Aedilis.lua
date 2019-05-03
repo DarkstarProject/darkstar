@@ -1,8 +1,11 @@
 -----------------------------------
 -- Area: Quicksand Caves
 --  MOB: Antican Aedilis
+-- Note: PH for Antican Tribunus
 -----------------------------------
+local ID = require("scripts/zones/Quicksand_Caves/IDs")
 require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -15,3 +18,7 @@ function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 818, 2, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 819, 2, dsp.regime.type.GROUNDS)
 end;
+
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.ANTICAN_TRIBUNUS_PH, 10, 3600) -- 1 hour
+end

@@ -2,41 +2,39 @@
 -- Area: Sealion's Den
 --  NPC: Airship_Door
 -----------------------------------
-local ID = require("scripts/zones/Sealions_Den/IDs");
+local ID = require("scripts/zones/Sealions_Den/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.AIRSHIP_DOOR_OFFSET;
-    player:startEvent(32003, offset + 1);
-end;
+function onTrigger(player, npc)
+    local offset = npc:getID() - ID.npc.AIRSHIP_DOOR_OFFSET
+    player:startEvent(32003, offset + 1)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+    local inst = player:getVar("bcnm_instanceid")
 
-function onEventFinish(player,csid,option)
-    if (csid == 32003 and (option >= 100 and option <= 102)) then
-        local inst = option - 99;
-        local instOffset = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1));
-
-        local stillAlive = nil;
-        for i = 0, 6 do
-            if (GetMobByID(instOffset + i):isAlive()) then
-                stillAlive = i;
-                break;
-            end
+    -- spawn omega for given instance
+    if csid == 1 and option == 0 then
+        local omegaId = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 5
+        if omegaId and not GetMobByID(omegaId):isSpawned() then
+            SpawnMob(omegaId)
         end
-        
-        if (stillAlive ~= nil) then
-            if (stillAlive <= 4) then
-                player:startEvent(0, inst); -- send to mammet arena
-            elseif (stillAlive == 5) then
-                player:startEvent(1, inst); -- send to omega arena
-            elseif (stillAlive == 6) then
-                player:startEvent(2, inst); -- send to ultima arena
-            end
+
+    -- spawn ultima for given instance
+    elseif csid == 2 and option == 0 then
+        local ultimaId = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 6
+        if ultimaId and not GetMobByID(ultimaId):isSpawned() then
+            SpawnMob(ultimaId)
         end
     end
-end;
+end
+
+function onEventFinish(player, csid, option)
+    if csid == 32003 and option >= 100 and option <= 102 then
+        local inst = option - 99
+        player:startEvent(player:getLocalVar("[OTBF]cs"), inst)
+    end
+end

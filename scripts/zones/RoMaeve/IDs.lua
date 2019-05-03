@@ -10,18 +10,28 @@ zones[dsp.zone.ROMAEVE] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6401, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE           = 7048, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
-        SENSE_OMINOUS_PRESENCE  = 7393, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 9611, -- New training regime registered!
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
+        CONQUEST_BASE           = 7049, -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
+        SENSE_OMINOUS_PRESENCE  = 7394, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9612, -- New training regime registered!
     },
     mob =
     {
+        NIGHTMARE_VASE_PH =
+        {
+            [17276981] = 17276982, -- -101.575 -6.099 -1.520 (west)
+            [17276987] = 17276992, -- 59.825 -5.760 25.123 (east)
+        },
+        ROGUE_RECEPTACLE_PH =
+        {
+            [17277075] = 17277079,
+            [17277078] = 17277079,
+        },
         MOKKURKALFI_I     = 17276929,
         MOKKURKALFI_II    = 17276930,
         ELDHRIMNIR        = 17277126,
@@ -33,7 +43,7 @@ zones[dsp.zone.ROMAEVE] =
              [1] = {  162.000, -8.000,   21.000}, -- L-7
              [2] = {  160.000, -6.000, -110.000}, -- L-10
              [3] = {  105.000, -4.000, -112.000}, -- K-11
-             [4] = {  126.000, -3.000,   75.000}, -- K-10
+             [4] = {  126.000, -3.000,  -75.000}, -- K-10
              [5] = {   60.000, -6.000,    2.000}, -- I-8/J-8
              [6] = {  -48.000, -4.000,  -32.000}, -- G-9
              [7] = { -109.000, -4.000, -114.000}, -- E-11

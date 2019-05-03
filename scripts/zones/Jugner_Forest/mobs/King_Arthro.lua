@@ -1,10 +1,13 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: King Arthro
+--   NM: King Arthro
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
-require("scripts/globals/msg");
+mixins =
+{
+    require("scripts/mixins/job_special"),
+    require("scripts/mixins/rage")
+}
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -18,22 +21,15 @@ function onMobSpawn(mob)
     for offset = 1, 10 do
         GetMobByID(KingArthroID - offset):setRespawnTime(0);
     end
-
-    -- 20 minute rage timer
-    mob:setMobMod(dsp.mobMod.RAGE, 1200);
 end;
 
-function onAdditionalEffect(mob,target,damage)
-    local procRate = 10; -- No retail data, so we guessed at it.
-    -- Can't proc it if enwater is up, if player full resists, or is just plain lucky.
-    if (procRate > math.random(1,100) or mob:hasStatusEffect(dsp.effect.ENWATER)
-    or applyResistanceAddEffect(mob, target, dsp.magic.ele.ICE, 0) <= 0.5) then
-        return 0,0,0;
+function onAdditionalEffect(mob, target, damage)
+    if mob:hasStatusEffect(dsp.effect.ENWATER) then
+        return 0, 0, 0
     else
-        target:addStatusEffect(dsp.effect.PARALYSIS, 20, 0, 30); -- Potency unconfirmed
-        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
+        return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PARALYZE)
     end
-end;
+end
 
 function onMonsterMagicPrepare(mob, target)
     -- Instant cast on spells - Waterga IV, Poisonga II, Drown, and Enwater
@@ -58,8 +54,9 @@ function onMobDespawn(mob)
 
     GetMobByID(KingArthroID):setLocalVar("[POP]King_Arthro", 0);
 
-    -- Set temporary respawn of 24 hours + 5 minutes
+    -- Set respawn of 21:05 to 24:05
+    local respawnTime = math.random(21, 24) * 3600 + 300
     for offset = 1, 10 do
-        GetMobByID(KingArthroID - offset):setRespawnTime(86700);
+        GetMobByID(KingArthroID - offset):setRespawnTime(respawnTime);
     end
 end;

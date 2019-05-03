@@ -14,7 +14,7 @@ function onTrigger(player,npc)
 
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,1) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,1) == false) then
         player:startEvent(354);
     else
         player:startEvent(325);
@@ -31,4 +31,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

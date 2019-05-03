@@ -1,16 +1,14 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  MOB: Drexerion_the_Condemned
+--   NM: Drexerion the Condemned
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-
-    -- Set Drexerion_the_Condemned's spawnpoint and respawn time (60-72 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(216000,259200));
-
-end;
-
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(216000, 259200)) -- 60 to 72 hours
+end

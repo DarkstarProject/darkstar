@@ -11,13 +11,16 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.HUMBABA)
+    GetMobByID(ID.mob.HUMBABA):setRespawnTime(math.random(3600, 4200))
+
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onZoneIn( player, prevZone)
     local cs = -1
 
-    if prevZone == 134 then -- warp player to a correct position after dynamis
+    if prevZone == dsp.zone.DYNAMIS_BEAUCEDINE then -- warp player to a correct position after dynamis
         player:setPos(-284.751,-39.923,-422.948,235)
     end
 
@@ -25,11 +28,11 @@ function onZoneIn( player, prevZone)
         player:setPos( -247.911, -82.165, 260.207, 248)
     end
 
-    if player:getCurrentMission( COP) == DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9 then
+    if player:getCurrentMission( COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9 then
         cs = 206
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 114
-    elseif player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1 then
+    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1 then
         cs = 116
     end
 

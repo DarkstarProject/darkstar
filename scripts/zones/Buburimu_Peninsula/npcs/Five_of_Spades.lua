@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local AGreetingCardian = player:getQuestStatus(WINDURST,A_GREETING_CARDIAN);
+    local AGreetingCardian = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_GREETING_CARDIAN);
     local AGCcs = player:getVar("AGreetingCardian_Event");
 
     if (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 4) then

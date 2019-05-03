@@ -18,5 +18,3 @@ end
 
 function onTrigger(player,npc)
 end
-
-

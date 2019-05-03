@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16764); -- Marauder's Knife
             player:setVar("theTenshodoShowdownCS",0);
             player:addFame(WINDURST,30);
-            player:completeQuest(WINDURST,THE_TENSHODO_SHOWDOWN);
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_TENSHODO_SHOWDOWN);
         end
     end
 

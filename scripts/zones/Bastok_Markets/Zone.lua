@@ -3,7 +3,6 @@
 -- Zone: Bastok_Markets (235)
 --
 -----------------------------------
-require("scripts/globals/chocobo");
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
@@ -12,8 +11,6 @@ local ID = require("scripts/zones/Bastok_Markets/IDs");
 
 function onInitialize(zone)
     applyHalloweenNpcCostumes(zone:getID())
-
-    setChocoboPrices();
 end;
 
 function onZoneIn(player,prevZone)

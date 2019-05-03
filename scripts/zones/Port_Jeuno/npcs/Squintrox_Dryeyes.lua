@@ -35,7 +35,7 @@ function onTrade(player,npc,trade)
     if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
         player:showText(npc,ID.text.GET_LOST);
     else    -- Crimson Key: Trade Seedspall's Lux, Luna, Astrum
-        if (ENABLE_ACP == 1 and sLux and sLuna and sAstrum and count == 3 and ACPm >= GATHERER_OF_LIGHT_I and CrimsonKey == false and now ~= LastCrimson) then -- and timer stuff here) then
+        if (ENABLE_ACP == 1 and sLux and sLuna and sAstrum and count == 3 and ACPm >= dsp.mission.id.acp.GATHERER_OF_LIGHT_I and CrimsonKey == false and now ~= LastCrimson) then -- and timer stuff here) then
             player:tradeComplete();
             player:addKeyItem(dsp.ki.CRIMSON_KEY);
             player:setVar("LastCrimsonKey", os.date("%j"));
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:showText(player,ID.text.DRYEYES_1);
         elseif (option == 100) then
-            if (salad and juice and grub and ACPm >= GATHERER_OF_LIGHT_I and ViridianKey == false and now ~= LastViridian) then
+            if (salad and juice and grub and ACPm >= dsp.mission.id.acp.GATHERER_OF_LIGHT_I and ViridianKey == false and now ~= LastViridian) then
                 player:addKeyItem(dsp.ki.VIRIDIAN_KEY);
                 player:delKeyItem(dsp.ki.BOWL_OF_BLAND_GOBLIN_SALAD);
                 player:delKeyItem(dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE);
@@ -98,4 +98,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-

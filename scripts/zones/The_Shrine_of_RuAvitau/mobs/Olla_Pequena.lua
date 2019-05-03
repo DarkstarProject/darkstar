@@ -5,9 +5,6 @@
 local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
 require("scripts/globals/settings");
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         SpawnMob(mob:getID() + 1):updateClaim(player);

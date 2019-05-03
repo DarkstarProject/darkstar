@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.CARGO_CRAB_COLIN_PH,5,math.random(7200,21600)); -- 1 to 6 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.CARGO_CRAB_COLIN_PH,5,math.random(7200,21600)); -- 1 to 6 hours
 end;

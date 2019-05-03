@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/shop")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end
@@ -39,4 +40,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

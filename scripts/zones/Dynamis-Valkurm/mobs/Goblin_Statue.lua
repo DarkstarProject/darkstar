@@ -8,9 +8,6 @@ require("scripts/globals/npc_util")
 require("scripts/globals/status")
 -----------------------------------
 
-function onMobSpawn(mob)
-end
-
 function onMobDeath(mob, player, isKiller)
 local mobID = mob:getID();
     local effect = player:getStatusEffect(dsp.effect.DYNAMIS)

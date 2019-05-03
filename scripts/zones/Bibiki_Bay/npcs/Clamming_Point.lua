@@ -107,8 +107,8 @@ function onEventUpdate(player,csid,option)
                 if (dropRate <= clammingItems[itemDrop + improvedResults]) then
 
                     player:setLocalVar("ClammedItem", clammingItems[itemDrop - 2]);
-                    player:setVar("ClammedItem_" .. clammingItems[itemDrop - 2], player:getVar("ClammedItem_" .. clammingItems[itemDrop - 2]) + 1);
-                    player:setVar("ClammingKitWeight", player:getVar("ClammingKitWeight") +  clammingItems[itemDrop - 1]);
+                    player:addVar("ClammedItem_" .. clammingItems[itemDrop - 2], 1);
+                    player:addVar("ClammingKitWeight", clammingItems[itemDrop - 1]);
 
                     if (player:getVar("ClammingKitWeight") > player:getVar("ClammingKitSize")) then -- Broken bucket
                         player:setVar("ClammingKitBroken", 1);

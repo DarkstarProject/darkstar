@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
     local TOTD = VanadielTOTD();
-    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
+    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_STARS_OF_IFRIT);
 
     if (TOTD == dsp.time.NIGHT and IsMoonFull()) then
         if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CARRIER_PIGEON_LETTER) == false) then

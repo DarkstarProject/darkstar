@@ -11,17 +11,17 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
     text =
     {
         CONQUEST_BASE           = 0, -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED = 6540, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6546, -- Obtained: <item>.
-        GIL_OBTAINED            = 6547, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6560, -- There is nothing out of the ordinary here.
-        FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
-        CHUMIA_DIALOG           = 7307, -- Welcome to Bostaunieux Oubliette...
-        SEEMS_LOCKED            = 7309, -- It seems to be locked.
-        SPIRAL_HELL_LEARNED     = 7416, -- You have learned the weapon skill Spiral Hell!
-        SENSE_OMINOUS_PRESENCE  = 7417, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 9531, -- New training regime registered!
+        ITEM_CANNOT_BE_OBTAINED = 6541, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6547, -- Obtained: <item>.
+        GIL_OBTAINED            = 6548, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6561, -- There is nothing out of the ordinary here.
+        FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
+        CHUMIA_DIALOG           = 7308, -- Welcome to Bostaunieux Oubliette...
+        SEEMS_LOCKED            = 7310, -- It seems to be locked.
+        SPIRAL_HELL_LEARNED     = 7417, -- You have learned the weapon skill Spiral Hell!
+        SENSE_OMINOUS_PRESENCE  = 7418, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9532, -- New training regime registered!
     },
     mob =
     {
@@ -38,6 +38,17 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
             [17461309] = 17461315, -- -64.000 0.950 -132.000
             [17461312] = 17461315, -- -53.000 -0.500 -137.000
             [17461308] = 17461315, -- -57.000 0.998 -135.000
+        },
+        ARIOCH_PH               =
+        {
+            [17461322] = 17461433, -- -259 0.489 -188
+        },
+        MANES_PH                =
+        {
+            [17461469] = 17461471,
+            [17461470] = 17461471,
+            [17461476] = 17461471,
+            [17461477] = 17461471,
         },
         DREXERION_THE_CONDEMNED = 17461338,
         PHANDURON_THE_CONDEMNED = 17461343,

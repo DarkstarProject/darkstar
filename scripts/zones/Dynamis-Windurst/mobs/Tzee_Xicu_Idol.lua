@@ -8,9 +8,6 @@ mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
 -----------------------------------
 
-function onMobSpawn(mob)
-end
-
 function onMobEngaged(mob,target)
 
     SpawnMob(17543597):updateEnmity(target) -- 122

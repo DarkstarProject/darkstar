@@ -558,11 +558,6 @@ void CalculateStats(CMobEntity * PMob)
         SetupEventMob(PMob);
     }
 
-    if(PMob->m_Family == 335)
-    {
-        SetupMaat(PMob);
-    }
-
     if (PMob->CanStealGil())
     {
         PMob->ResetGilPurse();
@@ -704,7 +699,7 @@ void SetupJob(CMobEntity* PMob)
                 // aern
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
             }
-            else
+            else if (PMob->m_Family != 335) // exclude NIN Maat
             {
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
             }
@@ -804,20 +799,12 @@ void SetupDynamisMob(CMobEntity* PMob)
     // no gil drop and no mugging!
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
-    PMob->setMobMod(MOBMOD_PROC_2HOUR, 80);
 
     // used for dynamis stat-spawned mobs
     PMob->m_StatPoppedMobs = false;
 
     // dynamis mobs have true sight
     PMob->m_TrueDetection = true;
-
-    // Hydra's and beastmen can 2 hour
-    if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-            PMob->m_EcoSystem == SYSTEM_UNDEAD)
-    {
-        PMob->setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    }
 
     // boost dynamis mobs weapon damage
     PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
@@ -884,8 +871,6 @@ void SetupNMMob(CMobEntity* PMob)
     uint8 mLvl = PMob->GetMLevel();
 
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-    // enmity range is larger
-    PMob->m_enmityRange = 28;
 
     // NMs cure earlier
     PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
@@ -909,39 +894,6 @@ void SetupNMMob(CMobEntity* PMob)
             // whm nms have stronger regen effect
             PMob->addModifier(Mod::REGEN, mLvl/4);
         }
-
-        // add two hours
-        if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-                PMob->m_EcoSystem == SYSTEM_HUMANOID)
-        {
-            PMob->defaultMobMod(MOBMOD_MAIN_2HOUR, 1);
-        }
-    }
-
-}
-
-void SetupMaat(CMobEntity* PMob)
-{
-    switch(PMob->GetMJob()){
-        case JOB_NIN:
-            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
-            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
-            break;
-        case JOB_DRK:
-        case JOB_PLD:
-            // Give shield bash
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
-            break;
-        case JOB_BST:
-            // Call beast skill
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            break;
-        default:
-            break;
     }
 }
 
@@ -1004,7 +956,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
     PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
     PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
-    PMob->defaultMobMod(MOBMOD_PROC_2HOUR, 60);
     PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, (int16)CMobEntity::sight_range);
     PMob->defaultMobMod(MOBMOD_SOUND_RANGE, (int16)CMobEntity::sound_range);
 
@@ -1250,51 +1201,6 @@ void AddCustomMods(CMobEntity* PMob)
     }
 }
 
-void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
-{
-    //set job based on characters job
-    PMob->SetMJob(job);
-
-    // give him a spell list based on job
-    uint16 spellList = 0;
-
-    switch(job){
-        case JOB_WHM:
-            spellList = 1;
-            break;
-        case JOB_BLM:
-            spellList = 2;
-            break;
-        case JOB_RDM:
-            spellList = 3;
-            break;
-        case JOB_PLD:
-            spellList = 4;
-            break;
-        case JOB_DRK:
-            spellList = 5;
-            break;
-        case JOB_BRD:
-            spellList = 6;
-            break;
-        case JOB_NIN:
-            spellList = 7;
-            break;
-        case JOB_BLU:
-            spellList = 8;
-            break;
-        case JOB_SMN:
-            spellList = 141;
-            break;
-        default:
-            break;
-    }
-
-    PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-
-    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
-}
-
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 {
     const char* Query =
@@ -1352,7 +1258,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
             PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 17);
             PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 18);
             PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 19);
-            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 10);
+            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 20);
 
             PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 21);
             PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 21);

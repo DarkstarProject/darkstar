@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    ActingInGoodFaith = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
+    ActingInGoodFaith = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ACTING_IN_GOOD_FAITH);
 
     if (ActingInGoodFaith == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(10019); -- Start quest "Acting in Good Faith"
@@ -39,7 +39,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10019 and option == 0) then
-        player:addQuest(WINDURST,ACTING_IN_GOOD_FAITH);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.ACTING_IN_GOOD_FAITH);
         player:addKeyItem(dsp.ki.SPIRIT_INCENSE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRIT_INCENSE);
     elseif (csid == 10021) then
@@ -47,4 +47,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GANTINEUXS_LETTER);
     end
 end;
-

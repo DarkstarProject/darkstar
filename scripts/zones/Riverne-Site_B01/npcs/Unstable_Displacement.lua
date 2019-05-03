@@ -9,14 +9,14 @@ require("scripts/globals/status")
 require("scripts/globals/bcnm")
 
 function onTrade(player,npc,trade)
-    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET
-      if offset == 5 and TradeBCNM(player,player:getZoneID(),trade,npc) then -- The Wyrmking Descends
-        return
+    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET;
+    if (offset == 5 and TradeBCNM(player,player:getZoneID(),trade,npc)) then -- The Wyrmking Descends
+        return;
     end
 end
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET
+    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET;
 
     -- STORMS OF FATE
     if offset == 5 and player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 1 then

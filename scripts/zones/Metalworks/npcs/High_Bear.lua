@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local BeaSmog = player:getQuestStatus(BASTOK,BEADEAUX_SMOG);
+    local BeaSmog = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BEADEAUX_SMOG);
     local keyitem = player:hasKeyItem(dsp.ki.CORRUPTED_DIRT);
 
     if (BeaSmog == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 4) then
@@ -33,13 +33,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 731) then
-            player:addQuest(BASTOK,BEADEAUX_SMOG);
+            player:addQuest(BASTOK,dsp.quest.id.bastok.BEADEAUX_SMOG);
     elseif (csid == 732) then
             player:addFame(BASTOK,30);
             player:delKeyItem(dsp.ki.CORRUPTED_DIRT);
             player:addItem(17284,1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17284);
-            player:completeQuest(BASTOK,BEADEAUX_SMOG);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.BEADEAUX_SMOG);
             player:setTitle(dsp.title.BEADEAUX_SURVEYOR);
     end
 end;

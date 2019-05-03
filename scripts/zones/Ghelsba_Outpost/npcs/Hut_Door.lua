@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:hasKeyItem(dsp.ki.ORCISH_HUT_KEY)) then
-        if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
+        if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SAVE_THE_CHILDREN)) then
             player:startEvent(3);
         else
             player:startEvent(55);

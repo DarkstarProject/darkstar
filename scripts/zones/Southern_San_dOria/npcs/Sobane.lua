@@ -14,15 +14,15 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
     -- FLYERS FOR REGINE
-    if npcUtil.tradeHas(trade, 532) and player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED then
+    if npcUtil.tradeHas(trade, 532) and player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED then
         player:messageSpecial(ID.text.FLYER_REFUSED)
 
     -- SIGNED IN BLOOD
-    elseif npcUtil.tradeHas(trade, 1662) and player:getQuestStatus(SANDORIA, SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") < 1 then
+    elseif npcUtil.tradeHas(trade, 1662) and player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") < 1 then
         player:startEvent(734,0,1662)
 
     -- RIDING ON THE CLOUDS
-    elseif npcUtil.tradeHas(trade, 1127) and player:getQuestStatus(JEUNO, RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 2 then
+    elseif npcUtil.tradeHas(trade, 1127) and player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 2 then
         player:setVar("ridingOnTheClouds_1", 0)
         npcUtil.giveKeyItem(player, dsp.ki.SCOWLING_STONE)
         player:confirmTrade()
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local blood = player:getQuestStatus(SANDORIA, SIGNED_IN_BLOOD)
+    local blood = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
     local bloodProg = player:getVar("SIGNED_IN_BLOOD_Prog")
 
     -- SHARPENING THE SWORD
@@ -59,10 +59,10 @@ function onEventFinish(player,csid,option)
 
     -- SIGNED IN BLOOD
     elseif csid == 732 and option == 1 then
-        player:addQuest(SANDORIA, SIGNED_IN_BLOOD)
+        player:addQuest(SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
     elseif csid == 734 then
         player:setVar("SIGNED_IN_BLOOD_Prog", 1)
-    elseif csid == 736 and npcUtil.completeQuest(player, SANDORIA, SIGNED_IN_BLOOD, {item = 14760, gil = 3500, var = "SIGNED_IN_BLOOD_Prog"}) then
+    elseif csid == 736 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD, {item = 14760, gil = 3500, var = "SIGNED_IN_BLOOD_Prog"}) then
         player:delKeyItem(dsp.ki.TORN_OUT_PAGES)
         player:confirmTrade()
     end

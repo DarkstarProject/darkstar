@@ -47,7 +47,7 @@ function onInstanceComplete(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        if (v:getCurrentMission(TOAU) == SHADES_OF_VENGEANCE) then
+        if (v:getCurrentMission(TOAU) == dsp.mission.id.toau.SHADES_OF_VENGEANCE) then
             v:setVar("AhtUrganStatus",1);
         end
 

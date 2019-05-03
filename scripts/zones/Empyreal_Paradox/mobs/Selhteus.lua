@@ -13,12 +13,6 @@ function onMobInitialize(mob)
     mob:SetAutoAttackEnabled(false);
 end;
 
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob, target)
-end;
-
 function onMobFight(mob, target)
     if (target:getTarget():getID() ~= mob:getID()) then
         local targetPos = target:getPos();

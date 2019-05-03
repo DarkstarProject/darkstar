@@ -2,20 +2,23 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel GK
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
-end;
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.CALL_WYVERN, hpp = 100, cooldown = 60}, -- "Call Wyvern is used at the time of monster engage. Call Wyvern is used ~1 minute subsequent to Wyvern's death."
+            {id = dsp.jsa.MEIKYO_SHISUI, hpp = math.random(90, 95), cooldown = 90}, -- "Meikyo Shisui is used very frequently."
+        },
+    })
+end
 
 function onMobEngaged(mob,target)
-    -- TODO: Call Wyvern onMobEngage
-
     local mobid = mob:getID()
 
     for member = mobid-6, mobid+1 do
@@ -27,8 +30,6 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob,target)
-    -- TODO: Allegedly resummons wyvern 30 seconds after death.  Verify and implement if true.
-    -- TODO: Allegedly uses Meikyo Shisui every 90 seconds.  Verify and implement if true.
     -- TODO: AA GK actively seeks to skillchain to Light off of his own WSs under MS, or other AA's WSs.
 end;
 

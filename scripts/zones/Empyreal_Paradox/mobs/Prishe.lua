@@ -11,9 +11,6 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.REGAIN, 30)
 end
 
-function onMobSpawn(mob)
-end
-
 function onMobRoam(mob)
     local promathia = ID.mob.PROMATHIA_OFFSET + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
     local wait = mob:getLocalVar("wait")

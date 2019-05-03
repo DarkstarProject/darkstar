@@ -55,7 +55,6 @@ CBattleEntity::CBattleEntity()
 
     m_mjob = JOB_WAR;
     m_sjob = JOB_WAR;
-    m_enmityRange = 25;
 
     m_magicEvasion = 0;
 
@@ -107,6 +106,15 @@ bool CBattleEntity::isInDynamis()
 {
     if (loc.zone != nullptr) {
         return loc.zone->GetType() == ZONETYPE_DYNAMIS;
+    }
+    return false;
+}
+
+bool CBattleEntity::isInAssault()
+{
+    if (loc.zone != nullptr)
+    {
+        return loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED && (loc.zone->GetRegionID() >= REGION_WEST_AHT_URHGAN && loc.zone->GetRegionID() <= REGION_ALZADAAL);
     }
     return false;
 }
@@ -514,9 +522,10 @@ int32 CBattleEntity::addMP(int32 mp)
     return abs(mp);
 }
 
-int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullptr*/)
+int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullptr*/, ATTACKTYPE attackType /* = ATTACK_NONE*/, DAMAGETYPE damageType /* = DAMAGE_NONE*/)
 {
     PLastAttacker = attacker;
+    PAI->EventHandler.triggerListener("TAKE_DAMAGE", this, amount, attacker, (uint16)attackType, (uint16)damageType);
     return addHP(-amount);
 }
 
@@ -1270,10 +1279,6 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             actionTarget.param = luautils::OnSpellCast(this, PTarget, PSpell);
 
-            // Manually set the attacker here since the spell scripts call CLuaBaseEntity::delHP and do not provide the attacker
-            if (PSpell->dealsDamage())
-                PTarget->PLastAttacker = this;
-
             // Remove Saboteur
             if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)
                 StatusEffectContainer->DelStatusEffect(EFFECT_SABOTEUR);
@@ -1482,7 +1487,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                             naturalh2hDMG = (int16)((PTarget->GetSkill(SKILL_HAND_TO_HAND) * 0.11f) + 3);
                         }
 
-                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0);
+                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0.f);
                         auto damage = (int32)((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
                         actionTarget.spikesParam = battleutils::TakePhysicalDamage(PTarget, this, attack.GetAttackType(), damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
                         actionTarget.spikesMessage = 33;
@@ -1535,6 +1540,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (CStatusEffect* PFeintEffect = StatusEffectContainer->GetStatusEffect(EFFECT_FEINT))
                 {
                     PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30));
+                    StatusEffectContainer->DelStatusEffect(EFFECT_FEINT);
                 }
 
                 // Process damage.

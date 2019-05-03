@@ -11,19 +11,27 @@ zones[dsp.zone.BATALLIA_DOWNS] =
     text =
     {
         NOTHING_HAPPENS         = 141, -- Nothing happens...
-        ITEM_CANNOT_BE_OBTAINED = 6403, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6409, -- Obtained: <item>.
-        GIL_OBTAINED            = 6410, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6412, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6423, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE           = 7070, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7229, -- You can't fish here.
-        DIG_THROW_AWAY          = 7242, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
-        FIND_NOTHING            = 7244, -- You dig and you dig, but find nothing.
-        REGIME_REGISTERED       = 9978, -- New training regime registered!
+        ITEM_CANNOT_BE_OBTAINED = 6404, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6410, -- Obtained: <item>.
+        GIL_OBTAINED            = 6411, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6413, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6424, -- There is nothing out of the ordinary here.
+        CONQUEST_BASE           = 7071, -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET  = 7230, -- You can't fish here.
+        DIG_THROW_AWAY          = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
+        FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
+        REGIME_REGISTERED       = 9981, -- New training regime registered!
     },
     mob =
     {
+        PRANKSTER_MAVERIX_PH =
+        {
+            [17207635] = 17207640,
+            [17207636] = 17207640,
+            [17207637] = 17207640,
+            [17207638] = 17207640,
+            [17207639] = 17207640,
+        },
         TOTTERING_TOBY_PH =
         {
             [17207449] = 17207476, -- -194.234 -18.485 132.208

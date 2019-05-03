@@ -17,7 +17,7 @@ function onTrigger(player,npc)
         12851, 57600,    -- Wool Hose
         12858, 14756,    -- Wool Slops
         12865,  6348,    -- Black Slacks
-        129781, 6000,    -- Socks
+        12978, 16000,    -- Socks
         12994, 14352,    -- Shoes
         12979, 35200,    -- Wool Socks
         12986,  9180,    -- Chestnut Sabots
@@ -35,4 +35,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

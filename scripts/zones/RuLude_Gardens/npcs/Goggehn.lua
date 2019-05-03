@@ -19,23 +19,23 @@ function onTrigger(player,npc)
     currentMission = player:getCurrentMission(BASTOK);
     missionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == JEUNO_MISSION and missionStatus == 1) then
+    if (currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 1) then
         player:startEvent(41);
-    elseif (currentMission == JEUNO_MISSION and missionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 2) then
         player:startEvent(66);
-    elseif (currentMission == JEUNO_MISSION and missionStatus == 3) then
+    elseif (currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 3) then
         player:startEvent(38);
-    elseif (player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
+    elseif (player:getRank() == 4 and player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.NONE and getMissionRankPoints(player,13) == 1) then
         if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)) then
             player:startEvent(129,1);
         else
             player:startEvent(129); -- Start Mission 4-1 Magicite
         end
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus == 1) then
+    elseif (currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus == 1) then
         player:startEvent(132);
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus <= 5) then
+    elseif (currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus <= 5) then
         player:startEvent(135);
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus == 6) then
+    elseif (currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus == 6) then
         player:startEvent(35);
     elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK)) then
         player:startEvent(55);

@@ -125,6 +125,3 @@ function onMobDeath(mob, player, isKiller)
         mob:showText(mob,ID.text.MIRACLE);
     end
 end;
-
-function onMobDespawn(mob)
-end;

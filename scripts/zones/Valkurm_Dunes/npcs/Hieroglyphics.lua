@@ -17,7 +17,7 @@ end
 function onTrigger(player,npc)
     if player:getVar("DynaValkurm_Win") == 1 then
         player:startEvent(39)
-    elseif (player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 0) and player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) then
+    elseif (player:hasCompletedMission(COP,dsp.mission.id.cop.DARKNESS_NAMED) or FREE_COP_DYNAMIS == 0) and player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) then
         local realDay = os.time()
         local dynaWaitxDay = player:getVar("dynaWaitxDay")
 

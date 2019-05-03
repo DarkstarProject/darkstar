@@ -29,7 +29,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 3;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1) then
         cs = 5;
     end
 
@@ -64,7 +64,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    local qm1 = GetNPCByID(ID.npc.VALKURM_SUNSAND_QM); -- Quest: An Empty Vessel
+    local qm1 = GetNPCByID(ID.npc.SUNSAND_QM); -- Quest: An Empty Vessel
     if (weather == dsp.weather.DUST_STORM) then
         qm1:setStatus(dsp.status.NORMAL);
     else

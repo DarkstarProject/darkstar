@@ -15,15 +15,15 @@ function onTrigger(player,npc)
     Mission = player:getCurrentMission(player:getNation());
     MissionStatus = player:getVar("MissionStatus");
 
-    if (Mission == JOURNEY_TO_BASTOK and MissionStatus == 3 or
-       Mission == JOURNEY_TO_BASTOK2 and MissionStatus == 8) then
+    if (Mission == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK and MissionStatus == 3 or
+       Mission == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 and MissionStatus == 8) then
         player:startEvent(355);
-    elseif (Mission == THE_THREE_KINGDOMS_BASTOK and MissionStatus == 3 or
-           Mission == THE_THREE_KINGDOMS_BASTOK2 and MissionStatus == 8) then
+    elseif (Mission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK and MissionStatus == 3 or
+           Mission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2 and MissionStatus == 8) then
         player:startEvent(355,1);
-    elseif (Mission == JOURNEY_TO_BASTOK or
-           Mission == JOURNEY_TO_BASTOK2 or
-           Mission == THE_THREE_KINGDOMS_BASTOK2 and MissionStatus < 11) then
+    elseif (Mission == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK or
+           Mission == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or
+           Mission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2 and MissionStatus < 11) then
         player:startEvent(356);
     else
         player:startEvent(350);

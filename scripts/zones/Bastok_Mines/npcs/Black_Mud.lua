@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Bastok_Mines/IDs");
 
 function onTrade(player,npc,trade)
 
-Drachenfall = player:getQuestStatus(BASTOK,DRACHENFALL);
+Drachenfall = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DRACHENFALL);
 
     if (Drachenfall == QUEST_ACCEPTED) then
         count = trade:getItemCount();
@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 
-Drachenfall = player:getQuestStatus(BASTOK,DRACHENFALL);
+Drachenfall = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DRACHENFALL);
 Fame = player:getFameLevel(BASTOK);
 
     if (Drachenfall == QUEST_ACCEPTED) then
@@ -52,12 +52,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 101) then
-        Drachenfall = player:getQuestStatus(BASTOK,DRACHENFALL);
+        Drachenfall = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DRACHENFALL);
 
         if (Drachenfall == QUEST_AVAILABLE) then
             FreeSlots = player:getFreeSlotsCount();
             if (FreeSlots >= 1) then
-                player:addQuest(BASTOK,DRACHENFALL);
+                player:addQuest(BASTOK,dsp.quest.id.bastok.DRACHENFALL);
                 player:addItem(493);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,493);
             else
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 103) then
         player:tradeComplete();
-        player:completeQuest(BASTOK,DRACHENFALL);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.DRACHENFALL);
         player:addFame(BASTOK,120);
         player:addTitle(dsp.title.DRACHENFALL_ASCETIC);
         player:addGil(GIL_RATE*2000);
@@ -82,5 +82,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-
-

@@ -13,7 +13,7 @@ function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1 and not GetMobByID(ID.mob.CORRUPTED_YORGOS):isSpawned()
+    if (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 1 and not GetMobByID(ID.mob.CORRUPTED_YORGOS):isSpawned()
         and not GetMobByID(ID.mob.CORRUPTED_SOFFEIL):isSpawned() and not GetMobByID(ID.mob.CORRUPTED_ULBRIG):isSpawned()) then
         if (player:getVar("Mission6-2MobKilled") == 1) then
             player:setVar("Mission6-2MobKilled",0);
@@ -23,13 +23,13 @@ function onTrigger(player,npc)
             SpawnMob(ID.mob.CORRUPTED_SOFFEIL);
             SpawnMob(ID.mob.CORRUPTED_ULBRIG);
         end
-    elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 2) then
         player:startEvent(6);
-    elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 3) then
+    elseif (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 3) then
         player:startEvent(7);
-    elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 8) then
+    elseif (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 8) then
         player:startEvent(5);
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 6) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 6) then
         player:startEvent(14);
 
     else

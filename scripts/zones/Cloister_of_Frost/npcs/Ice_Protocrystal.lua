@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:getVar("ASA4_Azure") == 1) then
+    if (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:getVar("ASA4_Azure") == 1) then
         player:startEvent(2);
     elseif (EventTriggerBCNM(player,npc)) then
         return;

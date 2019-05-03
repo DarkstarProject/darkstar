@@ -1,25 +1,20 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Beryl-footed Molberry NM)
+--  NPC: ??? (Beryl-footed Molberry NM)
 -- !pos -57 0 4 159
 -----------------------------------
-local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
+require("scripts/globals/npc_util")
+-----------------------------------
 
-function onTrade(player,npc,trade)
-    -- Trade Tonberry Rattle
-    if (
-        trade:hasItemQty(1266,1) and trade:getItemCount() == 1 and
-        os.time() > GetServerVariable("[POP]Beryl-footed_Molberry") and
-        not GetMobByID(ID.mob.BERYL_FOOTED_MOLBERRY):isSpawned()
-    ) then
-        player:tradeComplete();
-        SpawnMob(ID.mob.BERYL_FOOTED_MOLBERRY):updateClaim(player);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 1266) and npcUtil.popFromQM(player, npc, ID.mob.BERYL_FOOTED_MOLBERRY, {hide = 900}) then
+        player:confirmTrade()
     else
-        player:messageSpecial(ID.text.NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS)
     end
+end
 
-end;
-
-function onTrigger(player,npc)
-    player:messageSpecial(ID.text.NM_OFFSET);
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.NM_OFFSET)
+end

@@ -39,7 +39,7 @@ function onTrade(player,npc,trade)
     -- 905       Wyvern Skull
     -- 1147      Ancient Salt
     -- 4600      Lucky Egg
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local goodtrade = trade:hasItemQty(4600,1);
@@ -57,7 +57,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local retry = player:getVar("OPO_OPO_RETRY");
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option,npc)
         if (FreeSlots >= 4) then
             player:tradeComplete();
             player:addFame(KAZHAM, 75);
-            player:completeQuest(OUTLANDS, THE_OPO_OPO_AND_I);
+            player:completeQuest(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
             player:addItem(13870);   -- opo opo crown
             player:messageSpecial(ID.text.ITEM_OBTAINED,13870);
             player:addItem(4468,3);  -- 3 pamamas

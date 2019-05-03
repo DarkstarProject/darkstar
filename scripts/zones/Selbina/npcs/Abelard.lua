@@ -7,10 +7,12 @@
 -- quickly earn gil. However, as this is not a legitimate concern on private servers players may
 -- complete this quest even with no fame.
 -----------------------------------
-local ID = require("scripts/zones/Selbina/IDs");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Selbina/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+-----------------------------------
 
 local ZoneID =
 {
@@ -31,147 +33,124 @@ local ZoneID =
     0x04000,1000,  -- Meriphataud Mountains
     0x08000,10000, -- Sauromugue Champaign
     0x10000,10000  -- Batallia Downs
-};
+}
 
 function onTrade(player,npc,trade)
-    local explorer = player:getQuestStatus(OTHER_AREAS_LOG,EN_EXPLORER_S_FOOTSTEPS);
-    -- AN EXPLORERS FOOTSTEPS QUEST --
-    if (explorer == QUEST_ACCEPTED) then
-        local clay = trade:hasItemQty(570,1);
-        local count = trade:getItemCount();
-        if (count == 1 and clay) then
-            local tablets = player:getVar("anExplorer-ClayTablets");
-            local currtab = player:getVar("anExplorer-CurrentTablet");
-            if (currtab ~= 0 and (tablets % (2*currtab)) < currtab) then -- new tablet
-                for zone = 1, #ZoneID, 2 do
-                    if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then
-                        if ((tablets + currtab) == 0x1ffff) then
-                            player:startEvent(47);  -- end
-                            break;
-                        end
-                        if (ZoneID[zone] == currtab) then
-                            player:startEvent(41);  -- the tablet he asked for
-                        else
-                            player:startEvent(46);  -- not the one he asked for
-                        end
-                            player:setVar("anExplorer-ClayTablets", tablets + currtab);
-                        break;
+    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 570) then
+        local tablets = player:getVar("anExplorer-ClayTablets")
+        local currtab = player:getVar("anExplorer-CurrentTablet")
+
+        if currtab ~= 0 and (tablets % (2 * currtab)) < currtab then -- new tablet
+            for zone = 1, #ZoneID, 2 do
+                if tablets % (2 * ZoneID[zone]) < ZoneID[zone] then
+                    if (tablets + currtab) == 0x1ffff then
+                        player:startEvent(47)
+                        break
                     end
+
+                    if ZoneID[zone] == currtab then
+                        player:startEvent(41) -- the tablet he asked for
+                    else
+                        player:startEvent(46) -- not the one he asked for
+                    end
+
+                    player:setVar("anExplorer-ClayTablets", tablets + currtab)
+                    break
                 end
             end
         end
     end
-end;
+end
 
 function onTrigger(player,npc)
-    local explorer = player:getQuestStatus(OTHER_AREAS_LOG,EN_EXPLORER_S_FOOTSTEPS);
-    local keyitem = player:hasKeyItem(dsp.ki.TORN_OUT_PAGES);
-    local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
-    local SignedBldProg = player:getVar("SIGNED_IN_BLOOD_Prog");
-    -- SIGNED IN BLOOD QUEST -- (WILL ONLY ACTIVATE IF EXPLORERS
-    -- FOOTSTEPS IS NOT ACTIVE OR IF IT IS COMPLETED)
-    if (blood == QUEST_ACCEPTED and keyitem == true and explorer ~= QUEST_ACCEPTED and SignedBldProg == 2) then
-        player:startEvent(1106);
-    elseif (blood == QUEST_ACCEPTED and SignedBldProg == 1 and explorer ~= QUEST_ACCEPTED) then
-        player:startEvent(1104);
-    elseif (blood == QUEST_ACCEPTED and SignedBldProg == 2 and explorer ~= QUEST_ACCEPTED) then
-        player:startEvent(1105);
-    elseif (blood == QUEST_ACCEPTED and SignedBldProg == 3) then
-        player:startEvent(48); -- after quest
+    local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
+    local signedInBlood = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
+    local signedInBloodStat = player:getVar("SIGNED_IN_BLOOD_Prog")
 
+    -- SIGNED IN BLOOD (will only activate if An Explorer's Footsteps is not active, or if it is completed)
+    if signedInBlood == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TORN_OUT_PAGES) and anExplorersFootsteps ~= QUEST_ACCEPTED and signedInBloodStat == 2 then
+        player:startEvent(1106)
+    elseif signedInBlood == QUEST_ACCEPTED and signedInBloodStat == 1 and anExplorersFootsteps ~= QUEST_ACCEPTED then
+        player:startEvent(1104)
+    elseif signedInBlood == QUEST_ACCEPTED and signedInBloodStat == 2 and anExplorersFootsteps ~= QUEST_ACCEPTED then
+        player:startEvent(1105)
+    elseif signedInBlood == QUEST_ACCEPTED and signedInBloodStat == 3 then
+        player:startEvent(48)
 
-
-    -- AN EXPLORERS FOOTSTEP QUEST --
-    elseif (explorer == QUEST_AVAILABLE and math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2) >= 1) then
-        player:startEvent(40);
-    elseif (explorer == QUEST_ACCEPTED) then
-        local tab = player:hasItem(570);
-        local clay = player:hasItem(571);
-        if (clay == false and tab == false) then
-            local currtab = player:getVar("anExplorer-CurrentTablet");
-            if (currtab == -1) then
-                player:startEvent(42);
+    -- AN EXPLORER'S FOOTSTEPS
+    elseif anExplorersFootsteps == QUEST_AVAILABLE and math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2) >= 1 then
+        player:startEvent(40)
+    elseif anExplorersFootsteps == QUEST_ACCEPTED then
+        if not player:hasItem(570) and not player:hasItem(571) then
+            if player:getVar("anExplorer-CurrentTablet") == -1 then
+                player:startEvent(42)
             else
-                player:startEvent(44);
-                player:setVar("anExplorer-CurrentTablet",0);
+                player:startEvent(44)
+                player:setVar("anExplorer-CurrentTablet", 0)
             end
         else
-            local tablets = player:getVar("anExplorer-ClayTablets");
+            local tablets = player:getVar("anExplorer-ClayTablets")
+
             for zone = 1, #ZoneID, 2 do
-                if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then
-                    if (zone < 20) then
-                        player:startEvent(43,math.floor(zone/2));
+                if tablets % (2*ZoneID[zone]) < ZoneID[zone] then
+                    if zone < 20 then
+                        player:startEvent(43, math.floor(zone / 2))
                     else
-                        player:startEvent(49,math.floor(zone/2)-10);
+                        player:startEvent(49, math.floor(zone / 2) -10)
                     end
-                    break;
+
+                    break
                 end
             end
         end
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
+    -- SIGNED IN BLOOD
+    if csid == 1104 then
+        player:setVar("SIGNED_IN_BLOOD_Prog", 2)
+    elseif csid == 1106 then
+        player:setVar("SIGNED_IN_BLOOD_Prog", 3)
 
-    if (csid == 1106) then
-        player:setVar("SIGNED_IN_BLOOD_Prog",3);
+    -- AN EXPLORER'S FOOTSTEPS
+    elseif csid == 40 and option ~= 0 and npcUtil.giveItem(player, 571) then
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
+        player:setVar("anExplorer-ClayTablets", 0)
+    elseif csid == 42 and option == 100 and npcUtil.giveItem(player, 571) then
+        player:setVar("anExplorer-CurrentTablet", 0)
+    elseif csid == 44 then
+        npcUtil.giveItem(player, 571)
+    elseif csid == 41 or csid == 46 or csid == 47 then
+        local currtab = player:getVar("anExplorer-CurrentTablet")
+        local tablets = player:getVar("anExplorer-ClayTablets")
 
-    elseif (csid == 40 and option ~= 0)    then
-        if (player:getFreeSlotsCount() > 0) then
-            player:addQuest(OTHER_AREAS_LOG,EN_EXPLORER_S_FOOTSTEPS);
-            player:addItem(571);
-            player:messageSpecial(ID.text.ITEM_OBTAINED,571);
-            player:setVar("anExplorer-ClayTablets",0);
-        else
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,571);
-        end
-    elseif (csid == 42 and option == 100) then
-        if (player:getFreeSlotsCount() > 0) then
-            player:addItem(571);
-            player:messageSpecial(ID.text.ITEM_OBTAINED,571);
-            player:setVar("anExplorer-CurrentTablet",0);
-        else
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,571);
-        end
-    elseif (csid == 44) then
-        if (player:getFreeSlotsCount() > 0) then
-            player:addItem(571);
-            player:messageSpecial(ID.text.ITEM_OBTAINED,571);
-        else
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,571);
-        end
-    elseif (csid == 41 or csid == 46 or csid == 47) then
-        local currtab = player:getVar("anExplorer-CurrentTablet");
-        local tablets = player:getVar("anExplorer-ClayTablets");
-        local keyitem = player:hasKeyItem(dsp.ki.MAP_OF_THE_CRAWLERS_NEST);
         for zone = 1, #ZoneID, 2 do
-            if (ZoneID[zone] == currtab) then
-                player:tradeComplete();
-                player:addGil(GIL_RATE*ZoneID[zone+1]);
-                player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*ZoneID[zone+1]);
-                player:setVar("anExplorer-CurrentTablet",0);
-                break;
+            if ZoneID[zone] == currtab then
+                player:confirmTrade()
+                player:addGil(GIL_RATE * ZoneID[zone+1])
+                player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE * ZoneID[zone+1])
+                player:setVar("anExplorer-CurrentTablet", 0)
+                break
             end
         end
-        if (csid == 47) then
-            player:completeQuest(OTHER_AREAS_LOG,EN_EXPLORER_S_FOOTSTEPS);
-            player:setVar("anExplorer-ClayTablets",0);
+
+        if csid == 47 then
+            player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
+            player:setVar("anExplorer-ClayTablets", 0)
         end
-        if (option == 100) then
-            player:addItem(571);
-            player:messageSpecial(ID.text.ITEM_OBTAINED,571);
+
+        if option == 100 then
+            npcUtil.giveItem(player, 571)
+        elseif option == 110 then
+            player:setVar("anExplorer-CurrentTablet", -1)
         end
-        if (option == 110) then
-            player:setVar("anExplorer-CurrentTablet",-1);
+
+        if (tablets % (2 * 0x7fff)) >= 0x7fff then
+            npcUtil.giveKeyItem(player, dsp.ki.MAP_OF_THE_CRAWLERS_NEST)
         end
-        if ((tablets % (2*0x7fff)) >= 0x7fff and keyitem == false) then
-            player:addKeyItem(dsp.ki.MAP_OF_THE_CRAWLERS_NEST);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_CRAWLERS_NEST);
-        end
-    elseif (csid == 1104) then
-        player:setVar("SIGNED_IN_BLOOD_Prog",2);
     end
-end;
+end

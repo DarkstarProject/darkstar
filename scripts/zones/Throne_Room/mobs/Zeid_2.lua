@@ -11,7 +11,12 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("useMainSpecAtHPP", math.random(20,50));
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.BLOOD_WEAPON, hpp = math.random(20, 50)},
+        },
+    })
 end;
 
 function onMobFight(mob, target)

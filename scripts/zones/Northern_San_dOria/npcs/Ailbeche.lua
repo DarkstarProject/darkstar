@@ -15,9 +15,9 @@ require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
 
-    if (player:getQuestStatus(SANDORIA, FATHER_AND_SON) == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") ~= 1) then
+    if (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FATHER_AND_SON) == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") ~= 1) then
         if (trade:hasItemQty(17391,1) == true and trade:getItemCount() == 1) then
             player:startEvent(61); -- Finish Quest "Father and Son" (part2) (trading fishing rod)
         end
@@ -41,9 +41,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    fatherAndSon = player:getQuestStatus(SANDORIA, FATHER_AND_SON);
-    sharpeningTheSword = player:getQuestStatus(SANDORIA, SHARPENING_THE_SWORD);
-    aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
+    fatherAndSon = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FATHER_AND_SON);
+    sharpeningTheSword = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.SHARPENING_THE_SWORD);
+    aBoysDream = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_BOY_S_DREAM);
 
     -- Checking levels and jobs for af quest
     mLvl = player:getMainLvl();
@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
 
     -- "Father and Son"
     if (csid == 508) then
-        player:addQuest(SANDORIA,FATHER_AND_SON);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.FATHER_AND_SON);
     elseif (csid == 509) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17391);
@@ -114,7 +114,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.LOST_CHILD_OFFICER);
             player:setVar("QuestfatherAndSonVar",0);
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,FATHER_AND_SON);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.FATHER_AND_SON);
         end
     elseif (csid == 61) then
         player:setVar("returnedAilbecheRod",1);
@@ -122,7 +122,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     -- "Sharpening the Sword"
     elseif ((csid == 45 or csid == 43) and option == 1) then
-        player:addQuest(SANDORIA,SHARPENING_THE_SWORD);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.SHARPENING_THE_SWORD);
         player:setVar("sharpeningTheSwordCS",2);
         player:setVar("returnedAilbecheRod",0);
     elseif (csid == 45 and option == 0) then
@@ -136,11 +136,11 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 17643); -- Honor Sword
             player:setVar("sharpeningTheSwordCS",0);
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,SHARPENING_THE_SWORD);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.SHARPENING_THE_SWORD);
         end
     -- "A Boy's Dream"
     elseif ((csid == 41 or csid == 40) and option == 1) then
-        player:addQuest(SANDORIA,A_BOY_S_DREAM);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_BOY_S_DREAM);
         player:setVar("aBoysDreamCS",2);
     elseif (csid == 41 and option == 0) then
         player:setVar("aBoysDreamCS",1);

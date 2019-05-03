@@ -51,7 +51,7 @@ function onEventUpdate(player,csid,option,target)
     if player:getVar("ShadesOfVengeance") == 1 then
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if v:getCurrentMission(TOAU) < SHADES_OF_VENGEANCE then
+                if v:getCurrentMission(TOAU) < dsp.mission.id.toau.SHADES_OF_VENGEANCE then
                     player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                     player:instanceEntry(target,1)
                 elseif v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50 then

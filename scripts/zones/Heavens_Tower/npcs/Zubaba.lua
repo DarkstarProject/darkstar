@@ -12,9 +12,9 @@ local ID = require("scripts/zones/Heavens_Tower/IDs");
 function onTrade(player,npc,trade)
 
     local currentMission = player:getCurrentMission(WINDURST);
-    local nextMissionFinished = player:hasCompletedMission(WINDURST,A_NEW_JOURNEY);
+    local nextMissionFinished = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_NEW_JOURNEY);
 
-    if (currentMission == WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 3) then
+    if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 3) then
         if (trade:hasItemQty(16447,3) and trade:getItemCount() == 3) then -- Trade Rusty Dagger
             player:tradeComplete();
             player:startEvent(151);
@@ -27,9 +27,9 @@ function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
-    local nextMissionFinished = player:hasCompletedMission(WINDURST,A_NEW_JOURNEY);
+    local nextMissionFinished = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_NEW_JOURNEY);
 
-    if (currentMission == WRITTEN_IN_THE_STARS and nextMissionFinished == false) then
+    if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and nextMissionFinished == false) then
         if (MissionStatus == 0) then
             player:startEvent(121);
         elseif (MissionStatus == 1) then
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 2) then
             player:startEvent(135);
         end
-    elseif (currentMission == WRITTEN_IN_THE_STARS and (nextMissionFinished or player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS))) then
+    elseif (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and (nextMissionFinished or player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS))) then
         if (MissionStatus == 0) then
             player:startEvent(257,0,16447); -- Rusty Dagger
         elseif (MissionStatus == 3) then
@@ -45,9 +45,9 @@ function onTrigger(player,npc)
         end
     elseif (player:hasKeyItem(dsp.ki.STAR_CRESTED_SUMMONS)) then
         player:startEvent(157);
-    elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
+    elseif (currentMission == dsp.mission.id.windurst.THE_SHADOW_AWAITS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(194); -- her reaction after 5-1.
-    elseif (player:getCurrentMission(WINDURST) == MOON_READING and (MissionStatus >= 3 or player:hasCompletedMission(WINDURST, MOON_READING))) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and (MissionStatus >= 3 or player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING))) then
         player:startEvent(387);
     else
         player:startEvent(56);

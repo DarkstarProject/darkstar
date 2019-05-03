@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local TheFumblingFriar = player:getQuestStatus(CRYSTAL_WAR, THE_FUMBLING_FRIAR)
+    local TheFumblingFriar = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_FUMBLING_FRIAR)
 
     -- Change to BRASS_RIBBON_OF_SERVICE later when Campaign has been added.
     if TheFumblingFriar == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE) and player:getMainLvl() >= 30 then
@@ -36,8 +36,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 26 then
-        player:addQuest(CRYSTAL_WAR, THE_FUMBLING_FRIAR)
-    elseif csid == 28 and npcUtil.completeQuest(player, CRYSTAL_WAR, THE_FUMBLING_FRIAR, {item = 4688}) then
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_FUMBLING_FRIAR)
+    elseif csid == 28 and npcUtil.completeQuest(player, CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_FUMBLING_FRIAR, {item = 4688}) then
         player:delKeyItem(dsp.ki.ORNATE_PACKAGE)
     end
 end

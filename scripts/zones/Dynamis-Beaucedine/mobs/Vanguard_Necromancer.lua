@@ -9,9 +9,5 @@ mixins =
 }
 -----------------------------------
 
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
-end
-
 function onMobDeath(mob, player, isKiller)
 end

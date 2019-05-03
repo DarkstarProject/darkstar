@@ -17,31 +17,31 @@ function onTrigger(player,npc)
     local CurrentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (CurrentMission == A_NEW_JOURNEY and MissionStatus == 0) then
+    if (CurrentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 0) then
         player:startEvent(153);
     elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
         player:startEvent(166);
-    elseif (player:getRank() == 5 and CurrentMission == 255 and player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false) then
+    elseif (player:getRank() == 5 and CurrentMission == dsp.mission.id.windurst.NONE and player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) == false) then
         player:startEvent(190);
     elseif (player:hasKeyItem(dsp.ki.BURNT_SEAL)) then
         player:startEvent(192);
-    elseif (CurrentMission == THE_SHADOW_AWAITS and MissionStatus == 0) then
+    elseif (CurrentMission == dsp.mission.id.windurst.THE_SHADOW_AWAITS and MissionStatus == 0) then
         player:startEvent(214);
-    elseif (CurrentMission == THE_SHADOW_AWAITS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
+    elseif (CurrentMission == dsp.mission.id.windurst.THE_SHADOW_AWAITS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(216);
-    elseif (CurrentMission == SAINTLY_INVITATION and MissionStatus == 0) then
+    elseif (CurrentMission == dsp.mission.id.windurst.SAINTLY_INVITATION and MissionStatus == 0) then
         player:startEvent(310);
-    elseif (CurrentMission == SAINTLY_INVITATION and MissionStatus == 3) then
+    elseif (CurrentMission == dsp.mission.id.windurst.SAINTLY_INVITATION and MissionStatus == 3) then
         player:startEvent(312);
-    elseif (CurrentMission == DOLL_OF_THE_DEAD and MissionStatus == 2) then
+    elseif (CurrentMission == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and MissionStatus == 2) then
         player:startEvent(362);
-    elseif (CurrentMission == MOON_READING and MissionStatus == 0) then
+    elseif (CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus == 0) then
         player:startEvent(384);
-    elseif (CurrentMission == MOON_READING and MissionStatus == 1 and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_ROMAEVE) and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_ALTEPA) and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH)) then
+    elseif (CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus == 1 and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_ROMAEVE) and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_ALTEPA) and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH)) then
         player:startEvent(385);
-    elseif (CurrentMission == MOON_READING and MissionStatus == 3) then
+    elseif (CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus == 3) then
         player:startEvent(386);
-    elseif (CurrentMission == MOON_READING and MissionStatus == 4) then
+    elseif (CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus == 4) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,183);
         else    
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 166 or csid == 190) then
         if (option == 0) then
-            player:addMission(WINDURST,THE_FINAL_SEAL);
+            player:addMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL);
             player:addKeyItem(dsp.ki.NEW_FEIYIN_SEAL);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
             player:setVar("MissionStatus",10);

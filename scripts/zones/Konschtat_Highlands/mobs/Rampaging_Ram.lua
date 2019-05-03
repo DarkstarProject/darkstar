@@ -2,30 +2,14 @@
 -- Area: Konschtat Highlands
 --   NM: Rampaging Ram
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
+local ID = require("scripts/zones/Konschtat_Highlands/IDs")
+-----------------------------------
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    local mobId = mob:getID();
-    
-    DisallowRespawn(mob:getID(), true);
-    mob:setLocalVar("cooldown", os.time() + 3600); -- 1 hour
-    
-    local nmId  = mobId + 1;
-    local nm    = GetMobByID(nmId);
-    local phId  = mobId - 1;
-    local ph    = GetMobByID(phId);
-    
-    if (math.random(1,100) <= 10 and os.time() > nm:getLocalVar("cooldown")) then
-        DisallowRespawn(nmId, false);
-        UpdateNMSpawnPoint(nmId);
-        nm:setRespawnTime(GetMobRespawnTime(phId));
-    else
-        DisallowRespawn(phId, false);
-        ph:setRespawnTime(GetMobRespawnTime(phId));
-    end
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.STEELFLEECE_PH, 10, math.random(75600, 86400)) -- 21-24 hours
+end

@@ -14,7 +14,7 @@ function onSpellCast(caster, target, spell)
     local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
 
     local power = math.min(caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 15 + 1, 25)
-    power = calculatePotency(power, dINT, spell:getSkillType(), caster, target)
+    power = calculatePotency(power, spell:getSkillType(), caster, target)
 
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 

@@ -17,11 +17,11 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
     if npcUtil.tradeHas(trade, {{498,4}}) then -- Yagudo Necklace x4
-        local mihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO)
+        local mihgosAmigo = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MIHGO_S_AMIGO)
 
-        if (mihgosAmigo == QUEST_ACCEPTED) then
+        if mihgosAmigo == QUEST_ACCEPTED then
             player:startEvent(88, GIL_RATE*200)
-        elseif (mihgosAmigo == QUEST_COMPLETED) then
+        elseif mihgosAmigo == QUEST_COMPLETED then
             player:startEvent(494, GIL_RATE*200)
         end
     end
@@ -30,16 +30,16 @@ end
 function onTrigger(player,npc)
     local missionStatus = player:getVar("MissionStatus")
     local wildcatWindurst = player:getVar("WildcatWindurst")
-    local mihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO)
-    local tenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN)
+    local mihgosAmigo = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MIHGO_S_AMIGO)
+    local tenshodoShowdown = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_TENSHODO_SHOWDOWN)
     local tenshodoShowdownCS = player:getVar("theTenshodoShowdownCS")
-    local rockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETEER)
+    local rockRacketeer = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ROCK_RACKETEER)
     local rockRacketeerCS = player:getVar("rockracketeer_sold")
-    local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES)
+    local thickAsThieves = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
     local thickAsThievesCS = player:getVar("thickAsThievesCS")
     local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS")
     local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
-    local hittingTheMarquisate = player:getQuestStatus(WINDURST,HITTING_THE_MARQUISATE)
+    local hittingTheMarquisate = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HITTING_THE_MARQUISATE)
     local hittingTheMarquisateYatnielCS = player:getVar("hittingTheMarquisateYatnielCS")
     local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS")
     local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS")
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
     local lvl = player:getMainLvl()
 
     -- WINDURST 2-1: LOST FOR WORDS
-    if player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and missionStatus > 0 and missionStatus < 5 then
+    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.LOST_FOR_WORDS and missionStatus > 0 and missionStatus < 5 then
         if missionStatus == 1 then
             player:startEvent(165, 0, dsp.ki.LAPIS_CORAL, dsp.ki.LAPIS_MONOCLE)
         elseif missionStatus == 2 then
@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         end
 
     -- LURE OF THE WILDCAT (WINDURST)
-    elseif player:getQuestStatus(WINDURST, LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,4) then
+    elseif player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,4) then
         player:startEvent(732)
 
     -- CRYING OVER ONIONS
@@ -108,7 +108,7 @@ function onTrigger(player,npc)
 
     -- MIHGO'S AMIGO
     elseif mihgosAmigo == QUEST_AVAILABLE then
-        if player:getQuestStatus(WINDURST, CRYING_OVER_ONIONS) == QUEST_AVAILABLE then
+        if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CRYING_OVER_ONIONS) == QUEST_AVAILABLE then
             player:startEvent(81) -- Start Quest "Mihgo's Amigo" with quest "Crying Over Onions" Activated
         else
             player:startEvent(80) -- Start Quest "Mihgo's Amigo"
@@ -147,23 +147,23 @@ function onEventFinish(player,csid,option)
 
     -- THE TENSHODO SHOWDOWN
     elseif (csid == 496) then
-        player:addQuest(WINDURST,THE_TENSHODO_SHOWDOWN)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.THE_TENSHODO_SHOWDOWN)
         player:setVar("theTenshodoShowdownCS",1)
         npcUtil.giveKeyItem(player, dsp.ki.LETTER_FROM_THE_TENSHODO)
 
     -- THICK AS THIEVES
     elseif (csid == 504 and option == 1) then  -- start quest "as thick as thieves"
-        player:addQuest(WINDURST,AS_THICK_AS_THIEVES)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
         player:setVar("thickAsThievesCS",1)
         npcUtil.giveKeyItem(player, {dsp.ki.GANG_WHEREABOUTS_NOTE, dsp.ki.FIRST_FORGED_ENVELOPE, dsp.ki.SECOND_FORGED_ENVELOPE})
-    elseif (csid == 508 and npcUtil.completeQuest(player, WINDURST, AS_THICK_AS_THIEVES, {item=12514, var={"thickAsThievesCS", "thickAsThievesGrapplingCS", "thickAsThievesGamblingCS"}})) then
+    elseif (csid == 508 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.AS_THICK_AS_THIEVES, {item=12514, var={"thickAsThievesCS", "thickAsThievesGrapplingCS", "thickAsThievesGamblingCS"}})) then
         player:delKeyItem(dsp.ki.GANG_WHEREABOUTS_NOTE)
         player:delKeyItem(dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE)
         player:delKeyItem(dsp.ki.SECOND_SIGNED_FORGED_ENVELOPE)
 
     -- HITTING THE MARQUISATE
     elseif csid == 512 then
-        player:addQuest(WINDURST, HITTING_THE_MARQUISATE)
+        player:addQuest(WINDURST, dsp.quest.id.windurst.HITTING_THE_MARQUISATE)
         player:setVar("hittingTheMarquisateYatnielCS", 1)
         player:setVar("hittingTheMarquisateHagainCS", 1)
         npcUtil.giveKeyItem(player, dsp.ki.CAT_BURGLARS_NOTE)
@@ -174,7 +174,7 @@ function onEventFinish(player,csid,option)
 
     -- ROCK RACKETEER
     elseif csid == 93 then
-        player:addQuest(WINDURST, ROCK_RACKETEER)
+        player:addQuest(WINDURST, dsp.quest.id.windurst.ROCK_RACKETEER)
         npcUtil.giveKeyItem(player, dsp.ki.SHARP_GRAY_STONE)
     elseif csid == 98 then
         player:delGil(10*GIL_RATE)
@@ -182,8 +182,8 @@ function onEventFinish(player,csid,option)
 
     -- MIHGO'S AMIGO
     elseif csid == 80 or csid == 81 then
-        player:addQuest(WINDURST, MIHGO_S_AMIGO)
-    elseif csid == 88 and npcUtil.completeQuest(player, WINDURST, MIHGO_S_AMIGO, {gil=200, title=dsp.title.CAT_BURGLAR_GROUPIE, fameArea=NORG, fame=60}) then
+        player:addQuest(WINDURST, dsp.quest.id.windurst.MIHGO_S_AMIGO)
+    elseif csid == 88 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.MIHGO_S_AMIGO, {gil=200, title=dsp.title.CAT_BURGLAR_GROUPIE, fameArea=NORG, fame=60}) then
         player:confirmTrade()
         player:needToZone(true)
     elseif csid == 494 then

@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(363.025,16,-60,12);
     end
-    if (player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 1 ) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("COP_louverance_story")== 1 ) then
         cs=17;
     end
     return cs;
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
 end;
 
 function onZoneWeatherChange(weather)
-    local waterfall = GetNPCByID(ID.npc.ULEGUERAND_WATERFALL);
+    local waterfall = GetNPCByID(ID.npc.WATERFALL);
     if (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS) then
         if (waterfall:getAnimation() ~= dsp.anim.CLOSE_DOOR) then
             waterfall:setAnimation(dsp.anim.CLOSE_DOOR);

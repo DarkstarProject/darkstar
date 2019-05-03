@@ -5,9 +5,6 @@
 -----------------------------------
 local ID = require("scripts/zones/Throne_Room/IDs");
 
-function onMobFight(mob, target)
-end;
-
 function onMobDeath(mob, player, isKiller)
     player:startEvent(32004,3,3,1,3,3,3,3,3);
 end;

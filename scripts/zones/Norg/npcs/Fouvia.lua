@@ -32,4 +32,3 @@ function onEventFinish(player,csid,option)
         player:setPetName(dsp.pet.type.WYVERN,option+1);
     end
 end;
-

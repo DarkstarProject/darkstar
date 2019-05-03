@@ -39,7 +39,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
 
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:hasCompletedMission(TOAU,SHIELD_OF_DIPLOMACY)) then
+        if (player:hasCompletedMission(TOAU,dsp.mission.id.toau.SHIELD_OF_DIPLOMACY)) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         else
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
@@ -57,10 +57,10 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
 
-    if csid == 32001 and player:getCurrentMission(TOAU) == SHIELD_OF_DIPLOMACY then
-        player:completeMission(TOAU,SHIELD_OF_DIPLOMACY);
+    if csid == 32001 and player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY then
+        player:completeMission(TOAU,dsp.mission.id.toau.SHIELD_OF_DIPLOMACY);
         player:setVar("AhtUrganStatus",0);
-        player:addMission(TOAU,SOCIAL_GRACES);
+        player:addMission(TOAU,dsp.mission.id.toau.SOCIAL_GRACES);
     end
 
 end;

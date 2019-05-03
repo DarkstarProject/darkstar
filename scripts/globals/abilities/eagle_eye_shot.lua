@@ -39,11 +39,11 @@ function onUseAbility(player,target,ability,action)
     params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
     params.canCrit = true
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = 1
+    params.atk100 = 1 params.atk200 = 1 params.atk300 = 1
     params.enmityMult = 0.5
 
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true, action)
-    
+
     -- Set the message id ourselves
     if (tpHits + extraHits > 0) then
         action:messageID(target:getID(), dsp.msg.basic.JA_DAMAGE)

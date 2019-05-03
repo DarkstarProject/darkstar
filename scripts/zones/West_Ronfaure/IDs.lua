@@ -10,25 +10,27 @@ zones[dsp.zone.WEST_RONFAURE] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6403, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6409, -- Obtained: <item>.
-        GIL_OBTAINED            = 6410, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6412, -- Obtained key item: <keyitem>.
-        CONQUEST_BASE           = 7070, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7229, -- You can't fish here.
-        DIG_THROW_AWAY          = 7242, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
-        FIND_NOTHING            = 7244, -- You dig and you dig, but find nothing.
-        GACHEMAGE_DIALOG        = 7330, -- Orcish scouts lurk in the shadows. Consider yourself warned!
-        COLMAIE_DIALOG          = 7330, -- Orcish scouts lurk in the shadows. Consider yourself warned!
-        ADALEFONT_DIALOG        = 7331, -- If you sense danger, just flee into the city. I'll not endanger myself on your account!
-        LAILLERA_DIALOG         = 7332, -- I mustn't chat while on duty. Sorry.
-        PALCOMONDAU_REPORT      = 7376, -- Scout reporting! All is quiet on the road to Ghelsba!
-        PALCOMONDAU_DIALOG      = 7377, -- Let me be! I must patrol the road to Ghelsba.
-        ZOVRIACE_REPORT         = 7379, -- Scout reporting! All is quiet on the roads to La Theine!
-        ZOVRIACE_DIALOG         = 7381, -- Let me be! I return to Southgate with word on La Theine.
-        DISMAYED_CUSTOMER       = 7407, -- You find some worthless scraps of paper.
-        CONQUEST                = 7529, -- You've earned conquest points!
-        REGIME_REGISTERED       = 10423, -- New training regime registered!
+        ITEM_CANNOT_BE_OBTAINED = 6404, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6410, -- Obtained: <item>.
+        GIL_OBTAINED            = 6411, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6413, -- Obtained key item: <keyitem>.
+        CONQUEST_BASE           = 7071, -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET  = 7230, -- You can't fish here.
+        DIG_THROW_AWAY          = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
+        FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
+        GACHEMAGE_DIALOG        = 7331, -- Orcish scouts lurk in the shadows. Consider yourself warned!
+        COLMAIE_DIALOG          = 7331, -- Orcish scouts lurk in the shadows. Consider yourself warned!
+        ADALEFONT_DIALOG        = 7332, -- If you sense danger, just flee into the city. I'll not endanger myself on your account!
+        LAILLERA_DIALOG         = 7333, -- I mustn't chat while on duty. Sorry.
+        PICKPOCKET_GACHEMAGE    = 7334, -- A pickpocket? Now that you mention it, I did see a woman flee the city. She ran west.
+        PICKPOCKET_ADALEFONT    = 7335, -- What, someone picked your pocket? And you call yourself an adventurer!
+        PALCOMONDAU_REPORT      = 7377, -- Scout reporting! All is quiet on the road to Ghelsba!
+        PALCOMONDAU_DIALOG      = 7378, -- Let me be! I must patrol the road to Ghelsba.
+        ZOVRIACE_REPORT         = 7380, -- Scout reporting! All is quiet on the roads to La Theine!
+        ZOVRIACE_DIALOG         = 7382, -- Let me be! I return to Southgate with word on La Theine.
+        DISMAYED_CUSTOMER       = 7408, -- You find some worthless scraps of paper.
+        CONQUEST                = 7530, -- You've earned conquest points!
+        REGIME_REGISTERED       = 10426, -- New training regime registered!
     },
     mob =
     {
@@ -52,8 +54,8 @@ zones[dsp.zone.WEST_RONFAURE] =
     },
     npc =
     {
-        W_RONFAURE_SIGNPOST_OFFSET = 17187503,
-        OVERSEER_BASE              = 17187523,
+        SIGNPOST_OFFSET = 17187504,
+        OVERSEER_BASE   = 17187524,
     },
 }
 

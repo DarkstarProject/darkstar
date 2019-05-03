@@ -12,12 +12,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasCompletedMission(TOAU,LOST_KINGDOM)) then
+    if (player:hasCompletedMission(TOAU,dsp.mission.id.toau.LOST_KINGDOM)) then
         if (not player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
             player:addKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
         end
-    elseif (player:getCurrentMission(TOAU) == LOST_KINGDOM) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.LOST_KINGDOM) then
         if (player:hasKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT) and player:getVar("AhtUrganStatus") == 0) then
             player:startEvent(8);
         elseif (player:getVar("AhtUrganStatus") == 1) then
@@ -29,8 +29,8 @@ function onTrigger(player,npc)
         elseif (player:getVar("AhtUrganStatus") == 3) then
             player:setVar("AhtUrganStatus", 0);
             player:addKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
-            player:completeMission(TOAU,LOST_KINGDOM);
-            player:addMission(TOAU,THE_DOLPHIN_CREST);
+            player:completeMission(TOAU,dsp.mission.id.toau.LOST_KINGDOM);
+            player:addMission(TOAU,dsp.mission.id.toau.THE_DOLPHIN_CREST);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
         else
             player:messageSpecial(ID.text.JAZARAATS_HEADSTONE);

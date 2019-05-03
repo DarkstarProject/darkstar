@@ -3,18 +3,19 @@
 --  NPC: Dimensional_Portal
 -- !pos 260.000 35.150 340.000 117
 -----------------------------------
-require("scripts/globals/keyitems")
-local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) > THE_WARRIOR_S_PATH then
+    if player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH or DIMENSIONAL_PORTAL_UNLOCK then
         player:startEvent(915)
     else
-        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE+1); -- Telepoint Disappeared
+        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE + 1) -- Telepoint Disappeared
     end
 end
 
@@ -23,6 +24,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 915 and option == 1 then
-        player:setPos(654.200,-2.799,100.700,193,33) -- To AlTaieu {R}
+        player:setPos(654.200, -2.799, 100.700, 193, 33) -- To AlTaieu {R}
     end
 end

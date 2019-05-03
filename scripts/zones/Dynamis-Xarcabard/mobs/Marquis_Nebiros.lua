@@ -10,10 +10,6 @@ mixins =
 }
 -----------------------------------
 
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
-end
-
 function onMobDeath(mob, player, isKiller)
 
     local Animate_Trigger = GetServerVariable("[DynaXarcabard]Boss_Trigger")

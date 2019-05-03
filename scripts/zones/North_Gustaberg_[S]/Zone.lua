@@ -7,6 +7,7 @@ local ID = require("scripts/zones/North_Gustaberg_[S]/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -18,7 +19,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(380.038,-2.25,147.627,192);
     end
-    if (prevZone == 87 and player:getCampaignAllegiance() > 0 and player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_AVAILABLE) then
+    if (prevZone == dsp.zone.BASTOK_MARKETS_S and player:getCampaignAllegiance() > 0 and player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BETTER_PART_OF_VALOR) == QUEST_AVAILABLE) then
         cs = 1;
     end
     return cs;
@@ -32,7 +33,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:addQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
+        player:addQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.BETTER_PART_OF_VALOR);
         player:addKeyItem(dsp.ki.CLUMP_OF_ANIMAL_HAIR);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CLUMP_OF_ANIMAL_HAIR);
     end

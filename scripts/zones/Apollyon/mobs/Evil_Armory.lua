@@ -6,9 +6,6 @@
 require("scripts/globals/limbus");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     GetMobByID(16933033):updateEnmity(target);
     GetMobByID(16933034):updateEnmity(target);

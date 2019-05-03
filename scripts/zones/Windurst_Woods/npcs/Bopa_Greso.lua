@@ -6,38 +6,33 @@
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
+    local thickAsThieves = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
+    local thickAsThievesCS = player:getVar("thickAsThievesCS")
 
-    thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
-    thickAsThievesCS = player:getVar("thickAsThievesCS");
-
-    if (thickAsThieves == QUEST_ACCEPTED) then
-        player:startEvent(506);
-            if (thickAsThievesCS == 1) then
-                player:setVar("thickAsThievesCS",2);
-            elseif (thickAsThievesCS == 3) then
-                player:setVar("thickAsThievesCS",4);
-                rand1 = math.random(2,7);
-                player:setVar("thickAsThievesGrapplingCS",rand1);
-                player:setVar("thickAsThievesGamblingCS",1);
-            end
+    if thickAsThieves == QUEST_ACCEPTED then
+        player:startEvent(506)
+        if thickAsThievesCS == 1 then
+            player:setVar("thickAsThievesCS", 2)
+        elseif thickAsThievesCS == 3 then
+            player:setVar("thickAsThievesCS", 4)
+            local rand1 = math.random(2, 7)
+            player:setVar("thickAsThievesGrapplingCS", rand1)
+            player:setVar("thickAsThievesGamblingCS", 1)
+        end
     else
-        player:startEvent(77); -- standard cs
+        player:startEvent(77) -- standard cs
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

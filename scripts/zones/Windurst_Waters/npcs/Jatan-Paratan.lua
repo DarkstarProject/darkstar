@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
+    wonderingstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL);
     if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getItemCount() == 1 and player:getVar("QuestWonderingMin_var") == 1) then
         player:startEvent(638);                 -- WONDERING_MINSTREL: Quest Finish
     end
@@ -20,10 +20,10 @@ end;
 
 function onTrigger(player,npc)
 
-            --        player:delQuest(WINDURST,WONDERING_MINSTREL);
+            --        player:delQuest(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL);
 
 
-    wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
+    wonderingstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL);
     fame = player:getFameLevel(WINDURST)
     if (wonderingstatus == QUEST_AVAILABLE and fame >= 5) then
         rand = math.random(1,2);
@@ -56,13 +56,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 634) then    -- WONDERING_MINSTREL: Quest Start
-        player:addQuest(WINDURST,WONDERING_MINSTREL);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL);
     elseif (csid == 638) then  -- WONDERING_MINSTREL: Quest Finish
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17349);
         else
             player:tradeComplete(trade);
-            player:completeQuest(WINDURST,WONDERING_MINSTREL)
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL)
             player:addItem(17349);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17349);
             player:addFame(WINDURST,75);

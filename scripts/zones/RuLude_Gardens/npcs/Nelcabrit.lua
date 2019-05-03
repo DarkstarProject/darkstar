@@ -19,19 +19,19 @@ function onTrigger(player,npc)
     currentMission = player:getCurrentMission(SANDORIA);
     missionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == APPOINTMENT_TO_JEUNO and missionStatus == 3) then
+    if (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus == 3) then
         player:startEvent(42);
-    elseif (currentMission == APPOINTMENT_TO_JEUNO and missionStatus == 4) then
+    elseif (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus == 4) then
         player:startEvent(67);
-    elseif (currentMission == APPOINTMENT_TO_JEUNO and missionStatus == 5) then
+    elseif (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus == 5) then
         player:startEvent(39);
-    elseif (player:getRank() == 4 and player:getCurrentMission(SANDORIA) == 255 and getMissionRankPoints(player,13) == 1) then
+    elseif (player:getRank() == 4 and player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.NONE and getMissionRankPoints(player,13) == 1) then
         player:startEvent(130); -- Start Mission 4-1 Magicite
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus == 1) then
+    elseif (currentMission == dsp.mission.id.sandoria.MAGICITE_SAN_D_ORIA and missionStatus == 1) then
         player:startEvent(133);
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus <= 5) then
+    elseif (currentMission == dsp.mission.id.sandoria.MAGICITE_SAN_D_ORIA and missionStatus <= 5) then
         player:startEvent(136);
-    elseif (currentMission == MAGICITE_SAN_D_ORIA and missionStatus == 6) then
+    elseif (currentMission == dsp.mission.id.sandoria.MAGICITE_SAN_D_ORIA and missionStatus == 6) then
         player:startEvent(36);
     elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA)) then
         player:startEvent(56);

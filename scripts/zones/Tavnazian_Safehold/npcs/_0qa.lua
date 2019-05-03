@@ -13,13 +13,13 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(104);
-    elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(111);
-    elseif (player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus")==4) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getVar("PromathiaStatus")==4) then
         player:startEvent(115);
-    elseif (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==5) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus")==5) then
         player:startEvent(543);
     end
     return 1;
@@ -34,8 +34,8 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",1);
     elseif (csid == 115) then
         player:setVar("PromathiaStatus",0);
-        player:completeMission(COP,CHAINS_AND_BONDS);
-        player:addMission(COP,FLAMES_IN_THE_DARKNESS);
+        player:completeMission(COP,dsp.mission.id.cop.CHAINS_AND_BONDS);
+        player:addMission(COP,dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS);
     elseif (csid == 543) then
         player:setVar("PromathiaStatus",6);
     end

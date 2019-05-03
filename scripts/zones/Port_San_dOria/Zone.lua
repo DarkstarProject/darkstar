@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == 223) then
+        if (prevZone == dsp.zone.SAN_DORIA_JEUNO_AIRSHIP) then
             cs = 702;
             player:setPos(-1.000, 0.000, 44.000, 0);
         else
@@ -37,7 +37,7 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 1) then
         cs =4;
     end
 

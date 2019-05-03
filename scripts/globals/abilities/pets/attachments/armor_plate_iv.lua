@@ -1,32 +1,34 @@
 -----------------------------------
 -- Attachment: Armor Plate IV
 -----------------------------------
+require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.DMGPHYS, -20)
+    onUpdate(pet, 0)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.DMGPHYS, -20)
+    updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_iv_mod', 0)
 end
 
-function onManeuverGain(pet,maneuvers)
-    if (maneuvers == 1) then
-        pet:addMod(dsp.mod.DMGPHYS, -5)
-    elseif (maneuvers == 2) then
-        pet:addMod(dsp.mod.DMGPHYS, -5)
-    elseif (maneuvers == 3) then
-        pet:addMod(dsp.mod.DMGPHYS, -10)
-    end
+function onManeuverGain(pet, maneuvers)
+    onUpdate(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
-    if (maneuvers == 1) then
-        pet:delMod(dsp.mod.DMGPHYS, -5)
-    elseif (maneuvers == 2) then
-        pet:delMod(dsp.mod.DMGPHYS, -5)
-    elseif (maneuvers == 3) then
-        pet:delMod(dsp.mod.DMGPHYS, -10)
+function onManeuverLose(pet, maneuvers)
+    onUpdate(pet, maneuvers - 1)
+end
+
+function onUpdate(pet, maneuvers)
+    if maneuvers == 0 then
+        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_iv_mod', -20)
+    elseif maneuvers == 1 then
+        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_iv_mod', -25)
+    elseif maneuvers == 2 then
+        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_iv_mod', -30)
+    elseif maneuvers == 3 then
+        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_iv_mod', -40)
     end
 end

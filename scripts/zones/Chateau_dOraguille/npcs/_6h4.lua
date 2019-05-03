@@ -19,28 +19,28 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus");
 
     -- Mission San D'Oria 9-2 The Heir to the Light
-    if (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then
+    if (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then
         player:startEvent(8);
     -- Mission San D'Oria 9-1 Breaking Barriers
-    elseif (currentMission == BREAKING_BARRIERS and MissionStatus == 4) then
+    elseif (currentMission == dsp.mission.id.sandoria.BREAKING_BARRIERS and MissionStatus == 4) then
         if (player:hasKeyItem(dsp.ki.FIGURE_OF_TITAN) and player:hasKeyItem(dsp.ki.FIGURE_OF_GARUDA) and player:hasKeyItem(dsp.ki.FIGURE_OF_LEVIATHAN)) then
             player:startEvent(76);
         end
-    elseif (currentMission == BREAKING_BARRIERS and MissionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.sandoria.BREAKING_BARRIERS and MissionStatus == 0) then
         player:startEvent(32);
         -- Mission San D'Oria 8-2 Lightbringer
-    elseif (currentMission == LIGHTBRINGER and MissionStatus == 6) then
+    elseif (currentMission == dsp.mission.id.sandoria.LIGHTBRINGER and MissionStatus == 6) then
         player:startEvent(104);
-    elseif (currentMission == LIGHTBRINGER and MissionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.sandoria.LIGHTBRINGER and MissionStatus == 0) then
         player:startEvent(100);
     -- Mission San D'Oria 6-1 Leaute's Last Wishes
-    elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
+    elseif (currentMission == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
         player:startEvent(87);
     -- Mission San D'Oria 5-2 The Shadow Lord
-    elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_SHADOW_LORD and MissionStatus == 5) then
         player:startEvent(61);
     -- Mission San D'Oria 3-3 Appointment to Jeuno
-    elseif (currentMission == APPOINTMENT_TO_JEUNO and MissionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 2) then
         player:startEvent(537);
     else
         player:startEvent(514);
