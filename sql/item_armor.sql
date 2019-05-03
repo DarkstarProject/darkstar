@@ -10374,6 +10374,7 @@ INSERT INTO `item_armor` VALUES (21266,'gastraphetes',99,119,1024,106,0,1,4,0);
 INSERT INTO `item_armor` VALUES (21267,'annihilator',99,119,1024,103,0,1,4,0);
 INSERT INTO `item_armor` VALUES (21268,'death_penalty',99,119,65536,107,0,1,4,0);
 INSERT INTO `item_armor` VALUES (21269,'armageddon',99,119,66560,109,0,1,4,0);
+INSERT INTO `item_armor` VALUES (21272,'troll_gun',1,0,4194303,0,0,0,4,0);
 INSERT INTO `item_armor` VALUES (21273,'nibiru_gun',99,0,66560,0,0,0,4,0);
 INSERT INTO `item_armor` VALUES (21274,'donar_gun',99,119,70688,57,0,0,4,0);
 INSERT INTO `item_armor` VALUES (21275,'homestead_gun',99,117,66560,57,0,0,4,0);
@@ -10578,6 +10579,7 @@ INSERT INTO `item_armor` VALUES (21504,'arasy_sainti',99,119,135427,506,0,0,1,0)
 INSERT INTO `item_armor` VALUES (21505,'arasy_sainti_+1',99,119,135427,506,0,0,1,0);
 INSERT INTO `item_armor` VALUES (21506,'jolt_counter',99,119,131074,129,0,0,1,0);
 INSERT INTO `item_armor` VALUES (21507,'jolt_counter_+1',99,119,131074,129,0,0,1,0);
+INSERT INTO `item_armor` VALUES (21509,'premium_mogti',1,0,4194303,0,0,0,1,0);
 INSERT INTO `item_armor` VALUES (21511,'hep._baghnakhs',99,0,397747,0,0,0,1,0);
 INSERT INTO `item_armor` VALUES (21512,'hep._baghnakhs_+1',99,0,397747,0,0,0,1,0);
 INSERT INTO `item_armor` VALUES (21513,'raetic_baghnakhs',99,0,971707,0,0,0,1,0);
@@ -10595,6 +10597,12 @@ INSERT INTO `item_armor` VALUES (21557,'beryllium_kris_+1',99,0,1589256,0,0,0,3,
 INSERT INTO `item_armor` VALUES (21558,'rune_kris',70,0,349752,0,0,0,3,0);
 INSERT INTO `item_armor` VALUES (21559,'raetic_kris',99,119,349752,0,0,0,3,0);
 INSERT INTO `item_armor` VALUES (21560,'raetic_kris_+1',99,119,349752,0,0,0,3,0);
+INSERT INTO `item_armor` VALUES (21573,'assassins_knife',99,119,32,0,0,0,3,0);
+INSERT INTO `item_armor` VALUES (21574,'plun._knife',99,119,32,0,0,0,3,0);
+INSERT INTO `item_armor` VALUES (21575,'gandring',99,119,32,0,0,0,3,0);
+INSERT INTO `item_armor` VALUES (21576,'bards_knife',99,119,512,0,0,0,3,0);
+INSERT INTO `item_armor` VALUES (21577,'bihu_knife',99,119,512,0,0,0,3,0);
+INSERT INTO `item_armor` VALUES (21578,'barfawc',99,119,512,0,0,0,3,0);
 INSERT INTO `item_armor` VALUES (21604,'arasy_sword',99,119,32848,278,0,0,3,0);
 INSERT INTO `item_armor` VALUES (21605,'arasy_sword_+1',99,119,32848,278,0,0,3,0);
 INSERT INTO `item_armor` VALUES (21606,'enriching_sword',99,119,16,250,0,0,3,0);

@@ -4208,6 +4208,7 @@ INSERT INTO `item_weapon` VALUES (21266,'gastraphetes',26,0,269,0,0,1,1,432,176,
 INSERT INTO `item_weapon` VALUES (21267,'annihilator',26,1,269,0,0,1,1,582,143,0);
 INSERT INTO `item_weapon` VALUES (21268,'death_penalty',26,1,269,0,0,1,1,480,101,0);
 INSERT INTO `item_weapon` VALUES (21269,'armageddon',26,1,269,0,0,1,1,582,143,0);
+INSERT INTO `item_weapon` VALUES (21272,'troll_gun',26,1,0,0,0,1,1,600,1,0); -- DMG:1 Delay:600
 INSERT INTO `item_weapon` VALUES (21273,'nibiru_gun',26,1,242,0,0,1,1,600,119,0);
 INSERT INTO `item_weapon` VALUES (21274,'donar_gun',26,1,228,0,0,1,1,548,103,0);
 INSERT INTO `item_weapon` VALUES (21275,'homestead_gun',26,1,215,0,0,1,1,600,128,0);
@@ -4387,6 +4388,7 @@ INSERT INTO `item_weapon` VALUES (21504,'arasy_sainti',1,0,242,242,188,4,1,531,1
 INSERT INTO `item_weapon` VALUES (21505,'arasy_sainti_+1',1,0,242,242,188,4,1,529,108,0);
 INSERT INTO `item_weapon` VALUES (21506,'jolt_counter',1,0,242,242,188,4,1,576,180,0);    -- Pair of jolt counter: DMG:+180 Delay:+126 STR+10 VIT+10 Accuracy+25 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+15 Attack during "Counter" varies in proportion to Attack of target.
 INSERT INTO `item_weapon` VALUES (21507,'jolt_counter_+1',1,0,242,242,188,4,1,571,181,0); -- Pair of jolt counter +1: DMG:+181 Delay:+121 STR+15 VIT+15 Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+18 Attack during "Counter" varies in proportion to Attack of target.
+INSERT INTO `item_weapon` VALUES (21509,'premium_mogti',1,0,0,0,0,4,1,546,1,0);           -- DMG:+1 Delay:+96 "Final Paradise" (wsid 241)
 INSERT INTO `item_weapon` VALUES (21521,'melee_fists',1,0,242,242,228,4,1,576,190,0);     -- Melee fists: DMG:+190 Delay:+126 HP+130 Accuracy+30 Magic Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +228 Damage taken -5% Dynamis (D): Accuracy+10 Magic Accuracy+10
 INSERT INTO `item_weapon` VALUES (21522,'hes._fists',1,0,255,255,242,4,1,571,191,0);      -- Hesychast's fists: DMG:+191 Delay:+121 HP+140 Accuracy+40 Magic Accuracy+40 Hand-to-Hand skill +255 Guarding skill +255 Magic Accuracy skill +242 Damage taken -7% Dynamis (D): Accuracy+10 Magic Accuracy+10
 INSERT INTO `item_weapon` VALUES (21523,'sagitta',1,0,269,269,255,4,1,571,192,0);         -- Sagitta: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Damage taken -10%
@@ -4395,6 +4397,12 @@ INSERT INTO `item_weapon` VALUES (21525,'pitre_fists',1,0,255,255,242,4,1,571,19
 INSERT INTO `item_weapon` VALUES (21526,'xiucoatl',1,0,269,269,255,4,1,571,192,0);        -- Xiucoatl: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Automaton: Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50
 INSERT INTO `item_weapon` VALUES (21554,'arasy_knife',2,0,242,242,188,1,1,183,94,0);
 INSERT INTO `item_weapon` VALUES (21555,'arasy_knife_+1',2,0,242,242,188,1,1,178,95,0);
+INSERT INTO `item_weapon` VALUES (21573,'assassins_knife',2,0,242,242,228,1,1,196,130,0);  -- DMG:130 Delay:196 HP+130 Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +228 "Treasure Hunter"+1 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21574,'plun._knife',2,0,255,255,242,1,1,189,131,0);  -- DMG:131 Delay:189 HP+140 Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Dagger skill +255 Parrying skill +255 Magic Accuracy skill +242 "Treasure Hunter"+2 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21575,'gandring',2,0,269,269,255,1,1,189,132,0);  -- DMG:132 Delay:189 HP+150 Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Dagger skill +269 Parrying skill +269 Magic Accuracy skill +255 "Treasure Hunter"+3
+INSERT INTO `item_weapon` VALUES (21576,'bards_knife',2,0,242,242,228,1,1,196,130,0);  -- DMG:130 Delay:196 HP+130 Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +228 Song effects: Damage taken -1% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21577,'bihu_knife',2,0,255,255,242,1,1,189,131,0);  -- DMG:131 Delay:189 HP+140 Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Dagger skill +255 Parrying skill +255 Magic Accuracy skill +242 Song effects: Damage taken -2% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21578,'barfawc',2,0,269,269,255,1,1,189,132,0);  -- DMG:132 Delay:189 HP+150 Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Dagger skill +269 Parrying skill +269 Magic Accuracy skill +255 Song effects: Damage taken -3%
 INSERT INTO `item_weapon` VALUES (21604,'arasy_sword',3,0,242,242,188,2,1,240,123,0);
 INSERT INTO `item_weapon` VALUES (21605,'arasy_sword_+1',3,0,242,242,188,2,1,236,124,0);
 INSERT INTO `item_weapon` VALUES (21606,'enriching_sword',3,0,242,242,188,2,1,240,156,0);
