@@ -14,9 +14,8 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    -- calculate raw damage
-    local basedmg = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 4
 
+    local basedmg = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 4
     local params = {}
     params.dmg = basedmg
     params.multiplier = 1
@@ -28,35 +27,35 @@ function onSpellCast(caster, target, spell)
     params.skillType = dsp.skill.ENFEEBLING_MAGIC
     params.bonus = 1.0
 
+    -- calculate raw damage
     local dmg = calculateMagicDamage(caster, target, spell, params)
+    -- softcaps at 12, should always do at least 1
     dmg = utils.clamp(dmg, 1, 12)
-
-    -- Get resist multiplier (1x if no resist)
+    -- get resist multiplier (1x if no resist)
     local resist = applyResistance(caster, target, spell, params)
-    -- Get the resisted damage
+    -- get the resisted damage
     dmg = dmg * resist
-    -- Add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+    -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
     dmg = addBonuses(caster, spell, target, dmg)
-    -- Add in target adjustment
+    -- add in target adjustment
     dmg = adjustForTarget(target, dmg, spell:getElement())
-
-    -- Add in final adjustments including the actual damage dealt
+    -- add in final adjustments including the actual damage dealt
     local final = finalMagicAdjustments(caster, target, spell, dmg)
 
-    -- Calculate duration.
+    -- calculate duration and bonus
     local duration = calculateDuration(60, spell:getSkillType(), spell:getSpellGroup(), caster, target)
-    local dotBonus = caster:getMod(dsp.mod.DIA_DOT)  -- Dia Wand= target:getStatusEffect(dsp.effect.BIO)
+    local dotBonus = caster:getMod(dsp.mod.DIA_DOT)  -- Dia Wand
 
-    -- Do it!
-    if target:addStatusEffect(dsp.effect.DIA, 1 + dotBonus, 3, duration, 0, 5, 1) then
-        spell:setMsg(dsp.msg.basic.MAGIC_DMG)
-    else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
-    end
+    -- check for Bio
+    local bio = target:getStatusEffect(dsp.effect.BIO)
 
-    -- Try to kill same tier Bio
-    if BIO_OVERWRITE == 1 and bio ~= nil then
-        if bio:getPower() == 1 then
+    -- do it!
+    target:addStatusEffect(dsp.effect.DIA, 1 + dotBonus, 3, duration, 0, 10, 1)
+    spell:setMsg(dsp.msg.basic.MAGIC_DMG)
+
+    -- try to kill same tier Bio (non-default behavior)
+    if (BIO_OVERWRITE == 1 and bio ~= nil) then
+        if (bio:getPower() == 1) then
             target:delStatusEffect(dsp.effect.BIO)
         end
     end
