@@ -50,7 +50,7 @@ function onSpellCast(caster,target,spell)
     local dotdmg = 5 + math.floor(caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 60)
 
     -- do it!
-    target:addStatusEffect(dsp.effect.BIO, dotdmg, 3, duration, 0, 20, 4)
+    target:addStatusEffect(dsp.effect.BIO, dotdmg, 3, duration, 0, 25, 4)
     spell:setMsg(dsp.msg.basic.MAGIC_DMG)
 
     -- try to kill same tier Dia (default behavior)
