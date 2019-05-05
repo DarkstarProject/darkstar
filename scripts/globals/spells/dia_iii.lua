@@ -4,11 +4,11 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Dia III value per point is '30' This is a constant set in the table 'merits'
 -----------------------------------------
-require("scripts/globals/magic")
-require("scripts/globals/msg")
 require("scripts/globals/settings")
 require("scripts/globals/status")
+require("scripts/globals/magic")
 require("scripts/globals/utils")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)

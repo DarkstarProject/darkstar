@@ -5,6 +5,8 @@
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/magic")
+require("scripts/globals/utils")
+require("scripts/globals/msg")
 --------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
