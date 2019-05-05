@@ -123,7 +123,7 @@ function moogleEventFinish(player,csid,option)
             player:setVar("MogSafeProgress", 2)
         elseif csid == 30008 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
-            player:changeContainerSize(dsp.inv.MOGSAFE, 60)
+            player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_KIND_MASTER)
             player:setVar("MogSafeProgress", 0)
 
@@ -141,7 +141,7 @@ function moogleEventFinish(player,csid,option)
             player:setVar("MogSafeProgress", 2)
         elseif csid == 30012 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
-            player:changeContainerSize(dsp.inv.MOGSAFE, 70)
+            player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_EXCEPTIONALLY_KIND_MASTER)
             player:setVar("MogSafeProgress", 0)
 
@@ -159,7 +159,7 @@ function moogleEventFinish(player,csid,option)
             player:setVar("MogSafeProgress", 2)
         elseif csid == 30016 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
-            player:changeContainerSize(dsp.inv.MOGSAFE, 80)
+            player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_LOVING_MASTER)
             player:setVar("MogSafeProgress", 0)
         end
