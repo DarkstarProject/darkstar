@@ -66,7 +66,7 @@ function moogleTrigger(player,npc)
             player:startEvent(30000)
 
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
-               player:getVar("[MS1]NextTally") <= os.time() then
+               player:getVar("[MS1]BedPlaced") == 1 then
             player:startEvent(30005,0,0,0,5,0,17161,13457)
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
             player:startEvent(30006,0,0,0,0,0,17161,13457)
@@ -74,7 +74,7 @@ function moogleTrigger(player,npc)
             player:startEvent(30008)
 
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_AVAILABLE and homeNationFameLevel >= 5 and
-                giveMoogleABreak == QUEST_COMPLETED and player:getVar("[MS2]NextTally") <= os.time() then
+                giveMoogleABreak == QUEST_COMPLETED and player:getVar("[MS2]BedPlaced") == 1 then
             player:startEvent(30009,0,0,0,4,0,17402,615)
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
             player:startEvent(30010,0,0,0,0,0,17402,615)
@@ -82,7 +82,7 @@ function moogleTrigger(player,npc)
             player:startEvent(30012)
 
         elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_AVAILABLE and homeNationFameLevel >= 7 and
-                theMooglePicnic == QUEST_COMPLETED and player:getVar("[MS3]NextTally") <= os.time() then
+                theMooglePicnic == QUEST_COMPLETED and player:getVar("[MS3]BedPlaced") == 1 then
             player:startEvent(30013,0,0,0,6,0,13593,12474)
         elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
             player:startEvent(30014,0,0,0,0,0,13593,12474)
@@ -112,7 +112,7 @@ function moogleEventFinish(player,csid,option)
         elseif csid == 30005 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS1]NextTally", 0)
+            player:setVar("[MS1]BedPlaced", 0)
             player:setVar("MogSafeProgress", 1)
         elseif csid == 30005 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
@@ -130,7 +130,7 @@ function moogleEventFinish(player,csid,option)
         elseif csid == 30009 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS2]NextTally", 0)
+            player:setVar("[MS2]BedPlaced", 0)
             player:setVar("MogSafeProgress", 1)
         elseif csid == 30009 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
@@ -148,7 +148,7 @@ function moogleEventFinish(player,csid,option)
         elseif csid == 30013 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS3]NextTally", 0)
+            player:setVar("[MS3]BedPlaced", 0)
             player:setVar("MogSafeProgress", 1)
         elseif csid == 30013 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
