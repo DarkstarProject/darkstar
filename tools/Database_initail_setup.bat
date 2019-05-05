@@ -66,14 +66,14 @@ if /i "%answer:~,1%" EQU "T" EXIT
 cd %importfolderid%
 cd
 
-ECHO Creating Database %database%
+ECHO Dropping Database %database%
 %mysqladmin% -h %dbhost% -u %dbuser% -p%dbpass% DROP %database%
 
 ECHO Creating Database %database%
 %mysqladmin% -h %dbhost% -u %dbuser% -p%dbpass% CREATE %database%
 
 ECHO Loading %database% tables into the database
-for %%S in (abilities.sql) DO ECHO Importing %%S & %mysql% --host=%dbhost% --user=%dbuser% --password=%dbpass% --database=%database% < %%S
+for %%S in (*.sql) DO ECHO Importing %%S & %mysql% --host=%dbhost% --user=%dbuser% --password=%dbpass% --database=%database% < %%S
 
 pause
 exit
