@@ -11,11 +11,9 @@ require("scripts/globals/quests");
 require("scripts/globals/titles");
 local ID = require("scripts/zones/Port_San_dOria/IDs");
 
-local quests =
-{
+local quests = dsp.quest.involvedQuests({
     require("scripts/quests/sandoria/the_brugaire_consortium")
-}
-quests = dsp.quest.involvedQuests(quests)
+})
 -----------------------------------
 
 function onTrade(player,npc,trade)

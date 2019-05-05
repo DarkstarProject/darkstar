@@ -98,7 +98,7 @@ thisQuest.stages =
             {
                 [2543] = function(player, option)
                     -- Shipilolo, fixes Broken Harpoon and advances quest
-                    if npcUtil.giveKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON) then
+                    if thisQuest.giveKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON) then
                         thisQuest.delKeyItem(player, dsp.ki.BROKEN_HARPOON)
                         return thisQuest.advanceStage(player)
                     end

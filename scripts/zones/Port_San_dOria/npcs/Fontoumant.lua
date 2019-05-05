@@ -9,11 +9,9 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 
-local quests =
-{
+local quests = dsp.quest.involvedQuests({
     require("scripts/quests/sandoria/the_brugaire_consortium")
-}
-quests = dsp.quest.involvedQuests(quests)
+})
 -----------------------------------
 
 function onTrade(player,npc,trade)

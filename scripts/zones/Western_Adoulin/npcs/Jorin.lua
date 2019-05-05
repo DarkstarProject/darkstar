@@ -6,11 +6,9 @@
 -----------------------------------
 require("scripts/globals/quests")
 
-local quests =
-{
+local quests = dsp.quest.involvedQuests({
     require("scripts/quests/adoulin/the_old_man_and_the_harpoon")
-}
-quests = dsp.quest.involvedQuests(quests)
+})
 -----------------------------------
 
 function onTrade(player,npc,trade)

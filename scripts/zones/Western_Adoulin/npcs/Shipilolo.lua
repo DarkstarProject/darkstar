@@ -7,14 +7,12 @@
 require("scripts/globals/missions")
 require("scripts/globals/quests")
 
-local quests =
-{
+local quests = dsp.quest.involvedQuests({
     require("scripts/quests/adoulin/a_certain_substitute_patrolman"),
     require("scripts/quests/adoulin/the_old_man_and_the_harpoon"),
     require("scripts/quests/adoulin/fertile_ground"),
     require("scripts/quests/adoulin/wayward_waypoints")
-}
-quests = dsp.quest.involvedQuests(quests)
+})
 -----------------------------------
 
 function onTrade(player,npc,trade)
