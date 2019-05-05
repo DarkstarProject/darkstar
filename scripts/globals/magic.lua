@@ -1125,27 +1125,32 @@ function doElementalNuke(caster, spell, target, spellParams)
     local V = 0;
     local M = 0;
 
-    if (USE_OLD_MAGIC_DAMAGE and spellParams.V ~= nil and spellParams.M ~= nil) then
-        V = spellParams.V; -- base value
-        M = spellParams.M; -- tier multiplier
-        local I = spellParams.I; -- inflection point
-        local cap = (I * 2) + V;
+    if USE_OLD_MAGIC_DAMAGE and spellParams.V ~= nil and spellParams.M ~= nil then
+        V = spellParams.V; -- Base value
+        M = spellParams.M; -- Tier multiplier
+        local I = spellParams.I; -- Inflection point
+        local cap = I * 2 + V; -- Base damage soft cap
 
-        if (dINT < 0) then 
-            DMG = V + dINT; -- when dINT is a penalty tier multiplier is always 1
+        if dINT < 0 then 
+            -- If dINT is a negative value the tier multiplier is always 1
+            DMG = V + dINT;
 
-            if (DMG <= 0) then
+            -- Check/ set lower limit of 0 damage for negative dINT
+            if DMG < 1 then
                 return 0;
             end			
 
-        elseif (dINT < I) then 
-            DMG = V + (dINT * M); -- if dINT > 0 but below inflection point
+        elseif dINT < I then 
+             -- If dINT > 0 but below inflection point I
+            DMG = V + dINT * M;
 
         else
-            DMG = V + (I + ((dINT - I) * (M / 2))); -- above inflection point additional dINT is half as effective
+             -- Above inflection point I additional dINT is only half as effective
+            DMG = V + I + ((dINT - I) * (M / 2));
         end
 
-        if (DMG > cap) then -- set cap on damage
+        -- Check/ set damage soft cap
+        if DMG > cap then
             DMG = cap; 
         end	
 
