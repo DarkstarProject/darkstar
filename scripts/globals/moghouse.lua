@@ -74,7 +74,7 @@ function moogleTrigger(player,npc)
             player:startEvent(30008)
 
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_AVAILABLE and homeNationFameLevel >= 5 and
-                player:getVar("[MS2]NextTally") <= os.time() then
+                giveMoogleABreak == QUEST_COMPLETED and player:getVar("[MS2]NextTally") <= os.time() then
             player:startEvent(30009,0,0,0,4,0,17402,615)
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
             player:startEvent(30010,0,0,0,0,0,17402,615)
@@ -82,7 +82,7 @@ function moogleTrigger(player,npc)
             player:startEvent(30012)
 
         elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_AVAILABLE and homeNationFameLevel >= 7 and
-                player:getVar("[MS3]NextTally") <= os.time() then
+                theMooglePicnic == QUEST_COMPLETED and player:getVar("[MS3]NextTally") <= os.time() then
             player:startEvent(30013,0,0,0,6,0,13593,12474)
         elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
             player:startEvent(30014,0,0,0,0,0,13593,12474)
