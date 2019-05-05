@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Bio IV
--- Deals dark damage that weakens an enemy's attacks and gradually reduces it's HP.
+-- Deals dark damage that weakens an enemy's attacks and gradually reduces its HP.
 -----------------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/status")
@@ -12,7 +12,6 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-
     local basedmg = caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 4
     local params = {}
     params.dmg = basedmg

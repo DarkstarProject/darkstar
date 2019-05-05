@@ -16,7 +16,6 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-
     local basedmg = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 4
     local params = {}
     params.dmg = basedmg

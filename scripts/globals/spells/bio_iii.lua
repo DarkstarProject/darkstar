@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Bio III
--- Deals dark damage that weakens an enemy's attacks and gradually reduces it's HP.
+-- Deals dark damage that weakens an enemy's attacks and gradually reduces its HP.
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Bio III value per point is '30' This is a constant set in the table 'merits'
 -----------------------------------------
@@ -14,7 +14,6 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-
     local basedmg = caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 4
     local params = {}
     params.dmg = basedmg
