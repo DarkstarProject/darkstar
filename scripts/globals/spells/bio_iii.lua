@@ -36,15 +36,15 @@ function onSpellCast(caster,target,spell)
     -- get the resisted damage
     dmg = dmg * resist
     -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg)
+    dmg = addBonuses(caster, spell, target, dmg)
     -- add in target adjustment
-    dmg = adjustForTarget(target,dmg,spell:getElement())
+    dmg = adjustForTarget(target, dmg, spell:getElement())
     -- add in final adjustments including the actual damage dealt
-    local final = finalMagicAdjustments(caster,target,spell,dmg)
+    local final = finalMagicAdjustments(caster, target, spell, dmg)
 
     -- calculate duration
     local duration = caster:getMerit(dsp.merit.BIO_III)
-    if (duration == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
+    if duration == 0 then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
         duration = 150
     end
 
@@ -55,12 +55,12 @@ function onSpellCast(caster,target,spell)
     local dotdmg = 4 + math.floor(caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 60)
 
     -- do it!
-    target:addStatusEffect(dsp.effect.BIO,dotdmg,3,duration,0, 20, 3)
+    target:addStatusEffect(dsp.effect.BIO, dotdmg, 3, duration, 0, 20, 3)
     spell:setMsg(dsp.msg.basic.MAGIC_DMG)
 
     -- try to kill same tier Dia (default behavior)
-    if (DIA_OVERWRITE == 1 and dia ~= nil) then
-        if (dia:getPower() <= 3) then
+    if DIA_OVERWRITE == 1 and dia ~= nil then
+        if dia:getPower() <= 3 then
             target:delStatusEffect(dsp.effect.DIA)
         end
     end

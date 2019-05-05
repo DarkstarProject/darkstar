@@ -60,8 +60,8 @@ function onSpellCast(caster, target, spell)
     spell:setMsg(dsp.msg.basic.MAGIC_DMG)
 
     -- try to kill same tier Bio (non-default behavior)
-    if (BIO_OVERWRITE == 1 and bio ~= nil) then
-        if (bio:getPower() <= 3) then
+    if BIO_OVERWRITE == 1 and bio ~= nil then
+        if bio:getPower() <= 3 then
             target:delStatusEffect(dsp.effect.BIO)
         end
     end
