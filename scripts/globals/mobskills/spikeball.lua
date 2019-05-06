@@ -18,11 +18,10 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2.8
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
-    local typeEffect = dsp.effect.POISON
     target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.PIERCING)
 
     if dmg > 0 then
-        MobStatusEffectMove(mob, target, typeEffect, 3, 3, 160)
+        MobStatusEffectMove(mob, target, dsp.effect.POISON, 3, 3, 160)
     end
 
     return dmg
