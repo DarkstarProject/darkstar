@@ -38,7 +38,7 @@ end
 function onItemUse(target)
     target:forMembersInRange(30, function(member)
         if not member:hasStatusEffect(dsp.effect.FOOD) and not member:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
-            member:addStatusEffect(dsp.effect.FOOD,0,0,10800,6538)
+            member:addStatusEffect(dsp.effect.FOOD,0,0,10800,6540)
         end
     end)
 end
