@@ -570,8 +570,18 @@ function getSpellBonusAcc(caster, target, spell, params)
     magicAccBonus = magicAccBonus + params.AMIIaccBonus;
 
     --add acc for skillchains
-    if (skillchainTier > 0) then
-        magicAccBonus = magicAccBonus + 25;
+    local casterLevel = caster:getMainLvl()
+    if skillchainTier > 0 then
+        local levelBonus = 0
+        if (casterLevel <= 25) then
+            levelBonus = 32;
+        elseif (casterLevel <= 50) then
+            levelBonus = 64;
+        else
+            levelBonus = 128;
+        end
+        return levelBonus
+        magicAccBonus = magicAccBonus + levelBonus
     end
 
     --Add acc for klimaform
@@ -1027,8 +1037,6 @@ end;
 
 function getHelixDuration(caster)
     --Dark Arts will further increase Helix duration, but testing is ongoing.
-
-    local casterLevel = caster:getMainLvl();
     local duration = 30; --fallthrough
     if (casterLevel <= 39) then
         duration = 30;
