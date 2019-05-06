@@ -3205,7 +3205,7 @@ namespace charutils
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
             uint32 baseexp = 0;
             auto exp = 0.f;
-            float permonstercap, monsterbonus = 1.0f;
+            float monsterbonus = 1.0f;
             bool chainactive = false;
             if (PMob->m_HiPCLvl > maxlevel) maxlevel = PMob->m_HiPCLvl;
             baseexp = GetRealExp(maxlevel, PMob->GetMLevel());
@@ -3276,19 +3276,17 @@ namespace charutils
                         exp *= monsterbonus;
                     }
 
-                    permonstercap = ((PMember->PParty != nullptr && pcinzone > 1) ? 1.35f : 1.15f);
-
                     if (PMember->GetMLevel() <= 50)
                     {
-                        if (exp > (200 * permonstercap)) exp = 200 * permonstercap;
+                        if (exp > 200) exp = 200;
                     }
                     else if (PMember->GetMLevel() <= 60)
                     {
-                        if (exp > (250 * permonstercap)) exp = 250 * permonstercap;
+                        if (exp > 250) exp = 250;
                     }
-                    else if (exp > (300 * permonstercap))
+                    else if (exp > 300)
                     {
-                        exp = 300 * permonstercap;
+                        exp = 300;
                     }
 
                     if (PMember->expChain.chainTime > gettick() || PMember->expChain.chainTime == 0)

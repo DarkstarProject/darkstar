@@ -709,6 +709,7 @@ INSERT INTO `item_latents` VALUES(14946, 346, 1, 13, 19);
 
 INSERT INTO `item_latents` VALUES(13143, 368, 25, 13, 2);
 INSERT INTO `item_latents` VALUES(13143, 368, 25, 13, 19);
+INSERT INTO `item_latents` VALUES(13143, 368, 25, 13, 193);
 
 INSERT INTO `item_latents` VALUES(15328, 370, 2, 13, 11);
 
@@ -3144,25 +3145,25 @@ INSERT INTO `item_latents` VALUES(15883, 14, 6, 58, 0); -- chr +6
 INSERT INTO `item_latents` VALUES(15692, 169, 12, 58, 0); -- storm crackows movement +12
 INSERT INTO `item_latents` VALUES(15774, 25, 10, 58, 0); -- Storm ring
 INSERT INTO `item_latents` VALUES(15968, 23, 10, 58, 0); -- storm loop
-INSERT INTO `item_latents` VALUES(15969, 5, 15, 58, 0); -- storm earring mp +15
+INSERT INTO `item_latents` VALUES(15969, 5, 15, 58, 0);  -- storm earring mp +15
 INSERT INTO `item_latents` VALUES(15969, 27, -4, 58, 0); -- enmity -4
 INSERT INTO `item_latents` VALUES(16165, 109, 5, 58, 0); -- storm shield shiel skill +5
 INSERT INTO `item_latents` VALUES(17661, 366, 4, 58, 0); -- storm scimatar dmg +4
-INSERT INTO `item_latents` VALUES(17661, 27, 5, 58, 0); -- enmity +5
+INSERT INTO `item_latents` VALUES(17661, 27, 5, 58, 0);  -- enmity +5
 INSERT INTO `item_latents` VALUES(17851, 442, 1, 58, 0); -- storm fife
 INSERT INTO `item_latents` VALUES(17950, 366, 4, 58, 0); -- Marid Ancus dmg +4
 INSERT INTO `item_latents` VALUES(17950, 391, 2, 58, 0); -- charm +2
 INSERT INTO `item_latents` VALUES(18064, 366, 2, 58, 0); -- Volunteer's Scythe dmg +2
-INSERT INTO `item_latents` VALUES(18064, 23, 6, 58, 0); -- att +6
+INSERT INTO `item_latents` VALUES(18064, 23, 6, 58, 0);  -- att +6
 INSERT INTO `item_latents` VALUES(18112, 366, 9, 58, 0); -- Puk Lance dmg +9
 INSERT INTO `item_latents` VALUES(18263, 366, 2, 58, 0); -- Imperial Bow dmg +2
 INSERT INTO `item_latents` VALUES(18263, 26, 10, 58, 0); -- ranged acc +10
 INSERT INTO `item_latents` VALUES(18364, 366, 2, 58, 0); -- Pahluwan Katars dmg +2
 INSERT INTO `item_latents` VALUES(18364, 291, 1, 58, 0); -- counter +1
 INSERT INTO `item_latents` VALUES(18387, 366, 3, 58, 0); -- Djinnbringer dmg +3
-INSERT INTO `item_latents` VALUES(18387, 25, 5, 58, 0); -- acc +5
+INSERT INTO `item_latents` VALUES(18387, 25, 5, 58, 0);  -- acc +5
 INSERT INTO `item_latents` VALUES(18407, 366, 2, 58, 0); -- Imperial Wand dmg +2
-INSERT INTO `item_latents` VALUES(18407, 5, 20, 58, 0); -- mp +20
+INSERT INTO `item_latents` VALUES(18407, 5, 20, 58, 0);  -- mp +20
 INSERT INTO `item_latents` VALUES(18407, 27, -3, 58, 0); -- enmity -3
 INSERT INTO `item_latents` VALUES(18416, 366, 4, 58, 0); -- Karasuageha dmg +4
 INSERT INTO `item_latents` VALUES(18416, 289, 1, 58, 0); -- subtle blow +1
@@ -3171,9 +3172,18 @@ INSERT INTO `item_latents` VALUES(18434, 73, 2, 58, 0);  -- store tp +2
 INSERT INTO `item_latents` VALUES(18484, 366, 5, 58, 0); -- Wamoura Axe dmg +5
 INSERT INTO `item_latents` VALUES(18484, 288, 1, 58, 0); -- double attack +1
 INSERT INTO `item_latents` VALUES(18582, 366, 1, 58, 0); -- Yigit Staff dmg +1
-INSERT INTO `item_latents` VALUES(18582, 6, 2, 58, 0); -- mp% +2
+INSERT INTO `item_latents` VALUES(18582, 6, 2, 58, 0);   -- mp% +2
 INSERT INTO `item_latents` VALUES(18684, 366, 2, 58, 0); -- Storm Zamburak dmg +2
 INSERT INTO `item_latents` VALUES(18684, 24, 10, 58, 0); -- ranged att +10
+-- INSERT INTO `item_latents` VALUES(21576, 160, -1, 13, ??); -- Bard's Knife: Song effects: Damage taken -1% - May need to check for all songs (All 30... song types...)
+-- INSERT INTO `item_latents` VALUES(21577, 160, -2, 13, ??); -- Bihu Knife: Song effects: Damage taken -2%
+-- INSERT INTO `item_latents` VALUES(21578, 160, -3, 13, ??); -- Barfawc: Song effects: Damage taken -3%
+-- INSERT INTO `item_latents` VALUES(21579, 160, -3, 13, ??); -- Commodore's Knife: "Phantom Roll" effect: Damage taken -2%
+-- INSERT INTO `item_latents` VALUES(21580, 160, -3, 13, ??); -- Lanun Knife: "Phantom Roll" effect: Damage taken -4%
+-- INSERT INTO `item_latents` VALUES(21581, 160, -3, 13, ??); -- Rostam: "Phantom Roll" effect: Damage taken -6%
+INSERT INTO `item_latents` VALUES(21661, 10, 5, 55, 0);       -- Rune Algol: Latent effect (MP>0): VIT+5
+-- INSERT INTO `item_latents` VALUES(21661, ??, 1, 55, 0);    -- Rune Algol: Latent effect (MP>0): Weapon skill damage +1%
+INSERT INTO `item_latents` VALUES(21661, 405, 3, 10, 0);      -- Rune Algol: Drains 3 MP/tic from player (while weapon is drawn).
 
 -- -------------------------------------------------------
 -- Dynamis Divergence gear-still need to add latents once a latent is made for Dynamis Divergence
@@ -3193,9 +3203,35 @@ INSERT INTO `item_latents` VALUES(18684, 24, 10, 58, 0); -- ranged att +10
 -- INSERT INTO `item_latents` VALUES(21525, 25, 40, ??, 0); -- Pitre Fists: Dynamis (D): Automaton: Accuracy+40
 -- INSERT INTO `item_latents` VALUES(21525, 26, 40, ??, 0); -- Pitre Fists: Dynamis (D): Automaton: Ranged Accuracy+40
 -- INSERT INTO `item_latents` VALUES(21525, 30, 40, ??, 0); -- Pitre Fists: Dynamis (D): Automaton: Magic Accuracy+40
+-- INSERT INTO `item_latents` VALUES(21573, 25, 10, ??, 0); -- Assassin's Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21573, 30, 10, ??, 0); -- Assassin's Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21574, 25, 10, ??, 0); -- Plunderer's Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21574, 30, 10, ??, 0); -- Plunderer's Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21576, 25, 10, ??, 0); -- Bard's Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21576, 30, 10, ??, 0); -- Bard's Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21577, 25, 10, ??, 0); -- Bihu Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21577, 30, 10, ??, 0); -- Bihu Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21579, 25, 10, ??, 0); -- Commodore's Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21579, 30, 10, ??, 0); -- Commodore's Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21580, 25, 10, ??, 0); -- Lanun Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21580, 30, 10, ??, 0); -- Lanun Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21582, 25, 10, ??, 0); -- Etoile Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21582, 30, 10, ??, 0); -- Etoile Knife: Dynamis (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21583, 25, 10, ??, 0); -- Horos Knife: Dynamis (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21583, 30, 10, ??, 0); -- Horos Knife: Dynamis (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21625, 25, 10, ??, 0); -- Duelist's Sword: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21625, 30, 10, ??, 0); -- Duelist's Sword: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21626, 25, 10, ??, 0); -- Vitiation Sword: (D): Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21626, 30, 10, ??, 0); -- Vitiation Sword: (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21628, 25, 10, ??, 0); -- Valor Sword: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21628, 30, 10, ??, 0); -- Valor Sword: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21629, 25, 10, ??, 0); -- Caballarius Sword: (D): Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21629, 30, 10, ??, 0); -- Caballarius Sword: (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21631, 25, 10, ??, 0); -- Mirage Sword: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21631, 30, 10, ??, 0); -- Mirage Sword: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21632, 25, 10, ??, 0); -- Luhlaza Sword: (D): Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21632, 30, 10, ??, 0); -- Luhlaza Sword: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21667, 25, 10, ??, 0); -- Futhark Claymore: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21667, 30, 10, ??, 0); -- Futhark Claymore: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21668, 25, 10, ??, 0); -- Peord Claymore: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21668, 30, 10, ??, 0); -- Peord Claymore: (D): Magic Accuracy+10

@@ -1730,7 +1730,9 @@ namespace battleutils
             validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
         }
 
-        if (validWeapon && PDefender->PAI->IsEngaged())
+        bool hasGuardSkillRank = (GetSkillRank(SKILL_GUARD, PDefender->GetMJob()) > 0 || GetSkillRank(SKILL_GUARD, PDefender->GetSJob()) > 0);
+
+        if (validWeapon && hasGuardSkillRank && PDefender->PAI->IsEngaged())
         {
             // assuming this is like parry
             float skill = (float)PDefender->GetSkill(SKILL_GUARD) + PDefender->getMod(Mod::GUARD);

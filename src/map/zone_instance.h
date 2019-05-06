@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 #include "zone.h"
 #include "instance.h"
 
-typedef std::vector<CInstance*> instanceList_t;
+typedef std::vector<std::unique_ptr<CInstance>> instanceList_t;
 
 class CZoneInstance : public CZone
 {

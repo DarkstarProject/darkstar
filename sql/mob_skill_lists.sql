@@ -1267,7 +1267,6 @@ INSERT INTO `mob_skill_lists` VALUES ('Kirin',281,797);
 INSERT INTO `mob_skill_lists` VALUES ('Kirin',281,798);
 INSERT INTO `mob_skill_lists` VALUES ('Kirin',281,799);
 INSERT INTO `mob_skill_lists` VALUES ('Kirin',281,800);
-INSERT INTO `mob_skill_lists` VALUES ('Kirin',281,801);
 INSERT INTO `mob_skill_lists` VALUES ('Kirin',281,802);
 INSERT INTO `mob_skill_lists` VALUES ('Kirin',281,803);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,783);
