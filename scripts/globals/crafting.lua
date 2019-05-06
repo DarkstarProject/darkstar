@@ -254,7 +254,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
     elseif (category == 2 or category == 1) then -- item
         local idx = bit.band(option, 3);
         local i = items[(category - 1) * 4 + idx];
-        local quantity = bit.rshift(option, 9);
+        local quantity = math.min(bit.rshift(option, 9), 12);
         local cost = quantity * i.cost;
         if (i and rank >= i.rank) then
             if (player:getCurrency(currency) >= cost) then
@@ -280,7 +280,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
         if (i and rank >= 3) then
             if (player:getCurrency(currency) >= cost) then
                 if (player:addItem(i.id, quantity)) then
-                    player:delCurrency(currency, math.min(cost, 2400));
+                    player:delCurrency(currency, cost);
                     player:messageSpecial(text.ITEM_OBTAINED, i.id);
                 else
                     player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, i.id);
