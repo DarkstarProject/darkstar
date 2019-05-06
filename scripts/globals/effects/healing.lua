@@ -16,7 +16,7 @@ function onEffectTick(target,effect)
 
     local healtime = effect:getTickCount()
 
-    if healtime > 1 then
+    if healtime > 2 then
         -- curse II also known as "zombie"
         if not(target:hasStatusEffect(dsp.effect.DISEASE)) and target:hasStatusEffect(dsp.effect.PLAGUE) == false and target:hasStatusEffect(dsp.effect.CURSE_II) == false then
             local healHP = 0
@@ -29,11 +29,8 @@ function onEffectTick(target,effect)
 
             target:addHP(healHP)
             target:updateEnmityFromCure(target, healHP)
+            target:addMP(12 + ((healtime - 2) * (1 + target:getMod(dsp.mod.CLEAR_MIND))) + target:getMod(dsp.mod.MPHEAL))
         end
-    end
-
-    if healtime > 2 then
-        target:addMP(12 + ((healtime - 2) * (1 + target:getMod(dsp.mod.CLEAR_MIND))) + target:getMod(dsp.mod.MPHEAL))
     end
 end
 
