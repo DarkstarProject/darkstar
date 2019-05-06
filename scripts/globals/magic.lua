@@ -569,19 +569,21 @@ function getSpellBonusAcc(caster, target, spell, params)
     --add acc for BLM AMII spells
     magicAccBonus = magicAccBonus + params.AMIIaccBonus;
 
-    --add acc for skillchains
+    -- Add acc for skillchains
     local casterLevel = caster:getMainLvl()
+
     if skillchainTier > 0 then
         local levelBonus = 0
-        if (casterLevel <= 25) then
-            levelBonus = 32;
-        elseif (casterLevel <= 50) then
-            levelBonus = 64;
+        if casterLevel < 26 then
+            levelBonus = 32
+        elseif casterLevel < 51 then
+            levelBonus = 64
         else
-            levelBonus = 128;
+            levelBonus = 128
         end
-        return levelBonus
+
         magicAccBonus = magicAccBonus + levelBonus
+        return levelBonus
     end
 
     --Add acc for klimaform
