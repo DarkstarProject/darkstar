@@ -280,7 +280,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
         if (i and rank >= 3) then
             if (player:getCurrency(currency) >= cost) then
                 if (player:addItem(i.id, quantity)) then
-                    player:delCurrency(currency, cost);
+                    player:delCurrency(currency, math.min(cost, 2400));
                     player:messageSpecial(text.ITEM_OBTAINED, i.id);
                 else
                     player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, i.id);
