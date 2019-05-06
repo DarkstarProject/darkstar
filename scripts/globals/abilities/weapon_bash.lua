@@ -38,4 +38,8 @@ function onUseAbility(player,target,ability)
     target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
     return damage
+
+	if damage > 0 and target(isAsleep) then
+	    target:wakeUp()
+	end
 end
