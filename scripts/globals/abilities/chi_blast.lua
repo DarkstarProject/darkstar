@@ -28,9 +28,10 @@ function onUseAbility(player,target,ability)
     target:updateClaim(player)
     target:updateEnmityFromDamage(player,dmg)
     player:delStatusEffect(dsp.effect.BOOST)
-    return dmg
 
 	if dmg > 0 and target(isAsleep) then
 	    target:wakeUp()
 	end
+
+    return dmg
 end

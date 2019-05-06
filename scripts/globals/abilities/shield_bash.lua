@@ -68,9 +68,10 @@ function onUseAbility(player, target, ability)
     target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
     ability:setMsg(dsp.msg.basic.JA_DAMAGE)
-    return damage
 
 	if damage > 0 and target(isAsleep) then
 	    target:wakeUp()
 	end
+
+    return damage
 end

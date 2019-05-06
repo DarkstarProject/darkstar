@@ -37,9 +37,10 @@ function onUseAbility(player,target,ability)
     local damage = math.floor(((darkKnightLvl + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH))
     target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
-    return damage
 
 	if damage > 0 and target(isAsleep) then
 	    target:wakeUp()
 	end
+
+    return damage
 end
