@@ -23473,7 +23473,7 @@ INSERT INTO `item_mods` VALUES (19022,2,20);
 INSERT INTO `item_mods` VALUES (19022,8,3);
 INSERT INTO `item_mods` VALUES (19023,5,20);
 INSERT INTO `item_mods` VALUES (19023,27,-2);
-INSERT INTO `item_mods` VALUES (19024,171,-3);    -- Sword Strap: Delay -3%
+INSERT INTO `item_mods` VALUES (19024,380,3);    -- Sword Strap: Delay -3%
 INSERT INTO `item_mods` VALUES (19025,288,2);
 INSERT INTO `item_mods` VALUES (19026,2,10);
 INSERT INTO `item_mods` VALUES (19026,5,10);
