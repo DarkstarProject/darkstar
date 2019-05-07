@@ -33,6 +33,7 @@ ENABLE_FIELD_MANUALS  = 1; -- Enables Fields of Valor
 ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
 REGIME_WAIT = 1; -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
 LOW_LEVEL_REGIME = 0; -- Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
+ENABLE_SURVIVAL_GUIDES = 1; -- Enables Survival Guides
 
 -- Setting to lock content more accurately to the content you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
