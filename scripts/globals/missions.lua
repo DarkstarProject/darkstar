@@ -897,7 +897,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA) == false) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
