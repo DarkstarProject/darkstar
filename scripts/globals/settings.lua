@@ -25,7 +25,6 @@ ENABLE_ASA     = 0;
 ENABLE_ABYSSEA = 0;
 ENABLE_SOA     = 0;
 ENABLE_ROV     = 0;
-
 ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
 
 -- FIELDS OF VALOR/Grounds of Valor settings
@@ -129,8 +128,7 @@ USE_OLD_CURE_FORMULA = false; -- true/false. if true, uses older cure formula (3
 USE_OLD_MAGIC_DAMAGE = false; -- true/false. if true, uses older magic damage formulas
 
 -- CELEBRATIONS
-EXPLORER_MOOGLE = 1; -- Enables Explorer Moogle teleports
-EXPLORER_MOOGLE_LEVELCAP = 10;
+EXPLORER_MOOGLE_LV = 10; -- Enables Explorer Moogle teleports and sets required level. Zero to disable.
 HALLOWEEN_2005 = 0; -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
 HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outside of normal times.
 
