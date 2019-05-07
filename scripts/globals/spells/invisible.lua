@@ -21,7 +21,7 @@ function onSpellCast(caster, target, spell)
 
         -- FIXME: Create mod and use that instead of an itemID check
         if (target:getEquipID(dsp.slot.BACK) == 13692) then -- skulker's cape
-            duration = duration * 1.5
+            duration = duration + 30
         end
 
         spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
