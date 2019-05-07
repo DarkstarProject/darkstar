@@ -13,7 +13,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     if player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED then
-        if KAPPA_AKUSO:isDead() and (KAPPA_BIWA:isDead() then
+        if KAPPA_AKUSO:isDead() and KAPPA_BIWA:isDead() then
             player:addVar("trueWillKilledNM", 1)
         end
     end
