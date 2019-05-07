@@ -11118,7 +11118,9 @@ INSERT INTO `item_mods` VALUES (13690,8,3);
 INSERT INTO `item_mods` VALUES (13690,23,15);
 INSERT INTO `item_mods` VALUES (13691,1,12);
 INSERT INTO `item_mods` VALUES (13691,10,4);
-INSERT INTO `item_mods` VALUES (13692,1,4);
+INSERT INTO `item_mods` VALUES (13692,1,4);       -- Skulker's Cape: DEF 4
+INSERT INTO `item_mods` VALUES (13692,946,30);    -- Sneak duration +30
+INSERT INTO `item_mods` VALUES (13692,947,30);    -- Invisible duration +30 
 INSERT INTO `item_mods` VALUES (13693,1,6);
 INSERT INTO `item_mods` VALUES (13694,1,6);
 INSERT INTO `item_mods` VALUES (13694,23,12);
