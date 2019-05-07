@@ -70,7 +70,7 @@ local ids =
     SEA                 = 56,
     HOME_NATION         = 57,
     CHOCO_UPPER_JEUNO   = 58,
-	ZVAHL_KEEP			= 59
+    ZVAHL_KEEP          = 59
 }
 dsp.teleport.id = ids
 
@@ -133,7 +133,7 @@ local destinations =
     [ids.MINESHAFT]             = { -93.657, -120.000, -583.561,   0,  13}, -- (R)
     [ids.WHITEGATE]             = {  27.424,   -6.000, -123.792, 192,  50}, -- {R}
     [ids.SEA]                   = { -31.800,    0.000, -618.700, 190,  33}, -- {R}
-	[ids.ZVAHL_KEEP]			= {-555.996,  -70.100,   59.989,   0, 162}
+    [ids.ZVAHL_KEEP]            = {-555.996,  -70.100,   59.989,   0, 162}
 }
 
 -- Use to call to player:getNationTeleport

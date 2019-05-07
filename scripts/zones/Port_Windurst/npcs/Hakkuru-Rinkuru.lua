@@ -44,12 +44,12 @@ function onTrigger(player,npc)
     pFame = player:getFameLevel(WINDURST);
 
         -- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
-    if (player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 0) then
         player:startEvent(456,0,248);
-    elseif (player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
         player:startEvent(457);
     -- Check if we are on Windurst Mission 1-1
-    elseif (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) then
         MissionStatus = player:getVar("MissionStatus");
         if (MissionStatus == 0) then
             player:startEvent(90);
@@ -58,7 +58,7 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 3) then
             player:startEvent(94,0,dsp.ki.CRACKED_MANA_ORBS); -- Finish Mission 1-1
         end
-    elseif (player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
         player:startEvent(147);
 -- Begin Making Amends Section
     elseif (MakingAmends == QUEST_AVAILABLE and pFame >= 2) then

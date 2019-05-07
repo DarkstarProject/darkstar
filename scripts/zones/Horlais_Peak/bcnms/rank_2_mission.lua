@@ -60,8 +60,8 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or
-        player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and
+        if ((player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2 or
+        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) and
         player:getVar("MissionStatus") == 9) then
             player:addKeyItem(dsp.ki.KINDRED_CREST);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_CREST);

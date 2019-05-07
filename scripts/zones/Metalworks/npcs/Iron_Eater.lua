@@ -29,11 +29,11 @@ function onTrigger(player,npc)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (currentMission == THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
+    elseif (currentMission == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
         player:startEvent(715)
-    elseif (currentMission == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 0) then
         player:startEvent(780)
-    elseif (currentMission == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 2) then
+    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 2) then
         player:startEvent(782)
     elseif (player:getVar("Flagbastok") == 1) then
         if (player:getFreeSlotsCount() == 0) then
@@ -43,13 +43,13 @@ function onTrigger(player,npc)
             player:addItem(182)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
-    elseif (currentMission == THE_FOUR_MUSKETEERS and missionStatus == 1) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 1) then
         player:startEvent(716)
-    elseif (currentMission == THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
         player:startEvent(767) -- First cutscene of mission
-    elseif (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
         player:showText(npc, 8596) -- Dialogue after first cutscene
-    elseif (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
         player:startEvent(768) -- Cutscene on return from Quicksand Caves
     elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
         if (player:getVar("FiresOfDiscProg") == 1) then
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
         player:setVar("BASTOK92",0)
-        player:completeMission(BASTOK,WHERE_TWO_PATHS_CONVERGE)
+        player:completeMission(BASTOK,dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000)

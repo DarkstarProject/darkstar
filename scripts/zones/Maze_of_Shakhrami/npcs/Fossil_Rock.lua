@@ -21,7 +21,7 @@ function onTrigger(player, npc)
     local randfoss = player:getVar("MissionStatus_randfoss")
 
     -- LOST FOR WORDS
-    if offset <= 6 and windyMiss == LOST_FOR_WORDS and (windyStat == 2 or windyStat == 3) then
+    if offset <= 6 and windyMiss == dsp.mission.id.windurst.LOST_FOR_WORDS and (windyStat == 2 or windyStat == 3) then
         if randfoss == 0 or randfoss > 6 then -- account for values higher than 6 from defunct code
             randfoss = math.random(1, 6)
             player:setVar("MissionStatus_randfoss", randfoss)

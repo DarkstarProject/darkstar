@@ -19,9 +19,9 @@ function onTrigger(player, npc)
     local npcid = npc:getID()
     local event = nil
 
-    if player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1 then
         event = npcid == ID.npc.RUNIC_PORTAL_AZOUPH and 124 or 125
-    elseif player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES then
+    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
         local runicPortal = npcid == ID.npc.RUNIC_PORTAL_AZOUPH and dsp.teleport.runic_portal.AZOUPH or dsp.teleport.runic_portal.DVUCCA
         if dsp.besieged.hasRunicPortal(player, runicPortal) then
             event = npcid == ID.npc.RUNIC_PORTAL_AZOUPH and 131 or 134

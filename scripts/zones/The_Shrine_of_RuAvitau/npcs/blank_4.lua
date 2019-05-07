@@ -37,11 +37,11 @@ function onTrigger(player,npc)
         end
     end
 
-    if (CurrentZM == ARK_ANGELS and ZMProgress == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- First step in Ark Angels
+    if (CurrentZM == dsp.mission.id.zilart.ARK_ANGELS and ZMProgress == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- First step in Ark Angels
         player:startEvent(53,917,1408,1550);
-    elseif (CurrentZM == ARK_ANGELS and ZMProgress == 1 and DivineStatus < 2) then -- Reminder CS/starts Divine Might (per Wiki)
+    elseif (CurrentZM == dsp.mission.id.zilart.ARK_ANGELS and ZMProgress == 1 and DivineStatus < 2) then -- Reminder CS/starts Divine Might (per Wiki)
         player:startEvent(54,917,1408,1550);
-    elseif (CurrentZM >= ARK_ANGELS and DMStatus == QUEST_AVAILABLE and AAKeyitems > 0) then -- Alternative cutscene for those that have done one or more AA fight
+    elseif (CurrentZM >= dsp.mission.id.zilart.ARK_ANGELS and DMStatus == QUEST_AVAILABLE and AAKeyitems > 0) then -- Alternative cutscene for those that have done one or more AA fight
         player:startEvent(56,917,1408,1550);
     elseif (DMStatus == QUEST_ACCEPTED and DivineStatus >= 2) then -- CS when player has completed Divine might, award earring
         player:startEvent(55,14739,14740,14741,14742,14743);

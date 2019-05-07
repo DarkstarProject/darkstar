@@ -1464,9 +1464,9 @@ INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 362, 1, 255); -- Bindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 366, 1, 255); -- Graviga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
-INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255);  -- Drown
+INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255); -- Drown
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,201,1,255); -- Waterga III
-INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,362,1,255); -- Bindaga
+INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,361,1,255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,214,1,255); -- Flood
 INSERT INTO `mob_spell_lists` VALUES ('Iratham_HP_50to100', 153, 176, 1, 255); -- Firaga 3 (Only used when over 50% HP)
 INSERT INTO `mob_spell_lists` VALUES ('Iratham_HP_50to100', 153, 177, 1, 255); -- Firaga 4 (Only used when over 50% HP)

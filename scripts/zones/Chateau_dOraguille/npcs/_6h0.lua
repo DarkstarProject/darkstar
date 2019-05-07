@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
-    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.INFILTRATE_DAVOI);
 
     local Wait1DayRanperre = player:getVar("Wait1DayForRanperre_date");
     local osdate = tonumber(os.date("%j"));
@@ -33,19 +33,19 @@ function onTrigger(player,npc)
         player:startEvent(90);
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(89);
-    elseif (currentMission == INFILTRATE_DAVOI and infiltrateDavoi == false and MissionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and infiltrateDavoi == false and MissionStatus == 0) then
         player:startEvent(553,0,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
-    elseif (currentMission == INFILTRATE_DAVOI and MissionStatus == 4) then
+    elseif (currentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and MissionStatus == 4) then
         player:startEvent(554,0,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
-    elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 1) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_SHADOW_LORD and MissionStatus == 1) then
         player:startEvent(547);
-    elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 0) then
         player:startEvent(81);
-    elseif (CurrentMission == RANPERRE_S_FINAL_REST and MissionStatus == 4 and Wait1DayRanperre ~= osdate) then -- Ready now.
+    elseif (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 4 and Wait1DayRanperre ~= osdate) then -- Ready now.
         player:startEvent(21);
-    elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
+    elseif (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 7) then
         player:startEvent(21);
-    elseif (player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
         player:startEvent(63);
     else
         player:startEvent(522);

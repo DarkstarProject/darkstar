@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == PUPPET_IN_PERIL and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PUPPET_IN_PERIL and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(4);
     elseif (EventTriggerBCNM(player,npc)) then
         return;

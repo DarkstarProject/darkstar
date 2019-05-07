@@ -47,14 +47,14 @@ function onZoneIn(player,prevZone)
     -- RDM AF3 CS
     if (player:getVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 49;
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
         player:setVar("EMERALD_WATERS_Status",2);
         cs = 14;
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
         cs = 1;
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
         cs = 0;
-    elseif (player:hasCompletedMission(SANDORIA,COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
         cs = 16;
     end
     return cs;

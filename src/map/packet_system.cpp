@@ -5349,6 +5349,8 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
             PChar->pushPacket(new CInventorySizePacket(PChar));
+
+            luautils::OnFurniturePlaced(PChar, PItem);
         }
         PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
         PChar->pushPacket(new CInventoryFinishPacket());
@@ -5423,6 +5425,8 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->getStorage(LOC_STORAGE)->AddBuff(-(int8)PItem->getStorage());
 
                 PChar->pushPacket(new CInventorySizePacket(PChar));
+
+                luautils::OnFurnitureRemoved(PChar, PItem);
             }
             PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, PItem->getSlotID()));
             PChar->pushPacket(new CInventoryFinishPacket());

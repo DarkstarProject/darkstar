@@ -136,7 +136,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     if ((missChance <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(dsp.mod.ZANSHIN)/100) and
             not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.ALL_MISS) ) then
         if not shadowAbsorb(target) then
-            if (params.canCrit or isSneakValid or isAssassinValid) then
+            if (params.canCrit or isSneakValid or isAssassinValid or hasMightyStrikes) then
                 local critchance = math.random()
                 if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
                     local cpdif = generatePdif (ccritratio[1], ccritratio[2], true)

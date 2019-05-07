@@ -52,7 +52,7 @@ function onTrigger(player,npc)
         player:startEvent(69) -- closing cutscene
 
     -- BEGINNINGS
-    elseif anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES
+    elseif anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES
             and player:getMainJob() == dsp.job.BLU and player:getMainLvl() >= ADVANCED_JOB_LEVEL then
         if not divinationReady then
             player:startEvent(63)

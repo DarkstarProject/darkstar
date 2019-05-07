@@ -28,9 +28,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) ==A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(86); --COP event
-    elseif (player:getCurrentMission(COP) ==TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus")==1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus")==1) then
         player:startEvent(22); --COP event
     elseif (player:getVar("BeatAroundTheBushin") == 1) then
         player:startEvent(155); -- Start Quest "Beat around the Bushin"
@@ -50,8 +50,8 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",1);
         player:startEvent(9);
     elseif (csid == 22 ) then
-        player:completeMission(COP,TENDING_AGED_WOUNDS);
-        player:addMission(COP,DARKNESS_NAMED);
+        player:completeMission(COP,dsp.mission.id.cop.TENDING_AGED_WOUNDS);
+        player:addMission(COP,dsp.mission.id.cop.DARKNESS_NAMED);
         player:setVar("PromathiaStatus",0);
         player:startEvent(10);
     elseif (csid == 155) then

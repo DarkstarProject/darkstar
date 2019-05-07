@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) then
         player:setLocalVar("theblackcoffinfight",1)
         player:startEvent(221, 53, -6, 0, 99, 6, 0)
     elseif player:hasKeyItem(dsp.ki.LIFE_FLOAT) and player:getVar("AgainstAllOdds") == 2 then

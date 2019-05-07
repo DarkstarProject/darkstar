@@ -36,7 +36,7 @@ function onZoneIn(player,prevZone)
     if prevZone == dsp.zone.PASHHOW_MARSHLANDS then
         if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 100 then
             cs = 121
-        elseif player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1 then
+        elseif player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1 then
             cs = 120
         elseif player:getMainJob() == dsp.job.DRK and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_AVAILABLE then
             cs = 122

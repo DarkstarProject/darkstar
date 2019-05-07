@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 2) then
         player:startEvent(36);
     else
         player:messageSpecial(ID.text.NOTHING_OUT_HERE);

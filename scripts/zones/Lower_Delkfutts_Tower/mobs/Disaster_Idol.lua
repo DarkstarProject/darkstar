@@ -25,7 +25,7 @@ function onMobFight(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 6 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 6 then
         player:setVar("COP_Tenzen_s_Path", 7)
     end
 end

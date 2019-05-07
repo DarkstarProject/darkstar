@@ -53,9 +53,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(113);
-    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_AVAILABLE and player:getCurrentMission(COP) >= THE_MOTHERCRYSTALS) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_AVAILABLE and player:getCurrentMission(COP) >= dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES);
         player:startEvent(114);
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) >= QUEST_ACCEPTED) then

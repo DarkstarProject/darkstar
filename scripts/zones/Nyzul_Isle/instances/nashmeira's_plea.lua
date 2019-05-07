@@ -52,7 +52,7 @@ function onInstanceComplete(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        if (v:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and v:getVar("AhtUrganStatus") == 1) then
+        if (v:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and v:getVar("AhtUrganStatus") == 1) then
             v:setVar("AhtUrganStatus", 2);
         end
 

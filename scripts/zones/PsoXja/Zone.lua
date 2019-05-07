@@ -33,9 +33,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-29.956,-1.903,212.521,188);
     end
 
-    if (player:getXPos() == -300 and player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 2) then
+    if (player:getXPos() == -300 and player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 2) then
         cs = 1; -- COP event
-    elseif (player:getXPos() == 220 and player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
+    elseif (player:getXPos() == 220 and player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
         cs = 4;
     end
 
