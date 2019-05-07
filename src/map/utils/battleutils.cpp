@@ -2329,7 +2329,7 @@ namespace battleutils
 
         if (PAttacker->objtype == TYPE_PC)
         {
-            ratioCap = 2.25f;
+            ratioCap = isCritical ? 3 : 2.25f;
         }
         if (PAttacker->objtype == TYPE_MOB)
         {
