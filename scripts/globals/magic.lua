@@ -583,7 +583,7 @@ function getSpellBonusAcc(caster, target, spell, params)
         end
 
         magicAccBonus = magicAccBonus + levelBonus
-        return levelBonus
+        return magicAccBonus
     end
 
     --Add acc for klimaform
