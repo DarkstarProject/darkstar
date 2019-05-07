@@ -105,7 +105,7 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         else
             -- e.g. monsters healing themselves.
-            if (USE_OLD_CURE_FORMULA == true) then
+            if OLDSCHOOL_ENABLED then
                 basecure = getBaseCureOld(power,divisor,constant)
             else
                 basecure = getBaseCure(power,divisor,constant,basepower)

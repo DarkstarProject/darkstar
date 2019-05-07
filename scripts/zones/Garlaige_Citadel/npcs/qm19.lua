@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (OldSchoolG1 == false) then
+    if not OLDSCHOOL_ENABLED then
         if (player:hasItem(1090) == false and player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT2) == false
         and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
             player:addKeyItem(dsp.ki.BOMB_COAL_FRAGMENT2);

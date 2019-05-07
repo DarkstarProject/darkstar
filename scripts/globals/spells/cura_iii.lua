@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
     local final = 0
 
     local minCure = 130
-    if (USE_OLD_CURE_FORMULA == true) then
+    if OLDSCHOOL_ENABLED then
         power = getCurePowerOld(caster)
         divisor = 1
         constant = 70
@@ -65,7 +65,7 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    if (USE_OLD_CURE_FORMULA == true) then
+    if OLDSCHOOL_ENABLED then
         basecure = getBaseCureOld(power,divisor,constant)
     else
         basecure = getBaseCure(power,divisor,constant,basepower)
