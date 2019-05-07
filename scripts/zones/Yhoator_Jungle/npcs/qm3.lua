@@ -14,12 +14,10 @@ end
 
 function onTrigger(player,npc)
     if player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) then
-        if player:getVar("trueWillKilledNM") >= 1 then
-            if GetMobByID(ID.mob.KAPPA_AKUSO):isDead() or GetMobByID(ID.mob.KAPPA_BONZE):isDead() or GetMobByID(ID.mob.KAPPA_BIWA):isDead() then
-                player:addKeyItem(dsp.ki.OLD_TRICK_BOX)
-                player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_TRICK_BOX)
-                player:setVar("trueWillKilledNM",0)
-            end
+        if player:getVar("trueWillKilledNM") > 0 then
+            player:addKeyItem(dsp.ki.OLD_TRICK_BOX)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_TRICK_BOX)
+            player:setVar("trueWillKilledNM", 0)
         else
             SpawnMob(ID.mob.KAPPA_AKUSO):updateClaim(player)
             SpawnMob(ID.mob.KAPPA_BONZE):updateClaim(player)
