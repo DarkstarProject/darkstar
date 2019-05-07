@@ -581,7 +581,6 @@ function getSpellBonusAcc(caster, target, spell, params)
         else
             levelBonus = 128
         end
-
         magicAccBonus = magicAccBonus + levelBonus
         return magicAccBonus
     end
@@ -1039,6 +1038,8 @@ end;
 
 function getHelixDuration(caster)
     --Dark Arts will further increase Helix duration, but testing is ongoing.
+
+    local casterLevel = caster:getMainLvl();
     local duration = 30; --fallthrough
     if (casterLevel <= 39) then
         duration = 30;
