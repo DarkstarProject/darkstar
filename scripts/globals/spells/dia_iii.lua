@@ -51,19 +51,9 @@ function onSpellCast(caster, target, spell)
         duration = 150
     end
 
-    -- Check for Bio
-    local bio = target:getStatusEffect(dsp.effect.BIO)
-
     -- Do it!
     target:addStatusEffect(dsp.effect.DIA, 3 + dotBonus, 3, duration, 0, 20, 3)
     spell:setMsg(dsp.msg.basic.MAGIC_DMG)
-
-    -- Try to kill same tier Bio (non-default behavior)
-    if BIO_OVERWRITE == 1 and bio ~= nil then
-        if bio:getPower() <= 3 then
-            target:delStatusEffect(dsp.effect.BIO)
-        end
-    end
 
     return final
 end

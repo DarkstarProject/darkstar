@@ -21,7 +21,7 @@ function onMobDeath(mob, player, isKiller)
     if OldSchoolG2 then
         -- show ??? for desired duration
         -- notify people on the quest who need the KI
-        GetNPCByID(ID.npc.BOREAL_TIGER_QM):showNPC(FrigiciteDuration)
+        GetNPCByID(ID.npc.BOREAL_TIGER_QM):showNPC(30)
         if player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.ROUND_FRIGICITE) then
             player:messageSpecial(ID.text.BLOCKS_OF_ICE)
         end

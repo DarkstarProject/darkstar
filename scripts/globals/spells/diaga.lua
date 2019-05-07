@@ -45,19 +45,9 @@ function onSpellCast(caster, target, spell)
     local duration = calculateDuration(60, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     local dotBonus = caster:getMod(dsp.mod.DIA_DOT) -- Dia Wand
 
-    -- Check for Bio
-    local bio = target:getStatusEffect(dsp.effect.BIO)
-
     -- Do it!
     target:addStatusEffect(dsp.effect.DIA, 1 + dotBonus, 3, duration, 0, 10, 1)
     spell:setMsg(dsp.msg.basic.MAGIC_DMG)
-
-    -- Try to kill same tier Bio (non-default behavior)
-    if BIO_OVERWRITE == 1 and bio ~= nil then
-        if bio:getPower() == 1 then
-            target:delStatusEffect(dsp.effect.BIO)
-        end
-    end
 
     return final
 end

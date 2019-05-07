@@ -54,8 +54,8 @@ function onSpellCast(caster,target,spell)
     target:addStatusEffect(dsp.effect.BIO, dotdmg, 3, duration, 0, 10, 1)
     spell:setMsg(dsp.msg.basic.MAGIC_DMG)
 
-    -- Try to kill same tier Dia (default behavior)
-    if DIA_OVERWRITE == 1 and dia ~= nil then
+    -- Try to kill same tier Dia
+    if dia ~= nil then
         if dia:getPower() == 1 then
             target:delStatusEffect(dsp.effect.DIA)
         end
