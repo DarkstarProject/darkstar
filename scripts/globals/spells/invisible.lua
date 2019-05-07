@@ -18,8 +18,8 @@ function onSpellCast(caster, target, spell)
 
         local duration = calculateDuration(math.random(420, 540), spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
-		duration = duration + target:getMod(dsp.mod.INVISIBLE_DURATION)
-		
+        duration = duration + target:getMod(dsp.mod.INVISIBLE_DURATION)
+	
         duration = calculateDurationForLvl(duration, 20, target:getMainLvl())
 
         spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
