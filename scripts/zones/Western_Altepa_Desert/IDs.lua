@@ -29,6 +29,7 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
         FOUND_ALL_FRAGS            = 7348, -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT            = 7349, -- It is an ancient Zilart monument.
         SENSE_OMINOUS_PRESENCE     = 7395, -- You sense an ominous presence...
+        SOMETHING_IS_BURIED_HERE   = 7413, -- It looks like something is buried here. If you had <item> you could dig it up.
         REGIME_REGISTERED          = 9812, -- New training regime registered!
     },
     mob =
