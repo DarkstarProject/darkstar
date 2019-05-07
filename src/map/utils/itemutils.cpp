@@ -321,7 +321,7 @@ namespace itemutils
                 "p.element "        // 38
             "FROM item_basic AS b "
             "LEFT JOIN item_usable AS u USING (itemId) "
-            "LEFT JOIN item_equip  AS a USING (itemId) "
+            "LEFT JOIN item_equipment  AS a USING (itemId) "
             "LEFT JOIN item_weapon AS w USING (itemId) "
             "LEFT JOIN item_furnishing AS f USING (itemId) "
             "LEFT JOIN item_puppet AS p USING (itemId) "
@@ -406,7 +406,7 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equip USING (itemId))");
+        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -423,7 +423,7 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equip USING (itemId))");
+        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -441,7 +441,7 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equip USING (itemId))");
+        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
