@@ -16,9 +16,11 @@ end
 function onSpellCast(caster, target, spell)
     if not target:hasStatusEffect(dsp.effect.INVISIBLE) then
 
-        local duration = calculateDuration(math.random(42, 54) * 10, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+        local duration = calculateDuration(math.random(420, 540), spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
-        duration = calculateDurationForLvl(duration, 25, target:getMainLvl()) + player:getMod(dsp.mod.INVISIBLE_DURATION)
+		duration = duration + target:getMod(dsp.mod.INVISIBLE_DURATION)
+		
+        duration = calculateDurationForLvl(duration, 20, target:getMainLvl())
 
         spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
         target:addStatusEffect(dsp.effect.INVISIBLE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER))
