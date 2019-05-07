@@ -3,6 +3,7 @@
 --   NM: Kappa Bonze
 -- Involved in Quest: True will
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/quests")
 -----------------------------------
 
