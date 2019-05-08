@@ -814,10 +814,6 @@ void SetupDynamisMob(CMobEntity* PMob)
     PMob->SetDespawnTime(0s);
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 
-    // do not roam around
-    PMob->m_roamFlags |= ROAMFLAG_EVENT;
-    PMob->m_maxRoamDistance = 0.5f;
-
     // job resist traits are much more powerful in dynamis
     // according to wiki
     for(auto&& PTrait : PMob->TraitList)

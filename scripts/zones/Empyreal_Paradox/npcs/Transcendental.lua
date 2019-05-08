@@ -10,7 +10,7 @@ require("scripts/globals/bcnm");
 
 function onTrade(player,npc,trade)
     
-    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
+    if (TradeBCNM(player,npc,trade)) then
         return;
     end
 
@@ -25,15 +25,12 @@ function onTrigger(player,npc)
     end
 end;
 
-function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
-    
-    EventUpdateBCNM(player,csid,option)
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 -----------------------------------
--- onEventFinish Action
+-- onEventFinish Action 
 -----------------------------------
 
 function onEventFinish(player,csid,option)
@@ -44,5 +41,4 @@ function onEventFinish(player,csid,option)
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end
-
 end;

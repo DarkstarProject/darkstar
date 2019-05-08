@@ -508,35 +508,14 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Handles loot from BCNM chests and other NPCs that drop things into   *
+    *  Handles loot from NPCs that drop things into                         *
     *  the loot pool instead of adding them directly to the inventory       *
     *                                                                       *
     ************************************************************************/
 
     void LoadLootList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
 
-        if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-        {
-            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                uint16 LootID  = (uint16)Sql_GetUIntData(SqlHandle,0);
-
-                if (g_pLootList[LootID] == 0)
-                {
-                    g_pLootList[LootID] = new LootList_t;
-                }
-
-                LootItem_t LootItem;
-
-                LootItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
-                LootItem.Rolls = (uint16)Sql_GetIntData(SqlHandle,2);
-                LootItem.LootGroupId = (uint8)Sql_GetIntData(SqlHandle,3);
-
-                g_pLootList[LootID]->push_back(LootItem);
-            }
-        }
     }
 
     /************************************************************************

@@ -11,7 +11,6 @@ require("scripts/globals/dynamis");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -19,7 +18,6 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-    dynamis.spawnGroup(mob, ValkurmOrcishList);
 end;
 
 

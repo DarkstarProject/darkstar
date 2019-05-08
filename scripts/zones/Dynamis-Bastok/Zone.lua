@@ -8,6 +8,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
+    SetServerVariable("[DynaBastok]UniqueID", 0);
 end;
 
 function onConquestUpdate(zone, updatetype)
@@ -23,19 +24,19 @@ function onZoneIn(player,prevZone)
         -- add player to the run if they entered via markings, or if they reconnected to a run they were previously in
         -- gms will be automatically registered
         if player:getVar("enteringDynamis") == 1 or player:getVar("DynamisID") == GetServerVariable("[DynaBastok]UniqueID") or player:getGMLevel() > 0 then
-            inst = player:addPlayerToDynamis(1280);
+            inst = player:addPlayerToBattlefield(1);
         end
     else
         -- no run yet in progress
         -- register run by player if they entered via markings
         -- gms will be automatically registered
         if player:getVar("enteringDynamis") == 1 or player:getGMLevel() > 0 then
-            inst = player:bcnmRegister(1280);
+            inst = player:registerBattlefield(1, 1280);
         end
     end
 
     if inst == 1 then
-        player:bcnmEnter(1280);
+        player:bcnmEnter(1);
         cs = -1;
         if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
             player:setPos(116.482,0.994,-72.121,128);
