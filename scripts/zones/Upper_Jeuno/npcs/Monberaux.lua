@@ -85,7 +85,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ENVELOPE_FROM_MONBERAUX);
     elseif (csid == 10) then
         player:setVar("PromathiaStatus",0);
-        player:addKeyItem(dsp.ki.MYSTERIOUS_AMULET_DRAINED);
+        player:addKeyItem(dsp.ki.MYSTERIOUS_AMULET);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MYSTERIOUS_AMULET);
         player:completeMission(COP,dsp.mission.id.cop.THE_RITES_OF_LIFE);
         player:addMission(COP,dsp.mission.id.cop.BELOW_THE_ARKS); -- start the mission 1-2
         player:startEvent(206); -- 206
