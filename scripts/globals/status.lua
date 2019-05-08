@@ -1525,12 +1525,13 @@ dsp.mod =
     SHIELD_DEF_BONUS                = 905, -- Shield Defense Bonus
     SNEAK_DURATION                  = 946, -- Additional duration in seconds 
     INVISIBLE_DURATION              = 947, -- Additional duration in seconds
+    BERSERK_EFFECT                  = 948, -- Conqueror Berserk Effect
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 948, -- stuff
     -- SPARE = 949, -- stuff
     -- SPARE = 950, -- stuff
+    -- SPARE = 951, -- stuff
 };
 
 dsp.latent =
