@@ -804,7 +804,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
@@ -996,7 +996,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) and player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
@@ -1039,7 +1039,7 @@ function getMissionMask(player)
         end
     end
 
-    if (player:getCurrentMission(nation) == dsp.mission.id.bastok.THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
+    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
         mission_mask = 2147483647 - 16384;
     else
         mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
