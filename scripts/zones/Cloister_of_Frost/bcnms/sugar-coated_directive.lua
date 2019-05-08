@@ -5,7 +5,7 @@
 ----------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/battlefield")
-require("scripts/globals/quests");
+require("scripts/globals/missions");
 ----------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

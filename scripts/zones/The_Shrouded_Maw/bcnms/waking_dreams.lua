@@ -17,7 +17,7 @@ end
 function onBattlefieldRegister(player,battlefield)
     -- "close" all floor tiles
     local inst = player:getBattlefield():getArea();
-    local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
+    local tile = ID.npc.DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
     for i = tile, tile + 7 do
         GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
             end
