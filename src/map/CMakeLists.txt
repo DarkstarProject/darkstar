@@ -48,6 +48,10 @@ if(UNIX)
         ${LUAJIT_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
     )
+
+    if(APPLE)
+        target_link_options(DSGame-server PUBLIC -pagezero_size 10000 -image_base 100000000)
+    endif()
 else()
     target_include_directories(DSGame-server PRIVATE
         ../common
