@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Giddeus/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(WINDURST,WATER_WAY_TO_GO) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WATER_WAY_TO_GO) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(504,1) and trade:getItemCount() == 1) then
             player:startEvent(55);
         end
@@ -30,4 +30,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.ITEM_OBTAINED,4351);
     end
 end;
-

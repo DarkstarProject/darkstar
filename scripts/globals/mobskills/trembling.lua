@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 4
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,MOBPARAM_WIPE_SHADOWS)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,MOBPARAM_WIPE_SHADOWS)
    local dispelled = math.random(2,3)
 
    if (info.hitslanded ~= 0) then
@@ -32,6 +32,6 @@ function onMobWeaponSkill(target, mob, skill)
 
    -- TODO: Dispelled messages.  No examples of damage+dispel working to crib notes from.
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     return dmg
 end

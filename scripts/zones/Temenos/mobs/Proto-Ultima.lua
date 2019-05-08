@@ -22,7 +22,7 @@ function onMobFight(mob,target)
             if (phase == 4) then -- add Regain in final phase
                 if (mob:hasStatusEffect(dsp.effect.REGAIN) == false) then
                     mob:addStatusEffect(dsp.effect.REGAIN,7,3,0);
-                    mob:getStatusEffect(dsp.effect.REGAIN):setFlag(32);
+                    mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH);
                 end
             end
             mob:setLocalVar("battlePhase", phase); -- incrementing the phase here instead of in the Dissipation skill because stunning it prevents use.

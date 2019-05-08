@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(WINDURST, dsp.quest.id.windurst.I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1125,1) and trade:getItemCount() == 1 and trade:getGil() == 0 and player:getVar("I_CAN_HEAR_A_RAINBOW") == 127) then
             player:startEvent(124);
         end
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 0) then
         player:startEvent(203);
     end
 end;
@@ -31,7 +31,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 124) then
         player:tradeComplete();
-        player:completeQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
+        player:completeQuest(WINDURST, dsp.quest.id.windurst.I_CAN_HEAR_A_RAINBOW);
         player:addTitle(dsp.title.RAINBOW_WEAVER);
         player:unlockJob(dsp.job.SMN);
         player:addSpell(296);
@@ -43,6 +43,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_Tenzen_s_Path",1);
     end
 end;
-
-
-

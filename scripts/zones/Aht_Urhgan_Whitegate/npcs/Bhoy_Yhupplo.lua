@@ -8,13 +8,14 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/besieged")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local rank = getMercenaryRank(player)
+    local rank = dsp.besieged.getMercenaryRank(player)
     local haveimperialIDtag
     local assaultPoints = player:getAssaultPoint(ILRUSI_ASSAULT_POINT)
 

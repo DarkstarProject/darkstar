@@ -1,15 +1,16 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  MOB: Ix'aern (drk)
+--   NM: Ix'aern (drk)
 -- !pos -240 5.00 440 35
 -- !pos -280 5.00 240 35
 -- !pos -560 5.00 239 35
 -- !pos -600 5.00 440 35
 -----------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -44,8 +45,6 @@ function onMobInitialize(mob)
     end)
     mob:addListener("AERN_RERAISE", "IX_DRK_RERAISE", function(mob, timesReraised)
         mob:setLocalVar("AERN_RERAISES", timesReraised + 1);
-        mob:setLocalVar("bloodMode", 0);
-        mob:setLocalVar("bloodTime", os.time() + 120);
         mob:timer(5000, function(mob)
             mob:AnimationSub(1);
         end)
@@ -54,30 +53,23 @@ end;
 
 function onMobSpawn(mob)
     mob:AnimationSub(1);
-    mob:setMobMod(dsp.mobMod.SCRIPTED_2HOUR,1);
-end;
 
-function onMobEngaged(mob)
-    mob:setLocalVar("bloodMode", 0);
-    mob:setLocalVar("bloodTime", os.time() + 120);
-end;
-
-function onMobFight(mob)
-
-    -- blood weapon (uses every 2 minutes, lasts 30 seconds)
-    if (os.time() > mob:getLocalVar("bloodTime")) then
-        if (mob:getLocalVar("bloodMode") == 0) then
-            mob:setLocalVar("bloodMode", 1);
-            mob:setLocalVar("bloodTime", os.time() + 30);
-            mob:SetMagicCastingEnabled(false);
-            mob:useMobAbility(2249);
-        else
-            mob:setLocalVar("bloodMode", 0);
-            mob:setLocalVar("bloodTime", os.time() + 120);
-            mob:SetMagicCastingEnabled(true);
-        end;
-    end
-
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {
+                id = dsp.jsa.BLOOD_WEAPON_IXDRK,
+                hpp = math.random(90, 95),
+                cooldown = 120,
+                endCode = function(mob)
+                    mob:SetMagicCastingEnabled(false)
+                    mob:timer(30000, function(mob)
+                        mob:SetMagicCastingEnabled(true)
+                    end)
+                end,
+            }
+        }
+    })
 end;
 
 function onMobDeath(mob, player, isKiller)
@@ -85,5 +77,4 @@ end;
 
 function onMobDespawn(mob)
     mob:setLocalVar("AERN_RERAISES",0);
-    GetNPCByID(ID.npc.IXAERN_DRK_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

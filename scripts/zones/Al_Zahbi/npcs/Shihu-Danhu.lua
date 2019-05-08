@@ -8,24 +8,27 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/besieged")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end
+function onTrade(player, npc, trade)
+end;
 
-function onTrigger(player,npc)
-    if getAstralCandescence() == 1 then
+function onTrigger(player, npc)
+    if dsp.besieged.getAstralCandescence() == 1 then
         player:startEvent(103)
     else
-        player:messageSpecial(ID.text.NEED_ASTRAL_CANDESCENCE_BACK)
+        player:messageSpecial(ID.text.NEED_CANDESCENCE_BACK) -- Missing the denied due to lack of Astral Candescence message.
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 103 and option == 1 then
+        local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
         -- If you use TP, you need to wait 1 real day for using Kaduru TP
-        player:setVar("ShihuDanhu_TP_date",os.date("%j"))
+        player:setVar("ShihuDanhu_TP_date", os.date("%j"))
+        -- Update total number of Shihu-Danhu encounters.
+        player:setVar("ShihuDanhu_Encounters", (shihuDanhuEncounters + 1))
 
         -- Random TP positions
         -- Coordinates marked {R} have been obtained by packet capture from retail. Don't change them.

@@ -5,12 +5,6 @@
 require("scripts/globals/allyassist");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
-
 function onMobFight(mob,target)
     local assist = mob:getLocalVar("assist");
 
@@ -18,9 +12,6 @@ function onMobFight(mob,target)
         dsp.ally.startAssist(mob);
         mob:setLocalVar("assist", 1);
     end
-end;
-
-function onSpellPrecast(mob, spell)
 end;
 
 function onMobDeath(mob, player, isKiller)

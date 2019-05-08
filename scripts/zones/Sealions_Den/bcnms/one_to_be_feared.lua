@@ -3,7 +3,7 @@
 -- Name: one_to_be_feared
 -- bcnmID : 992
 -----------------------------------
-require("scripts/globals/missions");
+require("scripts/globals/missions")
 require("scripts/globals/battlefield")
 -----------------------------------
 --battlefield 1   !pos -780 -103 -90
@@ -47,26 +47,23 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==2) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
-            player:setVar("PromathiaStatus",0);
-            player:completeMission(COP,ONE_TO_BE_FEARED);
-            player:addMission(COP,CHAINS_AND_BONDS);
+            player:setVar("PromathiaStatus",0)
+            player:completeMission(COP,ONE_TO_BE_FEARED)
+            player:addMission(COP,CHAINS_AND_BONDS)
         else
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         end
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
-           player:startEvent(32002);
+           player:startEvent(32002)
     end
+end
 
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-    -- print("bc update csid "..csid.." and option "..option);
-end;
-
-function onEventFinish(player,csid,option)
-    -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 32001) then
-        player:addExp(1500);
-        player:setPos(438 ,0 ,-18 ,11 ,24);-- tp lufease
+function onEventFinish(player, csid, option)
+    if csid == 32001 then
+        player:addExp(1500)
+        player:setPos(438, 0, -18, 11, 24) -- Lufaise
     end
-end;
+end

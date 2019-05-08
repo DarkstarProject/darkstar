@@ -31,8 +31,6 @@ function onItemCheck(target, param, caster)
 end
 
 function onItemUse(target)
-    target:delStatusEffect(dsp.effect.SIGIL)
-    target:delStatusEffect(dsp.effect.SANCTION)
-    target:delStatusEffect(dsp.effect.SIGNET)
+    player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
     target:addStatusEffect(dsp.effect.SIGNET,0,0,18000)
 end

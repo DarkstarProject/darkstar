@@ -119,8 +119,8 @@ INSERT INTO `traits` VALUES (5,'magic atk. bonus',4,50,3,28,28,NULL,0);
 INSERT INTO `traits` VALUES (5,'magic atk. bonus',4,70,4,28,32,NULL,0);
 INSERT INTO `traits` VALUES (5,'magic atk. bonus',4,81,5,28,36,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (5,'magic atk. bonus',4,91,6,28,40,'ABYSSEA',0);
-INSERT INTO `traits` VALUES (5,'magic atk. bonus',5,20,1,28,20,'WOTG',0);
-INSERT INTO `traits` VALUES (5,'magic atk. bonus',5,40,2,28,24,'WOTG',0);
+INSERT INTO `traits` VALUES (5,'magic atk. bonus',5,20,1,28,20,NULL,0);
+INSERT INTO `traits` VALUES (5,'magic atk. bonus',5,40,2,28,24,NULL,0);
 INSERT INTO `traits` VALUES (5,'magic atk. bonus',5,86,3,28,28,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (6,'magic def. bonus',3,10,1,29,10,NULL,0);
 INSERT INTO `traits` VALUES (6,'magic def. bonus',3,30,2,29,12,NULL,0);
@@ -301,6 +301,7 @@ INSERT INTO `traits` VALUES (41,'arcana killer',8,86,2,232,10,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (42,'demon killer',12,40,1,234,8,NULL,0);
 INSERT INTO `traits` VALUES (42,'demon killer',12,86,2,234,10,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (43,'dragon killer',14,25,1,233,8,NULL,0);
+INSERT INTO `traits` VALUES (43,'dragon killer',14,86,1,233,10,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (48,'resist sleep',7,20,1,240,10,NULL,0);
 INSERT INTO `traits` VALUES (48,'resist sleep',7,40,2,240,15,NULL,0);
 INSERT INTO `traits` VALUES (48,'resist sleep',7,60,3,240,20,NULL,0);
@@ -605,7 +606,19 @@ INSERT INTO `traits` VALUES (127,'smite',8,35,2,898,38,'SOA',0);
 INSERT INTO `traits` VALUES (127,'smite',8,55,3,898,51,'SOA',0);
 INSERT INTO `traits` VALUES (127,'smite',8,75,4,898,64,'SOA',0);
 INSERT INTO `traits` VALUES (127,'smite',8,95,5,898,76,'SOA',0);
+INSERT INTO `traits` VALUES (127,'smite',14,40,1,898,25,'SOA',0);
+INSERT INTO `traits` VALUES (127,'smite',14,80,2,898,38,'SOA',0);
 INSERT INTO `traits` VALUES (127,'smite',18,60,1,898,25,'SOA',0);
+INSERT INTO `traits` VALUES (108,'conserve tp',14,45,1,944,15,'ABYSSEA',0); -- Conserve TP I, DRG45, 15%
+INSERT INTO `traits` VALUES (108,'conserve tp',19,77,1,944,15,'ABYSSEA',0); -- Conserve TP I, DNC77, 15%
+INSERT INTO `traits` VALUES (108,'conserve tp',11,80,1,944,15,'ABYSSEA',0); -- Conserve TP I, RNG80, 15%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,58,2,944,18,'ABYSSEA',0); -- Conserve TP II, DRG58, 18%
+INSERT INTO `traits` VALUES (108,'conserve tp',19,87,2,944,18,'ABYSSEA',0); -- Conserve TP II, DNC87, 18%
+INSERT INTO `traits` VALUES (108,'conserve tp',11,91,2,944,18,'ABYSSEA',0); -- Conserve TP II, RNG91, 18%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,71,3,944,21,'ABYSSEA',0); -- Conserve TP III, DRG71, 21%
+INSERT INTO `traits` VALUES (108,'conserve tp',19,97,3,944,21,'ABYSSEA',0); -- Conserve TP III, DNC97, 21%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,84,4,944,24,'ABYSSEA',0); -- Conserve TP IV, DRG84, 24%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,97,4,944,26,'ABYSSEA',0); -- Conserve TP V, DRG97, 26%
 /*!40000 ALTER TABLE `traits` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

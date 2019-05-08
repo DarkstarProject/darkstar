@@ -10,20 +10,20 @@ zones[dsp.zone.RUAUN_GARDENS] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED    = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        FULL_INVENTORY_AFTER_TRADE = 6385, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
-        ITEM_OBTAINED              = 6387, -- Obtained: <item>.
-        GIL_OBTAINED               = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED           = 6390, -- Obtained key item: <keyitem>.
-        ITEMS_OBTAINED             = 6396, -- You obtain <number> <item>!
-        NOTHING_OUT_OF_ORDINARY    = 6401, -- There is nothing out of the ordinary here.
-        FISHING_MESSAGE_OFFSET     = 7048, -- You can't fish here.
-        CONQUEST_BASE              = 7148, -- Tallying conquest results...
-        IT_IS_ALREADY_FUNCTIONING  = 7308, -- It is already functioning.
-        CHEST_UNLOCKED             = 7341, -- You unlock the chest!
-        SKY_GOD_OFFSET             = 7358, -- A strange insignia pointing north is carved into the wall.
-        REGIME_REGISTERED          = 9724, -- New training regime registered!
-        HOMEPOINT_SET              = 11645, -- Home point set!
+        ITEM_CANNOT_BE_OBTAINED    = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE = 6386, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+        ITEM_OBTAINED              = 6388, -- Obtained: <item>.
+        GIL_OBTAINED               = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED           = 6391, -- Obtained key item: <keyitem>.
+        ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
+        NOTHING_OUT_OF_ORDINARY    = 6402, -- There is nothing out of the ordinary here.
+        FISHING_MESSAGE_OFFSET     = 7049, -- You can't fish here.
+        CONQUEST_BASE              = 7149, -- Tallying conquest results...
+        IT_IS_ALREADY_FUNCTIONING  = 7309, -- It is already functioning.
+        CHEST_UNLOCKED             = 7343, -- You unlock the chest!
+        SKY_GOD_OFFSET             = 7360, -- A strange insignia pointing north is carved into the wall.
+        REGIME_REGISTERED          = 9726, -- New training regime registered!
+        HOMEPOINT_SET              = 11647, -- Home point set!
     },
     mob =
     {
@@ -54,7 +54,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
     },
     npc =
     {
-        RUAUN_PINCERSTONES =
+        PINCERSTONES =
         {
             [17310031] = 17310054, -- Main to Seriyu
             [17310033] = 17310055, -- Seriyu to Main
@@ -67,7 +67,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
             [17310047] = 17310066, -- Suzaku to Main
             [17310049] = 17310067, -- Main to Suzaku
         },
-        RUAUN_PORTALS      =
+        PORTALS      =
         {
             { coords = {  -3, -54, -583,    1, -50, -579}, event = 0       },
             { coords = { 147, -26, -449,  151, -22, -445}, event = 1       },

@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
+    troubleAtTheSluice = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
     NeutralizerKI = player:hasKeyItem(dsp.ki.NEUTRALIZER);
 
     if (troubleAtTheSluice == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
@@ -37,7 +37,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 57 and option == 0) then
-        player:addQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
         player:setVar("troubleAtTheSluiceVar",1);
     elseif (csid == 56) then
         if (player:getFreeSlotsCount() == 0) then
@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
             player:addItem(16706);
             player:messageSpecial(ID.text.ITEM_OBTAINED,16706); -- Heavy Axe
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
         end
     end
 

@@ -10,7 +10,6 @@ mixins =
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_ORC)
     mob:setLocalVar("dynamis_currency", 1452)
 end
 

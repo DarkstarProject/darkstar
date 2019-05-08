@@ -1,4 +1,8 @@
 -----------------------------------------
+-- Pileus Cell
+-- ID 5381
+-- Removes MND Down effect
+-----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
 
@@ -21,6 +25,5 @@ function onItemUse(target)
     if (newpower > 0) then
         target:addStatusEffectEx(dsp.effect.DEBILITATION, dsp.effect.DEBILITATION, newpower, 0, 0)
     end
-    target:messageText(target, 7224)
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 16)
 end
-

@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local unforgiven = player:getQuestStatus(OTHER_AREAS_LOG, UNFORGIVEN)
+    local unforgiven = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNFORGIVEN)
 
     if unforgiven == QUEST_AVAILABLE then
         player:startEvent(200) -- start quest
@@ -32,7 +32,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 200 then
-        player:addQuest(OTHER_AREAS_LOG, UNFORGIVEN)
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNFORGIVEN)
     elseif csid == 202 then
         player:setVar("UnforgivenVar", 1)
     end

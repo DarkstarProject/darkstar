@@ -6,6 +6,10 @@
 local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 -----------------------------------
 
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+end
+
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         local mobId = mob:getID();

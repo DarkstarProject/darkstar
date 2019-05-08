@@ -930,7 +930,6 @@ bool CMobController::Disengage()
         PMob->SetDespawnTime(std::chrono::seconds(PMob->getMobMod(MOBMOD_IDLE_DESPAWN)));
     }
 
-    PMob->delRageMode();
     PMob->m_OwnerID.clean();
     PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
     PMob->CallForHelp(false);
@@ -962,8 +961,14 @@ bool CMobController::Engage(uint16 targid)
 
 bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
 {
-    // don't aggro i'm neutral
-    if (!PMob->m_Aggro || PMob->m_neutral || PMob->isDead())
+    // Don't aggro I'm neutral
+    if ((PMob->getMobMod(MOBMOD_ALWAYS_AGGRO) == 0 && !PMob->m_Aggro) || PMob->m_neutral || PMob->isDead())
+    {
+        return false;
+    }
+
+    // Don't aggro I'm special
+    if (PMob->getMobMod(MOBMOD_NO_AGGRO) > 0)
     {
         return false;
     }
@@ -1005,7 +1010,7 @@ bool CMobController::CanMoveForward(float currentDistance)
         return false;
     }
 
-    if(PMob->getMobMod(MOBMOD_HP_STANDBACK) > 0 && currentDistance < 20 && PMob->GetHPP() >= PMob->getMobMod(MOBMOD_HP_STANDBACK))
+    if(PMob->getMobMod(MOBMOD_NO_STANDBACK) == 0 && PMob->getMobMod(MOBMOD_HP_STANDBACK) > 0 && currentDistance < 20 && PMob->GetHPP() >= PMob->getMobMod(MOBMOD_HP_STANDBACK))
     {
         // Excluding Nins, mobs should not standback if can't cast magic
         if (PMob->GetMJob() != JOB_NIN && PMob->SpellContainer->HasSpells() && !CanCastSpells())

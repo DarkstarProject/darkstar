@@ -100,17 +100,34 @@ void CAttack::SetCritical(bool value)
     {
         m_damageRatio = battleutils::GetRangedDamageRatio(m_attacker, m_victim, m_isCritical);
     }
-
     else
     {
-        m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
-    }
+        float attBonus = 0.f;
+        if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
+        {
+            if (CStatusEffect* footworkEffect = m_attacker->StatusEffectContainer->GetStatusEffect(EFFECT_FOOTWORK))
+            {
+                attBonus = footworkEffect->GetSubPower() / 256.f; // Mod is out of 256
+            }
+        }
 
+        m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, attBonus);
+    }
 }
 
 /************************************************************************
 *																		*
 *  Sets the guarded flag.												*
+*																		*
+************************************************************************/
+void CAttack::SetGuarded(bool isGuarded)
+{
+    m_isGuarded = isGuarded;
+}
+
+/************************************************************************
+*																		*
+*  Gets the guarded flag.												*
 *																		*
 ************************************************************************/
 bool CAttack::IsGuarded()
@@ -489,6 +506,12 @@ void CAttack::ProcessDamage()
     if (m_attacker->objtype == TYPE_PC)
     {
         m_damage = battleutils::doSoulEaterEffect((CCharEntity*)m_attacker, m_damage);
+    }
+
+    // Consume mana
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        m_damage = battleutils::doConsumeManaEffect((CCharEntity*)m_attacker, m_damage);
     }
 
     // Set attack type to Samba if the attack type is normal.  Don't overwrite other types.  Used for Samba double damage.

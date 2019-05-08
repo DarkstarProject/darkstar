@@ -110,7 +110,7 @@ namespace itemutils
 
     CItem* GetItem(uint16 ItemID)
     {
-        if( (ItemID == 0xFFFF) )
+        if (ItemID == 0xFFFF)
         {
             return new CItemCurrency(ItemID);
         }

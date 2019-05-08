@@ -40,6 +40,8 @@ This file is part of DarkStar-server source code.
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
 
+class CTrustEntity;
+
 struct jobs_t
 {
     uint32 unlocked;				// a bit field of the jobs unlocked. The bit indices are stored inside of of the JOBTYPE enumeration 
@@ -204,6 +206,8 @@ public:
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
 
+    std::vector<CTrustEntity*> PTrusts; // Active trusts
+
 
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
     // отображает более ранние миссии выплненными
@@ -262,7 +266,7 @@ public:
 
     uint32			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
     uint8			  m_LevelRestriction;			// ограничение уровня персонажа
-    uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
+    uint16            m_Costume;                     // карнавальный костюм персонажа (модель)
     uint16			  m_Monstrosity;				// Monstrosity model ID
     uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
@@ -314,6 +318,8 @@ public:
     void		ReloadPartyInc();
     void        ReloadPartyDec();
     bool        ReloadParty();
+    void        ClearTrusts();
+    void        RemoveTrust(CTrustEntity*);
 
     virtual void Tick(time_point) override;
     void        PostTick() override;
@@ -345,6 +351,7 @@ public:
     virtual bool OnAttackError(CAttackState&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
+    virtual void OnEngage(CAttackState&) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;

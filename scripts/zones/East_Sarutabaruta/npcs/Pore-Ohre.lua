@@ -15,7 +15,7 @@ end;
 function onTrigger(player,npc)
 
     -- Check if we are on Windurst Mission 1-2
-    if (player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER) then
         MissionStatus = player:getVar("MissionStatus");
         if (MissionStatus == 1) then
             player:startEvent(46);

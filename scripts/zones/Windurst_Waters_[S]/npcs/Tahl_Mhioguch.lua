@@ -1,22 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Tahl Mhioguch
+--  NPC: Tahl Mhioguch
 -- Type: Standard NPC
 -- !pos -64.907 -5.947 81.391 94
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(438);
-end;
+    player:startEvent(438)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

@@ -146,7 +146,7 @@ local function suppliesAvailableBitmask(player, nation)
 
     if mask ~= -1 and mask ~= 4294967295 then
         for i = 0, 18 do
-            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, DARKNESS_NAMED)) then
+            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED)) then
                 mask = mask + 2^(i + 5)
             end
         end
@@ -1043,17 +1043,16 @@ dsp.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
             u2 = 1
         end
 
-        if stock.rank ~= nil and stock.rank > player:getRank() then -- check player rank
-            u3 = 0
-        elseif guardNation ~= pNation and getNationRank(guardNation) <= pRank then -- buy from other nation, must be higher ranked
-            u3 = 0
-        elseif stock.place ~= nil and guardNation ~= pNation then -- buy from other nation, cannot buy items with nation rank requirement
-            u3 = 0
+        local rankCheck = true
+        if guardNation ~= dsp.nation.OTHER and guardNation ~= pNation and getNationRank(guardNation) <= pRank then -- buy from other nation, must be higher ranked
+            rankCheck = false
+        elseif guardNation ~= dsp.nation.OTHER and stock.place ~= nil and guardNation ~= pNation then -- buy from other nation, cannot buy items with nation rank requirement
+            rankCheck = false
         elseif stock.place ~= nil and pRank > stock.place then -- buy from own nation, check nation rank
-            u3 = 0
+            rankCheck = false
         end
 
-        if u3 > 0 and u2 == 0 then
+        if rankCheck and u2 == 0 then
             player:setLocalVar("boughtItemCP", stock.item) -- set localVar for later cheat prevention
         end
 
@@ -1071,10 +1070,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     -- SIGNET
     if option == 1 then
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
-        player:delStatusEffectSilent(dsp.effect.SIGIL)
-        player:delStatusEffectSilent(dsp.effect.SANCTION)
-        player:delStatusEffectSilent(dsp.effect.SIGNET)
+        player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         player:addStatusEffect(dsp.effect.SIGNET, 0, 0, duration)
+        player:messageSpecial(mOffset + 1) -- "You've received your nation's Signet!"
 
     -- BEGIN SUPPLY RUN
     elseif option >= 65541 and option <= 65565 and guardType <= dsp.conquest.guard.FOREIGN then
@@ -1126,6 +1124,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local boughtItem = player:getLocalVar("boughtItemCP")
         player:setLocalVar("boughtItemCP", 0)
         if stock.item ~= boughtItem then
+            player:messageSpecial(mOffset + 61, stock.item) -- "Your rank is too low to purchase the <item>."
             return
         end
 

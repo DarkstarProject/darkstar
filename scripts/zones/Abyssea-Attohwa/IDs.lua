@@ -11,12 +11,12 @@ zones[dsp.zone.ABYSSEA_ATTOHWA] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        CRUOR_TOTAL             = 6985, -- Obtained <number> cruor. (Total: <number>)
-        CRUOR_OBTAINED          = 7394, -- <name> obtained <number> cruor.
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        CRUOR_TOTAL             = 6986, -- Obtained <number> cruor. (Total: <number>)
+        CRUOR_OBTAINED          = 7395, -- <name> obtained <number> cruor.
     },
     mob =
     {
@@ -30,7 +30,7 @@ zones[dsp.zone.ABYSSEA_ATTOHWA] =
             --  [17658353] = { 'qm3', {3074},                                                                                                                       {}, 17658263}, -- Pallid Percy
             --  [17658354] = { 'qm4', {3075},                                                                                                                       {}, 17658264}, -- Gaizkin
             --  [17658355] = { 'qm5', {3076},                                                                                                                       {}, 17658265}, -- Kharon
-            --  [17658356] = { 'qm6', {3085},                                                                                                                       {}, 17658266}, -- Drekavac
+            --  [17658356] = { 'qm6', {3077},                                                                                                                       {}, 17658266}, -- Drekavac
             --  [17658357] = { 'qm7', {3078},                                                                                                                       {}, 17658267}, -- Svarbhanu
             --  [17658358] = { 'qm8', {3079},                                                                                                                       {}, 17658268}, -- Kampe
             --  [17658359] = { 'qm9', {3080},                                                                                                                       {}, 17658269}, -- Berstuk

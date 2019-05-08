@@ -1,22 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Prucco-Lurucco
+--  NPC: Prucco-Lurucco
 -- Type: Standard NPC
 -- !pos 140.772 -3.499 132.942 94
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(420);
-end;
+    player:startEvent(420)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

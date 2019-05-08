@@ -10,17 +10,17 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6401, -- There is nothing out of the ordinary here.
-        FISHING_MESSAGE_OFFSET  = 7048, -- You can't fish here.
-        CONQUEST_BASE           = 7148, -- Tallying conquest results...
-        SMALL_HOLE_HERE         = 7335, -- There is a small hole here. It appears to be damp inside...
-        KIRIN_OFFSET            = 7346, -- I am Kirin, master of the Shijin. The one who stands above all. You, who have risen above your mortal status to contend with the gods... It is time to reap your reward.
-        REGIME_REGISTERED       = 10338, -- New training regime registered!
-        HOMEPOINT_SET           = 11424, -- Home point set!
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
+        FISHING_MESSAGE_OFFSET  = 7049, -- You can't fish here.
+        CONQUEST_BASE           = 7149, -- Tallying conquest results...
+        SMALL_HOLE_HERE         = 7336, -- There is a small hole here. It appears to be damp inside...
+        KIRIN_OFFSET            = 7347, -- I am Kirin, master of the Shijin. The one who stands above all. You, who have risen above your mortal status to contend with the gods... It is time to reap your reward.
+        REGIME_REGISTERED       = 10339, -- New training regime registered!
+        HOMEPOINT_SET           = 11425, -- Home point set!
     },
     mob =
     {
@@ -30,7 +30,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
     },
     npc =
     {
-        SHRINE_DOORS     =
+        DOORS =
         {
             [ 0] = "y", [ 4] = "b",
             [ 1] = "y", [ 5] = "b",
@@ -44,7 +44,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
             [19] = "y", [18] = "b",
             [21] = "y", [20] = "b",
         },
-        SHRINE_MONOLITHS =
+        MONOLITHS =
         {
             [ 0] = "y", [ 4] = "b",
             [ 1] = "y", [ 5] = "b",
@@ -57,9 +57,9 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
             [17] = "y", [15] = "b",
             [18] = "y", [19] = "b",
         },
-        OLLAS_QM               = 17506692,
-        SHRINE_DOOR_OFFSET     = 17506718,
-        SHRINE_MONOLITH_OFFSET = 17506741,
+        OLLAS_QM        = 17506692,
+        DOOR_OFFSET     = 17506718,
+        MONOLITH_OFFSET = 17506741,
     },
 }
 

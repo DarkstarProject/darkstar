@@ -6,9 +6,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob,target)
 
     local OP_Mariselle = mob:getID();
@@ -46,7 +43,7 @@ function onMobDeath(mob, player, isKiller)
         end
     end
 
-    if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
         player:setVar("PromathiaStatus",4);
     end
 

@@ -4,17 +4,15 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-require("scripts/globals/shop");
-local ID = require("scripts/zones/Windurst_Woods/IDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,ID.text.MANYNY_SHOP_DIALOG);
-
-    stock = {
+    local stock = {
         5032,  3112,       --Sinewy Etude
         5033,  2784,       --Dextrous Etude
         5034,  2184,       --Vivacious Etude
@@ -23,11 +21,12 @@ function onTrigger(player,npc)
         5037,  1252,       --Spirited Etude
         5038,   990        --Enchanting Etude
     }
-    dsp.shop.general(player, stock);
-end;
+    player:showText(npc,ID.text.MANYNY_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

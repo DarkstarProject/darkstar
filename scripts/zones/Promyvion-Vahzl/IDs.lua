@@ -10,17 +10,17 @@ zones[dsp.zone.PROMYVION_VAHZL] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        OVERFLOWING_MEMORIES    = 7210, -- It appears to be a barrier woven from the energy of overflowing memories...
-        ON_NM_SPAWN             = 7214, -- You sense a dark, empty presence...
-        POPPED_NM_OFFSET        = 7296, -- Remnants of a cerebrator lie scattered about the area.
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        OVERFLOWING_MEMORIES    = 7211, -- It appears to be a barrier woven from the energy of overflowing memories...
+        ON_NM_SPAWN             = 7215, -- You sense a dark, empty presence...
+        POPPED_NM_OFFSET        = 7297, -- Remnants of a cerebrator lie scattered about the area.
     },
     mob =
     {
-        VAHZL_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16867382] = {1, 3, 16867699},
             [16867387] = {1, 3, 16867700},
@@ -43,7 +43,7 @@ zones[dsp.zone.PROMYVION_VAHZL] =
     },
     npc =
     {
-        VAHZL_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = {  -2, -2, -122,    2, 2, -117, {45}}, -- floor 1 return
             [21]        = { -40, -2,  197,  -37, 2,  202, {41}}, -- floor 2 return

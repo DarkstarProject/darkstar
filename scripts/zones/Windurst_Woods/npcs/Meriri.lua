@@ -4,23 +4,20 @@
 -- Guild Merchant NPC: Clothcrafting Guild
 -- !pos -76.471 -3.55 -128.341 241
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-local ID = require("scripts/zones/Windurst_Woods/IDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    if (player:sendGuild(515,6,21,0)) then
-        player:showText(npc,ID.text.MERIRI_DIALOG);
+    if player:sendGuild(515,6,21,0) then
+        player:showText(npc,ID.text.MERIRI_DIALOG)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

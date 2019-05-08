@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
+    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
     local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
 
     if (ALittleKnowledge == QUEST_ACCEPTED and ALittleKnowledgeProgress == 1) then
@@ -32,13 +32,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
+    local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
     local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
-    local onSabbatical = player:getQuestStatus(CRYSTAL_WAR,ON_SABBATICAL);
+    local onSabbatical = player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.ON_SABBATICAL);
     local onSabbaticalProgress = player:getVar("OnSabbatical");
-    local downwardHelix = player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX);
+    local downwardHelix = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX);
 
     if (ALittleKnowledge == QUEST_AVAILABLE) then
         if (mLvl >= ADVANCED_JOB_LEVEL) then
@@ -91,7 +91,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 10 and option == 0) then
-        player:addQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
         player:setVar("ALittleKnowledge", 1);
     elseif (csid == 12) then
         player:tradeComplete();
@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ALittleKnowledge", 0);
         player:setVar("SheetsofVellum", 0);
         player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_SCHOLAR);
-        player:completeQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
+        player:completeQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
     elseif (csid == 47) then
         if (player:canLearnSpell(478) and player:canLearnSpell(502)) then
             player:addSpell(478, true);
@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.YOU_LEARN_EMBRAVA_AND_KAUSTRA);
         end
     elseif (csid == 18) then
-        player:addQuest(CRYSTAL_WAR, ON_SABBATICAL);
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.ON_SABBATICAL);
         player:addKeyItem(dsp.ki.ULBRECHTS_SEALED_LETTER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ULBRECHTS_SEALED_LETTER);
         player:setVar("OnSabbatical", 1);
@@ -121,7 +121,7 @@ function onEventFinish(player,csid,option)
         else
             player:delKeyItem(dsp.ki.ULBRECHTS_SEALED_LETTER);
             player:delKeyItem(dsp.ki.SCHULTS_SEALED_LETTER);
-            player:completeQuest(CRYSTAL_WAR,ON_SABBATICAL);
+            player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.ON_SABBATICAL);
             player:addItem(6058); --klimaform
             player:messageSpecial(ID.text.ITEM_OBTAINED, 6058);
             player:setVar("onSabbatical",0);
@@ -129,14 +129,14 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 23) then
         player:setVar("Erlene_Sabbatical_Timer",0);
-        player:addQuest(CRYSTAL_WAR, DOWNWARD_HELIX);
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX);
     elseif (csid == 25) then
         player:setVar("DownwardHelix",2);
     elseif (csid == 27) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         else
-            player:completeQuest(CRYSTAL_WAR, DOWNWARD_HELIX);
+            player:completeQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX);
             player:addItem(15004); -- Schlar's Bracers
             player:messageSpecial(ID.text.ITEM_OBTAINED, 15004);
             player:setVar("DownwardHelix",0);

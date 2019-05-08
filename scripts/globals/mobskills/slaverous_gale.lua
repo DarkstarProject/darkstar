@@ -20,8 +20,8 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, typeEffectTwo, 1250, 0, 60)
     local dmgmod = 1
     local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * math.random(4, 6), dsp.magic.ele.EARTH, dmgmod, TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, MOBSKILL_MAGICAL, MOBPARAM_EARTH, MOBPARAM_WIPE_SHADOWS)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, dsp.attackType.MAGICAL, dsp.damageType.EARTH, MOBPARAM_WIPE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.EARTH)
     return dmg
 end

@@ -8,9 +8,6 @@ require("scripts/globals/dynamis");
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     if (GetServerVariable("[DynaBuburimu]Boss_Trigger") == 0) then
         --spwan additional mob :

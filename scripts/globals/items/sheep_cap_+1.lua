@@ -5,11 +5,13 @@
 --  Faerie Apple, Sunflower Seeds, Red Moko Grass, La Theine Cabbage, Boyahda Moss,
 --  Pine Nuts, Beaugreens, Acorn, Dung, Batagreens, and Moko Grass
 -----------------------------------------
+require("scripts/globals/msg")
+-----------------------------------------
 
 function onItemCheck(target)
     local result = 0
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
     return result
 end

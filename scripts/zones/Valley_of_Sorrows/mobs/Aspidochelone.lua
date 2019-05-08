@@ -3,18 +3,18 @@
 --  HNM: Aspidochelone
 -----------------------------------
 local ID = require("scripts/zones/Valley_of_Sorrows/IDs")
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobInitialize(mob)
-end
-
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
         GetNPCByID(ID.npc.ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR)
     end
+
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
 end
 
 function onMobDeath(mob, player, isKiller)
@@ -36,6 +36,6 @@ function onMobDespawn(mob)
         SetServerVariable("[PH]Aspidochelone", 0)
         DisallowRespawn(ID.mob.ADAMANTOISE, false)
         UpdateNMSpawnPoint(ID.mob.ADAMANTOISE)
-        GetMobByID(ID.mob.ADAMANTOISE):setRespawnTime(math.random(75600,86400))
+        GetMobByID(ID.mob.ADAMANTOISE):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     end
 end

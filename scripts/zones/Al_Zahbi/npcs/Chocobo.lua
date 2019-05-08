@@ -2,19 +2,18 @@
 -- Area: Al Zahbi
 --  NPC: Chocobo
 -----------------------------------
-local ID = require("scripts/zones/Al_Zahbi/IDs");
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    npc:showText(npc, ID.text.CHOCOBO_HAPPY);
-end;
+    npc:showText(npc, ID.text.CHOCOBO_HAPPY)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

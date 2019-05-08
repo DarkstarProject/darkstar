@@ -10,9 +10,6 @@ require("scripts/globals/magic");
 local blades = {823, 826, 828, 825, 824, 827};
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob, target)
 
     local changeTime = mob:getLocalVar("changeTime");

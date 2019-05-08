@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION and player:getVar("MissionStatus") == 2) then
         player:startEvent(45,0,200);
     else
         player:startEvent(46);
@@ -36,4 +36,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-

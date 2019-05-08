@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeEarth_date", 0);
         player:addFame(BASTOK,30);
-        player:completeQuest(BASTOK,TRIAL_SIZE_TRIAL_BY_EARTH);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.TRIAL_SIZE_TRIAL_BY_EARTH);
     end
 
 end;

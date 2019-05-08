@@ -56,6 +56,6 @@ function onMobWeaponSkill(target, mob, skill)
         target:updateEnmityFromDamage(mob,dmg)
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.ELEMENTAL)
     return dmg
 end

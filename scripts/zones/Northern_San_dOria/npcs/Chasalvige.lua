@@ -14,11 +14,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 3) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 3) then
         player:startEvent(38); --COP event
-    elseif (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_chasalvigne") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_chasalvigne") == 0) then
         player:startEvent(761);
-    elseif (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 2) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 2) then
         player:startEvent(762);
     else
         player:startEvent(6);
@@ -37,4 +37,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_Ulmia_s_Path",3);
     end
 end;
-

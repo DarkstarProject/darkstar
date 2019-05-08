@@ -10,7 +10,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
+    local Guardian = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
 
     if (Guardian == QUEST_ACCEPTED and trade:hasItemQty(4596,1)) then
         player:messageSpecial(ID.text.ALTAR_OFFERING,0,4596);
@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
+    local Guardian = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
 
     if (Guardian == QUEST_ACCEPTED and player:getVar("PamamaVar") == 1 or player:getVar("PamamaVar") == 2) then
         player:messageSpecial(ID.text.ALTAR_COMPLETED);
@@ -40,4 +40,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

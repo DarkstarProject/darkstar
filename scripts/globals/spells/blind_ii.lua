@@ -19,14 +19,16 @@ function onSpellCast(caster, target, spell)
     -- Pull base stats.
     local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.MND) -- blind uses caster INT vs target MND
 
-    -- Base potency.  May need more research.
-    local basePotency = utils.clamp(math.floor(dINT * 3/8) + 45, 15, 90)
+    -- Base power
+    -- Min cap: 15 at -80 dINT
+    -- Max cap: 90 at 120 dINT
+    local basePotency = utils.clamp(math.floor(dINT / 3 * 8 + 45), 15, 90)
 
     if (merits > 1) then
         basePotency = basePotency + merits - 1
     end
     
-    local potency = calculatePotency(basePotency, dINT, spell:getSkillType(), caster, target)
+    local potency = calculatePotency(basePotency, spell:getSkillType(), caster, target)
 
     -- Duration, including resistance.  Unconfirmed.
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)

@@ -15,7 +15,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    SetExplorerMoogles(ID.npc.N_SANDY_EXPLORER_MOOGLE);
+    SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE);
 
     zone:registerRegion(1, -7,-3,110, 7,-1,155);
 
@@ -47,14 +47,14 @@ function onZoneIn(player,prevZone)
     -- RDM AF3 CS
     if (player:getVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 49;
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
         player:setVar("EMERALD_WATERS_Status",2);
         cs = 14;
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
         cs = 1;
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
         cs = 0;
-    elseif (player:hasCompletedMission(SANDORIA,COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
         cs = 16;
     end
     return cs;
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 569) then
         player:setPos(0,0,-13,192,233);
-    elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, PEACE_FOR_THE_SPIRIT, {item = 12513, fame = AF3_FAME, title = dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
+    elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT, {item = 12513, fame = AF3_FAME, title = dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
         player:setVar("peaceForTheSpiritCS",0);
     elseif (csid == 16) then
         player:setVar("Wait1DayM8-1_date",0);

@@ -9,9 +9,6 @@ require("scripts/globals/status")
 require("scripts/globals/dynamis")
 -----------------------------------
 
-function onMobSpawn(mob)
-end
-
 function onMobDeath(mob, player, isKiller)
     local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
     if effect then

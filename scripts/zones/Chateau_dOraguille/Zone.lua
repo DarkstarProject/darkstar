@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Chateau_dOraguille/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -22,15 +23,15 @@ function onZoneIn(player,prevZone)
         player:setPos(14.872,8.918,24.002,255);
     end
 
-    if (prevZone == 231 and currentMission == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 2) then
+    if (prevZone == dsp.zone.NORTHERN_SAN_DORIA and currentMission == dsp.mission.id.sandoria.THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 2) then
         cs = 555;
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 1) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 1) then
         cs = 10;
-    elseif (prevZone == 231 and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA)) then
+    elseif (prevZone == dsp.zone.NORTHERN_SAN_DORIA and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA)) then
         cs = 509;
     elseif (player:getVar("SecretWeaponStatus") == 1) then
         cs = 0;
-    elseif (currentMission == COMING_OF_AGE and MissionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.sandoria.COMING_OF_AGE and MissionStatus == 0) then
         cs = 116;
     end
 

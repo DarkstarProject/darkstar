@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(SANDORIA, THE_DISMAYED_CUSTOMER) == QUEST_ACCEPTED and player:getVar("theDismayedCustomer") == 3) then
+    if (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_DISMAYED_CUSTOMER) == QUEST_ACCEPTED and player:getVar("theDismayedCustomer") == 3) then
         player:addKeyItem(dsp.ki.GULEMONTS_DOCUMENT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.GULEMONTS_DOCUMENT);
         player:setVar("theDismayedCustomer", 0);
@@ -30,5 +30,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-
-

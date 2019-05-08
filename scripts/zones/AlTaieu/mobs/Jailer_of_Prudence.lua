@@ -6,16 +6,29 @@
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Jailer_of_Prudence
 -----------------------------------
 local ID = require("scripts/zones/AlTaieu/IDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
-    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
     mob:setMobMod(dsp.mobMod.NO_DROPS, 1);
 end;
 
 function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {
+                id = dsp.jsa.PERFECT_DODGE,
+                cooldown = 120, -- "Both can use Perfect Dodge multiple times, and will do so almost incessantly." (guessing a 2 minute cooldown)
+                hpp = 95,
+                endCode = function(mob)
+                    mob:addStatusEffectEx(dsp.effect.FLEE, 0, 100, 0, 30) -- "Jailer of Prudence will however gain Flee speed during Perfect Dodge."
+                end,
+            },
+        },
+    })
+
     mob:AnimationSub(0); -- Mouth closed
     mob:addStatusEffectEx(dsp.effect.FLEE,0,100,0,60);
     mob:setMod(dsp.mod.TRIPLE_ATTACK, 20);
@@ -30,9 +43,6 @@ function onMobSpawn(mob)
 end;
 
 function onMobDisEngage(mob, target)
-end;
-
-function onMobFight(mob, target)
 end;
 
 --[[ onMobskill -- When this functionlity is added, this should work.

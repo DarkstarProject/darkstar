@@ -1280,28 +1280,14 @@ bool CAutomatonController::TryTPMove()
             if (PSCEffect && PSCEffect->GetStartTime() + 3s < server_clock::now())
             {
                 std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
-                if (PSCEffect->GetTier() == 0)
+                if (PSCEffect->GetStartTime() + 3s < m_Tick)
                 {
-                    if (PSCEffect->GetStartTime() + 3s < m_Tick)
+                    if (uint16 power = PSCEffect->GetPower())
                     {
-                        if (PSCEffect->GetPower())
-                        {
-                            CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSCEffect->GetPower());
-                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getPrimarySkillchain());
-                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getSecondarySkillchain());
-                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
-                        }
-                        else
-                        {
-                            CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PSCEffect->GetSubPower()));
-                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
-                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
-                        }
+                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)(power & 0xF));
+                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)(power >> 4 & 0xF));
+                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)(power >> 8));
                     }
-                }
-                else
-                {
-                    resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PSCEffect->GetPower());
                 }
 
                 for (auto PSkill : validSkills)
@@ -1374,7 +1360,7 @@ bool CAutomatonController::CanCastSpells()
 
 bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
 {
-    if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(spellid)))
+    if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->HasRecast(RECAST_MAGIC, static_cast<uint16>(spellid), 0))
         return false;
 
     return CPetController::Cast(targid, spellid);
@@ -1382,7 +1368,7 @@ bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
 
 bool CAutomatonController::MobSkill(uint16 targid, uint16 wsid)
 {
-    if(PAutomaton->PRecastContainer->Has(RECAST_ABILITY, wsid))
+    if(PAutomaton->PRecastContainer->HasRecast(RECAST_ABILITY, wsid, 0))
         return false;
     return CPetController::MobSkill(targid, wsid);
 }

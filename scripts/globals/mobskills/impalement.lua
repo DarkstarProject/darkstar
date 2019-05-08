@@ -24,9 +24,9 @@ function onMobWeaponSkill(target, mob, skill)
     -- remove all by 5%
     local stab = currentHP * .95
 
-    local dmg = MobFinalAdjustments(stab, mob, skill, target, MOBSKILL_PHYSICAL, MOBPARAM_PIERCE, MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(stab, mob, skill, target, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING, MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
 
     mob:resetEnmity(target)
     return dmg

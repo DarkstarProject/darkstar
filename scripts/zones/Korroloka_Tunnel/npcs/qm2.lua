@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
         if (player:getVar("AyameAndKaede_Event") == 2 and player:hasKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL) == false) then
 
             if (not GetMobByID(ID.mob.KORROLOKA_LEECH_I):isSpawned() and not GetMobByID(ID.mob.KORROLOKA_LEECH_II):isSpawned()

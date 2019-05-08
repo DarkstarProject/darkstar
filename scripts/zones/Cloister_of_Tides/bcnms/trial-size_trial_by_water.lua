@@ -32,7 +32,7 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER)
+    trialLightning = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WATER)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
 
@@ -62,6 +62,6 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeWater_date", 0);
         player:addFame(NORG,30);
-        player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WATER);
     end
 end;

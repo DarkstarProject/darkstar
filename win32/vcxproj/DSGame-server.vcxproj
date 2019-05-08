@@ -23,29 +23,30 @@
     <ProjectGuid>{89A19910-84DB-454D-9C7F-0A47A293867B}</ProjectGuid>
     <RootNamespace>DSGameserver</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -240,6 +241,7 @@
     <ClInclude Include="..\..\src\map\ai\controllers\pet_controller.h" />
     <ClInclude Include="..\..\src\map\ai\controllers\player_charm_controller.h" />
     <ClInclude Include="..\..\src\map\ai\controllers\player_controller.h" />
+    <ClInclude Include="..\..\src\map\ai\controllers\trust_controller.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\action_queue.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\event_handler.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\pathfind.h" />
@@ -274,6 +276,7 @@
     <ClInclude Include="..\..\src\map\entities\mobentity.h" />
     <ClInclude Include="..\..\src\map\entities\npcentity.h" />
     <ClInclude Include="..\..\src\map\entities\petentity.h" />
+    <ClInclude Include="..\..\src\map\entities\trustentity.h" />
     <ClInclude Include="..\..\src\map\grades.h" />
     <ClInclude Include="..\..\src\map\battlefield.h" />
     <ClInclude Include="..\..\src\map\battlefield_handler.h" />
@@ -397,6 +400,7 @@
     <ClInclude Include="..\..\src\map\packets\trade_item.h" />
     <ClInclude Include="..\..\src\map\packets\trade_request.h" />
     <ClInclude Include="..\..\src\map\packets\trade_update.h" />
+    <ClInclude Include="..\..\src\map\packets\trust_sync.h" />
     <ClInclude Include="..\..\src\map\packets\world_pass.h" />
     <ClInclude Include="..\..\src\map\packets\party_define.h" />
     <ClInclude Include="..\..\src\map\packets\party_invite.h" />
@@ -431,6 +435,7 @@
     <ClInclude Include="..\..\src\map\spell.h" />
     <ClInclude Include="..\..\src\map\status_effect.h" />
     <ClInclude Include="..\..\src\map\status_effect_container.h" />
+    <ClInclude Include="..\..\src\map\timetriggers.h" />
     <ClInclude Include="..\..\src\map\time_server.h" />
     <ClInclude Include="..\..\src\map\trade_container.h" />
     <ClInclude Include="..\..\src\map\trait.h" />
@@ -461,6 +466,7 @@
     <ClInclude Include="..\..\src\map\zone_entities.h" />
     <ClInclude Include="..\..\src\map\zone_instance.h" />
     <ClInclude Include="gameserver.h" />
+    <ClInclude Include="timetriggers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
@@ -487,6 +493,7 @@
     <ClCompile Include="..\..\src\map\ai\controllers\pet_controller.cpp" />
     <ClCompile Include="..\..\src\map\ai\controllers\player_charm_controller.cpp" />
     <ClCompile Include="..\..\src\map\ai\controllers\player_controller.cpp" />
+    <ClCompile Include="..\..\src\map\ai\controllers\trust_controller.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\action_queue.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\event_handler.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\pathfind.cpp" />
@@ -521,6 +528,7 @@
     <ClCompile Include="..\..\src\map\entities\mobentity.cpp" />
     <ClCompile Include="..\..\src\map\entities\npcentity.cpp" />
     <ClCompile Include="..\..\src\map\entities\petentity.cpp" />
+    <ClCompile Include="..\..\src\map\entities\trustentity.cpp" />
     <ClCompile Include="..\..\src\map\grades.cpp" />
     <ClCompile Include="..\..\src\map\battlefield.cpp" />
     <ClCompile Include="..\..\src\map\battlefield_handler.cpp" />
@@ -642,6 +650,7 @@
     <ClCompile Include="..\..\src\map\packets\trade_item.cpp" />
     <ClCompile Include="..\..\src\map\packets\trade_request.cpp" />
     <ClCompile Include="..\..\src\map\packets\trade_update.cpp" />
+    <ClCompile Include="..\..\src\map\packets\trust_sync.cpp" />
     <ClCompile Include="..\..\src\map\packets\world_pass.cpp" />
     <ClCompile Include="..\..\src\map\packets\party_define.cpp" />
     <ClCompile Include="..\..\src\map\packets\party_invite.cpp" />
@@ -676,6 +685,7 @@
     <ClCompile Include="..\..\src\map\spell.cpp" />
     <ClCompile Include="..\..\src\map\status_effect.cpp" />
     <ClCompile Include="..\..\src\map\status_effect_container.cpp" />
+    <ClCompile Include="..\..\src\map\timetriggers.cpp" />
     <ClCompile Include="..\..\src\map\time_server.cpp" />
     <ClCompile Include="..\..\src\map\trade_container.cpp" />
     <ClCompile Include="..\..\src\map\trait.cpp" />

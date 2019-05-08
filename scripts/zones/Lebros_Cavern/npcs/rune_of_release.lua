@@ -5,35 +5,50 @@ local ID = require("scripts/zones/Lebros_Cavern/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
 
-    local instance = npc:getInstance();
+    local instance = npc:getInstance()
 
     if (instance:completed()) then
-        player:startEvent(100,2);
+        player:startEvent(100,2)
     end
 
-    return 1;
+    return 1
 
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 100 and option == 1) then
-        local instance = player:getInstance()
-        local chars = instance:getChars();
 
+    local instance = player:getInstance()
+    local chars = instance:getChars()
+    local id = instance:getID()
+    local points = 0
+    local playerpoints = ((#chars -3)*100)
+
+        if (csid == 100 and option == 1) then
+        if id == 21 or id == 23 then
+            points = 1000 - math.max(playerpoints, 0)
+        end
         for i,v in pairs(chars) do
-            -- TODO: calcualte assault points, add assault points
-            v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,0);
-            -- v:addAssaultPoint(LEBROS_ASSAULT_POINT,points);
-            v:setVar("AssaultComplete",1);
-            v:startEvent(102);
+            v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,points)
+            v:addAssaultPoint(LEBROS_ASSAULT_POINT,points)
+            v:setVar("AssaultComplete",1)
+            if (v:hasCompletedAssault(v:getCurrentAssault())) then
+                v:addVar("AssaultPromotion", 1)
+            else
+                v:addVar("AssaultPromotion", 5)
+            end
+            v:startEvent(102)
         end
     end
-
-end;
+    if (csid == 102) then
+        for i,v in pairs(chars) do
+            v:setPos(0,0,0,0,61)
+        end
+    end
+end

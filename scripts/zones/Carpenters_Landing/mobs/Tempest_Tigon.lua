@@ -1,16 +1,12 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---  Mob: Tempest Tigron
+--   NM: Tempest Tigron
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-
-    -- Set Tempest Tigon's spawnpoint and respawn time (1-2 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random((3600),(7200)));
-
-end;
-
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(3600, 7200)) -- 1 to 2 hours
+end

@@ -4,98 +4,64 @@
 -- Starts and Finishes Quest: Under the sea (finish), The gift, The real gift
 -- !pos 48 -15 9 248
 -----------------------------------
-local ID = require("scripts/zones/Selbina/IDs");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS_LOG,THE_GIFT) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(4375,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
-            player:startEvent(72,0,4375); -- Finish quest "The gift"
-        end
-    elseif (player:getQuestStatus(OTHER_AREAS_LOG,THE_REAL_GIFT) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(4484,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
-            player:startEvent(75); -- Finish quest "The real gift"
-        end
+    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_GIFT) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 4375) then
+        player:startEvent(72, 0, 4375) -- Finish quest "The gift"
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_REAL_GIFT) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 4484) then
+        player:startEvent(75) -- Finish quest "The real gift"
     end
-end;
+end
 
 function onTrigger(player,npc)
-    UnderTheSea = player:getQuestStatus(OTHER_AREAS_LOG,UNDER_THE_SEA);
-    TheSandCharm = player:getQuestStatus(OTHER_AREAS_LOG,THE_SAND_CHARM);
-    TheGift = player:getQuestStatus(OTHER_AREAS_LOG,THE_GIFT);
-    TheRealGift = player:getQuestStatus(OTHER_AREAS_LOG,THE_REAL_GIFT);
+    underTheSea  = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNDER_THE_SEA)
+    theSandCharm = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_SAND_CHARM)
+    theGift      = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_GIFT)
+    theRealGift  = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_REAL_GIFT)
 
-    if (player:getVar("underTheSeaVar") == 1) then
-        player:startEvent(32); -- During quest "Under the sea" - 1st dialog
-    elseif (player:hasKeyItem(dsp.ki.ETCHED_RING) == true) then
-        player:startEvent(37); -- Finish quest "Under the sea"
-    elseif (UnderTheSea == QUEST_COMPLETED and TheSandCharm == QUEST_AVAILABLE) then
-        player:startEvent(38); -- New dialog after "Under the sea"
-    elseif (UnderTheSea == QUEST_COMPLETED and TheSandCharm ~= QUEST_AVAILABLE and TheGift == QUEST_AVAILABLE) then
-        player:startEvent(70,4375); -- Start quest "The gift"
-    elseif (TheGift == QUEST_ACCEPTED) then
-        player:startEvent(71); -- During quest "The gift"
-    elseif (TheGift == QUEST_COMPLETED and TheSandCharm == QUEST_ACCEPTED) then
-        player:startEvent(78); -- New dialog after "The gift"
-    elseif (TheGift == QUEST_COMPLETED and TheSandCharm == QUEST_COMPLETED and TheRealGift == QUEST_AVAILABLE) then
-        player:startEvent(73,4484); -- Start quest "The real gift"
-    elseif (TheRealGift == QUEST_ACCEPTED) then
-        player:startEvent(74,4484); -- During quest "The real gift"
-    elseif (TheRealGift == QUEST_COMPLETED) then
-        player:startEvent(76); -- Final dialog after "The real gift"
+    if player:getVar("underTheSeaVar") == 1 then
+        player:startEvent(32) -- During quest "Under the sea" - 1st dialog
+    elseif player:hasKeyItem(dsp.ki.ETCHED_RING) then
+        player:startEvent(37) -- Finish quest "Under the sea"
+    elseif underTheSea == QUEST_COMPLETED and theSandCharm == QUEST_AVAILABLE then
+        player:startEvent(38) -- New dialog after "Under the sea"
+    elseif underTheSea == QUEST_COMPLETED and theSandCharm ~= QUEST_AVAILABLE and theGift == QUEST_AVAILABLE then
+        player:startEvent(70, 4375) -- Start quest "The gift"
+    elseif theGift == QUEST_ACCEPTED then
+        player:startEvent(71) -- During quest "The gift"
+    elseif theGift == QUEST_COMPLETED and theSandCharm == QUEST_ACCEPTED then
+        player:startEvent(78) -- New dialog after "The gift"
+    elseif theGift == QUEST_COMPLETED and theSandCharm == QUEST_COMPLETED and theRealGift == QUEST_AVAILABLE then
+        player:startEvent(73, 4484) -- Start quest "The real gift"
+    elseif theRealGift == QUEST_ACCEPTED then
+        player:startEvent(74, 4484) -- During quest "The real gift"
+    elseif theRealGift == QUEST_COMPLETED then
+        player:startEvent(76) -- Final dialog after "The real gift"
     else
-        player:startEvent(30); -- Standard dialog
+        player:startEvent(30) -- Standard dialog
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 32) then
-        player:setVar("underTheSeaVar",2);
-    elseif (csid == 37) then
-        if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13335);
-        else
-            player:completeQuest(OTHER_AREAS_LOG,UNDER_THE_SEA);
-            player:addTitle(dsp.title.LIL_CUPID);
-            player:delKeyItem(dsp.ki.ETCHED_RING);
-            player:setVar("underTheSeaVar",0);
-            player:addItem(13335);
-            player:messageSpecial(ID.text.ITEM_OBTAINED,13335); -- Amber Earring
-            player:addFame(SELBINA,30);
-        end
-    elseif (csid == 70 and option == 50) then
-        player:addQuest(OTHER_AREAS_LOG,THE_GIFT);
-    elseif (csid == 72) then
-        if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16497);
-        else
-            player:completeQuest(OTHER_AREAS_LOG,THE_GIFT);
-            player:addTitle(dsp.title.SAVIOR_OF_LOVE);
-            player:addItem(16497);
-            player:messageSpecial(ID.text.ITEM_OBTAINED,16497); -- Sleep Dagger
-            player:addFame(SELBINA,30);
-            player:tradeComplete();
-        end
-    elseif (csid == 73 and option == 50) then
-        player:addQuest(OTHER_AREAS_LOG,THE_REAL_GIFT);
-    elseif (csid == 75) then
-        if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17385);
-        else
-            player:completeQuest(OTHER_AREAS_LOG,THE_REAL_GIFT);
-            player:addTitle(dsp.title.THE_LOVE_DOCTOR);
-            player:addItem(17385);
-            player:messageSpecial(ID.text.ITEM_OBTAINED,17385); -- Glass Fiber Fishing Rod
-            player:addFame(SELBINA,30);
-            player:tradeComplete();
-        end
+    if csid == 32 then
+        player:setVar("underTheSeaVar", 2)
+    elseif csid == 37 and npcUtil.completeQuest(player, OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNDER_THE_SEA, {item = 13335, fame_area = SELBINA, title = dsp.title.LIL_CUPID, var = "underTheSeaVar"}) then
+        player:delKeyItem(dsp.ki.ETCHED_RING)
+    elseif csid == 70 and option == 50 then
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_GIFT)
+    elseif csid == 72 and npcUtil.completeQuest(player, OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_GIFT, {item = 16497, fame_area = SELBINA, title = dsp.title.SAVIOR_OF_LOVE}) then
+        player:confirmTrade()
+    elseif csid == 73 and option == 50 then
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_REAL_GIFT)
+    elseif csid == 75 and npcUtil.completeQuest(player, OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_REAL_GIFT, {item = 17385, fame_area = SELBINA, title = dsp.title.THE_LOVE_DOCTOR}) then
+        player:confirmTrade()
     end
-end;
-
+end

@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+    local toCureaCough = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
 
     if (toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.THYME_MOSS) == false) then
         player:addKeyItem(dsp.ki.THYME_MOSS);

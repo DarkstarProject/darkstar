@@ -13,11 +13,11 @@ local ID = require("scripts/zones/Port_Bastok/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(BASTOK,SHADY_BUSINESS) >= QUEST_ACCEPTED) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SHADY_BUSINESS) >= QUEST_ACCEPTED) then
         if (trade:hasItemQty(642,4) and trade:getItemCount() == 4) then
             player:startEvent(91);
         end
-    elseif (player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BEAUTY_AND_THE_GALKA) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(642,1) and trade:getItemCount() == 1) then
             player:startEvent(3);
         end
@@ -27,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
 
-    BeautyAndTheGalka = player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA);
+    BeautyAndTheGalka = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BEAUTY_AND_THE_GALKA);
 
     if (BeautyAndTheGalka == QUEST_COMPLETED) then
         player:startEvent(90);
@@ -48,7 +48,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 2 and option == 0) then
-        player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.BEAUTY_AND_THE_GALKA);
     elseif (csid == 2 and option == 1) then
         player:setVar("BeautyAndTheGalkaDenied",1);
     elseif (csid == 3) then
@@ -56,17 +56,17 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.PALBOROUGH_MINES_LOGS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PALBOROUGH_MINES_LOGS);
     elseif (csid == 90) then
-        ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
+        ShadyBusiness = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SHADY_BUSINESS);
 
         if (ShadyBusiness == QUEST_AVAILABLE) then
-            player:addQuest(BASTOK,SHADY_BUSINESS);
+            player:addQuest(BASTOK,dsp.quest.id.bastok.SHADY_BUSINESS);
         end
     elseif (csid == 91) then
-        ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
+        ShadyBusiness = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SHADY_BUSINESS);
 
         if (ShadyBusiness == QUEST_ACCEPTED) then
             player:addFame(NORG,100);
-            player:completeQuest(BASTOK,SHADY_BUSINESS);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.SHADY_BUSINESS);
         else
             player:addFame(NORG,80);
         end

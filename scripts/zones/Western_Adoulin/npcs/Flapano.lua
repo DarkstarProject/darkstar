@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
-    local exoticDelacacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
+    local exoticDelacacies = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES);
 
     -- ALL THE WAY TO THE BANK
     if (player:hasKeyItem(dsp.ki.TARUTARU_SAUCE_INVOICE) and npcUtil.tradeHas( trade, {{"gil",5600}} )) then
@@ -33,8 +33,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local theWeatherspoonWar = player:getQuestStatus(ADOULIN, THE_WEATHERSPOON_WAR);
-    local exoticDelacacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
+    local theWeatherspoonWar = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_WEATHERSPOON_WAR);
+    local exoticDelacacies = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES);
 
     -- THE WEATHERSPOON WAR
     if (theWeatherspoonWar == QUEST_ACCEPTED and player:getVar("Weatherspoon_War_Status") == 6) then
@@ -86,9 +86,9 @@ function onEventFinish(player,csid,option)
 
     -- EXOTIC DELICACIES
     elseif (csid == 2860 and option == 1) then
-        player:addQuest(ADOULIN, EXOTIC_DELICACIES);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES);
     elseif (csid == 2861) then
-        if (npcUtil.completeQuest(player, ADOULIN, EXOTIC_DELICACIES, {bayld=500, item=5975, xp=1000})) then
+        if (npcUtil.completeQuest(player, ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES, {bayld=500, item=5975, xp=1000})) then
             player:confirmTrade();
             player:setVar("Flapano_Odd_Even", 0);
         end

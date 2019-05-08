@@ -53,6 +53,7 @@
 #include "../weapon_skill.h"
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
+#include "../timetriggers.h"
 #include "../transport.h"
 #include "../packets/action.h"
 #include "../packets/char_update.h"
@@ -1367,7 +1368,7 @@ namespace luautils
         //player may be entering because of an earlier event (event that changes position)
         // these should probably not call another event from onRegionEnter (use onEventFinish instead)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, filename.c_str());
+            PChar->m_event.Script = filename;
 
         if (prepFile((int8*)filename.c_str(), "onRegionEnter"))
         {
@@ -1408,7 +1409,7 @@ namespace luautils
 
         //player may be leaving because of an earlier event (event that changes position)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, filename.c_str());
+            PChar->m_event.Script = filename;
 
         if (prepFile((int8*)filename.c_str(), "onRegionLeave"))
         {
@@ -1957,6 +1958,30 @@ namespace luautils
         return 0;
     }
 
+    int32 OnUpdateAttachment(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
+    {
+        lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+        if (prepFile(File, "onUpdate"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, maneuvers);
+
+        if (lua_pcall(LuaHandle, 2, 0, 0))
+        {
+            ShowError("luautils::onUpdate: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Проверяем возможность использования предмета. Если все хорошо, то    *
@@ -2068,8 +2093,11 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua",
-            PSpell->getName());
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
         if (prepFile(File, "onSpellCast"))
         {
@@ -2173,6 +2201,8 @@ namespace luautils
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
+
+        PTarget->PAI->EventHandler.triggerListener("MAGIC_TAKE", PCaster, PTarget, PSpell);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PTarget->loc.zone->GetName(), PTarget->GetName());
 
@@ -2467,7 +2497,7 @@ namespace luautils
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-        if (PTarget->objtype != TYPE_PET && PTarget->objtype != TYPE_MOB)
+        if (PTarget->objtype == TYPE_PC)
         {
             ((CCharEntity*)PTarget)->m_event.reset();
             ((CCharEntity*)PTarget)->m_event.Target = PMob;
@@ -3168,10 +3198,15 @@ namespace luautils
 
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell)
     {
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua", PSpell->getName());
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
         if (prepFile(File, "onMagicCastingCheck"))
         {
+            // ShowDebug("luautils::OnMagicCastingCheck: could not load %s/%s.lua \n", scriptPath, PSpell->getName());
             return 47;
         }
 
@@ -3761,6 +3796,30 @@ namespace luautils
         if (lua_pcall(LuaHandle, 2, 0, 0))
         {
             ShowError("luautils::onTransportEvent: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
+    int32 OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID)
+    {
+        lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
+
+        if (prepFile(File, "onTimeTrigger"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PNpc);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, triggerID);
+
+        if (lua_pcall(LuaHandle, 2, 0, 0))
+        {
+            ShowError("luautils::onTimeTrigger: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
         }

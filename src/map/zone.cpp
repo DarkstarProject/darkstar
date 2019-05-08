@@ -496,7 +496,7 @@ void CZone::SetWeather(WEATHER weather)
     m_Weather = weather;
     m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
 
-    m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
+    m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather, dsprand::GetRandomNumber(4, 28)));
 }
 
 void CZone::UpdateWeather()
@@ -509,7 +509,7 @@ void CZone::UpdateWeather()
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
-    WeatherNextUpdate = (dsprand::GetRandomNumber(180, 1620));
+    WeatherNextUpdate = (dsprand::GetRandomNumber(180, 1801));
 
     // Find the timestamp since the start of vanadiel
     WeatherDay = CVanaTime::getInstance()->getVanaTime();
@@ -539,11 +539,11 @@ void CZone::UpdateWeather()
 
     // 15% chance for rare weather, 35% chance for common weather, 50% chance for normal weather
     // * Percentages were generated from a 6 hour sample and rounded down to closest multiple of 5*
-    if (WeatherChance <= 15) //15% chance to have the weather_rare
+    if (WeatherChance < 15) //15% chance to have the weather_rare
     {
         Weather = weatherType.rare;
     }
-    else if (WeatherChance <= 50) // 35% chance to have weather_common
+    else if (WeatherChance < 50) // 35% chance to have weather_common
     {
         Weather = weatherType.common;
     }
@@ -845,18 +845,15 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
 
-    //remove temp items
-    charutils::ClearTempItems(PChar);
-
     if (PChar->isMounted() && !CanUseMisc(MISC_MOUNT))
     {
         PChar->animation = ANIMATION_NONE;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
     }
 
-    if (PChar->m_Costum != 0)
+    if (PChar->m_Costume != 0)
     {
-        PChar->m_Costum = 0;
+        PChar->m_Costume = 0;
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
     }
 
@@ -945,6 +942,8 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     {
         PChar->PTreasurePool->DelMember(PChar);
     }
+
+    PChar->ClearTrusts(); // trusts don't survive zone lines
 
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);

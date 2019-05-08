@@ -10,30 +10,36 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED     = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED               = 6387, -- Obtained: <item>.
-        GIL_OBTAINED                = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED            = 6390, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY     = 6401, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE               = 7048, -- Tallying conquest results...
-        BEASTMEN_BANNER             = 7129, -- There is a beastmen's banner.
-        CONQUEST                    = 7216, -- You've earned conquest points!
-        FISHING_MESSAGE_OFFSET      = 7549, -- You can't fish here.
-        DIG_THROW_AWAY              = 7562, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
-        FIND_NOTHING                = 7564, -- You dig and you dig, but find nothing.
-        ALREADY_OBTAINED_TELE       = 7649, -- You already possess the gate crystal for this telepoint.
-        LOGGING_IS_POSSIBLE_HERE    = 7662, -- Logging is possible here if you have <item>.
-        HARVESTING_IS_POSSIBLE_HERE = 7669, -- Harvesting is possible here if you have <item>.
-        TREE_CHECK                  = 7676, -- The hole in this tree is filled with a sweet-smelling liquid.
-        TREE_FULL                   = 7677, -- Your wine barrel is already full.
-        WATER_HOLE                  = 7680, -- There is an Opo-opo drinking well here. It seems they feast here, too.
-        FAINT_CRY                   = 7681, -- You hear the cry of a famished Opo-opo!
-        PAMAMAS                     = 7684, -- You might be able to draw an Opo-opo here if you had more pamamas.
-        REGIME_REGISTERED           = 9999, -- New training regime registered!
+        ITEM_CANNOT_BE_OBTAINED     = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED               = 6388, -- Obtained: <item>.
+        GIL_OBTAINED                = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED            = 6391, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY     = 6402, -- There is nothing out of the ordinary here.
+        CONQUEST_BASE               = 7049, -- Tallying conquest results...
+        BEASTMEN_BANNER             = 7130, -- There is a beastmen's banner.
+        CONQUEST                    = 7217, -- You've earned conquest points!
+        FISHING_MESSAGE_OFFSET      = 7550, -- You can't fish here.
+        DIG_THROW_AWAY              = 7563, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
+        FIND_NOTHING                = 7565, -- You dig and you dig, but find nothing.
+        ALREADY_OBTAINED_TELE       = 7650, -- You already possess the gate crystal for this telepoint.
+        LOGGING_IS_POSSIBLE_HERE    = 7663, -- Logging is possible here if you have <item>.
+        HARVESTING_IS_POSSIBLE_HERE = 7670, -- Harvesting is possible here if you have <item>.
+        TREE_CHECK                  = 7677, -- The hole in this tree is filled with a sweet-smelling liquid.
+        TREE_FULL                   = 7678, -- Your wine barrel is already full.
+        WATER_HOLE                  = 7681, -- There is an Opo-opo drinking well here. It seems they feast here, too.
+        FAINT_CRY                   = 7682, -- You hear the cry of a famished Opo-opo!
+        PAMAMAS                     = 7685, -- You might be able to draw an Opo-opo here if you had more pamamas.
+        REGIME_REGISTERED           = 10002, -- New training regime registered!
     },
     mob =
     {
+        HOAR_KNUCKLED_RIMBERRY_PH =
+        {
+            [17285392] = 17285394,
+            [17285393] = 17285394,
+        },
         WOODLAND_SAGE          = 17285220,
+        POWDERER_PENNY         = 17285248,
         BISQUE_HEELED_SUNBERRY = 17285460,
         BRIGHT_HANDED_KUNBERRY = 17285526,
         KAPPA_AKUSO            = 17285544,
@@ -43,22 +49,21 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     npc =
     {
-        EDACIOUS_OPO_OPO_QM = 17285615,
-        OVERSEER_BASE       = 17285648,
+        OVERSEER_BASE = 17285649,
         HARVESTING =
         {
-            17285679,
             17285680,
             17285681,
+            17285682,
         },
         LOGGING =
         {
-            17285673,
             17285674,
             17285675,
             17285676,
             17285677,
             17285678,
+            17285679,
         },
     },
 }

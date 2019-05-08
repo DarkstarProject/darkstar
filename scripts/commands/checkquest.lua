@@ -28,8 +28,9 @@ function onTrigger(player,logId,questId,target)
     logId = questLog.quest_log;
 
     -- validate questId
+    local areaQuestIds = dsp.quest.id[dsp.quest.area[logId]];
     if (questId ~= nil) then
-        questId = tonumber(questId) or _G[string.upper(questId)];
+        questId = tonumber(questId) or areaQuestIds[string.upper(questId)];
     end
     if (questId == nil or questId < 0) then
         error(player, "Invalid questID.");

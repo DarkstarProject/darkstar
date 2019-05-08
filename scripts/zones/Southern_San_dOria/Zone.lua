@@ -7,12 +7,14 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
+require("scripts/globals/chocobo")
 require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -292,-10,90 ,-258,10,105);
     applyHalloweenNpcCostumes(zone:getID())
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -42,7 +44,7 @@ end;
 
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
-    if (regionID==1 and player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 2) then
+    if (regionID==1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("COP_louverance_story")== 2) then
         player:startEvent(758);
     end
 end;

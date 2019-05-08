@@ -120,7 +120,7 @@ namespace luautils
     template<class T>
     typename std::enable_if_t<std::is_same<bool, T>::value> pushArg(T arg) { lua_pushboolean(LuaHandle, arg); }
     template<class T>
-    typename std::enable_if_t<std::is_same<nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
+    typename std::enable_if_t<std::is_same<std::nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
 
     void pushFunc(int lua_func, int index = 0);
     void callFunc(int nargs);
@@ -185,6 +185,7 @@ namespace luautils
     int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);                  // when player enters a region of a zone
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);                  // when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
+    int32 OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID);
     int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type);                  // hourly conquest update
 
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                     // triggered when user targets npc and clicks action button
@@ -204,6 +205,7 @@ namespace luautils
     int32 OnAttachmentUnequip(CBattleEntity* PEntity, CItemPuppet* attachment);
     int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
     int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
+    int32 OnUpdateAttachment(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
 
     int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);                        // triggers when item is used
     std::tuple<int32, int32, int32> OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param = ITEMCHECK::NONE, CBaseEntity* PCaster = nullptr);    // check to see if item can be used

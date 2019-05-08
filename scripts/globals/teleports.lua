@@ -41,9 +41,9 @@ local ids =
     EXITPROMHOLLA       = 27,
     EXITPROMDEM         = 28,
     LUFAISE             = 29,
-    CHOCOWINDURST       = 30,
-    CHOCOSANDORIA       = 31,
-    CHOCOBASTOK         = 32,
+    CHOCO_WINDURST      = 30,
+    CHOCO_SANDORIA      = 31,
+    CHOCO_BASTOK        = 32,
     DUCALGUARD          = 33,
     PURGONORGO          = 34,
     AZOUPH_SP           = 35,
@@ -69,6 +69,8 @@ local ids =
     WHITEGATE           = 55,
     SEA                 = 56,
     HOME_NATION         = 57,
+    CHOCO_UPPER_JEUNO   = 58,
+	ZVAHL_KEEP			= 59
 }
 dsp.teleport.id = ids
 
@@ -93,16 +95,20 @@ local destinations =
     [ids.DVUCCA]                = {-252.715,   -7.666,  -30.640, 128,  79}, -- {R}
     [ids.REEF]                  = {   9.304,   -7.376,  620.133,   0,  54}, -- {R}
     [ids.ALZADAAL]              = { 180.000,    0.000,   20.000,   0,  72}, -- {R}
-    [ids.B_REM]                 = { 620.000,    0.000, -260,640,  72,  72}, -- {R}
+    [ids.CUTTER]                = {-456.000,   -3.000, -405.000,-405,  54},
+    [ids.A_REM]                 = {-579.000,   -0.050, -100.000, 192,  72},
+    [ids.B_REM]                 = { 620.000,    0.000, -260.640,  72,  72}, -- {R}
     [ids.S_REM]                 = { 580.000,    0.000,  500.000, 192,  72}, -- {R}
+--  [ids.Z_REM]                 = { 000.000,    0.000,  000.000, 000,  72},
     [ids.MAAT]                  = {  11.000,    3.000,  117.000,   0, 243},
     [ids.EXITPROMMEA]           = { 179.000,   35.000,  256.000,  63, 117},
     [ids.EXITPROMHOLLA]         = { 337.000,   19.000,  -60.000, 125, 102},
     [ids.EXITPROMDEM]           = { 136.000,   19.000,  220.000, 130, 108},
     [ids.LUFAISE]               = { 438.000,    0.000,  -18.000,  11,  24},
-    [ids.CHOCOWINDURST]         = { 113.355,   -5.000, -133.118,   0, 241}, -- {R}
-    [ids.CHOCOSANDORIA]         = {  -8.557,    1.999,  -80.093,  64, 230}, -- {R}
-    [ids.CHOCOBASTOK]           = {  40.164,    0.000,  -83.578,  64, 234}, -- {R}
+    [ids.CHOCO_SANDORIA]        = {  -8.557,    1.999,  -80.093,  64, 230}, -- {R}
+    [ids.CHOCO_BASTOK]          = {  40.164,    0.000,  -83.578,  64, 234}, -- {R}
+    [ids.CHOCO_WINDURST]        = { 113.355,   -5.000, -133.118,   0, 241}, -- {R}
+    [ids.CHOCO_UPPER_JEUNO]     = { -44.000,    7.900,   98.000, 170, 244},
     [ids.DUCALGUARD]            = {  48.930,   10.002,  -71.032, 195, 243},
     [ids.PURGONORGO]            = {-398.689,   -3.038, -415.835,   0,   4}, -- {R}
     [ids.AZOUPH_SP]             = { 522.730,  -28.009, -502.621, 161,  79}, -- {R}
@@ -127,6 +133,31 @@ local destinations =
     [ids.MINESHAFT]             = { -93.657, -120.000, -583.561,   0,  13}, -- (R)
     [ids.WHITEGATE]             = {  27.424,   -6.000, -123.792, 192,  50}, -- {R}
     [ids.SEA]                   = { -31.800,    0.000, -618.700, 190,  33}, -- {R}
+	[ids.ZVAHL_KEEP]			= {-555.996,  -70.100,   59.989,   0, 162}
+}
+
+-- Use to call to player:getNationTeleport
+-- Called nation for lack of a better name
+dsp.teleport.nation =
+{
+    OUTPOST_SANDORIA   = 0,
+    OUTPOST_BASTOK     = 1,
+    OUTPOST_WINDURST   = 2,
+    RUNIC_PORTAL       = 3,
+    MAW                = 4,
+    CAMPAIGN_SANDORIA  = 5,
+    CAMPAIGN_BASTOK    = 6,
+    CAMPAIGN_WINDURST  = 7
+}
+
+dsp.teleport.runic_portal =
+{
+    AZOUPH  = 0x02,
+    DVUCCA  = 0x04,
+    MAMOOL  = 0x08,
+    HALVUNG = 0x10,
+    ILRUSI  = 0x20,
+    NYZUL   = 0x40,
 }
 
 dsp.teleport.to = function(player, destination)

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  qm1 (???)
+--  NPC: qm1 (???)
 -- Involved in Quests: The Three Magi
 -- !pos -331 -29 -49 112
 -----------------------------------
@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
     if
-        player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and
+        player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_THREE_MAGI) == QUEST_ACCEPTED and
         npcUtil.tradeHas(trade, 613) and
         not player:hasItem(1104) and
         npcUtil.popFromQM(player, npc, ID.mob.CHAOS_ELEMENTAL)

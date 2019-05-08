@@ -4,50 +4,51 @@
 -- Type: Assault Mission Giver
 -- !pos 127.565 0.161 -43.846 50
 -----------------------------------
-require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
-require("scripts/globals/besieged");
-require("scripts/globals/missions");
+require("scripts/globals/keyitems")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/besieged")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local rank = getMercenaryRank(player);
-    local haveimperialIDtag;
-    local assaultPoints = player:getAssaultPoint(MAMOOL_ASSAULT_POINT);
+    local rank = dsp.besieged.getMercenaryRank(player)
+    local haveimperialIDtag
+    local assaultPoints = player:getAssaultPoint(MAMOOL_ASSAULT_POINT)
 
     if (player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG)) then
-        haveimperialIDtag = 1;
+        haveimperialIDtag = 1
     else
-        haveimperialIDtag = 0;
+        haveimperialIDtag = 0
     end
 
 --[[    if (rank > 0) then
-        player:startEvent(274,rank,haveimperialIDtag,assaultPoints,player:getCurrentAssault());
+        player:startEvent(274,rank,haveimperialIDtag,assaultPoints,player:getCurrentAssault())
     else]]
-        player:startEvent(280); -- no rank
+        player:startEvent(280) -- no rank
     --end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
     if (csid == 274) then
-        local selectiontype = bit.band(option, 0xF);
+        local selectiontype = bit.band(option, 0xF)
         if (selectiontype == 1) then
             -- taken assault mission
-            player:addAssault(bit.rshift(option,4));
-            player:delKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
-            player:addKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAMOOL_JA_ASSAULT_ORDERS);
+            player:addAssault(bit.rshift(option,4))
+            player:delKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG)
+            player:addKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)
         elseif (selectiontype == 2) then
             -- purchased an item
-            local item = bit.rshift(option,14);
-            local itemID = 0;
-            local price = 0;
+            local item = bit.rshift(option,14)
+            local itemID = 0
+            local price = 0
             local items =
             {
                 [1]  = {itemid = 15971, price = 3000},
@@ -65,8 +66,8 @@ function onEventFinish(player,csid,option)
                
             local choice = items[item]
             if choice and npcUtil.giveItem(player, choice.itemid) then
-                player:delAssaultPoint(MAMOOL_ASSAULT_POINT, choice.price)
+                player:delAssaultPoint("MAMOOL_ASSAULT_POINT", choice.price)
             end
         end
     end
-end;
+end

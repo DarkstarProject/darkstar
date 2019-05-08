@@ -41,7 +41,7 @@ function onPath(npc)
                 local lampPos = dsp.path.get(LOWER_JEUNO.lampPath,v);
                 if (npc:atPoint(lampPos)) then
                     -- Vhana is at a lamp (she reaches them in reverse order)
-                    local lampId = ID.npc.LOWER_JEUNO_STREETLAMP_OFFSET + (12 - i);
+                    local lampId = ID.npc.STREETLAMP_OFFSET + (12 - i);
                     GetNPCByID(lampId):setAnimation(dsp.anim.OPEN_DOOR);
                     break;
                 end

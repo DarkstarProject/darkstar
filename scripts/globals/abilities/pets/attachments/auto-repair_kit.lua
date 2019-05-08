@@ -1,34 +1,49 @@
 -----------------------------------
 -- Attachment: Auto-repair Kit
 -----------------------------------
+require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.HPP, 5)
+    -- We do not have support to do a fraction of a percent so we rounded
+    local frame = pet:getAutomatonFrame()
+    if frame == dsp.frames.HARLEQUIN then
+        pet:addMod(dsp.mod.HPP, 5)
+    elseif frame == dsp.frames.VALOREDGE then
+        pet:addMod(dsp.mod.HPP, 4)
+    elseif frame == dsp.frames.SHARPSHOT then
+        pet:addMod(dsp.mod.HPP, 6)
+    elseif frame == dsp.frames.STORMWAKER then
+        pet:addMod(dsp.mod.HPP, 7)
+    end
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.HPP, 5)
+    local frame = pet:getAutomatonFrame()
+    if frame == dsp.frames.HARLEQUIN then
+        pet:delMod(dsp.mod.HPP, 5)
+    elseif frame == dsp.frames.VALOREDGE then
+        pet:delMod(dsp.mod.HPP, 4)
+    elseif frame == dsp.frames.SHARPSHOT then
+        pet:delMod(dsp.mod.HPP, 6)
+    elseif frame == dsp.frames.STORMWAKER then
+        pet:delMod(dsp.mod.HPP, 7)
+    end
 end
 
--- regen values from http://wiki.ffo.jp/html/8619.html
-local prefix = "autoRepairKit1_"
-local regenValues =
-{
-    [1] = {base=1, pct=0.125},
-    [2] = {base=1, pct=0.125},
-    [3] = {base=1, pct=0.125},
-}
-
-function onManeuverGain(pet,maneuvers)
-    local rVals = regenValues[maneuvers]
-    local power = math.floor(rVals.base + (pet:getMaxHP() * rVals.pct / 100))
-
-    pet:setLocalVar(prefix .. maneuvers, power)
-    pet:addMod(dsp.mod.REGEN, power)
+function onManeuverGain(pet, maneuvers)
+    onUpdate(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
-    pet:delMod(dsp.mod.REGEN, pet:getLocalVar(prefix .. maneuvers))
-    pet:setLocalVar(prefix .. maneuvers, 0)
+function onManeuverLose(pet, maneuvers)
+    onUpdate(pet, maneuvers - 1)
+end
+
+function onUpdate(pet, maneuvers)
+    local power = 0
+    if maneuvers > 0 then
+        power = math.floor(maneuvers + (pet:getMaxHP() * (0.125 * maneuvers) / 100))
+    end
+    updateModPerformance(pet, dsp.mod.REGEN, 'autorepair_kit_mod', power)
 end

@@ -7,6 +7,7 @@
     npcUtil.giveKeyItem(player, keyitems)
     npcUtil.completeQuest(player, area, quest, params)
     npcUtil.tradeHas(trade, items)
+    npcUtil.queueMove(npc, point, delay)
     npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
     npcUtil.fishingAnimation(npc, phaseDuration, func)
 --]]
@@ -88,6 +89,11 @@ function npcUtil.popFromQM(player, qm, mobId, params)
             mob:updateClaim(player)
         end
 
+        -- look
+        if params.look then
+            mob:lookAt(player:getPos())
+        end
+
         -- reappear the QM when all spawned mobs are dead, plus params.hide seconds
         if params.hide > 0 then
             local myId = mob:getID()
@@ -107,6 +113,38 @@ function npcUtil.popFromQM(player, qm, mobId, params)
     end
 
     return true
+end
+
+--[[ *******************************************************************************
+    Queue a position change for an NPC.  We do this because if you setPos() an NPC
+    immediately after you setStatus(dsp.status.DISAPPEAR) it, the QM does not hide
+    on the players' screens.
+
+    point may be any of the following formats:
+    {x, y, z}
+    {x, y, z, rot}
+    {x = x, y = y, z = z}
+    {x = x, y = y, z = z, rot = r}
+******************************************************************************* --]]
+local function doMove(x, y, z, r)
+    if not r then
+        r = 0
+    end
+    return function(entity)
+        entity:setPos(x, y, z, r)
+    end
+end
+
+function npcUtil.queueMove(npc, point, delay)
+    if not delay then
+        delay = 3000
+    end
+    if point.rot then
+        point = {point.x, point.y, point.z, point.rot}
+    elseif point.x then
+        point = {point.x, point.y, point.z}
+    end
+    npc:queue(delay, doMove(unpack(point)))
 end
 
 -- Picks a new position for an NPC and excluding the current position.
@@ -219,8 +257,10 @@ function npcUtil.giveKeyItem(player, keyitems)
 
     -- give key items to player, with message
     for _, v in pairs(givenKeyItems) do
-        player:addKeyItem(v)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,v)
+        if not player:hasKeyItem(v) then
+            player:addKeyItem(v)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,v)
+        end
     end
     return true
 end

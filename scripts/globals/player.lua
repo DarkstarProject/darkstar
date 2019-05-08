@@ -8,14 +8,14 @@ require("scripts/globals/zone")
 
 local startingRaceInfo =
 {
-    [1] = {gear = {body = 12631, hand = 12754, leg = 12883, feet = 13005}, homeNation = dsp.nation.BASTOK},   -- hume male
-    [2] = {gear = {body = 12632, hand = 12760, leg = 12884, feet = 13010}, homeNation = dsp.nation.BASTOK},   -- hume female
-    [3] = {gear = {body = 12633, hand = 12755, leg = 12885, feet = 13006}, homeNation = dsp.nation.SANDORIA}, -- elvaan male
-    [4] = {gear = {body = 12634, hand = 12759, leg = 12889, feet = 13011}, homeNation = dsp.nation.SANDORIA}, -- elvaan female
-    [5] = {gear = {body = 12635, hand = 12756, leg = 12886, feet = 13007}, homeNation = dsp.nation.WINDURST}, -- tarutaru male
-    [6] = {gear = {body = 12635, hand = 12756, leg = 12886, feet = 13007}, homeNation = dsp.nation.WINDURST}, -- tarutaru female
-    [7] = {gear = {body = 12636, hand = 12757, leg = 12887, feet = 13008}, homeNation = dsp.nation.WINDURST}, -- mithra
-    [8] = {gear = {body = 12637, hand = 12758, leg = 12888, feet = 13009}, homeNation = dsp.nation.BASTOK},   -- galka
+    [dsp.race.HUME_M]   = {gear = {body = 12631, hand = 12754, leg = 12883, feet = 13005}, homeNation = dsp.nation.BASTOK},
+    [dsp.race.HUME_F]   = {gear = {body = 12632, hand = 12760, leg = 12884, feet = 13010}, homeNation = dsp.nation.BASTOK},
+    [dsp.race.ELVAAN_M] = {gear = {body = 12633, hand = 12755, leg = 12885, feet = 13006}, homeNation = dsp.nation.SANDORIA},
+    [dsp.race.ELVAAN_F] = {gear = {body = 12634, hand = 12759, leg = 12889, feet = 13011}, homeNation = dsp.nation.SANDORIA},
+    [dsp.race.TARU_M]   = {gear = {body = 12635, hand = 12756, leg = 12886, feet = 13007}, homeNation = dsp.nation.WINDURST},
+    [dsp.race.TARU_F]   = {gear = {body = 12635, hand = 12756, leg = 12886, feet = 13007}, homeNation = dsp.nation.WINDURST},
+    [dsp.race.MITHRA]   = {gear = {body = 12636, hand = 12757, leg = 12887, feet = 13008}, homeNation = dsp.nation.WINDURST},
+    [dsp.race.GALKA]    = {gear = {body = 12637, hand = 12758, leg = 12888, feet = 13009}, homeNation = dsp.nation.BASTOK},
 }
 
 local startingNationInfo =

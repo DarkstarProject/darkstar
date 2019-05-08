@@ -15,7 +15,7 @@ function onAdditionalEffect(player,target,damage)
         chance = utils.clamp(chance, 5, 95)
     end
     if (target:hasImmunity(64)) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        return 0,0,0
     elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.DARK,0) <= 0.5) then
         return 0,0,0
     else

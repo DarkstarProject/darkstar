@@ -11,14 +11,14 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
     text =
     {
         CONQUEST_BASE           = 0,    -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED = 6540, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6546, -- Obtained: <item>.
-        GIL_OBTAINED            = 6547, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.
-        FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
-        CHEST_UNLOCKED          = 7332, -- You unlock the chest!
-        MINING_IS_POSSIBLE_HERE = 7340, -- Mining is possible here if you have <item>.
-        HOMEPOINT_SET           = 7440, -- Home point set!
+        ITEM_CANNOT_BE_OBTAINED = 6541, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6547, -- Obtained: <item>.
+        GIL_OBTAINED            = 6548, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
+        FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
+        CHEST_UNLOCKED          = 7334, -- You unlock the chest!
+        MINING_IS_POSSIBLE_HERE = 7342, -- Mining is possible here if you have <item>.
+        HOMEPOINT_SET           = 7442, -- Home point set!
     },
     mob =
     {

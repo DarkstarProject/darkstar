@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeIce_date", 0);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
     end
 
 end;

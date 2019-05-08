@@ -8,6 +8,7 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -15,6 +16,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn( player, prevZone)
@@ -26,7 +28,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 104;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1) then
         cs = 106;
     end
 

@@ -2,6 +2,7 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel EV
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
@@ -10,7 +11,14 @@ function onMobInitialize(mob)
 end;
 
 function onMobSpawn(mob)
-end;
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.BENEDICTION, hpp = math.random(20, 30)}, -- "Uses Benediction once."
+            {id = dsp.jsa.INVINCIBLE, hpp = math.random(90, 95), cooldown = 90}, -- "Uses Invincible many times."
+        },
+    })
+end
 
 function onMobEngaged(mob,target)
     local mobid = mob:getID()
@@ -21,25 +29,6 @@ function onMobEngaged(mob,target)
             m:updateEnmity(target)
         end
     end
-
-    local hp = math.random(40,60)
-    mob:setLocalVar("Benediction", hp);
-end;
-
-function onMobFight(mob,target)
-
-    local battletime = mob:getBattleTime();
-    local invtime = mob:getLocalVar("Invincible");
-    local bhp = mob:getLocalVar("Benediction");
-
-    if (battletime > invtime + 150) then
-        mob:useMobAbility(694);
-        mob:setLocalVar("Invincible", battletime);
-    elseif (mob:getHPP() < bhp) then
-        mob:useMobAbility(689);
-        mob:setLocalVar("Benediction", 0);
-    end
-
 end;
 
 function onMobDeath(mob, player, isKiller)

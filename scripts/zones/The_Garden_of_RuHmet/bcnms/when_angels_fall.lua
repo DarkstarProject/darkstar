@@ -46,7 +46,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
         local name, clearTime, partySize = battlefield:getRecord()
 
-        if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 0)
             player:setVar("PromathiaStatus",5);
         else

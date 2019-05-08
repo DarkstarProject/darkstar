@@ -40,7 +40,7 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING)
+    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
 

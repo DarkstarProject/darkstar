@@ -12,9 +12,6 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     -- Gessho will engage by himself ~1min in if you stall too long.
     -- Give a little buffer for while the instance loads

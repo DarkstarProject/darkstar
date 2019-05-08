@@ -1,16 +1,14 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Rompaulion S Ciralle
+--   NM: Rompaulion S Citalle
 -- Involved with San d'Oria quest "Knight Stalker"
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
+mixins = {require("scripts/mixins/job_special")}
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    -- Get credit if other NM is dead/despawned or in the process of dieing/fading out
-    local Cleuvarion = GetMobByID(mob:getID() - 1);
-    if (player:getVar("KnightStalker_Progress") == 4 and Cleuvarion:isDead()) then
-        player:setVar("KnightStalker_Kill",1);
+    -- check for Cleuvarion death
+    if player:getVar("KnightStalker_Progress") == 4 and GetMobByID(mob:getID() - 1):isDead() then
+        player:setVar("KnightStalker_Kill", 1)
     end
-end;
+end

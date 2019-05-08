@@ -4,6 +4,7 @@
 --
 -----------------------------------
 local ID = require("scripts/zones/San_dOria-Jeuno_Airship/IDs")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -29,9 +30,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 100) then
         local prevzone = player:getPreviousZone();
-        if (prevzone == 246) then
+        if (prevzone == dsp.zone.PORT_JEUNO) then
             player:setPos(0,0,0,0,232);
-        elseif (prevzone == 232) then
+        elseif (prevzone == dsp.zone.PORT_SAN_DORIA) then
             player:setPos(0,0,0,0,246);
         end
     end

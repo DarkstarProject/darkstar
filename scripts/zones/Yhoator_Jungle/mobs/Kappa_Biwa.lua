@@ -1,18 +1,13 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Kappa Biwa
+--   NM: Kappa Biwa
 -- Involved in Quest: True will
 -----------------------------------
-require("scripts/globals/quests");
+require("scripts/globals/quests")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
-
-    if (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED) then
-        player:setVar("trueWillKilledNM",player:getVar("trueWillKilledNM") + 1);
+    if player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED then
+        player:addVar("trueWillKilledNM", 1)
     end
-
-end;
+end

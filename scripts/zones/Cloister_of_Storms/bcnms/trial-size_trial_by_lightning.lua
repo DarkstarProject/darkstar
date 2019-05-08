@@ -41,7 +41,7 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING)
+    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
 
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeLightning_date", 0);
         player:addFame(WINDURST,30);
-        player:completeQuest(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
+        player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING);
     end
 
 end;

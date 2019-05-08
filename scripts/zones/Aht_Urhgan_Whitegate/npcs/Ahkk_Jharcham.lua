@@ -9,7 +9,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local keepingNotes = player:getQuestStatus(AHT_URHGAN, KEEPING_NOTES)
+    local keepingNotes = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.KEEPING_NOTES)
 
     if keepingNotes == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {917, 929}) then -- parchment + black ink
         player:startEvent(11)
@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local keepingNotes = player:getQuestStatus(AHT_URHGAN,KEEPING_NOTES)
+    local keepingNotes = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.KEEPING_NOTES)
 
     if keepingNotes == QUEST_AVAILABLE then
         player:startEvent(9)
@@ -37,10 +37,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 9 then
-        player:addQuest(AHT_URHGAN,KEEPING_NOTES)
+        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.KEEPING_NOTES)
     elseif csid == 11 then
         player:confirmTrade()
         player:moghouseFlag(16)
-        player:completeQuest(AHT_URHGAN,KEEPING_NOTES)
+        player:completeQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.KEEPING_NOTES)
     end
 end

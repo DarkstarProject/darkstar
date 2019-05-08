@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local duration = 60 + player:getMod(dsp.mod.PERFECT_DODGE)
+    local duration = 30 + player:getMod(dsp.mod.PERFECT_DODGE)
     player:addStatusEffect(dsp.effect.PERFECT_DODGE,1,0,duration)
 end

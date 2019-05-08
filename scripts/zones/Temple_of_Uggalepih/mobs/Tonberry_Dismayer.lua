@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 --  MOB: Tonberry Dismayer
+-- Note: PH for Tonberry Kinq
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
 mixins = {require("scripts/mixins/families/tonberry")}
 require("scripts/globals/regimes")
 require("scripts/globals/mobs")
 -----------------------------------
-
-function onMobSpawn(mob)
-end
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 790, 1, dsp.regime.type.GROUNDS)
@@ -21,5 +19,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.TONBERRY_KINQ_PH,10,21600) -- 6 hours, 10% pop chance
+    dsp.mob.phOnDespawn(mob, ID.mob.TONBERRY_KINQ_PH, 10, 21600) -- 6 hours, 10% pop chance
 end

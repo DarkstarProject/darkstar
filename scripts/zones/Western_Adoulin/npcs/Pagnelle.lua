@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Raptor_Rapture = player:getQuestStatus(ADOULIN, RAPTOR_RAPTURE);
+    local Raptor_Rapture = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
     local Raptor_Rapture_Status = player:getVar("Raptor_Rapture_Status");
 
     if (Raptor_Rapture == QUEST_AVAILABLE) then
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0, 0, 0, 0, 258);
     elseif ((csid == 5061) and (option == 1)) then
         -- Starts Quest: 'Raptor Rapture'
-        player:addQuest(ADOULIN, RAPTOR_RAPTURE);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
         player:setVar("Raptor_Rapture_Status", 4);
     elseif (csid == 5035) then
         -- Progresses Quest: 'Raptor Rapture', spoke to Ilney, now need rockberries.
@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 5039) then
         -- Finishing Quest: 'Raptor Rapture'
         player:setVar("Raptor_Rapture_Status", 0);
-        player:completeQuest(ADOULIN, RAPTOR_RAPTURE);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);
         player:addFame(ADOULIN);

@@ -14,7 +14,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(CRYSTAL_WAR, THE_FUMBLING_FRIAR) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.ORNATE_PACKAGE) then
+    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_FUMBLING_FRIAR) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.ORNATE_PACKAGE) then
         npcUtil.giveKeyItem(player, dsp.ki.ORNATE_PACKAGE)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

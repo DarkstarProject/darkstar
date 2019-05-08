@@ -46,7 +46,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local record = battlefield:getRecord();
         local clearTime = record.clearTime;
 
-        if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
+        if (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS)) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 180, battlefield:getLocalVar("[cs]bit"), 1)        -- winning CS (allow player to skip)
         else
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 180, battlefield:getLocalVar("[cs]bit"), 0)        -- winning CS (allow player to skip)
@@ -69,12 +69,12 @@ function onEventFinish(player,csid,option)
         and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE));
 
     if (csid == 32001) then
-        if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
             player:addKeyItem(dsp.ki.SHARD_OF_ENVY);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHARD_OF_ENVY);
             if (AAKeyitems == true) then
-                player:completeMission(ZILART,ARK_ANGELS);
-                player:addMission(ZILART,THE_SEALED_SHRINE);
+                player:completeMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS);
+                player:addMission(ZILART,dsp.mission.id.zilart.THE_SEALED_SHRINE);
                 player:setVar("ZilartStatus",0);
             end
         end

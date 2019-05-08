@@ -3,12 +3,13 @@
 --  MOB: Magmatic Eruca
 -- Note: Place Holder Energetic Eruca
 -----------------------------------
-local ID = require("scripts/zones/Mount_Zhayolm/IDs");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Mount_Zhayolm/IDs")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.ENERGETIC_ERUCA_PH,10,86400); -- 24 hours
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.ENERGETIC_ERUCA_PH, 10, 86400) -- 24 hours
+end

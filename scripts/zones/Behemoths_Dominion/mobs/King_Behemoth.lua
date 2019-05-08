@@ -3,6 +3,7 @@
 --  HNM: King Behemoth
 -----------------------------------
 local ID = require("scripts/zones/Behemoths_Dominion/IDs")
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
@@ -17,6 +18,8 @@ function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
         GetNPCByID(ID.npc.BEHEMOTH_QM):setStatus(dsp.status.DISAPPEAR)
     end
+
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
 end
 
 function onSpellPrecast(mob, spell)
@@ -48,6 +51,6 @@ function onMobDespawn(mob)
         SetServerVariable("[PH]King_Behemoth", 0)
         DisallowRespawn(ID.mob.BEHEMOTH, false)
         UpdateNMSpawnPoint(ID.mob.BEHEMOTH)
-        GetMobByID(ID.mob.BEHEMOTH):setRespawnTime(math.random(75600,86400))
+        GetMobByID(ID.mob.BEHEMOTH):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     end
 end

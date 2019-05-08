@@ -676,7 +676,7 @@ end;
         dmg = target:addHP(-dmg);
         spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP);
     else
-        target:delHP(dmg);
+        target:takeDamage(dmg, caster, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL + spell:getElement());
         target:handleAfflatusMiseryDamage(dmg);
         target:updateEnmityFromDamage(caster,dmg);
         -- Only add TP if the target is a mob
@@ -706,7 +706,7 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
     if (dmg < 0) then
         dmg = -(target:addHP(-dmg));
     else
-        target:delHP(dmg);
+        target:takeDamage(dmg, caster, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL + ele);
     end
     --Not updating enmity from damage, as this is primarily used for additional effects (which don't generate emnity)
     -- in the case that updating enmity is needed, do it manually after calling this
@@ -1325,7 +1325,7 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
     return math.floor(duration)
 end
 
-function calculatePotency(basePotency, dStat, magicSkill, caster, target)
+function calculatePotency(basePotency, magicSkill, caster, target)
     if magicSkill ~= dsp.skill.ENFEEBLING_MAGIC then
         return basePotency
     end
@@ -1338,7 +1338,7 @@ function calculatePotency(basePotency, dStat, magicSkill, caster, target)
         end
     end
 
-    return math.floor((basePotency + dStat) * (1 + caster:getMod(dsp.mod.ENF_MAG_POTENCY) / 100))
+    return math.floor(basePotency * (1 + caster:getMod(dsp.mod.ENF_MAG_POTENCY) / 100))
 end
 
 -- Output magic hit rate for all levels

@@ -85,7 +85,6 @@ CMobEntity::CMobEntity()
     m_HiPCLvl = 0;
     m_THLvl = 0;
     m_ItemStolen = false;
-    m_RageMode = 0;
 
     strRank = 3;
     vitRank = 3;
@@ -318,47 +317,6 @@ bool CMobEntity::CanDeaggro()
     return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 
-/************************************************************************
-*                                                                       *
-*  RAGE MODE                                                            *
-*                                                                       *
-************************************************************************/
-
-bool CMobEntity::hasRageMode()
-{
-    return m_RageMode;
-}
-
-void CMobEntity::addRageMode()
-{
-    if (!m_RageMode)
-    {
-        stats.AGI *= 10;
-        stats.CHR *= 10;
-        stats.DEX *= 10;
-        stats.INT *= 10;
-        stats.MND *= 10;
-        stats.STR *= 10;
-        stats.VIT *= 10;
-    }
-    m_RageMode = true;
-}
-
-void CMobEntity::delRageMode()
-{
-    if (m_RageMode)
-    {
-        stats.AGI /= 10;
-        stats.CHR /= 10;
-        stats.DEX /= 10;
-        stats.INT /= 10;
-        stats.MND /= 10;
-        stats.STR /= 10;
-        stats.VIT /= 10;
-    }
-    m_RageMode = false;
-}
-
 bool CMobEntity::IsFarFromHome()
 {
     return distance(loc.p, m_SpawnPoint) > m_maxRoamDistance;
@@ -429,25 +387,6 @@ void CMobEntity::restoreMobModifiers()
     m_mobModStat = m_mobModStatSave;
 }
 
-void CMobEntity::HideModel(bool hide)
-{
-    if (hide)
-    {
-        // I got this from ambush antlion
-        // i'm not sure if this is right
-        m_flags |= FLAG_HIDE_MODEL;
-    }
-    else
-    {
-        m_flags &= ~FLAG_HIDE_MODEL;
-    }
-}
-
-bool CMobEntity::IsModelHidden()
-{
-    return m_flags & FLAG_HIDE_MODEL;
-}
-
 void CMobEntity::HideHP(bool hide)
 {
     if (hide)
@@ -472,12 +411,13 @@ void CMobEntity::CallForHelp(bool call)
     if (call)
     {
         m_flags |= FLAG_CALL_FOR_HELP;
+        m_OwnerID.clean();
     }
     else
     {
         m_flags &= ~FLAG_CALL_FOR_HELP;
     }
-    updatemask |= UPDATE_HP;
+    updatemask |= UPDATE_COMBAT;
 }
 
 bool CMobEntity::CalledForHelp()
@@ -578,14 +518,13 @@ void CMobEntity::Spawn()
     uint8 level = m_minLevel;
 
     // Generate a random level between min and max level
-    if (m_maxLevel != m_minLevel)
+    if (m_maxLevel > m_minLevel)
     {
-        level += dsprand::GetRandomNumber(0, m_maxLevel - m_minLevel);
+        level += dsprand::GetRandomNumber(0, m_maxLevel - m_minLevel + 1);
     }
 
     SetMLevel(level);
     SetSLevel(level);//calculated in function
-    delRageMode();
 
     mobutils::CalculateStats(this);
     mobutils::GetAvailableSpells(this);
@@ -726,6 +665,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         else
         {
             target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill, &action);
+            this->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PTarget, PSkill->getID(), state.GetSpentTP(), &action);
+            PTarget->PAI->EventHandler.triggerListener("WEAPONSKILL_TAKE", PTarget, this, PSkill->getID(), state.GetSpentTP(), &action);
         }
 
         if (msg == 0)
@@ -840,12 +781,12 @@ void CMobEntity::DropItems(CCharEntity* PChar)
     if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && (DropList->Items.size() || DropList->Groups.size()))
     {
         //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-        uint8 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-        uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
+        int16 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
+        int16 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
 
         for (const DropGroup_t& group : DropList->Groups)
         {
-            for (uint8 roll = 0; roll < maxRolls; ++roll)
+            for (int16 roll = 0; roll < maxRolls; ++roll)
             {
                 //Determine if this group should drop an item
                 if (group.GroupRate > 0 && dsprand::GetRandomNumber(1000) < group.GroupRate * map_config.drop_rate_multiplier + bonus)
@@ -871,7 +812,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
         for (const DropItem_t& item : DropList->Items)
         {
-            for (uint8 roll = 0; roll < maxRolls; ++roll)
+            for (int16 roll = 0; roll < maxRolls; ++roll)
             {
                 if (item.DropRate > 0 && dsprand::GetRandomNumber(1000) < item.DropRate * map_config.drop_rate_multiplier + bonus)
                 {
@@ -896,7 +837,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
     if (validZone && charutils::GetRealExp(PChar->GetMLevel(), GetMLevel()) > 0)
     {
-        if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64) ||
+        if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetRegionOwner(PChar->loc.zone->GetRegionID()) <= 2) ||
             (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && PChar->loc.zone->GetRegionID() >= 28 && PChar->loc.zone->GetRegionID() <= 32) ||
             (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
             m_Element > 0 && dsprand::GetRandomNumber(100) < 20) // Need to move to CRYSTAL_CHANCE constant
@@ -1074,7 +1015,6 @@ void CMobEntity::OnDisengage(CAttackState& state)
     // this will let me decide to walk home or despawn
     m_neutral = true;
 
-    delRageMode();
     m_OwnerID.clean();
 
     CBattleEntity::OnDisengage(state);

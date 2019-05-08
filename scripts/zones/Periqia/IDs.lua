@@ -9,55 +9,57 @@ zones = zones or {}
 zones[dsp.zone.PERIQIA] =
 {
     text = {
-        ITEM_CANNOT_BE_OBTAINED    = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        FULL_INVENTORY_AFTER_TRADE = 6385, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
-        ITEM_OBTAINED              = 6387, -- Obtained: <item>.
-        GIL_OBTAINED               = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED           = 6390, -- Obtained key item: <keyitem>.
-        KEYITEM_LOST               = 6391, -- Lost key item: <keyitem>.
-        NOT_HAVE_ENOUGH_GIL        = 6392, -- You do not have enough gil.
-        ITEMS_OBTAINED             = 6396, -- You obtain <number> <item>!
-        ASSAULT_31_START           = 7476, -- Commencing <assault>! Objective: Escort the prisoner
-        ASSAULT_32_START           = 7477, -- Commencing <assault>! Objective: Destroy the undead
-        ASSAULT_33_START           = 7478, -- Commencing <assault>! Objective: Find the survivors
-        ASSAULT_34_START           = 7479, -- Commencing <assault>! Objective: Eliminate the Black Baron
-        ASSAULT_35_START           = 7480, -- Commencing <assault>! Objective: Activate the bridge
-        ASSAULT_36_START           = 7481, -- Commencing <assault>! Objective: Exterminate the chigoes
-        ASSAULT_37_START           = 7482, -- Commencing <assault>! Objective: Clear the mine fields
-        ASSAULT_38_START           = 7483, -- Commencing <assault>! Objective: Locate the generals
-        ASSAULT_39_START           = 7484, -- Commencing <assault>! Objective: Retrieve the Mark-IIs
-        ASSAULT_40_START           = 7485, -- Commencing <assault>! Objective: Assassinate King Goldemar
-        TIME_TO_COMPLETE           = 7506, -- You have <number> [minute/minutes] (Earth time) to complete this mission.
-        MISSION_FAILED             = 7507, -- The mission has failed. Leaving area.
-        RUNE_UNLOCKED_POS          = 7508, -- ission objective completed. Unlocking Rune of Release ([A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z]-#).
-        RUNE_UNLOCKED              = 7509, -- ission objective completed. Unlocking Rune of Release.
-        ASSAULT_POINTS_OBTAINED    = 7510, -- You gain <number> [Assault point/Assault points]!
-        TIME_REMAINING_MINUTES     = 7511, -- ime remaining: <number> [minute/minutes] (Earth time).
-        TIME_REMAINING_SECONDS     = 7512, -- ime remaining: <number> [second/seconds] (Earth time).
-        PARTY_FALLEN               = 7514, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
-        EXCALIACE_START            = 7523, -- Such a lot of trouble for one little corsair... Shall we be on our way?
-        EXCALIACE_END1             = 7524, -- Yeah, I got it. Stay here and keep quiet.
-        EXCALIACE_END2             = 7525, -- Hey... It was a short trip, but nothing is ever dull around you, huh?
-        EXCALIACE_ESCAPE           = 7526, -- Heh. The Immortals really must be having troubles finding troops if they sent this bunch of slowpokes to watch over me...
-        EXCALIACE_PAIN1            = 7527, -- Oomph!
-        EXCALIACE_PAIN2            = 7528, -- Ouch!
-        EXCALIACE_PAIN3            = 7529, -- Youch!
-        EXCALIACE_PAIN4            = 7530, -- Damn, that's gonna leave a mark!
-        EXCALIACE_PAIN5            = 7531, -- Urggh!
-        EXCALIACE_CRAB1            = 7532, -- Over to you.
-        EXCALIACE_CRAB2            = 7533, -- What's this guy up to?
-        EXCALIACE_CRAB3            = 7534, -- Uh-oh.
-        EXCALIACE_DEBAUCHER1       = 7535, -- Wh-what the...!?
-        EXCALIACE_DEBAUCHER2       = 7536, -- H-help!!!
-        EXCALIACE_RUN              = 7537, -- Now's my chance!
-        EXCALIACE_TOO_CLOSE        = 7538, -- Okay, okay, you got me! I promise I won't run again if you step back a bit...please. Someone's been eating too much garlic...
-        EXCALIACE_TIRED            = 7539, -- <Pant>...<wheeze>...
-        EXCALIACE_CAUGHT           = 7540, -- Damn...
+        ITEM_CANNOT_BE_OBTAINED    = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE = 6386, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+        ITEM_OBTAINED              = 6388, -- Obtained: <item>.
+        GIL_OBTAINED               = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED           = 6391, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST               = 6392, -- Lost key item: <keyitem>.
+        NOT_HAVE_ENOUGH_GIL        = 6393, -- You do not have enough gil.
+        ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
+        ASSAULT_31_START           = 7477, -- Commencing <assault>! Objective: Escort the prisoner
+        ASSAULT_32_START           = 7478, -- Commencing <assault>! Objective: Destroy the undead
+        ASSAULT_33_START           = 7479, -- Commencing <assault>! Objective: Find the survivors
+        ASSAULT_34_START           = 7480, -- Commencing <assault>! Objective: Eliminate the Black Baron
+        ASSAULT_35_START           = 7481, -- Commencing <assault>! Objective: Activate the bridge
+        ASSAULT_36_START           = 7482, -- Commencing <assault>! Objective: Exterminate the chigoes
+        ASSAULT_37_START           = 7483, -- Commencing <assault>! Objective: Clear the mine fields
+        ASSAULT_38_START           = 7484, -- Commencing <assault>! Objective: Locate the generals
+        ASSAULT_39_START           = 7485, -- Commencing <assault>! Objective: Retrieve the Mark-IIs
+        ASSAULT_40_START           = 7486, -- Commencing <assault>! Objective: Assassinate King Goldemar
+        TIME_TO_COMPLETE           = 7507, -- You have <number> [minute/minutes] (Earth time) to complete this mission.
+        MISSION_FAILED             = 7508, -- The mission has failed. Leaving area.
+        RUNE_UNLOCKED_POS          = 7509, -- ission objective completed. Unlocking Rune of Release ([A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z]-#).
+        RUNE_UNLOCKED              = 7510, -- ission objective completed. Unlocking Rune of Release.
+        ASSAULT_POINTS_OBTAINED    = 7511, -- You gain <number> [Assault point/Assault points]!
+        TIME_REMAINING_MINUTES     = 7512, -- ime remaining: <number> [minute/minutes] (Earth time).
+        TIME_REMAINING_SECONDS     = 7513, -- ime remaining: <number> [second/seconds] (Earth time).
+        PARTY_FALLEN               = 7515, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
+        EXCALIACE_START            = 7524, -- Such a lot of trouble for one little corsair... Shall we be on our way?
+        EXCALIACE_END1             = 7525, -- Yeah, I got it. Stay here and keep quiet.
+        EXCALIACE_END2             = 7526, -- Hey... It was a short trip, but nothing is ever dull around you, huh?
+        EXCALIACE_ESCAPE           = 7527, -- Heh. The Immortals really must be having troubles finding troops if they sent this bunch of slowpokes to watch over me...
+        EXCALIACE_PAIN1            = 7528, -- Oomph!
+        EXCALIACE_PAIN2            = 7529, -- Ouch!
+        EXCALIACE_PAIN3            = 7530, -- Youch!
+        EXCALIACE_PAIN4            = 7531, -- Damn, that's gonna leave a mark!
+        EXCALIACE_PAIN5            = 7532, -- Urggh!
+        EXCALIACE_CRAB1            = 7533, -- Over to you.
+        EXCALIACE_CRAB2            = 7534, -- What's this guy up to?
+        EXCALIACE_CRAB3            = 7535, -- Uh-oh.
+        EXCALIACE_DEBAUCHER1       = 7536, -- Wh-what the...!?
+        EXCALIACE_DEBAUCHER2       = 7537, -- H-help!!!
+        EXCALIACE_RUN              = 7538, -- Now's my chance!
+        EXCALIACE_TOO_CLOSE        = 7539, -- Okay, okay, you got me! I promise I won't run again if you step back a bit...please. Someone's been eating too much garlic...
+        EXCALIACE_TIRED            = 7540, -- <Pant>...<wheeze>...
+        EXCALIACE_CAUGHT           = 7541, -- Damn...
     },
 
-    mob = {
+    mob = 
+    {
         -- Seagull Grounded
-        [31] = {
+        [31] = 
+        {
             CRAB1      = 17006594,
             CRAB2      = 17006595,
             CRAB3      = 17006596,
@@ -76,8 +78,31 @@ zones[dsp.zone.PERIQIA] =
             DEBAUCHER2 = 17006610,
             DEBAUCHER3 = 17006611,
         },
+        -- Requiem
+        [32] = 
+        {
+            PUTRID_IMMORTAL_GUARD1 = 17006612,
+            PUTRID_IMMORTAL_GUARD2 = 17006613,
+            BATTEILANT_BHOOT1      = 17006614,
+            BATTEILANT_BHOOT2      = 17006615,
+            DARKLING_DRAUGAR1      = 17006616,
+            DRACONIC_DRAUGAR1      = 17006617,
+            DARKLING_DRAUGAR2      = 17006619,
+            DARKLING_DRAUGAR3      = 17006620,
+            DRACONIC_DRAUGAR2      = 17006621,
+            DRACONIC_DRAUGAR3      = 17006623,
+            BATTEILANT_BHOOT3      = 17006625,
+            BATTEILANT_BHOOT4      = 17006626,
+            DARKLING_DRAUGAR4      = 17006627,
+            DRACONIC_DRAUGAR4      = 17006628,
+            DARKLING_DRAUGAR5      = 17006630,
+            DRACONIC_DRAUGAR5      = 17006631,
+            DARKLING_DRAUGAR6      = 17006633,
+            DARKLING_DRAUGAR7      = 17006634,
+        },
         -- Shades of Vengeance
-        [79] = {
+        [79] = 
+        {
             K23H1LAMIA1  = 17006754,
             K23H1LAMIA2  = 17006755,
             K23H1LAMIA3  = 17006756,
@@ -91,7 +116,8 @@ zones[dsp.zone.PERIQIA] =
         }
     },
 
-    npc = {
+    npc = 
+    {
         EXCALIACE       = 17006593,
         ANCIENT_LOCKBOX = 17006809,
         RUNE_OF_RELEASE = 17006810,

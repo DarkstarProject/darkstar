@@ -11,13 +11,13 @@
 -- 100%TP    200%TP    300%TP
 --   2.75    2.75    2.75
 -----------------------------------
-require("scripts/globals/status")
+require("scripts/globals/aftermath")
 require("scripts/globals/settings")
+require("scripts/globals/status")
 require("scripts/globals/weaponskills")
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {}
     params.numHits = 1
     params.ftp100 = 2.75 params.ftp200 = 2.75 params.ftp300 = 2.75
@@ -26,11 +26,17 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.chr_wsc = 0.0
     params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
     params.canCrit = false
-    params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = 1
+    params.acc100 = 0.0 params.acc200 = 0.0 params.acc300 = 0.0
+    params.atk100 = 1; params.atk200 = 1; params.atk300 = 1;
     params.overrideCE = 160
     params.overrideVE = 480
 
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary, action)
+
+    -- Apply aftermath
+    if damage > 0 then
+        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.RANGED, dsp.aftermath.type.RELIC)
+    end
+
     return tpHits, extraHits, criticalHit, damage
 end

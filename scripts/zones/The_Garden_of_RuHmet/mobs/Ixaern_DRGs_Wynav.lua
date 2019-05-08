@@ -5,9 +5,6 @@
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     mob:setLocalVar("hpTrigger", math.random(10,75));
 end;

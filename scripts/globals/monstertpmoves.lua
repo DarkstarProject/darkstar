@@ -11,42 +11,16 @@ require("scripts/globals/msg");
 -- mob types
 -- used in mob:isMobType()
 MOBTYPE_NORMAL            = 0x00;
-MOBTYPE_PCSPAWNED        = 0x01;
+MOBTYPE_0X01             = 0x01;
 MOBTYPE_NOTORIOUS        = 0x02;
 MOBTYPE_FISHED            = 0x04;
 MOBTYPE_CALLED            = 0x08;
 MOBTYPE_BATTLEFIELD        = 0x10;
 MOBTYPE_EVENT            = 0x20;
 
---skilltype
-MOBSKILL_PHYSICAL = 0;
-MOBSKILL_MAGICAL = 1;
-MOBSKILL_RANGED = 2;
-MOBSKILL_BREATH = 4;
-MOBSKILL_SPECIAL = 3;
-
---skillparam (PHYSICAL)
-MOBPARAM_NONE = 0;
-MOBPARAM_BLUNT = 1;
-MOBPARAM_SLASH = 2;
-MOBPARAM_PIERCE = 3;
-MOBPARAM_H2H = 4;
-
 MOBDRAIN_HP = 0;
 MOBDRAIN_MP = 1;
 MOBDRAIN_TP = 2;
-
---skillparam (MAGICAL)
--- this is totally useless and should be removed
--- add resistence using dsp.magic.ele.FIRE, see bomb_toss.lua
-MOBPARAM_FIRE = 6;
-MOBPARAM_EARTH = 7;
-MOBPARAM_WATER = 8;
-MOBPARAM_WIND = 9;
-MOBPARAM_ICE = 10;
-MOBPARAM_THUNDER = 11;
-MOBPARAM_LIGHT = 12;
-MOBPARAM_DARK = 13;
 
 --shadowbehav (number of shadows to take off)
 MOBPARAM_IGNORE_SHADOWS = 0;
@@ -472,7 +446,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
     return damage;
 end;
 
-function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
+function MobFinalAdjustments(dmg,mob,skill,target,attackType,damageType,shadowbehav)
 
     -- physical attack missed, skip rest
     if (skill:hasMissMsg()) then
@@ -481,7 +455,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
     --handle pd
     if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
-            and skilltype==MOBSKILL_PHYSICAL) then
+            and attackType==dsp.attackType.PHYSICAL) then
         skill:setMsg(dsp.msg.basic.SKILL_MISS);
         return 0;
     end
@@ -490,7 +464,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     -- this is for AoE because its only set once
     skill:setMsg(dsp.msg.basic.DAMAGE);
 
-    --Handle shadows depending on shadow behaviour / skilltype
+    --Handle shadows depending on shadow behaviour / attackType
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 
         if (skill:isAoE() or skill:isConal()) then
@@ -511,29 +485,44 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
         target:delStatusEffect(dsp.effect.THIRD_EYE);
     end
 
-    if (skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
+    if (attackType == dsp.attackType.PHYSICAL and skill:isSingle() == false) then
         target:delStatusEffect(dsp.effect.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide
-    if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
+    if (attackType == dsp.attackType.PHYSICAL and utils.thirdeye(target)) then
         skill:setMsg(dsp.msg.basic.ANTICIPATE);
         return 0;
     end
 
-    if (skilltype == MOBSKILL_PHYSICAL) then
+    -- Handle Automaton Analyzer which decreases damage from successive special attacks
+    if target:getMod(dsp.mod.AUTO_ANALYZER) > 0 then
+        local analyzerSkill = target:getLocalVar("analyzer_skill")
+        local analyzerHits = target:getLocalVar("analyzer_hits")
+        if analyzerSkill == skill:getID() and target:getMod(dsp.mod.AUTO_ANALYZER) > analyzerHits then
+            -- Successfully mitigating damage at a fixed 40%
+            dmg = dmg * 0.6
+            analyzerHits = analyzerHits + 1
+        else
+            target:setLocalVar("analyzer_skill", skill:getID())
+            analyzerHits = 0
+        end
+        target:setLocalVar("analyzer_hits", analyzerHits)
+    end
 
-        dmg = target:physicalDmgTaken(dmg);
+    if (attackType == dsp.attackType.PHYSICAL) then
 
-    elseif (skilltype == MOBSKILL_MAGICAL) then
+        dmg = target:physicalDmgTaken(dmg, damageType);
+
+    elseif (attackType == dsp.attackType.MAGICAL) then
 
         dmg = target:magicDmgTaken(dmg);
 
-    elseif (skilltype == MOBSKILL_BREATH) then
+    elseif (attackType == dsp.attackType.BREATH) then
 
         dmg = target:breathDmgTaken(dmg);
 
-    elseif (skilltype == MOBSKILL_RANGED) then
+    elseif (attackType == dsp.attackType.RANGED) then
 
         dmg = target:rangedDmgTaken(dmg);
 
@@ -549,7 +538,6 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     dmg = utils.stoneskin(target, dmg);
 
     if (dmg > 0) then
-        target:wakeUp();
         target:updateEnmityFromDamage(mob,dmg);
         target:handleAfflatusMiseryDamage(dmg);
     end
@@ -576,7 +564,7 @@ end;
 -- function MobMagicAoEHit()
 -- end;
 
-function MobDrainMove(mob, target, drainType, drain)
+function MobDrainMove(mob, target, drainType, drain, attackType, damageType)
 
     if (target:isUndead() == false) then
         if (drainType == MOBDRAIN_MP) then
@@ -605,7 +593,7 @@ function MobDrainMove(mob, target, drainType, drain)
                 drain = target:getHP();
             end
 
-            target:delHP(drain);
+            target:takeDamage(drain, mob, attackType, damageType);
             mob:addHP(drain);
 
             return dsp.msg.basic.SKILL_DRAIN_HP;
@@ -617,7 +605,7 @@ function MobDrainMove(mob, target, drainType, drain)
             drain = target:getHP();
         end
 
-        target:delHP(drain);
+        target:takeDamage(drain, mob, attackType, damageType);
         return dsp.msg.basic.DAMAGE;
     end
 

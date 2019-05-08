@@ -1,32 +1,34 @@
 -----------------------------------
 -- Attachment: Loudspeaker
 -----------------------------------
+require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.MATT, 5)
+    onUpdate(pet, 0)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.MATT, 5)
+    updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_matt', 0)
 end
 
-function onManeuverGain(pet,maneuvers)
-    if (maneuvers == 1) then
-        pet:addMod(dsp.mod.MATT, 5)
-    elseif (maneuvers == 2) then
-        pet:addMod(dsp.mod.MATT, 5)
-    elseif (maneuvers == 3) then
-        pet:addMod(dsp.mod.MATT, 5)
-    end
+function onManeuverGain(pet, maneuvers)
+    onUpdate(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
-    if (maneuvers == 1) then
-        pet:delMod(dsp.mod.MATT, 5)
-    elseif (maneuvers == 2) then
-        pet:delMod(dsp.mod.MATT, 5)
-    elseif (maneuvers == 3) then
-        pet:delMod(dsp.mod.MATT, 5)
+function onManeuverLose(pet, maneuvers)
+    onUpdate(pet, maneuvers - 1)
+end
+
+function onUpdate(pet, maneuvers)
+    if maneuvers == 0 then
+        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_matt', 5)
+    elseif maneuvers == 1 then
+        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_matt', 10)
+    elseif maneuvers == 2 then
+        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_matt', 15)
+    elseif maneuvers == 3 then
+        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_matt', 20)
     end
 end

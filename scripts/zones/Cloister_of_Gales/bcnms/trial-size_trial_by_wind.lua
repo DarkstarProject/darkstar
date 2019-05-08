@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeWind_date", 0);
         player:addFame(RABAO,30);
-        player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WIND);
     end
 
 end;

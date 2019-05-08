@@ -88,14 +88,17 @@ CParty::CParty(CBattleEntity* PEntity)
 
 CParty::CParty(uint32 id)
 {
+    m_PAlliance = nullptr;
+
     m_PartyID = id;
     m_PartyType = PARTY_PCS;
     m_PartyNumber = 0;
 
     m_PLeader = nullptr;
-    m_PAlliance = nullptr;
     m_PSyncTarget = nullptr;
     m_PQuaterMaster = nullptr;
+
+    m_EffectsChanged = false;
 }
 
 /************************************************************************
@@ -123,6 +126,7 @@ void CParty::DisbandParty(bool playerInitiated)
         for (uint8 i = 0; i < members.size(); ++i)
         {
             CCharEntity* PChar = (CCharEntity*)members.at(i);
+            PChar->ClearTrusts();
 
             PChar->PParty = nullptr;
             PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
@@ -236,6 +240,9 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
     if (m_PLeader == PEntity)
     {
+        // Remove their trusts
+        CCharEntity* PChar = (CCharEntity*)PEntity;
+        PChar->ClearTrusts();
         RemovePartyLeader(PEntity);
     }
     else
@@ -520,6 +527,9 @@ void CParty::AddMember(CBattleEntity* PEntity)
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
             }
         }
+
+        // You lose all your summoned trusts upon joining a party
+        PChar->ClearTrusts();
     }
 }
 
@@ -745,6 +755,18 @@ void CParty::ReloadParty()
                     PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, memberinfo.flags, PChar->getZone()));
                     //if (PPartyMember != PChar)
                     //    effects->AddMemberEffects(PChar);
+
+                    // Inject the party leader's trusts into the party list
+                    CBattleEntity* PLeader = GetLeader();
+                    if (PLeader != nullptr)
+                    {
+                        for (auto PTrust : ((CCharEntity*)PLeader)->PTrusts)
+                        {
+                            j++;
+                            // trusts don't persist over zonelines, so we know their zone has be the same as the leader.
+                            PChar->pushPacket(new CPartyMemberUpdatePacket(PTrust, j));
+                        }
+                    }
                 }
                 else
                 {
@@ -756,6 +778,8 @@ void CParty::ReloadParty()
                 }
                 j++;
             }
+
+
             //PChar->pushPacket(effects.release());
         }
     }
@@ -810,9 +834,9 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
-    if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE) {
+    if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
         return;
-    }
+    
 
 
     //alliance
@@ -840,8 +864,10 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 
             }//regular party
         }
-        else if (PChar->PParty->m_PAlliance == nullptr) {
-            for (uint8 i = 0; i < members.size(); ++i) {
+        else if (PChar->PParty->m_PAlliance == nullptr)
+        {
+            for (uint8 i = 0; i < members.size(); ++i)
+            {
                 CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
 
                 if (PPartyMember != PChar &&
@@ -956,7 +982,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                     if (member->status != STATUS_DISAPPEAR &&
                         member->getZone() == PChar->getZone())
                     {
-                        member->pushPacket(new CMessageStandardPacket(PChar->GetMLevel(), 0, 0, 0, message));
+                        member->pushPacket(new CMessageStandardPacket(PChar->GetMLevel(), 0, 0, 0, static_cast<MsgStd>(message)));
                         member->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
                             EFFECT_LEVEL_SYNC,
                             EFFECT_LEVEL_SYNC,

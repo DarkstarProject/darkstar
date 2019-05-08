@@ -10,9 +10,6 @@ mixins =
 }
 -----------------------------------
 
-function onMobSpawn(mob)
-end
-
 function onMobDeath(mob, player, isKiller)
 
     local Animate_Trigger = GetServerVariable("[DynaXarcabard]Boss_Trigger")

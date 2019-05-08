@@ -6,9 +6,6 @@ require("scripts/globals/titles")
 require("scripts/globals/dynamis")
 -----------------------------------
 
-function onMobSpawn(mob)
-end
-
 function onMobEngaged(mob,target)
     SpawnMob(17535350):updateEnmity(target) -- 110
     SpawnMob(17535351):updateEnmity(target) -- 111

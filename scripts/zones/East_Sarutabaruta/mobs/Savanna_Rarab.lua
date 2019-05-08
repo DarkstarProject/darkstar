@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.SHARP_EARED_ROPIPI_PH,20,300); -- 5 minutes
+    dsp.mob.phOnDespawn(mob,ID.mob.SHARP_EARED_ROPIPI_PH,20,300); -- 5 minutes
 end;

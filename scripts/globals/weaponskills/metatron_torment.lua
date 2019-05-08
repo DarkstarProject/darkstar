@@ -17,13 +17,13 @@
 -- 100%TP    200%TP    300%TP
 -- 2.75      2.75      2.75
 -----------------------------------
-require("scripts/globals/status")
+require("scripts/globals/aftermath")
 require("scripts/globals/settings")
+require("scripts/globals/status")
 require("scripts/globals/weaponskills")
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {}
     params.numHits = 1
     params.ftp100 = 2.75 params.ftp200 = 2.75 params.ftp300 = 2.75
@@ -31,16 +31,21 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
     params.canCrit = false
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = 1
+    params.atk100 = 1; params.atk200 = 1; params.atk300 = 1;
 
-    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+    if USE_ADOULIN_WEAPON_SKILL_CHANGES then
         params.str_wsc = 0.8
     end
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
-    if (damage > 0 and target:hasStatusEffect(dsp.effect.ATTACK_DOWN) == false) then
-        local duration = (tp/1000 * 20) * applyResistanceAddEffect(player,target,dsp.magic.ele.WIND,0)
-        target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 19, 0, duration)
+    if damage > 0 then
+        if not target:hasStatusEffect(dsp.effect.ATTACK_DOWN) then
+            local duration = tp / 1000 * 20 * applyResistanceAddEffect(player, target, dsp.magic.ele.WIND, 0)
+            target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 19, 0, duration)
+        end
+
+        -- Apply aftermath
+        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.MAIN, dsp.aftermath.type.RELIC)
     end
 
     return tpHits, extraHits, criticalHit, damage
