@@ -33,7 +33,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES) then
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         else
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
