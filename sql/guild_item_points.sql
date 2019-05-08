@@ -461,8 +461,8 @@ INSERT INTO `guild_item_points` VALUES (2, 17252, 9, 8082, 21840, 4); -- Culveri
 INSERT INTO `guild_item_points` VALUES (2, 18147, 9, 9407, 21840, 4); -- Culverin +1 (9407 / 21840)
 INSERT INTO `guild_item_points` VALUES (2, 16653, 9, 5565, 20880, 5); -- Nadziak (5565 / 20880)
 INSERT INTO `guild_item_points` VALUES (2, 16685, 9, 6890, 20880, 5); -- Nadziak +1 (6890 / 20880)
-INSERT INTO `guild_item_points` VALUES (2, 16659, 9, 11792, 20880, 6); -- Tabarzin (11792 / 20880)
-INSERT INTO `guild_item_points` VALUES (2, 17935, 9, 11792, 20880, 6); -- Tabarzin +1 (11792 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 16659, 9, 7440, 22320, 6); -- Tabarzin (7440 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 17935, 9, 7440, 22320, 6); -- Tabarzin +1 (7440 / 22320
 INSERT INTO `guild_item_points` VALUES (2, 16470, 9, 2890, 18720, 7); -- Gully (2890 / 18720)
 INSERT INTO `guild_item_points` VALUES (2, 17621, 9, 4590, 18720, 7); -- Gully +1 (4590 / 18720)
 
@@ -495,10 +495,10 @@ INSERT INTO `guild_item_points` VALUES (3, 16769, 1, 140, 6240, 3); -- Brass Zag
 INSERT INTO `guild_item_points` VALUES (3, 16772, 1, 181, 6240, 3); -- Brass Zaghnal +1 (181 / 6240)
 INSERT INTO `guild_item_points` VALUES (3, 16391, 1, 180, 6720, 4); -- Brass Knuckles (180 / 6720)
 INSERT INTO `guild_item_points` VALUES (3, 16689, 1, 222, 6720, 4); -- Brass Knuckles +1 (222 / 6720)
-INSERT INTO `guild_item_points` VALUES (3, 12961, 1, 248, 2440, 5); -- Brass Leggings (248 / 2440)
-INSERT INTO `guild_item_points` VALUES (3, 13027, 1, 309, 2440, 5); -- Brass Leggings +1 (309 / 2440)
-INSERT INTO `guild_item_points` VALUES (3, 12577, 1, 497, 558, 6); -- Brass Harness (497 / 558)
-INSERT INTO `guild_item_points` VALUES (3, 12664, 1, 558, 558, 6); -- Brass Harness +1 (558 / 558)
+INSERT INTO `guild_item_points` VALUES (3, 12961, 1, 248, 7440, 5); -- Brass Leggings (248 / 7440)
+INSERT INTO `guild_item_points` VALUES (3, 13027, 1, 309, 7440, 5); -- Brass Leggings +1 (309 / 7440)
+INSERT INTO `guild_item_points` VALUES (3, 12577, 1, 497, 10080, 6); -- Brass Harness (497 / 10080)
+INSERT INTO `guild_item_points` VALUES (3, 12664, 1, 558, 10080, 6); -- Brass Harness +1 (558 / 10080)
 INSERT INTO `guild_item_points` VALUES (3, 16641, 1, 312, 8160, 7); -- Brass Axe (312 / 8160)
 INSERT INTO `guild_item_points` VALUES (3, 16661, 1, 343, 8160, 7); -- Brass Axe +1 (343 / 8160)
 
@@ -572,7 +572,7 @@ INSERT INTO `guild_item_points` VALUES (3, 13372, 5, 2450, 16560, 5); -- Gold Ea
 INSERT INTO `guild_item_points` VALUES (3, 16518, 5, 3100, 18720, 6); -- Mythril Degen (3100 / 18720)
 INSERT INTO `guild_item_points` VALUES (3, 16815, 5, 3150, 18720, 6); -- Mythril Degen +1 (3150 / 18720)
 INSERT INTO `guild_item_points` VALUES (3, 17281, 5, 1260, 15120, 7); -- Wingedge (1260 / 15120)
-INSERT INTO `guild_item_points` VALUES (3, 17288, 5, 1260, 15120, 7); -- Wingedge +1 (1260 / 15120)
+INSERT INTO `guild_item_points` VALUES (3, 17288, 5, 1560, 15120, 7); -- Wingedge +1 (1560 / 15120)
 
 -- Goldsmithing / Craftsman
 INSERT INTO `guild_item_points` VALUES (3, 12801, 6, 3547, 19200, 0); -- Mythril Cuisses (3547 / 19200)
@@ -856,7 +856,7 @@ INSERT INTO `guild_item_points` VALUES (5, 14172, 1, 519, 6720, 5); -- Angler's 
 INSERT INTO `guild_item_points` VALUES (5, 12569, 1, 245, 7440, 6); -- Lizard Jerkin (245 / 7440)
 INSERT INTO `guild_item_points` VALUES (5, 13697, 1, 259, 7440, 6); -- Fine Jerkin (259 / 7440)
 INSERT INTO `guild_item_points` VALUES (5, 14070, 1, 360, 8640, 7); -- Fisherman's Gloves (360 / 8640)
-INSERT INTO `guild_item_points` VALUES (5, 14071, 1, 360, 8640, 7); -- Angler's Gloves (360 / 8640)
+INSERT INTO `guild_item_points` VALUES (5, 14071, 1, 986, 8640, 7); -- Angler's Gloves (986 / 8640)
 
 -- Leathercraft / Initiate
 INSERT INTO `guild_item_points` VALUES (5, 12442, 2, 1102, 13920, 0); -- Studded Bandana (1102 / 13920)
@@ -1107,7 +1107,7 @@ INSERT INTO `guild_item_points` VALUES (6, 13982, 5, 4107, 18960, 5); -- Turtle 
 INSERT INTO `guild_item_points` VALUES (6, 17612, 5, 1025, 14160, 6); -- Beetle Knife (1025 / 14160)
 INSERT INTO `guild_item_points` VALUES (6, 17613, 5, 1127, 14160, 6); -- Beetle Knife +1 (1127 / 14160)
 INSERT INTO `guild_item_points` VALUES (6, 17062, 5, 1122, 14640, 7); -- Bone Rod (1122 / 14640)
-INSERT INTO `guild_item_points` VALUES (6, 17410, 5, 1122, 14640, 7); -- Bone Rod +1 (1122 / 14640)
+INSERT INTO `guild_item_points` VALUES (6, 17410, 5, 1782, 14640, 7); -- Bone Rod +1 (1782 / 14640)
 
 -- Bonecraft / Craftsman
 INSERT INTO `guild_item_points` VALUES (6, 17361, 6, 1845, 16800, 0); -- Crumhorn (1845 / 16800)
@@ -1138,7 +1138,7 @@ INSERT INTO `guild_item_points` VALUES (6, 14230, 7, 4500, 19920, 2); -- Coral C
 INSERT INTO `guild_item_points` VALUES (6, 12435, 7, 3000, 18720, 3); -- Coral Visor (3000 / 18720)
 INSERT INTO `guild_item_points` VALUES (6, 13859, 7, 3120, 18720, 3); -- Coral Visor +1 (3120 / 18720)
 INSERT INTO `guild_item_points` VALUES (6, 12709, 7, 6412, 21120, 4); -- Coral Mittens (6412 / 21120)
-INSERT INTO `guild_item_points` VALUES (6, 13995, 7, 6412, 21120, 4); -- Merman's Mittens (6412 / 21120)
+INSERT INTO `guild_item_points` VALUES (6, 13995, 7, 7837, 21120, 4); -- Merman's Mittens (7837 / 21120)
 INSERT INTO `guild_item_points` VALUES (6, 12508, 7, 3262, 19200, 5); -- Coral Hairpin (3262 / 19200)
 INSERT INTO `guild_item_points` VALUES (6, 13850, 7, 3375, 19200, 5); -- Merman's Hairpin (3375 / 19200)
 INSERT INTO `guild_item_points` VALUES (6, 16422, 7, 3625, 19440, 6); -- Tigerfangs (3625 / 19440)
@@ -1162,7 +1162,7 @@ INSERT INTO `guild_item_points` VALUES (6, 13406, 8, 5250, 19680, 5); -- Merman'
 INSERT INTO `guild_item_points` VALUES (6, 16548, 8, 16280, 22800, 6); -- Coral Sword (16280 / 22800)
 INSERT INTO `guild_item_points` VALUES (6, 16620, 8, 16280, 22800, 6); -- Merman's Sword (16280 / 22800)
 INSERT INTO `guild_item_points` VALUES (6, 12308, 8, 5400, 20640, 7); -- Darksteel Shield (5400 / 20640)
-INSERT INTO `guild_item_points` VALUES (6, 12346, 8, 5400, 20640, 7); -- Darksteel Shield +1 (5400 / 20640)
+INSERT INTO `guild_item_points` VALUES (6, 12346, 8, 6525, 20640, 7); -- Darksteel Shield +1 (6525 / 20640)
 
 -- Bonecraft / Veteran
 INSERT INTO `guild_item_points` VALUES (6, 12693, 9, 2000, 17520, 0); -- Gavial Finger Gauntlets (2000 / 17520)
