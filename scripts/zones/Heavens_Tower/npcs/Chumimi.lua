@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 17423); -- Casting Wand
             player:needToZone(true);
             player:setVar("theThreeMagiSupport",0);
-            player:addFame(WINDURST,AF1_FAME);
+            player:addFame(WINDURST,20);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_THREE_MAGI);
         end
     elseif (csid == 270) then
@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.FOE_FINDER_MK_I);
             player:addItem(14092);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14092); -- wizards sabots
-            player:addFame(WINDURST,AF2_FAME);
+            player:addFame(WINDURST,40);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.RECOLLECTIONS);
         end
     elseif (csid == 276) then

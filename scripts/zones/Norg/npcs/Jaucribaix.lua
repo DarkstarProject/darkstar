@@ -123,7 +123,7 @@ function onEventFinish(player,csid,option)
     -- THE SACRED KATANA
     elseif (csid == 139 and option == 1) then
         player:addQuest(OUTLANDS, dsp.quest.id.outlands.THE_SACRED_KATANA)
-    elseif (csid == 141 and npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.THE_SACRED_KATANA, {item=17812, fame=AF1_FAME, fameArea=NORG})) then -- Magoroku
+    elseif (csid == 141 and npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.THE_SACRED_KATANA, {item=17812, fame=20, fameArea=NORG})) then -- Magoroku
         player:confirmTrade()
         player:delKeyItem(dsp.ki.HANDFUL_OF_CRYSTAL_SCALES)
         player:needToZone(true)
@@ -139,7 +139,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 154) then
         player:setVar("yomiOkuriCS",5)
         npcUtil.giveKeyItem(player, dsp.ki.YOMOTSU_HIRASAKA)
-    elseif (csid == 156 and npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.YOMI_OKURI, {item=14100, fame=AF2_FAME, fameArea=NORG, var="yomiOkuriCS"})) then -- Myochin Sune-Ate
+    elseif (csid == 156 and npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.YOMI_OKURI, {item=14100, fame=40, fameArea=NORG, var="yomiOkuriCS"})) then -- Myochin Sune-Ate
         player:delKeyItem(dsp.ki.FADED_YOMOTSU_HIRASAKA)
         player:needToZone(true)
 
@@ -157,7 +157,7 @@ function onEventFinish(player,csid,option)
         player:setVar("aThiefinNorgCS",9)
         player:needToZone(true)
     elseif (csid == 164) then
-        npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.A_THIEF_IN_NORG, {item=13868, title=dsp.title.PARAGON_OF_SAMURAI_EXCELLENCE, fame=AF3_FAME, fameArea=NORG, var={"aThiefinNorgCS"}})
+        npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.A_THIEF_IN_NORG, {item=13868, title=dsp.title.PARAGON_OF_SAMURAI_EXCELLENCE, fame=60, fameArea=NORG, var={"aThiefinNorgCS"}})
 
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.TACHI_KASHA_LEARNED)
