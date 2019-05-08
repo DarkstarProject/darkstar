@@ -6,6 +6,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Yhoator_Jungle/IDs")
 require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 -----------------------------------
 
