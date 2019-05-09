@@ -133,6 +133,7 @@ void CMobSkill::setTP(int16 tp)
 	m_TP = tp;
 }
 
+// Stores the Monsters HP% as it was at the start of mobskill
 void CMobSkill::setHPP(uint8 hpp)
 {
     m_HPP = hpp;
@@ -152,7 +153,6 @@ void CMobSkill::setValidTargets(uint16 targ)
 {
     m_ValidTarget = targ;
 }
-
 
 uint16 CMobSkill::getID() const
 {
@@ -221,6 +221,7 @@ int16 CMobSkill::getTP() const
     return m_TP;
 }
 
+// Retrieves the Monsters HP% as it was at the start of mobskill
 uint8 CMobSkill::getHPP() const
 {
     return m_HPP;
