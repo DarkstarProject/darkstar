@@ -28,6 +28,7 @@ This file is part of DarkStar-server source code.
 #include "../../utils/battleutils.h"
 #include "../../weapon_skill.h"
 #include "../../status_effect_container.h"
+#include "../../modifier.h"
 
 CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsid) :
     CState(PEntity, targid),
@@ -90,8 +91,15 @@ void CWeaponSkillState::SpendCost()
     }
     else
     {
-        tp = m_PEntity->health.tp;
-        m_PEntity->health.tp = 0;
+        if (dsprand::GetRandomNumber(100) < m_PEntity->getMod(Mod::WS_NO_DEPLETE))
+        {
+            tp = m_PEntity->health.tp;
+        }
+        else
+        {
+            tp = m_PEntity->health.tp;
+            m_PEntity->health.tp = 0;
+        }
     }
 
     if (dsprand::GetRandomNumber(100) < m_PEntity->getMod(Mod::CONSERVE_TP))
