@@ -40369,6 +40369,10 @@ INSERT INTO `item_mods` VALUES (27454,61,25);     -- Dark resistance +25
 INSERT INTO `item_mods` VALUES (27454,68,77);     -- Evasion +77
 INSERT INTO `item_mods` VALUES (27454,161,-5);    -- Physical damage taken -5%
 INSERT INTO `item_mods` VALUES (27454,384,400);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27456,1,16);      -- Crier's Gaiters: DEF 16
+INSERT INTO `item_mods` VALUES (27456,5,12);      -- MP +12
+INSERT INTO `item_mods` VALUES (27456,68,8);      -- EVA +8
+INSERT INTO `item_mods` VALUES (27456,169,12);    -- Movement Speed +12%
 INSERT INTO `item_mods` VALUES (27463,1,70);      -- Vanya Clogs: DEF 70
 INSERT INTO `item_mods` VALUES (27463,2,13);      -- HP +13
 INSERT INTO `item_mods` VALUES (27463,5,14);      -- MP +14
