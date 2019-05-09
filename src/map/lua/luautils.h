@@ -64,6 +64,7 @@ class CStatusEffect;
 class CTradeContainer;
 class CItemPuppet;
 class CItemWeapon;
+class CItemFurnishing;
 class CInstance;
 class CWeaponSkill;
 class CZone;
@@ -231,6 +232,10 @@ namespace luautils
     int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);                    // triggers on mob death
     int32 OnMobDespawn(CBaseEntity* PMob);                                        // triggers on mob despawn (death not assured)
 
+    int32 OnPetEngage(CBaseEntity* PPet, int32 delay);                            // triggers on pet engaging a target
+    bool OnPetRoam(CBaseEntity* PPet, int32 msSinceLastCast);
+    int32 OnPetFight(CBaseEntity* PPet, CBaseEntity* PTarget, int32 delay);       // Сalled every 3 sec when a pet fights monster
+
     int32 OnPath(CBaseEntity* PEntity);                                           // triggers when a patrol npc finishes its pathfind
 
     int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PInstance);                 //triggers when enter a bcnm
@@ -277,6 +282,9 @@ namespace luautils
     bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events
 
     uint16 GetDespoilDebuff(uint16 itemId);                                   // Ask the database for an effectId based on Item despoiled (returns 0 if not in db)
+
+    void OnFurniturePlaced(CCharEntity* PChar, CItemFurnishing* itemId);
+    void OnFurnitureRemoved(CCharEntity* PChar, CItemFurnishing* itemId);
 };
 
 #endif //- _LUAUTILS_H -
