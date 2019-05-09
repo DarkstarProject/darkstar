@@ -35,6 +35,7 @@ zones[dsp.zone.PORT_WINDURST] =
         ITEM_OBTAINED                   = 10971, -- Obtained: <item>.
         GIL_OBTAINED                    = 10972, -- Obtained <number> gil.
         KEYITEM_OBTAINED                = 10974, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                    = 10975, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL             = 10976, -- You do not have enough gil.
         HOMEPOINT_SET                   = 11062, -- Home point set!
         YOU_ACCEPT_THE_MISSION          = 11155, -- You have accepted the mission.

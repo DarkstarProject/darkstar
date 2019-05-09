@@ -17,6 +17,7 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
         ITEM_OBTAINED                   = 6569, -- Obtained: <item>.
         GIL_OBTAINED                    = 6570, -- Obtained <number> gil.
         KEYITEM_OBTAINED                = 6572, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                    = 6573, -- Lost key item: <keyitem>.
         ITEMS_OBTAINED                  = 6578, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY         = 6583, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET          = 7230, -- You can't fish here.
