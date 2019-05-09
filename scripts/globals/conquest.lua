@@ -939,7 +939,7 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
                         break
                     else
                         trade:confirmItem(crystalId, count)
-                        addPoints = addPoints + count * math.floor(4000 / (player:getRank() * 12 - crystalWorth))
+                        addPoints = addPoints + count * math.floor(400 / (player:getRank() * 12 - crystalWorth))
                     end
                 end
             end
@@ -947,7 +947,7 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
             if addPoints > 0 and pRank ~= 1 and pRankPoints < 4000 then
                 if pRankPoints + addPoints >= 4000 then
                     player:setRankPoints(4000)
-                    player:addCP(math.min(pRankPoints + addPoints - 4000, 1000))
+                    player:addCP(pRankPoints + addPoints - 4000)
                     player:showText(npc, mOffset + 44) -- "Your rank points are full. We've added the excess to your conquest points."
                 else
                     player:addRankPoints(addPoints)
