@@ -28,9 +28,9 @@
 
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaMobSkill::CLuaMobSkill(lua_State *L)
@@ -47,9 +47,9 @@ CLuaMobSkill::CLuaMobSkill(lua_State *L)
 }
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
@@ -160,9 +160,9 @@ inline int32 CLuaMobSkill::getMobHPP(lua_State* L)
 }
 
 /************************************************************************
-*																		*
-*  declare lua function													*
-*																		*
+*                                                                       *
+*  declare lua function                                                 *
+*                                                                       *
 ************************************************************************/
 
 const char CLuaMobSkill::className[] = "CMobSkill";
