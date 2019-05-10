@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:hasCompletedMission(COP, THE_MOTHERCRYSTALS) then
+    if player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
         player:startEvent(300)
     else
         player:messageSpecial(ID.text.AN_EMPTY_LIGHT_SWIRLS)

@@ -16,10 +16,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialByWind = player:getQuestStatus(OUTLANDS,TRIAL_BY_WIND);
+    local TrialByWind = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
     local WhisperOfGales = player:hasKeyItem(dsp.ki.WHISPER_OF_GALES);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
+    local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
     local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
 
     ---------------------------------------------------------------------
@@ -60,10 +60,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 66 and option == 1) then
-        if (player:getQuestStatus(OUTLANDS,TRIAL_BY_WIND) == QUEST_COMPLETED) then
-            player:delQuest(OUTLANDS,TRIAL_BY_WIND);
+        if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND) == QUEST_COMPLETED) then
+            player:delQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
         end
-        player:addQuest(OUTLANDS,TRIAL_BY_WIND);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
         player:setVar("TrialByWind_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_WIND);
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
             player:setVar("TrialByWind_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(RABAO,30);
-            player:completeQuest(OUTLANDS,TRIAL_BY_WIND);
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
         end
     elseif (csid == 86 or csid == 87) then
         if (player:getFreeSlotsCount() ~= 0) then

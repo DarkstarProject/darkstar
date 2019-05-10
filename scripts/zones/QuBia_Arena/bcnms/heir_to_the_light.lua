@@ -33,7 +33,7 @@ function onBcnmLeave(player,instance,leavecode)
     local currentMission = player:getCurrentMission(SANDORIA);
     if (leavecode == 2) then
         --printf("win");
-        if (currentMission == THE_HEIR_TO_THE_LIGHT)    then
+        if (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT)    then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,0);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,1);
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
     local MissionStatus = player:getVar("MissionStatus");
 
     if (csid == 32001) then
-        if (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 3)    then
+        if (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 3)    then
             player:setVar("MissionStatus",4);
         end
     end

@@ -36,13 +36,13 @@ function onTrigger(player,npc)
         player:hasKeyItem(dsp.ki.IVORY_KEY) or
         CurrentDay == player:getVar("LastAzureKey") or
         CurrentDay == player:getVar("LastIvoryKey") or
-        ACP < THOSE_WHO_LURK_IN_SHADOWS_II
+        ACP < dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II
     ) then
         player:messageSpecial(ID.text.SOFTLY_SHIMMERING_LIGHT)
 
     elseif (needToZone and not player:hasStatusEffect(dsp.effect.MARK_OF_SEED)) then
         player:messageSpecial(ID.text.YOU_REACH_FOR_THE_LIGHT)
-    elseif (ACP >= THOSE_WHO_LURK_IN_SHADOWS_II and not player:getMaskBit(progressMask, offset)) then
+    elseif (ACP >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II and not player:getMaskBit(progressMask, offset)) then
         player:setMaskBit(progressMask, "SEED_AFTERGLOW_MASK", offset, true)
         intensity = intensity + 1
         if (intensity == 9) then

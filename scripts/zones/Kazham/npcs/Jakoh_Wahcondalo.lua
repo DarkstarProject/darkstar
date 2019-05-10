@@ -25,11 +25,11 @@ function onTrigger(player,npc)
 
     if (wsQuestEvent ~= nil) then
         player:startEvent(wsQuestEvent)
-    elseif (player:getCurrentMission(ZILART) == KAZAMS_CHIEFTAINESS) then
+    elseif (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS) then
         player:startEvent(114)
-    elseif (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
+    elseif (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
         player:startEvent(115)
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
         player:startEvent(265)
     else
         player:startEvent(113)
@@ -41,8 +41,8 @@ function onEventFinish(player,csid,option)
     if (csid == 114) then
         player:addKeyItem(dsp.ki.SACRIFICIAL_CHAMBER_KEY)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SACRIFICIAL_CHAMBER_KEY)
-        player:completeMission(ZILART,KAZAMS_CHIEFTAINESS)
-        player:addMission(ZILART,THE_TEMPLE_OF_UGGALEPIH)
+        player:completeMission(ZILART,dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS)
+        player:addMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH)
     elseif (csid == 265) then
         player:setVar("MissionStatus",3)
     else

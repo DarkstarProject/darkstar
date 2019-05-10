@@ -11118,7 +11118,9 @@ INSERT INTO `item_mods` VALUES (13690,8,3);
 INSERT INTO `item_mods` VALUES (13690,23,15);
 INSERT INTO `item_mods` VALUES (13691,1,12);
 INSERT INTO `item_mods` VALUES (13691,10,4);
-INSERT INTO `item_mods` VALUES (13692,1,4);
+INSERT INTO `item_mods` VALUES (13692,1,4);       -- Skulker's Cape: DEF 4
+INSERT INTO `item_mods` VALUES (13692,946,30);    -- Sneak duration +30
+INSERT INTO `item_mods` VALUES (13692,947,30);    -- Invisible duration +30 
 INSERT INTO `item_mods` VALUES (13693,1,6);
 INSERT INTO `item_mods` VALUES (13694,1,6);
 INSERT INTO `item_mods` VALUES (13694,23,12);
@@ -15455,9 +15457,10 @@ INSERT INTO `item_mods` VALUES (14926,5,18);
 INSERT INTO `item_mods` VALUES (14926,25,4);
 INSERT INTO `item_mods` VALUES (14926,27,6);
 INSERT INTO `item_mods` VALUES (14927,1,20);
-INSERT INTO `item_mods` VALUES (14928,1,16);
-INSERT INTO `item_mods` VALUES (14928,5,15);
-INSERT INTO `item_mods` VALUES (14928,110,10);
+INSERT INTO `item_mods` VALUES (14928,1,16);      -- Magus Bazubands: DEF 16
+INSERT INTO `item_mods` VALUES (14928,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (14928,110,10);    -- Parrying skill +10
+INSERT INTO `item_mods` VALUES (14928,945,10);    -- Increases chance to learn blue magic (+10)
 INSERT INTO `item_mods` VALUES (14929,1,11);
 INSERT INTO `item_mods` VALUES (14929,2,10);
 INSERT INTO `item_mods` VALUES (14929,9,2);
@@ -15808,11 +15811,12 @@ INSERT INTO `item_mods` VALUES (15023,9,4);
 INSERT INTO `item_mods` VALUES (15023,25,5);
 INSERT INTO `item_mods` VALUES (15023,26,5);
 INSERT INTO `item_mods` VALUES (15023,289,2);
-INSERT INTO `item_mods` VALUES (15024,1,17);
-INSERT INTO `item_mods` VALUES (15024,5,20);
-INSERT INTO `item_mods` VALUES (15024,8,3);
-INSERT INTO `item_mods` VALUES (15024,12,3);
-INSERT INTO `item_mods` VALUES (15024,110,10);
+INSERT INTO `item_mods` VALUES (15024,1,17);      -- Magus Bazubands +1: DEF 17
+INSERT INTO `item_mods` VALUES (15024,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (15024,8,3);       -- STR +3
+INSERT INTO `item_mods` VALUES (15024,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (15024,110,10);    -- Parrying skill +10
+INSERT INTO `item_mods` VALUES (15024,945,11);    -- Increases chance to learn blue magic (+11)
 INSERT INTO `item_mods` VALUES (15025,1,17);
 INSERT INTO `item_mods` VALUES (15025,2,12);
 INSERT INTO `item_mods` VALUES (15025,5,12);
@@ -18579,6 +18583,7 @@ INSERT INTO `item_mods` VALUES (15828,243,2);
 INSERT INTO `item_mods` VALUES (15828,248,2);
 INSERT INTO `item_mods` VALUES (15829,3,1);
 INSERT INTO `item_mods` VALUES (15830,6,1);
+INSERT INTO `item_mods` VALUES (15831,385,50); -- Fenian Ring Shield Bash +50
 INSERT INTO `item_mods` VALUES (15832,85,3);
 INSERT INTO `item_mods` VALUES (15833,5,15);
 INSERT INTO `item_mods` VALUES (15836,11,1);
@@ -23470,6 +23475,7 @@ INSERT INTO `item_mods` VALUES (19022,2,20);
 INSERT INTO `item_mods` VALUES (19022,8,3);
 INSERT INTO `item_mods` VALUES (19023,5,20);
 INSERT INTO `item_mods` VALUES (19023,27,-2);
+INSERT INTO `item_mods` VALUES (19024,380,3);    -- Sword Strap: Delay -3%
 INSERT INTO `item_mods` VALUES (19025,288,2);
 INSERT INTO `item_mods` VALUES (19026,2,10);
 INSERT INTO `item_mods` VALUES (19026,5,10);
@@ -26243,7 +26249,7 @@ INSERT INTO `item_mods` VALUES (21371,73,3);
 INSERT INTO `item_mods` VALUES (21371,302,2);
 INSERT INTO `item_mods` VALUES (21371,384,900);
 INSERT INTO `item_mods` VALUES (21373,5,15);
-INSERT INTO `item_mods` VALUES (21373,153,-2);
+INSERT INTO `item_mods` VALUES (21373,163,-2);
 INSERT INTO `item_mods` VALUES (21374,27,2);
 INSERT INTO `item_mods` VALUES (21374,302,1);
 INSERT INTO `item_mods` VALUES (21376,1,10);
@@ -26309,8 +26315,8 @@ INSERT INTO `item_mods` VALUES (21425,171,5);
 INSERT INTO `item_mods` VALUES (21426,5,15);
 INSERT INTO `item_mods` VALUES (21426,13,4);
 INSERT INTO `item_mods` VALUES (21426,27,-4);
-INSERT INTO `item_mods` VALUES (21427,25,6); -- Bloodrain strap: Accuracy+6
-INSERT INTO `item_mods` VALUES (21427,73,6); -- Store TP+6
+INSERT INTO `item_mods` VALUES (21427,25,6);      -- Bloodrain strap: Accuracy+6
+INSERT INTO `item_mods` VALUES (21427,73,6);      -- Store TP+6
 INSERT INTO `item_mods` VALUES (21428,2,50);
 INSERT INTO `item_mods` VALUES (21428,23,10);
 INSERT INTO `item_mods` VALUES (21428,25,10);
@@ -26320,12 +26326,12 @@ INSERT INTO `item_mods` VALUES (21460,5,5);
 INSERT INTO `item_mods` VALUES (21479,24,15);
 INSERT INTO `item_mods` VALUES (21479,26,5);
 INSERT INTO `item_mods` VALUES (21479,305,15);
-INSERT INTO `item_mods` VALUES (21480,26,20); -- Blurred Crossbow - 20 Racc
-INSERT INTO `item_mods` VALUES (21481,26,25); -- Blurred Crossbow +1 - 25 Racc
-INSERT INTO `item_mods` VALUES (21481,365,15); -- Snapshot +15
-INSERT INTO `item_mods` VALUES (21482,882,20); -- Phantom Roll Duration +
-INSERT INTO `item_mods` VALUES (21485,73,10); -- Fomalhaut - STP +10
-INSERT INTO `item_mods` VALUES (21485,345,500); -- TP Bonus +500
+INSERT INTO `item_mods` VALUES (21480,26,20);     -- Blurred Crossbow - 20 Racc
+INSERT INTO `item_mods` VALUES (21481,26,25);     -- Blurred Crossbow +1 - 25 Racc
+INSERT INTO `item_mods` VALUES (21481,365,15);    -- Snapshot +15
+INSERT INTO `item_mods` VALUES (21482,882,20);    -- Phantom Roll Duration +
+INSERT INTO `item_mods` VALUES (21485,73,10);     -- Fomalhaut - STP +10
+INSERT INTO `item_mods` VALUES (21485,345,500);   -- TP Bonus +500
 INSERT INTO `item_mods` VALUES (21506,8,10);      -- jolt_counter STR+10
 INSERT INTO `item_mods` VALUES (21506,10,10);     -- VIT+10
 INSERT INTO `item_mods` VALUES (21506,25,25);     -- Accuracy+25
@@ -26334,31 +26340,255 @@ INSERT INTO `item_mods` VALUES (21507,8,15);      -- jolt_counter_+1 STR+15
 INSERT INTO `item_mods` VALUES (21507,10,15);     -- VIT+15
 INSERT INTO `item_mods` VALUES (21507,25,30);     -- Accuracy+30
 INSERT INTO `item_mods` VALUES (21507,291,18);    -- Counter+18
+INSERT INTO `item_mods` VALUES (21509,355,228);   -- Final Paradise WS
+INSERT INTO `item_mods` VALUES (21521,2,130);     -- Melee fists: HP+130
+INSERT INTO `item_mods` VALUES (21521,25,30);     -- Melee fists: Accuracy+30
+INSERT INTO `item_mods` VALUES (21521,30,30);     -- Melee fists: Magic Accuracy+30
+INSERT INTO `item_mods` VALUES (21521,160,-5);    -- Melee fists: Damage taken -5%
+INSERT INTO `item_mods` VALUES (21522,2,140);     -- Hesychast's fists: HP+140
+INSERT INTO `item_mods` VALUES (21522,25,40);     -- Hesychast's fists: Accuracy+40
+INSERT INTO `item_mods` VALUES (21522,30,40);     -- Hesychast's fists: Magic Accuracy+40
+INSERT INTO `item_mods` VALUES (21522,160,-7);    -- Hesychast's fists: Damage taken -7%
+INSERT INTO `item_mods` VALUES (21523,2,150);     -- Sagitta: HP+150
+INSERT INTO `item_mods` VALUES (21523,25,50);     -- Sagitta: Accuracy+50
+INSERT INTO `item_mods` VALUES (21523,30,50);     -- Sagitta: Magic Accuracy+50
+INSERT INTO `item_mods` VALUES (21523,160,-10);   -- Sagitta: Damage taken -10%
+INSERT INTO `item_mods` VALUES (21524,2,130);     -- Pantin Fists: HP+130
+INSERT INTO `item_mods` VALUES (21524,25,30);     -- Pantin Fists: Accuracy+30
+INSERT INTO `item_mods` VALUES (21524,30,30);     -- Pantin Fists: Magic Accuracy+30
+INSERT INTO `item_mods` VALUES (21525,2,140);     -- Pitre Fists: HP+140
+INSERT INTO `item_mods` VALUES (21525,25,40);     -- Pitre Fists: Accuracy+40
+INSERT INTO `item_mods` VALUES (21525,30,40);     -- Pitre Fists: Magic Accuracy+40
+INSERT INTO `item_mods` VALUES (21526,2,150);     -- Xiucoatl: HP+150
+INSERT INTO `item_mods` VALUES (21526,25,50);     -- Xiucoatl: Accuracy+50
+INSERT INTO `item_mods` VALUES (21526,30,50);     -- Xiucoatl: Magic Accuracy+50
+INSERT INTO `item_mods` VALUES (21573,25,30);     -- Assassin's Knife: Accuracy+30
+INSERT INTO `item_mods` VALUES (21573,26,30);     -- Assassin's Knife: Ranged Accuracy+30
+INSERT INTO `item_mods` VALUES (21573,30,30);     -- Assassin's Knife: Magic Accuracy+30
+INSERT INTO `item_mods` VALUES (21573,303,1);     -- Assassin's Knife: "Treasure Hunter"+1
+-- INSERT INTO `item_mods` VALUES (21573,??,186); -- Assassin's Knife: Magic Damage+186
+INSERT INTO `item_mods` VALUES (21574,25,40);     -- Plunderer's Knife: Accuracy+40
+INSERT INTO `item_mods` VALUES (21574,26,40);     -- Plunderer's Knife: Ranged Accuracy+40
+INSERT INTO `item_mods` VALUES (21574,30,40);     -- Plunderer's Knife: Magic Accuracy+40
+INSERT INTO `item_mods` VALUES (21574,303,2);     -- Plunderer's Knife: "Treasure Hunter"+2
+-- INSERT INTO `item_mods` VALUES (21574,??,201); -- Plunderer's Knife: Magic Damage+201
+INSERT INTO `item_mods` VALUES (21575,25,50);     -- Gandring: Accuracy+50
+INSERT INTO `item_mods` VALUES (21575,26,50);     -- Gandring: Ranged Accuracy+50
+INSERT INTO `item_mods` VALUES (21575,30,50);     -- Gandring: Magic Accuracy+50
+INSERT INTO `item_mods` VALUES (21575,303,3);     -- Gandring: "Treasure Hunter"+3
+-- INSERT INTO `item_mods` VALUES (21575,??,217); -- Gandring: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21576,25,30);     -- Bard's Knife: Accuracy+30
+INSERT INTO `item_mods` VALUES (21576,26,30);     -- Bard's Knife: Ranged Accuracy+30
+INSERT INTO `item_mods` VALUES (21576,30,30);     -- Bard's Knife: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21576,??,186); -- Bard's Knife: Magic Damage+186
+INSERT INTO `item_mods` VALUES (21577,25,40);     -- Bihu Knife: Accuracy+40
+INSERT INTO `item_mods` VALUES (21577,26,40);     -- Bihu Knife: Ranged Accuracy+40
+INSERT INTO `item_mods` VALUES (21577,30,40);     -- Bihu Knife: Magic Accuracy+40
+-- INSERT INTO `item_mods` VALUES (21577,??,201); -- Bihu Knife: Magic Damage+201
+INSERT INTO `item_mods` VALUES (21578,25,50);     -- Barfawc: Accuracy+50
+INSERT INTO `item_mods` VALUES (21578,26,50);     -- Barfawc: Ranged Accuracy+50
+INSERT INTO `item_mods` VALUES (21578,30,50);     -- Barfawc: Magic Accuracy+50
+-- INSERT INTO `item_mods` VALUES (21578,??,217); -- Barfawc: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21579,25,30);     -- Commodore's Knife: Accuracy+30
+INSERT INTO `item_mods` VALUES (21579,26,30);     -- Commodore's Knife: Ranged Accuracy+30
+INSERT INTO `item_mods` VALUES (21579,30,30);     -- Commodore's Knife: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21579,??,186); -- Commodore's Knife: Magic Damage+186
+INSERT INTO `item_mods` VALUES (21580,25,40);     -- Lanun Knife: Accuracy+40
+INSERT INTO `item_mods` VALUES (21580,26,40);     -- Lanun Knife: Ranged Accuracy+40
+INSERT INTO `item_mods` VALUES (21580,30,40);     -- Lanun Knife: Magic Accuracy+40
+-- INSERT INTO `item_mods` VALUES (21580,??,201); -- Lanun Knife: Magic Damage+201
+INSERT INTO `item_mods` VALUES (21581,25,50);     -- Rostam: Accuracy+50
+INSERT INTO `item_mods` VALUES (21581,26,50);     -- Rostam: Ranged Accuracy+50
+INSERT INTO `item_mods` VALUES (21581,30,50);     -- Rostam: Magic Accuracy+50
+-- INSERT INTO `item_mods` VALUES (21581,??,217); -- Rostam: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21582,25,30);     -- Etoile Knife: Accuracy+30
+INSERT INTO `item_mods` VALUES (21582,26,30);     -- Etoile Knife: Ranged Accuracy+30
+INSERT INTO `item_mods` VALUES (21582,30,30);     -- Etoile Knife: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21582,??,186); -- Etoile Knife: Magic Damage+186
+-- INSERT INTO `item_mods` VALUES (21582,??,-20); -- Etoile Knife: "Step" TP consumed -20
+INSERT INTO `item_mods` VALUES (21583,25,40);     -- Horos Knife: Accuracy+40
+INSERT INTO `item_mods` VALUES (21583,26,40);     -- Horos Knife: Ranged Accuracy+40
+INSERT INTO `item_mods` VALUES (21583,30,40);     -- Horos Knife: Magic Accuracy+40
+-- INSERT INTO `item_mods` VALUES (21583,??,201); -- Horos Knife: Magic Damage+201
+-- INSERT INTO `item_mods` VALUES (21583,??,-30); -- Horos Knife: "Step" TP consumed -30
+INSERT INTO `item_mods` VALUES (21584,25,50);     -- Setan Kober: Accuracy+50
+INSERT INTO `item_mods` VALUES (21584,26,50);     -- Setan Kober: Ranged Accuracy+50
+INSERT INTO `item_mods` VALUES (21584,30,50);     -- Setan Kober: Magic Accuracy+50
+-- INSERT INTO `item_mods` VALUES (21584,??,217); -- Setan Kober: Magic Damage+217
+-- INSERT INTO `item_mods` VALUES (21584,??,-40); -- Setan Kober: "Step" TP consumed -40
 INSERT INTO `item_mods` VALUES (21606,28,14);     -- enriching_sword Magic Attack Bonus+14
 INSERT INTO `item_mods` VALUES (21606,311,108);   -- Magic Damage+108
 INSERT INTO `item_mods` VALUES (21606,432,30);    -- Enspell Damage+30
 INSERT INTO `item_mods` VALUES (21607,28,14);     -- enr._sword_+1 Magic Attack Bonus+14
 INSERT INTO `item_mods` VALUES (21607,311,108);   -- Magic Damage+108
 INSERT INTO `item_mods` VALUES (21607,432,35);    -- Enspell Damage+35
+INSERT INTO `item_mods` VALUES (21618,25,20);     -- Ajja Sword: Accuracy+20
+INSERT INTO `item_mods` VALUES (21618,30,20);     -- Ajja Sword: Magic Accuracy+20
+INSERT INTO `item_mods` VALUES (21619,23,20);     -- Eletta Sword: Attack+20
+INSERT INTO `item_mods` VALUES (21619,25,20);     -- Eletta Sword: Accuracy+30
+INSERT INTO `item_mods` VALUES (21619,28,20);     -- Eletta Sword: "Magic Atk. Bonus"+10
+INSERT INTO `item_mods` VALUES (21619,30,30);     -- Eletta Sword: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21619,??,217); -- Eletta Sword: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21620,9,10);      -- Kaja Sword: DEX+10
+INSERT INTO `item_mods` VALUES (21620,12,10);     -- Kaja Sword: INT+10
+INSERT INTO `item_mods` VALUES (21620,13,10);     -- Kaja Sword: MND+10
+INSERT INTO `item_mods` VALUES (21620,23,25);     -- Kaja Sword: Attack+25
+INSERT INTO `item_mods` VALUES (21620,25,35);     -- Kaja Sword: Accuracy+35
+INSERT INTO `item_mods` VALUES (21620,28,13);     -- Kaja Sword: "Magic Atk. Bonus"+13
+INSERT INTO `item_mods` VALUES (21620,30,35);     -- Kaja Sword: Magic Accuracy+35
+-- INSERT INTO `item_mods` VALUES (21620,??,217); -- Kaja Sword: Magic Damage +217
+-- INSERT INTO `item_mods` VALUES (21620,??,??);  -- Kaja Sword: Main hand: "Savage Blade"
+-- INSERT INTO `item_mods` VALUES (21620,??,15);  -- Kaja Sword: Main hand: "Savage Blade" damage +15%
+INSERT INTO `item_mods` VALUES (21621,9,15);      -- Naegling: DEX+15
+INSERT INTO `item_mods` VALUES (21621,12,16);     -- Naegling: INT+15
+INSERT INTO `item_mods` VALUES (21621,13,17);     -- Naegling: MND+15
+INSERT INTO `item_mods` VALUES (21621,23,30);     -- Naegling: Attack+30
+INSERT INTO `item_mods` VALUES (21621,25,40);     -- Naegling: Accuracy+40
+INSERT INTO `item_mods` VALUES (21621,28,16);     -- Naegling: "Magic Atk. Bonus"+16
+INSERT INTO `item_mods` VALUES (21621,30,40);     -- Naegling: Magic Accuracy+40
+-- INSERT INTO `item_mods` VALUES (21621,??,217); -- Naegling: Magic Damage+217
+-- INSERT INTO `item_mods` VALUES (21621,??,??);  -- Naegling: Main hand: "Savage Blade"
+-- INSERT INTO `item_mods` VALUES (21621,??,15);  -- Naegling: Main hand: "Savage Blade" damage +15%
+-- INSERT INTO `item_mods` VALUES (21621,??,??);  -- Naegling: Weapon Skill: Attack Bonus based on the number of upgrades
+INSERT INTO `item_mods` VALUES (21625,2,100);     -- Duelist's Sword: HP+100
+INSERT INTO `item_mods` VALUES (21625,5,50);      -- Duelist's Sword: MP+50
+INSERT INTO `item_mods` VALUES (21625,25,30);     -- Duelist's Sword: Accuracy+30
+INSERT INTO `item_mods` VALUES (21625,30,30);     -- Duelist's Sword: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21625,??,186); -- Duelist's Sword: Magic Damage+186
+INSERT INTO `item_mods` VALUES (21625,170,10);    -- Duelist's Sword: "Fast Cast"+10%
+INSERT INTO `item_mods` VALUES (21626,2,120);     -- Vitiation Sword: HP+120
+INSERT INTO `item_mods` VALUES (21626,5,60);      -- Vitiation Sword: MP+60
+INSERT INTO `item_mods` VALUES (21626,25,40);     -- Vitiation Sword: Accuracy+40
+INSERT INTO `item_mods` VALUES (21626,30,40);     -- Vitiation Sword: Magic Accuracy+40
+-- INSERT INTO `item_mods` VALUES (21626,??,201); -- Vitiation Sword: Magic Damage+201
+INSERT INTO `item_mods` VALUES (21626,170,15);    -- Vitiation Sword: "Fast Cast"+15%
+INSERT INTO `item_mods` VALUES (21627,2,130);     -- Crocea Mors: HP+130
+INSERT INTO `item_mods` VALUES (21627,5,70);      -- Crocea Mors: MP+70
+INSERT INTO `item_mods` VALUES (21627,25,50);     -- Crocea Mors: Accuracy+50
+INSERT INTO `item_mods` VALUES (21627,30,50);     -- Crocea Mors: Magic Accuracy+50
+-- INSERT INTO `item_mods` VALUES (21627,??,217); -- Crocea Mors: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21627,170,20);    -- Crocea Mors: "Fast Cast"+20%
+INSERT INTO `item_mods` VALUES (21628,2,100);     -- Valor Sword: HP+100
+INSERT INTO `item_mods` VALUES (21628,5,50);      -- Valor Sword: MP+50
+INSERT INTO `item_mods` VALUES (21628,25,30);     -- Valor Sword: Accuracy+30
+INSERT INTO `item_mods` VALUES (21628,30,30);     -- Valor Sword: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21628,??,186); -- Valor Sword: Magic Damage+186
+-- INSERT INTO `item_mods` VALUES (21628,??,1);   -- Valor Sword: Adds 1% of current HP to DEF
+INSERT INTO `item_mods` VALUES (21629,2,120);     -- Caballarius Sword: HP+120
+INSERT INTO `item_mods` VALUES (21629,5,60);      -- Caballarius Sword: MP+60
+INSERT INTO `item_mods` VALUES (21629,25,40);     -- Caballarius Sword: Accuracy+40
+INSERT INTO `item_mods` VALUES (21629,30,40);     -- Caballarius Sword: Magic Accuracy+40
+-- INSERT INTO `item_mods` VALUES (21629,??,201); -- Caballarius Sword: Magic Damage+201
+-- INSERT INTO `item_mods` VALUES (21629,??,2);   -- Caballarius Sword: Adds 2% of current HP to DEF
+INSERT INTO `item_mods` VALUES (21630,2,130);     -- Moralltach: HP+130
+INSERT INTO `item_mods` VALUES (21630,5,70);      -- Moralltach: MP+70
+INSERT INTO `item_mods` VALUES (21630,25,50);     -- Moralltach: Accuracy+50
+INSERT INTO `item_mods` VALUES (21630,30,50);     -- Moralltach: Magic Accuracy+50
+-- INSERT INTO `item_mods` VALUES (21630,??,217); -- Moralltach: Magic Damage+217
+-- INSERT INTO `item_mods` VALUES (21630,??,3);   -- Moralltach: Adds 3% of current HP to DEF
+INSERT INTO `item_mods` VALUES (21631,2,100);     -- Mirage Sword: HP+100
+INSERT INTO `item_mods` VALUES (21631,5,50);      -- Mirage Sword: MP+50
+INSERT INTO `item_mods` VALUES (21631,25,30);     -- Mirage Sword: Accuracy+30
+INSERT INTO `item_mods` VALUES (21631,30,30);     -- Mirage Sword: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21631,??,186); -- Mirage Sword: Magic Damage+186
+INSERT INTO `item_mods` VALUES (21631,122,10);    -- Mirage Sword: Blue magic skill +10
+INSERT INTO `item_mods` VALUES (21632,2,120);     -- Luhlaza Sword: HP+120
+INSERT INTO `item_mods` VALUES (21632,5,60);      -- Luhlaza Sword: MP+60
+INSERT INTO `item_mods` VALUES (21632,25,40);     -- Luhlaza Sword: Accuracy+40
+INSERT INTO `item_mods` VALUES (21632,30,40);     -- Luhlaza Sword: Magic Accuracy+40
+-- INSERT INTO `item_mods` VALUES (21632,??,201); -- Luhlaza Sword: Magic Damage+201
+INSERT INTO `item_mods` VALUES (21632,122,15);    -- Luhlaza Sword: Blue magic skill +15
+INSERT INTO `item_mods` VALUES (21633,2,130);     -- Zomorrodnegar: HP+130
+INSERT INTO `item_mods` VALUES (21633,5,70);      -- Zomorrodnegar: MP+70
+INSERT INTO `item_mods` VALUES (21633,25,50);     -- Zomorrodnegar: Accuracy+50
+INSERT INTO `item_mods` VALUES (21633,30,50);     -- Zomorrodnegar: Magic Accuracy+50
+-- INSERT INTO `item_mods` VALUES (21633,??,217); -- Zomorrodnegar: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21633,122,20);    -- Zomorrodnegar: Blue magic skill +20
 INSERT INTO `item_mods` VALUES (21656,23,43);     -- dyrnwyn Attack+43
 INSERT INTO `item_mods` VALUES (21656,25,25);     -- Accuracy+25
 INSERT INTO `item_mods` VALUES (21656,30,25);     -- Magic Accuracy+25
 INSERT INTO `item_mods` VALUES (21657,23,48);     -- dyrnwyn_+1 Attack+48
 INSERT INTO `item_mods` VALUES (21657,25,30);     -- Accuracy+30
 INSERT INTO `item_mods` VALUES (21657,30,30);     -- Magic Accuracy+30
-INSERT INTO `item_mods` VALUES (21683,25,60); -- Ragnarok iLvL 119 III - ACC +40
-INSERT INTO `item_mods` VALUES (21683,165,14); -- Crit Rate +14%
-INSERT INTO `item_mods` VALUES (21683,256,18); -- Aftermath
-INSERT INTO `item_mods` VALUES (21683,355,57); -- Scourge
-INSERT INTO `item_mods` VALUES (21683,506,130); -- Extra DMG Chance 13%
-INSERT INTO `item_mods` VALUES (21683,507,250); -- Extra DMG X2.5
-INSERT INTO `item_mods` VALUES (21683,627,40); -- Scourge DMG +40%
-INSERT INTO `item_mods` VALUES (21684,10,50);   -- Caladbolg 119 III - VIT+50
-INSERT INTO `item_mods` VALUES (21684,256,45);  -- Aftermath
-INSERT INTO `item_mods` VALUES (21684,311,155); -- Magic Damage+155
-INSERT INTO `item_mods` VALUES (21684,355,59);  -- Torcleaver
-INSERT INTO `item_mods` VALUES (21700,25,20); -- Blurred Claymore - 20 Acc
-INSERT INTO `item_mods` VALUES (21701,25,25); -- Blurred Claymore +1 - 25 Acc
+INSERT INTO `item_mods` VALUES (21659,8,10);      -- Beryllium Sword: STR+10
+INSERT INTO `item_mods` VALUES (21659,12,10);     -- Beryllium Sword: INT+10
+INSERT INTO `item_mods` VALUES (21659,25,27);     -- Beryllium Sword: Accuracy+27
+INSERT INTO `item_mods` VALUES (21659,48,25);     -- Beryllium Sword: Weapon Skill Accuracy+25
+INSERT INTO `item_mods` VALUES (21659,355,55);    -- Beryllium Sword: Adds "Spinning Slash" effect
+INSERT INTO `item_mods` VALUES (21660,8,15);      -- Beryllium Sword +1: STR+15
+INSERT INTO `item_mods` VALUES (21660,12,15);     -- Beryllium Sword +1: INT+15
+INSERT INTO `item_mods` VALUES (21660,25,32);     -- Beryllium Sword +1: Accuracy+32
+INSERT INTO `item_mods` VALUES (21660,48,30);     -- Beryllium Sword +1: Weapon Skill Accuracy+30
+INSERT INTO `item_mods` VALUES (21660,355,55);    -- Beryllium Sword +1: Adds "Spinning Slash" effect
+INSERT INTO `item_mods` VALUES (21662,2,70);      -- Raetic Algol: HP+70
+INSERT INTO `item_mods` VALUES (21662,5,50);      -- Raetic Algol: MP+50
+INSERT INTO `item_mods` VALUES (21662,25,57);     -- Raetic Algol: Accuracy+57
+INSERT INTO `item_mods` VALUES (21662,160,-4);    -- Raetic Algol: Damage taken -4%
+-- INSERT INTO `item_mods` VALUES (21662,,);      -- Raetic Algol: Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_mods` VALUES (21663,2,80);      -- Raetic Algol +1: HP+80
+INSERT INTO `item_mods` VALUES (21663,5,60);      -- Raetic Algol +1: MP+60
+INSERT INTO `item_mods` VALUES (21663,25,62);     -- Raetic Algol +1: Accuracy+62
+INSERT INTO `item_mods` VALUES (21663,160,-5);    -- Raetic Algol +1: Damage taken -5%
+-- INSERT INTO `item_mods` VALUES (21663,,);      -- Raetic Algol +1: Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1~50 for a single attack
+INSERT INTO `item_mods` VALUES (21667,2,100);     -- Futhark Claymore: HP+100
+INSERT INTO `item_mods` VALUES (21667,5,50);      -- Futhark Claymore: MP+50
+INSERT INTO `item_mods` VALUES (21667,25,30);     -- Futhark Claymore: Accuracy+30
+INSERT INTO `item_mods` VALUES (21667,30,30);     -- Futhark Claymore: Magic Accuracy+30
+INSERT INTO `item_mods` VALUES (21667,168,10);    -- Futhark Claymore: Spell interruption rate down 10%
+-- INSERT INTO `item_mods` VALUES (21667,??,186); -- Futhark Claymore: Magic Damage+186
+INSERT INTO `item_mods` VALUES (21668,2,120);     -- Peord Claymore: HP+120
+INSERT INTO `item_mods` VALUES (21668,5,60);      -- Peord Claymore: MP+60
+INSERT INTO `item_mods` VALUES (21668,25,40);     -- Peord Claymore: Accuracy+40
+INSERT INTO `item_mods` VALUES (21668,30,40);     -- Peord Claymore: Magic Accuracy+40
+INSERT INTO `item_mods` VALUES (21668,168,15);    -- Peord Claymore: Spell interruption rate down 15%
+-- INSERT INTO `item_mods` VALUES (21668,??,201); -- Peord Claymore: Magic Damage+201
+INSERT INTO `item_mods` VALUES (21669,2,130);     -- Morgelai: HP+130
+INSERT INTO `item_mods` VALUES (21669,5,70);      -- Morgelai: MP+70
+INSERT INTO `item_mods` VALUES (21669,25,50);     -- Morgelai: Accuracy+50
+INSERT INTO `item_mods` VALUES (21669,30,50);     -- Morgelai: Magic Accuracy+50
+INSERT INTO `item_mods` VALUES (21669,168,20);    -- Morgelai: Spell interruption rate down 20%
+-- INSERT INTO `item_mods` VALUES (21669,??,217); -- Morgelai: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21671,25,20);     -- Ajja Claymore: Accuracy+20
+INSERT INTO `item_mods` VALUES (21671,30,20);     -- Ajja Claymore: Magic Accuracy+20
+INSERT INTO `item_mods` VALUES (21672,23,20);     -- Eletta Claymore: Attack+20
+INSERT INTO `item_mods` VALUES (21672,25,30);     -- Eletta Claymore: Accuracy+30
+INSERT INTO `item_mods` VALUES (21672,28,10);     -- Eletta Claymore: "Magic Atk. Bonus"+10
+INSERT INTO `item_mods` VALUES (21672,30,30);     -- Eletta Claymore: Magic Accuracy+30
+-- INSERT INTO `item_mods` VALUES (21672,??,217); -- Eletta Claymore: Magic Damage+217
+INSERT INTO `item_mods` VALUES (21673,9,15);      -- Kaja Claymore: DEX+15
+INSERT INTO `item_mods` VALUES (21673,12,15);     -- Kaja Claymore: INT+15
+INSERT INTO `item_mods` VALUES (21673,13,15);     -- Kaja Claymore: MND+15
+INSERT INTO `item_mods` VALUES (21673,23,25);     -- Kaja Claymore: Attack+25
+INSERT INTO `item_mods` VALUES (21673,25,35);     -- Kaja Claymore: Accuracy+35
+INSERT INTO `item_mods` VALUES (21673,28,18);     -- Kaja Claymore: "Magic Atk. Bonus"+18
+INSERT INTO `item_mods` VALUES (21673,30,35);     -- Kaja Claymore: Magic Accuracy+35
+INSERT INTO `item_mods` VALUES (21673,355,56);    -- Kaja Claymore: "Ground Strike"
+-- INSERT INTO `item_mods` VALUES (21673,??,226); -- Kaja Claymore: Magic Damage +226
+-- INSERT INTO `item_mods` VALUES (21673,??,15);  -- Kaja Claymore: "Ground Strike" damage +15%
+INSERT INTO `item_mods` VALUES (21674,9,20);      -- Nandaka: DEX+20
+INSERT INTO `item_mods` VALUES (21674,12,20);     -- Nandaka: INT+20
+INSERT INTO `item_mods` VALUES (21674,13,20);     -- Nandaka: MND+20
+INSERT INTO `item_mods` VALUES (21674,23,30);     -- Nandaka: Attack+30
+INSERT INTO `item_mods` VALUES (21674,25,40);     -- Nandaka: Accuracy+40
+INSERT INTO `item_mods` VALUES (21674,28,21);     -- Nandaka: "Magic Atk. Bonus"+21
+INSERT INTO `item_mods` VALUES (21674,30,40);     -- Nandaka: Magic Accuracy+40
+INSERT INTO `item_mods` VALUES (21674,355,56);    -- Nandaka: "Ground Strike"
+-- INSERT INTO `item_mods` VALUES (21674,??,226); -- Nandaka: Magic Damage+226
+-- INSERT INTO `item_mods` VALUES (21674,??,15);  -- Nandaka: "Ground Strike" damage +15%
+-- INSERT INTO `item_mods` VALUES (21674,??,??);  -- Nandaka: Weapon Skill: Weakens defense based on the number of downgrades to the target
+INSERT INTO `item_mods` VALUES (21683,25,60);     -- Ragnarok iLvL 119 III - ACC +40
+INSERT INTO `item_mods` VALUES (21683,165,14);    -- Crit Rate +14%
+INSERT INTO `item_mods` VALUES (21683,256,18);    -- Aftermath
+INSERT INTO `item_mods` VALUES (21683,355,57);    -- Scourge
+INSERT INTO `item_mods` VALUES (21683,506,130);   -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21683,507,250);   -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21683,627,40);    -- Scourge DMG +40%
+INSERT INTO `item_mods` VALUES (21684,10,50);     -- Caladbolg 119 III - VIT+50
+INSERT INTO `item_mods` VALUES (21684,256,45);    -- Aftermath
+INSERT INTO `item_mods` VALUES (21684,311,155);   -- Magic Damage+155
+INSERT INTO `item_mods` VALUES (21684,355,59);    -- Torcleaver
+INSERT INTO `item_mods` VALUES (21700,25,20);     -- Blurred Claymore - 20 Acc
+INSERT INTO `item_mods` VALUES (21701,25,25);     -- Blurred Claymore +1 - 25 Acc
 INSERT INTO `item_mods` VALUES (21706,2,68);      -- barbarity HP+68
 INSERT INTO `item_mods` VALUES (21706,8,23);      -- STR+23
 INSERT INTO `item_mods` VALUES (21706,23,45);     -- Attack+45
@@ -27704,6 +27934,7 @@ INSERT INTO `item_mods` VALUES (23189,68,34);     -- Evasion+34
 INSERT INTO `item_mods` VALUES (23189,110,17);    -- Parry+17
 INSERT INTO `item_mods` VALUES (23189,160,-3);    -- Damage Taken-3
 INSERT INTO `item_mods` VALUES (23189,384,500);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (23189,945,14);    -- Chance to learn blue magic +14
 INSERT INTO `item_mods` VALUES (23190,1,98);      -- laksa._gants_+2 DEF:98
 INSERT INTO `item_mods` VALUES (23190,2,37);      -- HP+37
 INSERT INTO `item_mods` VALUES (23190,5,25);      -- MP+25
@@ -29700,6 +29931,7 @@ INSERT INTO `item_mods` VALUES (23524,68,44);     -- Evasion+44
 INSERT INTO `item_mods` VALUES (23524,110,19);    -- Parry+19
 INSERT INTO `item_mods` VALUES (23524,160,-6);    -- Damage Taken-6
 INSERT INTO `item_mods` VALUES (23524,384,500);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (23524,945,16);    -- Chance to learn blue magic +16
 INSERT INTO `item_mods` VALUES (23525,1,108);     -- laksa._gants_+3 DEF:108
 INSERT INTO `item_mods` VALUES (23525,2,47);      -- HP+47
 INSERT INTO `item_mods` VALUES (23525,5,35);      -- MP+35
@@ -31082,6 +31314,7 @@ INSERT INTO `item_mods` VALUES (25754,31,53);     -- Magic Evasion+53
 INSERT INTO `item_mods` VALUES (25754,68,33);     -- Evasion+33
 INSERT INTO `item_mods` VALUES (25754,369,3);     -- Refresh+3
 INSERT INTO `item_mods` VALUES (25754,384,100);    -- Haste +1%
+INSERT INTO `item_mods` VALUES (25755,1,1);       -- Crustacean Shirt: DEF +1
 INSERT INTO `item_mods` VALUES (25758,1,1);       -- Rhapsody Shirt: DEF 1
 INSERT INTO `item_mods` VALUES (25759,1,2);       -- Rhapsody Shirt +1: DEF 2
 INSERT INTO `item_mods` VALUES (25759,416,1);     -- Occasionally nullifies physical damage +1% ?
@@ -32484,6 +32717,9 @@ INSERT INTO `item_mods` VALUES (26454,134,1);     -- Alchemy Skill+1
 INSERT INTO `item_mods` VALUES (26458,1,1);       -- Chef's Aspis DEF:+1
 INSERT INTO `item_mods` VALUES (26459,1,2);       -- Chef's EcuDEF:+2
 INSERT INTO `item_mods` VALUES (26459,135,1);     -- Cooking Skill+1
+INSERT INTO `item_mods` VALUES (26517,1,1);       -- Shadow Lord Shirt: DEF +1
+INSERT INTO `item_mods` VALUES (26520,1,1);       -- Akitu Shirt: DEF +1
+INSERT INTO `item_mods` VALUES (26524,1,1);       -- Gil Nabber Shirt: DEF +1
 INSERT INTO `item_mods` VALUES (26624,1,82);
 INSERT INTO `item_mods` VALUES (26624,2,18);
 INSERT INTO `item_mods` VALUES (26624,8,19);
@@ -32958,7 +33194,7 @@ INSERT INTO `item_mods` VALUES (26650,68,15);     -- Evasion +15
 INSERT INTO `item_mods` VALUES (26650,384,600);    -- Haste +6%
 INSERT INTO `item_mods` VALUES (26650,402,49);    -- Healing Breath 49/256
 INSERT INTO `item_mods` VALUES (26651,1,111);     -- Ptero. Armet +1 DEF:111
-INSERT INTO `item_mods` VALUES (26651,2,60);      -- HP +60 
+INSERT INTO `item_mods` VALUES (26651,2,60);      -- HP +60
 INSERT INTO `item_mods` VALUES (26651,5,23);      -- MP +23
 INSERT INTO `item_mods` VALUES (26651,8,27);      -- STR +27
 INSERT INTO `item_mods` VALUES (26651,9,15);      -- DEX +15
@@ -40133,6 +40369,10 @@ INSERT INTO `item_mods` VALUES (27454,61,25);     -- Dark resistance +25
 INSERT INTO `item_mods` VALUES (27454,68,77);     -- Evasion +77
 INSERT INTO `item_mods` VALUES (27454,161,-5);    -- Physical damage taken -5%
 INSERT INTO `item_mods` VALUES (27454,384,400);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27456,1,16);      -- Crier's Gaiters: DEF 16
+INSERT INTO `item_mods` VALUES (27456,5,12);      -- MP +12
+INSERT INTO `item_mods` VALUES (27456,68,8);      -- EVA +8
+INSERT INTO `item_mods` VALUES (27456,169,12);    -- Movement Speed +12%
 INSERT INTO `item_mods` VALUES (27463,1,70);      -- Vanya Clogs: DEF 70
 INSERT INTO `item_mods` VALUES (27463,2,13);      -- HP +13
 INSERT INTO `item_mods` VALUES (27463,5,14);      -- MP +14
@@ -41155,7 +41395,7 @@ INSERT INTO `item_mods` VALUES (27711,29,2);      -- Magic Defense Bonus+2
 INSERT INTO `item_mods` VALUES (27711,31,32);     -- Magic Evasion+32
 INSERT INTO `item_mods` VALUES (27711,68,33);     -- Evasion+33
 INSERT INTO `item_mods` VALUES (27711,384,700);   -- Haste+7%
-INSERT INTO `item_mods` VALUES (27712,1,101);     -- Shneddick Chapeau +1: DEF:101 
+INSERT INTO `item_mods` VALUES (27712,1,101);     -- Shneddick Chapeau +1: DEF:101
 INSERT INTO `item_mods` VALUES (27712,2,36);      -- HP+36
 INSERT INTO `item_mods` VALUES (27712,5,23);      -- MP+23
 INSERT INTO `item_mods` VALUES (27712,8,22);      -- STR+22
@@ -43870,21 +44110,22 @@ INSERT INTO `item_mods` VALUES (27957,31,25);
 INSERT INTO `item_mods` VALUES (27957,68,10);
 INSERT INTO `item_mods` VALUES (27957,357,5);     -- Convoker's Bracers: Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (27957,384,300);
-INSERT INTO `item_mods` VALUES (27958,1,63);
-INSERT INTO `item_mods` VALUES (27958,2,11);
-INSERT INTO `item_mods` VALUES (27958,5,30);
-INSERT INTO `item_mods` VALUES (27958,8,7);
-INSERT INTO `item_mods` VALUES (27958,9,22);
-INSERT INTO `item_mods` VALUES (27958,10,20);
-INSERT INTO `item_mods` VALUES (27958,11,3);
-INSERT INTO `item_mods` VALUES (27958,12,18);
-INSERT INTO `item_mods` VALUES (27958,13,19);
-INSERT INTO `item_mods` VALUES (27958,14,11);
-INSERT INTO `item_mods` VALUES (27958,29,1);
-INSERT INTO `item_mods` VALUES (27958,31,25);
-INSERT INTO `item_mods` VALUES (27958,68,11);
-INSERT INTO `item_mods` VALUES (27958,110,15);
-INSERT INTO `item_mods` VALUES (27958,384,400);
+INSERT INTO `item_mods` VALUES (27958,1,63);      -- Assimilator's Bazubands: DEF 63
+INSERT INTO `item_mods` VALUES (27958,2,11);      -- HP +11
+INSERT INTO `item_mods` VALUES (27958,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (27958,8,7);       -- STR +7
+INSERT INTO `item_mods` VALUES (27958,9,22);      -- DEX +22
+INSERT INTO `item_mods` VALUES (27958,10,20);     -- VIT +20
+INSERT INTO `item_mods` VALUES (27958,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (27958,12,18);     -- INT +18
+INSERT INTO `item_mods` VALUES (27958,13,19);     -- MND +19
+INSERT INTO `item_mods` VALUES (27958,14,11);     -- CHR +11
+INSERT INTO `item_mods` VALUES (27958,29,1);      -- Magic Def Bonus + 1
+INSERT INTO `item_mods` VALUES (27958,31,25);     -- Magic Evasion +25
+INSERT INTO `item_mods` VALUES (27958,68,11);     -- Evasion + 11
+INSERT INTO `item_mods` VALUES (27958,110,15);    -- Parrying skill +15
+INSERT INTO `item_mods` VALUES (27958,384,400);   -- Haste +4%
+INSERT INTO `item_mods` VALUES (27958,945,14);    -- Increases chance to learn blue magic (+14)
 INSERT INTO `item_mods` VALUES (27959,1,59);
 INSERT INTO `item_mods` VALUES (27959,2,11);
 INSERT INTO `item_mods` VALUES (27959,5,25);
@@ -44196,21 +44437,22 @@ INSERT INTO `item_mods` VALUES (27978,31,37);
 INSERT INTO `item_mods` VALUES (27978,68,22);
 INSERT INTO `item_mods` VALUES (27978,357,6);     -- Convoker's Bracers +1: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27978,384,300);
-INSERT INTO `item_mods` VALUES (27979,1,90);
-INSERT INTO `item_mods` VALUES (27979,2,25);
-INSERT INTO `item_mods` VALUES (27979,5,30);
-INSERT INTO `item_mods` VALUES (27979,8,11);
-INSERT INTO `item_mods` VALUES (27979,9,35);
-INSERT INTO `item_mods` VALUES (27979,10,32);
-INSERT INTO `item_mods` VALUES (27979,11,5);
-INSERT INTO `item_mods` VALUES (27979,12,22);
-INSERT INTO `item_mods` VALUES (27979,13,30);
-INSERT INTO `item_mods` VALUES (27979,14,17);
-INSERT INTO `item_mods` VALUES (27979,29,2);
-INSERT INTO `item_mods` VALUES (27979,31,37);
-INSERT INTO `item_mods` VALUES (27979,68,24);
-INSERT INTO `item_mods` VALUES (27979,110,15);
-INSERT INTO `item_mods` VALUES (27979,384,500);
+INSERT INTO `item_mods` VALUES (27979,1,90);      -- Assimilator's Bazubands +1: DEF 90
+INSERT INTO `item_mods` VALUES (27979,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (27979,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (27979,8,11);      -- STR +11
+INSERT INTO `item_mods` VALUES (27979,9,35);      -- DEX +35
+INSERT INTO `item_mods` VALUES (27979,10,32);     -- VIT +32
+INSERT INTO `item_mods` VALUES (27979,11,5);      -- AGI +5
+INSERT INTO `item_mods` VALUES (27979,12,22);     -- INT +22
+INSERT INTO `item_mods` VALUES (27979,13,30);     -- MND +30
+INSERT INTO `item_mods` VALUES (27979,14,17);     -- CHR +17
+INSERT INTO `item_mods` VALUES (27979,29,2);      -- Magic Def Bonus +2
+INSERT INTO `item_mods` VALUES (27979,31,37);     -- Magic Evasion +37
+INSERT INTO `item_mods` VALUES (27979,68,24);     -- Evasion +24
+INSERT INTO `item_mods` VALUES (27979,110,15);    -- Parrying skill +15
+INSERT INTO `item_mods` VALUES (27979,384,500);   -- Haste +5%
+INSERT INTO `item_mods` VALUES (27979,945,12);    -- Chance to learn blue magic +12
 INSERT INTO `item_mods` VALUES (27980,1,88);
 INSERT INTO `item_mods` VALUES (27980,2,25);
 INSERT INTO `item_mods` VALUES (27980,5,25);
@@ -47659,8 +47901,8 @@ INSERT INTO `item_mods` VALUES (28289,10,17);     -- VIT+17
 INSERT INTO `item_mods` VALUES (28289,11,29);     -- AGI+29
 INSERT INTO `item_mods` VALUES (28289,13,10);     -- MND+10
 INSERT INTO `item_mods` VALUES (28289,14,26);     -- CHR+26
-INSERT INTO `item_mods` VALUES (28289,23,14);     -- Attack+14 
-INSERT INTO `item_mods` VALUES (28289,25,14);     -- Accuracy+14 
+INSERT INTO `item_mods` VALUES (28289,23,14);     -- Attack+14
+INSERT INTO `item_mods` VALUES (28289,25,14);     -- Accuracy+14
 INSERT INTO `item_mods` VALUES (28289,29,2);      -- Magic Def. Bonus+2
 INSERT INTO `item_mods` VALUES (28289,31,64);     -- Magic Evasion+64
 INSERT INTO `item_mods` VALUES (28289,68,49);     -- Evasion+49
@@ -47675,7 +47917,7 @@ INSERT INTO `item_mods` VALUES (28290,11,37);     -- AGI+37
 INSERT INTO `item_mods` VALUES (28290,13,12);     -- MND+12
 INSERT INTO `item_mods` VALUES (28290,14,30);     -- CHR+30
 INSERT INTO `item_mods` VALUES (28290,29,5);      -- Magic Defense Bonus+5
-INSERT INTO `item_mods` VALUES (28290,30,17);     -- Magic Accuracy+17 
+INSERT INTO `item_mods` VALUES (28290,30,17);     -- Magic Accuracy+17
 INSERT INTO `item_mods` VALUES (28290,31,69);     -- Magic Evasion+69
 INSERT INTO `item_mods` VALUES (28290,68,72);     -- Evasion+72
 INSERT INTO `item_mods` VALUES (28290,384,400);   -- Haste+4%

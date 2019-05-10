@@ -36,7 +36,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(COP) > THE_WARRIOR_S_PATH then
+    if player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH then
         player:startEvent(326)
     else
         player:startEvent(325)

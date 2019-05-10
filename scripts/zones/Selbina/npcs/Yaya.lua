@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getFameLevel(SELBINA) >= 2 and player:getQuestStatus(OTHER_AREAS_LOG,UNDER_THE_SEA) == QUEST_AVAILABLE then
+    if player:getFameLevel(SELBINA) >= 2 and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNDER_THE_SEA) == QUEST_AVAILABLE then
         player:startEvent(31) -- Start quest "Under the sea"
     else
         player:startEvent(153) -- Standard dialog
@@ -23,7 +23,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 31 then
-        player:addQuest(OTHER_AREAS_LOG, UNDER_THE_SEA)
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNDER_THE_SEA)
         player:setVar("underTheSeaVar", 1)
     end
 end

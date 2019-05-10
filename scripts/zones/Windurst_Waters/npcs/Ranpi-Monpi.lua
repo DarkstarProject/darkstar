@@ -31,8 +31,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    crisisstatus = player:getQuestStatus(WINDURST,A_CRISIS_IN_THE_MAKING);
-    IAS = player:getQuestStatus(WINDURST,IN_A_STEW);
+    crisisstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
+    IAS = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.IN_A_STEW);
     IASvar = player:getVar("IASvar");
 
     -- In a Stew
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 
     -- A Crisis in the Making
     if (csid == 258 and option == 1) then  -- A Crisis in the Making + ITEM: Quest Offer - ACCEPTED
-        player:addQuest(WINDURST,A_CRISIS_IN_THE_MAKING);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
         player:setVar("QuestCrisisMaking_var",1);
         player:needToZone(true);
     elseif (csid == 258 and option == 2) then  -- A Crisis in the Making + ITEM: Quest Offer - REFUSED
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestCrisisMaking_var",0);
         player:delKeyItem(dsp.ki.OFF_OFFERING);
         player:addFame(WINDURST,75);
-        player:completeQuest(WINDURST,A_CRISIS_IN_THE_MAKING);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
         player:needToZone(true);
     elseif (csid == 268) then -- A Crisis in the Making: Repeatable Quest Finish
         player:addGil(GIL_RATE*400);

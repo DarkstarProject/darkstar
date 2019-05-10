@@ -43,7 +43,7 @@ function onBcnmLeave(player,instance,leavecode)
         local record = instance:getRecord();
         local clearTime = record.clearTime;
 
-        if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
+        if (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS)) then
             player:startEvent(32001,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,5,1);        -- winning CS (allow player to skip)
         else
             player:startEvent(32001,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,5,0);        -- winning CS (allow player to skip)
@@ -71,18 +71,18 @@ function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT) == QUEST_ACCEPTED) then
             player:setVar("DivineMight",2); -- Used to use 2 to track completion, so that's preserved to maintain compatibility
             for i=dsp.ki.SHARD_OF_APATHY, dsp.ki.SHARD_OF_RAGE do
                 player:addKeyItem(i);
                 player:messageSpecial(ID.text.KEYITEM_OBTAINED,i);
             end
-            if (player:getCurrentMission(ZILART) == ARK_ANGELS) then
-                player:completeMission(ZILART,ARK_ANGELS);
-                player:addMission(ZILART,THE_SEALED_SHRINE);
+            if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.ARK_ANGELS) then
+                player:completeMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS);
+                player:addMission(ZILART,dsp.mission.id.zilart.THE_SEALED_SHRINE);
                 player:setVar("ZilartStatus",0);
             end
-        elseif (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MOONLIGHT_ORE) == true) then
+        elseif (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MOONLIGHT_ORE) == true) then
             player:setVar("DivineMight",2);
         end
     end

@@ -244,7 +244,7 @@ INSERT INTO `abilities` VALUES (204,'alacrity',20,25,1,1,231,0,0,178,2000,0,6,20
 INSERT INTO `abilities` VALUES (205,'ebullience',20,55,1,1,231,0,0,179,2000,0,6,20.0,0,1,80,0,32,'WOTG');
 INSERT INTO `abilities` VALUES (206,'manifestation',20,40,1,1,231,0,0,180,2000,0,6,20.0,0,1,80,0,32,'WOTG');
 INSERT INTO `abilities` VALUES (207,'stratagems',20,10,1,0,233,0,0,0,2000,0,6,20.0,0,0,0,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (208,'velocity_shot',11,45,1,300,129,0,0,186,2000,0,6,20.0,0,1,300,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (208,'velocity_shot',11,45,1,60,129,0,0,186,2000,0,6,20.0,0,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (209,'snarl',9,45,257,30,107,0,0,87,2000,0,6,20.0,0,0,0,0,192,'WOTG');
 INSERT INTO `abilities` VALUES (210,'retaliation',1,60,1,180,8,0,0,185,2000,0,6,20.0,0,1,80,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (211,'footwork',2,65,1,300,21,0,0,197,2000,0,6,20.0,0,1,80,0,0,'WOTG');

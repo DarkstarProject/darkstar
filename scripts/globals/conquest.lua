@@ -146,7 +146,7 @@ local function suppliesAvailableBitmask(player, nation)
 
     if mask ~= -1 and mask ~= 4294967295 then
         for i = 0, 18 do
-            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, DARKNESS_NAMED)) then
+            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED)) then
                 mask = mask + 2^(i + 5)
             end
         end
@@ -1072,6 +1072,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
         player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         player:addStatusEffect(dsp.effect.SIGNET, 0, 0, duration)
+        player:messageSpecial(mOffset + 1) -- "You've received your nation's Signet!"
 
     -- BEGIN SUPPLY RUN
     elseif option >= 65541 and option <= 65565 and guardType <= dsp.conquest.guard.FOREIGN then

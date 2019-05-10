@@ -19,9 +19,9 @@ end;
 
 function onTrigger(player,npc)
 
-    theCrimsonTrial = player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL);
-    envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
-    peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
+    theCrimsonTrial = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
+    envelopedInDarkness = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS);
+    peaceForTheSpirit = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT);
     peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
     OrcishDriedFood = player:hasKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
 
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         if (csid == 70 and option == 0) then
             player:setVar("has_seen_rdmaf1_quest_already",1);
         elseif (option == 1) then
-            player:addQuest(SANDORIA,THE_CRIMSON_TRIAL);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
             player:setVar("has_seen_rdmaf1_quest_already",0);
         end
     elseif (csid == 75) then
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
             player:addItem(16829);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16829); -- Fencing Degen
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,THE_CRIMSON_TRIAL);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
         end
     elseif (csid == 64) then
         player:setVar("peaceForTheSpiritCS",1);

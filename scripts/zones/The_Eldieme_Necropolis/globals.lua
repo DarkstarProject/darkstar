@@ -17,7 +17,7 @@ local THE_ELDIEME_NECROPOLIS =
         ..............................................................................................]]
     papyrusQmOnTrigger = function(player, ki)
         if not OldSchoolG1 then
-            if player:getQuestStatus(JEUNO, IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED and not player:hasItem(1088) and not player:hasKeyItem(ki) then
+            if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED and not player:hasItem(1088) and not player:hasKeyItem(ki) then
                 npcUtil.giveKeyItem(player, ki)
             end
 

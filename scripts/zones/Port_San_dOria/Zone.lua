@@ -37,7 +37,7 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 1) then
         cs =4;
     end
 

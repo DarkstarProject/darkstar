@@ -12,15 +12,15 @@ require("scripts/globals/keyitems");
 local ID = require("scripts/zones/Windurst_Waters/IDs");
 
 function onTrade(player,npc,trade)
-    local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
+    local turmoil = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
     local count = trade:getItemCount();
 
 
-    if (player:getQuestStatus(WINDURST,WATER_WAY_TO_GO) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WATER_WAY_TO_GO) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4351,1) and count == 1) then
             player:startEvent(355,900);
         end
-    elseif (player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
         local OhbiruFood = player:getVar("Ohbiru_Food_var");
 
         if (trade:hasItemQty(4493,1) == true and trade:hasItemQty(4408,1) == true and trade:hasItemQty(624,1) == true and count == 3) then
@@ -53,19 +53,19 @@ function onTrigger(player,npc)
     -- Check for Missions first (priority?)
     -- If the player has started the mission or not
     local pfame = player:getFameLevel(WINDURST);
-    local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
-    local FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
+    local turmoil = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
+    local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
     local needToZone = player:needToZone();
     local OhbiruFood = player:getVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
-    local waterWayToGo = player:getQuestStatus(WINDURST,WATER_WAY_TO_GO);
-    local overnightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
-    local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
+    local waterWayToGo = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WATER_WAY_TO_GO);
+    local overnightDelivery = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
+    local SayFlowers = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
-    local blueRibbonBlues = player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES)
+    local blueRibbonBlues = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES)
 
-    if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2) then
         player:startEvent(872);
-    elseif (player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE) then
         if (player:getVar("ohbiru_dohbiru_talk") == 1) then
             player:startEvent(143);
         else
@@ -138,14 +138,14 @@ function onEventFinish(player,csid,option)
     }
 
     -- Check Missions first (priority?)
-    local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
+    local turmoil = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
     if (csid == 143) then
         player:setVar("ohbiru_dohbiru_talk",2);
     elseif (csid == 322 or csid == 325 or csid == 326) then
         player:tradeComplete();
         player:addGil(GIL_RATE*440);
         if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Kenapa_Food_var") == 4) then -- If this is the last NPC to be fed
-            player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
             player:addFame(WINDURST,100);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:needToZone(true);
@@ -156,13 +156,13 @@ function onEventFinish(player,csid,option)
             player:setVar("Ohbiru_Food_var",3);
         end
     elseif (csid == 785 and option == 1) then -- Adds Toraimarai turmoil
-        player:addQuest(WINDURST,TORAIMARAI_TURMOIL);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RHINOSTERY_CERTIFICATE);
         player:addKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE); -- Rhinostery Certificate
     elseif (csid == 791 and turmoil == QUEST_ACCEPTED) then -- Completes Toraimarai turmoil - first time
         player:addGil(GIL_RATE*4500);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*4500);
-        player:completeQuest(WINDURST,TORAIMARAI_TURMOIL);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
         player:addFame(WINDURST,100);
         player:addTitle(dsp.title.CERTIFIED_RHINOSTERY_VENTURER);
         player:tradeComplete();
@@ -173,8 +173,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     elseif (csid == 352 and option == 0 or csid == 354) then
         if (player:getFreeSlotsCount() >= 1) then
-            if (player:getQuestStatus(WINDURST,WATER_WAY_TO_GO) == QUEST_AVAILABLE) then
-                player:addQuest(WINDURST,WATER_WAY_TO_GO);
+            if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WATER_WAY_TO_GO) == QUEST_AVAILABLE) then
+                player:addQuest(WINDURST,dsp.quest.id.windurst.WATER_WAY_TO_GO);
             end
             player:addItem(504);
             player:messageSpecial(ID.text.ITEM_OBTAINED,504);
@@ -183,7 +183,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 355) then
         player:addGil(GIL_RATE*900);
-        player:completeQuest(WINDURST,WATER_WAY_TO_GO);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.WATER_WAY_TO_GO);
         player:addFame(WINDURST,40);
         player:tradeComplete();
         player:needToZone(true);

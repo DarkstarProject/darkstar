@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if ((player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
+    if ((player:hasCompletedMission(COP,dsp.mission.id.cop.DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
          player:hasKeyItem(dsp.ki.DYNAMIS_BUBURIMU_SLIVER) and player:hasKeyItem(dsp.ki.DYNAMIS_QUFIM_SLIVER) and player:hasKeyItem(dsp.ki.DYNAMIS_VALKURM_SLIVER)) then
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");

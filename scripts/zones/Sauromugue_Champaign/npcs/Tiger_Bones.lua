@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local fangedOne = player:getQuestStatus(WINDURST, THE_FANGED_ONE)
+    local fangedOne = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_FANGED_ONE)
     local fangedOneCS = player:getVar("TheFangedOneCS")
 
     -- THE FANGED ONE

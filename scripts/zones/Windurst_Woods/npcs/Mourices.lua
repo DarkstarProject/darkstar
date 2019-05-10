@@ -12,7 +12,7 @@ require("scripts/globals/npc_util")
 function onTrade(player,npc,trade)
     local missionStatus = player:getVar("MissionStatus")
     
-    if player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and npcUtil.tradeHas(trade, {{12298,2}}) then -- Parana Shield x2
+    if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST and npcUtil.tradeHas(trade, {{12298,2}}) then -- Parana Shield x2
         if missionStatus == 5 then
             player:startEvent(455) -- before deliver shield to the yagudo
         elseif missionStatus == 6 then
@@ -24,7 +24,7 @@ end
 function onTrigger(player,npc)
     local missionStatus = player:getVar("MissionStatus")
 
-    if player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD then
+    if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_ABROAD then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
         if missionStatus == 2 then
             player:startEvent(448)
@@ -37,14 +37,14 @@ function onTrigger(player,npc)
             player:startEvent(468)
         end
     -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
-    elseif player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST then
+    elseif player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST then
         if missionStatus >= 3 and missionStatus <= 5 then
             player:startEvent(449)
         elseif missionStatus == 6 then
             player:startEvent(456)
         end
     -- San d'Oria Mission 2-3 Part II - Bastok > Windurst
-    elseif player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST2 then
+    elseif player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2 then
         if missionStatus == 7 or missionStatus == 8 then
             player:startEvent(463)
         elseif missionStatus == 9 or missionStatus == 10 then
@@ -60,18 +60,18 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 448 then
-        player:addMission(SANDORIA,JOURNEY_TO_WINDURST)
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_WINDURST)
         player:setVar("MissionStatus",3)
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA)
     elseif csid == 457 then
         player:setVar("MissionStatus",7)
         player:confirmTrade()
-        player:addMission(SANDORIA,JOURNEY_ABROAD)
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD)
     elseif csid == 462 then
-        player:addMission(SANDORIA,JOURNEY_TO_WINDURST2)
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2)
         player:setVar("MissionStatus",7)
     elseif csid == 467 then
-        player:addMission(SANDORIA,JOURNEY_ABROAD)
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD)
         player:delKeyItem(dsp.ki.KINDRED_CREST)
         player:setVar("MissionStatus",11)
         npcUtil.giveKeyItem(player, dsp.ki.KINDRED_REPORT)

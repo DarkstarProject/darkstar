@@ -14,11 +14,11 @@ end
 
 function onBcnmLeave(player, instance, leavecode)
     if leavecode == 2 then
-        if player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus") == 2 then
+        if player:getCurrentMission(COP) == dsp.mission.id.cop.ONE_TO_BE_FEARED and player:getVar("PromathiaStatus") == 2 then
             player:startEvent(32001, 1, 1, 1, instance:getTimeInside(), 1, 0, 0)
             player:setVar("PromathiaStatus", 0)
-            player:completeMission(COP, ONE_TO_BE_FEARED)
-            player:addMission(COP, CHAINS_AND_BONDS)
+            player:completeMission(COP, dsp.mission.id.cop.ONE_TO_BE_FEARED)
+            player:addMission(COP, dsp.mission.id.cop.CHAINS_AND_BONDS)
         else
             player:startEvent(32001, 1, 1, 1, instance:getTimeInside(), 1, 0, 1)
         end

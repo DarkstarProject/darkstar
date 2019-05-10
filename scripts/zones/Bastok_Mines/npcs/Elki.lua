@@ -16,9 +16,9 @@ end;
 function onTrigger(player,npc)
 
 Fame = player:getFameLevel(BASTOK);
-Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
+Hearts = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.HEARTS_OF_MYTHRIL);
 HeartsVar = player:getVar("HeartsOfMythril");
-Elevenths = player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR);
+Elevenths = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR);
 EleventhsVar = player:getVar("EleventhsHour");
 HasToolbox = player:hasKeyItem(dsp.ki.OLD_TOOLBOX);
 
@@ -44,7 +44,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 41 and option == 0) then
-        player:addQuest(BASTOK,HEARTS_OF_MYTHRIL);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.HEARTS_OF_MYTHRIL);
         player:addKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOUQUETS_FOR_THE_PIONEERS);
     elseif (csid == 42) then
@@ -54,13 +54,13 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.PURSUER_OF_THE_PAST);
             player:addItem(12840);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12840);
-            player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.HEARTS_OF_MYTHRIL);
             player:addFame(BASTOK,80);
             player:setVar("HeartsOfMythril",0);
             player:needToZone(true);
         end
     elseif (csid == 43 and option == 1) then
-        player:addQuest(BASTOK,THE_ELEVENTH_S_HOUR);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR);
     elseif (csid == 44) then
         player:setVar("EleventhsHour",1);
     end

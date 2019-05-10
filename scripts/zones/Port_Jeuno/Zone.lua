@@ -48,7 +48,7 @@ function onZoneIn(player,prevZone)
             player:setVar("PlayerMainJob",0);
         end
     elseif (ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30
-    and player:getQuestStatus(ABYSSEA, A_JOURNEY_BEGINS) == QUEST_AVAILABLE) then
+    and player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.A_JOURNEY_BEGINS) == QUEST_AVAILABLE) then
         cs = 324;
     end
 
@@ -87,6 +87,6 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 324) then
-        player:addQuest(ABYSSEA, A_JOURNEY_BEGINS);
+        player:addQuest(ABYSSEA, dsp.quest.id.abyssea.A_JOURNEY_BEGINS);
     end
 end;

@@ -1296,7 +1296,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 
             // load shadows left
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetPower());
+                m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetSubPower());
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
                 m_POwner->setModifier(Mod::BLINK, PStatusEffect->GetPower());
@@ -1343,7 +1343,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
             // save power of utsusemi and blink
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                PStatusEffect->SetPower(m_POwner->getMod(Mod::UTSUSEMI));
+                PStatusEffect->SetSubPower(m_POwner->getMod(Mod::UTSUSEMI));
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
                 PStatusEffect->SetPower(m_POwner->getMod(Mod::BLINK));

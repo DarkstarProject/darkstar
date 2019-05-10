@@ -11,13 +11,13 @@ require("scripts/globals/quests")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(COP) >= THE_SAVAGE then
+    if player:getCurrentMission(COP) >= dsp.mission.id.cop.THE_SAVAGE then
         if GetRegionOwner(dsp.region.TAVNAZIANARCH) ~= dsp.nation.SANDORIA then
             player:showText(npc, ID.text.DEGUERENDARS_CLOSED_DIALOG)
         else

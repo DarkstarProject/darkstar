@@ -16,16 +16,16 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus")
 
     -- Enter the Talekeeper 8-2
-    if currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 4 then
+    if currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 4 then
         player:startEvent(204)
-    elseif currentMission == ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 then
+    elseif currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 then
         player:startEvent(203)
-    elseif currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 0 then
+    elseif currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 0 then
         player:startEvent(202)
     -- Return of the Talekeeper 6-1
-    elseif currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus > 1 then
+    elseif currentMission == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus > 1 then
         player:startEvent(201)
-    elseif currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus == 1 then
+    elseif currentMission == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus == 1 then
         player:startEvent(200)
     else
         player:startEvent(108)

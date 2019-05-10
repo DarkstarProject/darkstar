@@ -92,7 +92,7 @@ OUTER_HORUTOTO_RUINS = {
         local gizmoNum = npc:getID() - ID.npc.GATE_MAGICAL_GIZMO -- gizmoNum will be 1 through 6
         local msgBase = ID.text.ORB_ALREADY_PLACED
 
-        if player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER then
+        if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER then
             local missionStatus = player:getVar("MissionStatus")
 
             -- placing dark mana orbs

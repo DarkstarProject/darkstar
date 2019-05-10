@@ -32,13 +32,13 @@ end
 
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
-    local theFangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE) -- RNG flag quest
+    local theFangedOne = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_FANGED_ONE) -- RNG flag quest
     local theFangedOneCS = player:getVar("TheFangedOne_Event")
-    local sinHunting = player:getQuestStatus(WINDURST,SIN_HUNTING)-- RNG AF1
+    local sinHunting = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SIN_HUNTING)-- RNG AF1
     local sinHuntingCS = player:getVar("sinHunting")
-    local fireAndBrimstone = player:getQuestStatus(WINDURST,FIRE_AND_BRIMSTONE)-- RNG AF2
+    local fireAndBrimstone = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FIRE_AND_BRIMSTONE)-- RNG AF2
     local fireAndBrimstoneCS = player:getVar("fireAndBrimstone")
-    local unbridledPassion = player:getQuestStatus(WINDURST,UNBRIDLED_PASSION)-- RNG AF3
+    local unbridledPassion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.UNBRIDLED_PASSION)-- RNG AF3
     local unbridledPassionCS = player:getVar("unbridledPassion")
     local lvl = player:getMainLvl()
     local job = player:getMainJob()
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(wsQuestEvent)
 
     -- THREE PATHS
-    elseif player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 1 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 1 then
         player:startEvent(686)
 
     -- THE FANGED ONE
@@ -104,36 +104,36 @@ function onEventFinish(player,csid,option)
 
     -- THE FANGED ONE
     elseif csid == 351 then
-        player:addQuest(WINDURST, THE_FANGED_ONE)
+        player:addQuest(WINDURST, dsp.quest.id.windurst.THE_FANGED_ONE)
         player:setVar("TheFangedOneCS", 1)
-    elseif (csid == 357 or csid == 358) and npcUtil.completeQuest(player, WINDURST, THE_FANGED_ONE, {item=13117, title=dsp.title.THE_FANGED_ONE, var={"TheFangedOne_Event", "TheFangedOneCS"}}) then
+    elseif (csid == 357 or csid == 358) and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.THE_FANGED_ONE, {item=13117, title=dsp.title.THE_FANGED_ONE, var={"TheFangedOne_Event", "TheFangedOneCS"}}) then
         player:delKeyItem(dsp.ki.OLD_TIGERS_FANG)
         player:unlockJob(dsp.job.RNG)
         player:messageSpecial(ID.text.PERIH_VASHAI_DIALOG)
 
     -- SIN HUNTING        
     elseif csid == 523 then -- start quest RNG AF1
-        player:addQuest(WINDURST, SIN_HUNTING)
+        player:addQuest(WINDURST, dsp.quest.id.windurst.SIN_HUNTING)
         npcUtil.giveKeyItem(player, dsp.ki.CHIEFTAINNESS_TWINSTONE_EARRING)
         player:setVar("sinHunting", 1)
-    elseif csid == 527 and npcUtil.completeQuest(player, WINDURST, SIN_HUNTING, {item=17188, var="sinHunting"}) then -- complete quest RNG AF1
+    elseif csid == 527 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.SIN_HUNTING, {item=17188, var="sinHunting"}) then -- complete quest RNG AF1
         player:delKeyItem(dsp.ki.CHIEFTAINNESS_TWINSTONE_EARRING)
         player:delKeyItem(dsp.ki.PERCHONDS_ENVELOPE)
 
     -- FIRE AND BRIMSTONE
     elseif csid == 531 then -- start RNG AF2
-        player:addQuest(WINDURST, FIRE_AND_BRIMSTONE)
+        player:addQuest(WINDURST, dsp.quest.id.windurst.FIRE_AND_BRIMSTONE)
         player:setVar("fireAndBrimstone", 1)
     elseif csid == 535 then -- start second part RNG AF2
         player:setVar("fireAndBrimstone", 5)
-    elseif csid == 537 and npcUtil.completeQuest(player, WINDURST, FIRE_AND_BRIMSTONE, {item=12518, var="fireAndBrimstone"}) then -- complete quest RNG AF2
+    elseif csid == 537 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.FIRE_AND_BRIMSTONE, {item=12518, var="fireAndBrimstone"}) then -- complete quest RNG AF2
         player:confirmTrade()
 
     -- UNBRIDLED PASSION        
     elseif csid == 541 then -- start RNG AF3
-        player:addQuest(WINDURST, UNBRIDLED_PASSION)
+        player:addQuest(WINDURST, dsp.quest.id.windurst.UNBRIDLED_PASSION)
         player:setVar("unbridledPassion", 1)
-    elseif csid == 546 and npcUtil.completeQuest(player, WINDURST, UNBRIDLED_PASSION, {item=14099, var="unbridledPassion"}) then -- complete quest RNG AF3
+    elseif csid == 546 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.UNBRIDLED_PASSION, {item=14099, var="unbridledPassion"}) then -- complete quest RNG AF3
         player:delKeyItem(dsp.ki.KOHS_LETTER)
 
     -- FROM SAPLINGS GROW

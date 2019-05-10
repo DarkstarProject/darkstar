@@ -10,7 +10,7 @@ require("scripts/globals/missions")
 
 function onMobDeath(mob, player, isKiller)
 
-    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
         local aernKills =
         {
             [ID.mob.AERNS_TOWER_SOUTH + 0] = "Ru_aern_1-1KILL",

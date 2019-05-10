@@ -14,7 +14,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local efao = player:getQuestStatus(AHT_URHGAN, EQUIPPED_FOR_ALL_OCCASIONS)
+    local efao = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.EQUIPPED_FOR_ALL_OCCASIONS)
     local efaoStat = player:getVar("EquippedforAllOccasions")
 
     if efao == QUEST_ACCEPTED and efaoStat == 1 and npcUtil.popFromQM(player, npc, ID.mob.LOST_SOUL, {hide = 0}) then

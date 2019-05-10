@@ -4237,4 +4237,42 @@ namespace luautils
         return effectId;
     }
 
+    void OnFurniturePlaced(CCharEntity* PChar, CItemFurnishing* PItem)
+    {
+        lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
+
+        if (prepFile(File, "onFurniturePlaced"))
+        {
+            return;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::onFurniturePlaced: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+        }
+    }
+
+    void OnFurnitureRemoved(CCharEntity* PChar, CItemFurnishing* PItem)
+    {
+        lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
+
+        if (prepFile(File, "onFurnitureRemoved"))
+        {
+            return;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::onFurnitureRemoved: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+        }
+    }
+
 }; // namespace luautils

@@ -34,7 +34,7 @@ function onZoneIn( player, prevZone)
         cs = 9
     elseif UnbridledPassionCS == 3 then
         cs = 4
-    elseif player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 1 then
         cs = 11
     end
 

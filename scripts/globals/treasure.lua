@@ -227,7 +227,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
                         code = function(player) npcUtil.giveItem(player, 13121) end,
                     },
                 },
@@ -258,7 +258,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.GUIDING_BELL) end,
                     },
                 },
@@ -284,7 +284,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.GUIDING_BELL) end,
                     },
                 },
@@ -306,7 +306,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
                             player:addVar("ATestOfTrueLoveProgress", 1)
@@ -342,7 +342,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
                             player:addVar("ATestOfTrueLoveProgress", 1)
@@ -365,7 +365,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LEPHEMERE) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LEPHEMERE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LEPHEMERE)
                             player:addVar("ATestOfTrueLoveProgress", 1)
@@ -460,13 +460,13 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(dsp.ki.TORN_OUT_PAGES)
+                            return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(dsp.ki.TORN_OUT_PAGES)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.TORN_OUT_PAGES) end,
                     },
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
                     },
@@ -534,7 +534,7 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 1 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 1 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
                     },
@@ -600,7 +600,7 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
                     },
@@ -656,7 +656,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.FEIYIN_MAGIC_TOME) end,
+                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.FEIYIN_MAGIC_TOME) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.FEIYIN_MAGIC_TOME) end,
                     },
                 },
@@ -689,7 +689,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LANCIENNE) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LANCIENNE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LANCIENNE)
                             player:addVar("ATestOfTrueLoveProgress", 1)
@@ -778,9 +778,9 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BST] = {quest = BORGHERTZ_S_WILD_HANDS,     reward = 12646}, -- Beast Jackcoat
-                    [dsp.job.PLD] = {quest = BORGHERTZ_S_STALWART_HANDS, reward = 14220}, -- Gallant Breeches
-                    [dsp.job.MNK] = {quest = BORGHERTZ_S_STRIKING_HANDS, reward = 12639}, -- Temple Cyclas
+                    [dsp.job.BST] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,     reward = 12646}, -- Beast Jackcoat
+                    [dsp.job.PLD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS, reward = 14220}, -- Gallant Breeches
+                    [dsp.job.MNK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS, reward = 12639}, -- Temple Cyclas
                 },
                 points =
                 {
@@ -806,9 +806,9 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.DRK] = {quest = BORGHERTZ_S_SHADOWY_HANDS,   reward = 14221}, -- Chaos Flanchard
-                    [dsp.job.RNG] = {quest = BORGHERTZ_S_CHASING_HANDS,   reward = 12648}, -- Hunter's Jerkin
-                    [dsp.job.BLM] = {quest = BORGHERTZ_S_SORCEROUS_HANDS, reward = 12641}, -- Wizard's Coat
+                    [dsp.job.DRK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,   reward = 14221}, -- Chaos Flanchard
+                    [dsp.job.RNG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,   reward = 12648}, -- Hunter's Jerkin
+                    [dsp.job.BLM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 12641}, -- Wizard's Coat
                 },
                 points =
                 {
@@ -833,10 +833,10 @@ local treasureInfo =
                 key = 1044,
                 af =
                 {
-                    [dsp.job.DRK] = {quest = BORGHERTZ_S_SHADOWY_HANDS,    reward = 12645}, -- Chaos Cuirass
-                    [dsp.job.BRD] = {quest = BORGHERTZ_S_HARMONIOUS_HANDS, reward = 14223}, -- Choral Cannions
-                    [dsp.job.THF] = {quest = BORGHERTZ_S_SNEAKY_HANDS,     reward = 14219}, -- Rogue's Culottes
-                    [dsp.job.RDM] = {quest = BORGHERTZ_S_VERMILLION_HANDS, reward = 12642}, -- Warlock's Tabard
+                    [dsp.job.DRK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,    reward = 12645}, -- Chaos Cuirass
+                    [dsp.job.BRD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 14223}, -- Choral Cannions
+                    [dsp.job.THF] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,     reward = 14219}, -- Rogue's Culottes
+                    [dsp.job.RDM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 12642}, -- Warlock's Tabard
                 },
                 points =
                 {
@@ -865,7 +865,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.NIN] = {quest = BORGHERTZ_S_LURKING_HANDS, reward = 13869}, -- Ninja Hatsuburi
+                    [dsp.job.NIN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 13869}, -- Ninja Hatsuburi
                 },
                 points =
                 {
@@ -895,8 +895,8 @@ local treasureInfo =
                 map = dsp.ki.MAP_OF_THE_TEMPLE_OF_UGGALEPIH,
                 af =
                 {
-                    [dsp.job.SMN] = {quest = BORGHERTZ_S_CALLING_HANDS, reward = 12650}, -- Evoker's Doublet
-                    [dsp.job.SAM] = {quest = BORGHERTZ_S_LOYAL_HANDS,   reward = 13781}, -- Myochin Domaru
+                    [dsp.job.SMN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 12650}, -- Evoker's Doublet
+                    [dsp.job.SAM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,   reward = 13781}, -- Myochin Domaru
                 },
                 points =
                 {
@@ -946,8 +946,8 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.WAR] = {quest = BORGHERTZ_S_WARRING_HANDS, reward = 14214}, -- Fighter's Cuisses
-                    [dsp.job.THF] = {quest = BORGHERTZ_S_SNEAKY_HANDS,  reward = 12643}, -- Rogue's Vest
+                    [dsp.job.WAR] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS, reward = 14214}, -- Fighter's Cuisses
+                    [dsp.job.THF] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,  reward = 12643}, -- Rogue's Vest
                 },
                 misc =
                 {
@@ -977,7 +977,7 @@ local treasureInfo =
                 key = 1057,
                 af =
                 {
-                    [dsp.job.SMN] = {quest = BORGHERTZ_S_CALLING_HANDS, reward = 14103}, -- Evoker's Pigaches
+                    [dsp.job.SMN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 14103}, -- Evoker's Pigaches
                 },
                 misc =
                 {
@@ -1021,11 +1021,11 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and not player:hasKeyItem(dsp.ki.LARGE_TRICK_BOX) end,
+                        test = function(player) return player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and not player:hasKeyItem(dsp.ki.LARGE_TRICK_BOX) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.LARGE_TRICK_BOX) end,
                     },
                     {
-                        test = function(player) return player:getQuestStatus(SANDORIA,KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1 end,
+                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1 end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) end,
                     },
                 },
@@ -1058,7 +1058,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.NIN] = {quest = BORGHERTZ_S_LURKING_HANDS, reward = 14101}, -- Ninja Kyahan
+                    [dsp.job.NIN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 14101}, -- Ninja Kyahan
                 },
                 points =
                 {
@@ -1109,7 +1109,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BLM] = {quest = BORGHERTZ_S_SORCEROUS_HANDS, reward = 14217}, -- Wizard's Tonban
+                    [dsp.job.BLM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 14217}, -- Wizard's Tonban
                 },
                 points =
                 {
@@ -1137,10 +1137,10 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BRD] = {quest = BORGHERTZ_S_HARMONIOUS_HANDS, reward = 13857}, -- Choral Roundlet
-                    [dsp.job.WAR] = {quest = BORGHERTZ_S_WARRING_HANDS,    reward = 12511}, -- Fighter's Mask
-                    [dsp.job.WHM] = {quest = BORGHERTZ_S_HEALING_HANDS,    reward = 14216}, -- Healer's Pantaloons
-                    [dsp.job.RNG] = {quest = BORGHERTZ_S_CHASING_HANDS,    reward = 14224}, -- Hunter's Braccae
+                    [dsp.job.BRD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 13857}, -- Choral Roundlet
+                    [dsp.job.WAR] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS,    reward = 12511}, -- Fighter's Mask
+                    [dsp.job.WHM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 14216}, -- Healer's Pantaloons
+                    [dsp.job.RNG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,    reward = 14224}, -- Hunter's Braccae
                 },
                 points =
                 {
@@ -1166,11 +1166,11 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BST] = {quest = BORGHERTZ_S_WILD_HANDS,       reward = 12517}, -- Beast Helm
-                    [dsp.job.PLD] = {quest = BORGHERTZ_S_STALWART_HANDS,   reward = 12515}, -- Gallant Coronet
-                    [dsp.job.WHM] = {quest = BORGHERTZ_S_HEALING_HANDS,    reward = 13855}, -- Healer's Cap
-                    [dsp.job.MNK] = {quest = BORGHERTZ_S_STRIKING_HANDS,   reward = 12512}, -- Temple Crown
-                    [dsp.job.RDM] = {quest = BORGHERTZ_S_VERMILLION_HANDS, reward = 14218}, -- Warlock's Tights
+                    [dsp.job.BST] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,       reward = 12517}, -- Beast Helm
+                    [dsp.job.PLD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS,   reward = 12515}, -- Gallant Coronet
+                    [dsp.job.WHM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 13855}, -- Healer's Cap
+                    [dsp.job.MNK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS,   reward = 12512}, -- Temple Crown
+                    [dsp.job.RDM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 14218}, -- Warlock's Tights
                 },
                 points =
                 {
@@ -1196,7 +1196,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.DRG] = {quest = BORGHERTZ_S_DRAGON_HANDS, reward = 12649}, -- Drachen Mail
+                    [dsp.job.DRG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 12649}, -- Drachen Mail
                 },
                 points =
                 {
@@ -1224,8 +1224,8 @@ local treasureInfo =
                 map = dsp.ki.MAP_OF_THE_QUICKSAND_CAVES,
                 af =
                 {
-                    [dsp.job.DRG] = {quest = BORGHERTZ_S_DRAGON_HANDS, reward = 14102}, -- Drachen Greaves
-                    [dsp.job.SAM] = {quest = BORGHERTZ_S_LOYAL_HANDS,  reward = 14225}, -- Myochin Haidate
+                    [dsp.job.DRG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 14102}, -- Drachen Greaves
+                    [dsp.job.SAM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,  reward = 14225}, -- Myochin Haidate
                 },
                 points =
                 {

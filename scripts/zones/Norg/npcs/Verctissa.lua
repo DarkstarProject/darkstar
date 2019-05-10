@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Norg/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (trade:hasItemQty(1549,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
+    if (trade:hasItemQty(1549,1) and player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WATER) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
         player:startEvent(200,0,1549,2,20);
     end
 
@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialSizeWater = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
+    local TrialSizeWater = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WATER);
     if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(199,0,1549,2,20);     --mini tuning fork of water, zone, level
     elseif (TrialSizeWater == QUEST_ACCEPTED) then
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1549); --Mini tuning fork
         else
             player:setVar("TrialSizeWater_date", 0);
-            player:addQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
+            player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WATER);
             player:addItem(1549);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1549);
         end

@@ -30,7 +30,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedQuest(OUTLANDS,TRIAL_BY_FIRE)) then
+        if (player:hasCompletedQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_FIRE)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);

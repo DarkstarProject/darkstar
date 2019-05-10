@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Northern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
 
-    theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
+    theTraderInTheForest = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_TRADER_IN_THE_FOREST);
 
     if (theTraderInTheForest == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4367,1) and trade:getItemCount() == 1) then -- Trade Batagreens
@@ -25,8 +25,8 @@ end;
 
 function onTrigger(player,npc)
 
-    theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
-    medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
+    theTraderInTheForest = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_TRADER_IN_THE_FOREST);
+    medicineWoman = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
 
     if (theTraderInTheForest == QUEST_AVAILABLE) then
         if (player:getVar("theTraderInTheForestCS") == 1) then
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,592);
         else
-            player:addQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_TRADER_IN_THE_FOREST);
             player:setVar("theTraderInTheForestCS",0);
             player:addItem(592);
             player:messageSpecial(ID.text.ITEM_OBTAINED,592); -- Supplies Order
@@ -82,18 +82,18 @@ function onEventFinish(player,csid,option)
             player:addItem(12600);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12600); -- Robe
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_TRADER_IN_THE_FOREST);
         end
     -- "The Medicine Woman" Quest
     elseif (csid == 613 and option == 0 or csid == 615 and option == 0) then
-        player:addQuest(SANDORIA,THE_MEDICINE_WOMAN);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
     elseif (csid == 614) then
         player:addTitle(dsp.title.TRAVELING_MEDICINE_MAN);
         player:delKeyItem(dsp.ki.COLD_MEDICINE);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,THE_MEDICINE_WOMAN);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
     end
 
 end;

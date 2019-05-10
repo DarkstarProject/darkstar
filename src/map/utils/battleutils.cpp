@@ -1730,7 +1730,9 @@ namespace battleutils
             validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
         }
 
-        if (validWeapon && PDefender->PAI->IsEngaged())
+        bool hasGuardSkillRank = (GetSkillRank(SKILL_GUARD, PDefender->GetMJob()) > 0 || GetSkillRank(SKILL_GUARD, PDefender->GetSJob()) > 0);
+
+        if (validWeapon && hasGuardSkillRank && PDefender->PAI->IsEngaged())
         {
             // assuming this is like parry
             float skill = (float)PDefender->GetSkill(SKILL_GUARD) + PDefender->getMod(Mod::GUARD);
@@ -1983,7 +1985,7 @@ namespace battleutils
                 if (PAttacker->m_Weapons[slot]->getSkillType() == SKILL_HAND_TO_HAND)
                     ratio = 2.0f;
 
-                baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
+                baseTp = CalculateBaseTP((int16)(delay * 60.0f / 1000.0f / ratio));
             }
 
 

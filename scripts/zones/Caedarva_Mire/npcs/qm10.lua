@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local OperationTeatime = player:getQuestStatus(AHT_URHGAN,OPERATION_TEATIME)
+    local OperationTeatime = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.OPERATION_TEATIME)
     local OperationTeatimeProgress = player:getVar("OperationTeatimeProgress")
 
     if OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 3 then
@@ -28,6 +28,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 15 then
-        npcUtil.completeQuest(player, AHT_URHGAN, OPERATION_TEATIME, {item=15602, var="OperationTeatimeProgress"})
+        npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.OPERATION_TEATIME, {item=15602, var="OperationTeatimeProgress"})
     end
 end

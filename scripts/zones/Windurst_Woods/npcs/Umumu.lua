@@ -17,10 +17,10 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES)
+    local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES)
     local WildcatWindurst = player:getVar("WildcatWindurst")
 
-    if player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(WildcatWindurst,3) then
+    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(WildcatWindurst,3) then
         player:startEvent(731)
     elseif MakingHeadlines == 1 then
         local prog = player:getVar("QuestMakingHeadlines_var")

@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
     if
-        player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and
+        player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and
         player:getVar("ridingOnTheClouds_3") == 4 and
         npcUtil.tradeHas(trade, 1127)
     then

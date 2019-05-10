@@ -65,7 +65,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    DampScroll = player:getQuestStatus(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
+    DampScroll = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
     mLvl = player:getMainLvl();
 
     if (DampScroll == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 10 and player:hasItem(1210) == true) then
@@ -84,7 +84,7 @@ end;
 
 function onEventFinish(player,csid,option,npc)
     if (csid == 31) then
-        player:addQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
     end
 
     npc:wait(0);

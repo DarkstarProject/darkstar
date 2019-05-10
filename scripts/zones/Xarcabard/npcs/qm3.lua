@@ -15,7 +15,7 @@ end
 
 function onTrigger(player,npc)
     if not OldSchoolG2 or GetMobByID(ID.mob.BOREAL_COEURL):isDead() then
-        if player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SQUARE_FRIGICITE) then
+        if player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SQUARE_FRIGICITE) then
             player:addKeyItem(dsp.ki.SQUARE_FRIGICITE)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SQUARE_FRIGICITE)
         else

@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local OvernightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
+    local OvernightDelivery = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
     local KenapaOvernight = player:getVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
     local KenapaOvernightDay = player:getVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
     local KenapaOvernightHour = player:getVar("Kenapa_Overnight_Hour_var"); -- Variable to track the hour the quest is started.

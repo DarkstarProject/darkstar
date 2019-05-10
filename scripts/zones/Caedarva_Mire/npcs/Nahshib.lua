@@ -17,10 +17,10 @@ end;
 
 function onTrigger(player,npc)
     local toauMission = player:getCurrentMission(TOAU);
-    local beginnings = player:getQuestStatus(AHT_URHGAN,BEGINNINGS);
+    local beginnings = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS);
 
     -- IMMORTAL SENTRIES
-    if (toauMission == IMMORTAL_SENTRIES) then
+    if (toauMission == dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         if (player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE)) then
             player:startEvent(5);
         elseif (player:getVar("AhtUrganStatus") == 1) then
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         end;
 
     -- SHADES OF VENGEANCE
-    elseif (toauMission == SHADES_OF_VENGEANCE and player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT) == false and vanaDay() > player:getVar("TOAUM31_PERMITDAY")) then
+    elseif (toauMission == dsp.mission.id.toau.SHADES_OF_VENGEANCE and player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT) == false and vanaDay() > player:getVar("TOAUM31_PERMITDAY")) then
         player:startEvent(22);
 
     -- BEGINNINGS
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         end;
 
     -- ASSAULT
-    elseif (toauMission >= PRESIDENT_SALAHEEM) then
+    elseif (toauMission >= dsp.mission.id.toau.PRESIDENT_SALAHEEM) then
         local IPpoint = player:getCurrency("imperial_standing");
         if (player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS) and player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) == false) then
             player:startEvent(148,50,IPpoint);

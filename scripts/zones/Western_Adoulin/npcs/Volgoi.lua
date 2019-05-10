@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
-    if ((SOA_Mission >= BEAUTY_AND_THE_BEAST) and (SOA_Mission <= SALVATION)) then
+    if ((SOA_Mission >= dsp.mission.id.soa.BEAUTY_AND_THE_BEAST) and (SOA_Mission <= dsp.mission.id.soa.SALVATION)) then
         -- Speech while Arciela is 'kidnapped'
         player:startEvent(151);
     else

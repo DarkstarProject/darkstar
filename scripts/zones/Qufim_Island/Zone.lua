@@ -41,6 +41,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 100 then
-        npcUtil.completeQuest(player, BASTOK, THE_TALEKEEPER_S_GIFT, {item = 12638, fame = AF3_FAME, title = dsp.title.PARAGON_OF_WARRIOR_EXCELLENCE, var = {"theTalekeeperGiftCS", "theTalekeepersGiftKilledNM"}})
+        npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.THE_TALEKEEPER_S_GIFT, {item = 12638, fame = AF3_FAME, title = dsp.title.PARAGON_OF_WARRIOR_EXCELLENCE, var = {"theTalekeeperGiftCS", "theTalekeepersGiftKilledNM"}})
     end
 end

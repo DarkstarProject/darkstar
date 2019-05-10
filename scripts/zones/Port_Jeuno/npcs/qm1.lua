@@ -35,7 +35,7 @@ function onEventFinish(player,csid,option)
     if (csid == 20 and option == 1) then
         player:setVar("BorghertzCS",2);
     elseif (csid == 48) then
-        NumQuest = 43 + player:getVar("BorghertzAlreadyActiveWithJob");
+        NumQuest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS + player:getVar("BorghertzAlreadyActiveWithJob") - 1;
         NumHands = 13960 + player:getVar("BorghertzAlreadyActiveWithJob");
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,NumHands);

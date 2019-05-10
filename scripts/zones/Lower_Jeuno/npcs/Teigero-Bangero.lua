@@ -19,18 +19,18 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
+    TheKindCardian = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN);
 
-    if (player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_AVAILABLE) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET) == QUEST_AVAILABLE) then
         player:startEvent(34); -- Base Standard CS & dialog
-    elseif (player:getQuestStatus(JEUNO,COOK_S_PRIDE) ~= QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE) ~= QUEST_COMPLETED) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(75); -- During Panta and Naruru Quests
         else
             player:startEvent(32); -- Same...
         end
-    elseif (player:getQuestStatus(JEUNO,THE_LOST_CARDIAN) == QUEST_AVAILABLE) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_LOST_CARDIAN) == QUEST_AVAILABLE) then
         if (player:getVar("theLostCardianVar") == 0) then
             player:startEvent(29); -- First dialog for "The lost cardien" quest
         else
