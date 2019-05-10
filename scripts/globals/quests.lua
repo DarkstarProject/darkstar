@@ -1,12 +1,15 @@
+require("scripts/globals/keyitems")
 require("scripts/globals/log_ids")
 require("scripts/globals/npc_util")
+require("scripts/globals/titles")
 require("scripts/globals/zone")
 
 dsp = dsp or {}
 dsp.quest = dsp.quest or {} -- "Solid" enum definitions which are currently in use by master
 
--- These should be tabled enums at some point in the future,
--- but that'll require mass-replacing in master first
+-- These should be tabled enums for rewritten quests, but
+-- these globals are kept so old-style quests will work
+-- until they're all converted (and then these can be removed)
 QUEST_AVAILABLE = 0;
 QUEST_ACCEPTED  = 1;
 QUEST_COMPLETED = 2;
@@ -1230,6 +1233,26 @@ end
 dsp.quest.string = buildQuestStringTable(dsp.quest.id)
 
 -----------------------------------
+--  QUEST OBJECTS TABLE
+-----------------------------------
+
+-- Quest objects inside these tables will be loaded/reloaded as required by NPC scripts and GM commands
+dsp.quest.object =
+{
+    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] = {},
+    [dsp.quest.area[dsp.quest.log_id.BASTOK]] = {},
+    [dsp.quest.area[dsp.quest.log_id.WINDURST]] = {},
+    [dsp.quest.area[dsp.quest.log_id.JEUNO]] = {},
+    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] = {},
+    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] = {},
+    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] = {},
+    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] = {},
+    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] = {},
+    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] = {},
+    [dsp.quest.area[dsp.quest.log_id.COALITION]] = {}
+}
+
+-----------------------------------
 --  DSP QUEST SYSTEM CONSTANTS
 -----------------------------------
 
@@ -1240,171 +1263,422 @@ dsp.quest.stage =
     STAGE10  = 10, STAGE11 = 11, STAGE12 = 12, STAGE13  = 13, STAGE14  = 14,
 }
 
------------------------------------
---  QUEST_REWRITE ENUMS
------------------------------------
-
--- Where our quest functions and "quest_rewrite only" enums _currently_ reside. This table's
--- contents should be phased out where possible as they're brought into master (dsp.quest)
-dsp.quests = dsp.quests or {}
-
-dsp.quests.enums =
+dsp.quest.fame =
 {
-    fame_areas =
-    {
-        SANDORIA          =  0, BASTOK           =  1, WINDURST           =  2,
-        JEUNO             =  3, SELBINA          =  4, MHAURA             =  2,
-        RABAO             =  4, KAZHAM           =  2, NORG               =  5,
-        ABYSSEA_KONSCHTAT =  6, ABYSSEA_TAHRONGI =  7, ABYSSEA_LATHEINE   =  8,
-        ABYSSEA_MISAREAUX =  9, ABYSSEA_VUNKERL  = 10, ABYSSEA_ATTOHWA    = 11,
-        ABYSSEA_ALTEPA    = 12, ABYSSEA_GRAUBERG = 13, ABYSSEA_ULEGUERAND = 14,
-        ADOULIN = 15
-    },
+    SANDORIA          =  0, BASTOK           =  1, WINDURST           =  2,
+    JEUNO             =  3, SELBINA          =  4, MHAURA             =  2,
+    RABAO             =  4, KAZHAM           =  2, NORG               =  5,
+    ABYSSEA_KONSCHTAT =  6, ABYSSEA_TAHRONGI =  7, ABYSSEA_LATHEINE   =  8,
+    ABYSSEA_MISAREAUX =  9, ABYSSEA_VUNKERL  = 10, ABYSSEA_ATTOHWA    = 11,
+    ABYSSEA_ALTEPA    = 12, ABYSSEA_GRAUBERG = 13, ABYSSEA_ULEGUERAND = 14,
+    ADOULIN = 15
+}
 
-    var_types =
-    {
-        CHAR_VAR   = 1,
-        LOCAL_VAR  = 2,
-        SERVER_VAR = 3,
-    },
+dsp.quest.status =
+{
+    AVAILABLE = 0,
+    ACCEPTED  = 1,
+    COMPLETED = 2,
+}
 
-    quest_status =
-    {
-        QUEST_AVAILABLE = 0,
-        QUEST_ACCEPTED  = 1,
-        QUEST_COMPLETED = 2,
-    },
+dsp.quest.var =
+{
+    CHAR   = 1,
+    LOCAL  = 2,
+    SERVER = 3,
+}
+
+dsp.quest.event =
+{
+    TRIGGER = 1,
+    TRADE = 2,
+    UPDATE = 3,
+    FINISH = 4,
+    MOB_DEATH = 5,
+    ZONE_IN = 6
 }
 
 -----------------------------------
---  QUEST FUNCTIONS
+--  QUEST OBJECT
 -----------------------------------
 
-local check_enum =
-{
-    onTrigger = 1,
-    onTrade = 2,
-    onEventUpdate = 3,
-    onEventFinish = 4,
-    onMobDeath = 5,
-    onZoneIn = 6
-}
+dsp.quest.newQuest = function()
+    local this = {}
 
-local function validateQuest(entity, quest, varname, val, get)
-    local msg = ""
-    local prefix = "[Quest Parameter Error] "
+    ---------------------------------------------------------------
+    -- Internal helper functions
+    ---------------------------------------------------------------
+    local function validateQuest(entity, quest, varname, val, get)
+        local msg = ""
+        local prefix = "[Quest Parameter Error] "
 
-    if entity == nil then
-        msg = prefix .. "entity cannot be nil"
-    elseif quest == nil then
-        msg = prefix .. "quest cannot be nil"
-    elseif varname == nil or varname == '' then
-        msg = prefix .. "varname cannot be nil or empty"
+        if entity == nil then
+            msg = prefix .. "entity cannot be nil"
+        elseif quest == nil then
+            msg = prefix .. "quest cannot be nil"
+        elseif varname == nil or varname == '' then
+            msg = prefix .. "varname cannot be nil or empty"
+        end
+
+        return msg
     end
 
-    return msg
-end
+    local function handleQuestVar(entity, quest, varname, val, get)
+        local ret = {}
+        local validateMsg = validateQuest(entity, quest, varname, val, get)
+        if validateMsg ~= '' then
+            ret.message = validateMsg
+            return ret
+        end
 
-local function handleQuestVar(entity, quest, varname, val, get)
-    local ret = {}
-    local validateMsg = validateQuest(entity, quest, varname, val, get)
-    if validateMsg ~= '' then
-        ret.message = validateMsg
+        local var, vartype, db_name
+        if quest.vars.stage == varname then
+            var = quest.vars.stage
+            vartype = dsp.quest.var.CHAR
+            db_name = quest.vars.stage
+        else
+            var = quest.vars.additional[varname]
+            if var then
+                vartype = var.type
+                db_name = var.db_name
+            end
+        end
+
+        if not var then
+            ret.message = " unable to find "..varname.." for quest: "..quest.name.." (log_id: "..quest.log_id..")"
+        else
+            if vartype == dsp.quest.var.CHAR then
+                if get then
+                    ret.val = entity:getVar(db_name)
+                else
+                    entity:setVar(db_name, val)
+                end
+            elseif vartype == dsp.quest.var.LOCAL then
+                if get then
+                    ret.val = entity:getLocalVar(db_name)
+                else
+                    entity:setLocalVar(db_name, val)
+                end
+            elseif vartype == dsp.quest.var.SERVER then
+                if get then
+                    ret.val = GetServerVariable(db_name)
+                else
+                    SetServerVariable(db_name, val)
+                end
+            end
+        end
+
         return ret
     end
 
-    local var, vartype
-    if quest.vars.stage == varname then
-        var = quest.vars.stage
-        vartype = dsp.quests.enums.var_types.CHAR_VAR
-    else
-        var = quest.vars.additional[varname]
-        vartype = var.type
+    local function error(entity, message)
+        if entity:isPC() then
+            entity:PrintToPlayer(message)
+        end
+        print("[Quest Error]".. this.string_key .." "..entity:getName()..": "..message)
     end
 
-    if not var then
-        ret.message = " unable to find "..varname.." for quest: "..quest.name.." (log_id: "..quest.log_id..")"
-    else
-        if vartype == dsp.quests.enums.var_types.CHAR_VAR then
-            if get then
-                ret.val = entity:getVar(varname)
-            else
-                entity:setVar(varname, val)
-            end
-        elseif vartype == dsp.quests.enums.var_types.LOCAL_VAR then
-            if get then
-                ret.val = entity:getLocalVar(varname)
-            else
-                entity:setLocalVar(varname, val)
-            end
-        elseif vartype == dsp.quests.enums.var_types.SERVER_VAR then
-            if get then
-                ret.val = GetServerVariable(varname)
-            else
-                SetServerVariable(varname, val)
-            end
+    ---------------------------------------------------------------
+    -- Public Methods
+    ---------------------------------------------------------------
+
+    -- Sets the player's specified var for the quest to the specified value
+    ---------------------------------------------------------------
+    this.setVar = function(entity, varname, val, msg)
+        local message = msg or this.string_key.. ".setVar: "
+        local ret = handleQuestVar(entity, this, varname, val, false)
+        if ret.message then
+            error(entity, message..ret.message)
         end
     end
 
-    return ret
-end
-
-local function error(entity, message)
-    if entity:isPC() then
-        entity:PrintToPlayer(message)
+    -- Returns the player's specified var for the quest
+    ---------------------------------------------------------------
+    this.getVar = function(entity, varname, msg)
+        local message = msg or this.string_key.. ".getVar: "
+        local ret = handleQuestVar(entity, this, varname, nil, true)
+        if ret.message then
+            error(entity, message..ret.message)
+        else
+            return ret.val
+        end
     end
-    print("[Quest Error] "..entity:getName()..": "..message)
-end
 
-dsp.quests.setVar = function(entity, quest, varname, val)
-    local message = "dsp.quests.setVar "
-    local ret = handleQuestVar(entity, quest, varname, val, false)
-    if ret.message then
-        error(entity, message..ret.message)
+    -- Sets the player's quest progress to the specified stage
+    ---------------------------------------------------------------
+    this.setStage = function(entity, val)
+        local message = this.string_key.. ".setStage -> "
+        return this.setVar(entity, this.vars.stage, val, message)
     end
-end
 
-dsp.quests.getVar = function(entity, quest, varname, val)
-    local message = "dsp.quests.getVar "
-    local ret = handleQuestVar(entity, quest, varname, val, true)
-    if ret.message then
-        error(entity, message..ret.message)
-    else
-        return ret.val
+    -- Returns the player's current quest progress
+    ---------------------------------------------------------------
+    this.getStage = function(entity)
+        local message = this.string_key.. ".getStage -> "
+        return this.getVar(entity, this.vars.stage, message)
     end
-end
 
-dsp.quests.setStage = function(entity, quest, val)
-    local message = "dsp.quests.setStage "
-    return dsp.quests.setVar(entity, quest, quest.vars.stage, val)
-end
+    -- Advances the player's current quest stage by 1
+    ---------------------------------------------------------------
+    this.advanceStage = function(entity)
+        local message = this.string_key.. ".advanceStage -> "
+        local currentStage = this.getStage(entity)
+        this.setVar(entity, this.vars.stage, currentStage + 1, message)
+        return true
+    end
 
-dsp.quests.getStage = function(entity, quest)
-    local message = "dsp.quests.getStage "
-    return dsp.quests.getVar(entity, quest, quest.vars.stage)
-end
+    -- Returns true if the player meets all the listed quest requirements
+    ---------------------------------------------------------------
+    this.checkRequirements = function(player)
+        local questStatusCheck = player:getQuestStatus(this.log_id, this.quest_id)
 
-dsp.quests.advanceStage = function(entity, quest)
-    local message = "dsp.quests.advanceStage "
-    local current_stage = dsp.quests.getStage(entity, quest)
-    return dsp.quests.setVar(entity, quest, quest.vars.stage, current_stage + 1)
-end
+        if questStatusCheck == dsp.quest.status.AVAILABLE
+        or (questStatusCheck == dsp.quest.status.COMPLETED and this.repeatable) then
+            -- Check all required quests
+            if this.requirements.quests then
+                for i, requiredQuest in ipairs(this.requirements.quests) do
+                    local requiredQuestStatus = player:getQuestStatus(requiredQuest.log_id, requiredQuest.quest_id)
+                    if requiredQuest.stage then
+                        local quest = dsp.quest.getQuest(requiredQuest.log_id, requiredQuest.quest_id)
+                        if quest then
+                            if quest.getStage(player) < requiredQuest.stage then
+                                return false
+                            end
+                        else
+                            return false
+                        end
+                    elseif requiredQuestStatus ~= dsp.quest.status.COMPLETED then
+                        return false
+                    end
+                end
+            end
+            -- Check all required missions
+            if this.requirements.missions then
+                for i, requiredMission in ipairs(this.requirements.missions) do
+                    if player:getCurrentMission(requiredMission.mission_log) < requiredMission.mission_id then
+                    -- or (required_mission.stage and (dsp.quests.getStage(player, required_mission) < required_mission.stage)) then -- getStage requires a full quest table
+                        return false
+                    end
+                end
+            end
+            -- Check if player possesses all required key items to start quest
+            if this.requirements.key_items then
+                for i, requiredKeyItem in ipairs(this.requirements.key_items) do
+                    if not player:hasKeyItem(requiredKeyItem) then
+                        return false
+                    end
+                end
+            end
+            -- Check fame requirement
+            if this.requirements.fame then
+                if player:getFameLevel(this.requirements.fame.area) < this.requirements.fame.level then
+                    return false
+                end
+            end
+            -- Make sure player is on the right job, if applicable
+            if this.requirements.main_job and (player:getMainJob() ~= this.requirements.main_job) then
+                return false
+            end
+            -- Finally, make sure the player is high enough level
+            if this.requirements.level and (player:getMainLvl() < this.requirements.level) then
+                return false 
+            end
 
-dsp.quests.complete = function(player, quest, reward_set)
-    local message = "dsp.quests.complete: "
-    if quest then
+            -- We haven't failed any of the requirement checks, so we must meet the quest's requirements
+            return true
+        else
+            return false
+        end
+    end
+
+    -- Adds a quest to the player's log and sets their stage to 1
+    ---------------------------------------------------------------
+    this.begin = function(player)
+        player:addQuest(this.log_id, this.quest_id)
+        return this.advanceStage(player)
+    end
+
+    -- Handles checking a quest to see if control should be diverted
+    -- from the calling NPC
+    ---------------------------------------------------------------
+    this.check = function(player, type, target, args)
+        local playerCurrentStage = this.getStage(player)
+        if this.stages[playerCurrentStage] then
+            local stageZoneTable = this.stages[playerCurrentStage][player:getZoneID()]
+            if stageZoneTable and stageZoneTable[type] and stageZoneTable[type][target] then
+                return stageZoneTable[type][target](player, unpack(args))
+            end
+        end
+
+        return false
+    end
+
+    -- Begins an event for the player, with built-in return
+    ---------------------------------------------------------------
+    this.startEvent = function(player, event, params)
+        if not params then params = {} end
+        player:startEvent(event, params[1], params[2], params[3], params[4],
+                                 params[5], params[6], params[7], params[8])
+        return true
+    end
+
+    -- Attempt to give item to the player.
+    -- Takes an optional parameter to determine if the default
+    -- item can't be obtained message from npcUtil.giveItem()
+    -- should be silenced (in case quest has custom event)
+    ---------------------------------------------------------------
+    this.giveItem = function(player, item, silent_fail)
+        if npcUtil.giveItem(player, item, silent_fail) then
+            return true
+        else
+            this.holdItem(player, item)
+            return false
+        end
+    end
+
+    -- Returns the item ID of the first item currently being held
+    -- for the player by this quest
+    -- Takes an optional stack parameter to assist in storing
+    -- and returning multiple rewards for the few quests which
+    -- need the capability.
+    ---------------------------------------------------------------
+    this.holdingItem = function(player, stack)
+        if not stack then
+            stack = 1
+        end
+        local item = player:getVar(this.var_prefix .. "[I][".. stack .."]")
+
+        if item > 0 then
+            return item
+        else
+            return false
+        end
+    end
+
+    -- Holds an item for a player
+    -- Optional stack parameter is for the very few quests that
+    -- bestow multiple item rewards.
+    ---------------------------------------------------------------
+    this.holdItem = function(player, item, stack)
+        if not stack then
+            stack = 1
+        end
+        if this.holdingItem(player, stack) then
+            return this.holdItem(player, item, stack + 1)
+        else
+            player:setVar(this.var_prefix .. "[I][".. stack .."]", item)
+            return true
+        end
+    end
+
+    -- Attempts to return an item, or items, to the player
+    -- Optional silent_fail parameter determines if failure message
+    -- should be displayed by npcUtil.giveItem()
+    ---------------------------------------------------------------
+    this.returnItem = function(player, silent_fail)
+        -- There are a small handful of quests that reward multiple
+        -- items as quest rewards, so we need to account for those.
+        local stack = 1
+        local items_held = 0
+        local items = {}
+        local item = this.holdingItem(player, stack)
+
+        while item and item > 0 do
+            items[stack] = item
+            stack = stack + 1
+            items_held = items_held + 1
+            item = this.holdingItem(player, stack)
+        end
+
+        if items_held > 0 then
+            if npcUtil.giveItem(player, items, silent_fail) then
+                stack = 1
+                while stack <= items_held do
+                    player:setVar(this.var_prefix .. "[I][".. stack .."]", 0)
+                    stack = stack + 1
+                end
+                return true
+            else
+                return false
+            end
+        else
+            error(player, "quest.returnItem: " .. player:getName() .." does not have any items held for quest ".. this.name)
+            return false
+        end
+    end
+
+    -- Give KI to player, while going through this quest's wrapper
+    ---------------------------------------------------------------
+    this.giveKeyItem = function(player, key_item)
+        return npcUtil.giveKeyItem(player, key_item)
+    end
+
+    -- Remove KI from player, while going through this quest's wrapper
+    ---------------------------------------------------------------
+    this.delKeyItem = function(player, key_item)
+        for _, ki in pairs(this.temporary.key_items) do
+            if ki == key_item then
+                player:delKeyItem(key_item)
+                return true
+            end
+        end
+        error(player, "Key Item " .. key_item .." not listed as temporary in quest file! No action taken.")
+        return false
+    end
+
+    -- Check to see if a trade contains the items and marks
+    -- them as accepted in the container
+    ---------------------------------------------------------------
+    this.tradeHas = function(player, trade, items)
+        -- We technically don't need a player for this function,
+        -- but include it in the arguments for the sake of
+        -- consistency with other quest functions.
+        return npcUtil.tradeHas(trade, items)
+    end
+
+    -- Check to see if a trade contains ONLY items and marks
+    -- them as accepted in the container
+    ---------------------------------------------------------------
+    this.tradeHasExactly = function(player, trade, items)
+        return npcUtil.tradeHasExactly(trade, items)
+    end
+
+    -- Completes a given trade, taking the items marked as
+    -- accepted by tradeHas and tradeHasExactly
+    ---------------------------------------------------------------
+    this.completeTrade = function(player, trade)
+        player:tradeComplete()
+        return true
+    end
+
+    -- Completes the quest in the player's log, gives out rewards, and cleans up leftover vars and key items
+    ---------------------------------------------------------------
+    this.complete = function(player, reward_set)
+        local message = this.string_key.. ".complete: "
+
         local rewards_given = false
-        if quest.rewards then
+        if this.rewards then
             if reward_set == nil then
-                if quest.rewards.sets and quest.rewards.sets[1] then
-                    reward_set = quest.rewards.sets[1]
+                if this.rewards.sets and this.rewards.sets[1] then
+                    reward_set = this.rewards.sets[1]
                 else
-                    reward_set = quest.rewards
+                    reward_set = this.rewards
                 end
             end
             if reward_set then
-                -- todo: check inventory (including stack space), award items, return false if cant complete
-                rewards_given = npcUtil.completeQuest(player, quest.area, quest.quest_id, reward_set)
+                -- Attempt to reward items first
+                if reward_set["items"] then
+                    -- quest.giveItem will naturally hold items for the player if they're full
+                    if type(reward_set["items"]) == "table" then
+                        for _, item in ipairs(reward_set["items"]) do
+                            this.giveItem(player, item)
+                        end
+                    else
+                        this.giveItem(player, reward_set["items"])
+                    end
+                end
+
+                rewards_given = npcUtil.completeQuest(player, this.log_id, this.quest_id, reward_set)
                 if not rewards_given then
                     error(player, message.. "Unable to give quest rewards.")
                 end
@@ -1416,223 +1690,127 @@ dsp.quests.complete = function(player, quest, reward_set)
         end
 
         if rewards_given then
-            -- clear stage CHAR_VAR if shouldnt be preserved
-            if not quest.vars.preserve_main_on_complete then
-                player:setVar(quest.vars.stage, 0)
-            end
-            for name, var in pairs(quest.vars.additional) do
-                if not var.preserve_on_complete then
-                    handleQuestVar(player, quest, name, 0, "dsp.quests.complete: ", nil)
+            this.setVar(player, this.vars.stage, 0) -- Stage should ALWAYS be erased
+            if this.vars.additional then
+                for name, var in pairs(this.vars.additional) do
+                    if not var.preserve then
+                        this.setVar(player, name, 0, message)
+                    end
                 end
             end
 
             -- make certain any forgotten temporary key items have been removed
-            for _, ki in pairs(quest.temporary.key_items) do
-                player:delKeyItem(ki)
+            if this.temporary and this.temporary.key_items then
+                for _, ki in pairs(this.temporary.key_items) do
+                    player:delKeyItem(ki)
+                end
             end
 
             return true
         end
     end
+
+    return this
 end
 
-dsp.quests.check = function(player, params)
-    local quest_table = params.quest_table
-    if quest_table then
-        local zoneid = player:getZoneID()
+-----------------------------------
+--  INVOLVED QUESTS OBJECT
+-----------------------------------
+dsp.quest.involvedQuests = function(involvedQuests)
+    local this = {}
+    this.involvedQuests = involvedQuests
 
-        local cycle = player:getLocalVar("[quests]dialogCycle")
-        local check_type = params.check_type
+    ---------------------------------------------------------------
+    -- Internal helper functions
+    ---------------------------------------------------------------
 
-        local targetName
-        if params.target then
-            targetName = params.target:getName()
-        end
-        if cycle > 0 and not needsCycling then
-            player:setLocalVar("[quests]dialogCycle", 0)
-        end
-        local i = cycle + 1
-        while i <= #quest_table do
-            local quest = quest_table[i]
-            if quest then
-                local exitLoop
-                local stage_zone_table
-                local player_current_stage = dsp.quests.getStage(player, quest)
-                if quest.stages[player_current_stage] then
-                    stage_zone_table = quest.stages[player_current_stage][zoneid]
-                end
-                local checks =
-                {
-                    [check_enum.onTrade] = function(player, params)
-                        if stage_zone_table['onTrade'] and stage_zone_table['onTrade'][targetName] then
-                            return stage_zone_table['onTrade'][targetName](player, params.target, params.trade)
-                        end
-                    end,
-                    [check_enum.onTrigger] = function(player, params)
-                        if stage_zone_table['onTrigger'] and stage_zone_table['onTrigger'][targetName] then
-                            return stage_zone_table['onTrigger'][targetName](player, params.target)
-                        end
-                    end,
-                    [check_enum.onEventUpdate] = function(player, params)
-                        if stage_zone_table['onEventUpdate'] and stage_zone_table['onEventUpdate'][params.csid] then
-                            return stage_zone_table['onEventUpdate'][params.csid](player, params.option)
-                        end
-                    end,
-                    [check_enum.onEventFinish] = function(player, params)
-                        if stage_zone_table['onEventFinish'] and stage_zone_table['onEventFinish'][params.csid] then
-                            return stage_zone_table['onEventFinish'][params.csid](player, params.option)
-                        end
-                    end,
-                    [check_enum.onZoneIn] = function(player, params)
-                        if stage_zone_table['onZoneIn'] then
-                            return stage_zone_table['onZoneIn'](player, params)
-                        end
-                    end,
-                    [check_enum.onMobDeath] = function(player, params)
-                        if stage_zone_table['onMobDeath'] and stage_zone_table['onMobDeath'][targetName] then
-                            return stage_zone_table['onMobDeath'][targetName](params.target, player, params.isKiller, params.isWeaponSkillKill)
-                        end
-                    end,
-                }
-                if stage_zone_table then
-                    exitLoop = checks[params.check_type](player, params)
-                end
-                player:setLocalVar("[quests]cycle", i)
-                --print("Player: "..player:getName()..(targetName and " Npc: "..targetName or " Event: "..params.csid).. " \tCycle: "..i.." Quest: "..quest.name)
-                if exitLoop then
-                    return true
-                end
-                i = i + 1
-            else
-                break
+    -- Helper function to check all of our involvedQuests for a given quest event
+    local check = function(player, type, target, args)
+        for _, quest in ipairs(this.involvedQuests) do
+            local questResult = quest.check(player, type, target, args)
+            if questResult then
+                return questResult
             end
         end
+        return false
     end
-    return false
-end
 
-dsp.quests.checkRequirements = function(player, quest)
-    local quest_status_check = player:getQuestStatus(quest.area, quest.quest_id)
+    ---------------------------------------------------------------
+    -- Public Methods
+    ---------------------------------------------------------------
 
-    if quest_status_check == dsp.quests.enums.quest_status.QUEST_AVAILABLE
-    or (quest_status_check == dsp.quests.enums.quest_status.QUEST_COMPLETED and quest.repeatable) then
-        -- Check all required quests
-        if quest.requirements.quests then
-            for i, required_quest in ipairs(quest.requirements.quests) do
-                local required_quest_status = player:getQuestStatus(required_quest.area, required_quest.quest_id)
-                if required_quest_status ~= dsp.quests.enums.quest_status.QUEST_COMPLETED then
-                -- or (required_quest.stage and (dsp.quests.getStage(player, required_quest) < required_quest.stage)) then -- getStage requires a full quest table
-                    return false
-                end
-            end
-        end
-        -- Check all required missions
-        if quest.requirements.missions then
-            for i, required_mission in ipairs(quest.requirements.missions) do
-                if player:getCurrentMission(required_mission.mission_log) < required_mission.mission_id then
-                -- or (required_mission.stage and (dsp.quests.getStage(player, required_mission) < required_mission.stage)) then -- getStage requires a full quest table
-                    return false
-                end
-            end
-        end
-        -- Check if player possesses all required key items to start quest
-        if quest.requirements.key_items then
-            for i, required_key_item in ipairs(quest.requirements.key_items) do
-                if not player:hasKeyItem(required_key_item) then
-                    return false
-                end
-            end
-        end
-        -- Check fame requirement
-        if quest.requirements.fame then
-            if player:getFameLevel(quest.requirements.fame.area) < quest.requirements.fame.level then
-                return false
-            end
-        end
-        -- Make sure player is on the right job, if applicable
-        if quest.requirements.main_job and (player:getMainJob() ~= quest.requirements.main_job) then
+    -- Checks the onTrade events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onTrade = function(player, npc, trade)
+        return check(player, 'onTrade', npc:getName(), {npc, trade})
+    end
+
+    -- Checks the onTrigger events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onTrigger = function(player, npc)
+        return check(player, 'onTrigger', npc:getName(), {npc})
+    end
+
+    -- Checks the onEventFinish events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onEventFinish = function(player, csid, option)
+        return check(player, 'onEventFinish', csid, {option})
+    end
+
+    -- Checks the onMobDeath events for this list of involved quests
+    ---------------------------------------------------------------
+    this.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill)
+        if entity:isPC() then
+            return check(entity, 'onMobDeath', mob:getName(), {mob, isKiller, isWeaponSkillKill})
+        else
             return false
         end
-        -- Finally, make sure the player is high enough level
-        if quest.requirements.level and (player:getMainLvl() < quest.requirements.level) then
-            return false 
-        end
-
-        -- We haven't failed any of the requirement checks, so we must meet the quest's requirements
-        return true
-    else
-        return false
     end
+
+    return this
 end
 
-dsp.quests.getQuestTable = function(area_log_id, quest_id)
-    local quest_filename = 'scripts/quests/'
-    local area_dirs =
-    {
-        [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-        [dsp.quest.log_id.BASTOK]      = 'bastok',
-        [dsp.quest.log_id.WINDURST]    = 'windurst',
-        [dsp.quest.log_id.JEUNO]       = 'jeuno',
-        [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
-        [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-        [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
-        [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
-        [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-        [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-        [dsp.quest.log_id.COALITION]   = 'coalition'
-    }
-    local quest_file = dsp.quest.string[dsp.quest.area[area_log_id]][quest_id]
-    if quest_file then
-        quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_file)
-        local quest_table = require(quest_filename)
-        if (quest_table) then
-            return quest_table
+-----------------------------------
+--  OTHER QUEST FUNCTIONS
+-----------------------------------
+
+dsp.quest.getQuest = function(area_log_id, quest_id)
+    local area = dsp.quest.area[area_log_id]
+    if area then
+        local quest_string = dsp.quest.string[area][quest_id]
+        if quest_string then -- Verify the quest ID is one we expect
+            if dsp.quest.object[area][quest_id] then
+                -- If we already have the quest loaded, just return it!
+                return dsp.quest.object[area][quest_id]
+            else
+                local quest_filename = 'scripts/quests/'
+                local area_dirs =
+                {
+                    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
+                    [dsp.quest.log_id.BASTOK]      = 'bastok',
+                    [dsp.quest.log_id.WINDURST]    = 'windurst',
+                    [dsp.quest.log_id.JEUNO]       = 'jeuno',
+                    [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
+                    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
+                    [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
+                    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
+                    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
+                    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
+                    [dsp.quest.log_id.COALITION]   = 'coalition'
+                }
+                quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_string)
+                local quest = require(quest_filename)
+                if (quest) then
+                    dsp.quest.object[area][quest_id] = quest -- Stash our quest away for others to use!
+                    return quest
+                else
+                    print("dsp.quest.getQuest: Unable to include designated file '".. quest_filename .."'")
+                end
+            end
         else
-            print("dsp.quests.getQuestTable: Unable to include designated file '".. quest_filename .."'")
+            print("dsp.quest.getQuest: Unknown quest ID: ".. quest_id.. " for area: ".. area)
         end
     else
-        print("dsp.quests.getQuestTable: No quest file defined for quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
+        print("dsp.quest.getQuest: Unknown area log ID: ".. area_log_id)
     end
-end
-
-dsp.quests.onTrade = function(player, npc, trade, quest_table)
-    local params = {}
-    params.target = npc
-    params.trade = trade
-    params.check_type = check_enum.onTrade
-    params.quest_table = quest_table
-    return dsp.quests.check(player, params)
-end
-
-dsp.quests.onTrigger = function(player, npc, quest_table)
-    local params = {}
-    params.target = npc
-    params.trade = trade
-    params.check_type = check_enum.onTrigger
-    params.quest_table = quest_table
-    return dsp.quests.check(player, params)
-end
-
-dsp.quests.onEventFinish = function(player, csid, option, quest_table)
-    local params = {}
-    params.csid = csid
-    params.option = option
-    params.check_type = check_enum.onEventFinish
-    params.quest_table = quest_table
-    return dsp.quests.check(player, params)
-end
-
-dsp.quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, quest_table)
-    local params = {}
-    params.target = mob
-    params.isKiller = isKiller
-    params.isWeaponSkillKill = isWeaponSkillKill
-    params.type = check_enum.onMobDeath
-    params.quest_table = quest_table
-
-    if not entity:isPC() then
-        print("what the fuck even")
-        return false
-    end
-    return dsp.quests.check(entity, params)
 end

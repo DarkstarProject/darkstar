@@ -65,7 +65,7 @@ Clang-Format is also an option for C++
 ### Lua
 
 * Unix (LF) line ends
-* Curly braces go on a newline unless empty.
+* Curly braces go on a newline unless empty or encased in a function.
 * Our lua functions are typically lowerCamelCased, with few exceptions (just FYI).
 * No parentheses unless needed to clarify order of operations.
 * No semicolons unless multiple statements on a single line.
