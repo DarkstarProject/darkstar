@@ -1,22 +1,22 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2015 Darkstar Dev Teams
 
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see http://www.gnu.org/licenses/
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
+This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
@@ -1098,7 +1098,8 @@ namespace petutils
         This should eventually be merged into one big spawn pet method.
         At the moment player pets and mob pets are totally different. We need a central place
         to manage pet families and spawn them.
-        */        
+        */
+
         // grab pet info
         Pet_t* petData = g_PPetList.at(PetID);
         CMobEntity* PPet = (CMobEntity*)PMaster->PPet;
@@ -1443,17 +1444,20 @@ namespace petutils
         else if (PetID==PETID_ADVENTURING_FELLOW)
         {
             petType = PETTYPE_ADVENTURING_FELLOW;
+
             const char* Query =
             "SELECT\
             pet_name.name,\
             char_pet.adventuringfellowid\
             FROM pet_name, char_pet\
             WHERE pet_name.id = char_pet.adventuringfellowid";
+
             if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
             {
                 while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     uint16 adventuringfellowid = (uint16)Sql_GetIntData(SqlHandle, 1);
+
                     if (adventuringfellowid != 0)
                     {
                         g_PPetList.at(PetID)->name.clear();

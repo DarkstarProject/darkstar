@@ -232,7 +232,7 @@ namespace luautils
     {
         if (!lua_isnil(LuaHandle, -1) && lua_isstring(LuaHandle, -1))
         {
-            ShowScript("%s\n", lua_tostring(LuaHandle, -1));            
+            ShowScript("%s\n", lua_tostring(LuaHandle, -1));
         }
         return 0;
     }
@@ -2478,117 +2478,6 @@ namespace luautils
         }
 
         return 0;
-    }
-
-    /************************************************************************
-    *                                                                       *
-    *  Occurs when pet is roaming, and ms since last spell cast             *
-    *  Return true if lua script casts another spell or not to reset timer  *
-    *                                                                       *
-    ************************************************************************/
-
-    bool OnPetRoam(CBaseEntity* PPet, int32 msSinceLastCast)
-    {
-        DSP_DEBUG_BREAK_IF(PPet == nullptr || PPet->objtype != TYPE_PET)
-
-            CLuaBaseEntity LuaMobEntity(PPet);
-
-        lua_prepscript("scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PPet)->GetScriptName().c_str());
-
-        if (prepFile(File, "onPetRoam"))
-        {
-            return -1;
-        }
-
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-        lua_pushinteger(LuaHandle, msSinceLastCast);
-
-        if (lua_pcall(LuaHandle, 2, 1, 0))
-        {
-            ShowError("luautils::onPetRoam: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
-        bool casted = (!lua_isnil(LuaHandle, -1) && lua_isboolean(LuaHandle, -1) ? (bool)lua_toboolean(LuaHandle, -1) : 0);
-        lua_pop(LuaHandle, 1);
-
-        return casted;
-    }
-    /************************************************************************
-    *                                                                       *
-    *  Сalled when pet first engages monster, delay optional to first cast  *
-    *                                                                       *
-    ************************************************************************/
-
-    int32 OnPetEngage(CBaseEntity* PPet, int32 delay)
-    {
-        DSP_DEBUG_BREAK_IF(PPet == nullptr);        
-
-        CLuaBaseEntity LuaMobEntity(PPet);
-        
-        int8 File[255];
-        snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PPet)->GetScriptName().c_str());
-
-        if (prepFile(File, "onPetEngage"))
-        {
-            ShowError("luautils::onPetEngage: No File %s\n", File);
-            return -1;
-        }
-
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);        
-        lua_pushinteger(LuaHandle, delay);
-
-        if (lua_pcall(LuaHandle, 2, 1, 0))
-        {
-            ShowError("luautils::onPetEngage: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
-        int32 newdelay = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-        //int32 newdelay = lua_tointeger(LuaHandle, -1);
-        lua_pop(LuaHandle, 1);
-
-        return newdelay;
-    }
-
-    /************************************************************************
-    *                                                                       *
-    *  Сalled every 3 sec when a pet fight monster, base delay passed in    *
-    *                                                                       *
-    ************************************************************************/
-
-    int32 OnPetFight(CBaseEntity* PPet, CBaseEntity* PTarget, int32 delay)
-    {
-        DSP_DEBUG_BREAK_IF(PPet == nullptr);
-        DSP_DEBUG_BREAK_IF(PTarget == nullptr || PTarget->objtype == TYPE_NPC);
-
-        CLuaBaseEntity LuaMobEntity(PPet);
-        CLuaBaseEntity LuaKillerEntity(PTarget);        
-
-        int8 File[255];
-        snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PPet)->GetScriptName().c_str());
-
-        if (prepFile(File, "onPetFight"))
-        {
-
-            return -1;
-        }
-
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
-        lua_pushinteger(LuaHandle, delay);
-
-        if (lua_pcall(LuaHandle, 3, 1, 0))
-        {
-            ShowError("luautils::onPetFight: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
-        int32 newdelay = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-        //int32 newdelay = lua_toint(LuaHandle, -1);
-        lua_pop(LuaHandle, 1);
-
-        return newdelay;
     }
 
     /************************************************************************

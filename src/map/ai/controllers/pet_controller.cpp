@@ -22,20 +22,18 @@ This file is part of DarkStar-server source code.
 */
 
 #include "pet_controller.h"
-#include "../../mob_spell_container.h"
+
 #include "../ai_container.h"
 #include "../../status_effect_container.h"
 #include "../../entities/petentity.h"
 #include "../../utils/petutils.h"
 #include "../../../common/utils.h"
-#include "../../mob_modifier.h"
-#include "../../../common/showmsg.h"
 
 CPetController::CPetController(CPetEntity* _PPet) :
     CMobController(_PPet), PPet(_PPet)
 {
     //#TODO: this probably will have to depend on pet type (automaton does WS on its own..)
-    SetWeaponSkillEnabled(false);      
+    SetWeaponSkillEnabled(false);
 }
 
 void CPetController::Tick(time_point tick)
@@ -78,13 +76,6 @@ void CPetController::DoRoamTick(time_point tick)
             PPet->PAI->PathFind->WarpTo(PPet->PMaster->loc.p, PetRoamDistance);
         }
     }
-    duration d = std::chrono::duration_cast<std::chrono::milliseconds>(m_Tick - m_LastMagicTime);
-    int32 lastCast = (int32)(d.count() / 1000000);
-    if(lastCast < 0)
-        lastCast = 0;
-    bool casted = luautils::OnPetRoam(PPet, lastCast);
-    if(casted)
-        m_LastMagicTime = m_Tick;        
 }
 
 bool CPetController::PetIsHealing()
@@ -132,118 +123,6 @@ bool CPetController::Ability(uint16 targid, uint16 abilityid)
     if (PPet->PAI->CanChangeState())
     {
         return PPet->PAI->Internal_Ability(targid, abilityid);
-    }
-    return false;
-}
-bool CPetController::Engage(uint16 targid)
-{ 
-    auto ret = CController::Engage(targid);
-    if (ret)
-    {
-        m_firstSpell = true;        
-        int32 delay = 0;        
-        int32 newDelay = luautils::OnPetEngage(PPet, delay);
-        m_firstDelay = delay;        
-        m_LastMagicTime = m_Tick - std::chrono::milliseconds(newDelay);
-    }
-    return ret;    
-}
-
-void CPetController::DoCombatTick(time_point tick)
-{        
-    HandleEnmity();
-    PTarget = static_cast<CBattleEntity*>(PPet->GetEntity(PPet->GetBattleTargetID()));
-
-    if (TryDeaggro())
-    {
-        Disengage();
-        return;
-    }
-
-    TryLink();
-
-    float currentDistance = distance(PPet->loc.p, PTarget->loc.p);
-
-    PPet->PAI->EventHandler.triggerListener("COMBAT_TICK", PPet);
-    int32 newDelay = 0;
-    if (m_firstSpell == false || m_firstDelay == 0) {
-        int32 delay = PPet->getBigMobMod(MOBMOD_MAGIC_COOL);
-        newDelay = luautils::OnPetFight(PPet, PTarget, delay);    
-        if(m_firstDelay == 0)
-            m_firstDelay = newDelay;
-    } else {
-        newDelay = luautils::OnPetFight(PPet, PTarget, m_firstDelay);
-    }
-    
-    // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-    if (IsSpecialSkillReady(currentDistance) && TrySpecialSkill())
-    {
-        return;
-    }
-    else if (IsPetSpellReady(currentDistance,newDelay) && TryCastPetSpell())
-    {        
-        return;
-    }
-    else if (m_Tick >= m_LastMobSkillTime && dsprand::GetRandomNumber(100) < PMob->TPUseChance() && MobSkill())
-    {        
-        return;
-    }
-
-    Move();
-}
-
-
-bool CPetController::IsPetSpellReady(float currentDistance, int32 delay)
-{
-
-    int32 bonusTime = 0;
-    if (currentDistance > 5)
-    {
-        // Mobs use ranged attacks quicker when standing back
-        bonusTime = PPet->getBigMobMod(MOBMOD_STANDBACK_COOL);
-    }
-
-    if (PPet->StatusEffectContainer->HasStatusEffect({EFFECT_CHAINSPELL,EFFECT_MANAFONT}))
-    {
-        return true;
-    }    
-    bool result = (m_Tick >= m_LastMagicTime + std::chrono::milliseconds(delay - bonusTime));    
-    return result;
-}
-
-
-bool CPetController::TryCastPetSpell()
-{
-    if (!CanCastSpells())
-    {
-        return false;
-    }
-
-    m_LastMagicTime = m_Tick;
-
-    if (PPet->m_HasSpellScript)
-    {
-        // skip logic and follow script
-        auto chosenSpellId = luautils::OnMonsterMagicPrepare(PPet, PTarget);
-        if (chosenSpellId)
-        {
-            CastSpell(chosenSpellId.value());
-            return true;
-        }
-    }
-    else
-    {
-        // find random spell
-        std::optional<SpellID> chosenSpellId;
-        
-        chosenSpellId = PPet->SpellContainer->GetSpell();
-        
-        if (chosenSpellId)
-        {
-            //#TODO: select target based on spell type
-            CastSpell(chosenSpellId.value());
-            return true;
-        }
     }
     return false;
 }

@@ -11,9 +11,9 @@ function onMobDeath(mob, player, isKiller)
 
 end;
 
--- on engage, return the delay reduction based on skill to cast on battle start
-function onPetEngage(pet,delay)
+function onMobEngaged(pet)
     -- return incoming delay value to return to legacy/monster mode    
+    local delay = 0
     local master = pet:getMaster()    
     local fastCast = 0
     if (pet:getSystem() == 11) then      -- elemental spirit   
@@ -29,12 +29,13 @@ function onPetEngage(pet,delay)
             end
         end
     end
-    return delay
+    pet:setMobMod(MOBMOD_MAGIC_COOL, delay/1000)
 end;
 
 -- on each fight round, adjust delay to match smn skill
-function onPetFight(pet,target,delay)
+function onMobFight(pet,target)
     -- return the value provided in delay to resume legacy monster mode
+    local delay = pet:getMobMod(MOBMOD_MAGIC_COOL) * 1000
     local master = pet:getMaster()   
     if (pet:getSystem() == 11) then         -- elemental spirit
         delay = getTimeCost(pet) -- base 45s and adjusted based on skill        
@@ -46,12 +47,13 @@ function onPetFight(pet,target,delay)
     if delay < 0 then
         delay = 0
     end
-    return delay
+    pet:setMobMod(MOBMOD_MAGIC_COOL, delay/1000)
 end;
 
 
 -- return true if you are casting a spell, otherwise return false
-function onPetRoam(pet, msSinceLastCast)
+function onMobRoam(pet, msSinceLastCast)
+    local msSinceLastCast = pet:getLastMagicTime();
     if (pet:getFamily() == 104) then      -- light spirit         
         local master = pet:getMaster()
         local level = pet:getMainLvl()
@@ -76,34 +78,33 @@ function onPetRoam(pet, msSinceLastCast)
             end      
             if masterHP1 and partyHP and level > 15 then --curaga                
                 pet:castSpell(level >= 91 and 11 or level >= 71 and 10 or level >= 51 and 9 or level >= 31 and 8 or 7, master)
-                return true
+                return
             elseif masterHP1 then --cure                
                 pet:castSpell(level >= 80 and 6 or level >= 61 and 5 or level >= 41 and 4 or level >= 21 and 3 or level >= 11 and 2 or 1, master)
-                return true
+                return
             end
             local casted = buffPlayer(master,pet,level)
-            if casted == true then return true end
+            if casted == true then return end
             if partyHP then -- cure                
                 for _,member in ipairs(party) do
                     if member:getHPP() < 50 then                    
                         pet:castSpell(level >= 80 and 6 or level >= 61 and 5 or level >= 41 and 4 or level >= 21 and 3 or level >= 11 and 2 or 1, member)
-                        return true
+                        return
                     end
                 end      
             end                       
             for _,member in ipairs(party) do                
                 if math.random(0,99) < 50 then -- pick a player somewhat at random                    
                     casted = buffPlayer(member,pet,level)
-                    if casted == true then return true end
+                    if casted == true then return end
                 end
             end
             if masterHP2 then -- low cure                
                 pet:castSpell(level >= 30 and 3 or level >= 20 and 2 or 1, master)
-                return true
+                return
             end                       
         end        
     end
-    return false
 end;
 
 function buffPlayer(player,pet,level)        

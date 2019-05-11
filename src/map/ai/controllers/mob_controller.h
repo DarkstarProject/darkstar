@@ -47,6 +47,7 @@ public:
     bool CanAggroTarget(CBattleEntity*);
     void TapDeaggroTime();
     virtual bool Cast(uint16 targid, SpellID spellid) override;
+    time_point GetLastMagicTime() const { return m_LastMagicTime; }
 
 protected:
     virtual bool TryDeaggro();
@@ -74,21 +75,19 @@ protected:
     bool IsSpellReady(float currentDistance);
 
     CBattleEntity* PTarget {nullptr};
+private:
 
-    // moved to protected so the pet can touch it too
-    time_point m_LastMagicTime; 
-    time_point m_LastMobSkillTime;
-    bool m_firstSpell{ true };
     CMobEntity* const PMob;
 
-private:    
-
-    time_point m_LastActionTime;        
+    time_point m_LastActionTime;
+    time_point m_LastMagicTime;
+    time_point m_LastMobSkillTime;
     time_point m_LastSpecialTime;
     time_point m_DeaggroTime;
     time_point m_NeutralTime;
     time_point m_WaitTime;
-    
+
+    bool m_firstSpell{ true };
     time_point m_LastRoamScript {time_point::min()};
 };
 
