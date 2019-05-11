@@ -283,7 +283,7 @@
     <ClInclude Include="..\..\src\map\instance.h" />
     <ClInclude Include="..\..\src\map\instance_loader.h" />
     <ClInclude Include="..\..\src\map\items\item.h" />
-    <ClInclude Include="..\..\src\map\items\item_armor.h" />
+    <ClInclude Include="..\..\src\map\items\item_equipment.h" />
     <ClInclude Include="..\..\src\map\items\item_currency.h" />
     <ClInclude Include="..\..\src\map\items\item_fish.h" />
     <ClInclude Include="..\..\src\map\items\item_furnishing.h" />
@@ -535,7 +535,7 @@
     <ClCompile Include="..\..\src\map\instance.cpp" />
     <ClCompile Include="..\..\src\map\instance_loader.cpp" />
     <ClCompile Include="..\..\src\map\items\item.cpp" />
-    <ClCompile Include="..\..\src\map\items\item_armor.cpp" />
+    <ClCompile Include="..\..\src\map\items\item_equipment.cpp" />
     <ClCompile Include="..\..\src\map\items\item_currency.cpp" />
     <ClCompile Include="..\..\src\map\items\item_fish.cpp" />
     <ClCompile Include="..\..\src\map\items\item_furnishing.cpp" />

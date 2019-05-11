@@ -3186,7 +3186,7 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 
         CItem* PItem = PChar->getEquip((SLOTTYPE)SLOT);
 
-        if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+        if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
         {
             lua_pushinteger(L, PItem->getID());
             return 1;
@@ -3295,7 +3295,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                 }
                 lua_pop(L, 2);
 
-                if (PItem->isType(ITEM_ARMOR))
+                if (PItem->isType(ITEM_EQUIPMENT))
                 {
                     lua_getfield(L, 1, "trial");
                     uint16 trial = (uint16)lua_tointeger(L, -1);
@@ -3381,7 +3381,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
             {
                 PItem->setQuantity(quantity);
 
-                if (PItem->isType(ITEM_ARMOR))
+                if (PItem->isType(ITEM_EQUIPMENT))
                 {
                     if (augment0 != 0) ((CItemArmor*)PItem)->setAugment(0, augment0, augment0val);
                     if (augment1 != 0) ((CItemArmor*)PItem)->setAugment(1, augment1, augment1val);
@@ -4198,7 +4198,7 @@ inline int32 CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
             {
                 // TODO: Items need to be checked for an in-progress magian trial before storing.
                 //auto item = PChar->getStorage(LOC_INVENTORY)->GetItem(slotId);
-                //if (item->isType(ITEM_ARMOR) && ((CItemArmor*)item)->getTrialNumber() != 0)
+                //if (item->isType(ITEM_EQUIPMENT) && ((CItemArmor*)item)->getTrialNumber() != 0)
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slotId, -1);
                 //else
                 //{

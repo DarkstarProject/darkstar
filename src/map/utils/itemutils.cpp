@@ -170,7 +170,7 @@ namespace itemutils
         {
             return new CItemWeapon(*((CItemWeapon*)PItem));
         }
-        if (PItem->isType(ITEM_ARMOR))
+        if (PItem->isType(ITEM_EQUIPMENT))
         {
             return new CItemArmor(*((CItemArmor*)PItem));
         }
@@ -365,7 +365,7 @@ namespace itemutils
                         ((CItemPuppet*)PItem)->setEquipSlot(Sql_GetUIntData(SqlHandle,37));
                         ((CItemPuppet*)PItem)->setElementSlots(Sql_GetUIntData(SqlHandle,38));
                     }
-                    if (PItem->isType(ITEM_ARMOR))
+                    if (PItem->isType(ITEM_EQUIPMENT))
                     {
                         ((CItemArmor*)PItem)->setReqLvl(Sql_GetUIntData(SqlHandle, 15));
                         ((CItemArmor*)PItem)->setILvl(Sql_GetUIntData(SqlHandle,16));
@@ -416,7 +416,7 @@ namespace itemutils
                 Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
                 int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
                     ((CItemArmor*)g_pItemList[ItemID])->addModifier(CModifier(modID,value));
                 }
@@ -434,7 +434,7 @@ namespace itemutils
                 int16 value = (int16)Sql_GetIntData(SqlHandle, 2);
                 PetModType petType = static_cast<PetModType>(Sql_GetIntData(SqlHandle, 3));
 
-                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
                     ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(CPetModifier(modID, petType, value));
                 }
@@ -453,7 +453,7 @@ namespace itemutils
                 uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
                 uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
                     ((CItemArmor*)g_pItemList[ItemID])->addLatent((LATENT)latentId, latentParam, modID, value);
                 }
