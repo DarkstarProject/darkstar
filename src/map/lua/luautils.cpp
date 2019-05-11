@@ -2487,7 +2487,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    bool OnPetRoam(CBaseEntity* PPet, int32 msSinceLastCast)
+    int32 OnPetRoam(CBaseEntity* PPet, int32 msSinceLastCast)
     {
         DSP_DEBUG_BREAK_IF(PPet == nullptr || PPet->objtype != TYPE_PET)
 
@@ -2512,7 +2512,7 @@ namespace luautils
         bool casted = (!lua_isnil(LuaHandle, -1) && lua_isboolean(LuaHandle, -1) ? (bool)lua_toboolean(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
 
-        return casted;
+        return casted ? 1 : 0;
     }
     /************************************************************************
     *                                                                       *

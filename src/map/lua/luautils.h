@@ -233,7 +233,7 @@ namespace luautils
     int32 OnMobDespawn(CBaseEntity* PMob);                                        // triggers on mob despawn (death not assured)
 
     int32 OnPetEngage(CBaseEntity* PPet, int32 delay);                            // triggers on pet engaging a target
-    bool OnPetRoam(CBaseEntity* PPet, int32 msSinceLastCast);
+    int32 OnPetRoam(CBaseEntity* PPet, int32 msSinceLastCast);
     int32 OnPetFight(CBaseEntity* PPet, CBaseEntity* PTarget, int32 delay);       // Сalled every 3 sec when a pet fights monster
 
     int32 OnPath(CBaseEntity* PEntity);                                           // triggers when a patrol npc finishes its pathfind

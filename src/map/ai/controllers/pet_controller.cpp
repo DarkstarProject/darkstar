@@ -82,8 +82,8 @@ void CPetController::DoRoamTick(time_point tick)
     int32 lastCast = (int32)(d.count() / 1000000);
     if(lastCast < 0)
         lastCast = 0;
-    bool casted = luautils::OnPetRoam(PPet, lastCast);
-    if(casted)
+    int32 casted = luautils::OnPetRoam(PPet, lastCast);
+    if(casted > 0)
         m_LastMagicTime = m_Tick;        
 }
 
