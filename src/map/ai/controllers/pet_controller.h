@@ -42,16 +42,11 @@ protected:
     virtual bool TryDeaggro() override;
     virtual void TryLink() override {}
     virtual bool Ability(uint16 targid, uint16 abilityid) override;
-    virtual void DoCombatTick(time_point tick);
-    virtual bool Engage(uint16 targid) override;
-
-    bool TryCastPetSpell();
-    bool IsPetSpellReady(float currentDistance, int32 delay);
 
 private:
 
     CPetEntity* const PPet;
-    int32 m_firstDelay{ 0 };
+
 };
 
 #endif // _AI_CONTROLLER_H

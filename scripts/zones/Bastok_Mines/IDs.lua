@@ -15,6 +15,7 @@ zones[dsp.zone.BASTOK_MINES] =
         ITEM_OBTAINED                  = 6388, -- Obtained: <item>.
         GIL_OBTAINED                   = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6391, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6392, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL            = 6393, -- You do not have enough gil.
         HOMEPOINT_SET                  = 6479, -- Home point set!
         YOU_ACCEPT_THE_MISSION         = 6508, -- You have accepted the mission.

@@ -804,7 +804,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
@@ -897,7 +897,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA) == false) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
@@ -996,7 +996,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) and player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
@@ -1039,7 +1039,7 @@ function getMissionMask(player)
         end
     end
 
-    if (player:getCurrentMission(nation) == dsp.mission.id.bastok.THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
+    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
         mission_mask = 2147483647 - 16384;
     else
         mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
@@ -1206,7 +1206,7 @@ function finishMissionTimeline(player,guard,csid,option)
                  0,{1000,0},{0,0},{0,0},{0,0},{{1},{2}},                                                                 -- MISSION 1-1 (First Mission [START])
                  1,{504,0},{0,0},{0,0},{0,0},{{9,4},{12}},                                                             -- MISSION 1-2 (Finish Mission)
                  2,{1008,0},{0,0},{0,0},{0,0},{{4},{11,2},{8,1000},{12}},                                             -- MISSION 1-3
-                 2,{1005,0},{0,0},{0,0},{0,0},{{4},{8,1000},{12}},                                                     -- MISSION 1-3 [Repeat]
+                 2,{1005,0},{0,0},{0,0},{0,0},{{4},{8,1000},{5,200},{12}},                                              -- MISSION 1-3 [Repeat]
                  3,{712,0},{0,0},{0,0},{0,0},{{9,12},{14,0},{5,200},{12}},                                             -- MISSION 2-1 (Finish (Ayame))
                  4,{372,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}},                                                     -- MISSION 2-2 (Finish (Alois))
                  4,{373,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}},                                                     -- MISSION 2-2 (Finish (Alois)) [Repeat]

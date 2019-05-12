@@ -28,7 +28,7 @@ This file is part of DarkStar-server source code.
 
 #include "../lua/luautils.h"
 
-CInstanceLoader* Loader = nullptr;
+std::unique_ptr<CInstanceLoader> Loader;
 
 namespace instanceutils
 {
@@ -38,8 +38,8 @@ namespace instanceutils
 		{
 			if (Loader->Check())
 			{
-				delete Loader;
-				Loader = nullptr;
+                // instance load finished
+                Loader.reset();
 			}
 		}
 	}
@@ -49,7 +49,7 @@ namespace instanceutils
         CZone* PZone = zoneutils::GetZone(zoneid);
 		if (!Loader && PZone)
 		{
-			Loader = new CInstanceLoader(instanceid, PZone, PRequester);
+			Loader = std::make_unique<CInstanceLoader>(instanceid, PZone, PRequester);
 		}
 		else
 		{

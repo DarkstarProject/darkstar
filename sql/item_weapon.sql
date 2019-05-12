@@ -1115,6 +1115,7 @@ INSERT INTO `item_weapon` VALUES (17470,'pealing_buzdygan',11,0,0,0,0,3,1,300,34
 INSERT INTO `item_weapon` VALUES (17471,'horrent_mace',11,0,0,0,0,3,1,340,40,0);
 INSERT INTO `item_weapon` VALUES (17472,'cross-counters',1,0,0,0,0,4,1,576,19,0);
 INSERT INTO `item_weapon` VALUES (17473,'torama_cesti',1,0,0,0,0,4,1,520,6,0);
+INSERT INTO `item_weapon` VALUES (17474,'grapnel',0,0,0,0,0,0,1,300,3,0);
 INSERT INTO `item_weapon` VALUES (17475,'dst._katars_+1',1,0,0,0,0,4,1,555,14,0);
 INSERT INTO `item_weapon` VALUES (17476,'cat_baghnakhs_+1',1,0,0,0,0,4,1,531,3,0);
 INSERT INTO `item_weapon` VALUES (17477,'bone_patas_+1',1,0,0,0,0,4,1,566,17,0);
@@ -2791,6 +2792,7 @@ INSERT INTO `item_weapon` VALUES (19257,'incantor_stone',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (19258,'qirmiz_tathlum',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (19259,'clarus_stone',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (19260,'raiders_bmrng.',27,0,0,0,0,3,1,286,43,0);
+INSERT INTO `item_weapon` VALUES (19261,'jinx_discus',27,0,0,0,0,1,1,196,24,0);
 INSERT INTO `item_weapon` VALUES (19262,'magnus_stone',0,0,0,0,0,0,1,5,0,0);
 INSERT INTO `item_weapon` VALUES (19263,'amazon_bow',25,0,0,0,0,1,1,600,79,0);
 INSERT INTO `item_weapon` VALUES (19264,'amazon_bow_+1',25,0,0,0,0,1,1,582,80,0);
@@ -3595,7 +3597,7 @@ INSERT INTO `item_weapon` VALUES (20613,'pukulatmuj',3,0,242,242,188,2,1,231,115
 INSERT INTO `item_weapon` VALUES (20614,'pukulatmuj_+1',3,0,242,242,188,2,1,225,116,0);
 INSERT INTO `item_weapon` VALUES (20615,'levante_dagger',2,0,228,228,188,1,1,183,95,0);
 INSERT INTO `item_weapon` VALUES (20616,'ipetam',2,0,242,242,188,1,1,220,115,0);
-INSERT INTO `item_weapon` VALUES (20617,'homestead_dagger',2,0,203,203,167,1,1,183,94,0);
+INSERT INTO `item_weapon` VALUES (20617,'homestead_dagger',2,0,228,228,188,1,1,183,99,0); -- DMG:99 Delay:183 Accuracy+27 Evasion+27 Dagger skill +228 Parrying skill +228 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20618,'sandung',2,0,242,242,188,1,1,200,102,0);
 INSERT INTO `item_weapon` VALUES (20619,'polyhymnia',2,0,242,242,188,1,1,194,95,0);
 INSERT INTO `item_weapon` VALUES (20620,'sabebus',2,0,242,242,188,1,1,196,101,0);
@@ -3633,12 +3635,12 @@ INSERT INTO `item_weapon` VALUES (20651,'tizona',3,0,242,242,228,2,1,236,117,0);
 INSERT INTO `item_weapon` VALUES (20652,'tizona',3,0,242,242,228,2,1,236,117,0);
 INSERT INTO `item_weapon` VALUES (20653,'almace',3,0,242,242,215,2,1,224,114,0);
 INSERT INTO `item_weapon` VALUES (20654,'almace',3,0,242,242,215,2,1,224,114,0);
-INSERT INTO `item_weapon` VALUES (20665,'kam_lanaut_s_sword',3,0,0,0,0,2,1,240,1,0); -- Kam'lanaut's sword: DMG:1 Delay:240
-INSERT INTO `item_weapon` VALUES (20666,'blizzard_brand',3,0,0,0,0,2,1,240,1,0); -- Blizzard Brand: DMG:1 Delay:240
-INSERT INTO `item_weapon` VALUES (20667,'blizzard_brand_+1',3,0,0,0,0,2,1,233,2,0); -- DMG:2 Delay:233 Additional effect: Ice damage Enchantment: "Blizzard"
-INSERT INTO `item_weapon` VALUES (20668,'firetongue',3,0,0,0,0,2,1,240,1,0); -- DMG:1 Delay:240
-INSERT INTO `item_weapon` VALUES (20669,'firetongue_+1',3,0,0,0,0,2,1,233,2,0); -- DMG:2 Delay:233 Additional effect: Fire damage Enchantment: "Fire"
-INSERT INTO `item_weapon` VALUES (20674,'aern_sword',3,0,0,0,0,2,1,240,1,0); -- DMG:1 Delay:240
+INSERT INTO `item_weapon` VALUES (20665,'kam_lanaut_s_sword',3,0,0,0,0,2,1,240,1,0);      -- Kam'lanaut's sword: DMG:1 Delay:240
+INSERT INTO `item_weapon` VALUES (20666,'blizzard_brand',3,0,0,0,0,2,1,240,1,0);          -- Blizzard Brand: DMG:1 Delay:240
+INSERT INTO `item_weapon` VALUES (20667,'blizzard_brand_+1',3,0,0,0,0,2,1,233,2,0);       -- DMG:2 Delay:233 Additional effect: Ice damage Enchantment: "Blizzard"
+INSERT INTO `item_weapon` VALUES (20668,'firetongue',3,0,0,0,0,2,1,240,1,0);              -- DMG:1 Delay:240
+INSERT INTO `item_weapon` VALUES (20669,'firetongue_+1',3,0,0,0,0,2,1,233,2,0);           -- DMG:2 Delay:233 Additional effect: Fire damage Enchantment: "Fire"
+INSERT INTO `item_weapon` VALUES (20674,'aern_sword',3,0,0,0,0,2,1,240,1,0);              -- DMG:1 Delay:240
 INSERT INTO `item_weapon` VALUES (20677,'colada',3,0,242,242,201,2,1,240,140,0);
 INSERT INTO `item_weapon` VALUES (20678,'firangi',3,0,242,242,188,2,1,264,170,0);
 INSERT INTO `item_weapon` VALUES (20679,'tanmogayi',3,0,242,242,188,2,1,288,176,0);
@@ -3676,7 +3678,7 @@ INSERT INTO `item_weapon` VALUES (20715,'acclimator',3,0,242,242,188,2,1,240,130
 INSERT INTO `item_weapon` VALUES (20716,'perfervid_sword',3,0,242,242,188,2,1,236,110,0);
 INSERT INTO `item_weapon` VALUES (20717,'arendsi_fleuret',3,0,228,228,188,2,1,224,119,0);
 INSERT INTO `item_weapon` VALUES (20718,'claidheamh_soluis',3,0,242,242,188,2,1,270,142,0);
-INSERT INTO `item_weapon` VALUES (20719,'homestead_blade',3,0,203,203,167,2,1,247,126,0);
+INSERT INTO `item_weapon` VALUES (20719,'homestead_blade',3,0,228,228,188,2,1,247,133,0); -- DMG:133 Delay:247 Attack+26 Sword skill +228 Parrying skill +228 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20720,'egeking',3,0,242,242,188,2,1,236,124,0);
 INSERT INTO `item_weapon` VALUES (20721,'mimesis',3,0,242,242,188,2,1,236,128,0);
 INSERT INTO `item_weapon` VALUES (20722,'usonmunku',3,0,242,242,188,2,1,231,132,0);
@@ -3717,7 +3719,7 @@ INSERT INTO `item_weapon` VALUES (20756,'soulcleaver',4,0,228,228,188,2,1,489,28
 INSERT INTO `item_weapon` VALUES (20757,'foreshock_sword',4,0,242,242,188,2,1,504,273,0);
 INSERT INTO `item_weapon` VALUES (20758,'mekosuchus_blade',4,0,228,228,188,2,1,504,273,0);
 INSERT INTO `item_weapon` VALUES (20759,'macbain',4,0,242,242,188,2,1,510,268,0);
-INSERT INTO `item_weapon` VALUES (20760,'home._claymore',4,0,215,215,167,2,1,444,228,0);
+INSERT INTO `item_weapon` VALUES (20760,'home._claymore',4,0,242,242,188,2,1,444,240,0);  -- DMG:240 Delay:444 Great Sword skill +242 Parrying skill +242 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20761,'aettir',4,0,242,242,188,2,1,480,263,0);
 INSERT INTO `item_weapon` VALUES (20762,'ukudyoni',4,0,242,242,188,2,1,480,261,0);
 INSERT INTO `item_weapon` VALUES (20763,'kbiroj',4,0,242,242,188,2,1,456,242,0);
@@ -3767,7 +3769,7 @@ INSERT INTO `item_weapon` VALUES (20806,'buramgh',5,0,242,242,188,2,1,288,156,0)
 INSERT INTO `item_weapon` VALUES (20807,'buramgh_+1',5,0,242,242,188,2,1,280,157,0);
 INSERT INTO `item_weapon` VALUES (20808,'tramontane_axe',5,0,242,242,188,2,1,288,156,0);
 INSERT INTO `item_weapon` VALUES (20809,'kumbhakarna',5,0,242,242,188,2,1,322,169,0);
-INSERT INTO `item_weapon` VALUES (20810,'homestead_axe',5,0,215,215,167,2,1,288,148,0);
+INSERT INTO `item_weapon` VALUES (20810,'homestead_axe',5,0,242,242,188,2,1,288,156,0);   -- DMG:156 Delay:288 Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20811,'arktoi',5,0,242,242,188,2,1,276,150,0);
 INSERT INTO `item_weapon` VALUES (20812,'izizoeksi',5,0,242,242,188,2,1,288,156,0);
 INSERT INTO `item_weapon` VALUES (20813,'emxgha',5,0,242,242,188,2,1,312,164,0);
@@ -3814,7 +3816,7 @@ INSERT INTO `item_weapon` VALUES (20855,'devivifier',6,0,242,242,188,2,1,504,285
 INSERT INTO `item_weapon` VALUES (20856,'phreatic_axe',6,0,242,242,188,2,1,504,274,0);
 INSERT INTO `item_weapon` VALUES (20857,'svarga',6,0,242,242,188,2,1,545,286,0);
 INSERT INTO `item_weapon` VALUES (20858,'lightreaver',6,0,242,242,188,2,1,504,273,0);
-INSERT INTO `item_weapon` VALUES (20859,'home._labrys',6,0,215,215,167,2,1,504,259,0);
+INSERT INTO `item_weapon` VALUES (20859,'home._labrys',6,0,242,242,188,2,1,504,273,0);    -- DMG:273 Delay:504 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20860,'minos',6,0,242,242,188,2,1,504,274,0);
 INSERT INTO `item_weapon` VALUES (20861,'qalgwer',6,0,242,242,188,2,1,504,272,0);
 INSERT INTO `item_weapon` VALUES (20862,'lekboza',6,0,242,242,188,2,1,504,268,0);
@@ -3854,7 +3856,7 @@ INSERT INTO `item_weapon` VALUES (20898,'triska_scythe',7,0,242,242,188,2,1,528,
 INSERT INTO `item_weapon` VALUES (20899,'triska_scythe_+1',7,0,242,242,188,2,1,513,287,0);
 INSERT INTO `item_weapon` VALUES (20900,'meekculler',7,0,242,242,188,2,1,528,290,0);
 INSERT INTO `item_weapon` VALUES (20901,'inanna',7,0,242,242,188,2,1,550,288,0);
-INSERT INTO `item_weapon` VALUES (20903,'home._scythe',7,0,215,215,167,2,1,528,271,0);
+INSERT INTO `item_weapon` VALUES (20903,'home._scythe',7,0,242,242,188,2,1,528,286,0);    -- DMG:286 Delay:528 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20904,'cronus',7,0,242,242,188,2,1,528,288,0);
 INSERT INTO `item_weapon` VALUES (20905,'tajabit',7,0,242,242,188,2,1,528,281,0);
 INSERT INTO `item_weapon` VALUES (20906,'vunetshelo',7,0,242,242,188,2,1,528,281,0);
@@ -3895,7 +3897,7 @@ INSERT INTO `item_weapon` VALUES (20943,'gae_derg_+1',8,0,242,242,188,1,1,540,29
 INSERT INTO `item_weapon` VALUES (20944,'pelagos_lance',8,0,242,242,188,1,1,507,275,0);
 INSERT INTO `item_weapon` VALUES (20945,'nativus_halberd',8,0,228,228,188,1,1,396,207,0);
 INSERT INTO `item_weapon` VALUES (20946,'olyndicus',8,0,242,242,188,1,1,528,277,0);
-INSERT INTO `item_weapon` VALUES (20947,'homestead_lance',8,0,215,215,167,1,1,492,252,0);
+INSERT INTO `item_weapon` VALUES (20947,'homestead_lance',8,0,242,242,188,1,1,492,266,0); -- DMG:266 Delay:492 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20948,'areadbhar',8,0,242,242,188,1,1,492,269,0);
 INSERT INTO `item_weapon` VALUES (20949,'kumalo',8,0,242,242,188,1,1,492,261,0);
 INSERT INTO `item_weapon` VALUES (20950,'terebrokath',8,0,215,215,167,1,1,492,252,0);
@@ -3940,7 +3942,7 @@ INSERT INTO `item_weapon` VALUES (20989,'izuna',9,0,242,242,188,2,1,237,124,0);
 INSERT INTO `item_weapon` VALUES (20990,'jushimatsu',9,0,242,242,188,2,1,227,122,0);
 INSERT INTO `item_weapon` VALUES (20991,'chidori',9,0,242,242,188,2,1,227,122,0);
 INSERT INTO `item_weapon` VALUES (20992,'taikogane',9,0,188,188,146,2,1,227,110,0);
-INSERT INTO `item_weapon` VALUES (20993,'senkutanto',9,0,203,203,191,2,1,185,95,0);
+INSERT INTO `item_weapon` VALUES (20993,'senkutanto',9,0,228,228,215,2,1,185,100,0);      -- DMG:100 Delay:185 Accuracy+27 Evasion+27 Katana skill +228 Parrying skill +228 Magic Accuracy skill +215 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (20994,'shigi',9,0,228,228,215,2,1,190,98,0);
 INSERT INTO `item_weapon` VALUES (20995,'isuka',9,0,242,242,188,2,1,227,117,0);
 INSERT INTO `item_weapon` VALUES (20996,'kannakiri_+2',9,0,242,242,188,2,1,227,111,0);
@@ -3982,7 +3984,7 @@ INSERT INTO `item_weapon` VALUES (21034,'kunimune',10,0,242,242,188,2,1,450,243,
 INSERT INTO `item_weapon` VALUES (21035,'kunimune_+1',10,0,242,242,188,2,1,437,244,0);
 INSERT INTO `item_weapon` VALUES (21036,'atakigiri',10,0,242,242,188,2,1,480,258,0);
 INSERT INTO `item_weapon` VALUES (21037,'nenekirimaru',10,0,242,242,188,2,1,484,254,0);
-INSERT INTO `item_weapon` VALUES (21038,'senkuto',10,0,203,203,167,2,1,420,215,0);
+INSERT INTO `item_weapon` VALUES (21038,'senkuto',10,0,228,228,188,2,1,420,227,0);        -- DMG:227 Delay:420 Accuracy+27 Great Katana skill +228 Parrying skill +228 Magic Accuracy skill +188 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (21039,'kurikaranotachi',10,0,242,242,188,2,1,450,251,0);
 INSERT INTO `item_weapon` VALUES (21040,'shokudaikiri',10,0,242,242,188,2,1,450,238,0);
 INSERT INTO `item_weapon` VALUES (21041,'sukezane',10,0,215,215,167,2,1,450,231,0);
@@ -4050,7 +4052,7 @@ INSERT INTO `item_weapon` VALUES (21104,'eosuchus_club',11,0,242,242,215,3,1,264
 INSERT INTO `item_weapon` VALUES (21105,'nehushtan',11,0,228,228,188,3,1,352,184,0);
 INSERT INTO `item_weapon` VALUES (21107,'kyuka_uchiwa',11,0,0,0,0,3,1,216,1,0);
 INSERT INTO `item_weapon` VALUES (21108,'kyuka_uchiwa_+1',11,0,0,0,0,3,1,210,2,0);
-INSERT INTO `item_weapon` VALUES (21109,'homestead_wand',11,0,215,215,191,3,1,216,111,0);
+INSERT INTO `item_weapon` VALUES (21109,'homestead_wand',11,0,242,242,215,3,1,216,117,0); -- DMG:117 Delay:216 INT+6 MND+6 "Magic Atk. Bonus"+16 Magic Damage+124 Club skill +242 Parrying skill +242 Magic Accuracy skill +215 Reives: "Save TP"+400 Occasionally attacks twice
 INSERT INTO `item_weapon` VALUES (21110,'sindri',11,0,228,228,188,3,1,324,175,0);
 INSERT INTO `item_weapon` VALUES (21111,'bolelabunga',11,0,242,242,215,3,1,216,100,0);
 INSERT INTO `item_weapon` VALUES (21112,'gabaxorea',11,0,242,242,215,3,1,216,112,0);
@@ -4111,8 +4113,8 @@ INSERT INTO `item_weapon` VALUES (21167,'frazil_staff',12,0,242,242,188,3,1,366,
 INSERT INTO `item_weapon` VALUES (21168,'ungeri_staff',12,0,242,242,188,3,1,412,220,0);
 INSERT INTO `item_weapon` VALUES (21169,'keraunos',12,0,242,242,228,3,1,435,228,0);
 INSERT INTO `item_weapon` VALUES (21170,'nilgal_pole',12,0,242,242,188,3,1,412,223,0);
-INSERT INTO `item_weapon` VALUES (21171,'homestead_staff',12,0,215,215,203,3,1,366,188,0);
-INSERT INTO `item_weapon` VALUES (21172,'home._scepter',12,0,215,215,167,3,1,402,206,0);
+INSERT INTO `item_weapon` VALUES (21171,'homestead_staff',12,0,242,242,228,3,1,366,198,0); -- DMG:198 Delay:366 INT+12 MND+12 "Magic Atk. Bonus"+28 Magic Damage+217 Staff skill +242 Parrying skill +242 Magic Accuracy skill +228 Reives: Magic Accuracy+16 "Magic Atk. Bonus"+73
+INSERT INTO `item_weapon` VALUES (21172,'home._scepter',12,0,242,242,188,3,1,402,217,0);  -- DMG:217 Delay:402 MP+88 Staff skill +242 Parrying skill +242 Magic Accuracy skill +188 Reives: Avatar: Magic Accuracy+50 "Regain"+100
 INSERT INTO `item_weapon` VALUES (21173,'kaladanda',12,0,242,242,228,3,1,366,204,0);
 INSERT INTO `item_weapon` VALUES (21174,'gridarvor',12,0,242,242,188,3,1,366,204,0);
 INSERT INTO `item_weapon` VALUES (21175,'coeus',12,0,242,242,228,3,1,366,204,0);
@@ -4164,7 +4166,7 @@ INSERT INTO `item_weapon` VALUES (21221,'brahmastra',25,0,242,0,0,1,1,600,261,0)
 INSERT INTO `item_weapon` VALUES (21222,'mengado',25,0,228,0,0,1,1,300,147,0);
 INSERT INTO `item_weapon` VALUES (21223,'mengado_+1',25,0,228,0,0,1,1,291,148,0);
 INSERT INTO `item_weapon` VALUES (21224,'phaosphaelia',25,0,242,0,0,1,1,735,279,0);
-INSERT INTO `item_weapon` VALUES (21226,'homestead_bow',25,0,215,0,0,1,1,540,226,0);
+INSERT INTO `item_weapon` VALUES (21226,'homestead_bow',25,0,242,0,0,1,1,540,238,0);      -- DMG:238 Delay:540 Archery skill +242 Reives: "Save TP"+400 "TP Bonus"+1000
 INSERT INTO `item_weapon` VALUES (21227,'hangaku-no-yumi',25,0,242,0,0,1,1,600,251,0);
 INSERT INTO `item_weapon` VALUES (21228,'falubeza',25,0,242,0,0,1,1,540,243,0);
 INSERT INTO `item_weapon` VALUES (21229,'cibitshavore',25,0,242,0,0,1,1,600,261,0);
@@ -4186,7 +4188,7 @@ INSERT INTO `item_weapon` VALUES (21244,'ahkormaar_bow_+1',25,0,0,0,0,1,1,524,10
 INSERT INTO `item_weapon` VALUES (21245,'guglielmos_bow',26,0,0,0,0,1,1,216,30,0);
 INSERT INTO `item_weapon` VALUES (21246,'gastraphetes',26,0,242,0,0,1,1,432,93,0);
 INSERT INTO `item_weapon` VALUES (21247,'gastraphetes',26,0,242,0,0,1,1,432,93,0);
-INSERT INTO `item_weapon` VALUES (21248,'home._bowgun',26,0,215,0,0,1,1,432,107,0);
+INSERT INTO `item_weapon` VALUES (21248,'home._bowgun',26,0,242,0,0,1,1,432,135,0);       -- DMG:135 Delay:432 Marksmanship skill +242 Reives: "Save TP"+400 "TP Bonus"+1000
 INSERT INTO `item_weapon` VALUES (21249,'iqonde_crossbow',26,0,215,0,0,1,1,288,98,0);
 INSERT INTO `item_weapon` VALUES (21250,'iqonde_cross._+1',26,0,215,0,0,1,1,280,99,0);
 INSERT INTO `item_weapon` VALUES (21251,'em._crossbow',26,0,215,0,0,1,1,288,88,0);
@@ -4208,9 +4210,10 @@ INSERT INTO `item_weapon` VALUES (21266,'gastraphetes',26,0,269,0,0,1,1,432,176,
 INSERT INTO `item_weapon` VALUES (21267,'annihilator',26,1,269,0,0,1,1,582,143,0);
 INSERT INTO `item_weapon` VALUES (21268,'death_penalty',26,1,269,0,0,1,1,480,101,0);
 INSERT INTO `item_weapon` VALUES (21269,'armageddon',26,1,269,0,0,1,1,582,143,0);
+INSERT INTO `item_weapon` VALUES (21272,'troll_gun',26,1,0,0,0,1,1,600,1,0);              -- DMG:1 Delay:600
 INSERT INTO `item_weapon` VALUES (21273,'nibiru_gun',26,1,242,0,0,1,1,600,119,0);
 INSERT INTO `item_weapon` VALUES (21274,'donar_gun',26,1,228,0,0,1,1,548,103,0);
-INSERT INTO `item_weapon` VALUES (21275,'homestead_gun',26,1,215,0,0,1,1,600,128,0);
+INSERT INTO `item_weapon` VALUES (21275,'homestead_gun',26,1,242,0,0,1,1,600,130,0);      -- DMG:130 Delay:600 Marksmanship skill +242 Reives: "Save TP"+400 "TP Bonus"+1000
 INSERT INTO `item_weapon` VALUES (21276,'pulfanxa',26,1,242,0,0,1,1,600,108,0);
 INSERT INTO `item_weapon` VALUES (21277,'lionsquall',26,1,242,0,0,1,1,600,116,0);
 INSERT INTO `item_weapon` VALUES (21278,'deathlocke',26,1,242,0,0,1,1,480,82,0);
@@ -4230,50 +4233,52 @@ INSERT INTO `item_weapon` VALUES (21291,'shadeshot_gun',26,1,0,0,0,1,1,600,63,0)
 INSERT INTO `item_weapon` VALUES (21292,'bandeiras_gun',26,1,0,0,0,1,1,600,64,0);
 INSERT INTO `item_weapon` VALUES (21293,'bandeiras_gun_+1',26,1,0,0,0,1,1,582,65,0);
 INSERT INTO `item_weapon` VALUES (21294,'hgafircian',26,1,54,0,0,1,1,660,70,0);
-INSERT INTO `item_weapon` VALUES (21296,'chrono_bullet',26,1,0,0,0,0,1,240,300,0);
-INSERT INTO `item_weapon` VALUES (21297,'chrono_arrow',25,0,0,0,0,0,1,90,110,0);
-INSERT INTO `item_weapon` VALUES (21298,'artemiss_arrow',25,0,0,0,0,0,1,90,101,0);
-INSERT INTO `item_weapon` VALUES (21299,'yoichis_arrow',25,0,0,0,0,0,1,90,89,0);
-INSERT INTO `item_weapon` VALUES (21300,'divine_arrow',25,0,0,0,0,0,1,90,85,0);
-INSERT INTO `item_weapon` VALUES (21301,'porxie_arrow',25,0,0,0,0,0,1,90,80,0);
-INSERT INTO `item_weapon` VALUES (21302,'eminent_arrow',25,0,0,0,0,0,1,90,79,0);
-INSERT INTO `item_weapon` VALUES (21303,'rakaznar_arrow',25,0,0,0,0,0,1,90,78,0);
-INSERT INTO `item_weapon` VALUES (21304,'raaz_arrow',25,0,0,0,0,0,1,90,74,0);
+INSERT INTO `item_weapon` VALUES (21295,'beryllium_arrow',25,0,0,0,0,1,1,90,77,0);
+INSERT INTO `item_weapon` VALUES (21296,'chrono_bullet',26,1,0,0,0,1,1,240,300,0);
+INSERT INTO `item_weapon` VALUES (21297,'chrono_arrow',25,0,0,0,0,1,1,90,110,0);
+INSERT INTO `item_weapon` VALUES (21298,'artemiss_arrow',25,0,0,0,0,1,1,90,101,0);
+INSERT INTO `item_weapon` VALUES (21299,'yoichis_arrow',25,0,0,0,0,1,1,90,89,0);
+INSERT INTO `item_weapon` VALUES (21300,'divine_arrow',25,0,0,0,0,1,1,90,85,0);
+INSERT INTO `item_weapon` VALUES (21301,'porxie_arrow',25,0,0,0,0,1,1,90,80,0);
+INSERT INTO `item_weapon` VALUES (21302,'eminent_arrow',25,0,0,0,0,1,1,90,79,0);
+INSERT INTO `item_weapon` VALUES (21303,'rakaznar_arrow',25,0,0,0,0,1,1,90,78,0);
+INSERT INTO `item_weapon` VALUES (21304,'raaz_arrow',25,0,0,0,0,1,1,90,74,0);
 INSERT INTO `item_weapon` VALUES (21305,'tulfaire_arrow',25,0,0,0,0,1,1,90,65,0);
 INSERT INTO `item_weapon` VALUES (21306,'adlivun_arrow',25,0,0,0,0,1,1,90,74,0);
 INSERT INTO `item_weapon` VALUES (21307,'achiyal._arrow',25,0,0,0,0,1,1,90,87,0);
 INSERT INTO `item_weapon` VALUES (21308,'mantid_arrow',25,0,0,0,0,1,1,90,63,0);
 INSERT INTO `item_weapon` VALUES (21309,'chapuli_arrow',25,0,0,0,0,1,1,90,48,0);
+INSERT INTO `item_weapon` VALUES (21310,'raetic_arrow',25,0,0,0,0,1,1,90,80,0);
 INSERT INTO `item_weapon` VALUES (21311,'quelling_bolt',26,0,0,0,0,1,1,192,145,0);
-INSERT INTO `item_weapon` VALUES (21312,'divine_bolt',26,0,0,0,0,0,1,192,120,0);
-INSERT INTO `item_weapon` VALUES (21313,'gashing_bolt',26,0,0,0,0,0,1,192,100,0);
-INSERT INTO `item_weapon` VALUES (21314,'abrasion_bolt',26,0,0,0,0,0,1,192,110,0);
-INSERT INTO `item_weapon` VALUES (21315,'righteous_bolt',26,0,0,0,0,0,1,192,55,0);
-INSERT INTO `item_weapon` VALUES (21316,'eminent_bolt',26,0,0,0,0,0,1,192,113,0);
-INSERT INTO `item_weapon` VALUES (21317,'rakaznar_bolt',26,0,0,0,0,0,1,192,112,0);
-INSERT INTO `item_weapon` VALUES (21318,'bismuth_bolt',26,0,0,0,0,0,1,192,105,0);
-INSERT INTO `item_weapon` VALUES (21319,'titanium_bolt',26,0,0,0,0,1,1,192,96,0);
+INSERT INTO `item_weapon` VALUES (21312,'divine_bolt',26,0,0,0,0,1,1,192,120,0);
+INSERT INTO `item_weapon` VALUES (21313,'gashing_bolt',26,0,0,0,0,1,1,192,100,0);
+INSERT INTO `item_weapon` VALUES (21314,'abrasion_bolt',26,0,0,0,0,1,1,192,110,0);
+INSERT INTO `item_weapon` VALUES (21315,'righteous_bolt',26,0,0,0,0,1,1,192,55,0);
+INSERT INTO `item_weapon` VALUES (21316,'eminent_bolt',26,0,0,0,0,1,1,192,113,0);
+INSERT INTO `item_weapon` VALUES (21317,'rakaznar_bolt',26,0,0,0,0,1,1,192,112,0);
+INSERT INTO `item_weapon` VALUES (21318,'bismuth_bolt',26,0,0,0,0,1,1,192,105,0);
+INSERT INTO `item_weapon` VALUES (21319,'titanium_bolt',26,0,0,0,1,1,1,192,96,0);
 INSERT INTO `item_weapon` VALUES (21320,'adlivun_bolt',26,0,0,0,0,1,1,192,105,0);
 INSERT INTO `item_weapon` VALUES (21321,'achiyal._bolt',26,0,0,0,0,1,1,192,124,0);
-INSERT INTO `item_weapon` VALUES (21322,'damascus_bolt',26,0,0,0,0,0,1,192,94,0);
-INSERT INTO `item_weapon` VALUES (21323,'oxidant_bolt',26,0,0,0,0,0,1,192,45,0);
-INSERT INTO `item_weapon` VALUES (21324,'midrium_bolt',26,0,0,0,0,0,1,192,75,0);
+INSERT INTO `item_weapon` VALUES (21322,'damascus_bolt',26,0,0,0,0,1,1,192,94,0);
+INSERT INTO `item_weapon` VALUES (21323,'oxidant_bolt',26,0,0,0,0,1,1,192,45,0);
+INSERT INTO `item_weapon` VALUES (21324,'midrium_bolt',26,0,0,0,0,1,1,192,75,0);
 INSERT INTO `item_weapon` VALUES (21325,'devastating_bullet',26,1,0,0,0,1,1,240,277,0);
 INSERT INTO `item_weapon` VALUES (21326,'living_bullet',26,1,0,0,0,1,1,240,245,0);
 INSERT INTO `item_weapon` VALUES (21327,'eradicating_bullet',26,1,0,0,0,1,1,240,289,0);
-INSERT INTO `item_weapon` VALUES (21328,'divine_bullet',26,1,0,0,0,0,1,240,250,0);
-INSERT INTO `item_weapon` VALUES (21329,'stinger_bullet',26,1,0,0,0,0,1,249,254,0);
-INSERT INTO `item_weapon` VALUES (21330,'decimating_bullet',26,1,0,0,0,0,1,240,220,0);
-INSERT INTO `item_weapon` VALUES (21331,'eminent_bullet',26,1,0,0,0,0,1,240,238,0);
-INSERT INTO `item_weapon` VALUES (21332,'rakaznar_bullet',26,1,0,0,0,0,1,240,237,0);
-INSERT INTO `item_weapon` VALUES (21333,'bismuth_bullet',26,1,0,0,0,0,1,240,214,0);
-INSERT INTO `item_weapon` VALUES (21334,'animikii_bullet',26,1,0,0,0,0,1,240,240,0);
-INSERT INTO `item_weapon` VALUES (21335,'titanium_bullet',26,1,0,0,0,0,1,240,175,0);
-INSERT INTO `item_weapon` VALUES (21336,'adlivun_bullet',26,1,0,0,0,0,1,240,214,0);
+INSERT INTO `item_weapon` VALUES (21328,'divine_bullet',26,1,0,0,0,1,1,240,250,0);
+INSERT INTO `item_weapon` VALUES (21329,'stinger_bullet',26,1,0,0,0,1,1,249,254,0);
+INSERT INTO `item_weapon` VALUES (21330,'decimating_bullet',26,1,0,0,0,1,1,240,220,0);
+INSERT INTO `item_weapon` VALUES (21331,'eminent_bullet',26,1,0,0,0,1,1,240,238,0);
+INSERT INTO `item_weapon` VALUES (21332,'rakaznar_bullet',26,1,0,0,0,1,1,240,237,0);
+INSERT INTO `item_weapon` VALUES (21333,'bismuth_bullet',26,1,0,0,0,1,1,240,214,0);
+INSERT INTO `item_weapon` VALUES (21334,'animikii_bullet',26,1,0,0,0,1,1,240,240,0);
+INSERT INTO `item_weapon` VALUES (21335,'titanium_bullet',26,1,0,0,0,1,1,240,175,0);
+INSERT INTO `item_weapon` VALUES (21336,'adlivun_bullet',26,1,0,0,0,1,1,240,214,0);
 INSERT INTO `item_weapon` VALUES (21337,'achiyal._bullet',26,1,0,0,0,1,1,240,253,0);
-INSERT INTO `item_weapon` VALUES (21338,'damascus_bullet',26,1,0,0,0,0,1,240,145,0);
-INSERT INTO `item_weapon` VALUES (21339,'midrium_bullet',26,1,0,0,0,0,1,240,115,0);
-INSERT INTO `item_weapon` VALUES (21340,'halakaala',27,0,0,0,0,0,1,286,30,0);
+INSERT INTO `item_weapon` VALUES (21338,'damascus_bullet',26,1,0,0,0,1,1,240,145,0);
+INSERT INTO `item_weapon` VALUES (21339,'midrium_bullet',26,1,0,0,0,1,1,240,115,0);
+INSERT INTO `item_weapon` VALUES (21340,'halakaala',27,0,0,0,0,1,1,286,30,0);
 INSERT INTO `item_weapon` VALUES (21341,'oreiads_tathlum',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (21342,'erlenes_notebook',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (21343,'ghastly_tathlum',0,0,0,0,0,0,1,999,0,0);
@@ -4325,6 +4330,9 @@ INSERT INTO `item_weapon` VALUES (21390,'albin_bane',27,0,242,0,0,0,1,240,66,0);
 INSERT INTO `item_weapon` VALUES (21391,'seki_shuriken',27,3,242,0,0,0,1,192,101,0);
 INSERT INTO `item_weapon` VALUES (21392,'animator_z',0,10,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (21393,'arasy_sachet',0,0,0,0,0,0,1,999,0,0);
+INSERT INTO `item_weapon` VALUES (21394,'sancus_sachet',0,0,0,0,0,0,1,999,0,0);
+INSERT INTO `item_weapon` VALUES (21395,'sancus_sachet_+1',0,0,0,0,0,0,1,999,0,0);
+INSERT INTO `item_weapon` VALUES (21396,'regal_gem',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (21398,'marsyas',42,0,0,0,0,0,1,240,3,0);
 INSERT INTO `item_weapon` VALUES (21399,'nibiru_harp',41,0,0,0,0,0,1,240,0,0);
 INSERT INTO `item_weapon` VALUES (21400,'blurred_harp',41,0,0,0,0,0,1,240,0,0);
@@ -4387,6 +4395,16 @@ INSERT INTO `item_weapon` VALUES (21504,'arasy_sainti',1,0,242,242,188,4,1,531,1
 INSERT INTO `item_weapon` VALUES (21505,'arasy_sainti_+1',1,0,242,242,188,4,1,529,108,0);
 INSERT INTO `item_weapon` VALUES (21506,'jolt_counter',1,0,242,242,188,4,1,576,180,0);    -- Pair of jolt counter: DMG:+180 Delay:+126 STR+10 VIT+10 Accuracy+25 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+15 Attack during "Counter" varies in proportion to Attack of target.
 INSERT INTO `item_weapon` VALUES (21507,'jolt_counter_+1',1,0,242,242,188,4,1,571,181,0); -- Pair of jolt counter +1: DMG:+181 Delay:+121 STR+15 VIT+15 Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+18 Attack during "Counter" varies in proportion to Attack of target.
+INSERT INTO `item_weapon` VALUES (21509,'premium_mogti',1,0,0,0,0,4,1,546,1,0);           -- DMG:+1 Delay:+96 "Final Paradise" (wsid 228)
+INSERT INTO `item_weapon` VALUES (21511,'hep._baghnakhs',1,0,242,242,188,4,1,540,158,0);  -- DMG:+158 Delay:+90 STR+10 VIT+10 Accuracy+27 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Dragon Kick" effect
+INSERT INTO `item_weapon` VALUES (21512,'hep._baghnakhs_+1',1,0,242,242,188,4,1,531,159,0); -- DMG:+159 Delay:+81 STR+15 VIT+15 Accuracy+32 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Dragon Kick" effect
+INSERT INTO `item_weapon` VALUES (21513,'raetic_baghnakhs',1,0,242,242,215,4,1,540,160,0); -- DMG:+160 Delay:90 HP+70 MP+50 Accuracy+57 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21514,'rae._baghnakhs_+1',1,0,242,242,215,4,1,531,161,0); -- DMG:+161 Delay:+81 HP+80 MP+60 Accuracy+62 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +215 Damage taken -5% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1
+INSERT INTO `item_weapon` VALUES (21515,'tokko_knuckles',1,0,215,215,215,4,1,546,121,0);  -- DMG:+121 Delay:+96 Hand-to-Hand skill +215 Guarding skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21516,'ajja_knuckles',1,0,223,223,223,4,1,546,136,0);   -- DMG:+136 Delay:+96 Accuracy+20 Magic Accuracy+20 Hand-to-Hand skill +223 Guarding skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21517,'eletta_knuckles',1,0,231,231,231,4,1,546,151,0); -- DMG:+151 Delay:+96 Accuracy+30 Attack+20 Magic Accuracy+30 Hand-to-Hand skill +231 Guarding skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21518,'kaja_knuckles',1,0,242,242,242,4,1,546,165,0);   -- DMG:+165 Delay:+96 STR+15 DEX+15 VIT+15 Accuracy+35 Attack+25 Magic Accuracy+35 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +242 "Asuran Fists" "Asuran Fists" damage +50%
+INSERT INTO `item_weapon` VALUES (21519,'karambit',1,0,250,250,250,4,1,546,180,0);        -- DMG:+180 Delay:+96 STR+20 DEX+20 VIT+20 Accuracy+40 Attack+30 Magic Accuracy+40 Hand-to-Hand skill +250 Guarding skill +250 Magic Accuracy skill +250 "Asuran Fists" "Asuran Fists" damage +50% "Auto-Attack": "Store TP"+50 gained when landing critical hits
 INSERT INTO `item_weapon` VALUES (21521,'melee_fists',1,0,242,242,228,4,1,576,190,0);     -- Melee fists: DMG:+190 Delay:+126 HP+130 Accuracy+30 Magic Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +228 Damage taken -5% Dynamis (D): Accuracy+10 Magic Accuracy+10
 INSERT INTO `item_weapon` VALUES (21522,'hes._fists',1,0,255,255,242,4,1,571,191,0);      -- Hesychast's fists: DMG:+191 Delay:+121 HP+140 Accuracy+40 Magic Accuracy+40 Hand-to-Hand skill +255 Guarding skill +255 Magic Accuracy skill +242 Damage taken -7% Dynamis (D): Accuracy+10 Magic Accuracy+10
 INSERT INTO `item_weapon` VALUES (21523,'sagitta',1,0,269,269,255,4,1,571,192,0);         -- Sagitta: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Damage taken -10%
@@ -4395,12 +4413,40 @@ INSERT INTO `item_weapon` VALUES (21525,'pitre_fists',1,0,255,255,242,4,1,571,19
 INSERT INTO `item_weapon` VALUES (21526,'xiucoatl',1,0,269,269,255,4,1,571,192,0);        -- Xiucoatl: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Automaton: Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50
 INSERT INTO `item_weapon` VALUES (21554,'arasy_knife',2,0,242,242,188,1,1,183,94,0);
 INSERT INTO `item_weapon` VALUES (21555,'arasy_knife_+1',2,0,242,242,188,1,1,178,95,0);
+INSERT INTO `item_weapon` VALUES (21556,'beryllium_kris',2,0,228,228,188,1,1,192,125,0);  -- DMG:125 Delay:192 DEX+7 AGI+7 Accuracy+47 Evasion+27 Dagger skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+15 Adds "Shark Bite" effect
+INSERT INTO `item_weapon` VALUES (21557,'beryllium_kris_+1',2,0,228,228,188,1,1,187,126,0); -- DMG:126 Delay:187 DEX+12 AGI+12 Accuracy+52 Evasion+27 Dagger skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+20 Adds "Shark Bite" effect
+INSERT INTO `item_weapon` VALUES (21558,'rune_kris',2,0,0,0,0,1,1,192,24,0);              -- DMG:24 Delay:192 Latent effect: AGI+5 "Store TP"+5
+INSERT INTO `item_weapon` VALUES (21559,'raetic_kris',2,0,242,242,215,1,1,192,128,0);     -- DMG:128 Delay:192 HP+35 MP+25 Accuracy+37 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -2% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21560,'raetic_kris_+1',2,0,242,242,215,1,1,187,129,0);  -- DMG:129 Delay:187 HP+40 MP+30 Accuracy+42 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -3% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1～50 for
+INSERT INTO `item_weapon` VALUES (21561,'tokko_knife',2,0,215,215,215,1,1,180,97,0);      -- DMG:97 Delay:180 Dagger skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21562,'ajja_knife',2,0,223,223,223,1,1,180,105,0);      -- DMG:105 Delay:180 Accuracy+20 Magic Accuracy+20 Dagger skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21563,'eletta_knife',2,0,231,231,231,1,1,180,110,0);    -- DMG:110 Delay:180 Accuracy+30 Attack+20 Magic Accuracy+30 Magic Damage+217 "Magic Atk. Bonus"+10 Dagger skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21564,'kaja_knife',2,0,242,242,242,1,1,180,117,0);      -- DMG:117 Delay:180 DEX+10 INT+10 MND+10 Accuracy+35 Attack+25 Magic Accuracy+35 "Magic Atk. Bonus"+13 Magic Damage +217 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +242 Main hand: "Evisceration" "Evisceration" damage +50%
+INSERT INTO `item_weapon` VALUES (21565,'tauret',2,0,250,250,250,1,1,180,125,0);          -- DMG:125 Delay:180 DEX+15 INT+15 MND+15 Accuracy+40 Attack+30 Magic Accuracy+40 "Magic Atk. Bonus"+16 Magic Damage+217 Dagger skill +250 Parrying skill +250 Magic Accuracy skill +250 Main hand: "Evisceration" "Evisceration" damage +50% Increases critical hit rate based with lower TP
+INSERT INTO `item_weapon` VALUES (21573,'assassins_knife',2,0,242,242,228,1,1,196,130,0); -- DMG:130 Delay:196 HP+130 Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +228 "Treasure Hunter"+1 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21574,'plun._knife',2,0,255,255,242,1,1,189,131,0);     -- DMG:131 Delay:189 HP+140 Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Dagger skill +255 Parrying skill +255 Magic Accuracy skill +242 "Treasure Hunter"+2 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21575,'gandring',2,0,269,269,255,1,1,189,132,0);        -- DMG:132 Delay:189 HP+150 Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Dagger skill +269 Parrying skill +269 Magic Accuracy skill +255 "Treasure Hunter"+3
+INSERT INTO `item_weapon` VALUES (21576,'bards_knife',2,0,242,242,228,1,1,196,130,0);     -- DMG:130 Delay:196 HP+130 Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +228 Song effects: Damage taken -1% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21577,'bihu_knife',2,0,255,255,242,1,1,189,131,0);      -- DMG:131 Delay:189 HP+140 Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Dagger skill +255 Parrying skill +255 Magic Accuracy skill +242 Song effects: Damage taken -2% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21578,'barfawc',2,0,269,269,255,1,1,189,132,0);         -- DMG:132 Delay:189 HP+150 Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Dagger skill +269 Parrying skill +269 Magic Accuracy skill +255 Song effects: Damage taken -3%
+INSERT INTO `item_weapon` VALUES (21579,'comm._knife',2,0,242,242,228,1,1,196,130,0);     -- DMG:130 Delay:196 HP+130 Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +228 "Phantom Roll" effect: Damage taken -2% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21580,'lanun_knife',2,0,255,255,242,1,1,189,131,0);     -- DMG:131 Delay:189 HP+140 Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Dagger skill +255 Parrying skill +255 Magic Accuracy skill +242 "Phantom Roll" effect: Damage taken -4% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21581,'rostam',2,0,269,269,255,1,1,189,132,0);          -- DMG:132 Delay:189 HP+150 Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Dagger skill +269 Parrying skill +269 Magic Accuracy skill +255 "Phantom Roll" effect: Damage taken -6%
+INSERT INTO `item_weapon` VALUES (21582,'etoile_knife',2,0,242,242,228,1,1,196,130,0);    -- DMG:130 Delay:196 HP+130 Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Dagger skill +242 Parrying skill +242 Magic Accuracy skill +228 "Step" TP consumed -20 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21583,'horos_knife',2,0,255,255,242,1,1,189,131,0);     -- DMG:131 Delay:189 HP+140 Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Dagger skill +255 Parrying skill +255 Magic Accuracy skill +242 "Step" TP consumed -30 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21584,'setan_kober',2,0,269,269,255,1,1,189,132,0);     -- DMG:132 Delay:189 HP+150 Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Dagger skill +269 Parrying skill +269 Magic Accuracy skill +255 "Step" TP consumed -40
 INSERT INTO `item_weapon` VALUES (21604,'arasy_sword',3,0,242,242,188,2,1,240,123,0);
 INSERT INTO `item_weapon` VALUES (21605,'arasy_sword_+1',3,0,242,242,188,2,1,236,124,0);
 INSERT INTO `item_weapon` VALUES (21606,'enriching_sword',3,0,242,242,188,2,1,240,156,0);
 INSERT INTO `item_weapon` VALUES (21607,'enr._sword_+1',3,0,242,242,188,2,1,233,157,0);
 INSERT INTO `item_weapon` VALUES (21608,'onion_sword_ii',3,0,0,0,0,2,1,240,1,0);          -- Onion Sword II: DMG:1 Delay:240
 INSERT INTO `item_weapon` VALUES (21609,'save_the_queen_ii',3,0,0,0,0,2,1,264,1,0);       -- Save the Queen II: DMG:1 Delay:264
+INSERT INTO `item_weapon` VALUES (21610,'hepatizon_rapier',3,0,242,242,201,2,1,224,146,0); -- DMG:146 Delay:224 STR+3 MND+3 Accuracy+17 "Magic Atk. Bonus"+14 Magic Damage+108 Sword skill +242 Parrying skill +242 Magic Accuracy skill +201 Weapon Skill Accuracy+15 Adds "Swift Blade" effect
+INSERT INTO `item_weapon` VALUES (21611,'hep._rapier_+1',3,0,242,242,201,2,1,218,147,0);  -- DMG:147 Delay:218 STR+8 MND+8 Accuracy+22 "Magic Atk. Bonus"+14 Magic Damage+108 Sword skill +242 Parrying skill +242 Magic Accuracy skill +201 Weapon Skill Accuracy+20 Adds "Swift Blade" effect
+INSERT INTO `item_weapon` VALUES (21612,'raetic_blade',3,0,242,242,215,2,1,236,157,0);    -- DMG:157 Delay:236 HP+35 MP+25 Accuracy+37 Sword skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -2% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21613,'raetic_blade_+1',3,0,242,242,215,2,1,230,158,0); -- DMG:158 Delay:230 HP+40 MP+30 Accuracy+42 Sword skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -3% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1～50 for
+INSERT INTO `item_weapon` VALUES (21614,'hepatizon_sapara',3,0,242,242,188,2,1,236,154,0); -- DMG:154 Delay:236 STR+7 MND+7 Accuracy+27 Sword skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+15 Adds "Swift Blade" effect
+INSERT INTO `item_weapon` VALUES (21615,'hep._sapara_+1',3,0,242,242,188,2,1,230,155,0);  -- DMG:155 Delay:230 STR+12 MND+12 Accuracy+32 Sword skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+20 Adds "Swift Blade" effect
 INSERT INTO `item_weapon` VALUES (21617,'tokko_sword',3,0,215,215,215,2,1,240,130,0);     -- Tokko Sword: DMG:130 Delay:240 Sword skill +215 Parrying skill +215 Magic Accuracy skill +215
 INSERT INTO `item_weapon` VALUES (21618,'ajja_sword',3,0,223,223,223,2,1,240,140,0);      -- Ajja Sword: DMG:140 Delay:240 Accuracy+20 Magic Accuracy+20 Sword skill +223 Parrying skill +223 Magic Accuracy skill +223
 INSERT INTO `item_weapon` VALUES (21619,'eletta_sword',3,0,231,231,231,2,1,240,146,0);    -- Eletta Sword: DMG:146 Delay:240 Accuracy+30 Attack+20 Magic Accuracy+30 "Magic Atk. Bonus"+10 Magic Damage+217 Sword skill +231 Parrying skill +231 Magic Accuracy skill +231
@@ -4417,8 +4463,23 @@ INSERT INTO `item_weapon` VALUES (21632,'luhlaza_sword',3,0,255,255,242,2,1,260,
 INSERT INTO `item_weapon` VALUES (21633,'zomorrodnegar',3,0,269,269,255,2,1,260,180,0);   -- Zomorrodnegar: DMG:180 Delay:260 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+217 Sword skill +269 Parrying skill +269 Magic Accuracy skill +255 Blue magic skill +20
 INSERT INTO `item_weapon` VALUES (21654,'arasy_claymore',4,0,242,242,188,2,1,489,251,0);
 INSERT INTO `item_weapon` VALUES (21655,'arasy_claymore_+1',4,0,242,242,188,2,1,475,252,0);
-INSERT INTO `item_weapon` VALUES (21656,'dyrnwyn',4,0,228,228,228,0,1,480,313,0);
-INSERT INTO `item_weapon` VALUES (21657,'dyrnwyn_+1',4,0,228,228,228,0,1,466,314,0);
+INSERT INTO `item_weapon` VALUES (21656,'dyrnwyn',4,0,228,228,228,2,1,480,313,0);
+INSERT INTO `item_weapon` VALUES (21657,'dyrnwyn_+1',4,0,228,228,228,2,1,466,314,0);
+INSERT INTO `item_weapon` VALUES (21658,'brave_blade_ii',4,0,0,0,0,2,1,480,1,0);          -- DMG:1 Delay:480
+INSERT INTO `item_weapon` VALUES (21659,'beryllium_sword',4,0,242,242,188,2,1,444,289,0); -- DMG:289 Delay:444 STR+10 INT+10 Accuracy+27 Great Sword skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Spinning Slash" effect
+INSERT INTO `item_weapon` VALUES (21660,'bery._sword_+1',4,0,242,242,118,2,1,431,290,0);  -- DMG:290 Delay:431 STR+15 INT+15 Accuracy+32 Great Sword skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Spinning Slash" effect
+INSERT INTO `item_weapon` VALUES (21661,'rune_algol',4,0,0,0,0,2,1,489,80,0);             -- DMG:80 Delay:489 Latent effect: VIT+5 Weapon skill damage +1%
+INSERT INTO `item_weapon` VALUES (21662,'raetic_algol',4,0,242,242,215,2,1,489,326,0);    -- DMG:326 Delay:489 HP+70 MP+50 Accuracy+57 Great Sword skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21663,'raetic_algol_+1',4,0,242,242,215,2,1,474,327,0); -- DMG:327 Delay:474 HP+80 MP+60 Accuracy+62 Great Sword skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -5% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1~50 for a single attack
+INSERT INTO `item_weapon` VALUES (21667,'futhark_claymore',4,0,242,242,228,2,1,494,330,0); -- Futhark Claymore: DMG:330 Delay:494 HP+100 MP+50 Accuracy+30 Magic Accuracy+30 Magic Damage+186 Great Sword skill +242 Parrying skill +242 Magic Accuracy skill +228 Spell interruption rate down 10% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21668,'peord_claymore',4,0,255,255,242,2,1,480,331,0);  -- Peord Claymore: DMG:331 Delay:480 HP+120 MP+60 Accuracy+40 Magic Accuracy+40 Magic Damage+201 Great Sword skill +255 Parrying skill +255 Magic Accuracy skill +242 Spell interruption rate down 15% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21669,'morgelai',4,0,269,269,255,2,1,480,332,0);        -- Morgelai: DMG:332 Delay:480 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+217 Great Sword skill +269 Parrying skill +269 Magic Accuracy skill +255 Spell interruption rate down 20%
+INSERT INTO `item_weapon` VALUES (21670,'tokko_claymore',4,0,215,215,215,2,1,480,260,0);  -- DMG:260 Delay:480 Great Sword skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21671,'ajja_claymore',4,0,223,223,223,2,1,480,280,0);   -- DMG:280 Delay:480 Accuracy+20 Magic Accuracy+20 Great Sword skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21672,'eletta_claymore',4,0,231,231,231,2,1,480,293,0); -- DMG:293 Delay:480 Accuracy+30 Attack+20 Magic Accuracy+30 "Magic Atk. Bonus"+10 Magic Damage+217 Great Sword skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21673,'kaja_claymore',4,0,242,242,242,2,1,480,313,0);   -- DMG:313 Delay:480 DEX+15 INT+15 MND+15 Accuracy+35 Attack+25 Magic Accuracy+35 "Magic Atk. Bonus"+18 Magic Damage +226 Great Sword skill +242 Parrying skill +242 Magic Accuracy skill +242 "Ground Strike" "Ground Strike" damage +15%
+INSERT INTO `item_weapon` VALUES (21674,'nandaka',4,0,250,250,250,2,1,480,333,0);         -- DMG:333 Delay:480 DEX+20 INT+20 MND+20 Accuracy+40 Attack+30 Magic Accuracy+40 "Magic Atk. Bonus"+21 Magic Damage+226 Great Sword skill +250 Parrying skill +250 Magic Accuracy skill +250 "Ground Strike" "Ground Strike" damage +15% Weapon Skill: Weakens defense based on the number of downgrades to the target
+INSERT INTO `item_weapon` VALUES (21682,'lament',4,0,0,0,0,2,1,430,1,0);                  -- DMG:1 Delay:430
 INSERT INTO `item_weapon` VALUES (21683,'ragnarok',4,0,269,269,242,2,1,431,304,0);
 INSERT INTO `item_weapon` VALUES (21684,'caladbolg',4,0,269,269,242,2,1,430,303,0);
 INSERT INTO `item_weapon` VALUES (21685,'epeolatry',4,0,269,269,242,2,1,489,305,0);
@@ -4443,6 +4504,21 @@ INSERT INTO `item_weapon` VALUES (21704,'arasy_tabar',5,0,242,242,188,2,1,288,14
 INSERT INTO `item_weapon` VALUES (21705,'arasy_tabar_+1',5,0,242,242,188,2,1,280,149,0);
 INSERT INTO `item_weapon` VALUES (21706,'barbarity',5,0,242,242,188,2,1,288,188,0);
 INSERT INTO `item_weapon` VALUES (21707,'barbarity_+1',5,0,242,242,188,2,1,280,189,0);
+INSERT INTO `item_weapon` VALUES (21708,'beryllium_pick',5,0,242,242,188,2,1,312,203,0);  -- DMG:203 Delay:312 STR+10 Accuracy+27 Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+15 Adds "Mistral Axe" effect
+INSERT INTO `item_weapon` VALUES (21709,'beryllium_pick_+1',5,0,242,242,188,2,1,303,204,0); -- DMG:204 Delay:303 STR+15 Accuracy+32 Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+20 Adds "Mistral Axe" effect
+INSERT INTO `item_weapon` VALUES (21710,'raetic_axe',5,0,242,242,215,2,1,276,184,0);      -- DMG:184 Delay:276 HP+35 MP+25 Accuracy+37 Axe skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -2% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21711,'raetic_axe_+1',5,0,242,242,215,2,1,268,185,0);   -- DMG:185 Delay:268 HP+40 MP+30 Accuracy+42 Axe skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -3% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1~50 for a single attack
+INSERT INTO `item_weapon` VALUES (21715,'monster_axe',5,0,242,242,228,2,1,340,229,0);     -- DMG:229 Delay:340 HP+130 Accuracy+30 Magic Accuracy+30 Magic Damage+186 Axe skill +242 Parrying skill +242 Magic Accuracy skill +228 Dynamis (D): Accuracy+10 Magic Accuracy+10 Pet: Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30
+INSERT INTO `item_weapon` VALUES (21716,'ankusa_axe',5,0,255,255,242,2,1,333,230,0);      -- DMG:230 Delay:333 HP+140 Accuracy+40 Magic Accuracy+40 Magic Damage+201 Axe skill +255 Parrying skill +255 Magic Accuracy skill +242 Dynamis (D): Accuracy+10 Magic Accuracy+10 Pet: Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40
+INSERT INTO `item_weapon` VALUES (21717,'pangu',5,0,269,269,255,2,1,333,231,0);           -- DMG:231 Delay:333 HP+150 Accuracy+50 Magic Accuracy+50 Magic Damage+217 Axe skill +269 Parrying skill +269 Magic Accuracy skill +255 Pet: Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50
+INSERT INTO `item_weapon` VALUES (21718,'tokko_axe',5,0,215,215,215,2,1,288,156,0);       -- DMG:156 Delay:288 Axe skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21719,'ajja_axe',5,0,223,223,223,2,1,288,168,0);        -- DMG:168 Delay:288 Accuracy+20 Magic Accuracy+20 Axe skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21720,'eletta_axe',5,0,231,231,231,2,1,288,176,0);      -- DMG:176 Delay:288 Accuracy+30 Attack+20 Magic Accuracy+30 "Magic Atk. Bonus"+10 Magic Damage+217 Axe Skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21721,'kaja_axe',5,0,242,242,242,2,1,288,188,0);        -- DMG:188 Delay:288 DEX+10 INT+10 MND+10 Accuracy+35 Attack+25 Magic Accuracy+35 "Magic Atk. Bonus"+13 Magic Damage +217 Axe skill +242 Parrying skill +242 Magic Accuracy skill +242 Main hand: "Decimation" "Decimation" damage +120%
+INSERT INTO `item_weapon` VALUES (21722,'dolichenus',5,0,250,250,250,2,1,288,200,0);      -- DMG:200 Delay:288 DEX+15 INT+15 MND+15 Accuracy+40 Attack+30 Magic Accuracy+40 "Magic Atk. Bonus"+16 Magic Damage+217 Axe skill +250 Parrying skill +250 Magic Accuracy skill +250 Main hand: "Decimation" "Decimation" damage +120% Increases weapon skill dam
+INSERT INTO `item_weapon` VALUES (21741,'demonic_axe',5,0,0,0,0,2,1,288,1,0);             -- DMG:1 Delay:288
+INSERT INTO `item_weapon` VALUES (21742,'aern_axe',5,0,0,0,0,2,1,288,1,0);                -- DMG:1 Delay:288
+INSERT INTO `item_weapon` VALUES (21744,'gramks_axe',5,0,0,0,0,2,1,288,1,0);              -- DMG:1 Delay:288
 INSERT INTO `item_weapon` VALUES (21746,'digirbalag',5,0,242,242,188,2,1,276,159,0);
 INSERT INTO `item_weapon` VALUES (21747,'freydis',5,0,242,242,188,2,1,276,178,0);
 INSERT INTO `item_weapon` VALUES (21748,'habilitator',5,0,242,242,188,2,1,288,166,0);
@@ -4456,8 +4532,21 @@ INSERT INTO `item_weapon` VALUES (21755,'hodadenon',6,0,242,242,188,2,1,504,320,
 INSERT INTO `item_weapon` VALUES (21756,'bravura',6,0,269,269,228,2,1,488,344,0);
 INSERT INTO `item_weapon` VALUES (21757,'conqueror',6,0,269,269,228,2,1,504,315,0);
 INSERT INTO `item_weapon` VALUES (21758,'ukonvasara',6,0,269,269,228,2,1,482,340,0);
+INSERT INTO `item_weapon` VALUES (21761,'zadha_chopper',6,0,0,0,0,2,1,504,1,0);           -- DMG:1 Delay:504
 INSERT INTO `item_weapon` VALUES (21762,'arasy_axe',6,0,242,242,188,2,1,504,259,0);
 INSERT INTO `item_weapon` VALUES (21763,'arasy_axe_+1',6,0,242,242,188,2,1,489,260,0);
+INSERT INTO `item_weapon` VALUES (21765,'hepatizon_axe',6,0,242,242,188,2,1,504,329,0);   -- DMG:329 Delay:504 STR+10 VIT+10 Accuracy+27 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Full Break" effect
+INSERT INTO `item_weapon` VALUES (21766,'hepatizon_axe_+1',6,0,242,242,188,2,1,489,330,0); -- DMG:330 Delay:489 STR+15 VIT+15 Accuracy+32 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Full Break" effect
+INSERT INTO `item_weapon` VALUES (21767,'raetic_chopper',6,0,242,242,215,2,1,504,336,0);  -- DMG:336 Delay:504 HP+70 MP+50 Accuracy+57 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21768,'raetic_chopper_+1',6,0,242,242,215,2,1,489,337,0); -- DMG:337 Delay:489 HP+80 MP+60 Accuracy+62 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -5% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1～50
+INSERT INTO `item_weapon` VALUES (21772,'war._chopper',6,0,242,242,228,2,1,504,336,0);    -- DMG:336 Delay:504 HP+130 Accuracy+30 Magic Accuracy+30 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +228 Critical hit rate +5% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21773,'agoge_chopper',6,0,255,255,242,2,1,489,337,0);   -- DMG:337 Delay:489 HP+140 Accuracy+40 Magic Accuracy+40 Great Axe skill +255 Parrying skill +255 Magic Accuracy skill +242 Critical hit rate +7% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21774,'labraunda',6,0,269,269,255,2,1,489,338,0);       -- DMG:338 Delay:489 HP+150 Accuracy+50 Magic Accuracy+50 Great Axe skill +269 Parrying skill +269 Magic Accuracy skill +255 Critical hit rate +10%
+INSERT INTO `item_weapon` VALUES (21775,'tokko_chopper',6,0,215,215,215,2,1,508,275,0);   -- DMG:275 Delay:508 Great Axe skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21776,'ajja_chopper',6,0,223,223,223,2,1,508,296,0);    -- DMG:296 Delay:508 Accuracy+20 Magic Accuracy+20 Great Axe skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21777,'eletta_chopper',6,0,231,231,231,2,1,508,317,0);  -- DMG:317 Delay:508 Accuracy+30 Attack+20 Magic Accuracy+30 Great Axe skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21778,'kaja_chopper',6,0,242,242,242,2,1,508,338,0);    -- DMG:338 Delay:508 STR+15 DEX+15 VIT+15 Accuracy+35 Attack+25 Magic Accuracy+35 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +242 "Steel Cyclone" "Steel Cyclone" damage +30%
+INSERT INTO `item_weapon` VALUES (21779,'lycurgos',6,0,250,250,250,2,1,508,359,0);        -- DMG:359 Delay:508 STR+20 DEX+20 VIT+20 Accuracy+40 Attack+30 Magic Accuracy+40 Great Axe skill +250 Parrying skill +250 Magic Accuracy skill +250 "Steel Cyclone" "Steel Cyclone" damage +30% TP Bonus based on current HP
 INSERT INTO `item_weapon` VALUES (21804,'obschine',7,0,242,242,188,2,1,501,295,0);
 INSERT INTO `item_weapon` VALUES (21805,'pixquizpan',7,0,242,242,215,2,1,501,290,0);
 INSERT INTO `item_weapon` VALUES (21806,'pixquizpan_+1',7,0,242,242,215,2,1,490,291,0);
@@ -4466,13 +4555,43 @@ INSERT INTO `item_weapon` VALUES (21809,'liberator',7,0,269,269,242,2,1,528,330,
 INSERT INTO `item_weapon` VALUES (21810,'redemption',7,0,269,269,242,2,1,502,354,0);
 INSERT INTO `item_weapon` VALUES (21812,'arasy_scythe',7,0,242,242,188,2,1,528,271,0);
 INSERT INTO `item_weapon` VALUES (21813,'arasy_scythe_+1',7,0,242,242,188,2,1,513,272,0);
+INSERT INTO `item_weapon` VALUES (21815,'maliya_sickle',7,0,242,242,188,2,1,501,327,0);   -- DMG:327 Delay:501 STR+10 MND+10 Accuracy+27 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Cross Reaper" effect
+INSERT INTO `item_weapon` VALUES (21816,'maliya_sickle_+1',7,0,242,242,188,2,1,490,328,0); -- DMG:328 Delay:490 STR+15 MND+15 Accuracy+32 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Cross Reaper" effect
+INSERT INTO `item_weapon` VALUES (21817,'rune_scythe',7,0,0,0,0,2,1,528,90,0);            -- DMG:90 Delay:528 Latent effect: HP+10 Critical hit rate +5
+INSERT INTO `item_weapon` VALUES (21818,'raetic_scythe',7,0,242,242,215,2,1,528,352,0);   -- DMG:352 Delay:528 HP+70 MP+50 Accuracy+57 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21819,'raetic_scythe_+1',7,0,242,242,215,2,1,513,353,0); -- DMG:353 Delay:513 HP+80 MP+60 Accuracy+62 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -5% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1~50 for a single attack
+INSERT INTO `item_weapon` VALUES (21820,'lost_sickle',7,0,0,0,0,2,1,528,1,0);             -- DMG:1 Delay:528
+INSERT INTO `item_weapon` VALUES (21821,'lost_sickle_+1',7,0,0,0,0,2,1,513,2,0);          -- DMG:2 Delay:513 Additional effect: "Death"
+INSERT INTO `item_weapon` VALUES (21823,'abyss_scythe',7,0,242,242,228,2,1,528,352,0);    -- DMG:352 Delay:528 HP+100 MP+50 Accuracy+30 Magic Accuracy+30 Magic Damage+186 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +228 Adds 1% of current HP to Attack Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21824,'fallens_scythe',7,0,255,255,242,2,1,513,353,0);  -- DMG:353 Delay:513 HP+120 MP+60 Accuracy+40 Magic Accuracy+40 Magic Damage+201 Scythe skill +255 Parrying skill +255 Magic Accuracy skill +242 Adds 2% of current HP to Attack Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21825,'father_time',7,0,269,269,255,2,1,513,354,0);     -- DMG:354 Delay:513 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+217 Scythe skill +269 Parrying skill +269 Magic Accuracy skill +255 Adds 3% of current HP to Attack
+INSERT INTO `item_weapon` VALUES (21826,'tokko_scythe',7,0,215,215,215,2,1,528,286,0);    -- DMG:286 Delay:528 Scythe skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21827,'ajja_scythe',7,0,223,223,223,2,1,528,308,0);     -- DMG:308 Delay:528 Accuracy+20 Magic Accuracy+20 Scythe skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21828,'eletta_scythe',7,0,231,231,231,2,1,528,322,0);   -- DMG:322 Delay:528 Accuracy+30 Attack+20 Magic Accuracy+30 "Magic Atk. Bonus"+10 Magic Damage+217 Scythe skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21829,'kaja_scythe',7,0,242,242,242,2,1,528,344,0);     -- DMG:344 Delay:528 DEX+15 INT+15 MND+15 Accuracy+35 Attack+25 Magic Accuracy+35 "Magic Atk. Bonus"+18 Magic Damage +226 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +242 "Spiral Hell" "Spiral Hell" damage +100%
+INSERT INTO `item_weapon` VALUES (21830,'drepanum',7,0,250,250,250,2,1,528,366,0);        -- DMG:366 Delay:528 DEX+20 INT+20 MND+20 Accuracy+40 Attack+30 Magic Accuracy+40 "Magic Atk. Bonus"+21 Magic Damage+226 Scythe skill +250 Parrying skill +250 Magic Accuracy skill +250 "Spiral Hell" "Spiral Hell" damage +100% Skillchain bonus based on amount of MP consumed
 INSERT INTO `item_weapon` VALUES (21854,'reienkyo',8,0,242,242,188,2,1,480,282,0);
 INSERT INTO `item_weapon` VALUES (21855,'lembing',8,0,242,242,188,2,1,492,313,0);
 INSERT INTO `item_weapon` VALUES (21857,'gungnir',8,0,269,269,228,2,1,492,347,0);
 INSERT INTO `item_weapon` VALUES (21858,'ryunohige',8,0,269,269,228,2,1,492,307,0);
 INSERT INTO `item_weapon` VALUES (21859,'rhongomiant',8,0,269,269,228,2,1,492,347,0);
+INSERT INTO `item_weapon` VALUES (21860,'aern_spear',8,0,0,0,0,2,1,396,1,0);              -- DMG:1 Delay:396
+INSERT INTO `item_weapon` VALUES (21862,'mizukage_naginata',8,0,0,0,0,2,1,480,1,0);       -- DMG:1 Delay:480
+INSERT INTO `item_weapon` VALUES (21863,'tzee_xicus_blade',8,0,0,0,0,2,1,480,1,0);        -- DMG:1 Delay:480
 INSERT INTO `item_weapon` VALUES (21865,'arasy_lance',8,0,242,242,188,1,1,492,252,0);
 INSERT INTO `item_weapon` VALUES (21866,'arasy_lance_+1',8,0,242,242,188,1,1,478,253,0);
+INSERT INTO `item_weapon` VALUES (21869,'exalted_spear',8,0,228,228,188,1,1,396,258,0);   -- DMG:258 Delay:396 STR+15 Accuracy+47 Polearm skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Wheeling Thrust" effect
+INSERT INTO `item_weapon` VALUES (21870,'exalted_spear_+1',8,0,228,228,188,1,1,385,259,0); -- DMG:259 Delay:385 STR+20 Accuracy+52 Polearm skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Wheeling Thrust" effect
+INSERT INTO `item_weapon` VALUES (21871,'raetic_halberd',8,0,242,242,215,1,1,396,264,0);  -- DMG:264 Delay:396 HP+70 MP+50 Accuracy+57 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21872,'raetic_halberd_+1',8,0,242,242,215,1,1,385,265,0); -- DMG:265 Delay:385 HP+80 MP+60 Accuracy+62 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -5% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1~50 for a single attack
+INSERT INTO `item_weapon` VALUES (21876,'wyrm_lance',8,0,242,242,228,1,1,507,338,0);      -- DMG:338 Delay:507 HP+130 Accuracy+30 Magic Accuracy+30 Magic Damage+186 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +228 Adds 2% of wyvern's current HP to Attack Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21877,'pteroslaver_lance',8,0,255,255,242,1,1,492,339,0); -- DMG:339 Delay:492 HP+140 Accuracy+40 Magic Accuracy+40 Magic Damage+201 Polearm skill +255 Parrying skill +255 Magic Accuracy skill +242 Adds 4% of wyvern's current HP to Attack Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21878,'aram',8,0,269,269,255,1,1,492,340,0);            -- DMG:340 Delay:492 HP+150 Accuracy+50 Magic Accuracy+50 Magic Damage+217 Polearm skill +269 Parrying skill +269 Magic Accuracy skill +255 Adds 6% of wyvern's current HP to Attack
+INSERT INTO `item_weapon` VALUES (21879,'tokko_lance',8,0,215,215,215,1,1,480,260,0);     -- DMG:260 Delay:480 Polearm skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21880,'ajja_lance',8,0,223,223,223,1,1,480,280,0);      -- DMG:280 Delay:480 Accuracy+20 Magic Accuracy+20 Polearm skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21881,'eletta_lance',8,0,231,231,231,1,1,480,293,0);    -- DMG:293 Delay:480 Accuracy+30 Attack+20 Magic Accuracy+30 "Magic Atk. Bonus"+10 Magic Damage+217 Polearm skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21882,'kaja_lance',8,0,242,242,242,1,1,480,313,0);      -- DMG:313 Delay:480 DEX+15 INT+15 MND+15 Accuracy+35 Attack+25 Magic Accuracy+35 "Magic Atk. Bonus"+18 Magic Damage +226 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +242 "Impulse Drive" "Impulse Drive" damage +40%
+INSERT INTO `item_weapon` VALUES (21883,'shining_one',8,0,250,250,250,1,1,480,333,0);     -- DMG:333 Delay:480 DEX+20 INT+20 MND+20 Accuracy+40 Attack+30 Magic Accuracy+40 "Magic Atk. Bonus"+21 Magic Damage+226 Polearm skill +250 Parrying skill +250 Magic Accuracy skill +250 "Impulse Drive" "Impulse Drive" damage +40% Weapon Skill: Increases critical hit rate based on amount of TP consumed
 INSERT INTO `item_weapon` VALUES (21904,'kanaria',9,0,242,242,188,2,1,227,127,0);
 INSERT INTO `item_weapon` VALUES (21905,'taka',9,0,228,228,215,2,1,190,123,0);
 INSERT INTO `item_weapon` VALUES (21906,'kikoku',9,0,269,269,242,2,1,210,148,0);
@@ -4480,11 +4599,35 @@ INSERT INTO `item_weapon` VALUES (21907,'nagi',9,0,269,269,242,2,1,227,142,0);
 INSERT INTO `item_weapon` VALUES (21908,'kannagi',9,0,269,269,242,2,1,210,148,0);
 INSERT INTO `item_weapon` VALUES (21909,'yoshikiri',9,0,242,242,188,0,1,227,116,0);
 INSERT INTO `item_weapon` VALUES (21910,'yoshikiri_+1',9,0,242,242,188,0,1,222,117,0);
+INSERT INTO `item_weapon` VALUES (21915,'koga_shin',9,0,242,242,228,0,1,227,152,0);       -- DMG:152 Delay:227 HP+130 Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Katana skill +242 Parrying skill +242 Magic Accuracy skill +228 Attack+5 for each Utsusemi shadow image Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21916,'mochi._shin.',9,0,255,255,242,0,1,222,153,0);    -- DMG:153 Delay:222 HP+140 Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Katana skill +255 Parrying skill +255 Magic Accuracy skill +242 Attack+10 for each Utsusemi shadow image Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21917,'fudo_masamune',9,0,269,269,255,0,1,222,154,0);   -- DMG:154 Delay:222 HP+150 Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Katana skill +269 Parrying skill +269 Magic Accuracy skill +255 Attack+15 for each Utsusemi shadow image
+INSERT INTO `item_weapon` VALUES (21918,'tokko_katana',9,0,215,215,215,0,1,227,122,0);    -- DMG:122 Delay:227 Katana skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21919,'ajja_katana',9,0,223,223,223,0,1,227,132,0);     -- DMG:132 Delay:227 Accuracy+20 Magic Accuracy+20 Katana skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21920,'eletta_katana',9,0,231,231,231,0,1,227,138,0);   -- DMG:138 Delay:227 Accuracy+30 Attack+20 Ranged Accuracy+30 Magic Accuracy+30 "Magic Atk. Bonus"+10 Magic Damage+217 Katana skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21921,'kaja_katana',9,0,242,242,242,0,1,227,148,0);     -- DMG:148 Delay:227 DEX+10 AGI+10 INT+10 Accuracy+35 Attack+25 Ranged Accuracy+35 Magic Accuracy+35 "Magic Atk. Bonus"+13 Magic Damage +217 Katana skill +242 Parrying skill +242 Magic Accuracy skill +242 Main hand: "Blade: Ku" "Blade: Ku" damage +60%
+INSERT INTO `item_weapon` VALUES (21922,'gokotai',9,0,250,250,250,0,1,227,157,0);         -- DMG:157 Delay:227 DEX+15 AGI+15 INT+15 Accuracy+40 Attack+30 Ranged Accuracy+40 Magic Accuracy+40 "Magic Atk. Bonus"+16 Magic Damage+217 Katana skill +250 Parrying skill +250 Magic Accuracy skill +250 Main hand: "Blade: Ku" "Blade: Ku" damage +60% Enhance
+INSERT INTO `item_weapon` VALUES (21923,'debahocho',9,0,0,0,0,0,1,227,1,0);               -- DMG:1 Delay:227 Main hand: Cooking skill +2
+INSERT INTO `item_weapon` VALUES (21924,'debahocho_+1',9,0,0,0,0,0,1,222,2,0);            -- DMG:2 Delay:222 Main hand: Cooking skill +3
 INSERT INTO `item_weapon` VALUES (21954,'amanomurakumo',10,0,269,269,228,2,1,437,308,0);
 INSERT INTO `item_weapon` VALUES (21955,'kogarasumaru',10,0,269,269,228,2,1,450,281,0);
 INSERT INTO `item_weapon` VALUES (21956,'masamune',10,0,269,269,228,2,1,437,308,0);
 INSERT INTO `item_weapon` VALUES (21960,'ashijiro_no_tachi',10,0,228,228,188,0,1,450,231,0);
 INSERT INTO `item_weapon` VALUES (21961,'ashi._no_tachi_+1',10,0,228,228,188,0,1,437,232,0);
+INSERT INTO `item_weapon` VALUES (21963,'beryllium_tachi',10,0,228,228,188,0,1,420,274,0); -- DMG:274 Delay:420 STR+15 Accuracy+47 Katana skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Tachi: Gekko" effect
+INSERT INTO `item_weapon` VALUES (21964,'beryllium_tachi_+1',10,0,228,228,188,0,1,407,275,0); -- DMG:275 Delay:407 STR+20 Accuracy+52 Katana skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Tachi: Gekko" effect
+INSERT INTO `item_weapon` VALUES (21965,'zanmato',10,0,0,0,0,0,1,464,1,0);                -- DMG:1 Delay:464
+INSERT INTO `item_weapon` VALUES (21966,'zanmato_+1',10,0,0,0,0,0,1,450,2,0);             -- DMG:2 Delay:450 Additional effect: "Dispel"
+INSERT INTO `item_weapon` VALUES (21967,'melon_slicer',10,0,0,0,0,0,1,450,1,0);           -- DMG:1 Delay:450 Tachi: Suikawari
+INSERT INTO `item_weapon` VALUES (21968,'saotome-no-tachi',10,0,242,242,228,0,1,450,300,0); -- DMG:300 Delay:450 HP+130 Accuracy+30 Magic Accuracy+30 Great Katana skill +242 Parrying skill +242 Magic Accuracy skill +228 Sekkanoki: TP Bonus +50% based on remaining TP Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21969,'sakonji-no-tachi',10,0,255,255,242,0,1,437,301,0); -- DMG:301 Delay:437 HP+140 Accuracy+40 Magic Accuracy+40 Great Katana skill +255 Parrying skill +255 Magic Accuracy skill +242 Sekkanoki: TP Bonus +60% based on remaining TP Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21970,'fusenaikyo',10,0,269,269,255,0,1,437,302,0);     -- DMG:302 Delay:437 HP+150 Accuracy+50 Magic Accuracy+50 Great Katana skill +269 Parrying skill +269 Magic Accuracy skill +255 Sekkanoki: TP Bonus +70% based on remaining TP Able to use all great sword weapon skills
+INSERT INTO `item_weapon` VALUES (21971,'tokko_tachi',10,0,215,215,215,0,1,450,243,0);    -- DMG:243 Delay:450 Great Katana skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21972,'ajja_tachi',10,0,223,223,223,0,1,450,262,0);     -- DMG:262 Delay:450 Accuracy+20 Magic Accuracy+20 Great Katana skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21973,'eletta_tachi',10,0,231,231,231,0,1,450,281,0);   -- DMG:281 Delay:450 Accuracy+30 Attack+20 Magic Accuracy+30 Great Katana skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21974,'kaja_tachi',10,0,242,242,242,0,1,450,300,0);     -- DMG:300 Delay:450 STR+15 DEX+15 VIT+15 Accuracy+35 Attack+25 Magic Accuracy+35 Great Katana skill +242 Parrying skill +242 Magic Accuracy skill +242 "Tachi: Kasha" "Tachi: Kasha" damage +25%
+INSERT INTO `item_weapon` VALUES (21975,'hachimonji',10,0,250,250,250,0,1,450,318,0);     -- DMG:318 Delay:450 STR+20 DEX+20 VIT+20 Accuracy+40 Attack+30 Magic Accuracy+40 Great Katana skill +250 Parrying skill +250 Magic Accuracy skill +250 "Tachi: Kasha" "Tachi: Kasha" damage +25% "Auto-Attack": Converts Store TP to Multi Strikes
+INSERT INTO `item_weapon` VALUES (22004,'soulflayers_wand',11,0,0,0,0,3,1,264,1,0);       -- DMG:1 Delay:264
 INSERT INTO `item_weapon` VALUES (22015,'arasy_rod',11,0,242,242,215,3,1,288,148,0);
 INSERT INTO `item_weapon` VALUES (22016,'arasy_rod_+1',11,0,242,242,215,3,1,280,149,0);
 INSERT INTO `item_weapon` VALUES (22017,'seika_uchiwa',11,0,0,0,0,0,1,216,1,0);
@@ -4493,6 +4636,22 @@ INSERT INTO `item_weapon` VALUES (22019,'jingly_rod',11,0,0,0,0,0,1,216,1,0);
 INSERT INTO `item_weapon` VALUES (22020,'jingly_rod_+1',11,0,0,0,0,0,1,210,2,0);
 INSERT INTO `item_weapon` VALUES (22021,'ames',11,0,242,242,215,0,1,216,141,0);
 INSERT INTO `item_weapon` VALUES (22022,'ames_+1',11,0,242,242,215,0,1,210,142,0);
+INSERT INTO `item_weapon` VALUES (22023,'beryllium_mace',11,0,242,242,188,0,1,300,195,0); -- DMG:195 Delay:300 STR+7 MND+7 Accuracy+27 Club skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+15 Adds "Hexa Strike" effect
+INSERT INTO `item_weapon` VALUES (22024,'beryllium_mace_+1',11,0,242,242,188,0,1,291,196,0); -- DMG:196 Delay:291 STR+12 MND+12 Accuracy+32 Club skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+20 Adds "Hexa Strike" effect
+INSERT INTO `item_weapon` VALUES (22025,'raetic_rod',11,0,215,215,242,0,1,288,192,0);     -- DMG:192 Delay:288 HP+15 MP+15 Magic Accuracy+37 Club skill +215 Parrying skill +215 Magic Accuracy skill +242 "Cure" potency +20% "Cure" MP consumed +30% "Cure" potency II +10%
+INSERT INTO `item_weapon` VALUES (22026,'raetic_rod_+1',11,0,215,215,242,0,1,280,193,0);  -- DMG:193 Delay:280 HP+25 MP+25 Magic Accuracy+42 Club skill +215 Parrying skill +215 Magic Accuracy skill +242 "Cure" potency +23% "Cure" MP consumed +30% "Cure"+50 "Cure" potency II +10%
+INSERT INTO `item_weapon` VALUES (22027,'tokko_rod',11,0,215,215,215,0,1,288,156,0);      -- DMG:156 Delay:288 Club skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (22028,'ajja_rod',11,0,223,223,223,0,1,288,168,0);       -- DMG:168 Delay:288 Accuracy+20 Magic Accuracy+20 Club skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (22029,'eletta_rod',11,0,231,231,231,0,1,288,176,0);     -- DMG:176 Delay:288 Accuracy+30 Magic Accuracy+30 "Magic Atk. Bonus"+15 Magic Damage+232 Club skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (22030,'kaja_rod',11,0,242,242,242,0,1,288,188,0);       -- DMG:188 Delay:288 INT+10 MND+10 CHR+10 Accuracy+35 Magic Accuracy+35 "Magic Atk. Bonus"+18 Magic Damage +232 Club skill +242 Parrying skill +242 Magic Accuracy skill +242 Main hand: "Black Halo" "Black Halo" damage +50%
+INSERT INTO `item_weapon` VALUES (22031,'maxentius',11,0,250,250,250,0,1,288,200,0);      -- DMG:200 Delay:288 INT+15 MND+15 CHR+15 Accuracy+40 Magic Accuracy+40 "Magic Atk. Bonus"+21 Magic Damage+232 Club skill +250 Parrying skill +250 Magic Accuracy skill +250 Main hand: "Black Halo" "Black Halo" damage +50% Increases magic burst damage based on skillchain length
+INSERT INTO `item_weapon` VALUES (22033,'clerics_wand',11,0,228,228,242,0,1,288,192,0);   -- DMG:192 Delay:288 HP+100 MP+50 Accuracy+30 Magic Accuracy+30 Magic Damage+217 Club skill +228 Parrying skill +228 Magic Accuracy skill +242 Afflatus Misery: Esuna removes one extra status ailment Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22034,'piety_wand',11,0,242,242,255,0,1,280,193,0);     -- DMG:193 Delay:280 HP+120 MP+60 Accuracy+40 Magic Accuracy+40 Magic Damage+232 Club skill +242 Parrying skill +242 Magic Accuracy skill +255 Afflatus Misery: Esuna removes two extra status ailments Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22035,'asclepius',11,0,255,255,269,0,1,280,194,0);      -- DMG:194 Delay:280 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+248 Club skill +255 Parrying skill +255 Magic Accuracy skill +269 Afflatus Misery: Esuna removes three extra status ailments
+INSERT INTO `item_weapon` VALUES (22036,'bagua_wand',11,0,228,228,242,0,1,288,192,0);     -- DMG:192 Delay:288 HP+100 MP+50 Accuracy+30 Magic Accuracy+30 Magic Damage+217 Club skill +228 Parrying skill +228 Magic Accuracy skill +242 "Refresh"+1 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22037,'sifang_wand',11,0,242,242,255,0,1,280,193,0);    -- DMG:193 Delay:280 HP+120 MP+60 Accuracy+40 Magic Accuracy+40 Magic Damage+232 Club skill +242 Parrying skill +242 Magic Accuracy skill +255 "Refresh"+2 Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22038,'bhima',11,0,255,255,269,0,1,280,194,0);          -- DMG:194 Delay:280 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+248 Club skill +255 Parrying skill +255 Magic Accuracy skill +269 "Refresh"+3
+INSERT INTO `item_weapon` VALUES (22039,'floral_hagoita',11,0,0,0,0,0,1,264,2,0);         -- DMG:2 Delay:264
 INSERT INTO `item_weapon` VALUES (22054,'grioavolr',12,0,242,242,228,3,1,366,202,0);
 INSERT INTO `item_weapon` VALUES (22055,'oranyan',12,0,242,242,228,3,1,366,230,0);
 INSERT INTO `item_weapon` VALUES (22056,'gozuki_mezuki',12,0,242,242,188,3,1,412,266,0);
@@ -4503,10 +4662,37 @@ INSERT INTO `item_weapon` VALUES (22061,'tupsimati',12,0,269,269,269,3,1,402,251
 INSERT INTO `item_weapon` VALUES (22062,'laevateinn',12,0,269,269,269,3,1,402,251,0);
 INSERT INTO `item_weapon` VALUES (22063,'nirvana',12,0,269,269,269,3,1,402,251,0);
 INSERT INTO `item_weapon` VALUES (22064,'hvergelmir',12,0,269,269,269,3,1,390,275,0);
+INSERT INTO `item_weapon` VALUES (22065,'aern_staff',12,0,0,0,0,3,1,366,1,0);             -- DMG:1 Delay:366
+INSERT INTO `item_weapon` VALUES (22069,'hapy_staff',12,0,0,0,0,3,1,366,1,0);             -- DMG:1 Delay:366 Enchantment: Costume
+INSERT INTO `item_weapon` VALUES (22072,'lamia_staff',12,0,0,0,0,3,1,366,1,0);            -- DMG:1 Delay:366
 INSERT INTO `item_weapon` VALUES (22074,'arasy_staff',12,0,242,242,228,3,1,366,188,0);
 INSERT INTO `item_weapon` VALUES (22075,'arasy_staff_+1',12,0,242,242,228,3,1,356,189,0);
 INSERT INTO `item_weapon` VALUES (22076,'was',12,0,242,242,188,0,1,366,238,0);
 INSERT INTO `item_weapon` VALUES (22077,'was_+1',12,0,242,242,188,0,1,356,239,0);
+INSERT INTO `item_weapon` VALUES (22078,'exalted_staff',12,0,242,242,188,0,1,412,268,0); -- DMG:268 Delay:412 STR+10 DEX+10 Accuracy+27 Attack+8 Staff skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Weapon skill damage +15%
+INSERT INTO `item_weapon` VALUES (22079,'exalted_staff_+1',12,0,242,242,188,0,1,399,269,0); -- DMG:269 Delay:399 STR+15 DEX+15 Accuracy+32 Attack+8 Staff skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Weapon skill damage +18%
+INSERT INTO `item_weapon` VALUES (22080,'raetic_staff',12,0,215,215,242,0,1,366,244,0); -- DMG:244 Delay:366 HP+30 MP+30 Magic Accuracy+57 "Magic Atk. Bonus"+28 Magic Damage +217 Staff skill +215 Parrying skill +215 Magic Accuracy skill +242 Elemental magic MP consumed +30%: "Magic Atk. Bonus"+50
+INSERT INTO `item_weapon` VALUES (22081,'raetic_staff_+1',12,0,215,215,242,0,1,356,245,0); -- DMG:245 Delay:356 HP+40 MP+40 Magic Accuracy+62 "Magic Atk. Bonus"+31 Magic Damage +217 Staff skill +215 Parrying skill +215 Magic Accuracy skill +242 Elemental magic MP consumed +30%: Magic Damage +50 "Magic Atk. Bonus"+50
+INSERT INTO `item_weapon` VALUES (22082,'tokko_staff',12,0,215,215,215,0,1,366,198,0); -- DMG:198 Delay:366 Staff skill +215 Parrying skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (22083,'ajja_staff',12,0,223,223,223,0,1,366,213,0); -- DMG:213 Delay:366 Accuracy+20 Magic Accuracy+20 Staff skill +223 Parrying skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (22084,'eletta_staff',12,0,231,231,231,0,1,366,223,0); -- DMG:223 Delay:366 Accuracy+30 Magic Accuracy+30 "Magic Atk. Bonus"+15 Magic Damage+232 Staff skill +231 Parrying skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (22085,'kaja_staff',12,0,242,242,242,0,1,366,238,0); -- DMG:238 Delay:366 INT+15 MND+15 CHR+15 Accuracy+35 Magic Accuracy+35 "Magic Atk. Bonus"+23 Magic Damage +241 Staff skill +242 Parrying skill +242 Magic Accuracy skill +242 "Retribution" "Retribution" damage +20%
+INSERT INTO `item_weapon` VALUES (22086,'xoanon',12,0,250,250,250,0,1,366,254,0); -- DMG:254 Delay:366 INT+20 MND+20 CHR+20 Accuracy+40 Magic Accuracy+40 "Magic Atk. Bonus"+26 Magic Damage+241 Staff skill +250 Parrying skill +250 Magic Accuracy skill +250 "Retribution" "Retribution" damage +20% Increases magic damage based on amount of TP consumed
+INSERT INTO `item_weapon` VALUES (22091,'sorcerers_staff',12,0,228,228,242,0,1,412,274,0); -- DMG:274 Delay:412 HP+100 MP+50 Accuracy+30 Magic Accuracy+30 Magic Damage+279 Staff skill +228 Parrying skill +228 Magic Accuracy skill +242 Converts 3% of damage taken to MP Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22092,'archmages_staff',12,0,242,242,255,0,1,399,275,0); -- DMG:275 Delay:399 HP+120 MP+60 Accuracy+40 Magic Accuracy+40 Magic Damage+294 Staff skill +242 Parrying skill +242 Magic Accuracy skill +255 Converts 4% of damage taken to MP Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22093,'kaumodaki',12,0,255,255,269,0,1,399,276,0); -- DMG:276 Delay:399 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+310 Staff skill +255 Parrying skill +255 Magic Accuracy skill +269 Converts 5% of damage taken to MP
+INSERT INTO `item_weapon` VALUES (22094,'summoners_staff',12,0,228,228,242,0,1,412,274,0); -- DMG:274 Delay:412 HP+100 MP+50 Accuracy+30 Magic Accuracy+30 Magic Damage+279 Staff skill +228 Parrying skill +228 Magic Accuracy skill +242 Dynamis (D): Accuracy+10 Magic Accuracy+10 Avatar: Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30
+INSERT INTO `item_weapon` VALUES (22095,'glyphic_staff',12,0,242,242,255,0,1,399,275,0); -- DMG:275 Delay:399 HP+120 MP+60 Accuracy+40 Magic Accuracy+40 Magic Damage+294 Staff skill +242 Parrying skill +242 Magic Accuracy skill +255 Dynamis (D): Accuracy+10 Magic Accuracy+10 Avatar: Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40
+INSERT INTO `item_weapon` VALUES (22096,'draumstafir',12,0,255,255,269,0,1,399,276,0); -- DMG:276 Delay:399 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+310 Staff skill +255 Parrying skill +255 Magic Accuracy skill +269 Avatar: Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50
+INSERT INTO `item_weapon` VALUES (22097,'argute_staff',12,0,228,228,242,0,1,412,274,0); -- DMG:274 Delay:412 HP+100 MP+50 Accuracy+30 Magic Accuracy+30 Magic Damage+279 Staff skill +228 Parrying skill +228 Magic Accuracy skill +242 Enhancing magic duration +10% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22098,'pedagogy_staff',12,0,242,242,255,0,1,399,275,0); -- DMG:275 Delay:399 HP+120 MP+60 Accuracy+40 Magic Accuracy+40 Magic Damage+294 Staff skill +242 Parrying skill +242 Magic Accuracy skill +255 Enhancing magic duration +15% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22099,'musa',12,0,255,255,269,0,1,399,276,0); -- DMG:276 Delay:399 HP+130 MP+70 Accuracy+50 Magic Accuracy+50 Magic Damage+310 Staff skill +255 Parrying skill +255 Magic Accuracy skill +269 Enhancing magic duration +20%
+INSERT INTO `item_weapon` VALUES (22107,'ullr',25,0,250,0,0,1,1,360,178,0); -- DMG:178 Delay:360 STR+15 DEX+15 AGI+15 Ranged Accuracy+40 Ranged Attack+30 Magic Accuracy+40 Archery skill +250 "Empyreal Arrow" "Empyreal Arrow" damage +50% Ranged Attack: Increases the ranged accuracy upper limit for attacks from a suitable distance by +4%
+INSERT INTO `item_weapon` VALUES (22108,'tokko_bow',25,0,215,0,0,1,1,360,136,0); -- DMG:136 Delay:360 Archery skill +215
+INSERT INTO `item_weapon` VALUES (22109,'ajja_bow',25,0,223,0,0,1,1,360,147,0); -- DMG:147 Delay:360 Ranged Accuracy+20 Magic Accuracy+20 Archery skill +223
+INSERT INTO `item_weapon` VALUES (22110,'eletta_bow',25,0,231,0,0,1,1,360,157,0); -- DMG:157 Delay:360 Ranged Accuracy+30 Ranged Attack+20 Magic Accuracy+30 Archery skill +231
+INSERT INTO `item_weapon` VALUES (22111,'kaja_bow',25,0,242,0,0,1,1,360,164,0); -- DMG:164 Delay:360 STR+10 DEX+10 AGI+10 Ranged Accuracy+35 Ranged Attack+25 Magic Accuracy+35 Archery skill +242 "Empyreal Arrow" "Empyreal Arrow" damage +50%
+INSERT INTO `item_weapon` VALUES (22112,'mizukage-no-yumi',25,0,0,0,0,1,1,524,270,0); -- DMG:1 Delay:524
 INSERT INTO `item_weapon` VALUES (22113,'teller',25,0,242,0,0,1,1,600,270,0);
 INSERT INTO `item_weapon` VALUES (22114,'steinthor',25,0,242,0,0,1,1,600,290,0);
 INSERT INTO `item_weapon` VALUES (22115,'yoichinoyumi',25,0,269,0,0,1,1,524,303,0);
@@ -4518,9 +4704,28 @@ INSERT INTO `item_weapon` VALUES (22120,'imati',26,0,242,0,0,1,1,432,145,0);
 INSERT INTO `item_weapon` VALUES (22121,'imati_+1',26,0,242,0,0,1,1,424,146,0);
 INSERT INTO `item_weapon` VALUES (22122,'arasy_bow',25,0,242,0,0,1,1,540,226,0);
 INSERT INTO `item_weapon` VALUES (22123,'arasy_bow_+1',25,0,242,0,0,1,1,524,227,0);
+INSERT INTO `item_weapon` VALUES (22124,'artemiss_bow',25,0,0,0,0,1,1,360,1,0);           -- DMG:1 Delay:360
+INSERT INTO `item_weapon` VALUES (22125,'exalted_bow',25,0,228,0,0,1,1,360,205,0);        -- DMG:205 Delay:360 STR+7 AGI+7 Ranged Accuracy+52 Archery skill +228 Adds "Arching Arrow" effect
+INSERT INTO `item_weapon` VALUES (22126,'exalted_bow_+1',25,0,228,0,0,1,1,351,206,0);     -- DMG:206 Delay:351 STR+12 AGI+12 Ranged Accuracy+57 Archery skill +228 Adds "Arching Arrow" effect
+INSERT INTO `item_weapon` VALUES (22127,'raetic_bow',25,0,242,0,0,1,1,360,210,0);         -- DMG:210 Delay:360 HP+35 MP+25 Ranged Accuracy+57 Archery skill +242 Damage taken -2% Consumes 5% of MP during a ranged attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (22128,'raetic_bow_+1',25,0,242,0,0,1,1,351,211,0);      -- DMG:211 Delay:351 HP+40 MP+30 Ranged Accuracy+62 Archery skill +242 Damage taken -3% Consumes 5% of MP during a ranged attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1～50 for a single attack
+INSERT INTO `item_weapon` VALUES (22129,'yoichinoyumi',25,0,269,0,0,1,1,524,303,0);       -- DMG:303 Delay:524 Ranged Accuracy+60 Ranged Attack+45 Archery skill +269 "Namas Arrow" Aftermath: Ranged Accuracy+30 "Snapshot"+5 Afterglow
+INSERT INTO `item_weapon` VALUES (22130,'gandiva',25,0,269,0,0,1,1,490,286,0);            -- DMG:286 Delay:490 DEX+50 Archery skill +269 "Jishnu's Radiance" Aftermath: Occasionally attacks for triple damage Afterglow
+INSERT INTO `item_weapon` VALUES (22131,'fail-not',25,0,269,0,0,1,1,600,330,0);           -- DMG:330 Delay:600 Magic Accuracy+40 Magic Damage+155 Archery skill +269 "Store TP"+10 "TP Bonus"+500 "Apex Arrow" Aftermath: Increases skillchain potency Increases magic burst potency Ultimate Skillchain Dispense: Chrono Arrows
+INSERT INTO `item_weapon` VALUES (22132,'artemiss_bow_+',25,0,0,0,0,1,1,351,2,0);         -- DMG:2 Delay:351 Enchantment: "Teleport" (Ro'Maeve)
 INSERT INTO `item_weapon` VALUES (22134,'holliday',26,1,242,0,0,1,1,600,107,0);
 INSERT INTO `item_weapon` VALUES (22135,'arasy_gun',26,1,242,0,0,1,1,600,107,0);
 INSERT INTO `item_weapon` VALUES (22136,'arasy_gun_+1',26,1,242,0,0,1,1,582,108,0);
+INSERT INTO `item_weapon` VALUES (22137,'exalted_c.bow',26,0,242,0,0,1,1,232,110,0);      -- DMG:110 Delay:232 AGI+10 Ranged Accuracy+32 Marksmanship skill +242 Adds "Heavy Shot" effect
+INSERT INTO `item_weapon` VALUES (22138,'exalted_c.bow_+1',26,0,242,0,0,1,1,227,111,0);   -- DMG:111 Delay:227 AGI+15 Ranged Accuracy+37 Marksmanship skill +242 Adds "Heavy Shot" effect
+INSERT INTO `item_weapon` VALUES (22139,'gastraphetes',26,0,269,0,0,1,1,432,176,0);       -- DMG:176 Delay:432 Ranged Accuracy+20 Magic Damage+217 Marksmanship skill +269 "Snapshot"+10 Increases "Barrage" accuracy V "Trueflight" Aftermath: Inc. Rng. Acc./Rng. Atk. Occ. deals double or triple damage Afterglow
+INSERT INTO `item_weapon` VALUES (22140,'annihilator',26,1,269,0,0,1,1,582,143,0);        -- DMG:143 Delay:582 Ranged Accuracy+60 Ranged Attack+45 Magic Damage+155 Marksmanship skill +269 "Coronach" Aftermath: Ranged Attack+10% Enmity-25 Afterglow
+INSERT INTO `item_weapon` VALUES (22141,'death_penalty',26,1,269,0,0,1,1,480,101,0);      -- DMG:101 Delay:480 Magic Damage+217 Marksmanship skill +269 Enhances "Quick Draw" effect V "Leaden Salute" Aftermath: Inc. Rng. Acc./Rng. Atk. Occ. deals double or triple damage Afterglow
+INSERT INTO `item_weapon` VALUES (22142,'armageddon',26,1,269,0,0,1,1,582,143,0);         -- DMG:143 Delay:582 AGI+50 Magic Damage+217 Marksmanship skill +269 "Wildfire" Aftermath: Occasionally attacks for triple damage Afterglow
+INSERT INTO `item_weapon` VALUES (22143,'fomalhaut',26,1,269,0,0,1,1,600,167,0);          -- DMG:167 Delay:600 Magic Accuracy+40 Magic Damage+155 Marksmanship skill +269 "Store TP"+10 "TP Bonus"+500 "Last Stand" Aftermath: Increases skillchain potency Increases magic burst potency Ultimate Skillchain Dispense: Chrono Bullets
+INSERT INTO `item_weapon` VALUES (22147,'scouts_crossbow',26,0,242,0,0,1,1,288,126,0);    -- DMG:126 Delay:288 HP+130 Ranged Accuracy+30 Magic Accuracy+30 Magic Damage+186 Marksmanship skill +242 "Snapshot"+10 Dynamis (D): Ranged Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22148,'arke_crossbow',26,0,255,0,0,1,1,280,127,0);      -- DMG:127 Delay:280 HP+140 Ranged Accuracy+40 Magic Accuracy+40 Magic Damage+201 Marksmanship skill +255 "Snapshot"+15 Dynamis (D): Ranged Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (22149,'sharanga',26,0,269,0,0,1,1,280,128,0);           -- DMG:128 Delay:280 HP+150 Ranged Accuracy+50 Magic Accuracy+50 Magic Damage+217 Marksmanship skill +269 "Snapshot"+20
 INSERT INTO `item_weapon` VALUES (22250,'seraphic_ampulla',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (22251,'grenade_core',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (22252,'sapience_orb',0,0,0,0,0,0,1,999,0,0);
@@ -4546,6 +4751,13 @@ INSERT INTO `item_weapon` VALUES (22271,'pemphredo_tathlum',0,0,0,0,0,0,1,999,0,
 INSERT INTO `item_weapon` VALUES (22275,'pamama_peel',27,0,0,0,0,0,1,800,1,0);
 INSERT INTO `item_weapon` VALUES (22276,'sasuke_shuriken',27,3,242,0,0,0,1,192,99,0);
 INSERT INTO `item_weapon` VALUES (22277,'sasuke_shuriken_+1',27,3,242,0,0,0,1,188,100,0);
+INSERT INTO `item_weapon` VALUES (22278,'staunch_tathlum',0,0,0,0,0,0,1,0,0,0);           -- Resistance to all status ailments +10 Spellcasting interruption rate -10% Damage taken -2%
+INSERT INTO `item_weapon` VALUES (22279,'staunch_tathlum_+1',0,0,0,0,0,0,1,0,0,0);        -- Resistance to all status ailments +11 Spellcasting interruption rate -11% Damage taken -3%
+INSERT INTO `item_weapon` VALUES (22280,'yamarang',0,0,0,0,0,0,1,0,0,0);                  -- Accuracy+15 Magic Accuracy+15 Evasion+15 Magic Evasion+15 "Store TP"+3 "Waltz" potency +5%
+INSERT INTO `item_weapon` VALUES (22281,'knobkierrie',0,0,0,0,0,0,1,0,0,0);               -- Attack+23 Weapon skill damage +6%
+INSERT INTO `item_weapon` VALUES (22284,'abdhaljs_tome',0,0,0,0,0,0,1,0,0,0);             -- A copy of a book written by the great Abdhaljs. He has the only original copy. Hallmark Bonus: +200% Gallantry Bonus: +200%
+INSERT INTO `item_weapon` VALUES (22285,'beryllium_bolt',26,0,0,0,0,1,1,192,108,0);       -- DMG:108 Delay:192 Ranged Attack+12
+INSERT INTO `item_weapon` VALUES (22287,'scouts_bolt',26,0,0,0,0,1,1,192,156,0);          -- DMG:156 Delay:192 Ranged Accuracy+25 Magic Accuracy+25 "Recycle"+20 Additional effect: Light damage
 /*!40000 ALTER TABLE `item_weapon` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

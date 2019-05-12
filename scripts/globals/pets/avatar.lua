@@ -34,17 +34,23 @@ function onMobDeath(mob, player, isKiller)
 
 end
 
--- on engage, return the delay reduction based on skill to cast on battle start
-function onPetEngage(pet, delay)
-    return spirits[pet:getFamily()].getEngageDelay(pet, delay)
+function onMobEngaged(pet)
+    -- return incoming delay value to return to legacy/monster mode    
+    local delay = spirits[pet:getFamily()].getEngageDelay(pet, delay)
+    pet:setMobMod(MOBMOD_MAGIC_COOL, delay/1000)
 end
 
 -- on each fight round, adjust delay to match smn skill
-function onPetFight(pet, target, delay)
-    return spirits[pet:getFamily()].getCastingTime(pet)
+function onMobFight(pet, target)
+    -- return the value provided in delay to resume legacy monster mode
+    local delay = pet:getMobMod(MOBMOD_MAGIC_COOL) * 1000
+    delay = spirits[pet:getFamily()].getCastingTime(pet)
+    pet:setMobMod(MOBMOD_MAGIC_COOL, delay/1000)
 end
 
 -- return true if you are casting a spell, otherwise return false
-function onPetRoam(pet, msSinceLastCast)
-    return spirits[pet:getFamily()].castSpell(pet, msSinceLastCast)
+function onMobRoam(pet, msSinceLastCast)
+    local msSinceLastCast = pet:getLastMagicTime()
+	spirits[pet:getFamily()].castSpell(pet, msSinceLastCast)
+	return
 end

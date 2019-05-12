@@ -683,6 +683,7 @@ public:
     int32 actionQueueEmpty(lua_State*);     // returns whether the action queue is empty or not
 
     int32 castSpell(lua_State*);            // forces a mob to cast a spell (parameter = spell ID, otherwise picks a spell from its list)
+    int32 getLastMagicTime(lua_State*);     // get the time between now and the last time the monster cast a spell (in ms)
     int32 useJobAbility(lua_State*);        // forces a job ability use (players/pets only)
     int32 useMobAbility(lua_State*);        // forces a mob to use a mobability (parameter = skill ID)
     int32 hasTPMoves(lua_State*);
