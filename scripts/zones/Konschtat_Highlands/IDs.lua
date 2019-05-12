@@ -44,7 +44,7 @@ zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
         STEELFLEECE_PH =
         {
             [17219885] = 17219887, -- 21 50 514
-            [17219987] = 17219887, -- -163.198 62.392 568.282 (wrong PHID)
+            [17219987] = 17219887, -- -163.198 62.392 568.282
             [17219886] = 17219887, -- 160 24 121
             [17219887] = 17219886, -- Steelfleece can't spawn if Rampaging is up
         },
