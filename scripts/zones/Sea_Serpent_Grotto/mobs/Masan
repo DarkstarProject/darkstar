@@ -2,9 +2,7 @@
 -- Area: Sea Serpent Grotto
 --   NM: Masan
 -----------------------------------
-
 require("scripts/globals/status")
-
 -----------------------------------
 
 function onMobInitialize(mob)
