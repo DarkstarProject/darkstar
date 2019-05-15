@@ -3885,6 +3885,7 @@ INSERT INTO `item_weapon` VALUES (20928,'ryunohige',8,0,242,242,215,1,1,492,245,
 INSERT INTO `item_weapon` VALUES (20929,'rhongomiant',8,0,242,242,215,1,1,492,250,0);
 INSERT INTO `item_weapon` VALUES (20930,'rhongomiant',8,0,242,242,215,1,1,492,250,0);
 INSERT INTO `item_weapon` VALUES (20932,'habile_mazrak',8,0,242,242,188,1,1,492,300,0);
+INSERT INTO `item_weapon` VALUES (20933,'hotengeki',8,0,0,0,0,1,1,492,1,0);
 INSERT INTO `item_weapon` VALUES (20935,'trishula',8,0,269,269,228,1,1,492,345,0);
 INSERT INTO `item_weapon` VALUES (20936,'koresuke',8,0,242,242,188,1,1,480,271,0);
 INSERT INTO `item_weapon` VALUES (20937,'rhomphaia',8,0,242,242,188,1,1,492,268,0);
@@ -4755,6 +4756,7 @@ INSERT INTO `item_weapon` VALUES (22278,'staunch_tathlum',0,0,0,0,0,0,1,0,0,0); 
 INSERT INTO `item_weapon` VALUES (22279,'staunch_tathlum_+1',0,0,0,0,0,0,1,0,0,0);        -- Resistance to all status ailments +11 Spellcasting interruption rate -11% Damage taken -3%
 INSERT INTO `item_weapon` VALUES (22280,'yamarang',0,0,0,0,0,0,1,0,0,0);                  -- Accuracy+15 Magic Accuracy+15 Evasion+15 Magic Evasion+15 "Store TP"+3 "Waltz" potency +5%
 INSERT INTO `item_weapon` VALUES (22281,'knobkierrie',0,0,0,0,0,0,1,0,0,0);               -- Attack+23 Weapon skill damage +6%
+INSERT INTO `item_weapon` VALUES (22283,'marvelous_cheer',42,0,0,0,0,0,1,240,0,0);
 INSERT INTO `item_weapon` VALUES (22284,'abdhaljs_tome',0,0,0,0,0,0,1,0,0,0);             -- A copy of a book written by the great Abdhaljs. He has the only original copy. Hallmark Bonus: +200% Gallantry Bonus: +200%
 INSERT INTO `item_weapon` VALUES (22285,'beryllium_bolt',26,0,0,0,0,1,1,192,108,0);       -- DMG:108 Delay:192 Ranged Attack+12
 INSERT INTO `item_weapon` VALUES (22287,'scouts_bolt',26,0,0,0,0,1,1,192,156,0);          -- DMG:156 Delay:192 Ranged Accuracy+25 Magic Accuracy+25 "Recycle"+20 Additional effect: Light damage
