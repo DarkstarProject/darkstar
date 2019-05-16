@@ -18,7 +18,6 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local message = dsp.msg.basic.SKILL_MISS
     local typeEffect = dsp.effect.AMNESIA
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60))
