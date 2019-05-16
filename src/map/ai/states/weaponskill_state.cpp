@@ -91,13 +91,10 @@ void CWeaponSkillState::SpendCost()
     }
     else
     {
-        if (dsprand::GetRandomNumber(100) < m_PEntity->getMod(Mod::WS_NO_DEPLETE))
+        tp = m_PEntity->health.tp;
+
+        if (m_PEntity->getMod(Mod::WS_NO_DEPLETE) <= dsprand::GetRandomNumber(100))
         {
-            tp = m_PEntity->health.tp;
-        }
-        else
-        {
-            tp = m_PEntity->health.tp;
             m_PEntity->health.tp = 0;
         }
     }
