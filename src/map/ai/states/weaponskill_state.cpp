@@ -28,7 +28,6 @@ This file is part of DarkStar-server source code.
 #include "../../utils/battleutils.h"
 #include "../../weapon_skill.h"
 #include "../../status_effect_container.h"
-#include "../../modifier.h"
 
 CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsid) :
     CState(PEntity, targid),
