@@ -295,6 +295,7 @@ enum class Mod
     // Warrior
     DOUBLE_ATTACK             = 288, // Percent chance to proc
     WARCRY_DURATION           = 483, // Warcy duration bonus from gear
+    BERSERK_EFFECT            = 948, // Conqueror Berserk Effect
 
     // Monk
     BOOST_EFFECT              = 97,  // Boost power in tenths
@@ -774,9 +775,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 948, // stuff
     // SPARE = 949, // stuff
     // SPARE = 950, // stuff
+    // SPARE = 951, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

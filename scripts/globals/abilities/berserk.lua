@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.BERSERK,1,0,180)
+    player:addStatusEffect(dsp.effect.BERSERK,25 + player:getMod(dsp.mod.BERSERK_EFFECT),0,180)
 
     return dsp.effect.BERSERK
 end
