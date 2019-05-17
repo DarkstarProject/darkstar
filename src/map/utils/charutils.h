@@ -28,7 +28,7 @@ This file is part of DarkStar-server source code.
 
 #include "../trait.h"
 #include "../entities/charentity.h"
-#include "../items/item_armor.h"
+#include "../items/item_equipment.h"
 
 class CPetEntity;
 class CMobEntity;

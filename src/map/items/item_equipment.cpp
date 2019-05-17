@@ -21,14 +21,14 @@
 ===========================================================================
 */
 
-#include "item_armor.h"
+#include "item_equipment.h"
 
 #include <string.h>
 #include "../map.h"
 
 CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 {
-	setType(ITEM_ARMOR);
+	setType(ITEM_EQUIPMENT);
 
 	m_jobs         = 0;
 	m_modelID      = 0;
