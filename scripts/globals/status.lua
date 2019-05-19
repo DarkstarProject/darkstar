@@ -1508,7 +1508,7 @@ dsp.mod =
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
     -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT             = 841, -- Generic (all Weaponskills) damage, first hit only.
-    WS_NO_DEPLETE                   = 948, -- % chance a Weaponskill depletes no TP.
+    WS_NO_DEPLETE                   = 949, -- % chance a Weaponskill depletes no TP.
 
     -- Circle Abilities Extended Duration from AF/AF+1
     HOLY_CIRCLE_DURATION            = 857,
@@ -1530,9 +1530,9 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 949, -- stuff
     -- SPARE = 950, -- stuff
     -- SPARE = 951, -- stuff
+    -- SPARE = 952, -- stuff
 };
 
 dsp.latent =

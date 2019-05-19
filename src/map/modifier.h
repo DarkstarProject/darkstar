@@ -766,7 +766,7 @@ enum class Mod
     ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
-    WS_NO_DEPLETE             = 948, // % chance a Weaponskill depletes no TP.
+    WS_NO_DEPLETE             = 949, // % chance a Weaponskill depletes no TP.
 
     EXPERIENCE_RETAINED       = 914, // Experience points retained upon death (this is a percentage)
     CAPACITY_BONUS            = 915, // Capacity point bonus granted
@@ -776,9 +776,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 949, // stuff
     // SPARE = 950, // stuff
     // SPARE = 951, // stuff
+    // SPARE = 952, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
