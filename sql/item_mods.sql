@@ -40456,6 +40456,7 @@ INSERT INTO `item_mods` VALUES (27507,25,5);
 INSERT INTO `item_mods` VALUES (27507,27,-5);
 INSERT INTO `item_mods` VALUES (27507,28,10);
 INSERT INTO `item_mods` VALUES (27507,296,2);
+INSERT INTO `item_mods` VALUES (27510,948,1); -- Fotia Gorget 1% No Tp used on Weaponskill
 INSERT INTO `item_mods` VALUES (27516,12,6); -- Satlada Necklace INT +6
 INSERT INTO `item_mods` VALUES (27516,311,10); -- Magic Damage +10
 INSERT INTO `item_mods` VALUES (27524,2,25);      -- Nodens Gorget: HP +25
@@ -48901,6 +48902,7 @@ INSERT INTO `item_mods` VALUES (28419,536,1);     -- Thunder day and weather bon
 INSERT INTO `item_mods` VALUES (28419,537,1);     -- Light day and weather bonus
 INSERT INTO `item_mods` VALUES (28419,538,1);     -- Dark day and weather bonus
 INSERT INTO `item_mods` VALUES (28420,1,7);       -- Fotia Belt: DEF 7
+INSERT INTO `item_mods` VALUES (28420,948,1);     -- 1% No Tp used on Weaponskill
 INSERT INTO `item_mods` VALUES (28421,13,4);      -- Rumination Sash: MND +4
 INSERT INTO `item_mods` VALUES (28421,30,3);      -- Magic Accuracy +3
 INSERT INTO `item_mods` VALUES (28421,114,7);     -- Enfeebling magic skill +7

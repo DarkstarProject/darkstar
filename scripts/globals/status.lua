@@ -1508,6 +1508,7 @@ dsp.mod =
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
     -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT             = 841, -- Generic (all Weaponskills) damage, first hit only.
+    WS_NO_DEPLETE                   = 948, -- % chance a Weaponskill depletes no TP.
 
     -- Circle Abilities Extended Duration from AF/AF+1
     HOLY_CIRCLE_DURATION            = 857,
