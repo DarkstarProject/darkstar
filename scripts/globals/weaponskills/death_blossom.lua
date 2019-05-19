@@ -37,7 +37,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.ftp100 = 4.0 params.ftp200 = 4.0 params.ftp300 = 4.0
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
     if damage > 0 then
         local duration = tp / 1000 * 20 - 5
         if not target:hasStatusEffect(dsp.effect.MAGIC_EVASION_DOWN) then

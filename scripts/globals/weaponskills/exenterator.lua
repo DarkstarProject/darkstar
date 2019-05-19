@@ -33,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.agi_wsc = 0.7 + (player:getMerit(dsp.merit.EXENTERATOR) / 100)
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
 
     if (damage > 0 and target:hasStatusEffect(dsp.effect.ACCURACY_DOWN) == false) then
         local duration = (45 + (tp/1000 * 45)) * applyResistanceAddEffect(player,target,dsp.magic.ele.EARTH,0)

@@ -30,6 +30,7 @@ function onUseAbility(player,target,ability,action)
     params.atk100 = 1 params.atk200 = 1 params.atk300 = 1
     params.bonusTP = player:getMod(dsp.mod.JUMP_TP_BONUS)
     params.targetTPMult = 0
+    params.hitsHigh = true
 
     if (target:isMob()) then
         local enmityShed = 50
@@ -41,7 +42,7 @@ function onUseAbility(player,target,ability,action)
 
     local taChar = player:getTrickAttackChar(target)
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, 0, true, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, params, 0, action, true, taChar)
 
     if (tpHits + extraHits > 0) then
         -- Under Spirit Surge, High Jump reduces TP of target
