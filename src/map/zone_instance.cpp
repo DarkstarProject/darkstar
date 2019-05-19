@@ -357,7 +357,6 @@ void CZoneInstance::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(
 
 CInstance* CZoneInstance::CreateInstance(uint8 instanceid)
 {
-    auto instance = std::make_unique<CInstance>(this, instanceid);
     instanceList.push_back(std::make_unique<CInstance>(this, instanceid));
-    return instance.get();
+    return instanceList.back().get();
 }
