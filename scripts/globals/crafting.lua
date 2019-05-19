@@ -254,7 +254,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
     elseif (category == 2 or category == 1) then -- item
         local idx = bit.band(option, 3);
         local i = items[(category - 1) * 4 + idx];
-        local quantity = bit.rshift(option, 9);
+        local quantity = math.min(bit.rshift(option, 9), 12);
         local cost = quantity * i.cost;
         if (i and rank >= i.rank) then
             if (player:getCurrency(currency) >= cost) then
