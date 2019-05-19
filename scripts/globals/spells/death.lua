@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Death
--- Consumes all MP. Has a chance to knock out the target. If Death fails to knock out the target, it 
+-- Consumes all MP. Has a chance to knock out the target. If Death fails to knock out the target, it
 -- will instead deal darkness damage. Ineffective against undead.
 -----------------------------------------
 require("scripts/globals/magic")
@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    if target(isUndead) or target:hasStatusEffect(dsp.effect.MAGIC_SHIELD) or math.random(0,99) < target:getMod(dsp.mod.DEATHRES) then
+    if target:isUndead() or target:hasStatusEffect(dsp.effect.MAGIC_SHIELD) or math.random(0,99) < target:getMod(dsp.mod.DEATHRES) then
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         return 0
     end
