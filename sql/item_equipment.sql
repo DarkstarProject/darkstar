@@ -12770,8 +12770,8 @@ INSERT INTO `item_equipment` VALUES (27382,'carmine_greaves',99,119,2204880,62,0
 INSERT INTO `item_equipment` VALUES (27383,'carmine_greaves_+1',99,119,2204880,62,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27384,'bewitched_leggings',99,0,2368481,100,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27385,'voodoo_leggings',99,0,2368481,100,0,0,256,0);
-INSERT INTO `item_equipment` VALUES (27386,'bewitched_schuhs',99,0,65,95,2,0,256,0);
-INSERT INTO `item_equipment` VALUES (27387,'voodoo_schuhs',99,0,65,95,2,0,256,0);
+INSERT INTO `item_equipment` VALUES (27386,'bewitched_schuhs',99,0,65,2,0,0,256,0);
+INSERT INTO `item_equipment` VALUES (27387,'voodoo_schuhs',99,0,65,2,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27388,'bewitched_sollerets',99,0,385,63,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27389,'voodoo_sollerets',99,0,385,63,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27390,'bewitched_sune-ate',99,0,137218,106,0,0,256,0);
