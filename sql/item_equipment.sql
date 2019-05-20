@@ -11918,6 +11918,7 @@ INSERT INTO `item_equipment` VALUES (26400,'culminus',99,119,1622556,657,1,0,2,0
 INSERT INTO `item_equipment` VALUES (26401,'forfend',99,119,2385,45,1,0,2,0);
 INSERT INTO `item_equipment` VALUES (26402,'forfend_+1',99,119,2385,45,1,0,2,0);
 INSERT INTO `item_equipment` VALUES (26403,'srivatsa',99,119,64,658,5,0,2,0);
+INSERT INTO `item_equipment` VALUES (26409,'dullahan_shield',1,0,4194303,0,3,0,2,0);
 INSERT INTO `item_equipment` VALUES (26406,'kupo_shield',1,0,4194303,56,3,0,2,0);
 INSERT INTO `item_equipment` VALUES (26419,'ammurapi_shield',99,119,1589788,0,1,0,2,0);
 INSERT INTO `item_equipment` VALUES (26420,'adapa_shield',99,119,385,0,3,0,2,0);
@@ -11987,6 +11988,7 @@ INSERT INTO `item_equipment` VALUES (26484,'chefs_ecu_-1',1,0,4194303,0,2,0,2,0)
 INSERT INTO `item_equipment` VALUES (26485,'chefs_scutum_-1',1,0,4194303,0,4,0,2,0);
 INSERT INTO `item_equipment` VALUES (26486,'chefs_shield_-1',1,0,4194303,0,3,0,2,0);
 INSERT INTO `item_equipment` VALUES (26517,'shadow_lord_shirt',1,0,4194303,588,0,0,32,0);
+INSERT INTO `item_equipment` VALUES (26518,'jody_shirt',1,0,4194303,0,0,0,32,0);
 INSERT INTO `item_equipment` VALUES (26520,'akitu_shirt',1,0,4194303,582,0,0,32,0);
 INSERT INTO `item_equipment` VALUES (26523,'delegates_garb',1,0,4194303,441,0,0,32,0);
 INSERT INTO `item_equipment` VALUES (26524,'gil_nabber_shirt',1,0,4194303,585,0,0,32,0);
@@ -12997,6 +12999,7 @@ INSERT INTO `item_equipment` VALUES (27619,'aurists_cape',99,0,1753628,0,0,0,327
 INSERT INTO `item_equipment` VALUES (27620,'aurists_cape_+1',99,0,1753628,0,0,0,32768,0);
 INSERT INTO `item_equipment` VALUES (27621,'relucent_cape',99,0,4194303,0,0,0,32768,0);
 INSERT INTO `item_equipment` VALUES (27622,'impassive_mantle',99,0,8641,0,0,0,32768,0);
+INSERT INTO `item_equipment` VALUES (27623,'jody_shield',1,0,4194303,0,1,0,2,0);
 INSERT INTO `item_equipment` VALUES (27624,'homestead_shield',99,119,193,25,3,0,2,0);
 INSERT INTO `item_equipment` VALUES (27625,'morbol_shield',1,0,4194303,0,2,0,2,0);
 INSERT INTO `item_equipment` VALUES (27626,'cassies_shield',1,0,4194303,652,2,0,2,0);
@@ -13820,6 +13823,7 @@ INSERT INTO `item_equipment` VALUES (28465,'pyaekue_belt_+1',99,0,2473969,0,0,0,
 INSERT INTO `item_equipment` VALUES (28466,'dynamic_belt',99,0,2473969,0,0,0,1024,0);
 INSERT INTO `item_equipment` VALUES (28467,'dynamic_belt_+1',99,0,2473969,0,0,0,1024,0);
 INSERT INTO `item_equipment` VALUES (28468,'matanki_earring',99,0,4194303,0,0,0,6144,0);
+INSERT INTO `item_equipment` VALUES (28470,'emporoxs_ring',99,0,4194303,0,0,0,24576,0);
 INSERT INTO `item_equipment` VALUES (28474,'mendi._earring',99,0,4194303,0,0,0,6144,0);
 INSERT INTO `item_equipment` VALUES (28475,'infused_earring',99,0,4194303,0,0,0,6144,0);
 INSERT INTO `item_equipment` VALUES (28476,'calamitous_earring',99,0,4194303,0,0,0,6144,0);

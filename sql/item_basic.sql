@@ -21451,7 +21451,7 @@ INSERT INTO `item_basic` VALUES (28466,0,'dynamic_belt','dynamic_belt',1,2084,23
 INSERT INTO `item_basic` VALUES (28467,0,'dynamic_belt_+1','dynamic_belt_+1',1,2080,23,0,0);
 INSERT INTO `item_basic` VALUES (28468,0,'matanki_earring','matanki_earring',1,63572,0,1,0);
 INSERT INTO `item_basic` VALUES (28469,0,'endorsement_ring','endorsement_ring',1,64576,0,1,0);
-INSERT INTO `item_basic` VALUES (28469,0,'emporoxs_ring','emporoxs_ring',1,64576,0,0,0);
+INSERT INTO `item_basic` VALUES (28470,0,'emporoxs_ring','emporoxs_ring',1,64576,0,0,0);
 INSERT INTO `item_basic` VALUES (28474,0,'mendicants_earring','mendi._earring',1,63572,0,0,0);
 INSERT INTO `item_basic` VALUES (28475,0,'infused_earring','infused_earring',1,63572,0,0,0);
 INSERT INTO `item_basic` VALUES (28476,0,'calamitous_earring','calamitous_earring',1,63572,0,0,0);
