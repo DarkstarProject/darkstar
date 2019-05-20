@@ -19615,7 +19615,7 @@ INSERT INTO `item_basic` VALUES (26484,0,'chefs_ecu_-1','chefs_ecu_-1',1,63552,0
 INSERT INTO `item_basic` VALUES (26485,0,'chefs_scutum_-1','chefs_scutum_-1',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (26486,0,'chefs_shield_-1','chefs_shield_-1',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (26517,0,'shadow_lord_shirt','shadow_lord_shirt',1,64584,0,0,0);
-INSERT INTO `item_basic` VALUES (26517,0,'jody_shirt','jody_shirt',1,63552,0,0,0);
+INSERT INTO `item_basic` VALUES (26518,0,'jody_shirt','jody_shirt',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (26520,0,'akitu_shirt','akitu_shirt',1,63568,0,0,0);
 INSERT INTO `item_basic` VALUES (26523,0,'delegates_garb','delegates_garb',1,64584,0,1,0);
 INSERT INTO `item_basic` VALUES (26524,0,'gil_nabber_shirt','gil_nabber_shirt',1,63552,0,0,0);
