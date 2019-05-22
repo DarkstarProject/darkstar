@@ -1802,9 +1802,9 @@ namespace charutils
                             auto state = dynamic_cast<CAttackState*>(PChar->PAI->GetCurrentState());
                             if (state) state->ResetAttackTimer();
                         }
-                        PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
+                        PChar->m_Weapons[SLOT_MAIN] = PItem;
 
-                        if (!PChar->m_Weapons[SLOT_MAIN]->isTwoHanded())
+                        if (!((CItemWeapon*)PChar->m_Weapons[SLOT_MAIN])->isTwoHanded())
                         {
                             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASSO);
                             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEIGAN);
@@ -2299,7 +2299,7 @@ namespace charutils
         {
             if (PChar->m_Weapons[std::get<0>(slot)])
             {
-                PItem = PChar->m_Weapons[std::get<0>(slot)];
+                PItem = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[std::get<0>(slot)]);
 
                 std::get<1>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL);
                 std::get<2>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL_DYN);
@@ -2307,7 +2307,8 @@ namespace charutils
         }
 
         //add in melee ws
-        uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
+        PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_MAIN));
+        uint8 skill = PItem ? PItem->getSkillType() : 0;
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
@@ -2320,10 +2321,10 @@ namespace charutils
         }
 
         //add in ranged ws
-        PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
+        PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_RANGED));
         if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THROWING)
         {
-            skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
+            skill = PItem ? PItem->getSkillType() : 0;
             auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (auto&& PSkill : WeaponSkillList)
             {
@@ -2768,7 +2769,8 @@ namespace charutils
 
     void CheckWeaponSkill(CCharEntity* PChar, uint8 skill)
     {
-        if (PChar->m_Weapons[SLOT_MAIN]->getSkillType() != skill)
+        auto weapon = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[SLOT_MAIN]);
+        if (!weapon || weapon->getSkillType() != skill)
         {
             return;
         }

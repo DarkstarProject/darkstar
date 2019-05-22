@@ -468,7 +468,7 @@ class CParty;
 class CStatusEffectContainer;
 class CPetEntity;
 class CSpell;
-class CItemWeapon;
+class CItemArmor;
 class CAbilityState;
 class CAttackState;
 class CWeaponSkillState;
@@ -654,7 +654,7 @@ public:
 
     uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
     ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
-    CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
+    CItemArmor*	    m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
     TraitList_t     TraitList;                  // список постянно активных способностей в виде указателей
 

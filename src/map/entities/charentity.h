@@ -40,6 +40,7 @@ This file is part of DarkStar-server source code.
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
 
+class CItemWeapon;
 class CTrustEntity;
 
 struct jobs_t

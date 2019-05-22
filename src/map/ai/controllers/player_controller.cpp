@@ -168,13 +168,14 @@ bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
         }
         if (PWeaponSkill->getType() == SKILL_ARCHERY || PWeaponSkill->getType() == SKILL_MARKSMANSHIP)
         {
-            CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+            auto PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_AMMO));
+            auto weapon = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[SLOT_RANGED]);
+            auto ammo = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[SLOT_AMMO]);
 
             // before allowing ranged weapon skill...
             if (PItem == nullptr ||
-                !(PItem->isType(ITEM_WEAPON)) ||
-                !PChar->m_Weapons[SLOT_AMMO]->isRanged() ||
-                !PChar->m_Weapons[SLOT_RANGED]->isRanged() ||
+                !weapon || !weapon->isRanged() ||
+                !ammo || !ammo->isRanged() ||
                 PChar->equip[SLOT_AMMO] == 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NO_RANGED_WEAPON));

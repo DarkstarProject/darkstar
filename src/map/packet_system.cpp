@@ -5489,7 +5489,11 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             else if (prevsjob == JOB_BLU)
                 blueutils::UnequipAllBlueSpells(PChar);
 
-            uint16 subType = PChar->m_Weapons[SLOT_SUB]->getDmgType();
+            uint16 subType = 0;
+            if (auto weapon = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[SLOT_SUB]))
+            {
+                subType = weapon->getDmgType();
+            }
 
             if (subType > 0 && subType < 4)
             {
