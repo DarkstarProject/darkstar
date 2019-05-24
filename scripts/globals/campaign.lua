@@ -1,14 +1,8 @@
-
-
------------------------------------------------------------------
--- Variable for getNationTeleport and getPoint
------------------------------------------------------------------
-
-ALLIED_NOTES = 11;
-MAW = 4;
-PAST_SANDORIA = 5;
-PAST_BASTOK = 6;
-PAST_WINDURST = 7;
+----------------------------------------
+-- Campaign global
+----------------------------------------
+require("scripts/globals/teleports")
+----------------------------------------
 
 -- -------------------------------------------------------------------
 -- getMedalRank()
@@ -19,9 +13,9 @@ function getMedalRank(player)
     local rank = 0;
     local medals =
     {
-         0x039C, 0x039D, 0x039E, 0x039F, 0x03A0, 0x03A1, 0x03A2,
-         0x03A3, 0x03A4, 0x03A5, 0x03A6, 0x03A7, 0x03A8, 0x03A9,
-         0x03AA, 0x03AB, 0x03AC, 0x03AD, 0x03AE, 0x03AF
+         924, 925, 926, 927, 928, 929, 930,
+         931, 932, 933, 934, 935, 936, 937,
+         938, 939, 940, 941, 942, 943
     }
     while (player:hasKeyItem(medals[rank + 1]) == true) do
         rank = rank + 1;
@@ -201,7 +195,7 @@ end;
 -- 8    256 West Sarutabaruta (S) (H-9)
 
 function hasMawActivated(player,portal)
-    local mawActivated = player:getNationTeleport(MAW);
+    local mawActivated = player:getNationTeleport(dsp.teleport.nation.MAW);
     local bit = {};
 
     for i = 8,0,-1 do

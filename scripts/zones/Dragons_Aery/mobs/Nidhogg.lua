@@ -2,19 +2,19 @@
 -- Area: Dragons Aery
 --  HNM: Nidhogg
 -----------------------------------
-require("scripts/zones/Dragons_Aery/MobIDs")
+local ID = require("scripts/zones/Dragons_Aery/IDs")
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobInitialize(mob)
-end
-
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(FAFNIR_QM):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(ID.npc.FAFNIR_QM):setStatus(dsp.status.DISAPPEAR)
     end
+
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
 end
 
 function onMobFight(mob, target)
@@ -50,12 +50,8 @@ function onMobDespawn(mob)
     -- Set Fafnir's spawnpoint and respawn time (21-24 hours)
     if LandKingSystem_NQ ~= 1 then
         SetServerVariable("[PH]Nidhogg", 0)
-        DisallowRespawn(FAFNIR, false)
-        UpdateNMSpawnPoint(FAFNIR)
-        GetMobByID(FAFNIR):setRespawnTime(math.random(75600,86400))
-    end
-
-    if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(FAFNIR_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME)
+        DisallowRespawn(ID.mob.FAFNIR, false)
+        UpdateNMSpawnPoint(ID.mob.FAFNIR)
+        GetMobByID(ID.mob.FAFNIR):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     end
 end

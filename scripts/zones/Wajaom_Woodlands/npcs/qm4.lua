@@ -3,24 +3,23 @@
 --  NPC: ??? (Spawn Tinnin(ZNM T4))
 -- !pos 278 0 -703 51
 -----------------------------------
-package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
+local ID = require("scripts/zones/Wajaom_Woodlands/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
-require("scripts/zones/Wajaom_Woodlands/TextIDs");
-require("scripts/zones/Wajaom_Woodlands/MobIDs");
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(2573,1) and trade:getItemCount() == 1 and not GetMobByID(TINNIN):isSpawned()) then -- Trade Monkey wine
-        player:tradeComplete();
-        SpawnMob(TINNIN):updateClaim(player);
+    if npcUtil.tradeHas(trade, 2573) and npcUtil.popFromQM(player, npc, ID.mob.TINNIN) then
+        player:confirmTrade()
+        player:messageSpecial(ID.text.DRAWS_NEAR)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
-end;
+    player:messageSpecial(ID.text.HEAVY_FRAGRANCE)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

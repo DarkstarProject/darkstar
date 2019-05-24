@@ -4,40 +4,30 @@
 -- Used In Quest: A Boy's Dream
 -- !pos -18 -8 124 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local ID = require("scripts/zones/Crawlers_Nest/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local DreadbugTimer = player:getVar("DreadbugNM_Timer");
-    local DreadbugDay = player:getVar("DreadbugNM_Day");
-    local MyDay = VanadielDayOfTheYear();
-    local aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
-
-    if (MyDay ~= DreadbugDay and aBoysDream == QUEST_ACCEPTED) then
-        local canSpawn = (os.time() - DreadbugTimer) > 30;
-
-        if (canSpawn) then
-            SpawnMob(17584425):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
-            player:setVar("DreadbugNM_Timer",os.time()+180);
-            player:setVar("DreadbugNM_Day",VanadielDayOfTheYear());
-            player:messageSpecial(SENSE_OF_FOREBODING);
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_BOY_S_DREAM) == QUEST_ACCEPTED and VanadielDayOfTheYear() ~= player:getVar("DreadbugNM_Day") then
+        if os.time() > player:getVar("DreadbugNM_Timer") + 30 and npcUtil.popFromQM(player, npc, ID.mob.DREADBUG, {claim=true, hide=0}) then
+            player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
+            player:setVar("DreadbugNM_Timer", os.time() + 180)
+            player:setVar("DreadbugNM_Day", VanadielDayOfTheYear())
         else
-            player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);
+            player:messageSpecial(ID.text.NOTHING_SEEMS_TO_HAPPEN)
         end
     else
-        player:messageSpecial(NOTHING_WILL_HAPPEN_YET);
+        player:messageSpecial(ID.text.NOTHING_WILL_HAPPEN_YET)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

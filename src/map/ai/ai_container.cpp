@@ -442,7 +442,7 @@ bool CAIContainer::QueueEmpty()
 
 bool CAIContainer::Internal_Despawn()
 {
-    if (!IsCurrentState<CDespawnState>())
+    if (!IsCurrentState<CDespawnState>() && !IsCurrentState<CRespawnState>())
     {
         return ForceChangeState<CDespawnState>(PEntity);
     }

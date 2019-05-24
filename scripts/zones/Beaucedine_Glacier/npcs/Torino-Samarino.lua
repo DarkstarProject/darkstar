@@ -5,11 +5,9 @@
 --     Involved in Quests: Curses, Foiled A-Golem!?, Tuning Out
 -- !pos 105 -20 140 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -18,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
+    local FoiledAGolem = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM);
 
     -- Curses, Foiled A_Golem!?
     if (player:hasKeyItem(dsp.ki.SHANTOTTOS_EXSPELL) and FoiledAGolem == QUEST_ACCEPTED) then
@@ -50,7 +48,7 @@ function onEventFinish(player,csid,option)
     -- Curses, Foiled A_Golem!?
     if (csid == 104 and option == 1) then
         player:addKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
     elseif (csid == 108) then                                       -- start wait for new scroll
         player:delKeyItem(dsp.ki.SHANTOTTOS_EXSPELL);
         player:setVar("golemday",VanadielDayOfTheYear());
@@ -58,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:setVar("golemwait",1);
     elseif (csid == 109) then
         player:addKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
         player:setVar("golemday",0);
         player:setVar("golemyear",0);
         player:setVar("golemwait",0);

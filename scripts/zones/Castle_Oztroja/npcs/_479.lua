@@ -4,40 +4,37 @@
 -- Involved in Mission "Saintly Invitation"
 -- !pos -99 -59 84 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs")
-require("scripts/globals/settings");
-require("scripts/globals/missions");
-require("scripts/globals/keyitems");
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    local Z = player:getZPos()
 
-    if (trade:hasItemQty(1142,1) and trade:getItemCount() == 1) then -- check for Judgment Key
-        if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:hasKeyItem(dsp.ki.BALGA_CHAMPION_CERTIFICATE)) then
-            if (player:getZPos() >= 80 and player:getZPos() < 86) then
-                npc:openDoor(2.5);
-                player:tradeComplete();
-            else
-                player:messageSpecial(ITS_LOCKED);
-            end
-        end
+    if
+        npcUtil.tradeHas(trade, 1142) and
+        player:hasKeyItem(dsp.ki.BALGA_CHAMPION_CERTIFICATE) and
+        Z >= 80 and Z < 86
+    then
+        npc:openDoor(2.5)
+        player:confirmTrade()
+    else
+        player:messageSpecial(ID.text.ITS_LOCKED)
     end
-
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (npc:getAnimation() == 9) then
-        player:messageSpecial(ITS_LOCKED);
-        return 1;
+    if npc:getAnimation() == dsp.anim.CLOSE_DOOR then
+        player:messageSpecial(ID.text.ITS_LOCKED)
+        return 1
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

@@ -4,8 +4,6 @@
 -- Type: Quest NPC
 -- !pos -379.420 -10.749 383.312 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -19,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

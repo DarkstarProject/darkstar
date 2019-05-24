@@ -3,31 +3,27 @@
 --  NPC: Nuh Celodehki
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Kazham/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,NUHCELODENKI_SHOP_DIALOG);
-
     local stock =
     {
-        0x112E,993,  --Fish Mithkabob
-         0x11B8,3133, --Blackened Frog
-         0x113A,316,  --Roast Mushroom
-         0x1169,2700} --Eel Kabob
+        4398,  993,    -- Fish Mithkabob
+        4536, 3133,    -- Blackened Frog
+        4410,  316,    -- Roast Mushroom
+        4457, 2700,    -- Eel Kabob
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.NUHCELODENKI_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

@@ -70,7 +70,7 @@ enum ROAMFLAG : uint16
 enum MOBTYPE
 {
     MOBTYPE_NORMAL      = 0x00,
-    MOBTYPE_PCSPAWNED   = 0x01,
+    MOBTYPE_0X01        = 0x01, // available for use
     MOBTYPE_NOTORIOUS   = 0x02,
     MOBTYPE_FISHED      = 0x04,
     MOBTYPE_CALLED      = 0x08,
@@ -120,10 +120,6 @@ public:
     uint32    getEntityFlags();                        // Returns the current value in m_flags
     void      setEntityFlags(uint32 EntityFlags);      // Change the current value in m_flags
 
-    bool      hasRageMode();                           // If the mob has the rage mode: true
-    void      addRageMode();                           // Rage mode ON:  stat x10
-    void      delRageMode();                           // Rage mode OFF: stat /10
-
     bool      IsFarFromHome();                         // check if mob is too far from spawn
     bool      CanBeNeutral();                          // check if mob can have killing pause
 
@@ -151,8 +147,6 @@ public:
     void      saveMobModifiers();                      // save current state of modifiers
     void      restoreMobModifiers();                   // restore to saved state
 
-    void      HideModel(bool hide);                    // hide / show model
-    bool      IsModelHidden();
     void      CallForHelp(bool call);
     bool      CalledForHelp();
     void      HideHP(bool hide);
@@ -172,9 +166,9 @@ public:
     virtual void OnMobSkillFinished(CMobSkillState&, action_t&);
     virtual void OnEngage(CAttackState&) override;
 
-    virtual bool OnAttack(CAttackState&, action_t&);
+    virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
-    virtual void OnCastFinished(CMagicState&, action_t&);
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
 
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnDeathTimer() override;public:
@@ -215,16 +209,16 @@ public:
     uint8     accRank;
     uint8     evaRank;
 
-    uint16	  m_dmgMult;
+    uint16    m_dmgMult;
 
     // aggro ranges
     bool      m_disableScent;             // stop detecting by scent
     float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
 
     uint8     m_Type;                     // mob type
-    bool	  m_Aggro;
-    bool	  m_TrueDetection;   // Has true sight or sound
-    uint16	  m_Detects;                // mobs detection methods, sight, sound, etc
+    bool      m_Aggro;
+    bool      m_TrueDetection;   // Has true sight or sound
+    uint16    m_Detects;                // mobs detection methods, sight, sound, etc
     uint8     m_Link;                     // link with mobs of it's family
     uint16    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn
@@ -238,7 +232,7 @@ public:
 
     uint8     m_Element;
     uint8     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
-    uint8     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
+    int16     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
     bool      m_ItemStolen;               // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
     uint16    m_Family;
     uint16    m_MobSkillList;             // Mob skill list defined from mob_pools
@@ -261,13 +255,13 @@ public:
 
 protected:
 
-    void DropItems();
+    void DistributeRewards();
+    void DropItems(CCharEntity* PChar);
 
 
 
 private:
 
-    bool      m_RageMode;                              // Mode rage
     time_point    m_DespawnTimer {time_point::min()};  // Despawn Timer to despawn mob after set duration
     std::unordered_map<int, int16>     m_mobModStat;
     std::unordered_map<int, int16>     m_mobModStatSave;

@@ -3,54 +3,44 @@
 --  NPC: Arlenne
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,ARLENNE_SHOP_DIALOG);
+    local stock =
+    {
+        17051,  1409, 1,    -- Yew Wand
+        17090,  3245, 1,    -- Elm Staff
+        17097, 16416, 1,    -- Elm Pole
+        16770, 11286, 1,    -- Zaghnal
+        17096,  4568, 2,    -- Holly Pole
+        17024,    66, 3,    -- Ash Club
+        17049,    46, 3,    -- Maple Wand
+        17050,   333, 3,    -- Willow Wand
+        17088,    57, 3,    -- Ash Staff
+        17089,   571, 3,    -- Holly Staff
+        17095,   386, 3,    -- Ash Pole
+        16385,   132, 3,    -- Cesti
+        16391,   828, 3,    -- Brass Knuckles
+        16407,  1554, 3,    -- Brass Baghnakhs
+        16768,   309, 3,    -- Bronze Zaghnal
+        16769,  2542, 2,    -- Brass Zaghnal
+    }
 
-    local stock = {17051,1409,1,  --Yew Wand
-             17090,3245,1,  --Elm Staff
-             17097,16416,1, --Elm Pole
-             16835,15876,1, --Spear
-             16845,16578,1, --Lance
-             16770,11286,1, --Zaghnal
-
-             17050,333,2,   --Willow Wand
-             17089,571,2,   --Holly Staff
-             17096,4568,2,  --Holly Pole
-             16834,4680,2,  --Brass Spear
-             16769,2542,2,  --Brass Zaghnal
-
-             17049,46,3,    --Maple Wand
-             17088,57,3,    --Ash Staff
-             16833,792,3,   --Bronze Spear
-             16768,309,3}   --Bronze Zaghnal
-
-    showNationShop(player, NATION_SANDORIA, stock);
-end;
+    player:showText(npc,ID.text.ARLENNE_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

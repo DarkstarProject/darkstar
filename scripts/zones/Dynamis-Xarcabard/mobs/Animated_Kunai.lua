@@ -3,7 +3,7 @@
 --  MOB: Animated Kunai
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,7 +14,7 @@ function onMobEngaged(mob,target)
         SetDropRate(109,1579,0);
     end
 
-    target:showText(mob,ANIMATED_KUNAI_DIALOG);
+    target:showText(mob,ID.text.ANIMATED_KUNAI_DIALOG);
 
     SpawnMob(17330442):updateEnmity(target);
     SpawnMob(17330443):updateEnmity(target);
@@ -30,12 +30,12 @@ function onMobFight(mob,target)
 end;
 
 function onMobDisengage(mob)
-    mob:showText(mob,ANIMATED_KUNAI_DIALOG+2);
+    mob:showText(mob,ID.text.ANIMATED_KUNAI_DIALOG+2);
 end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:showText(mob,ANIMATED_KUNAI_DIALOG+1);
+    player:showText(mob,ID.text.ANIMATED_KUNAI_DIALOG+1);
 
     DespawnMob(17330442);
     DespawnMob(17330443);

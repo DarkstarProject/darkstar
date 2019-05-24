@@ -2,12 +2,9 @@
 -- Area: Norg
 --   NPC: Hayris
 -- Type: Standard NPC
--- @zone 252
--- !pos 45.296 -7.282 12.267
+-- !pos 45.296 -7.282 12.267 252
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

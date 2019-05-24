@@ -2,7 +2,7 @@
 -- Area: QuBia_Arena
 --  MOB: Death Clan Destroyer
 -----------------------------------
-require("scripts/zones/QuBia_Arena/MobIDs");
+local ID = require("scripts/zones/QuBia_Arena/IDs");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
@@ -11,7 +11,7 @@ end;
 
 function allHeirMobsDead(player)
     local inst = player:getBattlefield():getBattlefieldNumber();
-    local instOffset = HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
+    local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
     for i = instOffset + 3, instOffset + 13 do
         if (not GetMobByID(i):isDead()) then
             return false;
@@ -22,7 +22,7 @@ end;
 
 function onMobFight(mob,target)
     local inst = mob:getBattlefield():getBattlefieldNumber();
-    local instOffset = HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
+    local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
     mob:setMP(9999);
 
     -- queue curaga II on any sleeping ally

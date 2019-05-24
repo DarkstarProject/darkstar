@@ -2,12 +2,9 @@
 -- Area: Fort Karugo Narugo [S]
 --  NPC: Indescript Markings
 -- Type: Quest
---  @zone 96
--- !pos -63 -75 4
+-- !pos -63 -75 4 96
 -----------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
+local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 -----------------------------------
@@ -25,7 +22,7 @@ function onTrigger(player,npc)
     if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(dsp.ki.RAFFLESIA_DREAMSPIT) == false) then
 
         player:addKeyItem(dsp.ki.RAFFLESIA_DREAMSPIT);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.RAFFLESIA_DREAMSPIT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.RAFFLESIA_DREAMSPIT);
         player:setVar("AF_SCH_BOOTS", loafersQuestProgress + 1);
 
         -- Move the markings around
@@ -44,7 +41,7 @@ function onTrigger(player,npc)
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
         -- player:PrintToPlayer("Markings moved to position index " .. newPosition);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

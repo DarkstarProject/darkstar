@@ -8,43 +8,44 @@
 -- Additional Effect with Chocobo Shirt
 -- Agility +10
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,ChocoboShirt(target),0,300,4545);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,ChocoboShirt(target),0,300,4545)
+end
 
 function onEffectGain(target, effect)
-    local power = effect:getPower();
+    local power = effect:getPower()
     if (power == 1) then
-        chocoboShirt = 1;
-        target:addMod(dsp.mod.AGI, 13);
-        target:addMod(dsp.mod.VIT, -5);
+        chocoboShirt = 1
+        target:addMod(dsp.mod.AGI, 13)
+        target:addMod(dsp.mod.VIT, -5)
     else
-        target:addMod(dsp.mod.AGI, 3);
-        target:addMod(dsp.mod.VIT, -5);
+        target:addMod(dsp.mod.AGI, 3)
+        target:addMod(dsp.mod.VIT, -5)
     end
-end;
+end
 
 -----------------------------------------
 -- onEffectLose Action
 -----------------------------------------
 function onEffectLose(target,effect)
-    local power = effect:getPower();
+    local power = effect:getPower()
     if (power == 1) then
-        target:delMod(dsp.mod.AGI, 13);
-        target:delMod(dsp.mod.VIT, -5);
+        target:delMod(dsp.mod.AGI, 13)
+        target:delMod(dsp.mod.VIT, -5)
     else
-        target:delMod(dsp.mod.AGI, 3);
-        target:delMod(dsp.mod.VIT, -5);
+        target:delMod(dsp.mod.AGI, 3)
+        target:delMod(dsp.mod.VIT, -5)
     end
-end;
+end

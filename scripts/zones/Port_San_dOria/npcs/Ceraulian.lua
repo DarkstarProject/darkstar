@@ -4,17 +4,15 @@
 -- Involved in Quest: The Holy Crest
 -- !pos 0 -8 -122 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(SANDORIA,CHASING_QUOTAS) == QUEST_ACCEPTED and player:getVar("ChasingQuotas_Progress") == 0 and
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS) == QUEST_ACCEPTED and player:getVar("ChasingQuotas_Progress") == 0 and
         trade:getItemCount() == 1 and trade:hasItemQty(12494,1) and trade:getGil() == 0) then -- Trading gold hairpin only
             player:tradeComplete();
             player:startEvent(17);
@@ -22,13 +20,13 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Quotas_Status = player:getQuestStatus(SANDORIA,CHASING_QUOTAS);
+    local Quotas_Status = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
     local Quotas_Progress = player:getVar("ChasingQuotas_Progress");
     local Quotas_No = player:getVar("ChasingQuotas_No");
-    local Stalker_Status = player:getQuestStatus(SANDORIA,KNIGHT_STALKER);
+    local Stalker_Status = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
     local Stalker_Progress = player:getVar("KnightStalker_Progress");
 
-    if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
+    if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_HOLY_CREST) == QUEST_AVAILABLE) then
         player:startEvent(24);
 
     -- Chasing Quotas (DRG AF2)
@@ -89,11 +87,11 @@ function onEventFinish(player,csid,option)
         if option == 0 then
             player:setVar("ChasingQuotas_No",1);
         else
-            player:addQuest(SANDORIA,CHASING_QUOTAS);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
         end
     elseif (csid == 14 and option == 1) then
         player:setVar("ChasingQuotas_No",0);
-        player:addQuest(SANDORIA,CHASING_QUOTAS);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
     elseif (csid == 17) then
         player:setVar("ChasingQuotas_Progress",1);
         player:setVar("ChasingQuotas_date", getMidnight());
@@ -102,13 +100,13 @@ function onEventFinish(player,csid,option)
         player:setVar("ChasingQuotas_date",0);
     elseif (csid == 15) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14227);
         else
             player:delKeyItem(dsp.ki.RANCHURIOMES_LEGACY);
             player:addItem(14227);
-            player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14227); -- Drachen Brais
             player:addFame(SANDORIA,AF2_FAME);
-            player:completeQuest(SANDORIA,CHASING_QUOTAS);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
             player:setVar("ChasingQuotas_Progress",0);
         end
 

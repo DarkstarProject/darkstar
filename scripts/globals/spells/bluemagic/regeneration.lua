@@ -13,38 +13,38 @@
 --
 -- Combos: None
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effect.REGEN;
-    local power = 25;
-    local duration = 90;
+    local typeEffect = dsp.effect.REGEN
+    local power = 25
+    local duration = 90
 
     if (caster:hasStatusEffect(dsp.effect.DIFFUSION)) then
-        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION);
+        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION)
 
         if (diffMerit > 0) then
-            duration = duration + (duration/100)* diffMerit;
-        end;
+            duration = duration + (duration/100)* diffMerit
+        end
 
-        caster:delStatusEffect(dsp.effect.DIFFUSION);
-    end;
+        caster:delStatusEffect(dsp.effect.DIFFUSION)
+    end
 
     if (target:hasStatusEffect(dsp.effect.REGEN) and target:getStatusEffect(dsp.effect.REGEN):getTier() == 1) then
-        target:delStatusEffect(dsp.effect.REGEN);
+        target:delStatusEffect(dsp.effect.REGEN)
     end
 
     if (target:addStatusEffect(typeEffect,power,3,duration,0,0,0) == false) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
-    end;
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+    end
 
-    return typeEffect;
-end;
+    return typeEffect
+end

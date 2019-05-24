@@ -1,17 +1,22 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  NM:  Jailer of Fortitude
+--   NM: Jailer of Fortitude
 -----------------------------------
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/settings");
 require("scripts/globals/limbus");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 function onMobSpawn(mob)
-    -- Give it two hour
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
-    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.INVINCIBLE, cooldown = 180, hpp = math.random(90, 95)}, -- "Has access to Invincible, which it may use several times."
+        },
+    })
+
     -- Change animation to humanoid w/ prismatic core
     mob:AnimationSub(1);
     mob:setModelId(1169);
@@ -27,7 +32,7 @@ function onMobFight(mob, target)
         mob:setLocalVar("delay", 0);
     end;
 
-    if (not GetMobByID(Kf_Ghrah_WHM):isDead() or not GetMobByID(Kf_Ghrah_BLM):isDead()) then -- check for kf'ghrah
+    if (not GetMobByID(ID.mob.KFGHRAH_WHM):isDead() or not GetMobByID(ID.mob.KFGHRAH_BLM):isDead()) then -- check for kf'ghrah
         if (spell > 0 and not mob:hasStatusEffect(dsp.effect.SILENCE)) then
             if (delay >= 3) then
                 mob:castSpell(spell);
@@ -54,15 +59,12 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     -- Despawn the pets if alive
-    DespawnMob(Kf_Ghrah_WHM);
-    DespawnMob(Kf_Ghrah_BLM);
+    DespawnMob(ID.mob.KFGHRAH_WHM);
+    DespawnMob(ID.mob.KFGHRAH_BLM);
 end;
 
 function onMobDespawn(mob)
-    local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
-    qm1:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
-
-    -- Move it to a random location
-    local qm1position = math.random(1,5);
-    qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
+    -- Move QM to random location
+    local pos = math.random(1, 5)
+    GetNPCByID(ID.npc.JAILER_OF_FORTITUDE_QM):setPos(ID.npc.JAILER_OF_FORTITUDE_QM_POS[pos][1], ID.npc.JAILER_OF_FORTITUDE_QM_POS[pos][2], ID.npc.JAILER_OF_FORTITUDE_QM_POS[pos][3])
 end;

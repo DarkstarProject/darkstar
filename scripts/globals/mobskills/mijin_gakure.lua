@@ -1,47 +1,28 @@
 ---------------------------------------------------
 -- Mijin Gakure
 ---------------------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/status")
 ---------------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
-        return 0;
-    elseif (skill:getParam() == 2 and math.random() <= 0.5) then -- not always used
-        return 1;
-    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
-        return 0;
-    end
-    return 1;
-end;
+function onMobSkillCheck(target, mob, skill)
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = 1;
-    local hpmod = skill:getHPP() / 100;
-    local basePower = 6;
+    local dmgmod = 1
+    local hpmod = skill:getHPP() / 100
+    local basePower = (mob:getFamily() == 335) and 4 or 6 -- Maat has a weaker (4) Mijin than usual (6)
+    local power = hpmod * 10 + basePower
+    local baseDmg = mob:getWeaponDmg() * power
+    local info = MobMagicalMove(mob, target, skill, baseDmg, dsp.magic.ele.NONE, dmgmod, TP_MAB_BONUS, 1)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL, MOBPARAM_IGNORE_SHADOWS)
 
-    -- Maat has a weaker Mijin
-    if (mob:getFamily() == 335) then
-        basePower = 4;
+    if mob:isInDynamis() then -- dynamis mobs will kill themselves, other mobs might not
+        mob:setHP(0)
     end
 
-    local power = hpmod * 10 + basePower;
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL)
 
-    local baseDmg = mob:getWeaponDmg() * power;
-
-    local info = MobMagicalMove(mob,target,skill,baseDmg,dsp.magic.ele.NONE,dmgmod,TP_MAB_BONUS,1);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
-
-    if (mob:isInDynamis()) then
-        -- dynamis mobs will kill themselves
-        -- other mobs might not
-        mob:setHP(0);
-    end
-
-    target:delHP(dmg);
-    return dmg;
-end;
+    return dmg
+end

@@ -3,44 +3,44 @@
 --  NPC: Village Well
 -- Involved in Quest: Under Oath
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Davoi/TextIDs");
+local ID = require("scripts/zones/Davoi/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (trade:hasItemQty(1095,1) and player:getVar("UnderOathCS") == 5) then
-        player:startEvent(113);
-        player:tradeComplete();
+    if player:getVar("UnderOathCS") == 5 and npcUtil.tradeHas(trade, 1095) then
+        player:startEvent(113)
     else
-        player:messageSpecial(A_WELL);
+        player:messageSpecial(ID.text.A_WELL)
     end
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (player:getVar("UnderOathCS") == 5 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER) and player:hasItem(1095) == false) then -- Under Oath Quest - PLD AF3
-        SpawnMob(17387970):updateClaim(player); --One-eyed_Gwajboj
-        SpawnMob(17387971):updateClaim(player); --Three-eyed_Prozpuz
-    elseif (player:getVar("UnderOathCS") == 6 and player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION)) then
-        player:startEvent(112);  --Under Oath -- Reads contents of the letter
+    if
+        player:getVar("UnderOathCS") == 5 and
+        player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER) and
+        not player:hasItem(1095) and
+        not GetMobByID(ID.mob.ONE_EYED_GWAJBOJ):isSpawned() and
+        not GetMobByID(ID.mob.THREE_EYED_PROZPUZ):isSpawned()
+    then
+        SpawnMob(ID.mob.ONE_EYED_GWAJBOJ):updateClaim(player)
+        SpawnMob(ID.mob.THREE_EYED_PROZPUZ):updateClaim(player)
+    elseif player:getVar("UnderOathCS") == 6 and player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) then
+        player:startEvent(112) -- read contents of letter
     else
-        player:messageSpecial(A_WELL);
+        player:messageSpecial(ID.text.A_WELL)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 113) then
-        player:addKeyItem(dsp.ki.KNIGHTS_CONFESSION);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KNIGHTS_CONFESSION);
-        player:setVar("UnderOathCS",6);
-        player:delKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER);
+    if csid == 113 then
+        player:confirmTrade()
+        npcUtil.giveKeyItem(player, dsp.ki.KNIGHTS_CONFESSION)
+        player:setVar("UnderOathCS", 6)
+        player:delKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)
     end
-end;
+end

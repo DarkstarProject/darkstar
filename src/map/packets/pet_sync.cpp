@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2018 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,34 +22,39 @@ This file is part of DarkStar-server source code.
 */
 
 #include "../../common/socket.h"
+#include "../../common/utils.h"
 
 #include "pet_sync.h"
 
 #include "../entities/charentity.h"
 
 /************************************************************************
-*																		*
-*  Синхронизация питомца с персонажем (владельцем)						*
-*																		*
+*                                                                       *
+*  Synchronization of the pet with the owner                            *
+*                                                                       *
 ************************************************************************/
 
 CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
 {
-    this->type = 0x67;
-    this->size = 0x12;
+    this->type = 0x68;
+    this->size = 0x0E;
 
-    DSP_DEBUG_BREAK_IF(PChar->PPet == nullptr);
-
-    ref<uint8>(0x04) = 0x44; 	// назначение неизвестно
-    ref<uint8>(0x05) = 0x08; 	// назначение неизвестно
-
+    ref<uint8>(0x04) |= 0x04; // Message Type
+    packBitsBE(data+(0x04), (0x18), 0, 6, 10); // Message Size (0 for Despawn)
     ref<uint16>(0x06) = PChar->targid;
     ref<uint32>(0x08) = PChar->id;
 
-    ref<uint16>(0x0C) = PChar->PPet->targid;
-    ref<uint8>(0x0E) = PChar->PPet->GetHPP();
-    ref<uint8>(0x0F) = PChar->PPet->GetMPP();
-    ref<uint16>(0x10) = PChar->PPet->health.tp;
+    if (PChar->PPet != nullptr)
+    {
+        this->size = 0x16;
+        packBitsBE(data+(0x04), (0x18)+PChar->PPet->name.size(), 0, 6, 10); // Message Size
+        ref<uint16>(0x0C) = PChar->PPet->targid;
+        ref<uint8>(0x0E) = PChar->PPet->GetHPP();
+        ref<uint8>(0x0F) = PChar->PPet->GetMPP();
+        ref<uint16>(0x10) = PChar->PPet->health.tp;
+        if (PChar->PPet->animation == ANIMATION_ATTACK)
+            ref<uint32>(0x14) = PChar->PPet->GetBattleTarget()->id;
 
-    // 0x14 - начинается имя питомца, но мы его записывать не будем, "мы экономить будем" © Матроскин
+        memcpy(data + (0x18), PChar->PPet->GetName(), PChar->PPet->name.size());
+    }
 }

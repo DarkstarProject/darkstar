@@ -2,15 +2,11 @@
 -- Area: Norg
 --  NPC: Shivivi
 -- Starts Quest: Secret of the Damp Scroll
--- @zone 252
--- !pos 68.729 -6.281 -6.432
------------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
+-- !pos 68.729 -6.281 -6.432 252
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/pathfind");
 
 local path =
@@ -58,18 +54,18 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     -- onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    DampScroll = player:getQuestStatus(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
+    DampScroll = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
     mLvl = player:getMainLvl();
 
     if (DampScroll == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 10 and player:hasItem(1210) == true) then
@@ -88,9 +84,8 @@ end;
 
 function onEventFinish(player,csid,option,npc)
     if (csid == 31) then
-        player:addQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
     end
 
     npc:wait(0);
 end;
-

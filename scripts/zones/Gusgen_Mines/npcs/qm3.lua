@@ -4,27 +4,25 @@
 -- Involved In Quest: Healing the Land
 -- !pos -168 1 311 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local ID = require("scripts/zones/Gusgen_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
+    local HealingTheLand = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HEALING_THE_LAND);
 
     if (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEAL_OF_BANISHING) == true) then
         player:delKeyItem(dsp.ki.SEAL_OF_BANISHING);
-        player:messageSpecial(FOUND_LOCATION_SEAL, dsp.ki.SEAL_OF_BANISHING);
+        player:messageSpecial(ID.text.FOUND_LOCATION_SEAL, dsp.ki.SEAL_OF_BANISHING);
     elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEAL_OF_BANISHING) == false) then
-        player:messageSpecial(IS_ON_THIS_SEAL, dsp.ki.SEAL_OF_BANISHING);
+        player:messageSpecial(ID.text.IS_ON_THIS_SEAL, dsp.ki.SEAL_OF_BANISHING);
     else
-        player:messageSpecial(LETTERS_IS_WRITTEN_HERE);
+        player:messageSpecial(ID.text.LETTERS_IS_WRITTEN_HERE);
     end
 end;
 
@@ -35,5 +33,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-
-

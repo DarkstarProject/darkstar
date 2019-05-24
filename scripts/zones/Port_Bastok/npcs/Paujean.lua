@@ -4,16 +4,14 @@
 -- Starts & Finishes Quest: Silence of the Rams
 -- !pos -93.738 4.649 34.373 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
+    local SilenceOfTheRams = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
 
     if (SilenceOfTheRams == QUEST_ACCEPTED) then
         local count = trade:getItemCount();
@@ -27,15 +25,15 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
+    local SilenceOfTheRams = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
         player:startEvent(355);
     elseif (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
         player:startEvent(195);
     elseif (SilenceOfTheRams == QUEST_ACCEPTED) then
-        player:showText(npc,PAUJEAN_DIALOG_1);
+        player:showText(npc,ID.text.PAUJEAN_DIALOG_1);
     else
         player:startEvent(25);
     end
@@ -48,13 +46,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 195) then
-        player:addQuest(BASTOK,SILENCE_OF_THE_RAMS);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
     elseif (csid == 196) then
         player:tradeComplete();
-        player:completeQuest(BASTOK,SILENCE_OF_THE_RAMS);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
         player:addFame(3,125);
         player:addItem(13201);
-        player:messageSpecial(ITEM_OBTAINED,13201);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,13201);
         player:addTitle(dsp.title.PURPLE_BELT);
     elseif (csid == 355) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",2,true);

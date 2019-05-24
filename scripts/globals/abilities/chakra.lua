@@ -5,52 +5,40 @@
 -- Recast Time: 5:00
 -- Duration: Instant
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------
 
-function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+local ChakraStatusEffects =
+{
+    POISON       = 0, -- Removed by default
+    BLINDNESS    = 0, -- Removed by default
+    PARALYSIS    = 1,
+    DISEASE      = 2,
+    PLAGUE       = 4
+}
 
-function onUseAbility(player,target,ability)
-    local hp = player:getHP();
-    local vit = player:getStat(dsp.mod.VIT);
-    local multi = 2;
-    local merits = player:getMerit(dsp.merit.INVIGORATE);
-    local body = player:getEquipID(dsp.slot.BODY);
-    local hand = player:getEquipID(dsp.slot.HANDS);
+function onAbilityCheck(player, target, ability)
+    return 0, 0
+end
 
-    if (player:hasStatusEffect(dsp.effect.POISON)) then
-        player:delStatusEffect(dsp.effect.POISON);
-    end
-
-    if (player:hasStatusEffect(dsp.effect.BLINDNESS)) then
-        player:delStatusEffect(dsp.effect.BLINDNESS);
-    end
-
-    if ((body == 12639) or (body == 14474)) then -- Temple Cyclas (+1) equipped
-        if (player:hasStatusEffect(dsp.effect.PARALYSIS)) then
-            player:delStatusEffect(dsp.effect.PARALYSIS);
+function onUseAbility(player, target, ability)
+    local chakraRemoval = player:getMod(dsp.mod.CHAKRA_REMOVAL)
+    for k, v in pairs(ChakraStatusEffects) do
+        if bit.band(chakraRemoval, v) == v then
+            player:delStatusEffect(dsp.effect[k])
         end
-        multi = multi + 1;
     end
 
-    if ((hand == 15103) or (hand == 14910)) then -- Melee Gloves (+1) equipped
-        if (player:hasStatusEffect(dsp.effect.DISEASE)) then
-            player:delStatusEffect(dsp.effect.DISEASE);
+    local recover = player:getStat(dsp.mod.VIT) * (2 + player:getMod(dsp.mod.CHAKRA_MULT) / 10) -- TODO: Figure out "function of level" addition (August 2017 update)
+    player:setHP(player:getHP() + recover)
+
+    local merits = player:getMerit(dsp.merit.INVIGORATE)
+    if merits > 0 then
+        if player:hasStatusEffect(dsp.effect.REGEN) then
+            player:delStatusEffect(dsp.effect.REGEN)
         end
-        multi = multi + 0.6;
+        player:addStatusEffect(dsp.effect.REGEN, 10, 0, merits, 0, 0, 1)
     end
 
-    local recover = (multi * vit);
-    player:setHP((hp + recover));
-
-    if (merits >= 1) then
-        if (player:hasStatusEffect(dsp.effect.REGEN)) then
-            player:delStatusEffect(dsp.effect.REGEN);
-        end
-        player:addStatusEffect(dsp.effect.REGEN,10,0,merits,0,0,1);
-    end
-
-    return recover;
-end;
+    return recover
+end

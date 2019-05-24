@@ -4,27 +4,25 @@
 -- Only sells when Windurst controlls Zulkheim Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
+require("scripts/globals/shop")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ZULKHEIM);
-    if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,BIN_STEJIHNA_CLOSED_DIALOG);
+    local RegionOwner = GetRegionOwner(dsp.region.ZULKHEIM)
+    if RegionOwner ~= dsp.nation.WINDURST then
+        player:showText(npc,ID.text.BIN_STEJIHNA_CLOSED_DIALOG)
     else
-        player:showText(npc,BIN_STEJIHNA_OPEN_DIALOG);
+        player:showText(npc,ID.text.BIN_STEJIHNA_OPEN_DIALOG)
 
-        local rank = getNationRank(NATION_WINDURST);
-        if (rank ~= 3) then
-            table.insert(stock,0x0730); --Semolina
-            table.insert(stock,1840);
+        local rank = getNationRank(dsp.nation.WINDURST)
+        if rank ~= 3 then
+            table.insert(stock, 1840) --Semolina
+            table.insert(stock, 1840)
         end
 
         local stock =
@@ -38,14 +36,12 @@ function onTrigger(player,npc)
             4378,    55   -- Selbina Milk
         }
 
-        showShop(player,WINDURST,stock);
-
+        dsp.shop.general(player, stock, WINDURST)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

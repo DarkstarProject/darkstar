@@ -3,15 +3,15 @@
 -- Zone: Gusgen_Mines (196)
 --
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
-----------------------------------
-require("scripts/zones/Gusgen_Mines/TextIDs");
-require("scripts/zones/Gusgen_Mines/MobIDs");
+local ID = require("scripts/zones/Gusgen_Mines/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(GUSGEN_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)
@@ -23,10 +23,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

@@ -4,9 +4,7 @@
 -- Type: Goldsmithing Guild Master
 -- !pos -190.605 -7.814 -59.432 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
 -----------------------------------
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
     player:startEvent(300,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 300  301  0x0192
+-- 300  301  402
 function onEventUpdate(player,csid,option)
 end;
 
@@ -40,10 +38,10 @@ function onEventFinish(player,csid,option)
         local crystal = 4096; -- fire crystal
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(ITEM_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,crystal);
             signupGuild(player, guild.goldsmithing);
         end
     end

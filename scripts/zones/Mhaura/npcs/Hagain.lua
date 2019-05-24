@@ -3,16 +3,14 @@
 --  NPC: Hagain
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    local hittingTheMarquisate = player:getQuestStatus(WINDURST,HITTING_THE_MARQUISATE);
+    local hittingTheMarquisate = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HITTING_THE_MARQUISATE);
 
     if (hittingTheMarquisate == QUEST_ACCEPTED and trade:hasItemQty(1091,1) and trade:getItemCount() == 1) then -- Trade Chandelier coal
         player:startEvent(10005);
@@ -43,7 +41,7 @@ function onEventFinish(player,csid,option)
     if (csid == 10003) then
         player:setVar("hittingTheMarquisateHagainCS",2);
         player:addKeyItem(dsp.ki.BOMB_INCENSE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOMB_INCENSE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOMB_INCENSE);
     elseif (csid == 10005) then
         player:setVar("hittingTheMarquisateHagainCS",9);
         player:delKeyItem(dsp.ki.BOMB_INCENSE);

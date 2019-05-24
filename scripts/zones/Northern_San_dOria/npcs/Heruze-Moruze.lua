@@ -4,18 +4,16 @@
 -- Involved in Mission: 2-3 Windurst
 -- !pos -56 -3 36 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -26,15 +24,15 @@ function onTrigger(player,npc)
     pNation = player:getNation();
     currentMission = player:getCurrentMission(pNation);
 
-    if (pNation == NATION_WINDURST) then
-        if (currentMission == THE_THREE_KINGDOMS and player:getVar("MissionStatus") == 1) then
+    if (pNation == dsp.nation.WINDURST) then
+        if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS and player:getVar("MissionStatus") == 1) then
             player:startEvent(582);
         else
             player:startEvent(554);
         end
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         player:startEvent(578);
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         player:startEvent(577);
     end
 

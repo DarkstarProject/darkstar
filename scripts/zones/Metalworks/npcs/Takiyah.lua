@@ -3,33 +3,30 @@
 --  NPC: Takiyah
 -- Type: Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Metalworks/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_BASTOK) then
-        player:showText(npc,TAKIYAH_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.TAKIYAH_CLOSED_DIALOG)
     else
-        player:showText(npc,TAKIYAH_OPEN_DIALOG);
-
         local stock =
-        {0x03ba,4121}        -- Magic Pot Shard
+        {
+            954, 4121,    -- Magic Pot Shard
+        }
 
-        showShop(player,BASTOK,stock);
+        player:showText(npc, ID.text.TAKIYAH_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
 
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

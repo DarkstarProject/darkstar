@@ -2,10 +2,10 @@
 -- Area: Cape Teriggan
 --  MOB: Velociraptor
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,106,2);
-    checkRegime(player,mob,107,1);
+    dsp.regime.checkRegime(player, mob, 106, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 107, 1, dsp.regime.type.FIELDS)
 end;

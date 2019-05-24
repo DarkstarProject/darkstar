@@ -4,12 +4,8 @@
 --  Finish Mission: The Davoi Report
 -- !pos 131 -11 122 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,13 +13,13 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(SANDORIA) == THE_DAVOI_REPORT and player:hasKeyItem(dsp.ki.TEMPLE_KNIGHTS_DAVOI_REPORT)) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_DAVOI_REPORT and player:hasKeyItem(dsp.ki.TEMPLE_KNIGHTS_DAVOI_REPORT)) then
         player:startEvent(695); -- Finish Mission "The Davoi Report"
-    elseif (player:getCurrentMission(SANDORIA) == PRESTIGE_OF_THE_PAPSQUE and player:getVar("MissionStatus") == 0) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE and player:getVar("MissionStatus") == 0) then
         player:startEvent(7);
-    elseif (player:getCurrentMission(SANDORIA) == PRESTIGE_OF_THE_PAPSQUE and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE and player:getVar("MissionStatus") == 1) then
         player:startEvent(9);
-    elseif (player:getCurrentMission(SANDORIA) == PRESTIGE_OF_THE_PAPSQUE and player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_TABLET)) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE and player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_TABLET)) then
         player:startEvent(8);
     end
     return 1;

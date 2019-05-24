@@ -4,10 +4,8 @@
 --  Involved In Mission: The Horutoto Ruins Experiment
 -- !pos 419 0 -27 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,10 +13,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
         player:startEvent(42);
     else
-        player:showText(npc,DOOR_FIRMLY_CLOSED);
+        player:showText(npc,ID.text.DOOR_FIRMLY_CLOSED);
     end
 
     return 1;

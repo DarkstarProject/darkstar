@@ -1,19 +1,27 @@
 -----------------------------------------
 -- ID: 18241
--- Item: Refresh Musk
+-- Item: Vial of Refresh Musk
 -- Item Effect: 60 seconds
+-- Duration: 30 Seconds
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/status")
 
 function onItemCheck(target)
-    return 0;
-end;
+    local effect = target:getStatusEffect(dsp.effect.ENCHANTMENT)
+    if effect ~= nil and effect:getSubType() == 18241 then
+        target:delStatusEffect(dsp.effect.ENCHANTMENT)
+    end
+    return 0
+end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(dsp.effect.REFRESH)) then
-        target:addStatusEffect(dsp.effect.REFRESH,1,3,60);
-    else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT);
-    end
-end;
+    target:addStatusEffectEx(dsp.effect.ENCHANTMENT,dsp.effect.REFRESH,0,0,30,18241)
+end
+
+function onEffectGain(target,effect)
+    target:addMod(dsp.mod.REFRESH, 3)
+end
+
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.REFRESH, 3)
+end

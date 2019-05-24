@@ -3,12 +3,9 @@
 -- Name: Mission 5-2
 -- !pos -520 -4 17 179
 -----------------------------------
-package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
 
 -----------------------------------
 
@@ -32,7 +29,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(ZILART,RETURN_TO_DELKFUTTS_TOWER)) then
+        if (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
@@ -51,9 +48,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER) then
-            player:completeMission(ZILART,RETURN_TO_DELKFUTTS_TOWER);
-            player:addMission(ZILART,ROMAEVE);
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER) then
+            player:completeMission(ZILART,dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER);
+            player:addMission(ZILART,dsp.mission.id.zilart.ROMAEVE);
             player:setVar("ZilartStatus",0);
         end
         -- Play last CS if not skipped.

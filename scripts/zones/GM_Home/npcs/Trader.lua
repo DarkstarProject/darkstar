@@ -3,10 +3,6 @@
 --  NPC: Trader
 -- Type: Debug NPC for testing trades.
 -----------------------------------
-package.loaded["scripts/zones/GM_Home/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/GM_Home/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(4096,1) and trade:getItemCount() == 1) then

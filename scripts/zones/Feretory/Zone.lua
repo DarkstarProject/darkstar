@@ -3,10 +3,7 @@
 -- Zone: Feretory
 --
 -----------------------------------
-package.loaded["scripts/zones/Marjami_Ravine/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Marjami_Ravine/TextIDs");
+local ID = require("scripts/zones/Feretory/IDs")
 -----------------------------------
 
 function onInitialize(zone)

@@ -5,10 +5,7 @@
 -- instance 2 Promathia !pos 521 -0.500 517
 -- instance 3 Promathia !pos -519 120 -520
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
-require("scripts/zones/Empyreal_Paradox/MobIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/titles")
@@ -27,7 +24,7 @@ require("scripts/globals/titles")
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
-    local promathia = PROMATHIA_OFFSET + (instance:getBattlefieldNumber() - 1) * 2
+    local promathia = ID.mob.PROMATHIA_OFFSET + (instance:getBattlefieldNumber() - 1) * 2
     local pos = GetMobByID(promathia):getSpawnPos()
     
     local prishe = instance:insertAlly(14166)
@@ -70,9 +67,9 @@ function onEventFinish(player,csid,option)
         player:setPos(539,0,-593,192);
         player:addTitle(dsp.title.AVERTER_OF_THE_APOCALYPSE)
         player:startEvent(3)
-        if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus") == 2) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus") == 2) then
             player:addKeyItem(dsp.ki.TEAR_OF_ALTANA)
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.TEAR_OF_ALTANA)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TEAR_OF_ALTANA)
             player:setVar("Promathia_kill_day", tonumber(os.date("%j")));
             player:setVar("PromathiaStatus", 3)
         end

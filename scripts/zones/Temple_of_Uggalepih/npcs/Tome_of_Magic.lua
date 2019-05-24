@@ -4,28 +4,17 @@
 -- Involved In Windurst Mission 7-2 (Optional Dialogue)
 -- !pos 346 0 343 159 <many>
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
------------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
+end
 
-end;
+function onTrigger(player, npc)
+    local cs = math.random(20, 22)
+    player:startEvent(cs)
+end
 
-function onTrigger(player,npc)
+function onEventUpdate(player, csid, option)
+end
 
-    local cs = math.random(0x014,0x016)
-    player:startEvent(cs);
-
-end;
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
-
-end;
-
-function onEventFinish(player,csid,option)
-
-end;
+function onEventFinish(player, csid, option)
+end

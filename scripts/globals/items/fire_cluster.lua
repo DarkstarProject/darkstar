@@ -3,15 +3,17 @@
 -- Fire Cluster
 -- Turn into a stack of fire crystals
 -----------------------------------------
+require("scripts/globals/msg")
+-----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
+    local result = 0
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addItem(4096,12);
-end;
+    target:addItem(4096,12)
+end

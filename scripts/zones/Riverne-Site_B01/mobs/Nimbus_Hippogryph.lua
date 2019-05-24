@@ -3,12 +3,12 @@
 --  MOB: Nimbus Hippogryph
 -- Note: Place holder Imdugud
 -----------------------------------
-require("scripts/zones/Riverne-Site_B01/MobIDs");
+local ID = require("scripts/zones/Riverne-Site_B01/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,IMDUGUD_PH,10,75600); -- 21 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.IMDUGUD_PH,10,75600); -- 21 hours
 end;

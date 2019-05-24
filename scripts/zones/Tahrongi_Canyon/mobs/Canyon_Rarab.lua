@@ -2,9 +2,9 @@
 -- Area: Tahrongi Canyon
 --  MOB: Canyon Rarab
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,94,1);
-end;
+    dsp.regime.checkRegime(player, mob, 94, 1, dsp.regime.type.FIELDS)
+end

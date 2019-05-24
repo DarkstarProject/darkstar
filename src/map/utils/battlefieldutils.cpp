@@ -44,7 +44,7 @@ namespace battlefieldutils {
         a new Battlefield object.
     ****************************************************************/
     CBattlefield* loadBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type) {
-        const char* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize \
+        const char* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize, isMission \
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
@@ -68,6 +68,7 @@ namespace battlefieldutils {
             PBattlefield->setMaxParticipants(Sql_GetUIntData(SqlHandle, 8));
             PBattlefield->setZoneId(Sql_GetUIntData(SqlHandle, 9));
             PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle, 7);
+            PBattlefield->m_isMission = (uint8)Sql_GetUIntData(SqlHandle, 11);
 
             PBattlefield->setRecord((const char*)Sql_GetData(SqlHandle, 2),
                 (uint8)Sql_GetUIntData(SqlHandle, 10),
@@ -115,13 +116,6 @@ namespace battlefieldutils {
                     {
                         if (!PMob->PAI->IsSpawned())
                         {
-                            if (strcmp((const char*)PMob->GetName(), "Maat") == 0) {
-                                mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
-
-                                // disallow subjob, this will enable for later
-                                battlefield->m_RuleMask &= ~RULES_ALLOW_SUBJOBS;
-
-                            }
                             PMob->Spawn();
 
                             //ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
@@ -185,7 +179,7 @@ namespace battlefieldutils {
                 }
                 else
                 {
-                    ShowDebug(CL_CYAN"spawnTreasureForBcnm: <%s> is already spawned\n" CL_RESET, PNpc->GetName());
+                    ShowDebug(CL_CYAN"spawnTreasureForBcnm: is already spawned\n" CL_RESET);
                 }
             }
             return true;

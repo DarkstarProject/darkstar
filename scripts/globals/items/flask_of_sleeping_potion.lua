@@ -3,14 +3,14 @@
 -- Item: Sleeping Potion
 -- Item Effect: This potion induces sleep.
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.SLEEP_I, 1,0,30);
-end;
+    target:addStatusEffect(dsp.effect.SLEEP_I, 1,0,30)
+end
 

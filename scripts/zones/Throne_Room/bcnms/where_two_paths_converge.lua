@@ -3,9 +3,6 @@
 -- Name: Mission 9-2
 -- !pos -111 -6 0 165
 -----------------------------------
-package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Throne_Room/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
@@ -31,7 +28,7 @@ function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
 
     if (leavecode == 2) then
-        if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
+        if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);

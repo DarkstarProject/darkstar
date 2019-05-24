@@ -3,34 +3,29 @@
 --  NPC: Malfud
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,MALFUD_SHOP_DIALOG);
-
     local stock =
     {
-        0x03A8,16,         -- Rock Salt
-     0x0272,255,        -- Black Pepper
-     0x0279,16,        -- Olive Oil
-     0x1124,44,        -- Eggplant
-     0x1126,40,        -- Mithran Tomato
-     0x08A5,12}        -- Pine Nuts
+        936,  16,    -- Rock Salt
+        626, 255,    -- Black Pepper
+        633,  16,    -- Olive Oil
+        4388, 44,    -- Eggplant
+        4390, 40,    -- Mithran Tomato
+        2213, 12     -- Pine Nuts
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc,ID.text.MALFUD_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

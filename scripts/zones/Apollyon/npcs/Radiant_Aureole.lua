@@ -5,28 +5,26 @@
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Apollyon/TextIDs");
+local ID = require("scripts/zones/Apollyon/IDs");
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
 if (player:hasKeyItem(dsp.ki.COSMOCLEANSE)) then
   if (count==1 and trade:hasItemQty(2127,1)) then-- metal chip
      player:setVar("Limbus_Trade_Item",32);
      player:tradeComplete();
-     player:messageSpecial(CHIP_TRADE);
+     player:messageSpecial(ID.text.CHIP_TRADE);
          player:startEvent(32000,0,0,0,32,0,0,0,0);
         player:setVar("limbusbitmap",32);
   elseif (count==4 and trade:hasItemQty(1988,1) and trade:hasItemQty(1987,1) and trade:hasItemQty(1910,1) and trade:hasItemQty(1909,1)) then
     player:setVar("Limbus_Trade_Item",16);
     player:tradeComplete();
-    player:messageSpecial(CHIP_TRADE);
+    player:messageSpecial(ID.text.CHIP_TRADE);
     player:startEvent(32000,0,0,0,16,0,0,0,0);
     player:setVar("limbusbitmap",16);
   end
  else
-       player:messageSpecial(CONDITION_FOR_LIMBUS);
+       player:messageSpecial(ID.text.CONDITION_FOR_LIMBUS);
      print("error player  don't have cosmo clean");
  end
 
@@ -39,9 +37,9 @@ function onTrigger(player,npc)
  local currentlimbus= TryTobackOnCurrentLimbus(player);
 
   if ( npc:getID() == 16933242) then
-         instancelist = APPOLLYON_SE_NE_BCNM_LIST;
+         instancelist = APOLLYON_SE_NE_BCNM_LIST;
   else
-         instancelist = APPOLLYON_NW_SW_BCNM_LIST;
+         instancelist = APOLLYON_NW_SW_BCNM_LIST;
  end
 printf("currentlimbus: %u",currentlimbus);
 
@@ -103,7 +101,7 @@ printf("currentlimbus: %u",currentlimbus);
            player:startEvent(32000,0,0,0,limbusbitmap,0,0,0,0);
         player:setVar("limbusbitmap",limbusbitmap);
        else
-       player:messageSpecial(CONDITION_FOR_LIMBUS);
+       player:messageSpecial(ID.text.CONDITION_FOR_LIMBUS);
         print("player need a card for basic limbus");
         end
 
@@ -118,7 +116,7 @@ printf("currentlimbus: %u",currentlimbus);
         player:setVar("limbusbitmap",limbusbitmap);
 
   else
-       player:messageSpecial(CONDITION_FOR_LIMBUS);
+       player:messageSpecial(ID.text.CONDITION_FOR_LIMBUS);
     print("error player  don't have cosmo clean");
   end
 

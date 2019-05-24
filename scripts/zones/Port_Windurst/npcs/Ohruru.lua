@@ -1,14 +1,12 @@
 -----------------------------------
--- Area: Windurst Waters
+-- Area: Port Windurst
 --  NPC: Ohruru
 -- Starts & Finishes Repeatable Quest: Catch me if you can
 -- Involved in Quest: Wonder Wands
 -- Note: Animation for his "Cure" is not functioning. Unable to capture option 1, so if the user says no, he heals them anyways.
 -- !pos -108 -5 94 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -19,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
---    player:delQuest(WINDURST,CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
+--    player:delQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
 -- ======== FOR TESTING ONLY ==========-----
 --    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
 --        rand = math.random(1,3);
@@ -33,8 +31,8 @@ function onTrigger(player,npc)
 --    end
 -- ======== FOR TESTING ONLY ==========-----
 
-    Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);
-    WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
+    Catch = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
+    WonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS);
     if (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(258,0,17053);
     elseif (Catch == 0) then
@@ -72,31 +70,30 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 231) then
-        player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
     elseif (csid == 246 and option == 0) then
         player:needToZone(true);
         if (player:hasStatusEffect(dsp.effect.MUTE) == true) then
             player:delStatusEffect(dsp.effect.MUTE);
             player:addGil(GIL_RATE*1000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1000);
         elseif (player:hasStatusEffect(dsp.effect.BANE) == true) then
             player:delStatusEffect(dsp.effect.BANE);
             player:addGil(GIL_RATE*1200);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1200);
         elseif (player:hasStatusEffect(dsp.effect.PLAGUE) == true) then
             player:delStatusEffect(dsp.effect.PLAGUE);
             player:addGil(GIL_RATE*1500);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         end
 
         player:setVar("QuestCatchItIfYouCan_var",0);
 
-        if (player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
             player:addFame(WINDURST,75);
         else
             player:addFame(WINDURST,8);
         end
     end
 end;
-

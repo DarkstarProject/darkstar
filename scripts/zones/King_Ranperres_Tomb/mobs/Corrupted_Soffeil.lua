@@ -2,7 +2,7 @@
 -- Area: King Ranperres Tomb
 --  MOB: Corrupted Soffeil
 -----------------------------------
-require("scripts/zones/King_Ranperres_Tomb/MobIDs");
+local ID = require("scripts/zones/King_Ranperres_Tomb/IDs");
 require("scripts/globals/missions");
 
 function onMobInitialize(mob)
@@ -16,8 +16,8 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (GetMobByID(CORRUPTED_YORGOS):isDead() and GetMobByID(CORRUPTED_SOFFEIL):isDead() and GetMobByID(CORRUPTED_ULBRIG):isDead()
-        and player:getCurrentMission(SANDORIA) == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 1) then
+    if (GetMobByID(ID.mob.CORRUPTED_YORGOS):isDead() and GetMobByID(ID.mob.CORRUPTED_SOFFEIL):isDead() and GetMobByID(ID.mob.CORRUPTED_ULBRIG):isDead()
+        and player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 1) then
         player:setVar("Mission6-2MobKilled",1);
     end
 end;

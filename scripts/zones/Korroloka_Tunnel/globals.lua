@@ -1,7 +1,7 @@
 -- Zone: Korroloka Tunnel (173)
 -- Desc: this file contains functions that are shared by multiple luas in this zone's directory
 -----------------------------------
-require("scripts/zones/Korroloka_Tunnel/MobIDs");
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -10,7 +10,7 @@ KORROLOKA_TUNNEL = {
         move Morion Worm QM
         ..............................................................................................]]
     moveMorionWormQM = function()
-        local npc = GetNPCByID(MORION_WORM_QM);
+        local npc = GetNPCByID(ID.npc.MORION_WORM_QM);
         switch (math.random(1,6)): caseof
         {
             [1] = function (x) npc:setPos(254.652,-6.039,20.878); end,

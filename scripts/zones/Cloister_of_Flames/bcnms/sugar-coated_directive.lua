@@ -3,11 +3,8 @@
 -- BCNM: Sugar Coated Directive (ASA-4)
 -- !pos -721 0 -598 207
 ----------------------------------------
-package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
-----------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Flames/TextIDs");
 ----------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -30,7 +27,7 @@ function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedQuest(ASA,SUGAR_COATED_DIRECTIVE)) then
+        if (player:hasCompletedMission(ASA,dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,0);

@@ -3,9 +3,8 @@
 -- Zone: Tavnazian_Safehold (26)
 --
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 -----------------------------------
@@ -16,11 +15,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -30,13 +25,13 @@ function onZoneIn(player,prevZone)
         player:setPos(27.971,-14.068,43.735,66);
     end
 
-    if (player:getCurrentMission(COP) == AN_INVITATION_WEST) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_INVITATION_WEST) then
         if (player:getVar("PromathiaStatus") == 1) then
             cs = 101;
         end
-    elseif (player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0) then
         cs = 107;
-    elseif (player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 1) then
         cs = 114;
     end
 
@@ -48,12 +43,12 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)
-            if (player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 2) then
+            if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 2) then
                 player:startEvent(105);
             end
         end,
         [2] = function (x)
-            if (player:getCurrentMission(COP) == SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 0) then
+            if (player:getCurrentMission(COP) == dsp.mission.id.cop.SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 0) then
                 player:startEvent(112);
             end
         end,
@@ -71,13 +66,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 101) then
-        player:completeMission(COP,AN_INVITATION_WEST);
-        player:addMission(COP,THE_LOST_CITY);
+        player:completeMission(COP,dsp.mission.id.cop.AN_INVITATION_WEST);
+        player:addMission(COP,dsp.mission.id.cop.THE_LOST_CITY);
         player:setVar("PromathiaStatus",0);
     elseif (csid == 105) then
         player:setVar("PromathiaStatus",0);
-        player:completeMission(COP,AN_ETERNAL_MELODY);
-        player:addMission(COP,ANCIENT_VOWS);
+        player:completeMission(COP,dsp.mission.id.cop.AN_ETERNAL_MELODY);
+        player:addMission(COP,dsp.mission.id.cop.ANCIENT_VOWS);
     elseif (csid == 107) then
         player:setVar("PromathiaStatus",1);
     elseif (csid == 112) then

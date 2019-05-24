@@ -2,17 +2,14 @@
 -- Area: Northern San d'Oria
 --  NPC: Nenne
 -- Starts and Finishes Quest: To Cure a Cough
--- @zone 230
--- !pos -114 -6 102
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-- !pos -114 -6 102 230
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,8 +17,8 @@ end;
 
 function onTrigger(player,npc)
 
-    medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
-    toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+    medicineWoman = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
+    toCureaCough = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
 
     if (toCureaCough == QUEST_AVAILABLE and player:getVar("toCureaCough") == 0 and medicineWoman == QUEST_COMPLETED) then
         player:startEvent(538);
@@ -43,12 +40,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 647) then
         player:addTitle(dsp.title.A_MOSS_KIND_PERSON);
         player:setVar("toCureaCough",0);
-        player:setVar("DiaryPage",0);
         player:delKeyItem(dsp.ki.COUGH_MEDICINE);
         player:addKeyItem(dsp.ki.SCROLL_OF_TREASURE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCROLL_OF_TREASURE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCROLL_OF_TREASURE);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,TO_CURE_A_COUGH);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
     end
 
 end;

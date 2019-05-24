@@ -2,31 +2,17 @@
 -- Area: Konschtat Highlands
 --  Mob: Tremor Ram
 -----------------------------------
-require("scripts/zones/Konschtat_Highlands/MobIDs");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs")
+-----------------------------------
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-
-    if (mobID == TREMOR_RAM and math.random(1,100) <= 10) then
-        -- what nms are ready to spawn
-        local nms = {};
-        for i = 1, 2 do
-            if (os.time() > GetMobByID(TREMOR_RAM + i):getLocalVar("cooldown")) then
-                table.insert(nms, TREMOR_RAM + i);
-            end
-        end
-    
-        -- spawn one in its place
-        if (#nms > 0) then
-            local nmId = nms[math.random(#nms)];
-            DisallowRespawn(mobID, true);
-            DisallowRespawn(nmId, false);
-            UpdateNMSpawnPoint(nmId);
-            GetMobByID(nmId):setRespawnTime(GetMobRespawnTime(mobID));
-        end
+    -- If Steelflect doesn't pop next, fallback onto Rampaging Ram
+    if not dsp.mob.phOnDespawn(mob, ID.mob.STEELFLEECE_PH, 10, math.random(75600, 86400)) then -- 21-24 hours
+        dsp.mob.phOnDespawn(mob, ID.mob.RAMPAGING_RAM_PH, 10, 1200) -- 20 min
     end
-end;
+end

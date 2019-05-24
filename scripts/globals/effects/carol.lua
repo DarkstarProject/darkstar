@@ -3,29 +3,17 @@
 --      dsp.effect.CAROL
 --
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
+require("scripts/globals/magic")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.magic.resistMod[effect:getSubPower()], effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.magic.resistMod[effect:getSubPower()], effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.magic.resistMod[effect:getSubPower()], effect:getPower());
-end;
+    target:delMod(dsp.magic.resistMod[effect:getSubPower()], effect:getPower())
+end

@@ -114,12 +114,13 @@ struct map_config_t
     float  mob_stat_multiplier;       // Multiplier for str/vit/etc of mobs
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
     float  ability_recast_multiplier; // Adjust ability recast time
+    int8   blood_pact_shared_timer;   // Default is 0. Disable/enable old school shared timer for SMN blood pacts.
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
     uint8  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
-    int8   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
+    uint8  lv_cap_mission_bcnm;       // 1 = Enable / 0 = Disable lv caps on mission battles.
     uint8  max_merit_points;          // global variable, amount of merit points players are allowed
     uint16 yell_cooldown;             // Minimum time between uses of yell command (in seconds).
     float  fame_multiplier;           // Fame multiplier
@@ -134,6 +135,7 @@ struct map_config_t
     uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
     std::string msg_server_ip;        // central message server IP
+    bool   skillup_bloodpact;         // Enable/disable skillups for bloodpacts
 };
 
 /************************************************************************

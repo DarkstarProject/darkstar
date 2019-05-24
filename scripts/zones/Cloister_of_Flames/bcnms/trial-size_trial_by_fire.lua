@@ -3,13 +3,11 @@
 -- BCNM: Trial-size Trial by Fire
 -- !pos -721 0 -598 207
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Flames/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Flames/IDs");
 
 -----------------------------------
 
@@ -51,15 +49,15 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:hasSpell(298) == false) then
         player:addSpell(298); -- Ifrit
-        player:messageSpecial(IFRIT_UNLOCKED,0,0,0);
+        player:messageSpecial(ID.text.IFRIT_UNLOCKED,0,0,0);
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeFire_date", 0);
         player:addFame(KAZHAM,30);
-        player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_FIRE);
     end
 
 end;

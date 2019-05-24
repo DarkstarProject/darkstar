@@ -3,17 +3,19 @@
 -- Chocobo Shirt
 -- Dispense: Crystals
 -----------------------------------------
+require("scripts/globals/msg")
+-----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
+    local result = 0
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    local day = VanadielDayElement()+1;
+    local day = VanadielDayElement()+1
     local crystal =
     {
         4096, -- Fire
@@ -24,7 +26,7 @@ function onItemUse(target)
         4100, -- Thunder
         4102, -- Light
         4103  -- Dark
-    };
-    -- print(crystal[day]);
-    target:addItem(crystal[day],math.random(2,12));
-end;
+    }
+    -- print(crystal[day])
+    target:addItem(crystal[day],math.random(2,12))
+end

@@ -4,20 +4,16 @@
 -- Notes: Teleports you to the 10th floor.
 -- !pos 261 19 20 158
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
------------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    player:startEvent(17);
-end;
+function onTrigger(player, npc)
+    player:startEvent(17)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

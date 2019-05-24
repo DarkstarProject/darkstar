@@ -3,30 +3,30 @@
 -- TOAU-42: Path of Darkness
 --
 -----------------------------------
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/instance")
 require("scripts/globals/keyitems");
-require("scripts/zones/Nyzul_Isle/IDs");
 -----------------------------------
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(NyzulIsle.text.TIME_TO_COMPLETE, instance:getTimeLimit());
+    player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;
 
 function onInstanceCreated(instance)
-    SpawnMob(NyzulIsle.mobs[59].RAUBAHN, instance);
-    SpawnMob(NyzulIsle.mobs[59].RAZFAHD, instance);
+    SpawnMob(ID.mob[59].RAUBAHN, instance);
+    SpawnMob(ID.mob[59].RAZFAHD, instance);
 end;
 
 function onInstanceTimeUpdate(instance, elapsed)
-    updateInstanceTime(instance, elapsed, NyzulIsle.text)
+    updateInstanceTime(instance, elapsed, ID.text)
 end;
 
 function onInstanceFailure(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(NyzulIsle.text.MISSION_FAILED,10,10);
+        v:messageSpecial(ID.text.MISSION_FAILED,10,10);
         v:startEvent(1);
     end
 end;
@@ -39,8 +39,8 @@ function onInstanceProgressUpdate(instance, progress)
             v:startEvent(203);
         end
 
-        DespawnMob(NyzulIsle.mobs[59].RAZFAHD, instance);
-        SpawnMob(NyzulIsle.mobs[59].ALEXANDER, instance);
+        DespawnMob(ID.mob[59].RAZFAHD, instance);
+        SpawnMob(ID.mob[59].ALEXANDER, instance);
 
     elseif(progress == 5) then
         instance:complete();
@@ -52,7 +52,7 @@ function onInstanceComplete(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        if (v:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and v:getVar("AhtUrganStatus") == 1) then
+        if (v:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and v:getVar("AhtUrganStatus") == 1) then
             v:setVar("AhtUrganStatus", 2);
         end
 
@@ -73,4 +73,3 @@ function onEventFinish(player,csid,option)
         player:setPos(-444,-4,420,127);
     end
 end;
-

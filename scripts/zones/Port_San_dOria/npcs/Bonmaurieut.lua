@@ -1,51 +1,39 @@
 -----------------------------------
 -- Area: Port San d'Oria
 --  NPC: Bonmaurieut
--- Only sells when San d'Oria controlls Elshimo Uplands
+-- Elshimo Uplands Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end;
+end
 
 function onTrigger(player,npc)
-
-    local RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
-
-    if (RegionOwner ~= NATION_SANDORIA) then
-        player:showText(npc,BONMAURIEUT_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.ELSHIMOUPLANDS) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.BONMAURIEUT_CLOSED_DIALOG)
     else
-        player:showText(npc,BONMAURIEUT_OPEN_DIALOG);
-
         local stock =
         {
-            1413, 1656, -- Cattleya
-            628,   239, -- Cinnamon
-            4468,   73, -- Pamamas
-            721,   147  -- Rattan Lumber
+            1413, 1656,    -- Cattleya
+            628,   239,    -- Cinnamon
+            4468,   73,    -- Pamamas
+            721,   147,    -- Rattan Lumber
         }
-        showShop(player,SANDORIA,stock);
+
+        player:showText(npc, ID.text.BONMAURIEUT_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

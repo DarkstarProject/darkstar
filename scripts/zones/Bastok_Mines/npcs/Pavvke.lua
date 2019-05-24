@@ -3,18 +3,16 @@
 --  NPC: Pavvke
 -- Starts Quests: Fallen Comrades (100%)
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
 count = trade:getItemCount();
 SilverTag = trade:hasItemQty(13116,1);
-Fallen = player:getQuestStatus(BASTOK,FALLEN_COMRADES);
+Fallen = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
 
     if (Fallen == 1 and SilverTag == true and count == 1) then
         player:tradeComplete();
@@ -28,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 
-Fallen = player:getQuestStatus(BASTOK,FALLEN_COMRADES);
+Fallen = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
 pLevel = player:getMainLvl(player);
 pFame = player:getFameLevel(BASTOK);
 
@@ -48,18 +46,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 90) then
-        player:addQuest(BASTOK,FALLEN_COMRADES);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
     elseif (csid == 91) then
-        player:completeQuest(BASTOK,FALLEN_COMRADES);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
         player:addFame(BASTOK,120);
         player:addGil(GIL_RATE*550);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*550);
     elseif (csid == 92) then
         player:addFame(BASTOK,8);
         player:addGil(GIL_RATE*550);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*550);
     end
 
 end;
-
-

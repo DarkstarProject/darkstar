@@ -8,7 +8,7 @@ require("scripts/globals/keyitems");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
     SetServerVariable("[Central_Apollyon]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1296),APPOLLYON_SE_NE);
+    HideArmouryCrates(GetInstanceRegion(1296),APOLLYON_SE_NE);
     GetNPCByID(16933248):setAnimation(8);
     if (IsMobDead(16933125)==false) then DespawnMob(16933125);end
      player:setVar("Limbus_Trade_Item",0);

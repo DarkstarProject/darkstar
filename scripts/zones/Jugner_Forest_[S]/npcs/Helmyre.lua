@@ -2,23 +2,24 @@
 -- Area: Jugner Forest (S)
 --  NPC: Helmyre
 -- Type: Chocobo Renter
--- !pos -120.853 -1 -152.582 82
+-- !pos -120.853 0.000 -152.582 82
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
+require("scripts/globals/chocobo")
 -----------------------------------
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
------------------------------------
+
+local eventSucceed = 208
+local eventFail    = 209
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(208);
-end;
+    dsp.chocobo.renterOnTrigger(player, eventSucceed, eventFail)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+    dsp.chocobo.renterOnEventFinish(player, csid, option, eventSucceed)
+end

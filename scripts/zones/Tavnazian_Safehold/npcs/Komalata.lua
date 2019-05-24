@@ -3,38 +3,43 @@
 --  NPC: Komalata
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,KOMALATA_SHOP_DIALOG);
-
     local stock =
     {
-        0x1118,110,        -- Meat Jerky
-     0x03a8,14,        -- Rock Salt
-     0x0263,36,        -- Rye Flour
-     0x119d,10,        -- Distilled Water
-     0x0271,91,        -- Apple Vinegar    (COP 4+ only)
-     0x110c,110,        -- Black Bread        (COP 4+ only)
-     0x0262,55,        -- San d'Orian Flour    (COP 4+ only)
-     0x1125,29,        -- San d'Orian Carrot    (COP 4+ only)
-     0x0275,44,        -- Millioncorn        (COP 4+ only)
-     0x05f3,290}        -- Apple Mint        (COP 4+ only)
+        4376, 110,    -- Meat Jerky
+        936,   14,    -- Rock Salt
+        611,   36,    -- Rye Flour
+        4509,  10,    -- Distilled Water
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    if player:getCurrentMission(COP) >= dsp.mission.id.cop.SHELTERING_DOUBT then
+        table.insert(stock, 625)      -- Apple Vinegar
+        table.insert(stock, 91)
+        table.insert(stock, 4364)    -- Black Bread
+        table.insert(stock, 110)
+        table.insert(stock, 610)      -- San d'Orian Flour
+        table.insert(stock, 55)
+        table.insert(stock, 4389)     -- San d'Orian Carrot
+        table.insert(stock, 29)
+        table.insert(stock, 629)      -- Millioncorn
+        table.insert(stock, 44)
+        table.insert(stock, 1523)     -- Apple Mint
+        table.insert(stock, 290)
+    end
+
+    player:showText(npc, ID.text.KOMALATA_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

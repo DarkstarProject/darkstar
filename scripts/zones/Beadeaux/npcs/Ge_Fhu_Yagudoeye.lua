@@ -4,10 +4,6 @@
 -- Type: Quest NPC
 -- !pos -91.354 -4.251 -127.831 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Beadeaux/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -21,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -2,21 +2,20 @@
 -- Area: Upper Delkfutt's Tower
 --  NPC: Grounds Tome
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    startGov(GOV_EVENT_UPPER_DELKFUTTS_TOWER,player);
-end;
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
 function onEventUpdate(player,csid,option)
-    updateGov(player,csid,option,785,786,787,788,789,0,0,0,0,0);
-end;
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
+end
 
 function onEventFinish(player,csid,option)
-    finishGov(player,csid,option,785,786,787,788,789,0,0,0,0,0,GOV_MSG_UPPER_DELKFUTTS_TOWER);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

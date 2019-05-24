@@ -3,9 +3,6 @@
 --  NPC: Navisse
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs");
 require("scripts/globals/pathfind");
 -----------------------------------
 
@@ -119,12 +116,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
@@ -141,4 +138,3 @@ end;
 function onEventFinish(player,csid,option,npc)
     npc:wait(0);
 end;
-

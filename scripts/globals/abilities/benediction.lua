@@ -7,8 +7,8 @@
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
     -- To Do: Benediction can remove Charm only while in Assault Mission Lamia No.13
@@ -18,25 +18,25 @@ function onUseAbility(player,target,ability)
                         dsp.effect.STR_DOWN, dsp.effect.DEX_DOWN, dsp.effect.VIT_DOWN, dsp.effect.AGI_DOWN, dsp.effect.INT_DOWN, dsp.effect.MND_DOWN,
                         dsp.effect.CHR_DOWN, dsp.effect.ADDLE, dsp.effect.SLOW, dsp.effect.HELIX, dsp.effect.ACCURACY_DOWN, dsp.effect.ATTACK_DOWN,
                         dsp.effect.EVASION_DOWN, dsp.effect.DEFENSE_DOWN, dsp.effect.MAGIC_ACC_DOWN, dsp.effect.MAGIC_ATK_DOWN, dsp.effect.MAGIC_EVASION_DOWN,
-                        dsp.effect.MAGIC_DEF_DOWN, dsp.effect.MAX_TP_DOWN, dsp.effect.SILENCE};
+                        dsp.effect.MAGIC_DEF_DOWN, dsp.effect.MAX_TP_DOWN, dsp.effect.SILENCE}
 
     for i, effect in ipairs(removables) do
         if (target:hasStatusEffect(effect)) then
-            target:delStatusEffect(effect);
-        end;
-    end;
-
-    local heal = (target:getMaxHP() * player:getMainLvl()) / target:getMainLvl();
-
-    local maxHeal = target:getMaxHP() - target:getHP();
-
-    if (heal > maxHeal) then
-        heal = maxHeal;
+            target:delStatusEffect(effect)
+        end
     end
 
-    player:updateEnmityFromCure(target,heal);
-    target:addHP(heal);
-    target:wakeUp();
+    local heal = (target:getMaxHP() * player:getMainLvl()) / target:getMainLvl()
 
-    return heal;
-end;
+    local maxHeal = target:getMaxHP() - target:getHP()
+
+    if (heal > maxHeal) then
+        heal = maxHeal
+    end
+
+    player:updateEnmityFromCure(target,heal)
+    target:addHP(heal)
+    target:wakeUp()
+
+    return heal
+end

@@ -2,12 +2,9 @@
 -- Area: Ru'Lude Gardens
 --   NPC: Rainhard
 -- Type: Standard NPC
--- @zone 243
--- !pos -2.397 -5.999 68.749
+-- !pos -2.397 -5.999 68.749 243
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

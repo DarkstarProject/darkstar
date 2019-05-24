@@ -2,15 +2,10 @@
 -- Area: Dynamis Xarcabard
 --  MOB: Marquis Cimeries
 -----------------------------------
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 -----------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
-function onMobFight(mob,target)
-end;
 
 function onMobDeath(mob, player, isKiller)
 
@@ -35,7 +30,7 @@ function onMobDeath(mob, player, isKiller)
     end
 
     if (Animate_Trigger == 32767) then
-        player:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
+        player:messageSpecial(ID.text.PRISON_OF_SOULS_HAS_SET_FREE);
     end
 
 end;

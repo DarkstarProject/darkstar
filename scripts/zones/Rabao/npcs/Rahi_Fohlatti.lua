@@ -4,23 +4,21 @@
 -- Starts Quest: Trial Size Trial by Wind
 -- !pos -17 7 -10 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (trade:hasItemQty(1546,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
+    if (trade:hasItemQty(1546,1) and player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WIND) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
         player:startEvent(109,0,1546,3,20);
     end
 end;
 
 function onTrigger(player,npc)
-    local TrialSizeWind = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
+    local TrialSizeWind = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WIND);
 
     if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(108,0,1546,3,20);     --mini tuning fork, zone, level
@@ -48,18 +46,18 @@ function onEventFinish(player,csid,option)
 
     if (csid == 108 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
         else
-            player:addQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
+            player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WIND);
             player:addItem(1546);
-            player:messageSpecial(ITEM_OBTAINED,1546);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1546);
         end
     elseif (csid == 112 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
         else
             player:addItem(1546);
-            player:messageSpecial(ITEM_OBTAINED,1546);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1546);
         end
     elseif (csid == 109 and option == 1) then
         dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_GALES);

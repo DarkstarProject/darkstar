@@ -3,37 +3,32 @@
 --  NPC: Mamerie
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Kazham/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,MAMERIE_SHOP_DIALOG);
-
     local stock =
     {
-        0x11C1,62,        -- Gysahl Greens
-     0x0348,7,        -- Chocobo Feather
-     0x4278,11,        -- Pet Food Alpha Biscuit
-     0x4279,82,        -- Pet Food Beta Biscuit
-     0x45C4,82,        -- Carrot Broth
-     0x45C6,695,        -- Bug Broth
-     0x45C8,126,        -- Herbal Broth
-     0x45CA,695,        -- Carrion Broth
-     0x13D1,50784}        -- Scroll of Chocobo Mazurka
+        4545,    62,    -- Gysahl Greens
+        840,      7,    -- Chocobo Feather
+        17016,   11,    -- Pet Food Alpha Biscuit
+        17017,   82,    -- Pet Food Beta Biscuit
+        17860,   82,    -- Carrot Broth
+        17862,  695,    -- Bug Broth
+        17864,  126,    -- Herbal Broth
+        17866,  695,    -- Carrion Broth
+        5073, 50784,    -- Scroll of Chocobo Mazurka
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.MAMERIE_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

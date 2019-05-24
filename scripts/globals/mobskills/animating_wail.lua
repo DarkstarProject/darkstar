@@ -8,20 +8,20 @@
 -- Range: Self
 -- Notes:
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local power = 153;
-    local duration = 300;
-    local typeEffect = dsp.effect.HASTE;
+    local power = 1500
+    local duration = 300
+    local typeEffect = dsp.effect.HASTE
 
-    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
-    return typeEffect;
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration))
+    return typeEffect
 end

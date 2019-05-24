@@ -4,9 +4,6 @@
 -- Involved in Quests: The Sand Charm
 -- !pos 30 -8 25 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/settings");
 -----------------------------------
 

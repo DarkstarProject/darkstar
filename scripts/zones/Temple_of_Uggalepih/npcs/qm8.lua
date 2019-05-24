@@ -1,39 +1,27 @@
 -----------------------------------
 -- Area: Temple of Uggalepih (159)
--- NPC:  qm8 (???)
--- Notes: Used to spawn Habetrot
--- !pos -57.434 -8.484 55.317 0
+--  NPC: qm8 (???)
+-- Note: Used to spawn Habetrot
+-- !pos -57.434 -8.484 55.317 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
-require("scripts/globals/status");
 
-function onTrade(player,npc,trade)
-    -- Trade 12 La Theine Cabbages to pop Habetrot
-    if (
-        trade:hasItemQty(4366,12) and trade:getItemCount() == 12 and
-        not GetMobByID(HABETROT):isSpawned() and
-        not GetMobByID(HABETROT + 1):isSpawned()
-    ) then
-        player:tradeComplete();
-        -- 20% Chance to spawn Habetrot, else it's a Rumble Crawler
-        if (math.random(5) == 1) then
-            SpawnMob(HABETROT):updateClaim(player); -- Spawn Habetrot
-        else
-            SpawnMob(HABETROT + 1):updateClaim(player); -- Spawn Rumble Crawler
-        end
-        npc:setStatus(dsp.status.DISAPPEAR);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, {{4366, 12}}) and not GetMobByID(ID.mob.HABETROT):isSpawned() and not GetMobByID(ID.mob.HABETROT + 1):isSpawned() then -- 12 La Theine Cabbages
+        local mobToSpawn = (math.random(100) <= 20) and ID.mob.HABETROT or ID.mob.HABETROT + 1 -- 20% Chance to spawn Habetrot, else it's a Rumble Crawler
+        npcUtil.popFromQM(player, npc, mobToSpawn)
+        player:confirmTrade()
     end
-end;
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(BITS_OF_VEGETABLE);
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.BITS_OF_VEGETABLE)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

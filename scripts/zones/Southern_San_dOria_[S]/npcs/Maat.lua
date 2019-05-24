@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Maat
--- @zone 80
--- !pos -271 -3 117
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+-- !pos -271 -3 117 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

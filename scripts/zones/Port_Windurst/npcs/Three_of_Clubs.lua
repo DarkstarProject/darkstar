@@ -4,10 +4,7 @@
 -- Type: Standard NPC
 -- !pos -7.238 -5 106.982 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +14,7 @@ function onTrigger(player,npc)
 
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
-    if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,18) == false) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,18) == false) then
         player:startEvent(625);
     else
         player:startEvent(222);
@@ -34,4 +31,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

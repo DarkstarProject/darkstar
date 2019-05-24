@@ -3,9 +3,7 @@
 --  NPC: Pyopyoroon
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
+local ID = require("scripts/zones/Nashmau/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -13,17 +11,17 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getCurrentMission(TOAU) == ROYAL_PUPPETEER and player:getVar("AhtUrganStatus") == 1 and trade:hasItemQty(2307,1)) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ROYAL_PUPPETEER and player:getVar("AhtUrganStatus") == 1 and trade:hasItemQty(2307,1)) then
         player:startEvent(279);
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == ROYAL_PUPPETEER and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ROYAL_PUPPETEER and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(277);
-    elseif (player:getCurrentMission(TOAU) == ROYAL_PUPPETEER and player:getVar("AhtUrganStatus") == 1) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ROYAL_PUPPETEER and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(278);
-    elseif (player:getCurrentMission(TOAU) == LOST_KINGDOM) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.LOST_KINGDOM) then
         player:startEvent(280);
     else
         player:startEvent(275);
@@ -40,8 +38,8 @@ function onEventFinish(player,csid,option)
         player:setVar("AhtUrganStatus",0);
         player:tradeComplete();
         player:addKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_SPECTRAL_SCENT);
-        player:completeMission(TOAU,ROYAL_PUPPETEER);
-        player:addMission(TOAU,LOST_KINGDOM);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIAL_OF_SPECTRAL_SCENT);
+        player:completeMission(TOAU,dsp.mission.id.toau.ROYAL_PUPPETEER);
+        player:addMission(TOAU,dsp.mission.id.toau.LOST_KINGDOM);
     end
 end;

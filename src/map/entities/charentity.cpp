@@ -35,10 +35,12 @@
 #include "../packets/char_recast.h"
 #include "../packets/lock_on.h"
 #include "../packets/inventory_finish.h"
+#include "../packets/key_items.h"
 #include "../packets/menu_raisetractor.h"
 #include "../packets/char_health.h"
 #include "../packets/char_appearance.h"
 #include "../packets/message_system.h"
+#include "../packets/message_special.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/player_controller.h"
@@ -54,6 +56,7 @@
 
 #include "charentity.h"
 #include "automatonentity.h"
+#include "trustentity.h"
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
@@ -64,6 +67,7 @@
 #include "../item_container.h"
 #include "../items/item_weapon.h"
 #include "../items/item_usable.h"
+#include "../items/item_furnishing.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
 #include "../char_recast_container.h"
@@ -146,7 +150,7 @@ CCharEntity::CCharEntity()
     m_mkeCurrent = 0;
     m_asaCurrent = 0;
 
-    m_Costum = 0;
+    m_Costume = 0;
     m_Monstrosity = 0;
     m_hasTractor = 0;
     m_hasRaise = 0;
@@ -155,7 +159,6 @@ CCharEntity::CCharEntity()
     m_LevelRestriction = 0;
     m_lastBcnmTimePrompt = 0;
     m_AHHistoryTimestamp = 0;
-    m_DeathCounter = 0;
     m_DeathTimestamp = 0;
 
     m_EquipFlag = 0;
@@ -195,6 +198,7 @@ CCharEntity::CCharEntity()
 
     m_LastYell = 0;
     m_moghouseID = 0;
+    m_moghancementID = 0;
 
     PAI = std::make_unique<CAIContainer>(this, nullptr, std::make_unique<CPlayerController>(this),
         std::make_unique<CTargetFind>(this));
@@ -358,7 +362,7 @@ int8 CCharEntity::getShieldSize()
 
 void CCharEntity::SetName(int8* name)
 {
-    this->name.insert(0, (const char*)name, std::clamp<size_t>(strlen((const char*)name), 0, 15));
+    this->name.insert(0, (const char*)name, std::min<size_t>(strlen((const char*)name), PacketNameLength));
 }
 
 int16 CCharEntity::addTP(int16 tp)
@@ -465,6 +469,48 @@ bool CCharEntity::ReloadParty()
     return m_reloadParty;
 }
 
+void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
+{
+    if (!PTrust->PAI->IsSpawned())
+        return;
+
+    auto trustIt = std::remove_if(PTrusts.begin(), PTrusts.end(), [PTrust](auto trust) { return PTrust == trust; });
+    if (trustIt != PTrusts.end())
+    {
+        PTrust->PAI->Despawn();
+        PTrusts.erase(trustIt);
+    }
+    if (PParty != nullptr)
+    {
+        PParty->ReloadParty();
+    }
+}
+
+void CCharEntity::ClearTrusts()
+{
+    if (PTrusts.size() == 0)
+    {
+        return;
+    }
+
+    for (auto trust : PTrusts)
+    {
+        trust->PAI->Despawn();
+    }
+    PTrusts.clear();
+}
+
+void CCharEntity::Tick(time_point tick)
+{
+    CBattleEntity::Tick(tick);
+    if (m_DeathTimestamp > 0 && tick >= m_deathSyncTime)
+    {
+        // Send an update packet at a regular interval to keep the player's death variables synced
+        updatemask |= UPDATE_STATUS;
+        m_deathSyncTime = tick + death_update_frequency;
+    }
+}
+
 void CCharEntity::PostTick()
 {
     CBattleEntity::PostTick();
@@ -506,9 +552,14 @@ void CCharEntity::PostTick()
         {
             ForAlliance([&](auto PEntity)
             {
-                static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                if (PEntity->objtype == TYPE_PC)
+                {
+                    static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                }
             });
         }
+        // Do not send an update packet when only the position has change
+        if (updatemask ^ UPDATE_POS)
         pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
     }
@@ -568,6 +619,13 @@ bool CCharEntity::CanUseSpell(CSpell* PSpell)
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
 {
     pushPacket(new CLockOnPacket(this, PNewTarget));
+    PLatentEffectContainer->CheckLatentsTargetChange();
+}
+
+void CCharEntity::OnEngage(CAttackState& state)
+{
+    CBattleEntity::OnEngage(state);
+    PLatentEffectContainer->CheckLatentsTargetChange();
 }
 
 void CCharEntity::OnDisengage(CAttackState& state)
@@ -688,7 +746,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
         if (PSpell->getSkillType() == SKILL_SINGING)
         {
             CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
-            if (PItem && PItem->isType(ITEM_ARMOR))
+            if (PItem && PItem->isType(ITEM_EQUIPMENT))
             {
                 SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
                 if (Skilltype == SKILL_STRING_INSTRUMENT || Skilltype == SKILL_WIND_INSTRUMENT || Skilltype == SKILL_SINGING)
@@ -832,7 +890,10 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         }
                     }
                     // check for ws points
-                    charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    if (charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel()) > 0)
+                    {
+                        charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    }
                 }
             }
         }
@@ -911,22 +972,22 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
         else if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
         {
-            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
+            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+            {
                 action.recast = 0;
             }
-            else if (this->getMod(Mod::BP_DELAY) > 15) {
-                action.recast -= 15;
-            }
-            else {
-                action.recast -= getMod(Mod::BP_DELAY);
+            else
+            {
+                action.recast -= std::min<int16>(getMod(Mod::BP_DELAY), 15);
+                action.recast -= std::min<int16>(getMod(Mod::BP_DELAY_II), 15);
             }
         }
 
-        // remove invisible if aggresive
+        // remove invisible if aggressive
         if (PAbility->getID() != ABILITY_TAME && PAbility->getID() != ABILITY_FIGHT)
         {
             if (PAbility->getValidTarget() & TARGET_ENEMY) {
-                // aggresive action
+                // aggressive action
                 StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
             }
             else if (PAbility->getID() != ABILITY_TRICK_ATTACK) {
@@ -952,7 +1013,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         // #TODO: get rid of this to script, too
         if (PAbility->isPetAbility())
         {
-            if (PPet) //is a bp - dont display msg and notify pet
+            if (PPet) //is a bp - don't display msg and notify pet
             {
                 actionList_t& actionList = action.getNewActionList();
                 actionList.ActionTargetID = PTarget->id;
@@ -966,14 +1027,31 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 auto PPetTarget = PTarget->targid;
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
-                    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
-                        this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
+                    // Blood Pact mp cost stored in animation ID
+                    float mpCost = PAbility->getAnimationID();
+
+                    if (StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+                    {
+                        mpCost *= 1.5f;
+                        StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
-                    else {
-                        addMP(-PAbility->getAnimationID()); // TODO: ...
+
+                    // Blood Boon (does not affect Astra Flow BPs)
+                    if ((PAbility->getAddType() & ADDTYPE_ASTRAL_FLOW) == 0)
+                    {
+                        int16 bloodBoonRate = getMod(Mod::BLOOD_BOON);
+                        if (dsprand::GetRandomNumber(100) < bloodBoonRate)
+                        {
+                            mpCost *= dsprand::GetRandomNumber(8.f, 16.f) / 16.f;
+                        }
                     }
-                    if (PAbility->getValidTarget() == TARGET_SELF) { PPetTarget = PPet->targid; }
+
+                    addMP((int32)-mpCost);
+
+                    if (PAbility->getValidTarget() == TARGET_SELF)
+                    {
+                        PPetTarget = PPet->targid;
+                    }
                 }
                 else
                 {
@@ -1098,6 +1176,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             state.ApplyEnmity();
         }
         PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast);
+
+        uint16 recastID = PAbility->getRecastId();
+        if (map_config.blood_pact_shared_timer && (recastID == 173 || recastID == 174))
+        {
+            PRecastContainer->Add(RECAST_ABILITY, (recastID == 173 ? 174 : 173), action.recast);
+        }
+
         pushPacket(new CCharRecastPacket(this));
 
         //#TODO: refactor
@@ -1186,14 +1271,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             }
             else
             {
-                float pdif = battleutils::GetRangedPDIF(this, PTarget);
+                bool isCritical = dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true);
+                float pdif = battleutils::GetRangedDamageRatio(this, PTarget, isCritical);
 
-                if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
+                if (isCritical)
                 {
-                    pdif *= 1.25; //uncapped
-                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE) - PTarget->getMod(Mod::CRIT_DEF_BONUS);
-                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
-                    pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
                 }
@@ -1488,7 +1570,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     actionTarget_t& actionTarget = actionList.getNewActionTarget();
     actionTarget.animation = PItem->getAnimationID();
 
-    if (PItem->isType(ITEM_ARMOR))
+    if (PItem->isType(ITEM_EQUIPMENT))
     {
         if (PItem->getMaxCharges() > 1)
         {
@@ -1514,7 +1596,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
         if (PItem->getCurrentCharges() != 0)
         {
-            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID(), PItem->getReuseTime() / 1000);
+            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID() << 8 | PItem->getLocationID(), PItem->getReuseTime() / 1000); // add recast timer to Recast List from any bag
         }
     }
     else // разблокируем все предметы, кроме экипирвоки
@@ -1555,19 +1637,13 @@ CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags
 
 void CCharEntity::Die()
 {
-    if (GetBattleTargetID() == 0)
-    {
-        //falls to the ground
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, 20));
-    }
+    if (PLastAttacker)
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PLastAttacker, this, 0, 0, MSGBASIC_PLAYER_DEFEATED_BY));
     else
-    {
-        auto PTarget = GetEntity(GetBattleTargetID());
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, this, 0, 0, 97));
-    }
-    Die(60min);
-    m_DeathCounter = 0;
-    m_DeathTimestamp = (uint32)time(nullptr);
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
+
+    Die(death_duration);
+    SetDeathTimestamp((uint32)time(nullptr));
 
     setBlockingAid(false);
 
@@ -1575,14 +1651,17 @@ void CCharEntity::Die()
     conquest::LoseInfluencePoints(this);
 
     if (GetLocalVar("MijinGakure") == 0)
-        charutils::DelExperiencePoints(this, map_config.exp_retain, 0);
+    {
+        float retainPercent = std::clamp(map_config.exp_retain + getMod(Mod::EXPERIENCE_RETAINED) / 100.0f, 0.0f, 1.0f);
+        charutils::DelExperiencePoints(this, retainPercent, 0);
+    }
 }
 
 void CCharEntity::Die(duration _duration)
 {
+    m_deathSyncTime = server_clock::now() + death_update_frequency;
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
-    pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
 
     // reraise modifiers
     if (this->getMod(Mod::RERAISE_I) > 0)
@@ -1599,6 +1678,344 @@ void CCharEntity::Die(duration _duration)
 void CCharEntity::Raise()
 {
     PAI->Internal_Raise();
+    SetDeathTimestamp(0);
+}
+
+void CCharEntity::SetDeathTimestamp(uint32 timestamp)
+{
+    m_DeathTimestamp = timestamp;
+}
+
+int32 CCharEntity::GetSecondsElapsedSinceDeath()
+{
+    return m_DeathTimestamp > 0 ? (uint32)time(nullptr) - m_DeathTimestamp : 0;
+}
+
+int32 CCharEntity::GetTimeRemainingUntilDeathHomepoint()
+{
+    // 0x0003A020 is 60 * 3960 and 3960 is 66 minutes in seconds
+    // The client uses this time as the maximum amount of time for death
+    // We convert the elapsed death time to this total time and subtract it which gives us the remaining time to a forced homepoint
+    // Once the returned value here reaches below 360 then the client with force homepoint the character
+    return 0x0003A020 - (60 * GetSecondsElapsedSinceDeath());
+}
+
+bool CCharEntity::hasMoghancement(uint16 moghancementID)
+{
+    return m_moghancementID == moghancementID;
+}
+
+void CCharEntity::UpdateMoghancement()
+{
+    // Add up all of the installed furniture auras
+    std::array<uint16, 8> elements = { 0 };
+    for (auto containerID : {LOC_MOGSAFE, LOC_MOGSAFE2})
+    {
+        CItemContainer* PContainer = getStorage(containerID);
+        for (int slotID = 1; slotID <= PContainer->GetSize(); ++slotID)
+        {
+            CItem* PItem = PContainer->GetItem(slotID);
+            if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
+            {
+                CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
+                if (PFurniture->isInstalled())
+                {
+                    elements[PFurniture->getElement()] += PFurniture->getAura();
+                }
+            }
+        }
+    }
+
+    // Determine the dominant aura
+    uint8 dominantElement = 0;
+    uint16 dominantAura = 0;
+    bool hasTiedElements = false;
+    for (uint8 elementID = 0; elementID < 8; ++elementID)
+    {
+        uint16 aura = elements[elementID];
+        if (aura > dominantAura)
+        {
+            dominantElement = elementID;
+            dominantAura = aura;
+            hasTiedElements = false;
+        }
+        else if (aura == dominantAura)
+        {
+            hasTiedElements = true;
+        }
+    }
+
+    // Determine which moghancement to use from the dominant element
+    uint8 bestAura = 0;
+    uint8 bestOrder = 255;
+    uint16 newMoghancementID = 0;
+    if (!hasTiedElements && dominantAura > 0)
+    {
+        for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
+        {
+            CItemContainer* PContainer = getStorage(containerID);
+            for (int slotID = 1; slotID <= PContainer->GetSize(); ++slotID)
+            {
+                CItem* PItem = PContainer->GetItem(slotID);
+                if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
+                {
+                    CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
+                    // If aura is tied then use whichever furniture was placed most recently
+                    if (PFurniture->isInstalled() &&
+                        PFurniture->getElement() == dominantElement &&
+                        (PFurniture->getAura() > bestAura || (PFurniture->getAura() == bestAura && PFurniture->getOrder() < bestOrder)))
+                    {
+                        bestAura = PFurniture->getAura();
+                        bestOrder = PFurniture->getOrder();
+                        newMoghancementID = PFurniture->getMoghancement();
+                    }
+                }
+            }
+        }
+    }
+
+    // Always show which moghancement the player has if they have one at all
+    if (newMoghancementID != 0)
+    {
+        pushPacket(new CMessageSpecialPacket(this, luautils::GetTextIDVariable(getZone(), "KEYITEM_OBTAINED"), newMoghancementID, 0, 0, 0, 0));
+    }
+
+    if (newMoghancementID != m_moghancementID)
+    {
+        // Remove the previous moghancement
+        if (m_moghancementID != 0)
+            charutils::delKeyItem(this, m_moghancementID);
+
+        // Add the new moghancement
+        if (newMoghancementID != 0)
+            charutils::addKeyItem(this, newMoghancementID);
+
+        // Send only one key item packet if they are in the same key item table
+        uint8 newTable = newMoghancementID >> 9;
+        uint8 currentTable = m_moghancementID >> 9;
+        if (newTable == currentTable)
+        {
+            pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)newTable));
+        }
+        else
+        {
+            if (newTable != 0)
+                pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)newTable));
+            if (currentTable != 0)
+                pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)currentTable));
+        }
+        charutils::SaveKeyItems(this);
+
+        SetMoghancement(newMoghancementID);
+        charutils::SaveCharMoghancement(this);
+    }
+}
+
+void CCharEntity::SetMoghancement(uint16 moghancementID)
+{
+    m_moghancementID = moghancementID;
+
+    // Apply the moghancement
+    if (m_moghancementID != 0)
+    {
+        switch (m_moghancementID)
+        {
+            case MOGHANCEMENT_FIRE:
+                addModifier(Mod::SYNTH_FAIL_RATE_FIRE, 5);
+                break;
+            case MOGHANCEMENT_ICE:
+                addModifier(Mod::SYNTH_FAIL_RATE_ICE, 5);
+                break;
+            case MOGHANCEMENT_WIND:
+                addModifier(Mod::SYNTH_FAIL_RATE_WIND, 5);
+                break;
+            case MOGHANCEMENT_EARTH:
+                addModifier(Mod::SYNTH_FAIL_RATE_EARTH, 5);
+                break;
+            case MOGHANCEMENT_LIGHTNING:
+                addModifier(Mod::SYNTH_FAIL_RATE_LIGHTNING, 5);
+                break;
+            case MOGHANCEMENT_WATER:
+                addModifier(Mod::SYNTH_FAIL_RATE_WATER, 5);
+                break;
+            case MOGHANCEMENT_LIGHT:
+                addModifier(Mod::SYNTH_FAIL_RATE_LIGHT, 5);
+                break;
+            case MOGHANCEMENT_DARK:
+                addModifier(Mod::SYNTH_FAIL_RATE_DARK, 5);
+                break;
+
+            case MOGHANCEMENT_FISHING:
+                addModifier(Mod::FISH, 1);
+                break;
+            case MOGHANCEMENT_WOODWORKING:
+                addModifier(Mod::WOOD, 1);
+                break;
+            case MOGHANCEMENT_SMITHING:
+                addModifier(Mod::SMITH, 1);
+                break;
+            case MOGHANCEMENT_GOLDSMITHING:
+                addModifier(Mod::GOLDSMITH, 1);
+                break;
+            case MOGHANCEMENT_CLOTHCRAFT:
+                addModifier(Mod::CLOTH, 1);
+                break;
+            case MOGHANCEMENT_LEATHERCRAFT:
+                addModifier(Mod::LEATHER, 1);
+                break;
+            case MOGHANCEMENT_BONECRAFT:
+                addModifier(Mod::BONE, 1);
+                break;
+            case MOGHANCEMENT_ALCHEMY:
+                addModifier(Mod::ALCHEMY, 1);
+                break;
+            case MOGHANCEMENT_COOKING:
+                addModifier(Mod::COOK, 1);
+                break;
+
+            case MOGLIFICATION_FISHING:
+                addModifier(Mod::FISH, 1);
+                // TODO: "makes it slightly easier to reel in your catch"
+                break;
+            case MOGLIFICATION_WOODWORKING:
+                addModifier(Mod::WOOD, 1);
+                break;
+            case MOGLIFICATION_SMITHING:
+                addModifier(Mod::SMITH, 1);
+                break;
+            case MOGLIFICATION_GOLDSMITHING:
+                addModifier(Mod::GOLDSMITH, 1);
+                break;
+            case MOGLIFICATION_CLOTHCRAFT:
+                addModifier(Mod::CLOTH, 1);
+                break;
+            case MOGLIFICATION_LEATHERCRAFT:
+                addModifier(Mod::LEATHER, 1);
+                break;
+            case MOGLIFICATION_BONECRAFT:
+                addModifier(Mod::BONE, 1);
+                break;
+            case MOGLIFICATION_ALCHEMY:
+                addModifier(Mod::ALCHEMY, 1);
+                break;
+            case MOGLIFICATION_COOKING:
+                addModifier(Mod::COOK, 1);
+                break;
+
+            case MEGA_MOGLIFICATION_FISHING:
+                addModifier(Mod::FISH, 5);
+                break;
+            case MEGA_MOGLIFICATION_WOODWORKING:
+                addModifier(Mod::WOOD, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_WOOD, 5);
+                break;
+            case MEGA_MOGLIFICATION_SMITHING:
+                addModifier(Mod::SMITH, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_SMITH, 5);
+                break;
+            case MEGA_MOGLIFICATION_GOLDSMITHING:
+                addModifier(Mod::GOLDSMITH, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_GOLDSMITH, 5);
+                break;
+            case MEGA_MOGLIFICATION_CLOTHCRAFT:
+                addModifier(Mod::CLOTH, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_CLOTH, 5);
+                break;
+            case MEGA_MOGLIFICATION_LEATHERCRAFT:
+                addModifier(Mod::LEATHER, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_LEATHER, 5);
+                break;
+            case MEGA_MOGLIFICATION_BONECRAFT:
+                addModifier(Mod::BONE, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_BONE, 5);
+                break;
+            case MEGA_MOGLIFICATION_ALCHEMY:
+                addModifier(Mod::ALCHEMY, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_ALCHEMY, 5);
+                break;
+            case MEGA_MOGLIFICATION_COOKING:
+                addModifier(Mod::COOK, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_COOK, 5);
+                break;
+
+            case MOGHANCEMENT_EXPERIENCE:
+                addModifier(Mod::EXPERIENCE_RETAINED, 5);
+                break;
+            case MOGHANCEMENT_GARDENING:
+                // TODO: Reduces the chances of plants withering when gardening
+                break;
+            case MOGHANCEMENT_DESYNTHESIS:
+                addModifier(Mod::DESYNTH_SUCCESS, 2);
+                break;
+            case MOGHANCEMENT_CONQUEST:
+                addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_REGION:
+                addModifier(Mod::CONQUEST_REGION_BONUS, 10);
+                break;
+            case MOGHANCEMENT_FISHING_ITEM:
+                // TODO: Increases the chances of finding items when fishing
+                break;
+            case MOGHANCEMENT_SANDORIA_CONQUEST:
+                if (profile.nation == 0)
+                    addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_BASTOK_CONQUEST:
+                if (profile.nation == 1)
+                    addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_WINDURST_CONQUEST:
+                if (profile.nation == 2)
+                    addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_MONEY:
+                addModifier(Mod::GILFINDER, 10);
+                break;
+            case MOGHANCEMENT_CAMPAIGN:
+                addModifier(Mod::CAMPAIGN_BONUS, 5);
+                break;
+            case MOGHANCEMENT_MONEY_II:
+                addModifier(Mod::GILFINDER, 15);
+                break;
+            case MOGHANCEMENT_SKILL_GAINS:
+                // NOTE: Exact value is unknown but considering this only granted by a newish item it makes sense SE made it fairly strong
+                addModifier(Mod::COMBAT_SKILLUP_RATE, 25);
+                addModifier(Mod::MAGIC_SKILLUP_RATE, 25);
+                break;
+            case MOGHANCEMENT_BOUNTY:
+                addModifier(Mod::EXP_BONUS, 10);
+                addModifier(Mod::CAPACITY_BONUS, 10);
+                break;
+            case MOGLIFICATION_EXPERIENCE_BOOST:
+                addModifier(Mod::EXP_BONUS, 15);
+                break;
+            case MOGLIFICATION_CAPACITY_BOOST:
+                addModifier(Mod::CAPACITY_BONUS, 15);
+                break;
+
+            // NOTE: Exact values for resistances is unknown
+            case MOGLIFICATION_RESIST_POISON:
+                addModifier(Mod::POISONRES, 20);
+                break;
+            case MOGLIFICATION_RESIST_PARALYSIS:
+                addModifier(Mod::SILENCERES, 20);
+                break;
+            case MOGLIFICATION_RESIST_SILENCE:
+                addModifier(Mod::SILENCERES, 20);
+                break;
+            case MOGLIFICATION_RESIST_PETRIFICATION:
+                addModifier(Mod::PETRIFYRES, 20);
+                break;
+            case MOGLIFICATION_RESIST_VIRUS:
+                addModifier(Mod::VIRUSRES, 20);
+                break;
+            case MOGLIFICATION_RESIST_CURSE:
+                addModifier(Mod::CURSERES, 20);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)

@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Quartermaster
--- @zone 80
--- !pos -22 2 -3
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+-- !pos -22 2 -3 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

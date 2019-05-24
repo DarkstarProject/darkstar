@@ -3,11 +3,7 @@
 -- Zone: Reisenjima_Henge (292)
 --
 -----------------------------------
-package.loaded["scripts/zones/Reisenjima_Henge/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Reisenjima_Henge/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Reisenjima_Henge/IDs")
 -----------------------------------
 
 function onInitialize(zone)

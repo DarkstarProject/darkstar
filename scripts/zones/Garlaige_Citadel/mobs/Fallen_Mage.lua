@@ -3,14 +3,14 @@
 --  MOB: Fallen Mage
 -- Note: Place holder Hovering Hotpot
 -----------------------------------
-require("scripts/zones/Garlaige_Citadel/MobIDs");
-require("scripts/globals/groundsofvalor");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,703,2);
+    dsp.regime.checkRegime(player, mob, 703, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,HOVERING_HOTPOT_PH,20,math.random(1800,3600)); -- 30 to 60 minutes
+    dsp.mob.phOnDespawn(mob,ID.mob.HOVERING_HOTPOT_PH,20,math.random(1800,3600)); -- 30 to 60 minutes
 end;

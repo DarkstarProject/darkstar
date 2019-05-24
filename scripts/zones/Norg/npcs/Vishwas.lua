@@ -2,12 +2,9 @@
 -- Area: Norg
 --   NPC: Vishwas
 -- Type: Standard NPC
--- @zone 252
--- !pos 44.028 -7.282 13.663
+-- !pos 44.028 -7.282 13.663 252
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

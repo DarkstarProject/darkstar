@@ -2,33 +2,26 @@
 -- Area: Windurst Woods
 --  NPC: Wani Casdohry
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end;
+end
 
 function onTrigger(player,npc)
+    local TwinstoneBonding = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TWINSTONE_BONDING)
 
-TwinstoneBonding = player:getQuestStatus(WINDURST,TWINSTONE_BONDING);
-
-    if (TwinstoneBonding == QUEST_COMPLETED) then
-        player:startEvent(492,0,13360);
-    elseif (TwinstoneBonding == QUEST_ACCEPTED) then
-        player:startEvent(489,0,13360);
+    if TwinstoneBonding == QUEST_COMPLETED then
+        player:startEvent(492,0,13360)
+    elseif TwinstoneBonding == QUEST_ACCEPTED then
+        player:startEvent(489,0,13360)
     else
-        player:startEvent(425);
+        player:startEvent(425)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

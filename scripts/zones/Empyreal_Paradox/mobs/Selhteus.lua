@@ -5,18 +5,12 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local ID = require("scripts/zones/Empyreal_Paradox/IDs");
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(dsp.mod.REGAIN, 50);
     mob:SetAutoAttackEnabled(false);
-end;
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob, target)
 end;
 
 function onMobFight(mob, target)
@@ -29,7 +23,7 @@ function onMobFight(mob, target)
     local lanceOut = mob:getLocalVar("lanceOut");
     local rejuv = mob:getLocalVar("rejuv");
     if (mob:getHPP() < 30 and rejuv == 0 and target:getFamily() == 478) then
-        mob:messageText(mob, SELHTEUS_TEXT + 2);
+        mob:messageText(mob, ID.text.SELHTEUS_TEXT + 2);
         mob:useMobAbility(1509);
         mob:setLocalVar("rejuv", 1);
     elseif lanceTime + 50 < mob:getBattleTime() and lanceOut == 0 then
@@ -39,6 +33,6 @@ function onMobFight(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    mob:messageText(mob, SELHTEUS_TEXT);
+    mob:messageText(mob, ID.text.SELHTEUS_TEXT);
     mob:getBattlefield():lose();
 end;

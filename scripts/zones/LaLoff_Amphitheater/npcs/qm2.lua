@@ -2,15 +2,12 @@
 -- Area: LaLoff_Amphitheater
 -- NPC:  Shimmering Circle (BCNM Exits)
 -------------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
     ---- 0:
     ---- 1:

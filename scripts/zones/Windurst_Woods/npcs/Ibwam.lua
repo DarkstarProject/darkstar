@@ -4,15 +4,14 @@
 -- Type: Warp NPC
 -- !pos -25.655 1.749 -60.651 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
+local ID = require("scripts/zones/Windurst_Woods/IDs")
+require("scripts/globals/teleports")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
-require("scripts/globals/teleports");
-require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Woods/TextIDs");
 
 --[[
 Bitmask Designations:
@@ -46,53 +45,48 @@ Port Windurst (West to East)
 ]]--
 
 function onTrade(player,npc,trade)
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
+    if npcUtil.tradeHas(trade, {{"gil", 300}}) and player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
-        player:startEvent(794);
+        player:startEvent(794)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    local LureWindurst = player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
-    local WildcatWindurst = player:getVar("WildcatWindurst");
-    if (LureWindurst ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
-        if (LureWindurst == QUEST_AVAILABLE) then
-            player:startEvent(736);
+    local lureWindurst = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST)
+    local wildcatWindurst = player:getVar("WildcatWindurst")
+    
+    if lureWindurst ~= QUEST_COMPLETED and ENABLE_TOAU == 1 then
+        if lureWindurst == QUEST_AVAILABLE then
+            player:startEvent(736)
         else
-            if (WildcatWindurst == 0) then
-                player:startEvent(737);
-            elseif (player:isMaskFull(WildcatWindurst,20) == true) then
-                player:startEvent(739);
+            if wildcatWindurst == 0 then
+                player:startEvent(737)
+            elseif player:isMaskFull(wildcatWindurst,20) then
+                player:startEvent(739)
             else
-                player:startEvent(738);
+                player:startEvent(738)
             end
         end
-    elseif (player:getCurrentMission(TOAU) >= 2) then
-        player:startEvent(793);
+    elseif player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM then
+        player:startEvent(793)
     else
-        player:startEvent(740);
+        player:startEvent(740)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 736) then
-        player:addQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
-        player:setVar("WildcatWindurst",0);
-        player:addKeyItem(dsp.ki.GREEN_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GREEN_SENTINEL_BADGE);
-    elseif (csid == 739) then
-        player:completeQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
-        player:addFame(WINDURST,150);
-        player:setVar("WildcatWindurst",0);
-        player:delKeyItem(dsp.ki.GREEN_SENTINEL_BADGE);
-        player:addKeyItem(dsp.ki.GREEN_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,dsp.ki.GREEN_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GREEN_INVITATION_CARD);
-    elseif (csid == 794) then
-        player:tradeComplete();
-        dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
+    if csid == 736 then
+        player:addQuest(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST)
+        player:setVar("WildcatWindurst", 0)
+        npcUtil.giveKeyItem(player, dsp.ki.GREEN_SENTINEL_BADGE)
+    elseif csid == 739 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST, {fame=150, keyItem=dsp.ki.GREEN_INVITATION_CARD, var="WildcatWindurst"}) then
+        player:delKeyItem(dsp.ki.GREEN_SENTINEL_BADGE)
+        player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.GREEN_SENTINEL_BADGE)
+    elseif csid == 794 then
+        player:confirmTrade()
+        dsp.teleport.to(player, dsp.teleport.id.WHITEGATE)
     end
-end;
+end

@@ -2,33 +2,28 @@
 -- Area: Palborough Mines
 --  NPC: Refiner Lever
 -- Involved In Mission: Journey Abroad
--- @zone 143
--- !pos 180 -32 167
+-- !pos 180 -32 167 143
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Palborough_Mines/TextIDs");
+require("scripts/globals/settings")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
+    local refinerInput = player:getVar("refiner_input")
 
-    if (player:getVar("refiner_input") > 0) then
-        player:startEvent(17,1,1,1,1,1,1,1,1); -- machine is working, you hear the sound of metal hitting metal down below.
-        refiner_output = player:getVar("refiner_output");
-        player:setVar("refiner_output",refiner_output + player:getVar("refiner_input"));
-        player:setVar("refiner_input",0)
+    if refinerInput > 0 then
+        player:startEvent(17, 1, 1, 1, 1, 1, 1, 1, 1) -- machine is working, you hear the sound of metal hitting metal down below.
+        player:addVar("refiner_output", refinerInput)
+        player:setVar("refiner_input", 0)
     else
-        player:startEvent(17); -- machine is working, but you cannot discern its purpose.
+        player:startEvent(17) -- machine is working, but you cannot discern its purpose.
     end
+end
 
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

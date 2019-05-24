@@ -2,12 +2,9 @@
 -- Area: Windurst Walls
 --   NPC: Kobunono
 -- Type: Adv. Assistant
--- @zone 239
--- !pos 52.042 -3.499 -57.588
+-- !pos 52.042 -3.499 -57.588 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

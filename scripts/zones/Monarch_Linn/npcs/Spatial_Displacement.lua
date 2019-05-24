@@ -3,38 +3,28 @@
 -- NPC:  Spatial Displacement
 -- !pos -35 -1 -539 31
 -----------------------------------
-package.loaded["scripts/zones/Monarch_LinnTextIDs"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/Monarch_Linn/IDs");
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Monarch_Linn/TextIDs");
-
------------------------------------
--- onTrade
+require("scripts/globals/zone")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     end
-
 end;
 
 function onTrigger(player,npc)
-    --printf("npcID : %u",npcID);
-
     local npcID = npc:getID();
     local X = player:getXPos();
     local Z = player:getZPos();
 
-
     if (X > 12.934 and X < 24.934) then
-        if (player:getPreviousZone() == 30) then
+        if (player:getPreviousZone() == dsp.zone.RIVERNE_SITE_A01) then
             player:startEvent(11); -- To Riv Site A
-        elseif (player:getPreviousZone() == 29) then
+        elseif (player:getPreviousZone() == dsp.zone.RIVERNE_SITE_B01) then
             player:startEvent(10); -- To Riv Site B
         end
     elseif ((X > -524.521 and X < -512.521) or (X > 75.524 and X < 87.524) or (X > 675.271 and X < 687.271)) then
@@ -44,29 +34,17 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then  -- enter the battlefield
         return 1;
     else
-        player:messageSpecial(GLOWING_MIST); -- needs confirmation
+        player:messageSpecial(ID.text.GLOWING_MIST); -- needs confirmation
     end
-
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
-
     if (EventUpdateBCNM(player,csid,option)) then
         return;
     end
-
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("onFinish CSID: %u",csid);
-    -- printf("onFinish RESULT: %u",option);
-
     if (csid == 11 and option == 1) then
         player:setPos(-508.582,-8.471,-387.670,92,30); -- To Riv Site A (Retail confirmed)
     elseif (csid == 10 and option == 1) then
@@ -76,5 +54,4 @@ function onEventFinish(player,csid,option)
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end
-
 end;

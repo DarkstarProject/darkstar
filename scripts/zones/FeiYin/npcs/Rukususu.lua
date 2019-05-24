@@ -6,11 +6,8 @@
 --     Involved in quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
 --    Involved in Missions: Windurst 5-1/7-2/8-2
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/FeiYin/TextIDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -41,4 +38,3 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL); -- remove key item
     end
 end;
-

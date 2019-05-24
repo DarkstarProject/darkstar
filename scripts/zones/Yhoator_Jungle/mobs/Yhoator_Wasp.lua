@@ -2,9 +2,9 @@
 -- Area: Yhoator Jungle
 --  MOB: Yhoator Wasp
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,130,2);
-end;
+    dsp.regime.checkRegime(player, mob, 130, 2, dsp.regime.type.FIELDS)
+end

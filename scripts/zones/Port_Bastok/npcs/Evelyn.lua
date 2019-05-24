@@ -1,41 +1,35 @@
 -----------------------------------
 -- Area: Port Bastok
 --  NPC: Evelyn
--- Only sells when Bastok controlls Gustaberg Region
--- Confirmed shop stock, August 2013
+-- Gustaberg Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
+local ID = require("scripts/zones/Port_Bastok/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(GUSTABERG);
-    if (RegionOwner ~= NATION_BASTOK) then
-        player:showText(npc,EVELYN_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.GUSTABERG) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.EVELYN_CLOSED_DIALOG)
     else
-        player:showText(npc,EVELYN_OPEN_DIALOG);
-
         local stock =
         {
-            1108,  703,  -- Sulfur
-            619,    43,  -- Popoto
-            611,    36,  -- Rye Flour
-            4388,   40   -- Eggplant
+            1108, 703,    -- Sulfur
+            619,   43,    -- Popoto
+            611,   36,    -- Rye Flour
+            4388,  40,    -- Eggplant
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, ID.text.EVELYN_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

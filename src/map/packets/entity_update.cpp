@@ -22,6 +22,7 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/utils.h"
 
 #include <string.h>
 
@@ -57,10 +58,16 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
             {
                 ref<uint8>(0x28) = 0x04;
             }
+            if (PEntity->objtype == TYPE_TRUST)
+            {
+              //  ref<uint8>(0x28) = 0x45;
+            }
             if (PEntity->look.size == MODEL_EQUIPED || PEntity->look.size == MODEL_CHOCOBO)
             {
                 updatemask = 0x57;
             }
+            if (PEntity->animationsub != 0)
+                ref<uint8>(0x2A) = 4;
             ref<uint8>(0x0A) = updatemask;
         }
         break;
@@ -94,7 +101,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
             {
                 ref<uint8>(0x1E) = 0x64;
                 ref<uint8>(0x1F) = PEntity->animation;
-                ref<uint8>(0x2A) = PEntity->animationsub;
+                ref<uint8>(0x2A) |= PEntity->animationsub;
                 ref<uint32>(0x21) = ((CNpcEntity*)PEntity)->m_flags;
                 ref<uint8>(0x27) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else
                 ref<uint8>(0x29) = PEntity->allegiance;
@@ -104,6 +111,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         break;
         case TYPE_MOB:
         case TYPE_PET:
+        case TYPE_TRUST:
         {
             CMobEntity* PMob = (CMobEntity*)PEntity;
 
@@ -124,7 +132,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                 {
                     ref<uint8>(0x1E) = PMob->GetHPP();
                     ref<uint8>(0x1F) = PEntity->animation;
-                    ref<uint8>(0x2A) = PEntity->animationsub;
+                    ref<uint8>(0x2A) |= PEntity->animationsub;
                     ref<uint32>(0x21) = PMob->m_flags;
                     ref<uint8>(0x25) = PMob->health.hp > 0 ? 0x08 : 0;
                     ref<uint8>(0x27) = PMob->m_name_prefix;
@@ -145,9 +153,9 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                 //depending on size of name, this can be 0x20, 0x22, or 0x24
                 this->size = 0x24;
                 if (PMob->packetName.empty())
-                    memcpy(data + (0x34), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+                    memcpy(data + (0x34), PEntity->GetName(), std::min<size_t>(PEntity->name.size(), PacketNameLength));
                 else
-                    memcpy(data + (0x34), PMob->packetName.c_str(), (PMob->packetName.size() > 15 ? 15 : PMob->packetName.size()));
+                    memcpy(data + (0x34), PMob->packetName.c_str(), std::min<size_t>(PMob->packetName.size(), PacketNameLength));
             }
         }
         break;
@@ -155,6 +163,17 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         {
             break;
         }
+    }
+
+    // TODO: Read from the trust model itself
+    if (PEntity->objtype == TYPE_TRUST)
+    {
+        ref<uint32>(0x21) = 0x21b;
+        ref<uint8>(0x2B) = 0x06;
+        ref<uint8>(0x2A) = 0x08;
+        ref<uint8>(0x25) = 0x0f;
+        ref<uint8>(0x27) = 0x28;
+        ref<uint8>(0x28) = 0x45;
     }
 
     switch (PEntity->look.size)

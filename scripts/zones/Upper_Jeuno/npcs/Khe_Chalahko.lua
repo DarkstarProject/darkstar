@@ -3,34 +3,29 @@
 --  NPC: Khe Chalahko
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,KHECHALAHKO_SHOP_DIALOG);
-
     local stock =
     {
-        0x3080,29311,        -- Sallet
-     0x3100,45208,        -- Breastplate
-     0x3200,34776,        -- Cuisses
-     0x3280,21859,        -- Plate Leggins
-     0x320A,53130,        -- Breeches
-     0x328A,32637}        -- Sollerets
+        12416, 29311,    -- Sallet
+        12544, 45208,    -- Breastplate
+        12800, 34776,    -- Cuisses
+        12928, 21859,    -- Plate Leggins
+        12810, 53130,    -- Breeches
+        12938, 32637,    -- Sollerets
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.KHECHALAHKO_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

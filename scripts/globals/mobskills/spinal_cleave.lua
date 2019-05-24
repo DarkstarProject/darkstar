@@ -8,26 +8,26 @@
 --  Notes: Used only when wielding no weapon, and only when the second weapon is not broken.
 ---------------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:AnimationSub() == 1) then
-        return 0;
+        return 0
     else
-        return 1;
+        return 1
     end
-end;
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 3;
-    local dmgmod = 3;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-    target:delHP(dmg);
-    return dmg;
-end;
+    local numhits = 1
+    local accmod = 3
+    local dmgmod = 3
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
+    return dmg
+end

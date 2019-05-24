@@ -3,12 +3,10 @@
 -- Name: Shattering stars - Maat Fight
 -- !pos -509 158 -211 139
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Horlais_Peak/TextIDs");
+local ID = require("scripts/zones/Horlais_Peak/IDs");
 
 -----------------------------------
 -- Maat Battle in Horlais Peak
@@ -29,7 +27,6 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    -- player:messageSpecial(107);
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -59,9 +56,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if (player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4181);
         end
         local pjob = player:getMainJob();
         player:setVar("maatDefeated",pjob);

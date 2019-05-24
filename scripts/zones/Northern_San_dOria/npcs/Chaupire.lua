@@ -4,12 +4,10 @@
 -- Guild Merchant NPC: Woodworking Guild
 -- !pos -174.476 3.999 281.854 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(5132,6,21,0)) then
-        player:showText(npc,CHAUPIRE_SHOP_DIALOG);
+        player:showText(npc,ID.text.CHAUPIRE_SHOP_DIALOG);
     end
 end;
 
@@ -26,5 +24,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-
-

@@ -2,27 +2,23 @@
 -- Area: Windurst Waters
 --  NPC: Naiko-Paneiko
 -- Involved In Quest: Making Headlines, Riding on the Clouds
--- @zone 238
--- !pos -246 -5 -308
+-- !pos -246 -5 -308 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 2) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 2) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     end
 
@@ -34,7 +30,7 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+    MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
 
     if (MakingHeadlines == 0) then
         player:startEvent(665); -- Quest Start
@@ -75,18 +71,18 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 665) then
-        player:addQuest(WINDURST,MAKING_HEADLINES);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
     elseif (csid == 670 or csid == 674) then
         player:addTitle(dsp.title.EDITORS_HATCHET_MAN);
         player:addGil(GIL_RATE*560);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*560);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*560);
         player:delKeyItem(dsp.ki.WINDURST_WOODS_SCOOP);
         player:delKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
         player:delKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);
         player:delKeyItem(dsp.ki.PORT_WINDURST_SCOOP);
         player:setVar("QuestMakingHeadlines_var",0);
         player:addFame(WINDURST,30);
-        player:completeQuest(WINDURST,MAKING_HEADLINES);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
     end
 
 end;

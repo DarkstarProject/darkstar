@@ -3,10 +3,6 @@
 --  NPC: Itzha Delavhitta
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

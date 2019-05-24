@@ -1,11 +1,8 @@
 -----------------------------------
 -- Area: Southern San d'Oria
---   NPC: Chat Manual
+--  NPC: Chat Manual
 -- Type: Tutorial NPC
--- @zone: 230
---  !pos -68.800 2.000 -46.560
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-- !pos -68.800 2.000 -46.560 230
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

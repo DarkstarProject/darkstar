@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Aindemont
 -- Type: Standard NPC
---  @zone 256
--- !pos 171 4 -33
+-- !pos 171 4 -33 256
 -----------------------------------
 
 function onTrade(player,npc,trade)

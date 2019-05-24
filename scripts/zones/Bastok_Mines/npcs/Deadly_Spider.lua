@@ -3,17 +3,14 @@
 --  NPC: Deadly Spider
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    local StampHunt = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.STAMP_HUNT);
 
     if (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),0) == false) then
         player:startEvent(86);

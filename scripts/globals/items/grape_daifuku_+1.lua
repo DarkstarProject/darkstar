@@ -8,20 +8,21 @@
 -- Master MAB + 4 , Pet MAB + 15
 -- Accuracy/Ranged Accuracy +11% (cap 54 on master, cap 81 on pet)
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
+    local result = 0
     if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = 246;
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6344);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6344)
+end
 
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.HP, 30)
@@ -38,7 +39,7 @@ function onEffectGain(target, effect)
     target:addPetMod(dsp.mod.FOOD_ACC_CAP, 81)
     target:addPetMod(dsp.mod.FOOD_RACCP, 11)
     target:addPetMod(dsp.mod.FOOD_RACC_CAP, 81)
-end;
+end
 
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.HP, 30)
@@ -55,4 +56,4 @@ function onEffectLose(target, effect)
     target:delPetMod(dsp.mod.FOOD_ACC_CAP, 81)
     target:delPetMod(dsp.mod.FOOD_RACCP, 11)
     target:delPetMod(dsp.mod.FOOD_RACC_CAP, 81)
-end;
+end

@@ -4,11 +4,9 @@
 --  Involved In Mission: 3-2
 -- !pos -331 0 139 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,10 +14,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 1) then
         player:startEvent(41,0,dsp.ki.CHARM_OF_LIGHT);
     else
-        player:messageSpecial(DOOR_FIRMLY_CLOSED);
+        player:messageSpecial(ID.text.DOOR_FIRMLY_CLOSED);
     end
 
     return 1;

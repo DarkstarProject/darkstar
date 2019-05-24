@@ -3,18 +3,17 @@
 --  NPC: ??? (Spawn Pandemonium Warden)
 -- !pos 200 33 -140 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
+local ID = require("scripts/zones/Aydeewa_Subterrane/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
-require("scripts/zones/Aydeewa_Subterrane/TextIDs");
-require("scripts/zones/Aydeewa_Subterrane/MobIDs");
 
 function onTrade(player,npc,trade)
-    if (not GetMobByID(PANDEMONIUM_WARDEN):isSpawned() and trade:hasItemQty(2572,1) and trade:getItemCount() == 1) then -- Pandemonium key
-        SpawnMob(PANDEMONIUM_WARDEN):updateClaim(player); -- Pandemonium Warden
-        player:tradeComplete();
+    if npcUtil.tradeHas(trade, 2572) and not GetMobByID(ID.mob.PANDEMONIUM_WARDEN):isSpawned() then -- Pandemonium Key
+        player:confirmTrade()
+        SpawnMob(ID.mob.PANDEMONIUM_WARDEN):updateClaim(player)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
-end;
+    player:messageSpecial(ID.text.NOTHING_HAPPENS)
+end

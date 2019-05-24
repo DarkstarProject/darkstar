@@ -4,33 +4,30 @@
 -- Involved In Quest: Sharpening the Sword
 -- !pos -51 0.1 3 193
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ordelles_Caves/TextIDs");
-require("scripts/zones/Ordelles_Caves/MobIDs");
-require("scripts/globals/npc_util");
-require("scripts/globals/keyitems");
+local ID = require("scripts/zones/Ordelles_Caves/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    local stsCS = player:getVar("sharpeningTheSwordCS");
+function onTrigger(player, npc)
+    local sharpeningTheSwordStat = player:getVar("sharpeningTheSwordCS")
 
-    if (stsCS == 3 and player:getVar("PolevikKilled") == 1) then
+    if sharpeningTheSwordStat == 3 and player:getVar("PolevikKilled") == 1 then
         npcUtil.giveKeyItem(player, dsp.ki.ORDELLE_WHETSTONE)
-        player:setVar("PolevikKilled",0);
-        player:setVar("sharpeningTheSwordCS",4)
-    elseif (stsCS == 3 and not GetMobByID(POLEVIK):isSpawned()) then
-        SpawnMob(POLEVIK):updateClaim(player);
+        player:setVar("PolevikKilled", 0)
+        player:setVar("sharpeningTheSwordCS", 4)
+    elseif sharpeningTheSwordStat == 3 and npcUtil.popFromQM(player, npc, ID.mob.POLEVIK, {hide = 0}) then
+        -- do nothing else
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

@@ -4,9 +4,7 @@
 -- Involved in Quests: Early Bird Catches the Bookworm, Chasing Tales, Class Reunion
 -- !pos -19 -5 101 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -18,10 +16,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
-    local chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+    local bookwormStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
+    local chasingStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
     local bookNotifications = player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
-    local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+    local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
     local ClassReunionProgress = player:getVar("ClassReunionProgress");
     local talk2 = player:getVar("ClassReunion_TalkedToFurakku");
 
@@ -62,28 +60,28 @@ function onEventFinish(player,csid,option)
 
     if (csid == 389) then
         player:addKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
     elseif (csid == 400) then
         player:needToZone(true);
         player:addTitle(dsp.title.SAVIOR_OF_KNOWLEDGE);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("EARLY_BIRD_TRACK_BOOK",0);
         player:addFame(WINDURST,120);
-        player:completeQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
     elseif (csid == 404) then
         player:addKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OVERDUE_BOOK_NOTIFICATION);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OVERDUE_BOOK_NOTIFICATION);
     elseif (csid == 410) then
         player:needToZone(true);
         player:addGil(GIL_RATE*2800);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2800);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2800);
         player:addTitle(dsp.title.SAVIOR_OF_KNOWLEDGE);
         player:delKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION);
         player:delKeyItem(dsp.ki.A_SONG_OF_LOVE);
         player:setVar("CHASING_TALES_TRACK_BOOK",0);
         player:addFame(WINDURST,120);
-        player:completeQuest(WINDURST,CHASING_TALES);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
     elseif (csid == 816) then
         player:setVar("ClassReunion_TalkedToFurakku",1);
     end

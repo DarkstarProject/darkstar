@@ -2,13 +2,10 @@
 -- Area: Full Moon Fountain
 -- Name: The Moonlit Path
 -----------------------------------
-package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Full_Moon_Fountain/TextIDs");
-
+local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 -----------------------------------
 
 -- What should go here:
@@ -38,7 +35,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    moonlitPath = player:getQuestStatus(WINDURST,THE_MOONLIT_PATH)
+    moonlitPath = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (moonlitPath == QUEST_COMPLETED) then
@@ -61,6 +58,6 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.MOON_BAUBLE);
         player:addKeyItem(dsp.ki.WHISPER_OF_THE_MOON);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_THE_MOON);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_THE_MOON);
     end
 end;

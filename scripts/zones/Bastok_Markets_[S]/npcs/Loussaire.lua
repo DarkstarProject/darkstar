@@ -3,9 +3,7 @@
 --  NPC: Loussaire
 -- !pos -248.677 -8.523 -125.734 87
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
 
     local mLvl          = player:getMainLvl();
     local mJob          = player:getMainJob();
-    local downwardHelix = player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX);
+    local downwardHelix = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX);
 
     -- Controls the progress of each step. Everything will start at 1 and end at 4 (complete).
     local loafersQuestProgress = player:getVar("AF_SCH_BOOTS");
@@ -173,7 +171,7 @@ function onEventFinish(player,csid,option)
         local secondKI = player:getLocalVar("secondKI");
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, itemid);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, itemid);
 
         else
             -- Remove LocalVars
@@ -206,7 +204,7 @@ function onEventFinish(player,csid,option)
 
             player:delKeyItem(firstKI);
             player:delKeyItem(secondKI);
-            player:messageSpecial(ITEM_OBTAINED, itemid);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, itemid);
             player:addItem(itemid);
         end
     end

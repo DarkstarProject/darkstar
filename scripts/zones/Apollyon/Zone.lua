@@ -3,11 +3,11 @@
 -- Zone: Apollyon
 --
 -----------------------------------
+local ID = require("scripts/zones/Apollyon/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/limbus")
+require("scripts/globals/zone")
 
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
-require("scripts/zones/Apollyon/TextIDs");
-require("scripts/globals/limbus");
 -----------------------------------
 --  onInitialize
 -----------------------------------
@@ -23,8 +23,8 @@ function onInitialize(zone)
             SetServerVariable("[Central_Apollyon_II]UniqueID",0);
 
 
-zone:registerRegion(1,  637,-4,-642,642,4,-637);  -- APPOLLYON_SE_NE exit
-zone:registerRegion(2, -642,-4,-642,-637,4,-637);  -- APPOLLYON_NW_SW exit
+zone:registerRegion(1,  637,-4,-642,642,4,-637);  -- APOLLYON_SE_NE exit
+zone:registerRegion(2, -642,-4,-642,-637,4,-637);  -- APOLLYON_NW_SW exit
 
 zone:registerRegion(3, 468,-4,-637,  478,4,-622); -- appolyon SE register
 zone:registerRegion(4, 421,-4,-98,   455,4,-78); -- appolyon NE register
@@ -55,7 +55,7 @@ zone:registerRegion(34, -283,-4,356,  -276,4,363); -- appolyon NW telporter floo
 zone:registerRegion(35, -243,-4,516,  -236,4,523); -- appolyon NW telporter floor3 to floor4
 zone:registerRegion(36, -523,-4,636,  -516,4,643); -- appolyon NW telporter floor4 to floor5
 zone:registerRegion(37, -563,-4,356,  -556,4,363); -- appolyon NW telporter floor5 to entrance
-                                                                
+
 end;
 
 -----------------------------------
@@ -63,11 +63,7 @@ end;
 -----------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 
@@ -77,18 +73,18 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-    if (prevZone~=33) then
+    if (prevZone ~= dsp.zone.ALTAIEU) then
       local playerLimbusID = player:getVar("LimbusID");
         if (playerLimbusID== 1290 or playerLimbusID== 1291 or playerLimbusID== 1294 or playerLimbusID== 1295 or playerLimbusID== 1296 or playerLimbusID== 1297) then
         player:setPos(-668,0.1,-666);
         else
         player:setPos(643,0.1,-600);
         end
- 
+
     elseif ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(643,0.1,-600);
     end
-    
+
 return cs;
 end;
 
@@ -100,11 +96,11 @@ function onRegionEnter(player,region)
   local regionID = region:GetRegionID();
    switch (regionID): caseof {
         [1] = function (x)
-             player:startEvent(100); -- APPOLLYON_SE_NE exit
+             player:startEvent(100); -- APOLLYON_SE_NE exit
         end,
         [2] = function (x)
-             player:startEvent(101); -- APPOLLYON_NW_SW exit
-            -- print("APPOLLYON_NW_SW");
+             player:startEvent(101); -- APOLLYON_NW_SW exit
+            -- print("APOLLYON_NW_SW");
         end,
         [3] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
@@ -136,8 +132,8 @@ function onRegionEnter(player,region)
                   RegisterLimbusInstance(player,1296);
               end   --create instance appolyon CENTER
         end,
-        
-        -- ///////////////////////APPOLLYON SE TELEPORTER///////////////////////////////////////////
+
+        -- ///////////////////////APOLLYON SE TELEPORTER///////////////////////////////////////////
         [20] = function (x)
              -- print("SE_telporter_f1_to_f2");
              if (IsMobDead(16932992)==true and player:getAnimation()==0) then player:startEvent(219);end
@@ -155,7 +151,7 @@ function onRegionEnter(player,region)
               if (IsMobDead(16933032)==true and player:getAnimation()==0) then player:startEvent(217);end
          end,
          -- ///////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON NE TELEPORTER           ////////////////////////////////
+         -- /////////////////////    APOLLYON NE TELEPORTER           ////////////////////////////////
         [24] = function (x)
              -- print("NE_telporter_f1_to_f2");
               if (IsMobDead(16933044)==true and player:getAnimation()==0) then player:startEvent(214);end
@@ -177,7 +173,7 @@ function onRegionEnter(player,region)
               if ( (IsMobDead(16933114)==true or IsMobDead(16933113)==true) and player:getAnimation()==0) then player:startEvent(213);end --213
          end,
          -- //////////////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON SW TELEPORTER           ////////////////////////////////
+         -- /////////////////////    APOLLYON SW TELEPORTER           ////////////////////////////////
          [29] = function (x)
               if (IsMobDead(16932873)==true and player:getAnimation()==0) then player:startEvent(208);end --208
          end,
@@ -192,7 +188,7 @@ function onRegionEnter(player,region)
               if (IselementalDayAreDead()==true and player:getAnimation()==0) then player:startEvent(206);end -- 206
          end,
              -- //////////////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON NW TELEPORTER           ////////////////////////////////
+         -- /////////////////////    APOLLYON NW TELEPORTER           ////////////////////////////////
          [33] = function (x)
               if (IsMobDead(16932937)==true and player:getAnimation()==0) then player:startEvent(205);end --205
          end,
@@ -209,15 +205,15 @@ function onRegionEnter(player,region)
               if (IsMobDead(16932985)==true and player:getAnimation()==0) then player:startEvent(202);end --202
          end,
     }
-    
+
 end;
 -----------------------------------
 -- onRegionLeave
 -----------------------------------
-    
+
 function onRegionLeave(player,region)
 end;
- 
+
 function onEventUpdate(player,csid,option)
    if (csid == 209 and option == 0 and GetServerVariable("[SW_Apollyon]MimicTrigger")==0) then
     SpawnCofferSWfloor3();
@@ -230,11 +226,8 @@ end;
 
 function onEventFinish(player,csid,option)
    if (csid == 100 and option == 1) then
-    player:setPos(557,-1,441,128,0x21);  -- APPOLLYON_SE_NE exit
+    player:setPos(557,-1,441,128,33);  -- APOLLYON_SE_NE exit
    elseif (csid == 101 and option == 1) then
-    player:setPos(-561,0,443,242,0x21); -- APPOLLYON_NW_SW exit
+    player:setPos(-561,0,443,242,33); -- APOLLYON_NW_SW exit
    end
 end;
-
-
-

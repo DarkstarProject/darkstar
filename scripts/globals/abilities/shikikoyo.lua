@@ -6,28 +6,28 @@
 -- Duration: Instant
 -- Target: Party member, cannot target self.
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/utils");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/utils")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return dsp.msg.basic.CANNOT_PERFORM_TARG,0;
+        return dsp.msg.basic.CANNOT_PERFORM_TARG,0
     elseif (player:getTP() < 1000) then
-        return dsp.msg.basic.NOT_ENOUGH_TP, 0;
+        return dsp.msg.basic.NOT_ENOUGH_TP, 0
     else
-        return 0,0;
+        return 0,0
     end
-end;
+end
 
 function onUseAbility(player,target,ability)
-    local pTP = (player:getTP() - 1000) * (1 + ((player:getMerit(dsp.merit.SHIKIKOYO) - 12) / 100));
-    pTP = utils.clamp(pTP, 0, 3000 - target:getTP());
+    local pTP = (player:getTP() - 1000) * (1 + ((player:getMerit(dsp.merit.SHIKIKOYO) - 12) / 100))
+    pTP = utils.clamp(pTP, 0, 3000 - target:getTP())
 
-    player:setTP(1000);
-    target:setTP(target:getTP() + pTP);
+    player:setTP(1000)
+    target:setTP(target:getTP() + pTP)
 
-    return pTP;
-end;
+    return pTP
+end

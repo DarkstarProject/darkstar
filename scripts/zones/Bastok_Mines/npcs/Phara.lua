@@ -6,13 +6,11 @@
 -- !zone 234
 -- !pos 75 0 -80
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,8 +18,8 @@ end;
 
 function onTrigger(player,npc)
 
-    local theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
-    local theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
+    local theDoorman = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_DOORMAN);
+    local theTalekeeperTruth = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
 
     if (theDoorman == QUEST_AVAILABLE and player:getMainJob() == dsp.job.WAR and player:getMainLvl() >= 40) then
         player:startEvent(151); -- Start Quests "The doorman"
@@ -43,7 +41,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 151) then
-        player:addQuest(BASTOK,THE_DOORMAN);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_DOORMAN);
         player:setVar("theDoormanCS",1);
     elseif (csid == 152) then
         player:setVar("theDoorman_time",VanadielDayOfTheYear());
@@ -51,7 +49,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SWORD_GRIP_MATERIAL);
     elseif (csid == 153) then
         player:addKeyItem(dsp.ki.YASINS_SWORD);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.YASINS_SWORD);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.YASINS_SWORD);
         player:setVar("theDoormanCS",3);
         player:setVar("theDoorman_time",0);
     elseif (csid == 154) then

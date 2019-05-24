@@ -1,48 +1,42 @@
 -----------------------------------
 -- Area: Bastok Mines
 --  NPC: Emaliveulaux
--- Only sells when Bastok controls the Tavnazian Archipelago
--- Only available to those with CoP Ch. 4.1 or higher
+-- Tavnazian Archipelago Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/events/harvest_festivals");
-require("scripts/zones/Bastok_Mines/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
------------------------------------
+require("scripts/globals/events/harvest_festivals")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-    onHalloweenTrade(player,trade,npc)
-end;
+    onHalloweenTrade(player, trade, npc)
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(TAVNAZIANARCH);
-    local cop = 40; -- player:getVar("chainsOfPromathiaMissions");
-
-    if (cop >= 40) then
-        if (RegionOwner ~= NATION_BASTOK) then
-            player:showText(npc,EMALIVEULAUX_CLOSED_DIALOG);
+    if player:getCurrentMission(COP) >= dsp.mission.id.cop.THE_SAVAGE then
+        if GetRegionOwner(dsp.region.TAVNAZIANARCH) ~= dsp.nation.BASTOK then
+            player:showText(npc, ID.text.EMALIVEULAUX_CLOSED_DIALOG)
         else
-            player:showText(npc,EMALIVEULAUX_OPEN_DIALOG);
-
             local stock =
             {
-                1523,  290,  -- Apple Mint
-                5164,  1945, -- Ground Wasabi
-                17005, 99,   -- Lufaise Fly
-                5195,  233   -- Misareaux Parsley
+                1523,  290,    -- Apple Mint
+                5164, 1945,    -- Ground Wasabi
+                17005,  99,    -- Lufaise Fly
+                5195,  233,    -- Misareaux Parsley
+                1695,  920,    -- Habanero Peppers
             }
-            showShop(player,BASTOK,stock);
+
+            player:showText(npc, ID.text.EMALIVEULAUX_OPEN_DIALOG)
+            dsp.shop.general(player, stock, BASTOK)
         end
     else
-        player:showText(npc,EMALIVEULAUX_COP_NOT_COMPLETED);
+        player:showText(npc, ID.text.EMALIVEULAUX_COP_NOT_COMPLETED)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

@@ -4,42 +4,38 @@
 -- Mamook Ja Teleporter Back to Aht Urgan Whitegate
 -- !pos -211 -11 -818 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs")
 -----------------------------------
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
-require("scripts/globals/teleports");
-require("scripts/globals/missions");
-require("scripts/globals/besieged");
+require("scripts/globals/besieged")
+require("scripts/globals/missions")
+require("scripts/globals/teleports")
+-----------------------------------
 
+function onTrade(player, npc, trade)
+end
 
-function onTrade(player,npc,trade)
-end;
-
-function onTrigger(player,npc)
-
-    if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
-        player:startEvent(111);
-    elseif (player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
-        if (hasRunicPortal(player,3) == 1) then
-            player:startEvent(109);
+function onTrigger(player, npc)
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1 then
+        player:startEvent(111)
+    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
+        if dsp.besieged.hasRunicPortal(player, dsp.teleport.runic_portal.MAMOOL) then
+            player:startEvent(109)
         else
-            player:startEvent(111);
+            player:startEvent(111)
         end
     else
-        player:messageSpecial(RESPONSE);
+        player:messageSpecial(ID.text.RESPONSE)
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-
-    if (csid == 111 and option == 1) then
-        player:addNationTeleport(AHTURHGAN,8);
-        dsp.teleport.toChamberOfPassage(player);
-    elseif (csid == 109 and option == 1) then
-        dsp.teleport.toChamberOfPassage(player);
+function onEventFinish(player, csid, option)
+    if option == 1 then
+        if csid == 111 then
+            dsp.besieged.addRunicPortal(player, dsp.teleport.runic_portal.MAMOOL)
+        end
+        dsp.teleport.toChamberOfPassage(player)
     end
-
-end;
+end

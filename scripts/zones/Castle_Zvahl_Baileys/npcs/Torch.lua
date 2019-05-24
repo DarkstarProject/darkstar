@@ -2,73 +2,45 @@
 -- Area: Castle Zvahl Baileys
 --  NPC: Torch (x4)
 -- Involved in Quests: Borghertz's Hands (AF Hands, Many job)
--- @zone 161
--- !pos 63 -24 21
+-- !pos 63 -24 21 161
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
+local ID = require("scripts/zones/Castle_Zvahl_Baileys/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    OldGauntlets = player:hasKeyItem(dsp.ki.OLD_GAUNTLETS);
-    ShadowFlames = player:hasKeyItem(dsp.ki.SHADOW_FLAMES);
-    BorghertzCS = player:getVar("BorghertzCS");
-    X = player:getXPos();
-    Z = player:getZPos();
+    local offset = npc:getID() - ID.npc.TORCH_OFFSET
 
-    if (OldGauntlets == true and ShadowFlames == false and BorghertzCS >= 2) then
-        if (player:getVar("BorghertzSparkKilled") == 1) then
-            if (X >= 57 and X <= 67 and Z >= 20 and Z <= 26) then -- Right Torch
-                if (player:getVar("BorghertzChooseTorch") == 2) then
-                    player:addKeyItem(211);
-                    player:messageSpecial(KEYITEM_OBTAINED,211);
-                    player:setVar("BorghertzSparkKilled",0);
-                    player:setVar("BorghertzChooseTorch",0);
-                    player:setVar("BorghertzCS",0);
-                else
-                    player:messageSpecial(SENSE_OF_FOREBODING);
-                    SpawnMob(17436964):updateClaim(player);
-                    player:setVar("BorghertzSparkKilled",0);
-                    player:setVar("BorghertzChooseTorch",2);
-                end
-            elseif (X >= 57 and X <= 67 and Z >= 13 and Z <= 20) then -- Left Torch
-                if (player:getVar("BorghertzChooseTorch") == 1) then
-                    player:addKeyItem(211);
-                    player:messageSpecial(KEYITEM_OBTAINED,211);
-                    player:setVar("BorghertzSparkKilled",0);
-                    player:setVar("BorghertzChooseTorch",0);
-                    player:setVar("BorghertzCS",0);
-                else
-                    player:messageSpecial(SENSE_OF_FOREBODING);
-                    SpawnMob(17436964):updateClaim(player);
-                    player:setVar("BorghertzSparkKilled",0);
-                    player:setVar("BorghertzChooseTorch",1);
-                end
-            end
-        else
-            if (X >= 57 and X <= 67 and Z >= 20 and Z <= 26) then -- Right Torch
-                player:messageSpecial(SENSE_OF_FOREBODING);
-                SpawnMob(17436964):updateClaim(player);
-                player:setVar("BorghertzChooseTorch",2);
-            elseif (X >= 57 and X <= 67 and Z >= 13 and Z <= 20) then -- Left Torch
-                player:messageSpecial(SENSE_OF_FOREBODING);
-                SpawnMob(17436964):updateClaim(player);
-                player:setVar("BorghertzChooseTorch",1);
-            end
-        end
+    -- killed Dark Spark and clicked same torch used to spawn
+    if player:getVar("BorghertzSparkKilled") == 1 and GetMobByID(ID.mob.DARK_SPARK):getLocalVar("fromTorch") == offset then
+        npcUtil.giveKeyItem(player, dsp.ki.SHADOW_FLAMES)
+        player:setVar("BorghertzSparkKilled", 0)
+        player:setVar("BorghertzCS", 0)
+
+    -- attempt to spawn Dark Spark from torch
+    elseif
+        player:getVar("BorghertzSparkKilled") == 0 and
+        player:hasKeyItem(dsp.ki.OLD_GAUNTLETS) and
+        not player:hasKeyItem(dsp.ki.SHADOW_FLAMES) and
+        player:getVar("BorghertzCS") >= 2 and
+        npcUtil.popFromQM(player, npc, ID.mob.DARK_SPARK, {claim=true, hide=0})
+    then
+        player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
+        GetMobByID(ID.mob.DARK_SPARK):setLocalVar("fromTorch", offset)
+        player:setVar("BorghertzSparkKilled", 0)
+
+    -- default dialog
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

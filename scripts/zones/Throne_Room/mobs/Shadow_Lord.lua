@@ -3,12 +3,9 @@
 --  MOB: Shadow Lord
 -- Mission 5-2 BCNM Fight
 -----------------------------------
-require("scripts/zones/Throne_Room/MobIDs");
+local ID = require("scripts/zones/Throne_Room/IDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
-function onMobSpawn(mob)
-end;
 
 function onMobFight(mob,target)
     -- 1st form
@@ -16,7 +13,7 @@ function onMobFight(mob,target)
     -- 2nd form
     -- the Shadow Lord will do nothing but his Implosion attack. This attack hits everyone in the battlefield, but he only has 4000 HP
 
-    if (mob:getID() < SHADOW_LORD_STAGE_2_OFFSET) then -- first phase AI
+    if (mob:getID() < ID.mob.SHADOW_LORD_STAGE_2_OFFSET) then -- first phase AI
         -- once he's under 50% HP, start changing immunities and attack patterns
         if (mob:getHP() / mob:getMaxHP() <= 0.5) then
 
@@ -73,7 +70,7 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (mob:getID() < SHADOW_LORD_STAGE_2_OFFSET) then
+    if (mob:getID() < ID.mob.SHADOW_LORD_STAGE_2_OFFSET) then
         player:startEvent(32004);
         player:setVar("mobid",mob:getID());
     else

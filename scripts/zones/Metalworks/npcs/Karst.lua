@@ -5,11 +5,8 @@
 -- Involved in Bastok Missions 5-2
 -- !pos 106 -21 0 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,13 +15,13 @@ end;
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK);
 
-    if (currentMission == XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
+    if (currentMission == dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
         player:startEvent(602);
-    elseif (currentMission == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
+    elseif (currentMission == dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(603);
-    elseif (currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
         player:startEvent(765);
-    elseif (currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 3) then
+    elseif (currentMission == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 3) then
         player:startEvent(766);
     else
         player:startEvent(601);

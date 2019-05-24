@@ -3,15 +3,17 @@
 -- Silver Bullet Pouch
 -- When used, you will obtain one stack of Silver Bullets
 -----------------------------------------
+require("scripts/globals/msg")
+-----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
+    local result = 0
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addItem(17341,99);
-end;
+    target:addItem(17341,99)
+end

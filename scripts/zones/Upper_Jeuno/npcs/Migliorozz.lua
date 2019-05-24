@@ -2,12 +2,9 @@
 -- Area: Upper Jeuno
 --   NPC: Migliorozz
 -- Type: Standard NPC
--- @zone 244
--- !pos -37.760 -2.499 12.924
+-- !pos -37.760 -2.499 12.924 244
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

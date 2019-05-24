@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  NM:  Sekhmet
+--   NM: Sekhmet
 -----------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
@@ -13,24 +12,8 @@ function onMobInitialize(mob)
 end;
 
 function onAdditionalEffect(mob, target, damage)
-    local chance = 100;
-    local resist = applyResistanceAddEffect(mob,target,dsp.magic.ele.DARK,dsp.effect.ENASPIR);
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0;
-    else
-        local mp = math.random(1,10);
-        if (target:getMP() < mp) then
-            mp = target:getMP();
-        end
-        if (mp == 0) then
-            return 0,0,0;
-        else
-            target:delMP(mp);
-            mob:addMP(mp);
-            return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, mp;
-        end
-    end
-end;
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.MP_DRAIN, {power = math.random(1, 10)})
+end
 
 function onMobDeath(mob, player, isKiller)
 end;

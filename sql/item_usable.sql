@@ -1,7 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: dspdb
--- ------------------------------------------------------
+-- Host: localhost    Database: -- ------------------------------------------------------
 -- Server version   5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -1148,7 +1147,7 @@ INSERT INTO `item_usable` VALUES (5327,'bottle_of_potion_drops',1,1,30,0,0,0,0,0
 INSERT INTO `item_usable` VALUES (5328,'bottle_of_hi-potion_drops',1,2,31,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5329,'tarutaru_snare',4,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5330,'mithra_snare',4,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5331,'qiqirn_mine',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5331,'qiqirn_mine',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5332,'kabura_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5333,'sleep_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5334,'blind_bolt_quiver',1,1,55,0,0,0,0,0);
@@ -1323,6 +1322,7 @@ INSERT INTO `item_usable` VALUES (5502,'allies_die',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5503,'misers_die',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5504,'companions_die',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5505,'avengers_die',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5532,'ichinintousen_koma',1,1,116,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5537,'soryu',1,4,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5538,'sekiryu',1,4,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5539,'hakuryu',1,4,25,0,0,0,0,0);
@@ -1665,6 +1665,7 @@ INSERT INTO `item_usable` VALUES (5880,'phial_of_poison_screen',1,4,0,0,0,0,0,0)
 INSERT INTO `item_usable` VALUES (5881,'shisai_kaboku',1,1,110,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5882,'marine_bliss',1,1,108,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5883,'falling_star',1,1,109,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5884,'rengedama',1,1,111,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5885,'saltena',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5886,'elshena',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5887,'montagna',1,1,28,0,0,0,0,0);
@@ -1700,6 +1701,8 @@ INSERT INTO `item_usable` VALUES (5932,'bottle_of_kitron_juice',1,1,26,0,0,0,0,0
 INSERT INTO `item_usable` VALUES (5933,'flask_of_dragon_fruit_au_lait',1,1,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5934,'chocobiscuit',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5935,'bowl_of_moogurt',1,1,26,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5936,'mog_missile',1,1,112,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5937,'bubble_breeze',1,1,113,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5940,'trail_cookie',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5941,'bar_of_campfire_chocolate',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5942,'piece_of_cascade_candy',1,1,29,0,0,0,0,0);
@@ -1759,6 +1762,8 @@ INSERT INTO `item_usable` VALUES (6069,'bowl_of_riverfin_soup',1,1,26,0,0,0,0,0)
 INSERT INTO `item_usable` VALUES (6070,'bowl_of_oceanfin_soup',1,1,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6071,'magma_steak',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6072,'magma_steak_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6186,'slime_rocket',1,1,115,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6190,'spriggan_spark',1,1,114,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6211,'slice_of_marinara_pizza',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6212,'slice_of_marinara_pizza_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6213,'slice_of_margherita_pizza',1,1,28,0,0,0,0,0);
@@ -1776,6 +1781,7 @@ INSERT INTO `item_usable` VALUES (6262,'piece_of_kusamochi',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6263,'piece_of_kusamochi_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6265,'toolbag_(ranka)',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6266,'toolbag_(furu)',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6268,'komanezumi',1,1,118,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6272,'fried_popoto',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6273,'fried_popoto_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6274,'pukatrice_egg',1,1,28,0,0,0,0,0);
@@ -1791,12 +1797,22 @@ INSERT INTO `item_usable` VALUES (6343,'grape_daifuku',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6344,'grape_daifuku_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6368,'geomancer_die',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6369,'rune_fencer_die',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6377,'imperial_chair_set',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6378,'decorative_chair_set',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6379,'ornate_stool_set',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6380,'refined_chair_set',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6394,'pork_cutlet',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6395,'pork_cutlet_+1',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6396,'cutlet_sandwich',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6397,'cutlet_sandwich_+1',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6406,'pork_cutlet_rice_bowl',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6407,'pork_cutlet_rice_bowl_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6409,'ephramadian_throne',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6408,'portable_container',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6410,'shadow_throne',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6411,'chocobo_chair',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6412,'leaf_bench',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6413,'astral_cube',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6447,'sasuke_shuriken_pouch',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6448,'sasuke_shuriken_pouch_+1',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6458,'bowl_of_soy_ramen',1,1,28,0,0,0,0,0);
@@ -1811,6 +1827,13 @@ INSERT INTO `item_usable` VALUES (6466,'bowl_of_miso_soup',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6467,'bowl_of_miso_soup_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6468,'plate_of_sublime_sushi',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6469,'plate_of_sublime_sushi_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6498,'bunch_of_fortune_fruits',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6538,'altanas_repast',1,1,28,0,0,0,0,1);
+INSERT INTO `item_usable` VALUES (6539,'altanas_repast_+1',1,1,28,0,0,0,0,1);
+INSERT INTO `item_usable` VALUES (6540,'altanas_repast_+2',1,1,28,0,0,0,0,1);
+INSERT INTO `item_usable` VALUES (6565,'per._snow_cone',1,1,28,1,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6567,'tropical_crepe',1,1,28,1,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6568,'crepe_des_rois',1,1,28,1,0,0,0,0);
 INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10253,'decennial_coat_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10254,'decennial_dress_+1',1,8,0,0,1,30,86400,0);
@@ -1824,6 +1847,7 @@ INSERT INTO `item_usable` VALUES (10270,'river_top_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10271,'dune_gilet_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10293,'chocobo_shirt',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (10383,'dream_mittens_+1',1,6,24,0,1,30,7200,0);
+INSERT INTO `item_usable` VALUES (10812,'chocobo_shield_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10875,'snowman_cap',1,1,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (11002,'dragon_tank',1,1,55,0,5,30,60,0);
 INSERT INTO `item_usable` VALUES (11273,'custom_gilet_+1',1,8,0,0,1,30,72000,0);
@@ -2180,6 +2204,14 @@ INSERT INTO `item_usable` VALUES (18945,'jet_sickle',1,3,0,0,100,30,600,0);
 INSERT INTO `item_usable` VALUES (19181,'moogles_largesse',1,12,0,0,9,10,259200,0);
 INSERT INTO `item_usable` VALUES (19204,'fiendtrapper',20,0,0,0,12,10,30,0);
 INSERT INTO `item_usable` VALUES (19246,'moggiebag',1,3,0,0,8,10,259200,0);
+INSERT INTO `item_usable` VALUES (21266,'gastraphetes',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (21267,'annihilator',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (21268,'death_penalty',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (21269,'armageddon',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22115,'yoichinoyumi',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22116,'gandiva',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (25585,'black_chocobo_cap',1,8,79,0,1,30,72000,0);
+INSERT INTO `item_usable` VALUES (26517,'shadow_lord_shirt',1,8,79,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (26720,'sheep_cap_+1',1,2,55,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (27556,'echad_ring',1,3,76,0,1,5,7200,0);
 INSERT INTO `item_usable` VALUES (28540,'warp_ring',1,8,80,3,1,8,600,0);

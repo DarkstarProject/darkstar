@@ -3,11 +3,9 @@
 --  NPC: Millard IM
 -- Type: Sigil NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/campaign");
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
+require("scripts/globals/campaign")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,7 +19,7 @@ function onTrigger(player,npc)
     local bonusEffects = 0; -- 1 = regen, 2 = refresh, 4 = meal duration, 8 = exp loss reduction, 15 = all
     local timeStamp = 0; -- getSigilTimeStamp(player);
     -- todo add in Throne Room controls
-    
+
     -- if ( medal_rank > 25 and nation controls Throne_Room_S ) then
         -- medal_rank = 32;
         -- this decides if allied ring is in the Allied Notes item list.
@@ -55,9 +53,9 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:delCurrency("allied_notes", price);
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, item);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, item);
             end
 
         -- Please, don't change this elseif without knowing ALL the option results first.
@@ -86,11 +84,9 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffect(dsp.effects.SIGIL);
-            player:delStatusEffect(dsp.effects.SANCTION);
-            player:delStatusEffect(dsp.effects.SIGNET);
-            player:addStatusEffect(dsp.effects.SIGIL, power, 0, duration, 0, subPower, 0);
-            player:messageSpecial(ALLIED_SIGIL);
+            player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
+            player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
+            player:messageSpecial(ID.text.ALLIED_SIGIL);
 
             if (cost > 0) then
                 player:delCurrency("allied_notes", cost);

@@ -14,10 +14,8 @@
 -- !pos 199.38 -22.559 60
 -- !pos -200.679 -8.57 60
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local ID = require("scripts/zones/Phomiuna_Aqueducts/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,7 +42,7 @@ function onTrigger(player,npc)
     elseif ((X <= 107.9 and X >= 95.9) and (Y >= -1 and Y <= 1) and (Z >= 175.9 and Z <= 187.9)) then
         player:startEvent(27);
     elseif ((X <= -153.3 and X >= -168.3) and (Y >= -2 and Y <= 0) and (Z >= 54 and Z <= 66)) then
-        if (player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 1) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 1) then
             player:setVar("PromathiaStatus",2);
             player:startEvent(35);
         else
@@ -57,7 +55,7 @@ function onTrigger(player,npc)
     elseif ((X <= 205.3 and X >= 193.3) and (Y >= -24 and Y <= -22) and (Z >= 54 and Z <= 66)) then
         player:startEvent(31);
     elseif ((X <= -194.6 and X >= -206.6) and (Y >= -8 and Y <= -6) and (Z >= 54 and Z <= 66)) then
-        player:messageSpecial(DOOR_SEALED_SHUT);
+        player:messageSpecial(ID.text.DOOR_SEALED_SHUT);
     end
 
 end;

@@ -4,19 +4,15 @@
 -- Type: Abyssea Warp NPC
 -- !pos -54.379 0.001 -10.061 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
     local CRUOR = player:getCurrency("cruor");
-    if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED) then
         player:startEvent(339,1,CRUOR,7,7,7); -- Temp activated all locations till param handling sorted out.
-    elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_COMPLETED) then
         player:startEvent(339,2,CRUOR,7,7,7); -- Temp activated all locations till param handling sorted out.
     else
         player:startEvent(339, 0);

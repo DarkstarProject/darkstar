@@ -3,10 +3,6 @@
 --  NPC: Udine A.M.A.N
 -- Type: Mentor Recruiter
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

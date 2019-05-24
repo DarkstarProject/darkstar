@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Ribbolian
 -- Type: Standard NPC
---  @zone 256
--- !pos 21 1 -27
+-- !pos 21 1 -27 256
 -----------------------------------
 
 function onTrade(player,npc,trade)

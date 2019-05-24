@@ -1,20 +1,9 @@
 -----------------------------------
 -- Area: Dynamis Jeuno
---  NPC: Vanguard Necromancer
+--  MOB: Vanguard_Necromancer
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-
-    local mobPet = mob:getID() + 1;
-
-    if (GetMobAction(mobPet) ~= 0) then
-        GetMobByID(mobPet):setHP(0);
-    end
-
-end;
+end

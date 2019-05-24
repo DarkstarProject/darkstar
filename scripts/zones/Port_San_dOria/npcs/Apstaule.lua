@@ -3,9 +3,7 @@
 --  NPC: Apstaule
 -- Not used cutscenes: 541
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
 -----------------------------------
@@ -14,15 +12,15 @@ function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
     local count = trade:getItemCount();
     local MagicFlyer    = trade:hasItemQty(532,1);
-    local AuctionParcel = trade:hasItemQty(0x0252,1);
+    local AuctionParcel = trade:hasItemQty(594,1);
 
     if (MagicFlyer == true and count == 1) then
-        local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+        local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     elseif (AuctionParcel == true and count == 1) then
-        local TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
+        local TheBrugaireConsortium = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
         if (TheBrugaireConsortium == 1) then
             player:tradeComplete();
             player:startEvent(540);

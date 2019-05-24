@@ -4,12 +4,10 @@
 -- Quests: Axe the Competition (Decimation WSNM "Yallery Brown")
 -- !pos 218 -8 206 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil
------------------------------------
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
 require("scripts/globals/wsquest")
-require("scripts/zones/Temple_of_Uggalepih/TextIDs")
-require("scripts/zones/Temple_of_Uggalepih/MobIDs")
+-----------------------------------
 
-function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.decimation,player,YALLERY_BROWN)
+function onTrigger(player, npc)
+    dsp.wsquest.handleQmTrigger(dsp.wsquest.decimation, player, ID.mob.YALLERY_BROWN)
 end

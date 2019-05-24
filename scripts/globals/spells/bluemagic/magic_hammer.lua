@@ -19,51 +19,51 @@
 -- Can only drain MP from targets that have MP and cannot drain more MP than the target has.
 -- Damage and MP drained are enhanced by both Magic Attack Bonus and Magic Attack from Convergence.
 -----------------------------------------
-require("scripts/globals/bluemagic");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local dmg = 0;
-    local multi = 1.5;
+    local dmg = 0
+    local multi = 1.5
 
     if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
-        multi = multi + 0.50;
+        multi = multi + 0.50
     end
 
-    local params = {};
+    local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-    params.multiplier = multi;
-    params.tMultiplier = 1.0;
-    params.duppercap = 35;
-    params.str_wsc = 0.0;
-    params.dex_wsc = 0.0;
-    params.vit_wsc = 0.0;
-    params.agi_wsc = 0.0;
-    params.int_wsc = 0.0;
-    params.mnd_wsc = 0.30;
-    params.chr_wsc = 0.0;
+    params.multiplier = multi
+    params.tMultiplier = 1.0
+    params.duppercap = 35
+    params.str_wsc = 0.0
+    params.dex_wsc = 0.0
+    params.vit_wsc = 0.0
+    params.agi_wsc = 0.0
+    params.int_wsc = 0.0
+    params.mnd_wsc = 0.30
+    params.chr_wsc = 0.0
 
     if (target:isUndead()) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- No effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- No effect
     else
-        dmg = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
-        dmg = BlueFinalAdjustments(caster, target, spell, dmg, params);
+        dmg = BlueMagicalSpell(caster, target, spell, params, MND_BASED)
+        dmg = BlueFinalAdjustments(caster, target, spell, dmg, params)
         if (target:getMP() > 0) then
             if (target:getMP() < dmg) then
-                dmg = target:getMP();
+                dmg = target:getMP()
             end
-            caster:addMP(dmg);
+            caster:addMP(dmg)
         else
-            return 0;
+            return 0
         end
     end
 
-    return dmg;
-end;
+    return dmg
+end

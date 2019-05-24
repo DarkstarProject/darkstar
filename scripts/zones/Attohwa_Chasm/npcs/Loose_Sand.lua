@@ -2,10 +2,7 @@
 --  Area: Attohwa Chasm
 --  NPC:  Loose sand
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Attohwa_Chasm/TextIDs");
-require("scripts/zones/Attohwa_Chasm/MobIDs");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
@@ -16,14 +13,14 @@ function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP);
     local moamStat = player:getVar("MEMORIES_OF_A_MAIDEN_Status");
 
-    if (cop == THE_ROAD_FORKS and moamStat==8 and not player:hasKeyItem(dsp.ki.MIMEO_JEWEL) and (os.time() - player:getVar("LioumereKilled")) < 200) then
+    if (cop == dsp.mission.id.cop.THE_ROAD_FORKS and moamStat==8 and not player:hasKeyItem(dsp.ki.MIMEO_JEWEL) and (os.time() - player:getVar("LioumereKilled")) < 200) then
         player:setVar("LioumereKilled",0);
         player:addKeyItem(dsp.ki.MIMEO_JEWEL);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.MIMEO_JEWEL);
-    elseif (cop == THE_ROAD_FORKS and (moamStat==7 or moamStat==8) and not player:hasKeyItem(dsp.ki.MIMEO_JEWEL)) then
-        SpawnMob(LIOUMERE):updateClaim(player);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MIMEO_JEWEL);
+    elseif (cop == dsp.mission.id.cop.THE_ROAD_FORKS and (moamStat==7 or moamStat==8) and not player:hasKeyItem(dsp.ki.MIMEO_JEWEL)) then
+        SpawnMob(ID.mob.LIOUMERE):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         player:setVar("LioumereKilled",0);
     end
 end;

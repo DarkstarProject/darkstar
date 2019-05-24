@@ -3,32 +3,27 @@
 --  NPC: Nogga
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/shop");
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Metalworks/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,NOGGA_SHOP_DIALOG);
-
     local stock =
     {
-        0x43A4,675,2,        -- Bomb Arm
+        8918,   579, 1,    -- Soot
+        17316,  675, 2,    -- Bomb Arm
+        17313, 1083, 3,    -- Grenade
+        2792,    92, 3,    -- Catalytic Oil
+    }
 
-     0x43A1,1083,3,        -- Grenade
-     0x0ae8,92,3}        -- Catalytic Oil
-
-showNationShop(player, NATION_BASTOK, stock);
-end;
+    player:showText(npc, ID.text.NOGGA_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

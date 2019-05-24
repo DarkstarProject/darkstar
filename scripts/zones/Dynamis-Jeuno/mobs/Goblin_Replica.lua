@@ -5,11 +5,8 @@
 -- Map2 Position: http://images4.wikia.nocookie.net/__cb20090312005155/ffxi/images/3/31/Jeu2.jpg
 -- Vanguard Position: http://faranim.livejournal.com/39860.html
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Jeuno/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)

@@ -2,9 +2,9 @@
 -- Area: Maze of Shakhrami
 --  MOB: Combat
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,696,2);
-end;
+    dsp.regime.checkRegime(player, mob, 696, 2, dsp.regime.type.GROUNDS)
+end

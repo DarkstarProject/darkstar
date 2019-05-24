@@ -1,13 +1,7 @@
 -----------------------------------
--- Area: Northern San d'Oria
---   NPC: Jovial Rat
+-- Area: Sealion's Den
+--  NPC: Jovial Rat
 -- Type: Past Event Watcher
--- @zone 32
--- !pos
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +16,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

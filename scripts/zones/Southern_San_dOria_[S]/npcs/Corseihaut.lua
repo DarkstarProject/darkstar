@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Corseihaut
--- @zone 80
--- !pos -122 -6 93
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+-- !pos -122 -6 93 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

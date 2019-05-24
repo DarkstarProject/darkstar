@@ -5,18 +5,16 @@
 -- Starts and Finishes Quests: Path of the Bard (just start), The Requiem (BARD AF2)
 -- !pos -22 0 -60 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local theRequiem = player:getQuestStatus(JEUNO,THE_REQUIEM);
+    local theRequiem = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_REQUIEM);
 
     -- THE REQUIEM (holy water)
     if (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 2 and trade:hasItemQty(4154,1) and trade:getItemCount() == 1) then
@@ -25,9 +23,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local aMinstrelInDespair = player:getQuestStatus(JEUNO,A_MINSTREL_IN_DESPAIR);
-    local painfulMemory = player:getQuestStatus(JEUNO,PAINFUL_MEMORY);
-    local theRequiem = player:getQuestStatus(JEUNO,THE_REQUIEM);
+    local aMinstrelInDespair = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_MINSTREL_IN_DESPAIR);
+    local painfulMemory = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PAINFUL_MEMORY);
+    local theRequiem = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_REQUIEM);
 
     -- THE OLD MONUMENT
     if (player:getVar("TheOldMonument_Event") == 1) then
@@ -79,20 +77,20 @@ function onEventFinish(player,csid,option)
     elseif (csid == 145 and option == 0) then
         player:setVar("TheRequiemCS",1); -- player declines quest
     elseif ((csid == 145 or csid == 148) and option == 1) then
-        player:addQuest(JEUNO,THE_REQUIEM);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_REQUIEM);
         player:setVar("TheRequiemCS",2);
     elseif (csid == 151) then
         player:setVar("TheRequiemCS",3);
-        player:messageSpecial(ITEM_OBTAINED,4154); -- Holy Water (just message)
+        player:messageSpecial(ID.text.ITEM_OBTAINED,4154); -- Holy Water (just message)
         player:setVar("TheRequiemRandom",math.random(1,5)); -- pick a random sarcophagus
     elseif (csid == 150) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14098);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14098);
         else
             player:addItem(14098);
-            player:messageSpecial(ITEM_OBTAINED,14098); -- Choral Slippers
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14098); -- Choral Slippers
             player:addFame(JEUNO, 30);
-            player:completeQuest(JEUNO,THE_REQUIEM);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_REQUIEM);
         end;
     end;
 end;

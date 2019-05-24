@@ -4,16 +4,14 @@
 -- Type: Item Deliverer
 -- !pos 10.883    -15.99    66.186 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, MAURIRI_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.MAURIRI_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
@@ -22,4 +20,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

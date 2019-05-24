@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Lollano
 -- Type: Standard NPC
---  @zone 256
--- !pos 96 0 -13
+-- !pos 96 0 -13 256
 -----------------------------------
 
 function onTrade(player,npc,trade)

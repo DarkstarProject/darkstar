@@ -4,9 +4,7 @@
 -- Only sells when Windurst controlls Elshimo Lowlands
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
 -----------------------------------
@@ -15,11 +13,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
-    if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,FOMINA_CLOSED_DIALOG);
+    local RegionOwner = GetRegionOwner(dsp.region.ELSHIMOLOWLANDS);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
+        player:showText(npc,ID.text.FOMINA_CLOSED_DIALOG);
     else
-        player:showText(npc,FOMINA_OPEN_DIALOG);
+        player:showText(npc,ID.text.FOMINA_OPEN_DIALOG);
 
         local stock =
         {
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
             632,    110,  -- Kukuru Bean
             1411,  1656   -- Phalaenopsis
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

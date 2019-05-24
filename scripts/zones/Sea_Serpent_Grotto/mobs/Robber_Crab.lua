@@ -1,11 +1,11 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Robber Crab
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,809,1);
-    checkGoVregime(player,mob,810,1);
-end;
+    dsp.regime.checkRegime(player, mob, 809, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 810, 1, dsp.regime.type.GROUNDS)
+end

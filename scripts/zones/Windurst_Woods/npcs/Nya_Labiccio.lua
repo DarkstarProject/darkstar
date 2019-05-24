@@ -4,22 +4,20 @@
 -- Only sells when Windurst controlls Gustaberg Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
+require("scripts/globals/shop")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(GUSTABERG);
-    if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,NYALABICCIO_CLOSED_DIALOG);
+    local RegionOwner = GetRegionOwner(dsp.region.GUSTABERG)
+    if RegionOwner ~= dsp.nation.WINDURST then
+        player:showText(npc,ID.text.NYALABICCIO_CLOSED_DIALOG)
     else
-        player:showText(npc,NYALABICCIO_OPEN_DIALOG);
+        player:showText(npc,ID.text.NYALABICCIO_OPEN_DIALOG)
 
         local stock =
         {
@@ -28,14 +26,12 @@ function onTrigger(player,npc)
             611,    36, -- Rye Flour
             4388,   40  -- Eggplant
         }
-        showShop(player,WINDURST,stock);
-
+        dsp.shop.general(player, stock, WINDURST)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

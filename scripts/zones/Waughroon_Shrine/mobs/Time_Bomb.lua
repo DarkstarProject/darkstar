@@ -4,9 +4,6 @@
 -- BCNM Fight: 3,2,1...
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged (mob,target)
     mob:setLocalVar("selfDestruct", os.time() + 60);
     mob:SetAutoAttackEnabled(false);

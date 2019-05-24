@@ -4,9 +4,6 @@
 -- Quest NPC
 -- pos -200 -6 -93
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -15,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR,FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
         if (player:getVar("FiresOfDiscProg") == 0) then
             player:startEvent(122);
         else
@@ -35,4 +32,3 @@ function onEventFinish(player,csid,option)
         player:setVar("FiresOfDiscProg",1);
     end
 end;
-

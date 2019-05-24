@@ -5,38 +5,36 @@
 -- Confirmed shop stock, August 2013
 -----------------------------------
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,SHOHRUNTUHRUN_SHOP_DIALOG);
+    player:showText(npc,ID.text.SHOHRUNTUHRUN_SHOP_DIALOG);
 
     stock = {
-        0x1239, 18000,1,     --Haste
+        4665, 18000,1,     --Haste
 
-        0x120C,  5178,2,     --Scroll of Raise
-        0x1218, 10080,2,     --Scroll of Dia II
-        0x121D,  8100,2,     --Scroll of Banish II
-        0x122C,  6366,2,     --Scroll of Protect II
-        0x1231, 15840,2,     --Scroll of Shell II
-        0x1264,  4644,2,     --Scroll of Enfire
-        0x1265,  3688,2,     --Scroll of Enblizzard
-        0x1266,  2250,2,     --Scroll of Enaero
-        0x1267,  1827,2,     --Scroll of Enstone
-        0x1268,  1363,2,     --Scroll of Enthunder
-        0x1269,  6366,2,     --Scroll of Enwater
+        4620,  5178,2,     --Scroll of Raise
+        4632, 10080,2,     --Scroll of Dia II
+        4637,  8100,2,     --Scroll of Banish II
+        4652,  6366,2,     --Scroll of Protect II
+        4657, 15840,2,     --Scroll of Shell II
+        4708,  4644,2,     --Scroll of Enfire
+        4709,  3688,2,     --Scroll of Enblizzard
+        4710,  2250,2,     --Scroll of Enaero
+        4711,  1827,2,     --Scroll of Enstone
+        4712,  1363,2,     --Scroll of Enthunder
+        4713,  6366,2,     --Scroll of Enwater
 
-        0x1203,  3261,3,     --Scroll of Cure III
-        0x122E, 78200,3,     --Scroll of Protect IV
-        0x1280, 74520,3,     --Scroll of Protectra IV
-        0x1304, 64400,3      --Scroll of Dispel
+        4611,  3261,3,     --Scroll of Cure III
+        4654, 78200,3,     --Scroll of Protect IV
+        4736, 74520,3,     --Scroll of Protectra IV
+        4868, 64400,3      --Scroll of Dispel
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
 

@@ -4,9 +4,7 @@
 -- Involved in Quest: Food For Thought, Hat in Hand
 -- !pos 27 -6 -199 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -14,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
+    local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
     local KenapaFood = player:getVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
 
     if (FoodForThought == QUEST_ACCEPTED) then
@@ -38,11 +36,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local OvernightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
-    local FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
-    local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
+    local OvernightDelivery = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
+    local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
+    local SayFlowers = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS"); -- Variable to track progress of Say It with Flowers.
-    local hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+    local hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
     local KenapaFood = player:getVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
     local KenapaOvernight = player:getVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
     local KenapaOvernightDay = player:getVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
@@ -145,7 +143,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addGil(GIL_RATE*120);
         if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
-            player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);
             player:needToZone(true);
@@ -156,8 +154,8 @@ function onEventFinish(player,csid,option)
             player:setVar("Kenapa_Food_var",4);
         end
     elseif  (csid == 56) then  -- Show Off Hat
-        player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+4);
-        player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+        player:addVar("QuestHatInHand_var", 4);
+        player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 336) then
         player:setVar("Kenapa_Overnight_var",1);
     elseif (csid == 337) then
@@ -166,7 +164,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Kenapa_Overnight_var",3);
     elseif (csid == 339) then
         if (option == 0) then
-            player:addQuest(WINDURST,OVERNIGHT_DELIVERY);
+            player:addQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
             player:setVar("Kenapa_Overnight_var",4);
         else
             player:setVar("Kenapa_Overnight_var",0);
@@ -180,7 +178,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 343) then
         player:setVar("Kenapa_Overnight_var",4); -- Begin reminder sequence
     elseif (csid == 346) then
-        player:delQuest(WINDURST,OVERNIGHT_DELIVERY);
+        player:delQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
         player:delKeyItem(dsp.ki.SMALL_BAG);
         player:setVar("Kenapa_Overnight_Hour_var",0);
         player:setVar("Kenapa_Overnight_var",256);
@@ -188,19 +186,16 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(12590);
             player:delKeyItem(dsp.ki.SMALL_BAG);
-            player:messageSpecial(ITEM_OBTAINED,12590);
-            player:completeQuest(WINDURST,OVERNIGHT_DELIVERY);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12590);
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
             player:addFame(WINDURST,100);
             player:needToZone(true);
             player:setVar("Kenapa_Overnight_var",0);
             player:setVar("Kenapa_Overnight_Hour_var",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12590);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12590);
         end
     elseif (csid == 519) then
         player:setVar("FLOWER_PROGRESS",3);
     end
 end;
-
-
-

@@ -3,9 +3,6 @@
 --  NPC: Vznguard_Eye
 -- Map Position: http://images1.wikia.nocookie.net/__cb20090312005233/ffxi/images/thumb/b/b6/Bea.jpg/375px-Bea.jpg
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 require("scripts/globals/dynamis");
 -----------------------------------
 

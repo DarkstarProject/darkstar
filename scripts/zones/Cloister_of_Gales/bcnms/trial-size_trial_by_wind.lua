@@ -1,14 +1,12 @@
 -----------------------------------
 -- Area: Cloister of Gales
 -- BCNM: Trial-size Trial by Wind
--- @zone -361 1 -381 201
+-- !pos -361 1 -381 201
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Gales/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Gales/IDs");
 
 -----------------------------------
 
@@ -50,15 +48,15 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:hasSpell(301) == false) then
         player:addSpell(301); -- Garuda
-        player:messageSpecial(GARUDA_UNLOCKED,0,0,3);
+        player:messageSpecial(ID.text.GARUDA_UNLOCKED,0,0,3);
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeWind_date", 0);
         player:addFame(RABAO,30);
-        player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WIND);
     end
     
 end;

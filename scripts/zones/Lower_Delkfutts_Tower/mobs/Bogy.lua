@@ -2,9 +2,9 @@
 -- Area: Lower Delkfutt's Tower
 --  MOB: Bogy
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,780,2);
-end;
+    dsp.regime.checkRegime(player, mob, 780, 2, dsp.regime.type.GROUNDS)
+end

@@ -3,7 +3,7 @@
 --   NM: Chandelier
 -- Note: Spawned for quest "Hitting the Marquisate"
 -----------------------------------
-require("scripts/zones/Garlaige_Citadel/MobIDs");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -17,5 +17,5 @@ function onMobEngaged(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    GetNPCByID(CHANDELIER_QM):setLocalVar("pop", os.time() + 600); -- 10 minutes until Chandelier can be popped again
+    GetNPCByID(ID.npc.CHANDELIER_QM):setLocalVar("pop", os.time() + 600); -- 10 minutes until Chandelier can be popped again
 end;

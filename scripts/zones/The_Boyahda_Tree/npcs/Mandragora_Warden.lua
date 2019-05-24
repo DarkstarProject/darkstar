@@ -4,48 +4,45 @@
 -- Type: Mission NPC
 -- !pos 81.981 7.593 139.556 153
 -----------------------------------
-package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
+local ID = require("scripts/zones/The_Boyahda_Tree/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-local MissionStatus = player:getVar("MissionStatus");
+    local missionStatus = player:getVar("MissionStatus")
 
-    if (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and (MissionStatus == 4 or MissionStatus == 5)) then
-        if (trade:hasItemQty(1181,1) == true) and (trade:getItemCount() == 1) then
-            player:startEvent(13);
-        end
+    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and (missionStatus == 4 or missionStatus == 5) and npcUtil.tradeHas(trade, 1181) then
+        player:startEvent(13)
     end
-end;
+end
 
 function onTrigger(player,npc)
+    if player:getVar("MissionStatus") == 4 then
+        local dialog = player:getVar("mandialog")
 
-local MissionStatus = player:getVar    ("MissionStatus");
-local dialog = player:getVar ("mandialog");
-    if (MissionStatus == 4) then
-        if (dialog == 0) then
-            player:startEvent(10);
-            player:setVar("mandialog",1);
-            player:PrintToPlayer("Seems like he wants something");
-        elseif (dialog == 1) then
-            player:startEvent(11);
-            player:setVar("mandialog",2);
-        elseif (dialog == 2) then
-            player:startEvent(12);
-            player:setVar("mandialog",3);
-            player:PrintToPlayer("Seems like he wants some Gobbu Hummus");
+        if dialog == 0 then
+            player:startEvent(10)
+            player:setVar("mandialog", 1)
+            player:PrintToPlayer("Seems like he wants something")
+        elseif dialog == 1 then
+            player:startEvent(11)
+            player:setVar("mandialog", 2)
+        elseif dialog == 2 then
+            player:startEvent(12)
+            player:setVar("mandialog", 3)
+            player:PrintToPlayer("Seems like he wants some Gobbu Hummus")
         end
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 13) then
-        player:setVar("MissionStatus",6);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZONPAZIPPA);
-        player:addKeyItem(dsp.ki.LETTER_FROM_ZONPAZIPPA);
+    if csid == 13 then
+        player:setVar("MissionStatus", 6)
+        npcUtil.giveKeyItem(player, dsp.ki.LETTER_FROM_ZONPAZIPPA)
     end
-end;
-
+end

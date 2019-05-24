@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Quam Jitahr
 -- Type: Standard NPC
---  @zone 256
---  !pos -43 0 -105 256
+-- !pos -43 0 -105 256
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------
@@ -13,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
-    if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
+    if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         -- Standard dialogue
         player:startEvent(573);
     else

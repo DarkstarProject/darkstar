@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Grand Palace of Hu'Xzoi
+-- Area: The Garden of Ru'Hmet
 --  MOB: Kf'ghrah WHM
 -----------------------------------
 require("scripts/globals/status");
@@ -24,9 +24,6 @@ function onMobRoam(mob)
         mob:AnimationSub(roamForm);
         mob:setLocalVar("roamTime", os.time());
     end;
-end;
-
-function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob,target)

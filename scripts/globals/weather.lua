@@ -1,7 +1,7 @@
 -----------------------------------
 --  Weather Conditions
 -----------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 dsp.weather =
 {
@@ -25,7 +25,7 @@ dsp.weather =
     STELLAR_GLARE   = 17,
     GLOOM           = 18,
     DARKNESS        = 19,
-};
+}
 
 dsp.day =
 {
@@ -37,7 +37,7 @@ dsp.day =
     LIGHTNINGDAY  = 5,
     LIGHTSDAY     = 6,
     DARKSDAY      = 7,
-};
+}
 
 dsp.time =
 {
@@ -49,4 +49,4 @@ dsp.time =
     DUSK        = 5,
     EVENING     = 6,
     NIGHT       = 7,
-};
+}

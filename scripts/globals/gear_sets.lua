@@ -6,9 +6,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 local matchtype = {
-    any           = 0,
+    any            = 0,
     earring_weapon = 1,
-    weapon_weapon  = 2
+    weapon_weapon  = 2,
+    ring_armor     = 3
 }
 
 -- placeholder for unknown mod types
@@ -23,7 +24,7 @@ local instantCastChance = 15;
 
 --              {id, {item, ids, in, no, particular, order}, minimum matches required, match type, mods{id, value, modvalue for each additional match, additional whole set bonus}
 local GearSets =  {
-             {id = 1, items = {16092,14554,14969,15633,15719},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 50, 0, 0}} },    --  Usukane's set (5% Haste)
+             {id = 1, items = {16092,14554,14969,15633,15719},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 500, 0, 0}} },    --  Usukane's set (5% Haste)
              {id = 2, items = {16088,14550,14965,15629,15715},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.CRITHITRATE, 5, 0, 0}} },    --  Skadi's set (5% critrate is guess)
              {id = 3, items = {16084,14546,14961,15625,15711},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.DOUBLE_ATTACK, 5, 0, 0}} },  --  Ares's set (5% DA)
              {id = 4, items = {16107,14569,14984,15648,15734},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.ACC, 20, 0, 0}} },           --  Denali Jacket Set (Increases Accuracy +20)
@@ -34,10 +35,10 @@ local GearSets =  {
              {id = 9, items = {16108,14570,14985,15649,15735},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.MDEF, 10, 0, 0}} },          --  Goliard Saio Set - Total Set Bonus +10% Magic Def. Bonus
 
              {id = 10, items = {16064,14527,14935,15606,15690},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.REFRESH, 1, 0, 0}} },      --  Yigit Gomlek Set (1mp per tick) Adds "Refresh" effect
-             {id = 11, items = {11503,13759,12745,14210,11413},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 50, 0, 0}} },   --  Perle Hauberk Set 5% haste
+             {id = 11, items = {11503,13759,12745,14210,11413},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 500, 0, 0}} },   --  Perle Hauberk Set 5% haste
              {id = 12, items = {11504,13760,12746,14257,11414},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.STORETP, 8, 0, 0}} },      --  Aurore Doublet Set  store tp +8
              {id = 13, items = {11505,13778,12747,14258,11415},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.FASTCAST, 4, 2, 0}} },    -- Teal Set: Fast Cast +4-10%
-             {id = 14, items = {10890,10462,10512,11980,10610},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 60, 0, 0}} },   --  Calma Armor Set haste%6
+             {id = 14, items = {10890,10462,10512,11980,10610},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 600, 0, 0}} },   --  Calma Armor Set haste%6
              {id = 15, items = {10892,10464,10514,11982,10612},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.MACC, 5, 0, 0}} },        --  Magavan Armor Set  magic accuracy +5
              {id = 16, items = {10891,10463,10513,11981,10611},  matches = 5, matchType = matchtype.any, mods = {{dsp.mod.CRITHITRATE, 5, 0, 0}} },  --  Mustela Harness Set  crit rate 5%
              {id = 17, items = {16126,15744}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.RATT, 15, 0, 0}} }, -- Bowman's set: Ranged atk +15
@@ -54,7 +55,7 @@ local GearSets =  {
 
              {id = 29, items = {11808,11824,11850,11857,11858}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.DOUBLE_ATTACK, 5, 0, 0}} },   --  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
 
-             {id = 30, items = {11809,11825,11851,11855,11859}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 80, 0, 0}} }, --  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+             {id = 30, items = {11809,11825,11851,11855,11859}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 800, 0, 0}} }, --  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
 
              {id = 31, items = {11810,11826,11852,11856,11860}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.MACC, 5, 0, 0}} },    --  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
              {id = 32, items = {10876,10450,10500,11969,10600}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.REFRESH, 1, 0.4, 0}} },     --  Ogier's Armor Set. Set Bonus: Adds "Refresh" dsp.effect. Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
@@ -109,13 +110,23 @@ local GearSets =  {
              {id = 102, items = {15042,11402}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ATT, 5, 0, 0},{dsp.mod.RATT, 5, 0, 0}} }, -- Gothic Gauntlets/Sabatons: Atk/RAtk +5
              {id = 104, items = {26713,27853,27999,28140,28279},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.FASTCAST, 4, 2, 0}} }, -- Teal Set +1: Fast Cast +4-10%
              {id = 105, items = {26712,27852,27998,28139,28278},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.STORETP, 2, 2, 0}} }, -- Aurore Set +1: Sore TP +2-8%
-             {id = 106, items = {26711,27851,27997,28138,28277},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 20, 10, 0}} }, -- Perle Set +1: Haste +2-5%
+             {id = 106, items = {26711,27851,27997,28138,28277},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 200, 100, 0}} }, -- Perle Set +1: Haste +2-5%
              {id = 107, items = {27652,27792,27932,28075,28212},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.MATT, 3, 2, 0}} }, -- Morrigan's Attire Set +1: Magic Atk. Bonus +3-9%
              {id = 108, items = {27651,27791,27931,28074,28211},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.FASTCAST, 3, 2, 0}} }, -- Marduk's Attire Set +1: Fast Cast +3-9%
-             {id = 109, items = {27650,27790,27930,28073,28210},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 30, 20, 0}} }, -- Usukane Armor Set +1: Haste +3-9%
+             {id = 109, items = {27650,27790,27930,28073,28210},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.HASTE_GEAR, 300, 200, 0}} }, -- Usukane Armor Set +1: Haste +3-9%
              {id = 110, items = {27649,27789,27929,28072,28209},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.CRITHITRATE, 3, 2, 0}} }, -- Skadi's Attire Set +1: Critical hit rate +3-9%
              {id = 111, items = {27648,27788,27928,28071,28208},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.DOUBLE_ATTACK, 3, 2, 0}} }, -- Ares' Armor Set +1: Double Attack +3-9%
              {id = 112, items = {10315,10598},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.DMGMAGIC, -5, 0, 0}} }, -- Alcedo Cuisses and Gauntlets: Magic damage taken -5%
+             {id = 113, items = {26204,25574,25790,25828,25879,25946}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.SUBTLE_BLOW, 5, 5, 0}} }, -- Sulevia's Armor Set +2: Subtle Blow +5-20 (Requires Sulevia's Ring to activate set effect)
+             {id = 114, items = {26206,25576,25792,25830,25881,25948}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.COUNTER, 4, 4, 0}} }, -- Hizamaru Armor Set +2: Counter +4-16% (Requires Hizamaru Ring to activate set effect)
+             {id = 115, items = {26207,25577,25793,25831,25882,25949}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.REFRESH, 1, 1, 0}} }, -- Inyanga Armor Set +2: Refresh +1-4 (Requires Inyanga Ring to activate set effect)
+             {id = 116, items = {26205,25575,25791,25829,25880,25947}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.REGEN, 3, 3, 0}} }, -- Meghanada Armor Set +2: Regen +3-12 (Requires Megahanada Ring to activate set effect)
+             {id = 117, items = {26208,25578,25794,25832,25883,25950}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.FAST_CAST, 1, 1, 0}} }, -- Jhakri Armor Set +2: Fast Cast +1-4% (Requires Jhakri Ring to activate set effect)
+             {id = 118, items = {26211,25569,25797,25385,25886,25953}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.STR, 8, 8, 0}, {dsp.mod.DEX, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}} }, -- Flamma Armor Set +2 STR/DEX/VIT +8-32 (Requires Flamma Ring to activate set effect)
+             {id = 121, items = {26210,25573,25796,25834,25885,25952}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.DEX, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}, {dsp.mod.CHR, 8, 8, 0}} }, -- Tali'ah Armor Set +2 DEX/VIT/CHR +8-32 (Requires Tali'ah Ring to activate set effect}
+             {id = 124, items = {26212,25570,25798,25836,25887,25954}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.DEX, 8, 8, 0}, {dsp.mod.AGI, 8, 8, 0}, {dsp.mod.CHR, 8, 8, 0}} }, -- Mummu Armor Set +2 DEX/AGI/CHR +8-32 (Requires Mummu Ring to activate set effect)
+             {id = 127, items = {26209,25572,25795,25833,25884,25951}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.STR, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}, {dsp.mod.MND, 8, 8, 0}} }, -- Ayanmo Armor Set +2 STR/VIT/MND +8-32 (Requires Ayanmo Ring to activate set effect)
+             {id = 130, items = {26213,25571,25799,25837,25888,25955}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.VIT, 8, 8, 0}, {dsp.mod.INT, 8, 8, 0}, {dsp.mod.MND, 8, 8, 0}} }, -- Mallquis Armor Set +2 VIT/INT/MND +8-32 (Requires Mallquis Ring to activate set effect)
         }
              -- increment id by (number of mods in previous gearset - 1)
 
@@ -180,6 +191,8 @@ end;
 
 function FindMatchByType(gearset, gearMatch)
     if (gearset.matchType == matchtype.any) then
+        return true;
+    elseif (gearset.matchType == matchtype.ring_armor and (gearMatch[dsp.slot.HEAD+1] ~= nil or gearMatch[dsp.slot.BODY+1] ~= nil or gearMatch[dsp.slot.HANDS+1] ~= nil or gearMatch[dsp.slot.LEGS+1] ~= nil or gearMatch[dsp.slot.FEET+1] ~= nil) and (gearMatch[dsp.slot.RING1+1] ~= nil or gearMatch[dsp.slot.RING2+1] ~= nil)) then
         return true;
     end
 

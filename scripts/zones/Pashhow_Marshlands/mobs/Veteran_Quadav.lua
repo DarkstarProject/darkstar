@@ -3,15 +3,15 @@
 --  MOB: Veteran Quadav
 -- Note: PH for Ni'Zho Bladebender
 -----------------------------------
-require("scripts/zones/Pashhow_Marshlands/MobIDs");
-require("scripts/globals/fieldsofvalor");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Pashhow_Marshlands/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,60,1);
-end;
+    dsp.regime.checkRegime(player, mob, 60, 1, dsp.regime.type.FIELDS)
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,NI_ZHO_BLADEBENDER_PH,10,3600); -- 1 hour
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.NI_ZHO_BLADEBENDER_PH, 10, 3600) -- 1 hour
+end

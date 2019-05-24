@@ -3,11 +3,8 @@
 -- Zone: Navukgo_Execution_Chamber (64)
 --
 -----------------------------------
-package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/missions");
-require("scripts/globals/settings");
-require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
+local ID = require("scripts/zones/Navukgo_Execution_Chamber/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
@@ -19,7 +16,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-660.185,-12.079,-199.532,192);
     end
 
-    if (player:getCurrentMission(TOAU) == SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus") == 0) then
         cs = 1;
     end
 

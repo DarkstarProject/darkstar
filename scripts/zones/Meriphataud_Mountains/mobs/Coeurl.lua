@@ -3,14 +3,15 @@
 --  MOB: Coeurl
 -- Note: PH for Patripatan
 -----------------------------------
-require("scripts/zones/Meriphataud_Mountains/MobIDs");
-require("scripts/globals/fieldsofvalor");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Meriphataud_Mountains/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,63,1);
-end;
+    dsp.regime.checkRegime(player, mob, 63, 1, dsp.regime.type.FIELDS)
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,PATRIPATAN_PH,5,math.random(3600,10800)); -- 1 to 3 hours
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.PATRIPATAN_PH, 5, math.random(3600, 10800)) -- 1 to 3 hours
+end

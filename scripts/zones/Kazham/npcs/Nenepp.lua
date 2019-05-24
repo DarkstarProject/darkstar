@@ -3,10 +3,10 @@
 --  NPC: Nenepp
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 require("scripts/globals/pathfind");
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 local path =
@@ -18,12 +18,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 
@@ -39,7 +39,7 @@ function onTrade(player,npc,trade)
     -- 905       Wyvern Skull
     -- 1147      Ancient Salt
     -- 4600      Lucky Egg
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local goodtrade = trade:hasItemQty(4600,1);
@@ -57,7 +57,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local retry = player:getVar("OPO_OPO_RETRY");
@@ -87,17 +87,17 @@ function onEventFinish(player,csid,option,npc)
         if (FreeSlots >= 4) then
             player:tradeComplete();
             player:addFame(KAZHAM, 75);
-            player:completeQuest(OUTLANDS, THE_OPO_OPO_AND_I);
+            player:completeQuest(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
             player:addItem(13870);   -- opo opo crown
-            player:messageSpecial(ITEM_OBTAINED,13870);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13870);
             player:addItem(4468,3);  -- 3 pamamas
-            player:messageSpecial(ITEM_OBTAINED,4468,3);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4468,3);
             player:setVar("OPO_OPO_PROGRESS",0);
             player:setVar("OPO_OPO_FAILED", 0);
             player:setVar("OPO_OPO_RETRY", 0);
-            player:setTitle(257);
+            player:setTitle(dsp.title.KING_OF_THE_OPOOPOS);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         end
     elseif (csid == 238) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);

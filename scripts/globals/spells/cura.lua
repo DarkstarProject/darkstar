@@ -6,82 +6,82 @@
 -- Modeled after our Cure.lua, which was modeled after the below reference
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     if (caster:getID() ~= target:getID()) then
-        return dsp.msg.basic.CANNOT_PERFORM_TARG;
+        return dsp.msg.basic.CANNOT_PERFORM_TARG
     else
-        return 0;
-    end;
-end;
+        return 0
+    end
+end
 
 function onSpellCast(caster,target,spell)
-    local divisor = 0;
-    local constant = 0;
-    local basepower = 0;
-    local power = 0;
-    local basecure = 0;
-    local final = 0;
+    local divisor = 0
+    local constant = 0
+    local basepower = 0
+    local power = 0
+    local basecure = 0
+    local final = 0
 
-    local minCure = 10;
+    local minCure = 10
     if (USE_OLD_CURE_FORMULA == true) then
-        power = getCurePowerOld(caster);
-        divisor = 1;
-        constant = -10;
+        power = getCurePowerOld(caster)
+        divisor = 1
+        constant = -10
         if (power > 100) then
-                divisor = 57;
-                constant = 29.125;
+                divisor = 57
+                constant = 29.125
         elseif (power > 60) then
-                divisor = 2;
-                constant = 5;
+                divisor = 2
+                constant = 5
         end
     else
-        power = getCurePower(caster);
+        power = getCurePower(caster)
         if (power < 20) then
-            divisor = 4;
-            constant = 10;
-            basepower = 0;
+            divisor = 4
+            constant = 10
+            basepower = 0
         elseif (power < 40) then
-            divisor =  1.3333;
-            constant = 15;
-            basepower = 20;
+            divisor =  1.3333
+            constant = 15
+            basepower = 20
         elseif (power < 125) then
-            divisor = 8.5;
-            constant = 30;
-            basepower = 40;
+            divisor = 8.5
+            constant = 30
+            basepower = 40
         elseif (power < 200) then
-            divisor = 15;
-            constant = 40;
-            basepower = 125;
+            divisor = 15
+            constant = 40
+            basepower = 125
         elseif (power < 600) then
-            divisor = 20;
-            constant = 40;
-            basepower = 200;
+            divisor = 20
+            constant = 40
+            basepower = 200
         else
-            divisor = 999999;
-            constant = 65;
-            basepower = 0;
+            divisor = 999999
+            constant = 65
+            basepower = 0
         end
     end
 
     if (USE_OLD_CURE_FORMULA == true) then
-        basecure = getBaseCure(power,divisor,constant);
+        basecure = getBaseCureOld(power,divisor,constant)
     else
-        basecure = getBaseCure(power,divisor,constant,basepower);
+        basecure = getBaseCure(power,divisor,constant,basepower)
     end
 
     --Apply Afflatus Misery Bonus to Final Result
     if (caster:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then
         if (caster:getID() == target:getID()) then -- Let's use a local var to hold the power of Misery so the boost is applied to all targets,
-            caster:setLocalVar("Misery_Power", caster:getMod(dsp.mod.AFFLATUS_MISERY));
-        end;
-        local misery = caster:getLocalVar("Misery_Power");
-        -- print(caster:getLocalVar("Misery_Power"));
+            caster:setLocalVar("Misery_Power", caster:getMod(dsp.mod.AFFLATUS_MISERY))
+        end
+        local misery = caster:getLocalVar("Misery_Power")
+        -- print(caster:getLocalVar("Misery_Power"))
 
         --THIS IS LARELY SEMI-EDUCATED GUESSWORK. THERE IS NOT A
         --LOT OF CONCRETE INFO OUT THERE ON CURA THAT I COULD FIND
@@ -93,38 +93,38 @@ function onSpellCast(caster,target,spell)
         --point would boost your Cura by about 1hp, capping at ~175hp
         --So with lack of available formula documentation, I'll go with that.
 
-        --printf("BEFORE AFFLATUS MISERY BONUS: %d", basecure);
+        --printf("BEFORE AFFLATUS MISERY BONUS: %d", basecure)
 
-        basecure = basecure + misery;
+        basecure = basecure + misery
 
         if (basecure > 175) then
-            basecure = 175;
+            basecure = 175
         end
 
-        --printf("AFTER AFFLATUS MISERY BONUS: %d", basecure);
+        --printf("AFTER AFFLATUS MISERY BONUS: %d", basecure)
 
         --Afflatus Misery Mod Gets Used Up
-        caster:setMod(dsp.mod.AFFLATUS_MISERY, 0);
+        caster:setMod(dsp.mod.AFFLATUS_MISERY, 0)
     end
 
-    final = getCureFinal(caster,spell,basecure,minCure,false);
-    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100));
+    final = getCureFinal(caster,spell,basecure,minCure,false)
+    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
 
     --Applying server mods....
-    final = final * CURE_POWER;
+    final = final * CURE_POWER
 
-    target:addHP(final);
+    target:addHP(final)
 
-    target:wakeUp();
+    target:wakeUp()
 
     --Enmity for Cura is fixed, so its CE/VE is set in the SQL and not calculated with updateEnmityFromCure
 
-    spell:setMsg(dsp.msg.basic.AOE_HP_RECOVERY);
+    spell:setMsg(dsp.msg.basic.AOE_HP_RECOVERY)
 
-    local mpBonusPercent = (final*caster:getMod(dsp.mod.CURE2MP_PERCENT))/100;
+    local mpBonusPercent = (final*caster:getMod(dsp.mod.CURE2MP_PERCENT))/100
     if (mpBonusPercent > 0) then
-        caster:addMP(mpBonusPercent);
+        caster:addMP(mpBonusPercent)
     end
 
-    return final;
-end;
+    return final
+end

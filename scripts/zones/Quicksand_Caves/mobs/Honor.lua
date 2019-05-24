@@ -3,7 +3,6 @@
 --  MOB: Honor
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
-require("scripts/zones/Quicksand_Caves/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 
@@ -17,11 +16,8 @@ function onMobSpawn(mob)
     mob:addMod(dsp.mod.LULLABYRES, 50);
 end;
 
-function onMobFight(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
-    if (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 2) then
         player:setVar("MissionStatus",3);
     end
 end;

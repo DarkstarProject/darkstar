@@ -4,18 +4,16 @@
 -- Involved in Mission: Bastok 8.1 "The Chains That Bind Us"
 -- !pos
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
     local missionStatus = player:getVar("MissionStatus");
-    if (player:getCurrentMission(player:getNation()) == THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
+    if (player:getCurrentMission(player:getNation()) == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
         player:startEvent(10)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

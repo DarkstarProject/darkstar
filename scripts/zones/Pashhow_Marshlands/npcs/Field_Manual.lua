@@ -2,21 +2,20 @@
 -- Area: Pashhow Marshlands
 --  NPC: Field Manual
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_PASHHOW,player);
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrade(player,npc,trade)
-end;
+function onTrigger(player, npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,21,22,23,24,60);
-end;
+function onEventUpdate(player, csid, option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
-function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,21,22,23,24,60,FOV_MSG_PASHHOW);
-end;
+function onEventFinish(player, csid, option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

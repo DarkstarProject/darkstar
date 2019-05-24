@@ -38,41 +38,40 @@ enum INSTANCE_STATUS
 class CInstance : public CZoneEntities
 {
 public:
-
     void RegisterChar(CCharEntity*);
 
     uint8 GetID();
     uint8 GetLevelCap();
     const int8* GetName();
-    position_t GetEntryLoc();								// Get entry location
-    duration GetTimeLimit();								// Get instance time limit
-    duration GetLastTimeUpdate();							// Get last time a "Time Remaining:" message was displayed
-    uint32 GetProgress();									// Tracks the progress through the current stage
-    uint32 GetStage();										// Tracks the progress through the instance (eg. floor #)
-    time_point GetWipeTime();									// Stores elapsed time when a wipe is detected
-    duration GetElapsedTime(time_point tick);					// Get elapsed time so far
+    position_t GetEntryLoc();                 // Get entry location
+    duration GetTimeLimit();                  // Get instance time limit
+    duration GetLastTimeUpdate();             // Get last time a "Time Remaining:" message was displayed
+    uint32 GetProgress();                     // Tracks the progress through the current stage
+    uint32 GetStage();                        // Tracks the progress through the instance (eg. floor #)
+    duration GetWipeTime();                   // Get time wipe happened (elapsed since start)
+    duration GetElapsedTime(time_point tick); // Get elapsed time so far
 
     void SetLevelCap(uint8 cap);
     void SetEntryLoc(float x, float y, float z, float rot); // Set entry location
-    void SetLastTimeUpdate(duration time);				// Set last time a "Time Remaining:" message was displayed
-    void SetProgress(uint32 progress);						// Set progress through current stage
-    void SetStage(uint32 stage);							// Set current stage (eg. floor #)
-    void SetWipeTime(time_point time);							// Set elapsed time when a wipe is detected
+    void SetLastTimeUpdate(duration time);                  // Set last time a "Time Remaining:" message was displayed
+    void SetProgress(uint32 progress);                      // Set progress through current stage
+    void SetStage(uint32 stage);                            // Set current stage (eg. floor #)
+    void SetWipeTime(duration time);                        // Set elapsed time when a wipe is detected
 
-    void CheckTime(time_point tick);							// Check time limit (run instance time script)
-    bool CharRegistered(CCharEntity* PChar);				// Check if PChar is registered to this instance
+    void CheckTime(time_point tick);         // Check time limit (run instance time script)
+    bool CharRegistered(CCharEntity* PChar); // Check if PChar is registered to this instance
     void ClearEntities();
-    void Fail();											// Fails the instance (onInstanceFailure)
-    bool Failed();											// Checks if instance is failed
-    void Complete();										// Completes the instance (onInstanceComplete)
-    bool Completed();										// Checks if instance is completed
-    void Cancel();											// Sets instance to fail without calling onInstanceFailure
-    bool CheckFirstEntry(uint32 id);                             // Checks if this is the first time a char is entering
+    void Fail();                     // Fails the instance (onInstanceFailure)
+    bool Failed();                   // Checks if instance is failed
+    void Complete();                 // Completes the instance (onInstanceComplete)
+    bool Completed();                // Checks if instance is completed
+    void Cancel();                   // Sets instance to fail without calling onInstanceFailure
+    bool CheckFirstEntry(uint32 id); // Checks if this is the first time a char is entering
 
-    uint8           GetSoloBattleMusic();
-    uint8           GetPartyBattleMusic();
-    uint8           GetBackgroundMusicDay();
-    uint8           GetBackgroundMusicNight();
+    uint8 GetSoloBattleMusic();
+    uint8 GetPartyBattleMusic();
+    uint8 GetBackgroundMusicDay();
+    uint8 GetBackgroundMusicNight();
 
     CInstance(CZone*, uint8 instanceid);
     ~CInstance();

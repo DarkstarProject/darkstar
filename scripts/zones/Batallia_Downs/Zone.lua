@@ -3,52 +3,20 @@
 -- Zone: Batallia_Downs (105)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Batallia_Downs/TextIDs");
-require("scripts/zones/Batallia_Downs/MobIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs")
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/missions");
 require("scripts/globals/zone");
-
-local itemMap =
-{
-    -- itemid, abundance, requirement
-    { 847, 69, DIGREQ_NONE },
-    { 880, 137, DIGREQ_NONE },
-    { 845, 4, DIGREQ_NONE },
-    { 640, 82, DIGREQ_NONE },
-    { 768, 133, DIGREQ_NONE },
-    { 643, 82, DIGREQ_NONE },
-    { 17296, 137, DIGREQ_NONE },
-    { 774, 26, DIGREQ_NONE },
-    { 106, 69, DIGREQ_NONE },
-    { 4449, 3, DIGREQ_NONE },
-    { 4096, 100, DIGREQ_NONE },  -- all crystals
-    { 656, 106, DIGREQ_BURROW },
-    { 748, 8, DIGREQ_BURROW },
-    { 749, 30, DIGREQ_BURROW },
-    { 750, 136, DIGREQ_BURROW },
-    { 1237, 30, DIGREQ_BORE },
-    { 2235, 60, DIGREQ_BORE },
-    { 2364, 150, DIGREQ_BORE },
-    { 4570, 10, DIGREQ_MODIFIER },
-    { 4487, 11, DIGREQ_MODIFIER },
-    { 4409, 12, DIGREQ_MODIFIER },
-    { 1188, 10, DIGREQ_MODIFIER },
-    { 4532, 12, DIGREQ_MODIFIER },
-};
-
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+-----------------------------------
 
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(AHTU);
-    GetMobByID(AHTU):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.AHTU);
+    GetMobByID(ID.mob.AHTU):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn( player, prevZone)
@@ -60,7 +28,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 901;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1) then
         cs = 903;
     end
 
@@ -68,11 +36,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)

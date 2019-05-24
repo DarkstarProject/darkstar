@@ -3,12 +3,10 @@
 -- Name: Mission Rank 7-2 (Bastok)
 -- !pos -345 104 -260 144
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local ID = require("scripts/zones/Waughroon_Shrine/IDs");
 
 -----------------------------------
 
@@ -32,7 +30,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(BASTOK,ON_MY_WAY)) then
+        if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.ON_MY_WAY)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,0);
@@ -51,9 +49,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if ((player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 2)) then
+        if ((player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 2)) then
             player:addKeyItem(dsp.ki.LETTER_FROM_WEREI);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_WEREI);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_WEREI);
             player:setVar("MissionStatus",3);
         end
     end

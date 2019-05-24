@@ -8,7 +8,7 @@ require("scripts/globals/keyitems");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
     SetServerVariable("[SW_Apollyon]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1291),APPOLLYON_NW_SW);
+    HideArmouryCrates(GetInstanceRegion(1291),APOLLYON_NW_SW);
     SetServerVariable("[SW_Apollyon]MimicTrigger",0);
     SetServerVariable("[SW_Apollyon]ElementalTrigger",0);
 end;

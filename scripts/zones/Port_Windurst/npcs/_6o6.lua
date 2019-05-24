@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Door: Departures Exit
--- @zone 240
--- !pos 218 -5 114
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-- !pos 218 -5 114 240
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,4 +35,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

@@ -2,12 +2,9 @@
 -- Area: Northern San d'Oria
 --   NPC: Charmealaut
 -- Type: Merchant
--- @zone 231
--- !pos 0.000 -0.501 29.303
+-- !pos 0.000 -0.501 29.303 231
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

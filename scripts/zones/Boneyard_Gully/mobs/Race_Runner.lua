@@ -18,30 +18,21 @@ local path =
     -532, 0, -466
 };
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     onMobRoam(mob);
 end;
 
 function onMobRoamAction(mob)
 
-    pathfind.patrol(mob, path, PATHFLAG_REVERSE);
+    dsp.path.patrol(mob, path, dsp.path.flag.REVERSE);
 
 end;
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if (mob:isFollowingPath() == false) then
-        mob:pathThrough(pathfind.first(path));
+        mob:pathThrough(dsp.path.first(path));
     end
-end;
-
-function onMobEngaged(mob,target)
-end;
-
-function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)

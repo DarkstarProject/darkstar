@@ -3,15 +3,15 @@
 -- Item: Republic Signet Staff
 -- Effect: Signet
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/conquest");
-require("scripts/globals/zone");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/conquest")
+require("scripts/globals/zone")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target, param, caster)
     
-    if (target:getNation() ~= NATION_BASTOK) then
+    if (target:getNation() ~= dsp.nation.BASTOK) then
         return dsp.msg.basic.ITEM_CANNOT_USE_ON
     end
     
@@ -28,16 +28,12 @@ function onItemCheck(target, param, caster)
         end
     end
 
-    return 0;
+    return 0
 
-end;
+end
 
 
 function onItemUse(target)
-
-    target:delStatusEffect(dsp.effect.SIGIL);
-    target:delStatusEffect(dsp.effect.SANCTION);
-    target:delStatusEffect(dsp.effect.SIGNET);
-    target:addStatusEffect(dsp.effect.SIGNET,0,0,18000);
-    
-end;
+    player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
+    target:addStatusEffect(dsp.effect.SIGNET,0,0,18000)
+end

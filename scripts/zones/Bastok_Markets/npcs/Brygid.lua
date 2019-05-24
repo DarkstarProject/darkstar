@@ -5,9 +5,7 @@
 -- Involved in Quests: Riding on the Clouds
 -- !pos -90 -4 -108 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/equipment");
@@ -19,15 +17,15 @@ body_list = {12554,13712,12594,13723,12603,13699,12610,13783,12572,12611,13796,1
 legs_list = {12829,12800,12866,12809,12810,12850,12828,12859,12837,14243,12838,12867,12827,12836,12860,12851}
 
 function onTrade(player,npc,trade)
-    local BrygidReturns = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST_RETURNS);
+    local BrygidReturns = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST_RETURNS);
     local wantsSubligar = player:getVar("BrygidWantsSubligar");
 
-    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 3) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 3) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     elseif (BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
         if (wantsSubligar==13) then
@@ -45,8 +43,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local BrygidTheStylist = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST);
-    local BrygidReturns = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST_RETURNS);
+    local BrygidTheStylist = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST);
+    local BrygidReturns = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST_RETURNS);
     local head = player:getEquipID(dsp.slot.HEAD);
     local body = player:getEquipID(dsp.slot.BODY);
     local hands = player:getEquipID(dsp.slot.HANDS);
@@ -110,21 +108,21 @@ end;
 function onEventFinish(player,csid,option)
     local wantsSubligar = player:getVar("BrygidWantsSubligar");
 
-    if (csid == 310 and player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST) == QUEST_AVAILABLE) then
-        player:addQuest(BASTOK,BRYGID_THE_STYLIST);
+    if (csid == 310 and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST) == QUEST_AVAILABLE) then
+        player:addQuest(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST);
     elseif (csid == 311) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12720);
         else
             player:addTitle(dsp.title.BRYGIDAPPROVED);
             player:addItem(12720);
-            player:messageSpecial(ITEM_OBTAINED,12720);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12720);
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,BRYGID_THE_STYLIST);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST);
         end
     elseif (csid == 380) then
-        player:delQuest(BASTOK,BRYGID_THE_STYLIST_RETURNS);
-        player:addQuest(BASTOK,BRYGID_THE_STYLIST_RETURNS);
+        player:delQuest(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST_RETURNS);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST_RETURNS);
     elseif (csid == 382 and option ~= 99) then
         player:setVar("BrygidWantsSubligar",option);
     elseif (csid == 383) then
@@ -133,8 +131,8 @@ function onEventFinish(player,csid,option)
         player:setVar("BrygidWantsSubligar",0);
         player:addTitle(dsp.title.BASTOKS_SECOND_BEST_DRESSED);
         player:addItem(14400+wantsSubligar);
-        player:messageSpecial(ITEM_OBTAINED,14400+wantsSubligar);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,14400+wantsSubligar);
         player:addFame(BASTOK,30);
-        player:completeQuest(BASTOK,BRYGID_THE_STYLIST_RETURNS);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.BRYGID_THE_STYLIST_RETURNS);
     end
 end;

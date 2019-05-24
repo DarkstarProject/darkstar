@@ -4,9 +4,7 @@
 -- Type: Quest Giver
 -- !pos -169.127 2.999 158.677 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -18,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local aCraftsmansWork = player:getQuestStatus(SANDORIA,A_CRAFTSMAN_S_WORK);
+    local aCraftsmansWork = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 
     if (player:getMainJob() == dsp.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
@@ -51,23 +49,23 @@ function onEventFinish(player,csid,option)
     if (csid == 73 and option == 0) then -- first part of long CS -- declines questgiver
         player:setVar("has_seen_drgaf1_quest_already",1);
     elseif ((csid == 73 or csid == 71) and option == 1) then
-        player:addQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
         player:setVar("has_seen_drgaf1_quest_already",0);
         player:setVar("aCraftsmanWork",1);
     elseif (csid == 70) then -- This is only if player has Altepa Polishing Stone
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
         else
             player:setVar("aCraftsmanWork",0);
             player:delKeyItem(dsp.ki.ALTEPA_POLISHING_STONE);
             player:addItem(16887);
-            player:messageSpecial(ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
             player:addFame(SANDORIA,AF1_FAME);
-            player:completeQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
         end
     elseif (csid == 67) then
         player:addKeyItem(dsp.ki.SHINY_EARRING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHINY_EARRING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHINY_EARRING);
         player:setVar("ChasingQuotas_Progress",3);
     end
 
@@ -87,18 +85,18 @@ end;
 -- Ranchuriome : "I've really been feeling my years lately... No matter.  I'm sure I'll perk up
 -- once I start working."
 -- Miaux : "I'm most grateful to you!"
--- 0x0048 Miaux : "You don't see many people with that kind of integrity around anymore.  If my
+-- 72 Miaux : "You don't see many people with that kind of integrity around anymore.  If my
 -- father was still alive, they would have struck up a solid friendship, I'm sure."
--- 0x0042 Miaux : "Oh, that shiny earring came in handy after all?  That's wonderful!  I'm glad
+-- 66 Miaux : "Oh, that shiny earring came in handy after all?  That's wonderful!  I'm glad
 -- I could help someone out in the same way that you and Ranchuriome helped me.
 -- Miaux: I don't think I'm suited for a career as a detective, though... I think I'll concentrate
 -- on helping people in a way that's more within my capabilities."
--- (10)0x000A Miaux : "Thanks to your help, my father's breastplate is looking like new, but...
+-- (10)10 Miaux : "Thanks to your help, my father's breastplate is looking like new, but...
 -- That nice old man, Ranchuriome, has passed away.
 -- Miaux : "I can't help but think it's my fault in some way...that the repairs he did for me were
 -- too strenuous.  When I attended the funeral to pay my respects, though, his features seemed to
 -- be at peace."
--- (67)0x0043 Miaux : "I attended Ranchuriome's funeral to pay my respects and express my thanks for
+-- (67)67 Miaux : "I attended Ranchuriome's funeral to pay my respects and express my thanks for
 -- his kindness.  During the ceremony, I was distracted by an unusal lady among the mourners.
 -- Miaux : "Something about this woman seemed out of place.  I tried to follow her after the funeral
 -- ended, but... I lost sight of her not long after.  I searched around, trying to find her again.
@@ -106,10 +104,9 @@ end;
 -- and thankfully, he soon regained consciousness.  I found this lying nearby.
 -- Miaux : "This shiny earring might be a clue as to what happened. It's probably just my overactive
 -- imagination, but perhaps it will help in some way.  Here, you should hold onto it, just in case."
--- (68)0x0044 Miaux : "A suspicious woman and a shiny earring... Probably just my overactive imagination."
--- (535)0x0217 City - The fortress of sandy... But now, her reign of glory... The sun set on the kingdom
+-- (68)68 Miaux : "A suspicious woman and a shiny earring... Probably just my overactive imagination."
+-- (535)535 City - The fortress of sandy... But now, her reign of glory... The sun set on the kingdom
 -- of knights... Yet young Elvaan knights still venture proudly... On this particular day there comes a new...
 -- The king wishes to bolster his ranks, and <Character>... Should fortune favor her, bards across the land...
 -- Of course, she has only begun her rise to glory... Never before has she set foot within the Elvaan Capital...
 -- Rochefogne : "Say, are you an adventurer?"
-

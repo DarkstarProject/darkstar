@@ -356,6 +356,7 @@ dsp.jobAbility =
     WARD               = 363,
     EFFUSION           = 364,
     APOGEE             = 369,
+    CONSUME_MANA       = 373,
     NATURALISTS_ROLL   = 374,
     RUNEISTS_ROLL      = 375,
     HEALING_RUBY       = 496,
@@ -525,8 +526,8 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle pd
-    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
-            and skilltype == MOBSKILL_PHYSICAL) then
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.TOO_HIGH) )
+            and skilltype == dsp.attackType.PHYSICAL) then
         skill:setMsg(dsp.msg.basic.JA_MISS_2);
         return 0;
     end
@@ -553,18 +554,18 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle Third Eye using shadowbehav as a guide
-    if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
+    if (skilltype == dsp.attackType.PHYSICAL and utils.thirdeye(target)) then
         skill:setMsg(dsp.msg.basic.ANTICIPATE);
         return 0;
     end
 
-    if (skilltype == MOBSKILL_PHYSICAL) then
-        dmg = target:physicalDmgTaken(dmg);
-    elseif (skilltype == MOBSKILL_MAGICAL) then
+    if (skilltype == dsp.attackType.PHYSICAL) then
+        dmg = target:physicalDmgTaken(dmg, skillparam);
+    elseif (skilltype == dsp.attackType.MAGICAL) then
         dmg = target:magicDmgTaken(dmg);
-    elseif (skilltype == MOBSKILL_BREATH) then
+    elseif (skilltype == dsp.attackType.BREATH) then
         dmg = target:breathDmgTaken(dmg);
-    elseif (skilltype == MOBSKILL_RANGED) then
+    elseif (skilltype == dsp.attackType.RANGED) then
         dmg = target:rangedDmgTaken(dmg);
     end
 
@@ -586,7 +587,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 end
 
 
-function takeAbilityDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+function takeAbilityDamage(defender, attacker, params, primary, finaldmg, attackType, damageType, slot, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     if tpHitsLanded + extraHitsLanded > 0 then
         if finaldmg >= 0 then
             if finaldmg > 0 then
@@ -605,7 +606,7 @@ function takeAbilityDamage(defender, attacker, params, primary, finaldmg, slot, 
         -- no abilities that use ability message can miss (the rest use ws messages)
     end
     local targetTPMult = params.targetTPMult or 1
-    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
+    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, attackType, damageType, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker;
     if (params.overrideCE and params.overrideVE) then
         defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)

@@ -4,10 +4,6 @@
 -- Type: Quest Giver
 -- !pos -340.060 -11.003 -148.181 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

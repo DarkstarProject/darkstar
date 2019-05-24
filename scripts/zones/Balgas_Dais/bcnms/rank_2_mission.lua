@@ -3,11 +3,9 @@
 -- Name: Mission Rank 2
 -- !pos 299 -123 345 146
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Balgas_Dais/TextIDs");
+local ID = require("scripts/zones/Balgas_Dais/IDs");
 
 -----------------------------------
 
@@ -52,7 +50,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:hasKeyItem(dsp.ki.DARK_KEY)) then
             player:addKeyItem(dsp.ki.KINDRED_CREST);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_CREST);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_CREST);
             player:setVar("MissionStatus",9);
             player:delKeyItem(dsp.ki.DARK_KEY);
         end

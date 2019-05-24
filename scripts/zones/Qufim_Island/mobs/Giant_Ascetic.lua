@@ -1,11 +1,18 @@
 -----------------------------------
 -- Area: Qufim Island
 --  MOB: Giant Ascetic
+-- Note: PH for Slippery Sucker
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+local ID = require("scripts/zones/Qufim_Island/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,44,1);
-    checkRegime(player,mob,45,2);
-end;
+    dsp.regime.checkRegime(player, mob, 44, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 45, 2, dsp.regime.type.FIELDS)
+end
+
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.SLIPPERY_SUCKER_PH, 10, 600) -- 10 minutes
+end

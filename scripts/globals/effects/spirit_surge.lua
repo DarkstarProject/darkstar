@@ -3,48 +3,37 @@
 -- dsp.effect.SPIRIT_SURGE
 --
 -----------------------------------
+require("scripts/globals/status")
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     -- The dragoon's MAX HP increases by % of wyvern MaxHP
-    target:addMod(dsp.mod.HP,effect:getPower());
-    target:updateHealth();
-    target:addHP(effect:getPower());
+    target:addMod(dsp.mod.HP, effect:getPower())
+    target:updateHealth()
+    target:addHP(effect:getPower())
 
     -- The dragoon gets a Strength boost relative to his level
-    target:addMod(dsp.mod.STR,effect:getSubPower());
+    target:addMod(dsp.mod.STR, effect:getSubPower())
 
     -- The dragoon gets a 50 Accuracy boost
-    target:addMod(dsp.mod.ACC, 50);
+    target:addMod(dsp.mod.ACC, 50)
 
-    -- The dragoon gets 25% Haste (256/1024, see http://wiki.bluegartr.com/bg/Job_Ability_Haste for haste calculation)
-    target:addMod(dsp.mod.HASTE_ABILITY, 256);
-end;
+    -- The dragoon gets 25% Haste (see http://wiki.bluegartr.com/bg/Job_Ability_Haste for haste calculation)
+    target:addMod(dsp.mod.HASTE_ABILITY, 2500)
+end
 
------------------------------------
--- onEffectTick Action
------------------------------------
+function onEffectTick(target, effect)
+end
 
-function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     -- The dragoon's MAX HP returns to normal (when the MAXHP boost in onEffectGain() gets implemented)
-    target:delMod(dsp.mod.HP,effect:getPower());
+    target:delMod(dsp.mod.HP, effect:getPower())
 
     -- The dragoon loses the Strength boost
-    target:delMod(dsp.mod.STR,effect:getSubPower());
+    target:delMod(dsp.mod.STR, effect:getSubPower())
 
     -- The dragoon loses the 50 Accuracy boost
-    target:delMod(dsp.mod.ACC, 50);
+    target:delMod(dsp.mod.ACC, 50)
 
     -- The dragoon loses 25% Haste
-    target:delMod(dsp.mod.HASTE_ABILITY, 256);
-end;
+    target:delMod(dsp.mod.HASTE_ABILITY, 2500)
+end

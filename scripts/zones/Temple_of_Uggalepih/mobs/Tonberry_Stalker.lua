@@ -3,16 +3,14 @@
 --  MOB: Tonberry Stalker
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
-require("scripts/globals/groundsofvalor");
-
-function onMobSpawn(mob)
-end;
+require("scripts/globals/regimes")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,790,1);
-    checkGoVregime(player,mob,791,1);
-    checkGoVregime(player,mob,792,1);
-    checkGoVregime(player,mob,793,1);
-    checkGoVregime(player,mob,794,1);
-    checkGoVregime(player,mob,795,1);
-end;
+    dsp.regime.checkRegime(player, mob, 790, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 791, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 792, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 793, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 794, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 795, 1, dsp.regime.type.GROUNDS)
+end

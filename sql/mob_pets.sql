@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.04.2
+-- Server version   5.5.29-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,6 +36,7 @@ CREATE TABLE `mob_pets` (
 
 LOCK TABLES `mob_pets` WRITE;
 /*!40000 ALTER TABLE `mob_pets` DISABLE KEYS */;
+INSERT INTO `mob_pets` VALUES (16785713, 1, 15);
 INSERT INTO `mob_pets` VALUES (16793746, 1, 9);
 INSERT INTO `mob_pets` VALUES (16793751, 1, 9);
 INSERT INTO `mob_pets` VALUES (16793777, 1, 9);

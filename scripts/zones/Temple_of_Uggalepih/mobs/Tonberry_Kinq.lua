@@ -1,12 +1,13 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  NM:  Tonberry Kinq
+--   NM: Tonberry Kinq
 -----------------------------------
-mixins = {require("scripts/mixins/families/tonberry")}
-mixins = {require("scripts/mixins/job_special")};
-
-function onMobSpawn(mob)
-end;
+mixins =
+{
+    require("scripts/mixins/families/tonberry"),
+    require("scripts/mixins/job_special")
+}
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

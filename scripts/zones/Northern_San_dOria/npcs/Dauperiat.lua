@@ -2,42 +2,39 @@
 -- Area: Northern San d'Oria
 --  NPC: Dauperiat
 -- Starts and Finishes Quest: Blackmail (R)
--- @zone 231
--- !pos
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-- !zone 231
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    Black = player:getQuestStatus(SANDORIA,BLACKMAIL);
-    questState = player:getVar("BlackMailQuest");
+    local Black = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.BLACKMAIL);
+    local questState = player:getVar("BlackMailQuest");
 
     if (Black == QUEST_ACCEPTED and questState == 2 or Black == QUEST_COMPLETED) then
-        count = trade:getItemCount();
-        carta = trade:hasItemQty(530, 1);
+        local count = trade:getItemCount();
+        local carta = trade:hasItemQty(530, 1);
 
         if (carta == true and count == 1) then
             player:startEvent(648,0,530); --648
         end
-       end
+    end
 end;
 
 function onTrigger(player,npc)
 
     -- "Blackmail" quest status
-    blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
-    envelope = player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
-    sanFame = player:getFameLevel(SANDORIA);
-    homeRank = player:getRank(player:getNation());
-    questState = player:getVar("BlackMailQuest");
+    local blackMail = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.BLACKMAIL);
+    local envelope = player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
+    local sanFame = player:getFameLevel(SANDORIA);
+    local homeRank = player:getRank(player:getNation());
+    local questState = player:getVar("BlackMailQuest");
 
 
     if (blackMail == QUEST_AVAILABLE and sanFame >= 3 and homeRank >= 3) then
@@ -70,23 +67,23 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 643) then
-        player:addQuest(SANDORIA,BLACKMAIL);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.BLACKMAIL);
         player:addKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SUSPICIOUS_ENVELOPE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUSPICIOUS_ENVELOPE);
     elseif (csid == 646 and option == 1) then
         player:setVar("BlackMailQuest",2);
     elseif (csid == 648) then
         player:tradeComplete();
         player:addGil(GIL_RATE*900);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*900)
-        if (player:getQuestStatus(SANDORIA,BLACKMAIL) == QUEST_ACCEPTED) then
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*900)
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.BLACKMAIL) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,BLACKMAIL);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.BLACKMAIL);
         else
             player:addFame(SANDORIA,5);
         end
     elseif (csid == 40 and option == 1) then
-        player:addQuest(SANDORIA,BLACKMAIL);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.BLACKMAIL);
     end
 
 end;

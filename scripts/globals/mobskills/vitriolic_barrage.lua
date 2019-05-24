@@ -7,23 +7,23 @@
 --  Range: AoE 10'
 --  Notes: Poison is 20/tic
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local needles = 1000 / skill:getTotalTargets();
-    local typeEffect = dsp.effect.POISON;
+    local needles = 1000 / skill:getTotalTargets()
+    local typeEffect = dsp.effect.POISON
 
-    MobStatusEffectMove(mob, target, typeEffect, 20, 3, 60);
+    MobStatusEffectMove(mob, target, typeEffect, 20, 3, 60)
 
-    local dmg = MobFinalAdjustments(needles,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_WATER,MOBPARAM_WIPE_SHADOWS);
+    local dmg = MobFinalAdjustments(needles,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.WATER,MOBPARAM_WIPE_SHADOWS)
 
-    target:delHP(dmg);
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.WATER)
 
-    return dmg;
-end;
+    return dmg
+end

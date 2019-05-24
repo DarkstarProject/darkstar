@@ -4,8 +4,6 @@
 -- Type: Goldfish Scooping
 -- !pos -22.316 -2.79 -50.815 116
 -----------------------------------
-package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -19,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

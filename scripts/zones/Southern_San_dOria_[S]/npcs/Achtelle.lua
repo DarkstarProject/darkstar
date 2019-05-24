@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Achtelle
--- @zone 80
--- !pos 108 2 -11
+-- !pos 108 2 -11 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -3,18 +3,16 @@
 --  NPC: Detzo
 -- Starts & Finishes Quest: Rivals
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    Rivals = player:getQuestStatus(BASTOK,RIVALS);
+    Rivals = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.RIVALS);
 
     if (Rivals == QUEST_ACCEPTED) then
         FreeSlots = player:getFreeSlotsCount();
@@ -28,7 +26,7 @@ function onTrade(player,npc,trade)
                 player:startEvent(94);
             end
         else
-            player:messageSpecial(FULL_INVENTORY_AFTER_TRADE, 13571);
+            player:messageSpecial(ID.text.FULL_INVENTORY_AFTER_TRADE, 13571);
         end
     end
 
@@ -36,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-    Rivals = player:getQuestStatus(BASTOK,RIVALS);
+    Rivals = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.RIVALS);
 
     if (player:getVar("theTalekeeperGiftCS") == 1) then
         player:startEvent(171);
@@ -44,13 +42,13 @@ function onTrigger(player,npc)
     elseif (Rivals == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
         player:startEvent(93);
     elseif (Rivals == QUEST_ACCEPTED) then
-        player:showText(npc,10311);
+        player:showText(npc, ID.text.DETZO_RIVALS_DIALOG)
     else
         player:startEvent(30);
     end
 
 end;
--- 0x0001  30  93  94  171  0x03f2  0x00b0  0x00b4  0x00b8
+-- 1  30  93  94  171  1010  176  180  184
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
@@ -59,16 +57,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 93) then
-        player:addQuest(BASTOK,RIVALS);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.RIVALS);
     elseif (csid == 94) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13571);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13571);
         else
             player:addTitle(dsp.title.CONTEST_RIGGER);
             player:addItem(13571);
-            player:messageSpecial(ITEM_OBTAINED,13571);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13571);
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,RIVALS);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.RIVALS);
         end
     end
 

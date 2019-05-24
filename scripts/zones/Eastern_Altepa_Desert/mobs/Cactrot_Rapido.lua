@@ -327,13 +327,13 @@ function onMobSpawn(mob)
 end;
 
 function onPath(mob)
-    pathfind.patrol(mob, path, PATHFLAG_RUN);
+    dsp.path.patrol(mob, path, dsp.path.flag.RUN);
 end;
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if (mob:isFollowingPath() == false) then
-        mob:pathThrough(pathfind.first(path), PATHFLAG_RUN);
+        mob:pathThrough(dsp.path.first(path), dsp.path.flag.RUN);
     end
 end;
 
@@ -342,7 +342,6 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    -- Set Cactrot Rapido's spawnpoint and respawn time (24-72 hours)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(86400,259200));
+    mob:setRespawnTime(math.random(172800, 259200)) -- 2 to 3 days
 end;

@@ -4,16 +4,14 @@
 -- Involved In Mission: Journey Abroad
 -- !pos 23.724 -17.39 -43.360 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK and player:getVar("MissionStatus") == 5) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK and player:getVar("MissionStatus") == 5) then
         if (trade:hasItemQty(599,1) and trade:getItemCount() == 1) then -- Trade Mythril Sand
             player:startEvent(205);
         end
@@ -24,15 +22,15 @@ end;
 function onTrigger(player,npc)
 
     -- San d'Oria Mission 2-3 Part I - Bastok > Windurst
-    if (player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_ABROAD and player:getVar("MissionStatus") == 2) then
         player:startEvent(204);
     -- San d'Oria Mission 2-3 Part II - Windurst > Bastok
-    elseif (player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD and player:getVar("MissionStatus") == 7) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_ABROAD and player:getVar("MissionStatus") == 7) then
         player:startEvent(206);
-    elseif (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 11) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 11) then
         player:startEvent(207);
     -----------------
-    elseif (player:getCurrentMission(SANDORIA) ~= 255) then
+    elseif (player:getCurrentMission(SANDORIA) ~= dsp.mission.id.sandoria.NONE) then
         player:startEvent(208);
     else
         player:startEvent(200);
@@ -46,21 +44,21 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 204) then
-        player:addMission(SANDORIA,JOURNEY_TO_BASTOK);
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_BASTOK);
         player:setVar("MissionStatus",3);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA);
     elseif (csid == 205) then
         player:tradeComplete();
         player:setVar("MissionStatus",6);
-        player:addMission(SANDORIA,JOURNEY_ABROAD);
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD);
     elseif (csid == 206) then
-        player:addMission(SANDORIA,JOURNEY_TO_BASTOK2);
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2);
         player:setVar("MissionStatus",8);
     elseif (csid == 207) then
-        player:addMission(SANDORIA,JOURNEY_ABROAD);
+        player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
     end
 
 end;

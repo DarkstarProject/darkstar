@@ -5,7 +5,7 @@
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Walls/TextIDs");
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,12 +16,13 @@ function onTrigger(player,npc)
     Z = player:getZPos();
 
     if ((X >= 1.51 and X <= 9.49) and (Z >= 273.1 and Z <= 281)) then
-        if player:hasKeyItem(267) then
+        if player:hasKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE) then
             player:startEvent(401);
-        else player:startEvent (0x0108);
+        else
+            player:startEvent(264);
         end
     else
-        player:startEvent (0x018b);
+        player:startEvent(395);
     end
     return 1
 end;
@@ -31,4 +32,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

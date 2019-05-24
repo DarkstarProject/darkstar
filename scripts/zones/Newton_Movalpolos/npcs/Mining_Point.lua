@@ -2,22 +2,19 @@
 -- Area: Newton Movalpolos
 --  NPC: Mining Point
 -----------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
--------------------------------------
-require("scripts/globals/mining");
-require("scripts/zones/Newton_Movalpolos/TextIDs");
+require("scripts/globals/helm")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,0x000A);
-end;
+function onTrade(player, npc, trade)
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.MINING, 10)
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
-end;
+function onTrigger(player, npc)
+    dsp.helm.onTrigger(player, dsp.helm.type.MINING)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

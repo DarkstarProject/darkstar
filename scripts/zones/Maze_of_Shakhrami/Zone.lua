@@ -3,50 +3,46 @@
 -- Zone: Maze_of_Shakhrami (198)
 --
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
-require("scripts/zones/Maze_of_Shakhrami/MobIDs");
-require("scripts/globals/conquest");
+local ID = require("scripts/zones/Maze_of_Shakhrami/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    if (math.random(2)==1) then
-        DisallowRespawn(LEECH_KING, true);
-        DisallowRespawn(ARGUS, false);
-        UpdateNMSpawnPoint(ARGUS);
-        GetMobByID(ARGUS):setRespawnTime(math.random(900, 43200));
+    if math.random(2) == 1 then
+        DisallowRespawn(ID.mob.LEECH_KING, true)
+        DisallowRespawn(ID.mob.ARGUS, false)
+        UpdateNMSpawnPoint(ID.mob.ARGUS)
+        GetMobByID(ID.mob.ARGUS):setRespawnTime(math.random(900, 43200))
     else
-        DisallowRespawn(ARGUS, true);
-        DisallowRespawn(LEECH_KING, false);
-        UpdateNMSpawnPoint(LEECH_KING);
-        GetMobByID(LEECH_KING):setRespawnTime(math.random(900, 43200));
+        DisallowRespawn(ID.mob.ARGUS, true)
+        DisallowRespawn(ID.mob.LEECH_KING, false)
+        UpdateNMSpawnPoint(ID.mob.LEECH_KING)
+        GetMobByID(ID.mob.LEECH_KING):setRespawnTime(math.random(900, 43200))
     end
 
-    UpdateTreasureSpawnPoint(SHAKHRAMI_TREASURE_CHEST);
-end;
+    dsp.treasure.initZone(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
+end
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-140.246,-12.738,160.709,63);
+function onZoneIn(player, prevZone)
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-140.246, -12.738, 160.709, 63)
     end
-    return cs;
-end;
+    return cs
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
 
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
-end;
+function onRegionEnter(player, region)
+end
 
-function onRegionEnter(player,region)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

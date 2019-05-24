@@ -3,60 +3,59 @@
 -- Zone: Zeruhn_Mines (172)
 --
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/zone");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
+local ID = require("scripts/zones/Zeruhn_Mines/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/quests")
+require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (prevZone == 143) then
-        cs = 0x0096;
-        if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED) then
-            if (player:getVar("ZeruhnMines_Zeid_CS") == 0) then
-                cs = 130;
-            elseif (player:hasItem(16607) == false) then
-                cs = 0x0083;
+    local cs = -1
+
+    if prevZone == dsp.zone.PALBOROUGH_MINES then
+        cs = 150
+        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED then
+            if player:getVar("ZeruhnMines_Zeid_CS") == 0 then
+                cs = 130
+            elseif not player:hasItem(16607) then
+                cs = 131
             end
-        elseif (player:getQuestStatus(BASTOK,BLADE_OF_DEATH) == QUEST_ACCEPTED) then
-            if (player:hasItem(16607) == false) then
-                cs = 0x0083;
+        elseif player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED then
+            if not player:hasItem(16607) then
+                cs = 131
             end
         end
-    elseif (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-270.707,14.159,-20.268,0);
+    elseif player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-270.707,14.159,-20.268,0)
     end
-    return cs;
-end;
+
+    return cs
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
-end;
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
 
 function onRegionEnter(player,region)
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 130 or csid == 0x0083) then
-        if (player:getFreeSlotsCount() > 0) then
-            player:addItem(16607);
-            player:setVar("ChaosbringerKills", 0);
-            player:messageSpecial(ITEM_OBTAINED,16607);
+    if csid == 130 or csid == 131 then
+        if player:getFreeSlotsCount() > 0 then
+            player:addItem(16607)
+            player:setVar("ChaosbringerKills", 0)
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 16607)
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16607);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16607)
         end
-        player:setVar("ZeruhnMines_Zeid_CS", 1);
+        player:setVar("ZeruhnMines_Zeid_CS", 1)
     end
-end;
+end

@@ -58,7 +58,7 @@ function triggerLightCutscene( player)
     local weather = player:getWeather();
 
     if (player:hasItem( 1125, 0)) then -- Player has Carbuncle's Ruby?
-        if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(WINDURST, dsp.quest.id.windurst.I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
             if (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),0) == false and (weather == dsp.weather.HOT_SPELL or weather == dsp.weather.HEAT_WAVE)) then
                 if (colorsAvailable[zone][RED]) then
                     cutsceneTriggered = true;
@@ -102,10 +102,6 @@ function triggerLightCutscene( player)
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             end
-
-            if (cutsceneTriggered) then
-                fixChocoboBug(player);
-            end
         end
     end
 
@@ -135,20 +131,5 @@ end;
 -----------------------------------
 
 function lightCutsceneFinish( player)
-    fixChocoboBug(player);
     player:setVar("I_CAN_HEAR_A_RAINBOW_Weather", 0);
-end;
-
------------------------------------
--- fixChocoboBug
------------------------------------
-
-function fixChocoboBug( player)
-    if (player:hasStatusEffect(dsp.effect.MOUNTED)) then
-        if (player:getAnimation() == 5) then
-            player:setAnimation( 0);
-        elseif (player:getAnimation() == 0) then
-            player:setAnimation( 5);
-        end
-    end
 end;

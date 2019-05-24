@@ -5,9 +5,7 @@
 --  Involved with Quest: 'All the Way to the Bank'
 --  !pos 43 2 -113 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/shop");
@@ -23,7 +21,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, DEFLIAA_SHOP_TEXT);
+    player:showText(npc, ID.text.DEFLIAA_SHOP_TEXT);
     local stock =
     {
         5166, 3400,   -- Coeurl Sub
@@ -34,7 +32,7 @@ function onTrigger(player,npc)
         4356, 200,    -- White Bread
         5686, 800,    -- Cheese Sandwich
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

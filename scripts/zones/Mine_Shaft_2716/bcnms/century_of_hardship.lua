@@ -5,11 +5,8 @@
 -- inst 2 -54 -1 -100
 -- inst 3 425 -121 -99
 -----------------------------------
-package.loaded["scripts/zones/Mine_Shaft_2716/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Mine_Shaft_2716/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
@@ -30,7 +27,7 @@ end;
 function onBcnmLeave(player,instance,leavecode)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 5) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 5) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
             player:setVar("COP_Louverance_s_Path",6);
         else

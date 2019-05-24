@@ -29,7 +29,7 @@
 
 #include "latent_effect.h"
 #include "entities/petentity.h"
-#include "items/item_armor.h"
+#include "items/item_equipment.h"
 
 /************************************************************************
 *                                                                       *
@@ -65,9 +65,13 @@ public:
 	void CheckLatentsZone();
     void CheckLatentsWeather();
     void CheckLatentsWeather(uint16 weather);
+    void CheckLatentsTargetChange();
 
 	void AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot);
-	void DelLatentEffects(uint8 reqLvl, uint8 slot);
+    void DelLatentEffects(uint8 reqLvl, uint8 slot);
+
+    void AddLatentEffect(LATENT conditionID, uint16 conditionValue, Mod modID, int16 modValue);
+    bool DelLatentEffect(LATENT conditionID, uint16 conditionValue, Mod modID, int16 modValue);
 
 	 CLatentEffectContainer(CCharEntity* PEntity);
 

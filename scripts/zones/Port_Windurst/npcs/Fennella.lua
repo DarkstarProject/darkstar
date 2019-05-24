@@ -2,14 +2,11 @@
 -- Area: Port Windurst
 --  NPC: Fennella
 -- Type: Guildworker's Union Representative
---  @zone 240
--- !pos -177.811 -2.835 65.639
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-- !pos -177.811 -2.835 65.639 240
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 
 local keyitems = {
     [0] = {
@@ -27,7 +24,7 @@ local keyitems = {
         rank = 9,
         cost = 115000
     },
-     [3] = {
+    [3] = {
         id = dsp.ki.ANGLERS_ALMANAC,
         rank = 9,
         cost = 20000
@@ -95,6 +92,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 10020) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
     elseif (csid == 10021) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

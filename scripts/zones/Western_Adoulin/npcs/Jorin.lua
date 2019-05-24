@@ -2,21 +2,18 @@
 -- Area: Western Adoulin
 --  NPC: Jorin
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quest: 'The Old Man and the Harpoon'
---  @zone 256
---  !pos 92 32 152 256
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- Starts, Involved with, and Finishes Quest: 'The Old Man and the Harpoon'
+-- !pos 92 32 152 256
 -----------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local TOMATH = player:getQuestStatus(ADOULIN, THE_OLD_MAN_AND_THE_HARPOON);
+    local TOMATH = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON);
     if (TOMATH == QUEST_ACCEPTED) then
         if (player:hasKeyItem(dsp.ki.EXTRAVAGANT_HARPOON)) then
             -- Finishing Quest: 'The Old Man and the Harpoon'
@@ -40,15 +37,15 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2540) then
         -- Starting Quest: 'The Old Man and the Harpoon'
-        player:addQuest(ADOULIN, THE_OLD_MAN_AND_THE_HARPOON);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON);
         player:addKeyItem(dsp.ki.BROKEN_HARPOON);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BROKEN_HARPOON);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BROKEN_HARPOON);
     elseif (csid == 2542) then
         -- Finishing Quest: 'The Old Man and the Harpoon'
-        player:completeQuest(ADOULIN, THE_OLD_MAN_AND_THE_HARPOON);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON);
         player:addExp(500 * EXP_RATE);
         player:addCurrency('bayld', 300 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 300 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 300 * BAYLD_RATE);
         player:delKeyItem(dsp.ki.EXTRAVAGANT_HARPOON);
         player:addFame(ADOULIN);
     end

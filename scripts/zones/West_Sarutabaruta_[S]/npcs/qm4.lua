@@ -1,29 +1,26 @@
 -----------------------------------
--- ???
--- WOGT Quest
+-- Area: West Sarutabaruta [S]
+--  NPC: qm4
+-- Note: Involved in quest "The Tigress Stirs"
 -- !pos 150 -39 331 95
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
+local ID = require("scripts/zones/West_Sarutabaruta_[S]/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS)==QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_STARFRUIT)==false) then
-        player:addKeyItem(dsp.ki.SMALL_STARFRUIT);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.SMALL_STARFRUIT);
+    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SMALL_STARFRUIT) then
+        player:addKeyItem(dsp.ki.SMALL_STARFRUIT)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SMALL_STARFRUIT)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-
-end;
+end

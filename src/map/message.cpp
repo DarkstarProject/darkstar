@@ -102,7 +102,7 @@ namespace message
                 auto gm_sent = newPacket->ref<uint8>(0x05);
                 if (PChar->nameflags.flags & FLAG_AWAY && !gm_sent)
                 {
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, MsgStd::TellNotReceivedAway));
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace message
             }
             else
             {
-                send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 125));
+                send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, MsgStd::TellNotReceivedOffline));
             }
             break;
         }
@@ -201,7 +201,7 @@ namespace message
                     (inviteType == INVITE_ALLIANCE && (!PInvitee->PParty || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
                 {
                     ref<uint32>((uint8*)extra->data(), 0) = ref<uint32>((uint8*)extra->data(), 6);
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, MsgStd::CannotInvite));
                     return;
                 }
                 // check /blockaid
@@ -213,13 +213,13 @@ namespace message
                     // Interaction was blocked
                     PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
                     // You cannot invite that person at this time.
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, MsgStd::CannotInvite));
                     break;
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
                     ref<uint32>((uint8*)extra->data(), 0) = ref<uint32>((uint8*)extra->data(), 6);
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 236));
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, MsgStd::CannotInviteLevelSync));
                     return;
                 }
 
@@ -244,28 +244,28 @@ namespace message
             {
                 if (inviteAnswer == 0)
                 {
-                    PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 11));
+                    PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, MsgStd::InvitationDeclined));
                 }
                 else
                 {
                     //both party leaders?
                     int ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
-                                                   													   	((charid = %u OR charid = %u) AND partyflag & %u);", inviterId,
-                                                                                                        inviteeId, PARTY_LEADER);
+                                                    ((charid = %u OR charid = %u) AND partyflag & %u);", inviterId,
+                                                    inviteeId, PARTY_LEADER);
                     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 2)
                     {
                         if (PInviter->PParty->m_PAlliance)
                         {
                             ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE allianceid <> 0 AND \
-                                                       														   	allianceid = (SELECT allianceid FROM accounts_parties where \
-                                                                                                                															charid = %u) GROUP BY partyid;", inviterId);
+                                                        allianceid = (SELECT allianceid FROM accounts_parties where \
+                                                        charid = %u) GROUP BY partyid;", inviterId);
                             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NumRows(SqlHandle) < 3)
                             {
                                 PInviter->PParty->m_PAlliance->addParty(inviteeId);
                             }
                             else
                             {
-                                send(MSG_DIRECT, (uint8*)extra->data() + 6, sizeof(uint32), new CMessageStandardPacket(PInviter, 0, 0, 14));
+                                send(MSG_DIRECT, (uint8*)extra->data() + 6, sizeof(uint32), new CMessageStandardPacket(PInviter, 0, 0, MsgStd::CannotBeProcessed));
                             }
                         }
                         else
@@ -279,7 +279,7 @@ namespace message
                     {
                         if (PInviter->PParty == nullptr)
                         {
-                            // PInviter->PParty = new CParty(PInviter);
+                            PInviter->PParty = new CParty(PInviter);
                         }
                         if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter)
                         {
@@ -473,8 +473,7 @@ namespace message
 						{
                             // If entity not spawned, go to default location as listed in database
                             const char* query = "SELECT pos_x, pos_y, pos_z FROM mob_spawn_points WHERE mobid = %u;";
-                            uint32 fetch = Sql_Query(SqlHandle, query, Entity->id);
-                            uint64 list  = Sql_NumRows(SqlHandle);
+                            auto fetch = Sql_Query(SqlHandle, query, Entity->id);
 
                             if (fetch != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
                             {

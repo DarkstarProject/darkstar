@@ -3,10 +3,7 @@
 -- Zone: Maquette Abdhaljs-Legion
 --
 -----------------------------------
-package.loaded["scripts/zones/Maquette_Abdhaljs-Legion/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Maquette_Abdhaljs-Legion/TextIDs");
+local ID = require("scripts/zones/Maquette_Abdhaljs-Legion/IDs")
 -----------------------------------
 
 function onInitialize(zone)

@@ -2,11 +2,11 @@
 -- Area: Qufim Island
 --  MOB: Greater Pugil
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,43,1);
-    checkRegime(player,mob,44,2);
-    checkRegime(player,mob,45,3);
-end;
+    dsp.regime.checkRegime(player, mob, 43, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 44, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 45, 3, dsp.regime.type.FIELDS)
+end

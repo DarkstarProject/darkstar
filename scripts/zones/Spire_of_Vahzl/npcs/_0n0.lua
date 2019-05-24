@@ -2,20 +2,18 @@
 -- Area: Spire of Vahzl
 -- NPC:  Web of Recollection
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Vahzl/TextIDs");
+local ID = require("scripts/zones/Spire_of_Vahzl/IDs");
 
 function onTrade(player,npc,trade)
     
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     else
-        player:messageSpecial(FAINT_SCRAPING);
+        player:messageSpecial(ID.text.FAINT_SCRAPING);
         return 1;
     end
     
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         return 1;
     else
         return 1;
-   end
+    end
     
 end;
 

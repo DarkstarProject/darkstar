@@ -2,20 +2,17 @@
 -- Area: Tavnazian Safehold
 --  NPC: Maturiri
 -- Type: Item Deliverer
---  @zone 26
--- !pos -77.366    -20    -71.128
+-- !pos -77.366 -20 -71.128 26
 --
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
@@ -24,4 +21,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

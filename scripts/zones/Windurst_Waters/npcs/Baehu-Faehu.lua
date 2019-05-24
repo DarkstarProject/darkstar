@@ -4,9 +4,7 @@
 -- Only sells when Windurst has control of Sarutabaruta
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
 -----------------------------------
@@ -15,11 +13,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(SARUTABARUTA);
-    if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,BAEHUFAEHU_CLOSED_DIALOG);
+    local RegionOwner = GetRegionOwner(dsp.region.SARUTABARUTA);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
+        player:showText(npc,ID.text.BAEHUFAEHU_CLOSED_DIALOG);
     else
-        player:showText(npc,BAEHUFAEHU_OPEN_DIALOG);
+        player:showText(npc,ID.text.BAEHUFAEHU_OPEN_DIALOG);
 
         local stock =
         {
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
             4392,  29,  -- Saruta Orange
             635,   18   -- Windurstian Tea Leaves
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

@@ -2,14 +2,11 @@
 -- Area: Northern San d'Oria
 --  NPC: Macuillie
 -- Type: Guildworker's Union Representative
---  @zone 231
--- !pos -191.738 11.001 138.656
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-- !pos -191.738 11.001 138.656 231
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 
 local keyitems = {
     [0] = {
@@ -100,6 +97,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 729) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     elseif (csid == 730) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

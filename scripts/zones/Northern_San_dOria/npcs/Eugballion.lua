@@ -3,41 +3,34 @@
 --  NPC: Eugballion
 -- Only sells when San d'Oria controlls Qufim Region
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/conquest")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-
-    -- "Flyers for Regine" conditional script
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_SANDORIA) then
-        player:showText(npc,EUGBALLION_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.EUGBALLION_CLOSED_DIALOG)
     else
-        player:showText(npc,EUGBALLION_OPEN_DIALOG);
+        local stock =
+        {
+            954, 4121,    -- Magic Pot Shard
+        }
 
-        local stock = {954, 4121} -- Magic Pot Shard
-
-        showShop(player,SANDORIA,stock);
+        player:showText(npc,ID.text.EUGBALLION_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

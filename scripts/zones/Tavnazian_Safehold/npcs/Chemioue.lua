@@ -2,12 +2,9 @@
 -- Area: Tavnazian Safehold
 --   NPC: Chemioue
 -- Type: NPC Quest
--- @zone 26
--- !pos 82.041 -34.964 67.636
+-- !pos 82.041 -34.964 67.636 26
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

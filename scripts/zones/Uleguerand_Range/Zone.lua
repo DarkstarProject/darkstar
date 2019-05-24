@@ -3,10 +3,7 @@
 -- Zone: Uleguerand_Range (5)
 --
 -----------------------------------
-package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Uleguerand_Range/TextIDs");
-require("scripts/zones/Uleguerand_Range/MobIDs");
+local ID = require("scripts/zones/Uleguerand_Range/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/weather");
@@ -15,16 +12,12 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(JORMUNGAND);
-    GetMobByID(JORMUNGAND):setRespawnTime(math.random(86400, 259200));
+    UpdateNMSpawnPoint(ID.mob.JORMUNGAND);
+    GetMobByID(ID.mob.JORMUNGAND):setRespawnTime(math.random(86400, 259200));
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -32,7 +25,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(363.025,16,-60,12);
     end
-    if (player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 1 ) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("COP_louverance_story")== 1 ) then
         cs=17;
     end
     return cs;
@@ -51,7 +44,7 @@ function onEventFinish(player,csid,option)
 end;
 
 function onZoneWeatherChange(weather)
-    local waterfall = GetNPCByID(ULEGUERAND_WATERFALL);
+    local waterfall = GetNPCByID(ID.npc.WATERFALL);
     if (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS) then
         if (waterfall:getAnimation() ~= dsp.anim.CLOSE_DOOR) then
             waterfall:setAnimation(dsp.anim.CLOSE_DOOR);

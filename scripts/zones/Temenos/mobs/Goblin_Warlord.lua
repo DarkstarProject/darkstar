@@ -2,17 +2,11 @@
 -- Area: Temenos N T
 -- NPC: Goblin_Warlord
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Temenos/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 -----------------------------------
 -- onMobEngaged

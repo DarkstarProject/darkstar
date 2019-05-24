@@ -4,35 +4,27 @@
 -- Type: Standard NPC
 -- !pos 62.482 -8.499 -139.836 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
+    local WildcatWindurst = player:getVar("WildcatWindurst")
 
-    local WildcatWindurst = player:getVar("WildcatWindurst");
-
-    if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,1) == false) then
-        player:startEvent(734);
+    if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(WildcatWindurst,1) then
+        player:startEvent(734)
     else
-        player:startEvent(422);
+        player:startEvent(422)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-
-    if (csid == 734) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",1,true);
+    if csid == 734 then
+        player:setMaskBit(player:getVar("WildcatWindurst"), "WildcatWindurst", 1, true)
     end
-
-end;
-
+end

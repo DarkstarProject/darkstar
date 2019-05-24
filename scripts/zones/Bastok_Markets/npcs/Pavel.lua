@@ -4,10 +4,7 @@
 -- Involved in Quest: Stamp Hunt
 -- !pos -349.798 -10.002 -181.296 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,9 +12,9 @@ end;
 
 function onTrigger(player,npc)
     local WildcatBastok = player:getVar("WildcatBastok");
-    local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    local StampHunt = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.STAMP_HUNT);
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,14) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,14) == false) then
         player:startEvent(431);
     elseif (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),2) == false) then
         player:startEvent(227);

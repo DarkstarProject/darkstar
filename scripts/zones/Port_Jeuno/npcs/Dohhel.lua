@@ -2,12 +2,9 @@
 -- Area: Port Jeuno
 --   NPC: Dohhel
 -- Type: Event Scene Replayer
--- @zone 246
--- !pos -156.031 -2 6.051
+-- !pos -156.031 -2 6.051 246
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

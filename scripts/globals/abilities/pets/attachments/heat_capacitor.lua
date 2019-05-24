@@ -1,9 +1,11 @@
 -----------------------------------
 -- Attachment: Heat Capacitor
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
+    pet:setLocalVar("heat_capacitor", pet:getLocalVar("heat_capacitor") + 1)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_HEAT_CAPACITOR", function(automaton, target)
         local master = automaton:getMaster()
         if master and master:countEffect(dsp.effect.FIRE_MANEUVER) > 0 and automaton:getLocalVar("meditate") < VanadielTime() then
@@ -13,11 +15,12 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
+    pet:setLocalVar("heat_capacitor", pet:getLocalVar("heat_capacitor") - 1)
     pet:removeListener("ATTACHMENT_HEAT_CAPACITOR")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

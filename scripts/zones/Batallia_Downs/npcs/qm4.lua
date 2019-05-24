@@ -3,20 +3,18 @@
 --  NPC: qm4 (???)
 --
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Batallia_Downs/TextIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrigger(player,npc)
     local missionProgress = player:getVar("COP_Tenzen_s_Path")
-    if (player:getCurrentMission(COP) == THREE_PATHS and missionProgress == 5) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and missionProgress == 5) then
         player:startEvent(0);
-    elseif (player:getCurrentMission(COP) == THREE_PATHS and (missionProgress == 6 or missionProgress == 7) and player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE) == false) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and (missionProgress == 6 or missionProgress == 7) and player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE) == false) then
         player:addKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DELKFUTT_RECOGNITION_DEVICE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DELKFUTT_RECOGNITION_DEVICE);
     end
 
 end;
@@ -29,6 +27,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 0) then
-       player:setVar("COP_Tenzen_s_Path",6);
+        player:setVar("COP_Tenzen_s_Path",6);
     end
 end;

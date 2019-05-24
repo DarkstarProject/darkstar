@@ -2,7 +2,6 @@
 --  Area/Content Identifiers
 -----------------------------------
 
-STATIC = -1; -- Just so shop NPC scripts have something to check against. Not sent to core.
 SANDORIA =
 {
     ['full_name'] = "San d' Oria",

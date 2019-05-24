@@ -3,10 +3,7 @@
 -- Zone: Cirdas Caverns
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Cirdas_Caverns/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Cirdas_Caverns/TextIDs");
+local ID = require("scripts/zones/Cirdas_Caverns/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -14,9 +11,9 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-player:setPos(-180,30,-314,203);
-end
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos(-180,30,-314,203);
+    end
     return cs;
 end;
 
@@ -28,4 +25,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

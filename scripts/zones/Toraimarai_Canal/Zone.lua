@@ -3,37 +3,29 @@
 -- Zone: Toraimarai_Canal (169)
 --
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Toraimarai_Canal/TextIDs");
-require("scripts/zones/Toraimarai_Canal/MobIDs");
+local ID = require("scripts/zones/Toraimarai_Canal/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
+-----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(TORAIMARAI_TREASURE_COFFER);
-end;
+    dsp.treasure.initZone(zone)
+end
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-259.98,21.794,81.887,66);
+function onZoneIn(player, prevZone)
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-259.98, 21.794, 81.887, 66)
     end
-    return cs;
-end;
+    return cs
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
 
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onRegionEnter(player,region)
-end;
-
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

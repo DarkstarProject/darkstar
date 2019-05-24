@@ -8,20 +8,21 @@
 -- Attack + 17% Cap: 54 (Pet & Master) Pet Cap: 81
 -- Accuracy + 11% Cap: 54 (Pet & Master) Pet Cap: 81
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
+    local result = 0
     if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = 246;
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6261);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6261)
+end
 
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.HP, 30)
@@ -44,7 +45,7 @@ function onEffectGain(target, effect)
     target:addPetMod(dsp.mod.FOOD_ATT_CAP, 82)
     target:addPetMod(dsp.mod.FOOD_RATTP, 17)
     target:addPetMod(dsp.mod.FOOD_RATT_CAP, 82)
-end;
+end
 
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.HP, 30)
@@ -67,4 +68,4 @@ function onEffectLose(target, effect)
     target:delPetMod(dsp.mod.FOOD_ATT_CAP, 82)
     target:delPetMod(dsp.mod.FOOD_RATTP, 17)
     target:delPetMod(dsp.mod.FOOD_RATT_CAP, 82)
-end;
+end

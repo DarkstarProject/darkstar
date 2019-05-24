@@ -2,12 +2,9 @@
 -- Area: Port Windurst
 --   NPC: Odilia
 -- Type: Standard NPC
--- @zone 240
--- !pos 78.801 -6 118.653
+-- !pos 78.801 -6 118.653 240
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -3,21 +3,15 @@
 -- Zone: Dynamis-Bastok
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Dynamis-Bastok/IDs")
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Bastok/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -60,6 +54,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 0) then
-        player:setPos(112.000,0.994,-72.000,127,0xEA);
+        player:setPos(112.000,0.994,-72.000,127,234);
     end
 end;

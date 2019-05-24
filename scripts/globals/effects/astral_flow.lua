@@ -4,25 +4,13 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:recalculateAbilitiesTable();
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:recalculateAbilitiesTable()
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:recalculateAbilitiesTable();
-end;
+    target:recalculateAbilitiesTable()
+end

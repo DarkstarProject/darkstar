@@ -34,7 +34,7 @@ g_mixins.abyssea_nm = function(mob)
                 --TODO: weakness trigger message
                 mob:weaknessTrigger(2)
                 mob:addStatusEffect(dsp.effect.TERROR,0,0,30)
-                mob:setLocalVar("abyssea_blue_proc_count", mob:getLocalVar("abyssea_red_proc_count" + 1))
+                mob:setLocalVar("abyssea_red_proc_count", mob:getLocalVar("abyssea_red_proc_count" + 1))
             elseif wsid == mob:getLocalVar("abyssea_phys_ws_weak") then
                 --TODO: weakness trigger message
                 mob:weaknessTrigger(0)

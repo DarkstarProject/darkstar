@@ -3,12 +3,10 @@
 -- BCNM: Trial-size Trial by Earth
 -- !pos -539 1 -493 209
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Tremors/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Tremors/IDs");
 
 -----------------------------------
 
@@ -50,15 +48,15 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:hasSpell(299) == false) then
             player:addSpell(299); -- Titan
-            player:messageSpecial(TITAN_UNLOCKED,0,0,1);
+            player:messageSpecial(ID.text.TITAN_UNLOCKED,0,0,1);
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeEarth_date", 0);
         player:addFame(BASTOK,30);
-        player:completeQuest(BASTOK,TRIAL_SIZE_TRIAL_BY_EARTH);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.TRIAL_SIZE_TRIAL_BY_EARTH);
     end
 
 end;

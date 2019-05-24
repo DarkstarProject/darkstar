@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Houilloume
--- @zone 80
--- !pos
+-- !zone 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

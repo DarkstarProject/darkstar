@@ -3,10 +3,8 @@
 -- Name: Mission Rank 2
 -- !pos -345 104 -260 144
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local ID = require("scripts/zones/Waughroon_Shrine/IDs");
 
 -----------------------------------
 
@@ -49,11 +47,11 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if ((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or
-        player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and
+        if ((player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or
+        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and
         player:getVar("MissionStatus") == 10) then
             player:addKeyItem(dsp.ki.KINDRED_CREST);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_CREST);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_CREST);
             player:setVar("MissionStatus",11);
         end
     end

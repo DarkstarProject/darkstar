@@ -3,10 +3,6 @@
 --  NPC: Leonhardt
 -- Involved in Quest: Too Many Chefs
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
     if (player:getVar("TOO_MANY_CHEFS") == 3) then

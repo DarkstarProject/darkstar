@@ -11,41 +11,41 @@
 -- Magic Bursts on:
 -- Combos: Magic Defense Bonus
 -----------------------------------------
-require("scripts/globals/bluemagic");
-require("scripts/globals/magic");
+require("scripts/globals/bluemagic")
+require("scripts/globals/magic")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local multi = 1.0;
+    local multi = 1.0
     if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
-        multi = multi + 1.50;
+        multi = multi + 1.50
     end
-    local params = {};
-    params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.BLUE_MAGIC;
-    params.effect = dsp.effect.NONE;
-    params.multiplier = multi;
-    params.tMultiplier = 3.5;
-    params.duppercap = 100;
-    params.str_wsc = 0.2;
-    params.dex_wsc = 0.0;
-    params.vit_wsc = 0.2;
-    params.agi_wsc = 0.0;
-    params.int_wsc = 0.0;
-    params.mnd_wsc = 0.0;
-    params.chr_wsc = 0.0;
+    local params = {}
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.effect = dsp.effect.NONE
+    params.multiplier = multi
+    params.tMultiplier = 3.5
+    params.duppercap = 100
+    params.str_wsc = 0.2
+    params.dex_wsc = 0.0
+    params.vit_wsc = 0.2
+    params.agi_wsc = 0.0
+    params.int_wsc = 0.0
+    params.mnd_wsc = 0.0
+    params.chr_wsc = 0.0
 
-    local resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params)
     if (resist > 0.0625) then
-        target:dispelStatusEffect();
+        target:dispelStatusEffect()
     end
 
-    local damage = BlueMagicalSpell(caster, target, spell, params, INT_BASED);
-    damage = BlueFinalAdjustments(caster, target, spell, damage, params);
+    local damage = BlueMagicalSpell(caster, target, spell, params, INT_BASED)
+    damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
-    return damage;
-end;
+    return damage
+end

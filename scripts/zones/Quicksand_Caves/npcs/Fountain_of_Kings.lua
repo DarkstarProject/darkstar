@@ -3,10 +3,7 @@
 --  NPC: Fountain of Kings
 -- !pos 567 18 -939 208
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Quicksand_Caves/TextIDs");
-require("scripts/zones/Quicksand_Caves/MobIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 
@@ -14,16 +11,16 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 2
-        and not GetMobByID(VALOR):isSpawned() and not GetMobByID(HONOR):isSpawned()) then
-        SpawnMob(VALOR);
-        SpawnMob(HONOR);
-    elseif (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 3
-        and not GetMobByID(VALOR):isSpawned() and not GetMobByID(HONOR):isSpawned()) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 2
+        and not GetMobByID(ID.mob.VALOR):isSpawned() and not GetMobByID(ID.mob.HONOR):isSpawned()) then
+        SpawnMob(ID.mob.VALOR);
+        SpawnMob(ID.mob.HONOR);
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 3
+        and not GetMobByID(ID.mob.VALOR):isSpawned() and not GetMobByID(ID.mob.HONOR):isSpawned()) then
         player:addKeyItem(dsp.ki.DROPS_OF_AMNIO);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DROPS_OF_AMNIO);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DROPS_OF_AMNIO);
     else
-        player:messageSpecial(POOL_OF_WATER);
+        player:messageSpecial(ID.text.POOL_OF_WATER);
     end
 end;
 

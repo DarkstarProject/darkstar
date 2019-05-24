@@ -2,9 +2,7 @@
 -- Area: LaLoff Amphitheater
 -- Name: Ark Angels 3 (Mithra)
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+local ID = require("scripts/zones/LaLoff_Amphitheater/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -37,13 +35,13 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBcnmLeave(player,instance,leavecode)
---print("leave code "..leavecode);
+    --print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         local record = instance:getRecord();
         local clearTime = record.clearTime;
     
-        if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
+        if (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS)) then
             player:startEvent(32001,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,2,1);        -- winning CS (allow player to skip)
         else
             player:startEvent(32001,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,2,0);        -- winning CS (allow player to skip)
@@ -60,20 +58,20 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
- -- print("bc finish csid "..csid.." and option "..option);
+    -- print("bc finish csid "..csid.." and option "..option);
 
-   local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)
-         and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE));
+    local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)
+        and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE));
 
     if (csid == 32001) then
-      if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
-         player:addKeyItem(dsp.ki.SHARD_OF_ENVY);
-         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHARD_OF_ENVY);
-         if (AAKeyitems == true) then
-            player:completeMission(ZILART,ARK_ANGELS);
-            player:addMission(ZILART,THE_SEALED_SHRINE);
-            player:setVar("ZilartStatus",0);
-         end
-      end
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
+            player:addKeyItem(dsp.ki.SHARD_OF_ENVY);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHARD_OF_ENVY);
+            if (AAKeyitems == true) then
+                player:completeMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS);
+                player:addMission(ZILART,dsp.mission.id.zilart.THE_SEALED_SHRINE);
+                player:setVar("ZilartStatus",0);
+            end
+        end
     end
 end;

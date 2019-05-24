@@ -3,8 +3,7 @@
 --  NPC: Zaoso
 -- Type: Standard NPC and Quest NPC
 --  Involved with Quest: 'A Certain Substitute Patrolman'
---  @zone 256
--- !pos -94 3 -11
+-- !pos -94 3 -11 256
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");
@@ -14,9 +13,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ACSP = player:getQuestStatus(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
+    local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local SOA_Mission = player:getCurrentMission(SOA);
-    if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
+    if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         if ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 1)) then
             -- Progresses Quest: 'A Certain Substitute Patrolman'
             player:startEvent(2553);

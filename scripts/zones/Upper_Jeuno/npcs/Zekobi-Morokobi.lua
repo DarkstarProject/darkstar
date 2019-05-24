@@ -2,12 +2,9 @@
 -- Area: Upper Jeuno
 --   NPC: Zekobi-Morokobi
 -- Type: Standard NPC
--- @zone 244
--- !pos 41.258 -5.999 -74.105
+-- !pos 41.258 -5.999 -74.105 244
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

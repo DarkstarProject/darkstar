@@ -19,7 +19,8 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
 
     -- apply WSC
     local weaponDamage = params.weaponDamage or attacker:getWeaponDmg();
-    local weaponType = params.weaponType or attacker:getWeaponSkillType(0);
+    local weaponType = params.weaponType or attacker:getWeaponSkillType(dsp.slot.MAIN);
+    local damageType = attacker:getWeaponDamageType(dsp.slot.MAIN)
 
     if (weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
@@ -54,7 +55,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local ccmax = 0;
     local hasMightyStrikes = attacker:hasStatusEffect(dsp.effect.MIGHTY_STRIKES);
     local isSneakValid = attacker:hasStatusEffect(dsp.effect.SNEAK_ATTACK);
-    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(dsp.effect.HIDE))) then
+    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(dsp.effect.HIDE) or target:hasStatusEffect(dsp.effect.DOUBT))) then
         isSneakValid = false;
     end
     attacker:delStatusEffectsByFlag(dsp.effectFlag.DETECTABLE);
@@ -107,7 +108,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local tpHitsLanded = 0;
     local shadowsAbsorbed = 0;
     if ((missChance <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(dsp.mod.ZANSHIN)/100) and
-            not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.ALL_MISS) ) then
+            not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.TOO_HIGH) ) then
         if not shadowAbsorb(target) then
             if (params.canCrit or isSneakValid or isAssassinValid) then
                 local critchance = math.random();
@@ -153,7 +154,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
             local chance = math.random();
             local targetHP = target:getHP();
             if ((chance<=hitrate or math.random() < attacker:getMod(dsp.mod.ZANSHIN)/100) and
-                    not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.ALL_MISS) ) then  -- it hit
+                    not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.TOO_HIGH) ) then  -- it hit
                 if not shadowAbsorb(target) then
                     pdif = generatePdif(cratio[1], cratio[2], true);
                     if (params.canCrit) then
@@ -190,7 +191,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     finaldmg = finaldmg + firstHitBonus;
 
     -- Check for reductions from PDT
-    finaldmg = target:physicalDmgTaken(finaldmg);
+    finaldmg = target:physicalDmgTaken(finaldmg, damageType);
 
     -- Check for reductions from phys resistances
     if (weaponType == dsp.skill.HAND_TO_HAND) then
@@ -206,7 +207,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     attacker:delStatusEffectSilent(dsp.effect.BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.attackType.PHYSICAL, damageType, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     else
         skill:setMsg(dsp.msg.basic.SKILL_MISS)
     end
@@ -497,7 +498,7 @@ end
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.attackType.RANGED, attacker:getWeaponDamageType(dsp.slot.RANGED), dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     else
         skill:setMsg(dsp.msg.basic.SKILL_MISS)
     end

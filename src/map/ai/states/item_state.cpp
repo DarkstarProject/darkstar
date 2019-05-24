@@ -52,7 +52,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
 
     if (m_PItem && m_PItem->isType(ITEM_USABLE))
     {
-        if (m_PItem->isType(ITEM_ARMOR))
+        if (m_PItem->isType(ITEM_EQUIPMENT))
         {
             // check if this item is equipped
             bool found = false;
@@ -85,19 +85,20 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
         throw CStateInitException(std::move(m_errorMsg));
     }
 
-    auto error = luautils::OnItemCheck(PTarget, m_PItem, ITEMCHECK::NONE, m_PEntity);
-
+    auto [error, param, value] = luautils::OnItemCheck(PTarget, m_PItem, ITEMCHECK::NONE, m_PEntity);
     if (error || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
     {
-        auto param = m_PItem->getFlag() & ITEM_FLAG_SCROLL ? m_PItem->getSubID() : m_PItem->getID();
-
         if (error == -1)
         {
             throw CStateInitException(nullptr);
         }
         else
         {
-            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget ? PTarget : m_PEntity, param, 0, error == -1 ? 0 : error));
+            if (value == 0)
+            {
+                param = m_PItem->getFlag() & ITEM_FLAG_SCROLL ? m_PItem->getSubID() : m_PItem->getID();
+            }
+            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget ? PTarget : m_PEntity, param, value, error));
         }
     }
 
@@ -168,7 +169,7 @@ void CItemState::Cleanup(time_point tick)
 {
     m_PEntity->UContainer->Clean();
 
-    if (m_interrupted && !m_PItem->isType(ITEM_ARMOR))
+    if ((m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_EQUIPMENT))
         m_PItem->setSubType(ITEM_UNLOCKED);
 
     auto PItem = m_PEntity->getStorage(m_location)->GetItem(m_slot);

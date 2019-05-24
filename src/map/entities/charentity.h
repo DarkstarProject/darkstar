@@ -40,12 +40,14 @@ This file is part of DarkStar-server source code.
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
 
+class CTrustEntity;
+
 struct jobs_t
 {
-    uint32 unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
-    uint8  job[MAX_JOBTYPE];		// текущий уровень для каждой из профессий
-    uint16 exp[MAX_JOBTYPE];		// текущее количество опыта для каждой из профессий
-    uint8  genkai;					// максимальный уровень профессий персонажа
+    uint32 unlocked;				// a bit field of the jobs unlocked. The bit indices are stored inside of of the JOBTYPE enumeration 
+    uint8  job[MAX_JOBTYPE];		// the current levels of each of the jobs from above
+    uint16 exp[MAX_JOBTYPE];		// the experience points for each of the jobs above
+    uint8  genkai;					// the maximum genkai level achieved
 };
 
 
@@ -71,7 +73,7 @@ struct event_t
 
 struct profile_t
 {
-    uint8	   nation;			// принадлежность к государству
+    uint8	   nation;			// your nation alligeance
     uint8	   mhflag;			// флаг выхода из MogHouse
     uint16	   title;			// звание
     uint16     fame[15];		// известность
@@ -204,6 +206,8 @@ public:
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
 
+    std::vector<CTrustEntity*> PTrusts; // Active trusts
+
 
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
     // отображает более ранние миссии выплненными
@@ -243,7 +247,7 @@ public:
 
     CTradeContainer*  TradeContainer;               // Container used specifically for trading.
     CTradeContainer*  Container;                    // универсальный контейнер для обмена, синтеза, магазина и т.д.
-    CUContainer*	  UContainer;					// новый универсальный контейнер для обмена, синтеза, магазина и т.д.
+    CUContainer*	  UContainer;					// container used for universal actions -- used for trading at least despite the dedicated trading container above
     CTradeContainer*  CraftContainer;               // Container used for crafting actions.
 
     CBaseEntity*	  PWideScanTarget;				// wide scane цель
@@ -262,11 +266,11 @@ public:
 
     uint32			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
     uint8			  m_LevelRestriction;			// ограничение уровня персонажа
-    uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
+    uint16            m_Costume;                     // карнавальный костюм персонажа (модель)
     uint16			  m_Monstrosity;				// Monstrosity model ID
     uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
-    uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
+    time_point        m_deathSyncTime;              // Timer used for sending an update packet at a regular interval while the character is dead
 
     uint8			  m_hasTractor;					// checks if player has tractor already
     uint8			  m_hasRaise;					// checks if player has raise already
@@ -283,6 +287,7 @@ public:
 
     bool              m_mentorUnlocked;
     uint32            m_moghouseID;
+    uint16            m_moghancementID;
 
     int8			  getShieldSize();
 
@@ -303,7 +308,7 @@ public:
     int32 addMP(int32 mp) override;
 
     std::vector<GearSetMod_t> m_GearSetMods;		// The list of gear set mods currently applied to the character.
-    std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
+    std::vector<AuctionHistory_t> m_ah_history;		// AH history list (in the future consider using UContainer)
 
     void SetPlayTime(uint32 playTime);				// Set playtime
     uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
@@ -313,7 +318,10 @@ public:
     void		ReloadPartyInc();
     void        ReloadPartyDec();
     bool        ReloadParty();
+    void        ClearTrusts();
+    void        RemoveTrust(CTrustEntity*);
 
+    virtual void Tick(time_point) override;
     void        PostTick() override;
 
     virtual void addTrait(CTrait*) override;
@@ -323,8 +331,19 @@ public:
     virtual bool CanUseSpell(CSpell*) override;
 
     virtual void Die() override;
-    void Die(duration);
+    void Die(duration _duration);
     void Raise();
+
+    static constexpr duration death_duration = 60min;
+    static constexpr duration death_update_frequency = 16s;
+
+    void SetDeathTimestamp(uint32 timestamp);
+    int32 GetSecondsElapsedSinceDeath();
+    int32 GetTimeRemainingUntilDeathHomepoint();  // Amount of time remaining before the player should be forced back to homepoint while dead
+
+    void SetMoghancement(uint16 moghancementID);
+    bool hasMoghancement(uint16 moghancementID);
+    void UpdateMoghancement();
 
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
@@ -332,6 +351,7 @@ public:
     virtual bool OnAttackError(CAttackState&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
+    virtual void OnEngage(CAttackState&) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
@@ -342,8 +362,8 @@ public:
     virtual void OnRaise() override;
     virtual void OnItemFinish(CItemState&, action_t&);
 
-    CCharEntity();									// конструктор
-    ~CCharEntity();									// деструктор
+    CCharEntity();									// constructor
+    ~CCharEntity();									// destructor
 
 protected:
     bool IsMobOwner(CBattleEntity* PTarget);
@@ -371,7 +391,7 @@ private:
     bool            m_isBlockingAid;
     bool			m_reloadParty;
 
-    PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
+    PacketList_t      PacketList;					// the list of packets to be sent to the character during the next network cycle
 
     std::mutex      m_PacketListMutex;
 };

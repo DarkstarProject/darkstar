@@ -1,13 +1,11 @@
 -----------------------------------
 --
 -- Zone: Western Adoulin
--- @zone 256
+-- !zone 256
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
@@ -41,7 +39,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             -- Starts Quest: 'Raptor Rapture'
-            player:addQuest(ADOULIN, RAPTOR_RAPTURE);
+            player:addQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
             player:setVar("Raptor_Rapture_Status", 4);
         end
     end

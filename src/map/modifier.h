@@ -64,7 +64,7 @@ enum class Mod
     RACC                      = 26, // Ranged Accuracy
 
     ENMITY                    = 27, // Enmity
-    ENMITY_LOSS_REDUCTION     = 502, // Reduces Enmity lost when taking damage
+    ENMITY_LOSS_REDUCTION     = 427, // Reduces Enmity lost when taking damage
 
     MATT                      = 28, // Magic Attack
     MDEF                      = 29, // Magic Defense
@@ -193,6 +193,7 @@ enum class Mod
     // Damage / Crit Damage / Delay
     DMG                       = 160, // Damage Taken %
     DMGPHYS                   = 161, // Physical Damage Taken %
+    DMGPHYS_II                = 190, // Physical Damage Taken II % (Burtgang)
     DMGBREATH                 = 162, // Breath Damage Taken %
     DMGMAGIC                  = 163, // Magic Damage Taken %
     DMGMAGIC_II               = 831, // Magic Damage Taken II % (Aegis)
@@ -250,6 +251,7 @@ enum class Mod
     FOOD_RACC_CAP             = 189, //
     FOOD_MACCP                =  99, // Macc% see https://www.bg-wiki.com/bg/Category:Magic_Accuracy_Food
     FOOD_MACC_CAP             = 100, // Sets Upper limit for FOOD_MACCP
+    FOOD_DURATION             = 937, // Percentage to increase food duration
 
     // Killer-Effects - (Most by Traits/JobAbility)
     VERMIN_KILLER             = 224, // Enhances "Vermin Killer" effect
@@ -293,14 +295,17 @@ enum class Mod
     // Warrior
     DOUBLE_ATTACK             = 288, // Percent chance to proc
     WARCRY_DURATION           = 483, // Warcy duration bonus from gear
+    BERSERK_EFFECT            = 948, // Conqueror Berserk Effect
 
     // Monk
     BOOST_EFFECT              = 97,  // Boost power in tenths
+    CHAKRA_MULT               = 123, // Chakra multiplier increase (from gear)
+    CHAKRA_REMOVAL            = 124, // Extra statuses removed by Chakra
     SUBTLE_BLOW               = 289, // How much TP to reduce.
     COUNTER                   = 291, // Percent chance to counter
-    KICK_ATTACK               = 292, // Percent chance to kick
+    KICK_ATTACK_RATE          = 292, // Percent chance to kick
     PERFECT_COUNTER_ATT       = 428, // TODO: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
-    FOOTWORK_ATT_BONUS        = 429, // TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+    FOOTWORK_ATT_BONUS        = 429, // Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 25/256 to 38/256)
     COUNTERSTANCE_EFFECT      = 543, // Counterstance effect in percents
     DODGE_EFFECT              = 552, // Dodge effect in percents
     FOCUS_EFFECT              = 561, // Focus effect in percents
@@ -312,6 +317,7 @@ enum class Mod
     AOE_NA                    = 524, // Set to 1 to make -na spells/erase always AoE w/ Divine Veil
     REGEN_MULTIPLIER          = 838, // Multiplier to base regen rate
     CURE2MP_PERCENT           = 860, // Converts % of "Cure" amount to MP
+    DIVINE_BENISON            = 910, // Adds fast cast and enmity reduction to -Na spells (includes Erase). Enmity reduction is half of the fast cast amount
 
     // Black Mage
     CLEAR_MIND                = 295, // Used in conjunction with HEALMP to increase amount between tics
@@ -321,6 +327,8 @@ enum class Mod
     BLINK                     = 299, // Tracks blink shadows
     STONESKIN                 = 300, // Tracks stoneskin HP pool
     PHALANX                   = 301, // Tracks direct damage reduction
+    ENF_MAG_POTENCY           = 290, // Increases Enfeebling magic potency %
+    ENHANCES_SABOTEUR         = 297, // Increases Saboteur Potency %
 
     // Thief
     FLEE_DURATION             = 93,  // Flee duration in seconds
@@ -340,7 +348,6 @@ enum class Mod
     HOLY_CIRCLE_DURATION      = 857, // Holy Circle extended duration in seconds
     RAMPART_DURATION          = 92,  // Rampart duration in seconds
     ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
-    ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
     SENTINEL_EFFECT           = 837, // Sentinel effect in percents
     SHIELD_DEF_BONUS          = 905, // Shield Defense Bonus
@@ -411,6 +418,7 @@ enum class Mod
     UTSUSEMI_BONUS            = 900, // Extra shadows from gear
     NINJA_TOOL                = 308, // Percent chance to not use a tool.
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
+    DAKEN                     = 911, // chance to throw a shuriken without consuming it
 
     // Dragoon
     ANCIENT_CIRCLE_DURATION   = 859, // Ancient Circle extended duration in seconds
@@ -428,9 +436,12 @@ enum class Mod
     BP_DELAY                  = 357, // stores blood pact delay reduction
     ENHANCES_ELEMENTAL_SIPHON = 540, // Bonus Base MP added to Elemental Siphon skill.
     BP_DELAY_II               = 541, // Blood Pact Delay Reduction II
+    BP_DAMAGE                 = 126, // Blood Pact: Rage Damage increase percentage
+    BLOOD_BOON                = 913, // Occasionally cuts down MP cost of Blood Pact abilities. Does not affect abilities that require Astral Flow.
 
     // Blue Mage
     BLUE_POINTS               = 309, // Tracks extra blue points
+    BLUE_LEARN_CHANCE         = 945, // Additional chance to learn blue magic
 
     // Corsair
     EXP_BONUS                 = 382, //
@@ -467,6 +478,7 @@ enum class Mod
     BUST                      = 332, // # of busts
     QUICK_DRAW_DMG            = 411, // Flat damage increase to base QD damage
     QUICK_DRAW_DMG_PERCENT    = 834, // Percentage increase to QD damage
+    QUICK_DRAW_MACC           = 191, // Quick draw magic accuracy
     PHANTOM_ROLL              = 881, // Phantom Roll+ Effect from SOA Rings.
     PHANTOM_DURATION          = 882, // Phantom Roll Duration +.
 
@@ -485,6 +497,13 @@ enum class Mod
     REPAIR_EFFECT             = 853, // Removes # of status effects from the Automaton
     REPAIR_POTENCY            = 854, // Note: Only affects amount regenerated by a %, not the instant restore!
     PREVENT_OVERLOAD          = 855, // Overloading erases a water maneuver (except on water overloads) instead, if there is one
+    SUPPRESS_OVERLOAD         = 125, // Kenkonken "Suppresses Overload" mod. Unclear how this works exactly. Requires testing on retail.
+    AUTO_STEAM_JACKET         = 938, // Causes the Automaton to mitigate damage from successive attacks of the same type
+    AUTO_STEAM_JACKED_REDUCTION = 939, // Amount of damage reduced with Steam Jacket
+    AUTO_SCHURZEN             = 940, // Prevents fatal damage leaving the automaton at 1HP and consumes an Earth manuever
+    AUTO_EQUALIZER            = 941, // Reduces damage received according to damage taken
+    AUTO_PERFORMANCE_BOOST    = 942, // Increases the performance of other attachments by a percentage
+    AUTO_ANALYZER             = 943, // Causes the Automaton to mitigate damage from a special attack a number of times
 
     // Dancer
     FINISHING_MOVES           = 333, // Tracks # of finishing moves
@@ -527,6 +546,7 @@ enum class Mod
 
     TP_BONUS                  = 345, //
     SAVETP                    = 880, // SAVETP Effect for Miser's Roll / ATMA / Hagakure.
+    CONSERVE_TP               = 944, // Conserve TP trait, random chance between 10 and 200 TP
 
     // Stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
     FIRE_AFFINITY_DMG         = 347, // They're stored separately due to Magian stuff - they can grant different levels of
@@ -559,6 +579,8 @@ enum class Mod
     ADDS_WEAPONSKILL_DYN      = 356, // In Dynamis
 
     STEALTH                   = 358, //
+    SNEAK_DURATION            = 946, // Additional duration in seconds 
+    INVISIBLE_DURATION        = 947, // Additional duration in seconds
 
     MAIN_DMG_RATING           = 366, // adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
     SUB_DMG_RATING            = 367, // adds damage rating to off hand weapon
@@ -569,6 +591,7 @@ enum class Mod
     REGEN                     = 370, // auto regen from equipment
     REGEN_DOWN                = 404, // poison
     CURE_POTENCY              = 374, // % cure potency | bonus from gear is capped at 50
+    CURE_POTENCY_II           = 260, // % cure potency II | bonus from gear is capped at 30
     CURE_POTENCY_RCVD         = 375, // % potency of received cure | healer's roll, some items have this
     RANGED_DMG_RATING         = 376, // adds damage rating to ranged weapon
     MAIN_DMG_RANK             = 377, // adds weapon rank to main weapon http://wiki.bluegartr.com/bg/Weapon_Rank
@@ -635,6 +658,8 @@ enum class Mod
 
     GOV_CLEARS                = 496, // 4% bonus per Grounds of Valor Page clear
 
+    AFTERMATH                 = 256, // Aftermath ID
+
     EXTRA_DMG_CHANCE          = 506, // Proc rate of OCC_DO_EXTRA_DMG. 111 would be 11.1%
     OCC_DO_EXTRA_DMG          = 507, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
 
@@ -681,6 +706,7 @@ enum class Mod
     AUGMENTS_ASSASSINS_CHARGE = 886, // Gives Assassin's Charge +1% Critical Hit Rate per merit level
     AUGMENTS_AMBUSH           = 887, // Gives +1% Triple Attack per merit level when Ambush conditions are met
     AUGMENTS_AURA_STEAL       = 889, // 20% chance of 2 effects to be dispelled or stolen per merit level
+    AUGMENTS_CONSPIRATOR      = 912, // Applies Conspirator benefits to player at the top of the hate list
     ENHANCES_REFRESH          = 529, // "Enhances Refresh" adds +1 per modifier to spell's tick result.
     NO_SPELL_MP_DEPLETION     = 530, // % to not deplete MP on spellcast.
     FORCE_FIRE_DWBONUS        = 531, // Set to above 0 to force fire day/weather spell bonus/penalty.
@@ -714,6 +740,23 @@ enum class Mod
     SYNTH_SKILL_GAIN          = 852, // Synthesis skill gain rate
     SYNTH_FAIL_RATE           = 861, // Synthesis failure rate (percent)
     SYNTH_HQ_RATE             = 862, // High-quality success rate (not a percent)
+    DESYNTH_SUCCESS           = 916, // Rate of desynthesis success
+    SYNTH_FAIL_RATE_FIRE      = 917, // Amount synthesis failure rate is reduced when using a fire crystal
+    SYNTH_FAIL_RATE_EARTH     = 918, // Amount synthesis failure rate is reduced when using a earth crystal
+    SYNTH_FAIL_RATE_WATER     = 919, // Amount synthesis failure rate is reduced when using a water crystal
+    SYNTH_FAIL_RATE_WIND      = 920, // Amount synthesis failure rate is reduced when using a wind crystal
+    SYNTH_FAIL_RATE_ICE       = 921, // Amount synthesis failure rate is reduced when using a ice crystal
+    SYNTH_FAIL_RATE_LIGHTNING = 922, // Amount synthesis failure rate is reduced when using a lightning crystal
+    SYNTH_FAIL_RATE_LIGHT     = 923, // Amount synthesis failure rate is reduced when using a light crystal
+    SYNTH_FAIL_RATE_DARK      = 924, // Amount synthesis failure rate is reduced when using a dark crystal
+    SYNTH_FAIL_RATE_WOOD      = 925, // Amount synthesis failure rate is reduced when doing woodworking
+    SYNTH_FAIL_RATE_SMITH     = 926, // Amount synthesis failure rate is reduced when doing smithing
+    SYNTH_FAIL_RATE_GOLDSMITH = 927, // Amount synthesis failure rate is reduced when doing goldsmithing
+    SYNTH_FAIL_RATE_CLOTH     = 928, // Amount synthesis failure rate is reduced when doing clothcraft
+    SYNTH_FAIL_RATE_LEATHER   = 929, // Amount synthesis failure rate is reduced when doing leathercraft
+    SYNTH_FAIL_RATE_BONE      = 930, // Amount synthesis failure rate is reduced when doing bonecraft
+    SYNTH_FAIL_RATE_ALCHEMY   = 931, // Amount synthesis failure rate is reduced when doing alchemy
+    SYNTH_FAIL_RATE_COOK      = 932, // Amount synthesis failure rate is reduced when doing cooking
 
     // Weaponskill %damage modifiers
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
@@ -722,13 +765,20 @@ enum class Mod
 
     ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
-    ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
+    ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
+    WS_NO_DEPLETE             = 949, // % chance a Weaponskill depletes no TP.
+
+    EXPERIENCE_RETAINED       = 914, // Experience points retained upon death (this is a percentage)
+    CAPACITY_BONUS            = 915, // Capacity point bonus granted
+    CONQUEST_BONUS            = 933, // Conquest points bonus granted (percentage)
+    CONQUEST_REGION_BONUS     = 934, // Increases the influence points awarded to the player's nation when receiving conquest points
+    CAMPAIGN_BONUS            = 935, // Increases the evaluation for allied forces by percentage
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 910, // stuff
-    // SPARE = 911, // stuff
-    // SPARE = 912, // stuff
+    // SPARE = 950, // stuff
+    // SPARE = 951, // stuff
+    // SPARE = 952, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

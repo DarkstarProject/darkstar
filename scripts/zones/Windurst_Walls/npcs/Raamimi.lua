@@ -5,6 +5,7 @@
 -- Working 100%
 --  Involved in Quest: To Bee or Not to Bee?
 -----------------------------------
+local ID = require("scripts/zones/Windurst_Walls/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -13,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
+    local ToBee = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
     local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
 
     if (ToBeeOrNotStatus == 10 and ToBee == QUEST_AVAILABLE) then
@@ -42,23 +43,20 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 67) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full
         else
-            player:addQuest(WINDURST,TO_BEE_OR_NOT_TO_BEE);
+            player:addQuest(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
             player:addItem(4370);
-            player:messageSpecial(ITEM_OBTAINED, 4370); -- Gives player Honey x1
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 4370); -- Gives player Honey x1
         end
     elseif (csid == 80) then -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
         else
             player:setVar("ToBeeOrNot_var",0);
             player:addItem(4156,3); -- Mulsum x3
-            player:messageSpecial(ITEMS_OBTAINED, 4156,3);
+            player:messageSpecial(ID.text.ITEMS_OBTAINED, 4156,3);
             player:needToZone(true);
         end
     end
 end;
-
-
-

@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Port San d'Oria
 --  NPC: Door: Arrivals Entrance
--- @zone 232
--- !pos -24 -8 15
------------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+-- !pos -24 -8 15 232
 -----------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,4 +24,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

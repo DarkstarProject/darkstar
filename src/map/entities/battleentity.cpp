@@ -55,7 +55,6 @@ CBattleEntity::CBattleEntity()
 
     m_mjob = JOB_WAR;
     m_sjob = JOB_WAR;
-    m_enmityRange = 25;
 
     m_magicEvasion = 0;
 
@@ -73,6 +72,7 @@ CBattleEntity::CBattleEntity()
     PPet = nullptr;
     PParty = nullptr;
     PMaster = nullptr;
+    PLastAttacker = nullptr;
 
     StatusEffectContainer = std::make_unique<CStatusEffectContainer>(this);
     PRecastContainer = std::make_unique<CRecastContainer>(this);
@@ -110,6 +110,15 @@ bool CBattleEntity::isInDynamis()
     return false;
 }
 
+bool CBattleEntity::isInAssault()
+{
+    if (loc.zone != nullptr)
+    {
+        return loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED && (loc.zone->GetRegionID() >= REGION_WEST_AHT_URHGAN && loc.zone->GetRegionID() <= REGION_ALZADAAL);
+    }
+    return false;
+}
+
 // return true if the mob has immunity
 bool CBattleEntity::hasImmunity(uint32 imID)
 {
@@ -128,6 +137,11 @@ bool CBattleEntity::isAsleep()
 bool CBattleEntity::isMounted()
 {
 	return (animation == ANIMATION_CHOCOBO || animation == ANIMATION_MOUNT);
+}
+
+bool CBattleEntity::isSitting()
+{
+    return (animation == ANIMATION_HEALING || animation == ANIMATION_SIT || (animation >= ANIMATION_SITCHAIR_0 && animation <= ANIMATION_SITCHAIR_10));
 }
 
 /************************************************************************
@@ -251,10 +265,12 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     if (!tp)
     {
         // Cap haste at appropriate levels.
-        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -448, 448);
-        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -256, 256);
-        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -256, 256);
-        WeaponDelay = (uint16)(WeaponDelay * ((1024.0f - hasteMagic - hasteAbility - hasteGear) / 1024.0f));
+        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -10000, 4375); // 43.75% cap -- handle 100% slow for weakness
+        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -2500, 2500); // 25% cap
+        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -2500, 2500); // 25%
+
+        // Divide by float to get a more accurate reduction, then use int16 cast to truncate
+        WeaponDelay -= (int16)(WeaponDelay * (hasteMagic + hasteAbility + hasteGear) / 10000.f);
     }
     WeaponDelay = (uint16)(WeaponDelay * ((100.0f + getMod(Mod::DELAYP)) / 100.0f));
 
@@ -504,6 +520,13 @@ int32 CBattleEntity::addMP(int32 mp)
         updatemask |= UPDATE_HP;
     }
     return abs(mp);
+}
+
+int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullptr*/, ATTACKTYPE attackType /* = ATTACK_NONE*/, DAMAGETYPE damageType /* = DAMAGE_NONE*/)
+{
+    PLastAttacker = attacker;
+    PAI->EventHandler.triggerListener("TAKE_DAMAGE", this, amount, attacker, (uint16)attackType, (uint16)damageType);
+    return addHP(-amount);
 }
 
 /************************************************************************
@@ -1256,6 +1279,10 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             actionTarget.param = luautils::OnSpellCast(this, PTarget, PSpell);
 
+            // Remove Saboteur
+            if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)
+                StatusEffectContainer->DelStatusEffect(EFFECT_SABOTEUR);
+
             // remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())
             {
@@ -1460,7 +1487,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                             naturalh2hDMG = (int16)((PTarget->GetSkill(SKILL_HAND_TO_HAND) * 0.11f) + 3);
                         }
 
-                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0);
+                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0.f);
                         auto damage = (int32)((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
                         actionTarget.spikesParam = battleutils::TakePhysicalDamage(PTarget, this, attack.GetAttackType(), damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
                         actionTarget.spikesMessage = 33;
@@ -1487,7 +1514,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     actionTarget.reaction = REACTION_HIT;
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
-                    actionTarget.messageID = 67;
+                    actionTarget.messageID = attack.GetAttackType() == PHYSICAL_ATTACK_TYPE::DAKEN ? 353 : 67;
 
                     if (PTarget->objtype == TYPE_MOB)
                     {
@@ -1499,7 +1526,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     actionTarget.reaction = REACTION_HIT;
                     actionTarget.speceffect = SPECEFFECT_HIT;
-                    actionTarget.messageID = 1;
+                    actionTarget.messageID = attack.GetAttackType() == PHYSICAL_ATTACK_TYPE::DAKEN ? 352 : 1;
                 }
 
                 // Guarded. TODO: Stuff guards that shouldn't.
@@ -1513,6 +1540,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (CStatusEffect* PFeintEffect = StatusEffectContainer->GetStatusEffect(EFFECT_FEINT))
                 {
                     PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30));
+                    StatusEffectContainer->DelStatusEffect(EFFECT_FEINT);
                 }
 
                 // Process damage.

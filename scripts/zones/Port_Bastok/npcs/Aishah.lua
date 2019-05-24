@@ -3,10 +3,7 @@
 --  NPC: Aishah
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,4 +18,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

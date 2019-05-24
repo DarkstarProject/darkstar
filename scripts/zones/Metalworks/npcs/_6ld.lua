@@ -3,10 +3,7 @@
 -- Door: _6ld (President's Office)
 -- !pos 92 -19 0.1 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -14,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
+    if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(603);
     else
         player:startEvent(604);

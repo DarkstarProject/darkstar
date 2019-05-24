@@ -8,12 +8,6 @@ require("scripts/globals/titles");
 require("scripts/globals/dynamis");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     if (mob:isInBattlefieldList() == false) then

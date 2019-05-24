@@ -3,14 +3,15 @@
 --  MOB: Torama
 -- Note: Place holder Ose
 -----------------------------------
-require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
-require("scripts/globals/groundsofvalor");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,775,1);
-end;
+    dsp.regime.checkRegime(player, mob, 775, 1, dsp.regime.type.GROUNDS)
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,OSE_PH,5,3600); -- 1 hour
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.OSE_PH, 5, 3600) -- 1 hour
+end

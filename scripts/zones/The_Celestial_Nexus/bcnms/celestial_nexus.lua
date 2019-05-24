@@ -2,12 +2,9 @@
 -- Area: The Celestial Nexus
 -- Name: The Celestial Nexus (ZM16)
 -----------------------------------
-package.loaded["scripts/zones/The_Celestial_Nexus/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/The_Celestial_Nexus/TextIDs");
 
 -----------------------------------
 
@@ -32,7 +29,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(ZILART,THE_CELESTIAL_NEXUS)) then
+        if (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.THE_CELESTIAL_NEXUS)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
@@ -51,9 +48,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
     
     if (csid == 32001) then
-        if (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then
-            player:completeMission(ZILART,THE_CELESTIAL_NEXUS);
-            player:addMission(ZILART,AWAKENING);
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_CELESTIAL_NEXUS) then
+            player:completeMission(ZILART,dsp.mission.id.zilart.THE_CELESTIAL_NEXUS);
+            player:addMission(ZILART,dsp.mission.id.zilart.AWAKENING);
             player:addTitle(dsp.title.BURIER_OF_THE_ILLUSION);
             player:setVar("ZilartStatus",0);
         end

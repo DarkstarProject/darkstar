@@ -2,12 +2,9 @@
 -- Area: Kazham
 --   NPC: Swift
 -- Type: Standard NPC
--- @zone 250
--- !pos 2.017 -5 -1.880
+-- !pos 2.017 -5 -1.880 250
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

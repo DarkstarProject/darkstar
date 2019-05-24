@@ -3,11 +3,9 @@
 -- Zone: Heavens_Tower
 --
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Heavens_Tower/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/Heavens_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
@@ -18,11 +16,11 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and player:getVar("MissionStatus") == 3) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST and player:getVar("MissionStatus") == 3) then
         cs = 42;
-    elseif (player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_WINDURST and player:getVar("MissionStatus") == 2) then
         cs = 42;
-    elseif (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 1) then
         cs = 335;
     end
 
@@ -30,11 +28,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -65,7 +59,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",2);
     elseif (csid == 42) then
         -- This cs should only play if you visit Windurst first.
-        if (player:getNation() == NATION_SANDORIA) then
+        if (player:getNation() == dsp.nation.SANDORIA) then
             player:setVar("MissionStatus",4);
         else
             player:setVar("MissionStatus",3);

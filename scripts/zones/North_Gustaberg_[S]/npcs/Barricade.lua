@@ -3,11 +3,7 @@
 --  NPC: Barricade
 -- Involved in Quests: The Fighting Fourth
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
-package.loaded["scripts/globals/quests"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 2) then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 2) then
         player:startEvent(106)
     end
 end;

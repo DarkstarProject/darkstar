@@ -3,8 +3,12 @@
 -- Zone: Mamook (65)
 --
 -----------------------------------
+local ID = require("scripts/zones/Mamook/IDs")
+require("scripts/globals/helm")
+-----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

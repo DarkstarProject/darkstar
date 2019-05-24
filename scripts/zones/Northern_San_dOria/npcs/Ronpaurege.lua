@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Ronpaurege
 -- Type: Standard Info NPC
---  @zone 231
--- !pos 65.739 -0.199 74.275
+-- !pos 65.739 -0.199 74.275 231
 --
 -----------------------------------
 
@@ -19,4 +18,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

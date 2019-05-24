@@ -3,21 +3,18 @@
 --  NPC: ??? (Spawn Dextrose(ZNM T2))
 -- !pos -144 11 464 62
 -----------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Halvung/TextIDs");
-require("scripts/zones/Halvung/MobIDs");
+local ID = require("scripts/zones/Halvung/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 2589) and not GetMobByID(DEXTROSE):isSpawned()) then -- Granulated Sugar
+    if (npcUtil.tradeHas(trade, 2589) and not GetMobByID(ID.mob.DEXTROSE):isSpawned()) then -- Granulated Sugar
         player:confirmTrade();
-        SpawnMob(DEXTROSE):updateClaim(player);
+        SpawnMob(ID.mob.DEXTROSE):updateClaim(player);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(ID.text.NOTHING_HAPPENS);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -2,14 +2,11 @@
 -- Area: The_Garden_of_RuHmet
 -- Name: when_angels_fall
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
@@ -43,7 +40,7 @@ function onBcnmLeave(player,instance,leavecode)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
     
-        if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then
             player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0);
             player:setVar("PromathiaStatus",5);
         else
@@ -57,13 +54,13 @@ function onBcnmLeave(player,instance,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
-  if (csid== 32001) then
-    player:setPos(420,0,445,192);
-end
+    -- print("bc finish csid "..csid.." and option "..option);
+    if (csid== 32001) then
+        player:setPos(420,0,445,192);
+    end
  
 end;

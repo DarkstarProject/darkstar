@@ -3,12 +3,7 @@
 --  NPC: Reapertongue Gadgquok
 -- Boss Trigger for Overlord's Tombstone
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
+mixins = {require("scripts/mixins/job_special")}
 
 function onMobDeath(mob, player, isKiller)
 end;

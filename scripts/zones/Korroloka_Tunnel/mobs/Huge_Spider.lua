@@ -3,14 +3,14 @@
 --  Mob: Huge_Spider
 -- Note: PH for Falcatus Aranei
 -----------------------------------
-require("scripts/zones/Korroloka_Tunnel/MobIDs");
-require("scripts/globals/groundsofvalor");
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,279,1);
-end;
+    dsp.regime.checkRegime(player, mob, 729, 1, dsp.regime.type.GROUNDS)
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,FALCATUS_ARANEI_PH,5,math.random(7200,14400)); -- 2 to 4 hours
-end;
+    dsp.mob.phOnDespawn(mob,ID.mob.FALCATUS_ARANEI_PH,5,math.random(7200,14400)); -- 2 to 4 hours
+end

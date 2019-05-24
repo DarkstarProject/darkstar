@@ -3,9 +3,7 @@
 --  NPC: Raqtibahl
 -- (Corsair's Frac) !pos -59 -4 -39 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -15,8 +13,8 @@ function onTrade(player,npc,trade)
     local letterRed = player:getVar("LeleroonsLetterRed");
 
     -- magicmart flyer
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
-        player:messageSpecial(FLYER_REFUSED);
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
+        player:messageSpecial(ID.text.FLYER_REFUSED);
 
     -- gold chain, velvet cloth, red grass cloth, sailcloth
     elseif (letterRed == 2 and trade:getItemCount() == 4 and trade:hasItemQty(761,1) and trade:hasItemQty(828,1) and trade:hasItemQty(1829,1) and trade:hasItemQty(1997,1)) then
@@ -67,6 +65,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 756) then
         player:setVar("LeleroonsLetterRed", 5);
         player:addItem(14522); -- corsair's frac
-        player:messageSpecial(ITEM_OBTAINED,14522);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,14522);
     end;
 end;

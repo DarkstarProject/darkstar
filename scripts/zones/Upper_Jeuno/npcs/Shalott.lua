@@ -4,9 +4,6 @@
 -- Optional Involvement in Quest: Save My Son
 --------------------------------
 
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -15,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_MY_SON) == QUEST_ACCEPTED) then
         player:startEvent(101);
     else
         player:startEvent(104);

@@ -2,16 +2,13 @@
 -- Area: Southern San d'Oria
 --  NPC: Glenne
 -- Starts and Finishes Quest: A Sentry's Peril
--- @zone 230
--- !pos -122 -2 15
+-- !pos -122 -2 15 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 require("scripts/globals/pathfind");
 
@@ -33,22 +30,22 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
 
     local count = trade:getItemCount();
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and
         trade:hasItemQty(532,1) and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
 
-    elseif (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED and
+    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_SENTRY_S_PERIL) == QUEST_ACCEPTED and
         trade:hasItemQty(601,1) and count == 1) then
             player:startEvent(513);
             npc:wait();
@@ -58,7 +55,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local aSentrysPeril = player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL);
+    local aSentrysPeril = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_SENTRY_S_PERIL);
 
     npc:wait();
 
@@ -89,29 +86,29 @@ function onEventFinish(player,csid,option,npc)
 
     if (csid == 510 and option == 0) then
         if (player:getFreeSlotsCount() > 0) then
-            player:addQuest(SANDORIA,A_SENTRY_S_PERIL);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_SENTRY_S_PERIL);
             player:addItem(600);
-            player:messageSpecial(ITEM_OBTAINED,600);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,600);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
         end
     elseif (csid == 644) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(600);
-            player:messageSpecial(ITEM_OBTAINED,600);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,600);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
         end
     elseif (csid == 513) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
         else
             player:tradeComplete();
             player:addTitle(dsp.title.RONFAURIAN_RESCUER);
             player:addItem(12832);
-            player:messageSpecial(ITEM_OBTAINED,12832); -- Bronze Subligar
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12832); -- Bronze Subligar
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.A_SENTRY_S_PERIL);
         end
     end
 

@@ -3,15 +3,13 @@
 -- Zone: Fort_Ghelsba (141)
 --
 -----------------------------------
-package.loaded["scripts/zones/Fort_Ghelsba/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Fort_Ghelsba/TextIDs");
-require("scripts/zones/Fort_Ghelsba/MobIDs");
-require("scripts/globals/conquest");
+local ID = require("scripts/zones/Fort_Ghelsba/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(FORT_GHELSBA_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -23,10 +21,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

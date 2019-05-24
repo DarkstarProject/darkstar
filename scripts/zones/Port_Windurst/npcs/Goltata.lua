@@ -4,9 +4,6 @@
 --  Involved in Quests: Wonder Wands
 -- Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -17,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
+WonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS);
     if (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(257,0,0,17091);
     elseif (WonderWands == QUEST_COMPLETED) then

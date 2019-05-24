@@ -3,8 +3,7 @@
 --  NPC: Virsaint
 -- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'A Certain Substitute Patrolman'
---  @zone 256
--- !pos 32 0 -5
+-- !pos 32 0 -5 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------
@@ -13,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ACSP = player:getQuestStatus(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
+    local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
     if ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 4)) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
         player:startEvent(2556);

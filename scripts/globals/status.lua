@@ -4,7 +4,7 @@
 --
 -- Contains variable-ized definitions of things like core enums for use in lua scripts.
 ------------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 ------------------------------------
 -- Zone Misc Flags
@@ -22,8 +22,9 @@ dsp.zoneMisc =
     COSTUME    = 0x0040, -- Ability to use a Costumes
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
+    AH         = 0x0200, -- Ability to use the auction house
     YELL       = 0x0400, -- Send and receive /yell commands
-};
+}
 
 ------------------------------------
 -- Job IDs
@@ -54,8 +55,24 @@ dsp.job =
     SCH             = 20,
     GEO             = 21,
     RUN             = 22,
-};
-dsp.MAX_JOB_TYPE = 23;
+}
+dsp.MAX_JOB_TYPE = 23
+
+------------------------------------
+-- Race IDs
+------------------------------------
+
+dsp.race =
+{
+    HUME_M   = 1,
+    HUME_F   = 2,
+    ELVAAN_M = 3,
+    ELVAAN_F = 4,
+    TARU_M   = 5,
+    TARU_F   = 6,
+    MITHRA   = 7,
+    GALKA    = 8,
+}
 
 ------------------------------------
 -- STATUSES
@@ -66,12 +83,12 @@ dsp.status =
     NORMAL          =  0,
     UPDATE          =  1,
     DISAPPEAR       =  2,
-    STATUS_3        =  3,
+    INVISIBLE       =  3,
     STATUS_4        =  4,
     CUTSCENE_ONLY   =  6,
     STATUS_18       = 18,
     SHUTDOWN        = 20,
-};
+}
 
 ------------------------------------
 -- These codes represent the subeffects for
@@ -144,7 +161,7 @@ dsp.subEffect =
     SCISSION            = 12,
     DETONATION          = 13,
     IMPACTION           = 14,
-};
+}
 
 ------------------------------------
 -- These codes represent the actual status effects.
@@ -784,7 +801,7 @@ dsp.effect =
     -- End GoV Prowess fakery
     FIELD_SUPPORT_FOOD       = 789, -- Used by Fov/GoV food buff.
     MARK_OF_SEED             = 790, -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
-    ALL_MISS                 = 791,
+    TOO_HIGH                 = 791, -- Indicates a target is airborne and unable to be hit by normal melee attacks
     SUPER_BUFF               = 792,
     NINJUTSU_ELE_DEBUFF      = 793,
     HEALING                  = 794,
@@ -798,7 +815,7 @@ dsp.effect =
     -- PLACEHOLDER              = 802, -- Description
     -- 802-1022
     -- PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.
-};
+}
 
 ----------------------------------
 -- SC masks (not currently used in code base)
@@ -842,24 +859,20 @@ dsp.effectFlag =
     BLOODPACT       = 0x200000,
     ON_JOBCHANGE    = 0x400000,
     NO_CANCEL       = 0x800000,
-};
+    INFLUENCE       = 0x1000000,
+}
 
 ------------------------------------
 
 function removeSleepEffects(target)
-    target:delStatusEffect(dsp.effect.SLEEP_I);
-    target:delStatusEffect(dsp.effect.SLEEP_II);
-    target:delStatusEffect(dsp.effect.LULLABY);
-end;
+    target:delStatusEffect(dsp.effect.SLEEP_I)
+    target:delStatusEffect(dsp.effect.SLEEP_II)
+    target:delStatusEffect(dsp.effect.LULLABY)
+end
 
 function hasSleepEffects(target)
-    if (target:hasStatusEffect(dsp.effect.SLEEP_I) or
-        target:hasStatusEffect(dsp.effect.SLEEP_II) or
-        target:hasStatusEffect(dsp.effect.LULLABY)) then
-        return true;
-    end
-    return false;
-end;
+    return target:hasStatusEffect(dsp.effect.SLEEP_I) or target:hasStatusEffect(dsp.effect.SLEEP_II) or target:hasStatusEffect(dsp.effect.LULLABY)
+end
 
 ------------------------------------
 -- These values are the codes that represent any statistic possible on an entity.
@@ -902,7 +915,7 @@ dsp.mod =
     ACC                             = 25,
     RACC                            = 26,
     ENMITY                          = 27,
-    ENMITY_LOSS_REDUCTION           = 502,
+    ENMITY_LOSS_REDUCTION           = 427,
     MATT                            = 28,
     MDEF                            = 29,
     MACC                            = 30,
@@ -990,6 +1003,10 @@ dsp.mod =
     STRING                          = 120,
     WIND                            = 121,
     BLUE                            = 122,
+    CHAKRA_MULT                     = 123, -- Chakra multiplier increase
+    CHAKRA_REMOVAL                  = 124, -- Extra statuses removed by Chakra
+    SUPPRESS_OVERLOAD               = 125, -- Kenkonken "Suppresses Overload" mod. Unclear how this works exactly. Requires testing on retail.
+    BP_DAMAGE                       = 126, -- Blood Pact: Rage Damage increase percentage
     FISH                            = 127,
     WOOD                            = 128,
     SMITH                           = 129,
@@ -1011,6 +1028,7 @@ dsp.mod =
     ANTIHQ_COOK                     = 151,
     DMG                             = 160,
     DMGPHYS                         = 161,
+    DMGPHYS_II                      = 190, -- Physical Damage Taken II % (Burtgang)
     DMGBREATH                       = 162,
     DMGMAGIC                        = 163,
     DMGMAGIC_II                     = 831, -- Magic Damage Taken II % (Aegis)
@@ -1053,6 +1071,7 @@ dsp.mod =
     FOOD_RACC_CAP                   = 189,
     FOOD_MACCP                      =  99,
     FOOD_MACC_CAP                   = 100,
+    FOOD_DURATION                   = 937, -- Percentage to increase food duration
     VERMIN_KILLER                   = 224,
     BIRD_KILLER                     = 225,
     AMORPH_KILLER                   = 226,
@@ -1084,17 +1103,20 @@ dsp.mod =
     AMNESIARES                      = 253,
     LULLABYRES                      = 254,
     DEATHRES                        = 255,
+    AFTERMATH                       = 256,
     PARALYZE                        = 257,
     MIJIN_GAKURE                    = 258,
     DUAL_WIELD                      = 259,
     DOUBLE_ATTACK                   = 288,
     SUBTLE_BLOW                     = 289,
+    ENF_MAG_POTENCY                 = 290, -- Increases Enfeebling magic potency %
     COUNTER                         = 291,
-    KICK_ATTACK                     = 292,
+    KICK_ATTACK_RATE                = 292,
     AFFLATUS_SOLACE                 = 293,
     AFFLATUS_MISERY                 = 294,
     CLEAR_MIND                      = 295,
     CONSERVE_MP                     = 296,
+    ENHANCES_SABOTEUR               = 297, -- Increases Saboteur Potency %
     STEAL                           = 298,
     DESPOIL                         = 896,
     PERFECT_DODGE                   = 883, -- Increases Perfect Dodge duration in seconds
@@ -1109,7 +1131,8 @@ dsp.mod =
     UTSUSEMI                        = 307,
     UTSUSEMI_BONUS                  = 900, -- Extra shadows from gear
     NINJA_TOOL                      = 308,
-    BLUE_POINTS                     = 309,
+    BLUE_POINTS                     = 309, -- Tracks extra blue points
+    BLUE_LEARN_CHANCE               = 945, -- Additional chance to learn blue magic
     DMG_REFLECT                     = 316,
     ROLL_ROGUES                     = 317,
     ROLL_GALLANTS                   = 318,
@@ -1201,6 +1224,7 @@ dsp.mod =
     WEATHER_REDUCTION               = 372,
     DAY_REDUCTION                   = 373,
     CURE_POTENCY                    = 374,
+    CURE_POTENCY_II                 = 260, -- % cure potency II | bonus from gear is capped at 30
     CURE_POTENCY_RCVD               = 375,
     RANGED_DMG_RATING               = 376,
     DELAYP                          = 380,
@@ -1265,7 +1289,6 @@ dsp.mod =
     VELOCITY_RATT_BONUS             = 424, -- Increases Ranged Attack whilst Velocity Shot is up.
     SHADOW_BIND_EXT                 = 425, -- Extends the time of shadowbind
     ABSORB_PHYSDMG_TO_MP            = 426, -- Absorbs a percentage of physical damage taken to MP.
-    ENMITY_REDUCTION_PHYSICAL       = 427, -- Reduces Enmity decrease when taking physical damage
     SHIELD_MASTERY_TP               = 485, -- Shield mastery TP bonus when blocking with a shield
     PERFECT_COUNTER_ATT             = 428, -- Raises weapon damage by 20 when countering while under the Perfect Counter effects. This also affects Weapon Rank (though not if fighting barehanded).
     FOOTWORK_ATT_BONUS              = 429, -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
@@ -1295,6 +1318,7 @@ dsp.mod =
     SONG_SPELLCASTING_TIME          = 455, --
 
     QUICK_DRAW_DMG                  = 411, --
+    QUICK_DRAW_MACC                 = 191, -- Quick draw magic accuracy
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
 
     ADDITIONAL_EFFECT               = 431, -- All additional effects
@@ -1386,6 +1410,7 @@ dsp.mod =
     SNEAK_ATK_DEX                   = 874, -- % DEX boost to Sneak Attack (if gear mod, needs to be equipped on hit)
     TRICK_ATK_AGI                   = 520, -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
     NIN_NUKE_BONUS                  = 522, -- magic attack bonus for NIN nukes
+    DAKEN                           = 911, -- Chance to throw shuriken on attack
     AMMO_SWING                      = 523, -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
     AMMO_SWING_TYPE                 = 826, -- For the handedness of the weapon - 1h (1) vs. 2h/h2h (2). h2h can safely use the same function as 2h.
     ROLL_RANGE                      = 528, -- Additional range for COR roll abilities.
@@ -1422,7 +1447,7 @@ dsp.mod =
     ENHANCES_ALLIES_ROLL            = 894, -- Allies' Roll Bonus % chance
     ENHANCES_TACTICIANS_ROLL        = 895, -- Tactician's Roll Bonus % chance
     OCCULT_ACUMEN                   = 902, -- Grants bonus TP when dealing damage with elemental or dark magic
-    
+
     QUICK_MAGIC                     = 909, -- Percent chance spells cast instantly (also reduces recast to 0, similar to Chainspell)
 
     -- Automaton mods
@@ -1434,6 +1459,12 @@ dsp.mod =
     AUTO_SHIELD_BASH_SLOW           = 848, -- Adds a slow effect to Shield Bash
     AUTO_TP_EFFICIENCY              = 849, -- Causes the Automaton to wait to form a skillchain when its master is > 90% TP
     AUTO_SCAN_RESISTS               = 850, -- Causes the Automaton to scan a target's resistances
+    AUTO_STEAM_JACKET               = 938, -- Causes the Automaton to mitigate damage from successive attacks of the same type
+    AUTO_STEAM_JACKED_REDUCTION     = 939, -- Amount of damage reduced with Steam Jacket
+    AUTO_SCHURZEN                   = 940, -- Prevents fatal damage leaving the automaton at 1HP and consumes an Earth manuever
+    AUTO_EQUALIZER                  = 941, -- Reduces damage received according to damage taken
+    AUTO_PERFORMANCE_BOOST          = 942, -- Increases the performance of other attachments by a percentage
+    AUTO_ANALYZER                   = 943, -- Causes the Automaton to mitigate damage from a special attack a number of times
 
     -- Mythic Weapon Mods
     AUGMENTS_ABSORB                 = 521, -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1445,6 +1476,7 @@ dsp.mod =
     AUGMENTS_ASSASSINS_CHARGE       = 886, -- Gives Assassin's Charge +1% Critical Hit Rate per merit level
     AUGMENTS_AMBUSH                 = 887, -- Gives +1% Triple Attack per merit level when Ambush conditions are met
     AUGMENTS_AURA_STEAL             = 889, -- 20% chance of 2 effects to be dispelled or stolen per merit level
+    AUGMENTS_CONSPIRATOR            = 912, -- Applies Conspirator benefits to player at the top of the hate list
     JUG_LEVEL_RANGE                 = 564, -- Decreases the level range of spawned jug pets. Maxes out at 2.
     FORCE_JUMP_CRIT                 = 828, -- Critical hit rate bonus for jump and high jump
     QUICK_DRAW_DMG_PERCENT          = 834, -- Percentage increase to QD damage
@@ -1454,11 +1486,29 @@ dsp.mod =
     SYNTH_SKILL_GAIN                = 852, -- Synthesis skill gain rate
     SYNTH_FAIL_RATE                 = 861, -- Synthesis failure rate (percent)
     SYNTH_HQ_RATE                   = 862, -- High-quality success rate (not a percent)
+    DESYNTH_SUCCESS                 = 916, -- Rate of desynthesis success
+    SYNTH_FAIL_RATE_FIRE            = 917, -- Amount synthesis failure rate is reduced when using a fire crystal
+    SYNTH_FAIL_RATE_EARTH           = 918, -- Amount synthesis failure rate is reduced when using a earth crystal
+    SYNTH_FAIL_RATE_WATER           = 919, -- Amount synthesis failure rate is reduced when using a water crystal
+    SYNTH_FAIL_RATE_WIND            = 920, -- Amount synthesis failure rate is reduced when using a wind crystal
+    SYNTH_FAIL_RATE_ICE             = 921, -- Amount synthesis failure rate is reduced when using a ice crystal
+    SYNTH_FAIL_RATE_LIGHTNING       = 922, -- Amount synthesis failure rate is reduced when using a lightning crystal
+    SYNTH_FAIL_RATE_LIGHT           = 923, -- Amount synthesis failure rate is reduced when using a light crystal
+    SYNTH_FAIL_RATE_DARK            = 924, -- Amount synthesis failure rate is reduced when using a dark crystal
+    SYNTH_FAIL_RATE_WOOD            = 925, -- Amount synthesis failure rate is reduced when doing woodworking
+    SYNTH_FAIL_RATE_SMITH           = 926, -- Amount synthesis failure rate is reduced when doing smithing
+    SYNTH_FAIL_RATE_GOLDSMITH       = 927, -- Amount synthesis failure rate is reduced when doing goldsmithing
+    SYNTH_FAIL_RATE_CLOTH           = 928, -- Amount synthesis failure rate is reduced when doing clothcraft
+    SYNTH_FAIL_RATE_LEATHER         = 929, -- Amount synthesis failure rate is reduced when doing leathercraft
+    SYNTH_FAIL_RATE_BONE            = 930, -- Amount synthesis failure rate is reduced when doing bonecraft
+    SYNTH_FAIL_RATE_ALCHEMY         = 931, -- Amount synthesis failure rate is reduced when doing alchemy
+    SYNTH_FAIL_RATE_COOK            = 932, -- Amount synthesis failure rate is reduced when doing cooking
 
     WEAPONSKILL_DAMAGE_BASE         = 570, -- Specific to 1 Weaponskill: See modifier.h for how this is used
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
     -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT             = 841, -- Generic (all Weaponskills) damage, first hit only.
+    WS_NO_DEPLETE                   = 949, -- % chance a Weaponskill depletes no TP.
 
     -- Circle Abilities Extended Duration from AF/AF+1
     HOLY_CIRCLE_DURATION            = 857,
@@ -1467,82 +1517,147 @@ dsp.mod =
 
     -- Other
     CURE2MP_PERCENT                 = 860, -- Converts % of "Cure" amount to MP
+    DIVINE_BENISON                  = 910, -- Adds fast cast and enmity reduction to -Na spells (includes Erase). Enmity reduction is half of the fast cast amount
     SAVETP                          = 880, -- SAVETP Effect for Miser's Roll / ATMA / Hagakure.
     SMITE                           = 898, -- Att increase with H2H or 2H weapons
     TACTICAL_GUARD                  = 899, -- Tp gain increase when guarding
     FENCER_TP_BONUS                 = 903, -- TP Bonus to weapon skills from Fencer Trait
     FENCER_CRITHITRATE              = 904, -- Increased Crit chance from Fencer Trait
     SHIELD_DEF_BONUS                = 905, -- Shield Defense Bonus
+    SNEAK_DURATION                  = 946, -- Additional duration in seconds 
+    INVISIBLE_DURATION              = 947, -- Additional duration in seconds
+    BERSERK_EFFECT                  = 948, -- Conqueror Berserk Effect
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 910, -- stuff
-    -- SPARE = 911, -- stuff
-    -- SPARE = 912, -- stuff
+    -- SPARE = 950, -- stuff
+    -- SPARE = 951, -- stuff
+    -- SPARE = 952, -- stuff
 };
+
+dsp.latent =
+{
+    HP_UNDER_PERCENT         = 0,  -- hp less than or equal to % - PARAM: HP PERCENT
+    HP_OVER_PERCENT          = 1,  -- hp more than % - PARAM: HP PERCENT
+    HP_UNDER_TP_UNDER_100    = 2,  -- hp less than or equal to %, tp under 100 - PARAM: HP PERCENT
+    HP_OVER_TP_UNDER_100     = 3,  -- hp more than %, tp over 100 - PARAM: HP PERCENT
+    MP_UNDER_PERCENT         = 4,  -- mp less than or equal to % - PARAM: MP PERCENT
+    MP_UNDER                 = 5,  -- mp less than # - PARAM: MP #
+    TP_UNDER                 = 6,  -- tp under # and during WS - PARAM: TP VALUE
+    TP_OVER                  = 7,  -- tp over # - PARAM: TP VALUE
+    SUBJOB                   = 8,  -- subjob - PARAM: JOBTYPE
+    PET_ID                   = 9,  -- pettype - PARAM: PETID
+    WEAPON_DRAWN             = 10, -- weapon drawn
+    WEAPON_SHEATHED          = 11, -- weapon sheathed
+    SIGNET_BONUS             = 12, -- While in conquest region and engaged to an even match or less target
+    STATUS_EFFECT_ACTIVE     = 13, -- status effect on player - PARAM: EFFECTID
+    NO_FOOD_ACTIVE           = 14, -- no food effects active on player
+    PARTY_MEMBERS            = 15, -- party size # - PARAM: # OF MEMBERS
+    PARTY_MEMBERS_IN_ZONE    = 16, -- party size # and members in zone - PARAM: # OF MEMBERS
+    SANCTION_REGEN_BONUS     = 17, -- While in besieged region and HP is less than PARAM%
+    SANCTION_REFRESH_BONUS   = 18, -- While in besieged region and MP is less than PARAM%
+    SIGIL_REGEN_BONUS        = 19, -- While in campaign region and HP is less than PARAM%
+    SIGIL_REFRESH_BONUS      = 20, -- While in campaign region and MP is less than PARAM%
+    AVATAR_IN_PARTY          = 21, -- party has a specific avatar - PARAM: same as globals/pets.lua (21 for any avatar)
+    JOB_IN_PARTY             = 22, -- party has job - PARAM: JOBTYPE
+    ZONE                     = 23, -- in zone - PARAM: zoneid
+    SYNTH_TRAINEE            = 24, -- synth skill under 40 + no support
+    SONG_ROLL_ACTIVE         = 25, -- any song or roll active
+    TIME_OF_DAY              = 26, -- PARAM: 0: DAYTIME 1: NIGHTTIME 2: DUSK-DAWN
+    HOUR_OF_DAY              = 27, -- PARAM: 1: NEW DAY, 2: DAWN, 3: DAY, 4: DUSK, 5: EVENING, 6: DEAD OF NIGHT
+    FIRESDAY                 = 28,
+    EARTHSDAY                = 29,
+    WATERSDAY                = 30,
+    WINDSDAY                 = 31,
+    DARKSDAY                 = 32,
+    ICEDAY                   = 34,
+    LIGHTNINGSDAY            = 35,
+    LIGHTSDAY                = 36,
+    MOON_PHASE               = 37, -- PARAM: 0: New Moon, 1: Waxing Crescent, 2: First Quarter, 3: Waxing Gibbous, 4: Full Moon, 5: Waning Gibbous, 6: Last Quarter, 7: Waning Crescent
+    JOB_MULTIPLE_5           = 38,
+    JOB_MULTIPLE_10          = 39,
+    JOB_MULTIPLE_13_NIGHT    = 40,
+    JOB_LEVEL_ODD            = 41,
+    JOB_LEVEL_EVEN           = 42,
+    WEAPON_DRAWN_HP_UNDER    = 43, -- PARAM: HP PERCENT
+    --                       = 44  -- Unused
+    MP_UNDER_VISIBLE_GEAR    = 45, -- mp less than or equal to %, calculated using MP bonuses from visible gear only
+    HP_OVER_VISIBLE_GEAR     = 46, -- hp more than or equal to %, calculated using HP bonuses from visible gear only
+    WEAPON_BROKEN            = 47,
+    IN_DYNAMIS               = 48,
+    FOOD_ACTIVE              = 49, -- food effect (foodId) active - PARAM: FOOD ITEMID
+    JOB_LEVEL_BELOW          = 50, -- PARAM: level
+    JOB_LEVEL_ABOVE          = 51, -- PARAM: level
+    WEATHER_ELEMENT          = 52, -- PARAM: 0: NONE, 1: FIRE, 2: EARTH, 3: WATER, 4: WIND, 5: ICE, 6: THUNDER, 7: LIGHT, 8: DARK
+    NATION_CONTROL           = 53, -- checks if player region is under nation's control - PARAM: 0: Under own nation's control, 1: Outside own nation's control
+    ZONE_HOME_NATION         = 54, -- in zone and citizen of nation (aketons)
+    MP_OVER                  = 55, -- mp greater than # - PARAM: MP #
+    WEAPON_DRAWN_MP_OVER     = 56, -- while weapon is drawn and mp greater than # - PARAM: MP #
+    ELEVEN_ROLL_ACTIVE       = 57  -- corsair roll of 11 active
+}
 
 ------------------------------------
 -- Merits
 ------------------------------------
 
-local MCATEGORY_HP_MP      = 0x0040;
-local MCATEGORY_ATTRIBUTES = 0x0080;
-local MCATEGORY_COMBAT     = 0x00C0;
-local MCATEGORY_MAGIC      = 0x0100;
-local MCATEGORY_OTHERS     = 0x0140;
+local MCATEGORY_HP_MP      = 0x0040
+local MCATEGORY_ATTRIBUTES = 0x0080
+local MCATEGORY_COMBAT     = 0x00C0
+local MCATEGORY_MAGIC      = 0x0100
+local MCATEGORY_OTHERS     = 0x0140
 
-local MCATEGORY_WAR_1 = 0x0180;
-local MCATEGORY_MNK_1 = 0x01C0;
-local MCATEGORY_WHM_1 = 0x0200;
-local MCATEGORY_BLM_1 = 0x0240;
-local MCATEGORY_RDM_1 = 0x0280;
-local MCATEGORY_THF_1 = 0x02C0;
-local MCATEGORY_PLD_1 = 0x0300;
-local MCATEGORY_DRK_1 = 0x0340;
-local MCATEGORY_BST_1 = 0x0380;
-local MCATEGORY_BRD_1 = 0x03C0;
-local MCATEGORY_RNG_1 = 0x0400;
-local MCATEGORY_SAM_1 = 0x0440;
-local MCATEGORY_NIN_1 = 0x0480;
-local MCATEGORY_DRG_1 = 0x04C0;
-local MCATEGORY_SMN_1 = 0x0500;
-local MCATEGORY_BLU_1 = 0x0540;
-local MCATEGORY_COR_1 = 0x0580;
-local MCATEGORY_PUP_1 = 0x05C0;
-local MCATEGORY_DNC_1 = 0x0600;
-local MCATEGORY_SCH_1 = 0x0640;
+local MCATEGORY_WAR_1 = 0x0180
+local MCATEGORY_MNK_1 = 0x01C0
+local MCATEGORY_WHM_1 = 0x0200
+local MCATEGORY_BLM_1 = 0x0240
+local MCATEGORY_RDM_1 = 0x0280
+local MCATEGORY_THF_1 = 0x02C0
+local MCATEGORY_PLD_1 = 0x0300
+local MCATEGORY_DRK_1 = 0x0340
+local MCATEGORY_BST_1 = 0x0380
+local MCATEGORY_BRD_1 = 0x03C0
+local MCATEGORY_RNG_1 = 0x0400
+local MCATEGORY_SAM_1 = 0x0440
+local MCATEGORY_NIN_1 = 0x0480
+local MCATEGORY_DRG_1 = 0x04C0
+local MCATEGORY_SMN_1 = 0x0500
+local MCATEGORY_BLU_1 = 0x0540
+local MCATEGORY_COR_1 = 0x0580
+local MCATEGORY_PUP_1 = 0x05C0
+local MCATEGORY_DNC_1 = 0x0600
+local MCATEGORY_SCH_1 = 0x0640
 
-local MCATEGORY_WS = 0x0680;
+local MCATEGORY_WS = 0x0680
 
-local MCATEGORY_UNK_0 = 0x06C0;
-local MCATEGORY_UNK_1 = 0x0700;
-local MCATEGORY_UNK_2 = 0x0740;
-local MCATEGORY_UNK_3 = 0x0780;
-local MCATEGORY_UNK_4 = 0x07C0;
+local MCATEGORY_UNK_0 = 0x06C0
+local MCATEGORY_UNK_1 = 0x0700
+local MCATEGORY_UNK_2 = 0x0740
+local MCATEGORY_UNK_3 = 0x0780
+local MCATEGORY_UNK_4 = 0x07C0
 
-local MCATEGORY_WAR_2 = 0x0800;
-local MCATEGORY_MNK_2 = 0x0840;
-local MCATEGORY_WHM_2 = 0x0880;
-local MCATEGORY_BLM_2 = 0x08C0;
-local MCATEGORY_RDM_2 = 0x0900;
-local MCATEGORY_THF_2 = 0x0940;
-local MCATEGORY_PLD_2 = 0x0980;
-local MCATEGORY_DRK_2 = 0x09C0;
-local MCATEGORY_BST_2 = 0x0A00;
-local MCATEGORY_BRD_2 = 0x0A40;
-local MCATEGORY_RNG_2 = 0x0A80;
-local MCATEGORY_SAM_2 = 0x0AC0;
-local MCATEGORY_NIN_2 = 0x0B00;
-local MCATEGORY_DRG_2 = 0x0B40;
-local MCATEGORY_SMN_2 = 0x0B80;
-local MCATEGORY_BLU_2 = 0x0BC0;
-local MCATEGORY_COR_2 = 0x0C00;
-local MCATEGORY_PUP_2 = 0x0C40;
-local MCATEGORY_DNC_2 = 0x0C80;
-local MCATEGORY_SCH_2 = 0x0CC0;
+local MCATEGORY_WAR_2 = 0x0800
+local MCATEGORY_MNK_2 = 0x0840
+local MCATEGORY_WHM_2 = 0x0880
+local MCATEGORY_BLM_2 = 0x08C0
+local MCATEGORY_RDM_2 = 0x0900
+local MCATEGORY_THF_2 = 0x0940
+local MCATEGORY_PLD_2 = 0x0980
+local MCATEGORY_DRK_2 = 0x09C0
+local MCATEGORY_BST_2 = 0x0A00
+local MCATEGORY_BRD_2 = 0x0A40
+local MCATEGORY_RNG_2 = 0x0A80
+local MCATEGORY_SAM_2 = 0x0AC0
+local MCATEGORY_NIN_2 = 0x0B00
+local MCATEGORY_DRG_2 = 0x0B40
+local MCATEGORY_SMN_2 = 0x0B80
+local MCATEGORY_BLU_2 = 0x0BC0
+local MCATEGORY_COR_2 = 0x0C00
+local MCATEGORY_PUP_2 = 0x0C40
+local MCATEGORY_DNC_2 = 0x0C80
+local MCATEGORY_SCH_2 = 0x0CC0
 
-local MCATEGORY_START = 0x0040;
-local MCATEGORY_COUNT = 0x0D00;
+local MCATEGORY_START = 0x0040
+local MCATEGORY_COUNT = 0x0D00
 
 dsp.merit =
 {
@@ -1899,7 +2014,7 @@ dsp.merit =
     EQUANIMITY                  = MCATEGORY_SCH_2 + 0x06,
     ENLIGHTENMENT               = MCATEGORY_SCH_2 + 0x08,
     STORMSURGE                  = MCATEGORY_SCH_2 + 0x0A,
-};
+}
 
 ------------------------------------
 -- Inventory locations
@@ -1920,8 +2035,8 @@ dsp.inventoryLocation =
     WARDROBE2       = 10,
     WARDROBE3       = 11,
     WARDROBE4       = 12,
-};
-dsp.inv = dsp.inventoryLocation;
+}
+dsp.inv = dsp.inventoryLocation
 
 ------------------------------------
 -- Equipment Slots
@@ -1945,7 +2060,7 @@ dsp.slot =
     RING1  = 13,
     RING2  = 14,
     BACK   = 15,
-};
+}
 dsp.MAX_SLOTID  = 15
 
 ----------------------------------
@@ -1959,6 +2074,42 @@ dsp.objType =
     MOB  = 0x04,
     PET  = 0x08,
     SHIP = 0x10,
+}
+
+----------------------------------
+-- Attack Type
+----------------------------------
+
+dsp.attackType =
+{
+    NONE     = 0,
+    PHYSICAL = 1,
+    MAGICAL  = 2,
+    RANGED   = 3,
+    SPECIAL  = 4,
+    BREATH   = 5,
+}
+
+----------------------------------
+-- Damage Type
+----------------------------------
+
+dsp.damageType =
+{
+    NONE      = 0,
+    PIERCING  = 1,
+    SLASHING  = 2,
+    BLUNT     = 3,
+    HTH       = 4,
+    ELEMENTAL = 5,
+    FIRE      = 6,
+    EARTH     = 7,
+    WATER     = 8,
+    WIND      = 9,
+    ICE       = 10,
+    LIGHTNING = 11,
+    LIGHT     = 12,
+    DARK      = 13,
 }
 
 ----------------------------------
@@ -1987,73 +2138,74 @@ dsp.objType =
 dsp.mobMod =
 {
     NONE                = 0,
-    GIL_MIN             = 1,
-    GIL_MAX             = 2,
-    MP_BASE             = 3,
-    SIGHT_RANGE         = 4,
-    SOUND_RANGE         = 5,
-    BUFF_CHANCE         = 6,
-    GA_CHANCE           = 7,
-    HEAL_CHANCE         = 8,
-    HP_HEAL_CHANCE      = 9,
-    SUBLINK             = 10,
-    LINK_RADIUS         = 11,
-    DRAW_IN             = 12,
-    RAGE                = 13,
-    SKILL_LIST          = 14,
-    MUG_GIL             = 15,
-    MAIN_2HOUR          = 16,
-    NO_DESPAWN          = 17,
-    VAR                 = 18,
-    SUB_2HOUR           = 19,
-    TP_USE_CHANCE       = 20,
-    PET_SPELL_LIST      = 21,
-    NA_CHANCE           = 22,
-    IMMUNITY            = 23,
-    GRADUAL_RAGE        = 24,
-    BUILD_RESIST        = 25,
-    SUPERLINK           = 26,
-    SPELL_LIST          = 27,
-    EXP_BONUS           = 28,
-    ASSIST              = 29,
-    SPECIAL_SKILL       = 30,
-    ROAM_DISTANCE       = 31,
-    MULTI_2HOUR         = 32,
-    SPECIAL_COOL        = 33,
-    MAGIC_COOL          = 34,
-    STANDBACK_COOL      = 35,
-    ROAM_COOL           = 36,
-    ALWAYS_AGGRO        = 37,
-    NO_DROPS            = 38,
-    SHARE_POS           = 39,
-    TELEPORT_CD         = 40,
-    TELEPORT_START      = 41,
-    TELEPORT_END        = 42,
-    TELEPORT_TYPE       = 43,
-    DUAL_WIELD          = 44,
-    ADD_EFFECT          = 45,
-    AUTO_SPIKES         = 46,
-    SPAWN_LEASH         = 47,
-    SHARE_TARGET        = 48,
-    SCRIPTED_2HOUR      = 49,
-    PROC_2HOUR          = 50,
-    ROAM_TURNS          = 51,
-    ROAM_RATE           = 52,
-    BEHAVIOR            = 53,
-    GIL_BONUS           = 54,
-    IDLE_DESPAWN        = 55,
-    HP_STANDBACK        = 56,
-    MAGIC_DELAY         = 57,
-    SPECIAL_DELAY       = 58,
-    WEAPON_BONUS        = 59,
-    SPAWN_ANIMATIONSUB  = 60,
-    HP_SCALE            = 61,
-    NO_STANDBACK        = 62,
-    ATTACK_SKILL_LIST   = 63,
-    CHARMABLE           = 64,
-    NO_MOVE             = 65,
-    MULTI_HIT           = 66,
-};
+    GIL_MIN             = 1,  -- minimum gil drop -- spawn mod only
+    GIL_MAX             = 2,  -- maximum gil drop -- spawn mod only
+    MP_BASE             = 3,  -- Give mob mp. Used for mobs that are not mages, wyverns, avatars
+    SIGHT_RANGE         = 4,  -- sight range
+    SOUND_RANGE         = 5,  -- sound range
+    BUFF_CHANCE         = 6,  -- % chance to buff (combat only)
+    GA_CHANCE           = 7,  -- % chance to use -ga spell
+    HEAL_CHANCE         = 8,  -- % chance to use heal
+    HP_HEAL_CHANCE      = 9,  -- can cast cures below this HP %
+    SUBLINK             = 10, -- sub link group
+    LINK_RADIUS         = 11, -- link radius
+    DRAW_IN             = 12, -- 1 - player draw in, 2 - alliance draw in -- only add as a spawn mod!
+    -- 13 Available for use
+    SKILL_LIST          = 14, -- uses given mob skill list
+    MUG_GIL             = 15, -- amount gil carried for mugging
+    -- 16 Available for use
+    NO_DESPAWN          = 17, -- do not despawn when too far from spawn. Gob Diggers have this.
+    VAR                 = 18, -- temp var for whatever. Gets cleared on spawn
+    -- 19 Available for use
+    TP_USE_CHANCE       = 20, -- % chance to use tp
+    PET_SPELL_LIST      = 21, -- set pet spell list
+    NA_CHANCE           = 22, -- % chance to cast -na
+    IMMUNITY            = 23, -- immune to set status effects. This only works from the db, not scripts
+    -- 24 Available for use
+    BUILD_RESIST        = 25, -- builds resistance to given effects -- not impl
+    SUPERLINK           = 26, -- super link group. Only use this in mob_spawn_mods / scripts!
+    SPELL_LIST          = 27, -- set spell list
+    EXP_BONUS           = 28, -- bonus exp (bonus / 100) negative values reduce exp.
+    ASSIST              = 29, -- mobs will assist me
+    SPECIAL_SKILL       = 30, -- give special skill
+    ROAM_DISTANCE       = 31, -- distance allowed to roam from spawn
+    -- 32 Available for use
+    SPECIAL_COOL        = 33, -- cool down for special
+    MAGIC_COOL          = 34, -- cool down for magic
+    STANDBACK_COOL      = 35, -- cool down time for standing back (casting spell while not in attack range)
+    ROAM_COOL           = 36, -- cool down time in seconds after roaming
+    ALWAYS_AGGRO        = 37, -- aggro regardless of level. Spheroids
+    NO_DROPS            = 38, -- If set monster cannot drop any items, not even seals.
+    SHARE_POS           = 39, -- share a pos with another mob (eald'narche exoplates)
+    TELEPORT_CD         = 40, -- cooldown for teleport abilities (tarutaru AA, angra mainyu, eald'narche)
+    TELEPORT_START      = 41, -- mobskill ID to begin teleport
+    TELEPORT_END        = 42, -- mobskill ID to end teleport
+    TELEPORT_TYPE       = 43, -- teleport type - 1: on cooldown, 2 - to close distance
+    DUAL_WIELD          = 44, -- enables a mob to use their offhand in attacks
+    ADD_EFFECT          = 45, -- enables additional effect script to process on mobs attacks
+    AUTO_SPIKES         = 46, -- enables additional effect script to process when mob is attacked
+    SPAWN_LEASH         = 47, -- forces a mob to not move farther from its spawn than its leash distance
+    SHARE_TARGET        = 48, -- mob always targets same target as ID in this var
+    CHECK_AS_NM         = 49, -- If set, a mob will check as a NM.
+    -- 50 Available for use
+    ROAM_TURNS          = 51, -- Maximum amount of turns during a roam
+    ROAM_RATE           = 52, -- Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
+    BEHAVIOR            = 53, -- Add behaviors to mob
+    GIL_BONUS           = 54, -- Allow mob to drop gil. Multiplier to gil dropped by mob (bonus / 100) * total
+    IDLE_DESPAWN        = 55, -- Time (in seconds) to despawn after being idle
+    HP_STANDBACK        = 56, -- mob will always standback with hp % higher to value
+    MAGIC_DELAY         = 57, -- Amount of seconds mob waits before casting first spell
+    SPECIAL_DELAY       = 58, -- Amount of seconds mob waits before using first special
+    WEAPON_BONUS        = 59, -- Add a bonus percentage to mob weapon damage ( bonus / 100 )
+    SPAWN_ANIMATIONSUB  = 60, -- reset animationsub to this on spawn
+    HP_SCALE            = 61, -- Scale the mobs max HP. ( hp_scale / 100 ) * maxhp
+    NO_STANDBACK        = 62, -- Mob will never standback
+    ATTACK_SKILL_LIST   = 63, -- skill list to use in place of regular attacks
+    CHARMABLE           = 64, -- mob is charmable
+    NO_MOVE             = 65, -- Mob will not be able to move
+    MULTI_HIT           = 66, -- Mob will have as many swings as defined.
+    NO_AGGRO            = 67  -- If set, mob cannot aggro until unset.
+}
 
 ------------------------------------
 -- Job Specials (1hr / 2hr moves)
@@ -2095,7 +2247,7 @@ dsp.jobSpecialAbility =
     -- INVINCIBLE          = 2940,
     BLOOD_WEAPON         = 695,
     BLOOD_WEAPON_MAAT    = 1015,
-    -- BLOOD_WEAPON        = 2249,
+    BLOOD_WEAPON_IXDRK   = 2249,
     SOUL_VOICE           = 696,
     SOUL_VOICE_MAAT      = 1018,
     -- SOUL_VOICE          = 2251,
@@ -2143,7 +2295,7 @@ dsp.jobSpecialAbility =
     -- EES_?                = 2941,
     -- SPIRIT_SURGE         = 1893,
     -- SPIRIT_SURGE         = 2255,
-    -- AZURE_LORE           = 1933,
+    AZURE_LORE           = 1933,
     -- AZURE_LORE           = 2006,
     -- AZURE_LORE           = 2257,
     -- AZURE_LORE           = 3481,
@@ -2161,8 +2313,8 @@ dsp.jobSpecialAbility =
     -- ELEMENTAL_SFORZO     = 3265,
     -- ELEMENTAL_SFORZO     = 3479,
     -- BOLSTER              = 3482,
-};
-dsp.jsa = dsp.jobSpecialAbility;
+}
+dsp.jsa = dsp.jobSpecialAbility
 
 ------------------------------------
 -- Skills
@@ -2232,7 +2384,32 @@ dsp.skill =
     DIG          = 59,
     -- 60~63 unused
     -- MAX_SKILLTYPE = 64
-};
+}
+
+------------------------------------
+-- Craft Skill Ranks
+------------------------------------
+
+dsp.craftRank =
+{
+    AMATEUR     = 0,
+    RECRUIT     = 1,
+    INITIATE    = 2,
+    NOVICE      = 3,
+    APPRENTICE  = 4,
+    JOURNEYMAN  = 5,
+    CRAFTSMAN   = 6,
+    ARTISAN     = 7,
+    ADEPT       = 8,
+    VETERAN     = 9,
+    EXPERT      = 10,
+    AUTHORITY   = 11,
+    LUMINARY    = 12,
+    MASTER      = 13,
+    GRANDMASTER = 14,
+    LEGEND      = 15
+    -- 16+ invalid
+}
 
 ------------------------------------
 -- Recast IDs
@@ -2243,7 +2420,7 @@ dsp.recast =
     ITEM     = 0,
     MAGIC    = 1,
     ABILITY  = 2,
-};
+}
 
 ------------------------------------
 -- ACTION IDs
@@ -2288,8 +2465,8 @@ dsp.action =
     MOBABILITY_USING     = 34,
     MOBABILITY_INTERRUPT = 35,
     LEAVE                = 36,
-};
-dsp.act = dsp.action;
+}
+dsp.act = dsp.action
 
 ------------------------------------
 -- ECOSYSTEM IDs
@@ -2319,8 +2496,8 @@ dsp.ecosystem =
     UNDEAD         = 19,
     VERMIN         = 20,
     VORAGEAN       = 21,
-};
-dsp.eco = dsp.ecosystem;
+}
+dsp.eco = dsp.ecosystem
 
 ------------------------------------
 -- Behavior bits
@@ -2334,7 +2511,7 @@ dsp.behavior =
     RAISABLE     = 0x004, -- mob can be raised via Raise spells
     AGGRO_AMBUSH = 0x200, -- mob aggroes by ambush
     NO_TURN      = 0x400, -- mob does not turn to face target
-};
+}
 
 ------------------------------------
 -- Elevator IDs
@@ -2342,10 +2519,10 @@ dsp.behavior =
 
 dsp.elevator =
 {
-    KUFTAL_TUNNEL_DSPPRNG_RCK = 0,
-    PORT_BASTOK_DRWBRDG       = 2,
-    DAVOI_LIFT                = 3,
-    PALBOROUGH_MINES_LIFT     = 4,
+    TIMED_AUTOMATIC           = 0,
+    DAVOI_LIFT                = 1,
+    PALBOROUGH_MINES_LIFT     = 2,
+    FORT_GHELSBA_LIFT         = 3
 }
 
 ------------------------------------
@@ -2407,8 +2584,8 @@ dsp.animation =
     -- 73 through 83 sitting on air (guessing future use for more chairs..)
     MOUNT                   = 85,
     -- TRUST                = 90, -- This is the animation for a trust NPC spawning in.
-};
-dsp.anim = dsp.animation;
+}
+dsp.anim = dsp.animation
 
 ------------------------------------
 -- Mounts
@@ -2437,7 +2614,19 @@ dsp.mount =
     SPECTRAL_CHAIR = 18,
     SPHEROID       = 19,
     OMEGA          = 20,
-};
+}
+
+------------------------------------
+-- Automaton Frame IDs
+------------------------------------
+
+dsp.frames =
+{
+    HARLEQUIN  = 0x20,
+    VALOREDGE  = 0x21,
+    SHARPSHOT  = 0x22,
+    STORMWAKER = 0x23,
+}
 
 ------------------------------------
 -- Item Check Params
@@ -2448,4 +2637,67 @@ dsp.itemCheck =
     NONE    = 0,
     EQUIP   = 1,
     UNEQUIP = 2,
+}
+
+------------------------------------
+-- Emote Values
+------------------------------------
+dsp.emote =
+{
+    POINT = 0,
+    BOW = 1,
+    SALUTE = 2,
+    KNEEL = 3,
+    LAUGH = 4,
+    CRY = 5,
+    NO = 6,
+    YES = 7,
+    WAVE = 8,
+    GOODBYE = 9,
+    WELCOME = 10,
+    JOY = 11,
+    CHEER = 12,
+    CLAP = 13,
+    PRAISE = 14,
+    SMILE = 15,
+    POKE = 16,
+    SLAP = 17,
+    STAGGER = 18,
+    SIGH = 19,
+    COMFORT = 20,
+    SURPRISED = 21,
+    AMAZED = 22,
+    STARE = 23,
+    BLUSH = 24,
+    ANGRY = 25,
+    DISGUSTED = 26,
+    MUTED = 27,
+    DOZE = 28,
+    PANIC = 29,
+    GRIN = 30,
+    DANCE = 31,
+    THINK = 32,
+    FUME = 33,
+    DOUBT = 34,
+    SULK = 35,
+    PSYCH = 36,
+    HUH = 37,
+    SHOCKED = 38,
+    LOGGING = 40,    -- Only used for HELM
+    EXCAVATION = 41, -- Only used for HELM
+    HARVESTING = 42, -- Only used for HELM
+    HURRAY = 43,
+    TOSS = 44,
+    DANCE1 = 65,
+    DANCE2 = 66,
+    DANCE3 = 67,
+    DANCE4 = 68,
+    JOB = 74
+}
+
+dsp.emoteMode =
+{
+    ALL = 0,
+    TEXT = 1,
+    MOTION = 2
 }

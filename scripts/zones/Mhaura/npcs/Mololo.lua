@@ -4,11 +4,9 @@
 -- Guild Merchant NPC: Blacksmithing Guild
 -- !pos -64.278 -16.624 34.120 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(532,8,23,2)) then
-        player:showText(npc,SMITHING_GUILD);
+        player:showText(npc,ID.text.SMITHING_GUILD);
     end
 end;
 

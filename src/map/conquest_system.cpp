@@ -97,7 +97,7 @@ namespace conquest
                 continue;
             }
 
-            auto loss = std::min<int>(points * influences[i] / 5000 - influences[nation], influences[i]);
+            auto loss = std::min<int>(points * influences[i] / (5000 - influences[nation]), influences[i]);
             influences[i] -= loss;
             lost += loss;
         }
@@ -116,6 +116,7 @@ namespace conquest
 
     void GainInfluencePoints(CCharEntity* PChar, uint32 points)
     {
+        points += (uint32)(PChar->getMod(Mod::CONQUEST_REGION_BONUS) / 100.0);
         conquest::UpdateInfluencePoints(points, PChar->profile.nation, PChar->loc.zone->GetRegionID());
     }
 
@@ -583,7 +584,9 @@ namespace conquest
             // 10% if region control is player's nation
             // 15% otherwise
 
-            uint32 points = (uint32)(exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15));
+            double percentage = PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15;
+            percentage += PChar->getMod(Mod::CONQUEST_BONUS) / 100.0;
+            uint32 points = (uint32)(exp * percentage);
 
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
             GainInfluencePoints(PChar, points/2);

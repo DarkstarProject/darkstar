@@ -59,6 +59,98 @@ INSERT INTO `instance_entities` VALUES (1,17060138);
 INSERT INTO `instance_entities` VALUES (1,17060146);
 INSERT INTO `instance_entities` VALUES (1,17060147);
 
+-- Preemtive Strike
+-- Mobs
+INSERT INTO `instance_entities` VALUES (12, 17047570);
+INSERT INTO `instance_entities` VALUES (12, 17047571);
+INSERT INTO `instance_entities` VALUES (12, 17047572);
+INSERT INTO `instance_entities` VALUES (12, 17047573);
+INSERT INTO `instance_entities` VALUES (12, 17047574);
+INSERT INTO `instance_entities` VALUES (12, 17047575);
+INSERT INTO `instance_entities` VALUES (12, 17047576);
+INSERT INTO `instance_entities` VALUES (12, 17047577);
+INSERT INTO `instance_entities` VALUES (12, 17047578);
+INSERT INTO `instance_entities` VALUES (12, 17047579);
+INSERT INTO `instance_entities` VALUES (12, 17047580);
+INSERT INTO `instance_entities` VALUES (12, 17047581);
+INSERT INTO `instance_entities` VALUES (12, 17047582);
+INSERT INTO `instance_entities` VALUES (12, 17047583);
+INSERT INTO `instance_entities` VALUES (12, 17047584);
+INSERT INTO `instance_entities` VALUES (12, 17047585);
+INSERT INTO `instance_entities` VALUES (12, 17047586);
+INSERT INTO `instance_entities` VALUES (12, 17047587);
+INSERT INTO `instance_entities` VALUES (12, 17047588);
+INSERT INTO `instance_entities` VALUES (12, 17047589);
+-- Npcs
+INSERT INTO `instance_entities` VALUES (12, 17047808);
+INSERT INTO `instance_entities` VALUES (12, 17047809);
+
+-- Excavation Duty
+-- Mobs
+INSERT INTO `instance_entities` VALUES (21,17035265);
+INSERT INTO `instance_entities` VALUES (21,17035266);
+INSERT INTO `instance_entities` VALUES (21,17035267);
+INSERT INTO `instance_entities` VALUES (21,17035268);
+INSERT INTO `instance_entities` VALUES (21,17035269);
+INSERT INTO `instance_entities` VALUES (21,17035270);
+INSERT INTO `instance_entities` VALUES (21,17035271);
+INSERT INTO `instance_entities` VALUES (21,17035272);
+INSERT INTO `instance_entities` VALUES (21,17035273);
+INSERT INTO `instance_entities` VALUES (21,17035274);
+INSERT INTO `instance_entities` VALUES (21,17035275);
+INSERT INTO `instance_entities` VALUES (21,17035276);
+INSERT INTO `instance_entities` VALUES (21,17035277);
+INSERT INTO `instance_entities` VALUES (21,17035278);
+INSERT INTO `instance_entities` VALUES (21,17035279);
+INSERT INTO `instance_entities` VALUES (21,17035280);
+INSERT INTO `instance_entities` VALUES (21,17035281);
+INSERT INTO `instance_entities` VALUES (21,17035282);
+INSERT INTO `instance_entities` VALUES (21,17035283);
+INSERT INTO `instance_entities` VALUES (21,17035284);
+INSERT INTO `instance_entities` VALUES (21,17035285);
+INSERT INTO `instance_entities` VALUES (21,17035286);
+INSERT INTO `instance_entities` VALUES (21,17035287);
+INSERT INTO `instance_entities` VALUES (21,17035288);
+INSERT INTO `instance_entities` VALUES (21,17035289);
+INSERT INTO `instance_entities` VALUES (21,17035290);
+INSERT INTO `instance_entities` VALUES (21,17035291);
+-- npcs
+INSERT INTO `instance_entities` VALUES (21,17035478);
+INSERT INTO `instance_entities` VALUES (21,17035479);
+INSERT INTO `instance_entities` VALUES (21,17035512);
+INSERT INTO `instance_entities` VALUES (21,17035517);
+INSERT INTO `instance_entities` VALUES (21,17035520);
+INSERT INTO `instance_entities` VALUES (21,17035526);
+INSERT INTO `instance_entities` VALUES (21,17035527);
+INSERT INTO `instance_entities` VALUES (21,17035537);
+INSERT INTO `instance_entities` VALUES (21,17035538);
+INSERT INTO `instance_entities` VALUES (21,17035539);
+INSERT INTO `instance_entities` VALUES (21,17035540);
+INSERT INTO `instance_entities` VALUES (21,17035541);
+INSERT INTO `instance_entities` VALUES (21,17035552);
+INSERT INTO `instance_entities` VALUES (21,17035554);
+
+-- Troll Fugitives
+-- Mobs
+INSERT INTO `instance_entities` VALUES (23,17035310);
+INSERT INTO `instance_entities` VALUES (23,17035311);
+INSERT INTO `instance_entities` VALUES (23,17035312);
+INSERT INTO `instance_entities` VALUES (23,17035313);
+INSERT INTO `instance_entities` VALUES (23,17035314);
+INSERT INTO `instance_entities` VALUES (23,17035315);
+INSERT INTO `instance_entities` VALUES (23,17035316);
+INSERT INTO `instance_entities` VALUES (23,17035317);
+INSERT INTO `instance_entities` VALUES (23,17035318);
+INSERT INTO `instance_entities` VALUES (23,17035319);
+INSERT INTO `instance_entities` VALUES (23,17035320);
+INSERT INTO `instance_entities` VALUES (23,17035321);
+INSERT INTO `instance_entities` VALUES (23,17035322);
+INSERT INTO `instance_entities` VALUES (23,17035323);
+INSERT INTO `instance_entities` VALUES (23,17035324);
+-- Npcs
+INSERT INTO `instance_entities` VALUES (23,17035478);
+INSERT INTO `instance_entities` VALUES (23,17035479);
+
 -- Wamoura Farm Raid
 INSERT INTO `instance_entities` VALUES (27,17035359);
 INSERT INTO `instance_entities` VALUES (27,17035360);
@@ -121,6 +213,36 @@ INSERT INTO `instance_entities` VALUES (31,17006870);
 INSERT INTO `instance_entities` VALUES (31,17006872);
 INSERT INTO `instance_entities` VALUES (31,17006874);
 
+-- Requiem
+-- mobs
+INSERT INTO `instance_entities` VALUES (32,17006612);
+INSERT INTO `instance_entities` VALUES (32,17006613);
+INSERT INTO `instance_entities` VALUES (32,17006614);
+INSERT INTO `instance_entities` VALUES (32,17006615);
+INSERT INTO `instance_entities` VALUES (32,17006616);
+INSERT INTO `instance_entities` VALUES (32,17006617);
+INSERT INTO `instance_entities` VALUES (32,17006618);
+INSERT INTO `instance_entities` VALUES (32,17006619);
+INSERT INTO `instance_entities` VALUES (32,17006620);
+INSERT INTO `instance_entities` VALUES (32,17006621);
+INSERT INTO `instance_entities` VALUES (32,17006622);
+INSERT INTO `instance_entities` VALUES (32,17006623);
+INSERT INTO `instance_entities` VALUES (32,17006624);
+INSERT INTO `instance_entities` VALUES (32,17006625);
+INSERT INTO `instance_entities` VALUES (32,17006626);
+INSERT INTO `instance_entities` VALUES (32,17006627);
+INSERT INTO `instance_entities` VALUES (32,17006628);
+INSERT INTO `instance_entities` VALUES (32,17006629);
+INSERT INTO `instance_entities` VALUES (32,17006630);
+INSERT INTO `instance_entities` VALUES (32,17006631);
+INSERT INTO `instance_entities` VALUES (32,17006632);
+INSERT INTO `instance_entities` VALUES (32,17006633);
+INSERT INTO `instance_entities` VALUES (32,17006634);
+-- npcs
+INSERT INTO `instance_entities` VALUES (32,17006809);
+INSERT INTO `instance_entities` VALUES (32,17006810);
+-- Golden Salvage
+-- mobs
 INSERT INTO `instance_entities` VALUES (41,17002497);
 INSERT INTO `instance_entities` VALUES (41,17002498);
 INSERT INTO `instance_entities` VALUES (41,17002499);
@@ -141,6 +263,46 @@ INSERT INTO `instance_entities` VALUES (41,17002513);
 INSERT INTO `instance_entities` VALUES (41,17002514);
 INSERT INTO `instance_entities` VALUES (41,17002515);
 INSERT INTO `instance_entities` VALUES (41,17002516);
+-- npc
+INSERT INTO `instance_entities` VALUES (41,17002654);
+INSERT INTO `instance_entities` VALUES (41,17002655);
+INSERT INTO `instance_entities` VALUES (41,17002731);
+INSERT INTO `instance_entities` VALUES (41,17002752);
+INSERT INTO `instance_entities` VALUES (41,17002753);
+
+-- Extermination
+-- mobs
+INSERT INTO `instance_entities` VALUES (43,17002521);
+INSERT INTO `instance_entities` VALUES (43,17002522);
+INSERT INTO `instance_entities` VALUES (43,17002523);
+INSERT INTO `instance_entities` VALUES (43,17002524);
+INSERT INTO `instance_entities` VALUES (43,17002525);
+INSERT INTO `instance_entities` VALUES (43,17002526);
+INSERT INTO `instance_entities` VALUES (43,17002527);
+INSERT INTO `instance_entities` VALUES (43,17002528);
+INSERT INTO `instance_entities` VALUES (43,17002529);
+INSERT INTO `instance_entities` VALUES (43,17002530);
+INSERT INTO `instance_entities` VALUES (43,17002531);
+INSERT INTO `instance_entities` VALUES (43,17002532);
+INSERT INTO `instance_entities` VALUES (43,17002533);
+INSERT INTO `instance_entities` VALUES (43,17002534);
+INSERT INTO `instance_entities` VALUES (43,17002535);
+INSERT INTO `instance_entities` VALUES (43,17002536);
+INSERT INTO `instance_entities` VALUES (43,17002537);
+INSERT INTO `instance_entities` VALUES (43,17002538);
+INSERT INTO `instance_entities` VALUES (43,17002539);
+INSERT INTO `instance_entities` VALUES (43,17002540);
+INSERT INTO `instance_entities` VALUES (43,17002541);
+INSERT INTO `instance_entities` VALUES (43,17002542);
+INSERT INTO `instance_entities` VALUES (43,17002543);
+INSERT INTO `instance_entities` VALUES (43,17002544);
+-- npc
+INSERT INTO `instance_entities` VALUES (43,17002730);
+INSERT INTO `instance_entities` VALUES (43,17002745);
+INSERT INTO `instance_entities` VALUES (43,17002747);
+INSERT INTO `instance_entities` VALUES (43,17002754);
+INSERT INTO `instance_entities` VALUES (43,17002654);
+INSERT INTO `instance_entities` VALUES (43,17002655);
 
 -- Ashu Talif
 -- npc
@@ -157,6 +319,10 @@ INSERT INTO `instance_entities` VALUES (53,17022986);
 INSERT INTO `instance_entities` VALUES (53,17022987);
 INSERT INTO `instance_entities` VALUES (53,17022988);
 INSERT INTO `instance_entities` VALUES (53,17022989);
+
+-- Against All Odds COR AF2
+INSERT INTO `instance_entities` VALUES (54,17022977);
+INSERT INTO `instance_entities` VALUES (54,17022978);
 
 -- Path of Darkness
 -- mobs
@@ -215,7 +381,10 @@ INSERT INTO `instance_entities` VALUES (65,17080986);
 INSERT INTO `instance_entities` VALUES (65,17080987);
 INSERT INTO `instance_entities` VALUES (65,17080988);
 INSERT INTO `instance_entities` VALUES (65,17080989);
+INSERT INTO `instance_entities` VALUES (65,17080990);
 INSERT INTO `instance_entities` VALUES (65,17080991);
+INSERT INTO `instance_entities` VALUES (65,17080992);
+INSERT INTO `instance_entities` VALUES (65,17080993);
 
 -- mobs
 INSERT INTO `instance_entities` VALUES (65,17080321);
@@ -349,6 +518,7 @@ INSERT INTO `instance_entities` VALUES (65,17080449);
 INSERT INTO `instance_entities` VALUES (65,17080450);
 INSERT INTO `instance_entities` VALUES (65,17080451);
 INSERT INTO `instance_entities` VALUES (65,17080452);
+INSERT INTO `instance_entities` VALUES (65,17080453);
 INSERT INTO `instance_entities` VALUES (65,17080454);
 INSERT INTO `instance_entities` VALUES (65,17080455);
 INSERT INTO `instance_entities` VALUES (65,17080456);
@@ -386,6 +556,7 @@ INSERT INTO `instance_entities` VALUES (65,17080487);
 INSERT INTO `instance_entities` VALUES (65,17080488);
 INSERT INTO `instance_entities` VALUES (65,17080489);
 INSERT INTO `instance_entities` VALUES (65,17080490);
+INSERT INTO `instance_entities` VALUES (65,17080491);
 INSERT INTO `instance_entities` VALUES (65,17080492);
 INSERT INTO `instance_entities` VALUES (65,17080493);
 INSERT INTO `instance_entities` VALUES (65,17080494);
@@ -417,12 +588,19 @@ INSERT INTO `instance_entities` VALUES (65,17080520);
 INSERT INTO `instance_entities` VALUES (65,17080521);
 INSERT INTO `instance_entities` VALUES (65,17080522);
 INSERT INTO `instance_entities` VALUES (65,17080523);
+INSERT INTO `instance_entities` VALUES (65,17080524);
+INSERT INTO `instance_entities` VALUES (65,17080525);
 INSERT INTO `instance_entities` VALUES (65,17080526);
 INSERT INTO `instance_entities` VALUES (65,17080527);
 INSERT INTO `instance_entities` VALUES (65,17080528);
 INSERT INTO `instance_entities` VALUES (65,17080529);
 INSERT INTO `instance_entities` VALUES (65,17080530);
+INSERT INTO `instance_entities` VALUES (65,17080531);
+INSERT INTO `instance_entities` VALUES (65,17080532);
 INSERT INTO `instance_entities` VALUES (65,17080533);
+INSERT INTO `instance_entities` VALUES (65,17080534);
+INSERT INTO `instance_entities` VALUES (65,17080535);
+INSERT INTO `instance_entities` VALUES (65,17080536);
 INSERT INTO `instance_entities` VALUES (65,17080537);
 INSERT INTO `instance_entities` VALUES (65,17080538);
 INSERT INTO `instance_entities` VALUES (65,17080539);
@@ -432,14 +610,22 @@ INSERT INTO `instance_entities` VALUES (65,17080542);
 INSERT INTO `instance_entities` VALUES (65,17080543);
 INSERT INTO `instance_entities` VALUES (65,17080544);
 INSERT INTO `instance_entities` VALUES (65,17080545);
+INSERT INTO `instance_entities` VALUES (65,17080546);
+INSERT INTO `instance_entities` VALUES (65,17080547);
+INSERT INTO `instance_entities` VALUES (65,17080548);
 INSERT INTO `instance_entities` VALUES (65,17080549);
 INSERT INTO `instance_entities` VALUES (65,17080550);
 INSERT INTO `instance_entities` VALUES (65,17080551);
 INSERT INTO `instance_entities` VALUES (65,17080552);
 INSERT INTO `instance_entities` VALUES (65,17080553);
+INSERT INTO `instance_entities` VALUES (65,17080554);
 INSERT INTO `instance_entities` VALUES (65,17080555);
+INSERT INTO `instance_entities` VALUES (65,17080556);
+INSERT INTO `instance_entities` VALUES (65,17080557);
 INSERT INTO `instance_entities` VALUES (65,17080558);
 INSERT INTO `instance_entities` VALUES (65,17080559);
+INSERT INTO `instance_entities` VALUES (65,17080560);
+INSERT INTO `instance_entities` VALUES (65,17080561);
 INSERT INTO `instance_entities` VALUES (65,17080562);
 INSERT INTO `instance_entities` VALUES (65,17080563);
 INSERT INTO `instance_entities` VALUES (65,17080564);
@@ -449,15 +635,22 @@ INSERT INTO `instance_entities` VALUES (65,17080567);
 INSERT INTO `instance_entities` VALUES (65,17080568);
 INSERT INTO `instance_entities` VALUES (65,17080569);
 INSERT INTO `instance_entities` VALUES (65,17080570);
+INSERT INTO `instance_entities` VALUES (65,17080571);
+INSERT INTO `instance_entities` VALUES (65,17080572);
 INSERT INTO `instance_entities` VALUES (65,17080573);
 INSERT INTO `instance_entities` VALUES (65,17080574);
 INSERT INTO `instance_entities` VALUES (65,17080575);
 INSERT INTO `instance_entities` VALUES (65,17080576);
 INSERT INTO `instance_entities` VALUES (65,17080577);
+INSERT INTO `instance_entities` VALUES (65,17080578);
 INSERT INTO `instance_entities` VALUES (65,17080579);
 INSERT INTO `instance_entities` VALUES (65,17080580);
 INSERT INTO `instance_entities` VALUES (65,17080581);
 INSERT INTO `instance_entities` VALUES (65,17080582);
+INSERT INTO `instance_entities` VALUES (65,17080585);
+INSERT INTO `instance_entities` VALUES (65,17080586);
+INSERT INTO `instance_entities` VALUES (65,17080596);
+INSERT INTO `instance_entities` VALUES (65,17080597);
 
 -- Shades of Vengeance
 INSERT INTO `instance_entities` VALUES (79,17006754);

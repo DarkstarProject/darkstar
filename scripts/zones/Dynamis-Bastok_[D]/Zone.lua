@@ -3,9 +3,7 @@
 -- Zone: Dynamis-Bastok [D]
 --
 -----------------------------------
--- package.loaded["scripts/zones/Dynamis-Bastok_[D]/TextIDs"] = nil;
------------------------------------
--- require("scripts/zones/Dynamis-Bastok_[D]/TextIDs");
+local ID = require("scripts/zones/Dynamis-Bastok_[D]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

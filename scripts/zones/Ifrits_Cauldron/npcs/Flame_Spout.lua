@@ -3,7 +3,7 @@
 --  NPC: Flame Spout
 -- !pos 193.967 -0.400 19.492 205
 -----------------------------------
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
     --[[ Commented out to preserve CSIDs for the quest, since the workaround was removed.
-    local offset = npc:getID() - FLAME_SPOUT_OFFSET;
+    local offset = npc:getID() - ID.npc.FLAME_SPOUT_OFFSET;
     player:startEvent(11 + offset);
     --]]
 end;

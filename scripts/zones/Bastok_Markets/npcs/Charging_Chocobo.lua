@@ -4,13 +4,10 @@
 -- Standard Merchant NPC
 -- !pos -301.531 -10.319 -157.237 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/shop");
 
 function onTrigger(player,npc)
-    player:showText(npc,CHARGINGCHOCOBO_SHOP_DIALOG);
     local stock =
     {
         12832,   191, 3,    -- Bronze Subligar
@@ -28,5 +25,7 @@ function onTrigger(player,npc)
         12929, 36735, 1,    -- Mythril Leggings
         13198, 20037, 1,    -- Swordbelt
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end;
+
+    player:showText(npc, ID.text.CHARGINGCHOCOBO_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+end

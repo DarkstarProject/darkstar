@@ -7,25 +7,25 @@
 -- Range: Unknown
 -- Notes: Used only by Medusa.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 3;
-    local accmod = 1;
-    local dmgmod = 2;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_3_SHADOW);
+    local numhits = 3
+    local accmod = 1
+    local dmgmod = 2
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,MOBPARAM_3_SHADOW)
 
-    local typeEffect = dsp.effect.PETRIFICATION;
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 120);
+    local typeEffect = dsp.effect.PETRIFICATION
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 120)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
+    return dmg
+end

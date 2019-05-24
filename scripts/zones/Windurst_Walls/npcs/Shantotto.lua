@@ -4,14 +4,12 @@
 -- !pos 122 -2 112 239
 -- CSID's missing in autoEventID please check the old forums under resources for all of shantotto's csid's. I found them all manually.
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil
------------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Windurst_Walls/TextIDs")
+local ID = require("scripts/zones/Windurst_Walls/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.retribution
@@ -24,7 +22,7 @@ function onTrade(player,npc,trade)
         player:startEvent(wsQuestEvent)
 
     -- Curses Foiled Again!
-    elseif (player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(928,1) and trade:hasItemQty(880,2) and count == 3) then
             player:startEvent(173,0,0,0,0,0,0,928,880) -- Correct items given, complete quest.
         else
@@ -32,7 +30,7 @@ function onTrade(player,npc,trade)
         end
 
     -- Curses,Foiled ... Again!?
-    elseif (player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(17316,2) and trade:hasItemQty(940,1) and trade:hasItemQty(552,1) and count == 4) then
             player:startEvent(183) -- Correct items given, complete quest.
         else
@@ -43,20 +41,20 @@ end
 
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
-    local foiledAgain = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1)
-    local CFA2 = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2)
+    local foiledAgain = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1)
+    local CFA2 = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2)
     local CFAtimer = player:getVar("CursesFoiledAgain")
-    local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM)
+    local FoiledAGolem = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM)
     local golemdelivery = player:getVar("foiledagolemdeliverycomplete")
     local WildcatWindurst = player:getVar("WildcatWindurst")
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
         player:startEvent(397,0,0,0,282)
-    elseif (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
         player:startEvent(498)
-    elseif (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
         player:startEvent(409) -- she mentions that Sunny-Pabonny left for San d'Oria
     -------------------------------------------------------
     -- Curses Foiled Again!
@@ -104,7 +102,7 @@ function onTrigger(player,npc)
 
     elseif (CFA2 == QUEST_COMPLETED) then
         player:startEvent(184)     -- New standard dialog after CFA2
-    elseif (player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
+    elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
         player:startEvent(399,0,0,282)
     else
         player:startEvent(164)
@@ -114,18 +112,18 @@ end
 function onEventFinish(player,csid,option)
     if (csid == 173) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17081)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17081)
         else
             player:tradeComplete()
             player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear())
             player:setVar("CursesFoiledAgainYear",VanadielYear())
             player:addFame(WINDURST,80)
             player:addItem(17081)
-            player:messageSpecial(ITEM_OBTAINED,17081)
-            player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_1)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17081)
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1)
         end
     elseif (csid == 171 and option ~= 1) then
-        player:addQuest(WINDURST,CURSES_FOILED_AGAIN_1)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1)
 
     elseif (csid == 179) then
         player:setVar("CursesFoiledAgainDayFinished",0)
@@ -137,37 +135,37 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 180 and option == 3) then
         player:setVar("CursesFoiledAgain",0)
-        player:addQuest(WINDURST,CURSES_FOILED_AGAIN_2)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2)
         player:setTitle(dsp.title.TARUTARU_MURDER_SUSPECT)
 
     elseif (csid == 183) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17116)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17116)
         else
             player:tradeComplete()
             player:setTitle(dsp.title.HEXER_VEXER)
             player:addItem(17116)
-            player:messageSpecial(ITEM_OBTAINED,17116)
-            player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_2)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17116)
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2)
             player:needToZone(true)
             player:addFame(WINDURST,90)
         end
 
     elseif (csid == 340) then
         if (option == 1) then
-            player:addQuest(WINDURST,CURSES_FOILED_A_GOLEM)
+            player:addQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM)
         else
             player:setTitle(dsp.title.TOTAL_LOSER)
         end
 
     elseif (csid == 342) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4870)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4870)
         else
-            player:completeQuest(WINDURST,CURSES_FOILED_A_GOLEM)
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM)
             player:setVar("foiledagolemdeliverycomplete",0)
             player:addItem(4870)
-            player:messageSpecial(ITEM_OBTAINED,4870)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4870)
             player:setTitle(dsp.title.DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH)
             player:addFame(WINDURST,120)
         end
@@ -177,11 +175,11 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true)
     elseif (csid == 397) then
         player:addKeyItem(dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
         player:setVar("MissionStatus",8)
     elseif (csid == 399) then
         player:setVar("ShantottoCS",0)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,RETRIBUTION_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.RETRIBUTION_LEARNED)
     end
 end

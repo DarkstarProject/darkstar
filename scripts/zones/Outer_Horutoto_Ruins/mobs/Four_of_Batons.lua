@@ -2,9 +2,9 @@
 -- Area: Outer Horutoto
 --  MOB: Four of Batons
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,663,2);
-end;
+    dsp.regime.checkRegime(player, mob, 663, 2, dsp.regime.type.GROUNDS)
+end

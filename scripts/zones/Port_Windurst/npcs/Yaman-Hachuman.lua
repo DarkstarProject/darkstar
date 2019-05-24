@@ -5,11 +5,8 @@
 --  Involved in Quests: Wonder Wands
 -- !pos -101.209 -4.25 110.886 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,10 +14,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
+    local WonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS);
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
-    if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,16) == false) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,16) == false) then
         player:startEvent(624);
     elseif (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(256,0,0,0,17061);
@@ -41,4 +38,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

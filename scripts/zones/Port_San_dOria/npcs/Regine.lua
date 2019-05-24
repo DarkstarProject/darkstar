@@ -4,16 +4,14 @@
 -- Standard Merchant NPC
 -- !pos 68 -9 -74 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
-    local flyersForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-    local theBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
+    local flyersForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local theBrugaireConsortium = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
 
     -- FLYERS FOR REGINE
     if (flyersForRegine == QUEST_ACCEPTED and npcUtil.tradeHas( trade, {{"gil",10}} )) then
@@ -21,7 +19,7 @@ function onTrade(player,npc,trade)
             player:confirmTrade();
         end
     elseif (flyersForRegine == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532)) then
-        player:messageSpecial(FLYER_REFUSED);
+        player:messageSpecial(ID.text.FLYER_REFUSED);
 
     -- THE BRUGAIRE CONSORTIUM
     elseif (theBrugaireConsortium == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 593)) then
@@ -33,7 +31,7 @@ function onTrigger(player,npc)
     local ffr = player:getVar("FFR");
 
     -- FLYERS FOR REGINE
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
         player:startEvent(601);
     elseif (ffr == 1) then
         player:startEvent(510,2);
@@ -57,11 +55,11 @@ function onEventFinish(player,csid,option)
         player:setVar("FFR",1);
     elseif (csid == 510 and option == 2) then
         if (npcUtil.giveItem(player, {{532,12}, {532,3}} )) then
-            player:addQuest(SANDORIA,FLYERS_FOR_REGINE);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
             player:setVar("FFR",17);
         end
     elseif (csid == 603) then
-        if (npcUtil.completeQuest(player, SANDORIA, FLYERS_FOR_REGINE, {gil=440, title=dsp.title.ADVERTISING_EXECUTIVE})) then
+        if (npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE, {gil=440, title=dsp.title.ADVERTISING_EXECUTIVE})) then
             player:setVar("tradeAnswald",0);
             player:setVar("tradePrietta",0);
             player:setVar("tradeMiene",0);
@@ -108,7 +106,7 @@ function onEventFinish(player,csid,option)
             4651,219,3,  -- Scroll of Protect
             4656,1584,3  -- Scroll of Shell
         }
-        showNationShop(player, NATION_SANDORIA, stockA);
+        dsp.shop.nation(player, stockA, dsp.nation.SANDORIA);
 
     -- BLACK MAGIC SHOP
     elseif (csid == 510 and option == 1) then
@@ -132,6 +130,6 @@ function onEventFinish(player,csid,option)
             4772,3261,3, -- Scroll of Thunder
             4777,140,3   -- Scroll of Water
         }
-        showNationShop(player, NATION_SANDORIA, stockB);
+        dsp.shop.nation(player, stockB, dsp.nation.SANDORIA);
     end
 end;

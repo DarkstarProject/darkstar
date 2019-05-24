@@ -3,39 +3,42 @@
 -- Zone: Nyzul_Isle
 --
 -----------------------------------
-package.loaded["scripts/zones/Nyzul_Isle/IDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/globals/settings");
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS) then
-            cs = 51;
-        end
+function onInstanceZoneIn(player,instance)
+    local cs = -1
+    
+    local pos = player:getPos()
+    if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
+        player:setPos(player:getInstance():getEntryPos());
     end
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS) then
+        cs = 51
+    end
+    
+    player:addTempItem(5348)
 
-    return cs;
-end;
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
 
-    if(csid == 1) then
-        player:setPos(0,0,0,0,72);
+    if csid == 1 then
+        player:setPos(0,0,0,0,72)
     end
-end;
+end
 
+function onInstanceLoadFailed()
+    return 72
+end

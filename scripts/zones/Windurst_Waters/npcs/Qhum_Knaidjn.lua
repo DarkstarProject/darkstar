@@ -2,14 +2,11 @@
 -- Area: Windurst Waters
 --  NPC: Qhum_Knaidjn
 -- Type: Guildworker's Union Representative
---  @zone 238
--- !pos -112.561 -2 55.205
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-- !pos -112.561 -2 55.205 238
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 
 local keyitems = {
     [0] = {
@@ -100,6 +97,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 8, "guild_cooking", keyitems, items);
     elseif (csid == 10025) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

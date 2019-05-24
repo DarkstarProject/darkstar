@@ -2,22 +2,19 @@
 -- Area: Western Adoulin
 --  NPC: Westerly Breeze
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
---                                              'The Starving'
---                                              'Always More, Quoth the Ravenous'
---  @zone 256
---  !pos 62 32 123 256
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
+--                                             'The Starving'
+--                                             'Always More, Quoth the Ravenous'
+-- !pos 62 32 123 256
 -----------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local HS = player:getQuestStatus(ADOULIN, HUNGER_STRIKES);
-    local TS = player:getQuestStatus(ADOULIN, THE_STARVING);
-    local AMQTR = player:getQuestStatus(ADOULIN, ALWAYS_MORE_QUOTH_THE_RAVENOUS);
+    local HS = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.HUNGER_STRIKES);
+    local TS = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_STARVING);
+    local AMQTR = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ALWAYS_MORE_QUOTH_THE_RAVENOUS);
 
     if ((trade:getItemCount() == 1) and (trade:getGil() == 0)) then
         local item = trade:getItem(0);
@@ -75,9 +72,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local HS = player:getQuestStatus(ADOULIN, HUNGER_STRIKES);
-    local TS = player:getQuestStatus(ADOULIN, THE_STARVING);
-    local AMQTR = player:getQuestStatus(ADOULIN, ALWAYS_MORE_QUOTH_THE_RAVENOUS);
+    local HS = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.HUNGER_STRIKES);
+    local TS = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_STARVING);
+    local AMQTR = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ALWAYS_MORE_QUOTH_THE_RAVENOUS);
     if (HS ~= QUEST_COMPLETED) then
         if (HS == QUEST_AVAILABLE) then
             -- Starts Quest: 'Hunger Strikes'
@@ -119,35 +116,35 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2530) then
         -- Starting Quest: 'Hunger Strikes'
-        player:addQuest(ADOULIN, HUNGER_STRIKES);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.HUNGER_STRIKES);
     elseif ((csid == 2532) or (csid == 3007)) then
         -- Finishing Quest: 'Hunger Strikes' or 'The Starving'
         player:tradeComplete();
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 500 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 500 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 500 * BAYLD_RATE);
         player:addFame(ADOULIN);
         player:setVar("Westerly_Breeze_Wait", vanaDay());
         player:needToZone(true);
 
         if (csid == 2532) then
-            player:completeQuest(ADOULIN, HUNGER_STRIKES);
+            player:completeQuest(ADOULIN, dsp.quest.id.adoulin.HUNGER_STRIKES);
         elseif (csid == 3007) then
-            player:completeQuest(ADOULIN, THE_STARVING);
+            player:completeQuest(ADOULIN, dsp.quest.id.adoulin.THE_STARVING);
         end
     elseif (csid == 3005) then
         -- Starting Quest: 'The Starving'
-        player:addQuest(ADOULIN, THE_STARVING);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.THE_STARVING);
     elseif (csid == 3010) then
         -- Starting Quest: 'Always More Quoth the Ravenous'
-        player:addQuest(ADOULIN, ALWAYS_MORE_QUOTH_THE_RAVENOUS);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.ALWAYS_MORE_QUOTH_THE_RAVENOUS);
     elseif (csid == 3012) then
         -- Finishing Quest: 'Always More Quoth The Ravenous'
         player:tradeComplete();
-        player:completeQuest(ADOULIN, ALWAYS_MORE_QUOTH_THE_RAVENOUS);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.ALWAYS_MORE_QUOTH_THE_RAVENOUS);
         player:addExp(1500 * EXP_RATE);
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 1000 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);
         player:addFame(ADOULIN);
         player:setVar("Westerly_Breeze_Wait", 0);
     elseif ((csid == 2533) or (csid == 3008) or (csid == 3014)) then
@@ -163,7 +160,7 @@ function onEventFinish(player,csid,option)
             gil_obtained = 19716 * GIL_RATE;
         end
         player:addGil(gil_obtained);
-        player:messageSpecial(GIL_OBTAINED, gil_obtained);
+        player:messageSpecial(ID.text.GIL_OBTAINED, gil_obtained);
         player:setVar("ATWTTB_Can_Trade_Gruel", 0);
     end
 end;

@@ -2,10 +2,10 @@
 -- Area: Sauromugue Champaign
 --  MOB: Sauromugue Skink
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,97,1);
-    checkRegime(player,mob,99,1);
-end;
+    dsp.regime.checkRegime(player, mob, 97, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 99, 1, dsp.regime.type.FIELDS)
+end

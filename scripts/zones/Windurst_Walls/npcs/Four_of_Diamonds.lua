@@ -2,12 +2,9 @@
 -- Area: Windurst Walls
 --   NPC: Four of Diamonds
 -- Type: Standard NPC
--- @zone 239
--- !pos -187.184 -3.545 151.092
+-- !pos -187.184 -3.545 151.092 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -53,8 +53,6 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
 
     // Build dual wield off hand weapon attacks.
-
-
     if (IsH2H())
     {
         // Build left hand H2H attacks.
@@ -63,11 +61,15 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
         // Build kick attacks.
         CreateKickAttacks();
     }
+
     else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
         (attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD)))
     {
         CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
     }
+
+    // Build Daken throw
+    CreateDakenAttack();
 
     // Set the first attack flag
     m_attackSwings[0].SetAsFirstSwing();
@@ -150,9 +152,9 @@ CBattleEntity*	CAttackRound::GetTAEntity()
 }
 
 /************************************************************************
-*																		*
-*  Returns the H2H flag.												*
-*																		*
+*                                                                       *
+*  Returns the H2H flag.                                                *
+*                                                                       *
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
@@ -199,7 +201,7 @@ void CAttackRound::DeleteAttackSwing()
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
     uint8 num = 1;
-    
+
     bool isPC = m_attacker->objtype == TYPE_PC;
 
     // Checking the players weapon hit count
@@ -207,12 +209,12 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         num = PWeapon->getHitCount();
     }
-    
+
     // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
     if (dynamic_cast<CMobEntity*>(m_attacker))
     {
         auto multiHitMax = (uint8)static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
-        
+
         if (multiHitMax > 0)
             num = 1 + battleutils::getHitCount(multiHitMax);
     }
@@ -343,7 +345,7 @@ void CAttackRound::CreateKickAttacks()
     if (m_attacker->objtype == TYPE_PC)
     {
         // kick attack mod (All jobs)
-        uint16 kickAttack = m_attacker->getMod(Mod::KICK_ATTACK);
+        uint16 kickAttack = m_attacker->getMod(Mod::KICK_ATTACK_RATE);
 
         if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
         {
@@ -358,12 +360,31 @@ void CAttackRound::CreateKickAttacks()
             m_kickAttackOccured = true;
         }
 
-        // TODO: Possible Lua function for the nitty gritty stuff below.
-
-        // Mantra set mod: Try an extra left kick attack.
+        // Tantra set mod: Try an extra left kick attack.
         if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_KICK_ATTACK))
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::KICK, LEFTATTACK, 1);
+        }
+    }
+}
+
+/************************************************************************
+*																		*
+*  Creates a Daken throw.												*
+*																		*
+************************************************************************/
+void CAttackRound::CreateDakenAttack()
+{
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        CItemWeapon* PAmmo = m_attacker->m_Weapons[SLOT_AMMO];
+        if (PAmmo && PAmmo->isShuriken())
+        {
+            uint16 daken = m_attacker->getMod(Mod::DAKEN);
+             if (dsprand::GetRandomNumber(100) < daken)
+             {
+                AddAttackSwing(PHYSICAL_ATTACK_TYPE::DAKEN, RIGHTATTACK, 1);
+             }
         }
     }
 }

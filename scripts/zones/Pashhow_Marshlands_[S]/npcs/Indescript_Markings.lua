@@ -3,35 +3,30 @@
 --  NPC: Indescript Markings
 -- NOTE: There are 3 Indescript Markings
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
-require("scripts/zones/Pashhow_Marshlands_[S]/MobIDs");
-require("scripts/globals/teleports");
-require("scripts/globals/campaign");
-require("scripts/globals/keyitems");
-require("scripts/globals/npc_util");
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Pashhow_Marshlands_[S]/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    local offset                = npc:getID() - PASHHOW_S_MARKINGS_OFFSET;
-    local onSabbatical          = player:getQuestStatus(CRYSTAL_WAR,ON_SABBATICAL);
-    local onSabbaticalProgress  = player:getVar("OnSabbatical");
-    local pantsQuestProgress    = player:getVar("AF_SCH_PANTS");
-    local gownQuestProgress     = player:getVar("AF_SCH_BODY");
-    
+function onTrigger(player, npc)
+    local offset                = npc:getID() - ID.npc.INDESCRIPT_MARKINGS_OFFSET
+    local onSabbatical          = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.ON_SABBATICAL)
+    local onSabbaticalProgress  = player:getVar("OnSabbatical")
+    local pantsQuestProgress    = player:getVar("AF_SCH_PANTS")
+    local gownQuestProgress     = player:getVar("AF_SCH_BODY")
+
     -- ON SABBATICAL
-    if (offset == 0 and onSabbatical == QUEST_ACCEPTED and onSabbaticalProgress == 2) then
-        player:startEvent(2);
-    
+    if offset == 0 and onSabbatical == QUEST_ACCEPTED and onSabbaticalProgress == 2 then
+        player:startEvent(2)
+
     -- SCH AF SIDEQUEST: PANTS
-    elseif (offset == 1 and pantsQuestProgress > 0 and pantsQuestProgress < 3 and not player:hasKeyItem(dsp.ki.SLUG_MUCUS)) then
-        npcUtil.giveKeyItem(player, dsp.ki.SLUG_MUCUS);
-        player:setVar("AF_SCH_PANTS", pantsQuestProgress + 1);
+    elseif offset == 1 and pantsQuestProgress > 0 and pantsQuestProgress < 3 and not player:hasKeyItem(dsp.ki.SLUG_MUCUS) then
+        npcUtil.giveKeyItem(player, dsp.ki.SLUG_MUCUS)
+        player:setVar("AF_SCH_PANTS", pantsQuestProgress + 1)
 
         local positions =
         {
@@ -44,14 +39,14 @@ function onTrigger(player,npc)
             [7] = {-226, 25, 428}, -- G-6 NW
             [8] = {-135, 24, 374}  -- G-6 E
         }
-        local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
-        npc:hideNPC(900);
-        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
-    
+        local newPosition = npcUtil.pickNewPosition(npc:getID(), positions)
+        npc:hideNPC(900)
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z)
+
     -- SCH AF SIDEQUEST: BODY
-    elseif (offset == 2 and gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.ki.PEISTE_DUNG)) then
-        npcUtil.giveKeyItem(player, dsp.ki.PEISTE_DUNG);
-        player:setVar("AF_SCH_BODY", gownQuestProgress + 1);
+    elseif offset == 2 and gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.ki.PEISTE_DUNG) then
+        npcUtil.giveKeyItem(player, dsp.ki.PEISTE_DUNG)
+        player:setVar("AF_SCH_BODY", gownQuestProgress + 1)
 
         local positions =
         {
@@ -65,23 +60,23 @@ function onTrigger(player,npc)
             [8] = {32,   25, -238}, -- (H-10) North of road. Between road and wall edge.
             [9] = {59,   25, -326}  -- (H-10) SE corner, just South of the Road.
         }
-        local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
-        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
+        local newPosition = npcUtil.pickNewPosition(npc:getID(), positions)
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z)
 
     -- DEFAULT
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
 
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     -- ON SABBATICAL
-    if (csid == 2) then
-        npcUtil.giveKeyItem(player, dsp.ki.SCHULTS_SEALED_LETTER);
-        player:setVar("OnSabbatical", 3);
+    if csid == 2 then
+        npcUtil.giveKeyItem(player, dsp.ki.SCHULTS_SEALED_LETTER)
+        player:setVar("OnSabbatical", 3)
     end
-end;
+end

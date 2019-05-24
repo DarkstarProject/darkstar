@@ -4,12 +4,9 @@
 -- !pos 466 0 479 88
 -- Teleports Players to North Gustaberg
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,7 +26,7 @@ end;
 function onEventFinish(player,csid,option)
     if (option == 1) then
         if (csid == 100) then
-            player:addNationTeleport(MAW,128);
+            player:addNationTeleport(dsp.teleport.nation.MAW,128);
         end
         dsp.teleport.toMaw(player,12);
     end

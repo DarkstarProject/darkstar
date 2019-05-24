@@ -3,7 +3,7 @@
 --     TITLES IDs
 --
 -----------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 dsp.title =
 {
@@ -925,4 +925,55 @@ dsp.title =
     BRINGER_OF_THE_DAWN                       = 932,
     THE_ONE_TRUE_PIONEER                      = 933,
     BRINGER_OF_HOPE                           = 934,
-};
+}
+
+-----------------------------------
+-- local functions
+-----------------------------------
+
+local function titleMask(player, titleGroup)
+    local returnValue = 0
+    local titles = {}
+
+    if titleGroup and titleGroup.title then
+        titles = titleGroup.title
+    end
+
+    for i = 1, 28 do
+        if titles[i] == nil or titles[i] == 0 or not player:hasTitle(titles[i]) then
+            returnValue = bit.bor(returnValue, bit.lshift(1, i))
+        end
+    end
+
+    return returnValue
+end
+
+-----------------------------------
+-- public title changer functions
+-----------------------------------
+
+dsp.title.changerOnTrigger = function(player, eventId, titleInfo)
+    player:startEvent(
+        eventId,
+        titleMask(player, titleInfo[1]),
+        titleMask(player, titleInfo[2]),
+        titleMask(player, titleInfo[3]),
+        titleMask(player, titleInfo[4]),
+        titleMask(player, titleInfo[5]),
+        titleMask(player, titleInfo[6]),
+        1,
+        player:getGil()
+    )
+end
+
+dsp.title.changerOnEventFinish = function(player, csid, option, eventId, titleInfo)
+    if csid == eventId then
+        local group = titleInfo[bit.rshift(option, 8) + 1]
+        if group then
+            local title = group.title[option % 256]
+            if title and player:delGil(group.cost) then
+                player:setTitle(title)
+            end
+        end
+    end
+end

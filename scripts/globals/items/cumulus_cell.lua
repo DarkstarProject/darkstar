@@ -1,17 +1,21 @@
 -----------------------------------------
-require("scripts/globals/status");
+-- Cumulus Cell
+-- ID 5367
+-- Unlocks body equipment
+-----------------------------------------
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local encumbrance = target:getStatusEffect(dsp.effect.ENCUMBRANCE_I);
+    local encumbrance = target:getStatusEffect(dsp.effect.ENCUMBRANCE_I)
     if (encumbrance) then
         local power = encumbrance:getPower()
         if bit.band(power, 0x0020) > 0 then
-            return 0;
+            return 0
         end
     end
     return -1
-end;
+end
 
 function onItemUse(target)
     local encumbrance = target:getStatusEffect(dsp.effect.ENCUMBRANCE_I)
@@ -21,6 +25,5 @@ function onItemUse(target)
     if (newpower > 0) then
         target:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, newpower, 0, 0)
     end
-    target:messageText(target, 7210)
-end;
-
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 2)
+end

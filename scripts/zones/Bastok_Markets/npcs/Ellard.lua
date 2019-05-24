@@ -4,11 +4,9 @@
 -- Type: Guildworker's Union Representative
 -- !pos -214.355 -7.814 -63.809 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 
 local keyitems = {
     [0] = {
@@ -56,7 +54,7 @@ local items = {
     },
     [2] = {
         id = 14394,
-        rank = 7,
+        rank = 5,
         cost = 100000
     },
     [3] = {
@@ -104,6 +102,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 340) then
         unionRepresentativeTriggerFinish(player, option, target, 3, "guild_goldsmithing", keyitems, items);
     elseif (csid == 341) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

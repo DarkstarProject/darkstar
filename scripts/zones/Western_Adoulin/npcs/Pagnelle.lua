@@ -2,22 +2,19 @@
 -- Area: Western Adoulin
 --  NPC: Pagnelle
 -- Type: Standard NPC and Quest NPC
---  Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
---  @zone 256
---  !pos -8 0 -100 256
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
+-- !pos -8 0 -100 256
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Raptor_Rapture = player:getQuestStatus(ADOULIN, RAPTOR_RAPTURE);
+    local Raptor_Rapture = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
     local Raptor_Rapture_Status = player:getVar("Raptor_Rapture_Status");
 
     if (Raptor_Rapture == QUEST_AVAILABLE) then
@@ -74,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0, 0, 0, 0, 258);
     elseif ((csid == 5061) and (option == 1)) then
         -- Starts Quest: 'Raptor Rapture'
-        player:addQuest(ADOULIN, RAPTOR_RAPTURE);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
         player:setVar("Raptor_Rapture_Status", 4);
     elseif (csid == 5035) then
         -- Progresses Quest: 'Raptor Rapture', spoke to Ilney, now need rockberries.
@@ -88,9 +85,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 5039) then
         -- Finishing Quest: 'Raptor Rapture'
         player:setVar("Raptor_Rapture_Status", 0);
-        player:completeQuest(ADOULIN, RAPTOR_RAPTURE);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 1000 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);
         player:addFame(ADOULIN);
         player:needToZone(true);
     end

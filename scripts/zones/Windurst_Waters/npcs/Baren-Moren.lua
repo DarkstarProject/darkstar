@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: Hat in Hand
 -- !pos -66 -3 -148 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -14,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    featherstatus = player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+    featherstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
     if (featherstatus >= 1 and trade:hasItemQty(842,3) == true and trade:getGil() == 0 and trade:getItemCount() == 3) then
         player:startEvent(79,1500); -- Quest Turn In
     end
@@ -22,14 +20,14 @@ end;
 
 function onTrigger(player,npc)
 
---    player:delQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
+--    player:delQuest(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
 --    player:addFame(WINDURST,200);   -- ================== FOR TESTING ONLY =====================
 
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-    featherstatus = player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+    hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
+    featherstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
     pfame = player:getFameLevel(WINDURST);
     if (hatstatus == 0) then
         player:startEvent(48); -- Quest Offered
@@ -100,36 +98,36 @@ end;
 function onEventFinish(player,csid,option)
 printf("RESULT: %u",option);
     if (csid == 48 and option == 1) then
-        player:addQuest(WINDURST,HAT_IN_HAND);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
         player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
     elseif (csid == 49 and option == 1) then
         player:setVar("QuestHatInHand_var2",1);
         player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
     elseif (csid == 52 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12543);
+        player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12543);
     elseif (csid == 52 and option >= 1) then
         if (option == 5) then          --    80 = HAT + FULL REWARD  =  8 NPCS - Option 5
             player:addGil(GIL_RATE*500);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*500);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*500);
             if (player:hasItem(12543) == false) then
                 player:addItem(12543,1);
-                player:messageSpecial(ITEM_OBTAINED,12543);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,12543);
             end
         elseif (option == 4) then     -- 50 = HAT + GOOD REWARD  >= 6 NPCS - Option 4
             player:addGil(GIL_RATE*400);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*400);
             if (player:hasItem(12543) == false) then
                 player:addItem(12543,1);
-                player:messageSpecial(ITEM_OBTAINED,12543);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,12543);
             end
         elseif (option == 3) then     -- 30 = PARTIAL REWARD -   >= 4 NPCS - Option 3
             player:addGil(GIL_RATE*300);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*300);
         elseif (option == 2) then     -- 20 = POOR REWARD         >= 2 NPCS - Option 2
             player:addGil(GIL_RATE*150);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*150);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*150);
 --        else (option == 1) then     -- 0/nill = NO REWARD      >= 0 NPCS - Option 1
         end
         if (hatstatus == 1) then
@@ -137,7 +135,7 @@ printf("RESULT: %u",option);
         else
             player:addFame(WINDURST,8);
         end
-        player:completeQuest(WINDURST,HAT_IN_HAND);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
         player:setVar("QuestHatInHand_count",0);
         player:setVar("QuestHatInHand_var",0);
         player:needToZone(true);
@@ -146,14 +144,14 @@ printf("RESULT: %u",option);
 
 
     elseif (csid == 75 and option == 1) then
-        if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == QUEST_AVAILABLE) then
-            player:addQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);
-        elseif (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == QUEST_COMPLETED) then
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_AVAILABLE) then
+            player:addQuest(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
+        elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_COMPLETED) then
             player:setVar("QuestFeatherInOnesCap_var",1);
         end
     elseif (csid == 79) then
-        if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_ACCEPTED) then
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
             player:addFame(WINDURST,75);
         else
             player:addFame(WINDURST,8);

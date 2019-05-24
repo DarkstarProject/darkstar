@@ -4,10 +4,7 @@
 -- Involved in Mission: Magicite
 -- !pos -22 1 -66 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
