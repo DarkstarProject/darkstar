@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---  NPC: Door Acolyte hostel
--- !pos 125 -2 216 94
+--  NPC: Door Acolyte Hostel
 -----------------------------------
 local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
 require("scripts/globals/keyitems")
@@ -23,11 +22,13 @@ function onTrigger(player,npc)
         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_COMPLETED and
         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_AVAILABLE
     then
-        if player:getCurrentMission(WOTG) == dsp.mission.id.wotg.CAIT_SITH or player:hasCompletedMission(WOTG, dsp.mission.id.wotg.CAIT_SITH) then
+       if player:getCurrentMission(WOTG) == dsp.mission.id.wotg.CAIT_SITH or player:hasCompletedMission(WOTG, dsp.mission.id.wotg.CAIT_SITH) then
             player:startEvent(151)
         end
     elseif player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_ACCEPTED then
         player:startEvent(152)
+    else
+        player:messageSpecial(ID.text.DOOR_ACOLYTE_HOSTEL_LOCKED)
     end
 end
 
