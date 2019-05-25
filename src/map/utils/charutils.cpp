@@ -3205,6 +3205,7 @@ namespace charutils
 
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
+            if (PMember->isDead()) { return; }
             uint32 baseexp = 0;
             auto exp = 0.f;
             float monsterbonus = 1.0f;
@@ -3409,7 +3410,6 @@ namespace charutils
                             default: PMember->expChain.chainTime = gettick() + 60000; break;
                         }
                     }
-                    exp = charutils::AddExpBonus(PMember, exp);
 
                     // pet or companion exp penalty needs to be added here
 
@@ -3418,6 +3418,7 @@ namespace charutils
                         PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, 0, 0, 37));
                         return;
                     }
+                    exp = charutils::AddExpBonus(PMember, exp);
                     charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, baseexp, chainactive);
                 }
             }
