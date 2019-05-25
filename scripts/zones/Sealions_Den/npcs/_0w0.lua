@@ -16,7 +16,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) == SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 1 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 1 then
         player:startEvent(13)
     elseif EventTriggerBCNM(player, npc) then
         return
@@ -34,8 +34,8 @@ function onEventFinish(player, csid, option)
 
     if csid == 13 then
         player:setVar("PromathiaStatus", 0)
-        player:completeMission(COP, SLANDEROUS_UTTERINGS)
-        player:addMission(COP, THE_ENDURING_TUMULT_OF_WAR)
+        player:completeMission(COP, dsp.mission.id.cop.SLANDEROUS_UTTERINGS)
+        player:addMission(COP, dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR)
         player:addTitle(dsp.title.THE_LOST_ONE)
     end
 end

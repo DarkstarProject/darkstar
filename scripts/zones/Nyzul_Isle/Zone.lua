@@ -17,7 +17,7 @@ function onInstanceZoneIn(player,instance)
     if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
         player:setPos(player:getInstance():getEntryPos());
     end
-    if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS) then
         cs = 51
     end
     

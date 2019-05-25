@@ -15,6 +15,7 @@ zones[dsp.zone.BASTOK_MINES] =
         ITEM_OBTAINED                  = 6388, -- Obtained: <item>.
         GIL_OBTAINED                   = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6391, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6392, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL            = 6393, -- You do not have enough gil.
         HOMEPOINT_SET                  = 6479, -- Home point set!
         YOU_ACCEPT_THE_MISSION         = 6508, -- You have accepted the mission.
@@ -71,7 +72,7 @@ zones[dsp.zone.BASTOK_MINES] =
         EMALIVEULAUX_COP_NOT_COMPLETED = 12241, -- I'd like to start my own business someday, but I just haven't found anything that truly interests me.
         EMALIVEULAUX_OPEN_DIALOG       = 12242, -- Rare Tavnazian imports! Get them before they're gone!
         EMALIVEULAUX_CLOSED_DIALOG     = 12243, -- I'd love to sell you goods imported from the island of Tavnazia, but with the area under foreign control, I can't secure my trade routes...
-        TEAR_IN_FABRIC_OF_SPACE        = 16557, -- There appears to be a tear in the fabric of space...
+        TEAR_IN_FABRIC_OF_SPACE        = 16579, -- There appears to be a tear in the fabric of space...
     },
     mob =
     {

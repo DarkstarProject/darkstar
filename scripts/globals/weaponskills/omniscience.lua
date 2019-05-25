@@ -32,7 +32,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.mnd_wsc = 0.8
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params)
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, action, primary)
 
     if damage > 0 then
         if not target:hasStatusEffect(dsp.effect.MAGIC_ATK_DOWN) then

@@ -29,10 +29,10 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
     end
 
     -- Things that happen to any player in the party/alliance
-    if player:getCurrentMission(WINDURST) == A_TESTING_TIME then
+    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.A_TESTING_TIME then
         if
-            (player:getZoneID() == dsp.zone.BUBURIMU_PENINSULA and player:hasCompletedMission(WINDURST, A_TESTING_TIME)) or
-            (player:getZoneID() == dsp.zone.TAHRONGI_CANYON and not player:hasCompletedMission(WINDURST, A_TESTING_TIME))
+            (player:getZoneID() == dsp.zone.BUBURIMU_PENINSULA and player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.A_TESTING_TIME)) or
+            (player:getZoneID() == dsp.zone.TAHRONGI_CANYON and not player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.A_TESTING_TIME))
         then
             player:addVar("testingTime_crea_count", 1)
         end

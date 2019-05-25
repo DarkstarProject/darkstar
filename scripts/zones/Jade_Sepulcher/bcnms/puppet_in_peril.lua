@@ -27,7 +27,7 @@ function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
    
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(TOAU,PUPPET_IN_PERIL)) then
+        if (player:hasCompletedMission(TOAU,dsp.mission.id.toau.PUPPET_IN_PERIL)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,0);
@@ -45,10 +45,10 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     
-    if csid == 32001 and player:getCurrentMission(TOAU) == PUPPET_IN_PERIL then
-        player:completeMission(TOAU,PUPPET_IN_PERIL);
+    if csid == 32001 and player:getCurrentMission(TOAU) == dsp.mission.id.toau.PUPPET_IN_PERIL then
+        player:completeMission(TOAU,dsp.mission.id.toau.PUPPET_IN_PERIL);
         player:setVar("AhtUrganStatus",0);
-        player:addMission(TOAU,PREVALENCE_OF_PIRATES);
+        player:addMission(TOAU,dsp.mission.id.toau.PREVALENCE_OF_PIRATES);
     end
     
 end;

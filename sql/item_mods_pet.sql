@@ -225,6 +225,9 @@ INSERT INTO `item_mods_pet` VALUES (21167,28,120,1);    -- Avatar: "Magic Atk. B
 INSERT INTO `item_mods_pet` VALUES (21167,27,10,1);     -- Avatar: Enmity+10
 INSERT INTO `item_mods_pet` VALUES (21183,28,108,1);    -- Eminent Pole Avatar: "Magic Atk. Bonus"+108
 INSERT INTO `item_mods_pet` VALUES (21361,28,6,0);      -- Esper Stone +1 Pet: "Magic Atk. Bonus"+6
+INSERT INTO `item_mods_pet` VALUES (21526,25,50,3);     -- Xiucoatl: Automaton: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21526,26,50,3);     -- Xiucoatl: Automaton: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21526,30,50,3);     -- Xiucoatl: Automaton: Magic Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21751,23,80,0);     -- Aymur 119 III Pet: Attack Bonus V
 INSERT INTO `item_mods_pet` VALUES (22063,126,40,1);    -- Nirvana 119 III Avatar: "Blood Pact" damage +40
 INSERT INTO `item_mods_pet` VALUES (23057,25,31,3);     -- Foire Taj +2 Automaton: Accuracy +31

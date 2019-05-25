@@ -33,11 +33,11 @@ function onTrigger(player,npc)
     local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
-    if (currentMission == THE_CRYSTAL_SPRING and MissionStatus == 3) then
+    if (currentMission == dsp.mission.id.sandoria.THE_CRYSTAL_SPRING and MissionStatus == 3) then
         player:startEvent(556);
 
     -- LEAUTE'S LAST WISHES (San d'Oria 6-1)
-    elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(dsp.ki.DREAMROSE)) then
+    elseif (currentMission == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(dsp.ki.DREAMROSE)) then
         player:startEvent(111);
 
     -- CIRCLE OF TIME (Bard AF3)

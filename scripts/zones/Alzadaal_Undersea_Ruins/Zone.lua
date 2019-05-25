@@ -47,9 +47,9 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:getVar("AhtUrganStatus") == 2 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:getVar("AhtUrganStatus") == 2 then
         cs = 7
-    elseif player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:getVar("AhtUrganStatus") == 2 then
+    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:getVar("AhtUrganStatus") == 2 then
         cs = 10
     end
 
@@ -132,7 +132,7 @@ function onRegionEnter(player,region)
             player:startEvent(210)
         end,
         [23] = function (x)
-            if player:getCurrentMission(TOAU) == UNDERSEA_SCOUTING then
+            if player:getCurrentMission(TOAU) == dsp.mission.id.toau.UNDERSEA_SCOUTING then
                 player:startEvent(1, dsp.besieged.getMercenaryRank(player))
             end
         end,
@@ -160,19 +160,19 @@ end
 function onEventFinish(player,csid,option)
     if csid == 1 then
         player:addKeyItem(dsp.ki.ASTRAL_COMPASS)
-        player:completeMission(TOAU,UNDERSEA_SCOUTING)
-        player:addMission(TOAU,ASTRAL_WAVES)
+        player:completeMission(TOAU,dsp.mission.id.toau.UNDERSEA_SCOUTING)
+        player:addMission(TOAU,dsp.mission.id.toau.ASTRAL_WAVES)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ASTRAL_COMPASS)
     elseif csid == 7 then
-        player:completeMission(TOAU,PATH_OF_DARKNESS)
+        player:completeMission(TOAU,dsp.mission.id.toau.PATH_OF_DARKNESS)
         player:setTitle(dsp.title.NAJAS_COMRADEINARMS)
         player:setVar("AhtUrganStatus",0)
-        player:addMission(TOAU,FANGS_OF_THE_LION)
+        player:addMission(TOAU,dsp.mission.id.toau.FANGS_OF_THE_LION)
     elseif csid == 10 then
-        player:completeMission(TOAU,NASHMEIRAS_PLEA)
+        player:completeMission(TOAU,dsp.mission.id.toau.NASHMEIRAS_PLEA)
         player:setTitle(dsp.title.PREVENTER_OF_RAGNAROK)
         player:setVar("AhtUrganStatus",0)
-        player:addMission(TOAU,RAGNAROK)
+        player:addMission(TOAU,dsp.mission.id.toau.RAGNAROK)
     elseif csid == 116 and player:getLocalVar("SalvageArrapago") == 1 then -- enter Salvage Silver Sea zone
         player:setPos(0,0,0,0,74)
     elseif csid == 116 and player:getLocalVar("SalvageSilverSea") == 1 then -- enter Salvage Arrapago zone

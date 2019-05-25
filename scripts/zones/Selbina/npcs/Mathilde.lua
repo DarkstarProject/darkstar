@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(COP) == MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus") == 2 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus") == 2 then
         player:startEvent(10005)
     else
         player:startEvent(171)
@@ -37,7 +37,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 10005 then
         player:setVar("PromathiaStatus", 0)
-        player:completeMission(COP, MORE_QUESTIONS_THAN_ANSWERS)
-        player:addMission(COP, ONE_TO_BE_FEARED)
+        player:completeMission(COP, dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS)
+        player:addMission(COP, dsp.mission.id.cop.ONE_TO_BE_FEARED)
     end
 end

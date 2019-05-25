@@ -16,20 +16,20 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus");
 
     -- Check if we are on Windurst Mission 1-3 and haven't already delivered both offerings.
-    if (player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE and MissionStatus < 3) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE and MissionStatus < 3) then
         if (player:hasKeyItem(dsp.ki.FOOD_OFFERINGS) == false and player:hasKeyItem(dsp.ki.DRINK_OFFERINGS) == false) then
             player:startEvent(140);
         elseif (MissionStatus >= 1) then
             player:startEvent(142); -- Keep displaying the instructions
         end
     -- Check if we are on Windurst Mission 7-2
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
         player:startEvent(734);
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
         player:startEvent(735);
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
         player:startEvent(739);
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(dsp.ki.BOOK_OF_THE_GODS)) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(dsp.ki.BOOK_OF_THE_GODS)) then
         player:startEvent(742);
     ---------------------------
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then

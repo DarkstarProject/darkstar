@@ -40,7 +40,7 @@ function onBcnmLeave(player,instance,leavecode)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
     
-        if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then
             player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0);
             player:setVar("PromathiaStatus",5);
         else

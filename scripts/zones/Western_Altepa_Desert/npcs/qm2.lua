@@ -14,7 +14,7 @@ end
 
 function onTrigger(player,npc)
     if
-        player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and
+        player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and
         player:getVar("MissionStatus") == 2 and
         not player:hasKeyItem(dsp.ki.ALTEPA_MOONPEBBLE)
     then

@@ -107,10 +107,7 @@ INSERT INTO `mob_pool_mods` VALUES (2675,4,25,1);
 INSERT INTO `mob_pool_mods` VALUES (1456,368,20,0);
 INSERT INTO `mob_pool_mods` VALUES (592,302,45,0);
 INSERT INTO `mob_pool_mods` VALUES (592,68,15,0);
-INSERT INTO `mob_pool_mods` VALUES (595,14,703,1);
 INSERT INTO `mob_pool_mods` VALUES (595,169,250,0);
-INSERT INTO `mob_pool_mods` VALUES (595,171,40,0);
-INSERT INTO `mob_pool_mods` VALUES (595,23,15,1);
 INSERT INTO `mob_pool_mods` VALUES (2083,29,25,0);
 INSERT INTO `mob_pool_mods` VALUES (2664,12,1,1);
 INSERT INTO `mob_pool_mods` VALUES (276,12,1,1);
@@ -160,12 +157,13 @@ INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
 INSERT INTO `mob_pool_mods` VALUES (181,1,6000,1); -- (Antican_Praetor) GIL_MIN
 INSERT INTO `mob_pool_mods` VALUES (181,2,9234,1); -- (Antican_Praetor) GIL_MAX
+INSERT INTO `mob_pool_mods` VALUES (955,28,-100,1); -- Defender EXP_BONUS: don't give XP
+INSERT INTO `mob_pool_mods` VALUES (1013,28,-100,1); -- Detector EXP_BONUS: don't give XP
 
 -- -------------------------
 --  Race Runner
 -- -------------------------
 INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
-INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack
 
 -- -------------------------
 --  Bloodlapper

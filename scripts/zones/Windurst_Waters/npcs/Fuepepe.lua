@@ -61,6 +61,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4855);
         else
+            player:tradeComplete();
             player:completeQuest(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE);
             player:addFame(WINDURST,75);
             player:addItem(4855);

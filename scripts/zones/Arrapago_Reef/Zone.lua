@@ -23,14 +23,14 @@ function onZoneIn(player,prevZone)
     end
 
     if prevZone == dsp.zone.THE_ASHU_TALIF then
-        if player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2 then
+        if player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2 then
             player:setPos(-456, -3, -405, 64)
             cs = 9
         elseif player:getVar("AgainstAllOdds") == 3 then
             cs = 238
         end
     elseif prevZone == dsp.zone.CAEDARVA_MIRE then
-        if player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 0 then
+        if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 0 then
             cs = 13
         end
     elseif prevZone == dsp.zone.ILRUSI_ATOLL then
@@ -45,11 +45,11 @@ function afterZoneIn(player)
 end
 
 function onRegionEnter(player,region)
-    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(8)
-    elseif (player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 1) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(14)
-    elseif (player:getCurrentMission(TOAU) == TESTING_THE_WATERS and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.TESTING_THE_WATERS and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
         player:startEvent(15)
     elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_ACCEPTED and player:getVar("AgainstAllOdds") == 1) then
         player:startEvent(237)
@@ -69,11 +69,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 13) then
         player:setVar("AhtUrganStatus",1)
     elseif (csid == 14) then
-        player:completeMission(TOAU,PREVALENCE_OF_PIRATES)
+        player:completeMission(TOAU,dsp.mission.id.toau.PREVALENCE_OF_PIRATES)
         player:setVar("AhtUrganStatus",0)
         player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
-        player:addMission(TOAU,SHADES_OF_VENGEANCE)
+        player:addMission(TOAU,dsp.mission.id.toau.SHADES_OF_VENGEANCE)
     elseif (csid == 15) then
         player:setVar("AhtUrganStatus",1)
         player:setPos(0,0,0,0,57)

@@ -65,7 +65,7 @@ function onInstanceComplete(instance)
     local chars = instance:getChars()
 
     for i,v in pairs(chars) do
-        if (v:getCurrentMission(TOAU) == THE_BLACK_COFFIN and v:getVar("AhtUrganStatus") == 1) then
+        if (v:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and v:getVar("AhtUrganStatus") == 1) then
             v:setVar("AhtUrganStatus", 2)
             v:startEvent(101)
         else

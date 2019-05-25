@@ -20,23 +20,23 @@ function onTrigger(player,npc)
         local pRank = player:getRank()
         local cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus)
 
-        if CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0)) then
+        if (CurrentMission <= dsp.mission.id.windurst.THE_SHADOW_AWAITS and (cs ~= 0 or offset ~= 0 or (CurrentMission == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and offset == 0))) then
             if cs == 0 then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset) -- dialog after accepting mission
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8])
             end
-        elseif CurrentMission ~= 255 then
+        elseif (CurrentMission ~= dsp.mission.id.windurst.NONE) then
             player:startEvent(112)
-        elseif not player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) then
+        elseif not player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) then
             player:startEvent(121)
-        elseif not player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) then
+        elseif not player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER) then
             player:startEvent(132)
-        elseif not player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) then
+        elseif not player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_PRICE_OF_PEACE) then
             player:startEvent(149)
         elseif player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST) then
             player:startEvent(197)
-        elseif player:hasCompletedMission(WINDURST,MOON_READING) then
+        elseif player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.MOON_READING) then
             player:startEvent(632)
         else
             local flagMission, repeatMission = getMissionMask(player)

@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
     -- Check for Missions first (priority?)
-    if (player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and player:getVar("MissionStatus") == 5) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.LOST_FOR_WORDS and player:getVar("MissionStatus") == 5) then
         player:startEvent(337);
     else
         ----------------------------------------------------

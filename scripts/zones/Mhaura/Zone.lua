@@ -39,7 +39,7 @@ function onZoneIn(player,prevZone)
             player:setPos(0.003,-6.252,117.971,65)
         end
     end
-    if player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_shikarees_story")== 0 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_shikarees_story")== 0 then
         cs = 322
     end
     return cs

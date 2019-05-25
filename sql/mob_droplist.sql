@@ -1890,9 +1890,9 @@ INSERT INTO `mob_droplist` VALUES (315,0,0,1000,4484,80);
 INSERT INTO `mob_droplist` VALUES (316,0,0,1000,922,160);
 INSERT INTO `mob_droplist` VALUES (317,0,0,1000,922,160);
 INSERT INTO `mob_droplist` VALUES (317,0,0,1000,924,100);
-INSERT INTO `mob_droplist` VALUES (318,0,0,1000,770,120);
-INSERT INTO `mob_droplist` VALUES (318,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (318,0,0,1000,4484,80);
+INSERT INTO `mob_droplist` VALUES (318,0,0,1000,770,120); -- (Blanched Kraken) blue_rock
+INSERT INTO `mob_droplist` VALUES (318,0,0,1000,888,340); -- (Blanched Kraken) seashell
+INSERT INTO `mob_droplist` VALUES (318,0,0,1000,4484,80); -- (Blanched Kraken) shall_shell
 INSERT INTO `mob_droplist` VALUES (319,0,0,1000,3135,520);
 INSERT INTO `mob_droplist` VALUES (319,0,0,1000,3135,260);
 INSERT INTO `mob_droplist` VALUES (319,0,0,1000,3135,170);
@@ -3308,8 +3308,8 @@ INSERT INTO `mob_droplist` VALUES (562,0,0,1000,923,320);
 INSERT INTO `mob_droplist` VALUES (562,0,0,1000,4448,50);
 INSERT INTO `mob_droplist` VALUES (563,0,0,1000,918,20);
 INSERT INTO `mob_droplist` VALUES (563,0,0,1000,923,320);
-INSERT INTO `mob_droplist` VALUES (564,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (564,0,0,1000,4484,80);
+INSERT INTO `mob_droplist` VALUES (564,0,0,1000,888,340); -- (Colossal Calamari) seashell
+INSERT INTO `mob_droplist` VALUES (564,0,0,1000,4484,80); -- (Colossal Calamari) shall_shell
 INSERT INTO `mob_droplist` VALUES (565,0,0,1000,644,320);
 INSERT INTO `mob_droplist` VALUES (565,0,0,1000,955,80);
 INSERT INTO `mob_droplist` VALUES (566,0,0,1000,891,70);
@@ -12274,28 +12274,13 @@ INSERT INTO `mob_droplist` VALUES (1954,0,0,1000,5378,100);
 INSERT INTO `mob_droplist` VALUES (1954,0,0,1000,5379,100);
 INSERT INTO `mob_droplist` VALUES (1955,0,0,1000,924,100);
 INSERT INTO `mob_droplist` VALUES (1955,0,0,1000,1125,20);
-INSERT INTO `mob_droplist` VALUES (1956,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1956,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1957,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1957,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1957,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1957,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1957,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1957,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1958,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1958,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1959,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1959,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1960,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1960,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1961,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1961,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1962,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1962,0,0,1000,888,30);
-INSERT INTO `mob_droplist` VALUES (1962,0,0,1000,1726,150);
-INSERT INTO `mob_droplist` VALUES (1962,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1963,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1963,0,0,1000,4484,80);
+-- 1956 to 1961: free
+INSERT INTO `mob_droplist` VALUES (1962,0,0,1000,888,207); -- (Kraken) seashell
+INSERT INTO `mob_droplist` VALUES (1962,0,0,1000,4484,24); -- (Kraken) shall_shell
+INSERT INTO `mob_droplist` VALUES (1963,0,0,1000,770,4); -- (Kraken NM) blue_rock
+INSERT INTO `mob_droplist` VALUES (1963,0,0,1000,888,213); -- (Kraken NM) seashell
+INSERT INTO `mob_droplist` VALUES (1963,0,0,1000,1726,30); -- (Kraken NM) egret_fishing_rod
+INSERT INTO `mob_droplist` VALUES (1963,0,0,1000,4484,35); -- (Kraken NM) shall_shell
 INSERT INTO `mob_droplist` VALUES (1964,0,0,1000,842,350);
 INSERT INTO `mob_droplist` VALUES (1964,0,0,1000,843,160);
 INSERT INTO `mob_droplist` VALUES (1964,0,0,1000,18018,330);
@@ -12318,10 +12303,7 @@ INSERT INTO `mob_droplist` VALUES (1966,0,0,1000,11520,1000);
 INSERT INTO `mob_droplist` VALUES (1966,0,0,1000,11731,100);
 INSERT INTO `mob_droplist` VALUES (1967,0,0,1000,888,340);
 INSERT INTO `mob_droplist` VALUES (1967,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1968,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1968,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (1969,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1969,0,0,1000,4484,80);
+-- 1968 to 1969: free
 INSERT INTO `mob_droplist` VALUES (1970,0,0,1000,646,980);
 INSERT INTO `mob_droplist` VALUES (1970,0,0,1000,827,50);
 INSERT INTO `mob_droplist` VALUES (1970,0,0,1000,931,100);
@@ -12433,8 +12415,7 @@ INSERT INTO `mob_droplist` VALUES (1984,0,0,1000,4638,80);
 INSERT INTO `mob_droplist` VALUES (1984,0,0,1000,4703,50);
 INSERT INTO `mob_droplist` VALUES (1984,0,0,1000,4719,70);
 INSERT INTO `mob_droplist` VALUES (1984,0,0,1000,4741,60);
-INSERT INTO `mob_droplist` VALUES (1985,0,0,1000,888,340);
-INSERT INTO `mob_droplist` VALUES (1985,0,0,1000,4484,80);
+-- 1985: free
 INSERT INTO `mob_droplist` VALUES (1986,2,0,1000,750,0);
 INSERT INTO `mob_droplist` VALUES (1986,0,0,1000,792,10);
 INSERT INTO `mob_droplist` VALUES (1986,0,0,1000,888,480);
@@ -32664,8 +32645,7 @@ INSERT INTO `mob_droplist` VALUES (4494,0,0,1000,1633,84);
 INSERT INTO `mob_droplist` VALUES (4495,2,0,1000,847,0);
 INSERT INTO `mob_droplist` VALUES (4495,0,0,1000,847,234);
 INSERT INTO `mob_droplist` VALUES (4495,0,0,1000,4570,65);
-INSERT INTO `mob_droplist` VALUES (4496,0,0,1000,888,254);
-INSERT INTO `mob_droplist` VALUES (4496,0,0,1000,4484,22);
+-- 4496: free
 INSERT INTO `mob_droplist` VALUES (4497,2,0,1000,864,0);
 INSERT INTO `mob_droplist` VALUES (4497,0,0,1000,868,220);
 INSERT INTO `mob_droplist` VALUES (4497,0,0,1000,4484,94);
@@ -33038,13 +33018,50 @@ INSERT INTO `mob_droplist` VALUES (4672,0,0,1000,16033,209); -- (Qoofim) Sylph E
 INSERT INTO `mob_droplist` VALUES (4673,0,0,1000,16020,265); -- (Ravenous Crawler) Survivor Earring
 INSERT INTO `mob_droplist` VALUES (4674,0,0,1000,15056,212); -- (Barbaric Weapon) Rover's Gloves
 INSERT INTO `mob_droplist` VALUES (4675,0,0,1000,2828,86); -- (Herensugue) Herensugue Skin
+INSERT INTO `mob_droplist` VALUES (4676,0,0,1000,5703,285); -- (King Buffalo) Jug of Uleguerand milk
+INSERT INTO `mob_droplist` VALUES (4676,0,0,1000,5152,130); -- (King Buffalo) Slice of buffalo meat
+INSERT INTO `mob_droplist` VALUES (4676,0,0,1000,1628,68); -- (King Buffalo) Buffalo hide
+INSERT INTO `mob_droplist` VALUES (4676,0,0,1000,1615,25); -- (King Buffalo) Buffalo horn
+INSERT INTO `mob_droplist` VALUES (4677,0,0,1000,928,1000); -- (Will-O'-The-Wykes) Pinch of bomb ash
+INSERT INTO `mob_droplist` VALUES (4677,0,0,1000,17316,200); -- (Will-O'-The-Wykes) Bomb arm
+INSERT INTO `mob_droplist` VALUES (4678,0,0,1000,511,91); -- (Goblin Jeweler) Goblin mask
+INSERT INTO `mob_droplist` VALUES (4678,0,0,1000,4518,30); -- (Goblin Jeweler) Strip of sheepjerky
+INSERT INTO `mob_droplist` VALUES (4678,0,0,1000,4509,30); -- (Goblin Jeweler) Flask of distilled  water
+INSERT INTO `mob_droplist` VALUES (4678,0,0,1000,605,30); -- (Goblin Jeweler) Pickaxe
+INSERT INTO `mob_droplist` VALUES (4679,0,0,1000,4435,207); -- (Tabar Beak) Slice of cockatrice meat
+INSERT INTO `mob_droplist` VALUES (4679,0,0,1000,842,130); -- (Tabar Beak) Giant bird feather
+INSERT INTO `mob_droplist` VALUES (4679,0,0,1000,854,14); -- (Tabar Beak) Cockatrice skin
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,748,1000); -- (Goblin Archaeologist) Gold Beastcoin
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,748,500); -- (Goblin Archaeologist) Gold Beastcoin
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,748,250); -- (Goblin Archaeologist) Gold Beastcoin
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,868,52); -- (Goblin Archaeologist) Handful of pugil scales
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,485,44); -- (Goblin Archaeologist) Broken willow fishing rod
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,4196,67); -- (Goblin Archaeologist) Rotten quiver
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,948,61); -- (Goblin Archaeologist) Carnation
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,508,90); -- (Goblin Archaeologist) Goblin helm
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,840,35); -- (Goblin Archaeologist) Chocobo feather
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,936,32); -- (Goblin Archaeologist) Chunk of rock salt
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,833,52); -- (Goblin Archaeologist) Clump of moko grass
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,688,61); -- (Goblin Archaeologist) Arrowwood log
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,856,70); -- (Goblin Archaeologist) Rabbit hide
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,4197,61); -- (Goblin Archaeologist) Rusty Bolt case
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,943,35); -- (Goblin Archaeologist) Pinch of poison dust
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,4495,67); -- (Goblin Archaeologist) Chunk of Goblin chocolate
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,605,35); -- (Goblin Archaeologist) Pickaxe
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,640,64); -- (Goblin Archaeologist) Chunk of copper ore
+INSERT INTO `mob_droplist` VALUES (4680,0,0,1000,507,47); -- (Goblin Archaeologist) Goblin mail
+
 INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5374,100); -- (Deviate Bhoot) non-NM version
-INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100); 
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100);
 INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5375,100);
 INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100);
 INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5384,100); -- (Psycheflayer) non-NM version
 INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5375,100);
 INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5374,100);
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,644,212); -- (Aura Sculpture) Chunk of mythril ore
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3541,182); -- (Aura Sculpture) Seasoning stone
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,955,30); -- (Aura Sculpture) Golem shard
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3543,91); -- (Aura Sculpture) Fossilized fang
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

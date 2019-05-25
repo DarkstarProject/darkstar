@@ -45,7 +45,7 @@ Port Windurst (West to East)
 ]]--
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, {{"gil", 300}}) and player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES then
+    if npcUtil.tradeHas(trade, {{"gil", 300}}) and player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(794)
     end
@@ -67,7 +67,7 @@ function onTrigger(player,npc)
                 player:startEvent(738)
             end
         end
-    elseif player:getCurrentMission(TOAU) >= 2 then
+    elseif player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM then
         player:startEvent(793)
     else
         player:startEvent(740)

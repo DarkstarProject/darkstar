@@ -26,7 +26,7 @@
 
 #include "../../common/cbasetypes.h"
 
-#include "item_armor.h"
+#include "item_equipment.h"
 
 
 class CItemWeapon : public CItemArmor

@@ -50,9 +50,9 @@ function onTrigger(player,npc)
     elseif (player:getVar("KnightStalker_Option2") == 1) then
         player:startEvent(118); -- Optional CS after Knight Stalker
         -- Mission 8-2 San dOria --
-    elseif (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getVar("MissionStatus") == 1) then
         player:startEvent(106)
-    elseif (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getVar("MissionStatus") == 2) then
         player:startEvent(107);
     else
         player:startEvent(529); -- standard dialogue

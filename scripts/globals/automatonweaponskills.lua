@@ -108,7 +108,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local tpHitsLanded = 0;
     local shadowsAbsorbed = 0;
     if ((missChance <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(dsp.mod.ZANSHIN)/100) and
-            not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.ALL_MISS) ) then
+            not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.TOO_HIGH) ) then
         if not shadowAbsorb(target) then
             if (params.canCrit or isSneakValid or isAssassinValid) then
                 local critchance = math.random();
@@ -154,7 +154,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
             local chance = math.random();
             local targetHP = target:getHP();
             if ((chance<=hitrate or math.random() < attacker:getMod(dsp.mod.ZANSHIN)/100) and
-                    not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.ALL_MISS) ) then  -- it hit
+                    not target:hasStatusEffect(dsp.effect.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effect.TOO_HIGH) ) then  -- it hit
                 if not shadowAbsorb(target) then
                     pdif = generatePdif(cratio[1], cratio[2], true);
                     if (params.canCrit) then

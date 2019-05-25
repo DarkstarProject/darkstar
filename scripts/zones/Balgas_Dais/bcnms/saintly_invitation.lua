@@ -30,7 +30,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(WINDURST,SAINTLY_INVITATION)) then
+        if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.SAINTLY_INVITATION)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,0);
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) then
+        if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION) then
             player:addTitle(dsp.title.VICTOR_OF_THE_BALGA_CONTEST);
             player:addKeyItem(dsp.ki.BALGA_CHAMPION_CERTIFICATE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BALGA_CHAMPION_CERTIFICATE);

@@ -2587,7 +2587,7 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 continue;
 
             auto PItem = itemutils::GetItem(itemId);
-            if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_ARMOR)))
+            if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_EQUIPMENT)))
                 itemId = 0;
             else if (!(((CItemArmor*)PItem)->getEquipSlotId() & (1 << equipSlotId)))
                 itemId = 0;
@@ -5349,6 +5349,8 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
             PChar->pushPacket(new CInventorySizePacket(PChar));
+
+            luautils::OnFurniturePlaced(PChar, PItem);
         }
         PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
         PChar->pushPacket(new CInventoryFinishPacket());
@@ -5423,6 +5425,8 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->getStorage(LOC_STORAGE)->AddBuff(-(int8)PItem->getStorage());
 
                 PChar->pushPacket(new CInventorySizePacket(PChar));
+
+                luautils::OnFurnitureRemoved(PChar, PItem);
             }
             PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, PItem->getSlotID()));
             PChar->pushPacket(new CInventoryFinishPacket());
@@ -5485,7 +5489,11 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             else if (prevsjob == JOB_BLU)
                 blueutils::UnequipAllBlueSpells(PChar);
 
-            uint16 subType = PChar->m_Weapons[SLOT_SUB]->getDmgType();
+            uint16 subType = 0;
+            if (auto weapon = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[SLOT_SUB]))
+            {
+                subType = weapon->getDmgType();
+            }
 
             if (subType > 0 && subType < 4)
             {

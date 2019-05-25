@@ -44,7 +44,7 @@ end;
 
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
-    if (regionID==1 and player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 2) then
+    if (regionID==1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("COP_louverance_story")== 2) then
         player:startEvent(758);
     end
 end;

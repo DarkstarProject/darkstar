@@ -31,7 +31,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print(leave code ..leavecode);
 
     if (leavecode == 2) then --play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
+        if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SAVE_THE_CHILDREN)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
@@ -49,7 +49,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print(bc finish csid ..csid.. and option ..option);
 
-    if (csid == 32001 and option == 0 and player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") == 2) then
+    if (csid == 32001 and option == 0 and player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and player:getVar("MissionStatus") == 2) then
         player:setTitle(dsp.title.FODDERCHIEF_FLAYER);
         player:addKeyItem(dsp.ki.ORCISH_HUT_KEY);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ORCISH_HUT_KEY);

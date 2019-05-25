@@ -14,7 +14,7 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and
+        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and
         player:getVar("MissionStatus") == 4 and
         not GetMobByID(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 0):isSpawned() and
         not GetMobByID(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 1):isSpawned()
@@ -22,7 +22,7 @@ function onTrigger(player, npc)
         SpawnMob(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 0):updateEnmity(player)
         SpawnMob(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 1):updateEnmity(player)
 
-    elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 5) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 5) then
         player:startEvent(71)
     end
 end

@@ -29,7 +29,7 @@ function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
    
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(TOAU,LEGACY_OF_THE_LOST)) then
+        if (player:hasCompletedMission(TOAU,dsp.mission.id.toau.LEGACY_OF_THE_LOST)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,0);
@@ -48,9 +48,9 @@ function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     
     if (csid == 32001) then
-        player:completeMission(TOAU,LEGACY_OF_THE_LOST);
+        player:completeMission(TOAU,dsp.mission.id.toau.LEGACY_OF_THE_LOST);
         player:setTitle(dsp.title.GESSHOS_MERCY);
-        player:addMission(TOAU,GAZE_OF_THE_SABOTEUR);
+        player:addMission(TOAU,dsp.mission.id.toau.GAZE_OF_THE_SABOTEUR);
     end
     
 end;

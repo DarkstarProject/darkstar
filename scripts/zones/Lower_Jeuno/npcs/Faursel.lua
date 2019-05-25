@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
         elseif (trade:hasItemQty(1692,1) and trade:hasItemQty(1693,1) and trade:hasItemQty(1694,1) and trade:getItemCount() == 3 and trade:getGil() == 0) then -- Advanced List (Chips)
             player:startEvent(10070);
         elseif (trade:hasItemQty(1042,1) or trade:hasItemQty(1043,1) or trade:hasItemQty(1044,1) or trade:hasItemQty(1049,1) or trade:hasItemQty(1050,1) or
-            trade:hasItemQty(1054,1) or trade:hasItemQty(10459,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then -- Advanced List (Coffer Keys)
+            trade:hasItemQty(1054,1) or trade:hasItemQty(1059,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then -- Advanced List (Coffer Keys)
                 player:startEvent(10070);
         elseif (trade:hasItemQty(1426,1) or trade:hasItemQty(1427,1) or trade:hasItemQty(1428,1) or trade:hasItemQty(1429,1) or trade:hasItemQty(1430,1) or
             trade:hasItemQty(1431,1) or trade:hasItemQty(1432,1) or trade:hasItemQty(1433,1) or trade:hasItemQty(1434,1) or trade:hasItemQty(1435,1) or

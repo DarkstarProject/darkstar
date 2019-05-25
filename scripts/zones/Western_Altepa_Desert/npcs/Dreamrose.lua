@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     if
-        player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and
+        player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and
         player:getVar("MissionStatus") == 2 and
         not GetMobByID(ID.mob.SABOTENDER_ENAMORADO):isSpawned()
     then

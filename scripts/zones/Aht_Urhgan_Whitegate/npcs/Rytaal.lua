@@ -23,9 +23,9 @@ function onTrigger(player,npc)
     local currentAssault = player:getCurrentAssault()
     local haveimperialIDtag
 
-    if player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 0 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 0 then
         player:startEvent(269,0,0,0,0,0,0,0,0,0)
-    elseif player:getCurrentMission(TOAU) <= IMMORTAL_SENTRIES or player:getMainLvl() <= 49 then
+    elseif player:getCurrentMission(TOAU) <= dsp.mission.id.toau.IMMORTAL_SENTRIES or player:getMainLvl() <= 49 then
         player:startEvent(270)
     elseif currentAssault ~= 0 and dsp.besieged.hasAssaultOrders(player) == 0 then
         if player:getVar("AssaultComplete") == 1 then
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
             player:addAssault(0)
         end
         player:setVar("AssaultComplete",0)
-    elseif player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") >= 1) then
+    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.PRESIDENT_SALAHEEM or (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") >= 1) then
         if lastIDtag == 0 then -- first time you get the tag
             tagCount = 1
             player:setCurrency("id_tags", tagCount)

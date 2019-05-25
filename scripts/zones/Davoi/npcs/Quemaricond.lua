@@ -36,7 +36,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(SANDORIA) == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 3) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.INFILTRATE_DAVOI and player:getVar("MissionStatus") == 3) then
         player:startEvent(117);
         npc:wait();
     else

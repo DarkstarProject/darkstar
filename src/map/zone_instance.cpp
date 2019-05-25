@@ -42,16 +42,12 @@ CZoneInstance::CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE C
 
 CZoneInstance::~CZoneInstance()
 {
-    for (auto instance : instanceList)
-    {
-        delete instance;
-    }
 }
 
 CCharEntity* CZoneInstance::GetCharByName(int8* name)
 {
     CCharEntity* PEntity = nullptr;
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         PEntity = instance->GetCharByName(name);
         if (PEntity) break;
@@ -62,7 +58,7 @@ CCharEntity* CZoneInstance::GetCharByName(int8* name)
 CCharEntity* CZoneInstance::GetCharByID(uint32 id)
 {
     CCharEntity* PEntity = nullptr;
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         PEntity = instance->GetCharByID(id);
         if (PEntity) break;
@@ -75,7 +71,7 @@ CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
     CBaseEntity* PEntity = nullptr;
     if (filter & TYPE_PC)
     {
-        for (auto instance : instanceList)
+        for (const auto& instance : instanceList)
         {
             PEntity = instance->GetEntity(targid, filter);
             if (PEntity) break;
@@ -126,7 +122,7 @@ void CZoneInstance::FindPartyForMob(CBaseEntity* PEntity)
 
 void CZoneInstance::TransportDepart(uint16 boundary, uint16 zone)
 {
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         instance->TransportDepart(boundary, zone);
     }
@@ -148,8 +144,10 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
         {
             if (instance->Failed() || instance->Completed())
             {
-                instanceList.erase(std::find(instanceList.begin(), instanceList.end(), instance));
-                delete instance;
+                instanceList.erase(std::find_if(instanceList.begin(), instanceList.end(), [&instance](const auto& el)
+                {
+                    return el.get() == instance;
+                }));
             }
             else
             {
@@ -168,11 +166,11 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
     //return char to instance (d/c or logout)
     if (!PChar->PInstance)
     {
-        for (auto instance : instanceList)
+        for (const auto& instance : instanceList)
         {
             if (instance->CharRegistered(PChar))
             {
-                PChar->PInstance = instance;
+                PChar->PInstance = instance.get();
             }
         }
         if (!PChar->PInstance && PChar->m_GMlevel > 0)
@@ -279,7 +277,7 @@ void CZoneInstance::SpawnTransport(CCharEntity* PChar)
 
 void CZoneInstance::TOTDChange(TIMETYPE TOTD)
 {
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         instance->TOTDChange(TOTD);
     }
@@ -296,7 +294,7 @@ void CZoneInstance::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
     }
     else
     {
-        for (auto instance : instanceList)
+        for (const auto& instance : instanceList)
         {
             instance->PushPacket(PEntity, message_type, packet);
         }
@@ -316,7 +314,7 @@ void CZoneInstance::ZoneServer(time_point tick, bool check_regions)
     auto it = instanceList.begin();
     while (it != instanceList.end())
     {
-        CInstance* instance = *it;
+        auto& instance = *it;
 
         instance->ZoneServer(tick, check_regions);
         instance->CheckTime(tick);
@@ -324,7 +322,6 @@ void CZoneInstance::ZoneServer(time_point tick, bool check_regions)
         if ((instance->Failed() || instance->Completed()) && instance->CharListEmpty())
         {
             it = instanceList.erase(it);
-            delete instance;
             continue;
         }
         ++it;
@@ -333,7 +330,7 @@ void CZoneInstance::ZoneServer(time_point tick, bool check_regions)
 
 void CZoneInstance::ForEachChar(std::function<void(CCharEntity*)> func)
 {
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         for (auto PChar : instance->GetCharList())
         {
@@ -360,7 +357,6 @@ void CZoneInstance::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(
 
 CInstance* CZoneInstance::CreateInstance(uint8 instanceid)
 {
-    CInstance* instance = new CInstance(this, instanceid);
-    instanceList.push_back(instance);
-    return instance;
+    instanceList.push_back(std::make_unique<CInstance>(this, instanceid));
+    return instanceList.back().get();
 }
