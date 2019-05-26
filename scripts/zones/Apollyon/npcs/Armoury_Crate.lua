@@ -695,11 +695,6 @@ end;
 
 function onTrigger(player, npc)
     local battlefield = player:getBattlefield()
-    if not battlefield then
-        printf("Error: battlefield nil! "..player:getName())
-        return
-    end
-
     local CofferID = npc:getID();
     local CofferType=0;
     local lootID=0;
@@ -707,6 +702,11 @@ function onTrigger(player, npc)
     local addtime=0;
     local DespawnOtherCoffer=false;
     local MimicID=0;
+    if not battlefield then
+        printf("Error: battlefield nil but we're opening a treasure box! "..player:getName())
+        printf("Illegal CofferID: "..CofferID)
+        return
+    end
 
     for coffer = 1,#ARMOURY_CRATES_LIST_APOLLYON,2 do
         if (ARMOURY_CRATES_LIST_APOLLYON[coffer]== CofferID-16932864) then
@@ -762,6 +762,7 @@ function onTrigger(player, npc)
                         GetMobByID(16932899):updateClaim(player);
          end
     end
+
     if (DespawnOtherCoffer==true) then
         HideArmouryCrates(InstanceRegion,APOLLYON_SE_NE);
     end
