@@ -2,20 +2,21 @@
 -- Area: Southern San d'Oria
 --  NPC: Kipopo
 -- Type: Leathercraft Synthesis Image Support
--- !pos -191.050 -2.15 12.285 230
+-- !pos  -191.050 -2.15 12.285 230
 -----------------------------------
-require("scripts/globals/status");
-require("scripts/globals/crafting");
-require("scripts/globals/quests");
-local ID = require("scripts/zones/Southern_San_dOria/IDs");
+require("scripts/globals/status")
+require("scripts/globals/crafting")
+require("scripts/globals/quests")
+require("scripts/globals/npc_util")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
     local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
 
-    if (player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 2 and trade:getItemCount() == 3) then
-        if (trade:hasItemQty(2012,1) and trade:hasItemQty(850,1) and trade:hasItemQty(816,1)) then
-        player:startEvent(910)
+    if player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 2 then
+        if npcUtil.tradeHasExactly(trade, {2012, 850, 816}) then
+            player:startEvent(910)
         end
     end
 end;
@@ -23,31 +24,33 @@ end;
 function onTrigger(player,npc)
     local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
     local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
-    local guildMember = isGuildMember(player,7);
-    local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT);
-    local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT);
+    local guildMember = isGuildMember(player,7)
+    local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT)
+    local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT)
 
-    if (sayItWithAHandbag == QUEST_COMPLETED and sayItWithAHandbagCS == 4 and player:hasItem(19110)) then
+    if sayItWithAHandbag == QUEST_COMPLETED and sayItWithAHandbagCS == 4 and player:hasItem(19110) then
         player:startEvent(914)
         player:setVar("sayItWithAHandbagCS", 5)
-    elseif (player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4) then
+    elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
         player:startEvent(913)
-    elseif (sayItWithAHandbagCS == 3 and player:needToZone() == false) then
-        player:startEvent(912)
-    elseif (sayItWithAHandbagCS == 3 and player:needToZone() == true) then
-        player:startEvent(911)
-    elseif (player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 2) then
-        player:startEvent(909)
-    elseif (player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 1) then
-        player:startEvent(908)
-    elseif (guildMember == 1) then
-        if (player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == false) then
-            player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),0,0,0);
+    elseif sayItWithAHandbagCS == 3 then
+        if player:needToZone() then
+            player:startEvent(911)
         else
-            player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),7128,0,0);
+            player:startEvent(912)
+        end
+    elseif sayItWithAHandbagCS == 2 then
+        player:startEvent(909)
+    elseif player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 1 then
+        player:startEvent(908)
+    elseif guildMember == 1 then
+        if player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == false then
+            player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),0,0,0)
+        else
+            player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),7128,0,0)
         end
     else
-        player:startEvent(651); -- Standard Dialogue
+        player:startEvent(651) -- Standard Dialogue
     end
 end;
 
@@ -56,18 +59,18 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if (csid == 912) then
-        player:giveKeyItem(dsp.ki.REPAIRED_HANDBAG)
+    if csid == 912 then
+        npcUtil.giveKeyItem(player, dsp.ki.REPAIRED_HANDBAG)
         player:setVar("sayItWithAHandbagCS", 4)
-    elseif (csid == 910) then
+    elseif csid == 910 then
         player:delKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER)
         player:setVar("sayItWithAHandbagCS", 3)
         player:needToZone(true)
-        player:tradeComplete()
-    elseif (csid == 908 and option == 1) then
+        player:confirmTrade()
+    elseif csid == 908 and option == 1 then
         player:setVar("sayItWithAHandbagCS", 2)
-    elseif (csid == 651 and option == 1) then
-        player:messageSpecial(ID.text.LEATHER_SUPPORT,0,5,1);
-        player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120);
+    elseif csid == 651 and option == 1 then
+        player:messageSpecial(ID.text.LEATHER_SUPPORT,0,5,1)
+        player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120)
     end
 end;
