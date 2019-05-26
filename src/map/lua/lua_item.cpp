@@ -25,7 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "../../common/showmsg.h"
 #include "../items/item.h"
-#include "../items/item_armor.h"
+#include "../items/item_equipment.h"
 #include "../items/item_weapon.h"
 #include "../items/item_general.h"
 

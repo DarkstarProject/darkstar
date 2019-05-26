@@ -23377,6 +23377,7 @@ INSERT INTO `item_mods` VALUES (18990,256,31);  -- Aftermath
 INSERT INTO `item_mods` VALUES (18990,355,188); -- Omniscience
 INSERT INTO `item_mods` VALUES (18991,256,29); -- Conqueror 75 - Aftermath
 INSERT INTO `item_mods` VALUES (18991,355,90); -- King's Justice
+INSERT INTO `item_mods` VALUES (18991,948,5);  -- Enhances Berserk I (5%)
 INSERT INTO `item_mods` VALUES (18992,256,29); -- Glanzfaust 75 - Aftermath
 INSERT INTO `item_mods` VALUES (18992,355,11); -- Ascetic's Fury
 INSERT INTO `item_mods` VALUES (18993,30,10);   -- Yagrush 75 - Magic Accuracy+10
@@ -23475,6 +23476,7 @@ INSERT INTO `item_mods` VALUES (19022,2,20);
 INSERT INTO `item_mods` VALUES (19022,8,3);
 INSERT INTO `item_mods` VALUES (19023,5,20);
 INSERT INTO `item_mods` VALUES (19023,27,-2);
+INSERT INTO `item_mods` VALUES (19024,380,3);    -- Sword Strap: Delay -3%
 INSERT INTO `item_mods` VALUES (19025,288,2);
 INSERT INTO `item_mods` VALUES (19026,2,10);
 INSERT INTO `item_mods` VALUES (19026,5,10);
@@ -23527,6 +23529,7 @@ INSERT INTO `item_mods` VALUES (19058,117,3);
 INSERT INTO `item_mods` VALUES (19059,119,3);
 INSERT INTO `item_mods` VALUES (19060,256,34); -- Conqueror 80 - Aftermath
 INSERT INTO `item_mods` VALUES (19060,355,90); -- King's Justice
+INSERT INTO `item_mods` VALUES (19060,948,6);  -- Enhances Berserk II (6%)
 INSERT INTO `item_mods` VALUES (19061,256,34); -- Glanzfaust 80 - Aftermath
 INSERT INTO `item_mods` VALUES (19061,355,11); -- Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19061,30,10);   -- Yagrush 80 - Magic Accuracy+10
@@ -23605,6 +23608,7 @@ INSERT INTO `item_mods` VALUES (19079,256,36);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19079,355,188); -- Omniscience
 INSERT INTO `item_mods` VALUES (19080,256,34); -- Conqueror 85 - Aftermath
 INSERT INTO `item_mods` VALUES (19080,355,90); -- King's Justice
+INSERT INTO `item_mods` VALUES (19080,948,7);  -- Enhances Berserk III (7%)
 INSERT INTO `item_mods` VALUES (19081,256,34); -- Glanzfaust 85 - Aftermath
 INSERT INTO `item_mods` VALUES (19081,355,11); -- Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19082,30,15);   -- Yagrush 85 - Magic Accuracy +15
@@ -24055,6 +24059,7 @@ INSERT INTO `item_mods` VALUES (19547,355,220); -- Wildfire
 INSERT INTO `item_mods` VALUES (19612,256,34); -- Conqueror 90 - Aftermath
 INSERT INTO `item_mods` VALUES (19612,355,90); -- King's Justice
 INSERT INTO `item_mods` VALUES (19612,660,15); -- King's Justice WS DMG +15%
+INSERT INTO `item_mods` VALUES (19612,948,8);  -- Enhances Berserk IV (8%)
 INSERT INTO `item_mods` VALUES (19613,256,34); -- Glanzfaust 90 - Aftermath
 INSERT INTO `item_mods` VALUES (19613,355,11); -- Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19613,581,15); -- Ascetic's Fury WS DMG +15%
@@ -24197,6 +24202,7 @@ INSERT INTO `item_mods` VALUES (19645,355,220); -- Wildfire
 INSERT INTO `item_mods` VALUES (19710,256,39); -- Conqueror 95 - Aftermath
 INSERT INTO `item_mods` VALUES (19710,355,90); -- King's Justice
 INSERT INTO `item_mods` VALUES (19710,660,15); -- King's Justice WS DMG +15%
+INSERT INTO `item_mods` VALUES (19710,948,8);  -- Enhances Berserk IV (8%)
 INSERT INTO `item_mods` VALUES (19711,256,39); -- Glanzfaust 95 - Aftermath
 INSERT INTO `item_mods` VALUES (19711,355,11); -- Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19711,581,15); -- Ascetic's Fury WS DMG +15%
@@ -24515,6 +24521,7 @@ INSERT INTO `item_mods` VALUES (19818,355,220); -- Wildfire
 INSERT INTO `item_mods` VALUES (19819,256,39); -- Conqueror 99 - Aftermath
 INSERT INTO `item_mods` VALUES (19819,355,90); -- King's Justice
 INSERT INTO `item_mods` VALUES (19819,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (19819,948,8);  -- Enhances Berserk V (8%)
 INSERT INTO `item_mods` VALUES (19820,256,39); -- Glanzfaust 99 - Aftermath
 INSERT INTO `item_mods` VALUES (19820,355,11); -- Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19820,581,30); -- Ascetic's Fury WS DMG +30%
@@ -24756,6 +24763,7 @@ INSERT INTO `item_mods` VALUES (19936,288,30);
 INSERT INTO `item_mods` VALUES (19948,256,39); -- Conqueror 99 AG - Aftermath
 INSERT INTO `item_mods` VALUES (19948,355,90); -- King's Justice
 INSERT INTO `item_mods` VALUES (19948,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (19948,948,8);  -- Enhances Berserk V (8%)
 INSERT INTO `item_mods` VALUES (19949,256,39); -- Glanzfaust 99 AG - Aftermath
 INSERT INTO `item_mods` VALUES (19949,355,11); -- Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19949,581,30); -- Ascetic's Fury WS DMG +30%
@@ -25367,9 +25375,11 @@ INSERT INTO `item_mods` VALUES (20836,659,40); -- Metatron Torment DMG +40%
 INSERT INTO `item_mods` VALUES (20837,256,39); -- Conqueror iLvL 119 - Aftermath
 INSERT INTO `item_mods` VALUES (20837,355,90); -- King's Justice
 INSERT INTO `item_mods` VALUES (20837,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (20837,948,8);  -- Enhances Berserk V (8%)
 INSERT INTO `item_mods` VALUES (20838,256,39); -- Conqueror iLvL 119 AG - King's Justice
 INSERT INTO `item_mods` VALUES (20838,355,90); -- King's Justice
 INSERT INTO `item_mods` VALUES (20838,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (20838,948,8);  -- Enhances Berserk V (8%)
 INSERT INTO `item_mods` VALUES (20839,8,20);   -- Ukonvasara 119 - STR+20
 INSERT INTO `item_mods` VALUES (20839,256,44); -- Aftermath
 INSERT INTO `item_mods` VALUES (20839,355,92); -- Ukko's Fury
@@ -26625,6 +26635,7 @@ INSERT INTO `item_mods` VALUES (21756,659,40); -- Metatron Torment DMG +40%
 INSERT INTO `item_mods` VALUES (21757,256,39); -- Conqueror 119 III - Aftermath
 INSERT INTO `item_mods` VALUES (21757,355,90); -- King's Justice
 INSERT INTO `item_mods` VALUES (21757,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (21757,948,8);  -- Enhances Berserk V (8%)
 INSERT INTO `item_mods` VALUES (21758,8,50);   -- Ukonvasara 119 III - STR+50
 INSERT INTO `item_mods` VALUES (21758,256,45); -- Aftermath
 INSERT INTO `item_mods` VALUES (21758,355,92); -- Ukko's Fury
@@ -40368,6 +40379,10 @@ INSERT INTO `item_mods` VALUES (27454,61,25);     -- Dark resistance +25
 INSERT INTO `item_mods` VALUES (27454,68,77);     -- Evasion +77
 INSERT INTO `item_mods` VALUES (27454,161,-5);    -- Physical damage taken -5%
 INSERT INTO `item_mods` VALUES (27454,384,400);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27456,1,16);      -- Crier's Gaiters: DEF 16
+INSERT INTO `item_mods` VALUES (27456,5,12);      -- MP +12
+INSERT INTO `item_mods` VALUES (27456,68,8);      -- EVA +8
+INSERT INTO `item_mods` VALUES (27456,169,12);    -- Movement Speed +12%
 INSERT INTO `item_mods` VALUES (27463,1,70);      -- Vanya Clogs: DEF 70
 INSERT INTO `item_mods` VALUES (27463,2,13);      -- HP +13
 INSERT INTO `item_mods` VALUES (27463,5,14);      -- MP +14
@@ -40441,6 +40456,7 @@ INSERT INTO `item_mods` VALUES (27507,25,5);
 INSERT INTO `item_mods` VALUES (27507,27,-5);
 INSERT INTO `item_mods` VALUES (27507,28,10);
 INSERT INTO `item_mods` VALUES (27507,296,2);
+INSERT INTO `item_mods` VALUES (27510,949,1); -- Fotia Gorget 1% No Tp used on Weaponskill
 INSERT INTO `item_mods` VALUES (27516,12,6); -- Satlada Necklace INT +6
 INSERT INTO `item_mods` VALUES (27516,311,10); -- Magic Damage +10
 INSERT INTO `item_mods` VALUES (27524,2,25);      -- Nodens Gorget: HP +25
@@ -48886,6 +48902,7 @@ INSERT INTO `item_mods` VALUES (28419,536,1);     -- Thunder day and weather bon
 INSERT INTO `item_mods` VALUES (28419,537,1);     -- Light day and weather bonus
 INSERT INTO `item_mods` VALUES (28419,538,1);     -- Dark day and weather bonus
 INSERT INTO `item_mods` VALUES (28420,1,7);       -- Fotia Belt: DEF 7
+INSERT INTO `item_mods` VALUES (28420,949,1);     -- 1% No Tp used on Weaponskill
 INSERT INTO `item_mods` VALUES (28421,13,4);      -- Rumination Sash: MND +4
 INSERT INTO `item_mods` VALUES (28421,30,3);      -- Magic Accuracy +3
 INSERT INTO `item_mods` VALUES (28421,114,7);     -- Enfeebling magic skill +7

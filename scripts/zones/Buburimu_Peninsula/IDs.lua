@@ -15,6 +15,7 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
         ITEM_OBTAINED                  = 6423, -- Obtained: <item>.
         GIL_OBTAINED                   = 6424, -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6426, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6427, -- Lost key item: <keyitem>.
         CONQUEST_BASE                  = 7084, -- Tallying conquest results...
         BEASTMEN_BANNER                = 7165, -- There is a beastmen's banner.
         FIVEOFSPADES_DIALOG            = 7243, -- GiMmefIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol!

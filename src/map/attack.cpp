@@ -521,7 +521,7 @@ void CAttack::ProcessDamage()
     }
 
     // Get damage multipliers.
-    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[slot], m_damage, m_attackType, slot);
+    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[slot]), m_damage, m_attackType, slot);
 
     // Get critical bonus mods.
     if (m_isCritical)
@@ -544,7 +544,10 @@ void CAttack::ProcessDamage()
     // Try skill up.
     if (m_damage > 0)
     {
-        charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[slot]->getSkillType(), m_victim->GetMLevel());
+        if (auto weapon = dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[slot]))
+        {
+            charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)weapon->getSkillType(), m_victim->GetMLevel());
+        }
 
         if (m_attacker->objtype == TYPE_PET && m_attacker->PMaster && m_attacker->PMaster->objtype == TYPE_PC &&
             static_cast<CPetEntity*>(m_attacker)->getPetType() == PETTYPE_AUTOMATON)

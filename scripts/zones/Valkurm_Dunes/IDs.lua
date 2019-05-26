@@ -15,6 +15,7 @@ zones[dsp.zone.VALKURM_DUNES] =
         ITEM_OBTAINED                  = 6410, -- Obtained: <item>.
         GIL_OBTAINED                   = 6411, -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6413, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6414, -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY        = 6424, -- There is nothing out of the ordinary here.
         CONQUEST_BASE                  = 7071, -- Tallying conquest results...
         BEASTMEN_BANNER                = 7152, -- There is a beastmen's banner.

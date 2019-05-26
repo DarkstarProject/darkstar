@@ -938,7 +938,7 @@ namespace charutils
                     CItem* PItem = (CItem*)PItemContainer->GetItem(y);
 
                     // check if the item is valid and can have an augment applied to it
-                    if (PItem != nullptr && ((PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
+                    if (PItem != nullptr && ((PItem->isType(ITEM_EQUIPMENT) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
                     {
                         // check if there are any valid augments to be applied to the item
                         for (uint8 j = 0; j < 4; ++j)
@@ -1410,7 +1410,7 @@ namespace charutils
                             charutils::UpdateWeaponStyle(PChar, SLOT_SUB, (CItemWeapon*)PChar->getEquip(SLOT_SUB));
                         }
                     }
-                    else if (PItem->isType(ITEM_ARMOR)) {
+                    else if (PItem->isType(ITEM_EQUIPMENT)) {
                         auto equipSlotID = ((CItemArmor*)PItem)->getSlotType();
                         if (PChar->styleItems[equipSlotID] == ItemID) {
                             switch (equipSlotID)
@@ -1509,7 +1509,7 @@ namespace charutils
     {
         CItem* PItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
-        if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+        if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
         {
             auto removeSlotID = ((CItemArmor*)PItem)->getRemoveSlotId();
 
@@ -1559,7 +1559,7 @@ namespace charutils
                 {
                     CItem* PItem = PChar->getEquip((SLOTTYPE)i);
 
-                    if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+                    if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
                     {
                         PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
                     }
@@ -1574,7 +1574,7 @@ namespace charutils
 
             if (equipSlotID == SLOT_SUB) {
                 // Removed sub item, if main hand is empty, then possibly eligible for H2H weapon
-                if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_ARMOR))
+                if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_EQUIPMENT))
                 {
                     CheckUnarmedWeapon(PChar);
                 }
@@ -1643,7 +1643,7 @@ namespace charutils
                     }
 
                     // If main hand is empty, figure out which UnarmedItem to give the player.
-                    if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_ARMOR))
+                    if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_EQUIPMENT))
                     {
                         CheckUnarmedWeapon(PChar);
                     }
@@ -1670,7 +1670,7 @@ namespace charutils
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
 
-        if (PItem != nullptr && PItem->isType(ITEM_ARMOR))
+        if (PItem != nullptr && PItem->isType(ITEM_EQUIPMENT))
         {
             UnequipItem(PChar, SLOT_SUB);
         }
@@ -1709,7 +1709,7 @@ namespace charutils
             {
                 CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
 
-                if (PSubItem != nullptr && PSubItem->isType(ITEM_ARMOR) && (PSubItem->IsShield() != true))
+                if (PSubItem != nullptr && PSubItem->isType(ITEM_EQUIPMENT) && (PSubItem->IsShield() != true))
                     RemoveSub(PChar);
             }
         }
@@ -1752,7 +1752,7 @@ namespace charutils
             for (uint8 i = 0; i < SLOT_BACK; ++i)
             {
                 CItemArmor* armor = PChar->getEquip((SLOTTYPE)i);
-                if (armor && armor->isType(ITEM_ARMOR) && armor->getRemoveSlotId() & PItem->getEquipSlotId())
+                if (armor && armor->isType(ITEM_EQUIPMENT) && armor->getRemoveSlotId() & PItem->getEquipSlotId())
                 {
                     UnequipItem(PChar, i, false);
                 }
@@ -1775,7 +1775,7 @@ namespace charutils
                             case SKILL_STAFF:
                             {
                                 CItemArmor* armor = (CItemArmor*)PChar->getEquip(SLOT_SUB);
-                                if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
+                                if ((armor != nullptr) && armor->isType(ITEM_EQUIPMENT))
                                 {
                                     if (armor->isType(ITEM_WEAPON))
                                     {
@@ -1802,9 +1802,9 @@ namespace charutils
                             auto state = dynamic_cast<CAttackState*>(PChar->PAI->GetCurrentState());
                             if (state) state->ResetAttackTimer();
                         }
-                        PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
+                        PChar->m_Weapons[SLOT_MAIN] = PItem;
 
-                        if (!PChar->m_Weapons[SLOT_MAIN]->isTwoHanded())
+                        if (!((CItemWeapon*)PChar->m_Weapons[SLOT_MAIN])->isTwoHanded())
                         {
                             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASSO);
                             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEIGAN);
@@ -2100,7 +2100,7 @@ namespace charutils
         else
         {
 
-            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+            if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
             {
 
                 if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID, containerID))
@@ -2124,7 +2124,7 @@ namespace charutils
 
                     if (equipSlotID == SLOT_SUB) {
                         // If main hand is empty, check which UnarmedItem to use.
-                        if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_ARMOR))
+                        if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_EQUIPMENT))
                         {
                             CheckUnarmedWeapon(PChar);
                         }
@@ -2150,7 +2150,7 @@ namespace charutils
             // return back to normal if changed jobs
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem();
             }*/
-            if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
+            if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_EQUIPMENT) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
             {
                 CheckUnarmedWeapon(PChar);
             }
@@ -2180,7 +2180,7 @@ namespace charutils
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
             PItem = PChar->getEquip((SLOTTYPE)slotID);
-            if (PItem == nullptr || !PItem->isType(ITEM_ARMOR))
+            if (PItem == nullptr || !PItem->isType(ITEM_EQUIPMENT))
             {
                 continue;
             }
@@ -2213,7 +2213,7 @@ namespace charutils
             UnequipItem(PChar, slotID);
         }
         // Unarmed H2H weapon check
-        if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
+        if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_EQUIPMENT) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
         {
             CheckUnarmedWeapon(PChar);
         }
@@ -2234,7 +2234,7 @@ namespace charutils
         {
             PItem = PChar->getEquip((SLOTTYPE)slotID);
 
-            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+            if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
             {
                 UnequipItem(PChar, slotID);
             }
@@ -2266,7 +2266,7 @@ namespace charutils
         {
             CItem* PItem = PChar->getEquip((SLOTTYPE)slotID);
 
-            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+            if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
             {
                 if (((CItemArmor*)PItem)->getScriptType() & ScriptType)
                 {
@@ -2299,7 +2299,7 @@ namespace charutils
         {
             if (PChar->m_Weapons[std::get<0>(slot)])
             {
-                PItem = PChar->m_Weapons[std::get<0>(slot)];
+                PItem = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[std::get<0>(slot)]);
 
                 std::get<1>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL);
                 std::get<2>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL_DYN);
@@ -2307,7 +2307,8 @@ namespace charutils
         }
 
         //add in melee ws
-        uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
+        PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_MAIN));
+        uint8 skill = PItem ? PItem->getSkillType() : 0;
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
@@ -2320,10 +2321,10 @@ namespace charutils
         }
 
         //add in ranged ws
-        PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
+        PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_RANGED));
         if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THROWING)
         {
-            skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
+            skill = PItem ? PItem->getSkillType() : 0;
             auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (auto&& PSkill : WeaponSkillList)
             {
@@ -2768,7 +2769,8 @@ namespace charutils
 
     void CheckWeaponSkill(CCharEntity* PChar, uint8 skill)
     {
-        if (PChar->m_Weapons[SLOT_MAIN]->getSkillType() != skill)
+        auto weapon = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[SLOT_MAIN]);
+        if (!weapon || weapon->getSkillType() != skill)
         {
             return;
         }
@@ -3226,6 +3228,7 @@ namespace charutils
 
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
+            if (PMember->isDead()) { return; }
             uint32 baseexp = 0;
             auto exp = 0.f;
             float monsterbonus = 1.0f;
@@ -3430,7 +3433,6 @@ namespace charutils
                             default: PMember->expChain.chainTime = gettick() + 60000; break;
                         }
                     }
-                    exp = charutils::AddExpBonus(PMember, exp);
 
                     // pet or companion exp penalty needs to be added here
 
@@ -3439,6 +3441,7 @@ namespace charutils
                         PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, 0, 0, 37));
                         return;
                     }
+                    exp = charutils::AddExpBonus(PMember, exp);
                     charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, baseexp, chainactive);
                 }
             }
@@ -4506,7 +4509,7 @@ namespace charutils
 
         // Main or sub job provides H2H skill, and sub slot is empty.
         if ((battleutils::GetSkillRank(SKILL_HAND_TO_HAND, PChar->GetMJob()) > 0 || battleutils::GetSkillRank(SKILL_HAND_TO_HAND, PChar->GetSJob()) > 0) &&
-            (!PSubslot || !PSubslot->isType(ITEM_ARMOR)))
+            (!PSubslot || !PSubslot->isType(ITEM_EQUIPMENT)))
         {
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
             PChar->look.main = 21;                                          // The secret to H2H animations.  setModelId for UnarmedH2H didn't work.

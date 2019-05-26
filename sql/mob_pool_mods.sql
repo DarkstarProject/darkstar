@@ -157,6 +157,8 @@ INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
 INSERT INTO `mob_pool_mods` VALUES (181,1,6000,1); -- (Antican_Praetor) GIL_MIN
 INSERT INTO `mob_pool_mods` VALUES (181,2,9234,1); -- (Antican_Praetor) GIL_MAX
+INSERT INTO `mob_pool_mods` VALUES (955,28,-100,1); -- Defender EXP_BONUS: don't give XP
+INSERT INTO `mob_pool_mods` VALUES (1013,28,-100,1); -- Detector EXP_BONUS: don't give XP
 
 -- -------------------------
 --  Race Runner

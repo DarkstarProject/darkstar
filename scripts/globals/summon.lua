@@ -211,7 +211,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
         return 0
     end
     -- handle pd
-    if target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) and skilltype == dsp.attackType.PHYSICAL then
+    if target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.TOO_HIGH) and skilltype == dsp.attackType.PHYSICAL then
         return 0
     end
 

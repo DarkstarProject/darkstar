@@ -52,7 +52,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
 
     if (m_PItem && m_PItem->isType(ITEM_USABLE))
     {
-        if (m_PItem->isType(ITEM_ARMOR))
+        if (m_PItem->isType(ITEM_EQUIPMENT))
         {
             // check if this item is equipped
             bool found = false;
@@ -169,7 +169,7 @@ void CItemState::Cleanup(time_point tick)
 {
     m_PEntity->UContainer->Clean();
 
-    if ((m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_ARMOR))
+    if ((m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_EQUIPMENT))
         m_PItem->setSubType(ITEM_UNLOCKED);
 
     auto PItem = m_PEntity->getStorage(m_location)->GetItem(m_slot);

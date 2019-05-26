@@ -170,7 +170,7 @@ namespace itemutils
         {
             return new CItemWeapon(*((CItemWeapon*)PItem));
         }
-        if (PItem->isType(ITEM_ARMOR))
+        if (PItem->isType(ITEM_EQUIPMENT))
         {
             return new CItemArmor(*((CItemArmor*)PItem));
         }
@@ -321,7 +321,7 @@ namespace itemutils
                 "p.element "        // 38
             "FROM item_basic AS b "
             "LEFT JOIN item_usable AS u USING (itemId) "
-            "LEFT JOIN item_armor  AS a USING (itemId) "
+            "LEFT JOIN item_equipment  AS a USING (itemId) "
             "LEFT JOIN item_weapon AS w USING (itemId) "
             "LEFT JOIN item_furnishing AS f USING (itemId) "
             "LEFT JOIN item_puppet AS p USING (itemId) "
@@ -365,7 +365,7 @@ namespace itemutils
                         ((CItemPuppet*)PItem)->setEquipSlot(Sql_GetUIntData(SqlHandle,37));
                         ((CItemPuppet*)PItem)->setElementSlots(Sql_GetUIntData(SqlHandle,38));
                     }
-                    if (PItem->isType(ITEM_ARMOR))
+                    if (PItem->isType(ITEM_EQUIPMENT))
                     {
                         ((CItemArmor*)PItem)->setReqLvl(Sql_GetUIntData(SqlHandle, 15));
                         ((CItemArmor*)PItem)->setILvl(Sql_GetUIntData(SqlHandle,16));
@@ -406,7 +406,7 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -416,14 +416,14 @@ namespace itemutils
                 Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
                 int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
                     ((CItemArmor*)g_pItemList[ItemID])->addModifier(CModifier(modID,value));
                 }
             }
         }
 
-        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -434,14 +434,14 @@ namespace itemutils
                 int16 value = (int16)Sql_GetIntData(SqlHandle, 2);
                 PetModType petType = static_cast<PetModType>(Sql_GetIntData(SqlHandle, 3));
 
-                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
                     ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(CPetModifier(modID, petType, value));
                 }
             }
         }
 
-        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -453,7 +453,7 @@ namespace itemutils
                 uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
                 uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
                     ((CItemArmor*)g_pItemList[ItemID])->addLatent((LATENT)latentId, latentParam, modID, value);
                 }

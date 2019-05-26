@@ -3235,3 +3235,46 @@ INSERT INTO `item_latents` VALUES(21661, 405, 3, 10, 0);      -- Rune Algol: Dra
 -- INSERT INTO `item_latents` VALUES(21667, 30, 10, ??, 0); -- Futhark Claymore: (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21668, 25, 10, ??, 0); -- Peord Claymore: (D): Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21668, 30, 10, ??, 0); -- Peord Claymore: (D): Magic Accuracy+10
+
+-- -------------------------------------------------------
+-- Conqueror Enhances Berserk I - V
+-- -------------------------------------------------------
+-- Conqueror 75 
+INSERT INTO `item_latents` VALUES(18991,165,5,13,56);  -- Crit Rate +5% if Berserk Active
+INSERT INTO `item_latents` VALUES(18991,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 80
+INSERT INTO `item_latents` VALUES(19060,165,7,13,56);  -- Crit Rate +7% if Berserk Active
+INSERT INTO `item_latents` VALUES(19060,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 85
+INSERT INTO `item_latents` VALUES(19080,165,9,13,56);  -- Crit Rate +9% if Berserk Active
+INSERT INTO `item_latents` VALUES(19080,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 90
+INSERT INTO `item_latents` VALUES(19612,165,11,13,56); -- Crit Rate +11% if Berserk Active
+INSERT INTO `item_latents` VALUES(19612,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 95
+INSERT INTO `item_latents` VALUES(19710,165,11,13,56); -- Crit Rate +11% if Berserk Active
+INSERT INTO `item_latents` VALUES(19710,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 99
+INSERT INTO `item_latents` VALUES(19819,165,14,13,56); -- Crit Rate +14% if Berserk Active
+INSERT INTO `item_latents` VALUES(19819,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 99 AG
+INSERT INTO `item_latents` VALUES(19948,165,14,13,56); -- Crit Rate +14% if Berserk Active
+INSERT INTO `item_latents` VALUES(19948,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 119
+INSERT INTO `item_latents` VALUES(20837,165,14,13,56); -- Crit Rate +14% if Berserk Active
+INSERT INTO `item_latents` VALUES(20837,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 119 AG
+INSERT INTO `item_latents` VALUES(20838,165,14,13,56); -- Crit Rate +14% if Berserk Active
+INSERT INTO `item_latents` VALUES(20838,288,3,13,56);  -- Double Attack +3% if Berserk Active
+
+-- Conqueror 119 AG v3
+INSERT INTO `item_latents` VALUES(21757,165,14,13,56); -- Crit Rate +14% if Berserk Active
+INSERT INTO `item_latents` VALUES(21757,288,3,13,56);  -- Double Attack +3% if Berserk Active

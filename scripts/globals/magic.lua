@@ -1088,7 +1088,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     end
 
     -- Set spell message and apply status effect
-    target:addStatusEffect(dsp.effect.THRENODY, power, 0, duration, 0, modifier, 0);
+    target:addStatusEffect(dsp.effect.THRENODY, -power, 0, duration, 0, modifier, 0);
 
     return dsp.effect.THRENODY;
 end;

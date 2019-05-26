@@ -16,6 +16,7 @@ zones[dsp.zone.RULUDE_GARDENS] =
         ITEM_OBTAINED                    = 6528, -- Obtained: <item>.
         GIL_OBTAINED                     = 6529, -- Obtained <number> gil.
         KEYITEM_OBTAINED                 = 6531, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                     = 6532, -- Lost key item: <keyitem>.
         ITEMS_OBTAINED                   = 6537, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY          = 6542, -- There is nothing out of the ordinary here.
         YOUR_MAXIMUM_LEVEL               = 6584, -- Your maximum level has been raised to [50/55/60/65/70/75/80/85/90/95/99]!

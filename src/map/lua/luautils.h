@@ -28,7 +28,7 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 #include "../../common/taskmgr.h"
-#include "../items/item_armor.h"
+#include "../items/item_equipment.h"
 #include "../spell.h"
 #include "lua_ability.h"
 #include "lua_baseentity.h"
