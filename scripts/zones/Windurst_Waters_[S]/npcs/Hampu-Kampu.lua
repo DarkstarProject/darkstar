@@ -38,9 +38,11 @@ end
 function onEventFinish(player,csid,option)
     if csid == 174 then -- Option doesn't matter as NPC will take key item if yes or no
         if npcUtil.completeQuest(player, CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG, {
-            item = 19110 -- Trainee's Needle
+            item = 19110, -- Trainee's Needle
+            var = "sayItWithAHandbagCS"
         }) then
             player:delKeyItem(dsp.ki.REPAIRED_HANDBAG)
+            player:setVar("sayItWithAHandbagBonusCS", 1)
         end
     elseif csid == 172 then
             npcUtil.giveKeyItem(player, dsp.ki.TORN_PATCHES_OF_LEATHER)
