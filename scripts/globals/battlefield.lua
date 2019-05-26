@@ -214,8 +214,6 @@ function dsp.battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
                         break
                     end
                 end
-            else
-                printf("fuckin loot groups")
             end
         end
         battlefield:setLocalVar("cutsceneTimer", 10)
