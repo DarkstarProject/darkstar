@@ -696,16 +696,17 @@ end;
 function onTrigger(player, npc)
     local battlefield = player:getBattlefield()
     if not battlefield then
-        printf("fuck you "..player:getName())
+        printf("Error: battlefield nil! "..player:getName())
         return
     end
-    local  CofferID = npc:getID();
-    local  CofferType=0;
-    local  lootID=0;
-    local  InstanceRegion=0;
-    local  addtime=0;
-    local  DespawnOtherCoffer=false;
-    local  MimicID=0;
+
+    local CofferID = npc:getID();
+    local CofferType=0;
+    local lootID=0;
+    local InstanceRegion=0;
+    local addtime=0;
+    local DespawnOtherCoffer=false;
+    local MimicID=0;
 
     for coffer = 1,#ARMOURY_CRATES_LIST_APOLLYON,2 do
         if (ARMOURY_CRATES_LIST_APOLLYON[coffer]== CofferID-16932864) then
