@@ -711,7 +711,6 @@ function findBattlefields(player, npc, itemId)
         return 0
     end
     for k, v in pairs(zbfs) do
-        print(k)
         if v[3] == itemId and checkReqs(player, npc, v[2], true) then
             mask = bit.bor(mask,math.pow(2,v[1]))
         end
@@ -799,7 +798,6 @@ function TradeBCNM(player, npc, trade, onUpdate)
 
     -- open menu of valid battlefields
     local validBattlefields = findBattlefields(player, npc, itemId)
-    print("TURAYDOOOOOOOOO")
     local battlefieldId = getBattlefieldIdByBit(player, validBattlefields)
     if validBattlefields ~= 0 and not player:battlefieldAtCapacity(battlefieldId) then
         if not onUpdate then
@@ -857,11 +855,9 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
     -- requesting a battlefield
     if csid == 32000 then
         if option == 0 then
-            printf(player:getName()..option)
             -- todo: check if battlefields full, check party member requiremenst
             return 0
         elseif option == 255 then
-            printf(player:getName()..option)
             -- todo: check if battlefields full, check party member requirements
             return 0
         end
@@ -878,11 +874,7 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local partySize = 1
 
         local result = dsp.battlefield.returnCode.REQS_NOT_MET
-        --print(id)
-
         result = player:registerBattlefield(id, area)
-
-        print("AREAAAAAAAAAAA "..area.."res "..result)
         local status = dsp.battlefield.status.OPEN
         if result ~= dsp.battlefield.returnCode.CUTSCENE then
             if result == dsp.battlefield.returnCode.INCREMENT_REQUEST then

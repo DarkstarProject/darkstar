@@ -900,7 +900,6 @@ end;
 function onTrigger(player,npc)
     local battlefield = player:getBattlefield()
     if not battlefield then
-        printf("fuck you "..player:getName())
         return
     end
     local  CofferID = npc:getID();
@@ -924,13 +923,6 @@ function onTrigger(player,npc)
             lootID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][6];
         end
     end
-
-    printf("CofferID : %u",CofferID-16928768);
-    printf("Coffertype %u",CofferType);
-    printf("InstanceRegion: %u",InstanceRegion);
-    printf("addtime: %u",addtime);
-    printf("MimicID: %u",MimicID);
-    printf("lootID: %u",lootID);
     local coffer = CofferID-16928768;
 
     if (CofferType == cTIME) then
@@ -938,7 +930,6 @@ function onTrigger(player,npc)
     elseif (CofferType == cITEM) then
         if (InstanceRegion == Central_Temenos_4th_Floor and coffer~=79) then
             local randmimic = math.random(1,24)
-            print("randmimic" ..randmimic);
             if ( randmimic < 19) then
                 local MimicList={16928986,16928987,16928988,16928989,16928990,16928991,16928992,16928993,16928994,16928995,16928996,16928997,16928998,16928999,16929000,16929001,16929002,16929003};
                 GetMobByID(MimicList[randmimic]):setSpawn(X,Y,Z);
