@@ -26,10 +26,11 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if csid == 171 and option == 1 then
-        player:setVar("sayItWithAHandbagCS", 1)
-    end
-    if csid == 171 and option == 0 then
-        -- bug: quest music continues (doesn't affect quest line)
+    if csid == 171 then
+        if option == 1 then
+            player:setVar("sayItWithAHandbagCS", 1)
+        else
+            -- bug: quest music continues playing
+        end
     end
 end
