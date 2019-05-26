@@ -24,13 +24,13 @@ end;
 function onTrigger(player,npc)
     local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
     local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
+    local sayItWithAHandbagBonusCS = player:getVar("sayItWithAHandbagBonusCS")
     local guildMember = isGuildMember(player,7)
     local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT)
     local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT)
 
-    if sayItWithAHandbag == QUEST_COMPLETED and sayItWithAHandbagCS == 4 and player:hasItem(19110) then
+    if sayItWithAHandbag == QUEST_COMPLETED and player:hasItem(19110) and sayItWithAHandbagBonusCS == 1 then
         player:startEvent(914)
-        player:setVar("sayItWithAHandbagCS", 5)
     elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
         player:startEvent(913)
     elseif sayItWithAHandbagCS == 3 then
@@ -59,7 +59,9 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if csid == 912 then
+    if csid == 914 then
+        player:setVar("sayItWithAHandbagBonusCS", 0)
+    elseif csid == 912 then
         npcUtil.giveKeyItem(player, dsp.ki.REPAIRED_HANDBAG)
         player:setVar("sayItWithAHandbagCS", 4)
     elseif csid == 910 then
