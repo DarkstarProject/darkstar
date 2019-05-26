@@ -1,6 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
 --  NPC: Door Acolyte Hostel
+-- Type: Quest NPC
+-- !pos  124.000,-3.000,222.215 94
 -----------------------------------
 local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
 require("scripts/globals/keyitems")
