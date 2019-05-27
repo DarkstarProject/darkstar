@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
             player:setVar("sayItWithAHandbagBonusCS", 1)
         end
     elseif csid == 172 then
-            npcUtil.giveKeyItem(player, dsp.ki.TORN_PATCHES_OF_LEATHER)
+        npcUtil.giveKeyItem(player, dsp.ki.TORN_PATCHES_OF_LEATHER)
     elseif csid == 169 then
         player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
     end
