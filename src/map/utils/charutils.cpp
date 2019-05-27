@@ -1360,7 +1360,7 @@ namespace charutils
         }
         if ((int32)(PItem->getQuantity() - PItem->getReserve() + quantity) < 0)
         {
-            ShowDebug("UpdateItem: Trying to move too much quantity\n");
+            ShowDebug("UpdateItem: %s trying to move invalid quantity %u\n", PChar->GetName(), quantity);
             return 0;
         }
 
