@@ -14,10 +14,11 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs")
 function onTrade(player,npc,trade)
     local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
 
-    if player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 2 then
-        if npcUtil.tradeHasExactly(trade, {2012, 850, 816}) then
-            player:startEvent(910)
-        end
+    if
+        player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 2
+        and npcUtil.tradeHasExactly(trade, {2012, 850, 816})
+    then
+        player:startEvent(910)
     end
 end;
 
@@ -29,7 +30,7 @@ function onTrigger(player,npc)
     local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT)
     local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT)
 
-    if sayItWithAHandbag == QUEST_COMPLETED and player:hasItem(19110) and sayItWithAHandbagBonusCS == 1 then
+    if sayItWithAHandbag == QUEST_COMPLETED and sayItWithAHandbagBonusCS == 1 then
         player:startEvent(914)
     elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
         player:startEvent(913)
@@ -44,7 +45,7 @@ function onTrigger(player,npc)
     elseif player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 1 then
         player:startEvent(908)
     elseif guildMember == 1 then
-        if player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == false then
+        if not player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) then
             player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),0,0,0)
         else
             player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),7128,0,0)
