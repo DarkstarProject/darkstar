@@ -1358,9 +1358,12 @@ namespace charutils
             PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
             return 0;
         }
+
+        uint32 ItemID = PItem->getID();
+
         if ((int32)(PItem->getQuantity() - PItem->getReserve() + quantity) < 0)
         {
-            ShowDebug("UpdateItem: %s trying to move invalid quantity %u\n", PChar->GetName(), quantity);
+            ShowDebug("UpdateItem: %s trying to move invalid quantity %u of itemID %u\n", PChar->GetName(), quantity, ItemID);
             return 0;
         }
 
@@ -1373,7 +1376,6 @@ namespace charutils
                 return 0;
         }
 
-        uint32 ItemID = PItem->getID();
         uint32 newQuantity = PItem->getQuantity() + quantity;
 
         if (newQuantity > PItem->getStackSize()) newQuantity = PItem->getStackSize();
@@ -1435,7 +1437,7 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Check the possibility of trade between the characters             *
+    *  Check the possibility of trade between the characters                *
     *                                                                       *
     ************************************************************************/
 
