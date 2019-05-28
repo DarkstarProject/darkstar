@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
     then
         player:startEvent(910)
     end
-end;
+end
 
 function onTrigger(player,npc)
     local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
@@ -53,11 +53,11 @@ function onTrigger(player,npc)
     else
         player:startEvent(651) -- Standard Dialogue
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
 
-end;
+end
 
 function onEventFinish(player,csid,option)
     if csid == 914 then
@@ -76,4 +76,4 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.LEATHER_SUPPORT,0,5,1)
         player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120)
     end
-end;
+end
