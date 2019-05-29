@@ -575,7 +575,7 @@ public:
     int32 getOffhandDmg(lua_State*);            // gets the current equipped offhand's DMG rating (used in WS calcs)
     int32 getOffhandDmgRank(lua_State*);        // gets the current equipped offhand's DMG rating for Rank calc
     int32 getRangedDmg(lua_State*);             // Get ranged weapon DMG rating
-    int32 getRangedDmgForRank(lua_State*);      // Get ranged weapond DMG rating used for calculating rank
+    int32 getRangedDmgRank(lua_State*);         // Get ranged weapond DMG rating used for calculating rank
     int32 getAmmoDmg(lua_State*);               // Get ammo DMG rating
 
     int32 removeAmmo(lua_State* L);

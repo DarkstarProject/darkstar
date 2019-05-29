@@ -68,36 +68,30 @@ end
 --
 -- See doPhysicalWeaponskill or doRangedWeaponskill for how calcParams are determined.
 function calculateRawWSDmg(attacker, target, wsID, tp, action, wsParams, calcParams)
-    local bonusfTP, bonusacc = handleWSGorgetBelt(attacker)
-    bonusacc = bonusacc + attacker:getMod(dsp.mod.WSACC)
-
-    if calcParams.melee then
-        calcParams.hitRate = getHitRate(attacker, target, false, bonusacc)
-    else
-        calcParams.hitRate = getRangedHitRate(attacker, target, false, bonusacc)
-    end
 
     -- Recalculate accuracy if it varies with TP, applied to all hits
     if wsParams.acc100 ~= 0 then
         calcParams.hitRate = accVariesWithTP(calcParams.hitRate, calcParams.accStat, tp, wsParams.acc100, wsParams.acc200, wsParams.acc300)
     end
 
-    -- Calculate fSTR, WSC, and our modifiers for our base per-hit damage
-    local fstr = fSTR(attacker:getStat(dsp.mod.STR),target:getStat(dsp.mod.VIT), calcParams.weaponDmgRank)
-
-    local alpha = getAlpha(attacker:getMainLvl())
-    if USE_ADOULIN_WEAPON_SKILL_CHANGES then
-        alpha = 1
+    -- Calculate alpha, WSC, and our modifiers for our base per-hit damage
+    if not calcParams.alpha then
+        if USE_ADOULIN_WEAPON_SKILL_CHANGES then
+            calcParams.alpha = 1
+        else
+            calcParams.alpha = getAlpha(attacker:getMainLvl())
+        end
     end
-    local wsMods = fstr +
+
+    local wsMods = calcParams.fSTR +
         (attacker:getStat(dsp.mod.STR) * wsParams.str_wsc + attacker:getStat(dsp.mod.DEX) * wsParams.dex_wsc +
          attacker:getStat(dsp.mod.VIT) * wsParams.vit_wsc + attacker:getStat(dsp.mod.AGI) * wsParams.agi_wsc +
          attacker:getStat(dsp.mod.INT) * wsParams.int_wsc + attacker:getStat(dsp.mod.MND) * wsParams.mnd_wsc +
-         attacker:getStat(dsp.mod.CHR) * wsParams.chr_wsc) * alpha
-    local mainBase = calcParams.weaponDamage[1] + wsMods
+         attacker:getStat(dsp.mod.CHR) * wsParams.chr_wsc) * calcParams.alpha
+    local mainBase = calcParams.weaponDamage[1] + wsMods + calcParams.bonusWSmods
 
     -- Calculate fTP multiplier
-    local ftp = fTP(tp,wsParams.ftp100,wsParams.ftp200,wsParams.ftp300) + bonusfTP
+    local ftp = fTP(tp,wsParams.ftp100,wsParams.ftp200,wsParams.ftp300) + calcParams.bonusfTP
 
     -- Calculate critrates
     local critRate = 0
@@ -119,17 +113,10 @@ function calculateRawWSDmg(attacker, target, wsID, tp, action, wsParams, calcPar
         elseif (nativecrit < 0.05) then
             nativecrit = 0.05
         end
-        nativecrit = nativecrit + attacker:getMod(dsp.mod.CRITHITRATE)/100 + attacker:getMerit(dsp.merit.CRIT_HIT_RATE)/100
-                                - target:getMerit(dsp.merit.ENEMY_CRIT_RATE)/100
 
-        -- Handle Fencer critical bonus
-        local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN)
-        if mainEquip and not mainEquip:isTwoHanded() and not mainEquip:isHandToHand() then
-            local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
-            if subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield() then
-                nativecrit = nativecrit + attacker:getMod(dsp.mod.FENCER_CRITHITRATE) / 100
-            end
-        end
+        local fencerBonus = calcParams.fencerBonus or 0
+        nativecrit = nativecrit + attacker:getMod(dsp.mod.CRITHITRATE)/100 + attacker:getMerit(dsp.merit.CRIT_HIT_RATE)/100
+                                + fencerBonus - target:getMerit(dsp.merit.ENEMY_CRIT_RATE)/100
 
         -- Innin critical boost when attacker is behind target
         if (attacker:hasStatusEffect(dsp.effect.INNIN) and attacker:isBehind(target, 23)) then
@@ -230,6 +217,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, wsParams, tp, action, pri
     local cratio, ccritratio = cMeleeRatio(attacker, target, wsParams, ignoredDef)
 
     -- Set up conditions and wsParams used for calculating weaponskill damage
+    local gorgetBeltFTP, gorgetBeltAcc = handleWSGorgetBelt(attacker)
     local attack =
     {
         ['type'] = dsp.attackType.PHYSICAL,
@@ -238,8 +226,8 @@ function doPhysicalWeaponskill(attacker, target, wsID, wsParams, tp, action, pri
         ['damageType'] = attacker:getWeaponDamageType(dsp.slot.MAIN)
     }
     local calcParams = {}
-    calcParams.weaponDmgRank = attacker:getWeaponDmgRank()
     calcParams.weaponDamage = getMeleeDmg(attacker, attack.weaponType, wsParams.kick)
+    calcParams.fSTR = fSTR(attacker:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT), attacker:getWeaponDmgRank())
     calcParams.cratio = cratio
     calcParams.ccritratio = ccritratio
     calcParams.accStat = attacker:getACC()
@@ -259,7 +247,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, wsParams, tp, action, pri
                                  (calcParams.weaponDamage[2] > 0 or attack.weaponType == dsp.skill.HAND_TO_HAND)
     calcParams.hybridHit = wsParams.hybridWS
     calcParams.flourishEffect = attacker:getStatusEffect(dsp.effect.BUILDING_FLOURISH)
+    calcParams.fencerBonus = fencerBonus(attacker)
     calcParams.bonusTP = wsParams.bonusTP or 0
+    calcParams.bonusfTP = gorgetBeltFTP or 0
+    calcParams.bonusAcc = (gorgetBeltAcc or 0) + attacker:getMod(dsp.mod.WSACC)
+    calcParams.bonusWSmods = wsParams.bonusWSmods or 0
+    calcParams.hitRate = getHitRate(attacker, target, false, calcParams.bonusAcc)
 
     -- Send our wsParams off to calculate our raw WS damage, hits landed, and shadows absorbed
     calcParams = calculateRawWSDmg(attacker, target, wsID, tp, action, wsParams, calcParams)
@@ -303,6 +296,7 @@ end
     local cratio, ccritratio = cRangedRatio(attacker, target, wsParams, ignoredDef)
 
     -- Set up conditions and params used for calculating weaponskill damage
+    local gorgetBeltFTP, gorgetBeltAcc = handleWSGorgetBelt(attacker)
     local attack =
     {
         ['type'] = dsp.attackType.RANGED,
@@ -312,22 +306,27 @@ end
     }
     local calcParams =
     {
-        ['weaponDmgRank'] = attacker:getRangedDmgForRank(),
-        ['weaponDamage'] = {attacker:getRangedDmg()},
-        ['cratio'] = cratio,
-        ['ccritratio'] = ccritratio,
-        ['accStat'] = attacker:getRACC(),
-        ['melee'] = false,
-        ['mustMiss'] = false,
-        ['sneakApplicable'] = false,
-        ['trickApplicable'] = false,
-        ['assassinApplicable'] = false,
-        ['mightyStrikesApplicable'] = false,
-        ['forcedFirstCrit'] = false,
-        ['extraOffhandHit'] = false,
-        ['flourishEffect'] = false,
-        ['bonusTP'] = wsParams.bonusTP or 0
+        weaponDamage = {attacker:getRangedDmg()},
+        fSTR = fSTR2(attacker:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT), attacker:getRangedDmgRank()),
+        cratio = cratio,
+        ccritratio = ccritratio,
+        accStat = attacker:getRACC(),
+        melee = false,
+        mustMiss = false,
+        sneakApplicable = false,
+        trickApplicable = false,
+        assassinApplicable = false,
+        mightyStrikesApplicable = false,
+        forcedFirstCrit = false,
+        extraOffhandHit = false,
+        flourishEffect = false,
+        fencerBonus = fencerBonus(attacker),
+        bonusTP = wsParams.bonusTP or 0,
+        bonusfTP = gorgetBeltFTP or 0,
+        bonusAcc = (gorgetBeltAcc or 0) + attacker:getMod(dsp.mod.WSACC),
+        bonusWSmods = wsParams.bonusWSmods or 0
     }
+    calcParams.hitRate = getRangedHitRate(attacker, target, false, calcParams.bonusAcc)
 
     -- Send our params off to calculate our raw WS damage, hits landed, and shadows absorbed
     calcParams = calculateRawWSDmg(attacker, target, wsID, tp, action, wsParams, calcParams)
@@ -455,6 +454,17 @@ function takeWeaponskillDamage(defender, attacker, wsParams, primaryMsg, attack,
     end
 
     return finaldmg
+end
+
+function fencerBonus(attacker)
+    local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN)
+    if mainEquip and not mainEquip:isTwoHanded() and not mainEquip:isHandToHand() then
+        local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
+        if subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield() then
+            return attacker:getMod(dsp.mod.FENCER_CRITHITRATE) / 100
+        end
+    end
+    return 0
 end
 
 function souleaterBonus(attacker, numhits)
@@ -799,32 +809,67 @@ function cRangedRatio(attacker, defender, params, ignoredDef)
 
 end
 
--- Given the attacker's str and the mob's vit, fSTR is calculated
-function fSTR(atk_str,def_vit,base_dmg)
+-- Given the attacker's str and the mob's vit, fSTR is calculated (for melee WS)
+function fSTR(atk_str, def_vit, weapon_rank)
     local dSTR = atk_str - def_vit
+    local fSTR = 0
     if (dSTR >= 12) then
-        fSTR2 = ((dSTR+4)/2)
+        fSTR = (dSTR + 4) / 4
     elseif (dSTR >= 6) then
-        fSTR2 = ((dSTR+6)/2)
+        fSTR = (dSTR + 6) / 4
     elseif (dSTR >= 1) then
-        fSTR2 = ((dSTR+7)/2)
+        fSTR = (dSTR + 7) / 4
     elseif (dSTR >= -2) then
-        fSTR2 = ((dSTR+8)/2)
+        fSTR = (dSTR + 8) / 4
     elseif (dSTR >= -7) then
-        fSTR2 = ((dSTR+9)/2)
+        fSTR = (dSTR + 9) / 4
     elseif (dSTR >= -15) then
-        fSTR2 = ((dSTR+10)/2)
+        fSTR = (dSTR + 10) / 4
     elseif (dSTR >= -21) then
-        fSTR2 = ((dSTR+12)/2)
+        fSTR = (dSTR + 12) / 4
     else
-        fSTR2 = ((dSTR+13)/2)
+        fSTR = (dSTR + 13) / 4
     end
+
     -- Apply fSTR caps.
-    if (fSTR2<((base_dmg/9)*(-1))) then
-        fSTR2 = (base_dmg/9)*(-1)
-    elseif (fSTR2>((base_dmg/9)+8)) then
-        fSTR2 = (base_dmg/9)+8
+    local lower_cap = weapon_rank * -1
+    if weapon_rank == 0 then
+        lower_cap = -1
     end
+    fSTR = utils.clamp(weapon_rank, lower_cap, weapon_rank + 8)
+    return fSTR
+end
+
+-- Given the attacker's str and the mob's vit, fSTR2 is calculated (for ranged WS)
+function fSTR2(atk_str, def_vit, weapon_rank)
+    local dSTR = atk_str - def_vit
+    local fSTR2 = 0
+    if (dSTR >= 12) then
+        fSTR2 = (dSTR + 4) / 2
+    elseif (dSTR >= 6) then
+        fSTR2 = (dSTR + 6) / 2
+    elseif (dSTR >= 1) then
+        fSTR2 = (dSTR + 7) / 2
+    elseif (dSTR >= -2) then
+        fSTR2 = (dSTR + 8) / 2
+    elseif (dSTR >= -7) then
+        fSTR2 = (dSTR + 9) / 2
+    elseif (dSTR >= -15) then
+        fSTR2 = (dSTR + 10) / 2
+    elseif (dSTR >= -21) then
+        fSTR2 = (dSTR + 12) / 2
+    else
+        fSTR2 = (dSTR + 13) / 2
+    end
+
+    -- Apply fSTR2 caps.
+    local lower_cap = weapon_rank * -2
+    if weapon_rank == 0 then
+        lower_cap = -2
+    elseif weapon_rank == 1 then
+        lower_cap = -3
+    end
+    fSTR2 = utils.clamp(weapon_rank, lower_cap, (weapon_rank + 8) * 2)
     return fSTR2
 end
 
