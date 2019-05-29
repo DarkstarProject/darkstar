@@ -11120,7 +11120,7 @@ INSERT INTO `item_mods` VALUES (13691,1,12);
 INSERT INTO `item_mods` VALUES (13691,10,4);
 INSERT INTO `item_mods` VALUES (13692,1,4);       -- Skulker's Cape: DEF 4
 INSERT INTO `item_mods` VALUES (13692,946,30);    -- Sneak duration +30
-INSERT INTO `item_mods` VALUES (13692,947,30);    -- Invisible duration +30 
+INSERT INTO `item_mods` VALUES (13692,947,30);    -- Invisible duration +30
 INSERT INTO `item_mods` VALUES (13693,1,6);
 INSERT INTO `item_mods` VALUES (13694,1,6);
 INSERT INTO `item_mods` VALUES (13694,23,12);
@@ -22817,54 +22817,54 @@ INSERT INTO `item_mods` VALUES (18655,23,35); -- Guttler LV90 - ATT +35
 INSERT INTO `item_mods` VALUES (18655,256,5); -- Aftermath
 INSERT INTO `item_mods` VALUES (18655,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (18655,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
-INSERT INTO `item_mods` VALUES (18655,506,50); -- Extra DMG Chance 5%
-INSERT INTO `item_mods` VALUES (18655,507,250); -- Extra DMG X2.5
-INSERT INTO `item_mods` VALUES (18655,643,25); -- Onslaught DMG +25%
-INSERT INTO `item_mods` VALUES (18656,25,35); -- Bravura LV90 - ACC +35
-INSERT INTO `item_mods` VALUES (18656,256,6); -- Aftermath
-INSERT INTO `item_mods` VALUES (18656,355,89); -- Metatron Torment
-INSERT INTO `item_mods` VALUES (18656,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
-INSERT INTO `item_mods` VALUES (18656,506,50); -- Extra DMG Chance 5%
-INSERT INTO `item_mods` VALUES (18656,507,200); -- Extra DMG X2
-INSERT INTO `item_mods` VALUES (18656,659,25); -- Metatron Torment DMG +25%
-INSERT INTO `item_mods` VALUES (18657,25,35); -- Gungnir LV90 - ACC +35
-INSERT INTO `item_mods` VALUES (18657,256,8); -- Aftermath
-INSERT INTO `item_mods` VALUES (18657,355,121); -- Geirskogul
-INSERT INTO `item_mods` VALUES (18657,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
-INSERT INTO `item_mods` VALUES (18657,506,50); -- Extra DMG Chance %5
-INSERT INTO `item_mods` VALUES (18657,507,200); -- Extra DMG X2
-INSERT INTO `item_mods` VALUES (18657,691,25); -- Geirskogul DMG +25%
-INSERT INTO `item_mods` VALUES (18658,25,35); -- Apocalypse LV90 - ACC +35
-INSERT INTO `item_mods` VALUES (18658,256,7); -- Aftermath
-INSERT INTO `item_mods` VALUES (18658,355,105); -- Catastrophe
-INSERT INTO `item_mods` VALUES (18658,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
-INSERT INTO `item_mods` VALUES (18658,506,50); -- Extra DMG Chance 5%
-INSERT INTO `item_mods` VALUES (18658,507,200); -- Extra DMG X2
-INSERT INTO `item_mods` VALUES (18658,675,25); -- Catastrophe DMG +25%
-INSERT INTO `item_mods` VALUES (18659,23,35); -- Kikoku LV90 - ATT +35
-INSERT INTO `item_mods` VALUES (18659,266,9); -- Aftermath
-INSERT INTO `item_mods` VALUES (18659,355,137); -- Blade: Metsu
-INSERT INTO `item_mods` VALUES (18659,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
-INSERT INTO `item_mods` VALUES (18659,506,50); -- Extra DMG Chance 5%
-INSERT INTO `item_mods` VALUES (18659,507,300); -- Extra DMG X3
-INSERT INTO `item_mods` VALUES (18659,707,25); -- Blade: Metsu DMG +25%
-INSERT INTO `item_mods` VALUES (18660,25,35); -- Amanomurakumo LV90 - ACC +35
-INSERT INTO `item_mods` VALUES (18660,256,10); -- Aftermath
-INSERT INTO `item_mods` VALUES (18660,355,153); -- Tachi: Kaiten
-INSERT INTO `item_mods` VALUES (18660,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
-INSERT INTO `item_mods` VALUES (18660,506,50); -- Extra DMG Chance 5%
-INSERT INTO `item_mods` VALUES (18660,507,250); -- Extra DMG X2.5
-INSERT INTO `item_mods` VALUES (18660,723,25); -- Tachi: Kaiten DMG +25%
-INSERT INTO `item_mods` VALUES (18661,23,35); -- Mjollnir LV90 - ATT +35
-INSERT INTO `item_mods` VALUES (18661,256,11); -- Aftermath
-INSERT INTO `item_mods` VALUES (18661,355,170); -- Randgrith
-INSERT INTO `item_mods` VALUES (18661,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
-INSERT INTO `item_mods` VALUES (18661,506,50); -- Extra DMG Chance 5%
-INSERT INTO `item_mods` VALUES (18661,507,300); -- Extra DMG X3
-INSERT INTO `item_mods` VALUES (18661,740,25); -- Randgrith DMG +25%
-INSERT INTO `item_mods` VALUES (18662,25,35); -- Claustrum LV90 - ACC +35
-INSERT INTO `item_mods` VALUES (18662,256,12); -- Aftermath
-INSERT INTO `item_mods` VALUES (18662,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18655,506,50);    -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18655,507,250);   -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18655,643,25);    -- Onslaught DMG +25%
+INSERT INTO `item_mods` VALUES (18656,25,35);     -- Bravura LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18656,256,6);     -- Aftermath
+INSERT INTO `item_mods` VALUES (18656,355,89);    -- Metatron Torment
+INSERT INTO `item_mods` VALUES (18656,431,1);     -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (18656,506,50);    -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18656,507,200);   -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18656,659,25);    -- Metatron Torment DMG +25%
+INSERT INTO `item_mods` VALUES (18657,25,35);     -- Gungnir LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18657,256,8);     -- Aftermath
+INSERT INTO `item_mods` VALUES (18657,355,121);   -- Geirskogul
+INSERT INTO `item_mods` VALUES (18657,431,1);     -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (18657,506,50);    -- Extra DMG Chance %5
+INSERT INTO `item_mods` VALUES (18657,507,200);   -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18657,691,25);    -- Geirskogul DMG +25%
+INSERT INTO `item_mods` VALUES (18658,25,35);     -- Apocalypse LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18658,256,7);     -- Aftermath
+INSERT INTO `item_mods` VALUES (18658,355,105);   -- Catastrophe
+INSERT INTO `item_mods` VALUES (18658,431,1);     -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (18658,506,50);    -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18658,507,200);   -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18658,675,25);    -- Catastrophe DMG +25%
+INSERT INTO `item_mods` VALUES (18659,23,35);     -- Kikoku LV90 - ATT +35
+INSERT INTO `item_mods` VALUES (18659,256,9);     -- Aftermath
+INSERT INTO `item_mods` VALUES (18659,355,137);   -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (18659,431,1);     -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (18659,506,50);    -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18659,507,300);   -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18659,707,25);    -- Blade: Metsu DMG +25%
+INSERT INTO `item_mods` VALUES (18660,25,35);     -- Amanomurakumo LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18660,256,10);    -- Aftermath
+INSERT INTO `item_mods` VALUES (18660,355,153);   -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18660,431,1);     -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (18660,506,50);    -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18660,507,250);   -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18660,723,25);    -- Tachi: Kaiten DMG +25%
+INSERT INTO `item_mods` VALUES (18661,23,35);     -- Mjollnir LV90 - ATT +35
+INSERT INTO `item_mods` VALUES (18661,256,11);    -- Aftermath
+INSERT INTO `item_mods` VALUES (18661,355,170);   -- Randgrith
+INSERT INTO `item_mods` VALUES (18661,431,1);     -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (18661,506,50);    -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18661,507,300);   -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18661,740,25);    -- Randgrith DMG +25%
+INSERT INTO `item_mods` VALUES (18662,25,35);     -- Claustrum LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18662,256,12);    -- Aftermath
+INSERT INTO `item_mods` VALUES (18662,355,185);   -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (18662,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (18662,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18662,507,250); -- Extra DMG X2.5
