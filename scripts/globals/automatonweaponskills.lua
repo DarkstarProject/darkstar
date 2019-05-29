@@ -92,6 +92,72 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primaryMsg, actio
     return finaldmg, calcParams.criticalHit, calcParams.tpHitsLanded, calcParams.extraHitsLanded, calcParams.shadowsAbsorbed
 end
 
+-- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, accBonus, weaponDamage
+function doAutoRangedWeaponskill(attacker, target, wsID, wsParams, tp, primaryMsg, skill, action)
+    -- Determine cratio and ccritratio
+    local ignoredDef = 0
+    if (wsParams.ignoresDef == not nil and wsParams.ignoresDef == true) then
+        ignoredDef = calculatedIgnoredDef(tp, target:getStat(dsp.mod.DEF), wsParams.ignored100, wsParams.ignored200, wsParams.ignored300)
+    end
+    local cratio, ccritratio = getAutocRatio(attacker, target, wsParams, ignoredDef, false)
+
+    -- Set up conditions and wsParams used for calculating weaponskill damage
+
+    -- Handle Flame Holder attachment.
+    -- DSP Mod usage, and values returned by Flame Holder script, might not be correct.
+    local flameHolderFTP = attacker:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE) / 100
+
+    local attack =
+    {
+        ['type'] = dsp.attackType.RANGED,
+        ['slot'] = dsp.slot.RANGED,
+        ['weaponType'] = attacker:getWeaponSkillType(dsp.slot.RANGED),
+        ['damageType'] = attacker:getWeaponDamageType(dsp.slot.RANGED)
+    }
+    local calcParams =
+    {
+        weaponDamage = {wsParams.weaponDamage or attacker:getRangedDmg()},
+        fSTR = utils.clamp(attacker:getStat(dsp.mod.STR) - target:getStat(dsp.mod.VIT), -10, 10),
+        cratio = cratio,
+        ccritratio = ccritratio,
+        accStat = attacker:getRACC(),
+        melee = false,
+        mustMiss = false,
+        sneakApplicable = false,
+        trickApplicable = false,
+        assassinApplicable = false,
+        mightyStrikesApplicable = false,
+        forcedFirstCrit = false,
+        extraOffhandHit = false,
+        flourishEffect = false,
+        alpha = 1,
+        bonusWSmods = math.max(attacker:getMainLvl() - target:getMainLvl(), 0),
+        bonusTP = wsParams.bonusTP or 0,
+        bonusfTP = flameHolderFTP or 0,
+        bonusAcc = 0 + attacker:getMod(dsp.mod.WSACC)
+    }
+    calcParams.hitRate = getAutoHitRate(attacker, target, false, calcParams.bonusAcc, calcParams.melee)
+
+    -- Send our params off to calculate our raw WS damage, hits landed, and shadows absorbed
+    calcParams = calculateRawWSDmg(attacker, target, wsID, tp, action, wsParams, calcParams)
+    local finaldmg = calcParams.finalDmg
+
+    -- Calculate reductions
+    finaldmg = target:rangedDmgTaken(finaldmg)
+    finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000
+
+    finaldmg = finaldmg * WEAPON_SKILL_POWER -- Add server bonus
+    calcParams.finalDmg = finaldmg
+
+    if calcParams.tpHitsLanded + calcParams.extraHitsLanded > 0 then
+        finaldmg = takeWeaponskillDamage(target, attacker, wsParams, primaryMsg, attack, calcParams, action)
+    else
+        skill:setMsg(dsp.msg.basic.SKILL_MISS)
+    end
+
+    return finaldmg, calcParams.criticalHit, calcParams.tpHitsLanded, calcParams.extraHitsLanded, calcParams.shadowsAbsorbed
+end
+
 function getAutoHitRate(attacker,defender,capHitRate,bonus,melee)
     local acc = (melee and attacker:getACC() or attacker:getRACC()) + (bonus or 0);
     local eva = defender:getEVA();
@@ -233,70 +299,4 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
     end
 
     return pdif, pdifcrit
-end
-
--- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, accBonus, weaponDamage
-function doAutoRangedWeaponskill(attacker, target, wsID, wsParams, tp, primaryMsg, skill, action)
-    -- Determine cratio and ccritratio
-    local ignoredDef = 0
-    if (wsParams.ignoresDef == not nil and wsParams.ignoresDef == true) then
-        ignoredDef = calculatedIgnoredDef(tp, target:getStat(dsp.mod.DEF), wsParams.ignored100, wsParams.ignored200, wsParams.ignored300)
-    end
-    local cratio, ccritratio = getAutocRatio(attacker, target, wsParams, ignoredDef, false)
-
-    -- Set up conditions and wsParams used for calculating weaponskill damage
-
-    -- Handle Flame Holder attachment.
-    -- DSP Mod usage, and values returned by Flame Holder script, might not be correct.
-    local flameHolderFTP = attacker:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE) / 100
-
-    local attack =
-    {
-        ['type'] = dsp.attackType.RANGED,
-        ['slot'] = dsp.slot.RANGED,
-        ['weaponType'] = attacker:getWeaponSkillType(dsp.slot.RANGED),
-        ['damageType'] = attacker:getWeaponDamageType(dsp.slot.RANGED)
-    }
-    local calcParams =
-    {
-        weaponDamage = {wsParams.weaponDamage or attacker:getRangedDmg()},
-        fSTR = utils.clamp(attacker:getStat(dsp.mod.STR) - target:getStat(dsp.mod.VIT), -10, 10),
-        cratio = cratio,
-        ccritratio = ccritratio,
-        accStat = attacker:getRACC(),
-        melee = false,
-        mustMiss = false,
-        sneakApplicable = false,
-        trickApplicable = false,
-        assassinApplicable = false,
-        mightyStrikesApplicable = false,
-        forcedFirstCrit = false,
-        extraOffhandHit = false,
-        flourishEffect = false,
-        alpha = 1,
-        bonusWSmods = math.max(attacker:getMainLvl() - target:getMainLvl(), 0),
-        bonusTP = wsParams.bonusTP or 0,
-        bonusfTP = flameHolderFTP or 0,
-        bonusAcc = 0 + attacker:getMod(dsp.mod.WSACC)
-    }
-    calcParams.hitRate = getAutoHitRate(attacker, target, false, calcParams.bonusAcc, calcParams.melee)
-
-    -- Send our params off to calculate our raw WS damage, hits landed, and shadows absorbed
-    calcParams = calculateRawWSDmg(attacker, target, wsID, tp, action, wsParams, calcParams)
-    local finaldmg = calcParams.finalDmg
-
-    -- Calculate reductions
-    finaldmg = target:rangedDmgTaken(finaldmg)
-    finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000
-
-    finaldmg = finaldmg * WEAPON_SKILL_POWER -- Add server bonus
-    calcParams.finalDmg = finaldmg
-
-    if calcParams.tpHitsLanded + calcParams.extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, wsParams, primaryMsg, attack, calcParams, action)
-    else
-        skill:setMsg(dsp.msg.basic.SKILL_MISS)
-    end
-
-    return finaldmg, calcParams.criticalHit, calcParams.tpHitsLanded, calcParams.extraHitsLanded, calcParams.shadowsAbsorbed
 end
