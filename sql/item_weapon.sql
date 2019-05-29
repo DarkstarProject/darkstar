@@ -1899,7 +1899,7 @@ INSERT INTO `item_weapon` VALUES (18256,'orphic_egg',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (18257,'bibiki_seashell',0,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (18258,'thr._tomahawk',0,0,0,0,0,0,1,3,0,0);
 INSERT INTO `item_weapon` VALUES (18259,'angon',0,0,0,0,0,0,1,3,0,0);
-INSERT INTO `item_weapon` VALUES (18260,'relic_knuckles',1,0,0,0,0,4,1,1239,1,0);
+INSERT INTO `item_weapon` VALUES (18260,'relic_knuckles',1,0,0,0,0,4,1,1479,1,0);
 INSERT INTO `item_weapon` VALUES (18261,'militant_knuckles',1,0,0,0,0,4,1,576,1,0);
 INSERT INTO `item_weapon` VALUES (18262,'dynamis_knuckles',1,0,0,0,0,4,1,576,16,0);
 INSERT INTO `item_weapon` VALUES (18263,'caestus',1,0,0,0,0,4,1,576,23,0);
@@ -2400,7 +2400,7 @@ INSERT INTO `item_weapon` VALUES (18772,'tyro_katars_+1',1,0,0,0,0,4,1,555,7,0);
 INSERT INTO `item_weapon` VALUES (18773,'severus_claws_+1',1,0,0,0,0,4,1,536,16,0);
 INSERT INTO `item_weapon` VALUES (18774,'savate_fists',1,0,0,0,0,4,1,531,19,0);
 INSERT INTO `item_weapon` VALUES (18775,'savate_fists_+1',1,0,0,0,0,4,1,529,20,0);
-INSERT INTO `item_weapon` VALUES (18776,'heofon_knuckles',1,0,0,0,0,4,1,510,30,0);
+INSERT INTO `item_weapon` VALUES (18776,'heofon_knuckles',1,0,0,0,0,4,1,326,30,0);
 INSERT INTO `item_weapon` VALUES (18777,'magnus_sainti',1,0,0,0,0,4,1,531,10,0);
 INSERT INTO `item_weapon` VALUES (18778,'marotte_claws',1,0,0,0,0,4,1,531,22,0);
 INSERT INTO `item_weapon` VALUES (18779,'taurine_cesti',1,0,0,0,0,4,1,528,28,0);
@@ -2409,7 +2409,7 @@ INSERT INTO `item_weapon` VALUES (18781,'furor_cesti',1,0,0,0,0,4,1,510,22,0);
 INSERT INTO `item_weapon` VALUES (18782,'eyra_baghnakhs',1,0,0,0,0,4,1,540,23,0);
 INSERT INTO `item_weapon` VALUES (18783,'eyra_baghnakhs_+1',1,0,0,0,0,4,1,537,24,0);
 INSERT INTO `item_weapon` VALUES (18784,'metasoma_katars',1,0,0,0,0,4,1,564,30,0);
-INSERT INTO `item_weapon` VALUES (18785,'grotesque_cesti',1,0,0,0,0,4,1,520,20,0);
+INSERT INTO `item_weapon` VALUES (18785,'grotesque_cesti',1,0,0,0,0,4,1,480,20,0);
 INSERT INTO `item_weapon` VALUES (18786,'girru',1,0,0,0,0,4,1,531,35,0);
 INSERT INTO `item_weapon` VALUES (18787,'sharas_fists',1,0,0,0,0,4,1,540,34,0);
 INSERT INTO `item_weapon` VALUES (18788,'brawny_adargas',1,0,0,0,0,4,1,534,35,0);
@@ -3363,7 +3363,7 @@ INSERT INTO `item_weapon` VALUES (19832,'ryunohige',8,0,0,0,0,1,1,492,151,0);
 INSERT INTO `item_weapon` VALUES (19833,'nirvana',12,0,0,0,0,3,1,402,104,0);
 INSERT INTO `item_weapon` VALUES (19834,'tizona',3,0,0,0,0,2,1,236,66,0);
 INSERT INTO `item_weapon` VALUES (19835,'death_penalty',26,1,0,0,0,1,1,480,64,0);
-INSERT INTO `item_weapon` VALUES (19836,'kenkonken',1,0,0,0,0,4,1,526,41,0);
+INSERT INTO `item_weapon` VALUES (19836,'kenkonken',1,0,0,0,0,4,1,529,41,0);
 INSERT INTO `item_weapon` VALUES (19837,'terpsichore',2,0,0,0,0,1,1,205,53,0);
 INSERT INTO `item_weapon` VALUES (19838,'tupsimati',12,0,0,0,0,3,1,402,104,0);
 INSERT INTO `item_weapon` VALUES (19839,'spharai',1,0,0,0,0,4,1,566,52,0);
@@ -3396,7 +3396,7 @@ INSERT INTO `item_weapon` VALUES (19865,'gandiva',25,0,0,0,0,1,1,490,117,0);
 INSERT INTO `item_weapon` VALUES (19866,'armageddon',26,1,0,0,0,1,1,582,76,0);
 INSERT INTO `item_weapon` VALUES (19867,'dumuzis',1,0,0,0,0,4,1,535,36,0);
 INSERT INTO `item_weapon` VALUES (19868,'ursa_majors',1,0,0,0,0,4,1,566,2,0);
-INSERT INTO `item_weapon` VALUES (19869,'oxyuranis',1,0,0,0,0,4,1,576,34,0);
+INSERT INTO `item_weapon` VALUES (19869,'oxyuranis',1,0,0,0,0,4,1,541,34,0);
 INSERT INTO `item_weapon` VALUES (19870,'sphyras',1,0,0,0,0,4,1,540,26,0);
 INSERT INTO `item_weapon` VALUES (19871,'khandroma',2,0,0,0,0,1,1,201,51,0);
 INSERT INTO `item_weapon` VALUES (19872,'praxidikai',2,0,0,0,0,1,1,211,24,0);
@@ -3495,48 +3495,48 @@ INSERT INTO `item_weapon` VALUES (19964,'death_penalty',26,1,0,0,0,1,1,480,64,0)
 INSERT INTO `item_weapon` VALUES (19965,'kenkonken',1,0,0,0,0,4,1,529,41,0);
 INSERT INTO `item_weapon` VALUES (19966,'terpsichore',2,0,0,0,0,1,1,205,53,0);
 INSERT INTO `item_weapon` VALUES (19967,'tupsimati',12,0,0,0,0,3,1,402,104,0);
-INSERT INTO `item_weapon` VALUES (20480,'spharai',1,0,242,242,215,4,1,566,130,0);
-INSERT INTO `item_weapon` VALUES (20481,'spharai',1,0,242,242,215,4,1,566,130,0);
-INSERT INTO `item_weapon` VALUES (20482,'glanzfaust',1,0,242,242,215,4,1,576,130,0);
-INSERT INTO `item_weapon` VALUES (20483,'glanzfaust',1,0,242,242,215,4,1,576,130,0);
-INSERT INTO `item_weapon` VALUES (20484,'kenkonken',1,0,242,242,215,4,1,529,107,0);
-INSERT INTO `item_weapon` VALUES (20485,'kenkonken',1,0,242,242,215,4,1,529,107,0);
-INSERT INTO `item_weapon` VALUES (20486,'verethragna',1,0,242,242,215,4,1,531,111,0);
-INSERT INTO `item_weapon` VALUES (20487,'verethragna',1,0,242,242,215,4,1,531,111,0);
-INSERT INTO `item_weapon` VALUES (20505,'condemners',1,0,242,242,188,4,1,534,135,0);
-INSERT INTO `item_weapon` VALUES (20506,'suwaiyas',1,0,242,242,188,4,1,576,185,0);
-INSERT INTO `item_weapon` VALUES (20507,'comeuppances',1,0,242,242,188,4,1,531,162,0);
-INSERT INTO `item_weapon` VALUES (20508,'comeuppances_+1',1,0,242,242,188,4,1,529,163,0);
-INSERT INTO `item_weapon` VALUES (20509,'spharai',1,0,269,269,228,4,1,566,182,0);
-INSERT INTO `item_weapon` VALUES (20510,'glanzfaust',1,0,269,269,228,4,1,576,170,0);
-INSERT INTO `item_weapon` VALUES (20511,'kenkonken',1,0,269,269,228,4,1,529,144,0);
-INSERT INTO `item_weapon` VALUES (20512,'verethragna',1,0,269,269,228,4,1,531,158,0);
+INSERT INTO `item_weapon` VALUES (20480,'spharai',1,0,242,242,215,4,1,596,130,0);
+INSERT INTO `item_weapon` VALUES (20481,'spharai',1,0,242,242,215,4,1,596,130,0);
+INSERT INTO `item_weapon` VALUES (20482,'glanzfaust',1,0,242,242,215,4,1,606,130,0);
+INSERT INTO `item_weapon` VALUES (20483,'glanzfaust',1,0,242,242,215,4,1,606,130,0);
+INSERT INTO `item_weapon` VALUES (20484,'kenkonken',1,0,242,242,215,4,1,559,107,0);
+INSERT INTO `item_weapon` VALUES (20485,'kenkonken',1,0,242,242,215,4,1,559,107,0);
+INSERT INTO `item_weapon` VALUES (20486,'verethragna',1,0,242,242,215,4,1,561,111,0);
+INSERT INTO `item_weapon` VALUES (20487,'verethragna',1,0,242,242,215,4,1,561,111,0);
+INSERT INTO `item_weapon` VALUES (20505,'condemners',1,0,242,242,188,4,1,564,135,0);
+INSERT INTO `item_weapon` VALUES (20506,'suwaiyas',1,0,242,242,188,4,1,606,185,0);
+INSERT INTO `item_weapon` VALUES (20507,'comeuppances',1,0,242,242,188,4,1,561,162,0);
+INSERT INTO `item_weapon` VALUES (20508,'comeuppances_+1',1,0,242,242,188,4,1,559,163,0);
+INSERT INTO `item_weapon` VALUES (20509,'spharai',1,0,269,269,228,4,1,596,182,0);
+INSERT INTO `item_weapon` VALUES (20510,'glanzfaust',1,0,269,269,228,4,1,606,170,0);
+INSERT INTO `item_weapon` VALUES (20511,'kenkonken',1,0,269,269,228,4,1,559,144,0);
+INSERT INTO `item_weapon` VALUES (20512,'verethragna',1,0,269,269,228,4,1,561,158,0);
 INSERT INTO `item_weapon` VALUES (20514,'aphelion_knuckles',1,0,0,0,0,4,1,540,1,0);
-INSERT INTO `item_weapon` VALUES (20515,'godhands',1,0,269,269,228,4,1,540,197,0);
-INSERT INTO `item_weapon` VALUES (20516,'denouements',1,0,242,242,188,4,1,576,165,0);
-INSERT INTO `item_weapon` VALUES (20517,'fleshcarvers',1,0,242,242,188,4,1,540,114,0);
-INSERT INTO `item_weapon` VALUES (20518,'eshus',1,0,228,232,188,4,1,576,154,0);
-INSERT INTO `item_weapon` VALUES (20519,'hammerfists',1,0,242,242,188,4,1,531,115,0);
-INSERT INTO `item_weapon` VALUES (20520,'midnights',1,0,242,242,188,4,1,534,119,0);
-INSERT INTO `item_weapon` VALUES (20521,'emeici',1,0,242,242,188,4,1,576,146,0);
-INSERT INTO `item_weapon` VALUES (20522,'emeici_+1',1,0,242,242,188,4,1,576,147,0);
-INSERT INTO `item_weapon` VALUES (20523,'chastisers',1,0,242,242,188,4,1,540,148,0);
-INSERT INTO `item_weapon` VALUES (20524,'nibiru_sainti',1,0,242,242,188,4,1,531,124,0);
-INSERT INTO `item_weapon` VALUES (20525,'blurred_claws',1,0,242,242,188,4,1,546,147,0);
-INSERT INTO `item_weapon` VALUES (20526,'blurred_claws_+1',1,0,242,242,188,4,2,541,148,0);
-INSERT INTO `item_weapon` VALUES (20527,'fists_of_fury',1,0,242,242,188,4,1,576,142,0);
-INSERT INTO `item_weapon` VALUES (20528,'fists_of_fury_+1',1,0,242,242,188,4,1,571,143,0);
-INSERT INTO `item_weapon` VALUES (20529,'calved_claws',1,0,242,242,188,4,1,540,114,0);
-INSERT INTO `item_weapon` VALUES (20530,'ohrmazd',1,0,242,242,188,4,1,610,141,0);
-INSERT INTO `item_weapon` VALUES (20531,'homestead_cesti',1,0,203,203,167,4,1,540,118,0);
+INSERT INTO `item_weapon` VALUES (20515,'godhands',1,0,269,269,228,4,1,618,197,0);
+INSERT INTO `item_weapon` VALUES (20516,'denouements',1,0,242,242,188,4,1,606,165,0);
+INSERT INTO `item_weapon` VALUES (20517,'fleshcarvers',1,0,242,242,188,4,1,570,114,0);
+INSERT INTO `item_weapon` VALUES (20518,'eshus',1,0,228,232,188,4,1,606,154,0);
+INSERT INTO `item_weapon` VALUES (20519,'hammerfists',1,0,242,242,188,4,1,561,115,0);
+INSERT INTO `item_weapon` VALUES (20520,'midnights',1,0,242,242,188,4,1,564,119,0);
+INSERT INTO `item_weapon` VALUES (20521,'emeici',1,0,242,242,188,4,1,606,146,0);
+INSERT INTO `item_weapon` VALUES (20522,'emeici_+1',1,0,242,242,188,4,1,601,147,0);
+INSERT INTO `item_weapon` VALUES (20523,'chastisers',1,0,242,242,188,4,1,570,148,0);
+INSERT INTO `item_weapon` VALUES (20524,'nibiru_sainti',1,0,242,242,188,4,1,561,124,0);
+INSERT INTO `item_weapon` VALUES (20525,'blurred_claws',1,0,242,242,188,4,1,576,147,0);
+INSERT INTO `item_weapon` VALUES (20526,'blurred_claws_+1',1,0,242,242,188,4,2,571,148,0);
+INSERT INTO `item_weapon` VALUES (20527,'fists_of_fury',1,0,242,242,188,4,1,606,142,0);
+INSERT INTO `item_weapon` VALUES (20528,'fists_of_fury_+1',1,0,242,242,188,4,1,601,143,0);
+INSERT INTO `item_weapon` VALUES (20529,'calved_claws',1,0,242,242,188,4,1,570,114,0);
+INSERT INTO `item_weapon` VALUES (20530,'ohrmazd',1,0,242,242,188,4,1,640,141,0);
+INSERT INTO `item_weapon` VALUES (20531,'homestead_cesti',1,0,203,203,167,4,1,570,118,0);
 INSERT INTO `item_weapon` VALUES (20532,'worm_feelers',1,0,0,0,0,4,1,576,1,0);
 INSERT INTO `item_weapon` VALUES (20533,'worm_feelers_+1',1,0,0,0,0,4,1,571,2,0);
-INSERT INTO `item_weapon` VALUES (20534,'nyepel',1,0,242,242,188,4,1,531,112,0);
-INSERT INTO `item_weapon` VALUES (20535,'ohtas',1,0,242,242,188,4,1,534,107,0);
-INSERT INTO `item_weapon` VALUES (20536,'tinhaspa',1,0,242,242,188,4,1,576,136,0);
+INSERT INTO `item_weapon` VALUES (20534,'nyepel',1,0,242,242,188,4,1,561,112,0);
+INSERT INTO `item_weapon` VALUES (20535,'ohtas',1,0,242,242,188,4,1,564,107,0);
+INSERT INTO `item_weapon` VALUES (20536,'tinhaspa',1,0,242,242,188,4,1,606,136,0);
 INSERT INTO `item_weapon` VALUES (20537,'bhakazi_sainti',1,0,215,215,167,4,1,531,96,0);
 INSERT INTO `item_weapon` VALUES (20538,'bhakazi_sainti_+1',1,0,228,228,177,4,1,529,97,0);
-INSERT INTO `item_weapon` VALUES (20539,'ninzas_+2',1,0,242,242,188,4,1,531,104,0);
+INSERT INTO `item_weapon` VALUES (20539,'ninzas_+2',1,0,242,242,188,4,1,561,104,0);
 INSERT INTO `item_weapon` VALUES (20540,'em._baghnakhs',1,0,203,203,167,4,1,531,87,0);
 INSERT INTO `item_weapon` VALUES (20541,'pinion_cesti',1,0,102,102,84,4,1,480,52,0);
 INSERT INTO `item_weapon` VALUES (20542,'gnafrons_adargas',1,0,108,108,84,4,1,534,50,0);
@@ -3545,7 +3545,7 @@ INSERT INTO `item_weapon` VALUES (20544,'dumuzis_-1',1,0,0,0,0,4,1,535,23,0);
 INSERT INTO `item_weapon` VALUES (20545,'cama._knuckles',1,0,102,102,84,4,1,564,74,0);
 INSERT INTO `item_weapon` VALUES (20546,'ninzas_+1',1,0,162,162,126,4,1,531,76,0);
 INSERT INTO `item_weapon` VALUES (20547,'forefront_cesti',1,0,63,63,52,4,1,540,52,0);
-INSERT INTO `item_weapon` VALUES (20548,'oatixur',1,0,228,232,188,4,1,576,141,0);
+INSERT INTO `item_weapon` VALUES (20548,'oatixur',1,0,228,232,188,4,1,606,141,0);
 INSERT INTO `item_weapon` VALUES (20549,'rigor_baghnakhs',1,0,162,162,126,4,1,540,90,0);
 INSERT INTO `item_weapon` VALUES (20550,'vineslash_cesti',1,0,0,0,0,4,1,528,32,0);
 INSERT INTO `item_weapon` VALUES (20551,'akua_sainti',1,0,0,0,0,4,1,531,35,0);
@@ -4347,7 +4347,6 @@ INSERT INTO `item_weapon` VALUES (21407,'terpander',41,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (21408,'cama._harp',41,0,0,0,0,0,1,240,0,0);
 INSERT INTO `item_weapon` VALUES (21409,'forefront_flute',42,0,0,0,0,0,1,999,0,0);
 INSERT INTO `item_weapon` VALUES (21422,'kupayopl',0,0,0,0,0,0,1,0,0,0);
-INSERT INTO `item_weapon` VALUES (21423,'tardus_grup',0,0,0,0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (21438,'poisonous_broth',0,0,0,0,0,0,1,0,8776,0);
 INSERT INTO `item_weapon` VALUES (21439,'venomous_broth',0,0,0,0,0,0,1,0,8777,0);
 INSERT INTO `item_weapon` VALUES (21440,'sugary_broth',0,0,0,0,0,0,1,0,9034,0);
@@ -4392,26 +4391,26 @@ INSERT INTO `item_weapon` VALUES (21496,'furious_broth',0,0,0,0,0,0,1,2215,3154,
 INSERT INTO `item_weapon` VALUES (21497,'rapid_broth',0,0,0,0,0,0,1,2216,5203,0);
 INSERT INTO `item_weapon` VALUES (21498,'crackling_broth',0,0,0,0,0,0,1,2217,3412,0);
 INSERT INTO `item_weapon` VALUES (21499,'creepy_broth',0,0,0,0,0,0,1,2218,3669,0);
-INSERT INTO `item_weapon` VALUES (21504,'arasy_sainti',1,0,242,242,188,4,1,531,107,0);
-INSERT INTO `item_weapon` VALUES (21505,'arasy_sainti_+1',1,0,242,242,188,4,1,529,108,0);
-INSERT INTO `item_weapon` VALUES (21506,'jolt_counter',1,0,242,242,188,4,1,576,180,0);    -- Pair of jolt counter: DMG:+180 Delay:+126 STR+10 VIT+10 Accuracy+25 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+15 Attack during "Counter" varies in proportion to Attack of target.
-INSERT INTO `item_weapon` VALUES (21507,'jolt_counter_+1',1,0,242,242,188,4,1,571,181,0); -- Pair of jolt counter +1: DMG:+181 Delay:+121 STR+15 VIT+15 Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+18 Attack during "Counter" varies in proportion to Attack of target.
-INSERT INTO `item_weapon` VALUES (21509,'premium_mogti',1,0,0,0,0,4,1,546,1,0);           -- DMG:+1 Delay:+96 "Final Paradise" (wsid 228)
-INSERT INTO `item_weapon` VALUES (21511,'hep._baghnakhs',1,0,242,242,188,4,1,540,158,0);  -- DMG:+158 Delay:+90 STR+10 VIT+10 Accuracy+27 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Dragon Kick" effect
-INSERT INTO `item_weapon` VALUES (21512,'hep._baghnakhs_+1',1,0,242,242,188,4,1,531,159,0); -- DMG:+159 Delay:+81 STR+15 VIT+15 Accuracy+32 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Dragon Kick" effect
-INSERT INTO `item_weapon` VALUES (21513,'raetic_baghnakhs',1,0,242,242,215,4,1,540,160,0); -- DMG:+160 Delay:90 HP+70 MP+50 Accuracy+57 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
-INSERT INTO `item_weapon` VALUES (21514,'rae._baghnakhs_+1',1,0,242,242,215,4,1,531,161,0); -- DMG:+161 Delay:+81 HP+80 MP+60 Accuracy+62 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +215 Damage taken -5% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1
-INSERT INTO `item_weapon` VALUES (21515,'tokko_knuckles',1,0,215,215,215,4,1,546,121,0);  -- DMG:+121 Delay:+96 Hand-to-Hand skill +215 Guarding skill +215 Magic Accuracy skill +215
-INSERT INTO `item_weapon` VALUES (21516,'ajja_knuckles',1,0,223,223,223,4,1,546,136,0);   -- DMG:+136 Delay:+96 Accuracy+20 Magic Accuracy+20 Hand-to-Hand skill +223 Guarding skill +223 Magic Accuracy skill +223
-INSERT INTO `item_weapon` VALUES (21517,'eletta_knuckles',1,0,231,231,231,4,1,546,151,0); -- DMG:+151 Delay:+96 Accuracy+30 Attack+20 Magic Accuracy+30 Hand-to-Hand skill +231 Guarding skill +231 Magic Accuracy skill +231
-INSERT INTO `item_weapon` VALUES (21518,'kaja_knuckles',1,0,242,242,242,4,1,546,165,0);   -- DMG:+165 Delay:+96 STR+15 DEX+15 VIT+15 Accuracy+35 Attack+25 Magic Accuracy+35 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +242 "Asuran Fists" "Asuran Fists" damage +50%
-INSERT INTO `item_weapon` VALUES (21519,'karambit',1,0,250,250,250,4,1,546,180,0);        -- DMG:+180 Delay:+96 STR+20 DEX+20 VIT+20 Accuracy+40 Attack+30 Magic Accuracy+40 Hand-to-Hand skill +250 Guarding skill +250 Magic Accuracy skill +250 "Asuran Fists" "Asuran Fists" damage +50% "Auto-Attack": "Store TP"+50 gained when landing critical hits
-INSERT INTO `item_weapon` VALUES (21521,'melee_fists',1,0,242,242,228,4,1,576,190,0);     -- Melee fists: DMG:+190 Delay:+126 HP+130 Accuracy+30 Magic Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +228 Damage taken -5% Dynamis (D): Accuracy+10 Magic Accuracy+10
-INSERT INTO `item_weapon` VALUES (21522,'hes._fists',1,0,255,255,242,4,1,571,191,0);      -- Hesychast's fists: DMG:+191 Delay:+121 HP+140 Accuracy+40 Magic Accuracy+40 Hand-to-Hand skill +255 Guarding skill +255 Magic Accuracy skill +242 Damage taken -7% Dynamis (D): Accuracy+10 Magic Accuracy+10
-INSERT INTO `item_weapon` VALUES (21523,'sagitta',1,0,269,269,255,4,1,571,192,0);         -- Sagitta: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Damage taken -10%
-INSERT INTO `item_weapon` VALUES (21524,'pantin_fists',1,0,242,242,228,4,1,576,190,0);    -- Pantin Fists: DMG:+190 Delay:+126 HP+130 Accuracy+30 Magic Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +228 Dynamis (D): Accuracy+10 Magic Accuracy+10 Automaton: Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30
-INSERT INTO `item_weapon` VALUES (21525,'pitre_fists',1,0,255,255,242,4,1,571,191,0);     -- Pitre Fists: DMG:+191 Delay:+121 HP+140 Accuracy+40 Magic Accuracy+40 Hand-to-Hand skill +255 Guarding skill +255 Magic Accuracy skill +242 Dynamis (D): Accuracy+10 Magic Accuracy+10 Automaton: Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40
-INSERT INTO `item_weapon` VALUES (21526,'xiucoatl',1,0,269,269,255,4,1,571,192,0);        -- Xiucoatl: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Automaton: Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50
+INSERT INTO `item_weapon` VALUES (21504,'arasy_sainti',1,0,242,242,188,4,1,561,107,0);
+INSERT INTO `item_weapon` VALUES (21505,'arasy_sainti_+1',1,0,242,242,188,4,1,559,108,0);
+INSERT INTO `item_weapon` VALUES (21506,'jolt_counter',1,0,242,242,188,4,1,606,180,0);    -- Pair of jolt counter: DMG:+180 Delay:+126 STR+10 VIT+10 Accuracy+25 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+15 Attack during "Counter" varies in proportion to Attack of target.
+INSERT INTO `item_weapon` VALUES (21507,'jolt_counter_+1',1,0,242,242,188,4,1,601,181,0); -- Pair of jolt counter +1: DMG:+181 Delay:+121 STR+15 VIT+15 Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 "Counter"+18 Attack during "Counter" varies in proportion to Attack of target.
+INSERT INTO `item_weapon` VALUES (21509,'premium_mogti',1,0,0,0,0,4,1,576,1,0);           -- DMG:+1 Delay:+96 "Final Paradise" (wsid 228)
+INSERT INTO `item_weapon` VALUES (21511,'hep._baghnakhs',1,0,242,242,188,4,1,570,158,0);  -- DMG:+158 Delay:+90 STR+10 VIT+10 Accuracy+27 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Dragon Kick" effect
+INSERT INTO `item_weapon` VALUES (21512,'hep._baghnakhs_+1',1,0,242,242,188,4,1,561,159,0); -- DMG:+159 Delay:+81 STR+15 VIT+15 Accuracy+32 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Dragon Kick" effect
+INSERT INTO `item_weapon` VALUES (21513,'raetic_baghnakhs',1,0,242,242,215,4,1,570,160,0); -- DMG:+160 Delay:90 HP+70 MP+50 Accuracy+57 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
+INSERT INTO `item_weapon` VALUES (21514,'rae._baghnakhs_+1',1,0,242,242,215,4,1,561,161,0); -- DMG:+161 Delay:+81 HP+80 MP+60 Accuracy+62 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +215 Damage taken -5% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed "Store TP"+1
+INSERT INTO `item_weapon` VALUES (21515,'tokko_knuckles',1,0,215,215,215,4,1,576,121,0);  -- DMG:+121 Delay:+96 Hand-to-Hand skill +215 Guarding skill +215 Magic Accuracy skill +215
+INSERT INTO `item_weapon` VALUES (21516,'ajja_knuckles',1,0,223,223,223,4,1,576,136,0);   -- DMG:+136 Delay:+96 Accuracy+20 Magic Accuracy+20 Hand-to-Hand skill +223 Guarding skill +223 Magic Accuracy skill +223
+INSERT INTO `item_weapon` VALUES (21517,'eletta_knuckles',1,0,231,231,231,4,1,576,151,0); -- DMG:+151 Delay:+96 Accuracy+30 Attack+20 Magic Accuracy+30 Hand-to-Hand skill +231 Guarding skill +231 Magic Accuracy skill +231
+INSERT INTO `item_weapon` VALUES (21518,'kaja_knuckles',1,0,242,242,242,4,1,576,165,0);   -- DMG:+165 Delay:+96 STR+15 DEX+15 VIT+15 Accuracy+35 Attack+25 Magic Accuracy+35 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +242 "Asuran Fists" "Asuran Fists" damage +50%
+INSERT INTO `item_weapon` VALUES (21519,'karambit',1,0,250,250,250,4,1,576,180,0);        -- DMG:+180 Delay:+96 STR+20 DEX+20 VIT+20 Accuracy+40 Attack+30 Magic Accuracy+40 Hand-to-Hand skill +250 Guarding skill +250 Magic Accuracy skill +250 "Asuran Fists" "Asuran Fists" damage +50% "Auto-Attack": "Store TP"+50 gained when landing critical hits
+INSERT INTO `item_weapon` VALUES (21521,'melee_fists',1,0,242,242,228,4,1,606,190,0);     -- Melee fists: DMG:+190 Delay:+126 HP+130 Accuracy+30 Magic Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +228 Damage taken -5% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21522,'hes._fists',1,0,255,255,242,4,1,601,191,0);      -- Hesychast's fists: DMG:+191 Delay:+121 HP+140 Accuracy+40 Magic Accuracy+40 Hand-to-Hand skill +255 Guarding skill +255 Magic Accuracy skill +242 Damage taken -7% Dynamis (D): Accuracy+10 Magic Accuracy+10
+INSERT INTO `item_weapon` VALUES (21523,'sagitta',1,0,269,269,255,4,1,601,192,0);         -- Sagitta: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Damage taken -10%
+INSERT INTO `item_weapon` VALUES (21524,'pantin_fists',1,0,242,242,228,4,1,606,190,0);    -- Pantin Fists: DMG:+190 Delay:+126 HP+130 Accuracy+30 Magic Accuracy+30 Hand-to-Hand skill +242 Guarding skill +242 Magic Accuracy skill +228 Dynamis (D): Accuracy+10 Magic Accuracy+10 Automaton: Accuracy+30 Ranged Accuracy+30 Magic Accuracy+30
+INSERT INTO `item_weapon` VALUES (21525,'pitre_fists',1,0,255,255,242,4,1,601,191,0);     -- Pitre Fists: DMG:+191 Delay:+121 HP+140 Accuracy+40 Magic Accuracy+40 Hand-to-Hand skill +255 Guarding skill +255 Magic Accuracy skill +242 Dynamis (D): Accuracy+10 Magic Accuracy+10 Automaton: Accuracy+40 Ranged Accuracy+40 Magic Accuracy+40
+INSERT INTO `item_weapon` VALUES (21526,'xiucoatl',1,0,269,269,255,4,1,601,192,0);        -- Xiucoatl: DMG:+192 Delay:+121 HP+150 Accuracy+50 Magic Accuracy+50 Hand-to-Hand skill +269 Guarding skill +269 Magic Accuracy skill +255 Automaton: Accuracy+50 Ranged Accuracy+50 Magic Accuracy+50
 INSERT INTO `item_weapon` VALUES (21554,'arasy_knife',2,0,242,242,188,1,1,183,94,0);
 INSERT INTO `item_weapon` VALUES (21555,'arasy_knife_+1',2,0,242,242,188,1,1,178,95,0);
 INSERT INTO `item_weapon` VALUES (21556,'beryllium_kris',2,0,228,228,188,1,1,192,125,0);  -- DMG:125 Delay:192 DEX+7 AGI+7 Accuracy+47 Evasion+27 Dagger skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+15 Adds "Shark Bite" effect
@@ -4693,7 +4692,7 @@ INSERT INTO `item_weapon` VALUES (22108,'tokko_bow',25,0,215,0,0,1,1,360,136,0);
 INSERT INTO `item_weapon` VALUES (22109,'ajja_bow',25,0,223,0,0,1,1,360,147,0); -- DMG:147 Delay:360 Ranged Accuracy+20 Magic Accuracy+20 Archery skill +223
 INSERT INTO `item_weapon` VALUES (22110,'eletta_bow',25,0,231,0,0,1,1,360,157,0); -- DMG:157 Delay:360 Ranged Accuracy+30 Ranged Attack+20 Magic Accuracy+30 Archery skill +231
 INSERT INTO `item_weapon` VALUES (22111,'kaja_bow',25,0,242,0,0,1,1,360,164,0); -- DMG:164 Delay:360 STR+10 DEX+10 AGI+10 Ranged Accuracy+35 Ranged Attack+25 Magic Accuracy+35 Archery skill +242 "Empyreal Arrow" "Empyreal Arrow" damage +50%
-INSERT INTO `item_weapon` VALUES (22112,'mizukage-no-yumi',25,0,0,0,0,1,1,524,270,0); -- DMG:1 Delay:524
+INSERT INTO `item_weapon` VALUES (22112,'mizukage-no-yumi',25,0,0,0,0,1,1,524,1,0); -- DMG:1 Delay:524
 INSERT INTO `item_weapon` VALUES (22113,'teller',25,0,242,0,0,1,1,600,270,0);
 INSERT INTO `item_weapon` VALUES (22114,'steinthor',25,0,242,0,0,1,1,600,290,0);
 INSERT INTO `item_weapon` VALUES (22115,'yoichinoyumi',25,0,269,0,0,1,1,524,303,0);
