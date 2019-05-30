@@ -228,6 +228,15 @@ INSERT INTO `item_mods_pet` VALUES (21361,28,6,0);      -- Esper Stone +1 Pet: "
 INSERT INTO `item_mods_pet` VALUES (21526,25,50,3);     -- Xiucoatl: Automaton: Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21526,26,50,3);     -- Xiucoatl: Automaton: Ranged Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21526,30,50,3);     -- Xiucoatl: Automaton: Magic Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21715,25,30,0);     -- Monster Axe: Pet: Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21715,26,30,0);     -- Monster Axe: Pet: Ranged Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21715,30,30,0);     -- Monster Axe: Pet: Magic Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21716,25,40,0);     -- Ankusa Axe: Pet: Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21716,26,40,0);     -- Ankusa Axe: Pet: Ranged Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21716,30,40,0);     -- Ankusa Axe: Pet: Magic Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21717,25,50,0);     -- Pangu: Pet: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21717,26,50,0);     -- Pangu: Pet: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21717,30,50,0);     -- Pangu: Pet: Magic Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21751,23,80,0);     -- Aymur 119 III Pet: Attack Bonus V
 INSERT INTO `item_mods_pet` VALUES (22063,126,40,1);    -- Nirvana 119 III Avatar: "Blood Pact" damage +40
 INSERT INTO `item_mods_pet` VALUES (23057,25,31,3);     -- Foire Taj +2 Automaton: Accuracy +31
