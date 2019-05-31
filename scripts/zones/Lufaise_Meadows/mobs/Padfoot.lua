@@ -19,20 +19,21 @@ function onMobSpawn(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if isKiller then
-        local mobId = mob:getID()
+end
 
-        if mobId == ID.mob.PADFOOT[GetServerVariable("realPadfoot")] then
-            local respawn = math.random(75600, 86400) -- 21-24 hours
+function onMobDespawn(mob)
+    local mobId = mob:getID()
 
-            for _, v in pairs(ID.mob.PADFOOT) do
-                if v ~= mobId and GetMobByID(v):isSpawned() then
-                    DespawnMob(v)
-                end
-                GetMobByID(v):setRespawnTime(respawn)
+    if mobId == ID.mob.PADFOOT[GetServerVariable("realPadfoot")] then
+        local respawn = math.random(75600, 86400) -- 21-24 hours
+
+        for _, v in pairs(ID.mob.PADFOOT) do
+            if v ~= mobId and GetMobByID(v):isSpawned() then
+                DespawnMob(v)
             end
-
-            SetServerVariable("realPadfoot", math.random(1,5))
+            GetMobByID(v):setRespawnTime(respawn)
         end
+
+        SetServerVariable("realPadfoot", math.random(1,5))
     end
 end
