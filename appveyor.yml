@@ -16,7 +16,7 @@ matrix:
   fast_finish: true
 shallow_clone: true
 before_build:
-- cmake . -G %generator%
+- cmake . -G "%generator%"
 build:
   project: darkstar.sln
   verbosity: normal
