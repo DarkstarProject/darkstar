@@ -8,16 +8,14 @@ configuration:
 platform:
 - Win32
 - x64
-environment:
-  matrix:
-  - generator: Visual Studio 15 2017
-  - generator: Visual Studio 15 2017 Win64 
 matrix:
   fast_finish: true
 shallow_clone: true
+init:
+- set generator="Visual Studio 15 2017"
+- if "%PLATFORM%" == "x64" (set generator="Visual Studio 15 2017 Win64")
 before_build:
-- cmd: |-
-  cmake . -G %generator%
+- cmake . -G %generator%
 build:
   project: darkstar.sln
   verbosity: normal
