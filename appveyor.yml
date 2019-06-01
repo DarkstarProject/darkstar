@@ -2,13 +2,22 @@ version: 0.9.{build}
 pull_requests:
   do_not_increment_build_number: true
 image: Visual Studio 2017
-configuration: Debug
+configuration:
+ - Debug
+ - Release
 platform:
 - Win32
 - x64
+matrix:
+  fast_finish: true
 shallow_clone: true
+init:
+- set generator="Visual Studio 15 2017"
+- if "%PLATFORM%" == "x64" (set generator="Visual Studio 15 2017 Win64")
+before_build:
+- cmake . -G %generator%
 build:
-  project: win32\darkstar.sln
+  project: darkstar.sln
   verbosity: normal
   parallel: true
 test: off

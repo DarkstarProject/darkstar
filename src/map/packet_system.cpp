@@ -945,7 +945,7 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (charutils::UpdateItem(PChar, container, slotID, -quantity) != 0)
         {
             // TODO: Break linkshell if the main shell was disposed of.
-            // ShowNotice(CL_CYAN"Player %s DROPPING itemID %u \n" CL_RESET, PChar->GetName(), ItemID);
+            // ShowNotice(CL_CYAN"Player %s DROPPING itemID %u (quantity: %u)\n" CL_RESET, PChar->GetName(), ItemID, quantity);
             PChar->pushPacket(new CMessageStandardPacket(nullptr, ItemID, quantity, MsgStd::ThrowAway));
             PChar->pushPacket(new CInventoryFinishPacket());
         }

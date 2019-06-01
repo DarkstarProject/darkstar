@@ -28,9 +28,9 @@
 
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaMobSkill::CLuaMobSkill(lua_State *L)
@@ -47,9 +47,9 @@ CLuaMobSkill::CLuaMobSkill(lua_State *L)
 }
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
@@ -150,7 +150,8 @@ inline int32 CLuaMobSkill::getTP(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaMobSkill::getHPP(lua_State* L)
+// Retrieves the Monsters HP% as it was at the start of mobskill
+inline int32 CLuaMobSkill::getMobHPP(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -159,9 +160,9 @@ inline int32 CLuaMobSkill::getHPP(lua_State* L)
 }
 
 /************************************************************************
-*																		*
-*  declare lua function													*
-*																		*
+*                                                                       *
+*  declare lua function                                                 *
+*                                                                       *
 ************************************************************************/
 
 const char CLuaMobSkill::className[] = "CMobSkill";
@@ -174,9 +175,9 @@ Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] =
     LUNAR_DECLARE_METHOD(CLuaMobSkill,isConal),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,isSingle),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,getParam),
-  LUNAR_DECLARE_METHOD(CLuaMobSkill,getID),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,getID),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,getTotalTargets),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,getTP),
-    LUNAR_DECLARE_METHOD(CLuaMobSkill,getHPP),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,getMobHPP),
     {nullptr,nullptr}
 };

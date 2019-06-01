@@ -11241,7 +11241,7 @@ inline int32 CLuaBaseEntity::getWeaponDmgRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponRank() * 9;
+    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponRank();
 
     lua_pushinteger(L, weapondam);
     return 1;
@@ -11278,7 +11278,7 @@ inline int32 CLuaBaseEntity::getOffhandDmgRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponRank() * 9;
+    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponRank();
 
     lua_pushinteger(L, weapondam);
     return 1;
@@ -11303,18 +11303,18 @@ inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
 }
 
 /************************************************************************
-*  Function: getRangedDmgForRank()
+*  Function: getRangedDmgRank()
 *  Purpose : Used in determining fSTR caculcation in weaponskills.lua
-*  Example : attacker:getRangedDmgForRank()
-*  Notes   :   To Do: Rename to getRangedDmgRank to match convention
+*  Example : attacker:getRangedDmgRank()
+*  Notes   :
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::getRangedDmgForRank(lua_State *L)
+inline int32 CLuaBaseEntity::getRangedDmgRank(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    uint16 weaponrank = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponRank() * 9;
+    uint16 weaponrank = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponRank();
 
     lua_pushinteger(L, weaponrank);
     return 1;
@@ -14225,7 +14225,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmgRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmgForRank),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmgRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),

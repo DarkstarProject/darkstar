@@ -14492,7 +14492,7 @@ INSERT INTO `item_basic` VALUES (17293,0,'yagudo_freezer','yagudo_freezer',1,205
 INSERT INTO `item_basic` VALUES (17294,0,'comet_tail','comet_tail',1,2052,13,0,9384);
 INSERT INTO `item_basic` VALUES (17295,0,'rising_sun_+1','rising_sun_+1',1,2080,13,0,4653);
 INSERT INTO `item_basic` VALUES (17296,0,'pebble','pebble',99,2052,15,0,1);
-INSERT INTO `item_basic` VALUES (17297,0,'throwing_coin','throwing_coin',12,2048,15,0,985);
+INSERT INTO `item_basic` VALUES (17297,0,'throwing_coin','throwing_coin',12,2048,15,0,1);
 INSERT INTO `item_basic` VALUES (17298,0,'tathlum','tathlum',99,2052,15,0,40);
 INSERT INTO `item_basic` VALUES (17299,0,'astragalos','astragalos',99,2052,15,0,42);
 INSERT INTO `item_basic` VALUES (17300,0,'platinum_bullet','platinum_bullet',99,2052,15,0,37);
