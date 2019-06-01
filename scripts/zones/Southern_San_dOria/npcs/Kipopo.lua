@@ -23,14 +23,14 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
     local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
-    local sayItWithAHandbagBonusCS = player:getVar("sayItWithAHandbagBonusCS")
-    local guildMember = isGuildMember(player,7)
     local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT)
     local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT)
 
-    if sayItWithAHandbag == QUEST_COMPLETED and sayItWithAHandbagBonusCS == 1 then
+    if
+        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG) == QUEST_COMPLETED
+        and player:getVar("sayItWithAHandbagBonusCS") == 1
+    then
         player:startEvent(914)
     elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
         player:startEvent(913)
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         player:startEvent(909)
     elseif player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 1 then
         player:startEvent(908)
-    elseif guildMember == 1 then
+    elseif isGuildMember(player,7) == 1 then
         if not player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) then
             player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),0,0,0)
         else
