@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
---   NM: Dame_Blanche
+--   NM: Dame Blanche
 -----------------------------------
 require("scripts/globals/mobs")
 -----------------------------------
