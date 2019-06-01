@@ -122,6 +122,7 @@ INSERT INTO `item_latents` VALUES(18486, 171, -30, 25, 0); -- Wardancer, Delay: 
 INSERT INTO `item_latents` VALUES(18504, 165, 7, 59, 17); -- Eventreuse - Vs. plantoid: Critical hit rate +7%
 INSERT INTO `item_latents` VALUES(18767, 25, 3, 59, 8); -- Birdbanes - Vs. birds: Accuracy+3
 INSERT INTO `item_latents` VALUES(18865, 165, 7, 59, 20); -- Zonure - Vs. vermin: Critical hit rate +7%
+-- INSERT INTO `item_latents` VALUES(19110, 132, 1, 24, x); -- Trainee's Needle - : +1 Leather craft (x not implemented)
 INSERT INTO `item_latents` VALUES(19113, 165, 7, 59, 14); -- Ermine's Tail - Vs. lizards: Critical hit rate +7%
 INSERT INTO `item_latents` VALUES(19158, 165, 7, 59, 14); -- Scheherazade - Vs. lizards: Critical hit rate +7%
 INSERT INTO `item_latents` VALUES(19273, 165, 7, 59, 6); -- Onishibari - Vs. beasts: Critical hit rate +7%
