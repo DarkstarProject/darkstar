@@ -4,18 +4,17 @@
 -- Type: Leathercraft Synthesis Image Support
 -- !pos  -191.050 -2.15 12.285 230
 -----------------------------------
-require("scripts/globals/status")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
+require("scripts/globals/npc_util")
 require("scripts/globals/crafting")
 require("scripts/globals/quests")
-require("scripts/globals/npc_util")
-local ID = require("scripts/zones/Southern_San_dOria/IDs")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
-
     if
-        player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 2
+        player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) 
+        and player:getVar("sayItWithAHandbagCS") == 2
         and npcUtil.tradeHasExactly(trade, {2012, 850, 816})
     then
         player:startEvent(910)
@@ -56,7 +55,6 @@ function onTrigger(player,npc)
 end
 
 function onEventUpdate(player,csid,option)
-
 end
 
 function onEventFinish(player,csid,option)
