@@ -30,11 +30,14 @@
 #include "treasure_find_item.h"
 
 
-CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBaseEntity* PMob, bool isOldItem)
+CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBaseEntity* PMob, bool isOldItem, CBaseEntity* PEntity)
 {
-	this->type = 0xD2;
-	this->size = 0x1E;
+    this->type = 0xD2;
+    this->size = 0x1E;
 
+    ref<uint32>(0x04) = 1;                   // ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
+    ref<uint16>(0x10) = PItem->ID;           // ItemID
+    ref<uint8>(0x14) = PItem->SlotID;       // TreasurePool slotID
 	ref<uint32>(0x04) = 1;                   // ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
 	ref<uint16>(0x10) = PItem->ID;           // ItemID
 	ref<uint8>(0x14) = PItem->SlotID;       // TreasurePool slotID
@@ -42,9 +45,10 @@ CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBase
         ref<uint8>(0x15) = 1;
     ref<uint32>(0x18) = (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(PItem->TimeStamp - get_server_start_time()).count();
 
-	if (PMob != nullptr)
-	{
-		ref<uint32>(0x08) = PMob->id; 		// ID монстра	
-		ref<uint16>(0x12) = PMob->targid; 	// TargID монстра
-	}
+    if (PEntity != nullptr)
+    {
+        ref<uint32>(0x08) = PEntity->id;         // ID монстра
+        ref<uint16>(0x12) = PEntity->targid;     // TargID монстра
+        ref<uint8>(0x16) = PEntity->objtype == TYPE_NPC;
+    }
 }

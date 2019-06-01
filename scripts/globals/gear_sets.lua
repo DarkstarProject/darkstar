@@ -224,7 +224,6 @@ function ApplyMod(player, gearset, matches)
 
     -- just in case some d00d decides to custom shit up and complain the script is b0rked
     if (addMatches < 0) then
-        printf("shitbag check your code | gearset: %u", gearset.id);
         return;
     end;
 

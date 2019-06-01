@@ -4,6 +4,7 @@
 -- bcnmID : 993
 -----------------------------------
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -13,19 +14,22 @@ require("scripts/globals/missions");
  --Kukki-Chebukki (BLM)     16908312    16908316   16908320 group 852   2293
  --Cherukiki (WHM).         16908313    16908317   16908321 group 851   710
 
---instance 1   !pos -780 -103 -90
+--battlefield 1   !pos -780 -103 -90
 
---instance 2   !pos -140 -23 -450
+--battlefield 2   !pos -140 -23 -450
 
---instance 3   !pos 500  56  -810
+--battlefield 3   !pos 500  56  -810
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -36,21 +40,22 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 
 
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+        local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(1000);
         if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_WARRIOR_S_PATH) then
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
             player:setVar("PromathiaStatus",0);
             player:completeMission(COP,dsp.mission.id.cop.THE_WARRIOR_S_PATH);
             player:addMission(COP,dsp.mission.id.cop.GARDEN_OF_ANTIQUITY);
         else
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,1);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         end
-    elseif (leavecode == 4) then
-        player:startEvent(32002);
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+           player:startEvent(32002);
     end
 
 end;

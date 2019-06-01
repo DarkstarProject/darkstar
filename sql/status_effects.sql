@@ -196,7 +196,7 @@ INSERT INTO `status_effects` VALUES (153,'damage_spikes',33,34,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (154,'shining_ruby',33,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (155,'medicine',0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (156,'flash',8405026,0,0,1,0,0,7,0);
-INSERT INTO `status_effects` VALUES (157,'sj_restriction',8388608,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (157,'sj_restriction',8388864,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (158,'provoke',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (159,'penalty',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (160,'preparations',32,0,0,0,0,0,0,0);
@@ -670,7 +670,7 @@ INSERT INTO `status_effects` VALUES (796,'haste_samba_haste_effect',320,0,0,0,0,
 INSERT INTO `status_effects` VALUES (797,'teleport',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (798,'chainbound',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (799,'skillchain',32,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (800,'dynamis',0,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (800,'dynamis',33554432,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (801,'meditate',32,0,0,0,0,0,7,0);
 /*!40000 ALTER TABLE `status_effects` ENABLE KEYS */;
 UNLOCK TABLES;
