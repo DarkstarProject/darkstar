@@ -1359,7 +1359,7 @@ namespace charutils
             return 0;
         }
 
-        uint32 ItemID = PItem->getID();
+        uint16 ItemID = PItem->getID();
 
         if ((int32)(PItem->getQuantity() - PItem->getReserve() + quantity) < 0)
         {
