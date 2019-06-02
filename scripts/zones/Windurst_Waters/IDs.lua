@@ -15,6 +15,7 @@ zones[dsp.zone.WINDURST_WATERS] =
         ITEM_OBTAINED              = 6547, -- Obtained: <item>.
         GIL_OBTAINED               = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED           = 6550, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST               = 6551, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL        = 6552, -- You do not have enough gil.
         NOTHING_OUT_OF_ORDINARY    = 6561, -- There is nothing out of the ordinary here.
         HOMEPOINT_SET              = 6638, -- Home point set!

@@ -1,10 +1,15 @@
 -----------------------------------
 -- Area: Dynamis Jeuno
 -- Name: Dynamis Jeuno
+require("scripts/globals/battlefield")
 -----------------------------------
 
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 
     SetServerVariable("[DynaJeuno]UniqueID",os.time());
     SetServerVariable("[DynaJeuno]Boss_Trigger",0);
@@ -13,7 +18,7 @@ function onBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 
     player:setVar("DynamisID",GetServerVariable("[DynaJeuno]UniqueID"));
     local realDay = os.time();
@@ -32,10 +37,10 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
 
-    if (leavecode == 4) then
+    if leavecode == dsp.battlefield.leaveCode.LOST then
         GetNPCByID(17547510):setStatus(2);
         SetServerVariable("[DynaJeuno]UniqueID",0);
     end

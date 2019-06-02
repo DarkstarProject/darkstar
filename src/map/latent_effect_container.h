@@ -29,7 +29,7 @@
 
 #include "latent_effect.h"
 #include "entities/petentity.h"
-#include "items/item_armor.h"
+#include "items/item_equipment.h"
 
 /************************************************************************
 *                                                                       *

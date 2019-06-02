@@ -151,11 +151,11 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->SetMJob(Sql_GetIntData(SqlInstanceHandle, 14));
             PMob->SetSJob(Sql_GetIntData(SqlInstanceHandle, 15));
 
-            PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
-            PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlInstanceHandle, 16));
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setSkillType(Sql_GetIntData(SqlInstanceHandle, 16));
             PMob->m_dmgMult = Sql_GetUIntData(SqlInstanceHandle, 17);
-            PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
-            PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
 
             PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlInstanceHandle, 19);
             PMob->m_Link = (uint8)Sql_GetIntData(SqlInstanceHandle, 20);

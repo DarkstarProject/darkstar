@@ -11,7 +11,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-local cofferID=Randomcoffer(3,GetInstanceRegion(1298));
+local cofferID=Randomcoffer(3,Temenos_Western_Tower);
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();

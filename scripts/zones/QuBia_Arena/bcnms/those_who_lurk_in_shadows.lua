@@ -6,16 +6,21 @@
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/battlefield")
 local ID = require("scripts/zones/QuBia_Arena/IDs");
 
 -----------------------------------
 
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -26,20 +31,21 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
     -- print("leave code "..leavecode);
     if (player:hasKeyItem(dsp.ki.MARK_OF_SEED)) then
         player:delKeyItem(dsp.ki.MARK_OF_SEED);
     end
 
-    if (leavecode == 2) then -- Play end CS. Need time and battle id for record keeping + storage
+    if leavecode == dsp.battlefield.leaveCode.WON then -- Play end CS. Need time and battle id for record keeping + storage
+        local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(700);
         if (player:getCurrentMission(ACP) == dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III) then
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,20,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         else -- Gives skip dialog if previously completed
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,20,1);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         end
-    elseif (leavecode == 4) then
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
 end;

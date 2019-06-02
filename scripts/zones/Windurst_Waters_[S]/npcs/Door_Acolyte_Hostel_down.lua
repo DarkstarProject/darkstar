@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---  NPC: Door Acolyte hostel
--- !pos 125 -2 216 94
+--  NPC: Door Acolyte Hostel
+-- Type: Quest NPC
+-- !pos  124.000,-3.000,222.215 94
 -----------------------------------
 local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
 require("scripts/globals/keyitems")
@@ -28,6 +29,8 @@ function onTrigger(player,npc)
         end
     elseif player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_ACCEPTED then
         player:startEvent(152)
+    else
+        player:messageSpecial(ID.text.DOOR_ACOLYTE_HOSTEL_LOCKED)
     end
 end
 

@@ -256,6 +256,12 @@ dsp.msg.basic =
     ABOUT_TO_WEAR_OFF       = 251,  -- The effect of ${status} is about to wear off.
     ALL_ABILITIES_RECHARGED = 361,  -- All of ${target}'s abilities are recharged.
 
+    -- Battlefield
+    TIME_LEFT               = 202,  -- Time left: (0:00:00)
+
+    -- Dynamis
+    TIME_DYNAMIS_EXTENDED  = 448, -- Time allowed in Dynamis has been extended by <param> minutes
+    TIME_DYNAMIS_REMAINING = 449, -- ----== WARNING ==----Time remaining in Dynamis: <param> minutes.
     -- Charm
     CANNOT_CHARM           = 210, -- <actor> cannot charm <target>!
     VERY_DIFFICULT_CHARM   = 211, -- It would be very difficult for <actor> to charm <target>.
@@ -290,7 +296,7 @@ dsp.msg.basic =
     FOV_OBTAINS_GIL         = 565,  -- ${target} obtains ${gil}.
     FOV_OBTAINS_TABS        = 566,  -- ${target} obtains ${number} tab.${lb}(Total: ${number})
     FOV_REGIME_BEGINS_ANEW  = 643,  -- Your current training regime will begin anew!
-
+    
     -- Depoil Statuses
     DESPOIL_ATT_DOWN        = 593,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Attack Down.
     DESPOIL_DEF_DOWN        = 594,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Defense Down.

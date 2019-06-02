@@ -14,6 +14,7 @@ zones[dsp.zone.WEST_RONFAURE] =
         ITEM_OBTAINED           = 6410, -- Obtained: <item>.
         GIL_OBTAINED            = 6411, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6413, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST            = 6414, -- Lost key item: <keyitem>.
         CONQUEST_BASE           = 7071, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7230, -- You can't fish here.
         DIG_THROW_AWAY          = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
@@ -54,8 +55,8 @@ zones[dsp.zone.WEST_RONFAURE] =
     },
     npc =
     {
-        SIGNPOST_OFFSET = 17187504,
-        OVERSEER_BASE   = 17187524,
+        SIGNPOST_OFFSET = 17187537,
+        OVERSEER_BASE   = 17187557,
     },
 }
 

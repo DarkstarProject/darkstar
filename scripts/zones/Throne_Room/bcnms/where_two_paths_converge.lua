@@ -5,15 +5,20 @@
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/battlefield")
 
 -----------------------------------
 
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -24,16 +29,17 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
     -- print("leave code "..leavecode);
 
-    if (leavecode == 2) then
+    if leavecode == dsp.battlefield.leaveCode.WON then
+        local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE) then
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         else
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         end
-    elseif (leavecode == 4) then
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
 end;
@@ -44,5 +50,5 @@ end;
 
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
-    player:setVar("BASTOK92",2); -- This should be MissionStatus..But all instances of same var need updated.
+    player:setVar("BASTOK92",2); -- This should be MissionStatus..But all battlefields of same var need updated.
 end;

@@ -383,11 +383,11 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
-        PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+        ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->resetDelay();
     }
 
     uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
@@ -808,15 +808,11 @@ void SetupDynamisMob(CMobEntity* PMob)
 
     // boost dynamis mobs weapon damage
     PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     // never despawn
     PMob->SetDespawnTime(0s);
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-
-    // do not roam around
-    PMob->m_roamFlags |= ROAMFLAG_EVENT;
-    PMob->m_maxRoamDistance = 0.5f;
 
     // job resist traits are much more powerful in dynamis
     // according to wiki
@@ -1251,11 +1247,11 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
             PMob->SetMJob(Sql_GetIntData(SqlHandle, 10));
             PMob->SetSJob(Sql_GetIntData(SqlHandle, 11));
 
-            PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
-            PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle, 12));
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setSkillType(Sql_GetIntData(SqlHandle, 12));
             PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 13);
-            PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
-            PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
 
             PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 15);
             PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 16);

@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/teleports");
@@ -12,23 +13,26 @@ local ID = require("scripts/zones/Spire_of_Holla/IDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
---
+-- 
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool,
+-- putting loot into treasure pool, 
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
-    print("instance code ");
+function onBattlefieldEnter(player,battlefield)
+    print("battlefield code ");
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -39,7 +43,7 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
     -- printf("leavecode: %u",leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
@@ -50,11 +54,11 @@ function onBcnmLeave(player,instance,leavecode)
                 player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0,2);
             end
         elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS) then
-            player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0,1);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 1) 
         else
-            player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 1) -- can't tell which cs is playing when you're doing it again to help 
         end
-    elseif (leavecode == 4) then
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
 

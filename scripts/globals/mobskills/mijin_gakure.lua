@@ -11,7 +11,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
-    local hpmod = skill:getHPP() / 100
+    local hpmod = skill:getMobHPP() / 100
     local basePower = (mob:getFamily() == 335) and 4 or 6 -- Maat has a weaker (4) Mijin than usual (6)
     local power = hpmod * 10 + basePower
     local baseDmg = mob:getWeaponDmg() * power

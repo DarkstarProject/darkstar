@@ -43,8 +43,8 @@ RESTRICT_CONTENT = 0;
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.
 MAX_LEVEL = 75; -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
-NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 81; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
-NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 84; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
+NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 0; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
+NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 0; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 START_GIL = 10; -- Amount of gil given to newly created characters.
 START_INVENTORY = 30; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
 OPENING_CUTSCENE_ENABLE = 0; -- Set to 1 to enable opening cutscenes, 0 to disable.
@@ -154,7 +154,6 @@ FORCE_SPAWN_QM_RESET_TIME = 300; -- Number of seconds the ??? remains hidden for
 
 -- LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 20; -- Hours before player can re-enter Limbus. Default is 20 hrs.
-DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using dimensional portals to reach sea for Limbus
 
 -- ABYSSEA
 VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.
