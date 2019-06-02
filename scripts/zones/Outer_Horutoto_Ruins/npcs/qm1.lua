@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Outer Horutoto Ruins
+-- Area: Outer Horutoto Ruins (194)
 --  NPC:
 -- Involved In Mission:
 -----------------------------------
@@ -11,9 +11,11 @@ end
 
 function onTrigger(player, npc)
     
-    for Custom_Cardian = 17572204 + 0, 17572204 + 14, 1 do
+    for Custom_Cardian = ID.mob.CUSTOM_CARDIAN_OFFSET + 0, ID.mob.CUSTOM_CARDIAN_OFFSET + 13, 1 do
         -- TODO: Spawn with mods, depending on key items
-        -- SpawnMob(Custom_Cardian);
+        local mob = SpawnMob(Custom_Cardian);
+        mob:updateClaim(player)
+        mob:updateEnmity(player)
     end
 
     -- TODO: Finish this fight, debug for now
