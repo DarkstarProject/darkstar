@@ -247,7 +247,7 @@ local battlefields = {
         { 7,  103, 1440},   -- Shattering Stars (SMN LB5)
         { 8,  104, 1552},   -- Creeping Doom (BS30)
         { 9,  105, 1551},   -- Charming Trio (BS20)
-     -- {10,  106, 1552},   -- Harem Scarem (BS30)
+        {10,  106, 1552},   -- Harem Scarem (BS30)
         {11,  107, 1553},   -- Early Bird Catches the Wyrm (KS99)
      -- {12,  108, 1131},   -- Royal Succession (BS40)
      -- {13,  109, 1177},   -- Rapid Raptors (BS50)

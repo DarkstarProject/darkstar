@@ -105,7 +105,7 @@ INSERT INTO `bcnm_info` VALUES (102,146,'shattering_stars','nobody',0,600,600,99
 INSERT INTO `bcnm_info` VALUES (103,146,'shattering_stars','nobody',0,600,600,99,1,0,22,0);
 INSERT INTO `bcnm_info` VALUES (104,146,'creeping_doom','nobody',0,900,900,30,3,104,15,0);
 INSERT INTO `bcnm_info` VALUES (105,146,'charming_trio','nobody',0,900,900,20,3,105,15,0);
-INSERT INTO `bcnm_info` VALUES (106,146,'harem_scarem','nobody',0,1800,1800,30,6,0,15,0);
+INSERT INTO `bcnm_info` VALUES (106,146,'harem_scarem','nobody',0,1800,1800,30,6,106,15,0);
 INSERT INTO `bcnm_info` VALUES (107,146,'early_bird_catches_the_wyrm','nobody',0,1800,1800,0,18,107,15,0);
 INSERT INTO `bcnm_info` VALUES (108,146,'royal_succession','nobody',0,900,900,40,3,0,15,0);
 INSERT INTO `bcnm_info` VALUES (109,146,'rapid_raptors','nobody',0,900,900,50,3,0,15,0);
