@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
 
     local iBoost = caster:getMod(dsp.mod.MINNE_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
     if (iBoost > 0) then
-        power = power + 1 iBoost*20
+        power = power + iBoost*20
     end
 
     power =  power + caster:getMerit(dsp.merit.MINNE_EFFECT)
