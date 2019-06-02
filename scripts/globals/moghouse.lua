@@ -41,6 +41,11 @@ function moogleTrade(player,npc,trade)
             player:startEvent(30015)
         end
 
+        -- TODO: In home nation check
+        if player:getCurrentMission(AMK) == dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP and npcUtil.tradeHas(trade, {2757, 2758, 2759}) then
+            player:startEvent(30026)
+        end
+
         return true
     end
     return false
@@ -58,12 +63,30 @@ function moogleTrigger(player,npc)
         end
 
         local homeNationFameLevel = player:getFameLevel(player:getNation())
+
+        -- Moghouse Quests
         local giveMoogleABreak = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
         local theMooglePicnic = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
         local moogleInTheWild = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
 
+        local pNation = player:getNation()
+        local inHomeNation = false
+        if pNation == dsp.nation.BASTOK then
+            local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
+        elseif pNation == dsp.nation.SANDORIA then
+            local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
+        else
+            local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
+        end
+        local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
+
         if player:getVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
+
+        -- A Moogle Kupo d'Etat
+        elseif inHomeNation and player:getMainLvl() >= 10 and player:getCurrentMission(AMK) == dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT then
+            npc:hideNPC(30)
+            player:startEvent(30025)
 
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
                player:getVar("[MS1]BedPlaced") == 1 then
@@ -108,6 +131,13 @@ function moogleEventFinish(player,csid,option)
     if player:isInMogHouse() then
         if csid == 30000 then
             player:setVar("MoghouseExplication", 0)
+
+        elseif csid == 30025 then
+            player:completeMission(AMK,dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT);
+            player:addMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP);
+        elseif csid == 30026 then
+            player:completeMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP);
+            player:addMission(AMK,dsp.mission.id.amk.HASTEN_IN_A_JAM_IN_JEUNO);
 
         elseif csid == 30005 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)

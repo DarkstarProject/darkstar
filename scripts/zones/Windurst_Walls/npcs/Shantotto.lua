@@ -57,6 +57,16 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
         player:startEvent(409) -- she mentions that Sunny-Pabonny left for San d'Oria
     -------------------------------------------------------
+
+    -- AMK
+    elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX then
+        player:startEvent(506)
+    elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and player:hasKeyItem(dsp.ki.RIPE_STARFRUIT) then
+        player:startEvent(507)
+        -- TODO: Where to check for 5000gil being available?
+    elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE then
+        player:startEvent(508)
+
     -- Curses Foiled Again!
     elseif (foiledAgain == QUEST_AVAILABLE) then
         player:startEvent(171,0,0,0,0,0,0,928,880)
@@ -179,6 +189,16 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",8)
     elseif (csid == 399) then
         player:setVar("ShantottoCS",0)
+    elseif csid == 506 then
+        player:completeMission(AMK,dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX)
+        player:addMission(AMK,dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE)
+    elseif csid == 507 and option == 0 then -- Dont Pay
+        print(option)
+        -- TODO Need to Zone
+    elseif csid == 507 and option == 1 then -- Pay
+        player:delGil(5000)
+        player:delKeyItem(dsp.ki.RIPE_STARFRUIT)
+        player:setVar("AMK6", 1)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.RETRIBUTION_LEARNED)
     end
