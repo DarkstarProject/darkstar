@@ -7,11 +7,9 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobEngaged(mob,target)
-    dynamis.spawnGroup(mob, ValkurmQuadavList);
 end;
 
 function onMobDeath(mob, player, isKiller)

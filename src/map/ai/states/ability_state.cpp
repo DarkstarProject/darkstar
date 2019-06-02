@@ -117,6 +117,10 @@ bool CAbilityState::Update(time_point tick)
             m_PEntity->OnAbility(*this, action);
             m_PEntity->PAI->EventHandler.triggerListener("ABILITY_USE", m_PEntity, GetTarget(), m_PAbility.get(), &action);
             m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+            if (auto target = GetTarget())
+            {
+                target->PAI->EventHandler.triggerListener("ABILITY_TAKE", target, m_PEntity, m_PAbility.get(), &action);
+            }
         }
         Complete();
     }

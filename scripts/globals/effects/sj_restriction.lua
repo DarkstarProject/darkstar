@@ -7,8 +7,9 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:sjRestriction(effect:getPower(),true)
-end
+    target:recalculateStats();
+end;
+
 
 function onEffectTick(target,effect)
 end

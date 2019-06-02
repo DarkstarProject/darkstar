@@ -787,7 +787,6 @@ namespace charutils
         }
 
         charutils::LoadInventory(PChar);
-        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
 
         CalculateStats(PChar);
         blueutils::LoadSetSpells(PChar);
@@ -804,6 +803,7 @@ namespace charutils
         PChar->health.hp = zoneutils::IsResidentialArea(PChar) ? PChar->GetMaxHP() : HP;
         PChar->health.mp = zoneutils::IsResidentialArea(PChar) ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
+        PChar->m_event.EventID = luautils::OnZoneIn(PChar);
         luautils::OnGameIn(PChar, zoning == 1);
     }
 
@@ -1344,7 +1344,7 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Обновляем количество предметов в указанных контейнере и ячейке       *
+    *  Update the number of items in the specified container and slot       *
     *                                                                       *
     ************************************************************************/
 
@@ -1358,9 +1358,12 @@ namespace charutils
             PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
             return 0;
         }
+
+        uint16 ItemID = PItem->getID();
+
         if ((int32)(PItem->getQuantity() - PItem->getReserve() + quantity) < 0)
         {
-            ShowDebug("UpdateItem: Trying to move too much quantity\n");
+            ShowDebug("UpdateItem: %s trying to move invalid quantity %u of itemID %u\n", PChar->GetName(), quantity, ItemID);
             return 0;
         }
 
@@ -1373,7 +1376,6 @@ namespace charutils
                 return 0;
         }
 
-        uint32 ItemID = PItem->getID();
         uint32 newQuantity = PItem->getQuantity() + quantity;
 
         if (newQuantity > PItem->getStackSize()) newQuantity = PItem->getStackSize();
@@ -1435,7 +1437,7 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Check the possibility of trade between the characters             *
+    *  Check the possibility of trade between the characters                *
     *                                                                       *
     ************************************************************************/
 
@@ -1802,9 +1804,9 @@ namespace charutils
                             auto state = dynamic_cast<CAttackState*>(PChar->PAI->GetCurrentState());
                             if (state) state->ResetAttackTimer();
                         }
-                        PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
+                        PChar->m_Weapons[SLOT_MAIN] = PItem;
 
-                        if (!PChar->m_Weapons[SLOT_MAIN]->isTwoHanded())
+                        if (!((CItemWeapon*)PChar->m_Weapons[SLOT_MAIN])->isTwoHanded())
                         {
                             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASSO);
                             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEIGAN);
@@ -2299,7 +2301,7 @@ namespace charutils
         {
             if (PChar->m_Weapons[std::get<0>(slot)])
             {
-                PItem = PChar->m_Weapons[std::get<0>(slot)];
+                PItem = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[std::get<0>(slot)]);
 
                 std::get<1>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL);
                 std::get<2>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL_DYN);
@@ -2307,7 +2309,8 @@ namespace charutils
         }
 
         //add in melee ws
-        uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
+        PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_MAIN));
+        uint8 skill = PItem ? PItem->getSkillType() : 0;
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
@@ -2320,10 +2323,10 @@ namespace charutils
         }
 
         //add in ranged ws
-        PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
+        PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_RANGED));
         if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THROWING)
         {
-            skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
+            skill = PItem ? PItem->getSkillType() : 0;
             auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (auto&& PSkill : WeaponSkillList)
             {
@@ -2768,7 +2771,8 @@ namespace charutils
 
     void CheckWeaponSkill(CCharEntity* PChar, uint8 skill)
     {
-        if (PChar->m_Weapons[SLOT_MAIN]->getSkillType() != skill)
+        auto weapon = dynamic_cast<CItemWeapon*>(PChar->m_Weapons[SLOT_MAIN]);
+        if (!weapon || weapon->getSkillType() != skill)
         {
             return;
         }
@@ -3152,6 +3156,29 @@ namespace charutils
         }
     }
 
+    void DistributeItem(CCharEntity* PChar, CBaseEntity* PEntity, uint16 itemid, uint16 droprate)
+    {
+        uint8 tries = 0;
+        uint8 maxTries = 1;
+        uint8 bonus = 0;
+        if (auto PMob = dynamic_cast<CMobEntity*>(PEntity))
+        {
+            //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
+            tries = 0;
+            maxTries = 1 + (PMob->m_THLvl > 2 ? 2 : PMob->m_THLvl);
+            bonus = (PMob->m_THLvl > 2 ? (PMob->m_THLvl - 2) * 10 : 0);
+        }
+        while (tries < maxTries)
+        {
+            if (droprate > 0 && dsprand::GetRandomNumber(1000) < droprate * map_config.drop_rate_multiplier + bonus)
+            {
+                PChar->PTreasurePool->AddItem(itemid, PEntity);
+                break;
+            }
+            tries++;
+        }
+    }
+
     /************************************************************************
     *                                                                       *
     *  Allocate experience points                                           *
@@ -3203,6 +3230,7 @@ namespace charutils
 
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
+            if (PMember->isDead()) { return; }
             uint32 baseexp = 0;
             auto exp = 0.f;
             float monsterbonus = 1.0f;
@@ -3407,7 +3435,6 @@ namespace charutils
                             default: PMember->expChain.chainTime = gettick() + 60000; break;
                         }
                     }
-                    exp = charutils::AddExpBonus(PMember, exp);
 
                     // pet or companion exp penalty needs to be added here
 
@@ -3416,6 +3443,7 @@ namespace charutils
                         PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, 0, 0, 37));
                         return;
                     }
+                    exp = charutils::AddExpBonus(PMember, exp);
                     charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, baseexp, chainactive);
                 }
             }

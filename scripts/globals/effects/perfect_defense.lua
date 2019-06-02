@@ -5,8 +5,6 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    print(target:getMod(dsp.mod.UDMGMAGIC))
-    print(target:getMod(dsp.mod.UDMGPHYS))
     effect:setSubPower(effect:getPower()*(256/100))
     target:addMod(dsp.mod.UDMGPHYS, -effect:getPower())
     target:addMod(dsp.mod.UDMGBREATH, -effect:getPower())
@@ -62,6 +60,4 @@ function onEffectLose(target,effect)
     target:delMod(dsp.mod.SLOWRES, effect:getPower())
     target:delMod(dsp.mod.STUNRES, effect:getPower())
     target:delMod(dsp.mod.CHARMRES, effect:getPower())
-    print(target:getMod(dsp.mod.UDMGMAGIC))
-    print(target:getMod(dsp.mod.UDMGPHYS))
 end

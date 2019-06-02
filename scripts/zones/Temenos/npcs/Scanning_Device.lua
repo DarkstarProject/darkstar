@@ -1,53 +1,47 @@
 -----------------------------------
 -- Area: Temenos
 -- NPC:  Scanning_Device
--- !pos
+-- !pos 586 0 66 37
 -----------------------------------
 require("scripts/globals/limbus");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
 function onTrade(player,npc,trade)
 end;
 
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
 function onTrigger(player,npc)
-
-   player:startEvent(121,511);
-
+    player:startEvent(121, 511);
 end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
 function onEventUpdate(player,csid,option)
-   printf("RESULT: %u",option);
-   Xtime=0;
---=player:getSpecialBattlefieldLeftTime();
- switch (option): caseof {
-        [1] = function (x) -- N
-Xtime=player:getSpecialBattlefieldLeftTime(2);
-        end,
-        [2] = function (x) -- E
-Xtime=player:getSpecialBattlefieldLeftTime(1);
-        end,
-        [3] = function (x) -- O
-Xtime=player:getSpecialBattlefieldLeftTime(3);
-        end,
-        [4] = function (x) -- 4E
-Xtime=player:getSpecialBattlefieldLeftTime(8);
-        end,
-        [5] = function (x) -- 3E
-Xtime=player:getSpecialBattlefieldLeftTime(7);
-        end,
-        [6] = function (x) -- 2E
-Xtime=player:getSpecialBattlefieldLeftTime(6);
-        end,
-        [7] = function (x) -- 1E
-Xtime=player:getSpecialBattlefieldLeftTime(5);
-        end,
-        [8] = function (x) -- SS
-Xtime=player:getSpecialBattlefieldLeftTime(4);
-        end,
-                             }
- player:updateEvent(0,Xtime,0,0,0,0,0,0);
+    local time = 0;
+    switch (option): caseof {
+        [1] = function (x) time = player:getBattlefieldTimeLeft(1); end, -- Northern Tower
+        [2] = function (x) time = player:getBattlefieldTimeLeft(2); end, -- Eastern Tower
+        [3] = function (x) time = player:getBattlefieldTimeLeft(3); end, -- Western Tower
+        [4] = function (x) time = player:getBattlefieldTimeLeft(4); end, -- Central 4th
+        [5] = function (x) time = player:getBattlefieldTimeLeft(5); end, -- Central 3rd
+        [6] = function (x) time = player:getBattlefieldTimeLeft(6); end, -- Central 2nd
+        [7] = function (x) time = player:getBattlefieldTimeLeft(7); end, -- Central 1st
+        [8] = function (x) time = player:getBattlefieldTimeLeft(8); end, -- Central Basement
+    }
+    player:updateEvent(0,time,0,0,0,0,0,0);
 end;
 
-function onEventFinish(player,csid,option)
-   if (csid == 0) then
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-   end
+function onEventFinish(player,csid,option)
 end;

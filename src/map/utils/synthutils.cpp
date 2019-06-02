@@ -390,10 +390,10 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
                     switch(hqtier)
                     {
-                        case 4:  chance = 0.500; break;
-                        case 3:  chance = 0.300; break;
-                        case 2:  chance = 0.100; break;
-                        case 1:  chance = 0.015; break;
+                        case 4:  chance = (1/2); break;
+                        case 3:  chance = (1/4); break;
+                        case 2:  chance = (1/16); break;
+                        case 1:  chance = (1/64); break;
                         default: chance = 0.000; break;
                     }
 
