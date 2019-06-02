@@ -245,7 +245,7 @@ local battlefields = {
         { 5,  101, 1427},   -- Shattering Stars (MNK LB5)
         { 6,  102, 1428},   -- Shattering Stars (WHM LB5)
         { 7,  103, 1440},   -- Shattering Stars (SMN LB5)
-     -- { 8,  104, 1552},   -- Creeping Doom (BS30)
+        { 8,  104, 1552},   -- Creeping Doom (BS30)
         { 9,  105, 1551},   -- Charming Trio (BS20)
      -- {10,  106, 1552},   -- Harem Scarem (BS30)
         {11,  107, 1553},   -- Early Bird Catches the Wyrm (KS99)

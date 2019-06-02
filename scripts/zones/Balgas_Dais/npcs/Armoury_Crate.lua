@@ -10,7 +10,7 @@ require("scripts/globals/quests")
 local loot =
 {
     -- BCNM Treasure and Tribulations
-    [100] = 
+    [100] =
     {
         {
             {itemid = 13292, droprate = 75}, -- Guardians Ring
@@ -59,8 +59,110 @@ local loot =
             {itemid = 866, droprate = 11},   -- Handful Of Wyvern Scales
         },
     },
+    -- BCNM Creeping Doom
+    [104] =
+    {
+        {
+            {itemid =   816, droprate = 1000}, -- spool_of_silk_thread
+        },
+        {
+            {itemid =     0, droprate =  500}, -- nothing
+            {itemid =   816, droprate =  500}, -- spool_of_silk_thread
+        },
+        {
+            {itemid =     0, droprate =  500}, -- nothing
+            {itemid =   816, droprate =  500}, -- spool_of_silk_thread
+        },
+        {
+            {itemid =     0, droprate =  400}, -- nothing
+            {itemid = 14733, droprate =   40}, -- singers_earring
+            {itemid = 14735, droprate =   40}, -- ashigaru_earring
+            {itemid = 14738, droprate =   40}, -- magicians_earring
+            {itemid = 13439, droprate =   40}, -- warlocks_earring
+            {itemid = 13437, droprate =   40}, -- healers_earring
+            {itemid = 14730, droprate =   40}, -- esquires_earring
+            {itemid = 13438, droprate =   40}, -- wizards_earring
+            {itemid = 14737, droprate =   40}, -- wyvern_earring
+            {itemid = 13435, droprate =   40}, -- mercenarys_earring
+            {itemid = 14731, droprate =   40}, -- killer_earring
+            {itemid = 13436, droprate =   40}, -- wrestlers_earring
+            {itemid = 14736, droprate =   40}, -- genin_earring
+            {itemid = 14734, droprate =   40}, -- beaters_earring
+            {itemid = 14729, droprate =   40}, -- pilferers_earring
+            {itemid = 14732, droprate =   40}, -- trimmers_earring
+        },
+        {
+            {itemid =     0, droprate =  400}, -- nothing
+            {itemid = 14733, droprate =   40}, -- singers_earring
+            {itemid = 14735, droprate =   40}, -- ashigaru_earring
+            {itemid = 14738, droprate =   40}, -- magicians_earring
+            {itemid = 13439, droprate =   40}, -- warlocks_earring
+            {itemid = 13437, droprate =   40}, -- healers_earring
+            {itemid = 14730, droprate =   40}, -- esquires_earring
+            {itemid = 13438, droprate =   40}, -- wizards_earring
+            {itemid = 14737, droprate =   40}, -- wyvern_earring
+            {itemid = 13435, droprate =   40}, -- mercenarys_earring
+            {itemid = 14731, droprate =   40}, -- killer_earring
+            {itemid = 13436, droprate =   40}, -- wrestlers_earring
+            {itemid = 14736, droprate =   40}, -- genin_earring
+            {itemid = 14734, droprate =   40}, -- beaters_earring
+            {itemid = 14729, droprate =   40}, -- pilferers_earring
+            {itemid = 14732, droprate =   40}, -- trimmers_earring
+        },
+        {
+            {itemid =     0, droprate =  500}, -- nothing
+            {itemid =  1134, droprate =  250}, -- sheet_of_bast_parchment
+            {itemid =  4116, droprate =  250}, -- hi-potion
+        },
+        {
+            {itemid =     0, droprate =  500}, -- nothing
+            {itemid =   694, droprate =  250}, -- chestnut_log
+            {itemid =  4132, droprate =  250}, -- hi-ether
+        },
+        {
+            {itemid =     0, droprate =  200}, -- nothing
+            {itemid =  4751, droprate =  200}, -- scroll_of_erase
+            {itemid =  4868, droprate =  200}, -- scroll_of_dispel
+            {itemid =  5070, droprate =  200}, -- scroll_of_magic_finale
+            {itemid =  4947, droprate =  200}, -- scroll_of_utsusemi_ni
+        },
+        {
+            {itemid =     0, droprate =  300}, -- nothing
+            {itemid =   814, droprate =   50}, -- amber_stone
+            {itemid =   645, droprate =   50}, -- chunk_of_darksteel_ore
+            {itemid =   690, droprate =   50}, -- elm_log
+            {itemid =   651, droprate =   50}, -- iron_ingot
+            {itemid =   643, droprate =   50}, -- chunk_of_iron_ore
+            {itemid =   795, droprate =   50}, -- lapis_lazuli
+            {itemid =   653, droprate =   50}, -- mythril_ingot
+            {itemid =   644, droprate =   50}, -- chunk_of_mythril_ore
+            {itemid =   799, droprate =   50}, -- onyx
+            {itemid =   807, droprate =   50}, -- sardonyx
+            {itemid =   744, droprate =   50}, -- silver_ingot
+            {itemid =   736, droprate =   50}, -- chunk_of_silver_ore
+            {itemid =   652, droprate =   50}, -- steel_ingot
+            {itemid =   806, droprate =   50}, -- tourmaline
+        },
+        {
+            {itemid =     0, droprate =  300}, -- nothing
+            {itemid =   814, droprate =   50}, -- amber_stone
+            {itemid =   645, droprate =   50}, -- chunk_of_darksteel_ore
+            {itemid =   690, droprate =   50}, -- elm_log
+            {itemid =   651, droprate =   50}, -- iron_ingot
+            {itemid =   643, droprate =   50}, -- chunk_of_iron_ore
+            {itemid =   795, droprate =   50}, -- lapis_lazuli
+            {itemid =   653, droprate =   50}, -- mythril_ingot
+            {itemid =   644, droprate =   50}, -- chunk_of_mythril_ore
+            {itemid =   799, droprate =   50}, -- onyx
+            {itemid =   807, droprate =   50}, -- sardonyx
+            {itemid =   744, droprate =   50}, -- silver_ingot
+            {itemid =   736, droprate =   50}, -- chunk_of_silver_ore
+            {itemid =   652, droprate =   50}, -- steel_ingot
+            {itemid =   806, droprate =   50}, -- tourmaline
+        },
+    },
     -- BCNM Charming Trio
-    [105] = 
+    [105] =
     {
         {
             {itemid = 1603, droprate = 1000}, -- Mannequin Hands
@@ -104,7 +206,7 @@ local loot =
         },
     },
     -- KSNM Early Bird Catches the Wyrm
-    [107] = 
+    [107] =
     {
         {
             {itemid = 3339, droprate = 1000},-- Jug Of Honey Wine
