@@ -8,6 +8,7 @@ require("scripts/globals/weather")
 require("scripts/globals/status")
 require("scripts/globals/utils")
 require("scripts/globals/zone")
+require("scripts/globals/keyitems");
 -----------------------------------
 
 dsp = dsp or {}
@@ -978,6 +979,16 @@ dsp.chocoboDig.start = function(player, precheck)
                     player:messageSpecial(text.ITEM_OBTAINED, itemId)
                 else
                     player:messageSpecial(text.DIG_THROW_AWAY, itemId)
+                end
+
+                if -- TODO: This always hands it out, restrict!
+                    player:getCurrentMission(AMK) == dsp.mission.id.amk.SHOCK_ARRANT_ABUSE_OF_AUTHORITY and
+                    not player:hasKeyItem(dsp.ki.MOLDY_WORMEATEN_CHEST) and
+                    math.random(1,100) < 20
+                then
+                    local ID = zones[player:getZoneID()]
+                    player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MOLDY_WORMEATEN_CHEST)
+                    player:addKeyItem(dsp.ki.MOLDY_WORMEATEN_CHEST)
                 end
 
             -- got a crystal ore, but lacked weather or skill to dig it up

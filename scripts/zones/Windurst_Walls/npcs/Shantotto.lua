@@ -193,8 +193,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(AMK,dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX)
         player:addMission(AMK,dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE)
     elseif csid == 507 and option == 0 then -- Dont Pay
-        print(option)
-        -- TODO Need to Zone
+        player:needToZone(true)
     elseif csid == 507 and option == 1 then -- Pay
         player:delGil(5000)
         player:delKeyItem(dsp.ki.RIPE_STARFRUIT)

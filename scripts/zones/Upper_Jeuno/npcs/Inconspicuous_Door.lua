@@ -43,7 +43,7 @@ function onTrigger(player,npc)
     elseif abuseOfAuthority and hasWormeatenChest then
         player:startEvent(10183) -- Chest handed in
     elseif abuseOfAuthority then
-        player:startEvent(10189) -- Reminder about chest
+        player:startEvent(10189) -- Reminder about chest location
     elseif readTheFinePrint and player:getVar("AMK8") == 2 then
         player:startEvent(10184) -- Loan approved
     elseif aTriumphantReturn then
