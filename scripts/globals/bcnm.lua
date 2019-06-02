@@ -285,7 +285,7 @@ local battlefields = {
         { 1,  161,    0},   -- Where Two Paths Converge (Basty 9-2)
      -- { 2,  162, 1130},   -- Kindred Spirits (BS60)
         { 3,  163, 2557},   -- Survival of the Wisest (SCH LB5)
-     -- { 4,  164,    0},   -- Smash! A Malevolent Menace (MKD14)
+        { 4,  164,    0},   -- Smash! A Malevolent Menace (MKD14)
      -- { 5,    ?, 4063},   -- *Kindred Spirits (SKC20)
      -- { 6,    ?,    0},   -- *The Shadowlord Battle (HTMBF)
     },
@@ -484,6 +484,7 @@ function checkReqs(player, npc, bfid, registrant)
         [ 160] = function() return ( mission == 15 and natStat == 3                                                                                 ) end, -- Mission 5-2
         [ 161] = function() return ( basty == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1                                           ) end, -- Basty 9-2: Where Two Paths Converge
         [ 163] = function() return ( mjob == JOBS.SCH and mlvl >= 66                                                                                ) end, -- Quest: Survival of the Wisest (SCH LB5)
+        [ 165] = function() return ( player:hasKeyItem(dsp.ki.MEGA_BONANZA_KUPON)                                                                                ) end, -- AMK14: Smash! A Malevolent Menace
         [ 192] = function() return ( roz == dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES                                                                             ) end, -- ZM6: Through the Quicksand Caves
         [ 194] = function() return ( mjob == JOBS.SAM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SAM LB5)
         [ 195] = function() return ( mjob == JOBS.NIN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (NIN LB5)

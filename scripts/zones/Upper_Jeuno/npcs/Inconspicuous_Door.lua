@@ -1,13 +1,13 @@
 -----------------------------------
 -- Area: Upper Jeuno (244)
 --  NPC: Inconspicuous Door
--- A Moogle Kupo d'Etat Mission NPC
+--  A Moogle Kupo d'Etat Mission NPC
 -----------------------------------
 require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
 
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
     if csid == 10178 then
@@ -85,4 +85,4 @@ function onEventFinish(player,csid,option)
         player:completeMission(AMK,dsp.mission.id.amk.RELIEF_A_TRIUMPHANT_RETURN)
         player:addMission(AMK,dsp.mission.id.amk.JOY_SUMMONED_TO_A_FABULOUS_FETE)
     end
-end;
+end
