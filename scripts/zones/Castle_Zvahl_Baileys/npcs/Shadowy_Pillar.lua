@@ -8,8 +8,6 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    --player:startEvent(88) -- Sent to Glacier
-    player:startEvent(100) -- Summons stooge moogle
 end
 
 function onEventUpdate(player,csid,option)

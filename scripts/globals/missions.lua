@@ -376,18 +376,18 @@ dsp.mission.id =
     -----------------------------------
     [dsp.mission.area[dsp.mission.log_id.AMK]] =
     {
-        A_MOOGLE_KUPO_DETAT                 = 0,
+        A_MOOGLE_KUPO_DETAT                 = 0, -- (TODO: Location after CS)
         DRENCHED_IT_BEGAN_WITH_A_RAINDROP   = 1, -- ± --
         HASTEN_IN_A_JAM_IN_JEUNO            = 2, -- ± --
-        WELCOME_TO_MY_DECREPIT_DOMICILE     = 3,
+        WELCOME_TO_MY_DECREPIT_DOMICILE     = 3, -- (TODO: Restrict areas)
         CURSES_A_HORRIFICALLY_HARROWING_HEX = 4, -- ± --
-        AN_ERRAND_THE_PROFESSORS_PRICE      = 5,
-        SHOCK_ARRANT_ABUSE_OF_AUTHORITY     = 6,
-        LENDER_BEWARE_READ_THE_FINE_PRINT   = 7,
-        RESCUE_A_MOOGLES_LABOR_OF_LOVE      = 8,
+        AN_ERRAND_THE_PROFESSORS_PRICE      = 5, -- (TODO: Implement the Fight)
+        SHOCK_ARRANT_ABUSE_OF_AUTHORITY     = 6, -- (TODO: Restrict digging)
+        LENDER_BEWARE_READ_THE_FINE_PRINT   = 7, -- ± --
+        RESCUE_A_MOOGLES_LABOR_OF_LOVE      = 8, 
         ROAR_A_CAT_BURGLAR_BARES_HER_FANGS  = 9,
         RELIEF_A_TRIUMPHANT_RETURN          = 10, -- ± --
-        JOY_SUMMONED_TO_A_FABULOUS_FETE     = 11,
+        JOY_SUMMONED_TO_A_FABULOUS_FETE     = 11, -- ± --
         A_CHALLENGE_YOU_COULD_BE_A_WINNER   = 12,
         SMASH_A_MALEVOLENT_MENACE           = 13,
         A_MOOGLE_KUPO_DETAT_FIN             = 14,
