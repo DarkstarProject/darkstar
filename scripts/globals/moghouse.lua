@@ -17,6 +17,32 @@ MOGLOCKER_ACCESS_TYPE_ALLAREAS = 1
 MOGLOCKER_PLAYERVAR_ACCESS_TYPE = "mog-locker-access-type"
 MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP = "mog-locker-expiry-timestamp"
 
+function isInMogHouseInHomeNation(player)
+    if not player:isInMogHouse() then
+        return false
+    end
+
+    local currentZone = player:getZoneID()
+    local nation = player:getNation()
+    if nation == dsp.nation.BASTOK then
+        if currentZone == 234 or currentZone == 235 or
+            currentZone == 237 or currentZone == 237 then
+            return true
+        end
+    elseif nation == dsp.nation.SANDORIA then
+        if currentZone == 230 or currentZone == 231 or
+            currentZone == 232 or currentZone == 233 then
+            return true
+        end
+    else -- Windurst
+        if currentZone == 238 or currentZone == 239 or
+            currentZone == 240 or currentZone == 241 then
+            return true
+        end
+    end
+    return false
+end
+
 
 function moogleTrade(player,npc,trade)
     if player:isInMogHouse() then
@@ -41,8 +67,8 @@ function moogleTrade(player,npc,trade)
             player:startEvent(30015)
         end
 
-        -- TODO: In home nation check
-        if player:getCurrentMission(AMK) == dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP and npcUtil.tradeHas(trade, {2757, 2758, 2759}) then
+        if isInMogHouseInHomeNation(player) and player:getCurrentMission(AMK) == dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP and
+            npcUtil.tradeHas(trade, {2757, 2758, 2759}) then
             player:startEvent(30026)
         end
 
@@ -69,23 +95,12 @@ function moogleTrigger(player,npc)
         local theMooglePicnic = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
         local moogleInTheWild = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
 
-        local pNation = player:getNation()
-        local inHomeNation = false
-        if pNation == dsp.nation.BASTOK then
-            local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
-        elseif pNation == dsp.nation.SANDORIA then
-            local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
-        else
-            local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
-        end
-        local inHomeNation = player:getZoneID() == 239 -- TODO, for every nation
-
         if player:getVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
 
         -- A Moogle Kupo d'Etat
-        elseif inHomeNation and player:getMainLvl() >= 10 and player:getCurrentMission(AMK) == dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT then
-            npc:hideNPC(30)
+        elseif isInMogHouseInHomeNation(player) and player:getMainLvl() >= 10 and player:getCurrentMission(AMK) == dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT then
+            npc:hideNPC(30) -- TODO: Moogle still visible in CS
             player:startEvent(30025)
 
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
