@@ -1430,6 +1430,36 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
             npcUtil.giveKeyItem(player, dsp.ki.RAINBOW_BERRY)
         end
 
+        if
+            helmType == dsp.helm.type.MINING and
+            player:getCurrentMission(AMK) == dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE and
+            not player:hasKeyItem(dsp.ki.STURDY_METAL_STRIP) and
+            broke ~= 1
+            -- zoneId == dsp.zone.ZERUHN_MINES -- TODO: Find a way of filtering original RotZ areas
+        then
+            npcUtil.giveKeyItem(player, dsp.ki.STURDY_METAL_STRIP)
+        end
+
+        if
+            helmType == dsp.helm.type.LOGGING and
+            player:getCurrentMission(AMK) == dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE and
+            not player:hasKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK) and
+            broke ~= 1
+            -- zoneId == dsp.zone.ZERUHN_MINES -- TODO: Find a way of filtering original RotZ areas
+        then
+            npcUtil.giveKeyItem(player, dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
+        end
+
+        if
+            helmType == dsp.helm.type.HARVESTING and
+            player:getCurrentMission(AMK) == dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE and
+            not player:hasKeyItem(dsp.ki.SAVORY_LAMB_ROAST) and
+            broke ~= 1
+            -- zoneId == dsp.zone.ZERUHN_MINES -- TODO: Find a way of filtering original RotZ areas
+        then
+            npcUtil.giveKeyItem(player, dsp.ki.SAVORY_LAMB_ROAST)
+        end
+
     else
         player:messageSpecial(zones[zoneId].text[info.message], info.tool)
     end
