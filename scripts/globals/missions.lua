@@ -390,7 +390,7 @@ dsp.mission.id =
         JOY_SUMMONED_TO_A_FABULOUS_FETE     = 11, -- ± --
         A_CHALLENGE_YOU_COULD_BE_A_WINNER   = 12,
         SMASH_A_MALEVOLENT_MENACE           = 13,
-        A_MOOGLE_KUPO_DETAT_FIN             = 14,
+        A_MOOGLE_KUPO_DETAT_FIN             = 14, -- (TODO: Augments and recieving loot)
     },
 
     -----------------------------------

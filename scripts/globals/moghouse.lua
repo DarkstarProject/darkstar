@@ -6,6 +6,7 @@ require("scripts/globals/npc_util")
 require("scripts/globals/quests");
 require("scripts/globals/status")
 require("scripts/globals/titles")
+require("scripts/globals/settings")
 ------------------------------------
 -- Mog Locker constants
 ------------------------------------
@@ -99,10 +100,9 @@ function moogleTrigger(player,npc)
             player:startEvent(30000)
 
         -- A Moogle Kupo d'Etat
-        elseif isInMogHouseInHomeNation(player) and player:getMainLvl() >= 10 and player:getCurrentMission(AMK) == dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT then
-            npc:hideNPC(30) -- TODO: Moogle still visible in CS
-            player:startEvent(30025)
-
+        elseif ENABLE_AMK and isInMogHouseInHomeNation(player) and player:getMainLvl() >= 10 and player:getCurrentMission(AMK) == dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT then
+            -- TODO: Need a packet capture of this
+            player:startEvent(30025,0,0,0,0,0,0,player:getZoneID())
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
                player:getVar("[MS1]BedPlaced") == 1 then
             player:startEvent(30005,0,0,0,5,0,17161,13457)
@@ -148,6 +148,7 @@ function moogleEventFinish(player,csid,option)
             player:setVar("MoghouseExplication", 0)
 
         elseif csid == 30025 then
+            player:moghouseFlag(2);
             player:completeMission(AMK,dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT);
             player:addMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP);
         elseif csid == 30026 then
