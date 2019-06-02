@@ -177,6 +177,17 @@ OUTER_HORUTOTO_RUINS = {
             end
         end
     end,
+
+    cardianAMKOrbDrop = function(player, itemCode, chanceToDrop)
+        if
+            player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and
+            not player:hasKeyItem(itemCode) and
+            math.random(0,99) <= chanceToDrop
+        then
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, itemCode)
+            player:addKeyItem(itemCode)
+        end
+    end,
 }
 
 return OUTER_HORUTOTO_RUINS
