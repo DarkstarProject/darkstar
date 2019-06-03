@@ -13,7 +13,7 @@ function onTrigger(player, npc)
     
     for Custom_Cardian = ID.mob.CUSTOM_CARDIAN_OFFSET + 0, ID.mob.CUSTOM_CARDIAN_OFFSET + 13, 1 do
         -- TODO: Spawn with mods, depending on key items
-        local mob = SpawnMob(Custom_Cardian);
+        local mob = SpawnMob(Custom_Cardian)
         mob:updateClaim(player)
         mob:updateEnmity(player)
     end

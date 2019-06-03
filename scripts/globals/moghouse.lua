@@ -3,10 +3,11 @@
 --
 
 require("scripts/globals/npc_util")
-require("scripts/globals/quests");
+require("scripts/globals/quests")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 require("scripts/globals/settings")
+require("scripts/globals/zone")
 ------------------------------------
 -- Mog Locker constants
 ------------------------------------
@@ -26,18 +27,15 @@ function isInMogHouseInHomeNation(player)
     local currentZone = player:getZoneID()
     local nation = player:getNation()
     if nation == dsp.nation.BASTOK then
-        if currentZone == 234 or currentZone == 235 or
-            currentZone == 237 or currentZone == 237 then
+        if currentZone >= 234 and currentZone <= 237 then
             return true
         end
     elseif nation == dsp.nation.SANDORIA then
-        if currentZone == 230 or currentZone == 231 or
-            currentZone == 232 or currentZone == 233 then
+        if currentZone >= 230 and currentZone <= 233 then
             return true
         end
     else -- Windurst
-        if currentZone == 238 or currentZone == 239 or
-            currentZone == 240 or currentZone == 241 then
+        if currentZone >= 238 and currentZone <= 241 then
             return true
         end
     end
@@ -148,12 +146,12 @@ function moogleEventFinish(player,csid,option)
             player:setVar("MoghouseExplication", 0)
 
         elseif csid == 30025 then
-            player:moghouseFlag(2);
-            player:completeMission(AMK,dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT);
-            player:addMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP);
+            player:moghouseFlag(2)
+            player:completeMission(AMK,dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT)
+            player:addMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP)
         elseif csid == 30026 then
-            player:completeMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP);
-            player:addMission(AMK,dsp.mission.id.amk.HASTEN_IN_A_JAM_IN_JEUNO);
+            player:completeMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP)
+            player:addMission(AMK,dsp.mission.id.amk.HASTEN_IN_A_JAM_IN_JEUNO)
 
         elseif csid == 30005 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
@@ -249,7 +247,7 @@ function addMogLockerExpiryTime(player, numBronze)
 
     local currentTs = getMogLockerExpiryTimestamp(player)
     if currentTs == nil then
-        -- print("Unable to add time: player hasn't unlocked mog locker.");
+        -- print("Unable to add time: player hasn't unlocked mog locker.")
         return false
     end
 

@@ -45,7 +45,7 @@ function onZoneIn(player,prevZone)
     end
 
     if player:getCurrentMission(AMK) == dsp.mission.id.amk.JOY_SUMMONED_TO_A_FABULOUS_FETE then
-        return 88
+        cs = 88
     end
 
     return cs
