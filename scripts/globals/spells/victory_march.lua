@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     end
 
     local iBoost = caster:getMod(dsp.mod.MARCH_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
-    power = power + Boost*16
+    power = power + iBoost*16
 
     if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
         power = power * 2
