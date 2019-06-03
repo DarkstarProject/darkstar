@@ -34,7 +34,4 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- If !Mission status 15
-    -- player:startEvent(5);
-    -- After CS set mission status to 15
 end

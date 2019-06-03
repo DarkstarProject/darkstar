@@ -597,7 +597,36 @@ INSERT INTO `bcnm_battlefield` VALUES (161,3,17453071,1);
 INSERT INTO `bcnm_battlefield` VALUES (161,3,17453072,2);
 INSERT INTO `bcnm_battlefield` VALUES (161,3,17453073,0);
 INSERT INTO `bcnm_battlefield` VALUES (161,3,17453074,0);
-INSERT INTO `bcnm_battlefield` VALUES (164,1,17453102,1); -- Smash A Malevolent Menace
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453102,3); -- Smash A Malevolent Menace
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453103,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453104,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453105,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453106,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453107,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453108,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453109,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453110,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453111,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453112,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453113,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453114,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453115,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453116,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453117,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453118,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453119,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453120,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,2,17453121,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453122,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453123,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453124,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453125,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453126,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453127,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453128,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453129,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453130,3);
+INSERT INTO `bcnm_battlefield` VALUES (164,3,17453131,3);
 INSERT INTO `bcnm_battlefield` VALUES (192,1,17465345,3); -- through_the_quicksand_caves
 INSERT INTO `bcnm_battlefield` VALUES (192,1,17465346,3);
 INSERT INTO `bcnm_battlefield` VALUES (192,1,17465347,3);
