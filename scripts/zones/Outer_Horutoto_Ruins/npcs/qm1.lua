@@ -4,6 +4,7 @@
 -- Involved In Mission:
 -----------------------------------
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
@@ -23,8 +24,7 @@ function onTrigger(player, npc)
         player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and
         not player:hasKeyItem(dsp.ki.RIPE_STARFRUIT)
     then
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.RIPE_STARFRUIT)
-        player:addKeyItem(dsp.ki.RIPE_STARFRUIT)
+        npcUtil.giveKeyItem(player, dsp.ki.RIPE_STARFRUIT)
         player:addExp(500)
     end
 

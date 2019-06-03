@@ -4,6 +4,7 @@
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 -------------------------------------------------
@@ -184,8 +185,7 @@ OUTER_HORUTOTO_RUINS = {
             not player:hasKeyItem(itemCode) and
             math.random(0,99) <= chanceToDrop
         then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, itemCode)
-            player:addKeyItem(itemCode)
+            npcUtil.giveKeyItem(player, itemCode)
         end
     end,
 }
