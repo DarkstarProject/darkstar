@@ -4269,9 +4269,9 @@ INSERT INTO `item_basic` VALUES (4525,0,'pumpkin_pie_+1','pumpkin_pie_+1',12,154
 INSERT INTO `item_basic` VALUES (4526,0,'silkworm_egg','silkworm_egg',12,26204,0,0,250);
 INSERT INTO `item_basic` VALUES (4527,0,'jug_of_marys_milk','marys_milk',12,1548,59,0,131);
 INSERT INTO `item_basic` VALUES (4528,0,'crystal_bass','crystal_bass',12,5644,51,1,0);
-INSERT INTO `item_basic` VALUES (4529,0,'rolanberry_(881_c.e.)','rolanberry_881',12,1548,59,0,24);      -- https://www.bg-wiki.com/bg/Rolanberry_881 name: Rolanberry (881 C.E.)
-INSERT INTO `item_basic` VALUES (4530,0,'rolanberry_(874_c.e.)','rolanberry_874',12,1548,59,0,24);
-INSERT INTO `item_basic` VALUES (4531,0,'rolanberry_(864_c.e.)','rolanberry_864',12,1548,59,0,24);
+INSERT INTO `item_basic` VALUES (4529,0,'rolanberry_(881_ce)','rolanberry_881',12,1548,59,0,24);
+INSERT INTO `item_basic` VALUES (4530,0,'rolanberry_(874_ce)','rolanberry_874',12,1548,59,0,24);
+INSERT INTO `item_basic` VALUES (4531,0,'rolanberry_(864_ce)','rolanberry_864',12,1548,59,0,24);
 INSERT INTO `item_basic` VALUES (4532,0,'soft-boiled_egg','soft-boiled_egg',12,1548,52,0,40);
 INSERT INTO `item_basic` VALUES (4533,0,'bowl_of_delicious_puls','delicious_puls',1,1580,55,0,297);
 INSERT INTO `item_basic` VALUES (4534,0,'bowl_of_medicinal_gruel','medicinal_gruel',1,1580,56,0,408);
@@ -4850,11 +4850,11 @@ INSERT INTO `item_basic` VALUES (5194,0,'bowl_of_pomodoro_sauce','pomodoro_sauce
 INSERT INTO `item_basic` VALUES (5195,0,'sprig_of_misareaux_parsley','misx._parsley',12,1548,59,0,53);
 INSERT INTO `item_basic` VALUES (5196,0,'strip_of_buffalo_jerky','buffalo_jerky',12,1548,52,0,299);
 INSERT INTO `item_basic` VALUES (5197,0,'dish_of_spaghetti_peperoncino_+1','peperoncino_+1',12,1548,56,0,575);
-INSERT INTO `item_basic` VALUES (5198,0,'dish_of_spag._vongole_rosso_+1','vongole_rosso_+1',12,1548,56,0,477); -- https://www.bg-wiki.com/bg/Vongole_Rosso_%2B1 Name: Dish of Spag. Vongole Rosso +1
+INSERT INTO `item_basic` VALUES (5198,0,'dish_of_spaghetti_vongole_rosso_+1','vongole_rosso_+1',12,1548,56,0,477);
 INSERT INTO `item_basic` VALUES (5199,0,'dish_of_spaghetti_carbonara_+1','carbonara_+1',12,1548,56,0,1198);
 INSERT INTO `item_basic` VALUES (5200,0,'dish_of_spaghetti_pescatora_+1','pescatora_+1',12,1548,56,0,1171);
 INSERT INTO `item_basic` VALUES (5201,0,'dish_of_spaghetti_boscaiola_+1','boscaiola_+1',12,1548,56,0,893);
-INSERT INTO `item_basic` VALUES (5202,0,'dish_of_spag._nero_di_seppia_+1','nero_seppia_+1',12,1548,56,0,685); -- http://www.ffxidb.com/items/5202 Name: Dish Of Spag. Nero Di Seppia +1
+INSERT INTO `item_basic` VALUES (5202,0,'dish_of_spaghetti_nero_di_seppia_+1','nero_seppia_+1',12,1548,56,0,685);
 INSERT INTO `item_basic` VALUES (5203,0,'piece_of_hume_mochi','hume_mochi',99,5708,0,1,0);
 INSERT INTO `item_basic` VALUES (5204,0,'piece_of_elvaan_mochi','elvaan_mochi',99,5708,0,1,0);
 INSERT INTO `item_basic` VALUES (5205,0,'piece_of_tarutaru_mochi','tarutaru_mochi',99,5708,0,1,0);
@@ -5050,10 +5050,10 @@ INSERT INTO `item_basic` VALUES (5394,0,'bottle_of_gnostics_drink','gnostics_dri
 INSERT INTO `item_basic` VALUES (5395,0,'bottle_of_clerics_drink','clerics_drink',1,63040,0,1,0);
 INSERT INTO `item_basic` VALUES (5396,0,'bottle_of_shepherds_drink','shepherds_drink',1,63040,0,1,0);
 INSERT INTO `item_basic` VALUES (5397,0,'bottle_of_sprinters_drink','sprinters_drink',1,63040,0,1,0);
-INSERT INTO `item_basic` VALUES (5398,0,'cage_of_z._remnants_fireflies','z._rem._fireflies',1,63168,0,1,0); -- https://www.bg-wiki.com/bg/Z._Rem._Fireflies Name: Cage of Z. Remnants Fireflies
-INSERT INTO `item_basic` VALUES (5399,0,'cage_of_a._remnants_fireflies','a._rem._fireflies',1,63168,0,1,0);
-INSERT INTO `item_basic` VALUES (5400,0,'cage_of_b._remnants_fireflies','b._rem._fireflies',1,63168,0,1,0);
-INSERT INTO `item_basic` VALUES (5401,0,'cage_of_s._remnants_fireflies','s._rem._fireflies',1,63168,0,1,0);
+INSERT INTO `item_basic` VALUES (5398,0,'cage_of_z_remnants_fireflies','z._rem._fireflies',1,63168,0,1,0);
+INSERT INTO `item_basic` VALUES (5399,0,'cage_of_a_remnants_fireflies','a._rem._fireflies',1,63168,0,1,0);
+INSERT INTO `item_basic` VALUES (5400,0,'cage_of_b_remnants_fireflies','b._rem._fireflies',1,63168,0,1,0);
+INSERT INTO `item_basic` VALUES (5401,0,'cage_of_s_remnants_fireflies','s._rem._fireflies',1,63168,0,1,0);
 INSERT INTO `item_basic` VALUES (5402,0,'fire_card_case','fire_card_case',12,1540,36,0,900);
 INSERT INTO `item_basic` VALUES (5403,0,'ice_card_case','ice_card_case',12,1540,36,0,900);
 INSERT INTO `item_basic` VALUES (5404,0,'wind_card_case','wind_card_case',12,1540,36,0,900);
@@ -5328,7 +5328,7 @@ INSERT INTO `item_basic` VALUES (5673,0,'rolsin','rolsin',12,1548,57,0,84);
 INSERT INTO `item_basic` VALUES (5674,0,'aileens_delight','aileens_delight',1,58968,0,0,3198);
 INSERT INTO `item_basic` VALUES (5675,0,'withered_rolanberry','withered_berry',1,58968,0,0,4624);
 INSERT INTO `item_basic` VALUES (5676,0,'serving_of_mushroom_saute','mushroom_saute',1,1580,54,0,4025);
-INSERT INTO `item_basic` VALUES (5677,0,'serving_of_patriarch_saute','patriarch_saute',1,1580,54,0,955);    -- https://www.bg-wiki.com/bg/Patriarch_Saute
+INSERT INTO `item_basic` VALUES (5677,0,'serving_of_patriarch_saute','patriarch_saute',1,1580,54,0,4912);    -- https://www.bg-wiki.com/bg/Patriarch_Saute
 INSERT INTO `item_basic` VALUES (5678,0,'mushroom_salad','mushroom_salad',1,1580,54,0,681);
 INSERT INTO `item_basic` VALUES (5679,0,'cathedral_salad','cathedral_salad',1,1580,54,0,851);
 INSERT INTO `item_basic` VALUES (5680,0,'agaricus_mushroom','agaricus',12,1548,59,0,1237);
