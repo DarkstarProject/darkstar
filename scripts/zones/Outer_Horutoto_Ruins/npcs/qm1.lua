@@ -11,13 +11,18 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    
-    for Custom_Cardian = ID.mob.CUSTOM_CARDIAN_OFFSET + 0, ID.mob.CUSTOM_CARDIAN_OFFSET + 13, 1 do
-        -- TODO: Spawn with mods, depending on key items
-        local mob = SpawnMob(Custom_Cardian)
-        mob:updateClaim(player)
-        mob:updateEnmity(player)
+
+    local cardian_ids = {}
+    for cardians = ID.mob.CUSTOM_CARDIAN_OFFSET + 0, ID.mob.CUSTOM_CARDIAN_OFFSET + 13, 1 do
+        table.insert(cardian_ids, cardian)
     end
+
+    local funcPerMob = function(mob)
+    end
+    
+    local params = {radius=5, claim=true, hide=0, func=funcPerMob}
+
+    npcUtil.popFromQM(player, npc, cardian_ids, params)
 
     -- TODO: Finish this fight, debug for now
     if
