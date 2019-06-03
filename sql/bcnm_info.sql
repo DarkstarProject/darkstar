@@ -134,7 +134,7 @@ INSERT INTO `bcnm_info` VALUES (196,168,'shattering_stars','nobody',0,600,600,99
 INSERT INTO `bcnm_info` VALUES (197,168,'cactuar_suave','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (198,168,'eye_of_the_storm','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (199,168,'scarlet_king','nobody',0,1800,1800,0,6,0,15,0);
-INSERT INTO `bcnm_info` VALUES (200,168,'cat_burglar_bares_fangs','nobody',0,1800,1800,99,6,0,5,0);
+INSERT INTO `bcnm_info` VALUES (200,168,'cat_burglar_bares_fangs','nobody',0,1800,1800,99,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (201,168,'dragon_scales','nobody',0,600,600,99,1,0,6,0);
 INSERT INTO `bcnm_info` VALUES (224,170,'moonlit_path','nobody',0,1800,1800,80,6,0,5,0);
 INSERT INTO `bcnm_info` VALUES (225,170,'moon_reading','nobody',0,1800,1800,80,6,0,5,1);

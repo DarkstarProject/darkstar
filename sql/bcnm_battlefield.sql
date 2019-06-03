@@ -630,6 +630,7 @@ INSERT INTO `bcnm_battlefield` VALUES (196,2,17465362,3);
 INSERT INTO `bcnm_battlefield` VALUES (196,2,17465363,0);
 INSERT INTO `bcnm_battlefield` VALUES (196,3,17465364,3);
 INSERT INTO `bcnm_battlefield` VALUES (196,3,17465365,0);
+INSERT INTO `bcnm_battlefield` VALUES (200,1,17465594,2); -- cat_burglar_bares_fangs, Chamber of Oracles (168)
 INSERT INTO `bcnm_battlefield` VALUES (224,1,17473537,3); -- moonlit_path
 INSERT INTO `bcnm_battlefield` VALUES (224,2,17473538,3);
 INSERT INTO `bcnm_battlefield` VALUES (224,3,17473539,3);

@@ -299,7 +299,7 @@ local battlefields = {
      -- { 5,  197, 1175},   -- Cactuar Suave (KS30)
      -- { 6,  198, 1178},   -- Eye of the Storm (KS30)
      -- { 7,  199, 1180},   -- The Scarlet King (KS30)
-     -- { 8,  200,    0},   -- Roar! A Cat Burglar Bares Her Fangs (MKD10)
+        { 8,  200,    0},   -- Roar! A Cat Burglar Bares Her Fangs (MKD10)
      -- { 9,  201, 3352},   -- Dragon Scales (KC50)
      -- {10,    ?, 4063},   -- *Legion XI Comitatensis (SKC20)
     },
@@ -489,6 +489,7 @@ function checkReqs(player, npc, bfid, registrant)
         [ 194] = function() return ( mjob == JOBS.SAM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SAM LB5)
         [ 195] = function() return ( mjob == JOBS.NIN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (NIN LB5)
         [ 196] = function() return ( mjob == JOBS.DRG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (DRG LB5)
+        [ 200] = function() return ( player:hasKeyItem(dsp.ki.NAVARATNA_TALISMAN)                                                                                 ) end, -- AMK10: Roar! A Cat Burglar Bares Her Fangs
         [ 224] = function() return ( player:hasKeyItem(dsp.ki.MOON_BAUBLE)                                                                                 ) end, -- Quest: The Moonlit Path
         [ 225] = function() return ( windy == dsp.mission.id.windurst.MOON_READING and player:getVar("WINDURST92") == 2                                                     ) end, -- Windy 9-2: Moon Reading
         [ 256] = function() return ( roz == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and rozStat == 3                                                              ) end, -- ZM8: Return to Delkfutt's Tower
