@@ -597,6 +597,7 @@ INSERT INTO `bcnm_battlefield` VALUES (161,3,17453071,1);
 INSERT INTO `bcnm_battlefield` VALUES (161,3,17453072,2);
 INSERT INTO `bcnm_battlefield` VALUES (161,3,17453073,0);
 INSERT INTO `bcnm_battlefield` VALUES (161,3,17453074,0);
+INSERT INTO `bcnm_battlefield` VALUES (164,1,17453102,1); -- Smash A Malevolent Menace
 INSERT INTO `bcnm_battlefield` VALUES (192,1,17465345,3); -- through_the_quicksand_caves
 INSERT INTO `bcnm_battlefield` VALUES (192,1,17465346,3);
 INSERT INTO `bcnm_battlefield` VALUES (192,1,17465347,3);
