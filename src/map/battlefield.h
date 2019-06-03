@@ -30,6 +30,7 @@ This file is part of DarkStar-server source code.
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
+#include "entities/npcentity.h"
 #include <unordered_map>
 
 enum BCRULES : uint8
