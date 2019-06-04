@@ -4533,8 +4533,8 @@ INSERT INTO `item_weapon` VALUES (21756,'bravura',6,0,269,269,228,2,1,488,344,0)
 INSERT INTO `item_weapon` VALUES (21757,'conqueror',6,0,269,269,228,2,1,504,315,0);
 INSERT INTO `item_weapon` VALUES (21758,'ukonvasara',6,0,269,269,228,2,1,482,340,0);
 INSERT INTO `item_weapon` VALUES (21761,'zadha_chopper',6,0,0,0,0,2,1,504,1,0);           -- DMG:1 Delay:504
-INSERT INTO `item_weapon` VALUES (21762,'arasy_axe',6,0,242,242,188,2,1,504,259,0);
-INSERT INTO `item_weapon` VALUES (21763,'arasy_axe_+1',6,0,242,242,188,2,1,489,260,0);
+INSERT INTO `item_weapon` VALUES (21762,'arasy_axe',6,0,242,242,188,2,1,504,259,0);       -- DMG:259 Delay:504 STR+12 VIT+12 Attack+15 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 "Double Attack"+2% Critical hit damage +2%
+INSERT INTO `item_weapon` VALUES (21763,'arasy_axe_+1',6,0,242,242,188,2,1,489,260,0);    -- DMG:260 Delay:489 STR+17 VIT+17 Attack+20 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 "Double Attack"+3% Critical hit damage +3%
 INSERT INTO `item_weapon` VALUES (21765,'hepatizon_axe',6,0,242,242,188,2,1,504,329,0);   -- DMG:329 Delay:504 STR+10 VIT+10 Accuracy+27 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Full Break" effect
 INSERT INTO `item_weapon` VALUES (21766,'hepatizon_axe_+1',6,0,242,242,188,2,1,489,330,0); -- DMG:330 Delay:489 STR+15 VIT+15 Accuracy+32 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Full Break" effect
 INSERT INTO `item_weapon` VALUES (21767,'raetic_chopper',6,0,242,242,215,2,1,504,336,0);  -- DMG:336 Delay:504 HP+70 MP+50 Accuracy+57 Great Axe skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
@@ -4570,16 +4570,16 @@ INSERT INTO `item_weapon` VALUES (21827,'ajja_scythe',7,0,223,223,223,2,1,528,30
 INSERT INTO `item_weapon` VALUES (21828,'eletta_scythe',7,0,231,231,231,2,1,528,322,0);   -- DMG:322 Delay:528 Accuracy+30 Attack+20 Magic Accuracy+30 "Magic Atk. Bonus"+10 Magic Damage+217 Scythe skill +231 Parrying skill +231 Magic Accuracy skill +231
 INSERT INTO `item_weapon` VALUES (21829,'kaja_scythe',7,0,242,242,242,2,1,528,344,0);     -- DMG:344 Delay:528 DEX+15 INT+15 MND+15 Accuracy+35 Attack+25 Magic Accuracy+35 "Magic Atk. Bonus"+18 Magic Damage +226 Scythe skill +242 Parrying skill +242 Magic Accuracy skill +242 "Spiral Hell" "Spiral Hell" damage +100%
 INSERT INTO `item_weapon` VALUES (21830,'drepanum',7,0,250,250,250,2,1,528,366,0);        -- DMG:366 Delay:528 DEX+20 INT+20 MND+20 Accuracy+40 Attack+30 Magic Accuracy+40 "Magic Atk. Bonus"+21 Magic Damage+226 Scythe skill +250 Parrying skill +250 Magic Accuracy skill +250 "Spiral Hell" "Spiral Hell" damage +100% Skillchain bonus based on amount of MP consumed
-INSERT INTO `item_weapon` VALUES (21854,'reienkyo',8,0,242,242,188,2,1,480,282,0);
-INSERT INTO `item_weapon` VALUES (21855,'lembing',8,0,242,242,188,2,1,492,313,0);
-INSERT INTO `item_weapon` VALUES (21857,'gungnir',8,0,269,269,228,2,1,492,347,0);
-INSERT INTO `item_weapon` VALUES (21858,'ryunohige',8,0,269,269,228,2,1,492,307,0);
-INSERT INTO `item_weapon` VALUES (21859,'rhongomiant',8,0,269,269,228,2,1,492,347,0);
+INSERT INTO `item_weapon` VALUES (21854,'reienkyo',8,0,242,242,188,2,1,480,282,0);        -- DMG:282 Delay:480 STR+20 Accuracy+20 Attack+10 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +188 Critical hit rate +3%
+INSERT INTO `item_weapon` VALUES (21855,'lembing',8,0,242,242,188,2,1,492,313,0);         -- DMG:313 Delay:492 Accuracy+35 Attack+35 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +188 "Triple Attack"+3% "Subtle Blow"+7 Damage taken -2%
+INSERT INTO `item_weapon` VALUES (21857,'gungnir',8,0,269,269,228,2,1,492,347,0);         -- DMG:347 Delay:492 Accuracy+60 Magic Damage+155 Polearm skill +269 Parrying skill +269 Magic Accuracy skill +228 "Geirskogul" Additional effect: Decreases defense Aftermath: Attack+5% "Double Attack"+5% "Shock Spikes" Afterglow
+INSERT INTO `item_weapon` VALUES (21858,'ryunohige',8,0,269,269,228,2,1,492,307,0);       -- DMG:307 Delay:492 Magic Damage+155 Polearm skill +269 Parrying skill +269 Magic Accuracy skill +228 Enhances "Jump" V "Drakesbane" Aftermath (including wyvern): Increases Accuracy and Attack Occasionally attacks twice or thrice Afterglow
+INSERT INTO `item_weapon` VALUES (21859,'rhongomiant',8,0,269,269,228,2,1,492,347,0);     -- DMG:347 Delay:492 VIT+50 Magic Damage+155 Polearm skill +269 Parrying skill +269 Magic Accuracy skill +228 "Camlann's Torment" Aftermath: Occasionally attacks for triple damage Afterglow
 INSERT INTO `item_weapon` VALUES (21860,'aern_spear',8,0,0,0,0,2,1,396,1,0);              -- DMG:1 Delay:396
 INSERT INTO `item_weapon` VALUES (21862,'mizukage_naginata',8,0,0,0,0,2,1,480,1,0);       -- DMG:1 Delay:480
 INSERT INTO `item_weapon` VALUES (21863,'tzee_xicus_blade',8,0,0,0,0,2,1,480,1,0);        -- DMG:1 Delay:480
-INSERT INTO `item_weapon` VALUES (21865,'arasy_lance',8,0,242,242,188,1,1,492,252,0);
-INSERT INTO `item_weapon` VALUES (21866,'arasy_lance_+1',8,0,242,242,188,1,1,478,253,0);
+INSERT INTO `item_weapon` VALUES (21865,'arasy_lance',8,0,242,242,188,1,1,492,252,0);     -- DMG:252 Delay:492 DEX+12 VIT+12 Attack+15 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +188 Magic damage taken -5% Wyvern: "Regen"+5
+INSERT INTO `item_weapon` VALUES (21866,'arasy_lance_+1',8,0,242,242,188,1,1,478,253,0);  -- MG:253 Delay:478 DEX+17 VIT+17 Attack+20 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +188 Magic damage taken -8% Wyvern: "Regen"+8
 INSERT INTO `item_weapon` VALUES (21869,'exalted_spear',8,0,228,228,188,1,1,396,258,0);   -- DMG:258 Delay:396 STR+15 Accuracy+47 Polearm skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+25 Adds "Wheeling Thrust" effect
 INSERT INTO `item_weapon` VALUES (21870,'exalted_spear_+1',8,0,228,228,188,1,1,385,259,0); -- DMG:259 Delay:385 STR+20 Accuracy+52 Polearm skill +228 Parrying skill +228 Magic Accuracy skill +188 Weapon Skill Accuracy+30 Adds "Wheeling Thrust" effect
 INSERT INTO `item_weapon` VALUES (21871,'raetic_halberd',8,0,242,242,215,1,1,396,264,0);  -- DMG:264 Delay:396 HP+70 MP+50 Accuracy+57 Polearm skill +242 Parrying skill +242 Magic Accuracy skill +215 Damage taken -4% Consumes 5% of MP during a regular attack: Offers a chance of follow-up attack +1 based on amount of MP consumed
