@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Nalta
---  Type: Conquest Troupe
--- @zone: 241
---  @pos 19.140 1 -51.297
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Woods
+--  NPC: Nalta
+-- Type: Conquest Troupe
+-- !pos 19.140 1 -51.297 241
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0036);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(54)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

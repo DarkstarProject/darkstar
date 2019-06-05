@@ -3,22 +3,16 @@
 -- Item: Ether
 -- Item Effect: Restores 20 MP
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/settings")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    if (target:getMP() == target:getMaxMP()) then
+        return dsp.msg.basic.ITEM_UNABLE_TO_USE
+    end
+    return 0
+end
 
 function onItemUse(target)
-    target:addMP(20*ITEM_POWER);
-    target:messageBasic(25,0,20);
-end;
+    target:messageBasic(dsp.msg.basic.RECOVERS_MP,0,target:addMP(20*ITEM_POWER))
+end

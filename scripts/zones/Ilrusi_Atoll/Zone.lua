@@ -1,63 +1,43 @@
 -----------------------------------
--- 
 -- Zone: Ilrusi_Atoll
 --  zone 55
 -----------------------------------
-
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
-require("scripts/zones/Ilrusi_Atoll/TextIDs");
-require("scripts/globals/settings");
------------------------------------
---  onInitialize
+local ID = require("scripts/zones/Ilrusi_Atoll/IDs")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end
 
------------------------------------
--- onZoneIn
------------------------------------
+function onInstanceZoneIn(player,instance)
+    local cs = -1
 
-function onZoneIn(player,prevZone)
-cs = -1;
-
-   --------------RANDOMIZE COFFER------------------------
-  local correctcoffer = math.random(17002505,17002516);
-  SetServerVariable("correctcoffer",correctcoffer);
-  printf("corect_golden_salvage_coffer: %u",correctcoffer);
-  ---------------------------------------------------
-
-
-  
- 
-return cs;
-end;
-
------------------------------------
--- onRegionEnter          
------------------------------------
+    local pos = player:getPos()
+    if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
+        local entrypos = instance:getEntryPos()
+        player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot)
+    end
+    
+    player:addTempItem(5347)
+    
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+    local instance = player:getInstance()
+    local chars = instance:getChars()
+    if csid == 102 then
+        for i,v in pairs(chars) do
+            v:setPos(0,0,0,0,54)
+        end
+    end
+end
 
-
-
+function onInstanceLoadFailed()
+    return 79
+end

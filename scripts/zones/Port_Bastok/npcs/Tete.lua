@@ -1,55 +1,32 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Tete
+--  NPC: Tete
 -- Continues Quest: The Wisdom Of Elders
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:getQuestStatus(BASTOK,THE_WISDOM_OF_ELDERS) == QUEST_ACCEPTED) then
-        player:startEvent(0x00af);
-    else
-        player:startEvent(0x0023);
-    end
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onTrigger(player,npc)
+
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS) == QUEST_ACCEPTED) then
+        player:startEvent(175);
+    else
+        player:startEvent(35);
+    end
+
+end;
+
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
-    if (csid == 0x00af) then
+    if (csid == 175) then
         player:setVar("TheWisdomVar",2);
     end
-    
+
 end;

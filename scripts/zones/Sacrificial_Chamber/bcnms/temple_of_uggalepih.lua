@@ -2,20 +2,22 @@
 -- Area: Sacrificial Chamber
 -- Name: Zilart Mission 4
 -----------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local ID = require("scripts/zones/Sacrificial_Chamber/IDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -26,19 +28,21 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:startEvent(0x7d01,1,1,1,0,1,0,0);
+
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+
+        local name, clearTime, partySize = battlefield:getRecord()
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         else
-            player:startEvent(0x7d01,1,1,1,0,1,1,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         end
-    elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
@@ -47,22 +51,22 @@ end;
 
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
-    if (csid == 0x7d01) then
-        player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
-        if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:startEvent(0x0007);
+
+    if (csid == 32001) then
+        player:addTitle(dsp.title.BEARER_OF_THE_WISEWOMANS_HOPE);
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
+            player:startEvent(7);
         end
-    elseif (csid == 0x0007) then
-        player:startEvent(0x0008);
-    elseif (csid == 0x0008) then
-        if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
-            player:addKeyItem(DARK_FRAGMENT);
-            player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
-            player:completeMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
-            player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
+    elseif (csid == 7) then
+        player:startEvent(8);
+    elseif (csid == 8) then
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
+            player:delKeyItem(dsp.ki.SACRIFICIAL_CHAMBER_KEY);
+            player:addKeyItem(dsp.ki.DARK_FRAGMENT);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DARK_FRAGMENT);
+            player:completeMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH);
+            player:addMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE);
         end
     end
-    
+
 end;

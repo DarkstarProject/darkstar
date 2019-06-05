@@ -2,14 +2,10 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Dire Bat
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,786,3);
-    checkGoVregime(ally,mob,787,3);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 786, 3, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 787, 3, dsp.regime.type.GROUNDS)
+end

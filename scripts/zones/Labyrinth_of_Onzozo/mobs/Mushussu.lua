@@ -2,13 +2,9 @@
 -- Area: The Labyrinth of Onzozo
 --  MOB: Mushussu
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,773,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 773, 1, dsp.regime.type.GROUNDS)
+end

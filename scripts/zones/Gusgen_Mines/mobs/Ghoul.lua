@@ -2,14 +2,10 @@
 -- Area: Gusgen Mines
 --  MOB: Ghoul
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,679,1);
-    checkGoVregime(ally,mob,680,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 679, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 680, 2, dsp.regime.type.GROUNDS)
 end;

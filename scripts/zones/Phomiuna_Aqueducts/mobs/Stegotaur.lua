@@ -1,23 +1,12 @@
 -----------------------------------
--- mob : Stegotaur
--- zone : Phomiuna_Aqueducts
+-- Area: Phomiuna Aqueducts
+--  MOB: Stegotaur
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+mixins = {require("scripts/mixins/fomor_hate")}
 
 function onMobSpawn(mob)
+    mob:setLocalVar("fomorHateAdj", -1);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    local kills = ally:getVar("FOMOR_HATE");
-    if (kills > 0) then
-        ally:setVar("FOMOR_HATE",kills -1);
-    end
+function onMobDeath(mob, player, isKiller)
 end;

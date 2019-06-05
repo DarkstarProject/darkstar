@@ -1,28 +1,18 @@
 -----------------------------------
 --
---    EFFECT_MADRIGAL
+--    dsp.effect.MADRIGAL
 -- getPower returns the TIER (e.g. 1,2,3,4)
 -----------------------------------
-require("scripts/globals/status");
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ACC, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ACC, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ACC, effect:getPower());
-end;
+    target:delMod(dsp.mod.ACC, effect:getPower())
+end

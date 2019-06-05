@@ -2,13 +2,8 @@
 -- Area: La Theine Plateau
 --  MOB: Tumbling Truffle
 -----------------------------------
+require("scripts/globals/regimes")
 
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,71,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 71, 2, dsp.regime.type.FIELDS)
 end;

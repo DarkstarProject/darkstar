@@ -4,18 +4,10 @@
 --  Transports the user to their Home Point
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    target:warp();
-end;
+    target:warp()
+end

@@ -12,47 +12,44 @@
 -- Magic Bursts on: Compression, Gravitation, and Darkness
 -- Combos: Counter
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-
-    local typeEffectOne = EFFECT_DEFENSE_DOWN;
-    local typeEffectTwo = EFFECT_MAGIC_DEF_DOWN;
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
-    local duration = 30 * resist;
-    local returnEffect = typeEffectOne;
+    local typeEffectOne = dsp.effect.DEFENSE_DOWN
+    local typeEffectTwo = dsp.effect.MAGIC_DEF_DOWN
+    local params = {}
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.bonus = 1.0
+    local resist = applyResistance(caster, target, spell, params)
+    local duration = 30 * resist
+    local returnEffect = typeEffectOne
 
     if (resist >= 0.5) then
         if (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then -- the def/mag def down does not overwrite the same debuff from any other source
-            spell:setMsg(75); -- no effect
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
         elseif (target:hasStatusEffect(typeEffectOne)) then
-            target:addStatusEffect(typeEffectTwo,8,0,duration);
-            returnEffect = typeEffectTwo;
-            spell:setMsg(236);
+            target:addStatusEffect(typeEffectTwo,8,0,duration)
+            returnEffect = typeEffectTwo
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         elseif (target:hasStatusEffect(typeEffectTwo)) then
-            target:addStatusEffect(typeEffectOne,10,0,duration);
-            spell:setMsg(236);
+            target:addStatusEffect(typeEffectOne,10,0,duration)
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            target:addStatusEffect(typeEffectOne,10,0,duration);
-            target:addStatusEffect(typeEffectTwo,8,0,duration);
-            spell:setMsg(236);
-        end;
-    end;
+            target:addStatusEffect(typeEffectOne,10,0,duration)
+            target:addStatusEffect(typeEffectTwo,8,0,duration)
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+        end
+    end
 
-    return returnEffect;
-end;
+    return returnEffect
+end

@@ -3,65 +3,36 @@
 -- Zone: Lebros_Cavern
 --
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Lebros_Cavern/IDs");
-
------------------------------------
---  onInitialize
+require("scripts/zones/Lebros_Cavern/IDs")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
-function onZoneIn(player,prevZone)
+function onInstanceZoneIn(player,instance)
     local cs = -1;
+
     local pos = player:getPos();
-
     if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
-        player:setPos(player:getInstance():getEntryPos());
+        local entrypos = instance:getEntryPos();
+        player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot);
     end
-
     player:addTempItem(5345);
 
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x66) then
+    if (csid == 102) then
         player:setPos(0,0,0,0,61);
     end
 end;
-
------------------------------------
--- onInstanceFailure
------------------------------------
 
 function onInstanceLoadFailed()
     return 61;

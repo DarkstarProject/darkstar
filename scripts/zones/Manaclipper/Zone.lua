@@ -3,66 +3,40 @@
 -- Zone: Manaclipper
 --
 -----------------------------------
-package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Manaclipper/TextIDs");
-
------------------------------------
---  onInitialize
+local ID = require("scripts/zones/Manaclipper/IDs")
+require("scripts/globals/manaclipper")
+require("scripts/globals/conquest")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end
 
------------------------------------
--- onZoneIn
------------------------------------
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(0,-3,-8,60);
+function onZoneIn(player, prevZone)
+    local cs = -1
+
+    dsp.manaclipper.onZoneIn(player)
+
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(0, -3, -8, 60)
     end
-    return cs;
-end;
 
+    return cs
+end
 
-function onTransportEvent(player,transport)
-  player:startEvent(0x0064);
-end;
-
-
------------------------------------
--- onConquestUpdate
------------------------------------
+function onTransportEvent(player, transport)
+    player:startEvent(100)
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
 
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+function onEventUpdate(player, csid, option)
+end
+
+function onEventFinish(player, csid, option)
+    if csid == 100 then
+        player:setPos(0, 0, 0, 0, dsp.zone.BIBIKI_BAY)
     end
-end;
-
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-   if (csid == 0x0064) then
-    player:setPos(0,0,0,0,4);
-   end
-end;
+end

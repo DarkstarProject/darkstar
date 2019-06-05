@@ -1,30 +1,18 @@
 -----------------------------------
 --
---     EFFECT_ANCIENT_CIRCLE
+-- dsp.effect.ANCIENT_CIRCLE
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_DRAGON_KILLER,8);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+   target:addMod(dsp.mod.DRAGON_KILLER, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_DRAGON_KILLER,8);
-end;
+   target:delMod(dsp.mod.DRAGON_KILLER, effect:getPower())
+end

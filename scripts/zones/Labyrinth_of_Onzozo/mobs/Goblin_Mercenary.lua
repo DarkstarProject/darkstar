@@ -3,30 +3,17 @@
 --  MOB: Goblin Mercenary
 -- Note: Place holder Soulstealer Skullnix
 -----------------------------------
-
-require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
-
------------------------------------
--- onMobDeath
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 771, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 772, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 774, 2, dsp.regime.type.GROUNDS)
+end
 
-    checkGoVregime(ally,mob,771,2);
-    checkGoVregime(ally,mob,772,2);
-    checkGoVregime(ally,mob,774,2);
-
-    local mob = mob:getID();
-    if (Soulstealer_Skullnix_PH[mob] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Soulstealer_Skullnix");
-        if (ToD <= os.time(t) and GetMobAction(Soulstealer_Skullnix) == 0) then
-            if (math.random((1),(20)) == 5) then
-                UpdateNMSpawnPoint(Soulstealer_Skullnix);
-                GetMobByID(Soulstealer_Skullnix):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Soulstealer_Skullnix", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.SOULSTEALER_SKULLNIX_PH, 5, math.random(7200, 10800)) -- 2 to 3 hours
+end

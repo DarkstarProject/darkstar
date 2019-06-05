@@ -3,20 +3,9 @@
 --  MOB: Shadow Lord
 -- Mission 5-2 BCNM Fight
 -----------------------------------
-
-require("scripts/globals/titles");
+local ID = require("scripts/zones/Throne_Room/IDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobFight
------------------------------------
+require("scripts/globals/titles");
 
 function onMobFight(mob,target)
     -- 1st form
@@ -24,7 +13,7 @@ function onMobFight(mob,target)
     -- 2nd form
     -- the Shadow Lord will do nothing but his Implosion attack. This attack hits everyone in the battlefield, but he only has 4000 HP
 
-    if (mob:getID() < 17453060) then -- first phase AI
+    if (mob:getID() < ID.mob.SHADOW_LORD_STAGE_2_OFFSET) then -- first phase AI
         -- once he's under 50% HP, start changing immunities and attack patterns
         if (mob:getHP() / mob:getMaxHP() <= 0.5) then
 
@@ -35,11 +24,11 @@ function onMobFight(mob,target)
             -- subanimation 0 is first phase subanim, so just go straight to magic mode
             if (mob:AnimationSub() == 0) then
                 mob:AnimationSub(1);
-                mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-                mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+                mob:delStatusEffect(dsp.effect.PHYSICAL_SHIELD);
+                mob:addStatusEffectEx(dsp.effect.MAGIC_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(false);
                 mob:SetMagicCastingEnabled(true);
-                mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
+                mob:setMobMod(dsp.mobMod.MAGIC_COOL, 2);
                 --and record the time and HP this immunity was started
                 mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
@@ -47,11 +36,11 @@ function onMobFight(mob,target)
             elseif (mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or
                     mob:getBattleTime() - changeTime > 300)) then
                 mob:AnimationSub(1);
-                mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-                mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+                mob:delStatusEffect(dsp.effect.PHYSICAL_SHIELD);
+                mob:addStatusEffectEx(dsp.effect.MAGIC_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(false);
                 mob:SetMagicCastingEnabled(true);
-                mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
+                mob:setMobMod(dsp.mobMod.MAGIC_COOL, 2);
                 mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
             -- subanimation 1 is magic mode, so check if he should change into physical mode
@@ -60,11 +49,11 @@ function onMobFight(mob,target)
                 -- and use an ability before changing
                 mob:useMobAbility(673);
                 mob:AnimationSub(2);
-                mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-                mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD, 0, 1, 0, 0);
+                mob:delStatusEffect(dsp.effect.MAGIC_SHIELD);
+                mob:addStatusEffectEx(dsp.effect.PHYSICAL_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(true);
                 mob:SetMagicCastingEnabled(false);
-                mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
+                mob:setMobMod(dsp.mobMod.MAGIC_COOL, 10);
                 mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
             end
@@ -80,58 +69,35 @@ function onMobFight(mob,target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    if (mob:getID() < 17453060) then
-        ally:startEvent(0x7d04);
-        ally:setVar("mobid",mob:getID());
+function onMobDeath(mob, player, isKiller)
+    if (mob:getID() < ID.mob.SHADOW_LORD_STAGE_2_OFFSET) then
+        player:startEvent(32004);
+        player:setVar("mobid",mob:getID());
     else
-        ally:addTitle(SHADOW_BANISHER);
+        player:addTitle(dsp.title.SHADOW_BANISHER);
     end
     -- reset everything on death
     mob:AnimationSub(0);
     mob:SetAutoAttackEnabled(true);
     mob:SetMagicCastingEnabled(true);
-    mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-    mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-
+    mob:delStatusEffect(dsp.effect.MAGIC_SHIELD);
+    mob:delStatusEffect(dsp.effect.PHYSICAL_SHIELD);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- reset everything on despawn
     mob:AnimationSub(0);
     mob:SetAutoAttackEnabled(true);
     mob:SetMagicCastingEnabled(true);
-    mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-    mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
+    mob:delStatusEffect(dsp.effect.MAGIC_SHIELD);
+    mob:delStatusEffect(dsp.effect.PHYSICAL_SHIELD);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("updateCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("finishCSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
-    if (csid == 0x7d04) then
+    if (csid == 32004) then
         local mobid = player:getVar("mobid");
         DespawnMob(mobid);
         player:setVar("mobid",0);
@@ -144,5 +110,4 @@ function onEventFinish(player,csid,option)
         mob:SetAutoAttackEnabled(false);
         mob:SetMobAbilityEnabled(false);
     end
-
 end;

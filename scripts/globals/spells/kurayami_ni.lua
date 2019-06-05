@@ -1,41 +1,43 @@
 -----------------------------------------
 -- Spell: Kurayami:Ni
 -----------------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
 
     -- Base Stats
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
     --Duration Calculation
-    local duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
+    local duration = 300
+    local params = {}
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.NINJUTSU
+    params.bonus = 0
+    duration = duration * applyResistance(caster, target, spell, params)
     --Kurayami base power is 30 and is not affected by resistaces.
-    local power = 30;
+    local power = 30
 
     --Calculates resist chanve from Reist Blind
-    if (math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
+    if (math.random(0,100) >= target:getMod(dsp.mod.BLINDRES)) then
         if (duration >= 150) then
 
-            if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
-                spell:setMsg(236);
+            if (target:addStatusEffect(dsp.effect.BLINDNESS,power,0,duration)) then
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
             else
-                spell:setMsg(75);
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2)
     end
-    return EFFECT_BLINDNESS;
-end;
+    return dsp.effect.BLINDNESS
+end

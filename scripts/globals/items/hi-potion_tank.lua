@@ -1,25 +1,19 @@
 -----------------------------------------
---    ID: 13688
---    Hi-Potion Tank
---    When used, you will obtain one Hi-Potion
+-- ID: 13688
+-- Hi-Potion Tank
+-- When used, you will obtain one Hi-Potion
 -----------------------------------------
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
+    local result = 0
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addItem(4116,1);
-end;
+    target:addItem(4116,1)
+end

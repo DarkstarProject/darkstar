@@ -41,19 +41,19 @@ CItemFurnishing::~CItemFurnishing()
 void CItemFurnishing::setInstalled(bool installed)
 {
     if (installed)
-        WBUFB(m_extra, 0x01) |= 0x40;
+        ref<uint8>(m_extra, 0x01) |= 0x40;
     else
-        WBUFB(m_extra, 0x01) &= ~0x40;
+        ref<uint8>(m_extra, 0x01) &= ~0x40;
 }
 
 bool CItemFurnishing::isInstalled()
 {
-    return WBUFB(m_extra, 0x01) & 0x40;
+    return ref<uint8>(m_extra, 0x01) & 0x40;
 }
 
 void CItemFurnishing::setStorage(uint8 storage)
 {
-	m_storage = dsp_min(storage,80);
+	m_storage = std::min<uint8>(storage, 80);
 }
 
 uint8 CItemFurnishing::getStorage()
@@ -61,12 +61,12 @@ uint8 CItemFurnishing::getStorage()
 	return m_storage;
 }
 
-void CItemFurnishing::setMoghancement(uint8 moghancement)
+void CItemFurnishing::setMoghancement(uint16 moghancement)
 {
 	m_moghancement = moghancement;
 }
 
-uint8 CItemFurnishing::getMoghancement()
+uint16 CItemFurnishing::getMoghancement()
 {
 	return m_moghancement;
 }
@@ -93,40 +93,50 @@ uint8 CItemFurnishing::getAura()
 
 void CItemFurnishing::setCol(uint8 col)
 {
-	WBUFB(m_extra, 0x06) = col;
+	ref<uint8>(m_extra, 0x06) = col;
 }
 	
 uint8 CItemFurnishing::getCol()
 {
-    return RBUFB(m_extra, 0x06);
+    return ref<uint8>(m_extra, 0x06);
 }
 
 void CItemFurnishing::setRow(uint8 row)
 {
-    WBUFB(m_extra, 0x08) = row;
+    ref<uint8>(m_extra, 0x08) = row;
 }
 
 uint8 CItemFurnishing::getRow()
 {
-    return RBUFB(m_extra, 0x08);
+    return ref<uint8>(m_extra, 0x08);
 }
 
 void CItemFurnishing::setLevel(uint8 level)
 {
-    WBUFB(m_extra, 0x07) = level;
+    ref<uint8>(m_extra, 0x07) = level;
 }
 
 uint8 CItemFurnishing::getLevel()
 {
-    return RBUFB(m_extra, 0x07);
+    return ref<uint8>(m_extra, 0x07);
 }
 
 void CItemFurnishing::setRotation(uint8 rotation)
 {
-    WBUFB(m_extra, 0x09) = rotation;
+    ref<uint8>(m_extra, 0x09) = rotation;
 }
 
 uint8 CItemFurnishing::getRotation()
 {
-    return RBUFB(m_extra, 0x09);
+    return ref<uint8>(m_extra, 0x09);
+}
+
+void CItemFurnishing::setOrder(uint8 order)
+{
+    ref<uint8>(m_extra, 0x0A) = order;
+}
+
+uint8 CItemFurnishing::getOrder()
+{
+    return ref<uint8>(m_extra, 0x0A);
 }

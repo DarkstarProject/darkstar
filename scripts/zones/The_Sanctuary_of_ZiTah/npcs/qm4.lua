@@ -1,65 +1,31 @@
 -----------------------------------
 -- Area: The Sanctuary of Zitah
--- NPC:  ???
+--  NPC: ???
 -- Finishes Quest: Lovers in the Dusk
--- @zone 121
+-- !zone 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/weather");
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/weather")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    local LoversInTheDusk = player:getQuestStatus(BASTOK,LOVERS_IN_THE_DUSK);
-    local TOTD = VanadielTOTD();
-
-    if (TOTD == TIME_DUSK and LoversInTheDusk == QUEST_ACCEPTED) then
-        player:startEvent(0x00cc);
+    if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.LOVERS_IN_THE_DUSK) == QUEST_ACCEPTED and VanadielTOTD() == dsp.time.DUSK then
+        player:startEvent(204)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-    if (csid == 0x00cc) then
-        if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17346);
-        else 
-            player:addItem(17346);
-            player:messageSpecial(ITEM_OBTAINED,17346); -- Siren Flute
-            player:addFame(BASTOK,BAS_FAME*120);
-            player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
-        end
+    if csid == 204 then
+        npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.LOVERS_IN_THE_DUSK, {item = 17346, fame = 120})
     end
-end;
+end

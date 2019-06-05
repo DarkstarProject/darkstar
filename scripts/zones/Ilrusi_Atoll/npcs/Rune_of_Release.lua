@@ -1,90 +1,54 @@
 -----------------------------------
--- Area: 
--- NPC:  rune of release
--- @zone illrusi atoll
--- @pos
+-- Area: Ilrusi Atoll
+--  NPC: Rune of Release
+-- !pos 412 -9 54 55
 -----------------------------------
-package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
--------------------------------------
-
-require("scripts/globals/bcnm");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Ilrusi_Atoll/TextIDs");
-require("scripts/globals/besieged");
-
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Ilrusi_Atoll/IDs")
+require("scripts/globals/besieged")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
- 
-  local npcID = npc:getID();
- -- print(npcID);
-  if (npcID==17002655) then
-    player:startEvent(0x0064,4);
-    
+    local instance = npc:getInstance()
 
-  
-  end
-  
-end; 
+    if (instance:completed()) then
+        player:startEvent(100,4)
+    end
 
------------------------------------
--- onEventUpdate
------------------------------------
+    return 1
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option)
- if (csid == 0x0064 and option==1) then
+    local instance = player:getInstance()
+    local chars = instance:getChars()
+    local id = instance:getID()
+    local points = 0
+    local playerpoints = ((#chars -3)*100)
 
- local point =1000;
-       ----------------RESPAWN COFFER NPC---------------------------------------
-  local npcID;
-  for npcID=17002505,17002516,1 do
-   GetNPCByID(npcID):setStatus(0);
-   GetNPCByID(npcID):setAnimation(90);   
-  end
-  GetNPCByID(17002654):setStatus(2); --despawn Ancient_Lockbox
-  ------------------------------------------------------
-       --------------RANDOMIZE COFFER------------------------
-  local correctcoffer = math.random(17002505,17002516);
-  SetServerVariable("correctcoffer",correctcoffer);
-  printf("corect_golden_salvage_coffer: %u",correctcoffer);
-  ---------------------------------------------------
-     if (player:hasCompletedMission(ASSAULT,GOLDEN_SALVAGE)) then 
-          if (player:hasKeyItem(ASSAULT_ARMBAND)) then 
-          player:delKeyItem(ASSAULT_ARMBAND);
-          point =1100;
-          end      
-        player:addAssaultPoint(ILRUSI_ASSAULT_POINT,point);
-        player:delMission(ASSAULT,GOLDEN_SALVAGE);
-        player:delKeyItem(ILRUSI_ASSAULT_ORDERS);
-    print(point);
-     end
-  
- 
- player:setPos(28,-7,620,138,54);
- end
-end;
+    if (csid == 100 and option == 1) then
+        if id == 41 or id == 43 then
+            points = 1100 - math.max(playerpoints, 0)
+        end
+        for i,v in pairs(chars) do
+            v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,points)
+            v:addAssaultPoint(ILRUSI_ASSAULT_POINT,points)
+            v:setVar("AssaultComplete",1)
+            if (v:hasCompletedAssault(v:getCurrentAssault())) then
+                v:addVar("AssaultPromotion", 1)
+            else
+                v:addVar("AssaultPromotion", 5)
+            end
+            v:startEvent(102)
+        end
+    end
+    if csid == 102 then
+        for i,v in pairs(chars) do
+            v:setPos(0,0,0,0,54)
+        end
+    end
+end

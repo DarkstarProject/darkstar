@@ -1,49 +1,25 @@
 -----------------------------------
 -- Area: Mamook
 --  NPC: ??? (Spawn Iriri Samariri(ZNM T2))
--- @pos -118 7 -80 65
+-- !pos -118 7 -80 65
 -----------------------------------
-package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mamook/TextIDs");
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Mamook/IDs");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobID = 17043888;
-    if (trade:hasItemQty(2579,1) and trade:getItemCount() == 1) then -- Trade Samariri Corpsehair
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if (npcUtil.tradeHas(trade, 2579) and not GetMobByID(ID.mob.IRIRI_SAMARIRI):isSpawned()) then -- Trade Samariri Corpsehair
+        player:confirmTrade();
+        SpawnMob(ID.mob.IRIRI_SAMARIRI):updateClaim(player);
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(ID.text.NOTHING_HAPPENS);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -62,9 +62,9 @@ INSERT INTO `transport` VALUES(8, 'Bastok-Jeuno_Airship', 17743971, 17743965, -3
 INSERT INTO `transport` VALUES(9, 'Selbina-Mhaura_Boat', 17793088, 17793087, 9.294, 0.000, -69.775, 0, 485, 18, 19, 372, 480, 18, 90, 17, 220);
 INSERT INTO `transport` VALUES(10, 'Mhaura-Selbina_Boat', 17797182, 17797181, -0.516, 0.003, -8.409, 0, 493, 18, 19, 372, 480, 18, 90, 17, 221);
 INSERT INTO `transport` VALUES(11, 'Mhaura-Whitegate_Boat', 17797182, 17797181, -0.516, 0.003, -8.409, 0, 493, 18, 19, 142, 480, 18, 80, 17, 46);
-INSERT INTO `transport` VALUES(12, 'Whitegate-Mhaura_Boat', 16982042, 16982040, -20.726, 3.389, -154.231, 0, 569, 18, 19, 142, 480, 18, 80, 16, 47);
-INSERT INTO `transport` VALUES(13, 'Whitegate-Nashmau_Boat', 16982042, 16982041, 20.726, 3.389, 154.231, 128, 570, 20, 21, 282, 480, 18, 180, 17, 58);
-INSERT INTO `transport` VALUES(14, 'Nashmau-Whitegate_Boat', 16994323, 16994322, 3.24, 3.389, -114.221, 0, 571, 22, 23, 282, 480, 18, 180, 16, 59);
+INSERT INTO `transport` VALUES(12, 'Whitegate-Mhaura_Boat', 16982046, 16982044, -20.726, 3.389, -154.231, 0, 569, 18, 19, 142, 480, 18, 80, 16, 47);
+INSERT INTO `transport` VALUES(13, 'Whitegate-Nashmau_Boat', 16982046, 16982045, 20.726, 3.389, 154.231, 128, 570, 20, 21, 282, 480, 18, 180, 17, 58);
+INSERT INTO `transport` VALUES(14, 'Nashmau-Whitegate_Boat', 16994327, 16994326, 3.24, 3.389, -114.221, 0, 571, 22, 23, 282, 480, 18, 180, 16, 59);
 INSERT INTO `transport` VALUES(15, 'Manaclip_Bibiki-Tours', 16793913, 16793914, 491.500, 0.000, 687.400, 128, 0, 18, 19, 710,720, 20, 40, 20, 3);
 INSERT INTO `transport` VALUES(16, 'Manaclip_Bibiki-Purgonorgo', 16793913, 16793914, 491.500, 0.000, 687.400, 128, 0, 18, 19, 270, 720, 20, 40, 20, 3);
 INSERT INTO `transport` VALUES(17, 'Manaclip_Purgonorgo-Bibiki', 16793913, 16793915, -392.000, 0.000, -364.000, 128, 0, 20, 21, 500, 720, 20, 40, 20, 3);

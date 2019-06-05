@@ -4,27 +4,15 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_INT, effect:getPower());
-    target:addMod(MOD_MND, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.INT, effect:getPower())
+    target:addMod(dsp.mod.MND, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_INT, effect:getPower());
-    target:delMod(MOD_MND, effect:getPower());
-end;
+    target:delMod(dsp.mod.INT, effect:getPower())
+    target:delMod(dsp.mod.MND, effect:getPower())
+end

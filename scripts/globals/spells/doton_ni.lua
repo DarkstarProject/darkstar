@@ -3,29 +3,33 @@
 -- Deals earth damage to an enemy and lowers its resistance against wind.
 -----------------------------------------
 
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/magic")
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
     --doNinjutsuNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-    local duration = 15 + caster:getMerit(MERIT_DOTON_EFFECT) -- T1 bonus debuff duration
-    local bonusAcc = 0;
-    local bonusMab = caster:getMerit(MERIT_DOTON_EFFECT) + caster:getMod(MOD_NIN_NUKE_BONUS); -- T1 mag atk + "enhances Ninjustu damage" mod
+    local duration = 15 + caster:getMerit(dsp.merit.DOTON_EFFECT) -- T1 bonus debuff duration
+    local bonusAcc = 0
+    local bonusMab = caster:getMerit(dsp.merit.DOTON_EFFECT) -- T1 mag atk
 
-    if (caster:isBehind(target,15) and caster:hasStatusEffect(EFFECT_INNIN)) then -- Innin mag atk bonus from behind, guesstimating angle at 15 degrees
-        bonusMab = bonusMab + caster:getStatusEffect(EFFECT_INNIN):getPower();
-    end
+    local params = {}
 
-    local dmg = doNinjutsuNuke(69,1,caster,spell,target,false,bonusAcc,bonusMab);
-    handleNinjutsuDebuff(caster,target,spell,30,duration,MOD_WINDRES);
+    params.dmg = 69
 
-    return dmg;
-end;
+    params.multiplier = 1
+
+    params.hasMultipleTargetReduction = false
+
+    params.resistBonus = bonusAcc
+
+    params.mabBonus = bonusMab
+
+    dmg = doNinjutsuNuke(caster, target, spell, params)
+    handleNinjutsuDebuff(caster,target,spell,30,duration,dsp.mod.WINDRES)
+
+    return dmg
+end

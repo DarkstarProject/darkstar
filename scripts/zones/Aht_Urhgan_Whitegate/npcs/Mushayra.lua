@@ -1,44 +1,19 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Mushayra
---  Type: Standard NPC
---  @pos -111.551 -6.999 -61.720 50
------------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
+-- Area: Aht Urhgan Whitegate
+--  NPC: Mushayra
+-- Type: Standard NPC
+-- !pos -111.551 -6.999 -61.720 50
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0207);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(519)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

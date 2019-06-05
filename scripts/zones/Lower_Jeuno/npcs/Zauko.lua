@@ -1,144 +1,126 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Zauko
+--  NPC: Zauko
 -- Involved in Quests: Save the Clock Tower, Community Service
--- @zone 245
--- @pos -3 0 11
+-- !pos -3 0 11 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+require("scripts/zones/Lower_Jeuno/globals");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 require("scripts/globals/keyitems");
-require("scripts/globals/titles");
-require("scripts/globals/settings");
+require("scripts/globals/npc_util");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
------------------------------------
--- onTrade Action
+require("scripts/globals/status");
+require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
------ Save The Clock Tower Quest -----
-    if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
+    ----- Save The Clock Tower Quest -----
+    if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
         a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
-        if (a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and 
-           a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then 
-            player:startEvent(0x0032,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+        if (a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and
+           a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then
+            player:startEvent(50,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-local hour = VanadielHour();
-local cService = player:getVar("cService");
-questServerVar = GetServerVariable("[JEUNO]CommService");
------ Community Service Quest -----
--- The reason for all the Default Dialogue "else"s is because of all the different checks needed and to keep default dialogue
--- If they're not there then the player will keep triggering the Quest Complete (Repeat) Cutscene
--- Please leave them here unless you can find a way to fix this but the quest as it should do.
 
+    local hour = VanadielHour();
+    local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
+    local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+    local currCommService = player:getVar("currCommService");
+    local hasMembershipCard = player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
 
-        -- Quest Start --
-    if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_AVAILABLE and player:getFameLevel(JEUNO) >=1) then
-        if (hour >= 18 and hour < 21) then
-            if (questServerVar == 0) then
-                player:startEvent(0x0074,questServerVar+1); -- Quest Start Dialogue (NOTE: The Cutscene says somebody else is working on it but it still adds the quest)
+    local allLampsLit = true;
+    for i=0,11 do
+        local lamp = GetNPCByID(ID.npc.STREETLAMP_OFFSET + i);
+        if (lamp:getAnimation() == dsp.anim.CLOSE_DOOR) then
+            allLampsLit = false;
+            break;
+        end
+    end
+
+    -- quest has already been accepted.
+    if (currCommService == 1) then
+        if (playerOnQuestId ~= player:getID()) then
+            player:startEvent(119); -- quest left over from previous day. fail quest.
+        else
+            if (hour >= 18 and hour < 21) then
+                player:startEvent(115); -- tell player it's too early to start lighting lamps.
+            elseif (allLampsLit) then
+                player:startEvent(117,doneCommService); -- all lamps are lit. win quest.
+            elseif (hour >= 21 or hour < 1) then
+                player:startEvent(114); -- tell player they can start lighting lamps.
             else
-                player:startEvent(0x0074,questServerVar);
+                SetServerVariable("[JEUNO]CommService",-1); -- frees player from quest, but don't allow anyone else to take it today.
+                player:startEvent(119); -- player didn't light lamps in time. fail quest.
             end
-        else
-            player:startEvent(0x0076); -- Default Dialogue
         end
 
-        -- Task Failed --
-    elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_ACCEPTED) then
-        if (cService >= 1 and cService < 12 == true) then -- If the quest is accepted but all lamps are NOT lit
-            if (hour >= 18 and hour < 23) then
-                player:startEvent(0x0077); -- Task Failed Dialogue
-            else 
-                player:startEvent(0x0076);
-            end    
-            
-        -- Quest Complete --
-        else
-            player:startEvent(0x0075); -- Quest Complete Dialogue
-        end
+    -- quest is available to player, nobody is currently on it, and the hour is right
+    elseif (player:getFameLevel(JEUNO) >= 1 and playerOnQuestId == 0 and (hour >= 18 or hour < 1)) then
+        player:startEvent(116,doneCommService);
 
-        -- Repeat Quest --
-    elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED and cService == 18) then
-        if (hour >= 18 and hour < 21) then
-            player:startEvent(0x0074,1) -- Quest Start (Repeat)
-        else
-            player:startEvent(0x0076); -- Default Dialogue
-        end
+    -- default dialog including option to drop membership card
+    else
+        player:startEvent(118,hasMembershipCard);
 
-        -- Repeat Quest Task Failed --
-    elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) then
-        if (cService >= 14 and cService < 24 == true) then
-            if (hour >= 18 and hour < 23) then -- If Quest Repeat is accepted but lamps are not lit
-                player:startEvent(0x0077); -- Task Failed Dialogue
-            end
-        
-        elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED and cService == 0) then
-            player:startEvent(0x0076);
-            -- Repeat Quest Complete --
-                else
-                    player:startEvent(0x0071); -- Quest Complete (Repeat)
-        end
-            
-
-    else 
-        player:startEvent(0x0076);
-    end        
-
+    end
 end;
-
-    
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    if (csid == 116 and option == 0) then
+        -- player accepts quest
+        -- if nobody else has already been assigned to the quest, including Vhana, give it to this player
+
+        local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+        local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
+        local hour = VanadielHour();
+
+        if (playerOnQuestId == 0 and (hour >= 18 or hour < 1)) then
+            -- nobody is currently on the quest
+            SetServerVariable("[JEUNO]CommService",player:getID());
+            player:addQuest(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE);
+            player:setVar("currCommService",1);
+            player:updateEvent(1,doneCommService);
+        else
+            -- either another player or vasha have been assigned the quest
+            player:updateEvent(0,doneCommService);
+        end
+    end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
--- ClockTower Quest --    
-    if (csid == 0x0032) then 
-        player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
-        player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 256);
-    
-    ---- Community Service Quest ----
-    elseif (csid == 0x0074 and option == 0) then -- Quest Start
-        if (questServerVar == 0) then
-            player:addQuest(JEUNO,COMMUNITY_SERVICE);
-            SetServerVariable("[JEUNO]CommService",1);
+    -- SAVE THE CLOCKTOWER
+    if (csid == 50) then
+        player:addVar("saveTheClockTowerVar", 1);
+        player:addVar("saveTheClockTowerNPCz2", 256);
+
+    -- COMMUNITY SERVICE
+    elseif (csid == 117) then
+        local params = {title = dsp.title.TORCHBEARER, var = "currCommService"};
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
+            -- first victory
+            params.fame = 30;
+        else
+            -- repeat victory. offer membership card.
+            params.fame = 15;
+            if (option == 1) then
+                params.keyItem = dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD;
+            end
         end
-        
-    elseif (csid == 0x0075) then -- Quest Finish
-        player:completeQuest(JEUNO,COMMUNITY_SERVICE);
-        player:addFame(JEUNO,JEUNO_FAME*30);
-        player:setVar("cService",13)
-        player:addTitle(TORCHBEARER);
-    
-    elseif (csid == 0x0071) then -- Quest Finish (Repeat)
-        player:addKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD); -- Lamp Lighter's Membership Card
-        player:messageSpecial(KEYITEM_OBTAINED,LAMP_LIGHTERS_MEMBERSHIP_CARD);
-        player:addFame(JEUNO, JEUNO_FAME*15);
-        player:setVar("cService",0);
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.COMMUNITY_SERVICE, params);
+
+    elseif (csid == 118 and option == 1) then
+        -- player drops membership card
+        player:delKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD);
+
+    elseif (csid == 119) then
+        -- player fails quest
+        player:setVar("currCommService",0);
+
     end
-    
 end;

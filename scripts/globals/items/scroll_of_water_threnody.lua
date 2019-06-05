@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 5067
---    Scroll of Water Threnody
---    Teaches the song Water Threnody
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5067
+-- Scroll of Water Threnody
+-- Teaches the song Water Threnody
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(459);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(459)
+end
 
 function onItemUse(target)
-    target:addSpell(459);
-end;
+    target:addSpell(459)
+end

@@ -1,81 +1,59 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Romilda
+--  NPC: Romilda
 -- Involved in Quest: Forever to Hold
 -- Starts & Ends Quest: Till Death Do Us Part
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (trade:hasItemQty(12497,1) and trade:getItemCount() == 1) then -- Trade Brass Hairpin
         if (player:getVar("ForevertoHold_Event") == 2) then
             player:tradeComplete();
-            player:startEvent(0x7D);
+            player:startEvent(125);
             player:setVar("ForevertoHold_Event",3);
         end
     elseif (trade:hasItemQty(12721,1) and trade:getItemCount() == 1) then -- Trade Cotton Gloves
         if (player:getVar("ForevertoHold_Event") == 3) then
             player:tradeComplete();
-            player:startEvent(0x81);
+            player:startEvent(129);
             player:setVar("ForevertoHold_Event",4);
         end
     end
-        
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
- pFame = player:getFameLevel(BASTOK);
- ForevertoHold = player:getQuestStatus(BASTOK,FOREVER_TO_HOLD);
- TilldeathdousPart = player:getQuestStatus(BASTOK,TILL_DEATH_DO_US_PART);
-    
-    if (pFame >= 3 and ForevertoHold == QUEST_COMPLETED and TilldeathdousPart == QUEST_AVAILABLE and player:getVar("ForevertoHold_Event") == 3) then
-        player:startEvent(0x80);
-    else
-        player:startEvent(0x22);
-    end
-    
-end;
+    local pFame = player:getFameLevel(BASTOK);
+    local ForevertoHold = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FOREVER_TO_HOLD);
+    local TilldeathdousPart = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.TILL_DEATH_DO_US_PART);
 
------------------------------------
--- onEventUpdate
------------------------------------
+    if (pFame >= 3 and ForevertoHold == QUEST_COMPLETED and TilldeathdousPart == QUEST_AVAILABLE and player:getVar("ForevertoHold_Event") == 3) then
+        player:startEvent(128);
+    else
+        player:startEvent(34);
+    end
+
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x80) then
-        player:addQuest(BASTOK,TILL_DEATH_DO_US_PART);
-    elseif (csid == 0x81) then
-        player:addTitle(QIJIS_RIVAL);
+
+    if (csid == 128) then
+        player:addQuest(BASTOK,dsp.quest.id.bastok.TILL_DEATH_DO_US_PART);
+    elseif (csid == 129) then
+        player:addTitle(dsp.title.QIJIS_RIVAL);
         player:addGil(GIL_RATE*2000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
-        player:addFame(BASTOK,BAS_FAME*160);
-        player:completeQuest(BASTOK,TILL_DEATH_DO_US_PART);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2000);
+        player:addFame(BASTOK,160);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.TILL_DEATH_DO_US_PART);
     end
-            
+
 end;

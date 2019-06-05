@@ -2,24 +2,13 @@
 -- Area: Attohwa Chasm
 --  MOB: Lioumere
 -----------------------------------
-
+mixins = {require("scripts/mixins/families/antlion_ambush")}
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
+require("scripts/globals/missions");
 
------------------------------------
--- onMobSpawn
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    if (ally:getCurrentMission(COP) == THE_ROAD_FORKS and ally:getVar("MEMORIES_OF_A_MAIDEN_Status")>=7 and  ally:hasKeyItem(MIMEO_JEWEL)==false) then
-        ally:setVar("MEMORIES_OF_A_MAIDEN_Status",8);
-        ally:setVar("LioumereKilled",os.time());
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status") >= 7 and not player:hasKeyItem(dsp.ki.MIMEO_JEWEL)) then
+        player:setVar("MEMORIES_OF_A_MAIDEN_Status", 8);
+        player:setVar("LioumereKilled",os.time());
     end
 end;

@@ -2,6 +2,20 @@ require("scripts/globals/status")
 
 utils = {};
 
+-- Shuffles a table and returns a copy of it, not the original.
+function utils.shuffle(tab)
+    local copy = {}
+    for k, v in pairs(tab) do
+        copy[k] = v
+    end
+
+    local res = {}
+    while next(copy) do
+        res[#res + 1] = table.remove(copy, math.random(#copy))
+    end
+    return res
+end
+
 function utils.clamp(input, min_val, max_val)
     if input < min_val then
         input = min_val;
@@ -11,17 +25,18 @@ function utils.clamp(input, min_val, max_val)
     return input;
 end;
 
+-- returns unabsorbed damage
 function utils.stoneskin(target, dmg)
     --handling stoneskin
     if (dmg > 0) then
-        skin = target:getMod(MOD_STONESKIN);
+        skin = target:getMod(dsp.mod.STONESKIN);
         if (skin > 0) then
             if (skin > dmg) then --absorb all damage
-                target:delMod(MOD_STONESKIN,dmg);
+                target:delMod(dsp.mod.STONESKIN,dmg);
                 return 0;
             else --absorbs some damage then wear
-                target:delStatusEffect(EFFECT_STONESKIN);
-                target:setMod(MOD_STONESKIN, 0);
+                target:delStatusEffect(dsp.effect.STONESKIN);
+                target:setMod(dsp.mod.STONESKIN, 0);
                 return dmg - skin;
             end
         end
@@ -35,12 +50,12 @@ function utils.takeShadows(target, dmg, shadowbehav)
         shadowbehav = 1;
     end
 
-    local targShadows = target:getMod(MOD_UTSUSEMI);
-    local shadowType = MOD_UTSUSEMI;
+    local targShadows = target:getMod(dsp.mod.UTSUSEMI);
+    local shadowType = dsp.mod.UTSUSEMI;
 
     if (targShadows == 0) then --try blink, as utsusemi always overwrites blink this is okay
-        targShadows = target:getMod(MOD_BLINK);
-        shadowType = MOD_BLINK;
+        targShadows = target:getMod(dsp.mod.BLINK);
+        shadowType = dsp.mod.BLINK;
     end
 
     if (targShadows > 0) then
@@ -52,28 +67,28 @@ function utils.takeShadows(target, dmg, shadowbehav)
 
             target:setMod(shadowType, shadowsLeft);
 
-            if (shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
-                effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+            if (shadowsLeft > 0 and shadowType == dsp.mod.UTSUSEMI) then --update icon
+                effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
                 if (effect ~= nil) then
                     if (shadowsLeft == 1) then
-                        effect:setIcon(EFFECT_COPY_IMAGE);
+                        effect:setIcon(dsp.effect.COPY_IMAGE);
                     elseif (shadowsLeft == 2) then
-                        effect:setIcon(EFFECT_COPY_IMAGE_2);
+                        effect:setIcon(dsp.effect.COPY_IMAGE_2);
                     elseif (shadowsLeft == 3) then
-                        effect:setIcon(EFFECT_COPY_IMAGE_3);
+                        effect:setIcon(dsp.effect.COPY_IMAGE_3);
                     end
                 end
             end
             -- remove icon
             if (shadowsLeft <= 0) then
-                target:delStatusEffect(EFFECT_COPY_IMAGE);
-                target:delStatusEffect(EFFECT_BLINK);
+                target:delStatusEffect(dsp.effect.COPY_IMAGE);
+                target:delStatusEffect(dsp.effect.BLINK);
             end
 
             return 0;
         else --less shadows than this move will take, remove all and factor damage down
-            target:delStatusEffect(EFFECT_COPY_IMAGE);
-            target:delStatusEffect(EFFECT_BLINK);
+            target:delStatusEffect(dsp.effect.COPY_IMAGE);
+            target:delStatusEffect(dsp.effect.BLINK);
             return dmg * ((shadowbehav-targShadows)/shadowbehav);
         end
     end
@@ -85,7 +100,7 @@ end;
 function utils.thirdeye(target)
     --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
     --chance of anticipate based on previous successful anticipates.
-    local teye = target:getStatusEffect(EFFECT_THIRD_EYE);
+    local teye = target:getStatusEffect(dsp.effect.THIRD_EYE);
 
     if (teye == nil) then
         return false;
@@ -95,7 +110,7 @@ function utils.thirdeye(target)
 
     if ( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
         --anticipated!
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effect.THIRD_EYE);
         return true;
     end
 
@@ -254,94 +269,94 @@ function utils.getSystemStrengthBonus(attacker, defender)
     local attackerSystem = attacker:getSystem();
     local defenderSystem = defender:getSystem();
 
-    if (attackerSystem == SYSTEM_BEAST) then
-        if (defenderSystem == SYSTEM_LIZARD) then
+    if (attackerSystem == dsp.eco.BEAST) then
+        if (defenderSystem == dsp.eco.LIZARD) then
             return 1;
-        elseif (defenderSystem == SYSTEM_PLANTOID) then
+        elseif (defenderSystem == dsp.eco.PLANTOID) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_LIZARD) then
-        if (defenderSystem == SYSTEM_VERMIN) then
+    if (attackerSystem == dsp.eco.LIZARD) then
+        if (defenderSystem == dsp.eco.VERMIN) then
             return 1;
-        elseif (defenderSystem == SYSTEM_BEAST) then
+        elseif (defenderSystem == dsp.eco.BEAST) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_VERMIN) then
-        if (defenderSystem == SYSTEM_PLANTOID) then
+    if (attackerSystem == dsp.eco.VERMIN) then
+        if (defenderSystem == dsp.eco.PLANTOID) then
             return 1;
-        elseif (defenderSystem == SYSTEM_LIZARD) then
+        elseif (defenderSystem == dsp.eco.LIZARD) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_PLANTOID) then
-        if (defenderSystem == SYSTEM_BEAST) then
+    if (attackerSystem == dsp.eco.PLANTOID) then
+        if (defenderSystem == dsp.eco.BEAST) then
             return 1;
-        elseif (defenderSystem == SYSTEM_VERMIN) then
+        elseif (defenderSystem == dsp.eco.VERMIN) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_AQUAN) then
-        if (defenderSystem == SYSTEM_AMORPH) then
+    if (attackerSystem == dsp.eco.AQUAN) then
+        if (defenderSystem == dsp.eco.AMORPH) then
             return 1;
-        elseif (defenderSystem == SYSTEM_BIRD) then
+        elseif (defenderSystem == dsp.eco.BIRD) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_AMORPH) then
-        if (defenderSystem == SYSTEM_BIRD) then
+    if (attackerSystem == dsp.eco.AMORPH) then
+        if (defenderSystem == dsp.eco.BIRD) then
             return 1;
-        elseif (defenderSystem == SYSTEM_AQUAN) then
+        elseif (defenderSystem == dsp.eco.AQUAN) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_BIRD) then
-        if (defenderSystem == SYSTEM_AQUAN) then
+    if (attackerSystem == dsp.eco.BIRD) then
+        if (defenderSystem == dsp.eco.AQUAN) then
             return 1;
-        elseif (defenderSystem == SYSTEM_AMORPH) then
+        elseif (defenderSystem == dsp.eco.AMORPH) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_UNDEAD) then
-        if (defenderSystem == SYSTEM_ARCANA) then
+    if (attackerSystem == dsp.eco.UNDEAD) then
+        if (defenderSystem == dsp.eco.ARCANA) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_ARCANA) then
-        if (defenderSystem == SYSTEM_UNDEAD) then
+    if (attackerSystem == dsp.eco.ARCANA) then
+        if (defenderSystem == dsp.eco.UNDEAD) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_DRAGON) then
-        if (defenderSystem == SYSTEM_DEMON) then
+    if (attackerSystem == dsp.eco.DRAGON) then
+        if (defenderSystem == dsp.eco.DEMON) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_DEMON) then
-        if (defenderSystem == SYSTEM_DRAGON) then
+    if (attackerSystem == dsp.eco.DEMON) then
+        if (defenderSystem == dsp.eco.DRAGON) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_LUMORIAN) then
-        if (defenderSystem == SYSTEM_LUMINION) then
+    if (attackerSystem == dsp.eco.LUMORIAN) then
+        if (defenderSystem == dsp.eco.LUMINION) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_LUMINION) then
-        if (defenderSystem == SYSTEM_LUMORIAN) then
+    if (attackerSystem == dsp.eco.LUMINION) then
+        if (defenderSystem == dsp.eco.LUMORIAN) then
             return 1;
         end
     end

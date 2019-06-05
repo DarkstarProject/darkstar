@@ -1,53 +1,25 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Signpost
---  @zone 100
+-- Area: West Ronfaure
+--  NPC: Signpost
+-- !zone 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/West_Ronfaure/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    if (npc:getID() == 17187473) then
-        player:startEvent(109);
-    elseif (npc:getID() == 17187471) then
-        player:startEvent(107);
-    elseif (npc:getID() == 17187466) then
-        player:startEvent(108);
-    elseif (npc:getID() == 17187473) then
-        player:startEvent(109);
-    elseif (npc:getID() == 17187474) then
-        player:startEvent(110);
-    elseif (npc:getID() == 17187475) then
+    local offset = npc:getID() - ID.npc.SIGNPOST_OFFSET;
+    if (offset == 4) then
         player:startEvent(115);
+    elseif (offset >=0 and offset <= 3) then
+        player:startEvent(107 + offset);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

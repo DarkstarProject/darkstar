@@ -2,50 +2,25 @@
 -- Area: Ru'Aun Gardens
 -- NPC:  ??? (Genbu's Spawn)
 -- Allows players to spawn the HNM Genbu with a Gem of the North and a Winterstone.
--- @pos 257 -70 517 130
+-- !pos 257 -70 517 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/RuAun_Gardens/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/RuAun_Gardens/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    -- Trade Gem of the North and Winterstone
-    if (GetMobAction(17309980) == 0 and trade:hasItemQty(1424,1) and trade:hasItemQty(1425,1) and trade:getItemCount() == 2) then
-        player:tradeComplete();
-        SpawnMob(17309980,300):updateClaim(player); -- Spawn Genbu
-        player:showText(npc,SKY_GOD_OFFSET + 5);
-        npc:setStatus(STATUS_DISAPPEAR);
+    if npcUtil.tradeHas(trade, {1424, 1425}) and npcUtil.popFromQM(player, npc, ID.mob.GENBU) then -- Gem of the North and Winterstone
+        player:showText(npc,ID.text.SKY_GOD_OFFSET + 5)
+        player:confirmTrade()
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(SKY_GOD_OFFSET);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.SKY_GOD_OFFSET)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

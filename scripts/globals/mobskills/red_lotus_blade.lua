@@ -1,47 +1,34 @@
 ---------------------------------------------
---  red lotus blade
+-- Red lotus Blade
 --
---  Description: Delivers a four-hit attack. Chance of critical varies with TP. 
---  Type: Physical
---  Shadow per hit
---  Range: Melee
+-- Description: Deals fire elemental damage. Damage varies with TP.
+-- Type: Physical
+-- Utsusemi/Blink absorb: 1 Shadow?
+-- Range: Melee
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/zones/Qubia_Arena/TextIDs");
-require("scripts/zones/Throne_Room/TextIDs");
----------------------------------------------
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
+
 function onMobSkillCheck(target,mob,skill)
-if (mob:getFamily() == 482) then
-    target:showText(mob,NO_HIDE_AWAY);
-    return 0;
-elseif (mob:getFamily() == 483) then
-    target:showText(mob,RLB_PREPARE);
-    return 0;
-else 
-    return 0;
+    if (mob:getPool() ~= 4006 and mob:getPool() ~= 4249) then
+        mob:messageBasic(dsp.msg.basic.READIES_WS, 0, 34)
+    end
+    return 0
 end
-end;
 
 function onMobWeaponSkill(target, mob, skill)
-    if (mob:getFamily() == 482) then
-    target:showText(mob,FEEL_MY_PAIN);
-    elseif (mob:getFamily() == 483) then
-    target:showText(mob,RLB_LAND);
-    else
-    mob:messageBasic(43, 0, 687+256);
+    if (mob:getPool() == 4006) then -- Trion@QuBia_Arena only
+        target:showText(mob,zones[dsp.zone.QUBIA_ARENA].text.RLB_LAND)
+    elseif (mob:getPool() == 4249) then -- Volker@Throne_Room only
+        target:showText(mob,zones[dsp.zone.THRONE_ROOM].text.FEEL_MY_PAIN)
     end
-    skill:setSkillchain(40);
 
-    
-    local numhits = 4;
-    local accmod = 1;
-    local dmgmod = 1.25;
-   local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1.1,1.2,1.3);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
+    local dmgmod = 1.25
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,dsp.magic.ele.FIRE,dmgmod,TP_DMG_BONUS,1)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.FIRE,MOBPARAM_1_SHADOW)
 
-
-   target:delHP(dmg);
-return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.FIRE)
+    return dmg
+end

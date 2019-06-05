@@ -23,8 +23,9 @@ This file is part of DarkStar-server source code.
 
 #include "lua_item.h"
 
+#include "../../common/showmsg.h"
 #include "../items/item.h"
-#include "../items/item_armor.h"
+#include "../items/item_equipment.h"
 #include "../items/item_weapon.h"
 #include "../items/item_general.h"
 
@@ -116,7 +117,7 @@ inline int32 CLuaItem::isType(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint8 type = lua_tointeger(L, 1);
+    auto type = (uint8)lua_tointeger(L, 1);
 
     lua_pushboolean(L, m_PLuaItem->isType((ITEM_TYPE)type));
     return 1;
@@ -127,7 +128,7 @@ inline int32 CLuaItem::isSubType(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint8 subtype = lua_tointeger(L, 1);
+    auto subtype = (uint8)lua_tointeger(L, 1);
 
     lua_pushboolean(L, m_PLuaItem->isSubType((ITEM_SUBTYPE)subtype));
     return 1;
@@ -137,7 +138,7 @@ inline int32 CLuaItem::getName(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
-    lua_pushstring(L, m_PLuaItem->getName());
+    lua_pushstring(L, (const char*)m_PLuaItem->getName());
     return 1;
 }
 
@@ -148,7 +149,7 @@ inline int32 CLuaItem::getMod(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint16 mod = lua_tointeger(L, 1);
+    Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
 
     lua_pushinteger(L, PItem->getModifier(mod));
     return 1;
@@ -162,10 +163,10 @@ inline int32 CLuaItem::addMod(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint32 mod = lua_tointeger(L, 1);
-    int32 power = lua_tointeger(L, 2);
+    Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
+    auto power = (int16)lua_tointeger(L, 2);
 
-    PItem->addModifier(new CModifier(mod, power));
+    PItem->addModifier(CModifier(mod, power));
     return 0;
 }
 
@@ -177,10 +178,10 @@ inline int32 CLuaItem::delMod(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint32 mod = lua_tointeger(L, 1);
-    int32 power = lua_tointeger(L, 2);
+    Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
+    auto power = (int16)lua_tointeger(L, 2);
 
-    PItem->addModifier(new CModifier(mod, -power));
+    PItem->addModifier(CModifier(mod, -power));
     return 0;
 }
 
@@ -191,10 +192,10 @@ inline int32 CLuaItem::getAugment(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint8 slot = lua_tointeger(L, 1);
+    auto slot = (uint8)lua_tointeger(L, 1);
     uint16 augment = PItem->getAugment(slot);
-    uint16 augmentid = unpackBitsBE((uint8*)(&augment), 0, 11);
-    uint8 augmentVal = unpackBitsBE((uint8*)(&augment), 11, 5);
+    uint16 augmentid = (uint16)unpackBitsBE((uint8*)(&augment), 0, 11);
+    uint8 augmentVal = (uint8)unpackBitsBE((uint8*)(&augment), 11, 5);
 
     lua_pushinteger(L, augmentid);
     lua_pushinteger(L, augmentVal);
@@ -215,9 +216,74 @@ inline int32 CLuaItem::getSkillType(lua_State* L)
 
     return 1;
 }
+
+inline int32 CLuaItem::getWeaponskillPoints(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    auto PItem = dynamic_cast<CItemWeapon*>(m_PLuaItem);
+
+    if (PItem)
+        lua_pushinteger(L, PItem->getCurrentUnlockPoints());
+    else
+        lua_pushinteger(L, 0);
+
+    return 1;
+}
+
+inline int32 CLuaItem::isTwoHanded(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    if (CItemWeapon* PWeapon = dynamic_cast<CItemWeapon*>(m_PLuaItem))
+    {
+        lua_pushboolean(L, PWeapon->isTwoHanded());
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaItem::isTwoHanded - not a valid Weapon.\n" CL_RESET);
+        lua_pushboolean(L, 0);
+    }
+
+    return 1;
+}
+
+inline int32 CLuaItem::isHandToHand(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    if (CItemWeapon* PWeapon = dynamic_cast<CItemWeapon*>(m_PLuaItem))
+    {
+        lua_pushboolean(L, PWeapon->isHandToHand());
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaItem::isHandToHand - not a valid Weapon.\n" CL_RESET);
+        lua_pushboolean(L, 0);
+    }
+
+    return 1;
+}
+
+inline int32 CLuaItem::isShield(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    if (CItemArmor* PArmor = dynamic_cast<CItemArmor*>(m_PLuaItem))
+    {
+        lua_pushboolean(L, PArmor->IsShield());
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaItem::isShield - not a valid Armor.\n" CL_RESET);
+        lua_pushboolean(L, 0);
+    }
+
+    return 1;
+}
 //==========================================================//
 
-const int8 CLuaItem::className[] = "CItem";
+const char CLuaItem::className[] = "CItem";
 
 Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
 {
@@ -237,5 +303,9 @@ Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
     LUNAR_DECLARE_METHOD(CLuaItem,delMod),
     LUNAR_DECLARE_METHOD(CLuaItem,getAugment),
     LUNAR_DECLARE_METHOD(CLuaItem,getSkillType),
+    LUNAR_DECLARE_METHOD(CLuaItem,getWeaponskillPoints),
+    LUNAR_DECLARE_METHOD(CLuaItem,isTwoHanded),
+    LUNAR_DECLARE_METHOD(CLuaItem,isHandToHand),
+    LUNAR_DECLARE_METHOD(CLuaItem,isShield),
     {nullptr,nullptr}
 };

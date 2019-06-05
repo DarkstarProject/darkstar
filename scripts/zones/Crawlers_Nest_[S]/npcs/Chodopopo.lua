@@ -1,47 +1,23 @@
 ----------------------------------
---  Area: Crawlers' Nest [S]
+-- Area: Crawlers' Nest [S]
 --  NPC: Chodopopo
---  Type: Item Deliverer
---  @zone: 171
---  @pos 100.528    -32.272    -58.739
-
+-- Type: Item Deliverer
+-- !pos 100.528 -32.272 -58.739 171
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
-require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Crawlers_Nest_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

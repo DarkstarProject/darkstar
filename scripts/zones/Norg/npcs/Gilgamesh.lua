@@ -1,82 +1,61 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Gilgamesh
--- @pos 122.452 -9.009 -12.052 252
+--  NPC: Gilgamesh
+-- !pos 122.452 -9.009 -12.052 252
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
+
+    if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
         if (trade:hasItemQty(1160,1) and trade:getItemCount() == 1) then -- Frag Rock
-            player:startEvent(0x0063); -- Bastok Mission 6-2
+            player:startEvent(99); -- Bastok Mission 6-2
         end
     end
-    
-end;
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
+
     local ZilartMission = player:getCurrentMission(ZILART);
-    
-    if (ZilartMission == KAZAMS_CHIEFTAINESS) then
-        player:startEvent(0x0007);
-    elseif (ZilartMission == THE_TEMPLE_OF_UGGALEPIH) then
-        player:startEvent(0x0008);
-    elseif (ZilartMission == HEADSTONE_PILGRIMAGE) then
-        player:startEvent(0x0009);
-    elseif (ZilartMission == RETURN_TO_DELKFUTTS_TOWER) then
-        player:startEvent(0x000d);
-    elseif (ZilartMission == ROMAEVE) then
-        player:startEvent(0x000b);
-    elseif (ZilartMission == THE_MITHRA_AND_THE_CRYSTAL) then
-        player:startEvent(0x00aa);
-    elseif (ZilartMission == ARK_ANGELS) then
-        player:startEvent(0x00ab);
-    elseif (ZilartMission == THE_CELESTIAL_NEXUS) then
-        player:startEvent(0x00ad);
-    elseif (ZilartMission == AWAKENING) then
-        player:startEvent(0x00b1);
+
+    if (ZilartMission == dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS) then
+        player:startEvent(7);
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
+        player:startEvent(8);
+    elseif (ZilartMission == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
+        player:startEvent(9);
+    elseif (ZilartMission == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER) then
+        player:startEvent(13);
+    elseif (ZilartMission == dsp.mission.id.zilart.ROMAEVE) then
+        player:startEvent(11);
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
+        player:startEvent(170);
+    elseif (ZilartMission == dsp.mission.id.zilart.ARK_ANGELS) then
+        player:startEvent(171);
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_CELESTIAL_NEXUS) then
+        player:startEvent(173);
+    elseif (ZilartMission == dsp.mission.id.zilart.AWAKENING) then
+        player:startEvent(177);
     end
-    
+
 end;
 
---0x00af  0x0000  0x0002  0x0003  0x0004  0x0007  0x0008  0x0009  0x000a  0x0062  0x0063  0x001d  0x000c  
---0x000d  0x0092  0x009e  0x00a4  0x00a9  0x00aa  0x00ab  0x00ac  0x00ad  0x00b0  0x00b1  0x00e8  0x00e9  
---0x00ea
--- 0x0062  0x0063 mission bastok
--- 0x000c parle de kuzotz ? parle de bijoux aussi
--- 0x000a parle de zitah
-
------------------------------------
--- onEventUpdate
------------------------------------
-
+--175  0  2  3  4  7  8  9  10  98  99  29  12
+--13  146  158  164  169  170  171  172  173  176  177  232  233
+--234
+-- 98  99 mission bastok
+-- 12 parle de kuzotz ? parle de bijoux aussi
+-- 10 parle de zitah
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-    
-    if (csid == 0x0063) then
+
+    if (csid == 99) then
         player:tradeComplete();
         player:setVar("MissionStatus",3);
     end
-    
+
 end;

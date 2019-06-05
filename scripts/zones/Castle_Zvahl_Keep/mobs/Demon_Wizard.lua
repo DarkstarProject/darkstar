@@ -1,28 +1,14 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
 --  MOB: Demon_Wizard
+-- Note: PH for Baron Vapula
 -----------------------------------
+local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");
+require("scripts/globals/mobs");
 
-require("scripts/zones/Castle_Zvahl_Keep/MobIDs");
+function onMobDeath(mob, player, isKiller)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    local mobID = mob:getID();
-    if (Baron_Vapula_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Baron_Vapula");
-        if (ToD <= os.time(t) and GetMobAction(Baron_Vapula) == 0) then
-            if (math.random(1,10) == 5) then
-                UpdateNMSpawnPoint(Baron_Vapula);
-                GetMobByID(Baron_Vapula):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Baron_Vapula", mobID);
-                DeterMob(mobID, true);
-            end
-        end
-    end
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.BARON_VAPULA_PH,10,math.random(3600,28800)); -- 1 to 8 hours
 end;

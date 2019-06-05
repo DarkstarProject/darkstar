@@ -2,19 +2,11 @@
 -- Area: Caedarva Mire
 --  MOB: Jazaraat
 -----------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/settings");
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/missions");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    killer:setVar("TOAUM13",2);
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.LOST_KINGDOM) then
+        player:setVar("AhtUrganStatus", 2);
+    end
 end;

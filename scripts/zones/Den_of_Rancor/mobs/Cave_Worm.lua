@@ -2,13 +2,9 @@
 -- Area: Den of Rancor
 --  MOB: Cave Worm
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,796,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 796, 2, dsp.regime.type.GROUNDS)
 end;

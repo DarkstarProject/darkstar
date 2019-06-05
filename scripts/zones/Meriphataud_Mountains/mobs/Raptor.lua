@@ -1,14 +1,17 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
 --  MOB: Raptor
+-- Note: PH for Daggerclaw Dracos
+-----------------------------------
+local ID = require("scripts/zones/Meriphataud_Mountains/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 39, 1, dsp.regime.type.FIELDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,39,1);
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.DAGGERCLAW_DRACOS_PH, 10, 3600) -- 1 hour
+end

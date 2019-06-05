@@ -2,13 +2,9 @@
 -- Area: The Boyahda Tree
 --  MOB: Snaggletooth Peapuk
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,726,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 726, 2, dsp.regime.type.GROUNDS)
+end

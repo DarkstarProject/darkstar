@@ -1,52 +1,28 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Mejuone
+--  NPC: Mejuone
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,MEJUONE_SHOP_DIALOG);
+    local stock =
+    {
+        4545, 62,    -- Gysahl Greens
+        840,   7,    -- Chocobo Feather
+        17307, 9,    -- Dart
+    }
 
-stock = {0x11C1,62,        -- Gysahl Greens
-     0x0348,7,        -- Chocobo Feather
-     0x439B,9}        -- Dart
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.MEJUONE_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

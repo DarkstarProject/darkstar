@@ -1,66 +1,47 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
--- NPC:  Lokpix
+--  NPC: Lokpix
 -- Starts Quest "Open Sesame"
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+local ID = require("scripts/zones/Eastern_Altepa_Desert/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.OPEN_SESAME) == QUEST_ACCEPTED) then
         if ((trade:hasItemQty(2796,1) and trade:hasItemQty(582,1) and trade:getItemCount() == 2) or (trade:hasItemQty(2796,1) and trade:hasItemQty(3319,1) and trade:getItemCount() == 2)
          or (trade:hasItemQty(2796,1) and trade:hasItemQty(3300,12) and trade:getItemCount() == 13)) then
-            player:startEvent(0x0016); 
+            player:startEvent(22);
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_AVAILABLE) then
-        player:startEvent(0x0014); 
-    elseif (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_ACCEPTED) then
-        player:startEvent(0x0015); 
-    elseif (player:hasCompleteQuest(OUTLANDS,OPEN_SESAME)) then
-        player:startEvent(0x0018); 
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.OPEN_SESAME) == QUEST_AVAILABLE) then
+        player:startEvent(20);
+    elseif (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.OPEN_SESAME) == QUEST_ACCEPTED) then
+        player:startEvent(21);
+    elseif (player:hasCompletedQuest(OUTLANDS,dsp.quest.id.outlands.OPEN_SESAME)) then
+        player:startEvent(24);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("OPTION: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("OPTION: %u",option);
-    
-    if (csid == 0x0014 and option == 1) then
-        player:addQuest(OUTLANDS,OPEN_SESAME); 
-    elseif (csid == 0x0016) then
+    -- printf("OPTION: %u",option);
+
+    if (csid == 20 and option == 1) then
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.OPEN_SESAME);
+    elseif (csid == 22) then
         player:tradeComplete();
-        player:addKeyItem(2051);
-        player:messageSpecial(KEYITEM_OBTAINED,2051);
-        player:addFame(OUTLANDS,30);
-        player:completeQuest(OUTLANDS,OPEN_SESAME);
+        player:addKeyItem(dsp.ki.LOADSTONE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LOADSTONE);
+        player:addFame(RABAO,30);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.OPEN_SESAME);
     end
-    
+
 end;

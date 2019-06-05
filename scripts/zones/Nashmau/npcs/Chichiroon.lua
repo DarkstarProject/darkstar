@@ -1,56 +1,36 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Chichiroon
+--  NPC: Chichiroon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Nashmau/TextIDs");
-require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Nashmau/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,CHICHIROON_SHOP_DIALOG);
+    local stock =
+    {
+        5497,  99224,    -- Bolter's Die
+        5498,  85500,    -- Caster's Die
+        5499,  97350,    -- Courser's Die
+        5500, 100650,    -- Blitzer's Die
+        5501, 109440,    -- Tactician's Die
+        5502, 116568,    -- Allies' Die
+        5503,  96250,    -- Miser's Die
+        5504,  95800,    -- Companion's Die
+        5505, 123744,    -- Avenger's Die
+        6368,  69288,    -- Geomancer Die
+        6369,  73920,    -- Rune Fencer Die
+    }
 
-stock = {0x1579,99224,    --Bolter's Die
-     0x157a,85500,    --Caster's Die
-     0x157b,97350,    --Courser's Die
-     0x157c,100650,    --Blitzer's Die
-     0x157d,109440,    --Tactician's Die
-     0x157e,116568}    --Allies' Die
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.CHICHIROON_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

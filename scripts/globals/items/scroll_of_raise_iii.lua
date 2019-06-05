@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4748
---    Scroll of Raise II
---    Teaches the white magic Raise III
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4748
+-- Scroll of Raise II
+-- Teaches the white magic Raise III
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(140);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(140)
+end
 
 function onItemUse(target)
-    target:addSpell(140);
-end;
+    target:addSpell(140)
+end

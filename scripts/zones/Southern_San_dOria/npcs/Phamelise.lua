@@ -1,75 +1,46 @@
 -----------------------------------
---      Area: Southern San d'Oria
---      NPC: Phamelise
---      Only sells when San d'Oria controlls Zulkheim Region
+-- Area: Southern San d'Oria
+--  NPC: Phamelise
+-- Zulkheim Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/events/harvest_festivals");
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-require("scripts/globals/conquest");
-require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
+require("scripts/globals/events/harvest_festivals")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == 1) then
-        if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
-                player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     else
-        onHalloweenTrade(player,trade,npc);
+        onHalloweenTrade(player, trade, npc)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-
-    RegionOwner = GetRegionOwner(ZULKHEIM);
-
-    if (RegionOwner ~= SANDORIA) then
-        player:showText(npc,PHAMELISE_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.ZULKHEIM) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.PHAMELISE_CLOSED_DIALOG)
     else
-        player:showText(npc,PHAMELISE_OPEN_DIALOG);
+        local stock =
+        {
+            4372,   44,    -- Giant Sheep Meat
+            622,    44,    -- Dried Marjoram
+            610,    55,    -- San d'Orian Flour
+            611,    36,    -- Rye Flour
+            1840, 1840,    -- Semolina
+            4366,   22,    -- La Theine Cabbage
+            4378,   55,    -- Selbina Milk
+        }
 
-        stock = {0x1114,44,       --Giant Sheep Meat
-                         0x026e,44,       --Dried Marjoram
-                         0x0262,55,       --San d'Orian Flour
-                         0x0263,36,       --Rye Flour
-                         0x0730,1840, --Semolina
-                         0x110e,22,       --La Theine Cabbage
-                         0x111a,55}       --Selbina Milk
-
-        showShop(player,SANDORIA,stock);
+        player:showText(npc, ID.text.PHAMELISE_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
     end
-
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
+end

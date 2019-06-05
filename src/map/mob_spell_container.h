@@ -31,6 +31,7 @@
 
 #include "spell.h"
 #include "entities/mobentity.h"
+#include <optional>
 
 class CMobSpellContainer
 {
@@ -40,33 +41,33 @@ public:
 
 
   // These methods return a random spell
-  int16 GetAggroSpell(); // -ga spell, dia, bio, paralyze, silence, blind
-  int16 GetGaSpell(); // AoE damage spells, stonega, diaga
-  int16 GetDamageSpell(); // Single target damage spells, stone
-  int16 GetBuffSpell(); // stoneskin, utsusemi, blink
-  int16 GetHealSpell(); // cures, regen, armys paeon
-  int16 GetNaSpell(); // silena, blindna etc
-  int16 GetSpell(); // return a random spell
+  std::optional<SpellID> GetAggroSpell(); // -ga spell, dia, bio, paralyze, silence, blind
+  std::optional<SpellID> GetGaSpell(); // AoE damage spells, stonega, diaga
+  std::optional<SpellID> GetDamageSpell(); // Single target damage spells, stone
+  std::optional<SpellID> GetBuffSpell(); // stoneskin, utsusemi, blink
+  std::optional<SpellID> GetHealSpell(); // cures, regen, armys paeon
+  std::optional<SpellID> GetNaSpell(); // silena, blindna etc
+  std::optional<SpellID> GetSpell(); // return a random spell
 
-  bool HasSpells();
-  bool HasMPSpells();
-  bool HasNaSpell(int16 spellId);
-  bool HasGaSpells();
-  bool HasDamageSpells();
-  bool HasBuffSpells();
-  bool HasHealSpells();
-  bool HasNaSpells();
+  bool HasSpells() const;
+  bool HasMPSpells() const;
+  bool HasNaSpell(SpellID spellId) const;
+  bool HasGaSpells() const;
+  bool HasDamageSpells() const;
+  bool HasBuffSpells() const;
+  bool HasHealSpells() const;
+  bool HasNaSpells() const;
 
   void ClearSpells();
-  void AddSpell(int16 spellId);
+  void AddSpell(SpellID spellId);
   // TODO:
-  void RemoveSpell(int16 spellId);
+  void RemoveSpell(SpellID spellId);
 
-  std::vector<int16> m_gaList;
-  std::vector<int16> m_damageList;
-  std::vector<int16> m_buffList;
-  std::vector<int16> m_healList;
-  std::vector<int16> m_naList;
+  std::vector<SpellID> m_gaList;
+  std::vector<SpellID> m_damageList;
+  std::vector<SpellID> m_buffList;
+  std::vector<SpellID> m_healList;
+  std::vector<SpellID> m_naList;
 
 private:
   CMobEntity* m_PMob;

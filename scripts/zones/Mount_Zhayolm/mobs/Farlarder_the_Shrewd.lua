@@ -1,18 +1,7 @@
 -----------------------------------
--- Area: Caedarva Mire
---  MOB: Khimaira
+-- Area: Mount Zhayolm
+--  MOB: Farlarder the Shrewd
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-end;
+function onMobDeath(mob, player, isKiller)
+end

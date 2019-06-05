@@ -8,41 +8,25 @@
 -- Duration: 2Min
 -- Smithing Skill +3
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_SMITHING_IMAGERY) == true) then
-        result = 237;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.SMITHING_IMAGERY) == true) then
+        result = 237
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_SMITHING_IMAGERY,3,0,120);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.SMITHING_IMAGERY,3,0,120)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILL_SMT, 1);
-end;
+    target:addMod(dsp.mod.SMITH, 1)
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_SKILL_SMT, 1);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.SMITH, 1)
+end

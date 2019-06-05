@@ -5,50 +5,43 @@
 -- Recast Time: 1:00:00
 -- Duration: 1:00
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     -- The wyvern must be present in order to use Spirit Surge
     if (target:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0
     else
-        return 0,0;
+        return 0,0
     end
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+end
 
 function onUseAbility(player,target,ability)
     -- Spirit Surge increases dragoon's MAX HP increases by 25% of wyvern MaxHP
     -- bg wiki says 25% ffxiclopedia says 15%, going with 25 for now
-    local mhp_boost = target:getPet():getMaxHP()*0.25;
-
+    local mhp_boost = target:getPet():getMaxHP()*0.25
+    -- Dragoon gets all of wyverns TP when using Spirit Surge
+    local pet = player:getPet()
+    local petTP = pet:getTP()
+    target:addTP(petTP) --add pet TP to dragoon
+    pet:delTP(petTP) -- remove TP from pet
     -- Spirit Surge increases dragoon's Strength
-    local strBoost = 0;
-    if (target:getMainJob()==JOB_DRG) then
-        strBoost = (1 + target:getMainLvl()/5); -- Use Mainjob Lvl
+    local strBoost = 0
+    if (target:getMainJob() == dsp.job.DRG) then
+        strBoost = (1 + target:getMainLvl()/5) -- Use Mainjob Lvl
     else
-        strBoost = (1 + target:getSubLvl()/5);  -- Use Subjob Lvl
+        strBoost = (1 + target:getSubLvl()/5)  -- Use Subjob Lvl
     end
 
-    -- Spirit Surge lasts 60 seconds, or 20 more if Wyrm Mail+2 is equipped
-    local duration = 60;
-    if (target:getEquipID(SLOT_BODY)==10683) then
-        duration = duration + 20;
-    end
+    local duration = 60
 
-    target:despawnPet();
+    target:despawnPet()
     -- All Jump recast times are reset
-    target:resetRecast(RECAST_ABILITY,158); -- Jump
-    target:resetRecast(RECAST_ABILITY,159); -- High Jump
-    target:resetRecast(RECAST_ABILITY,160); -- Super Jump
+    target:resetRecast(dsp.recast.ABILITY,158) -- Jump
+    target:resetRecast(dsp.recast.ABILITY,159) -- High Jump
+    target:resetRecast(dsp.recast.ABILITY,160) -- Super Jump
 
-    target:addStatusEffect(EFFECT_SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
-end;
+    target:addStatusEffect(dsp.effect.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost)
+end

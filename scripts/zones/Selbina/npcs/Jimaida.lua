@@ -1,54 +1,26 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Jimaida
+--  NPC: Jimaida
 -- Involved in Quests: Under the sea
--- @pos -15 -2 -16 248
------------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Selbina/TextIDs");
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+-- !pos -15 -2 -16 248
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    if (player:getVar("underTheSeaVar") == 2) then 
-        player:startEvent(0x0021); -- During quest "Under the sea" - 2nd dialog
+    if player:getVar("underTheSeaVar") == 2 then
+        player:startEvent(33) -- During quest "Under the sea" - 2nd dialog
     else
-        player:startEvent(0x0098); -- Standard dialog
+        player:startEvent(152) -- Standard dialog
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x0021) then 
-        player:setVar("underTheSeaVar",3);
+    if csid == 33 then
+        player:setVar("underTheSeaVar", 3)
     end
-end;
-
-
-
+end

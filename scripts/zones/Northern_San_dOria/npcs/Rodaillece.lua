@@ -1,45 +1,30 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Rodaillece
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -246.943 7.000 46.836
---
+-- !pos -246.943 7.000 46.836 231
+-----------------------------------
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
+function onTrade(player, npc, trade)
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
+    end
+end
 
------------------------------------
--- onTrade Action
------------------------------------
+function onTrigger(player, npc)
+    if player:getVar("thePickpocket") == 1 and not player:getMaskBit(player:getVar("thePickpocketSkipNPC"), 3) then
+        player:showText(npc, ID.text.PICKPOCKET_RODAILLECE)
+        player:setMaskBit(player:getVar("thePickpocketSkipNPC"), "thePickpocketSkipNPC", 3, true)
+    else
+        player:showText(npc, ID.text.RODAILLECE_DIALOG)
+    end
+end
 
-function onTrade(player,npc,trade)
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    player:showText(npc,RODAILLECE_DIALOG);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+function onEventFinish(player, csid, option)
+end

@@ -1,22 +1,10 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Lost_Soul
+--   NM: Lost_Soul
 -----------------------------------
 
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    if (ally:getVar("EquipedforAllOccasions") == 1) then
-        ally:setVar("EquipedforAllOccasions",2);
+function onMobDeath(mob, player, isKiller)
+    if player:getVar("EquippedforAllOccasions") == 1 then
+        player:setVar("EquippedforAllOccasions", 2)
     end
-end;
+end

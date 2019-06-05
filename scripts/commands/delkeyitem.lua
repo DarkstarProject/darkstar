@@ -1,32 +1,53 @@
 ---------------------------------------------------------------------------------------------------
--- func: @delkeyitem
+-- func: delkeyitem
 -- desc: Deletes the given key item from the player.
 ---------------------------------------------------------------------------------------------------
+
+require("scripts/globals/keyitems");
 
 cmdprops =
 {
     permission = 1,
-    parameters = "is"
+    parameters = "ss"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!delkeyitem <key item ID> {player}");
+end;
+
 function onTrigger(player, keyId, target)
-    if (keyId == nil or tonumber(keyId) == 0 or tonumber(keyId) == nil or keyId == 0) then
-        player:PrintToPlayer("You must enter a valid keyitem ID.");
-        player:PrintToPlayer( "@delkeyitem <ID> <player>" );
+
+    -- validate key item id
+    if (keyId == nil) then
+        error(player, "You must supply a key item ID.");
+        return;
+    end
+    keyId = tonumber(keyId) or dsp.ki[string.upper(keyId)];
+    if (keyId == nil or keyId < 1) then
+        error(player, "Invalid Key Item ID.");
         return;
     end
 
+    -- validate target
+    local targ;
     if (target == nil) then
-        player:delKeyItem( keyId );
-        player:PrintToPlayer( string.format( "Keyitem ID '%u' deleted from self!", keyId ) );
+        targ = player;
     else
-        local targ = GetPlayerByName(target);
-        if (targ ~= nil) then
-            targ:delKeyItem( keyId );
-            player:PrintToPlayer( string.format( "Keyitem ID '%u' deleted from player!", keyId ) );
-        else
-            player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@delkeyitem <ID> <player>" );
+        targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
         end
+    end
+
+    -- delete key item from target
+    if (targ:hasKeyItem(keyId)) then
+        local ID = zones[targ:getZoneID()]
+        targ:delKeyItem( keyId );
+        targ:messageSpecial(ID.text.KEYITEM_OBTAINED + 1, keyId);
+        player:PrintToPlayer(string.format("Key item %i deleted from %s.", keyId, targ:getName()));
+    else
+        player:PrintToPlayer(string.format("%s does not have key item %i.", targ:getName(), keyId));
     end
 end;

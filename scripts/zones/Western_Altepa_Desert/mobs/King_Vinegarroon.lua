@@ -2,49 +2,35 @@
 -- Area: Western Altepa Desert
 --   NM: King Vinegarroon
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/weather");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/weather")
+require("scripts/globals/titles")
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
-
------------------------------------
--- onMobDrawIn
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
 function onMobDrawIn(mob, target)
     -- todo make him use AoE tp move
-    mob:addTP(300);
-end;
+    mob:addTP(3000)
+end
 
------------------------------------
--- onMobDisengage
------------------------------------
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PETRIFY, {chance = 100})
+end
 
 function onMobDisengage(mob, weather)
-
-    if (weather ~= WEATHER_DUST_STORM and weather ~= WEATHER_SAND_STORM) then
-        DespawnMob(mob:getID());
+    if weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM then
+        DespawnMob(mob:getID())
     end
+end
 
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.VINEGAR_EVAPORATOR)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    ally:addTitle(VINEGAR_EVAPORATOR);
-
-    -- Set King_Vinegarroon's spawnpoint and respawn time (21-24 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
-end;
+function onMobDespawn(mob)
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(75600, 86400)) -- 21 to 24 hours
+end

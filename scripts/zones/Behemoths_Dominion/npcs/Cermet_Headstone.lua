@@ -1,79 +1,65 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
--- NPC:  Cermet Headstone
+--  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Lightning Headstone)
--- @pos -74 -4 -87 127
+-- !pos -74 -4 -87 127
 -----------------------------------
-package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/Behemoths_Dominion/IDs");
 require("scripts/globals/keyitems");
-require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/Behemoths_Dominion/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
-        -- if requirements are met and 15 mins have passed since mobs were last defeated, spawn them
-        if (player:hasKeyItem(LIGHTNING_FRAGMENT) == false and GetServerVariable("[ZM4]Lightning_Headstone_Active") < os.time()) then
-            player:startEvent(0x00C8,LIGHTNING_FRAGMENT);
-        -- if 15 min window is open and requirements are met, recieve key item
-        elseif (player:hasKeyItem(LIGHTNING_FRAGMENT) == false and GetServerVariable("[ZM4]Lightning_Headstone_Active") > os.time()) then
-            player:addKeyItem(LIGHTNING_FRAGMENT);
-            -- Check and see if all fragments have been found (no need to check wind and dark frag)
-            if (player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
-               player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
-                player:messageSpecial(FOUND_ALL_FRAGS,LIGHTNING_FRAGMENT);
-                player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
-                player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
-                player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
-            else
-                player:messageSpecial(KEYITEM_OBTAINED,LIGHTNING_FRAGMENT);
-            end
-        else
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,LIGHTNING_FRAGMENT);
-        end
-    elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
-        player:messageSpecial(ZILART_MONUMENT);
-    else
-        player:messageSpecial(CANNOT_REMOVE_FRAG);
-    end
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onTrigger(player,npc)
+
+    -- HEADSTONE PILGRIMAGE
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
+        if (player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT)) then
+            player:messageSpecial(ID.text.ALREADY_OBTAINED_FRAG,dsp.ki.LIGHTNING_FRAGMENT);
+        elseif (os.time() >= npc:getLocalVar("cooldown")) then
+            if (not GetMobByID(ID.mob.ANCIENT_WEAPON):isSpawned() and not GetMobByID(ID.mob.LEGENDARY_WEAPON):isSpawned()) then
+                player:startEvent(200,dsp.ki.LIGHTNING_FRAGMENT);
+            else
+                player:messageSpecial(ID.text.SOMETHING_BETTER);
+            end
+        else
+            player:addKeyItem(dsp.ki.LIGHTNING_FRAGMENT);
+            if (
+                player:hasKeyItem(dsp.ki.ICE_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.WATER_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.FIRE_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.WIND_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT)
+            ) then
+                player:messageSpecial(ID.text.FOUND_ALL_FRAGS,dsp.ki.LIGHTNING_FRAGMENT);
+                player:addTitle(dsp.title.BEARER_OF_THE_EIGHT_PRAYERS);
+                player:completeMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE);
+                player:addMission(ZILART,dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES);
+            else
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHTNING_FRAGMENT);
+            end
+        end
+
+    -- DEFAULT DIALOGS
+    elseif (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE)) then
+        player:messageSpecial(ID.text.ZILART_MONUMENT);
+    else
+        player:messageSpecial(ID.text.CANNOT_REMOVE_FRAG);
+    end
+
+end;
+
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x00C8 and option == 1) then
-        SpawnMob(17297450,300):updateClaim(player); -- Legendary Weapon
-        SpawnMob(17297449,300):updateClaim(player); -- Ancient Weapon
-        SetServerVariable("[ZM4]Lightning_Headstone_Active",0);
+
+    -- HEADSTONE PILGRIMAGE
+    if (csid == 200 and option == 1) then
+        SpawnMob(ID.mob.ANCIENT_WEAPON):updateClaim(player);
+        SpawnMob(ID.mob.LEGENDARY_WEAPON):updateClaim(player);
     end
-    
 end;

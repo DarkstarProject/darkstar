@@ -4,29 +4,17 @@
 --
 -----------------------------------
 
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
------------------------------------
+require("scripts/globals/status")
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ACC, effect:getPower());
-    target:addMod(MOD_RACC, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ACC, effect:getPower())
+    target:addMod(dsp.mod.RACC, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ACC, effect:getPower());
-    target:delMod(MOD_RACC, effect:getPower());
-end;
+    target:delMod(dsp.mod.ACC, effect:getPower())
+    target:delMod(dsp.mod.RACC, effect:getPower())
+end

@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Ozzmo-Mazmo
---  Type: Standard NPC
--- @zone: 94
---  @pos -61.677 -13.311 106.400
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Waters (S)
+--  NPC: Ozzmo-Mazmo
+-- Type: Standard NPC
+-- !pos -61.677 -13.311 106.400 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x01b0);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(432)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

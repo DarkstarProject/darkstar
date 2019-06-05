@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 5477
---    Warrior Die
---    Teaches the job ability Fighter's Roll
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5481
+-- Red Mage Die
+-- Teaches the job ability Warlock's Roll
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnAbility(86);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnAbility(86)
+end
 
 function onItemUse(target)
-    target:addLearnedAbility(86);
-end;
+    target:addLearnedAbility(86)
+end

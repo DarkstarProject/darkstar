@@ -3,70 +3,32 @@
 -- Zone: Den_of_Rancor (160)
 --
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/Den_of_Rancor/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Den_of_Rancor/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17433090,17433091,17433092,17433093,17433094,17433095};
-
-    SetGroundsTome(tomes);
-
-    UpdateTreasureSpawnPoint(17433077);
-end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
+    dsp.treasure.initZone(zone)
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
-end;
-
------------------------------------
--- onZoneIn
------------------------------------
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(196.421,34.595,-60.319,110);
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(196.421,34.595,-60.319,110)
     end
-    return cs;
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

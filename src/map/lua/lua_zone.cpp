@@ -83,15 +83,16 @@ inline int32 CLuaZone::registerRegion(lua_State *L)
             if (lua_tointeger(L, 5) == 0 && lua_tointeger(L, 6) == 0 && lua_tointeger(L, 7) == 0)
                 circleRegion = true; // Parameters were 0, we must be a circle.
 
-            CRegion* Region = new CRegion(lua_tointeger(L, 1), circleRegion);
+            CRegion* Region = new CRegion((uint32)lua_tointeger(L, 1), circleRegion);
 
-            // If this is a circle, parameter 4 will be the radius.
-            Region->SetULCorner(lua_tointeger(L, 2), lua_tointeger(L, 3), lua_tointeger(L, 4));
-            Region->SetLRCorner(lua_tointeger(L, 5), lua_tointeger(L, 6), lua_tointeger(L, 7));
+            // If this is a circle, parameter 3 (which would otherwise be vertical coordinate) will be the radius.
+            Region->SetULCorner((float)lua_tointeger(L, 2), (float)lua_tointeger(L, 3), (float)lua_tointeger(L, 4));
+            Region->SetLRCorner((float)lua_tointeger(L, 5), (float)lua_tointeger(L, 6), (float)lua_tointeger(L, 7));
 
             m_pLuaZone->InsertRegion(Region);
         }
-        else {
+        else
+        {
             ShowWarning(CL_YELLOW"Region cannot be registered. Please check the parameters.\n" CL_RESET);
         }
     }
@@ -129,7 +130,7 @@ inline int32 CLuaZone::getPlayers(lua_State* L)
         lua_insert(L, -2);
         lua_pushlightuserdata(L, (void*)PChar);
         lua_pcall(L, 2, 1, 0);
-        lua_setfield(L, newTable, PChar->GetName());
+        lua_setfield(L, newTable, (const char*)PChar->GetName());
     });
 
     return 1;
@@ -153,19 +154,41 @@ inline int32 CLuaZone::getRegionID(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaZone::getBattlefieldByInitiator(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    if (m_pLuaZone->m_BattlefieldHandler)
+        lua_pushlightuserdata(L, (void*)m_pLuaZone->m_BattlefieldHandler->GetBattlefieldByInitiator((uint32)lua_tointeger(L, 1)));
+    else
+        lua_pushnil(L);
+    return 1;
+}
+
+inline int32 CLuaZone::battlefieldsFull(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+    int battlefieldId = lua_isnil(L, 1) ? -1 : (int)lua_tointeger(L, 1);
+    lua_pushboolean(L, (int)(m_pLuaZone->m_BattlefieldHandler && m_pLuaZone->m_BattlefieldHandler->ReachedMaxCapacity(battlefieldId)));
+    return 1;
+}
+
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
 *																		*
 ************************************************************************/
 
-const int8 CLuaZone::className[] = "CZone";
+const char CLuaZone::className[] = "CZone";
 Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
 {
-    LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),
     LUNAR_DECLARE_METHOD(CLuaZone,registerRegion),
+    LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),
     LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),
     LUNAR_DECLARE_METHOD(CLuaZone,getID),
     LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),
+    LUNAR_DECLARE_METHOD(CLuaZone,getBattlefieldByInitiator),
+    LUNAR_DECLARE_METHOD(CLuaZone,battlefieldsFull),
     {nullptr,nullptr}
 };

@@ -3,33 +3,19 @@
 -- Mob:  Sturm
 -- Involved in Quest: A New Dawn (BST AF3)
 -----------------------------------
-
+local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs");
 require("scripts/globals/quests");
 
------------------------------------
--- OnMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- OnMobDeath Action
------------------------------------
-function onMobDeath(mob, killer, ally)
-
-    local ANewDawn = ally:getQuestStatus(JEUNO,A_NEW_DAWN);
-    local ANewDawnEvent = ally:getVar("ANewDawn_Event");
-
-    if (ANewDawn == QUEST_ACCEPTED and ANewDawnEvent == 4) then
-        ally:setVar("ANewDawn_Event",5);
+function onMobDeath(mob, player, isKiller)
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN) == QUEST_ACCEPTED and player:getVar("ANewDawn_Event") == 4) then
+        player:setVar("ANewDawn_Event",5);
     end
 
-    -- Despawn Tigers if alive
-    for i = 17576268, 17576269 do
-        if (GetMobAction(i) ~= 0) then
-            DespawnMob(i);
+    if (isKiller) then
+        for i = ID.mob.TAIFUN, ID.mob.TROMBE do
+            if (GetMobByID(i):isSpawned()) then
+                DespawnMob(i);
+            end
         end
     end
-
 end;

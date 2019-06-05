@@ -2,58 +2,31 @@
 --  Area: Attohwa Chasm
 --  NPC:  Loose sand
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
--------------------------------------
-
-require("scripts/zones/Attohwa_Chasm/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade
------------------------------------
+require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
-    
 end;
 
------------------------------------
--- onTrigger
------------------------------------
-
 function onTrigger(player,npc)
+    local cop = player:getCurrentMission(COP);
+    local moamStat = player:getVar("MEMORIES_OF_A_MAIDEN_Status");
 
-    local MEMORIESMAIDENStatus=player:getVar("MEMORIES_OF_A_MAIDEN_Status");
-
-    if (player:hasKeyItem(MIMEO_JEWEL)==true) then
-        player:setPos(322,-25,-12,30);--(temporary solution, the road to the top of the mountain doesn't work)  
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and MEMORIESMAIDENStatus==8 and player:hasKeyItem(MIMEO_JEWEL)==false and(os.time() - player:getVar("LioumereKilled")) < 200) then
+    if (cop == dsp.mission.id.cop.THE_ROAD_FORKS and moamStat==8 and not player:hasKeyItem(dsp.ki.MIMEO_JEWEL) and (os.time() - player:getVar("LioumereKilled")) < 200) then
         player:setVar("LioumereKilled",0);
-        player:addKeyItem(MIMEO_JEWEL);
-        player:messageSpecial(KEYITEM_OBTAINED, MIMEO_JEWEL);
-        player:setPos(322,-25,-12,30); -- tp to the cradle of rebirth (temporary solution, the road to the top of the mountain doesn't work)
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and (MEMORIESMAIDENStatus==7 or MEMORIESMAIDENStatus==8) and player:hasKeyItem(MIMEO_JEWEL)==false) then
-        SpawnMob(16806031,180):updateClaim(player);
+        player:addKeyItem(dsp.ki.MIMEO_JEWEL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MIMEO_JEWEL);
+    elseif (cop == dsp.mission.id.cop.THE_ROAD_FORKS and (moamStat==7 or moamStat==8) and not player:hasKeyItem(dsp.ki.MIMEO_JEWEL)) then
+        SpawnMob(ID.mob.LIOUMERE):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         player:setVar("LioumereKilled",0);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

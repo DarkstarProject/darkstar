@@ -1,16 +1,19 @@
 -----------------------------------
 -- Area: Xarcabard
 --  MOB: Evil Eye
+-- Note: PH for Shadow Eye
+-----------------------------------
+local ID = require("scripts/zones/Xarcabard/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 53, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 54, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 55, 3, dsp.regime.type.FIELDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,53,1);
-    checkRegime(ally,mob,54,2);
-    checkRegime(ally,mob,55,3);
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.SHADOW_EYE_PH, 5, 3600) -- 1 hour
+end

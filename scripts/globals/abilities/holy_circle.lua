@@ -5,22 +5,15 @@
 -- Recast Time: 5:00 minutes
 -- Duration: 3:00 minutes
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_HOLY_CIRCLE,1,0,60);
-end;
+    local duration = 180 + player:getMod(dsp.mod.HOLY_CIRCLE_DURATION)
+    target:addStatusEffect(dsp.effect.HOLY_CIRCLE,15,0,duration)
+end

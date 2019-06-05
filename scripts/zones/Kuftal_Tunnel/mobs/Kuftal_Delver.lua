@@ -2,13 +2,9 @@
 -- Area: Kuftal Tunnel
 --  MOB: Kuftal Delver
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,742,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 742, 1, dsp.regime.type.GROUNDS)
+end

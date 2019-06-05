@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Daggerclaw Dracos
+--   NM: Daggerclaw Dracos
+-----------------------------------
+require("scripts/globals/regimes")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,39,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 39, 1, dsp.regime.type.FIELDS)
+end

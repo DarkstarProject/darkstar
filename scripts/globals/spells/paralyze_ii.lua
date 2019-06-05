@@ -4,67 +4,48 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Paralyze II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
+require("scripts/globals/utils")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
-function onSpellCast(caster,target,spell)
+function onSpellCast(caster, target, spell)
+    local merits = caster:getMerit(dsp.merit.PARALYZE_II)
 
-    if (target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
-        spell:setMsg(75);
-    else
-        -- Calculate duration.
-        local duration = 180;
-        
-            if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-        duration = duration * 2;
+    -- Pull base stats
+    local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
+
+    -- Base potency
+    local potency = utils.clamp(math.floor(dMND / 4) + 20, 10, 30)
+
+    if (merits > 1) then
+        potency = potency + merits - 1
     end
+    
+    potency = calculatePotency(potency, spell:getSkillType(), caster, target)
 
-        -- Grabbing variables for paralyze potency
-        local pMND = caster:getStat(MOD_MND);
-        local mMND = target:getStat(MOD_MND);
+    local duration = calculateDuration(120, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+    local params = {}
+    params.diff = dMND
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.bonus = merits * 2
+    params.effect = dsp.effect.PARALYSIS
+    local resist = applyResistanceEffect(caster, target, spell, params)
 
-        local merits = caster:getMerit(MERIT_PARALYZE_II);
-
-        local dMND = (pMND - mMND);
-
-        -- Calculate potency.
-        local potency = (pMND + dMND)/5; --simplified from (2 * (pMND + dMND)) / 10
-
-        if (potency > 30) then
-            potency = 30;
-        end
-            if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-        potency = potency * 2;
-    end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
-
-        potency = potency + merits; --similar to Slow II, merit potency bonus is added after the cap
-
-        --printf("Duration : %u",duration);
-        --printf("Potency : %u",potency);
-        local resist = applyResistanceEffect(caster,spell,target,dMND,35,merits*2,EFFECT_PARALYSIS);
-
-        if (resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely
-            if (target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
-                spell:setMsg(236);
-            else
-                -- no effect
-                spell:setMsg(75);
-            end
+    if resist >= 0.5 then
+        if target:addStatusEffect(params.effect, potency, 0, duration * resist) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            -- resist
-            spell:setMsg(85);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
+    else
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
 
-    return EFFECT_PARALYSIS;
-end;
+    return params.effect
+end

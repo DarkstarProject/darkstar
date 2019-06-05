@@ -1,56 +1,28 @@
 -----------------------------------
 -- Area: Palborough Mines
--- NPC: Old Toolbox
+--  NPC: Old Toolbox
 -- Continues Quest: The Eleventh's Hour
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Palborough_Mines/TextIDs");
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:hasKeyItem(OLD_TOOLBOX) == false) then
-        player:startEvent(0x0017);
+function onTrigger(player, npc)
+    if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TOOLBOX) then
+        player:startEvent(23)
     else
-        player:startEvent(0x0016);
+        player:startEvent(22)
     end
+end
 
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
-
-    if (csid == 0x0017 and option == 0) then
-        player:addKeyItem(OLD_TOOLBOX);
+function onEventUpdate(player, csid, option)
+    if csid == 23 and option == 0 then
+        player:addKeyItem(dsp.ki.OLD_TOOLBOX)
     end
+end
 
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

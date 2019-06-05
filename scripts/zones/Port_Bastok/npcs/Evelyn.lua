@@ -1,59 +1,35 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Evelyn
--- Only sells when Bastok controlls Gustaberg Region
--- Confirmed shop stock, August 2013
+--  NPC: Evelyn
+-- Gustaberg Regional Merchant
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Port_Bastok/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(GUSTABERG);
-    if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,EVELYN_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.GUSTABERG) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.EVELYN_CLOSED_DIALOG)
     else
-        player:showText(npc,EVELYN_OPEN_DIALOG);
-
-        stock = {
-            0x0454,   703,   --Sulfur
-            0x026B,    43,   --Popoto
-            0x0263,    36,   --Rye Flour
-            0x1124,    40    --Eggplant
+        local stock =
+        {
+            1108, 703,    -- Sulfur
+            619,   43,    -- Popoto
+            611,   36,    -- Rye Flour
+            4388,  40,    -- Eggplant
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, ID.text.EVELYN_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

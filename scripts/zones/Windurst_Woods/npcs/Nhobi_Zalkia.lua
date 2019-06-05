@@ -1,60 +1,38 @@
 -----------------------------------
 -- Area: Windurst_Woods
--- NPC:  Nhobi Zalkia
+--  NPC: Nhobi Zalkia
 -- Only sells when Windurst controlls Kuzotz Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/events/harvest_festivals")
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/shop")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    onHalloweenTrade(player,trade,npc);
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+    onHalloweenTrade(player,trade,npc)
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(KUZOTZ);
-    if (RegionOwner ~= WINDURST) then
-        player:showText(npc,NHOBI_ZALKIA_CLOSED_DIALOG);
+    local RegionOwner = GetRegionOwner(dsp.region.KUZOTZ)
+    if RegionOwner ~= dsp.nation.WINDURST then
+        player:showText(npc,ID.text.NHOBI_ZALKIA_CLOSED_DIALOG)
     else
-        player:showText(npc,NHOBI_ZALKIA_OPEN_DIALOG);
-       
-        stock = {
-            0x0394,   855,   --Cactuar Needle
-            0x113C,   299,   --Thundermelon
-            0x118B,   184    --Watermelon
+        player:showText(npc,ID.text.NHOBI_ZALKIA_OPEN_DIALOG)
+
+        local stock =
+        {
+            916,   855,  -- Cactuar Needle
+            4412,  299,  -- Thundermelon
+            4491,  184   -- Watermelon
         }
-        showShop(player,WINDURST,stock);
-
+        dsp.shop.general(player, stock, WINDURST)
     end
-
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

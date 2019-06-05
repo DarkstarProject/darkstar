@@ -149,12 +149,14 @@ void CTradeContainer::setQuantity(uint8 slotID, uint32 quantity)
 	return;
 }
 
-void CTradeContainer::setConfirmedStatus(uint8 slotID, uint8 amount)
+bool CTradeContainer::setConfirmedStatus(uint8 slotID, uint8 amount)
 {
-    if (slotID < m_PItem.size() && m_PItem[slotID])
+    if (slotID < m_PItem.size() && m_PItem[slotID] && m_PItem[slotID]->getQuantity() >= amount)
 	{
-		m_confirmed[slotID] = dsp_min(amount, m_PItem[slotID]->getQuantity());
+		m_confirmed[slotID] = std::min<uint8>(amount, m_PItem[slotID]->getQuantity());
+        return true;
 	}
+    return false;
 }
 
 void CTradeContainer::setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item)
@@ -173,7 +175,7 @@ void CTradeContainer::setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint
 
 uint8 CTradeContainer::getSize()
 {
-    return m_PItem.size();
+    return (uint8)m_PItem.size();
 }
 
 void CTradeContainer::setSize(uint8 size)
@@ -205,9 +207,27 @@ void CTradeContainer::setType(uint8 type)
 	m_type = type;
 }
 
+uint8 CTradeContainer::getCraftType()
+{
+    return m_craftType;
+}
+
+void CTradeContainer::setCraftType(uint8 craftType)
+{
+    m_craftType = craftType;
+}
+
 void CTradeContainer::Clean()
 {
+    for (auto PItem : m_PItem)
+    {
+        if (PItem)
+        {
+            PItem->setReserve(0);
+        }
+    }
 	m_type = 0;
+    m_craftType = 0;
 	m_ItemsCount = 0;
 
     m_PItem.clear();

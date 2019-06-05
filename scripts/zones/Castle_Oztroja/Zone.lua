@@ -3,70 +3,50 @@
 -- Zone: Castle_Oztroja (151)
 --
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/Castle_Oztroja/TextIDs");
-
------------------------------------
--- onInitialize
+local CASTLE_OZTROJA = require("scripts/zones/Castle_Oztroja/globals")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    -- Yagudo Avatar
-    SetRespawnTime(17396134, 900, 10800);
+    UpdateNMSpawnPoint(ID.mob.YAGUDO_AVATAR)
+    GetMobByID(ID.mob.YAGUDO_AVATAR):setRespawnTime(math.random(900, 10800))
 
-    UpdateTreasureSpawnPoint(17396206);
-    UpdateTreasureSpawnPoint(17396207);
-end;
+    CASTLE_OZTROJA.pickNewCombo() -- update combination for brass door on floor 2
+    CASTLE_OZTROJA.pickNewPassword() -- update password for trap door on floor 4
 
------------------------------------
--- onZoneIn
------------------------------------
+    dsp.treasure.initZone(zone)
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-162.895,22.136,-139.923,2);
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-162.895,22.136,-139.923,2)
     end
-    return cs;
-end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
+    return cs
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
 
 function onRegionEnter(player,region)
-end;
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onGameHour(zone)
+    local VanadielHour = VanadielHour()
+
+    -- every game day ...
+    if VanadielHour % 24 == 0 then
+        CASTLE_OZTROJA.pickNewCombo() -- update combination for brass door on floor 2
+        CASTLE_OZTROJA.pickNewPassword() -- update password for trap door on floor 4
+    end
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

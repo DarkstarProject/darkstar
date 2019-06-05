@@ -2,14 +2,9 @@
 -- Area: The Colosseum
 --  NPC: Zandjarl
 -- Type: Pankration NPC
--- @pos -599 0 45 71
+-- !pos -599 0 45 71
 -----------------------------------
-package.loaded["scripts/zones/The_Colosseum/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Colosseum/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/The_Colosseum/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -31,41 +26,25 @@ function onTrade(player,npc,trade)
     if (RESULT ~= nil) then
         if ((RESULT + TOTAL) > MAX) then
             -- player:startEvent(47); ..it no work..
-            npc:showText(npc, EXCEED_THE_LIMIT_OF_JETTONS);
+            npc:showText(npc, ID.text.EXCEED_THE_LIMIT_OF_JETTONS);
         else
             -- packet cap says its a "showText" thing..
-            npc:showText(npc, I_CAN_GIVE_YOU, RESULT);
-            npc:showText(npc, THANKS_FOR_STOPPING_BY);
+            npc:showText(npc, ID.text.I_CAN_GIVE_YOU, RESULT);
+            npc:showText(npc, ID.text.THANKS_FOR_STOPPING_BY);
             player:addCurrency("jetton", RESULT);
             player:tradeComplete();
         end
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(1900, player:getCurrency("jetton"));
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 1900) then -- onTrigger
         local shop =
@@ -84,9 +63,9 @@ function onEventFinish(player,csid,option)
             if (result.itemID ~= nil) then
                 if (player:addItem(result.itemID, result.QTY)) then
                     player:delCurrency("jetton", result.price);
-                    player:messageSpecial(ITEM_OBTAINED,result.itemID);
+                    player:messageSpecial(ID.text.ITEM_OBTAINED,result.itemID);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,result.itemID);
+                    player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,result.itemID);
                 end
             end
         end

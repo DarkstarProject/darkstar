@@ -1,55 +1,32 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Tibelda
--- Only sells when Bastok controlls Valdeaunia Region
+--  NPC: Tibelda
+-- Valdeaunia Regional Merchant
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Bastok_Mines/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(VALDEAUNIA);
-    if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,TIBELDA_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.VALDEAUNIA) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.TIBELDA_CLOSED_DIALOG)
     else
-        player:showText(npc,TIBELDA_OPEN_DIALOG);
-        stock = {
-            0x111e,    29,   --Frost Turnip
-            0x027e,   170    --Sage
+        local stock =
+        {
+            4382,  29,    --Frost Turnip
+            638,  170,     --Sage
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, ID.text.TIBELDA_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

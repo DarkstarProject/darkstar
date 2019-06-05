@@ -1,24 +1,24 @@
 -----------------------------------
--- Zone: Abyssea-Ullegrand
---  NPC: ???
--- Spawns: Koghatu
+-- Zone: Abyssea-Uleguerand
+--  NPC: qm11 (???)
+-- Spawns Pantokrator
+-- !pos -199 -175 155 253
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/abyssea")
 -----------------------------------
 
 function onTrade(player,npc,trade)
---[[
-    if (trade:hasItemQty(3250,1) == false) then -- Player is missing at least one required item.
-        player:startEvent(1010, 3250); -- Inform payer what items they need.
-    elseif (GetMobAction(17813933) == ACTION_NONE) then -- mob not already spawned from this
-        if (trade:hasItemQty(3250,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-            SpawnMob(17813933):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
-            player:tradeComplete();
-        end
-    end
-]]
-end;
+    abysseaOnTrade(player,npc,trade)
+end
+
+function onTrigger(player,npc)
+    abysseaOnTrigger(player,npc)
+end
+
+function onEventUpdate(player,csid,option)
+    abysseaOnEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+    abysseaOnEventFinish(player,csid,option)
+end

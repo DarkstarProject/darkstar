@@ -10,51 +10,36 @@
 -- Ranged ATT % 7
 -- Ranged ATT Cap 10
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5145);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,5145)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, 3);
-    target:addMod(MOD_VIT, 3);
-    target:addMod(MOD_MND, -3);
-    target:addMod(MOD_DEF, 5);
-    target:addMod(MOD_FOOD_RATTP, 7);
-    target:addMod(MOD_FOOD_RATT_CAP, 10);
-end;
+    target:addMod(dsp.mod.DEX, 3)
+    target:addMod(dsp.mod.VIT, 3)
+    target:addMod(dsp.mod.MND, -3)
+    target:addMod(dsp.mod.DEF, 5)
+    target:addMod(dsp.mod.FOOD_RATTP, 7)
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 10)
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_DEX, 3);
-    target:delMod(MOD_VIT, 3);
-    target:delMod(MOD_MND, -3);
-    target:delMod(MOD_DEF, 5);
-    target:delMod(MOD_FOOD_RATTP, 7);
-    target:delMod(MOD_FOOD_RATT_CAP, 10);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.DEX, 3)
+    target:delMod(dsp.mod.VIT, 3)
+    target:delMod(dsp.mod.MND, -3)
+    target:delMod(dsp.mod.DEF, 5)
+    target:delMod(dsp.mod.FOOD_RATTP, 7)
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 10)
+end

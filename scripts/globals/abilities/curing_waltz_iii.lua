@@ -5,78 +5,79 @@
 -- TP Required: 50%
 -- Recast Time: 00:10
 -----------------------------------
- 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (target:getHP() == 0) then
-        return MSGBASIC_CANNOT_ON_THAT_TARG,0;
-    elseif (player:hasStatusEffect(EFFECT_SABER_DANCE)) then
-        return MSGBASIC_UNABLE_TO_USE_JA2, 0;
-    elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
-        return 0,0;
-    elseif (player:getTP() < 50) then
-        return MSGBASIC_NOT_ENOUGH_TP,0;
+        return dsp.msg.basic.CANNOT_ON_THAT_TARG,0
+    elseif (player:hasStatusEffect(dsp.effect.SABER_DANCE)) then
+        return dsp.msg.basic.UNABLE_TO_USE_JA2, 0
+    elseif (player:hasStatusEffect(dsp.effect.TRANCE)) then
+        return 0,0
+    elseif (player:getTP() < 500) then
+        return dsp.msg.basic.NOT_ENOUGH_TP,0
     else
-        -- apply waltz recast modifiers
-        if (player:getMod(MOD_WALTZ_RECAST)~=0) then
-            local recastMod = -100 * (player:getMod(MOD_WALTZ_RECAST)); -- 500 ms per 5% (per merit)
-            if (recastMod <0) then
-                --TODO
+        --[[ Apply "Waltz Ability Delay" reduction
+            1 modifier = 1 second]]
+        local recastMod = player:getMod(dsp.mod.WALTZ_DELAY)
+        if (recastMod ~= 0) then
+            local newRecast = ability:getRecast() +recastMod
+            ability:setRecast(utils.clamp(newRecast,0,newRecast))
+        end
+        -- Apply "Fan Dance" Waltz recast reduction
+        if (player:hasStatusEffect(dsp.effect.FAN_DANCE)) then
+            local fanDanceMerits = target:getMerit(dsp.merit.FAN_DANCE)
+            -- Every tier beyond the 1st is -5% recast time
+            if (fanDanceMerits > 5) then
+                ability:setRecast(ability:getRecast() * ((fanDanceMerits -5)/100))
             end
         end
-        return 0,0;
+        return 0,0
     end
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+end
 
 function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance.
-    if not player:hasStatusEffect(EFFECT_TRANCE) then
-        player:delTP(50);
-    end;
-    
+    if not player:hasStatusEffect(dsp.effect.TRANCE) then
+        player:delTP(500)
+    end
+
     --Grabbing variables.
-    local vit = target:getStat(MOD_VIT);
-    local chr = player:getStat(MOD_CHR);
-    local mjob = player:getMainJob(); --19 for DNC main.
-    local cure = 0;
-    
+    local vit = target:getStat(dsp.mod.VIT)
+    local chr = player:getStat(dsp.mod.CHR)
+    local mjob = player:getMainJob() --19 for DNC main.
+    local cure = 0
+
 
 
     --Performing mj check.
-    if (mjob == 19) then
-        cure = (vit+chr)*0.75+270;
+    if mjob == dsp.job.DNC then
+        cure = (vit+chr)*0.75+270
     else
-        cure = (vit+chr)*0.375+270;
+        cure = (vit+chr)*0.375+270
     end
 
     -- apply waltz modifiers
-    cure = math.floor(cure * (1.0 + (player:getMod(MOD_WALTZ_POTENTCY)/100)));
+    cure = math.floor(cure * (1.0 + (player:getMod(dsp.mod.WALTZ_POTENTCY)/100)))
 
     --Reducing TP.
 
     --Applying server mods....
-    cure = cure * CURE_POWER;
+    cure = cure * CURE_POWER
 
     --Cap the final amount to max HP.
     if ((target:getMaxHP() - target:getHP()) < cure) then
-        cure = (target:getMaxHP() - target:getHP());
+        cure = (target:getMaxHP() - target:getHP())
     end
-    
+
     --Do it
-    target:restoreHP(cure);
-    target:wakeUp();
-    player:updateEnmityFromCure(target,cure);
-    
-    return cure;
-    
-end;
+    target:restoreHP(cure)
+    target:wakeUp()
+    player:updateEnmityFromCure(target,cure)
+
+    return cure
+
+end

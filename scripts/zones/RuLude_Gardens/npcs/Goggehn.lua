@@ -1,94 +1,70 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Goggehn
+--  NPC: Goggehn
 -- Involved in Mission: Bastok 3-3, 4-1
--- @zone 243
--- @pos 3 9 -76
+-- !pos 3 9 -76 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
+
     pNation = player:getNation();
     currentMission = player:getCurrentMission(BASTOK);
     missionStatus = player:getVar("MissionStatus");
-    
-    if (currentMission == JEUNO_MISSION and missionStatus == 1) then
-        player:startEvent(0x0029);
-    elseif (currentMission == JEUNO_MISSION and missionStatus == 2) then
-        player:startEvent(0x0042);
-    elseif (currentMission == JEUNO_MISSION and missionStatus == 3) then
-        player:startEvent(0x0026);
-    elseif (player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
-        if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
-            player:startEvent(0x0081,1);
-        else
-            player:startEvent(0x0081); -- Start Mission 4-1 Magicite
-        end
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus == 1) then
-        player:startEvent(0x0084);
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus <= 5) then
-        player:startEvent(0x0087);
-    elseif (currentMission == MAGICITE_BASTOK and missionStatus == 6) then
-        player:startEvent(0x0023);
-    elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
-        player:startEvent(0x0037);
-    elseif (pNation == WINDURST) then
-        player:startEvent(0x0004);
-    elseif (pNation == SANDORIA) then
-        player:startEvent(0x0002);
-    else
-        player:startEvent(0x0065);
-    end
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+    if (currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 1) then
+        player:startEvent(41);
+    elseif (currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 2) then
+        player:startEvent(66);
+    elseif (currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 3) then
+        player:startEvent(38);
+    elseif (player:getRank() == 4 and player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.NONE and getMissionRankPoints(player,13) == 1) then
+        if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)) then
+            player:startEvent(129,1);
+        else
+            player:startEvent(129); -- Start Mission 4-1 Magicite
+        end
+    elseif (currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus == 1) then
+        player:startEvent(132);
+    elseif (currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus <= 5) then
+        player:startEvent(135);
+    elseif (currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus == 6) then
+        player:startEvent(35);
+    elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK)) then
+        player:startEvent(55);
+    elseif (pNation == dsp.nation.WINDURST) then
+        player:startEvent(4);
+    elseif (pNation == dsp.nation.SANDORIA) then
+        player:startEvent(2);
+    else
+        player:startEvent(101);
+    end
+
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x0029) then
+
+    if (csid == 41) then
         player:setVar("MissionStatus",2);
-        player:delKeyItem(LETTER_TO_THE_AMBASSADOR);
-    elseif (csid == 0x0081 and option == 1) then
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
+    elseif (csid == 129 and option == 1) then
         player:setVar("MissionStatus",1);
-        if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) == false) then
-            player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-            player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+        if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) == false) then
+            player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
         end
-    elseif (csid == 0x0026 or csid == 0x0023) then
+    elseif (csid == 38 or csid == 35) then
         finishMissionTimeline(player,1,csid,option);
     end
-    
+
 end;

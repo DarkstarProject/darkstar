@@ -3,17 +3,7 @@
 --  MOB: Triarius V-VIII
 -- Zilart 6 Fight
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 end;

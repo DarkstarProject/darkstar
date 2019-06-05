@@ -2,13 +2,9 @@
 -- Area: West Ronfaure
 --  MOB: Carrion Worm
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,1,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 1, 1, dsp.regime.type.FIELDS)
 end;

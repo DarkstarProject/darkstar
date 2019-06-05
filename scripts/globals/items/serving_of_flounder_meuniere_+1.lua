@@ -9,55 +9,40 @@
 -- Ranged ACC 15
 -- Ranged ATT % 14
 -- Ranged ATT Cap 30
--- Enmity -3
+-- Enmity -4
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4345);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,4345)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, 6);
-    target:addMod(MOD_VIT, 1);
-    target:addMod(MOD_MND, -1);
-    target:addMod(MOD_RACC, 15);
-    target:addMod(MOD_FOOD_RATTP, 14);
-    target:addMod(MOD_FOOD_RATT_CAP, 30);
-    target:addMod(MOD_ENMITY, -3);
-end;
+    target:addMod(dsp.mod.DEX, 6)
+    target:addMod(dsp.mod.VIT, 1)
+    target:addMod(dsp.mod.MND, -1)
+    target:addMod(dsp.mod.RACC, 15)
+    target:addMod(dsp.mod.FOOD_RATTP, 14)
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 30)
+    target:addMod(dsp.mod.ENMITY, -4)
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_DEX, 6);
-    target:delMod(MOD_VIT, 1);
-    target:delMod(MOD_MND, -1);
-    target:delMod(MOD_RACC, 15);
-    target:delMod(MOD_FOOD_RATTP, 14);
-    target:delMod(MOD_FOOD_RATT_CAP, 30);
-    target:delMod(MOD_ENMITY, -3);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.DEX, 6)
+    target:delMod(dsp.mod.VIT, 1)
+    target:delMod(dsp.mod.MND, -1)
+    target:delMod(dsp.mod.RACC, 15)
+    target:delMod(dsp.mod.FOOD_RATTP, 14)
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 30)
+    target:delMod(dsp.mod.ENMITY, -4)
+end

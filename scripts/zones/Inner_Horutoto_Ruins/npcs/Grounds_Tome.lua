@@ -1,42 +1,21 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    startGov(GOV_EVENT_INNER_HORUTOTO_RUINS,player);
-end;
-
------------------------------------
--- onEventSelection
------------------------------------
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    updateGov(player,csid,option,647,648,649,650,651,652,653,654,0,0);
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    finishGov(player,csid,option,647,648,649,650,651,652,653,654,0,0,GOV_MSG_INNER_HORUTOTO_RUINS);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

@@ -1,21 +1,20 @@
 -----------------------------------------
--- ID: 18288
+-- ID: 18288, 18289, 18641, 18655, 18669, 19750, 19843, 20790, 20791, 21750
 -- Item: Guttler
 -- Additional Effect: Choke
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------
--- onAdditionalEffect Action
------------------------------------
-function onAdditionalEffect(player,target,damage)
-    local chance = 10;
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
-        return 0,0,0;
-    else
-        target:addStatusEffect(EFFECT_CHOKE, 17, 0, 60);
-        return SUBEFFECT_CHOKE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_CHOKE;
+function onAdditionalEffect(player, target, damage)
+    local chance = 10
+
+    if math.random(100) <= chance and applyResistanceAddEffect(player, target, dsp.magic.ele.ICE, 0) > 0.5 then
+        target:addStatusEffect(dsp.effect.CHOKE, 17, 0, 60)
+        return dsp.subEffect.CHOKE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.CHOKE
     end
-end;
+    
+    return 0, 0, 0
+end

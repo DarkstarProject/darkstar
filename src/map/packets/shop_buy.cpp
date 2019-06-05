@@ -31,6 +31,6 @@ CShopBuyPacket::CShopBuyPacket(uint8 slotID, uint32 quantity)
 	this->type = 0x3F;
 	this->size = 0x06;
 
-	WBUFB(data,(0x04)) = slotID;
-	WBUFL(data,(0x08)) = quantity;
+	ref<uint8>(0x04) = slotID;
+	ref<uint32>(0x08) = quantity;
 }

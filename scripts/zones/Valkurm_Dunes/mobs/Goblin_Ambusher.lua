@@ -2,13 +2,9 @@
 -- Area: Valkurm Dunes
 --  MOB: Goblin Ambusher
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,57,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 57, 2, dsp.regime.type.FIELDS)
 end;

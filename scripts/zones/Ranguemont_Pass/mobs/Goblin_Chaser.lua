@@ -2,13 +2,9 @@
 -- Area: Ranguemont Pass
 --  MOB: Goblin Chaser
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,608,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 608, 2, dsp.regime.type.GROUNDS)
 end;

@@ -2,13 +2,9 @@
 -- Area: Ranguemont Pass
 --  MOB: Blade Bat
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,602,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 602, 2, dsp.regime.type.GROUNDS)
 end;

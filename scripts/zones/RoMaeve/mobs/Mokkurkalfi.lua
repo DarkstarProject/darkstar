@@ -1,18 +1,23 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Mokkurkalfi
+--   NM: Mokkurkalfi
+-- Note: spawned during mission "The Final Image"
+-----------------------------------
+local ID = require("scripts/zones/RoMaeve/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/status")
 -----------------------------------
 
-require("scripts/globals/missions");
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobSpawn(mob)
+    DespawnMob(mob:getID(), 180)
+end
 
-function onMobDeath(mob,killer,ally)
-
-    if (ally:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and ally:getVar("MissionStatus") == 1) then
-        ally:setVar("Mission7-1MobKilled",1);
+function onMobDeath(mob, player, isKiller)
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1 then
+        player:setVar("Mission7-1MobKilled", 1)
     end
-
-end;
+end

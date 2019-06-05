@@ -1,26 +1,13 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Kappa Akuso
+--   NM: Kappa Akuso
 -- Involved in Quest: True will
 -----------------------------------
-
-require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/quests")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    if (ally:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED) then
-        ally:setVar("trueWillKilledNM",ally:getVar("trueWillKilledNM") + 1);
+function onMobDeath(mob, player, isKiller)
+    if player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED then
+        player:addVar("trueWillKilledNM", 1)
     end
-
-end;
+end

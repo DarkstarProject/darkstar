@@ -1,16 +1,12 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Rivulet Sahagin
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,806,1);
-    checkGoVregime(ally,mob,807,1);
-    checkGoVregime(ally,mob,808,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 806, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 807, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 808, 1, dsp.regime.type.GROUNDS)
+end

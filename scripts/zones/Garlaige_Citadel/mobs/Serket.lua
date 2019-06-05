@@ -1,27 +1,21 @@
 -----------------------------------
 -- Area: Garlaige Citadel (200)
---  NM:  Serket
+--   NM: Serket
+-----------------------------------
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
-require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.SERKET_BREAKER);
+end;
 
-function onMobDeath(mob, killer, ally)
-
-    ally:addTitle(SERKET_BREAKER);
-
-    -- Set Serket's spawnpoint and respawn time (21-24 hours)
+function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
+    mob:setRespawnTime(math.random(75600,86400)); -- 21 to 24 hours
 end;

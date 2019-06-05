@@ -5,52 +5,42 @@
 -----------------------------------------
 -- TODO: Make Group Effect
 -- Accuracy 7% Cap 15
+-- Ranged Accuracy 7% Cap 15
 -- HP 7% Cap 15
 -- Evasion 3
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5669);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,5669)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.FOOD_ACCP, 7)
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 15)
+    target:addMod(dsp.mod.FOOD_RACCP, 7)
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 15)
+    target:addMod(dsp.mod.FOOD_HPP, 7)
+    target:addMod(dsp.mod.FOOD_HP_CAP, 15)
+    target:addMod(dsp.mod.EVA, 3)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_ACCP, 7);
-    target:addMod(MOD_FOOD_ACC_CAP, 15);
-    target:addMod(MOD_FOOD_HPP, 7);
-    target:addMod(MOD_FOOD_HP_CAP, 15);
-    target:addMod(MOD_EVA, 3);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_FOOD_ACCP, 7);
-    target:delMod(MOD_FOOD_ACC_CAP, 15);
-    target:delMod(MOD_FOOD_HPP, 7);
-    target:delMod(MOD_FOOD_HP_CAP, 15);
-    target:delMod(MOD_EVA, 3);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.FOOD_ACCP, 7)
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 15)
+    target:delMod(dsp.mod.FOOD_RACCP, 7)
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 15)
+    target:delMod(dsp.mod.FOOD_HPP, 7)
+    target:delMod(dsp.mod.FOOD_HP_CAP, 15)
+    target:delMod(dsp.mod.EVA, 3)
+end

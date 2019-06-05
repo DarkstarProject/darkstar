@@ -1,14 +1,17 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
 --  MOB: Canyon Crawler
+-- Note: PH for Herbage Hunter
+-----------------------------------
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 96, 1, dsp.regime.type.FIELDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,96,1);
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.HERBAGE_HUNTER_PH,10,math.random(3600,7200)) -- 1 to 2 hours
+end

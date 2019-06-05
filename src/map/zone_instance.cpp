@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "lua/luautils.h"
 #include "utils/zoneutils.h"
 #include "status_effect_container.h"
+#include "ai/ai_container.h"
 
 /************************************************************************
 *																		*
@@ -37,21 +38,16 @@ This file is part of DarkStar-server source code.
 CZoneInstance::CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
     : CZone(ZoneID, RegionID, ContinentID)
 {
-    createZoneTimer();
 }
 
 CZoneInstance::~CZoneInstance()
 {
-    for (auto instance : instanceList)
-    {
-        delete instance;
-    }
 }
 
 CCharEntity* CZoneInstance::GetCharByName(int8* name)
 {
     CCharEntity* PEntity = nullptr;
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         PEntity = instance->GetCharByName(name);
         if (PEntity) break;
@@ -62,7 +58,7 @@ CCharEntity* CZoneInstance::GetCharByName(int8* name)
 CCharEntity* CZoneInstance::GetCharByID(uint32 id)
 {
     CCharEntity* PEntity = nullptr;
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         PEntity = instance->GetCharByID(id);
         if (PEntity) break;
@@ -75,7 +71,7 @@ CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
     CBaseEntity* PEntity = nullptr;
     if (filter & TYPE_PC)
     {
-        for (auto instance : instanceList)
+        for (const auto& instance : instanceList)
         {
             PEntity = instance->GetEntity(targid, filter);
             if (PEntity) break;
@@ -126,7 +122,7 @@ void CZoneInstance::FindPartyForMob(CBaseEntity* PEntity)
 
 void CZoneInstance::TransportDepart(uint16 boundary, uint16 zone)
 {
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         instance->TransportDepart(boundary, zone);
     }
@@ -148,12 +144,14 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
         {
             if (instance->Failed() || instance->Completed())
             {
-                instanceList.erase(std::find(instanceList.begin(), instanceList.end(), instance));
-                delete instance;
+                instanceList.erase(std::find_if(instanceList.begin(), instanceList.end(), [&instance](const auto& el)
+                {
+                    return el.get() == instance;
+                }));
             }
             else
             {
-                instance->SetWipeTime(server_clock::now());
+                instance->SetWipeTime(instance->GetElapsedTime(server_clock::now()));
             }
         }
     }
@@ -168,11 +166,11 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
     //return char to instance (d/c or logout)
     if (!PChar->PInstance)
     {
-        for (auto instance : instanceList)
+        for (const auto& instance : instanceList)
         {
             if (instance->CharRegistered(PChar))
             {
-                PChar->PInstance = instance;
+                PChar->PInstance = instance.get();
             }
         }
         if (!PChar->PInstance && PChar->m_GMlevel > 0)
@@ -183,6 +181,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
     if (PChar->PInstance)
     {
+        if (!ZoneTimer)
+        {
+            createZoneTimer();
+        }
         PChar->targid = PChar->PInstance->GetNewTargID();
 
         if (PChar->targid >= 0x700)
@@ -208,11 +210,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
             );
         }*/
 
-        if (!PChar->PInstance->CharRegistered(PChar))
+        if (PChar->PInstance->CheckFirstEntry(PChar->id))
         {
-            PChar->PInstance->RegisterChar(PChar);
             PChar->loc.p = PChar->PInstance->GetEntryLoc();
-            CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterInstanceRegister", server_clock::now() + 500ms, PChar, CTaskMgr::TASK_ONCE, luautils::AfterInstanceRegister));
+            PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterInstanceRegister));
         }
     }
     else
@@ -276,7 +277,7 @@ void CZoneInstance::SpawnTransport(CCharEntity* PChar)
 
 void CZoneInstance::TOTDChange(TIMETYPE TOTD)
 {
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         instance->TOTDChange(TOTD);
     }
@@ -293,7 +294,7 @@ void CZoneInstance::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
     }
     else
     {
-        for (auto instance : instanceList)
+        for (const auto& instance : instanceList)
         {
             instance->PushPacket(PEntity, message_type, packet);
         }
@@ -308,39 +309,28 @@ void CZoneInstance::WideScan(CCharEntity* PChar, uint16 radius)
     }
 }
 
-
-
-void CZoneInstance::ZoneServer(time_point tick)
+void CZoneInstance::ZoneServer(time_point tick, bool check_regions)
 {
     auto it = instanceList.begin();
     while (it != instanceList.end())
     {
-        CInstance* instance = *it;
+        auto& instance = *it;
 
-        instance->ZoneServer(tick);
+        instance->ZoneServer(tick, check_regions);
         instance->CheckTime(tick);
 
         if ((instance->Failed() || instance->Completed()) && instance->CharListEmpty())
         {
             it = instanceList.erase(it);
-            delete instance;
             continue;
         }
-        it++;
-    }
-}
-
-void CZoneInstance::ZoneServerRegion(time_point tick)
-{
-    for (auto instance : instanceList)
-    {
-        instance->ZoneServerRegion(tick);
+        ++it;
     }
 }
 
 void CZoneInstance::ForEachChar(std::function<void(CCharEntity*)> func)
 {
-    for (auto instance : instanceList)
+    for (const auto& instance : instanceList)
     {
         for (auto PChar : instance->GetCharList())
         {
@@ -367,7 +357,6 @@ void CZoneInstance::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(
 
 CInstance* CZoneInstance::CreateInstance(uint8 instanceid)
 {
-    CInstance* instance = new CInstance(this, instanceid);
-    instanceList.push_back(instance);
-    return instance;
+    instanceList.push_back(std::make_unique<CInstance>(this, instanceid));
+    return instanceList.back().get();
 }

@@ -3,39 +3,15 @@
 --  MOB: Groundskeeper
 -- Note: Place holder Despot
 -----------------------------------
+local ID = require("scripts/zones/RuAun_Gardens/IDs");
+require("scripts/globals/regimes")
+require("scripts/globals/mobs");
 
-require("scripts/zones/RuAun_Gardens/MobIDs");
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 143, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 144, 1, dsp.regime.type.FIELDS)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,143,2);
-    checkRegime(ally,mob,144,1);
-
-    -- Get Groundskeeper ID and check if it is a PH of Despot
-    mob = mob:getID();
-
-    -- Check if Groundskeeper is within the Despot_PH table
-    if (Despot_PH[mob] ~= nil) then
-        -- printf("%u is a PH",mob);
-        -- Get Despot previous ToD
-        Despot_ToD = GetServerVariable("[POP]Despot");
-
-        -- Check if Despot window is open, and there is not an Despot popped already(ACTION_NONE = 0)
-        if (Despot_ToD <= os.time(t) and GetMobAction(Despot) == 0) then
-
-            -- printf("Despot window open");
-            -- Give Groundskeeper 5 percent chance to pop Despot
-            if (math.random(1,20) == 5) then
-                -- printf("Despot will pop");
-                GetMobByID(Despot):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Despot", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.DESPOT_PH,5,7200); -- 2 hours
 end;

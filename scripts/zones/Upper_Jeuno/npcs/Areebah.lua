@@ -3,56 +3,32 @@
 -- NPC: Areebah
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,AREEBAH_SHOP_DIALOG);
+    local stock =
+    {
+        636,  119,    -- Chamomile
+        951,  110,    -- Wijnruit
+        948,   60,    -- Carnation
+        941,   80,    -- Red Rose
+        949,   96,    -- Rain Lily
+        956,  120,    -- Lilac
+        957,  120,    -- Amaryllis
+        958,  120,    -- Marguerite
+        2370, 520,    -- Flower Seeds
+    }
 
-stock = {0x027C,119,    --Chamomile
-    0x03B7,110,    --Wijnruit
-    0x03B4,60,    --Carnation
-    0x03AD,80,    --Red Rose
-    0x03B5,96,    --Rain Lily
-    0x03BC,120,    --Lilac
-    0x03BD,120,    --Amaryllis
-    0x03BE,120,    --Marguerite
-    0x1199,520}    --Flower Seeds
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.MP_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

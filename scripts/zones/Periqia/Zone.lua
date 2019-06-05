@@ -3,66 +3,42 @@
 -- Zone: Periqia
 --
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Periqia/IDs");
-
------------------------------------
---  onInitialize
+local ID = require("scripts/zones/Periqia/IDs")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end
 
------------------------------------
--- onZoneIn
------------------------------------
+function onInstanceZoneIn(player,instance)
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    local pos = player:getPos();
+    local cs = -1
+    local pos = player:getPos()
 
     if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
-        player:setPos(player:getInstance():getEntryPos());
+        local entrypos = instance:getEntryPos()
+        player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot)
     end
 
-    player:addTempItem(5346);
+    player:addTempItem(5346)
 
-    return cs;
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x66) then
-        player:setPos(0,0,0,0,79);
+    local chars = instance:getChars()
+    if csid == 102 then
+        for i,v in pairs(chars) do
+            v:setPos(0,0,0,0,79)
+        end
     end
-end;
-
------------------------------------
--- onInstanceFailure
------------------------------------
+end
 
 function onInstanceLoadFailed()
-    return 79;
-end;
+    return 79
+end

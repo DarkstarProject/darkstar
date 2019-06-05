@@ -1,99 +1,76 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Pagisalis
+--  NPC: Pagisalis
 -- Involved In Quest: Enveloped in Darkness
--- @zone 231
--- @pos 
+-- !zone 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,UNDYING_FLAMES) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(913,2) and trade:getItemCount() == 2) then -- Trade Lump of Beeswax
-            player:startEvent(0x0233);
+            player:startEvent(563);
         end
     end
-            
-    if (player:hasKeyItem(OLD_POCKET_WATCH) and player:hasKeyItem(OLD_BOOTS) == false) then 
-        if (trade:hasItemQty(828,1) and trade:getItemCount() == 1) then -- Trade Velvet Cloth
-            player:startEvent(0x0025);
-        end
-    end
-    
-end;
 
------------------------------------
--- onTrigger Action
------------------------------------
+    if (player:hasKeyItem(dsp.ki.OLD_POCKET_WATCH) and player:hasKeyItem(dsp.ki.OLD_BOOTS) == false) then
+        if (trade:hasItemQty(828,1) and trade:getItemCount() == 1) then -- Trade Velvet Cloth
+            player:startEvent(37);
+        end
+    end
+
+end;
 
 function onTrigger(player,npc)
 
     sanFame = player:getFameLevel(SANDORIA);
-    undyingFlames = player:getQuestStatus(SANDORIA,UNDYING_FLAMES);
-    if (player:hasKeyItem(OLD_POCKET_WATCH)) then
-        player:startEvent(0x0030);
-    elseif (player:hasKeyItem(OLD_BOOTS)) then
-        player:startEvent(0x003A);
+    undyingFlames = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES);
+    if (player:hasKeyItem(dsp.ki.OLD_POCKET_WATCH)) then
+        player:startEvent(48);
+    elseif (player:hasKeyItem(dsp.ki.OLD_BOOTS)) then
+        player:startEvent(58);
     elseif (sanFame >= 2 and undyingFlames == QUEST_AVAILABLE) then
-        player:startEvent(0x0232);
+        player:startEvent(562);
     elseif (undyingFlames == QUEST_ACCEPTED) then
-        player:startEvent(0x0235);
+        player:startEvent(565);
     elseif (undyingFlames == QUEST_COMPLETED) then
-        player:startEvent(0x0236);
+        player:startEvent(566);
     else
-        player:startEvent(0x0234)
+        player:startEvent(564)
     end
-    
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
-    if (csid == 0x0232 and option == 0) then
-        player:addQuest(SANDORIA,UNDYING_FLAMES);
-    elseif (csid == 0x0233) then
-        if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
+    if (csid == 562 and option == 0) then
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES);
+    elseif (csid == 563) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
         else
             player:tradeComplete();
-            player:addTitle(FAITH_LIKE_A_CANDLE);
+            player:addTitle(dsp.title.FAITH_LIKE_A_CANDLE);
             player:addItem(13211);
-            player:messageSpecial(ITEM_OBTAINED,13211); -- Friars Rope
-            player:addFame(SANDORIA,SAN_FAME*30);
-            player:completeQuest(SANDORIA,UNDYING_FLAMES);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13211); -- Friars Rope
+            player:addFame(SANDORIA,30);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES);
         end
-    elseif (csid == 0x0025) then
+    elseif (csid == 37) then
         player:tradeComplete();
-        player:delKeyItem(OLD_POCKET_WATCH);
-        player:addKeyItem(OLD_BOOTS);
-        player:messageSpecial(KEYITEM_OBTAINED,OLD_BOOTS);
+        player:delKeyItem(dsp.ki.OLD_POCKET_WATCH);
+        player:addKeyItem(dsp.ki.OLD_BOOTS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_BOOTS);
     end
-    
+
 end;

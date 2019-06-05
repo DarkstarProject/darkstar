@@ -1,54 +1,25 @@
 -----------------------------------
--- 
+--
 -- Zone: Zhayolm_Remnants
--- 
+--
 -----------------------------------
-
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Zhayolm_Remnants/TextIDs"] = nil;
-require("scripts/zones/Zhayolm_Remnants/TextIDs");
-
------------------------------------
---  onInitialize
+local ID = require("scripts/zones/Zhayolm_Remnants/IDs")
 -----------------------------------
 
 function onInitialize(zone)
-end;
-
------------------------------------
--- onZoneIn
------------------------------------
+end
 
 function onZoneIn(player,prevZone)
-cs = -1;
+    local cs = -1
 
-return cs;
-end;
-
------------------------------------
--- onRegionEnter          
------------------------------------
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

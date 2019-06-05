@@ -1,73 +1,39 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC:  Bonmaurieut
---    Only sells when San d'Oria controlls Elshimo Uplands
+-- Area: Port San d'Oria
+--  NPC: Bonmaurieut
+-- Elshimo Uplands Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    if GetRegionOwner(dsp.region.ELSHIMOUPLANDS) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.BONMAURIEUT_CLOSED_DIALOG)
+    else
+        local stock =
+        {
+            1413, 1656,    -- Cattleya
+            628,   239,    -- Cinnamon
+            4468,   73,    -- Pamamas
+            721,   147,    -- Rattan Lumber
+        }
 
-RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
-
-if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,BONMAURIEUT_CLOSED_DIALOG);
-else
-    player:showText(npc,BONMAURIEUT_OPEN_DIALOG);
-    
-    stock = {0x0585,1656, --Cattleya
-             0x0274,239,  --Cinnamon
-             0x1174,73,   --Pamamas
-             0x02d1,147}  --Rattan Lumber
-              
-showShop(player,SANDORIA,stock);
+        player:showText(npc, ID.text.BONMAURIEUT_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
+    end
 end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
-
+end

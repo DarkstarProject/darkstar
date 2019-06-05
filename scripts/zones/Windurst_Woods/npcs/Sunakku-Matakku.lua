@@ -1,43 +1,18 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Sunakku-Matakku
---    Working 100%
------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Woods
+--  NPC: Sunakku-Matakku
+-- Working 100%
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0xf8);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(248)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

@@ -35,12 +35,12 @@ CDataLoader::CDataLoader()
 {
     SqlHandle = Sql_Malloc();
 
-    //	ShowStatus("sqlhandle is allocating\n");
-    if (Sql_Connect(SqlHandle, search_config.mysql_login,
-        search_config.mysql_password,
-        search_config.mysql_host,
+    //  ShowStatus("sqlhandle is allocating\n");
+    if (Sql_Connect(SqlHandle, search_config.mysql_login.c_str(),
+        search_config.mysql_password.c_str(),
+        search_config.mysql_host.c_str(),
         search_config.mysql_port,
-        search_config.mysql_database) == SQL_ERROR)
+        search_config.mysql_database.c_str()) == SQL_ERROR)
     {
         ShowError("cant connect\n");
     }
@@ -61,7 +61,7 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 {
     std::vector<ahHistory*> HistoryList;
 
-    const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name "
+    const char* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name "
         "FROM auction_house "
         "WHERE itemid = %u AND stack = %u AND buyer_name IS NOT NULL "
         "ORDER BY sell_date DESC "
@@ -78,8 +78,8 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
             PAHHistory->Price = Sql_GetUIntData(SqlHandle, 0);
             PAHHistory->Data = Sql_GetUIntData(SqlHandle, 1);
 
-            snprintf((int8*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle, 2));
-            snprintf((int8*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle, 3));
+            snprintf((char*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle, 2));
+            snprintf((char*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle, 3));
 
             HistoryList.push_back(PAHHistory);
         }
@@ -100,10 +100,10 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
 
     std::vector<ahItem*> ItemList;
 
-    const int8* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) "
+    const char* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) "
         "FROM item_basic "
         "LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL "
-        "LEFT JOIN item_armor ON item_basic.itemid = item_armor.itemid "
+        "LEFT JOIN item_equipment ON item_basic.itemid = item_equipment.itemid "
         "LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid "
         "WHERE aH = %u "
         "GROUP BY item_basic.itemid "
@@ -253,7 +253,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
                 continue;
 
             // filter by nation
-            if (sr.nation != 255 && !sr.nation == PPlayer->nation)
+            if (sr.nation != 255 && sr.nation != PPlayer->nation)
                 continue;
 
             // filter by race
@@ -296,7 +296,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
             // filter by name
             if (sr.nameLen > 0){
                 string_t dbname;
-                dbname.insert(0, (int8*)PPlayer->name);
+                dbname.insert(0, (char*)PPlayer->name);
 
                 //can't be this name, too long
                 if (sr.nameLen > dbname.length()){
@@ -344,7 +344,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint16 PartyID, uint16 Allian
 {
     std::list<SearchEntity*> PartyList;
 
-    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl "
+    const char* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl "
         "FROM accounts_sessions "
         "LEFT JOIN accounts_parties USING(charid) "
         "LEFT JOIN chars USING(charid) "
@@ -402,7 +402,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint16 PartyID, uint16 Allian
 std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
-    const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, "
+    const char* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, "
         "mlvl, slvl, linkshellid1, linkshellid2, "
         "linkshellrank1, linkshellrank2 "
         "FROM accounts_sessions "
@@ -460,42 +460,41 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 }
 void CDataLoader::ExpireAHItems()
 {
-	Sql_t* sqlH2 = Sql_Malloc();
-	Sql_Connect(sqlH2, search_config.mysql_login,
-		search_config.mysql_password,
-		search_config.mysql_host,
-		search_config.mysql_port,
-		search_config.mysql_database);
+    Sql_t* sqlH2 = Sql_Malloc();
+    Sql_Connect(sqlH2, search_config.mysql_login.c_str(),
+        search_config.mysql_password.c_str(),
+        search_config.mysql_host.c_str(),
+        search_config.mysql_port,
+        search_config.mysql_database.c_str());
 
-	std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
-					   		T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
-	int32 ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
-	int64 expiredAuctions = Sql_NumRows(SqlHandle);
-	if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
-	{
-		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			std::string qStr2;
-			// iterate through the expired auctions and return them to the seller
-			uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
-			uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
-			uint8  itemStack = (uint8)Sql_GetUIntData(SqlHandle, 2);
-			uint8 ahStack = (uint8)Sql_GetUIntData(SqlHandle, 3);
-			uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 4);
-			ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
-				"(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, ahStack == 1 ? itemStack : 1 );
-			//		ShowMessage(cC2, seller, seller, itemID);
-			if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
-			{
-				// delete the item from the auction house
-				int32 ret3 = Sql_Query(sqlH2, "DELETE FROM auction_house WHERE id= %u", saleID);
-			}
-		}
-	}
-	else if (ret == SQL_ERROR)
-	{
-		//	ShowMessage(CL_RED"SQL ERROR: %s\n\n" CL_RESET, SQL_ERROR);
-	}
-	ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
-	Sql_Free(sqlH2);
+    std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
+                            T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
+    int32 ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
+    int64 expiredAuctions = Sql_NumRows(SqlHandle);
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            // iterate through the expired auctions and return them to the seller
+            uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint8  itemStack = (uint8)Sql_GetUIntData(SqlHandle, 2);
+            uint8 ahStack = (uint8)Sql_GetUIntData(SqlHandle, 3);
+            uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 4);
+            ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
+                "(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, ahStack == 1 ? itemStack : 1 );
+            //      ShowMessage(cC2, seller, seller, itemID);
+            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+            {
+                // delete the item from the auction house
+                Sql_Query(sqlH2, "DELETE FROM auction_house WHERE id= %u", saleID);
+            }
+        }
+    }
+    else if (ret == SQL_ERROR)
+    {
+        //  ShowMessage(CL_RED"SQL ERROR: %s\n\n" CL_RESET, SQL_ERROR);
+    }
+    ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
+    Sql_Free(sqlH2);
 }

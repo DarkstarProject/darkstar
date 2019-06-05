@@ -378,7 +378,7 @@ typedef struct zmq_pollitem_t
 
 #define ZMQ_POLLITEMS_DFLT 16
 
-ZMQ_EXPORT int zmq_poll (zmq_pollitem_t *items, int nitems, long timeout);
+ZMQ_EXPORT int zmq_poll (zmq_pollitem_t *items, size_t nitems, long timeout);
 
 /******************************************************************************/
 /*  Message proxying                                                          */

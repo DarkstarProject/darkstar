@@ -1,21 +1,23 @@
 -----------------------------------
--- Area:
---  MOB: Oupire
+-- Area: Alzadaal Undersea Ruins
+--   NM: Oupire
+-----------------------------------
+require("scripts/globals/titles")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/titles");
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
------------------------------------
--- onMobSpawn Action
------------------------------------
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PLAGUE)
+end
 
-function onMobSpawn(mob)
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.OUPIRE_IMPALER)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(OUPIRE_IMPALER);
-end;
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(14400, 18000)) -- 4 to 5 hours
+end

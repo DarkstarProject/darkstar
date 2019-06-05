@@ -1,24 +1,23 @@
 -----------------------------------
 -- Area: Sauromuge Champaign
---  MOB: Old Sabertooth
+--  Mob: Old Sabertooth
 -- Involved in Quest: The Fanged One
--- @pos 676 -10 -366 120
+-- !pos 676 -10 -366 120
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/quests")
 -----------------------------------
 
 function onMobSpawn(mob)
-end;
+end
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    if player == nil then
+        local players = mob:getZone():getPlayers()
 
-function onMobDeath(mob, killer, ally)
-    ally:setVar("TheFangedOne_Died",0);
-end;
+        for i, person in pairs(players) do -- can't use the variable name "player" because it's already being used
+            if person:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_FANGED_ONE) == QUEST_ACCEPTED and person:checkDistance(mob) < 32 then
+                person:setVar("TheFangedOneCS", 2)
+            end
+        end
+    end
+end

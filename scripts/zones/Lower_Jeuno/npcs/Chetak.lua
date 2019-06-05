@@ -1,61 +1,37 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Chetak
+--  NPC: Chetak
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,CHETAK_SHOP_DIALOG);
+    local stock =
+    {
+        12466, 20000,    -- Red Cap
+        12467, 45760,    -- Wool Cap
+        12474, 11166,    -- Wool Hat
+        12594, 32500,    -- Gambison
+        12610, 33212,    -- Cloak
+        12595, 68640,    -- Wool Gambison
+        12602, 18088,    -- Wool Robe
+        12609,  9527,    -- Black Tunic
+        12722, 16900,    -- Bracers
+        12738, 15732,    -- Linen Mitts
+        12730, 10234,    -- Wool Cuffs
+        12737,  4443,    -- White Mitts
+    }
 
-stock = {0x30B2,20000, -- Red Cap
-     0x30B3,45760, -- Wool Cap
-     0x30BA,11166, -- Wool Hat
-     0x3132,32500, -- Gambison
-     0x3142,33212, -- Cloak
-     0x3133,68640, -- Wool Gambison
-     0x313A,18088, -- Wool Robe
-     0x3141,9527,  -- Black Tunic
-     0x31B2,16900, -- Bracers
-     0x31C2,15732, -- Linen Mitts 
-     0x31BA,10234, -- Wool Cuffs 
-     0x31C1,4443}  -- White Mitts
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.CHETAK_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

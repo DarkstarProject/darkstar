@@ -3,52 +3,41 @@
 -- Zone: Meriphataud_Mountains_[S] (97)
 --
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Meriphataud_Mountains_[S]/IDs")
+require("scripts/globals/chocobo")
+require("scripts/globals/status")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+    dsp.chocobo.initZone(zone)
+end
 
------------------------------------
--- onZoneIn
------------------------------------
-
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-454.135,28.409,657.79,49);
+function onZoneIn(player, prevZone)
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-454.135, 28.409, 657.79, 49)
     end
-    return cs;
-end;
+    return cs
+end
 
------------------------------------
--- onRegionEnter
------------------------------------
+function onRegionEnter(player, region)
+end
 
-function onRegionEnter(player,region)
-end;
+function onGameHour(zone)
+    local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS)
+    local hour = VanadielHour()
 
------------------------------------
--- onEventUpdate
------------------------------------
+    if npc then
+        if hour == 17 then
+            npc:setStatus(dsp.status.DISAPPEAR)
+        elseif hour == 7 then
+            npc:setStatus(dsp.status.NORMAL)
+        end
+    end
+end
 
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

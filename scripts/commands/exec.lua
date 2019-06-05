@@ -9,10 +9,15 @@ cmdprops =
     parameters = "s"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!exec <Lua string>");
+end;
+
 function onTrigger(player, str)
     -- Ensure a command was given..
     if (str == nil or string.len(str) == 0) then
-        player:PrintToPlayer("You must enter a string to execute.");
+        error(player, "You must enter a string to execute.");
         return;
     end
     

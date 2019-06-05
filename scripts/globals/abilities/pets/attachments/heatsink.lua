@@ -1,30 +1,33 @@
 -----------------------------------
--- Attachment: Heat Sink
+-- Attachment: Heatsink
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
-require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
-
-function onManeuverGain(player,maneuvers)
-    -- PROOF OF CONCEPT
-    --[[if (maneuvers == 1) then
-        player:addPetMod(MOD_BURDEN_DECAY, 2);
-    elseif (maneuvers == 2) then
-        player:addPetMod(MOD_BURDEN_DECAY, 3); 
-    elseif (maneuvers == 3) then
-        player:addPetMod(MOD_BURDEN_DECAY, 2);
-    end]]
+function onEquip(pet)
+    pet:addMod(dsp.mod.BURDEN_DECAY, 2)
 end
 
-function onManeuverLose(player,maneuvers)
-    --[[if (maneuvers == 1) then
-        player:delPetMod(MOD_BURDEN_DECAY, 2);
-    elseif (maneuvers == 2) then
-        player:delPetMod(MOD_BURDEN_DECAY, 3); 
-    elseif (maneuvers == 3) then
-        player:delPetMod(MOD_BURDEN_DECAY, 2);
-    end]]
+function onUnequip(pet)
+    pet:delMod(dsp.mod.BURDEN_DECAY, 2)
+end
+
+function onManeuverGain(pet, maneuvers)
+    if maneuvers == 1 then
+        pet:addMod(dsp.mod.BURDEN_DECAY, 2)
+    elseif maneuvers == 2 then
+        pet:addMod(dsp.mod.BURDEN_DECAY, 1)
+    elseif maneuvers == 3 then
+        pet:addMod(dsp.mod.BURDEN_DECAY, 1)
+    end
+end
+
+function onManeuverLose(pet, maneuvers)
+    if maneuvers == 1 then
+        pet:delMod(dsp.mod.BURDEN_DECAY, 2)
+    elseif maneuvers == 2 then
+        pet:delMod(dsp.mod.BURDEN_DECAY, 1)
+    elseif maneuvers == 3 then
+        pet:delMod(dsp.mod.BURDEN_DECAY, 1)
+    end
 end

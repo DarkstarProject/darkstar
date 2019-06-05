@@ -2,13 +2,9 @@
 -- Area: Ranguemont Pass
 --  MOB: Ooze
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,603,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 603, 2, dsp.regime.type.GROUNDS)
 end;

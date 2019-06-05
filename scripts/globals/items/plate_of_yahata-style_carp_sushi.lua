@@ -4,50 +4,35 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Dexterity 2
--- Accuracy % 11
+-- Accuracy % 11 (cap 56)
 -- HP Recovered While Healing 2
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5186);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,5186)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, 2);
-    target:addMod(MOD_FOOD_ACCP, 11);
-    target:addMod(MOD_FOOD_ACC_CAP, 999);
-    target:addMod(MOD_HPHEAL, 2);
-end;
+    target:addMod(dsp.mod.DEX, 2)
+    target:addMod(dsp.mod.FOOD_ACCP, 11)
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 56)
+    target:addMod(dsp.mod.HPHEAL, 2)
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_DEX, 2);
-    target:delMod(MOD_FOOD_ACCP, 11);
-    target:delMod(MOD_FOOD_ACC_CAP, 999);
-    target:delMod(MOD_HPHEAL, 2);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.DEX, 2)
+    target:delMod(dsp.mod.FOOD_ACCP, 11)
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 56)
+    target:delMod(dsp.mod.HPHEAL, 2)
+end

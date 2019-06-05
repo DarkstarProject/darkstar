@@ -1,52 +1,29 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Ilita
--- Linkshell merchant
---   @pos -142 -1 -25 236
--- Confirmed shop stock, August 2013
+--  NPC: Ilita
+-- Linkshell Merchant
+--   !pos -142 -1 -25 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Port_Bastok/IDs")
+require("scripts/globals/shop")
 
-require("scripts/globals/shop");
-require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,ILITA_SHOP_DIALOG,513);
-
-    stock = {
-        0x0200,  8000,       --Linkshell
-        0x3F9D,   375        --Pendant Compass
+    local stock =
+    {
+        512,  6000,    -- Linkshell
+        16285, 375,    -- Pendant Compass
     }
-    showShop(player, STATIC, stock);
 
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.ILITA_SHOP_DIALOG, 513)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

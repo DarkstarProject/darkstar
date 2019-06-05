@@ -1,24 +1,27 @@
 -----------------------------------
 -- Area: Cloister of Frost
 -- BCNM: Trial by Ice
--- @pos 558 0.1 596 203
+-- !pos 558 0.1 596 203
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Frost/IDs");
+require("scripts/globals/battlefield")
 
 -----------------------------------
 
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -29,33 +32,34 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompleteQuest(SANDORIA,TRIAL_BY_ICE)) then
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+        local name, clearTime, partySize = battlefield:getRecord()
+        if (player:hasCompletedQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE)) then
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         end
-    elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
-    if (csid == 0x7d01) then
-        player:delKeyItem(TUNING_FORK_OF_ICE);
-        player:addKeyItem(WHISPER_OF_FROST);
-        player:addTitle(HEIR_OF_THE_GREAT_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_FROST);
+
+    if (csid == 32001) then
+        player:delKeyItem(dsp.ki.TUNING_FORK_OF_ICE);
+        player:addKeyItem(dsp.ki.WHISPER_OF_FROST);
+        player:addTitle(dsp.title.HEIR_OF_THE_GREAT_ICE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_FROST);
     end
-    
+
 end;

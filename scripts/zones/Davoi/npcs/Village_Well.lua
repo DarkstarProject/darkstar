@@ -1,66 +1,46 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Village Well
+--  NPC: Village Well
 -- Involved in Quest: Under Oath
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Davoi/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Davoi/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (trade:hasItemQty(1095,1) and player:getVar("UnderOathCS") == 5) then
-        player:startEvent(0x0071);
-        player:tradeComplete();
+    if player:getVar("UnderOathCS") == 5 and npcUtil.tradeHas(trade, 1095) then
+        player:startEvent(113)
     else
-        player:messageSpecial(A_WELL);
+        player:messageSpecial(ID.text.A_WELL)
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-
-    if (player:getVar("UnderOathCS") == 5 and player:hasKeyItem(STRANGE_SHEET_OF_PAPER) and player:hasItem(1095) == false) then -- Under Oath Quest - PLD AF3
-        SpawnMob(17387970,180):updateClaim(player); --One-eyed_Gwajboj
-        SpawnMob(17387971,180):updateClaim(player); --Three-eyed_Prozpuz
-    elseif (player:getVar("UnderOathCS") == 6 and player:hasKeyItem(KNIGHTS_CONFESSION)) then
-        player:startEvent(0x0070);  --Under Oath -- Reads contents of the letter
+    if
+        player:getVar("UnderOathCS") == 5 and
+        player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER) and
+        not player:hasItem(1095) and
+        not GetMobByID(ID.mob.ONE_EYED_GWAJBOJ):isSpawned() and
+        not GetMobByID(ID.mob.THREE_EYED_PROZPUZ):isSpawned()
+    then
+        SpawnMob(ID.mob.ONE_EYED_GWAJBOJ):updateClaim(player)
+        SpawnMob(ID.mob.THREE_EYED_PROZPUZ):updateClaim(player)
+    elseif player:getVar("UnderOathCS") == 6 and player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) then
+        player:startEvent(112) -- read contents of letter
     else
-        player:messageSpecial(A_WELL);
+        player:messageSpecial(ID.text.A_WELL)
     end
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x0071) then
-        player:addKeyItem(KNIGHTS_CONFESSION);
-        player:messageSpecial(KEYITEM_OBTAINED,KNIGHTS_CONFESSION);
-        player:setVar("UnderOathCS",6);
-        player:delKeyItem(STRANGE_SHEET_OF_PAPER);
+    if csid == 113 then
+        player:confirmTrade()
+        npcUtil.giveKeyItem(player, dsp.ki.KNIGHTS_CONFESSION)
+        player:setVar("UnderOathCS", 6)
+        player:delKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)
     end
-end;
+end

@@ -8,53 +8,38 @@
 -- Vitality 3
 -- Mind 3
 -- MP Recovered While Healing 2
--- Enmity -1
+-- Enmity -4
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4330);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,4330)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MP, 35);
-    target:addMod(MOD_STR, -1);
-    target:addMod(MOD_VIT, 3);
-    target:addMod(MOD_MND, 3);
-    target:addMod(MOD_MPHEAL, 2);
-    target:addMod(MOD_ENMITY, -1);
-end;
+    target:addMod(dsp.mod.MP, 35)
+    target:addMod(dsp.mod.STR, -1)
+    target:addMod(dsp.mod.VIT, 3)
+    target:addMod(dsp.mod.MND, 3)
+    target:addMod(dsp.mod.MPHEAL, 2)
+    target:addMod(dsp.mod.ENMITY, -4)
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_MP, 35);
-    target:delMod(MOD_STR, -1);
-    target:delMod(MOD_VIT, 3);
-    target:delMod(MOD_MND, 3);
-    target:delMod(MOD_MPHEAL, 2);
-    target:delMod(MOD_ENMITY, -1);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.MP, 35)
+    target:delMod(dsp.mod.STR, -1)
+    target:delMod(dsp.mod.VIT, 3)
+    target:delMod(dsp.mod.MND, 3)
+    target:delMod(dsp.mod.MPHEAL, 2)
+    target:delMod(dsp.mod.ENMITY, -4)
+end

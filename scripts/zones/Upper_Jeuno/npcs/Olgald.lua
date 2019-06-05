@@ -1,59 +1,35 @@
 -----------------------------------
---  Area: Upper Jeuno
+-- Area: Upper Jeuno
 --   NPC: Olgald
---  Type: Standard NPC
--- @zone: 244
---  @pos -53.072 -1 103.380
--- 
+-- Type: Standard NPC
+-- !pos -53.072 -1 103.380 244
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (player:getVar("dancerTailorCS") == 1) then
-        player:startEvent(0x27B7);
+        player:startEvent(10167);
     elseif (player:getVar("comebackQueenCS") == 1) then
-        player:startEvent(0x27A2);
+        player:startEvent(10146);
     elseif (player:getVar("comebackQueenCS") == 3) then
-        player:startEvent(0x27A6);
+        player:startEvent(10150);
     elseif (player:getVar("comebackQueenCS") == 5) then --player cleared Laila's story
-        player:startEvent(0x27AC);
+        player:startEvent(10156);
     else
-        player:startEvent(0x278A);
+        player:startEvent(10122);
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x27B7) then
+    if (csid == 10167) then
         player:setVar("dancerTailorCS", 2);
     end;
 end;
-

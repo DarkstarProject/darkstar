@@ -3,59 +3,52 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Blind II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
+require("scripts/globals/utils")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
-function onSpellCast(caster,target,spell)
-
-    local merits = caster:getMerit(MERIT_BLIND_II);
+function onSpellCast(caster, target, spell)
+    local merits = caster:getMerit(dsp.merit.BLIND_II)
 
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_MND)); --blind uses caster INT vs target MND
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.MND) -- blind uses caster INT vs target MND
 
-    -- Base power.  May need more research.
-    local power = math.floor((dINT + 100) / 4);
+    -- Base power
+    -- Min cap: 15 at -80 dINT
+    -- Max cap: 90 at 120 dINT
+    local basePotency = utils.clamp(math.floor(dINT / 3 * 8 + 45), 15, 90)
 
-    if (power < 15) then
-        power = 15;
+    if (merits > 1) then
+        basePotency = basePotency + merits - 1
     end
     
-    if (power > 30) then
-        power = 30;
-    end
-    
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-        power = power * 2;
-    end
-
-    power = power + merits; --similar to Slow II, merit potency bonus is added after the cap
+    local potency = calculatePotency(basePotency, spell:getSkillType(), caster, target)
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dINT,35,merits*2,EFFECT_BLINDNESS);
+    local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
-    if (duration >= 90) then --Do it!
-    
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-        duration = duration * 2;
-    end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
+    local params = {}
+    params.diff = dINT
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.bonus = merits * 2
+    params.effect = dsp.effect.BLINDNESS
+    local resist = applyResistanceEffect(caster, target, spell, params)
 
-        if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
-            spell:setMsg(236);
+    if resist >= 0.5 then --Do it!
+        if target:addStatusEffect(params.effect, potency, 0, duration * resist) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(75);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
-    return EFFECT_BLINDNESS;
-end;
+
+    return params.effect
+end

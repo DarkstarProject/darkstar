@@ -1,34 +1,23 @@
 -----------------------------------
 -- Area: Mount Zhayolm
---  NM:  Cerberus
+--   NM: Cerberus
 -----------------------------------
-
-require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobFight
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onMobFight(mob, target)
-    if (mob:getHPP() > 25) then
-        mob:setMod(MOD_REGAIN, 10)
+    if mob:getHPP() > 25 then
+        mob:setMod(dsp.mod.REGAIN, 10)
     else
-        mob:setMod(MOD_REGAIN, 70)
+        mob:setMod(dsp.mod.REGAIN, 70)
     end
-end;
+end
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.CERBERUS_MUZZLER)
+end
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(CERBERUS_MUZZLER);
-    mob:setRespawnTime((math.random(0,24)*3600)+172800); -- 48-72 hours proper 1 hour windows
-end;
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(48, 72) * 3600) -- 48 - 72 hours with 1 hour windows
+end

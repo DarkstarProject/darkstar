@@ -1,51 +1,34 @@
 -----------------------------------
---  Area: Carpenters' Landing
---  NPC:  Guilloud
---  Type: Standard NPC
---  @pos -123.770 -6.654 -469.062 2
+-- Area: Carpenters' Landing
+--  NPC: Guilloud
+-- Involved with mission "The Road Forks"
+-- !pos -123.770 -6.654 -469.062 2
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Carpenters_Landing/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-   if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 4) then 
-      SpawnMob(16785709,180):updateClaim(player);
-   elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 5) then
-      player:startEvent(0x0000);
-   else
-      player:startEvent(0x0001);
-   end   
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    local cop = player:getCurrentMission(COP)
+    local emeraldWaterStatus = player:getVar("EMERALD_WATERS_Status")
+    
+    if cop == dsp.mission.id.cop.THE_ROAD_FORKS and emeraldWaterStatus == 4 and not GetMobByID(ID.mob.OVERGROWN_IVY):isSpawned() then
+        SpawnMob(ID.mob.OVERGROWN_IVY):updateClaim(player)
+    elseif cop == dsp.mission.id.cop.THE_ROAD_FORKS and emeraldWaterStatus == 5 then
+        player:startEvent(0)
+    else
+        player:startEvent(1)
+    end
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x0000) then
-        player:setVar("EMERALD_WATERS_Status",6); 
+    if csid == 0 then
+        player:setVar("EMERALD_WATERS_Status", 6)
     end
-end;
-
+end

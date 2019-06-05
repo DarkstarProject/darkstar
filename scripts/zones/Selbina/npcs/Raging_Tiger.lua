@@ -1,49 +1,22 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Raging Tiger
+--  NPC: Raging Tiger
 -- Standard Info NPC
------------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Selbina/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    if (player:getZPos() > -28.750) then
-        player:startEvent(0x00D6);
+    if player:getZPos() > -28.750 then
+        player:startEvent(214)
     else
-        player:startEvent(0x00eb);
+        player:startEvent(235)
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

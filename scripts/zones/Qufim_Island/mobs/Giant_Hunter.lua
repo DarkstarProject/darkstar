@@ -1,15 +1,18 @@
 -----------------------------------
 -- Area: Qufim Island
 --  MOB: Giant Hunter
+-- Note: PH for Slippery Sucker
+-----------------------------------
+local ID = require("scripts/zones/Qufim_Island/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 44, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 45, 2, dsp.regime.type.FIELDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,44,1);
-    checkRegime(ally,mob,45,2);
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.SLIPPERY_SUCKER_PH, 10, 600) -- 10 minutes
+end

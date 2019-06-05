@@ -3,31 +3,16 @@
 --  MOB: Doom Warlock
 -- Note: Place holder Taxim
 -----------------------------------
+local ID = require("scripts/zones/Gustav_Tunnel/IDs");
+require("scripts/globals/regimes")
+require("scripts/globals/mobs");
 
-require("scripts/zones/Gustav_Tunnel/MobIDs");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 765, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 766, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 769, 1, dsp.regime.type.GROUNDS)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    checkGoVregime(ally,mob,765,2);
-    checkGoVregime(ally,mob,766,1);
-    checkGoVregime(ally,mob,769,1);
-
-    local mob = mob:getID();
-    if (Taxim_PH[mob] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Taxim");
-        if (ToD <= os.time(t) and GetMobAction(Taxim) == 0) then
-            if (math.random((1),(20)) == 5) then
-                UpdateNMSpawnPoint(Taxim);
-                GetMobByID(Taxim):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Taxim", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.TAXIM_PH,5,7200); -- 2 hours
 end;

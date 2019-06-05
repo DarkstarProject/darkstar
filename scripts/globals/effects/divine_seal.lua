@@ -1,32 +1,20 @@
 -----------------------------------
 --
---     EFFECT_DIVINE_SEAL
+--     dsp.effect.DIVINE_SEAL
 --
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/common");
-
------------------------------------
--- onEffectGain Action
------------------------------------
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/common")
 
 function onEffectGain(target,effect)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-end;
+end
 
 

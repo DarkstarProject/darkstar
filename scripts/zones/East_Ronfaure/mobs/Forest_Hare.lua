@@ -2,13 +2,9 @@
 -- Area: East Ronfaure
 --  MOB: Forest Hare
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,66,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 66, 1, dsp.regime.type.FIELDS)
 end;

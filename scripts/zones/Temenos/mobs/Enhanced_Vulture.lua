@@ -1,19 +1,13 @@
 -----------------------------------
--- Area: Temenos W T    
+-- Area: Temenos W T
 -- NPC: Enhanced_Vulture
 
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Temenos/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 -----------------------------------
 -- onMobEngaged
@@ -32,7 +26,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
@@ -40,7 +34,7 @@ function onMobDeath(mob,killer,ally)
    if (IsMobDead(16928959)==true and IsMobDead(16928960)==true  and IsMobDead(16928961)==true
    and IsMobDead(16928962)==true  and IsMobDead(16928963)==true and IsMobDead(16928964)==true) then
        GetNPCByID(16928768+17):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16928768+17):setStatus(STATUS_NORMAL);
-    GetNPCByID(16928770+470):setStatus(STATUS_NORMAL);
+    GetNPCByID(16928768+17):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16928770+470):setStatus(dsp.status.NORMAL);
   end
 end;

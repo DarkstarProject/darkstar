@@ -2,13 +2,9 @@
 -- Area: Bostaunieux Oubliette
 --  MOB: Wurdalak
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,617,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 617, 1, dsp.regime.type.GROUNDS)
+end

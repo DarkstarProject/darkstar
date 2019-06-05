@@ -1,47 +1,22 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Bretta
--- @zone
--- @pos
------------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Selbina/TextIDs");
-
------------------------------------
--- onTrade Action
+--  NPC: Bretta
+-- !pos 23.156 -2.558 -29.996 248
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    if (player:getZPos() > -28.750) then
-        player:startEvent(0x046d, 1152 - ((os.time() - 1009810584)%1152));
+    if player:getZPos() > -28.750 then
+        player:startEvent(1133, 1152 - ((os.time() - 1009810584) % 1152))
     else
-        player:startEvent(0x00de);  
+        player:startEvent(222)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

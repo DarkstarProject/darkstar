@@ -1,21 +1,14 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Bluffnix
+--  NPC: Bluffnix
 -- Starts and Finishes Quests: Gobbiebags I-X
--- @pos -43.099 5.900 -114.788 245
+-- !pos -43.099 5.900 -114.788 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,19 +18,19 @@ function onTrade(player,npc,trade)
     local inventorySize = player:getContainerSize(0);
     local TheGobbieBag = gobQuest(player,inventorySize);
     local pFame = player:getFameLevel(JEUNO);
-    
+
     if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 1) then
         if (player:getContainerSize(0) < 80) then
             if (trade:hasItemQty(TheGobbieBag[3],1) and trade:hasItemQty(TheGobbieBag[4],1) and trade:hasItemQty(TheGobbieBag[5],1) and trade:hasItemQty(TheGobbieBag[6],1)) then
                 if (pFame >= TheGobbieBag[2]) then
-                    player:startEvent(0x0049, inventorySize+1);
+                    player:startEvent(73, inventorySize+1);
                     offer = 1;
                 else
-                    player:startEvent(0x002b,inventorySize+1,questStatus,offer);
+                    player:startEvent(43,inventorySize+1,questStatus,offer);
                 end
             end
         else
-            player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
+            player:startEvent(43,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
         end
     end
 end;
@@ -62,15 +55,11 @@ function gobQuest(player,bagSize)
     return currentQuest;
 end;
 
-----------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local WildcatJeuno = player:getVar("WildcatJeuno");
 
-    if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,12) == false) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,12) == false) then
         player:startEvent(10056);
     elseif (player:getContainerSize(0) < 80) then
         local pFame = player:getFameLevel(JEUNO);
@@ -82,49 +71,37 @@ function onTrigger(player,npc)
         if (pFame >= TheGobbieBag[2]) then
             offer = 1;
         end
-        player:startEvent(0x002b,inventorySize+1,questStatus,offer);
+        player:startEvent(43,inventorySize+1,questStatus,offer);
     else
-        player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
+        player:startEvent(43,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
     local TheGobbieBag = gobQuest(player,player:getContainerSize(0));
 
-    if (csid == 0x002b and option == 0) then
+    if (csid == 43 and option == 0) then
         if (player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 0) then
             player:addQuest(JEUNO,TheGobbieBag[1]);
         end
-    elseif (csid == 0x0049) then
+    elseif (csid == 73) then
         if (gobbieBag == 5) then
-            player:addTitle(GREEDALOX);
+            player:addTitle(dsp.title.GREEDALOX);
         elseif (gobbieBag == 10) then
-            player:addTitle(GRAND_GREEDALOX);
+            player:addTitle(dsp.title.GRAND_GREEDALOX);
         end
-        
+
         player:changeContainerSize(0,5);
         player:changeContainerSize(5,5);
         player:changeContainerSize(6,5);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addFame(JEUNO, 30);
         player:tradeComplete();
         player:completeQuest(JEUNO,TheGobbieBag[1]);
-        player:messageSpecial(INVENTORY_INCREASED);
+        player:messageSpecial(ID.text.INVENTORY_INCREASED);
     elseif (csid == 10056) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true);
     end

@@ -3,38 +3,28 @@
 -- Gradually restores target party member's MP
 -- Composure increases duration 3x
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
-function onSpellCast(caster,target,spell)
-    local mp = 3;
-    local duration = 150;
+function onSpellCast(caster, target, spell)
+    local duration = calculateDuration(150, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+    duration = calculateDurationForLvl(duration, 41, target:getMainLvl())
 
-    mp = mp + caster:getMod(MOD_ENHANCES_REFRESH);
+    local mp = 3 + caster:getMod(dsp.mod.ENHANCES_REFRESH)
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) and caster:getID() == target:getID()) then
-        duration = duration * 3;
+    if target:hasStatusEffect(dsp.effect.SUBLIMATION_ACTIVATED) or target:hasStatusEffect(dsp.effect.SUBLIMATION_COMPLETE) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        return 0
     end
 
-    if (target:getMainLvl() < 41) then
-        duration = duration * target:getMainLvl() / 41;
-    end
+    target:delStatusEffect(dsp.effect.REFRESH)
+    target:addStatusEffect(dsp.effect.REFRESH, mp, 0, duration)
 
-    if (target:hasStatusEffect(EFFECT_SUBLIMATION_ACTIVATED) or target:hasStatusEffect(EFFECT_SUBLIMATION_COMPLETE)) then
-        spell:setMsg(75);
-        return 0;
-    end
-
-    target:delStatusEffect(EFFECT_REFRESH);
-    target:addStatusEffect(EFFECT_REFRESH,mp,3,duration);
-
-    return EFFECT_REFRESH;
-end;
+    return dsp.effect.REFRESH
+end

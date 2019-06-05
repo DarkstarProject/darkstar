@@ -1,37 +1,42 @@
 -----------------------------------------
 -- Spell: Stun
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local duration = 5;
+    local duration = 5
 
-    local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local resist = applyResistanceEffect(caster,spell,target,dINT,37,0,EFFECT_STUN);
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = 37
+    params.bonus = 0
+    params.effect = dsp.effect.STUN
+    local resist = applyResistanceEffect(caster, target, spell, params)
     if (resist <= (1/16)) then
         -- resisted!
-        spell:setMsg(85);
-        return 0;
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        return 0
     end
 
-    if (target:hasStatusEffect(EFFECT_STUN)) then
+    if (target:hasStatusEffect(dsp.effect.STUN)) then
         -- no effect
-        spell:setMsg(75);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
     else
-        if (target:addStatusEffect(EFFECT_STUN,1,0,duration*resist)) then
-            spell:setMsg(236);
+        if (target:addStatusEffect(dsp.effect.STUN,1,0,duration*resist)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(75);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     end
 
-    return EFFECT_STUN;
-end;
+    return dsp.effect.STUN
+end

@@ -3,23 +3,17 @@
 --  MOB: Gambilox Wanderling
 -- Quest NM - "As Thick as Thieves"
 -----------------------------------
-
------------------------------------
--- OnMobSpawn Action
+require("scripts/globals/status")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+end
 
------------------------------------
--- OnMobDeath Action
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
 
-function onMobDeath(mob,killer,ally)
-
-    local thickAsThievesGamblingCS = ally:getVar("thickAsThievesGamblingCS");
-
-    if (thickAsThievesGamblingCS == 5) then
-        ally:setVar("thickAsThievesGamblingCS",6)
+    if thickAsThievesGamblingCS == 5 then
+        player:setVar("thickAsThievesGamblingCS",6)
     end
-end;
+end

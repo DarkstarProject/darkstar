@@ -296,6 +296,6 @@ List of known zones
   289 - 121 - Escha - Ru'Aun
   290 - 122 - Desuetia - Empyreal Paradox
   291 - 123 - Reisenjima
-  292 - 124 -
+  292 - 124 - Reisenjima_Henge
   293 - 125 - Reisenjima Sanctorium
 

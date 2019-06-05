@@ -1,15 +1,12 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
 -- NPC:  Burning Circle
--- @pos -221 -24 19 206
--------------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
+-- !pos -221 -24 19 206
 -------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/QuBia_Arena/TextIDs");
 
 -------------------------------------
 
@@ -36,10 +33,6 @@ require("scripts/zones/QuBia_Arena/TextIDs");
     -- 20: Those Who Lurk in the Shadows (III)
     -- 21: Beyond Infinity
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -48,14 +41,10 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    -- if (player:hasKeyItem(MARK_OF_SEED) and player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_II) then
-        --player:startEvent(0x005);
+    -- if (player:hasKeyItem(dsp.ki.MARK_OF_SEED) and player:getCurrentMission(ACP) == dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II) then
+        --player:startEvent(5);
     --elseif (EventTriggerBCNM(player,npc)) then
     -- Temp disabled pending fixes for the BCNM mobs.
 
@@ -64,10 +53,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
@@ -87,9 +72,9 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);
     -- printf("onFinish RESULT: %u",option);
 
-    if (csid == 0x005) then
-        player:completeMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_II);
-        player:addMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_III);
+    if (csid == 5) then
+        player:completeMission(ACP,dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II);
+        player:addMission(ACP,dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

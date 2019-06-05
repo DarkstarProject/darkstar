@@ -2,13 +2,11 @@
 -- Area: Gusgen Mines
 --  MOB: Accursed Sorcerer
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,686,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 679, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 680, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 686, 1, dsp.regime.type.GROUNDS)
 end;

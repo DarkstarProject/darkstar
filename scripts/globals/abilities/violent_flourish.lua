@@ -6,100 +6,95 @@
 -- Recast Time: 0:20
 -- Duration: ??
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/weaponskills");
-require("scripts/globals/magic");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/weaponskills")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getAnimation() ~= 1) then
-        return MSGBASIC_REQUIRES_COMBAT,0;
+        return dsp.msg.basic.REQUIRES_COMBAT,0
     else
-        if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
-            player:delStatusEffect(EFFECT_FINISHING_MOVE_1);
-            return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_2)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_2);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_1,1,0,7200);
-            return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_3)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_3);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_2,1,0,7200);
-            return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_4)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_4);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_3,1,0,7200);
-            return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_5);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_4,1,0,7200);
-            return 0,0;        
-        else    
-            return MSGBASIC_NO_FINISHINGMOVES,0;
+        if (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_1)) then
+            player:delStatusEffect(dsp.effect.FINISHING_MOVE_1)
+            return 0,0
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_2)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_2)
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_1,1,0,7200)
+            return 0,0
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_3)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_3)
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_2,1,0,7200)
+            return 0,0
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_4)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_4)
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_3,1,0,7200)
+            return 0,0
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_5)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_5)
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_4,1,0,7200)
+            return 0,0
+        else
+            return dsp.msg.basic.NO_FINISHINGMOVES,0
         end
     end
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+end
 
 function onUseAbility(player,target,ability,action)
-    local hit = 4;
+    local hit = 4
     --get fstr
-    local fstr = fSTR(player:getStat(MOD_STR),target:getStat(MOD_VIT),player:getWeaponDmgRank());
+    local fstr = fSTR(player:getStat(dsp.mod.STR),target:getStat(dsp.mod.VIT),player:getWeaponDmgRank())
 
-    local params = {};
-    params.atkmulti = 1;
-    
+    local params = {}
+    params.atk100 = 1 params.atk200 = 1 params.atk300 = 1
+
     --apply WSC
-    local weaponDamage = player:getWeaponDmg();
-    
-    if (player:getWeaponSkillType(0) == 1) then
-        local h2hSkill = ((player:getSkillLevel(1) * 0.11) + 3);
-        weaponDamage = player:getWeaponDmg()-3;
+    local weaponDamage = player:getWeaponDmg()
 
-        weaponDamage = weaponDamage + h2hSkill;
+    if (player:getWeaponSkillType(dsp.slot.MAIN) == 1) then
+        local h2hSkill = ((player:getSkillLevel(1) * 0.11) + 3)
+        weaponDamage = player:getWeaponDmg()-3
+
+        weaponDamage = weaponDamage + h2hSkill
     end
-    
+
     local base = weaponDamage + fstr
-    local cratio, ccritratio = cMeleeRatio(player, target, params, 0);
-    local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
+    local cratio, ccritratio = cMeleeRatio(player, target, params, 0)
+    local isSneakValid = player:hasStatusEffect(dsp.effect.SNEAK_ATTACK)
     if (isSneakValid and not player:isBehind(target)) then
-        isSneakValid = false;
+        isSneakValid = false
     end
-    local pdif = generatePdif (cratio[1], cratio[2], true);
-    local hitrate = getHitRate(player,target,true);
-    
+    local pdif = generatePdif (cratio[1], cratio[2], true)
+    local hitrate = getHitRate(player,target,true)
+
     if (math.random() <= hitrate or isSneakValid) then
-        hit = 3;
-        dmg = base * pdif;
-        
-        local bonus = 50 - target:getMod(MOD_STUNRES) + player:getMod(MOD_VFLOURISH_MACC);
-        local spell = getSpell(252);
-        local resist = applyResistance(player,spell,target,0,player:getWeaponSkillType(SLOT_MAIN),bonus);
-        
+        hit = 3
+        dmg = base * pdif
+
+        local spell = getSpell(252)
+        local params = {}
+        params.diff = 0
+        params.skillType = player:getWeaponSkillType(dsp.slot.MAIN)
+        params.bonus = 50 - target:getMod(dsp.mod.STUNRES) + player:getMod(dsp.mod.VFLOURISH_MACC)
+        local resist = applyResistance(player, target, spell, params)
+
         if resist > 0.25 then
-            target:addStatusEffect(EFFECT_STUN, 1, 0, 2);
+            target:addStatusEffect(dsp.effect.STUN, 1, 0, 2)
         else
-            ability:setMsg(110);
+            ability:setMsg(dsp.msg.basic.JA_DAMAGE)
         end
-        
-        dmg = utils.stoneskin(target, dmg);
-        
-        target:delHP(dmg);
-        target:updateEnmityFromDamage(player,dmg);
-        
-        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+
+        dmg = utils.stoneskin(target, dmg)
+        target:takeDamage(dmg, player, dsp.attackType.PHYSICAL, player:getWeaponDamageType(dsp.slot.MAIN))
+        target:updateEnmityFromDamage(player,dmg)
+
+        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(dsp.slot.MAIN)))
         action:speceffect(target:getID(), hit)
         return dmg
     else
-        ability:setMsg(158);
-        return 0;
+        ability:setMsg(dsp.msg.basic.JA_MISS)
+        return 0
     end
-end;
+end

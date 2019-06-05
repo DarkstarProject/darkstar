@@ -3,24 +3,13 @@
 --  MOB: Doman
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
-
 require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobDeath(mob, player, isKiller)
 
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    if (ally:hasKeyItem(YOMOTSU_HIRASAKA)) then
-        ally:setVar("OkuriNMKilled",ally:getVar("OkuriNMKilled") + 1);
+    if (player:hasKeyItem(dsp.ki.YOMOTSU_HIRASAKA)) then
+        player:addVar("OkuriNMKilled", 1);
     end
 
 end;

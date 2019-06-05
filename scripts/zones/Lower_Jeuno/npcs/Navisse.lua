@@ -1,14 +1,13 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Navisse
+--  NPC: Navisse
 -- Standard Info NPC
 -----------------------------------
-
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
 require("scripts/globals/pathfind");
+-----------------------------------
 
-local path = {
+local path =
+{
 -- -59.562683, 6.000051, -90.890404,
 -58.791367, 6.000050, -91.663391,
 -58.021465, 6.000049, -92.432144,
@@ -117,48 +116,25 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    player:startEvent(0x0099);
-    npc:wait(-1);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(153);
+    npc:wait();
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
     npc:wait(0);
 end;
-
-
-

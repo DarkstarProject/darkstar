@@ -2,27 +2,13 @@
 -- Area: Monarch Linn
 --  MOB: Mammet-19 Epsilon
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:SetMagicCastingEnabled(false);
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 function onMobFight(mob,target)
     local form = mob:AnimationSub();
 
@@ -32,7 +18,7 @@ function onMobFight(mob,target)
         -- Believe it or not, these changes may be too slow @ 50% chance.  Probability is a pain.
     -- L40 means their "weapons" are 40 DMG by default.
     if ((mob:getBattleTime() > mob:getLocalVar('changeTime') + 60 or mob:getLocalVar('changeTime') == 0) and math.random(0,1) == 1
-        and not mob:hasStatusEffect(EFFECT_FOOD)) then
+        and not mob:hasStatusEffect(dsp.effect.FOOD)) then
         changeForm(mob)
     end
 
@@ -57,7 +43,7 @@ function changeForm(mob)
         mob:setDelay(3250);
         mob:setDamage(75);
     elseif (newform == 3) then -- Staff Form, ~4s delay, ~10 seconds between spell ends and next cast
-        mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
+        mob:setMobMod(dsp.mobMod.MAGIC_COOL, 10);
         mob:SetMagicCastingEnabled(true);
         mob:setDelay(3700);
         mob:setDamage(40);
@@ -66,9 +52,5 @@ function changeForm(mob)
     mob:setLocalVar('changeTime', mob:getBattleTime());
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 end;

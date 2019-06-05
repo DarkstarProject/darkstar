@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Sam 25 Juin 2011 à 10:09
+-- Gï¿½nï¿½rï¿½ le : Sam 25 Juin 2011 ï¿½ 10:09
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnï¿½es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -41,14 +41,14 @@ CREATE TABLE IF NOT EXISTS `pet_list` (
 -- Contenu de la table `pet_list`
 --
 
-INSERT INTO `pet_list` VALUES (0, 'FireSpirit', 1341, 1, 99, 0, 1);
-INSERT INTO `pet_list` VALUES (1, 'IceSpirit', 2043, 1, 99, 0, 5);
-INSERT INTO `pet_list` VALUES (2, 'AirSpirit', 71, 1, 99, 0, 4);
-INSERT INTO `pet_list` VALUES (3, 'EarthSpirit', 1160, 1, 99, 0, 2);
-INSERT INTO `pet_list` VALUES (4, 'ThunderSpirit', 3912, 1, 99, 0, 6);
-INSERT INTO `pet_list` VALUES (5, 'WaterSpirit', 4309, 1, 99, 0, 3);
-INSERT INTO `pet_list` VALUES (6, 'LightSpirit', 2413, 1, 99, 0, 7);
-INSERT INTO `pet_list` VALUES (7, 'DarkSpirit', 913, 1, 99, 0, 8);
+INSERT INTO `pet_list` VALUES (0, 'FireSpirit', 5830, 1, 99, 0, 1);
+INSERT INTO `pet_list` VALUES (1, 'IceSpirit', 5831, 1, 99, 0, 5);
+INSERT INTO `pet_list` VALUES (2, 'AirSpirit', 5832, 1, 99, 0, 4);
+INSERT INTO `pet_list` VALUES (3, 'EarthSpirit', 5833, 1, 99, 0, 2);
+INSERT INTO `pet_list` VALUES (4, 'ThunderSpirit', 5834, 1, 99, 0, 6);
+INSERT INTO `pet_list` VALUES (5, 'WaterSpirit', 5835, 1, 99, 0, 3);
+INSERT INTO `pet_list` VALUES (6, 'LightSpirit', 5836, 1, 99, 0, 7);
+INSERT INTO `pet_list` VALUES (7, 'DarkSpirit', 5837, 1, 99, 0, 8);
 INSERT INTO `pet_list` VALUES (8, 'Carbuncle', 4588, 1, 99, 0, 7);
 INSERT INTO `pet_list` VALUES (9, 'Fenrir', 4581, 1, 99, 0, 8);
 INSERT INTO `pet_list` VALUES (10, 'Ifrit', 4582, 1, 99, 0, 1);
@@ -114,3 +114,9 @@ INSERT INTO `pet_list` VALUES (69, 'HarlequinFrame', 5124, 1, 99, 0, 0);
 INSERT INTO `pet_list` VALUES (70, 'ValoredgeFrame', 5125, 1, 99, 0, 0);
 INSERT INTO `pet_list` VALUES (71, 'SharpshotFrame', 5126, 1, 99, 0, 0);
 INSERT INTO `pet_list` VALUES (72, 'StormwakerFrame', 5127, 1, 99, 0, 0);
+-- INSERT INTO `pet_list` VALUES (73, 'AdventuringFellow', 0, 1, 99, 0, 0);
+-- 74 is Chocobo in the enum..
+
+
+-- trusts.. TODO: Make trusts not use petlist at all.
+INSERT INTO `pet_list` VALUES (75, 'Shantotto', 5896, 1, 99, 0, 0);

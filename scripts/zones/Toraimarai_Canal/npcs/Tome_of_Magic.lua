@@ -1,70 +1,31 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- NPC:  Tome of Magic ( Needed for Mission )
+--  NPC: Tome of Magic ( Needed for Mission )
 -- Involved In Windurst Mission 7-1
--- @zone 169
--- @pos 142 13 -13 169 <many>
+-- !zone 169
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
-require("scripts/zones/Toraimarai_Canal/TextIDs");
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Toraimarai_Canal/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local offset = npc:getID() - ID.npc.TOME_OF_MAGIC_OFFSET
 
-local CurrentMission = player:getCurrentMission(WINDURST);
-local npcId = npc:getID();
-    
-    if (npcId == 17469828) then
-            if (CurrentMission == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
-        player:startEvent(0x0045);
-        end
-    elseif (npcId == 17469824) then
-        player:startEvent(0x0041);
-    elseif (npcId == 17469825) then
-        player:startEvent(0x0042);
-    elseif (npcId == 17469826) then
-        player:startEvent(0x0043);        
-    elseif (npcId == 17469827) then
-        player:startEvent(0x0044);        
+    if offset == 4 and player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1 then
+        player:startEvent(69)
+    elseif offset >= 0 and offset <= 3 then
+        player:startEvent(65 + offset)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
-
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-    if (csid == 0x0045) then
-        player:setVar("MissionStatus",2);
+    if csid == 69 then
+        player:setVar("MissionStatus", 2)
     end
-end;
+end

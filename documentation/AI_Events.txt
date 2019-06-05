@@ -5,16 +5,23 @@ ABILITY_USE - Entity, Target, Ability, action
 ABILITY_STATE_EXIT - Entity, Ability
 
 WEAPONSKILL_START - Entity, Skillid
-WEAPONSKILL_USE - Entity, Target, Skillid
+WEAPONSKILL_USE - Entity, Target, Skillid, TP, action
+WEAPONSKILL_TAKE - Target, Entity, Skillid, TP, action
 WEAPONSKILL_STATE_EXIT - Entity, Skillid
 
 MAGIC_START - Entity, Spell, action
 MAGIC_USE - Entity, Target, Spell, action
 MAGIC_STATE_EXIT - Entity, Spell
+MAGIC_TAKE - Target, Entity, Spell, action
 
 SPAWN - Entity
 DESPAWN - Entity
 DEATH - Entity, Killer
+ENGAGE - Entity, Target
+DISENGAGE - Entity
+
+ATTACK - Attacker, defender, action
+ATTACKED - Defender, attacker, action
 
 ITEM_START - Entity, Item, action
 ITEM_USE - Entity, Item, action
@@ -22,3 +29,11 @@ ITEM_STATE_EXIT - Entity, Item
 WEATHER_CHANGE - Entity, weather, weather element
 
 EXPERIENCE_POINTS - Entity, exp
+
+TICK - Entity
+EFFECTS_TICK - Entity
+EFFECT_GAIN - Entity, Effect
+EFFECT_LOSE - Entity, Effect
+
+COMBAT_TICK - Mob
+ROAM_TICK - Mob

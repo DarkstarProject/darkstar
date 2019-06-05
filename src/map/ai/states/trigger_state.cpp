@@ -27,7 +27,6 @@ This file is part of DarkStar-server source code.
 #include "../../lua/luautils.h"
 #include "../../entities/charentity.h"
 #include "../../entities/npcentity.h"
-#include "../../packets/entity_update.h"
 
 CTriggerState::CTriggerState(CBaseEntity* PEntity, uint16 targid) :
     CState(PEntity, targid)
@@ -47,13 +46,17 @@ bool CTriggerState::Update(time_point tick)
         }
         Complete();
     }
-    else if (tick > GetEntryTime() + 7s)
+    else if (close)
     {
-        if (close)
+        if (tick > GetEntryTime() + 7s)
         {
             m_PEntity->animation = ANIMATION_CLOSE_DOOR;
             m_PEntity->updatemask |= UPDATE_HP;
+            return true;
         }
+    }
+    else
+    {
         return true;
     }
     return false;

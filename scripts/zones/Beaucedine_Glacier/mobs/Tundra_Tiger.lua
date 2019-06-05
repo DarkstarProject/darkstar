@@ -1,46 +1,18 @@
 -----------------------------------
--- Area: Beaucedine Glacier
+-- Area: Beaucedine Glacier (111)
 --  MOB: Tundra Tiger
 -- Note: PH for Nue, Kirata
 -----------------------------------
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
+require("scripts/globals/regimes")
+require("scripts/globals/mobs");
 
-require("scripts/globals/fieldsofvalor");
-require("scripts/zones/Beaucedine_Glacier/MobIDs");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 46, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 47, 1, dsp.regime.type.FIELDS)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,46,1);
-    checkRegime(ally,mob,47,1);
-
-    -- Kirata
-    mob = mob:getID();
-    if (Kirata_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Kirata");
-        if (ToD <= os.time(t) and GetMobAction(Kirata) == 0) then
-            if (math.random((1),(15)) == 5) then
-                UpdateNMSpawnPoint(Kirata);
-                GetMobByID(Kirata):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Kirata", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-
-    -- Nue
-    if (Nue_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Nue");
-        if (ToD <= os.time(t) and GetMobAction(Nue) == 0) then
-            if (math.random((1),(15)) == 5) then
-                UpdateNMSpawnPoint(Nue);
-                GetMobByID(Nue):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Nue", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.KIRATA_PH,7,math.random(3600,28800)); -- 1 to 8 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.NUE_PH,7,math.random(3600,7200)); -- 1 to 2 hours
 end;

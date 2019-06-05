@@ -6,49 +6,34 @@
 -- Dexterity 2
 -- Mind -4
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:getRace() ~= 7) then
-        result = 247;
+    local result = 0
+    if (target:getRace() ~= dsp.race.MITHRA) then
+        result = dsp.msg.basic.CANNOT_EAT
     end
-    if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
-        result = 0;
+    if (target:getMod(dsp.mod.EAT_RAW_FISH) == 1) then
+        result = 0
     end
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,4426);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,300,4426)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.DEX, 2)
+    target:addMod(dsp.mod.MND, -4)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, 2);
-    target:addMod(MOD_MND, -4);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_DEX, 2);
-    target:delMod(MOD_MND, -4);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.DEX, 2)
+    target:delMod(dsp.mod.MND, -4)
+end

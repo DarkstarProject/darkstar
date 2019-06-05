@@ -3,11 +3,10 @@
 --   NM: Marquis_Allocen
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
+end;
 
-function onMobDeath(mob,killer,ally)
+function onMobDespawn(mob)
 
     -- Set Marquis_Allocen's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

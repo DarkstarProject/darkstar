@@ -1,35 +1,23 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Tonberry Rattle ITEM)
--- @pos 269 0 91 159
+--  NPC: ??? (Tonberry Rattle ITEM)
+-- !pos 269 0 91 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-
-    respawn = GetServerVariable("[TEMP]Respawn_qm1_for_rattle");
-    
-    if (player:hasItem(1266) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
-        player:addItem(1266);
-        player:messageSpecial(ITEM_OBTAINED,1266); -- Uggalepih Rattle
-        SetServerVariable("[TEMP]Respawn_qm1_for_rattle",os.time(t) + 7200); -- 2 hours
-        -- ??? dissapears for 2 hours and reappears on new position
+function onTrigger(player, npc)
+    if not player:hasItem(1266) then
+        if npcUtil.giveItem(player, 1266) then -- Tonberry Rattle
+            npc:setStatus(dsp.status.DISAPPEAR)
+            npc:updateNPCHideTime(7200) -- 2 hours
+            -- TODO: ??? reappears at new position
+        end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-    
-end;
+end

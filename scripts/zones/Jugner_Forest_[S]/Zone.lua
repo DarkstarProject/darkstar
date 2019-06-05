@@ -3,67 +3,45 @@
 -- Zone: Jugner_Forest_[S] (82)
 --
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Jugner_Forest_[S]/IDs")
+require("scripts/globals/chocobo")
+require("scripts/globals/quests")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    dsp.chocobo.initZone(zone)
 end;
 
------------------------------------     
--- onZoneIn     
------------------------------------     
-
-function onZoneIn(player,prevZone)      
-    local cs = -1;  
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then   
+function onZoneIn(player,prevZone)
+    local cs = -1;
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(621.865,-6.665,300.264,149);
-    end 
-    
-    if (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 0) then
-        cs = 0x00C8;
-    
+    end
+
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 0) then
+        cs = 200;
+
     elseif (player:getVar("roadToDivadomCS") == 1) then
-        cs = 0x0069;
+        cs = 105;
     end;
-    
+
     return cs;
 
-end;        
+end;
 
------------------------------------     
--- onRegionEnter        
------------------------------------     
+function onRegionEnter(player,region)
+end;
 
-function onRegionEnter(player,region)   
-end;    
+function onEventUpdate(player,csid,option)
+end;
 
------------------------------------ 
--- onEventUpdate    
------------------------------------ 
-
-function onEventUpdate(player,csid,option)  
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;    
-
------------------------------------ 
--- onEventFinish    
------------------------------------ 
-
-function onEventFinish(player,csid,option)  
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x00C8) then
+function onEventFinish(player,csid,option)
+    if (csid == 200) then
         player:setVar("ClawsOfGriffonProg",1);
-    elseif (csid == 0x0069 ) then
+    elseif (csid == 105 ) then
         player:setVar("roadToDivadomCS", 2);
     end;
 
-end;    
+end;

@@ -1,62 +1,38 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Scamplix
+--  NPC: Scamplix
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Rabao/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,SCAMPLIX_SHOP_DIALOG);
+    local stock =
+    {
+        4509,    10,    -- Distilled Waterr
+        4376,   108,    -- Meat Jerky
+        4458,   270,    -- Goblin Bread
+        1817,   720,    -- Cactus Arm
+        4128,  4348,    -- Ether
+        4412,   292,    -- Thundermelon
+        4491,   180,    -- Watermelon
+        4112,   819,    -- Potion
+        4148,   284,    -- Antidote
+        4163,  1080,    -- Blinding Potion
+        13328, 4050,    -- Mythril Earring
+        107,    180,    -- Water Jug
+        2868,  9000,    -- Rabao Waystone
+    }
 
-stock = {0x119D,10,        -- Distilled Waterr
-     0x1118,108,        -- Meat Jerky
-     0x116A,270,        -- Goblin Bread
-     0x0719,720,        -- Cactus Arm
-     0x1020,4348,        -- Ether
-     0x113C,292,        -- Thundermelon
-     0x118B,180,        -- Watermelon
-     0x1010,819,        -- Potion
-     0x1034,284,        -- Antidote
-     0x1043,1080,        -- Blinding Potion
-     0x3410,4050,        -- Mythril Earring
-     0x006B,180,        -- Water Jug
-     0x0b34,9000}        -- Rabao Waystone
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.SCAMPLIX_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

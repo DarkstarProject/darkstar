@@ -2,13 +2,9 @@
 -- Area: Garlaige Citadel
 --  MOB: Wraith
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,708,3);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 708, 3, dsp.regime.type.GROUNDS)
 end;

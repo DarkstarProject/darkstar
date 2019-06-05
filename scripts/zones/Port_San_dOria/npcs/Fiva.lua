@@ -1,74 +1,40 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC:  Fiva
---     Only sells when San d'Oria controls Kolshushu
+-- Area: Port San d'Oria
+--  NPC: Fiva
+-- Kolshushu Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    if GetRegionOwner(dsp.region.KOLSHUSHU) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.FIVA_CLOSED_DIALOG)
+    else
+        local stock =
+        {
+            4503,  184,    -- Buburimu Grape
+            1120, 1620,    -- Casablanca
+            4359,  220,    -- Dhalmel Meat
+            614,    72,    -- Mhaura Garlic
+            4445,   40,    -- Yagudo Cherry
+        }
 
-RegionOwner = GetRegionOwner(KOLSHUSHU);
-
-if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,FIVA_CLOSED_DIALOG);
-else
-    player:showText(npc,FIVA_OPEN_DIALOG);
-    
-    stock = {0x1197,184,  --Buburimu Grape
-             0x0460,1620, --Casablanca
-             0x1107,220,  --Dhalmel Meat
-             0x0266,72,   --Mhaura Garlic
-             0x115d,40}   --Yagudo Cherry
-
-showShop(player,SANDORIA,stock);
+        player:showText(npc, ID.text.FIVA_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
+    end
 end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
-
+end

@@ -1,56 +1,30 @@
 -----------------------------------
---  Area: Qufim Island
---  NPC:  Swirling Vortex
---  Entrance to Qufim Island
---  @pos -436.000 -13.499 340.117 126
+-- Area: Qufim Island
+--  NPC: Swirling Vortex
+-- Entrance to Qufim Island
+-- !pos -436.000 -13.499 340.117 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/teleports");
-require("scripts/globals/missions");
-require("scripts/zones/Qufim_Island/TextIDs");
-
------------------------------------
--- onTrade
+local ID = require("scripts/zones/Qufim_Island/IDs")
+require("scripts/globals/teleports")
+require("scripts/globals/missions")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
-        player:startEvent(0x012c);
+function onTrigger(player, npc)
+    if player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
+        player:startEvent(300)
     else
-        player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
+        player:messageSpecial(ID.text.AN_EMPTY_LIGHT_SWIRLS)
     end
-    
-end;
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x012c and option == 1) then
-        toMisareauxCoast(player);
+function onEventFinish(player, csid, option)
+    if csid == 300 and option == 1 then
+        dsp.teleport.to(player, dsp.teleport.id.MISAREAUX_VORTEX)
     end
-    
-end;
+end

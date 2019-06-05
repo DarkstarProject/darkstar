@@ -2,13 +2,9 @@
 -- Area: Western Altepa Desert
 --  MOB: Antican Secutor
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,138,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 138, 1, dsp.regime.type.FIELDS)
+end

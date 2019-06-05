@@ -1,30 +1,16 @@
 -----------------------------------
 -- Area: East Ronfaure
 --  MOB: Pugil
+-- Note: PH for Swamfisk
 -----------------------------------
+local ID = require("scripts/zones/East_Ronfaure/IDs");
+require("scripts/globals/regimes")
+require("scripts/globals/mobs");
 
-require("scripts/globals/fieldsofvalor");
-require("scripts/zones/East_Ronfaure/MobIDs");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 64, 1, dsp.regime.type.FIELDS)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,64,1);
-
-    mob = mob:getID();
-    if (Swamfisk_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Swamfisk");
-        if (ToD <= os.time(t) and GetMobAction(Swamfisk) == 0) then
-            if (math.random((1),(15)) == 5) then
-                UpdateNMSpawnPoint(Swamfisk);
-                GetMobByID(Swamfisk):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Swamfisk", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.SWAMFISK_PH,7,math.random(3600,10800)); -- 1 to 3 hours
 end;

@@ -1,68 +1,41 @@
 -----------------------------------
---  Area: Maze of Shakhrami
---  NPC:  Ahko Mhalijikhari
---  Type: Quest NPC
---  @pos -344.617 -12.226 -166.233 198
---  0x003d  0x003e  0x003f  0x0040  0x0041
+-- Area: Maze of Shakhrami
+--  NPC: Ahko Mhalijikhari
+-- Type: Quest NPC
+-- !pos -344.617 -12.226 -166.233 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    --player:startEvent(0x0040);
-    if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and player:getVar("ECO_WARRIOR_ACTIVE") == 238) then
-        
-        if (player:hasKeyItem(INDIGESTED_MEAT)) then
-            player:startEvent(0x0041); -- After NM's dead
-        elseif (player:hasStatusEffect(EFFECT_LEVEL_RESTRICTION) == false) then
-            player:startEvent(0x003e); -- 
+function onTrigger(player, npc)
+    if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and player:getVar("ECO_WARRIOR_ACTIVE") == 238 then
+        if player:hasKeyItem(dsp.ki.INDIGESTED_MEAT) then
+            player:startEvent(65) -- After NM's dead
+        elseif not player:hasStatusEffect(dsp.effect.LEVEL_RESTRICTION) then
+            player:startEvent(62)
         else
-            player:startEvent(0x0040);
+            player:startEvent(64)
         end
     else
-        player:startEvent(0x003d); -- default
+        player:startEvent(61) -- default
     end
-end;
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-     printf("RESULT: %u",option);
-    if (csid == 0x003e and option == 1) then
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,20,0,0);
-    elseif (csid == 0x0041) then
-        player:setVar("ECOR_WAR_WIN-NMs_killed",0);
-        player:delStatusEffect(EFFECT_LEVEL_RESTRICTION);
-    elseif (csid == 0x0040) then
-        player:delStatusEffect(EFFECT_LEVEL_RESTRICTION);
+function onEventFinish(player, csid, option)
+    if csid == 62 and option == 1 then
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 20, 0, 0)
+    elseif csid == 65 then
+        player:setVar("ECOR_WAR_WIN-NMs_killed", 0)
+        player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION)
+    elseif csid == 64 then
+        player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION)
     end
-end;
-
+end

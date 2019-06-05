@@ -1,61 +1,41 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Mission: Bastok 6-1
--- @pos -325 0 -111 125
+-- !pos -325 0 -111 125
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-    if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 2) then
-        if (GetMobAction(17289654) == 0 and GetMobAction(17289655) == 0) then
-            if (player:getVar("Mission6-1MobKilled") >= 1) then
-                player:addKeyItem(ALTEPA_MOONPEBBLE);
-                player:messageSpecial(KEYITEM_OBTAINED,ALTEPA_MOONPEBBLE);
-                player:setVar("Mission6-1MobKilled",0);
-                player:setVar("MissionStatus",3);
+    if
+        player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and
+        player:getVar("MissionStatus") == 2 and
+        not player:hasKeyItem(dsp.ki.ALTEPA_MOONPEBBLE)
+    then
+        if not GetMobByID(ID.mob.EASTERN_SPHINX):isSpawned() and not GetMobByID(ID.mob.WESTERN_SPHINX):isSpawned() then
+            if player:getVar("Mission6-1MobKilled") > 0 then
+                player:addKeyItem(dsp.ki.ALTEPA_MOONPEBBLE)
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ALTEPA_MOONPEBBLE)
+                player:setVar("Mission6-1MobKilled", 0)
+                player:setVar("MissionStatus", 3)
             else
-                SpawnMob(17289654,168);
-                SpawnMob(17289655,168);
+                SpawnMob(ID.mob.EASTERN_SPHINX)
+                SpawnMob(ID.mob.WESTERN_SPHINX)
             end
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

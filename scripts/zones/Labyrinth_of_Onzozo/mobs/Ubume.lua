@@ -1,26 +1,13 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Ubume
+--   NM: Ubume
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
-
-require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/quests")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    if (ally:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED and ally:getVar("yomiOkuriCS") <= 3) then
-        ally:setVar("yomiOkuriKilledNM",1);
+function onMobDeath(mob, player, isKiller)
+    if player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.YOMI_OKURI) == QUEST_ACCEPTED and player:getVar("yomiOkuriCS") <= 3 then
+        player:setVar("yomiOkuriKilledNM", 1)
     end
-
-end;
+end

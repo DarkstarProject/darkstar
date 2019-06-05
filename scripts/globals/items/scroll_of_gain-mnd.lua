@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 5092
---    Scroll of Gain-MND
---    Teaches the white magic Gain-MND
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5092
+-- Scroll of Gain-MND
+-- Teaches the white magic Gain-MND
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(491);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(491)
+end
 
 function onItemUse(target)
-    target:addSpell(491);
-end;
+    target:addSpell(491)
+end

@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: FeiYin
 --  MOB: Colossus
+-- Note: PH for Goliath
+-----------------------------------
+local ID = require("scripts/zones/FeiYin/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    checkGoVregime(ally,mob,715,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 715, 2, dsp.regime.type.GROUNDS)
 
     -- Curses, Foiled A-Golem!?
-    if (ally:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-        ally:delKeyItem(SHANTOTTOS_NEW_SPELL);
-        ally:addKeyItem(SHANTOTTOS_EXSPELL);
+    if (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then
+        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)
+        player:addKeyItem(dsp.ki.SHANTOTTOS_EXSPELL)
     end
+end
 
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.GOLIATH_PH, 10, 3600) -- 1 hour
+end

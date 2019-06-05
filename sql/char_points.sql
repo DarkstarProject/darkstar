@@ -19,13 +19,10 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `char_points`;
 CREATE TABLE `char_points` (
-  `charid` int(10) NOT NULL,
+  `charid` int(10) unsigned NOT NULL,
   `sandoria_cp` int(10) unsigned NOT NULL DEFAULT '0',
   `bastok_cp` int(10) unsigned NOT NULL DEFAULT '0',
   `windurst_cp` int(10) unsigned NOT NULL DEFAULT '0',
-  `sandoria_supply` int(10) unsigned NOT NULL DEFAULT '0',
-  `bastok_supply` int(10) unsigned NOT NULL DEFAULT '0',
-  `windurst_supply` int(10) unsigned NOT NULL DEFAULT '0',
   `beastman_seal` int(10) unsigned NOT NULL DEFAULT '0',
   `kindred_seal` smallint(5) unsigned NOT NULL DEFAULT '0',
   `kindred_crest` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -68,7 +65,6 @@ CREATE TABLE `char_points` (
   `spark_of_eminence` int(10) unsigned NOT NULL DEFAULT '0',
   `shining_star` int(10) unsigned NOT NULL DEFAULT '0',
   `imperial_standing` int(10) unsigned NOT NULL DEFAULT '0',
-  `runic_portal` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `leujaoam_assault_point` int(10) unsigned NOT NULL DEFAULT '0',
   `mamool_assault_point` int(10) unsigned NOT NULL DEFAULT '0',
   `lebros_assault_point` int(10) unsigned NOT NULL DEFAULT '0',
@@ -78,10 +74,6 @@ CREATE TABLE `char_points` (
   `zeni_point` int(10) unsigned NOT NULL DEFAULT '0',
   `jetton` int(10) unsigned NOT NULL DEFAULT '0',
   `therion_ichor` int(10) unsigned NOT NULL DEFAULT '0',
-  `maw` int(10) unsigned NOT NULL DEFAULT '0',
-  `past_sandoria_tp` int(10) unsigned NOT NULL DEFAULT '0',
-  `past_bastok_tp` int(10) unsigned NOT NULL DEFAULT '0',
-  `past_windurst_tp` int(10) unsigned NOT NULL DEFAULT '0',
   `allied_notes` int(10) unsigned NOT NULL DEFAULT '0',
   `bayld` int(10) unsigned NOT NULL DEFAULT '0',
   `kinetic_unit` smallint(5) unsigned NOT NULL DEFAULT '0',

@@ -1,26 +1,12 @@
-
 -----------------------------------
--- Stegotaur
+-- Area: Sacrarium
+--  MOB: Stegotaur
 -----------------------------------
-
-
-
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+mixins = {require("scripts/mixins/fomor_hate")}
 
 function onMobSpawn(mob)
+    mob:setLocalVar("fomorHateAdj", -4);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    kills = ally:getVar("FOMOR_HATE");
-    if (kills > 4) then
-        ally:setVar("FOMOR_HATE",kills -4);
-    end
+function onMobDeath(mob, player, isKiller)
 end;

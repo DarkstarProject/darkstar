@@ -7,47 +7,32 @@
 -- Intelligence +6
 -- MP Recovered While Healing +2
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-   if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-      result = 246;
-   end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
+    end
+    return result
+end
 
 function onItemUse(target)
-   target:addStatusEffect(EFFECT_FOOD,0,0,14400,5158);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,5158)
+end
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_FOOD_MPP, 12);
-   target:addMod(MOD_FOOD_MP_CAP, 90);
-   target:addMod(MOD_INT, 6);
-   target:addMod(MOD_MPHEAL, 2);
-end;
+    target:addMod(dsp.mod.FOOD_MPP, 12)
+    target:addMod(dsp.mod.FOOD_MP_CAP, 90)
+    target:addMod(dsp.mod.INT, 6)
+    target:addMod(dsp.mod.MPHEAL, 2)
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-   target:delMod(MOD_FOOD_MPP,12);
-   target:delMod(MOD_FOOD_MP_CAP, 90);
-   target:delMod(MOD_INT, 6);
-   target:delMod(MOD_MPHEAL, 2);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.FOOD_MPP,12)
+    target:delMod(dsp.mod.FOOD_MP_CAP, 90)
+    target:delMod(dsp.mod.INT, 6)
+    target:delMod(dsp.mod.MPHEAL, 2)
+end

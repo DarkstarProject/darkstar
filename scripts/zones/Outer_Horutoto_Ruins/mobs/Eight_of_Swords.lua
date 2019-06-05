@@ -2,13 +2,9 @@
 -- Area: Outer Horutoto
 --  MOB: Eight of Swords
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,667,3);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 667, 3, dsp.regime.type.GROUNDS)
+end

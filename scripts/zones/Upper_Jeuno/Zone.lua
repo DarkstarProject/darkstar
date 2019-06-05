@@ -3,22 +3,15 @@
 -- Zone: Upper_Jeuno (244)
 --
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/missions");
-require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -32,13 +25,13 @@ function onZoneIn(player,prevZone)
     end
 
     -- COP mission 1-1
-    if (player:getCurrentMission(COP) == THE_RITES_OF_LIFE and player:getVar("PromathiaStatus") == 0) then
-        cs = 0x0002;
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_RITES_OF_LIFE and player:getVar("PromathiaStatus") == 0) then
+        cs = 2;
     -- MOG HOUSE EXIT
-    elseif ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    elseif (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(46.2,-5,-78,172);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-            cs = 0x7534;
+            cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     end
@@ -46,45 +39,21 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x7534 and option == 0) then
+    if (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
-    elseif (csid == 0x0002) then
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
+    elseif (csid == 2) then
         player:setVar("PromathiaStatus",1);
     end
 end;

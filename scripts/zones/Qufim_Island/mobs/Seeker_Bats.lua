@@ -2,13 +2,9 @@
 -- Area: Qufim Island
 --  MOB: Seeker Bats
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,42,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 42, 2, dsp.regime.type.FIELDS)
+end

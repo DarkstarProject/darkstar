@@ -1,62 +1,35 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Yafafa
--- Only sells when Bastok controls Kolshushu
---
--- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
+--  NPC: Yafafa
+-- Kolshushu Regional Goods
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Bastok_Markets/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(KOLSHUSHU);
-
-    if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,YAFAFA_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.KOLSHUSHU) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.YAFAFA_CLOSED_DIALOG)
     else
-        player:showText(npc,YAFAFA_OPEN_DIALOG);
-
-        stock = {
-            0x1197, 184,     --Buburimu Grape
-            0x0460,1620,     --Casablanca
-            0x1107, 220,     --Dhalmel Meat
-            0x0266,  72,     --Mhaura Garlic
-            0x115d,  40      --Yagudo Cherry
+        local stock =
+        {
+            4503,  184,    --Buburimu Grape
+            1120, 1620,    --Casablanca
+            4359,  220,    --Dhalmel Meat
+            614,    72,    --Mhaura Garlic
+            4445,   40,     --Yagudo Cherry
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, ID.text.YAFAFA_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

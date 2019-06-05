@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Talhaal
---  Type: Zazarg's Attendant
--- @zone: 48
---  @pos -35.897 -7 107.160
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Al Zahbi
+--  NPC: Talhaal
+-- Type: Zazarg's Attendant
+-- !pos -35.897 -7 107.160 48
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0100);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(256)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

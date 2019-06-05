@@ -4,36 +4,27 @@
 -- Item Effect: Refresh 2 MP 3/Tic under 85% MP.
 -- Duration: 30 Mins
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    local mMP = target:getMaxMP();
-    local cMP = target:getMP();
+    local mMP = target:getMaxMP()
+    local cMP = target:getMP()
     if (VanadielDayElement() == LIGHTDAY) then
         if (cMP < (mMP * .85)) then
-            if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
-                target:addStatusEffect(EFFECT_REFRESH,2,3,1800);
+            if (not target:hasStatusEffect(dsp.effect.REFRESH)) then
+                target:addStatusEffect(dsp.effect.REFRESH,2,3,1800)
             else
-                target:messageBasic(423);
+                target:messageBasic(dsp.msg.basic.NO_EFFECT)
             end
         else
-            target:messageBasic(423);
+            target:messageBasic(dsp.msg.basic.NO_EFFECT)
         end
     else
-        target:messageBasic(423);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
-
+end

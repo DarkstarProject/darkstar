@@ -1,6 +1,5 @@
 // Copyright (c) 2010-2015 Darkstar Dev Teams
 
-#include "../common/malloc.h"
 #include "../common/showmsg.h"
 #include "../common/utils.h"
 #include "../common/timer.h"

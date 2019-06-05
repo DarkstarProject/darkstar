@@ -1,71 +1,33 @@
 -----------------------------------
--- Area: 
--- NPC:  Treasure Coffer
--- @zone illrusi atoll
--- @pos
+-- Area: Ilrusi Atoll
+--  NPC: Treasure Coffer
 -----------------------------------
-package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
--------------------------------------
-
-require("scripts/globals/bcnm");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Ilrusi_Atoll/TextIDs");
-
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Ilrusi_Atoll/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
- player:messageSpecial(CHEST);
-  local npcID = npc:getID();
-  local correctcofferID = GetServerVariable("correctcoffer");
- print(npcID);
- print(correctcofferID);
-  if (npcID == correctcofferID) then --correct coffer ??
-   player:messageSpecial( GOLDEN);
-   
-   if (player:getCurrentMission(ASSAULT)==GOLDEN_SALVAGE) then
-   player:completeMission(ASSAULT,GOLDEN_SALVAGE);
-   end
-   GetNPCByID(17002654):setStatus(0);--spawn Ancient_Lockbox
-     local ID;
-     for ID=17002505,17002516,1 do
-     if (GetMobAction(ID) > 0) then DespawnMob(npcID);printf("mobdespawn: %u",ID);  end--despawn mimic
-     end
-    GetNPCByID(npcID):setAnimation(89);--coffer open anim
-   else
-   SpawnMob(npcID);
-   end
+    player:messageSpecial(ID.text.CHEST)
+    
+    local npcID = npc:getID()
+    local instance = npc:getInstance()
+    local figureheadChest = instance:getProgress()
 
-  
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    if (npcID == figureheadChest) then
+        player:messageSpecial(ID.text.GOLDEN)
+        instance:complete()
+        for i,v in pairs(ID.mob[2]) do
+            DespawnMob(v, instance)
+        end
+    else
+        SpawnMob(npcID, instance):updateClaim(player)
+    end
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

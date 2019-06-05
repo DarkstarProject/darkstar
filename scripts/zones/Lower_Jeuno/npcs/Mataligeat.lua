@@ -1,44 +1,42 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Mataligeat
+--  NPC: Mataligeat
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
+-- !pos -24 0 -60 245
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-player:startEvent(0x008D);
-end; 
+    local painfulMemory = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PAINFUL_MEMORY);
+    local theRequiem = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_REQUIEM);
+    local pathOfTheBard = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PATH_OF_THE_BARD);
 
------------------------------------
--- onEventUpdate
------------------------------------
+    -- THE OLD MONUMENT
+    if (player:getVar("TheOldMonument_Event") == 1) then
+        player:startEvent(141); -- looks like his girlfriend dumped him
+
+    -- PAINFUL MEMORY
+    elseif (painfulMemory == QUEST_ACCEPTED) then
+        player:startEvent(140); -- he's forgotten why he took up the lute in the first place
+
+    -- THE REQUIEM
+    elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3) then
+        player:startEvent(142); -- huh? the bard interred inside eldieme?
+
+    -- PATH OF THE BARD
+    elseif (pathOfTheBard == QUEST_COMPLETED) then
+        player:startEvent(143); -- so now you're one of us, huh?
+
+    -- DEFAULT RESPONSE
+    else
+        player:startEvent(144); -- have you heard of lewenhart?
+    end;
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
-
-

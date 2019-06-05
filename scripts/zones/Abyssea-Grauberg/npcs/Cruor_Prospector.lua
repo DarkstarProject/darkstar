@@ -2,47 +2,22 @@
 -- Area: Abyssea - Grauberg
 --  NPC: Cruor Prospector
 -- Type: Cruor NPC
--- @pos ? ? ? 254 (missing from DSP database)
+-- !pos ? ? ? 254 (missing from DSP database)
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/keyitems");
-require("scripts/globals/abyssea");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/abyssea")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    local Cruor = player:getCurrency("cruor");
-    local Demilune = getDemiluneAbyssite(player);
-    player:startEvent(2002, Cruor, Demilune);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    local cruor = player:getCurrency("cruor")
+    local demilune = getDemiluneAbyssite(player)
+    player:startEvent(2002, cruor, demilune)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

@@ -58,53 +58,49 @@ function triggerLightCutscene( player)
     local weather = player:getWeather();
 
     if (player:hasItem( 1125, 0)) then -- Player has Carbuncle's Ruby?
-        if (player:getQuestStatus( WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
-            if (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),0) == false and (weather == WEATHER_HOT_SPELL or weather == WEATHER_HEAT_WAVE)) then
+        if (player:getQuestStatus(WINDURST, dsp.quest.id.windurst.I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
+            if (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),0) == false and (weather == dsp.weather.HOT_SPELL or weather == dsp.weather.HEAT_WAVE)) then
                 if (colorsAvailable[zone][RED]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",0,true);
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
-            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),1) == false and (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE)) then
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),1) == false and (weather == dsp.weather.NONE or weather == dsp.weather.SUNSHINE)) then
                 if (colorsAvailable[zone][ORANGE]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",1,true);
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
-            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),2) == false and (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM)) then
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),2) == false and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM)) then
                 if (colorsAvailable[zone][YELLOW]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",2,true);
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
-            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),3)  == false and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),3)  == false and (weather == dsp.weather.WIND or weather == dsp.weather.GALES)) then
                 if (colorsAvailable[zone][GREEN]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",3,true);
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
-            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),4)   == false and (weather == WEATHER_RAIN or weather == WEATHER_SQUALL)) then
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),4)   == false and (weather == dsp.weather.RAIN or weather == dsp.weather.SQUALL)) then
                 if (colorsAvailable[zone][BLUE]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",4,true);
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
-            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),5) == false and (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS)) then
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),5) == false and (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS)) then
                 if (colorsAvailable[zone][INDIGO]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",5,true);
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
-            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),6) == false and (weather == WEATHER_THUNDER or weather == WEATHER_THUNDERSTORMS)) then
+            elseif (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),6) == false and (weather == dsp.weather.THUNDER or weather == dsp.weather.THUNDERSTORMS)) then
                 if (colorsAvailable[zone][VIOLET]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",6,true);
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
-            end
-
-            if (cutsceneTriggered) then
-                fixChocoboBug(player);
             end
         end
     end
@@ -119,11 +115,11 @@ end;
 function lightCutsceneUpdate( player)
     local weather = player:getVar( "I_CAN_HEAR_A_RAINBOW_Weather");
 
-    if (weather == WEATHER_SUNSHINE) then -- In some zones the light cutscene does not handle WEATHER_SUNSHINE properly
-        weather = WEATHER_NONE;
+    if (weather == dsp.weather.SUNSHINE) then -- In some zones the light cutscene does not handle dsp.weather.SUNSHINE properly
+        weather = dsp.weather.NONE;
     end
 
-    if (player:getVar( "I_CAN_HEAR_A_RAINBOW") < 127) then
+    if (player:getVar("I_CAN_HEAR_A_RAINBOW") < 127) then
         player:updateEvent( 0, 0, weather);
     else
         player:updateEvent( 0, 0, weather, 6);
@@ -135,20 +131,5 @@ end;
 -----------------------------------
 
 function lightCutsceneFinish( player)
-    fixChocoboBug(player);
     player:setVar("I_CAN_HEAR_A_RAINBOW_Weather", 0);
-end;
-
------------------------------------
--- fixChocoboBug
------------------------------------
-
-function fixChocoboBug( player)
-    if (player:hasStatusEffect(EFFECT_CHOCOBO)) then
-        if (player:getAnimation() == 5) then
-            player:setAnimation( 0);
-        elseif (player:getAnimation() == 0) then
-            player:setAnimation( 5);
-        end
-    end
 end;

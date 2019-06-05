@@ -3,42 +3,26 @@
 --
 --
 -----------------------------------
-require("scripts/globals/status");
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect) --power=30 initially, subpower=20 for enmity
-    target:addMod(MOD_ACC,effect:getPower());
-    target:addMod(MOD_EVA,-effect:getPower());
-    target:addMod(MOD_ENMITY,-effect:getSubPower());
-    target:addMod(MOD_CRITHITRATE,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.EVA,-effect:getPower())
+    target:addMod(dsp.mod.ENMITY,-effect:getSubPower())
+end
 
 function onEffectTick(target,effect)
     --tick down the effect and reduce the overall power
-    effect:setPower(effect:getPower()-1);
-    target:delMod(MOD_ACC,1);
-    target:delMod(MOD_EVA,-1);
-    target:delMod(MOD_CRITHITRATE,1);
+    effect:setPower(effect:getPower()-1)
+    target:delMod(dsp.mod.EVA,-1)
     if (effect:getPower() % 2 == 0) then -- enmity- decays from -20 to -10, so half as often as the rest.
-        effect:setSubPower(effect:getSubPower()-1);
-        target:delMod(MOD_ENMITY,-1);
-    end;
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+        effect:setSubPower(effect:getSubPower()-1)
+        target:delMod(dsp.mod.ENMITY,-1)
+    end
+end
 
 function onEffectLose(target,effect)
     --remove the remaining power
-    target:delMod(MOD_ACC,effect:getPower());
-    target:delMod(MOD_EVA,-effect:getPower());
-    target:delMod(MOD_CRITHITRATE,effect:getPower());
-    target:delMod(MOD_ENMITY,-effect:getSubPower());
-end;
+    target:delMod(dsp.mod.EVA,-effect:getPower())
+    target:delMod(dsp.mod.ENMITY,-effect:getSubPower())
+end

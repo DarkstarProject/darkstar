@@ -1,33 +1,20 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- NPC:  ??? - Drown Crawler (Spawn area 2)
--- @pos -74.939 -2.606 244.139 197
+--  NPC: ??? - Drone Crawler (Spawn area 2)
+-- !pos -74.939 -2.606 244.139 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Crawlers_Nest/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Crawlers_Nest/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    -- Trade Rolanberry 881
-    if (GetMobAction(17584132) == 0 and trade:hasItemQty(4529,1) and trade:getItemCount() == 1) then 
-        player:tradeComplete();
-        if (math.random(1,100)<=50) then
-            SpawnMob(17584132,120):updateClaim(player); -- Drone Crawler
-            npc:setStatus(STATUS_DISAPPEAR) -- hide ???
-        else 
-            player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);                
+    if npcUtil.tradeHas(trade, 4529) then -- Rolanberry 881
+        player:confirmTrade()
+        if math.random(1,100) > 50 or not npcUtil.popFromQM(player, npc, ID.mob.AWD_GOGGIE - 3, {claim=true, hide=0}) then
+            player:messageSpecial(ID.text.NOTHING_SEEMS_TO_HAPPEN)
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-end;
+end

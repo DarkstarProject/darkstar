@@ -1,29 +1,17 @@
 -----------------------------------
---  
---     EFFECT_LEVEL_SYNC
---     
------------------------------------
-
------------------------------------
--- onEffectGain Action
+--
+--     dsp.effect.LEVEL_SYNC
+--
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:levelRestriction(effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:levelRestriction(effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:levelRestriction(0);
-    target:disableLevelSync();
-end;
+    target:levelRestriction(0)
+    target:disableLevelSync()
+end

@@ -2,22 +2,16 @@
 -- Area: Kuftal Tunnel
 --   NM: Yowie
 -----------------------------------
-
------------------------------------
--- onMobDeath
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
-    -- Set Yowie's Window Open Time
-    local wait = math.random(7200,28800); -- 2-8 hours
-    SetServerVariable("[POP]Yowie", os.time(t) + wait);
-    DeterMob(mob:getID(), true);
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENSTONE, {chance = 20}) -- "Enstone's frequency is mildly low"
+end
 
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Yowie");
-    SetServerVariable("[PH]Yowie", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
+function onMobDeath(mob, player, isKiller)
+end

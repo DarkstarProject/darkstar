@@ -2,44 +2,22 @@
 -- Area: Ru'Lude Gardens
 --  NPC: Splintery Chest
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/RuLude_Gardens/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(10133);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local ItemID = 0;
 --------------------
     -- Page 2
@@ -137,12 +115,12 @@ function onEventFinish(player,csid,option)
     if (option ~= 1073741824) then
         if (player:getFreeSlotsCount() >= 1 and player:hasItem(ItemID) == false) then
             player:addItem(ItemID,1);
-            player:messageSpecial(ITEM_OBTAINED,ItemID);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,ItemID);
         elseif (ItemID == 0) then
             -- How did you get here??
             player:PrintToPlayer( "ItemID or OptionID related script error!" );
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,ItemID);
         end
     end
 

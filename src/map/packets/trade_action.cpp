@@ -38,7 +38,7 @@ CTradeActionPacket::CTradeActionPacket(CCharEntity* PChar, uint32 action)
 	this->type = 0x22;
 	this->size = 0x08;
 	
-    WBUFL(data,(0x04)) = PChar->id;
-    WBUFL(data,(0x08)) = action;
-    WBUFL(data,(0x0C)) = PChar->targid;
+    ref<uint32>(0x04) = PChar->id;
+    ref<uint32>(0x08) = action;
+    ref<uint32>(0x0C) = PChar->targid;
 }

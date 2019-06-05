@@ -4,18 +4,10 @@
 -- Teaches the white magic Haste II
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
-    return target:canLearnSpell(511);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(511)
+end
 
 function onItemUse(target)
-    target:addSpell(511);
-end;
+    target:addSpell(511)
+end

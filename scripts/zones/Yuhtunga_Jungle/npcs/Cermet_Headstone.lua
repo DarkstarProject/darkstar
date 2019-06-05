@@ -1,100 +1,78 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
--- NPC:  Cermet Headstone
+--  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Fire Fragment)
--- @pos 491 20 301 123
+-- !pos 491 20 301 123
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/titles");
-require("scripts/globals/missions");
-require("scripts/zones/Yuhtunga_Jungle/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(790,1) and trade:getItemCount() == 1) then
-        if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE and player:hasKeyItem(FIRE_FRAGMENT) and player:hasCompleteQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) == false) then
-             player:addQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
-             player:startEvent(0x00CA,790);
-        elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) and player:hasCompleteQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) == false) then      
-             player:addQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
-             player:startEvent(0x00CA,790);
+    -- WRATH OF THE OPO-OPOS
+    if npcUtil.tradeHas(trade, 790) then
+        if not player:hasCompletedQuest(OUTLANDS,dsp.quest.id.outlands.WRATH_OF_THE_OPO_OPOS) and (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.FIRE_FRAGMENT)) then
+            player:addQuest(OUTLANDS,dsp.quest.id.outlands.WRATH_OF_THE_OPO_OPOS)
+            player:startEvent(202,790)
         else
-             player:messageSpecial(NOTHING_HAPPENS);     
-        end     
-    end    
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+            player:messageSpecial(ID.text.NOTHING_HAPPENS)
+        end
+    end
+end
 
 function onTrigger(player,npc)
-
-    printf("zilart: %i",player:getCurrentMission(ZILART));
-    if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
-        -- if requirements are met and 15 mins have passed since mobs were last defeated, spawn them
-        if (player:hasKeyItem(FIRE_FRAGMENT) == false and GetServerVariable("[ZM4]Fire_Headstone_Active") < os.time()) then
-            player:startEvent(0x00C8,FIRE_FRAGMENT);
-        -- if 15 min window is open and requirements are met, recieve key item
-        elseif (player:hasKeyItem(FIRE_FRAGMENT) == false and GetServerVariable("[ZM4]Fire_Headstone_Active") > os.time()) then
-            player:addKeyItem(FIRE_FRAGMENT);
-            -- Check and see if all fragments have been found (no need to check fire and dark frag)
-            if (player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
-               player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
-                player:messageSpecial(FOUND_ALL_FRAGS,FIRE_FRAGMENT);
-                player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
-                player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
-                player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
+    -- HEADSTONE PILGRIMAGE
+    if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE then
+        if player:hasKeyItem(dsp.ki.FIRE_FRAGMENT) then
+            player:messageSpecial(ID.text.ALREADY_OBTAINED_FRAG, dsp.ki.FIRE_FRAGMENT)
+        elseif os.time() >= npc:getLocalVar("cooldown") then
+            if not GetMobByID(ID.mob.TIPHA):isSpawned() and not GetMobByID(ID.mob.CARTHI):isSpawned() then
+                player:startEvent(200, dsp.ki.FIRE_FRAGMENT)
             else
-                player:messageSpecial(KEYITEM_OBTAINED,FIRE_FRAGMENT);
+                player:messageSpecial(ID.text.SOMETHING_BETTER)
             end
         else
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,FIRE_FRAGMENT);
+            player:addKeyItem(dsp.ki.FIRE_FRAGMENT)
+            if
+                player:hasKeyItem(dsp.ki.ICE_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.WATER_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.WIND_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT)
+            then
+                player:messageSpecial(ID.text.FOUND_ALL_FRAGS, dsp.ki.FIRE_FRAGMENT)
+                player:addTitle(dsp.title.BEARER_OF_THE_EIGHT_PRAYERS)
+                player:completeMission(ZILART, dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE)
+                player:addMission(ZILART, dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES)
+            else
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.FIRE_FRAGMENT)
+            end
         end
-    elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
-        player:messageSpecial(ZILART_MONUMENT);
-    else
-        player:messageSpecial(CANNOT_REMOVE_FRAG);
-    end
-    
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    -- DEFAULT DIALOGS
+    elseif player:hasCompletedMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
+        player:messageSpecial(ID.text.ZILART_MONUMENT)
+    else
+        player:messageSpecial(ID.text.CANNOT_REMOVE_FRAG)
+    end
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x00C8 and option == 1) then
-        SpawnMob(17281031,300):updateClaim(player); -- Carthi
-        SpawnMob(17281030,300):updateClaim(player); -- Tipha
-        SetServerVariable("[ZM4]Fire_Headstone_Active",0);
-    elseif (csid == 0x00CA) then
-        if (player:getFreeSlotsCount() == 0) then
-             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13143);
-        else        
-            player:tradeComplete();
-            player:addItem(13143);        
-            player:messageSpecial(ITEM_OBTAINED,13143);            
-            player:completeQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);        
-            player:addTitle(FRIEND_OF_THE_OPOOPOS);
-        end            
+    -- HEADSTONE PILGRIMAGE
+    if csid == 200 and option == 1 then
+        SpawnMob(ID.mob.TIPHA):updateClaim(player)
+        SpawnMob(ID.mob.CARTHI):updateClaim(player)
+
+    -- WRATH OF THE OPO-OPOS
+    elseif csid == 202 and npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.WRATH_OF_THE_OPO_OPOS, {item=13143, title=dsp.title.FRIEND_OF_THE_OPOOPOS}) then
+        player:confirmTrade()
     end
-end;
+end

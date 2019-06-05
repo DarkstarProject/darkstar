@@ -1,124 +1,103 @@
 -----------------------------------
---  Area: Metalworks
+-- Area: Metalworks
 --  NPC: Lorena
---  Type: Blacksmithing Guildworker's Union Representative
---  @zone: 237
---  @pos -104.990 1 30.995
+-- Type: Blacksmithing Guildworker's Union Representative
+-- !pos -104.990 1 30.995 237
 -----------------------------------
-
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 
 local keyitems = {
     [0] = {
-        id = METAL_PURIFICATION,
+        id = dsp.ki.METAL_PURIFICATION,
         rank = 3,
-        cost = 40000 
+        cost = 40000
     },
     [1] = {
-        id = METAL_ENSORCELLMENT,
+        id = dsp.ki.METAL_ENSORCELLMENT,
         rank = 3,
-        cost = 40000 
+        cost = 40000
     },
     [2] = {
-        id = CHAINWORK,
+        id = dsp.ki.CHAINWORK,
         rank = 3,
-        cost = 10000 
+        cost = 10000
     },
     [3] = {
-        id = SHEETING,
+        id = dsp.ki.SHEETING,
         rank = 3,
-        cost = 10000 
+        cost = 10000
     },
     [4] = {
-        id = WAY_OF_THE_BLACKSMITH,
+        id = dsp.ki.WAY_OF_THE_BLACKSMITH,
         rank = 9,
-        cost = 20000 
+        cost = 20000
     }
 
 };
 
 local items = {
-    [2] = {
+    [0] = {
         id = 15445,
         rank = 3,
-        cost = 10000 
+        cost = 10000
     },
-    [3] = {
+    [1] = {
         id = 14831,
         rank = 5,
-        cost = 70000 
+        cost = 70000
     },
-    [4] = {
+    [2] = {
         id = 14393,
         rank = 7,
-        cost = 100000 
+        cost = 100000
     },
-    [5] = {
+    [3] = {
         id = 153,
         rank = 9,
-        cost = 150000 
+        cost = 150000
     },
-    [6] = {
+    [4] = {
         id = 334,
         rank = 9,
-        cost = 200000 
+        cost = 200000
     },
-    [7] = {
+    [5] = {
         id = 15820,
         rank = 6,
-        cost = 80000 
+        cost = 80000
     },
-    [8] = {
+    [6] = {
         id = 3661,
         rank = 7,
-        cost = 50000 
+        cost = 50000
     },
-    [9] = {
+    [7] = {
         id = 3324,
         rank = 9,
-        cost = 15000 
+        cost = 15000
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x321, 2);
+    unionRepresentativeTrade(player, npc, trade, 801, 2);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
-    unionRepresentativeTrigger(player, 2, 0x320, "guild_smithing", keyitems);
+    unionRepresentativeTrigger(player, 2, 800, "guild_smithing", keyitems);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x320) then
+function onEventUpdate(player,csid,option,target)
+    if (csid == 800) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
-    elseif (csid == 0x321) then
-        player:messageSpecial(GP_OBTAINED, option);
     end
 end;
 
+function onEventFinish(player,csid,option,target)
+    if (csid == 800) then
+        unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
+    elseif (csid == 801) then
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
+    end
+end;

@@ -1,19 +1,14 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Strongarm Zodvad
+--   NM: Strongarm Zodvad
 -- Involved in Mission: Save the Children
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/status");
 -----------------------------------
 
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1);
 end;
 
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 end;

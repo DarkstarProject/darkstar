@@ -13,38 +13,36 @@
 -- Magic Bursts on: Transfixion, Fusion, and Light
 -- Combos: Auto Regen
 -----------------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
+    local typeEffect = dsp.effect.SLEEP_I
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.bonus = 0
+    params.effect = typeEffect
+    local resist = applyResistanceEffect(caster, target, spell, params)
+    local duration = 60 * resist
 
-    local typeEffect = EFFECT_SLEEP_I;
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
-    local duration = 60 * resist;
-    
     if (resist > 0.5) then -- Do it!
         if (target:addStatusEffect(typeEffect,1,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(75);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(85);
-    end;
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+    end
 
-    return typeEffect;
-end;
+    return typeEffect
+end

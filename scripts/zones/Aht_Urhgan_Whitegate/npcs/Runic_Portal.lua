@@ -1,93 +1,52 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Runic Portal
+--  NPC: Runic Portal
 -- Aht Urhgan Teleporter to Other Areas
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+-----------------------------------
+require("scripts/globals/besieged")
+require("scripts/globals/keyitems")
+require("scripts/globals/teleports")
 -----------------------------------
 
-require("scripts/globals/besieged");
-require("scripts/globals/keyitems");
-require("scripts/globals/teleports");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrade Action
------------------------------------
+function onTrigger(player, npc)
+    local hasAssault, keyitem = dsp.besieged.hasAssaultOrders(player)
 
-function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    local hasAssault, keyitem = hasAssaultOrders(player);
-    
-    if (hasAssault > 0) then
-        player:messageSpecial(RUNIC_PORTAL + 9, keyitem);
-        player:startEvent(hasAssault);
+    if hasAssault > 0 then
+        player:messageSpecial(ID.text.RUNIC_PORTAL + 9, keyitem)
+        player:startEvent(hasAssault)
     else
-        if (player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then
-            player:messageSpecial(RUNIC_PORTAL + 2,RUNIC_PORTAL_USE_PERMIT);
-            player:startEvent(0x0065,0,player:getNationTeleport(AHTURHGAN));
-        else
-            player:messageSpecial(RUNIC_PORTAL);
-        end
+        local hasPermit = player:hasKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT)
+        local runicPortals = player:getNationTeleport(dsp.teleport.nation.RUNIC_PORTAL)
+        local mercRank = dsp.besieged.getMercenaryRank(player)
+        local points = player:getCurrency("imperial_standing")
+        local hasAstral = dsp.besieged.getAstralCandescence()
+        player:startEvent(101, hasPermit and dsp.ki.RUNIC_PORTAL_USE_PERMIT or 0, runicPortals, mercRank, points, 0, hasAstral, hasPermit and 1 or 0)
     end
-    
-end; 
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+    local offset = nil
+    if csid == 101 then
+        if option >= 101 and option <= 106 then
+            offset = option - 101
+            player:delKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT)
+        elseif option >= 1001 and option <= 1006 then
+            offset = option - 1001
+            player:delCurrency("imperial_standing", 200)
+        end
+    elseif csid >= 120 and csid <= 125 and option == 1 then -- Has Assault Orders
+        offset = csid - 120
+    end
 
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x0065) then
-        if (option == 101) then
-            player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);
-            AzouphIsleStagingPoint(player)
-        elseif (option == 102) then
-            player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);        
-            DvuccaIsleStagingPoint(player);
-        elseif (option == 103) then
-            player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);        
-            MamoolJaStagingPoint(player);        
-        elseif (option == 104) then
-            player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);        
-            HalvungStagingPoint(player);        
-        elseif (option == 105) then
-            player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);        
-            IlrusiAtollStagingPoint(player);        
-        elseif (option == 106) then
-            player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);        
-            NzyulIsleStagingPoint(player);    
-        end        
-    elseif (csid == 0x0078 and option == 1 ) then--LEUJAOAM_ASSAULT_ORDERS
-       AzouphIsleStagingPoint(player)
-    elseif (csid == 0x0079 and option == 1 ) then--MAMMOOL_JA_ASSAULT_ORDERS
-       MamoolJaStagingPoint(player);
-    elseif (csid == 0x007A and option == 1 ) then--LEBROS_ASSAULT_ORDERS
-       HalvungStagingPoint(player);
-    elseif (csid == 0x007B and option == 1 ) then--PERIQIA_ASSAULT_ORDERS
-       DvuccaIsleStagingPoint(player);
-    elseif (csid == 0x007C and option == 1 ) then--ILRUSI_ASSAULT_ORDERS
-       IlrusiAtollStagingPoint(player);
-    elseif (csid == 0x007D and option == 1 ) then--NYZUL_ISLE_ASSAULT_ORDERS    
-       NzyulIsleStagingPoint(player);
-    end    
-end;
+    if offset then
+        dsp.teleport.to(player, dsp.teleport.id.AZOUPH_SP + offset)
+    end
+end

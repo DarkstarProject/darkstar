@@ -1,46 +1,23 @@
 ----------------------------------
---  Area: Rabao
+-- Area: Rabao
 --  NPC: Pakhi Churhebi
---  Type: Item Deliverer
---  @zone: 247
---  @pos 158.428    7.999    78.009
+-- Type: Item Deliverer
+-- !pos 158.428 7.999 78.009 247
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    player:showText(npc, PAKHI_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.PAKHI_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

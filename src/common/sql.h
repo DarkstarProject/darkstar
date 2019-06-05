@@ -17,6 +17,8 @@
 #endif
 //#endif
 
+#include "fmt/printf.h"
+
 // Return codes
 #define SQL_ERROR -1
 #define SQL_SUCCESS 0
@@ -65,7 +67,15 @@ enum SqlDataType
 *
 */
 
-struct Sql_t; // private access;
+struct Sql_t
+{
+	std::string buf;
+	MYSQL handle;
+	MYSQL_RES* result;
+	MYSQL_ROW row;
+	unsigned long* lengths;
+	int keepalive;
+};
 
 /// Allocates and initializes a new Sql handle.
 struct Sql_t* Sql_Malloc(void);
@@ -104,24 +114,22 @@ size_t Sql_EscapeStringLen(Sql_t* self, char *out_to, const char *from, size_t f
 
 /// Executes a query.
 /// Any previous result is freed.
-/// The query is constructed as if it was sprintf.
-///
-/// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_Query(Sql_t* self, const char* query, ...);
-
-/// Executes a query.
-/// Any previous result is freed.
-/// The query is constructed as if it was svprintf.
-///
-/// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_QueryV(Sql_t* self, const char* query, va_list args);
-
-/// Executes a query.
-/// Any previous result is freed.
 /// The query is used directly.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
 int32 Sql_QueryStr(Sql_t* self, const char* query);
+
+/// Executes a query.
+/// Any previous result is freed.
+/// The query is constructed as if it was sprintf.
+///
+/// @return SQL_SUCCESS or SQL_ERROR
+template<typename... Args>
+int32 Sql_Query(Sql_t* self, const char* query, Args... args)
+{
+    std::string query_v = fmt::sprintf(query, args...);
+	return Sql_QueryStr(self, query_v.c_str());
+}
 
 uint64 Sql_AffectedRows(Sql_t* self);
 

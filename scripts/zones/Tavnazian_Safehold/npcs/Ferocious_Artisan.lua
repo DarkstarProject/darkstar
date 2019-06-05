@@ -1,43 +1,23 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC:  Ferocious Artisan
--- @pos -103 -26 -49 26
+--  NPC: Ferocious Artisan
+-- !pos -103 -26 -49 26
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    if (player:hasCompletedMission(COP,DARKNESS_NAMED)) then
-        player:sendMenu(3);
-    end
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onTrigger(player,npc)
+    if (player:hasCompletedMission(COP,dsp.mission.id.cop.DARKNESS_NAMED)) then
+        player:sendMenu(3);
+    end
+
+end;
+
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

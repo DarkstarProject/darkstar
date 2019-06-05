@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4858
---    Scroll of Ice Spikes
---    Teaches the black magic Ice Spikes
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4858
+-- Scroll of Ice Spikes
+-- Teaches the black magic Ice Spikes
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(250);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(250)
+end
 
 function onItemUse(target)
-    target:addSpell(250);
-end;
+    target:addSpell(250)
+end

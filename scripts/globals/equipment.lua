@@ -1,7 +1,30 @@
 require("scripts/globals/status");
 
+BaseNyzulWeapons = {
+                       18492, -- (WAR) Sturdy Axe
+                       18753, -- (MNK) Burning Fists
+                       18851, -- (WHM) Werebuster
+                       18589, -- (BLM) Mage's Staff
+                       17742, -- (RDM) Vorpal Sword
+                       18003, -- (THF) Swordbreaker
+                       17744, -- (PLD) Brave Blade
+                       18944, -- (DRK) Death Sickle
+                       17956, -- (BST) Double Axe
+                       18034, -- (BRD) Dancing Dagger
+                       18719, -- (RNG) Killer Bow
+                       18443, -- (SAM) Windslicer
+                       18426, -- (NIN) Sasuke Katana
+                       18120, -- (DRG) Radiant Lance
+                       18590, -- (SMN) Scepter Staff
+                       17743, -- (BLU) Wightslayer
+                       18720, -- (COR) Quicksilver
+                       18754, -- (PUP) Inferno Claws
+                       19102, -- (DNC) Main Gauche
+                       18592  -- (SCH) Elder Staff
+                   };
+
 -----------------------------------
--- Place convenience functions 
+-- Place convenience functions
 -- related to equipment here
 -----------------------------------
 
@@ -28,37 +51,24 @@ function isArtifactArmor(itemid)
     return retval;
 end;
 
+function isBaseNyzulWeapon(itemId)
+
+    for i, wepId in pairs(BaseNyzulWeapons) do
+        if (itemId == wepId) then
+            return true;
+        end
+    end
+    
+    return false;
+    
+end;
+
 -- Provides a power for using a chocobo shirt with bunch of gysahl greens
 function ChocoboShirt(player)
-    local body = player:getEquipID(SLOT_BODY);
+    local body = player:getEquipID(dsp.slot.BODY);
     local power = 0;
     if (body == 10293) then -- Chocobo Shirt
         power = power + 1;
-    end
-    return power;
-end;
-
--- Provides a power for using a equipment modifiers with bunch of wild pamamas or pamamas
-function PamamasEquip(player)
-    local head = target:getEquipID(SLOT_HEAD);
-    local main = target:getEquipID(SLOT_MAIN);
-    local power = 0;
-   
-    if (head == 13870) then -- Opo-Opo Crown
-        power = 1;
-    end
-    if (main == 17592 or main == 17590) then -- Kinkobo - Primate Staff
-        power = 2;
-    elseif (main == 17591) then -- Primate Staff +1
-        power = 3;
-    end
-   
-    if (head == 13870 and (main == 17592 or main == 17590)) then -- Opo-Opo Crown and Kinkobo or Primate Staff
-        power = 4;
-    end
-   
-    if (head == 13870 and main == 17591) then -- Opo-Opo Crown and Primate Staff +1
-        power = 5;
     end
     return power;
 end;

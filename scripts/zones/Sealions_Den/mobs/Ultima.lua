@@ -1,63 +1,30 @@
 -----------------------------------
 -- Area: Sealions Den
---  MOB: Ultima
+--   NM: Ultima
 -----------------------------------
-
-require("scripts/globals/titles");
-
------------------------------------
--- onMobInitialize Action
+require("scripts/globals/titles")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
-end;
+    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1)
+end
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
+function onMobFight(mob, target)
     -- Gains regain at under 25% HP
-    if (mob:getHP() < (mob:getMaxHP() * 0.25)) then
-        if (mob:hasStatusEffect(EFFECT_REGAIN) == false) then
-            mob:addStatusEffect(EFFECT_REGAIN,5,3,0);
-            mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
-        end
+    if mob:getHPP() < 25 and not mob:hasStatusEffect(dsp.effect.REGAIN) then
+        mob:addStatusEffect(dsp.effect.REGAIN, 5, 3, 0)
+        mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH)
     end
-end;
+end
 
------------------------------------
--- onAdditionalEffect
------------------------------------
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PARALYZE, {duration = 60})
+end
 
-function onAdditionalEffect(mob, player)
-    local chance = 20;
-    local resist = applyResistanceAddEffect(mob,player,ELE_ICE,EFFECT_PARALYSIS);
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0;
-    else
-        local duration = 60;
-        local power = 20;
-        duration = duration * resist;
-        if (player:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-            player:addStatusEffect(EFFECT_PARALYSIS, power, 0, duration);
-        end
-        return SUBEFFECT_PARALYSIS, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
-    end
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(ULTIMA_UNDERTAKER);
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.ULTIMA_UNDERTAKER)
+    player:setLocalVar("[OTBF]cs", 0)
+end

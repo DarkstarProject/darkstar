@@ -1,34 +1,24 @@
 -----------------------------------
 --
---     EFFECT_BERSERK
+-- dsp.effect.BERSERK
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-target:addMod(MOD_ATTP,25);
-target:addMod(MOD_RATTP, 25);
-target:addMod(MOD_DEFP,-25);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    local power = effect:getPower()
+    target:addMod(dsp.mod.ATTP, power)
+    target:addMod(dsp.mod.RATTP, power)
+    target:addMod(dsp.mod.DEFP, -power)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-target:delMod(MOD_ATTP,25);
-target:delMod(MOD_DEFP,-25);
-target:delMod(MOD_RATTP, 25);
-end;
+    local power = effect:getPower()
+    target:delMod(dsp.mod.ATTP, power)
+    target:delMod(dsp.mod.RATTP, power)
+    target:delMod(dsp.mod.DEFP, -power)
+end

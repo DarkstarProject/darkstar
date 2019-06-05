@@ -1,53 +1,29 @@
 -----------------------------------
 -- Area: Bastok Markets (S)
--- NPC: Silke
+--  NPC: Silke
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
-require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,SILKE_SHOP_DIALOG);
+    local stock =
+    {
+        6059, 29925,    -- Animus Augeo Schema
+        6060, 29925,    -- Animus Minuo Schema
+        6061, 36300     -- Adloquim Schema
+    }
 
-stock = {0x17ab,29925,        -- Animus Augeo Schema
-     0x17ac,29925,        -- Animus Minuo Schema
-     0x17ad,36300}        -- Adloquim Schema
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.SILKE_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

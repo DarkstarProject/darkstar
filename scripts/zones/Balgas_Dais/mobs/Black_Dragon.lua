@@ -5,18 +5,12 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/status");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 end;
 
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    ally:addTitle(BLACK_DRAGON_SLAYER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.BLACK_DRAGON_SLAYER);
 end;

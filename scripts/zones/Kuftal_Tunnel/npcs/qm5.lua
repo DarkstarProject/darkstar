@@ -1,59 +1,29 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
--- NPC:  ???
+--  NPC: ???
 -- Involved in Mission: Bastok 8-2
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    local missionStatus = player:getVar("MissionStatus");
-
-    if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and missionStatus == 1) then
-        player:startEvent(0x00c);
+function onTrigger(player, npc)
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1 then
+        player:startEvent(12)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-    
-end; 
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-
-function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-
-    if (option == 0) then
-        if (csid == 0x00c) then
-            player:setVar("MissionStatus",2);
-            player:messageSpecial(FELL);
-        end    
+function onEventFinish(player, csid, option)
+    if csid == 12 and option == 0 then
+        player:setVar("MissionStatus", 2)
+        player:messageSpecial(ID.text.FELL)
     end
-end;
+end

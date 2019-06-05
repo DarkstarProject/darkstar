@@ -1,38 +1,43 @@
 -----------------------------------------
 -- Spell: Bind
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
 
     --Pull base stats.
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
 
     --Duration, including resistance.  May need more research.
-    local duration = 60;
+    local duration = 60
 
     --Resist
-    local resist = applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_BIND);
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = 35
+    params.bonus = 0
+    params.effect = dsp.effect.BIND
+    local resist = applyResistanceEffect(caster, target, spell, params)
 
     if (resist >= 0.5) then --Do it!
         --Try to erase a weaker bind.
-        if (target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration*resist)) then
-            spell:setMsg(236);
+        if (target:addStatusEffect(dsp.effect.BIND,target:speed(),0,duration*resist)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(75);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
 
-    return EFFECT_BIND;
+    return dsp.effect.BIND
 
-end;
+end

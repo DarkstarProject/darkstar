@@ -1,30 +1,16 @@
 -----------------------------------
 -- Area: East Ronfaure
 --  MOB: Carrion Worm
+-- Note: PH for Bigmouth Billy
 -----------------------------------
+local ID = require("scripts/zones/East_Ronfaure/IDs");
+require("scripts/globals/regimes")
+require("scripts/globals/mobs");
 
-require("scripts/globals/fieldsofvalor");
-require("scripts/zones/East_Ronfaure/MobIDs");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 65, 1, dsp.regime.type.FIELDS)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,65,1);
-
-    mob = mob:getID();
-    if (Bigmouth_Billy_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Bigmouth_Billy");
-        if (ToD <= os.time(t) and GetMobAction(Bigmouth_Billy) == 0) then
-            if (math.random((1),(15)) == 5) then
-                UpdateNMSpawnPoint(Bigmouth_Billy);
-                GetMobByID(Bigmouth_Billy):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Bigmouth_Billy", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.BIGMOUTH_BILLY_PH,7,math.random(3600,7200)); -- 1 to 2 hours
 end;

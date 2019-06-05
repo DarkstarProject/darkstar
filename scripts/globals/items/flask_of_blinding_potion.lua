@@ -3,26 +3,17 @@
 -- Item: Blinding Potion
 -- Item Effect: This potion induces blindness.
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
-        target:addStatusEffect(EFFECT_BLINDNESS,25,0,180);
+    if (not target:hasStatusEffect(dsp.effect.BLINDNESS)) then
+        target:addStatusEffect(dsp.effect.BLINDNESS,25,0,180)
     else
-        target:messageBasic(423);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
-
+end

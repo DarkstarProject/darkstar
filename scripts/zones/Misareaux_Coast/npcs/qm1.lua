@@ -1,49 +1,24 @@
 -----------------------------------
 -- Area: Misareaux_Coast
--- NPC:  ??? (Spawn Gration)
--- @pos 113.563 -16.302 38.912 25
+--  NPC: ??? (Spawn Gration)
+-- !pos 113.563 -16.302 38.912 25
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Misareaux_Coast/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Misareaux_Coast/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    -- Trade Hickory Shield OR Picaroon's Shield
-    if (GetMobAction(16879899) == 0 and (trade:hasItemQty(12370,1) or trade:hasItemQty(12359,1)) and trade:getItemCount() == 1) then
-          player:tradeComplete();
-        SpawnMob(16879899,900):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+    if (npcUtil.tradeHas(trade, 12370) or npcUtil.tradeHas(trade, 12359)) and npcUtil.popFromQM(player, npc, ID.mob.GRATION) then -- Hickory Shield or Picaroon's Shield
+        player:confirmTrade()
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

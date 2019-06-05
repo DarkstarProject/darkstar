@@ -3,30 +3,19 @@
 --  MOB: Warchief Vatgit
 -- Involved in Mission 2-3
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobDeath(mob, player, isKiller)
 
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    if (ally:getCurrentMission(ally:getNation()) == 6) then
-        if (ally:getVar("MissionStatus") == 4) then
-            ally:setVar("MissionStatus",5);
+    if (player:getCurrentMission(player:getNation()) == 6) then
+        if (player:getVar("MissionStatus") == 4) then
+            player:setVar("MissionStatus",5);
         end
     end
 
-    ally:addTitle(WARCHIEF_WRECKER);
+    player:addTitle(dsp.title.WARCHIEF_WRECKER);
 
 end;

@@ -1,33 +1,21 @@
 -----------------------------------
 --
--- EFFECT_MAGIC_ATK_BOOST
+-- dsp.effect.MAGIC_ATK_BOOST
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
     if (effect:getPower()>100) then
-        effect:setPower(50);
+        effect:setPower(50)
     end
-    target:addMod(MOD_MATT,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.MATT,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MATT,effect:getPower());
-end;
+    target:delMod(dsp.mod.MATT,effect:getPower())
+end

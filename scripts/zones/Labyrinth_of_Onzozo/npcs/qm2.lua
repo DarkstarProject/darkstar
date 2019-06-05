@@ -1,57 +1,35 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
--- NPC:  ??? (qm2)
+--  NPC: ??? (qm2)
 -- Involved in Quest: Yomi Okuri
--- @pos -176 10 -60 213
+-- !pos -176 10 -60 213
 -----------------------------------
-package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")
+require("scripts/globals/keyitems")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-
-    if (player:hasKeyItem(WASHUS_TASTY_WURST) and player:hasKeyItem(YOMOTSU_FEATHER) == false) then
-        if (player:getVar("yomiOkuriKilledNM") >= 1) then
-            player:delKeyItem(WASHUS_TASTY_WURST);
-            player:addKeyItem(YOMOTSU_FEATHER);
-            player:messageSpecial(KEYITEM_OBTAINED,YOMOTSU_FEATHER);
-            player:setVar("yomiOkuriKilledNM",0);
-        else
-            SpawnMob(17649860,300):updateClaim(player); -- Ubume
-        end
+function onTrigger(player, npc)
+    if player:hasKeyItem(dsp.ki.WASHUS_TASTY_WURST) and not GetMobByID(ID.mob.UBUME):isSpawned() then
+        player:startEvent(0)
+    elseif player:getVar("yomiOkuriKilledNM") == 1 and not player:hasKeyItem(dsp.ki.YOMOTSU_FEATHER) then
+        player:startEvent(1)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
+end
 
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+    if csid == 0 and option == 1 then
+        player:delKeyItem(dsp.ki.WASHUS_TASTY_WURST)
+        SpawnMob(ID.mob.UBUME):updateClaim(player)
+    elseif csid == 1 then
+        player:addKeyItem(dsp.ki.YOMOTSU_FEATHER)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.YOMOTSU_FEATHER)
+    end
+end

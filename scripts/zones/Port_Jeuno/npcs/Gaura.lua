@@ -1,23 +1,11 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Guara
+--  NPC: Guara
 -- Standard Info NPC
 -----------------------------------
 
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-
-require("scripts/zones/Port_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -35,23 +23,11 @@ function onTrigger(player,npc)
 
     local seconds = math.floor(2.4 * ((vHour * 60) + vMin));
 
-    player:startEvent( 0x2729, seconds, 0, 0, 0, 0, 0, 0, 0);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    player:startEvent( 10025, seconds, 0, 0, 0, 0, 0, 0, 0);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

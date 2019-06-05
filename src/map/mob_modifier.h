@@ -42,13 +42,13 @@ enum MOBMODIFIER : int
     MOBMOD_SUBLINK            = 10, // sub link group
     MOBMOD_LINK_RADIUS        = 11, // link radius
     MOBMOD_DRAW_IN            = 12, // 1 - player draw in, 2 - alliance draw in -- only add as a spawn mod!
-    MOBMOD_RAGE               = 13, // define rage timer -- only add as a spawn mod!
+    MOBMOD_RAGE               = 13, // define rage timer -- only add as a spawn mod! (OBSOLETE - use rage mixin)
     MOBMOD_SKILL_LIST         = 14, // uses given mob skill list
     MOBMOD_MUG_GIL            = 15, // amount gil carried for mugging
-    MOBMOD_MAIN_2HOUR         = 16, // give mob its main job two hour, value can maybe be sent to skill
+    MOBMOD_MAIN_2HOUR         = 16, // give mob its main job two hour, value can maybe be sent to skill (OBSOLETE - use job_special mixin)
     MOBMOD_NO_DESPAWN         = 17, // do not despawn when too far from spawn. Gob Diggers have this.
     MOBMOD_VAR                = 18, // temp var for whatever. Gets cleared on spawn
-    MOBMOD_SUB_2HOUR          = 19, // give mob its sub job two hour (dynamis NM)
+    MOBMOD_SUB_2HOUR          = 19, // give mob its sub job two hour (dynamis NM) (OBSOLETE - use job_special mixin)
     MOBMOD_TP_USE_CHANCE      = 20, // % chance to use tp
     MOBMOD_PET_SPELL_LIST     = 21, // set pet spell list
     MOBMOD_NA_CHANCE          = 22, // % chance to cast -na
@@ -61,7 +61,7 @@ enum MOBMODIFIER : int
     MOBMOD_ASSIST             = 29, // mobs will assist me
     MOBMOD_SPECIAL_SKILL      = 30, // give special skill
     MOBMOD_ROAM_DISTANCE      = 31, // distance allowed to roam from spawn
-    MOBMOD_2HOUR_MULTI        = 32, // can use two hour multiple times
+    MOBMOD_MULTI_2HOUR        = 32, // can use two hour multiple times (OBSOLETE - use job_special mixin)
     MOBMOD_SPECIAL_COOL       = 33, // cool down for special
     MOBMOD_MAGIC_COOL         = 34, // cool down for magic
     MOBMOD_STANDBACK_COOL     = 35, // cool down time for standing back (casting spell while not in attack range)
@@ -78,12 +78,12 @@ enum MOBMODIFIER : int
     MOBMOD_AUTO_SPIKES        = 46, // enables additional effect script to process when mob is attacked
     MOBMOD_SPAWN_LEASH        = 47, // forces a mob to not move farther from its spawn than its leash distance
     MOBMOD_SHARE_TARGET       = 48, // mob always targets same target as ID in this var
-    MOBMOD_SCRIPTED_2HOUR     = 49, // disable two hour ability unless called upon by the script
-    MOBMOD_2HOUR_PROC         = 50, // chance of mob's 2 hour activating 0-100%
+    MOBMOD_CHECK_AS_NM        = 49, // If set , mob will check as a NM
+    MOBMOD_PROC_2HOUR         = 50, // chance of mob's 2 hour activating 0-100% (OBSOLETE - use job_special mixin)
     MOBMOD_ROAM_TURNS         = 51, // Maximum amount of turns during a roam
     MOBMOD_ROAM_RATE          = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
     MOBMOD_BEHAVIOR           = 53, // Add behaviors to mob
-    MOBMOD_GIL_BONUS          = 54, // Allow mob to drop gil. Multipler to gil dropped by mob (bonus / 100) * total
+    MOBMOD_GIL_BONUS          = 54, // Allow mob to drop gil. Multiplier to gil dropped by mob (bonus / 100) * total
     MOBMOD_IDLE_DESPAWN       = 55, // Time (in seconds) to despawn after being idle
     MOBMOD_HP_STANDBACK       = 56, // mob will always standback with hp % higher to value
     MOBMOD_MAGIC_DELAY        = 57, // Amount of seconds mob waits before casting first spell
@@ -92,7 +92,11 @@ enum MOBMODIFIER : int
     MOBMOD_SPAWN_ANIMATIONSUB = 60, // reset animationsub to this on spawn
     MOBMOD_HP_SCALE           = 61, // Scale the mobs max HP. ( hp_scale / 100 ) * maxhp
     MOBMOD_NO_STANDBACK       = 62, // Mob will never standback
-    MOBMOD_ATTACK_SKILL_LIST  = 63  // skill list to use in place of regular attacks
+    MOBMOD_ATTACK_SKILL_LIST  = 63, // skill list to use in place of regular attacks
+    MOBMOD_CHARMABLE          = 64, // mob is charmable
+    MOBMOD_NO_MOVE            = 65, // Mob will not be able to move
+    MOBMOD_MULTI_HIT          = 66, // Mob will have as many swings as defined.
+    MOBMOD_NO_AGGRO           = 67  // If set, mob cannot aggro until unset.
 };
 
 #endif

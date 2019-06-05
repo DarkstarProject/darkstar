@@ -5,22 +5,25 @@
 -- Recast Time: 5 seconds
 -- Duration: N/A
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    if (player:getPet() == nil) then
+      return dsp.msg.basic.REQUIRES_A_PET,0
+    end
 
------------------------------------
--- onUseAbility
------------------------------------
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    player:petRetreat();
-end;
+    local pet = player:getPet()
+
+    if (pet:hasStatusEffect(dsp.effect.HEALING)) then
+        pet:delStatusEffect(dsp.effect.HEALING)
+    end
+
+    player:petRetreat()
+end

@@ -1,85 +1,61 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Pavvke
+--  NPC: Pavvke
 -- Starts Quests: Fallen Comrades (100%)
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
 count = trade:getItemCount();
 SilverTag = trade:hasItemQty(13116,1);
-Fallen = player:getQuestStatus(BASTOK,FALLEN_COMRADES);
+Fallen = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
 
     if (Fallen == 1 and SilverTag == true and count == 1) then
         player:tradeComplete();
-        player:startEvent(0x005b);
+        player:startEvent(91);
     elseif (Fallen == 2 and SilverTag == true and count == 1) then
         player:tradeComplete();
-        player:startEvent(0x005c);
-    end        
-            
-end; 
+        player:startEvent(92);
+    end
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
-Fallen = player:getQuestStatus(BASTOK,FALLEN_COMRADES);
+Fallen = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
 pLevel = player:getMainLvl(player);
 pFame = player:getFameLevel(BASTOK);
-    
+
     if (Fallen == 0    and pLevel >= 12 and pFame >= 2) then
-        player:startEvent(0x005a);
-    else 
-        player:startEvent(0x004b);
+        player:startEvent(90);
+    else
+        player:startEvent(75);
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x005a) then
-        player:addQuest(BASTOK,FALLEN_COMRADES);
-    elseif (csid == 0x005b) then
-        player:completeQuest(BASTOK,FALLEN_COMRADES);
-        player:addFame(BASTOK,BAS_FAME*120);
+
+    if (csid == 90) then
+        player:addQuest(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
+    elseif (csid == 91) then
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.FALLEN_COMRADES);
+        player:addFame(BASTOK,120);
         player:addGil(GIL_RATE*550);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);
-    elseif (csid == 0x005c) then
-        player:addFame(BASTOK,BAS_FAME*8);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*550);
+    elseif (csid == 92) then
+        player:addFame(BASTOK,8);
         player:addGil(GIL_RATE*550);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*550);
     end
-        
+
 end;
-
-
-
-

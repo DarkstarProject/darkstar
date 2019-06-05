@@ -1,43 +1,21 @@
 -----------------------------------
---  Area: Xarcabard
---  NPC:  Luck Rune
---  Involved in Quest: Mhaura Fortune
---  @pos 576.117 -0.164 -16.935 112
+-- Area: Xarcabard
+--  NPC: Luck Rune
+-- Involved in Quest: Mhaura Fortune
+-- !pos 576.117 -0.164 -16.935 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
--------------------------------------
-
-require("scripts/zones/Xarcabard/TextIDs");
-
------------------------------------
--- onTrade
+local ID = require("scripts/zones/Xarcabard/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

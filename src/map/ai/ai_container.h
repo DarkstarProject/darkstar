@@ -52,31 +52,32 @@ public:
     CAIContainer(const CAIContainer&) = delete;
     CAIContainer& operator=(const CAIContainer&) = delete;
 
-    void Cast(uint16 targid, uint16 spellid);
-    void Engage(uint16 targid);
-    void ChangeTarget(uint16 targid);
-    void Disengage();
-    void WeaponSkill(uint16 targid, uint16 wsid);
-    void MobSkill(uint16 targid, uint16 wsid);
-    void Ability(uint16 targid, uint16 abilityid);
-    void RangedAttack(uint16 targid);
-    void Trigger(uint16 targid);
-    void UseItem(uint16 targid, uint8 loc, uint8 slotid);
-    void Inactive(duration _duration, bool canChangeState);
+    bool Cast(uint16 targid, SpellID spellid);
+    bool Engage(uint16 targid);
+    bool ChangeTarget(uint16 targid);
+    bool Disengage();
+    bool WeaponSkill(uint16 targid, uint16 wsid);
+    bool MobSkill(uint16 targid, uint16 wsid);
+    bool Ability(uint16 targid, uint16 abilityid);
+    bool RangedAttack(uint16 targid);
+    bool Trigger(uint16 targid);
+    bool UseItem(uint16 targid, uint8 loc, uint8 slotid);
+    bool Inactive(duration _duration, bool canChangeState);
 
     /* Internal Controller functions */
     bool Internal_Engage(uint16 targetid);
-    bool Internal_Cast(uint16 targetid, uint16 spellid);
-    void Internal_ChangeTarget(uint16 targetid);
-    void Internal_Disengage();
+    bool Internal_Cast(uint16 targetid, SpellID spellid);
+    bool Internal_ChangeTarget(uint16 targetid);
+    bool Internal_Disengage();
     bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
     bool Internal_MobSkill(uint16 targid, uint16 wsid);
     bool Internal_Ability(uint16 targetid, uint16 abilityid);
     bool Internal_RangedAttack(uint16 targetid);
-    void Internal_Die(duration);
-    void Internal_Raise();
-    void Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid);
-    void Internal_Despawn(duration spawnTime);
+    bool Internal_Die(duration);
+    bool Internal_Raise();
+    bool Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid);
+    bool Internal_Despawn();
+    bool Internal_Respawn(duration _duration);
 
     void Reset();
     void Tick(time_point _tick);
@@ -86,7 +87,16 @@ public:
     void InterruptStates();
     // Pop the top state if it's the expected state
     template<typename State>
-    bool PopState() { if (IsCurrentState<State>()) m_stateStack.pop(); }
+    bool PopState()
+    {
+        if (IsCurrentState<State>())
+        {
+            m_stateStack.pop();
+            return true;
+        }
+
+        return false;
+    }
     /* Or have each state return a static number/string that Lua can use as well, in case this is not sufficient */
     template<typename State, typename = std::enable_if_t<std::is_base_of<CState, State>::value>>
     bool IsCurrentState() { return dynamic_cast<State*>(GetCurrentState()); }

@@ -1,47 +1,21 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Lutete
---  Type: Standard NPC
--- @zone: 94
---  @pos 169.205 -0.879 -9.107
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Windurst Waters (S)
+--  NPC: Lutete
+-- Type: Standard NPC
+-- !pos 169.205 -0.879 -9.107 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:showText(npc, LUTETE_DIALOG);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.LUTETE_DIALOG)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

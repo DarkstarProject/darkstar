@@ -1,28 +1,16 @@
 -----------------------------------
 -- Meditate
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_REGAIN, effect:getPower() * 10);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.REGAIN, effect:getPower() * 10)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_REGAIN, effect:getPower() * 10);
-end;
+    target:delMod(dsp.mod.REGAIN, effect:getPower() * 10)
+end

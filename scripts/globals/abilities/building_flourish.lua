@@ -10,59 +10,52 @@
 -- Using two Finishing Moves boosts both the Accuracy and Attack of your next weapon skill.
 -- Using three Finishing Moves boosts the Accuracy, Attack and Critical Hit Rate of your next weapon skill.
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
 
-    if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
-        return 0,0;
+    if (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_1)) then
+        return 0,0
 
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_2)) then
-        return 0,0;
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_2)) then
+        return 0,0
 
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_3)) then
-        return 0,0;
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_3)) then
+        return 0,0
 
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_4)) then
-        return 0,0;
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_4)) then
+        return 0,0
 
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
-        return 0,0;
-    
-    else    
-        return MSGBASIC_NO_FINISHINGMOVES,0;
-    end;
-end;
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_5)) then
+        return 0,0
 
------------------------------------
--- onUseAbility
------------------------------------
+    else
+        return dsp.msg.basic.NO_FINISHINGMOVES,0
+    end
+end
 
 function onUseAbility(player,target,ability)
 
-    if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
-        player:delStatusEffect(EFFECT_FINISHING_MOVE_1);
-        player:addStatusEffect(EFFECT_BUILDING_FLOURISH,1,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_2)) then
-        player:delStatusEffect(EFFECT_FINISHING_MOVE_2);
-        player:addStatusEffect(EFFECT_BUILDING_FLOURISH,2,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_3)) then
-        player:delStatusEffect(EFFECT_FINISHING_MOVE_3);
-        player:addStatusEffect(EFFECT_BUILDING_FLOURISH,3,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_4)) then
-        player:delStatusEffect(EFFECT_FINISHING_MOVE_4);
-        player:addStatusEffect(EFFECT_FINISHING_MOVE_1,1,0,7200);
-        player:addStatusEffect(EFFECT_BUILDING_FLOURISH,3,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
-    elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
-        player:delStatusEffect(EFFECT_FINISHING_MOVE_5);
-        player:addStatusEffect(EFFECT_FINISHING_MOVE_2,1,0,7200);
-        player:addStatusEffect(EFFECT_BUILDING_FLOURISH,3,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
-    end;
+    if (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_1)) then
+        player:delStatusEffect(dsp.effect.FINISHING_MOVE_1)
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,1,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT))
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_2)) then
+        player:delStatusEffect(dsp.effect.FINISHING_MOVE_2)
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,2,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT))
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_3)) then
+        player:delStatusEffect(dsp.effect.FINISHING_MOVE_3)
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT))
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_4)) then
+        player:delStatusEffect(dsp.effect.FINISHING_MOVE_4)
+        player:addStatusEffect(dsp.effect.FINISHING_MOVE_1,1,0,7200)
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT))
+    elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_5)) then
+        player:delStatusEffect(dsp.effect.FINISHING_MOVE_5)
+        player:addStatusEffect(dsp.effect.FINISHING_MOVE_2,1,0,7200)
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT))
+    end
 
-end;
+end

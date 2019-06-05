@@ -3,41 +3,21 @@
 -- Zone: Ranguemont_Pass (166)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Ranguemont_Pass/TextIDs");
-require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Ranguemont_Pass/IDs")
+require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17457375,17457376,17457377,17461580};
-
-    SetGroundsTome(tomes);
-
-    local Taisaijin = 17457216;
-    GetMobByID(Taisaijin):setLocalVar("ToD", os.time() + math.random((86400), (259200)));
+    -- pick a random Taisaijin PH and set its do not disturb time
+    local phIndex = math.random(1,3);
+    local ph = GetMobByID(ID.mob.TAISAIJIN_PH[phIndex]);
+    ph:setLocalVar("timeToGrow", os.time() + math.random(86400,259200)); -- 1 to 3 days
+    ph:setLocalVar("phIndex",phIndex);
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -47,27 +27,11 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

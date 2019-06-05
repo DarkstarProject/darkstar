@@ -1,118 +1,238 @@
 #include "../common/zlib.h"
 #include "../common/showmsg.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <vector>
+#include <string>
+#include <cstring>
+#include <cassert>
 
-uint32 zlib_compress_table[512];
-uintptr zlib_decompress_table[2556];
+#if (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__) || \
+    (defined(__BYTE_ORDER) && __BYTE_ORDER == __BIG_ENDIAN) || \
+    defined(__BIG_ENDIAN__) || \
+    defined(__ARMEB__) || \
+    defined(__THUMBEB__) || \
+    defined(__AARCH64EB__) || \
+    defined(_MIBSEB) || defined(__MIBSEB) || defined(__MIBSEB__)
+#   define DSP_BIG_ENDIAN 1
+#else
+#   define DSP_BIG_ENDIAN 0
+#endif
+
+#if DSP_BIG_ENDIAN
+#   if defined(__clang__) || (__GNUC__ >= 4 && __GNUC_MINOR__ >= 3 && !defined(__MINGW32__) && !defined(__MINGW64__))
+#       define bswap16 __builtin_bswap16
+#       define bswap32 __builtin_bswap32
+#       define bswap64 __builtin_bswap64
+#   elif defined(__GLIBC__)
+#       include <byteswap.h>
+#       define bswap16 __bswap_16
+#       define bswap32 __bswap_32
+#       define bswap64 __bswap_64
+#   elif defined(__NetBSD__)
+#       include <sys/types.h>
+#       include <machine/bswap.h> /* already named bswap16/32/64 */
+#   elif defined(_MSC_VER)
+#       define bswap16 _byteswap_ushort
+#       define bswap32 _byteswap_ulong
+#       define bswap64 _byteswap_uint64
+#   else
+#       error "No compiler builtins for byteswap available"
+#   endif
+#endif
+
+// Resolve the next address in jump table (0 == no jump, 1 == next address)
+#define JMPBIT(table, i) ((table[i / 8] >> (i & 7)) & 1)
+
+struct zlib_jump
+{
+    const void *ptr;
+};
+
+struct zlib
+{
+    std::vector<uint32> enc;
+    std::vector<struct zlib_jump> jump;
+};
+
+static struct zlib zlib;
+
+static void swap32_if_be(uint32 *v, const size_t memb)
+{
+#if DSP_BIG_ENDIAN
+    for (size_t i = 0; i < memb; ++i)
+        v[i] = bswap32(v[i]);
+#else
+    (void)v, (void)memb;
+#endif
+}
+
+static bool read_to_vector(const std::string &file, std::vector<uint32> &vec)
+{
+    FILE *f;
+    if (!(f = fopen(file.c_str(), "rb")))
+    {
+        ShowFatalError("zlib: can't open file <%s>\n", file.c_str());
+        return false;
+    }
+
+    fseek(f, 0, SEEK_END);
+    const size_t size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+
+    vec.resize(size / sizeof(uint32));
+    if (fread(vec.data(), sizeof(uint32), vec.size(), f) != vec.size())
+    {
+        ShowFatalError("zlib: can't read file <%s>: %s\n", file.c_str(), strerror(errno));
+        return false;
+    }
+    fclose(f);
+
+    swap32_if_be(vec.data(), vec.size());
+    return true;
+}
+
+static void populate_jump_table(std::vector<struct zlib_jump> &jump, const std::vector<uint32> &dec)
+{
+    jump.resize(dec.size());
+
+    // Base address of dec table, if we substract pointer in dec table, we should should be
+    // able to normalize them to offsets starting from 0.
+    const uint32 base = dec[0] - sizeof(uint32);
+
+    for (size_t i = 0; i < dec.size(); ++i)
+    {
+        if (dec[i] > 0xff)
+        {
+            // Everything over 0xff are pointers.
+            // These pointers will be traversed until we hit data.
+            jump[i].ptr = jump.data() + (dec[i] - base) / sizeof(base);
+        }
+        else
+        {
+            // Everything equal or less to 0xff is 8bit data.
+            // The pointers at offsets -3 and -2 in table must be zero for each non-zero data entry
+            // This approach assumes pointers are at least 8bit on the system.
+            static_assert(sizeof(std::uintptr_t) >= sizeof(uint8), "Pointer can't hold a 8bit value");
+            jump[i].ptr = reinterpret_cast<void*>(static_cast<std::uintptr_t>(dec[i]));
+            assert(!jump[i].ptr || (!jump[i-2].ptr && !jump[i-3].ptr));
+        }
+    }
+}
 
 int32 zlib_init()
 {
-    memset(zlib_compress_table, 0, sizeof(zlib_compress_table));
-    memset(zlib_decompress_table, 0, sizeof(zlib_decompress_table));
+    std::vector<uint32> dec;
+    if (!read_to_vector("compress.dat", zlib.enc) || !read_to_vector("decompress.dat", dec))
+        return -1;
 
-    auto fp = fopen("compress.dat", "rb");
-    if (fp == NULL)
-        ShowFatalError("zlib_init: can't open file <compress.dat> \n");
-    fread(zlib_compress_table, sizeof(uint32), 512, fp);
-    fclose(fp);
+    populate_jump_table(zlib.jump, dec);
+    return 0;
+}
 
-    uint32 temp_decompress_table[2556];
-    fp = fopen("decompress.dat", "rb");
-    if (fp == NULL)
-        ShowFatalError("zlib_init: can't open file <decompress.dat> \n");
-    fseek(fp, 0, SEEK_END);
-    auto size = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    fread(temp_decompress_table, sizeof(char), size, fp);
-    fclose(fp);
+static int32 zlib_compress_sub(const uint8 *b32, const uint32 read, const uint32 elem, int8 *out, const uint32 out_sz)
+{
+    assert(b32 && out);
 
-    // Align the jump table with our internal table..
-    for (auto x = 0; x < size / 4; x++)
+    if (zlib_compressed_size(elem) > sizeof(uint32))
     {
-        if (temp_decompress_table[x] > 0xff)
-            zlib_decompress_table[x] = (uintptr)((uintptr*)zlib_decompress_table + ((temp_decompress_table[x] - 0x15b3aaa0) / 4));
-        else
-            zlib_decompress_table[x] = temp_decompress_table[x];
+        ShowWarning("zlib_compress_sub: element exceeds 4 bytes (%u)\n", elem);
+        return -1;
+    }
+
+    if (zlib_compressed_size(read + elem) > out_sz)
+    {
+        ShowWarning("zlib_compress_sub: ran out of space (%u : %u : %u)\n", read, elem, out_sz);
+        return -1;
+    }
+
+    for (uint32 i = 0; i < elem; ++i)
+    {
+        const uint8 shift = (read + i) & 7;
+        const uint32 v = (read + i) / 8;
+        const uint32 inv_mask = ~(1 << shift);
+        assert(shift < 8);
+        out[v] = (inv_mask & out[v]) + (JMPBIT(b32, i) << shift);
     }
 
     return 0;
 }
 
-int32 zlib_compress_sub(char * output, uint32 var1, uint32 cume, char * lookup1, uint32 var2, uint32 var3, uint32 lookup2)
+int32 zlib_compress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz)
 {
-    if ((cume + lookup2 + 7) / 8 > var1)
-        return -1;
-    var1 = lookup2 + var3;
-    if ((var1 + 7) / 8 > var2)
-    {
-        return -1;
-    }
-    else if (var3 < var1)
-    {
-        lookup2 = cume - var3;
-        for (; var3 < var1; var3++)
-            output[(lookup2 + var3) / 8] = ((~(1 << ((lookup2 + var3) & 7)))&output[(lookup2 + var3) / 8]) + (((lookup1[var3 / 8] >> (var3 & 7)) & 1) << ((lookup2 + var3) & 7));
-    }
-    return 0;
-}
+    assert(in && out);
+    assert(zlib.enc.size());
 
-int32 zlib_compress(char * input, uint32 var1, char * output, uint32 var2, uint32 * lookup)
-{
-    uint32 i, cume = 0, tmp;
-    uint32 * ptr;
-
-    tmp = (var2 - 1) * 8;
-    for (i = 0; i < var1 && var1; i++)
+    uint32 read = 0;
+    const uint32 max_sz = (out_sz - 1) * 8; // Output buffer may be at least 8 times big than original
+    for (uint32 i = 0; i < in_sz; ++i)
     {
-        if (lookup[input[i] + 384] + cume < tmp)
+        const uint32 elem = zlib.enc[static_cast<int8>(in[i]) + 0x180];
+        if (elem + read < max_sz)
         {
-            ptr = lookup + input[i] + 128;
-            zlib_compress_sub(output + 1, var2 - 1, cume, (char *)ptr, 4, 0, lookup[input[i] + 384]);
-            cume += lookup[input[i] + 384];
+            const uint32 index = static_cast<int8>(in[i]) + 0x80;
+            assert(index < zlib.enc.size());
+            uint32 v = zlib.enc[index];
+            swap32_if_be(&v, 1);
+            uint8 b32[sizeof(v)];
+            memcpy(b32, &v, sizeof(b32));
+            zlib_compress_sub(b32, read, elem, out + 1, out_sz - 1);
+            read += elem;
         }
-        else if (var1 + 1 >= var2)
+        else if (in_sz + 1 >= out_sz)
         {
-            memset(output, 0, (var2 / 4) + (var2 & 3));
-            memset(output + 1, var1, var1 / 4);
-            memset(output + 1 + var1 / 4, (var1 + 1) * 8, var1 & 3);
-            return var1;
+            // Ran if input doesn't fit output, outputs garbage(?)
+            ShowWarning("zlib_compress: ran out of space, outputting garbage(?) (%u : %u : %u : %u)\n", read, elem, max_sz, in[i]);
+            memset(out, 0, (out_sz / 4) + (in_sz & 3));
+            memset(out + 1, in_sz, in_sz / 4);
+            memset(out + 1 + in_sz / 4, (in_sz + 1) * 8, in_sz & 3);
+            return in_sz;
         }
         else
+        {
+            ShowWarning("zlib_compress: ran out of space (%u : %u : %u : %u)\n", read, elem, max_sz, in[i]);
             return -1;
+        }
     }
-    output[0] = 1;
 
-    return (cume + 8);
+    out[0] = 1;
+    return read + 8;
 }
 
-uint32 zlib_decompress(char *in, uint32 inSize, char *out, uint32 outSize, uintptr *table)
+uint32 zlib_decompress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz)
 {
-    uintptr* follow = (uintptr*)table[0];
-    uint32 i, j = 0;
+    assert(in && out);
+    assert(zlib.jump.size());
+
+    const struct zlib_jump *jmp = static_cast<const struct zlib_jump*>(zlib.jump[0].ptr);
+    assert(jmp >= zlib.jump.data() && jmp <= zlib.jump.data() + zlib.jump.size());
 
     if (in[0] != 1)
-        return -1;
-    in++;
-
-    for (i = 0; i < inSize; i++)
     {
-        if ((in[i / 8] >> (i & 7)) & 1)
-            follow = (uintptr*)follow[1];
-        else
-            follow = (uintptr*)follow[0];
-        if (follow[0] == 0)
+        ShowWarning("zlib_decompress: invalid compressed data\n");
+        return -1;
+    }
+
+    uint32 w = 0;
+    const int8 *data = in + 1;
+    for (uint32 i = 0; i < in_sz && w < out_sz; ++i)
+    {
+        jmp = static_cast<const struct zlib_jump*>(jmp[JMPBIT(data, i)].ptr);
+        assert(jmp >= zlib.jump.data() && jmp <= zlib.jump.data() + zlib.jump.size());
+
+        // Repeat until there is nowhere to jump to
+        if (jmp[0].ptr != 0 || jmp[1].ptr != 0)
+            continue;
+
+        // The remaining address should be data
+        assert(jmp[3].ptr <= reinterpret_cast<void*>(0xff));
+        out[w++] = static_cast<uint8>(reinterpret_cast<std::uintptr_t>(jmp[3].ptr));
+        jmp = static_cast<const struct zlib_jump*>(zlib.jump[0].ptr);
+
+        if (w >= out_sz)
         {
-            if (follow[1] == 0)
-            {
-                void *ptr = (void*)follow[3];
-                out[j] = (uintptr)(ptr)& 255;
-                if (++j >= outSize)
-                    return -1;
-                follow = (uintptr*)table[0];
-            }
+            ShowWarning("zlib_decompress: ran out of space (%u : %u)\n", in_sz, out_sz);
+            return -1;
         }
     }
-    return j;
+
+    return w;
 }

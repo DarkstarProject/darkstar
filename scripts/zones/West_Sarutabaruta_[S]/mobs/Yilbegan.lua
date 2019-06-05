@@ -1,21 +1,10 @@
 -----------------------------------
--- Area:
+-- Area: West Sarutabaruta [S]
 --  VNM: Yilbegan
 -----------------------------------
-
-require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/titles")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(YILBEGAN_HIDEFLAYER);
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.YILBEGAN_HIDEFLAYER)
+end

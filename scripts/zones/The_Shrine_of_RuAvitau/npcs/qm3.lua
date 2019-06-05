@@ -1,48 +1,24 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
--- NPC:  ??? (Spawn Ullikummi)
--- @pos 739 -99 -581 178
+--  NPC: ??? (Spawns Ullikummi)
+-- !pos 739 -99 -581 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (GetMobAction(17506418) == 0 and trade:hasItemQty(2388,1) and trade:getItemCount() == 1) then -- Trade Diorite
-        player:tradeComplete();
-        SpawnMob(17506418,180):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+    if npcUtil.tradeHas(trade, 2388) and npcUtil.popFromQM(player, npc, ID.mob.ULLIKUMMI) then -- Diorite
+        player:confirmTrade()
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

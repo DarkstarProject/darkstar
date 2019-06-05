@@ -3,25 +3,17 @@
 -- Item: Antidote
 -- Item Effect: This potion remedies poison.
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(EFFECT_POISON) == true) then
-        target:delStatusEffect(EFFECT_POISON);
+    if (target:hasStatusEffect(dsp.effect.POISON) == true) then
+        target:delStatusEffect(dsp.effect.POISON)
     end
-end;
+end
 

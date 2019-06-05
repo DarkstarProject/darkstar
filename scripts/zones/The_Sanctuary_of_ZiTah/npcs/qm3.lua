@@ -1,63 +1,35 @@
 -----------------------------------
 -- Area: The Sanctuary of Zitah
--- NPC:  ???
+--  NPC: ???
 -- Involved In Quest: The Sacred Katana
--- @zone 121
--- @pos -416 0 46
+-- !pos -416 0 46 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(1168,1) and trade:getItemCount() == 1) then -- Trade Sack of Fish Bait
-            player:tradeComplete();
-            player:messageSpecial(SENSE_OF_FOREBODING);
-            SpawnMob(17273285,180):updateClaim(player);
+    if player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_SACRED_KATANA) == QUEST_ACCEPTED then
+        if npcUtil.tradeHas(trade, 1168) and npcUtil.popFromQM(player, npc, ID.mob.ISONADE, {hide = 0}) then -- Sack of Fish Bait
+            player:confirmTrade()
+            player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
         end
     end
-    
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-    if (player:getVar("IsonadeKilled") == 1) then
-        player:setVar("IsonadeKilled",0);
-        player:addKeyItem(HANDFUL_OF_CRYSTAL_SCALES);
-        player:messageSpecial(KEYITEM_OBTAINED,HANDFUL_OF_CRYSTAL_SCALES);
+    if player:getVar("IsonadeKilled") == 1 then
+        player:setVar("IsonadeKilled", 0)
+        npcUtil.giveKeyItem(player, dsp.ki.HANDFUL_OF_CRYSTAL_SCALES)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

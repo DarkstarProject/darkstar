@@ -1,32 +1,29 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Korroloka Leech
---  Involved in Quest: Ayame and Kaede
+--   NM: Korroloka Leech
+-- Involved in Quest: Ayame and Kaede
+-----------------------------------
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
-require("scripts/globals/settings");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+end
 
 function onMobSpawn(mob)
-end;
+    DespawnMob(mob:getID(), 180)
+end
 
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    if (ally:getVar("AyameAndKaede_Event") == 2) then
-        local leeches = ally:getVar("KorrolokaLeeches");
-
-        ally:setVar("KorrolokaLeeches",leeches+1);
-        ally:setVar("KorrolokaLeeches_Timer",os.time());
+function onMobDeath(mob, player, isKiller)
+    if
+        GetMobByID(ID.mob.KORROLOKA_LEECH_I):isDead() and
+        GetMobByID(ID.mob.KORROLOKA_LEECH_II):isDead() and
+        GetMobByID(ID.mob.KORROLOKA_LEECH_III):isDead() and
+        player:getQuestStatus(BASTOK, dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED and
+        player:getVar("AyameAndKaede_Event") == 2
+    then
+        player:setVar("KorrolokaLeeches_Killed", 1)
     end
-
-end;
-
-
-
+end

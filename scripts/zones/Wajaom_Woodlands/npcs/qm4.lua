@@ -1,49 +1,25 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
 --  NPC: ??? (Spawn Tinnin(ZNM T4))
--- @pos 278 0 -703 51
+-- !pos 278 0 -703 51
 -----------------------------------
-package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Wajaom_Woodlands/TextIDs");
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Wajaom_Woodlands/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobID = 16986431;
-    if (trade:hasItemQty(2573,1) and trade:getItemCount() == 1) then -- Trade Monkey wine
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if npcUtil.tradeHas(trade, 2573) and npcUtil.popFromQM(player, npc, ID.mob.TINNIN) then
+        player:confirmTrade()
+        player:messageSpecial(ID.text.DRAWS_NEAR)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.HEAVY_FRAGRANCE)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

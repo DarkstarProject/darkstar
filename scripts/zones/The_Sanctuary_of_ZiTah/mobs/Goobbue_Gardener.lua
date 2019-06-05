@@ -1,14 +1,17 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
 --  MOB: Goobbue Gardener
+-- Note: PH for Keeper of Halidom
+-----------------------------------
+local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 114, 2, dsp.regime.type.FIELDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,114,2);
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.KEEPER_OF_HALIDOM_PH, 10, 7200) -- 2 hours
+end

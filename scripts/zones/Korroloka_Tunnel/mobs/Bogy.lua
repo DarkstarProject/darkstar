@@ -1,31 +1,17 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
 --  Mob: Bogy
+-- Note: PH for Dame Blanche
+-----------------------------------
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
--- require("scripts/zones/Korroloka_Tunnel/MobIDs");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 732, 1, dsp.regime.type.GROUNDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    checkGoVregime(ally,mob,732,1);
-
-    mob = mob:getID();
-    if (Dame_Blanche_PH[mob] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Dame_Blanche");
-        if (ToD <= os.time(t) and GetMobAction(Dame_Blanche) == 0) then
-            if (math.random((1),(20)) == 5) then
-                UpdateNMSpawnPoint(Dame_Blanche);
-                GetMobByID(Dame_Blanche):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Dame_Blanche", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-
-end;
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.DAME_BLANCHE_PH, 5, math.random(7200, 28800)) -- 2 to 8 hours
+end

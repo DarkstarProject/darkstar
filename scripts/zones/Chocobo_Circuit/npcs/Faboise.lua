@@ -1,42 +1,18 @@
 -----------------------------------
---    Area: Chocobo_Circuit
---    NPC: Faboise
---    Standard Info NPC
------------------------------------
-package.loaded["scripts/zones/Chocobo_Circuit/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Chocobo_Circuit/TextIDs");
-
------------------------------------
--- onTrade Action
+-- Area: Chocobo_Circuit
+--  NPC: Faboise
+-- Standard Info NPC
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    player:startEvent(0x00EF);
+    player:startEvent(239);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

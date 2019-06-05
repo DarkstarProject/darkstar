@@ -2,28 +2,17 @@
 -- Area: FeiYin
 --  MOB: Talos
 -----------------------------------
-
+require("scripts/globals/regimes")
 require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobDeath(mob, player, isKiller)
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    checkGoVregime(ally,mob,713,2);
-
+    dsp.regime.checkRegime(player, mob, 713, 2, dsp.regime.type.GROUNDS)
     -- Curses, Foiled A-Golem!?
-    if (ally:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-        ally:delKeyItem(SHANTOTTOS_NEW_SPELL);
-        ally:addKeyItem(SHANTOTTOS_EXSPELL);
+    if (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then
+        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL);
+        player:addKeyItem(dsp.ki.SHANTOTTOS_EXSPELL);
     end
 
 end;

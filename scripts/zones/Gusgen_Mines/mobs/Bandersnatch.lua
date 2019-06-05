@@ -2,13 +2,9 @@
 -- Area: Gusgen Mines
 --  MOB: Bandersnatch
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,680,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 681, 2, dsp.regime.type.GROUNDS)
 end;

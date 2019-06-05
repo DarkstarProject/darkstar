@@ -2,14 +2,10 @@
 -- Area: East Sarutabaruta
 --  MOB: Bolster
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,92,2);
-    checkRegime(ally,mob,93,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 92, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 93, 2, dsp.regime.type.FIELDS)
 end;

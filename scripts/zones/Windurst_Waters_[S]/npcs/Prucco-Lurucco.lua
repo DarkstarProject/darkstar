@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Prucco-Lurucco
---  Type: Standard NPC
--- @zone: 94
---  @pos 140.772 -3.499 132.942
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Waters (S)
+--  NPC: Prucco-Lurucco
+-- Type: Standard NPC
+-- !pos 140.772 -3.499 132.942 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x01a4);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(420)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

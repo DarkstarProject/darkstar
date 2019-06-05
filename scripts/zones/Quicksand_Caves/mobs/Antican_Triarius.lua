@@ -1,21 +1,25 @@
 -----------------------------------
 -- Area: Quicksand Caves
 --  MOB: Antican Triarius
+-- Note: PH for Triarius X-XV and Hastatus XI-XII
+-----------------------------------
+local ID = require("scripts/zones/Quicksand_Caves/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/groundsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 812, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 813, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 814, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 815, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 816, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 817, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 818, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 819, 2, dsp.regime.type.GROUNDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,812,2);
-    checkGoVregime(ally,mob,813,2);
-    checkGoVregime(ally,mob,814,2);
-    checkGoVregime(ally,mob,815,1);
-    checkGoVregime(ally,mob,816,2);
-    checkGoVregime(ally,mob,817,2);
-    checkGoVregime(ally,mob,818,2);
-    checkGoVregime(ally,mob,819,2);
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.TRIARIUS_X_XV_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.HASTATUS_XI_XII_PH, 10, 3600) -- 1 hour
+end

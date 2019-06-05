@@ -39,13 +39,13 @@ typedef struct
   std::vector<CModifier*> mobMods;
 } ModsList_t;
 
-enum class WeaknessType {YELLOW, BLUE, RED, WHITE};
+enum class WeaknessType {BLUE = 0, YELLOW = 1, RED = 2, WHITE = 3};
 
 typedef std::unordered_map<uint32,ModsList_t*> ModsMap_t;
 
 namespace mobutils
 {
-	void	CalculateStats(CMobEntity* PMob);
+	void  CalculateStats(CMobEntity* PMob);
         void  SetupJob(CMobEntity* PMob);
         void  SetupRoaming(CMobEntity* PMob);
         void  SetupDynamisMob(CMobEntity* PMob);
@@ -53,7 +53,6 @@ namespace mobutils
         void  SetupDungeonMob(CMobEntity* PMob);
         void  SetupEventMob(CMobEntity* PMob);
         void  SetupNMMob(CMobEntity* PMob);
-	void  SetupMaat(CMobEntity* PMob);
 	void  SetupPetSkills(CMobEntity* PMob);
 
 	uint16	GetWeaponDamage(CMobEntity* PMob);
@@ -71,9 +70,6 @@ namespace mobutils
 	ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
 
 	void  AddCustomMods(CMobEntity* PMob);
-
-        // Set job before spawn
-	void  InitializeMaat(CMobEntity* PMob, JOBTYPE job);
 
 	void  SetSpellList(CMobEntity*, uint16);
 	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);

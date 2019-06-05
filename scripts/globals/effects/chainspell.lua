@@ -1,29 +1,18 @@
 -----------------------------------
 --
---     EFFECT_CHAINSPELL
---     
+-- dsp.effect.CHAINSPELL
+--
 -----------------------------------
-
-require("scripts/globals/status");
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_UFASTCAST,150);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.UFASTCAST,150)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_UFASTCAST,150);
-end;
+    target:delMod(dsp.mod.UFASTCAST,150)
+end

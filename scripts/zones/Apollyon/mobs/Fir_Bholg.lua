@@ -1,46 +1,29 @@
 -----------------------------------
 -- Area: Apollyon SW
--- NPC:  Fir Bholg
+--  NPC: Fir Bholg
 
------------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Apollyon/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
+function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
- local mobID = mob:getID();    
+function onMobDespawn(mob)
+ local mobID = mob:getID();
  -- print(mobID);
       local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
- 
+
  if (mobID ==16932869) then -- time
        GetNPCByID(16932864+14):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+14):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+14):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16932871) then -- recover
        GetNPCByID(16932864+16):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+16):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+16):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16932874) then -- item
       GetNPCByID(16932864+15):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+15):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+15):setStatus(dsp.status.NORMAL);
  end
 end;

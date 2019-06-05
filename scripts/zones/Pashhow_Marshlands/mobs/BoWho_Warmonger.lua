@@ -1,14 +1,15 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: BoWho Warmonger
+--   NM: Bo'Who Warmonger
+-----------------------------------
+require("scripts/globals/regimes")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 60, 1, dsp.regime.type.FIELDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,60,1);
-end;
+function onMobDespawn(mob)
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(75600 + math.random(600, 900)) -- 21 hours, plus 10 to 15 min
+end

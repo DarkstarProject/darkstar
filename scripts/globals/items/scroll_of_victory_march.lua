@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 5028
---    Scroll of Victory March
---    Teaches the song Victory March
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5028
+-- Scroll of Victory March
+-- Teaches the song Victory March
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(420);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(420)
+end
 
 function onItemUse(target)
-    target:addSpell(420);
-end;
+    target:addSpell(420)
+end

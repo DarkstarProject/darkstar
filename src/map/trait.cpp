@@ -35,122 +35,28 @@
 *                                                                       *
 *                                                                       *
 ************************************************************************/
-
 CTrait::CTrait(uint8 id)
+    : m_id(id)
 {
-	m_id = id;
-	
-	m_level  = 0; 
-	m_job    = 0;
-    m_mod    = 0;
-    m_value  = 0;
-}
-
-uint8 CTrait::getID()
-{
-	return m_id;
 }
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-uint8 CTrait::getJob()
-{
-	return m_job;
-}
-
-void CTrait::setJob(int8 job)
-{
-    DSP_DEBUG_BREAK_IF(job > MAX_JOBTYPE);
-
-	m_job = job;
-}
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
+*  Namespace for trait loading                                          *
 *                                                                       *
 ************************************************************************/
-
-uint8 CTrait::getLevel()
-{
-	return m_level;
-}
-
-void CTrait::setLevel(uint8 level)
-{
-	m_level = level;
-}
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-uint16 CTrait::getMod()
-{
-    return m_mod;
-}
-
-void CTrait::setMod(uint16 mod)
-{
-    m_mod = mod;
-}
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-int16 CTrait::getValue()
-{
-    return m_value;
-}
-
-void CTrait::setValue(int16 value)
-{
-    m_value = value;
-}
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-uint8 CTrait::getRank()
-{
-    return m_rank;
-}
-
-void CTrait::setRank(uint8 rank)
-{
-    m_rank = rank;
-}
-/************************************************************************
-*                                                                       *
-*  Реализация namespase для работы с traits                             *
-*                                                                       *
-************************************************************************/
-
 namespace traits
 {
-    TraitList_t PTraitsList[MAX_JOBTYPE]; // список traits, сгруппированный по профессиям
+    TraitList_t PTraitsList[MAX_JOBTYPE]; // Trait lists by job
 
     /************************************************************************
     *                                                                       *
-    *  Загружаем список traits                                              *
+    *  LoadTraitList                                                        *
     *                                                                       *
     ************************************************************************/
-
     void LoadTraitsList()
     {
-	    const int8* Query = "SELECT traitid, job, level, rank, modifier, value, required_expansion \
+	    const char* Query = "SELECT traitid, job, level, rank, modifier, value, content_tag, meritid \
 							 FROM traits \
                              WHERE traitid < %u \
 							 ORDER BY job, traitid ASC, rank DESC";
@@ -159,12 +65,13 @@ namespace traits
 
 	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		    {				
-				int8* expansionCode;
-				Sql_GetData(SqlHandle, 6, &expansionCode, nullptr);
+		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		    {
+				char* contentTag = nullptr;
+				Sql_GetData(SqlHandle, 6, &contentTag, nullptr);
 
-				if (luautils::IsExpansionEnabled(expansionCode)==false){
+				if (luautils::IsContentEnabled(contentTag)==false)
+                {
 					continue;
 				}
 
@@ -173,8 +80,9 @@ namespace traits
 			    PTrait->setJob(Sql_GetIntData(SqlHandle,1));
 			    PTrait->setLevel(Sql_GetIntData(SqlHandle,2));
                 PTrait->setRank(Sql_GetIntData(SqlHandle,3));
-                PTrait->setMod(Sql_GetIntData(SqlHandle,4));
+                PTrait->setMod(static_cast<Mod>(Sql_GetIntData(SqlHandle,4)));
                 PTrait->setValue(Sql_GetIntData(SqlHandle,5));
+                PTrait->setMeritId(Sql_GetIntData(SqlHandle, 7));
 
 			    PTraitsList[PTrait->getJob()].push_back(PTrait);
 		    }
@@ -189,14 +97,14 @@ namespace traits
 
 	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    CBlueTrait* PTrait = new CBlueTrait(Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,2));
 
 			    PTrait->setJob(JOB_BLU);
                 PTrait->setRank(1);
                 PTrait->setPoints(Sql_GetIntData(SqlHandle,1));
-                PTrait->setMod(Sql_GetIntData(SqlHandle,3));
+                PTrait->setMod(static_cast<Mod>(Sql_GetIntData(SqlHandle,3)));
                 PTrait->setValue(Sql_GetIntData(SqlHandle,4));
 
 			    PTraitsList[JOB_BLU].push_back(PTrait);
@@ -212,19 +120,8 @@ namespace traits
 
     TraitList_t* GetTraits(uint8 JobID)
     {
-        DSP_DEBUG_BREAK_IF(JobID >= sizeof(PTraitsList));
+        DSP_DEBUG_BREAK_IF(JobID >= MAX_JOBTYPE);
 
 	    return &PTraitsList[JobID];
-    }
-
-    /************************************************************************
-    *                                                                       *
-    *  Clear Traits List													*
-    *                                                                       *
-    ************************************************************************/
-
-    void FreeTraitsList()
-    {
-	    // список освобождается операционной системой автоматически при завершении работы сервера
     }
 };

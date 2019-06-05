@@ -1,49 +1,26 @@
 -----------------------------------
 -- Area: Pashhow Marshlands [S]
--- NPC:  Telepoint
+--  NPC: Telepoint
+-- !pos 345.472 24.279 -114.731 90
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Pashhow_Marshlands_[S]/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end; 
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:hasKeyItem(PASHHOW_GATE_CRYSTAL) == false) then
-        player:addKeyItem(PASHHOW_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,PASHHOW_GATE_CRYSTAL);
+function onTrigger(player, npc)
+    if not player:hasKeyItem(dsp.ki.PASHHOW_GATE_CRYSTAL) then
+        npcUtil.giveKeyItem(player, dsp.ki.PASHHOW_GATE_CRYSTAL)
     else
-        player:messageSpecial(ALREADY_OBTAINED_TELE);
+        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE)
     end
-    
-end;
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

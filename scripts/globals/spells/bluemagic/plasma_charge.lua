@@ -10,45 +10,37 @@
 -- Casting Time: 3 seconds
 -- Recast Time: 60 seconds
 -- Duration: 60 seconds
--- 
+--
 -- Combos: Auto Refresh
 -----------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/bluemagic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
+    local typeEffect = dsp.effect.SHOCK_SPIKES
+    local power = 5
+    local duration = 60
 
-    local typeEffect = EFFECT_SHOCK_SPIKES;
-    local power = 5;
-    local duration = 60;
-
-    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
-        local diffMerit = caster:getMerit(MERIT_DIFFUSION);
+    if (caster:hasStatusEffect(dsp.effect.DIFFUSION)) then
+        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION)
 
         if (diffMerit > 0) then
-            duration = duration + (duration/100)* diffMerit;
-        end;
+            duration = duration + (duration/100)* diffMerit
+        end
 
-        caster:delStatusEffect(EFFECT_DIFFUSION);
-    end;
+        caster:delStatusEffect(dsp.effect.DIFFUSION)
+    end
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(75);
-    end;
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+    end
 
-    return typeEffect;
-end;
+    return typeEffect
+end

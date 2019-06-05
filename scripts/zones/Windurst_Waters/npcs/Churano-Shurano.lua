@@ -1,43 +1,37 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Churano-Shurano
---    Working 100%
+-- Area: Windurst Waters
+--  NPC: Churano-Shurano
+-- Working 100%
 -----------------------------------
-
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    player:startEvent(0x118);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    if (player:hasKeyItem(dsp.ki.MAGICKED_ASTROLABE) == false) then
+        local cost = 10000;
+        if (player:getVar("Astrolabe") == 0) then
+            player:startEvent(1080, cost);
+        else
+            player:startEvent(1081, cost);
+        end
+    else
+        player:startEvent(280);
+    end
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    if (csid == 1080 and option == 1) then
+        player:setVar("Astrolabe", 1);
+    elseif (csid == 1081 and option == 1 and player:delGil(10000)) then
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICKED_ASTROLABE);
+        player:addKeyItem(dsp.ki.MAGICKED_ASTROLABE);
+    end
 end;
-
-
-

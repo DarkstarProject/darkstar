@@ -1,29 +1,15 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
 --  MOB: Yagudo_Lutenist
+-- Note: PH for Yaa Haqa the Profane
+-----------------------------------
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/zones/Castle_Oztroja/MobIDs");
+function onMobDeath(mob, player, isKiller)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    local mobID = mob:getID();
-    if (Yaa_Haqa_the_Profane_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Yaa_Haqa_the_Profane");
-        if (ToD <= os.time(t) and GetMobAction(Yaa_Haqa_the_Profane) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Yaa_Haqa_the_Profane);
-                GetMobByID(Yaa_Haqa_the_Profane):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Yaa_Haqa_the_Profane", mobID);
-                DeterMob(mobID, true);
-            end
-        end
-    end
-
-end;
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.YAA_HAQA_THE_PROFANE_PH,5,3600) -- 1 hour
+end

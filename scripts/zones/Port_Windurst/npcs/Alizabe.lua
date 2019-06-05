@@ -1,64 +1,40 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Alizabe
--- Only sells when Windurst controls the Tavnazian Archipelago
--- Only available to those with CoP Ch. 4.1 or higher
--- Confirmed shop stock, August 2013
+--  NPC: Alizabe
+--  Tavnazian Archipelago Regional Merchant
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Port_Windurst/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(TAVNAZIANARCH);
-    cop = 40; --player:getVar("chainsOfPromathiaMissions");
-
-    if (cop >= 40) then
-        if (RegionOwner ~= WINDURST) then 
-            player:showText(npc,ALIZABE_CLOSED_DIALOG);
+    if player:getCurrentMission(COP) >= dsp.mission.id.cop.THE_SAVAGE then
+        if GetRegionOwner(dsp.region.TAVNAZIANARCH) ~= dsp.nation.WINDURST then
+            player:showText(npc, ID.text.ALIZABE_CLOSED_DIALOG)
         else
-            player:showText(npc,ALIZABE_OPEN_DIALOG);
-
-            stock = {
-                0x05F3,   290,   --Apple Mint
-                0x142C,  1945,   --Ground Wasabi
-                0x426D,    99,   --Lufaise Fly
-                0x144B,   233    --Misareaux Parsley
+            local stock =
+            {
+                1523,  290,    -- Apple Mint
+                5164, 1945,    -- Ground Wasabi
+                17005,  99,    -- Lufaise Fly
+                5195,  233,    -- Misareaux Parsley
+                1695,  920,    -- Habanero Peppers
             }
-            showShop(player,WINDURST,stock);
+
+            player:showText(npc, ID.text.ALIZABE_OPEN_DIALOG)
+            dsp.shop.general(player, stock, WINDURST)
         end
     else
-        player:showText(npc,ALIZABE_COP_NOT_COMPLETED);
+        player:showText(npc, ID.text.ALIZABE_COP_NOT_COMPLETED)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

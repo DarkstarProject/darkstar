@@ -1,64 +1,42 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Perdiouvilet
+--  NPC: Perdiouvilet
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos -59 -5 -29 232
+-- !pos -59 -5 -29 232
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
-    
-end;
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-    local WildcatSandy = player:getVar("WildcatSandy");
-    
-    if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,10) == false) then
-        player:startEvent(0x02ee);
-    else
-        player:startEvent(0x02fa);
-    end
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+    local WildcatSandy = player:getVar("WildcatSandy");
+
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,10) == false) then
+        player:startEvent(750);
+    else
+        player:startEvent(762);
+    end
+
+end;
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-    
-    if (csid == 0x02ee) then
+
+    if (csid == 750) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",10,true);
     end
-    
+
 end;

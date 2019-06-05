@@ -1,58 +1,30 @@
 -----------------------------------
---  Area: Windurst Woods
---  NPC:  Cayu Pensharhumi
---  Type: Standard NPC
---  @pos 39.437 -0.91 -40.808 241
+-- Area: Windurst Woods
+--  NPC: Cayu Pensharhumi
+-- Type: Standard NPC
+-- !pos 39.437 -0.91 -40.808 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/quests");
-require("scripts/zones/Windurst_Woods/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local WildcatWindurst = player:getVar("WildcatWindurst")
 
-    local WildcatWindurst = player:getVar("WildcatWindurst");
-
-    if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,2) == false) then
-        player:startEvent(0x02dd);
+    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(WildcatWindurst,2) then
+        player:startEvent(733)
     else
-        player:startEvent(0x0103);
+        player:startEvent(259)
     end
-    
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    
-    if (csid == 0x02dd) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",2,true);
+    if csid == 733 then
+        player:setMaskBit(player:getVar("WildcatWindurst"), "WildcatWindurst", 2, true)
     end
-    
-end;
-
+end

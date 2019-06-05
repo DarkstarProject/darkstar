@@ -1,29 +1,14 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
 --  MOB: Demon_Warlock
+-- Note: PH for Viscount Morax
 -----------------------------------
+local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");
+require("scripts/globals/mobs");
 
-require("scripts/zones/Castle_Zvahl_Keep/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    local mobID = mob:getID();
-    if (Viscount_Morax_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Viscount_Morax");
-        if (ToD <= os.time(t) and GetMobAction(Viscount_Morax) == 0) then
-            if (math.random(1,10) == 5) then
-                UpdateNMSpawnPoint(Viscount_Morax);
-                GetMobByID(Viscount_Morax):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Viscount_Morax", mobID);
-                DeterMob(mobID, true);
-            end
-        end
-    end
-
+function onMobDeath(mob, player, isKiller)
 end;
 
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.VISCOUNT_MORAX_PH,10,math.random(3600,28800)); -- 1 to 8 hours
+end;

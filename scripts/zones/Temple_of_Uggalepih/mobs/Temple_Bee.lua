@@ -1,15 +1,11 @@
 -----------------------------------
--- Area: Temple Of Uggalepih
+-- Area: Temple of Uggalepih
 --  MOB: Temple Bee
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,790,2);
-    checkGoVregime(ally,mob,793,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 790, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 793, 2, dsp.regime.type.GROUNDS)
+end

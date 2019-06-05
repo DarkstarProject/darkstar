@@ -1,22 +1,7 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Ghost_Clot
+--  NPC: Ghost_Clot
 
------------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Apollyon/TextIDs");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -30,10 +15,6 @@ function onMobEngaged(mob,target)
     GetMobByID(16933000):updateEnmity(target);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
 
-function onMobDeath(mob,killer,ally)
-   
 end;

@@ -1,48 +1,26 @@
 -----------------------------------
 -- Area: Dynamis Buburimu
 --  MOB: Serjeant_Tombstone
-
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Buburimu/TextIDs");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     dynamis.spawnGroup(mob, BuburimuOrcishList);
 end;
 
-
-                     
-                    
-
-
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
-
-    if ( mobID == 16941135 or mobID == 16941411) then --hp
-        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
-        ally:restoreHP(3000);
-     elseif (mobID == 16941137 or mobID == 16941412) then --mp
-        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
-        ally:restoreMP(3000);        
+    if ( mobID == 16941135 or mobID == 16941411) then
+        player:messageBasic(dsp.msg.basic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
+        player:restoreHP(3000);
+     elseif (mobID == 16941137 or mobID == 16941412) then
+        player:messageBasic(dsp.msg.basic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
+        player:restoreMP(3000);
     end
 end;

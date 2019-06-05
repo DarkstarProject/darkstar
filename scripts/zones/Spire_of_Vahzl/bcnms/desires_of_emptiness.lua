@@ -2,14 +2,11 @@
 -- Area: Spire_of_VAHLZ
 -- Name: desires_of_emptiness
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Dem/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
@@ -24,11 +21,14 @@ require("scripts/zones/Spire_of_Dem/TextIDs");
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -39,19 +39,21 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
     
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+    
+        local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(1500);
-        if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8) then    
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8) then
             player:setVar("PromathiaStatus",9);
-            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0); 
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 0) 
             
         else
-            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,1); -- Alreday finished this promy
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 1) -- Alreday finished this promy
         end
-    elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002);
     end
     
 end;
@@ -62,8 +64,8 @@ end;
     
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 0x7d01) then
-    player:addTitle(FROZEN_DEAD_BODY);
+    if (csid == 32001) then
+    player:addTitle(dsp.title.FROZEN_DEAD_BODY);
     player:setPos(-340 ,-100 ,137 ,67 ,111);
     end
 end;

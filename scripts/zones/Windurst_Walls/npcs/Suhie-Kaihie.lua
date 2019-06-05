@@ -1,43 +1,20 @@
 -----------------------------------
---    Area: Windurst Walls
---    NPC:  Suhie-Kaihie
---    Working 100%
+-- Area: Windurst Walls
+--  NPC: Suhie-Kaihie
+-- Working 100%
 -----------------------------------
-
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    player:startEvent(0x123);
+    player:startEvent(291);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
-
-

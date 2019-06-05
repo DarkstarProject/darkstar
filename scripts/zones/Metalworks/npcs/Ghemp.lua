@@ -2,68 +2,45 @@
 -- Area: Metalworks
 --  NPC: Ghemp
 -- Type: Smithing Guild Master
--- @pos -109 2 27 237
+-- !pos -109 2 27 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/status");
+local ID = require("scripts/zones/Metalworks/IDs");
 require("scripts/globals/crafting");
-require("scripts/zones/Metalworks/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,SKILL_SMITHING);
+    local newRank = tradeTestItem(player,npc,trade,dsp.skill.SMITHING);
 
     if (newRank ~= 0) then
-        player:setSkillRank(SKILL_SMITHING,newRank);
-        player:startEvent(0x0066,0,0,0,0,newRank);
+        player:setSkillRank(dsp.skill.SMITHING,newRank);
+        player:startEvent(102,0,0,0,0,newRank);
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(SKILL_SMITHING);
-    local testItem = getTestItem(player,npc,SKILL_SMITHING);
+    local craftSkill = player:getSkillLevel(dsp.skill.SMITHING);
+    local testItem = getTestItem(player,npc,dsp.skill.SMITHING);
     local guildMember = isGuildMember(player,8);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,SKILL_SMITHING) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,dsp.skill.SMITHING) == 1) then getNewRank = 100; end
 
-    player:startEvent(0x0065,testItem,getNewRank,30,guildMember,44,0,0,0);
+    player:startEvent(101,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 0x038c  0x038d  0x038e  0x0398  0x039f  0x0065  0x0066
-
------------------------------------
--- onEventUpdate
------------------------------------
-
+-- 908  909  910  920  927  101  102
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x0065 and option == 1) then
+    if (csid == 101 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4096);
         else
             player:addItem(4096);
-            player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
-            signupGuild(player,256);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4096); -- Fire Crystal
+            signupGuild(player, guild.smithing);
         end
     end
 end;

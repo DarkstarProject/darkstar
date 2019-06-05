@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Emhi Tchaoryo
---  Type: Campaign Ops Overseer
--- @zone: 94
---  @pos 10.577 -2.478 32.680
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Waters (S)
+--  NPC: Emhi Tchaoryo
+-- Type: Campaign Ops Overseer
+-- !pos 10.577 -2.478 32.680 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0133);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(307)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

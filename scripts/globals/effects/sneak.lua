@@ -1,30 +1,19 @@
 -----------------------------------
 --
---     EFFECT_SNEAK
---     
+--     dsp.effect.SNEAK
+--
 -----------------------------------
-
------------------------------------
--- onEffectGain Action
------------------------------------
+require("scripts/globals/msg")
 
 function onEffectGain(target,effect)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-    local tick = effect:getLastTick();
+    local tick = effect:getLastTick()
     if (tick < 4 and tick ~= 0) then
-        target:messageBasic(251, effect:getType());
+        target:messageBasic(dsp.msg.basic.ABOUT_TO_WEAR_OFF, effect:getType())
     end
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-end;
+end

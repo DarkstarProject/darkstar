@@ -2,59 +2,28 @@
 -- Area: The_Shrouded_Maw
 -- Name: darkness_named
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
+local ID = require("scripts/zones/The_Shrouded_Maw/IDs");
 require("scripts/globals/missions");
+require("scripts/globals/battlefield")
+require("scripts/globals/status");
+require("scripts/globals/titles");
 
------------------------------------
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
-
-    local inst = player:getBattlefieldID();
-
-    if (inst == 1) then
-    
-        local TileOffset = 16818258;
-        
-        for i = TileOffset, TileOffset+7 do 
-            local TileOffsetA = GetNPCByID(i):getAnimation();                
-            if (TileOffsetA == 8) then
-                GetNPCByID(i):setAnimation(9);
+function onBattlefieldRegister(player,battlefield)
+    -- "close" all floor tiles
+    local inst = player:getBattlefield():getArea();
+    local tile = ID.npc.DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
+    for i = tile, tile + 7 do
+        GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
             end
-        end
-
-    elseif (inst == 2) then
-    
-        local TileOffset = 16818266;
-        
-        for i = TileOffset, TileOffset+7 do 
-            local TileOffsetA = GetNPCByID(i):getAnimation();                
-            if (TileOffsetA == 8) then
-                GetNPCByID(i):setAnimation(9);
-            end
-        end
-        
-    elseif (inst == 3) then
-    
-        local TileOffset = 16818274;
-        
-        for i = TileOffset, TileOffset+7 do 
-            local TileOffsetA = GetNPCByID(i):getAnimation();                
-            if (TileOffsetA == 8) then
-                GetNPCByID(i):setAnimation(9);
-            end
-        end
-        
-    end
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -65,28 +34,25 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
--- print("leave code "..leavecode);
-    
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+function onBattlefieldLeave(player,battlefield,leavecode)
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+
+        local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(1000);
-        if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then
-            player:addTitle(TRANSIENT_DREAMER);
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and player:getVar("PromathiaStatus") == 2) then
+            player:addTitle(dsp.title.TRANSIENT_DREAMER);
             player:setVar("PromathiaStatus",3);
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0); 
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         end
-    elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002);
     end
-    
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
 end;
-        
+
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
-end;    
+end;

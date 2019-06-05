@@ -3,70 +3,32 @@
 -- Zone: Outer_Horutoto_Ruins (194)
 --
 -----------------------------------
-package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17572305,17572306,17572307,17572308};
+    dsp.treasure.initZone(zone)
+end
 
-    SetGroundsTome(tomes);
-
-    UpdateTreasureSpawnPoint(17572286);
-end;
-
------------------------------------
--- onZoneIn
------------------------------------
-
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(419.991,-9.637,716.991,190);
+function onZoneIn(player, prevZone)
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(419.991, -9.637, 716.991, 190)
     end
-    return cs;
-end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
+    return cs
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
 
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
-end;
+function onRegionEnter(player, region)
+end
 
------------------------------------
--- onRegionEnter
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

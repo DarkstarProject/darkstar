@@ -1,34 +1,20 @@
 -----------------------------------
 -- Hasso
 -- Straight +10% haste +10 Acc and scaling (lv) STR
--- also -50% FC 
+-- also -50% FC
 -----------------------------------
+require("scripts/globals/status")
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.STR, effect:getPower())
+    target:addMod(dsp.mod.HASTE_ABILITY, 1000)
+    target:addMod(dsp.mod.ACC, 10)
+end
 
-require("scripts/globals/status");
+function onEffectTick(target, effect)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
-    target:addMod(MOD_STR,effect:getPower());
-    target:addMod(MOD_HASTE_ABILITY,102);
-    target:addMod(MOD_ACC,10);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
-
-function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_STR,effect:getPower());
-    target:delMod(MOD_HASTE_ABILITY,102);
-    target:delMod(MOD_ACC,10);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.STR, effect:getPower())
+    target:delMod(dsp.mod.HASTE_ABILITY, 1000)
+    target:delMod(dsp.mod.ACC, 10)
+end

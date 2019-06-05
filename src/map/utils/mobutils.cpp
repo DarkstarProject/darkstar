@@ -43,14 +43,14 @@
 
 namespace mobutils
 {
-	ModsMap_t mobFamilyModsList;
-	ModsMap_t mobPoolModsList;
-	ModsMap_t mobSpawnModsList;
+    ModsMap_t mobFamilyModsList;
+    ModsMap_t mobPoolModsList;
+    ModsMap_t mobSpawnModsList;
 
 /************************************************************************
-*																		*
-*  Расчет базовой величины оружия монстров								*
-*																		*
+*                                                                       *
+*  Расчет базовой величины оружия монстров                              *
+*                                                                       *
 ************************************************************************/
 
 uint16 GetWeaponDamage(CMobEntity* PMob)
@@ -73,11 +73,11 @@ uint16 GetWeaponDamage(CMobEntity* PMob)
 
     uint16 damage = lvl + bonus;
 
-    damage *= (float)PMob->m_dmgMult / 100.0f;
+    damage = (uint16)(damage * PMob->m_dmgMult / 100.0f);
 
     if (PMob->getMobMod(MOBMOD_WEAPON_BONUS) != 0)
     {
-        damage *= (float)PMob->getMobMod(MOBMOD_WEAPON_BONUS) / 100.0f;
+        damage = (uint16)(damage * PMob->getMobMod(MOBMOD_WEAPON_BONUS) / 100.0f);
     }
 
     return damage;
@@ -123,81 +123,83 @@ uint16 GetEvasion(CMobEntity* PMob)
         case JOB_BLM:
             evaRank = 5;
         break;
+        default:
+            break;
     }
 
     return GetBase(PMob, evaRank);
 }
 
 /************************************************************************
-*																		*
-*  Базовое значение для расчера характеристик							*
-*  (на название не хватило фантазии)									*
-*																		*
+*                                                                       *
+*  Базовое значение для расчера характеристик                           *
+*  (на название не хватило фантазии)                                    *
+*                                                                       *
 ************************************************************************/
 
 uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 {
-	switch (rank)
-	{
-		case 1: return (5+((lvl-1)*50)/100); // A
-		case 2: return (4+((lvl-1)*45)/100); // B
-		case 3: return (4+((lvl-1)*40)/100); // C
-		case 4: return (3+((lvl-1)*35)/100); // D
-		case 5: return (3+((lvl-1)*30)/100); // E
-		case 6: return (2+((lvl-1)*25)/100); // F
-		case 7: return (2+((lvl-1)*20)/100); // G
-	}
-	return 0;
+    switch (rank)
+    {
+        case 1: return (5+((lvl-1)*50)/100); // A
+        case 2: return (4+((lvl-1)*45)/100); // B
+        case 3: return (4+((lvl-1)*40)/100); // C
+        case 4: return (3+((lvl-1)*35)/100); // D
+        case 5: return (3+((lvl-1)*30)/100); // E
+        case 6: return (2+((lvl-1)*25)/100); // F
+        case 7: return (2+((lvl-1)*20)/100); // G
+    }
+    return 0;
 }
 
 /************************************************************************
-*																		*
-*  Базовое значение для расчерта защиты и уклонения						*
-*  (на название не хватило фантазии)									*
-*																		*
+*                                                                       *
+*  Базовое значение для расчерта защиты и уклонения                     *
+*  (на название не хватило фантазии)                                    *
+*                                                                       *
 ************************************************************************/
 
 uint16 GetBase(CMobEntity * PMob, uint8 rank)
  {
- 	uint8 lvl = PMob->GetMLevel();
- 	if(lvl > 50){
- 		switch(rank){
- 			case 1: // A
- 				return (float)153+(lvl-50)*5.0;
- 			case 2: // B
- 				return (float)147+(lvl-50)*4.9;
- 			case 3: // C
- 				return (float)136+(lvl-50)*4.8;
- 			case 4: // D
- 				return (float)126+(lvl-50)*4.7;
- 			case 5: // E
- 				return (float)116+(lvl-50)*4.5;
- 			case 6: // F
- 				return (float)106+(lvl-50)*4.4;
- 			case 7: // G
- 				return (float)96+(lvl-50)*4.3;
- 		}
- 	} else {
- 		switch(rank){
- 			case 1:
- 				return (float)6+(lvl-1)*3.0;
- 			case 2:
- 				return (float)5+(lvl-1)*2.9;
- 			case 3:
- 				return (float)5+(lvl-1)*2.8;
- 			case 4:
- 				return (float)4+(lvl-1)*2.7;
- 			case 5:
- 				return (float)4+(lvl-1)*2.5;
- 			case 6:
- 				return (float)3+(lvl-1)*2.4;
- 			case 7:
- 				return (float)3+(lvl-1)*2.3;
- 		}
- 	}
+    uint8 lvl = PMob->GetMLevel();
+    if(lvl > 50){
+        switch(rank){
+            case 1: // A
+                return (uint16)(153 + (lvl - 50) * 5.0f);
+            case 2: // B
+                return (uint16)(147 + (lvl - 50) * 4.9f);
+            case 3: // C
+                return (uint16)(136 + (lvl - 50) * 4.8f);
+            case 4: // D
+                return (uint16)(126 + (lvl - 50) * 4.7f);
+            case 5: // E
+                return (uint16)(116 + (lvl - 50) * 4.5f);
+            case 6: // F
+                return (uint16)(106 + (lvl - 50) * 4.4f);
+            case 7: // G
+                return (uint16)(96 + (lvl - 50) * 4.3f);
+        }
+    } else {
+        switch(rank){
+            case 1:
+                return (uint16)(6 + (lvl - 1) * 3.0f);
+            case 2:
+                return (uint16)(5 + (lvl - 1) * 2.9f);
+            case 3:
+                return (uint16)(5 + (lvl - 1) * 2.8f);
+            case 4:
+                return (uint16)(4 + (lvl - 1) * 2.7f);
+            case 5:
+                return (uint16)(4 + (lvl - 1) * 2.5f);
+            case 6:
+                return (uint16)(3 + (lvl - 1) * 2.4f);
+            case 7:
+                return (uint16)(3 + (lvl - 1) * 2.3f);
+        }
+    }
 
         ShowError("Mobutils::GetBase rank (%d) is out of bounds for mob (%u) \n", rank, PMob->id);
-	return 0;
+    return 0;
 }
 
 /************************************************************************
@@ -228,46 +230,46 @@ void CalculateStats(CMobEntity * PMob)
             hpScale = (float)PMob->getMobMod(MOBMOD_HP_SCALE) / 100.0f;
         }
 
-        float growth = 1.06;
-        float petGrowth = 0.75;
-        float base = 18.0;
+        float growth = 1.06f;
+        float petGrowth = 0.75f;
+        float base = 18.0f;
 
         //give hp boost every 10 levels after 25
         //special boosts at 25 and 50
         if(mLvl > 75)
         {
-            growth = 1.28;
-            petGrowth = 1.03;
+            growth = 1.28f;
+            petGrowth = 1.03f;
         }
         else if(mLvl > 65)
         {
-            growth = 1.27;
-            petGrowth = 1.02;
+            growth = 1.27f;
+            petGrowth = 1.02f;
         }
         else if(mLvl > 55)
         {
-            growth = 1.25;
-            petGrowth = 0.99;
+            growth = 1.25f;
+            petGrowth = 0.99f;
         }
         else if(mLvl > 50)
         {
-            growth = 1.21;
-            petGrowth = 0.96;
+            growth = 1.21f;
+            petGrowth = 0.96f;
         }
         else if(mLvl > 45)
         {
-            growth = 1.17;
-            petGrowth = 0.95;
+            growth = 1.17f;
+            petGrowth = 0.95f;
         }
         else if(mLvl > 35)
         {
-            growth = 1.14;
-            petGrowth = 0.92;
+            growth = 1.14f;
+            petGrowth = 0.92f;
         }
         else if(mLvl > 25)
         {
-            growth = 1.1;
-            petGrowth = 0.82;
+            growth = 1.1f;
+            petGrowth = 0.82f;
         }
 
         // pets have lower health
@@ -281,9 +283,9 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp *= 2.0;
+            PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.0f);
             if(mLvl > 75){
-                PMob->health.maxhp *= 2.5;
+                PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.5f);
             }
         }
 
@@ -295,11 +297,11 @@ void CalculateStats(CMobEntity * PMob)
 
     if(isNM)
     {
-        PMob->health.maxhp *= map_config.nm_hp_multiplier;
+        PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.nm_hp_multiplier);
     }
     else
     {
-        PMob->health.maxhp *= map_config.mob_hp_multiplier;
+        PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.mob_hp_multiplier);
     }
 
     bool hasMp = false;
@@ -315,6 +317,8 @@ void CalculateStats(CMobEntity * PMob)
     case JOB_SMN:
         hasMp = true;
         break;
+    default:
+        break;
     }
 
     switch(sJob){
@@ -327,6 +331,8 @@ void CalculateStats(CMobEntity * PMob)
     case JOB_SCH:
     case JOB_SMN:
         hasMp = true;
+        break;
+    default:
         break;
     }
 
@@ -349,10 +355,10 @@ void CalculateStats(CMobEntity * PMob)
             PMob->health.maxmp = (int16)(18.2 * pow(mLvl,1.1075) * scale) + 10;
             if(isNM)
             {
-                PMob->health.maxmp *= 1.5;
+                PMob->health.maxmp = (int32)(PMob->health.maxmp * 1.5f);
                 if(mLvl>75)
                 {
-                    PMob->health.maxmp *= 1.5;
+                    PMob->health.maxmp = (int32)(PMob->health.maxmp * 1.5f);
                 }
             }
         }
@@ -363,11 +369,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp *= map_config.nm_mp_multiplier;
+            PMob->health.maxmp = (int32)(PMob->health.maxmp * map_config.nm_mp_multiplier);
         }
         else
         {
-            PMob->health.maxhp *= map_config.mob_mp_multiplier;
+            PMob->health.maxmp = (int32)(PMob->health.maxmp * map_config.mob_mp_multiplier);
         }
     }
 
@@ -377,11 +383,11 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
-        PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+        ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->resetDelay();
     }
 
     uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
@@ -439,23 +445,23 @@ void CalculateStats(CMobEntity * PMob)
 
     if(isNM)
     {
-        PMob->stats.STR *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.DEX *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.VIT *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.AGI *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.INT *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.MND *= (1.5 * map_config.nm_stat_multiplier);
-        PMob->stats.CHR *= (1.5 * map_config.nm_stat_multiplier);
+        PMob->stats.STR = (uint16)(PMob->stats.STR * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.DEX = (uint16)(PMob->stats.DEX * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.VIT = (uint16)(PMob->stats.VIT * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.AGI = (uint16)(PMob->stats.AGI * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.INT = (uint16)(PMob->stats.INT * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.MND = (uint16)(PMob->stats.MND * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.CHR = (uint16)(PMob->stats.CHR * 1.5f * map_config.nm_stat_multiplier);
     }
     else
     {
-        PMob->stats.STR *= map_config.mob_stat_multiplier;
-        PMob->stats.DEX *= map_config.mob_stat_multiplier;
-        PMob->stats.VIT *= map_config.mob_stat_multiplier;
-        PMob->stats.AGI *= map_config.mob_stat_multiplier;
-        PMob->stats.INT *= map_config.mob_stat_multiplier;
-        PMob->stats.MND *= map_config.mob_stat_multiplier;
-        PMob->stats.CHR *= map_config.mob_stat_multiplier;
+        PMob->stats.STR = (uint16)(PMob->stats.STR * map_config.mob_stat_multiplier);
+        PMob->stats.DEX = (uint16)(PMob->stats.DEX * map_config.mob_stat_multiplier);
+        PMob->stats.VIT = (uint16)(PMob->stats.VIT * map_config.mob_stat_multiplier);
+        PMob->stats.AGI = (uint16)(PMob->stats.AGI * map_config.mob_stat_multiplier);
+        PMob->stats.INT = (uint16)(PMob->stats.INT * map_config.mob_stat_multiplier);
+        PMob->stats.MND = (uint16)(PMob->stats.MND * map_config.mob_stat_multiplier);
+        PMob->stats.CHR = (uint16)(PMob->stats.CHR * map_config.mob_stat_multiplier);
     }
 
     // special case, give spell list to my pet
@@ -474,7 +480,7 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     // cap all stats for mLvl / job
-    for (int i=SKILL_DIV; i <=SKILL_BLU; i++)
+    for (int i=SKILL_DIVINE_MAGIC; i <=SKILL_BLUE_MAGIC; i++)
     {
         uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
@@ -492,7 +498,7 @@ void CalculateStats(CMobEntity * PMob)
             }
         }
     }
-    for (int i=SKILL_H2H; i <=SKILL_STF; i++)
+    for (int i=SKILL_HAND_TO_HAND; i <=SKILL_STAFF; i++)
     {
         uint16 maxSkill = battleutils::GetMaxSkill(3, mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
@@ -501,13 +507,13 @@ void CalculateStats(CMobEntity * PMob)
         }
     }
 
-    PMob->addModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
-    PMob->addModifier(MOD_EVA, GetEvasion(PMob));
-    PMob->addModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
-    PMob->addModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
+    PMob->addModifier(Mod::DEF, GetBase(PMob,PMob->defRank));
+    PMob->addModifier(Mod::EVA, GetEvasion(PMob));
+    PMob->addModifier(Mod::ATT, GetBase(PMob,PMob->attRank));
+    PMob->addModifier(Mod::ACC, GetBase(PMob,PMob->accRank));
 
     //natural magic evasion
-    PMob->addModifier(MOD_MEVA, GetMagicEvasion(PMob));
+    PMob->addModifier(Mod::MEVA, GetMagicEvasion(PMob));
 
     // add traits for sub and main
     battleutils::AddTraits(PMob, traits::GetTraits(mJob), mLvl);
@@ -552,21 +558,99 @@ void CalculateStats(CMobEntity * PMob)
         SetupEventMob(PMob);
     }
 
-    if(PMob->m_Family == 335)
-    {
-        SetupMaat(PMob);
-    }
-
     if (PMob->CanStealGil())
     {
         PMob->ResetGilPurse();
+    }
+
+    if(PMob->m_Type & MOBTYPE_EVENT || PMob->m_Type & MOBTYPE_FISHED || PMob->m_Type & MOBTYPE_BATTLEFIELD ||
+        zoneType == ZONETYPE_BATTLEFIELD || zoneType == ZONETYPE_DYNAMIS)
+    {
+        PMob->setMobMod(MOBMOD_CHARMABLE, 0);
+    }
+
+    // Check for possible miss-setups
+    if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && PMob->getMobMod(MOBMOD_SPECIAL_COOL) == 0)
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d) with special skill but no cool down set!\n", PMob->GetName(), PMob->id);
+    }
+
+    if (PMob->SpellContainer->HasSpells() && PMob->getMobMod(MOBMOD_MAGIC_COOL) == 0)
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d) with magic but no cool down set!\n", PMob->GetName(), PMob->id);
+    }
+
+    if (PMob->m_Detects == 0)
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) has no detection methods!\n", PMob->GetName(), PMob->id, PMob->m_Family);
     }
 }
 
 void SetupJob(CMobEntity* PMob)
 {
     JOBTYPE mJob = PMob->GetMJob();
+    JOBTYPE sJob = PMob->GetSJob();
+    JOBTYPE job;
 
+    if (grade::GetJobGrade(mJob, 1) > 0) // check if mainjob gives mp
+    {
+        job = mJob;
+    }
+    else // if mainjob had no MP, use subjob in switch cases.
+    {
+        job = sJob;
+    }
+
+    // This switch falls back to a subjob if a mainjob isn't matched, and is mainly magic stuff
+    switch(job)
+    {
+        case JOB_BLM:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
+            break;
+        case JOB_PLD:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            break;
+        case JOB_DRK:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            break;
+        case JOB_WHM:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
+            break;
+        case JOB_BRD:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
+            break;
+        case JOB_BLU:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            break;
+        case JOB_RDM:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
+            break;
+        case JOB_SMN:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100); // SMN only has "buffs"
+            break;
+        case JOB_NIN:
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            break;
+        default:
+            break;
+    }
+
+    // This switch is mainjob only and contains mainly non magic related stuff
     switch(mJob)
     {
         case JOB_THF:
@@ -579,11 +663,11 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_DRG:
             // drg can use 2 hour multiple times
-            PMob->setMobMod(MOBMOD_2HOUR_MULTI, 1);
+            PMob->setMobMod(MOBMOD_MULTI_2HOUR, 1);
 
             // only drgs in 3rd expansion calls wyvern as non-NM
             // include fomors
-            if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
+            if ((!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT) || PMob->m_Family == 115)
             {
                 // 20 min recast
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
@@ -591,32 +675,34 @@ void SetupJob(CMobEntity* PMob)
             }
             break;
         case JOB_RNG:
-
-            // giga
-            if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
+            if ((PMob->m_Family >= 126 && PMob->m_Family <= 130) || PMob->m_Family == 328) // Gigas
             {
-                // only used while at range
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
-                // catapult
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658); // catapult only used while at range
+            }
+            else if (PMob->m_Family == 3) // Aern
+            {
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
             }
             else
             {
-                // all other rangers
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
+                // All other rangers
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
             }
 
+            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
-
             break;
         case JOB_NIN:
-            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+            if (PMob->m_Family == 3)
+            {
+                // aern
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+            }
+            else if (PMob->m_Family != 335) // exclude NIN Maat
+            {
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
+            }
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
             break;
@@ -629,42 +715,12 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
             break;
         case JOB_BLM:
-            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 16);
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
-
-
+            // We don't want to do the mages stand-back part from subjob, so we have it here
+            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 12);
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
+        default:
             break;
-        case JOB_PLD:
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
-            break;
-        case JOB_DRK:
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
-            break;
-        case JOB_WHM:
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
-            break;
-        case JOB_BRD:
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
-        case JOB_BLU:
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-        case JOB_RDM:
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
-        case JOB_SMN:
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
-            // smn only has "buffs"
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
     }
-
 }
 
 void SetupRoaming(CMobEntity* PMob)
@@ -681,6 +737,8 @@ void SetupRoaming(CMobEntity* PMob)
             turns = 5;
             cool = 45;
             break;
+        default:
+            break;
     }
 
     // default mob roaming mods
@@ -691,8 +749,6 @@ void SetupRoaming(CMobEntity* PMob)
 
     if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
     {
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 278);
-        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
         PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
         // always stay close to spawn
         PMob->m_maxRoamDistance = 2.0f;
@@ -740,53 +796,31 @@ void SetupPetSkills(CMobEntity* PMob)
 
 void SetupDynamisMob(CMobEntity* PMob)
 {
-    JOBTYPE mJob = PMob->GetMJob();
-
     // no gil drop and no mugging!
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
-    PMob->setMobMod(MOBMOD_2HOUR_PROC, 80);
 
     // used for dynamis stat-spawned mobs
     PMob->m_StatPoppedMobs = false;
 
     // dynamis mobs have true sight
-    if(PMob->m_Aggro & AGGRO_DETECT_SIGHT)
-    {
-        PMob->m_Aggro |= AGGRO_DETECT_TRUESIGHT;
-    }
-
-    if(PMob->m_Aggro & AGGRO_DETECT_HEARING)
-    {
-        PMob->m_Aggro |= AGGRO_DETECT_TRUEHEARING;
-    }
-
-    // Hydra's and beastmen can 2 hour
-    if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-            PMob->m_EcoSystem == SYSTEM_UNDEAD)
-    {
-        PMob->setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    }
+    PMob->m_TrueDetection = true;
 
     // boost dynamis mobs weapon damage
     PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     // never despawn
     PMob->SetDespawnTime(0s);
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 
-    // do not roam around
-    PMob->m_roamFlags |= ROAMFLAG_EVENT;
-    PMob->m_maxRoamDistance = 0.5f;
-
     // job resist traits are much more powerful in dynamis
     // according to wiki
     for(auto&& PTrait : PMob->TraitList)
     {
-        uint16 type = PTrait->getMod();
+        Mod type = PTrait->getMod();
 
-        if(type >= 240 && type <= 255)
+        if(type >= Mod::SLEEPRES && type <= Mod::DEATHRES)
         {
             // give mob a total of x4 the regular rate
             PMob->addModifier(type, PTrait->getValue() * 3);
@@ -837,8 +871,6 @@ void SetupNMMob(CMobEntity* PMob)
     uint8 mLvl = PMob->GetMLevel();
 
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-    // enmity range is larger
-    PMob->m_enmityRange = 28;
 
     // NMs cure earlier
     PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
@@ -860,90 +892,56 @@ void SetupNMMob(CMobEntity* PMob)
         if(mJob == JOB_WHM)
         {
             // whm nms have stronger regen effect
-            PMob->addModifier(MOD_REGEN, mLvl/4);
+            PMob->addModifier(Mod::REGEN, mLvl/4);
         }
-
-        // add two hours
-        if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-                PMob->m_EcoSystem == SYSTEM_HUMANOID)
-        {
-            PMob->defaultMobMod(MOBMOD_MAIN_2HOUR, 1);
-        }
-    }
-
-}
-
-void SetupMaat(CMobEntity* PMob)
-{
-    // Should swing normally when not a mnk
-    PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
-
-    switch(PMob->GetMJob()){
-        case JOB_NIN:
-            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
-            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
-            break;
-        case JOB_DRK:
-        case JOB_PLD:
-            // Give shield bash
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
-            break;
-        case JOB_BST:
-            // Call beast skill
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            break;
     }
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
 {
-	// clear spell list
-	PMob->SpellContainer->ClearSpells();
+    // clear spell list
+    PMob->SpellContainer->ClearSpells();
 
-	//insert the rest of the spells
-	for (std::vector<MobSpell_t>::iterator it = PMob->m_SpellListContainer->m_spellList.begin(); it != PMob->m_SpellListContainer->m_spellList.end(); ++it)
-	{
-		if (PMob->GetMLevel() >= (*it).min_level && PMob->GetMLevel() <= (*it).max_level)
-		{
-			PMob->SpellContainer->AddSpell((*it).spellId);
-		}
-	}
+    //insert the rest of the spells
+    for (std::vector<MobSpell_t>::iterator it = PMob->m_SpellListContainer->m_spellList.begin(); it != PMob->m_SpellListContainer->m_spellList.end(); ++it)
+    {
+        if (PMob->GetMLevel() >= (*it).min_level && PMob->GetMLevel() <= (*it).max_level)
+        {
+            PMob->SpellContainer->AddSpell((*it).spellId);
+        }
+    }
 }
 
 /* Gets the available spells for the specified monster.
  */
 void GetAvailableSpells(CMobEntity* PMob) {
-	//make sure the mob actually has a spell list
-	if (PMob->m_SpellListContainer == nullptr)
-	{
-		return;
-	}
+    //make sure the mob actually has a spell list
+    if (PMob->m_SpellListContainer == nullptr)
+    {
+        return;
+    }
 
-	// catch all non-defaulted spell chances
+    // catch all non-defaulted spell chances
         PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-	PMob->defaultMobMod(MOBMOD_GA_CHANCE, 35);
-	PMob->defaultMobMod(MOBMOD_NA_CHANCE, 40);
-	PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 35);
-	PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
-	PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 40);
+    PMob->defaultMobMod(MOBMOD_GA_CHANCE, 35);
+    PMob->defaultMobMod(MOBMOD_NA_CHANCE, 40);
+    PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 35);
+    PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
+    PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 40);
 
-	RecalculateSpellContainer(PMob);
+    RecalculateSpellContainer(PMob);
 
-	// make sure mob has mp to cast spells
-	if(PMob->health.maxmp == 0 && PMob->SpellContainer != nullptr && PMob->SpellContainer->HasMPSpells())
-	{
-		ShowError("mobutils::CalculateStats Mob (%u) has no mp for casting spells!\n", PMob->id);
-	}
+    // make sure mob has mp to cast spells
+    if(PMob->health.maxmp == 0 && PMob->SpellContainer != nullptr && PMob->SpellContainer->HasMPSpells())
+    {
+        ShowError("mobutils::CalculateStats Mob (%u) has no mp for casting spells!\n", PMob->id);
+    }
 }
 
 void SetSpellList(CMobEntity* PMob, uint16 spellList)
 {
-	PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-	RecalculateSpellContainer(PMob);
+    PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
+    RecalculateSpellContainer(PMob);
 }
 
 void InitializeMob(CMobEntity* PMob, CZone* PZone)
@@ -958,27 +956,26 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
     PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
     PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
-    PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
-    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, CMobEntity::sight_range);
-    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, CMobEntity::sound_range);
-
+    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, (int16)CMobEntity::sight_range);
+    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, (int16)CMobEntity::sound_range);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)
       {
-        case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
-        case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
-        case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
-        case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
-        case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
-        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
-        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
-        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
-        case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
-        case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
-        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
-        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
-        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
+        case SYSTEM_AMORPH:   PMob->addModifier(Mod::BIRD_KILLER,     5); break;
+        case SYSTEM_AQUAN:    PMob->addModifier(Mod::AMORPH_KILLER,   5); break;
+        case SYSTEM_ARCANA:   PMob->addModifier(Mod::UNDEAD_KILLER,   5); break;
+        case SYSTEM_BEAST:    PMob->addModifier(Mod::LIZARD_KILLER,   5); break;
+        case SYSTEM_BIRD:     PMob->addModifier(Mod::AQUAN_KILLER,    5); break;
+        case SYSTEM_DEMON:    PMob->addModifier(Mod::DRAGON_KILLER,   5); break;
+        case SYSTEM_DRAGON:   PMob->addModifier(Mod::DEMON_KILLER,    5); break;
+        case SYSTEM_LIZARD:   PMob->addModifier(Mod::VERMIN_KILLER,   5); break;
+        case SYSTEM_LUMINION: PMob->addModifier(Mod::LUMORIAN_KILLER, 5); break;
+        case SYSTEM_LUMORIAN: PMob->addModifier(Mod::LUMINION_KILLER, 5); break;
+        case SYSTEM_PLANTOID: PMob->addModifier(Mod::BEAST_KILLER,    5); break;
+        case SYSTEM_UNDEAD:   PMob->addModifier(Mod::ARCANA_KILLER,   5); break;
+        case SYSTEM_VERMIN:   PMob->addModifier(Mod::PLANTOID_KILLER, 5); break;
+        default: break;
       }
 
     if (PMob->m_maxLevel == 0 && PMob->m_minLevel == 0)
@@ -988,7 +985,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
             ShowError("Mob %s level is 0! zoneid %d, poolid %d\n", PMob->GetName(), PMob->getZone(), PMob->m_Pool);
         }
     }
-
 }
 
 /*
@@ -997,389 +993,350 @@ a mobs regen rate, magic defense, triple attack rate from a table instead of har
 
 Usage:
 
-	Evil weapons have a magic defense boost. So pop that into mob_family_mods table.
-	Goblin Diggers have a vermin killer trait, so find its poolid and put it in mod_pool_mods table.
+    Evil weapons have a magic defense boost. So pop that into mob_family_mods table.
+    Goblin Diggers have a vermin killer trait, so find its poolid and put it in mod_pool_mods table.
 
 */
 void LoadCustomMods()
 {
 
-	// load family mods
-	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
+    // load family mods
+    const char QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
     int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			ModsList_t* familyMods = GetMobFamilyMods(Sql_GetUIntData(SqlHandle,0), true);
+    if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            ModsList_t* familyMods = GetMobFamilyMods(Sql_GetUIntData(SqlHandle,0), true);
 
-			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
-			mod->setModAmount(Sql_GetIntData(SqlHandle,2));
+            CModifier* mod = new CModifier(static_cast<Mod>(Sql_GetUIntData(SqlHandle,1)));
+            mod->setModAmount(Sql_GetIntData(SqlHandle,2));
 
-			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
-			if(isMobMod == 1)
-			{
-				familyMods->mobMods.push_back(mod);
-			}
-			else
-			{
-				familyMods->mods.push_back(mod);
-			}
-		}
-	}
+            int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+            if(isMobMod == 1)
+            {
+                familyMods->mobMods.push_back(mod);
+            }
+            else
+            {
+                familyMods->mods.push_back(mod);
+            }
+        }
+    }
 
-	// load pool mods
-	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
+    // load pool mods
+    const char QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
 
     ret = Sql_Query(SqlHandle, QueryPoolMods);
 
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			uint16 pool = Sql_GetUIntData(SqlHandle,0);
-			ModsList_t* poolMods = GetMobPoolMods(pool, true);
+    if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            uint16 pool = Sql_GetUIntData(SqlHandle,0);
+            ModsList_t* poolMods = GetMobPoolMods(pool, true);
 
-			uint16 id = Sql_GetUIntData(SqlHandle,1);
+            Mod id = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
 
 
-			CModifier* mod = new CModifier(id);
-			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
+            CModifier* mod = new CModifier(id);
+            mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
-			if(isMobMod == 1)
-			{
-				poolMods->mobMods.push_back(mod);
-			}
-			else
-			{
-				poolMods->mods.push_back(mod);
-			}
-		}
-	}
+            int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+            if(isMobMod == 1)
+            {
+                poolMods->mobMods.push_back(mod);
+            }
+            else
+            {
+                poolMods->mods.push_back(mod);
+            }
+        }
+    }
 
-	// load spawn mods
-	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
+    // load spawn mods
+    const char QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
 
     ret = Sql_Query(SqlHandle, QuerySpawnMods);
 
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			ModsList_t* spawnMods = GetMobSpawnMods(Sql_GetUIntData(SqlHandle,0), true);
+    if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            ModsList_t* spawnMods = GetMobSpawnMods(Sql_GetUIntData(SqlHandle,0), true);
 
-			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
-			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
+            CModifier* mod = new CModifier(static_cast<Mod>(Sql_GetUIntData(SqlHandle,1)));
+            mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
-			if(isMobMod == 1)
-			{
-				spawnMods->mobMods.push_back(mod);
-			}
-			else
-			{
-				spawnMods->mods.push_back(mod);
-			}
-		}
-	}
+            int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+            if(isMobMod == 1)
+            {
+                spawnMods->mobMods.push_back(mod);
+            }
+            else
+            {
+                spawnMods->mods.push_back(mod);
+            }
+        }
+    }
 }
 
 ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
 {
-	if(mobFamilyModsList[familyId])
-	{
-		return mobFamilyModsList[familyId];
-	}
+    if(mobFamilyModsList[familyId])
+    {
+        return mobFamilyModsList[familyId];
+    }
 
-	if(create)
-	{
-		// create new one
-		ModsList_t* mods = new ModsList_t;
-		mods->id = familyId;
+    if(create)
+    {
+        // create new one
+        ModsList_t* mods = new ModsList_t;
+        mods->id = familyId;
 
-		mobFamilyModsList[familyId] = mods;
+        mobFamilyModsList[familyId] = mods;
 
-		return mods;
-	}
+        return mods;
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
 ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 {
-	if(mobPoolModsList[poolId])
-	{
-		return mobPoolModsList[poolId];
-	}
+    if(mobPoolModsList[poolId])
+    {
+        return mobPoolModsList[poolId];
+    }
 
-	if(create)
-	{
-		// create new one
-		ModsList_t* mods = new ModsList_t;
-		mods->id = poolId;
+    if(create)
+    {
+        // create new one
+        ModsList_t* mods = new ModsList_t;
+        mods->id = poolId;
 
-		mobPoolModsList[poolId] = mods;
+        mobPoolModsList[poolId] = mods;
 
-		return mods;
-	}
+        return mods;
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
 ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
 {
-	if(mobSpawnModsList[mobId])
-	{
-		return mobSpawnModsList[mobId];
-	}
+    if(mobSpawnModsList[mobId])
+    {
+        return mobSpawnModsList[mobId];
+    }
 
-	if(create)
-	{
-		// create new one
-		ModsList_t* mods = new ModsList_t;
-		mods->id = mobId;
+    if(create)
+    {
+        // create new one
+        ModsList_t* mods = new ModsList_t;
+        mods->id = mobId;
 
-		mobSpawnModsList[mobId] = mods;
+        mobSpawnModsList[mobId] = mods;
 
-		return mods;
-	}
+        return mods;
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
 void AddCustomMods(CMobEntity* PMob)
 {
 
-	// find my families custom mods
-	ModsList_t* PFamilyMods = GetMobFamilyMods(PMob->m_Family);
+    // find my families custom mods
+    ModsList_t* PFamilyMods = GetMobFamilyMods(PMob->m_Family);
 
-	if(PFamilyMods != nullptr)
-	{
-		// add them
-		for(std::vector<CModifier*>::iterator it = PFamilyMods->mods.begin(); it != PFamilyMods->mods.end() ; ++it)
-		{
-			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
-		}
-
-		for(std::vector<CModifier*>::iterator it = PFamilyMods->mobMods.begin(); it != PFamilyMods->mobMods.end() ; ++it)
-		{
-			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
-		}
-	}
-
-	// find my pools custom mods
-	ModsList_t* PPoolMods = GetMobPoolMods(PMob->m_Pool);
-
-	if(PPoolMods != nullptr)
-	{
-		// add them
-		for(std::vector<CModifier*>::iterator it = PPoolMods->mods.begin(); it != PPoolMods->mods.end() ; ++it)
-		{
-			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
-		}
-
-		for(std::vector<CModifier*>::iterator it = PPoolMods->mobMods.begin(); it != PPoolMods->mobMods.end() ; ++it)
-		{
-			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
-		}
-	}
-
-	// find my pools custom mods
-	ModsList_t* PSpawnMods = GetMobSpawnMods(PMob->id);
-
-	if(PSpawnMods != nullptr)
-	{
-		// add them
-		for(std::vector<CModifier*>::iterator it = PSpawnMods->mods.begin(); it != PSpawnMods->mods.end() ; ++it)
-		{
-			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
-		}
-
-		for(std::vector<CModifier*>::iterator it = PSpawnMods->mobMods.begin(); it != PSpawnMods->mobMods.end() ; ++it)
-		{
-			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
-		}
-	}
-}
-
-void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
-{
-    //set job based on characters job
-    PMob->SetMJob(job);
-
-    // give him a spell list based on job
-    uint16 spellList = 0;
-
-    switch(job){
-        case JOB_WHM:
-            spellList = 1;
-            break;
-        case JOB_BLM:
-            spellList = 2;
-            break;
-        case JOB_RDM:
-            spellList = 3;
-            break;
-        case JOB_PLD:
-            spellList = 4;
-            break;
-        case JOB_DRK:
-            spellList = 5;
-            break;
-        case JOB_BRD:
-            spellList = 6;
-            break;
-        case JOB_NIN:
-            spellList = 7;
-            break;
-        case JOB_BLU:
-            spellList = 8;
-            break;
-        case JOB_SMN:
-            spellList = 141;
-            break;
+    if(PFamilyMods != nullptr)
+    {
+        // add them
+        for(std::vector<CModifier*>::iterator it = PFamilyMods->mods.begin(); it != PFamilyMods->mods.end() ; ++it)
+        {
+            PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+        }
+        //TODO: don't store mobmods in a CModifier
+        for(std::vector<CModifier*>::iterator it = PFamilyMods->mobMods.begin(); it != PFamilyMods->mobMods.end() ; ++it)
+        {
+            PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
+        }
     }
 
-    PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
+    // find my pools custom mods
+    ModsList_t* PPoolMods = GetMobPoolMods(PMob->m_Pool);
 
-    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
+    if(PPoolMods != nullptr)
+    {
+        // add them
+        for(std::vector<CModifier*>::iterator it = PPoolMods->mods.begin(); it != PPoolMods->mods.end() ; ++it)
+        {
+            PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+        }
+
+        for(std::vector<CModifier*>::iterator it = PPoolMods->mobMods.begin(); it != PPoolMods->mobMods.end() ; ++it)
+        {
+            PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
+        }
+    }
+
+    // find my pools custom mods
+    ModsList_t* PSpawnMods = GetMobSpawnMods(PMob->id);
+
+    if(PSpawnMods != nullptr)
+    {
+        // add them
+        for(std::vector<CModifier*>::iterator it = PSpawnMods->mods.begin(); it != PSpawnMods->mods.end() ; ++it)
+        {
+            PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+        }
+
+        for(std::vector<CModifier*>::iterator it = PSpawnMods->mobMods.begin(); it != PSpawnMods->mobMods.end() ; ++it)
+        {
+            PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
+        }
+    }
 }
 
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 {
-	const int8* Query =
-		"SELECT zoneid, name, \
-		respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
-		modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
-		systemid, mobsize, speed, \
-		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
-		Slash, Pierce, H2H, Impact, \
-		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, flags, animationsub, \
-		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_pools.skill_list_id \
-		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
-		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
-		WHERE mob_groups.groupid = %u";
+    const char* Query =
+        "SELECT zoneid, name, \
+        respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
+        modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
+        systemid, mobsize, speed, \
+        STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
+        Slash, Pierce, H2H, Impact, \
+        Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
+        mob_pools.familyid, name_prefix, entityFlags, animationsub, \
+        (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
+        allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, mob_family_system.detects, packet_name \
+        FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
+        INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
+        WHERE mob_groups.groupid = %u";
 
-	int32 ret = Sql_Query(SqlHandle, Query, groupid);
+    int32 ret = Sql_Query(SqlHandle, Query, groupid);
 
-	CMobEntity* PMob = nullptr;
+    CMobEntity* PMob = nullptr;
 
-	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			PMob = new CMobEntity;
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            PMob = new CMobEntity;
             PMob->PInstance = instance;
 
-			PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
+            PMob->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
+            PMob->packetName.insert(0, (const char*)Sql_GetData(SqlHandle, 61));
 
-			PMob->m_RespawnTime = Sql_GetUIntData(SqlHandle, 2) * 1000;
-			PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlHandle, 3);
-			PMob->m_DropID = Sql_GetUIntData(SqlHandle, 4);
+            PMob->m_RespawnTime = Sql_GetUIntData(SqlHandle, 2) * 1000;
+            PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlHandle, 3);
+            PMob->m_DropID = Sql_GetUIntData(SqlHandle, 4);
 
-			PMob->HPmodifier = (uint32)Sql_GetIntData(SqlHandle, 5);
-			PMob->MPmodifier = (uint32)Sql_GetIntData(SqlHandle, 6);
+            PMob->HPmodifier = (uint32)Sql_GetIntData(SqlHandle, 5);
+            PMob->MPmodifier = (uint32)Sql_GetIntData(SqlHandle, 6);
 
-			PMob->m_minLevel = (uint8)Sql_GetIntData(SqlHandle, 7);
-			PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlHandle, 8);
+            PMob->m_minLevel = (uint8)Sql_GetIntData(SqlHandle, 7);
+            PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlHandle, 8);
 
-			memcpy(&PMob->look, Sql_GetData(SqlHandle, 9), 23);
+            memcpy(&PMob->look, Sql_GetData(SqlHandle, 9), 23);
 
-			PMob->SetMJob(Sql_GetIntData(SqlHandle, 10));
-			PMob->SetSJob(Sql_GetIntData(SqlHandle, 11));
+            PMob->SetMJob(Sql_GetIntData(SqlHandle, 10));
+            PMob->SetSJob(Sql_GetIntData(SqlHandle, 11));
 
-			PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
-			PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle, 12));
-			PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 13);
-			PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
-			PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setSkillType(Sql_GetIntData(SqlHandle, 12));
+            PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 13);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
 
-			PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 15);
-			PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 16);
-			PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 17);
-			PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 18);
-			PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 19);
-			PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle, 10);
+            PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 15);
+            PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 16);
+            PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 17);
+            PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 18);
+            PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 19);
+            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 20);
 
-			PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 21);
-			PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 21);
+            PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 21);
+            PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 21);
 
-			/*if(PMob->speed != 0)
-			{
-			PMob->speed += map_config.speed_mod;
-			// whats this for?
-			PMob->speedsub += map_config.speed_mod;
-			}*/
+            /*if(PMob->speed != 0)
+            {
+            PMob->speed += map_config.speed_mod;
+            // whats this for?
+            PMob->speedsub += map_config.speed_mod;
+            }*/
 
-			PMob->strRank = (uint8)Sql_GetIntData(SqlHandle, 22);
-			PMob->dexRank = (uint8)Sql_GetIntData(SqlHandle, 23);
-			PMob->vitRank = (uint8)Sql_GetIntData(SqlHandle, 24);
-			PMob->agiRank = (uint8)Sql_GetIntData(SqlHandle, 25);
-			PMob->intRank = (uint8)Sql_GetIntData(SqlHandle, 26);
-			PMob->mndRank = (uint8)Sql_GetIntData(SqlHandle, 27);
-			PMob->chrRank = (uint8)Sql_GetIntData(SqlHandle, 28);
-			PMob->evaRank = (uint8)Sql_GetIntData(SqlHandle, 29);
-			PMob->defRank = (uint8)Sql_GetIntData(SqlHandle, 30);
-			PMob->attRank = (uint8)Sql_GetIntData(SqlHandle, 52);
-			PMob->accRank = (uint8)Sql_GetIntData(SqlHandle, 53);
+            PMob->strRank = (uint8)Sql_GetIntData(SqlHandle, 22);
+            PMob->dexRank = (uint8)Sql_GetIntData(SqlHandle, 23);
+            PMob->vitRank = (uint8)Sql_GetIntData(SqlHandle, 24);
+            PMob->agiRank = (uint8)Sql_GetIntData(SqlHandle, 25);
+            PMob->intRank = (uint8)Sql_GetIntData(SqlHandle, 26);
+            PMob->mndRank = (uint8)Sql_GetIntData(SqlHandle, 27);
+            PMob->chrRank = (uint8)Sql_GetIntData(SqlHandle, 28);
+            PMob->evaRank = (uint8)Sql_GetIntData(SqlHandle, 29);
+            PMob->defRank = (uint8)Sql_GetIntData(SqlHandle, 30);
+            PMob->attRank = (uint8)Sql_GetIntData(SqlHandle, 52);
+            PMob->accRank = (uint8)Sql_GetIntData(SqlHandle, 53);
 
-			PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle, 31) * 1000));
-			PMob->setModifier(MOD_PIERCERES, (uint16)(Sql_GetFloatData(SqlHandle, 32) * 1000));
-			PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 33) * 1000));
-			PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 34) * 1000));
+            PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle, 31) * 1000));
+            PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlHandle, 32) * 1000));
+            PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 33) * 1000));
+            PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 34) * 1000));
 
-			PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100)); // These are stored as floating percentages
-			PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100)); // and need to be adjusted into modifier units.
-			PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100)); // Higher RES = lower damage.
-			PMob->setModifier(MOD_EARTHRES, (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // Negatives signify lower resist chance.
-			PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // Positives signify increased resist chance.
-			PMob->setModifier(MOD_WATERRES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100));
-			PMob->setModifier(MOD_LIGHTRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100));
-			PMob->setModifier(MOD_DARKRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100));
+            PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100)); // These are stored as floating percentages
+            PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100)); // and need to be adjusted into modifier units.
+            PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100)); // Higher RES = lower damage.
+            PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // Negatives signify lower resist chance.
+            PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // Positives signify increased resist chance.
+            PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100));
+            PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100));
+            PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100));
 
-			PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 43);
-			PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 44);
-			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 45);
-			PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 46);
+            PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 43);
+            PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 44);
+            PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 45);
+            PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 46);
 
-			//Special sub animation for Mob (yovra, jailer of love, phuabo)
-			// yovra 1: en hauteur, 2: en bas, 3: en haut
-			// phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
-			PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 47);
+            //Special sub animation for Mob (yovra, jailer of love, phuabo)
+            // yovra 1: en hauteur, 2: en bas, 3: en haut
+            // phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
+            PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 47);
 
-			// Setup HP / MP Stat Percentage Boost
-			PMob->HPscale = Sql_GetFloatData(SqlHandle, 48);
-			PMob->MPscale = Sql_GetFloatData(SqlHandle, 49);
+            // Setup HP / MP Stat Percentage Boost
+            PMob->HPscale = Sql_GetFloatData(SqlHandle, 48);
+            PMob->MPscale = Sql_GetFloatData(SqlHandle, 49);
 
-			// Check if we should be looking up scripts for this mob
-			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 50);
+            // Check if we should be looking up scripts for this mob
+            PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 50);
 
-			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle, 51));
+            PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle, 51));
 
-			PMob->m_Pool = Sql_GetUIntData(SqlHandle, 54);
+            PMob->m_Pool = Sql_GetUIntData(SqlHandle, 54);
 
-			PMob->allegiance = Sql_GetUIntData(SqlHandle, 55);
-			PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
-			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
-			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 58);
+            PMob->allegiance = Sql_GetUIntData(SqlHandle, 55);
+            PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
+            PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
+            PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 58);
+            PMob->m_TrueDetection = Sql_GetUIntData(SqlHandle, 59);
+            PMob->m_Detects = Sql_GetUIntData(SqlHandle, 60);
 
-			// must be here first to define mobmods
-			mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));
+            // must be here first to define mobmods
+            mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));
 
-			zoneutils::GetZone(zoneID)->InsertPET(PMob);
+            zoneutils::GetZone(zoneID)->InsertPET(PMob);
 
-			luautils::OnMobInitialize(PMob);
+            luautils::OnMobInitialize(PMob);
+            luautils::ApplyMixins(PMob);
 
-			PMob->saveModifiers();
-			PMob->saveMobModifiers();
-		}
-	}
-	return PMob;
+            PMob->saveModifiers();
+            PMob->saveMobModifiers();
+        }
+    }
+    return PMob;
 }
 
 void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)

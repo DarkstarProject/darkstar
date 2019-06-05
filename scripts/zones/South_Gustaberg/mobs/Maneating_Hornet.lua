@@ -2,13 +2,9 @@
 -- Area: South Gustaberg
 --  MOB: Maneating Hornet
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,76,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 76, 1, dsp.regime.type.FIELDS)
+end

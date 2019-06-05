@@ -1,28 +1,19 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+-- ID: 4159
+-- Item: Paralyze Potion
+-- Item Effect: This potion induces paralyze.
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,20,0,180);
+    if (not target:hasStatusEffect(dsp.effect.PARALYSIS)) then
+        target:addStatusEffect(dsp.effect.PARALYSIS,20,0,180)
     else
-        target:messageBasic(423);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
-
+end

@@ -3,44 +3,16 @@
 --  MOB: Shadows
 -- Mission 9-2 BCNM Fight
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
+function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDespawn(mob)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    printf("updateCSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("updateCSID: %u",csid);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    printf("finishCSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("finishCSID: %u",csid);
 end;

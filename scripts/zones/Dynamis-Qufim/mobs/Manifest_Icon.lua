@@ -1,37 +1,18 @@
 -----------------------------------
 -- Area: Dynamis-Qufim
--- NPC:  Manifest_Icon
------------------------------------
-package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
+--  NPC: Manifest_Icon
 -----------------------------------
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Qufim/TextIDs");
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     dynamis.spawnGroup(mob, QufimYagudoList);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    
+function onMobDeath(mob, player, isKiller)
     --local mobID = mob:getID();
-    
-
-
-    
-    
 end;

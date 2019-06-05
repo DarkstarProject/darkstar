@@ -1,41 +1,20 @@
 -----------------------------------
 -- Area: Meriphataud_Mountains
--- NPC:  Beastmen_s_Banner
--- @pos 592.850 -16.765 -518.802 119
+--  NPC: Beastmen_s_Banner
+-- !pos 592.850 -16.765 -518.802 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Meriphataud_Mountains/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end; 
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.BEASTMEN_BANNER)
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(BEASTMEN_BANNER);
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

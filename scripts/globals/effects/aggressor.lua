@@ -1,34 +1,22 @@
 -----------------------------------
 --
---     EFFECT_AGGRESSOR
---     
+-- dsp.effect.AGGRESSOR
+--
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_RACC, effect:getPower());
-   target:addMod(MOD_ACC,25);
-   target:addMod(MOD_EVA,-25);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.RACC, effect:getPower())
+    target:addMod(dsp.mod.ACC,25)
+    target:addMod(dsp.mod.EVA,-25)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_RACC, effect:getPower());
-   target:delMod(MOD_ACC,25);
-   target:delMod(MOD_EVA,-25);
-end;
+    target:delMod(dsp.mod.RACC, effect:getPower())
+    target:delMod(dsp.mod.ACC,25)
+    target:delMod(dsp.mod.EVA,-25)
+end

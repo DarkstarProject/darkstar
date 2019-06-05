@@ -5,34 +5,31 @@
 -- Recast Time: 10 seconds
 -- Duration: N/A
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0
     else
         if (target:getID() == player:getPet():getID() or (target:getMaster() ~= nil and target:getMaster():isPC())) then
-            return MSGBASIC_CANNOT_ATTACK_TARGET,0;
+            return dsp.msg.basic.CANNOT_ATTACK_TARGET,0
         else
-            return 0,0;
+            return 0,0
         end
     end
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+end
 
 function onUseAbility(player,target,ability)
-    local pet = player:getPet();
+    local pet = player:getPet()
 
     if (player:checkDistance(pet) <= 25) then
-        player:petAttack(target);
+        if (pet:hasStatusEffect(dsp.effect.HEALING)) then
+            pet:delStatusEffect(dsp.effect.HEALING)
+        end
+
+        player:petAttack(target)
     end
-end;
+end

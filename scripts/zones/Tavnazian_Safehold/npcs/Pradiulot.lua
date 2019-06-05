@@ -1,82 +1,39 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Pradiulot
+--  NPC: Pradiulot
 -- Involved in Quest: Unforgiven
--- @zone 26
--- @pos -20.814 -22 8.399
+-- !pos -20.814 -22 8.399 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
-require("scripts/globals/quests");
------------------------------------
--- For those who don't know
--- at the end of if (player:getQuestStatus(REGION,QUEST_NAME)
--- == 0 means QUEST_AVAILABLE
--- == 1 means QUEST_ACCEPTED
--- == 2 means QUEST_COMPLETED 
--- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0 
--- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and trade:getGil() == 1 == true) then
-        player:startEvent(0x00CE); -- Dialogue after completing quest (optional)
-        end
-    
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local unforgiven = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNFORGIVEN)
 
-local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
-
-if (Unforgiven == 1 and player:getVar("UnforgivenVar") == 1) then
-    player:startEvent(0x00CC); -- Dialogue for final stage of Unforgiven Quest
-
-elseif (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and player:getVar("UnforgivenVar") == 2) then
-    player:startEvent(0x00CE); -- Dialogue after completing quest (optional)
-
-else    
-    player:startEvent(0x0173); -- Default Dialogue
+    if unforgiven == QUEST_ACCEPTED and player:getVar("UnforgivenVar") == 1 then
+        player:startEvent(204) -- Dialogue for final stage of Unforgiven Quest
+    elseif unforgiven == QUEST_COMPLETED and player:getVar("UnforgivenVar") == 2 then
+        player:startEvent(206) -- Dialogue after completing quest (optional)
+    else
+        player:startEvent(371) -- Default Dialogue
+    end
 end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-if (csid == 0x00CC) then
-    player:setVar("UnforgivenVar",2);
-    player:addKeyItem(440)
-    player:messageSpecial(KEYITEM_OBTAINED,440); -- Map of Tavnazia
-    player:completeQuest(OTHER_AREAS,UNFORGIVEN);
-    player:addFame(OTHER_AREAS,30);
-    
-elseif (csid == 0x00CE) then
-    player:setVar("UnforgivenVar",0);
-    
+    if csid == 204 then
+        player:setVar("UnforgivenVar", 2)
+        player:addKeyItem(dsp.ki.MAP_OF_TAVNAZIA)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MAP_OF_TAVNAZIA) -- Map of Tavnazia
+        player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNFORGIVEN)
+    elseif csid == 206 then
+        player:setVar("UnforgivenVar", 0)
     end
-end;
-
-
-
+end

@@ -1,42 +1,21 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
+-----------------------------------
+require("scripts/globals/regimes")
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrade Action
------------------------------------
+function onTrigger(player, npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
-function onTrade(player,npc,trade)
-end;
+function onEventUpdate(player, csid, option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    startGov(GOV_EVENT_KORROLOKA_TUNNEL,player);
-end;
-
------------------------------------
--- onEventSelection
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    updateGov(player,csid,option,727,728,729,730,731,732,733,734,0,0);
-end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    finishGov(player,csid,option,727,728,729,730,731,732,733,734,0,0,GOV_MSG_KORROLOKA_TUNNEL);
-end;
+function onEventFinish(player, csid, option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

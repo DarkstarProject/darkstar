@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Bubbly Bernie
+--   NM: Bubbly Bernie
+-----------------------------------
+require("scripts/globals/regimes")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,80,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 80, 2, dsp.regime.type.FIELDS)
+end

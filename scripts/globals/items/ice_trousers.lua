@@ -4,20 +4,13 @@
 -- Item Effect: Ice Spikes
 -----------------------------------------
 
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/settings")
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_ICE_SPIKES, 7, 0, 180);
-end;
+    target:addStatusEffect(dsp.effect.ICE_SPIKES, 7, 0, 180)
+end

@@ -3,28 +3,17 @@
 -- Item: wing gorget
 -- Item Effect: gives regain
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-
-    if (target:hasStatusEffect(EFFECT_REGAIN)) then
-        target:messageBasic(423);
+    if (target:hasStatusEffect(dsp.effect.REGAIN)) then
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     else
-        -- delete old
-        target:delStatusEffect(EFFECT_REGAIN);
-        target:addStatusEffect(EFFECT_REGAIN, 5, 3, 30);
+        target:addStatusEffect(dsp.effect.REGAIN, 5, 3, 30)
     end
-end;
+end

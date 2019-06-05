@@ -1,42 +1,18 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Ulla
--- @zone 80
--- @pos -65 2 -50
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
-
-
------------------------------------
--- onTrade Action
+--  NPC: Ulla
+-- !pos -65 2 -50 80
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-player:startEvent(0x01FC);
+    player:startEvent(508);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

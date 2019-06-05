@@ -30,11 +30,11 @@
 
 #include "../lua/luautils.h"
 
-#include "../packets/caught_fish.h"
 #include "../packets/char_update.h"
 #include "../packets/char_sync.h"
 #include "../packets/fishing.h"
 #include "../packets/inventory_finish.h"
+#include "../packets/message_name.h"
 #include "../packets/message_text.h"
 #include "../packets/release.h"
 #include "../packets/message_system.h"
@@ -172,7 +172,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	if (FishingChance <= 20)
 	{
-		const int8* Query = 
+		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
                 "fish.max,"         // 1
@@ -192,8 +192,16 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
+            // array to store fish ids that i can get
+            std::vector<int32> fishIDs((int32)Sql_NumRows(SqlHandle));
+            int32 fishCounter = 0;
+            bool caughtQuestedFish = false;
+            
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
+                // store fish id
+                fishIDs[fishCounter] = Sql_GetIntData(SqlHandle, 0);
+                
                 // ловля предметов, необходимых для поисков
 
                 uint8 logid = (uint8)Sql_GetIntData(SqlHandle,5);
@@ -210,16 +218,29 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 					    PChar->UContainer->SetType(UCONTAINER_FISHING);
 					    PChar->UContainer->SetItem(0, PFish);
+                        
+                        // got my quested fish
+                        caughtQuestedFish = true;
 					    break;
                     }
 	            }
+                fishCounter++;
                 // TODO: ловля простых предметов
+            }
+            
+            if (!caughtQuestedFish)
+            {
+                int32 luckyFish = dsprand::GetRandomNumber((int32)Sql_NumRows(SqlHandle));
+                PFish = new CItemFish(*itemutils::GetItemPointer(fishIDs[luckyFish]));
+
+                PChar->UContainer->SetType(UCONTAINER_FISHING);
+                PChar->UContainer->SetItem(0, PFish);
             }
 		}						
 	}
 	else
 	{
-		const int8* Query = 
+		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
                 "fish.min,"         // 1
@@ -283,7 +304,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 	}
 	if (PLure->getQuantity() == 1)
 	{
-		charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO], LOC_INVENTORY);
+		charutils::EquipItem(PChar, 0, SLOT_AMMO, LOC_INVENTORY);
 	}
 
 	charutils::UpdateItem(PChar, PLure->getLocationID(), PLure->getSlotID(), -1);
@@ -337,7 +358,7 @@ void RodBreaks(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
+void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32 special)
 {
 	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 
@@ -349,10 +370,10 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 			{
 				// сообщение: "Something caught the hook!"
 			
-				PChar->animation = ANIMATION_FISHING_FISH;
-                PChar->updatemask |= UPDATE_HP;
+				//PChar->animation = ANIMATION_FISHING_FISH;
+                //PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x08));
-				PChar->pushPacket(new CFishingPacket());
+                PChar->pushPacket(new CFishingPacket(10128, 128, 20, 500, 13, 140, 60, 0, 0));
 			}
 			else
 			{
@@ -381,7 +402,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
                 // TODO: анализируем RodFlag
 
 				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageNamePacket(PChar, MessageOffset + 0x27, PChar, PFish->getID()));
 
 				if (PFish->isType(ITEM_USABLE))
 				{

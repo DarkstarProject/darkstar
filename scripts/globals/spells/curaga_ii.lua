@@ -2,50 +2,52 @@
 -- Spell: Curaga II
 -- Restores HP of all party members within area of effect.
 -----------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local minCure = 130;
+    local minCure = 130
 
-    local divisor = 1;
-    local constant = 70;
-    local power = getCurePowerOld(caster);
+    local divisor = 1
+    local constant = 70
+    local power = getCurePowerOld(caster)
     if (power > 300) then
-        divisor = 15.6666;
-        constant = 180.43;
+        divisor = 15.6666
+        constant = 180.43
     elseif (power > 180) then
-        divisor =  2;
-        constant = 115;
+        divisor =  2
+        constant = 115
     end
 
-    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,false);
+    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,false)
 
-    final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
-    
+    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
+
     --Applying server mods....
-    final = final * CURE_POWER;
-    
-    local diff = (target:getMaxHP() - target:getHP());
-    if (final > diff) then
-        final = diff;
-    end
-    target:addHP(final);
+    final = final * CURE_POWER
 
-    target:wakeUp();
-    caster:updateEnmityFromCure(target,final);
-    
-    spell:setMsg(367);    
-    
-    return final;
-end;
+    local diff = (target:getMaxHP() - target:getHP())
+    if (final > diff) then
+        final = diff
+    end
+    target:addHP(final)
+
+    target:wakeUp()
+    caster:updateEnmityFromCure(target,final)
+
+    spell:setMsg(dsp.msg.basic.AOE_HP_RECOVERY)
+
+    local mpBonusPercent = (final*caster:getMod(dsp.mod.CURE2MP_PERCENT))/100
+    if (mpBonusPercent > 0) then
+        caster:addMP(mpBonusPercent)
+    end
+
+    return final
+end

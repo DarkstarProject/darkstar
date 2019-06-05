@@ -1,24 +1,14 @@
 -----------------------------------
 -- Area: Davoi
 --  MOB: Davoi Mush
+-- Note: PH for Blubbery Bulge
 -----------------------------------
+local ID = require("scripts/zones/Davoi/IDs");
+require("scripts/globals/mobs");
 
-require("scripts/globals/settings");
+function onMobDeath(mob, player, isKiller)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    local mobID = mob:getID();
-    -- Wiki doesn't mention any sort of cooldown, so assuming pure lotto for now.
-    if (mobID == 17387919) then -- Making sure is the correct mush.
-        if (math.random(0,99) > 15) then -- Guesstimated 15% chance of pop.
-            local BlubberyBulge = 17387920;
-            DeterMob(BlubberyBulge, false);
-            GetMobByID(BlubberyBulge):setRespawnTime(GetMobRespawnTime(mobID));
-            SetServerVariable("[PH]Blubbery_Bulge", mobID);
-            DeterMob(mobID, true);
-        end
-    end
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.BLUBBERY_BULGE_PH,20,3600); -- 1 hour
 end;

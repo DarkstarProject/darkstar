@@ -44,7 +44,7 @@ CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
 
     memset(m_PData, 0, sizeof(m_PData));
 
-    WBUFB(m_PData, (0x0B)) = 0x95;                       // packet type
+    ref<uint8>(m_PData, (0x0B)) = 0x95;                       // packet type
 }
 
 /************************************************************************
@@ -55,9 +55,9 @@ CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
 
 void CAHItemsListPacket::AddItem(ahItem* item)
 {
-    WBUFW(m_PData, (0x18 + 0x0A * m_count) + 0) = item->ItemID;
-    WBUFL(m_PData, (0x18 + 0x0A * m_count) + 2) = item->SinglAmount;
-    WBUFL(m_PData, (0x18 + 0x0A * m_count) + 6) = item->StackAmount;
+    ref<uint16>(m_PData, (0x18 + 0x0A * m_count) + 0) = item->ItemID;
+    ref<uint32>(m_PData, (0x18 + 0x0A * m_count) + 2) = item->SinglAmount;
+    ref<uint32>(m_PData, (0x18 + 0x0A * m_count) + 6) = item->StackAmount;
 
     m_count++;
     delete item;
@@ -71,23 +71,23 @@ void CAHItemsListPacket::AddItem(ahItem* item)
 
 void CAHItemsListPacket::SetItemCount(uint16 count)
 {
-    WBUFW(m_PData, (0x0E)) = count;
+    ref<uint16>(m_PData, (0x0E)) = count;
 
     if ((count - m_offset) <= 20)
     {
-        WBUFB(m_PData, (0x0A)) = 0x80;
-        WBUFW(m_PData, (0x08)) = 0x18 + 0x0A * (count - m_offset);
+        ref<uint8>(m_PData, (0x0A)) = 0x80;
+        ref<uint16>(m_PData, (0x08)) = 0x18 + 0x0A * (count - m_offset);
     }
     else
     {
-        WBUFW(m_PData, (0x08)) = 0x18 + 0x0A * 20;
+        ref<uint16>(m_PData, (0x08)) = 0x18 + 0x0A * 20;
     }
 }
 
 /************************************************************************
-*																		*
+*                                                                       *
 *  Возвращаем собранный пакет                                           *
-*																		*
+*                                                                       *
 ************************************************************************/
 
 uint8* CAHItemsListPacket::GetData()
@@ -96,9 +96,9 @@ uint8* CAHItemsListPacket::GetData()
 }
 
 /************************************************************************
-*																		*
+*                                                                       *
 *  Возвращаем размер отправляемого пакета                               *
-*																		*
+*                                                                       *
 ************************************************************************/
 
 uint16 CAHItemsListPacket::GetSize()

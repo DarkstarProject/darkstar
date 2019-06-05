@@ -1,28 +1,19 @@
 -----------------------------------------
 -- ID: 5742
 -- Item: Bottle of Buffalo Bonanza Milk
--- Item Effect: Restores 120 HP over 60 seconds. 
+-- Item Effect: Restores 120 HP over 60 seconds.
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_REGEN) == false) then
-        target:addStatusEffect(EFFECT_REGEN,2,1,60);
+    if (not target:hasStatusEffect(dsp.effect.REGEN)) then
+        target:addStatusEffect(dsp.effect.REGEN,2,1,60)
     else
-        target:messageBasic(423);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
-
+end

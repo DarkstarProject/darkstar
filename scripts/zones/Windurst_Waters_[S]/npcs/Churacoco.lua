@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Churacoco
---  Type: Standard NPC
--- @zone: 94
---  @pos -76.139 -4.499 20.986
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Waters (S)
+--  NPC: Churacoco
+-- Type: Standard NPC
+-- !pos -76.139 -4.499 20.986 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x01b2);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(434)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

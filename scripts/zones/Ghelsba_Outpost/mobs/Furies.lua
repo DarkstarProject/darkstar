@@ -3,29 +3,12 @@
 --  MOB: Furies
 -- BCNM20
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
+require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:setMobMod(dsp.mobMod.CHARMABLE, 1);
 end;
 
-
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-    GetMobByID(17350929):updateEnmity(target);
-    GetMobByID(17350930):updateEnmity(target);
-    GetMobByID(17350931):updateEnmity(target);
-end;
-
-
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 end;

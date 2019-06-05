@@ -1,23 +1,14 @@
 ----------------------------------
--- Area: Valkurm Dunes
+-- Area: Sea Serpent Grotto (176)
 --   NM: Charybdis
+-- !pos -152 48 -328 176
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.MULTI_HIT, 5)
+end
 
-function onMobDeath(mob,killer,ally)
-
-    -- Set Charybdis Window Open Time
-    local wait = math.random(28800,43200) -- 8-12 hours
-    SetServerVariable("[POP]Charybdis", os.time(t) + wait );
-    DeterMob(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Charybdis");
-    SetServerVariable("[PH]Charybdis", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
+function onMobDeath(mob, player, isKiller)
+end

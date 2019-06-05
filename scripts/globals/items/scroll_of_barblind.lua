@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4683
---    Scroll of Barblind
---    Teaches the white magic Barblind
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4683
+-- Scroll of Barblind
+-- Teaches the white magic Barblind
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(75);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(75)
+end
 
 function onItemUse(target)
-    target:addSpell(75);
-end;
+    target:addSpell(75)
+end

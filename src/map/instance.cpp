@@ -26,19 +26,20 @@ This file is part of DarkStar-server source code.
 #include "instance.h"
 
 #include "zone.h"
+#include "ai/ai_container.h"
 #include "entities/charentity.h"
 #include "lua/luautils.h"
 
 #include "../common/timer.h"
 
 
-CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
+CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone),
+    m_instanceid(instanceid)
 {
-    memset(&m_entryloc, 0, sizeof m_entryloc);
-
     LoadInstance();
 
     m_startTime = server_clock::now();
+    m_wipeTimer = m_startTime;
 }
 
 CInstance::~CInstance()
@@ -62,11 +63,6 @@ uint8 CInstance::GetID()
     return m_instanceid;
 }
 
-CZone* CInstance::GetZone()
-{
-    return m_zone;
-}
-
 uint32 CInstance::GetProgress()
 {
     return m_progress;
@@ -85,7 +81,7 @@ uint32 CInstance::GetStage()
 
 void CInstance::LoadInstance()
 {
-    static const int8* Query =
+    static const char* Query =
         "SELECT "
         "instance_name, "
         "time_limit, "
@@ -93,7 +89,11 @@ void CInstance::LoadInstance()
         "start_x, "
         "start_y, "
         "start_z, "
-        "start_rot "
+        "start_rot, "
+        "music_day, "
+        "music_night, "
+        "battlesolo, "
+        "battlemulti "
         "FROM instance_list "
         "WHERE instanceid = %u "
         "LIMIT 1";
@@ -102,7 +102,7 @@ void CInstance::LoadInstance()
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        m_instanceName.insert(0, Sql_GetData(SqlHandle, 0));
+        m_instanceName.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
 
         m_timeLimit = std::chrono::minutes(Sql_GetUIntData(SqlHandle, 1));
         m_entrance = Sql_GetUIntData(SqlHandle, 2);
@@ -110,6 +110,10 @@ void CInstance::LoadInstance()
         m_entryloc.y = Sql_GetFloatData(SqlHandle, 4);
         m_entryloc.z = Sql_GetFloatData(SqlHandle, 5);
         m_entryloc.rotation = Sql_GetUIntData(SqlHandle, 6);
+        m_zone_music_override.m_songDay = Sql_GetUIntData(SqlHandle, 7);
+        m_zone_music_override.m_songNight = Sql_GetUIntData(SqlHandle, 8);
+        m_zone_music_override.m_bSongS = Sql_GetUIntData(SqlHandle, 9);
+        m_zone_music_override.m_bSongM = Sql_GetUIntData(SqlHandle, 10);
     }
     else
     {
@@ -140,7 +144,7 @@ uint8 CInstance::GetLevelCap()
 
 const int8* CInstance::GetName()
 {
-    return m_instanceName.c_str();
+    return (const int8*)m_instanceName.c_str();
 }
 
 position_t CInstance::GetEntryLoc()
@@ -153,14 +157,14 @@ duration CInstance::GetTimeLimit()
     return m_timeLimit;
 }
 
-time_point CInstance::GetLastTimeUpdate()
+duration CInstance::GetLastTimeUpdate()
 {
     return m_lastTimeUpdate;
 }
 
-time_point CInstance::GetWipeTime()
+duration CInstance::GetWipeTime()
 {
-    return m_wipeTimer;
+    return m_wipeTimer - m_startTime;
 }
 
 duration CInstance::GetElapsedTime(time_point tick)
@@ -178,10 +182,10 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
     m_entryloc.x = x;
     m_entryloc.y = y;
     m_entryloc.z = z;
-    m_entryloc.rotation = rot;
+    m_entryloc.rotation = (uint8)rot;
 }
 
-void CInstance::SetLastTimeUpdate(time_point lastTime)
+void CInstance::SetLastTimeUpdate(duration lastTime)
 {
     m_lastTimeUpdate = lastTime;
 }
@@ -197,9 +201,9 @@ void CInstance::SetStage(uint32 stage)
     m_stage = stage;
 }
 
-void CInstance::SetWipeTime(time_point time)
+void CInstance::SetWipeTime(duration time)
 {
-    m_wipeTimer = time;
+    m_wipeTimer = time + m_startTime;
 }
 
 /************************************************************************
@@ -212,7 +216,7 @@ void CInstance::CheckTime(time_point tick)
 {
     if (m_lastTimeCheck + 1s <= tick && !Failed())
     {
-        luautils::OnInstanceTimeUpdate(m_zone, this, GetElapsedTime(tick).count());
+        luautils::OnInstanceTimeUpdate(GetZone(), this, (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(GetElapsedTime(tick)).count());
         m_lastTimeCheck = tick;
     }
 }
@@ -229,10 +233,26 @@ bool CInstance::CharRegistered(CCharEntity* PChar)
     return false;
 }
 
+void CInstance::ClearEntities()
+{
+    auto clearStates = [](auto& entity)
+    {
+        if (static_cast<CBattleEntity*>(entity.second)->isAlive())
+        {
+            entity.second->PAI->ClearStateStack();
+        }
+    };
+    std::for_each(m_charList.cbegin(), m_charList.cend(), clearStates);
+    std::for_each(m_mobList.cbegin(), m_mobList.cend(), clearStates);
+    std::for_each(m_petList.cbegin(), m_petList.cend(), clearStates);
+}
+
 void CInstance::Fail()
 {
     Cancel();
 
+    ClearEntities();
+    
     luautils::OnInstanceFailure(this);
 }
 
@@ -245,6 +265,8 @@ void CInstance::Complete()
 {
     m_status = INSTANCE_COMPLETE;
 
+    ClearEntities();
+
     luautils::OnInstanceComplete(this);
 }
 
@@ -256,4 +278,30 @@ bool CInstance::Completed()
 void CInstance::Cancel()
 {
     m_status = INSTANCE_FAILED;
+}
+
+bool CInstance::CheckFirstEntry(uint32 id)
+{
+    //insert returns a pair (iterator,inserted)
+    return m_enteredChars.insert(id).second;
+}
+
+uint8 CInstance::GetSoloBattleMusic()
+{
+    return m_zone_music_override.m_bSongS != (uint8)-1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
+}
+
+uint8 CInstance::GetPartyBattleMusic()
+{
+    return m_zone_music_override.m_bSongM != (uint8)-1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
+}
+
+uint8 CInstance::GetBackgroundMusicDay()
+{
+    return m_zone_music_override.m_songDay != (uint8)-1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
+}
+
+uint8 CInstance::GetBackgroundMusicNight()
+{
+    return m_zone_music_override.m_songNight != (uint8)-1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
 }

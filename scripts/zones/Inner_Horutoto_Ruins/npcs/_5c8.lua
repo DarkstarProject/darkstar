@@ -1,66 +1,49 @@
 -----------------------------------
---    Area: Inner Horutoto Ruins
---    NPC:  Sealed Portal
---  Involved in Quest: Making the Grade
---    Working 50%
---  Notes: Door will open if player has Making the Grade quest active, or if the have the KI portal charm. Door should open when 3 mages stand on circles, but no API for this yet.
---  @pos -259 -1 -20 192
+-- Area: Inner Horutoto Ruins
+--  NPC: Sealed Portal
+-- Involved in Quest: Making the Grade
+-- Door should open when Whm+Blm+Rdm stand in correct regions (see \Inner_Horutoto_Ruins\zone.lua),
+-- or if player has the KeyItem "portal charm".
+-- !pos -259 -1 -20 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
- ---- WHM BLM RDM CIRCLE LOCATIONS FOR WHEM API IS AVAILABLE TO QUERY POSITIONS IN ZONE EVERY 3 SECONDS --
- -- if ((whmzpos >= -26 and whmzpos <= -22) and (whmxpos <= -261 and whmxpos >= -265))
- -- if ((blmzpos >= -26 and blmzpos <= -22) and (blmxpos <= -254 and blmxpos >= -258))
- -- if ((rdmzpos >= -31 and rdmzpos <= -27) and (rdmxpos <= -257 and rdmxpos >= -261))
- ----------------------------------------------------------------------------------------------------------
-    
-    if (player:getZPos() >= -15) then
-        player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE);
+    if npc:getLocalVar("doorCoolDown") > os.time() then
+        return
+    elseif player:getZPos() >= -15 then
+        player:messageSpecial(ID.text.PORTAL_NOT_OPEN_THAT_SIDE)
     else
-        if (player:hasKeyItem(PORTAL_CHARM)) then
-            npc:openDoor(30);
-        elseif (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-            -- quest not scripted ?
+        if player:hasKeyItem(dsp.ki.PORTAL_CHARM) then
+        GetNPCByID(ID.npc.PORTAL_CIRCLE_BASE):openDoor(30)
+        GetNPCByID(ID.npc.PORTAL_CIRCLE_BASE+1):openDoor(30)
+        GetNPCByID(ID.npc.PORTAL_CIRCLE_BASE+2):openDoor(30)
+        npc:timer(100, function(npc)
+            GetNPCByID(ID.npc.PORTAL_CIRCLE_BASE+3):entityAnimationPacket("slrg")
+        end)
+        npc:timer(500, function(npc)
+            GetNPCByID(ID.npc.PORTAL_CIRCLE_BASE+3):openDoor(30);
+        end)
+        npc:timer(2500, function(npc)
+            npc:openDoor(30)
+            GetNPCByID(ID.npc.PORTAL_CIRCLE_BASE+3):entityAnimationPacket("klrg")
+            npc:setLocalVar("doorCoolDown", os.time()+38)
+        end)
         else
-            player:messageSpecial(PORTAL_SEALED_BY_3_MAGIC)
+            player:messageSpecial(ID.text.PORTAL_SEALED_BY_3_MAGIC)
         end
     end
-    
-    return 1;
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

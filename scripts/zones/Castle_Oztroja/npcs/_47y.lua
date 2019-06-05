@@ -1,55 +1,33 @@
 -----------------------------------
--- Area:  Castle Oztroja
--- NPC:   _47y (Torch Stand)
+-- Area: Castle Oztroja
+--  NPC: _47y (Torch Stand)
 -- Notes: Opens door _474
--- @pos -57.575 24.218 -67.651 151
+-- !pos -57.575 24.218 -67.651 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Castle_Oztroja/TextIDs");
-require("scripts/globals/settings");
-
------------------------------------
--- onTrigger Action
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrigger(player,npc)
+    local brassDoor = GetNPCByID(npc:getID() - 3)
 
-    DoorID = npc:getID() - 3;
-    local DoorA = GetNPCByID(DoorID):getAnimation();
-    local TorchStandA = npc:getAnimation();
-    Torch1 = npc:getID();    
-    Torch2 = npc:getID() + 1;    
-    
-    if (DoorA == 9 and TorchStandA == 9) then
-        player:startEvent(0x000a);    
-    end    
-    
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    if npc:getAnimation() == dsp.anim.CLOSE_DOOR and brassDoor:getAnimation() == dsp.anim.CLOSE_DOOR then
+        player:startEvent(10)
+    end
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
+    local brassDoor = GetNPCByID(ID.npc.THIRD_PASSWORD_STATUE - 2)
+    local torch1 = GetNPCByID(ID.npc.THIRD_PASSWORD_STATUE + 1)
+    local torch2 = GetNPCByID(ID.npc.THIRD_PASSWORD_STATUE + 2)
 
-    if (option == 1) then
-        GetNPCByID(Torch1):openDoor(10); -- Torch Lighting
-        GetNPCByID(Torch2):openDoor(10); -- Torch Lighting
-        GetNPCByID(DoorID):openDoor(6);         
-    end    
+    if option == 1 then
+        torch1:openDoor(10)
+        torch2:openDoor(10)
+        brassDoor:openDoor(6)
+    end
 
-end;
-
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+end

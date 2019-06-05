@@ -4,21 +4,15 @@ Darkstar Project
 ========
 
 Welcome to the DarkStar project, an emulation server for FFXI.
-Visit our forums and IRC to keep in touch with the latest developments.
+Visit our forums and Discord or IRC to keep in touch with the latest developments.
 
-**Roadmap:** https://trello.com/b/hBZnfihW
 **Forums:** https://forums.dspt.info/index.php
 
-**IRC Channel**
- * **Server:** irc.rizon.net
- * **Port:** 6667
- * **Channel:** #darkstarproject
+**Discord:**
+https://discord.gg/4dgAzfC
 
 Bug Reports
 ========
-Old reports can be found here: http://bugs.dspt.info/
-
-We are now using the issue tracker that is built into Github for all new bug reports and such.
 You can find the tracker here: https://github.com/DarkstarProject/darkstar/issues
 
 Make sure both FFXI and the server are fully updated (and servers have been rebuilt with the latest code prior to the bug) or check the commit log since your last known update to see if the bug has already been fixed before submitting a new bug report (oh and remember to search to see if your issue has already been reported).
@@ -33,9 +27,9 @@ Commits should contain a descriptive name for what you are modifying
 
 Remember to check back for any feedback, and drop a comment once requested changes have been made (if there are any).
 
-Also, rip out your tab key OR have your editor insert 4 spaces on indent/instead of tab character.
+Use 4 spaces per tab - this will be enforced in pull requests.
 
-Please *test your code* before committing changes/submitting a pull request.
+Please *test your code* before committing changes/submitting a pull request. You break it you fix it!
 
 Wiki
 ========

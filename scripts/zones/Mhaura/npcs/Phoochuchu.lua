@@ -1,62 +1,39 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Phoochuchu
+--  NPC: Phoochuchu
 -- Involved in Quest: A Thief in Norg!?
--- @pos -4 -4 69 249
+-- !pos -4 -4 69 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    
-    if (player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG) == QUEST_ACCEPTED) then
+
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.A_THIEF_IN_NORG) == QUEST_ACCEPTED) then
         local aThiefinNorgCS = player:getVar("aThiefinNorgCS");
         if (aThiefinNorgCS == 2) then
-            player:startEvent(0x012d);
+            player:startEvent(301);
         elseif (aThiefinNorgCS == 3) then
-            player:startEvent(0x012f);
+            player:startEvent(303);
         elseif (aThiefinNorgCS >= 4) then
-            player:startEvent(0x012e);
+            player:startEvent(302);
         end
     else
-        player:startEvent(0x012c);
+        player:startEvent(300);
     end
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-    
-    if (csid == 0x012d) then
+
+    if (csid == 301) then
         player:setVar("aThiefinNorgCS",3);
     end
-    
+
 end;

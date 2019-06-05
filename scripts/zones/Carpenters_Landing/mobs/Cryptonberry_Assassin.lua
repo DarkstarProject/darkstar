@@ -1,49 +1,48 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---  MOB: Cryptonberry_Assassin
+--   NM: Cryptonberry_Assassin
+-- !pos 120.615 -5.457 -390.133 2
+-----------------------------------
+local ID = require("scripts/zones/Carpenters_Landing/IDs")
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/missions")
 -----------------------------------
 
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180) -- 3 minutes
+end
 
 function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    local mobID = mob:getID();
-
-    if (ally:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and ally:getVar("Cryptonberry_Executor_KILL")~= 2) then
-        switch (mobID) : caseof
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
         {
-            [16785711] = function (x)
-                if (ally:getVar("Cryptonberry_Assassins-1_KILL") == 0) then
-                    ally:setVar("Cryptonberry_Assassins-1_KILL",1);
-                end
-            end,
-            [16785712] = function (x)
-                if (ally:getVar("Cryptonberry_Assassins-2_KILL") == 0) then
-                    ally:setVar("Cryptonberry_Assassins-2_KILL",1);
-                end
-            end,
-            [16785713] = function (x)
-                if (ally:getVar("Cryptonberry_Assassins-3_KILL") == 0) then
-                    ally:setVar("Cryptonberry_Assassins-3_KILL",1);
-                end
-            end,
-        }
+            {
+                id = dsp.jsa.MIJIN_GAKURE,
+                begCode = function(mob)
+                    mob:messageText(mob, ID.text.CRYPTONBERRY_ASSASSIN_2HR)
+                end,
+            },
+        },
+    })
+
+    mob:setLocalVar("despawnTime", os.time() + 180)
+end
+
+function onMobEngaged(mob, target)
+    mob:setLocalVar("despawnTime", 0)
+end
+
+function onMobRoam(mob)
+    -- if not claimed within 3 minutes of spawning, despawn
+    local despawnTime = mob:getLocalVar("despawnTime")
+    if despawnTime > 0 and os.time() > despawnTime then
+        DespawnMob(mob:getID())
     end
-end;
+end
+
+function onMobDeath(mob, player, isKiller)
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") < 2 then
+        local offset = mob:getID() - ID.mob.CRYPTONBERRY_EXECUTOR
+        player:setVar(string.format("Cryptonberry_Assassins-%i_KILL", offset), 1)
+    end
+end

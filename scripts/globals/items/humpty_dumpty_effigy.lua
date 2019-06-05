@@ -1,56 +1,37 @@
 -----------------------------------------
 -- ID: 5683
 -- Item: humpty_dumpty_effigy
--- Food Effect: 30Min, All Races
+-- Food Effect: 3 hours, All Races
 -----------------------------------------
--- Max HP % 6
--- Max MP % 6
--- HP recovered while healing 10
--- MP recovered while healing 10 (unconfirmed)
+-- Max HP % 6 (cap 160)
+-- Max MP % 6 (cap 160)
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5683);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,5683)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.FOOD_HPP, 6)
+    target:addMod(dsp.mod.FOOD_HP_CAP, 160)
+    target:addMod(dsp.mod.FOOD_MPP, 6)
+    target:addMod(dsp.mod.FOOD_MP_CAP, 160)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_HPP, 6);
-    target:addMod(MOD_FOOD_HP_CAP, 999);
-    target:addMod(MOD_FOOD_MPP, 6);
-    target:addMod(MOD_FOOD_MP_CAP, 999);
-    target:addMod(MOD_HPHEAL, 10);
-    target:addMod(MOD_MPHEAL, 10);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_HPP, 6);
-    target:delMod(MOD_MPP, 6);
-    target:delMod(MOD_HPHEAL, 10);
-    target:delMod(MOD_MPHEAL, 10);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.FOOD_HPP, 6)
+    target:delMod(dsp.mod.FOOD_HP_CAP, 160)
+    target:delMod(dsp.mod.FOOD_MPP, 6)
+    target:delMod(dsp.mod.FOOD_MP_CAP, 160)
+end

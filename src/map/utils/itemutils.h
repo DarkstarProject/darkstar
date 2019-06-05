@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -27,7 +27,7 @@
 #include <vector>
 
 #include "../items/item.h"
-#include "../items/item_armor.h"
+#include "../items/item_equipment.h"
 #include "../items/item_currency.h"
 #include "../items/item_fish.h"
 #include "../items/item_furnishing.h"
@@ -40,46 +40,66 @@
 #define MAX_ITEMID  32768
 #define MAX_DROPID  5000
 #define MAX_LOOTID  1300
+#define MAX_DROP_GROUP_ID  255
+
+enum DROP_TYPE
+{
+    DROP_NORMAL  = 0x00,
+    DROP_GROUPED = 0x01,
+    DROP_STEAL   = 0x02,
+    DROP_DESPOIL = 0x04
+};
 
 struct DropItem_t
 {
-	uint16 ItemID;
-	uint8  DropType;
-	uint16  DropRate;
+    DropItem_t(uint8 DropType, uint16 ItemID, uint16 DropRate);
+    uint8 DropType;
+    uint16 ItemID;
+    uint16 DropRate;
+};
+
+struct DropGroup_t
+{
+    DropGroup_t(uint16 GroupRate);
+    uint16 GroupRate;
+    std::vector<DropItem_t> Items;
+};
+
+struct DropList_t
+{
+    std::vector<DropItem_t> Items;
+    std::vector<DropGroup_t> Groups;
 };
 
 struct LootItem_t
 {
-	uint16 ItemID;
-	uint16 Rolls;
-	uint8  LootGroupId;
+    uint16 ItemID;
+    uint16 Rolls;
+    uint8  LootGroupId;
 };
 
-
-typedef std::vector<DropItem_t> DropList_t;
 typedef std::vector<LootItem_t> LootList_t;
 
 /************************************************************************
 *                                                                       *
-*  Пространстов имен дла работы с глобальными списками предметов        *
+*  The namespace for working with a global lists of items               *
 *                                                                       *
 ************************************************************************/
 
 namespace itemutils
 {
-	void	Initialize();
-	void	FreeItemList();
+    void    Initialize();
+    void    FreeItemList();
 
     CItem*  GetItem(CItem* PItem);
-	CItem*	GetItem(uint16 ItemID);
-	CItem*	GetItemPointer(uint16 ItemID);
+    CItem*  GetItem(uint16 ItemID);
+    CItem*  GetItemPointer(uint16 ItemID);
 
     CItemWeapon* GetUnarmedItem();
     CItemWeapon* GetUnarmedH2HItem();
 
-	DropList_t* GetDropList(uint16 DropID);
-	LootList_t* GetLootList(uint16 LootDropID);
+    DropList_t* GetDropList(uint16 DropID);
+    LootList_t* GetLootList(uint16 LootDropID);
 
 };
-
 #endif

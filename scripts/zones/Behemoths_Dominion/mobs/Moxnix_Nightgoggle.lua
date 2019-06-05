@@ -1,26 +1,14 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  MOB: Moxnix Nightgoggle
+--   NM: Moxnix Nightgoggle
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
-
-require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn Action
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/quests")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    if (ally:getQuestStatus(BASTOK,THE_TALEKEEPER_S_GIFT) == QUEST_ACCEPTED) then
-        ally:setVar("theTalekeepersGiftKilledNM",ally:getVar("theTalekeepersGiftKilledNM") + 1);
+function onMobDeath(mob, player, isKiller)
+    if player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_GIFT) == QUEST_ACCEPTED then
+        player:addVar("theTalekeepersGiftKilledNM", 1)
     end
-
-end;
+end

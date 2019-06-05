@@ -1,21 +1,10 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Krabkatoa
+--  VNM: Orcus
+-----------------------------------
+require("scripts/globals/titles")
 -----------------------------------
 
-require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(ORCUS_TROPHY_HUNTER);
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.ORCUS_TROPHY_HUNTER)
+end

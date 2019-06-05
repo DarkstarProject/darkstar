@@ -1,52 +1,31 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  Fountain of Kings
--- @pos 567 18 -939 208
+--  NPC: Fountain of Kings
+-- !pos 567 18 -939 208
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    if (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 2) then
-        SpawnMob(17629185,180);
-        SpawnMob(17629186,180);
-    elseif (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 3) then
-        player:addKeyItem(DROPS_OF_AMNIO);
-        player:messageSpecial(KEYITEM_OBTAINED,DROPS_OF_AMNIO);
-    else
-        player:messageSpecial(POOL_OF_WATER);
-    end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onTrigger(player,npc)
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 2
+        and not GetMobByID(ID.mob.VALOR):isSpawned() and not GetMobByID(ID.mob.HONOR):isSpawned()) then
+        SpawnMob(ID.mob.VALOR);
+        SpawnMob(ID.mob.HONOR);
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 3
+        and not GetMobByID(ID.mob.VALOR):isSpawned() and not GetMobByID(ID.mob.HONOR):isSpawned()) then
+        player:addKeyItem(dsp.ki.DROPS_OF_AMNIO);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DROPS_OF_AMNIO);
+    else
+        player:messageSpecial(ID.text.POOL_OF_WATER);
+    end
+end;
+
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

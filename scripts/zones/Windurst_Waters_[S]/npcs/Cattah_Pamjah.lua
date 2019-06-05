@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Cattah Pamjah
---  Type: Title Changer
--- @zone: 94
---  @pos -13.564 -2 10.673
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Waters (S)
+--  NPC: Cattah Pamjah
+-- Type: Title Changer
+-- !pos -13.564 -2 10.673 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0089);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(137)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

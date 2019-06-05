@@ -32,8 +32,6 @@ CInactiveState::CInactiveState(CBaseEntity* PEntity, duration _duration, bool ca
     m_canChangeState(canChangeState)
 {
     if (!canChangeState) PEntity->PAI->InterruptStates();
-    m_couldUpdate = m_PEntity->PAI->GetController() && m_PEntity->PAI->GetController()->canUpdate;
-    if (m_PEntity->PAI->GetController()) m_PEntity->PAI->GetController()->canUpdate = false;
 }
 
 bool CInactiveState::Update(time_point tick)
@@ -61,6 +59,4 @@ bool CInactiveState::Update(time_point tick)
 }
 
 void CInactiveState::Cleanup(time_point tick)
-{
-    if (m_PEntity->PAI->GetController()) m_PEntity->PAI->GetController()->canUpdate = m_couldUpdate;
-}
+{}

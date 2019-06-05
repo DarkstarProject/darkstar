@@ -3,27 +3,14 @@
 --  MOB: Walking Sapling
 -- Note: Place Holder For Maighdean Uaine
 -----------------------------------
+local ID = require("scripts/zones/North_Gustaberg/IDs");
+require("scripts/globals/regimes")
+require("scripts/globals/mobs");
 
-require("scripts/zones/North_Gustaberg/MobIDs");
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 18, 2, dsp.regime.type.FIELDS)
+end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,18,2);
-    mob = mob:getID();
-    if (Maighdean_Uaine_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Maighdean_Uaine");
-        if (ToD <= os.time(t) and GetMobAction(Maighdean_Uaine) == 0) then
-            if (math.random((1),(20)) == 5) then
-                UpdateNMSpawnPoint(Maighdean_Uaine);
-                GetMobByID(Maighdean_Uaine):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Maighdean_Uaine", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.MAIGHDEAN_UAINE_PH,5,math.random(900,10800)); -- 15 to 180 minutes
 end;

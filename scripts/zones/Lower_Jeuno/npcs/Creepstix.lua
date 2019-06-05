@@ -1,61 +1,37 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Creepstix
+--  NPC: Creepstix
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,CREEPSTIX_SHOP_DIALOG);
+    local stock =
+    {
+        5023,   8160,    -- Scroll of Goblin Gavotte
+        4734,   7074,    -- Scroll of Protectra II
+        4738,   1700,    -- Scroll of Shellra
+        5089,  73740,    -- Scroll of Gain-VIT
+        5092,  77500,    -- Scroll of Gain-MND
+        5090,  85680,    -- Scroll of Gain-AGI
+        5093,  81900,    -- Scroll of Gain-CHR
+        5096,  73740,    -- Scroll of Boost-VIT
+        5099,  77500,    -- Scroll of Boost-MND
+        5097,  85680,    -- Scroll of Boost-AGI
+        5100,  81900,    -- Scroll of Boost-CHR
+        4849, 130378,    -- Scroll of Addle
+    }
 
-stock = {0x139f,8160,    -- Scroll of Goblin Gavotte 
-     0x127e,7074,    -- Scroll of Protectra II
-     0x1282,1700,    -- Scroll of Shellra
-     0x13e1,73740,    -- Scroll of Gain-VIT
-     0x13e4,77500,    -- Scroll of Gain-MND
-     0x13e2,85680,    -- Scroll of Gain-AGI
-     0x13e5,81900,    -- Scroll of Gain-CHR
-     0x13e8,73740,    -- Scroll of Boost-VIT
-     0x13eb,77500,    -- Scroll of Boost-MND
-     0x13e9,85680,    -- Scroll of Boost-AGI
-     0x13ec,81900,    -- Scroll of Boost-CHR
-     0x12f1,130378}    -- Scroll of Addle
-
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.CREEPSTIX_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

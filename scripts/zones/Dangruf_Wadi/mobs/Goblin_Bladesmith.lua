@@ -2,13 +2,10 @@
 -- Area: Dangruf Wadi
 --  MOB: Goblin Bladesmith
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,645,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 640, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 645, 2, dsp.regime.type.GROUNDS)
 end;

@@ -4,46 +4,36 @@
 -- Food Effect: 3 Hrs, All Races
 -----------------------------------------
 -- TODO: Group Effect
--- MP +3%
+-- MP +3% (cap 90)
+-- HP Recovered while healing +1
 -- MP Recovered while healing +6
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5633);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,5633)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.FOOD_MPP, 3)
+    target:addMod(dsp.mod.FOOD_MP_CAP, 90)
+    target:addMod(dsp.mod.HPHEAL, 1)
+    target:addMod(dsp.mod.MPHEAL, 6)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_MPP, 3);
-    target:addMod(MOD_MPHEAL, 6);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_MPP, 3);
-    target:delMod(MOD_MPHEAL, 6);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.FOOD_MPP, 3)
+    target:delMod(dsp.mod.FOOD_MP_CAP, 90)
+    target:delMod(dsp.mod.HPHEAL, 1)
+    target:delMod(dsp.mod.MPHEAL, 6)
+end

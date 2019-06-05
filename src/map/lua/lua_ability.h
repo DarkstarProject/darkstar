@@ -35,7 +35,7 @@ class CLuaAbility
 
 public:
 
-    static const int8 className[];
+    static const char className[];
     static Lunar<CLuaAbility>::Register_t methods[];
 
     CLuaAbility(lua_State*);

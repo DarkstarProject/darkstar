@@ -2,13 +2,9 @@
 -- Area: Dangruf Wadi
 --  MOB: Fume Lizard
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,642,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 642, 1, dsp.regime.type.GROUNDS)
 end;

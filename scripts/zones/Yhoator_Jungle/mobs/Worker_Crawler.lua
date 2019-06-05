@@ -2,13 +2,9 @@
 -- Area: Yhoator Jungle
 --  MOB: Worker Crawler
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,132,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 132, 1, dsp.regime.type.FIELDS)
+end

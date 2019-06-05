@@ -2,44 +2,26 @@
 -- Area: Dynamis Valkurm
 --  MOB: Manifest_Idol
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
-
------------------------------------
--- onMobSpawn Action
+local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/status")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    
-        local mobID = mob:getID();
-    
-    if (mobID == 16937264 and mob:isInBattlefieldList() == false) then
-        ally:addTimeToDynamis(10);
-        --print("addtime 10min");
-        mob:addInBattlefieldList();
-    elseif (mobID == 16937262 and mob:isInBattlefieldList() == false) then
-        ally:addTimeToDynamis(20);
-        --print("addtime 20min");
-        mob:addInBattlefieldList();
+function onMobDeath(mob, player, isKiller)
+    local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
+    if effect then
+        if mob:getMainLvl() < 85 then
+            dynamis.addExtension(player, dsp.ki.AMBER_GRANULES_OF_TIME, 10)
+        else
+            dynamis.addExtension(player, dsp.ki.OBSIDIAN_GRANULES_OF_TIME, 20)
+        end
     end
-    
-    
-    
-end;
+
+    if mob:getMainLvl() > 85 then
+        DisallowRespawn(mob:getID(), true)
+        local newTEMob = ID.mob.TE5_RANDOM[math.random(#ID.mob.TE5_RANDOM)] -- Randomly select new TE5 mob
+        DisallowRespawn(newTEMob, false)
+        GetMobByID(newTEMob):setRespawnTime(85)
+    end
+end

@@ -40,8 +40,8 @@ CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, b
 		messageID += 0x8000;
 	}
 
-	WBUFL(data,(0x04)) = PEntity->id;
-	WBUFW(data,(0x08)) = PEntity->targid;
-	WBUFW(data,(0x0A)) = messageID;
-    WBUFB(data,(0x0C)) = mode;
+	ref<uint32>(0x04) = PEntity->id;
+	ref<uint16>(0x08) = PEntity->targid;
+	ref<uint16>(0x0A) = messageID;
+    ref<uint8>(0x0C) = mode;
 }

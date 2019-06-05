@@ -1,43 +1,20 @@
 -----------------------------------
---  Area: Misareaux Coast
---  NPC:  Logging Point
+-- Area: Misareaux Coast
+--  NPC: Logging Point
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
--------------------------------------
-
-require("scripts/globals/logging");
-require("scripts/zones/Misareaux_Coast/TextIDs");
-
------------------------------------
--- onTrade
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,0x022B);
-end;
-
------------------------------------
--- onTrigger
------------------------------------
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.LOGGING, 555)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(LOGGING_IS_POSSIBLE_HERE,1021);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    dsp.helm.onTrigger(player, dsp.helm.type.LOGGING)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

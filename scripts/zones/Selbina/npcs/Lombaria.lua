@@ -1,48 +1,25 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Lombaria
+--  NPC: Lombaria
 -- Map Seller NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Selbina/TextIDs");
-require("scripts/globals/magic_maps");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Selbina/IDs")
+require("scripts/globals/magic_maps")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    CheckMaps(player, npc, 0x01f4);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    CheckMaps(player, npc, 500)
+end
 
 function onEventUpdate(player,csid,option)
-    if (csid == 0x01f4) then
-    CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
+    if csid == 500 then
+        CheckMapsUpdate(player, option, ID.text.NOT_HAVE_ENOUGH_GIL, ID.text.KEYITEM_OBTAINED)
     end
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-
-end;
-
-
-
-
+end

@@ -2,17 +2,13 @@
 -- Area: Ifrit's Cauldron
 --  MOB: Volcanic Gas
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,755,2);
-    checkGoVregime(ally,mob,756,2);
-    checkGoVregime(ally,mob,757,2);
-    checkGoVregime(ally,mob,758,2);
-    checkGoVregime(ally,mob,759,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 755, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 756, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 757, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 758, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 759, 1, dsp.regime.type.GROUNDS)
 end;

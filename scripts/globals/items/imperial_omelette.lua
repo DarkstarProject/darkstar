@@ -15,97 +15,77 @@
 -- Ranged ATT Cap 70
 -----------------------------------------
 -- Elvaan Stats
--- Strength 6
--- Health 20
--- Elvaan Stats
--- Strength 6
--- Health 20
--- Magic 20
--- Intelligence -2
--- Mind 5
--- Charisma 4
--- Attack % 22
--- Attack Cap 85
--- Ranged ATT % 22
--- Ranged ATT Cap 85
+-- Strength 7
+-- Health 30
+-- Magic 30
+-- Intelligence -1
+-- Mind 6
+-- Charisma 5
+-- Attack % 20 (cap 80)
+-- Ranged ATT % 20 (cap 80)
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4331);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,4331)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
-    if (target:getRace() ~= 4) then
-        target:addMod(MOD_STR, 5);
-        target:addMod(MOD_DEX, 2);
-        target:addMod(MOD_INT, -3);
-        target:addMod(MOD_MND, 4);
-        target:addMod(MOD_FOOD_ATTP, 22);
-        target:addMod(MOD_FOOD_ATT_CAP, 70);
-        target:addMod(MOD_FOOD_RATTP, 22);
-        target:addMod(MOD_FOOD_RATT_CAP, 70);
+function onEffectGain(target, effect)
+    if (target:getRace() == dsp.race.ELVAAN_M or target:getRace() == dsp.race.ELVAAN_F) then
+        target:addMod(dsp.mod.STR, 5)
+        target:addMod(dsp.mod.DEX, 2)
+        target:addMod(dsp.mod.INT, -3)
+        target:addMod(dsp.mod.MND, 4)
+        target:addMod(dsp.mod.FOOD_ATTP, 22)
+        target:addMod(dsp.mod.FOOD_ATT_CAP, 70)
+        target:addMod(dsp.mod.FOOD_RATTP, 22)
+        target:addMod(dsp.mod.FOOD_RATT_CAP, 70)
     else
-        target:addMod(MOD_HP, 20);
-        target:addMod(MOD_MP, 20);
-        target:addMod(MOD_STR, 6);
-        target:addMod(MOD_DEX, 2);
-        target:addMod(MOD_INT, -2);
-        target:addMod(MOD_MND, 5);
-        target:addMod(MOD_CHR, 4);
-        target:addMod(MOD_FOOD_ATTP, 22);
-        target:addMod(MOD_FOOD_ATT_CAP, 85);
-        target:addMod(MOD_FOOD_RATTP, 22);
-        target:addMod(MOD_FOOD_RATT_CAP, 85);
+        target:addMod(dsp.mod.HP, 30)
+        target:addMod(dsp.mod.MP, 30)
+        target:addMod(dsp.mod.STR, 7)
+        target:addMod(dsp.mod.DEX, 3)
+        target:addMod(dsp.mod.INT, -1)
+        target:addMod(dsp.mod.MND, 6)
+        target:addMod(dsp.mod.CHR, 5)
+        target:addMod(dsp.mod.FOOD_ATTP, 20)
+        target:addMod(dsp.mod.FOOD_ATT_CAP, 80)
+        target:addMod(dsp.mod.FOOD_RATTP, 20)
+        target:addMod(dsp.mod.FOOD_RATT_CAP, 80)
     end
-end;
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    if (target:getRace() ~= 4) then
-        target:delMod(MOD_STR, 5);
-        target:delMod(MOD_DEX, 2);
-        target:delMod(MOD_INT, -3);
-        target:delMod(MOD_MND, 4);
-        target:delMod(MOD_FOOD_ATTP, 22);
-        target:delMod(MOD_FOOD_ATT_CAP, 70);
-        target:delMod(MOD_FOOD_RATTP, 22);
-        target:delMod(MOD_FOOD_RATT_CAP, 70);
+function onEffectLose(target, effect)
+    if (target:getRace() == dsp.race.ELVAAN_M or target:getRace() == dsp.race.ELVAAN_F) then
+        target:delMod(dsp.mod.STR, 5)
+        target:delMod(dsp.mod.DEX, 2)
+        target:delMod(dsp.mod.INT, -3)
+        target:delMod(dsp.mod.MND, 4)
+        target:delMod(dsp.mod.FOOD_ATTP, 22)
+        target:delMod(dsp.mod.FOOD_ATT_CAP, 70)
+        target:delMod(dsp.mod.FOOD_RATTP, 22)
+        target:delMod(dsp.mod.FOOD_RATT_CAP, 70)
     else
-        target:delMod(MOD_HP, 20);
-        target:delMod(MOD_MP, 20);
-        target:delMod(MOD_STR, 6);
-        target:delMod(MOD_DEX, 2);
-        target:delMod(MOD_INT, -2);
-        target:delMod(MOD_MND, 5);
-        target:delMod(MOD_CHR, 4);
-        target:delMod(MOD_FOOD_ATTP, 22);
-        target:delMod(MOD_FOOD_ATT_CAP, 85);
-        target:delMod(MOD_FOOD_RATTP, 22);
-        target:delMod(MOD_FOOD_RATT_CAP, 85);
+        target:delMod(dsp.mod.HP, 30)
+        target:delMod(dsp.mod.MP, 30)
+        target:delMod(dsp.mod.STR, 7)
+        target:delMod(dsp.mod.DEX, 3)
+        target:delMod(dsp.mod.INT, -1)
+        target:delMod(dsp.mod.MND, 6)
+        target:delMod(dsp.mod.CHR, 5)
+        target:delMod(dsp.mod.FOOD_ATTP, 20)
+        target:delMod(dsp.mod.FOOD_ATT_CAP, 80)
+        target:delMod(dsp.mod.FOOD_RATTP, 20)
+        target:delMod(dsp.mod.FOOD_RATT_CAP, 80)
     end
-end;
+end

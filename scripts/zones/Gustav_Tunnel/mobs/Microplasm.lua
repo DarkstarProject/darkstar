@@ -1,50 +1,26 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Nanoplasm
+--   NM: Microplasm
+-- Note: Part of mission "The Salt of the Earth"
 -----------------------------------
-package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Gustav_Tunnel/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onMobDeath
+local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    local X = GetMobByID(17645797):getXPos();
-    local Y = GetMobByID(17645797):getYPos();
-    local Z = GetMobByID(17645797):getZPos();
-    local X1 = GetMobByID(17645798):getXPos();
-    local Y1 = GetMobByID(17645798):getYPos();
-    local Z1 = GetMobByID(17645798):getZPos();
-    local X2 = GetMobByID(17645799):getXPos();
-    local Y2 = GetMobByID(17645799):getYPos();
-    local Z2 = GetMobByID(17645799):getZPos();
-    local X3 = GetMobByID(17645800):getXPos();
-    local Y3 = GetMobByID(17645800):getYPos();
-    local Z3 = GetMobByID(17645800):getZPos();
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+end
 
-    if (mob:getID() == 17645797) then
-        SpawnMob(17645801):setPos(X,Y,Z);
-        SpawnMob(17645802):setPos(X,Y,Z);
-        GetMobByID(17645801):updateEnmity(killer);
-        GetMobByID(17645802):updateEnmity(killer);
-    elseif (mob:getID() == 17645798) then
-        SpawnMob(17645803):setPos(X1,Y1,Z1);
-        SpawnMob(17645804):setPos(X1,Y1,Z1);
-        GetMobByID(17645803):updateEnmity(killer);
-        GetMobByID(17645804):updateEnmity(killer);
-    elseif (mob:getID() == 17645799) then
-        SpawnMob(17645805):setPos(X2,Y2,Z2);
-        SpawnMob(17645806):setPos(X2,Y2,Z2);
-        GetMobByID(17645805):updateEnmity(killer);
-        GetMobByID(17645806):updateEnmity(killer);
-    elseif (mob:getID() == 17645800) then
-        SpawnMob(17645807):setPos(X3,Y3,Z3);
-        SpawnMob(17645808):setPos(X3,Y3,Z3);
-        GetMobByID(17645807):updateEnmity(killer);
-        GetMobByID(17645808):updateEnmity(killer);
+function onMobDeath(mob, player, isKiller)
+    if (isKiller) then
+        local mobId = mob:getID();
+        local offset = mobId - ID.mob.GIGAPLASM;
+        local x = mob:getXPos();
+        local y = mob:getYPos();
+        local z = mob:getZPos();
+
+        SpawnMob(mobId + offset + 1):setPos(x, y, z);
+        SpawnMob(mobId + offset + 2):setPos(x-1, y, z-1);
+        GetMobByID(mobId + offset + 1):updateEnmity(player);
+        GetMobByID(mobId + offset + 2):updateEnmity(player);
     end
 end;

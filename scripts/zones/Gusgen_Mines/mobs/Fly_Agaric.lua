@@ -2,13 +2,9 @@
 -- Area: Gusgen Mines
 --  MOB: Fly Agaric
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,680,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 680, 1, dsp.regime.type.GROUNDS)
 end;

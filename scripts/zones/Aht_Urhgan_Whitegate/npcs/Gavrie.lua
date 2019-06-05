@@ -1,61 +1,36 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Gavrie
+--  NPC: Gavrie
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,GAVRIE_SHOP_DIALOG);
+    local stock =
+    {
+        4150,  2595,    -- Eye Drops
+        4148,   316,    -- Antidote
+        4151,   800,    -- Echo Drops
+        4112,   910,    -- Potion
+        4128,  4832,    -- Ether
+        4155,  3360,    -- Remedy
+        4509,    12,    -- Distilled Water
+        18731,   50,    -- Automaton Oil
+        18732,  250,    -- Automaton Oil +1
+        18733,  500,    -- Automaton Oil +2
+        19185, 1000     -- Automaton Oil +3
+    }
 
-stock = {0x1036,2595,    -- Eye Drops
-     0x1034,316,        -- Antidote
-     0x1037,800,        -- Echo Drops
-     0x1010,910,        -- Potion
-     0x1020,4832,        -- Ether
-     0x103B,3360,        -- Remedy
-     0x119D,12,            -- Distilled Water
-     0x492B,50,            -- Automaton Oil
-     0x492C,250,        -- Automaton Oil +1
-     0x492D,500,        -- Automaton Oil +2
-     0x4AF1,1000}        -- Automaton Oil +3
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.GAVRIE_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

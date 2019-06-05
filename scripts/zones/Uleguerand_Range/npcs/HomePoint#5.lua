@@ -1,55 +1,17 @@
 -----------------------------------
 -- Area: Uleguerand_Range
--- NPC:  HomePoint#5
--- @pos 
+--  NPC: HomePoint#5
+-----------------------------------
+require("scripts/globals/homepoint")
 -----------------------------------
 
-package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
-
-require("scripts/globals/settings");
-require("scripts/zones/Uleguerand_Range/TextIDs");
-require("scripts/globals/homepoint");
-
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+local hpEvent = 8704
+local hpIndex = 80
 
 function onTrigger(player,npc)
-
-    homepointMenu( player, 0x2200, 80);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+    dsp.homepoint.onTrigger(player, hpEvent, hpIndex)
+end
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-
-    if (csid == 0x2200) then
-
-        if (option == 1) then    
-            player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
-        else
-            hpTeleport( player, option);
-        end
-    end
-end;
+    dsp.homepoint.onEventFinish(player, csid, option, hpEvent)
+end

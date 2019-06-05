@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Gaweesh
---  Type: Najelith's Attendant
--- @zone: 48
---  @pos -64.537 -8 37.928
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Al Zahbi
+--  NPC: Gaweesh
+-- Type: Najelith's Attendant
+-- !pos -64.537 -8 37.928 48
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0102);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(258)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

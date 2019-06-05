@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Miiri-Wohri
---  Type: Standard NPC
--- @zone: 241
---  @pos 106.766 -6 -30.492
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Woods
+--  NPC: Miiri-Wohri
+-- Type: Standard NPC
+-- !pos 106.766 -6 -30.492 241
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x006f);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(111)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

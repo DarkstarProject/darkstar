@@ -1,48 +1,24 @@
 -----------------------------------
 -- Area: Riverne Site #B01
--- NPC:  Unstable Displacement
+--  NPC: qm1 (???)
+-- Note: Spawns Unstable Cluster
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Riverne-Site_B01/TextIDs");
-
------------------------------------
--- onTrade
+local ID = require("scripts/zones/Riverne-Site_B01/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (GetMobAction(16896155) == 0 and trade:hasItemQty(1880,1) and trade:getItemCount() == 1) then -- Trade Clustered tar
-        player:tradeComplete();
-        SpawnMob(16896155):updateClaim(player); -- Unstable Cluster
-        npc:setStatus(STATUS_DISAPPEAR);
-    end    
-end;
-
------------------------------------
--- onTrigger
------------------------------------
+    if npcUtil.tradeHas(trade, 1880) and npcUtil.popFromQM(player, npc, ID.mob.UNSTABLE_CLUSTER) then -- Clustered tar
+        player:confirmTrade()
+    end
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(GROUND_GIVING_HEAT);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.GROUND_GIVING_HEAT)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

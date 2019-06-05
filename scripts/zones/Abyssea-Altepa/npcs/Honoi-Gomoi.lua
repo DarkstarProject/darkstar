@@ -1,42 +1,18 @@
 -----------------------------------
---    Area: Abyssea_Altepa
---    NPC: Honoi-Gomoi
---    Standard Info NPC
------------------------------------
-package.loaded["scripts/zones/Abyssea-Altepa/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Abyssea-Altepa/TextIDs");
-
------------------------------------
--- onTrade Action
+-- Area: Abyssea_Altepa
+--  NPC: Honoi-Gomoi
+-- Standard Info NPC
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x014B);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(331)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

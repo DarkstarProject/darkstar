@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC:  Zona Shodhun
+--  NPC: Zona Shodhun
 -- Starts and Finishes Quest: Pretty Little Things
--- @zone 246
--- @pos -175 -5 -4
+-- !pos -175 -5 -4 246
 -----------------------------------
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/Port_Jeuno/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    local count = trade:getItemCount();
+    local gil = trade:getGil();
+    local itemQuality = 0;
 
-count = trade:getItemCount();
-gil = trade:getGil();
-
-itemQuality = 0;
     if (trade:getItemCount() == 1 and trade:getGil() == 0) then
         if (trade:hasItemQty(771,1)) then        -- Yellow Rock
             itemQuality = 2;
@@ -58,64 +50,45 @@ itemQuality = 0;
         end
     end
 
-    PrettyLittleThings = player:getQuestStatus(JEUNO,PRETTY_LITTLE_THINGS);
+    local PrettyLittleThings = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
 
     if (itemQuality == 2) then
         if (PrettyLittleThings == QUEST_COMPLETED) then
-            player:startEvent(0x2727, 0, 246, 4);
-        else 
-            player:startEvent(0x2727, 0, 246, 2);
+            player:startEvent(10023, 0, 246, 4);
+        else
+            player:startEvent(10023, 0, 246, 2);
         end
     elseif (itemQuality == 1) then
         if (PrettyLittleThings == QUEST_COMPLETED) then
-            player:startEvent(0x2727, 0, 246, 5);
+            player:startEvent(10023, 0, 246, 5);
         elseif (PrettyLittleThings == QUEST_ACCEPTED) then
-            player:startEvent(0x2727, 0, 246, 3);
-        else 
-            player:startEvent(0x2727, 0, 246, 1);
+            player:startEvent(10023, 0, 246, 3);
+        else
+            player:startEvent(10023, 0, 246, 1);
         end
-    else 
-        player:startEvent(0x2727, 0, 246, 0);
+    else
+        player:startEvent(10023, 0, 246, 0);
     end
 
-end; 
-
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    player:startEvent(0x2727, 0, 246, 10);
-end; 
-
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
+function onTrigger(player,npc)
+    player:startEvent(10023, 0, 246, 10);
+end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
-    if (csid == 0x2727 and option == 4002) then
+    if (csid == 10023 and option == 4002) then
         player:moghouseFlag(8);
-        player:messageSpecial(MOGHOUSE_EXIT);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
+        player:addFame(JEUNO, 30);
         player:tradeComplete();
-        player:completeQuest(JEUNO,PRETTY_LITTLE_THINGS);
-    elseif (csid == 0x2727 and option == 1) then
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
+    elseif (csid == 10023 and option == 1) then
         player:tradeComplete();
-        player:addQuest(JEUNO,PRETTY_LITTLE_THINGS);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
     end
 end;

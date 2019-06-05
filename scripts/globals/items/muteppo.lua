@@ -1,1 +1,12 @@
--------------------------------------------    ID: 5360--    Muteppo--     A roman candle-like firework that hurls different colors------------------------------------------------------------------------------------ OnItemCheck-----------------------------------------function onItemCheck(target)    return 0;end;------------------------------------------- OnItemUse-----------------------------------------function onItemUse(target)end;
+-----------------------------------------
+-- ID: 5360
+-- Muteppo
+-- A roman candle-like firework that hurls different colors
+-----------------------------------------
+
+function onItemCheck(target)
+    return 0
+end
+
+function onItemUse(target)
+end

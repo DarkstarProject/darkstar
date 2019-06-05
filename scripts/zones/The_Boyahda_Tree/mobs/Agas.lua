@@ -1,24 +1,13 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Agas
+--   NM: Agas
+-----------------------------------
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-function onMobDeath(mob, killer, ally)
-    if (ally:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS) == QUEST_ACCEPTED and not ally:hasKeyItem(MOONDROP)) then
-        printf("Agas successfully killed!");
-        ally:setVar("Searching_AgasKilled", 1);
+function onMobDeath(mob, player, isKiller)
+    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.MOONDROP) then
+        player:setVar("Searching_AgasKilled", 1)
     end
-end;
+end

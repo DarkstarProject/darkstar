@@ -1,36 +1,24 @@
 -----------------------------------
 --
---     EFFECT_BIO
---     
+-- dsp.effect.BIO
+--
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    local power = effect:getPower();
-    local subpower = effect:getSubPower();
-    target:addMod(MOD_ATTP,-subpower);
-    target:addMod(MOD_REGEN_DOWN, power);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    local power = effect:getPower()
+    local subpower = effect:getSubPower()
+    target:addMod(dsp.mod.ATTP,-subpower)
+    target:addMod(dsp.mod.REGEN_DOWN, power)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    local power = effect:getPower();
-    local subpower = effect:getSubPower();
-    target:delMod(MOD_ATTP,-subpower);
-    target:delMod(MOD_REGEN_DOWN, power);
-end;
+    local power = effect:getPower()
+    local subpower = effect:getSubPower()
+    target:delMod(dsp.mod.ATTP,-subpower)
+    target:delMod(dsp.mod.REGEN_DOWN, power)
+end

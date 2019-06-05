@@ -1,43 +1,20 @@
 -----------------------------------
---  Area: Halvung
---  NPC:  Mining Point
+-- Area: Halvung
+--  NPC: Mining Point
 -----------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
--------------------------------------
-
-require("scripts/globals/mining");
-require("scripts/zones/Halvung/TextIDs");
-
------------------------------------
--- onTrade
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,0x00D2);
-end;
-
------------------------------------
--- onTrigger
------------------------------------
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.MINING, 210)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    dsp.helm.onTrigger(player, dsp.helm.type.MINING)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

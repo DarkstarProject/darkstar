@@ -1,42 +1,21 @@
 -----------------------------------
 -- Area: Gusgen Mines
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    startGov(GOV_EVENT_GUSGEN_MINES,player);
-end;
-
------------------------------------
--- onEventSelection
------------------------------------
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    updateGov(player,csid,option,679,680,681,682,683,684,685,686,0,0);
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    finishGov(player,csid,option,679,680,681,682,683,684,685,686,0,0,GOV_MSG_GUSGEN_MINES);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

@@ -1,30 +1,18 @@
 -----------------------------------
 -- Composure
--- Increases accuracy and lengthens recast time. Enhancement effects gained through white 
---    and black magic you cast on yourself last longer.
+-- Increases accuracy and lengthens recast time. Enhancement effects gained through white
+-- and black magic you cast on yourself last longer.
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ACC,15);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ACC,15)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ACC,15);
-end;
+    target:delMod(dsp.mod.ACC,15)
+end

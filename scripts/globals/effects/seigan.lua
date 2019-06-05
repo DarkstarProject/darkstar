@@ -3,28 +3,16 @@
 --
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_COUNTER,(target:getMod(MOD_ZANSHIN)/4));
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.COUNTER,(target:getMod(dsp.mod.ZANSHIN)/4))
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_COUNTER,(target:getMod(MOD_ZANSHIN)/4));
-end;
+    target:delMod(dsp.mod.COUNTER,(target:getMod(dsp.mod.ZANSHIN)/4))
+end

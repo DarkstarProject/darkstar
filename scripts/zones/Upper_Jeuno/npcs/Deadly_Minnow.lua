@@ -1,70 +1,43 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Deadly Minnow
+--  NPC: Deadly Minnow
 -- Standard Merchant NPC
 -- Involved in Quest: Borghertz's Hands (1st quest only)
--- @zone 244
--- @pos -5 1 48
+-- !pos -5 1 48 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/shop");
-require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
 
-    if (player:getVar("BorghertzHandsFirstTime") == 1) then
-        player:startEvent(0x0018);
-        player:setVar("BorghertzHandsFirstTime",2);
+    if player:getVar("BorghertzHandsFirstTime") == 1 then
+        player:startEvent(24)
+        player:setVar("BorghertzHandsFirstTime", 2)
     else
-        player:showText(npc,DEADLYMINNOW_SHOP_DIALOG);
+        local stock =
+        {
+            12442, 13179,    -- Studded Bandana
+            12425, 22800,    -- Silver Mask
+            12426, 47025,    -- Banded Helm
+            12570, 20976,    -- Studded Vest
+            12553, 35200,    -- Silver Mail
+            12554, 66792,    -- Banded Mail
+            12698, 11012,    -- Studded Gloves
+            12681, 18800,    -- Silver Mittens
+            12672, 23846,    -- Gauntlets
+            12682, 35673,    -- Mufflers
+        }
 
-        stock = {0x309A,13179,    --Studded Bandana
-                 0x3089,22800,    --Silver Mask
-                 0x308A,47025,    --Banded Helm
-                 0x311A,20976,    --Studded Vest
-                 0x3109,35200,    --Silver Mail
-                 0x310A,66792,    --Banded Mail
-                 0x319A,11012,    --Studded Gloves
-                 0x3189,18800,    --Silver Mittens
-                 0x3180,23846,    --Gauntlets
-                 0x318A,35673}    --Mufflers
-
-         
-        showShop(player, STATIC, stock);
+        player:showText(npc, ID.text.DEADLYMINNOW_SHOP_DIALOG)
+        dsp.shop.general(player, stock)
     end
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

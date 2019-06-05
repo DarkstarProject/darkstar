@@ -1,19 +1,13 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Valah Molkot
+--  NPC: Valah Molkot
 -- Starts and Finishes Quest: A Lady's Heart
--- @zone 236
--- @pos 59 8 -221
+-- !pos 59 8 -221 236
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -48,64 +42,45 @@ itemQuality = 0;
         end
     end
 
-    ALadysHeart = player:getQuestStatus(BASTOK,A_LADY_S_HEART);
+    ALadysHeart = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_LADY_S_HEART);
 
     if (itemQuality == 2) then
         if (ALadysHeart == QUEST_COMPLETED) then
-            player:startEvent(0x00a0, 0, 236, 4);
-        else 
-            player:startEvent(0x00a0, 0, 236, 2);
+            player:startEvent(160, 0, 236, 4);
+        else
+            player:startEvent(160, 0, 236, 2);
         end
     elseif (itemQuality == 1) then
         if (ALadysHeart == QUEST_COMPLETED) then
-            player:startEvent(0x00a0, 0, 236, 5);
+            player:startEvent(160, 0, 236, 5);
         elseif (ALadysHeart == QUEST_ACCEPTED) then
-            player:startEvent(0x00a0, 0, 236, 3);
-        else 
-            player:startEvent(0x00a0, 0, 236, 1);
+            player:startEvent(160, 0, 236, 3);
+        else
+            player:startEvent(160, 0, 236, 1);
         end
-    else 
-        player:startEvent(0x00a0, 0, 236, 0);
+    else
+        player:startEvent(160, 0, 236, 0);
     end
 
-end; 
-
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    player:startEvent(0x00a0, 0, 236, 10);
-end; 
-
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
+function onTrigger(player,npc)
+    player:startEvent(160, 0, 236, 10);
+end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
-    if (csid == 0x00a0 and option == 2002) then
+    if (csid == 160 and option == 2002) then
         player:tradeComplete();
-        player:completeQuest(BASTOK,A_LADY_S_HEART);
-        player:addFame(BASTOK,BAS_FAME*120);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.A_LADY_S_HEART);
+        player:addFame(BASTOK,120);
         player:moghouseFlag(2);
-        player:messageSpecial(MOGHOUSE_EXIT);
-    elseif (csid == 0x00a0 and option == 1) then
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
+    elseif (csid == 160 and option == 1) then
         player:tradeComplete();
-        player:addQuest(BASTOK,A_LADY_S_HEART);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.A_LADY_S_HEART);
     end
 end;

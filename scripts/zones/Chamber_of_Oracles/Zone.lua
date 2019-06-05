@@ -3,65 +3,45 @@
 -- Zone: Chamber_of_Oracles (168)
 --
 -----------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Chamber_of_Oracles/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
+function onZoneIn(player,prevZone)
+    local CurrentMission = player:getCurrentMission(WINDURST);
+    local MissionStatus = player:getVar("MissionStatus");
+    local cs = -1;
 
------------------------------------        
--- onZoneIn        
------------------------------------        
-
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-177.804,-2.765,-37.893,179);
-    end    
-    return cs;    
-end;        
+    end
 
------------------------------------        
--- onRegionEnter        
------------------------------------        
+    if (prevZone == dsp.zone.QUICKSAND_CAVES and CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 1) then
+        cs = 3;
+    end
 
-function onRegionEnter(player,region)    
-end;    
+    return cs;
+end;
 
------------------------------------    
--- onEventUpdate    
------------------------------------    
+function onRegionEnter(player,region)
+end;
 
-function onEventUpdate(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-end;    
+function onEventUpdate(player,csid,option)
+end;
 
------------------------------------    
--- onEventFinish    
------------------------------------    
-
-function onEventFinish(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-end;    
+function onEventFinish(player,csid,option)
+    if (csid == 3) then
+        player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
+    end
+end;

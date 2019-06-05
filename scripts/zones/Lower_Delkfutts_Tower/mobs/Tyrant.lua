@@ -1,23 +1,13 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  NM:  Tyrant
+--   NM: Tyrant
 -----------------------------------
-require("scripts/globals/status");
------------------------------------
-
-
------------------------------------
--- onMobInitialize Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 14);
-end;
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 14)
+end
 
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-end;
+function onMobDeath(mob, player, isKiller)
+end

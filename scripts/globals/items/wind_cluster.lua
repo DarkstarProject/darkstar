@@ -1,25 +1,19 @@
 -----------------------------------------
---    ID: 4106
---    Wind Cluster
---    Turn into a stack of wind crystals
+-- ID: 4106
+-- Wind Cluster
+-- Turn into a stack of wind crystals
 -----------------------------------------
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
+    local result = 0
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addItem(4098,12);
-end;
+    target:addItem(4098,12)
+end

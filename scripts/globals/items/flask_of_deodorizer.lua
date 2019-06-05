@@ -1,26 +1,19 @@
 -----------------------------------------
---    ID: 4166
---    Deodorizer
---    When applied, this powerful deodorant neutralizes even the strongest of odors!!.
+-- ID: 4166
+-- Deodorizer
+-- When applied, this powerful deodorant neutralizes even the strongest of odors!!.
 -----------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_DEODORIZE)) then
-        target:addStatusEffect(EFFECT_DEODORIZE,1,10,180);
+    if (not target:hasStatusEffect(dsp.effect.DEODORIZE)) then
+        target:addStatusEffect(dsp.effect.DEODORIZE,1,10,180)
     else
-        target:messageBasic(283);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
+end

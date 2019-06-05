@@ -2,22 +2,16 @@
 -- Area: Beaucedine Glacier (111)
 --  NM:  Kirata
 -----------------------------------
-
------------------------------------
--- onMobDeath
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
-    -- Set Kirata's Window Open Time
-    local wait = math.random((3600),(28800));
-    SetServerVariable("[POP]Kirata", os.time(t) + wait); -- 1-8 hours
-    DeterMob(mob:getID(), true);
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENAERO)
+end
 
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Kirata");
-    SetServerVariable("[PH]Kirata", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
+function onMobDeath(mob, player, isKiller)
+end

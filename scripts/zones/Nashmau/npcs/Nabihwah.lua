@@ -1,44 +1,23 @@
 -----------------------------------
---  Area: Nashmau
---  NPC:  Nabihwah
---  Type: Standard NPC
---  @pos 9.988 -7 68.585 53
+-- Area: Nashmau
+--  NPC: Nabihwah
+-- Type: Imperial Gate Guard
+-- !pos 9.988 -7 68.585 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Nashmau/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/besieged")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+    dsp.besieged.onTrigger(player, npc, 253)
+end
 
-function onTrigger(player,npc)
-    player:startEvent(0x00fd, npc);
-end;
+function onEventUpdate(player, csid, option)
+    dsp.besieged.onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+function onEventFinish(player, csid, option)
+    dsp.besieged.onEventFinish(player, csid, option)
+end

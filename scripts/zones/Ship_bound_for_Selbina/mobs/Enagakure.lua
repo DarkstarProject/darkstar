@@ -1,26 +1,15 @@
 -----------------------------------
--- Area: Balga Dais
+-- Area: Ship bound for Selbina
 --  MOB: Enagakure
 -- Involved in Quest: I'll Take the Big Box
 -----------------------------------
-
 require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobDeath(mob, player, isKiller)
 
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    if (ally:hasKeyItem(SEANCE_STAFF) and ally:getVar("Enagakure_Killed") == 0) then
-        ally:setVar("Enagakure_Killed",1);
+    if (player:hasKeyItem(dsp.ki.SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 0) then
+        player:setVar("Enagakure_Killed",1);
     end
 
 end;

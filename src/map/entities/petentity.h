@@ -28,13 +28,13 @@
 
 enum PETTYPE
 {
-	PETTYPE_AVATAR            = 0,
-	PETTYPE_WYVERN            = 1,
-	PETTYPE_JUG_PET           = 2,
-	PETTYPE_CHARMED_MOB       = 3,
-	PETTYPE_AUTOMATON         = 4,
-	PETTYPE_ADVENTURING_FELLOW= 5,
-	PETTYPE_CHOCOBO           = 6,
+    PETTYPE_AVATAR            = 0,
+    PETTYPE_WYVERN            = 1,
+    PETTYPE_JUG_PET           = 2,
+    PETTYPE_CHARMED_MOB       = 3,
+    PETTYPE_AUTOMATON         = 4,
+    PETTYPE_ADVENTURING_FELLOW= 5,
+    PETTYPE_CHOCOBO           = 6,
     PETTYPE_TRUST             = 7
 };
 
@@ -63,6 +63,7 @@ public:
     virtual void Die() override;
     virtual void Spawn() override;
     virtual void OnAbility(CAbilityState&, action_t&) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc

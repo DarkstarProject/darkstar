@@ -34,7 +34,7 @@ void CCommandHandler::init(lua_State* L)
 
 int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 {
-    std::istringstream clstream(commandline);
+    std::istringstream clstream((char*)commandline);
     std::string cmdname;
     clstream >> cmdname;
 
@@ -49,7 +49,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         return -1;
     }
 
-    int8 filePath[255] = { 0 };
+    char filePath[255] = { 0 };
     snprintf(filePath, sizeof(filePath), "scripts/commands/%s.lua", cmdname.c_str());
 
     if (luaL_loadfile(m_LState, filePath) || lua_pcall(m_LState, 0, 0, 0))
@@ -83,7 +83,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         return -1;
     }
 
-    int8 permission = lua_tonumber(m_LState, -1);
+    int8 permission = (int8)lua_tonumber(m_LState, -1);
     lua_pop(m_LState, 1); // pop number..
 
     // Attempt to obtain the command parameters..
@@ -102,7 +102,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         return -1;
     }
 
-    const int8* parameters = luaL_checkstring(m_LState, -1);
+    const char* parameters = luaL_checkstring(m_LState, -1);
     if (parameters == nullptr)
     {
         lua_pop(m_LState, -1);
@@ -128,6 +128,26 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         lua_setglobal(m_LState, "cmdprops");
 
         return -1;
+    }
+    else
+    {
+        if (map_config.audit_gm_cmd <= permission && map_config.audit_gm_cmd > 0)
+        {
+            char escaped_name[16 * 2 + 1];
+            Sql_EscapeString(SqlHandle, escaped_name, PChar->name.c_str());
+
+            std::string escaped_gm_cmd; escaped_gm_cmd.reserve(cmdname.length() * 2 + 1);
+            Sql_EscapeString(SqlHandle, escaped_gm_cmd.data(), (char*)cmdname.c_str());
+
+            std::string escaped_full_string; escaped_full_string.reserve(strlen((char*)commandline) * 2 + 1);
+            Sql_EscapeString(SqlHandle, escaped_full_string.data(), (char*)commandline);
+
+            const char* fmtQuery = "INSERT into audit_gm (date_time,gm_name,command,full_string) VALUES(current_timestamp(),'%s','%s','%s')";
+            if (Sql_Query(SqlHandle, fmtQuery, escaped_name, escaped_gm_cmd.data(), escaped_full_string.data()) == SQL_ERROR)
+            {
+                ShowError("cmdhandler::call: Failed to log GM command.\n");
+            }
+        }
     }
 
     // Ensure the onTrigger function exists for this command..
@@ -163,6 +183,11 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 
         switch (*parameter)
         {
+        case 'b':
+            lua_pushstring(m_LState, (const char*)commandline);
+            ++cntparam;
+            break;
+
         case 's':
             if (cmdparameters.size() == 1)
             {

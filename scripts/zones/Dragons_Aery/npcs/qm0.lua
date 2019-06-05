@@ -2,63 +2,36 @@
 -- Area: Dragons Aery
 --  NPC: qm0 (???)
 -- Spawns Fafnir or Nidhogg
--- @pos -81 32 2 178
+-- !pos -81 32 2 178
 -----------------------------------
-package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
+local ID = require("scripts/zones/Dragons_Aery/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
-require("scripts/zones/Dragons_Aery/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
 
------------------------------------
--- onTrade Action
------------------------------------
+function onSpawn(npc)
+    if LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1 then
+        npc:setStatus(dsp.status.DISAPPEAR)
+    end
+end
 
 function onTrade(player,npc,trade)
-    local Fafnir = GetMobAction(17408018);
-    local Nidhogg = GetMobAction(17408019);
-
-    if ((Nidhogg == ACTION_NONE or Nidhogg == ACTION_SPAWN)
-    and (Fafnir == ACTION_NONE or Fafnir == ACTION_SPAWN)) then
-        -- Trade Cup of Honey Wine
-        if (trade:hasItemQty(3339,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_NQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(17408018):updateClaim(player);
-            end
-        -- Trade Cup of Sweet Tea
-        elseif (trade:hasItemQty(3340,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_HQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(17408019):updateClaim(player);
-            end
+    if not GetMobByID(ID.mob.FAFNIR):isSpawned() and not GetMobByID(ID.mob.NIDHOGG):isSpawned() then
+        if LandKingSystem_NQ ~= 0 and npcUtil.tradeHas(trade, 3339) and npcUtil.popFromQM(player, npc, ID.mob.FAFNIR) then
+            player:confirmTrade()
+        elseif LandKingSystem_HQ ~= 0 and npcUtil.tradeHas(trade, 3340) and npcUtil.popFromQM(player, npc, ID.mob.NIDHOGG) then
+            player:confirmTrade()        
         end
     end
-
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

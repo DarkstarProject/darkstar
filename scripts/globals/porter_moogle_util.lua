@@ -40,7 +40,7 @@ local function isSlip(itemId)
 end
 
 ----------------------------------------------------------------------
--- desc : Checks if the supplied slip can store the supplied item. 
+-- desc : Checks if the supplied slip can store the supplied item.
 ----------------------------------------------------------------------
 local function isStorableOn(slipId, itemId)
     for _, id in ipairs(slipItems[slipId]) do
@@ -111,7 +111,7 @@ local function int8ToInt32(extra)
 end
 
 ----------------------------------------------------------------------
--- desc : Gets Storage Slip ID from the trade window (does nothing 
+-- desc : Gets Storage Slip ID from the trade window (does nothing
 --        if there are two or more Storage Slips in the trade and no
 --        storable items.
 ----------------------------------------------------------------------
@@ -143,7 +143,7 @@ local function getStorableItems(player, trade, slipId)
     local storableItemIds = { };
     
     for i = 0, 7 do
-        local slotItemId = trade:getItem(i);
+        local slotItemId = trade:getItemId(i);
         if (slotItemId ~= 0 and isSlip(slotItemId) ~= true and player:hasItem(slotItemId)) then
             if (isStorableOn(slipId, slotItemId)) then
                 storableItemIds[#storableItemIds+1] = slotItemId;
@@ -160,14 +160,14 @@ end
 ----------------------------------------------------------------------
 local function storeItems(player, storableItemIds, slipId, e)
     if (#storableItemIds > 0) then
-        local param0 = 0x0;
-        local param1 = 0x0;
+        local param0 = 0;
+        local param1 = 0;
         if (#storableItemIds == 1) then
             param0 = storableItemIds[1];
-            param1 = 0x00;
+            param1 = 0;
         else
             param0 = #storableItemIds;
-            param1 = 0x01;
+            param1 = 1;
         end
         
         -- idk
@@ -207,7 +207,7 @@ local function getSlipIndex(slipId)
 end
 
 ----------------------------------------------------------------------
--- desc : Gets the extra data from the traded slip and starts the 
+-- desc : Gets the extra data from the traded slip and starts the
 --        retrieval event.
 ----------------------------------------------------------------------
 local function startRetrieveProcess(player, eventId, slipId)
@@ -216,7 +216,7 @@ local function startRetrieveProcess(player, eventId, slipId)
     local slipIndex = getSlipIndex(slipId);
     
     player:setLocalVar('slipId', slipId);
-    player:startEvent(eventId, params[1], params[2], params[3], params[4], params[5], params[6], nil, slipIndex);   
+    player:startEvent(eventId, params[1], params[2], params[3], params[4], params[5], params[6], nil, slipIndex);
 end
 
 ----------------------------------------------------------------------
@@ -233,7 +233,7 @@ function porterMoogleTrade(player, trade, e)
         storeItems(player, storableItemIds, slipId, e);
     else
         startRetrieveProcess(player, e.RETRIEVE_EVENT_ID, slipId);
-    end 
+    end
 end
 
 ----------------------------------------------------------------------
@@ -241,7 +241,7 @@ end
 --        the slip's extra data, displays a message to the user, and
 --        updates the user's event data.
 ----------------------------------------------------------------------
-function porterEventUpdate(player, csid, option, RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED)
+function porterEventUpdate(player, csid, option, RETRIEVE_EVENT_ID)
     local slipId = player:getLocalVar('slipId');
     if (csid == RETRIEVE_EVENT_ID and slipId ~= 0 and slipId ~= nil) then
         local extra = player:getRetrievableItemsForSlip(slipId);
@@ -249,7 +249,7 @@ function porterEventUpdate(player, csid, option, RETRIEVE_EVENT_ID, RETRIEVE_DIA
         local retrievedItemId = itemsOnSlip[option + 1];
         
         if (player:hasItem(retrievedItemId) or player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, retrievedItemId);
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, retrievedItemId);
         else
             local k = find(slipItems[slipId], retrievedItemId);
             local extraId = math.floor((k - 1) / 8);
@@ -261,32 +261,32 @@ function porterEventUpdate(player, csid, option, RETRIEVE_EVENT_ID, RETRIEVE_DIA
             extra[extraId + 1] = bitmask;
 
             player:retrieveItemFromSlip(slipId, retrievedItemId, extraId, bitmask);
-            player:messageSpecial(RETRIEVE_DIALOG_ID, retrievedItemId, nil, nil, retrievedItemId, false);
+            player:messageSpecial(zones[player:getZoneID()].text.RETRIEVE_DIALOG_ID, retrievedItemId, nil, nil, retrievedItemId, false);
         end
         
         local params = int8ToInt32(extra);
         player:updateEvent(params[1], params[2], params[3], params[4], params[5], params[6], slipId);
-    end 
+    end
 end
 
 ----------------------------------------------------------------------
 -- desc : Completes the event.
 ----------------------------------------------------------------------
-function porterEventFinish(player, csid, option, TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL)
+function porterEventFinish(player, csid, option, TALK_EVENT_ID)
     if (csid == TALK_EVENT_ID and option < 1000) then
         -- This is just because hilarious.
         option = math.floor(option / 16) + (option % 16);
         local hasItem = player:hasItem(slipIds[option]);
         if (hasItem or player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, slipIds[option]);
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, slipIds[option]);
             return;
         end
 
         if (player:delGil(1000)) then
             player:addItem(slipIds[option]);
-            player:messageSpecial(ITEM_OBTAINED, slipIds[option]);
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, slipIds[option]);
         else
-            player:messageSpecial(NOT_HAVE_ENOUGH_GIL, slipIds[option]);
+            player:messageSpecial(zones[player:getZoneID()].text.NOT_HAVE_ENOUGH_GIL, slipIds[option]);
             return;
         end
     else

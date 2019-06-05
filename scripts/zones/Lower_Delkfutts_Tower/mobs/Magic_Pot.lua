@@ -2,13 +2,9 @@
 -- Area: Lower Delkfutt's Tower
 --  MOB: Magic Pot
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,781,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 781, 2, dsp.regime.type.GROUNDS)
+end

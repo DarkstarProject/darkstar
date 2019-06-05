@@ -1,55 +1,30 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Bajahb
+--  NPC: Bajahb
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,BAJAHB_SHOP_DIALOG);
+    local stock =
+    {
+        12424, 10260,    -- Iron Mask
+        12552, 15840,    -- Chainmail
+        12680,  8460,    -- Chain Mittens
+        12808, 12600,    -- Chain Hose
+        12936,  7740     -- Greaves
+    }
 
-stock = {0x3088,10260,    --Iron Mask
-    0x3108,15840,    --Chainmail
-    0x3188,8460,    --Chain Mittens
-    0x3208,12600,    --Chain Hose
-    0x3288,7740}    --Greaves
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.BAJAHB_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

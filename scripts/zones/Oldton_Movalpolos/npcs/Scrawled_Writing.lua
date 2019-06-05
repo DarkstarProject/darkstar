@@ -3,49 +3,30 @@
 --  NPC: Scrawled_Writing
 -- Allows players to spawn NM Goblin Wolfman
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
+local ID = require("scripts/zones/Oldton_Movalpolos/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+local scrawledWritingPositions =
+{
+    [1] = {-16.806, 7.718, 14.155},
+    [2] = {-18.0, 12.0, -115.0},
+    [3] = {-150.0, 8.0, -252.0},
+}
 
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-    local x = npc:getXPos();
-    local y = npc:getYPos();
-    local z = npc:getZPos();
-    local mob = GetMobByID(16822459);
-
-    if (GetMobAction(16822459) == 0 and trade:hasItemQty(4541,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(16822459,300):updateClaim(player);
-        mob:setPos(x-1,y,z);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 4541) and npcUtil.popFromQM(player, npc, ID.mob.GOBLIN_WOLFMAN, {radius = 2, hide = 900}) then
+        player:confirmTrade()
+        local newPosition = npcUtil.pickNewPosition(npc:getID(), scrawledWritingPositions, true)
+        npcUtil.queueMove(npc, newPosition)
     end
-end;
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+end
 
-function onTrigger(player,npc)
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

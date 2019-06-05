@@ -1,85 +1,35 @@
 -----------------------------------
---  Area: Newton Movalpolos
---  NPC:  Furnace_Hatch
+-- Area: Newton Movalpolos
+--  NPC: Furnace_Hatch
 -----------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Newton_Movalpolos/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Newton_Movalpolos/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/status")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-    if (trade:getItemCount() == 1 and trade:hasItemQty(947,1)) then
-        player:tradeComplete(); 
-        -- player:messageSpecial(???); -- Needs retail info
-        
-        local npcid = npc:getID();
-        local Door_Offset = 16826582; -- _0c0 in NPC_List
-        
-        if (npcid == Door_Offset+29 or npcid == Door_Offset+28 or npcid == Door_Offset+27) then
-            if (GetNPCByID(Door_Offset+10):getAnimation() == 8) then
-                GetNPCByID(Door_Offset+10):setAnimation(9);  
-                GetNPCByID(Door_Offset+11):setAnimation(8);
-                GetNPCByID(Door_Offset+8):setAnimation(9);
-                GetNPCByID(Door_Offset+9):setAnimation(8);
-            else
-                GetNPCByID(Door_Offset+10):setAnimation(8);
-                GetNPCByID(Door_Offset+11):setAnimation(9);
-                GetNPCByID(Door_Offset+8):setAnimation(8);
-                GetNPCByID(Door_Offset+9):setAnimation(9);
-            end
-        elseif (npcid == Door_Offset+25) then
-            if (GetNPCByID(Door_Offset+3):getAnimation() == 8) then
-                GetNPCByID(Door_Offset+3):setAnimation(9); 
-                GetNPCByID(Door_Offset+2):setAnimation(8);
-                GetNPCByID(Door_Offset+1):setAnimation(9);
-                GetNPCByID(Door_Offset):setAnimation(8);
-            else
-                GetNPCByID(Door_Offset+3):setAnimation(8); 
-                GetNPCByID(Door_Offset+2):setAnimation(9);
-                GetNPCByID(Door_Offset+1):setAnimation(8);
-                GetNPCByID(Door_Offset):setAnimation(9);
-            end
-        elseif (npcid == Door_Offset+26) then  
-            if (GetNPCByID(Door_Offset+4):getAnimation() == 8) then
-                GetNPCByID(Door_Offset+4):setAnimation(9); 
-                GetNPCByID(Door_Offset+5):setAnimation(8);
-                GetNPCByID(Door_Offset+6):setAnimation(9);
-                GetNPCByID(Door_Offset+7):setAnimation(8);
-            else
-                GetNPCByID(Door_Offset+4):setAnimation(8); 
-                GetNPCByID(Door_Offset+5):setAnimation(9);
-                GetNPCByID(Door_Offset+6):setAnimation(8);
-                GetNPCByID(Door_Offset+7):setAnimation(9);
-            end
-        end         
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 947) then
+        local offset = npc:getID() - ID.npc.FURNACE_HATCH_OFFSET
+        player:confirmTrade()
+        player:startEvent(21 + offset) -- THUD!
+
+        -- toggle open/closed the four doors related to this hatch
+        local doorOffset = ID.npc.DOOR_OFFSET + math.min(offset, 2) * 4
+        for i = doorOffset, doorOffset + 3 do
+            local door = GetNPCByID(i)
+            door:setAnimation((door:getAnimation() == dsp.anim.OPEN_DOOR) and dsp.anim.CLOSE_DOOR or dsp.anim.OPEN_DOOR)
+        end
+    else
+        player:startEvent(20) -- no firesand message
     end
-end;
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+    player:startEvent(20) -- no firesand message
+end
 
-function onTrigger(player,npc)   
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

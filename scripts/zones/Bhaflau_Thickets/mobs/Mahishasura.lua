@@ -1,25 +1,18 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  NM:  Mahishasura
--- @pos 206.510 -16.320 357.724 52
+--   NM: Mahishasura
+-- !pos 206.510 -16.320 357.724 52
+-----------------------------------
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/zones/Bhaflau_Thickets/MobIDs");
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PLAGUE)
+end
 
-function onMobDeath(mob,killer,ally)
-
-    -- Set Mahishasura's ToD
-    SetServerVariable("[POP]Mahishasura", os.time(t) + 10800); -- 3 hours
-    DeterMob(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Mahishasura");
-    SetServerVariable("[PH]Mahishasura", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
+function onMobDeath(mob, player, isKiller)
+end

@@ -1,39 +1,20 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Flying_Spear
-
------------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
+--  NPC: Flying_Spear
 -----------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Apollyon/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
+function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
+function onMobDespawn(mob)
+     local mobID = mob:getID();
+     if (mobID == 16933034) then -- time
 
-function onMobEngaged(mob,target)
-end;
+     elseif (mobID == 16933037) then -- recover
 
------------------------------------
--- onMobDeath
------------------------------------
+     elseif (mobID == 16933040) then -- item
 
-function onMobDeath(mob,killer,ally)
- local mobID = mob:GetID();    
- if (mobID ==16933034) then -- time
- 
- elseif (mobID ==16933037) then -- recover
- 
- elseif (mobID ==16933040) then -- item
- 
- end
- 
+     end
 end;

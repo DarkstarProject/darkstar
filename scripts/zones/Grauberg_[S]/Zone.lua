@@ -3,22 +3,15 @@
 -- Zone: Grauberg_[S] (89)
 --
 -----------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Grauberg_[S]/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Grauberg_[S]/IDs");
+require("scripts/globals/weather");
+require("scripts/globals/status");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -28,27 +21,20 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+function onZoneWeatherChange(weather)
+    local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS);
+    if (weather == dsp.weather.WIND or weather == dsp.weather.GALES) then
+        npc:setStatus(dsp.status.NORMAL);
+    else
+        npc:setStatus(dsp.status.DISAPPEAR);
+    end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

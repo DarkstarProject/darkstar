@@ -3,26 +3,17 @@
 -- Item: Orange au Lait
 -- Item Effect: Restores 100 HP over 300 seconds
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_REGEN) == false) then
-        target:addStatusEffect(EFFECT_REGEN,1,3,300);
+    if (not target:hasStatusEffect(dsp.effect.REGEN)) then
+        target:addStatusEffect(dsp.effect.REGEN,1,3,300)
     else
-        target:messageBasic(423);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
-
+end

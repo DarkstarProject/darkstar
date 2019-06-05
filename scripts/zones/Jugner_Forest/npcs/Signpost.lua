@@ -1,75 +1,54 @@
 -----------------------------------
---  Area: Jugner Forest
---  NPC:  Signpost
+-- Area: Jugner Forest
+--  NPC: Signpost
 --  Involved in Quest: Grimy Signposts
 -------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action
------------------------------------ 
-
-function onTrade(player,npc,trade) 
+function onTrade(player,npc,trade)
 
 end;
 
------------------------------------ 
--- onTrigger Action 
------------------------------------
- 
 function onTrigger(player,npc)
 
     local X = player:getXPos();
     local Z = player:getZPos();
 
     if ((X > -79.3 and X < -67.3) and (Z > 94.5 and Z < 106.5)) then
-        if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),0)) then
-            player:startEvent(0x0006,1);
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),0)) then
+            player:startEvent(6,1);
         else
-            player:startEvent(0x0001);
+            player:startEvent(1);
         end
     elseif ((X > -266.2 and X < -254.2) and (Z > -29.2 and Z < -17.2)) then
-        if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),1)) then
-            player:startEvent(0x0007,1);
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),1)) then
+            player:startEvent(7,1);
         else
-            player:startEvent(0x0002);
+            player:startEvent(2);
         end
     elseif ((X > -463.7 and X < -451.7) and (Z > -422.1 and Z < -410.1)) then
-        if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),2)) then
-            player:startEvent(0x0008,1);
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),2)) then
+            player:startEvent(8,1);
         else
-            player:startEvent(0x0003);
+            player:startEvent(3);
         end
     elseif ((X > 295.4 and X < 307.3) and (Z > 412.8 and Z < 424.8)) then
-        if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),3)) then
-            player:startEvent(0x0009,1);
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),3)) then
+            player:startEvent(9,1);
         else
-            player:startEvent(0x0004);
+            player:startEvent(4);
         end
     else
         print("Unknown Signpost");
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
+
     if (csid == 6 and option == 1) then
         player:setMaskBit(player:getVar("CleanSignPost"),"CleanSignPost",0,true);
     elseif (csid == 7 and option == 1) then

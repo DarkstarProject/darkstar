@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Truffle
---  Type: Standard NPC
--- @zone: 48
---  @pos 18.306 -1 53.761
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Al Zahbi
+--  NPC: Truffle
+-- Type: Standard NPC
+-- !pos 18.306 -1 53.761 48
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x00f0);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(240)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

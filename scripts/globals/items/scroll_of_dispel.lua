@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4868
---    Scroll of Dispel
---    Teaches the black magic Dispel
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4868
+-- Scroll of Dispel
+-- Teaches the black magic Dispel
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(260);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(260)
+end
 
 function onItemUse(target)
-    target:addSpell(260);
-end;
+    target:addSpell(260)
+end

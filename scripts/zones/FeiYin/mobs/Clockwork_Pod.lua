@@ -1,27 +1,21 @@
 -----------------------------------
 -- Area: FeiYin
 --  MOB: Clockwork Pod
+-- Note: PH for Mind Hoarder
+-----------------------------------
+local ID = require("scripts/zones/FeiYin/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
+function onMobDeath(mob, player, isKiller)
     -- Curses, Foiled A-Golem!?
-    if (ally:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-        ally:delKeyItem(SHANTOTTOS_NEW_SPELL);
-        ally:addKeyItem(SHANTOTTOS_EXSPELL);
+    if player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL) then
+        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)
+        player:addKeyItem(dsp.ki.SHANTOTTOS_EXSPELL)
     end
+end
 
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.MIND_HOARDER_PH, 10, math.random(5400, 32400)) -- 1.5 to 9 hours
+end

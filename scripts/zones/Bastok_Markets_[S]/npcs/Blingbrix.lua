@@ -1,54 +1,30 @@
 -----------------------------------
 -- Area: Bastok Markets (S)
--- NPC: Blingbrix
+--  NPC: Blingbrix
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
-require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,BLINGBRIX_SHOP_DIALOG);
+    local stock =
+    {
+        4116,  4500,    --Hi-Potion
+        4132, 28000,    --Hi-Ether
+        605,    200,    --Pickaxe
+        1020,   300     --Sickle
+    }
 
-stock = {0x1014,4500,    --Hi-Potion
-    0x1024,28000,    --Hi-Ether
-    0x025D,200,    --Pickaxe
-    0x03FC,300}    --Sickle
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.BLINGBRIX_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

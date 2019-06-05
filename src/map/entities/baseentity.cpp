@@ -27,31 +27,34 @@
 #include "../zone.h"
 #include "../ai/ai_container.h"
 #include "../instance.h"
+#include "../battlefield.h"
 
 CBaseEntity::CBaseEntity()
 {
+    id = 0;
+    targid = 0;
+    objtype = ENTITYTYPE::TYPE_NONE;
+    status = STATUS_DISAPPEAR;
 	m_TargID = 0;
+    memset(&look, 0, sizeof(look));
+    memset(&mainlook, 0, sizeof(mainlook));
+    memset(&loc, 0, sizeof(loc));
+    animation = ANIMATION_NONE;
+    animationsub = 0;
+    speed = 40 + map_config.speed_mod;
+    speedsub = 40 + map_config.speed_mod;
 	namevis = 1;
-
-    PAI = nullptr;
-	PBCNM = nullptr;
-	PInstance = nullptr;
-
-	speed    = 40 + map_config.speed_mod;
-	speedsub = 40 + map_config.speed_mod;
-
-	animationsub = 0;
-	animation    = ANIMATION_NONE;
-
-	status = STATUS_DISAPPEAR;
+    allegiance = 0;
     updatemask = 0;
-
-	memset(&loc,  0, sizeof(loc));
-	memset(&look, 0, sizeof(look));
+    PAI = nullptr;
+	PBattlefield = nullptr;
+	PInstance = nullptr;
 }
 
 CBaseEntity::~CBaseEntity()
 {
+    if (PBattlefield)
+        PBattlefield->RemoveEntity(this, BATTLEFIELD_LEAVE_CODE_WARPDC);
 }
 
 void CBaseEntity::Spawn()
@@ -71,7 +74,7 @@ void CBaseEntity::FadeOut()
 
 const int8* CBaseEntity::GetName()
 {
-	return name.c_str();
+	return (const int8*)name.c_str();
 }
 
 uint16 CBaseEntity::getZone()
@@ -104,26 +107,28 @@ void CBaseEntity::HideName(bool hide)
 	if(hide)
 	{
 		// I totally guessed this number
-		namevis |= 0x08;
+		namevis |= FLAG_HIDE_NAME;
 	}
 	else
 	{
-		namevis &= ~0x08;
+		namevis &= ~FLAG_HIDE_NAME;
 	}
     updatemask |= UPDATE_HP;
 }
 
 bool CBaseEntity::IsNameHidden()
 {
-	return namevis & 0x08;
+	return namevis & FLAG_HIDE_NAME;
 }
 
 CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
 {
-	if (PInstance)
-		return PInstance->GetEntity(targid, filter);
-	else
-		return loc.zone->GetEntity(targid, filter);
+    if (targid == 0)
+        return nullptr;
+    else if (PInstance)
+        return PInstance->GetEntity(targid, filter);
+    else
+        return loc.zone->GetEntity(targid, filter);
 }
 
 void CBaseEntity::ResetLocalVars()
@@ -133,14 +138,7 @@ void CBaseEntity::ResetLocalVars()
 
 uint32 CBaseEntity::GetLocalVar(const char* var)
 {
-    try
-    {
-        return m_localVars.at(var);
-    }
-    catch (std::out_of_range e)
-    {
-        return 0;
-    }
+    return m_localVars[var];
 }
 
 void CBaseEntity::SetLocalVar(const char* var, uint32 val)

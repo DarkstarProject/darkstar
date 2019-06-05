@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: Unknown
---    Scroll of Addle
---    Teaches the magic Addle
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: Unknown
+-- Scroll of Addle
+-- Teaches the magic Addle
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(286);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(286)
+end
 
 function onItemUse(target)
-    target:addSpell(286);
-end;
+    target:addSpell(286)
+end

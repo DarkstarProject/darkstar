@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4934
---    Scroll of Huton: Ichi
---    Teaches the ninjutsu Huton: Ichi
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4934
+-- Scroll of Huton: Ichi
+-- Teaches the ninjutsu Huton: Ichi
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(326);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(326)
+end
 
 function onItemUse(target)
-    target:addSpell(326);
-end;
+    target:addSpell(326)
+end

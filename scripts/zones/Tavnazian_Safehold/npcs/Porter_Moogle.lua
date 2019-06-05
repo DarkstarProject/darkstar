@@ -1,17 +1,13 @@
 -----------------------------------
---  Area:   Tavnazian_Safehold
---  NPC:    Porter Moogle
---  Type:   Storage Moogle
---  @zone 26
---  @pos TODO
+-- Area: Tavnazian_Safehold
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- !zone 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs");
 require("scripts/globals/porter_moogle_util");
 
-local e = 
+local e =
 {
     TALK_EVENT_ID       =   619,
     STORE_EVENT_ID      =   620,
@@ -20,31 +16,19 @@ local e =
     MAGIAN_TRIAL_ID     =   623
 };
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
     porterMoogleTrade(player, trade, e);
-end
+end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
     -- No idea what the params are, other than event ID and gil.
     player:startEvent(e.TALK_EVENT_ID, 0x6FFFFF, 0x01, 0x06DD, 0x27, 0x7C7E, 0x15, player:getGil(), 0x03E8);
-end
+end;
 
------------------------------------
--- onEventUpdate
------------------------------------
 function onEventUpdate(player,csid,option)
-    porterEventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
-end
+    porterEventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID);
+end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player,csid,option)
-    porterEventFinish(player, csid, option, e.TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
+    porterEventFinish(player, csid, option, e.TALK_EVENT_ID);
 end

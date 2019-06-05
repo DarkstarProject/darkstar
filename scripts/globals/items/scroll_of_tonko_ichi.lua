@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4961
---    Scroll of Tonko: Ichi
---    Teaches the ninjutsu Tonko: Ichi
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4961
+-- Scroll of Tonko: Ichi
+-- Teaches the ninjutsu Tonko: Ichi
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(353);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(353)
+end
 
 function onItemUse(target)
-    target:addSpell(353);
-end;
+    target:addSpell(353)
+end

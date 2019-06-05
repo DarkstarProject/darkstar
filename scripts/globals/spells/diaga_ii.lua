@@ -2,59 +2,62 @@
 -- Spell: Diaga II
 -- Lowers an enemy's defense and gradually deals light elemental damage.
 -----------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/utils")
+require("scripts/globals/msg")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
-function onSpellCast(caster,target,spell)
+function onSpellCast(caster, target, spell)
+    local basedmg = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 4
+    local params = {}
+    params.dmg = basedmg
+    params.multiplier = 3
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.attribute = dsp.mod.INT
+    params.hasMultipleTargetReduction = false
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.bonus = 1.0
 
-    --calculate raw damage
-    local basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
-    local dmg = calculateMagicDamage(basedmg,3,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
+    -- Calculate raw damage
+    local dmg = calculateMagicDamage(caster, target, spell, params)
+    -- Softcaps at 40, should always do at least 1
+    dmg = utils.clamp(dmg, 1, 40)
+    -- Get resist multiplier (1x if no resist)
+    local resist = applyResistance(caster, target, spell, params)
+    -- Get the resisted damage
+    dmg = dmg * resist
+    -- Add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+    dmg = addBonuses(caster, spell, target, dmg)
+    -- Add in target adjustment
+    dmg = adjustForTarget(target, dmg, spell:getElement())
+    -- Add in final adjustments including the actual damage dealt
+    local final = finalMagicAdjustments(caster, target, spell, dmg)
 
-    dmg = utils.clamp(dmg, 1, 40);
+    -- Calculate duration and bonus
+    local duration = calculateDuration(120, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+    local dotBonus = caster:getMod(dsp.mod.DIA_DOT) -- Dia Wand
 
-    --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
-    --get the resisted damage
-    dmg = dmg*resist;
-    --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg);
-    --add in target adjustment
-    dmg = adjustForTarget(target,dmg,spell:getElement());
-    --add in final adjustments including the actual damage dealt
-    local final = finalMagicAdjustments(caster,target,spell,dmg);
-
-    -- Calculate duration.
-    local duration = 120;
-
-    -- Check for Bio.
-    local bio = target:getStatusEffect(EFFECT_BIO);
+    -- Check for Bio
+    local bio = target:getStatusEffect(dsp.effect.BIO)
 
     -- Do it!
-    if (bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 2) or (DIA_OVERWRITE == 1 and bio:getPower() < 2)) then
-        target:addStatusEffect(EFFECT_DIA,2,3,duration,FLAG_ERASABLE, 10);
-        spell:setMsg(2);
-    else
-        spell:setMsg(75);
-    end
+    target:addStatusEffect(dsp.effect.DIA, 2 + dotBonus, 3, duration, 0, 15, 2)
+    spell:setMsg(dsp.msg.basic.MAGIC_DMG)
 
-    -- Try to kill same tier Bio
-    if (BIO_OVERWRITE == 1 and bio ~= nil) then
-        if (bio:getPower() <= 2) then
-            target:delStatusEffect(EFFECT_BIO);
+    -- Try to kill same tier Bio (non-default behavior)
+    if BIO_OVERWRITE == 1 and bio ~= nil then
+        if bio:getPower() <= 2 then
+            target:delStatusEffect(dsp.effect.BIO)
         end
     end
 
-    return final;
-
-end;
+    return final
+end

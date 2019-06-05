@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4616
---    Scroll of Curaga II
---    Teaches the white magic Curaga II
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4616
+-- Scroll of Curaga II
+-- Teaches the white magic Curaga II
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(8);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(8)
+end
 
 function onItemUse(target)
-    target:addSpell(8);
-end;
+    target:addSpell(8)
+end

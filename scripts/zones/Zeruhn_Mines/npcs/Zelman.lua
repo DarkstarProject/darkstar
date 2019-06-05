@@ -1,74 +1,45 @@
 -----------------------------------
---    Area: Zeruhn Mines
---    NPC:  Zelman
---    Involved In Quest: Groceries
+-- Area: Zeruhn Mines
+--  NPC: Zelman
+-- Involved In Quest: Groceries
+-- !pos 17.095 7.704 -52.995 172
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Zeruhn_Mines/IDs")
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local groceries = player:getVar("Groceries")
 
-    local GroceriesVar = player:getVar("Groceries");
-    local GroceriesViewedNote = player:getVar("GroceriesViewedNote");
-
-    if (GroceriesVar == 2) then
-        player:showText(npc,7279);
-    elseif (GroceriesVar == 1) then
-        ViewedNote = player:seenKeyItem(TAMIS_NOTE);
-        if (ViewedNote == true) then
-            player:startEvent(0x00a2);
+    -- GROCERIES
+    if groceries == 1 then
+        if player:seenKeyItem(dsp.ki.TAMIS_NOTE) then
+            player:startEvent(162)
         else
-            player:startEvent(0x00a1);
+            player:startEvent(161)
         end
-    else
-        player:startEvent(0x00a0);
-    end
-    
-end;
+    elseif groceries >= 2 then
+        player:showText(npc, ID.text.ZELMAN_CANT_RUN_AROUND)
 
------------------------------------
--- onEventUpdate
------------------------------------
+    -- DEFAULT DIALOG
+    else
+        player:startEvent(160)
+    end
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-    if (csid == 0x00a1) then
-        player:setVar("Groceries",2);
-        player:delKeyItem(TAMIS_NOTE);
-    elseif (csid == 0x00a2) then
-        player:setVar("GroceriesViewedNote",1);
-        player:delKeyItem(TAMIS_NOTE);
+    -- GROCERIES
+    if csid == 161 then
+        player:setVar("Groceries", 2)
+        player:delKeyItem(dsp.ki.TAMIS_NOTE)
+    elseif csid == 162 then
+        player:setVar("Groceries", 3)
+        player:delKeyItem(dsp.ki.TAMIS_NOTE)
     end
-    
-end;
-
-
-
-
+end

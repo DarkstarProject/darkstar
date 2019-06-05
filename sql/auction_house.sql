@@ -38,8 +38,9 @@ CREATE TABLE IF NOT EXISTS `auction_house` (
   `sale` int(10) unsigned NOT NULL DEFAULT '0',
   `sell_date` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `itemid` (`itemid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `itemid` (`itemid`),
+  KEY `charid` (`seller`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `auction_house`

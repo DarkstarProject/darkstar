@@ -4,23 +4,26 @@
 -- BCNM: 673
 -- Mask: 1
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
-
+require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Boneyard_Gully/TextIDs");
 
------------------------------------
- 
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+end
+
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
-    if (player:hasKeyItem(MIASMA_FILTER)) then
-        player:delKeyItem(MIASMA_FILTER);
+function onBattlefieldEnter(player,battlefield)
+    if (player:hasKeyItem(dsp.ki.MIASMA_FILTER)) then
+        player:delKeyItem(dsp.ki.MIASMA_FILTER);
     end;
 end;
 
@@ -32,27 +35,27 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);    
-    elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+        local name, clearTime, partySize = battlefield:getRecord()
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002);
     end
-    
+
 end;
 
-function onBcnmDestroy(player,instance)
+function onBattlefieldDestroy(player,battlefield)
 end;
-
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);    
-    if (csid == 0x7d01) then
+    -- print("bc finish csid "..csid.." and option "..option);
+    if (csid == 32001) then
         player:addExp(2000);
     end
 end;

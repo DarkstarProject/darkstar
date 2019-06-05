@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Hayah Dahbalesahma
---  Type: Standard NPC
--- @zone: 241
---  @pos -50.363 -1.292 -147.883
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Woods
+--  NPC: Hayah Dahbalesahma
+-- Type: Standard NPC
+-- !pos -50.363 -1.292 -147.883 241
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0107);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(263)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

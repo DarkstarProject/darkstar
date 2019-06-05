@@ -2,13 +2,9 @@
 -- Area: Ordelle's Caves
 --  MOB: Shrieker
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,656,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 656, 2, dsp.regime.type.GROUNDS)
+end

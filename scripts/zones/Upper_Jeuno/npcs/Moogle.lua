@@ -1,42 +1,22 @@
 -----------------------------------
--- Area: Residential Area
--- NPC:  Moogle
--- 
+-- Area: Upper Jeuno
+--  NPC: Moogle
+--
 -----------------------------------
 require("scripts/globals/moghouse")
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
-    moogleTrade(player,npc,trade);
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+    moogleTrade(player,npc,trade)
+end
 
 function onTrigger(player,npc)
     moogleTrigger(player,npc)
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+    moogleEventUpdate(player,csid,option)
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x7530) then
-        player:setVar("MoghouseExplication",0);
-    end
-end;
+    moogleEventFinish(player,csid,option)
+end

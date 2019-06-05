@@ -2,22 +2,16 @@
 -- Area: Labyrinth of Onzozo
 --   NM: Hellion
 -----------------------------------
-
------------------------------------
--- onMobDeath
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
-    -- Set Hellion's Window Open Time
-    local wait = math.random(7200,14400);
-    SetServerVariable("[POP]Hellion", os.time(t) + wait); -- 2-4 hours
-    DeterMob(mob:getID(), true);
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENDARK)
+end
 
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Hellion");
-    SetServerVariable("[PH]Hellion", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
+function onMobDeath(mob, player, isKiller)
+end

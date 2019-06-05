@@ -36,6 +36,7 @@
 ************************************************************************/
 
 class CCharEntity;
+class CTrustEntity;
 class CAlliance;
 
 class CPartyMemberUpdatePacket : public CBasicPacket
@@ -43,7 +44,8 @@ class CPartyMemberUpdatePacket : public CBasicPacket
 public:
 
 	CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 zoneid);
-	CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint8 ZoneID);
+    CPartyMemberUpdatePacket(CTrustEntity* PTrust, uint8 MemberNumber);
+	CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID);
 };
 
 #endif

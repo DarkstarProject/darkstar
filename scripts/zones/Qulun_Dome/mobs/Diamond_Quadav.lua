@@ -1,43 +1,50 @@
 -----------------------------------
 -- Area: Qulun_Dome
---  NM:  Diamond_Quadav
+--   NM: Diamond_Quadav
 -- Note: PH for Za Dha Adamantking PH
+-- TODO: messages should be zone-wide
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/Qulun_Dome/IDs")
+require("scripts/globals/status")
 -----------------------------------
 
-require("scripts/zones/Qulun_Dome/TextIDs");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
------------------------------------
+function onMobInitialize(mob)
+    -- the quest version of this NM doesn't drop gil
+    if mob:getID() >= ID.mob.AFFABLE_ADAMANTKING_OFFSET then
+        mob:setMobMod(dsp.mobMod.GIL_MAX, -1)
+    end
+end
 
 function onMobEngaged(mob,target)
-    mob:showText(mob,DIAMOND_QUADAV_ENGAGE);
-end;
+    mob:showText(mob, ID.text.DIAMOND_QUADAV_ENGAGE)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    local Diamond_Quadav = mob:getID();
-    local Za_Dha_Adamantking = 17383443;
-    local ToD = GetServerVariable("[POP]Za_Dha_Adamantking");
-    DeterMob(Diamond_Quadav, true);
-    mob:showText(mob,DIAMOND_QUADAV_DEATH);
-    if (ToD <= os.time(t) + 172800 and GetMobAction(Za_Dha_Adamantking) == 0) then -- -- From wikia:  A 3-5 day spawn; however it can spawn as early as 2 days from previous kill or as late as 10 days.
-        if (math.random((1),(5)) == 3 or os.time(t) >= 777600) then
-            UpdateNMSpawnPoint(Za_Dha_Adamantking);
-            GetMobByID(Za_Dha_Adamantking):setRespawnTime(math.random((75600),(86400))); -- 21 to 24 hours
-        end
-    else
-        UpdateNMSpawnPoint(Diamond_Quadav);
-        mob:setRespawnTime(math.random((75600),(86400)));
+function onMobDeath(mob, player, isKiller)
+    if isKiller then
+        mob:showText(mob, ID.text.DIAMOND_QUADAV_DEATH)
     end
-end;
+end
+
+function onMobDespawn(mob)
+    local nqId = mob:getID()
+
+    -- the quest version of this NM doesn't respawn or count toward hq nm
+    if nqId == ID.mob.DIAMOND_QUADAV then
+        local hqId = mob:getID() + 1
+        local ToD = GetServerVariable("[POP]Za_Dha_Adamantking")
+        local kills = GetServerVariable("[PH]Za_Dha_Adamantking")
+        local popNow = (math.random(1,5) == 3 or kills > 6)
+
+        if os.time() > ToD and popNow then
+            DisallowRespawn(nqId, true)
+            DisallowRespawn(hqId, false)
+            UpdateNMSpawnPoint(hqId)
+            GetMobByID(hqId):setRespawnTime(math.random(75600,86400))
+        else
+            UpdateNMSpawnPoint(nqId)
+            mob:setRespawnTime(math.random(75600,86400))
+            SetServerVariable("[PH]Za_Dha_Adamantking", kills + 1)
+        end
+    end
+end

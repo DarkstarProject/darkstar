@@ -1,25 +1,19 @@
 -----------------------------------------
---    ID: 4164
---    Prism Powder
---    When applied, it makes things invisible.
+-- ID: 4164
+-- Prism Powder
+-- When applied, it makes things invisible.
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/settings")
+require("scripts/globals/status")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_INVISIBLE)) then
-        target:addStatusEffect(EFFECT_INVISIBLE,0,10,math.random(60, 180));
+    local duration = math.random(60, 180)
+    if (target:hasStatusEffect(dsp.effect.INVISIBLE)) then
+        target:delStatusEffect(dsp.effect.INVISIBLE)
     end
-end;
+    target:addStatusEffect(dsp.effect.INVISIBLE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER))
+end

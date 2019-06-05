@@ -1,22 +1,23 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: gigaplasm
------------------------------------
-package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Gustav_Tunnel/TextIDs");
-require("scripts/globals/settings");
-
------------------------------------
--- onMobDeath
+--   NM: Gigaplasm
+-- Note: Part of mission "The Salt of the Earth"
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    local X = GetMobByID(17645794):getXPos();
-    local Y = GetMobByID(17645794):getYPos();
-    local Z = GetMobByID(17645794):getZPos();
-    SpawnMob(17645795):setPos(X,Y,Z);
-    SpawnMob(17645796):setPos(X-1,Y,Z-1);
-    GetMobByID(17645795):updateEnmity(killer);
-    GetMobByID(17645796):updateEnmity(killer);
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+end
+
+function onMobDeath(mob, player, isKiller)
+    if (isKiller) then
+        local mobId = mob:getID();
+        local x = mob:getXPos();
+        local y = mob:getYPos();
+        local z = mob:getZPos();
+
+        SpawnMob(mobId + 1):setPos(x, y, z);
+        SpawnMob(mobId + 2):setPos(x-1, y, z-1);
+        GetMobByID(mobId + 1):updateEnmity(player);
+        GetMobByID(mobId + 2):updateEnmity(player);
+    end
 end;

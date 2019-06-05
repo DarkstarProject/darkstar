@@ -1,49 +1,25 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  NPC: ??? (Spawn Brass Borer(ZNM T1))
--- @pos 399 -27 120 61
+-- !pos 399 -27 120 61
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mount_Zhayolm/TextIDs");
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Mount_Zhayolm/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-    local mobID = 17027471;
-    if (trade:hasItemQty(2590,1) and trade:getItemCount() == 1) then -- Trade Shadeleaves
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 2590) and npcUtil.popFromQM(player, npc, ID.mob.BRASS_BORER) then
+        player:confirmTrade()
+        player:messageSpecial(ID.text.DRAWS_NEAR)
     end
-end;
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.SHED_LEAVES)
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

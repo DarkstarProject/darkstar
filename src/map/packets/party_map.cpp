@@ -35,11 +35,11 @@ CPartyMapPacket::CPartyMapPacket(CCharEntity* PChar)
 
 	DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
-	WBUFL(data,(0x04)) = PChar->id;
-	WBUFW(data,(0x08)) = PChar->getZone();
-	WBUFW(data,(0x0A)) = PChar->targid;
+	ref<uint32>(0x04) = PChar->id;
+	ref<uint16>(0x08) = PChar->getZone();
+	ref<uint16>(0x0A) = PChar->targid;
 
-	WBUFF(data,(0x0C)) = PChar->loc.p.x;
-	WBUFF(data,(0x10)) = PChar->loc.p.y;
-	WBUFF(data,(0x14)) = PChar->loc.p.z;
+	ref<float>(0x0C) = PChar->loc.p.x;
+	ref<float>(0x10) = PChar->loc.p.y;
+	ref<float>(0x14) = PChar->loc.p.z;
 }

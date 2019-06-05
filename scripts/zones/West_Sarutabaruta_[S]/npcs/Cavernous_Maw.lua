@@ -1,56 +1,33 @@
 -----------------------------------
 -- Area: West Sarutabaruta [S]
 --  NPC: Cavernous Maw
--- @pos 0 0 -165 95
+-- !pos 0 0 -165 95
 -- Teleports Players to West Sarutabaruta
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/teleports");
-require("scripts/globals/campaign");
-require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/teleports")
+require("scripts/globals/campaign")
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    if (hasMawActivated(player,8) == false) then
-        player:startEvent(0x0064);
+    if not hasMawActivated(player,8) then
+        player:startEvent(100)
     else
-        player:startEvent(0x0065);
+        player:startEvent(101)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (option == 1) then
-        if (csid == 0x0064) then
-            player:addNationTeleport(MAW,256);
+    if option == 1 then
+        if csid == 100 then
+            player:addNationTeleport(dsp.teleport.nation.MAW, 256)
         end
-        toMaw(player,8);
+        dsp.teleport.toMaw(player, 8)
     end
-end;
+end

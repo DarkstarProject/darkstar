@@ -5,27 +5,33 @@
 -- Recast Time: 0:30
 -- Duration: Instant
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
-function onAbilityCheck(player,target,ability)
+function onAbilityCheck(player, target, ability)
     if (player:getPet() ~= nil ) then
-        return MSGBASIC_ALREADY_HAS_A_PET,0;
+        return dsp.msg.basic.ALREADY_HAS_A_PET,0
     else
-        return 0,0;
+        return 0,0
     end
-end;
+end
 
------------------------------------
--- onUseAbility
------------------------------------
+function onUseAbility(player, target, ability)
 
-function onUseAbility(player,target,ability)
-    -- Nothing, all is handled in the core.
-    return 0,0;
-end;
+    local charmChance = player:getCharmChance(target, false)
+
+    if (charmChance >= 75) then
+        ability:setMsg(dsp.msg.basic.SHOULD_BE_ABLE_CHARM)  -- The <player> should be able to charm <target>.
+    elseif (charmChance >= 50) then
+        ability:setMsg(dsp.msg.basic.MIGHT_BE_ABLE_CHARM)   -- The <player> might be able to charm <target>.
+    elseif (charmChance >= 25) then
+        ability:setMsg(dsp.msg.basic.DIFFICULT_TO_CHARM)    -- It would be difficult for the <player> to charm <target>.
+    elseif (charmChance >= 1) then
+        ability:setMsg(dsp.msg.basic.VERY_DIFFICULT_CHARM)  -- It would be very difficult for the <player> to charm <target>.
+    else
+        ability:setMsg(dsp.msg.basic.CANNOT_CHARM)          -- The <player> cannot charm <target>!
+    end
+
+end

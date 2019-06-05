@@ -2,13 +2,9 @@
 -- Area: Gusgen Mines
 --  MOB: Madfly
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,686,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 686, 2, dsp.regime.type.GROUNDS)
 end;

@@ -10,9 +10,9 @@ SC_DETONATION    =  6 -- Lv1 Wind
 SC_INDURATION    =  7 -- Lv1 Ice
 SC_IMPACTION     =  8 -- Lv1 Thunder
 SC_GRAVITATION   =  9 -- Lv2 Dark & Earth
-SC_DISTORTION    = 10 -- Lv2 Water & Ice 
+SC_DISTORTION    = 10 -- Lv2 Water & Ice
 SC_FUSION        = 11 -- Lv2 Fire & Light
-SC_FRAGMENTATION = 12 -- Lv2 Wind & Thunder    
+SC_FRAGMENTATION = 12 -- Lv2 Wind & Thunder
 SC_LIGHT         = 13 -- Lv3 Fire, Light, Wind, Thunder
 SC_DARKNESS      = 14 -- Lv3 Dark, Earth, Water, Ice
 SC_LIGHT_II      = 15 -- Lv4 Light
@@ -46,7 +46,7 @@ end
 
 -- Returns the burst level for a spell / target combination
 function FormMagicBurst(ele, target)
-    local resonance = target:getStatusEffect(EFFECT_SKILLCHAIN);
+    local resonance = target:getStatusEffect(dsp.effect.SKILLCHAIN);
     if (resonance ~= nil and resonance:getTier() > 0) then -- Resonance exists, ignore it if its tier 0
         if (doesSpellElementMatchResonance(ele, resonance) == true) then
             return resonance:getTier(), resonance:getSubPower();
@@ -57,7 +57,7 @@ function FormMagicBurst(ele, target)
 end
 
 function MobFormMagicBurst(element, target)
-    local resonance = target:getStatusEffect(EFFECT_SKILLCHAIN);
+    local resonance = target:getStatusEffect(dsp.effect.SKILLCHAIN);
 
     if (resonance ~= nil and resonance:getTier() > 0) then -- Resonance exists, ignore it if its tier 0
         if (doesMobSpellElementMatchResonance(element, resonance) == true) then

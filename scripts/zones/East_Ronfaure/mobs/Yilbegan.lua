@@ -1,21 +1,10 @@
 -----------------------------------
--- Area:
---  MOB: Yilbegan
+-- Area: East Ronfaure
+--  VNM: Yilbegan
+-----------------------------------
+require("scripts/globals/titles")
 -----------------------------------
 
-require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(YILBEGAN_HIDEFLAYER);
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.YILBEGAN_HIDEFLAYER)
+end

@@ -1,14 +1,8 @@
 -----------------------------------
 -- Area: Ranguemont Pass
--- NPC: _4m0
+--  NPC: _4m0
 -- Type: Door
--- @pos -180 1.375 -159 166
------------------------------------
-package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrigger Action
+-- !pos -180 1.375 -159 166
 -----------------------------------
 
 function onTrigger(player,npc)

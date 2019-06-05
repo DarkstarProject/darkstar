@@ -1,53 +1,34 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
--- NPC:  ???
+--  NPC: ???
 -- Involved in Mission: Bastok 6-2
--- @pos 171 0 -25 205
+-- !pos 171 0 -25 205
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/missions");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
-        if (GetMobAction(17616897) == 0 and GetMobAction(17616898) == 0 and trade:hasItemQty(646,1) and trade:getItemCount() == 1) then
-            player:tradeComplete();
-            SpawnMob(17616897):updateClaim(player);
-            SpawnMob(17616898):updateClaim(player);
-            npc:setStatus(STATUS_DISAPPEAR);
-        end
-    end    
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+    -- Adaman Ore: spawn Salamander and Magma for The Pirate's Cove
+    if (
+        player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_PIRATE_S_COVE and
+        player:getVar("MissionStatus") == 2 and
+        npcUtil.tradeHas(trade, 646) and
+        npcUtil.popFromQM(player, npc, {ID.mob.PIRATES_COVE_NMS, ID.mob.PIRATES_COVE_NMS + 1}, {claim=false})
+    ) then
+        player:confirmTrade()
+        GetMobByID(ID.mob.PIRATES_COVE_NMS):lookAt(player:getPos()) -- Salamander
+        GetMobByID(ID.mob.PIRATES_COVE_NMS + 1):updateClaim(player) -- Magma
+    end
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

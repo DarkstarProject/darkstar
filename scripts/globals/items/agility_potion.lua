@@ -1,29 +1,19 @@
 -----------------------------------------
 --  ID: 4205
 --  Item: Agility Potion
------------------------------------------
 --  Agility 7
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
-            result = 111;
+    if (target:hasStatusEffect(dsp.effect.MEDICINE)) then
+        return dsp.msg.basic.ITEM_NO_USE_MEDICATED
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-        target:addStatusEffect(EFFECT_AGI_BOOST,7,0,180);
-        target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
-end;
+    target:addStatusEffect(dsp.effect.AGI_BOOST,7,0,180)
+    target:addStatusEffect(dsp.effect.MEDICINE,0,0,900)
+end

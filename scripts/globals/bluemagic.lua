@@ -1,8 +1,6 @@
 require("scripts/globals/status")
 require("scripts/globals/magic")
 
-BLUE_SKILL = 43;
-
 -- The type of spell.
 SPELLTYPE_PHYSICAL = 0;
 SPELLTYPE_MAGICAL = 1;
@@ -70,7 +68,7 @@ MND_BASED = 3;
 --      .agi_wsc - Same as above.
 function BluePhysicalSpell(caster, target, spell, params)
     -- store related values
-    local magicskill = caster:getSkillLevel(BLUE_SKILL) + caster:getMod(79 + BLUE_SKILL); -- Base skill + equip mods
+    local magicskill = caster:getSkillLevel(dsp.skill.BLUE_MAGIC); -- skill + merits + equip bonuses
     -- TODO: Under Chain affinity?
     -- TODO: Under Efflux?
     -- TODO: Merits.
@@ -88,50 +86,50 @@ function BluePhysicalSpell(caster, target, spell, params)
         D = params.duppercap;
     end
 
-    --print("D val is ".. D);
+    -- print("D val is ".. D);
 
-    local fStr = BluefSTR(caster:getStat(MOD_STR) - target:getStat(MOD_VIT));
+    local fStr = BluefSTR(caster:getStat(dsp.mod.STR) - target:getStat(dsp.mod.VIT));
     if (fStr > 22) then
         fStr = 22; -- TODO: Smite of Rage doesn't have this cap applied.
     end
 
-    --print("fStr val is ".. fStr);
+    -- print("fStr val is ".. fStr);
 
     local WSC = BlueGetWsc(caster, params);
 
-    --print("wsc val is ".. WSC);
+    -- print("wsc val is ".. WSC);
 
     local multiplier = params.multiplier;
-    
+
     -- If under CA, replace multiplier with fTP(multiplier, tp150, tp300)
-    local chainAffinity = caster:getStatusEffect(EFFECT_CHAIN_AFFINITY);
+    local chainAffinity = caster:getStatusEffect(dsp.effect.CHAIN_AFFINITY);
     if chainAffinity ~= nil then
         -- Calculate the total TP available for the fTP multiplier.
-        local tp = caster:getTP() + caster:getMerit(MERIT_ENCHAINMENT);
-        if tp > 300 then
-            tp = 300;
+        local tp = caster:getTP() + caster:getMerit(dsp.merit.ENCHAINMENT);
+        if tp > 3000 then
+            tp = 3000;
         end;
-        
+
         multiplier = BluefTP(tp, multiplier, params.tp150, params.tp300);
     end;
-    
+
     -- TODO: Modify multiplier to account for family bonus/penalty
     local finalD = math.floor(D + fStr + WSC) * multiplier;
 
-    --print("Final D is ".. finalD);
+    -- print("Final D is ".. finalD);
 
     ----------------------------------------------
     -- Get the possible pDIF range and hit rate --
     ----------------------------------------------
     if (params.offcratiomod == nil) then -- default to attack. Pretty much every physical spell will use this, Cannonball being the exception.
-        params.offcratiomod = caster:getStat(MOD_ATT)
+        params.offcratiomod = caster:getStat(dsp.mod.ATT)
     end;
     -- print(params.offcratiomod)
-    local cratio = BluecRatio(params.offcratiomod / target:getStat(MOD_DEF), caster:getMainLvl(), target:getMainLvl());
+    local cratio = BluecRatio(params.offcratiomod / target:getStat(dsp.mod.DEF), caster:getMainLvl(), target:getMainLvl());
     local hitrate = BlueGetHitRate(caster,target,true);
 
-    --print("Hit rate "..hitrate);
-    --print("pdifmin "..cratio[1].." pdifmax "..cratio[2]);
+    -- print("Hit rate "..hitrate);
+    -- print("pdifmin "..cratio[1].." pdifmax "..cratio[2]);
 
     -------------------------
     -- Perform the attacks --
@@ -158,14 +156,14 @@ function BluePhysicalSpell(caster, target, spell, params)
 
             hitslanded = hitslanded + 1;
 
-            -- increment target's TP (10TP per hit landed)
-            target:addTP(10);
+            -- increment target's TP (100TP per hit landed)
+            target:addTP(100);
         end
 
         hitsdone = hitsdone + 1;
     end
 
-    --print("Hits landed "..hitslanded.."/"..hitsdone.." for total damage: "..finaldmg);
+    -- print("Hits landed "..hitslanded.."/"..hitsdone.." for total damage: "..finaldmg);
 
     return finaldmg;
 end;
@@ -181,13 +179,13 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 
     local ST = BlueGetWsc(caster, params); -- According to Wiki ST is the same as WSC, essentially Blue mage spells that are magical use the dmg formula of Magical type Weapon skills
 
-    if (caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
+    if (caster:hasStatusEffect(dsp.effect.BURST_AFFINITY)) then
         ST = ST * 2;
     end
 
     local convergenceBonus = 1.0;
-    if (caster:hasStatusEffect(EFFECT_CONVERGENCE)) then
-        convergenceEffect = getStatusEffect(EFFECT_CONVERGENCE);
+    if (caster:hasStatusEffect(dsp.effect.CONVERGENCE)) then
+        convergenceEffect = getStatusEffect(dsp.effect.CONVERGENCE);
         local convLvl = convergenceEffect:getPower();
         if (convLvl == 1) then
             convergenceBonus = 1.05;
@@ -198,19 +196,16 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
         end
     end
 
-    local magAccMerit = caster:getMerit(MERIT_MAGICAL_ACCURACY);
-    -- print(magAccMerit);
-
     local statBonus = 0;
     local dStat = 0; -- Please make sure to add an additional stat check if there is to be a spell that uses neither INT, MND, or CHR. None currently exist.
     if (statMod == INT_BASED) then -- Stat mod is INT
-        dStat = caster:getStat(MOD_INT) - target:getStat(MOD_INT)
+        dStat = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
         statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == CHR_BASED) then -- Stat mod is CHR
-        dStat = caster:getStat(MOD_CHR) - target:getStat(MOD_CHR)
+        dStat = caster:getStat(dsp.mod.CHR) - target:getStat(dsp.mod.CHR)
         statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == MND_BASED) then -- Stat mod is MND
-        dStat = caster:getStat(MOD_MND) - target:getStat(MOD_MND)
+        dStat = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
         statBonus = (dStat)* params.tMultiplier;
     end
 
@@ -221,29 +216,37 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local magicAttack = 1.0;
     local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
     magicAttack = math.floor(D * multTargetReduction);
-    magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,dStat,BLUE_SKILL,magAccMerit));
+    
+    local rparams = {};
+    rparams.diff = dStat;
+    rparams.skillType = dsp.skill.BLUE_MAGIC;
+    magicAttack = math.floor(magicAttack * applyResistance(caster, target, spell, rparams));
+    
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
-    caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);
+    caster:delStatusEffectSilent(dsp.effect.BURST_AFFINITY);
 
     return dmg;
 end;
 
 function BlueFinalAdjustments(caster, target, spell, dmg, params)
-    if (dmg<0) then
+    if (dmg < 0) then
         dmg = 0;
     end
 
-    dmg = dmg - target:getMod(MOD_PHALANX);
-    if (dmg<0) then
+    dmg = dmg * BLUE_POWER;
+
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
+    if (dmg < 0) then
         dmg = 0;
     end
 
-    --handling stoneskin
+    -- handling stoneskin
     dmg = utils.stoneskin(target, dmg);
 
-    target:delHP(dmg);
+    target:takeDamage(dmg, caster, dsp.attackType.PHYSICAL, params.dmgType or dsp.damageType.NONE);
     target:updateEnmityFromDamage(caster,dmg);
+    target:handleAfflatusMiseryDamage(dmg);
     -- TP has already been dealt with.
     return dmg;
 end;
@@ -253,30 +256,30 @@ end;
 ------------------------------
 
 function BlueGetWsc(attacker, params)
-    wsc = (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
-         attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
-         attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
-         attacker:getStat(MOD_CHR) * params.chr_wsc) * BlueGetAlpha(attacker:getMainLvl());
+    wsc = (attacker:getStat(dsp.mod.STR) * params.str_wsc + attacker:getStat(dsp.mod.DEX) * params.dex_wsc +
+         attacker:getStat(dsp.mod.VIT) * params.vit_wsc + attacker:getStat(dsp.mod.AGI) * params.agi_wsc +
+         attacker:getStat(dsp.mod.INT) * params.int_wsc + attacker:getStat(dsp.mod.MND) * params.mnd_wsc +
+         attacker:getStat(dsp.mod.CHR) * params.chr_wsc) * BlueGetAlpha(attacker:getMainLvl());
     return wsc;
 end;
 
---Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
+-- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function BluecRatio(ratio,atk_lvl,def_lvl)
-    --Level penalty...
+    -- Level penalty...
     local levelcor = 0;
     if (atk_lvl < def_lvl) then
         levelcor = 0.05 * (def_lvl - atk_lvl);
     end
     ratio = ratio - levelcor;
 
-    --apply caps
+    -- apply caps
     if (ratio<0) then
         ratio = 0;
     elseif (ratio>2) then
         ratio = 2;
     end
 
-    --Obtaining cRatio_MIN
+    -- Obtaining cRatio_MIN
     local cratiomin = 0;
     if (ratio<1.25) then
         cratiomin = 1.2 * ratio - 0.5;
@@ -286,7 +289,7 @@ function BluecRatio(ratio,atk_lvl,def_lvl)
         cratiomin = 1.2 * ratio - 0.8;
     end
 
-    --Obtaining cRatio_MAX
+    -- Obtaining cRatio_MAX
     local cratiomax = 0;
     if (ratio<0.5) then
         cratiomax = 0.4 + 1.2 * ratio;
@@ -310,18 +313,19 @@ end;
 -- ftp2 - The TP 150% value
 -- ftp3 - The TP 300% value
 function BluefTP(tp,ftp1,ftp2,ftp3)
-    if (tp>=0 and tp<150) then
-        return ftp1 + ( ((ftp2-ftp1)/100) * tp);
-    elseif (tp>=150 and tp<=300) then
-        --generate a straight line between ftp2 and ftp3 and find point @ tp
-        return ftp2 + ( ((ftp3-ftp2)/100) * (tp-150));
+    if (tp >= 0 and tp < 1500) then
+        return ftp1 + ( ((ftp2-ftp1)/100) * (tp / 10));
+    elseif (tp >= 1500 and tp <= 3000) then
+        -- generate a straight line between ftp2 and ftp3 and find point @ tp
+        return ftp2 + ( ((ftp3-ftp2)/100) * ((tp-1500) / 10));
     else
-        print("blue fTP error: TP value is not between 0-300!");
+        print("blue fTP error: TP value is not between 0-3000!");
     end
-    return 1; --no ftp mod
+    return 1; -- no ftp mod
 end;
 
 function BluefSTR(dSTR)
+    local fSTR2 = nil;
     if (dSTR >= 12) then
         fSTR2 = ((dSTR+4)/2);
     elseif (dSTR >= 6) then
@@ -347,9 +351,9 @@ function BlueGetHitRate(attacker,target,capHitRate)
     local acc = attacker:getACC();
     local eva = target:getEVA();
 
-    if (attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
+    if (attacker:getMainLvl() > target:getMainLvl()) then -- acc bonus!
         acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
-    elseif (attacker:getMainLvl() < target:getMainLvl()) then --acc penalty :(
+    elseif (attacker:getMainLvl() < target:getMainLvl()) then -- acc penalty :(
         acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
     end
 
@@ -366,8 +370,8 @@ function BlueGetHitRate(attacker,target,capHitRate)
     hitrate = hitrate/100;
 
 
-    --Applying hitrate caps
-    if (capHitRate) then --this isn't capped for when acc varies with tp, as more penalties are due
+    -- Applying hitrate caps
+    if (capHitRate) then -- this isn't capped for when acc varies with tp, as more penalties are due
         if (hitrate>0.95) then
             hitrate = 0.95;
         end
@@ -379,9 +383,7 @@ function BlueGetHitRate(attacker,target,capHitRate)
 end;
 
 -- Function to stagger duration of effects by using the resistance to change the value
-
 function getBlueEffectDuration(caster,resist,effect)
-
     local duration = 0;
 
     if (resist == 0.125) then
@@ -394,60 +396,68 @@ function getBlueEffectDuration(caster,resist,effect)
         resist = 4;
     end
 
-    if (effect == EFFECT_BIND) then
+    if (effect == dsp.effect.BIND) then
         duration = math.random(0,5) + resist * 5;
-    elseif (effect == EFFECT_STUN) then
+    elseif (effect == dsp.effect.STUN) then
         duration = math.random(2,3) + resist;
-    elseif (effect == EFFECT_WEIGHT) then
-        duration = math.random(20,24) + resist * 9; -- 30-60
-    elseif (effect == EFFECT_PARALYSIS) then
-        duration = math.random(50,60) + resist * 15; --60- 120
+        -- printf("Duration of stun is %i",duration);
+    elseif (effect == dsp.effect.WEIGHT) then
+        duration = math.random(20,24) + resist * 9; -- 20-24
+    elseif (effect == dsp.effect.PARALYSIS) then
+        duration = math.random(50,60) + resist * 15; -- 50- 60
+    elseif (effect == dsp.effect.SLOW) then
+        duration = math.random(60,120) + resist * 15; -- 60- 120 -- Needs confirmation but capped max duration based on White Magic Spell Slow
+    elseif (effect == dsp.effect.SILENCE) then
+        duration = math.random(60,180) + resist * 15; -- 60- 180 -- Needs confirmation but capped max duration based on White Magic Spell Silence
+    elseif (effect == dsp.effect.POISON) then
+        duration = math.random(20,30) + resist * 9; -- 20-30 -- based on magic spell poison
     end
-    printf("Duration of stun is %i",duration);
+
     return duration;
 end;
 
---obtains alpha, used for working out WSC
+-- obtains alpha, used for working out WSC
 function BlueGetAlpha(level)
-alpha = 1.00;
-if (level <= 5) then
-    alpha = 1.00;
-elseif (level <= 11) then
-    alpha = 0.99;
-elseif (level <= 17) then
-    alpha = 0.98;
-elseif (level <= 23) then
-    alpha = 0.97;
-elseif (level <= 29) then
-    alpha = 0.96;
-elseif (level <= 35) then
-    alpha = 0.95;
-elseif (level <= 41) then
-    alpha = 0.94;
-elseif (level <= 47) then
-    alpha = 0.93;
-elseif (level <= 53) then
-    alpha = 0.92;
-elseif (level <= 59) then
-    alpha = 0.91;
-elseif (level <= 61) then
-    alpha = 0.90;
-elseif (level <= 63) then
-    alpha = 0.89;
-elseif (level <= 65) then
-    alpha = 0.88;
-elseif (level <= 67) then
-    alpha = 0.87;
-elseif (level <= 69) then
-    alpha = 0.86;
-elseif (level <= 71) then
-    alpha = 0.85;
-elseif (level <= 73) then
-    alpha = 0.84;
-elseif (level <= 75) then
-    alpha = 0.83;
-elseif (level <= 99) then
-    alpha = 0.85;
-end
-return alpha;
- end;
+    local alpha = 1.00;
+    if (level <= 5) then
+        alpha = 1.00;
+    elseif (level <= 11) then
+        alpha = 0.99;
+    elseif (level <= 17) then
+        alpha = 0.98;
+    elseif (level <= 23) then
+        alpha = 0.97;
+    elseif (level <= 29) then
+        alpha = 0.96;
+    elseif (level <= 35) then
+        alpha = 0.95;
+    elseif (level <= 41) then
+        alpha = 0.94;
+    elseif (level <= 47) then
+        alpha = 0.93;
+    elseif (level <= 53) then
+        alpha = 0.92;
+    elseif (level <= 59) then
+        alpha = 0.91;
+    elseif (level <= 61) then
+        alpha = 0.90;
+    elseif (level <= 63) then
+        alpha = 0.89;
+    elseif (level <= 65) then
+        alpha = 0.88;
+    elseif (level <= 67) then
+        alpha = 0.87;
+    elseif (level <= 69) then
+        alpha = 0.86;
+    elseif (level <= 71) then
+        alpha = 0.85;
+    elseif (level <= 73) then
+        alpha = 0.84;
+    elseif (level <= 75) then
+        alpha = 0.83;
+    elseif (level <= 99) then
+        alpha = 0.85;
+    end
+    return alpha;
+end;
+

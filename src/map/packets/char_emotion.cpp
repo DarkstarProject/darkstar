@@ -21,42 +21,36 @@
 ===========================================================================
 */
 
-#include "../../common/socket.h"
-
-#include <string.h>
-
 #include "char_emotion.h"
 #include "../entities/charentity.h"
 #include "../item_container.h"
 #include "../items/item_weapon.h"
 
-CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff) 
+CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint16 TargetIndex, Emote EmoteID, EmoteMode emoteMode, uint16 extra)
 {
-	this->type = 0x5a;
-	this->size = 0x0c;
-	
-	WBUFL(data,(0x04)) = PChar->id;
-	WBUFW(data,(0x0C)) = PChar->targid;
+    this->id(0x5A);
+    this->length(56);
 
-	
-	WBUFL(data,(0x08)) = RBUFL(buff,(0x04));
-	WBUFW(data,(0x0E)) = RBUFW(buff,(0x08));
+    ref<uint32>(0x04) = PChar->id;
+    ref<uint32>(0x08) = TargetID;
+    ref<uint16>(0x0C) = PChar->targid;
+    ref<uint16>(0x0E) = TargetIndex;
+    ref<uint8>(0x10)  = EmoteID == Emote::JOB ? static_cast<uint8>(EmoteID) + (extra - 0x1F) : static_cast<uint8>(EmoteID);
 
-	uint8 emoteID = RBUFB(buff,(0x0A));
+    if (EmoteID == Emote::SALUTE)
+    {
+        ref<uint16>(0x12) = PChar->profile.nation;
+    }
+    else if (EmoteID == Emote::HURRAY)
+    {
+        auto PWeapon = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+        if (PWeapon && PWeapon->getID() != 65535)
+            ref<uint16>(0x12) = PWeapon->getID();
+    }
+    else if (EmoteID == Emote::JOB)
+    {
+        ref<uint8>(0x12) = (extra - 0x1F);
+    }
 
-	if (emoteID == 0x4A) {
-		uint8 offset = RBUFB(buff,(0x0C)) - 0x1F;
-
-		WBUFB(data,(0x10)) = emoteID + offset; 
-		WBUFB(data,(0x12)) = offset; 
-	}else{
-		WBUFB(data,(0x10)) = emoteID;
-
-		CItem * weapon = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
-		if (weapon != nullptr && weapon->getID() != 0xFFFF) {
-			WBUFW(data,(0x12)) = weapon->getID();
-		}
-	}
-
-	WBUFB(data,(0x16)) = RBUFB(buff,(0x0B));
+    ref<uint8>(0x16) = static_cast<uint8>(emoteMode);
 }

@@ -1,30 +1,18 @@
 -----------------------------------
 --
---     EFFECT_WARDING_CIRCLE
+--     dsp.effect.WARDING_CIRCLE
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_DEMON_KILLER,8);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+   target:addMod(dsp.mod.DEMON_KILLER, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_DEMON_KILLER,8);
-end;
+   target:delMod(dsp.mod.DEMON_KILLER, effect:getPower())
+end

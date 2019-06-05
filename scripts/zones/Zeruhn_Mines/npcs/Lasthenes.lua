@@ -1,44 +1,22 @@
 -----------------------------------
---    Area:  Zeruhn Mines
---    NPC:   Lasthenes
---    Notes: Opens Gate
------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+-- Area: Zeruhn Mines
+--  NPC: Lasthenes
+-- Notes: Opens Gate
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    if (player:getXPos() > -79.5 ) then
-        player:startEvent(0x00B4);
+    if player:getXPos() > -79.5 then
+        player:startEvent(180)
     else
-        player:startEvent(0x00B5);
+        player:startEvent(181)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

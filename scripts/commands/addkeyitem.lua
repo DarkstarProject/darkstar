@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @addkeyitem <ID> <player>
+-- func: addkeyitem <ID> <player>
 -- desc: Adds a key item to the player.
 ---------------------------------------------------------------------------------------------------
 
@@ -8,30 +8,46 @@ require("scripts/globals/keyitems");
 cmdprops =
 {
     permission = 1,
-    parameters = "is"
+    parameters = "ss"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!addkeyitem <key item ID> {player}");
+end;
+
 function onTrigger(player, keyId, target)
-    if (keyId == nil or tonumber(keyId) == nil or tonumber(keyId) == 0 or keyId == 0) then
-        player:PrintToPlayer( "You must enter a valid KeyItem ID." );
-        player:PrintToPlayer( "@addkeyitem <ID> <player>" );
+
+    -- validate key item id
+    if (keyId == nil) then
+        error(player, "You must supply a Key Item ID.");
+        return;
+    end
+    keyId = tonumber(keyId) or dsp.ki[string.upper(keyId)];
+    if (keyId == nil or keyId == 0) then
+        error(player, "Invalid Key Item ID.");
         return;
     end
 
+    -- validate target
+    local targ;
     if (target == nil) then
-        target = player:getName();
+        targ = player;
+    else
+        targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
+        end
     end
 
-    local targ = GetPlayerByName(target);
-    if (targ ~= nil) then
-        local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
-        package.loaded[TextIDs] = nil;
-        require(TextIDs);
-        targ:addKeyItem( keyId );
-        targ:messageSpecial( KEYITEM_OBTAINED, keyId );
-        player:PrintToPlayer( string.format( "Keyitem ID '%u' added to player!", keyId ) );
+    -- add key item to target
+    if (targ:hasKeyItem(keyId)) then
+        player:PrintToPlayer(string.format("%s already has key item %i.", targ:getName(), keyId));
     else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@addkeyitem <ID> <player>" );
+        local ID = zones[targ:getZoneID()]
+        targ:addKeyItem( keyId );
+        targ:messageSpecial( ID.text.KEYITEM_OBTAINED, keyId );
+        player:PrintToPlayer(string.format("Key item %i was given to %s.", keyId, targ:getName()));
     end
 end;

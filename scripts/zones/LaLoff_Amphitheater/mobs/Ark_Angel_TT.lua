@@ -2,64 +2,57 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel TT
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_UFASTCAST, 30);
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_SUB_2HOUR, 1);
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
+    mob:addMod(dsp.mod.UFASTCAST, 30);
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
+function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        between = 30,
+        specials =
+        {
+            {id = dsp.jsa.BLOOD_WEAPON},
+            {
+                id = dsp.jsa.MANAFONT,
+                endCode = function(mob) -- "Uses Manafont and ... Will cast Sleepga followed by Meteor."
+                    mob:castSpell(273) -- sleepga
+                    mob:castSpell(218) -- meteor
+                end,
+            },
+        },
+    })
+end
 
 function onMobEngaged(mob,target)
-   local mobid = mob:getID()
+    local mobid = mob:getID()
 
     for member = mobid-5, mobid+2 do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
+        local m = GetMobByID(member)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
         end
     end
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
 function onMobFight(mob,target)
 
-    if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) > 0) then
-        mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_STANDBACK)))
-        mob:setMobMod(MOBMOD_TELEPORT_TYPE,0);
-        mob:setMobMod(MOBMOD_SPAWN_LEASH,0);
+    if (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),dsp.behavior.STANDBACK) > 0) then
+        mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.STANDBACK)))
+        mob:setMobMod(dsp.mobMod.TELEPORT_TYPE,0);
+        mob:setMobMod(dsp.mobMod.SPAWN_LEASH,0);
         mob:setSpellList(0);
     end
-    if (not mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) == 0) then
-        mob:setBehaviour(bit.bor(mob:getBehaviour(), BEHAVIOUR_STANDBACK))
-        mob:setMobMod(MOBMOD_TELEPORT_TYPE,1);
-        mob:setMobMod(MOBMOD_SPAWN_LEASH,22);
+    if (not mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),dsp.behavior.STANDBACK) == 0) then
+        mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.STANDBACK))
+        mob:setMobMod(dsp.mobMod.TELEPORT_TYPE,1);
+        mob:setMobMod(dsp.mobMod.SPAWN_LEASH,22);
         mob:setSpellList(39);
     end
 end;
 
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 end;

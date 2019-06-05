@@ -2,14 +2,10 @@
 -- Area: The Labyrinth of Onzozo
 --  MOB: Cockatrice
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,772,1);
-    checkGoVregime(ally,mob,773,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 772, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 773, 2, dsp.regime.type.GROUNDS)
+end

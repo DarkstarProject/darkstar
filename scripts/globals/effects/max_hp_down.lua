@@ -1,30 +1,18 @@
 -----------------------------------
 --
--- EFFECT_MAX_HP_DOWN
+-- dsp.effect.MAX_HP_DOWN
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPP,-effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.HPP,-effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HPP,-effect:getPower());
-end;
+    target:delMod(dsp.mod.HPP,-effect:getPower())
+end

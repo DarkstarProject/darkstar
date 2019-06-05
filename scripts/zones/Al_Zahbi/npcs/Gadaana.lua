@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Gadaana
---  Type: Standard NPC
--- @zone: 48
---  @pos 18.596 -1 -29.891
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Al Zahbi
+--  NPC: Gadaana
+-- Type: Standard NPC
+-- !pos 18.596 -1 -29.891 48
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x00f4);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(244)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

@@ -26,12 +26,11 @@
 
 CItemShop::CItemShop(uint16 id) : CItem(id)
 {
-	// SetType(ITEM_SHOP);
-
 	m_MinPrice = 0;
 	m_MaxPrice = 0;
 
-	m_DailyIncrease = false;
+	m_DailyIncrease = 0;
+    m_InitialQuantity = 0;
 }
 
 CItemShop::~CItemShop()
@@ -56,7 +55,7 @@ bool CItemShop::IsInMenu()
 
 bool CItemShop::IsDailyIncrease()
 {
-	return m_DailyIncrease;
+	return m_DailyIncrease != 0;
 }
 
 void CItemShop::setMinPrice(uint32 price)
@@ -93,7 +92,7 @@ uint16 CItemShop::getSellPrice()
 {
 	if (getID() >= 0x2800 && getID() <= 0x6FFF)
 	{
-		return (getMinPrice() + (getQuantity() / getStackSize()) * (getMinPrice() * 0.10f)) / 12;
+		return (uint16)((getMinPrice() + (getQuantity() / getStackSize()) * (getMinPrice() * 0.10f)) / 12);
 	}
 	else
 	{

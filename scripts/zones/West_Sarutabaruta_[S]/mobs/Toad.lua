@@ -3,23 +3,13 @@
 --  Mob: Toad
 -- Note: Place holder Ramponneau
 -----------------------------------
-
-require("scripts/zones/West_Sarutabaruta_[S]/MobIDs");
-
------------------------------------
--- onMobDeath
+local ID = require("scripts/zones/West_Sarutabaruta_[S]/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
+end
 
-    local mobID = mob:getID();
-    if (mobID == Ramponneau_PH) then
-    
-        Ramponneau_ToD = GetServerVariable("[POP]Ramponneau");
-        if (Ramponneau_ToD <= os.time(t) and GetMobAction(Ramponneau) == 0 and math.random((1),(5)) == 5) then
-            GetMobByID(Ramponneau):setRespawnTime(GetMobRespawnTime(mobID));
-            SetServerVariable("[PH]Ramponneau", mobID);
-            DeterMob(mobID, true);
-        end
-    end
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.RAMPONNEAU_PH, 20, 5400) -- 90 minutes
+end

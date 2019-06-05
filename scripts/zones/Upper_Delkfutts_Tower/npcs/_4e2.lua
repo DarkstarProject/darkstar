@@ -1,56 +1,35 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
 -- NPC:  Elevator
--- @pos -294 -143 27 158
+-- !pos -294 -143 27 158
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-    
-    if (trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
-        player:startEvent(0x0006);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 549) then -- Delkfutt Key
+        player:startEvent(6)
     end
-    
-end;
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:hasKeyItem(DELKFUTT_KEY)) then
-        player:startEvent(0x0006);
+function onTrigger(player, npc)
+    if player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+        player:startEvent(6)
     else
-        player:messageSpecial(THIS_ELEVATOR_GOES_DOWN);
+        player:messageSpecial(ID.text.THIS_ELEVATOR_GOES_DOWN)
     end
-    
-    return 1;
-    
-end;
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+    if csid == 6 then
+        if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+            player:confirmTrade()
+            npcUtil.giveKeyItem(player, dsp.ki.DELKFUTT_KEY)
+        end
+    end
+end

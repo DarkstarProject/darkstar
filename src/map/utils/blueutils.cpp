@@ -50,7 +50,7 @@ void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool 
 
 	//sanity check
 	if (slotIndex < 20) {
-		if (PSpell != nullptr && PSpell->getID() > 0x200)
+		if (dynamic_cast<CBlueSpell*>(PSpell))
         {
             if (addingSpell)
             {
@@ -59,10 +59,10 @@ void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool 
 				    // Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
                     if (PChar->m_SetBlueSpells[slotIndex] != 0)
                     {
-                        CBlueSpell* POldSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slotIndex] + 0x200);
+                        CBlueSpell* POldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slotIndex] + 0x200));
                         PChar->delModifiers(&POldSpell->modList);
                     }
-				    PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200;
+				    PChar->m_SetBlueSpells[slotIndex] = static_cast<uint16>(PSpell->getID()) - 0x200;
 				    PChar->addModifiers(&PSpell->modList);
                 }
 			}
@@ -110,7 +110,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	}
 
 	// loop through the list of BLUs and see if they can learn.
-	for (int i=0; i<PBlueMages.size(); i++) {
+	for (size_t i = 0; i < PBlueMages.size(); i++) {
 		CCharEntity* PBlueMage = PBlueMages[i];
 
 		if (PBlueMage->isDead()) { // too dead to learn
@@ -121,19 +121,26 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 			continue;
 		}
 
-		for (int spell=0; spell<PLearnableSpells.size(); spell++) {
+		for (size_t spell = 0; spell < PLearnableSpells.size(); spell++) {
 			CSpell* PSpell = PLearnableSpells[spell];
 
-			if (charutils::hasSpell(PBlueMage, PSpell->getID())) {
+			if (charutils::hasSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
 				continue;
 			}
 
-			uint8 learnableLevel = PSpell->getJob(JOB_BLU);
-			if (learnableLevel > 0 && learnableLevel < PBlueMage->GetMLevel()+7) { // TODO: Use blue magic skill check rather than level
-                if (dsprand::GetRandomNumber(100) < 33) {
-					if (charutils::addSpell(PBlueMage, PSpell->getID())) {
-						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, PSpell->getID(), 0, MSGBASIC_LEARNS_SPELL));
-						charutils::SaveSpell(PBlueMage, PSpell->getID());
+            // get the skill cap for the spell level
+            auto skillLvlForSpell = battleutils::GetMaxSkill(SKILL_BLUE_MAGIC, JOB_BLU, PSpell->getJob(JOB_BLU));
+            // get player skill level with bonus from gear
+            auto playerSkillLvl = PBlueMage->GetSkill(SKILL_BLUE_MAGIC);
+
+            // make sure the difference between spell skill and player is at most 31 points
+            if (playerSkillLvl >= skillLvlForSpell - 31)
+            {
+                auto chanceToLearn = 33 + PBlueMage->getMod(Mod::BLUE_LEARN_CHANCE);
+                if (dsprand::GetRandomNumber(100) < chanceToLearn) {
+					if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
+						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
+						charutils::SaveSpell(PBlueMage, static_cast<uint16>(PSpell->getID()));
 						PBlueMage->pushPacket(new CCharSpellsPacket(PBlueMage));
 					}
 				}
@@ -151,7 +158,7 @@ bool HasEnoughSetPoints(CCharEntity* PChar, CBlueSpell* PSpellToAdd, uint8 slotT
     {
         if (slot != slotToPut && PChar->m_SetBlueSpells[slot] != 0)
         {
-            CBlueSpell* setSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            CBlueSpell* setSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
             if (setSpell)
             {
                 setpoints += setSpell->getSetPoints();
@@ -175,7 +182,7 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
             PChar->m_SetBlueSpells[slot] = 0;
             PChar->delModifiers(&PSpell->modList);
         }
@@ -196,7 +203,7 @@ bool IsSpellSet(CCharEntity* PChar, CBlueSpell* PSpell)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            if (PChar->m_SetBlueSpells[slot] == PSpell->getID() - 0x200)
+            if (PChar->m_SetBlueSpells[slot] == static_cast<uint16>(PSpell->getID()) - 0x200)
             {
                 return true;
             }
@@ -242,7 +249,7 @@ void CheckSpellLevels(CCharEntity* PChar)
         {
             if (PChar->m_SetBlueSpells[slot] != 0)
             {
-                CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+                CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
                 if (PSpell && level < PSpell->getJob(JOB_BLU))
                 {
                     SetBlueSpell(PChar, PSpell, slot, false);
@@ -267,7 +274,7 @@ uint8 GetTotalSlots(CCharEntity* PChar)
     if (level == 0)
         return 0;
     else
-        return dsp_cap(((level - 1)/10)*2 + 6, 6, 20);
+        return std::clamp(((level - 1)/10)*2 + 6, 6, 20);
 }
 
 uint8 GetTotalBlueMagicPoints(CCharEntity* PChar)
@@ -299,13 +306,13 @@ void SaveSetSpells(CCharEntity* PChar)
 {
     if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
     {
-	    const int8* Query =
+	    const char* Query =
             "UPDATE chars SET "
               "set_blue_spells = '%s' "
             "WHERE charid = %u;";
 
-	    int8 spells[sizeof(PChar->m_SetBlueSpells)*2+1];
-	    Sql_EscapeStringLen(SqlHandle,spells,(const int8*)PChar->m_SetBlueSpells,sizeof(PChar->m_SetBlueSpells));
+	    char spells[sizeof(PChar->m_SetBlueSpells)*2+1];
+	    Sql_EscapeStringLen(SqlHandle,spells,(const char*)PChar->m_SetBlueSpells,sizeof(PChar->m_SetBlueSpells));
 
 	    Sql_Query(SqlHandle,Query,
             spells,
@@ -317,7 +324,7 @@ void LoadSetSpells(CCharEntity* PChar)
 {
     if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
     {
-	    const int8* Query =
+	    const char* Query =
             "SELECT set_blue_spells FROM "
               "chars WHERE charid = %u;";
 
@@ -328,7 +335,7 @@ void LoadSetSpells(CCharEntity* PChar)
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
 		    size_t length = 0;
-		    int8* blue_spells = nullptr;
+		    char* blue_spells = nullptr;
 		    Sql_GetData(SqlHandle,0,&blue_spells,&length);
 		    memcpy(PChar->m_SetBlueSpells, blue_spells, (length > sizeof(PChar->m_SetBlueSpells) ? sizeof(PChar->m_SetBlueSpells) : length));
         }
@@ -336,7 +343,7 @@ void LoadSetSpells(CCharEntity* PChar)
         {
             if (PChar->m_SetBlueSpells[slot] != 0)
             {
-                CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+                CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
 
 				if (PSpell == nullptr)
 				{
@@ -363,7 +370,7 @@ void ValidateBlueSpells(CCharEntity* PChar)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
             if (currentPoints + PSpell->getSetPoints() > maxSetPoints)
             {
                 SetBlueSpell(PChar, PSpell, slot, false);
@@ -383,7 +390,7 @@ void ValidateBlueSpells(CCharEntity* PChar)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            SetBlueSpell(PChar, (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200), slot, false);
+            SetBlueSpell(PChar, (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200)), slot, false);
         }
     }
 
@@ -399,7 +406,7 @@ void CalculateTraits(CCharEntity* PChar)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
 
             if (PSpell)
             {
@@ -409,7 +416,7 @@ void CalculateTraits(CCharEntity* PChar)
 
                 if (iter != points.end())
                 {
-                    iter->second += iter->second + weight;
+                    iter->second += weight;
                 }
                 else
                 {

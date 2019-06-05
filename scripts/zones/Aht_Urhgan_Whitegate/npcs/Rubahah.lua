@@ -1,51 +1,31 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Rubahah
+--  NPC: Rubahah
 -- Standard Merchant NPC
+-- TODO: Stock needs to be modified based on
+--       status of Astral Candescence
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/shop");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
     local stock =
     {
-        629,  48, -- Millioncorn
-        2237, 60, -- Imperial Flour (available only if AC is in the Al Zahbi)
-        2214, 68, -- Imperial Rice (available only if AC is in the Al Zahbi)
-        2271, 316 -- Coffee Beans (available only if AC is in the Al Zahbi)
+        629,   48,    -- Millioncorn
+        2237,  60,    -- Imperial Flour (Requires Astral Candescence)
+        2214,  68,    -- Imperial Rice (Requires Astral Candescence)
+        2271, 316     -- Coffee Beans (Requires Astral Candescence)
     }
-    showShop(player, STATIC, stock);
-    player:showText(npc,RUBAHAH_SHOP_DIALOG);
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.RUBAHAH_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

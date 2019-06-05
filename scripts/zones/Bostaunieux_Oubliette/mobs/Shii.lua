@@ -1,24 +1,18 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  MOB: Shii
+--   NM: Shii
+-----------------------------------
+require("scripts/globals/mobs")
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1) -- "has an Additional Effect: Terror in melee attacks"
+    mob:setMod(dsp.mod.REGEN, 20) -- "also has an Auto Regen of medium strength" (guessing 20)
+end
 
-function onMobDeath(mob,killer,ally)
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.TERROR)
+end
 
-    -- Set Shii's Window Open Time
-    local wait = math.random((14400),(28800));
-    SetServerVariable("[POP]Shii", os.time(t) + wait); -- 4-8 hours
-    DeterMob(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Shii");
-    SetServerVariable("[PH]Shii", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
-
+function onMobDeath(mob, player, isKiller)
+end

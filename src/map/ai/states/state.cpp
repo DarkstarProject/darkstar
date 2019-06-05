@@ -33,12 +33,17 @@ void CState::UpdateTarget(uint16 targid)
     m_PTarget = m_PEntity->GetEntity(targid);
 }
 
-CBaseEntity* CState::GetTarget()
+void CState::UpdateTarget(CBaseEntity* target)
+{
+    m_PTarget = target;
+}
+
+CBaseEntity* CState::GetTarget() const
 {
     return m_PTarget;
 }
 
-uint16 CState::GetTargetID()
+uint16 CState::GetTargetID() const
 {
     return m_targid;
 }
@@ -48,9 +53,14 @@ void CState::Complete()
     m_completed = true;
 }
 
-time_point CState::GetEntryTime()
+time_point CState::GetEntryTime() const
 {
     return m_entryTime;
+}
+
+void CState::ResetEntryTime()
+{
+    m_entryTime = server_clock::now();
 }
 
 void CState::SetTarget(uint16 _targid)
@@ -62,12 +72,12 @@ void CState::SetTarget(uint16 _targid)
     }
 }
 
-bool CState::HasErrorMsg()
+bool CState::HasErrorMsg() const
 {
     return m_errorMsg != nullptr;
 }
 
-CMessageBasicPacket* CState::GetErrorMsg()
+CBasicPacket* CState::GetErrorMsg()
 {
     return m_errorMsg.release();
 }
@@ -78,7 +88,7 @@ bool CState::DoUpdate(time_point tick)
     return Update(tick);
 }
 
-bool CState::IsCompleted()
+bool CState::IsCompleted() const
 {
     return m_completed;
 }

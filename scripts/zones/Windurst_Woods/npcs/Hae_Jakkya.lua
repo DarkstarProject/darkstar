@@ -1,56 +1,34 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Hae Jakkya
---    Working 100%
+-- Area: Windurst Woods
+--  NPC: Hae Jakkya
+-- Working 100%
 -----------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local chasingStatus = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CHASING_TALES)
 
-    chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-    if (player:hasKeyItem(126) ==true) then
-        player:startEvent(0x0196);
-    elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
-        player:startEvent(0x0193); 
-        
-    elseif (player:hasKeyItem(149)) then
-        player:startEvent(0x0192); -- Neeed CS here
-        
-    else    
-        player:startEvent(0x29);
-    end    
-        
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    if player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) then
+        player:startEvent(406)
+    elseif player:getVar("CHASING_TALES_TRACK_BOOK") == 1 then
+        player:startEvent(403)
+    elseif player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION) then
+        player:startEvent(402) -- Neeed CS here
+    else
+        player:startEvent(41)
+    end
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x0192) then
-        player:setVar("CHASING_TALES_TRACK_BOOK",1);
-    end        
-end;
+    if csid == 402 then
+        player:setVar("CHASING_TALES_TRACK_BOOK", 1)
+    end
+end

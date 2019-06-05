@@ -2,22 +2,16 @@
 -- Area: Kuftal Tunnel
 --   NM: Pelican
 -----------------------------------
-
------------------------------------
--- onMobDeath
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
-    -- Set Pelican's Window Open Time
-    local wait = math.random(10800,43200); -- 4-12 hours
-    SetServerVariable("[POP]Pelican", os.time(t) + wait); -- 4-12 hours
-    DeterMob(mob:getID(), true);
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PETRIFY)
+end
 
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Pelican");
-    SetServerVariable("[PH]Pelican", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
+function onMobDeath(mob, player, isKiller)
+end

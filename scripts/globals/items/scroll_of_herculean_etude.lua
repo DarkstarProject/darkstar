@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 5039
---    Scroll of Herculean Etude
---    Teaches the song Herculean Etude
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5039
+-- Scroll of Herculean Etude
+-- Teaches the song Herculean Etude
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(431);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(431)
+end
 
 function onItemUse(target)
-    target:addSpell(431);
-end;
+    target:addSpell(431)
+end

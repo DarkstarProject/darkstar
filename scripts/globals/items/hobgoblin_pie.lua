@@ -8,56 +8,40 @@
 -- Agility 4
 -- Charisma -7
 -- Health Regen While Healing 2
--- Defense % 11
--- Defense Cap 60
+-- Defense % 12 (cap 60)
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,4325);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,4325)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.HP, 15)
+    target:addMod(dsp.mod.MP, 15)
+    target:addMod(dsp.mod.AGI, 4)
+    target:addMod(dsp.mod.CHR, -7)
+    target:addMod(dsp.mod.HPHEAL, 2)
+    target:addMod(dsp.mod.FOOD_DEFP, 12)
+    target:addMod(dsp.mod.FOOD_DEF_CAP, 60)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 15);
-    target:addMod(MOD_MP, 15);
-    target:addMod(MOD_AGI, 4);
-    target:addMod(MOD_CHR, -7);
-    target:addMod(MOD_HPHEAL, 2);
-    target:addMod(MOD_FOOD_DEFP, 11);
-    target:addMod(MOD_FOOD_DEF_CAP, 60);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_HP, 15);
-    target:delMod(MOD_MP, 15);
-    target:delMod(MOD_AGI, 4);
-    target:delMod(MOD_CHR, -7);
-    target:delMod(MOD_HPHEAL, 2);
-    target:delMod(MOD_FOOD_DEFP, 11);
-    target:delMod(MOD_FOOD_DEF_CAP, 60);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.HP, 15)
+    target:delMod(dsp.mod.MP, 15)
+    target:delMod(dsp.mod.AGI, 4)
+    target:delMod(dsp.mod.CHR, -7)
+    target:delMod(dsp.mod.HPHEAL, 2)
+    target:delMod(dsp.mod.FOOD_DEFP, 12)
+    target:delMod(dsp.mod.FOOD_DEF_CAP, 60)
+end

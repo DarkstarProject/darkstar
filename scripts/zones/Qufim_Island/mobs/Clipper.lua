@@ -2,15 +2,11 @@
 -- Area: Qufim Island
 --  MOB: Clipper
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,41,1);
-    checkRegime(ally,mob,42,1);
-    checkRegime(ally,mob,43,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 41, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 42, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 43, 2, dsp.regime.type.FIELDS)
+end

@@ -2,28 +2,12 @@
 -- Area: Giddeus (145)
 --  MOB: Yagudo_Persecutor
 -----------------------------------
+local ID = require("scripts/zones/Giddeus/IDs");
+require("scripts/globals/mobs");
 
-require("scripts/zones/Giddeus/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    local mobID = mob:getID();
-    if (Juu_Duzu_the_Whirlwind_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Juu_Duzu_the_Whirlwind");
-        if (ToD <= os.time(t) and GetMobAction(Juu_Duzu_the_Whirlwind) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Juu_Duzu_the_Whirlwind);
-                GetMobByID(Juu_Duzu_the_Whirlwind):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Juu_Duzu_the_Whirlwind", mobID);
-                DeterMob(mobID, true);
-            end
-        end
-    end
-
+function onMobDeath(mob, player, isKiller)
 end;
 
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.JUU_DUZU_THE_WHIRLWIND_PH,5,math.random(3600,7200)); -- 1 to 2 hours
+end;

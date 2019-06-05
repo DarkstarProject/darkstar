@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Periqia
--- NPC:  Excaliace
+--  NPC: Excaliace
 -----------------------------------
-
 require("scripts/zones/Periqia/IDs");
 require("scripts/globals/pathfind");
 
@@ -89,7 +88,7 @@ function onPath(npc)
     local chars = instance:getChars();
 
 
-    if (progress == 0) then        
+    if (progress == 0) then
         for tid,player in pairs(chars) do
             if (npc:checkDistance(player) < 10) then
                 instance:setProgress(1);
@@ -104,47 +103,27 @@ function onPath(npc)
                 run = false;
             end
         end
-        
+
         if (run) then
             npc:messageText(npc,Periqia.text.EXCALIACE_RUN);
         end
     end
 
     -- go back and forth the set path
-    -- pathfind.patrol(npc, path);
+    -- dsp.path.patrol(npc, path);
 
 end;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,npc)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
 end;

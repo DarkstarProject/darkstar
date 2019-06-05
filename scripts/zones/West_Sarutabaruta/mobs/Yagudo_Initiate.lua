@@ -2,14 +2,10 @@
 -- Area: West Sarutabaruta
 --  MOB: Yagudo Initiate
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,29,1);
-    checkRegime(ally,mob,61,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 29, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 61, 1, dsp.regime.type.FIELDS)
+end

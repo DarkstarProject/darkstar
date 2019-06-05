@@ -1,29 +1,22 @@
 -----------------------------------
 --  Area: Uleguerand_Range
---   NPC: Geush Urvan
+--   NPC: ??? (Spawns Geush Urvan)
 -----------------------------------
-package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Uleguerand_Range/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Uleguerand_Range/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    -- Trade  Haunted Muleta
-    if (GetMobAction(16798078) == 0 and trade:hasItemQty(1824,1) and trade:getItemCount() == 1) then 
-        player:tradeComplete();
-        SpawnMob(16798078,1800):updateClaim(player); -- Geush Urvan
-        npc:setStatus(STATUS_DISAPPEAR);
+    if npcUtil.tradeHas(trade, 1824) and npcUtil.popFromQM(player, npc, ID.mob.GEUSH_URVAN) then -- Haunted Muleta
+        player:confirmTrade()
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-end;
+end
+
+function onEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+end

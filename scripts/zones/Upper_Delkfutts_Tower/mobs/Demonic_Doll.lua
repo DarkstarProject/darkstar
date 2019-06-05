@@ -2,14 +2,10 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Demonic Doll
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,788,3);
-    checkGoVregime(ally,mob,789,3);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 788, 3, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 789, 3, dsp.regime.type.GROUNDS)
+end

@@ -1,14 +1,15 @@
 -----------------------------------
 -- Area: Appolyon
 -- NPC:  Sentinel_Column
--- @pos 
+-- !pos 643 0 -609 38
 -----------------------------------
 require("scripts/globals/limbus");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
-function onTrade(player,npc,trade)    
+function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
@@ -16,10 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-   player:startEvent(0x00DD,127);
- 
-  
+    player:startEvent(221, 127);
 end;
 
 -----------------------------------
@@ -27,9 +25,15 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-  -- printf("CSID: %u",csid);
-   --printf("RESULT: %u",option);  
- player:updateEvent(0,player:getSpecialBattlefieldLeftTime(2),player:getSpecialBattlefieldLeftTime(1),player:getSpecialBattlefieldLeftTime(4),player:getSpecialBattlefieldLeftTime(3),player:getSpecialBattlefieldLeftTime(6),player:getSpecialBattlefieldLeftTime(5));
+    player:updateEvent(
+        0,
+        player:getBattlefieldTimeLeft(1), -- SW Apollyon
+        player:getBattlefieldTimeLeft(2), -- NW Apollyon
+        player:getBattlefieldTimeLeft(3), -- SE Apollyon
+        player:getBattlefieldTimeLeft(4), -- NE Apollyon
+        player:getBattlefieldTimeLeft(5), -- Central Apollyon
+        player:getBattlefieldTimeLeft(6)  -- CS Apollyon
+    );
 end;
 
 -----------------------------------
@@ -37,9 +41,4 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-   if (csid == 0) then
-
-   end
 end;

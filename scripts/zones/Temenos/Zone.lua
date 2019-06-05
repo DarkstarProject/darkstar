@@ -3,12 +3,11 @@
 -- Zone: Temenos (37)
 --
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/Temenos/IDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
-require("scripts/zones/Temenos/TextIDs");
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onInitialize
@@ -42,11 +41,7 @@ end;
 -----------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 -----------------------------------
@@ -69,49 +64,49 @@ function onRegionEnter(player,region)
     switch (regionID): caseof
     {
         [1] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance   Temenos_Western_Tower
                 RegisterLimbusInstance(player,1298);
             end
         end,
         [2] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance Temenos_Northern_Tower
                 RegisterLimbusInstance(player,1299);
             end
         end,
         [3] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance Temenos_Eastern_Tower
                 RegisterLimbusInstance(player,1300);
             end
         end,
         [4] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance  Central_Temenos_Basement
                 RegisterLimbusInstance(player,1301);
             end
         end,
         [5] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance Central_Temenos_1st_Floor
                 RegisterLimbusInstance(player,1303);
             end
         end,
         [6] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance   Central_Temenos_2nd_Floor
                 RegisterLimbusInstance(player,1304);
             end
         end,
         [7] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance Central_Temenos_3rd_Floor
                 RegisterLimbusInstance(player,1305);
             end
         end,
         [8] = function (x)
-            if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                 -- create instance Central_Temenos_4th_Floor
                 RegisterLimbusInstance(player,1306);
             end
@@ -122,20 +117,9 @@ end;
 
 function onRegionLeave(player,region)
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

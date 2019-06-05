@@ -2,13 +2,9 @@
 -- Area: Outer Horutoto
 --  MOB: Six of Coins
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,665,4);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 665, 4, dsp.regime.type.GROUNDS)
+end

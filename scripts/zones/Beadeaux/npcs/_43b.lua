@@ -1,63 +1,38 @@
 -----------------------------------
 -- Area: Beadeaux
--- NPC:  Jail Door
+--  NPC: Jail Door
 -- Involved in Quests: The Rescue
--- @pos 56 0.1 -23 147
+-- !pos 56 0.1 -23 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Beadeaux/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Beadeaux/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then
-        if (trade:hasItemQty(495,1) == true and trade:getItemCount() == 1) then 
-            player:startEvent(0x03e8);
+    if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TRADERS_SACK) == false) then
+        if (trade:hasItemQty(495,1) == true and trade:getItemCount() == 1) then
+            player:startEvent(1000);
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then
-        player:messageSpecial(LOCKED_DOOR_QUADAV_HAS_KEY);
+    if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TRADERS_SACK) == false) then
+        player:messageSpecial(ID.text.LOCKED_DOOR_QUADAV_HAS_KEY);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
     return 1;
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x03e8) then 
-        player:addKeyItem(TRADERS_SACK);
-        player:messageSpecial(KEYITEM_OBTAINED,TRADERS_SACK);
+    if (csid == 1000) then
+        player:addKeyItem(dsp.ki.TRADERS_SACK);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRADERS_SACK);
     end
 end;
-
-
-

@@ -1,68 +1,52 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
--- NPC:  ???
+--  NPC: ???
 -- Involved in Mission: Bastok 8-2
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-
-    if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER) then
-        if (player:getVar("MissionStatus") == 2) then
-            player:messageSpecial(EVIL);
-            SpawnMob(17489926, 180); -- Gordov's Ghost
-            SpawnMob(17489927, 180); -- Dervo's Ghost
-            SpawnMob(17489928, 180); -- Gizerl's Ghost
-            
-        elseif (player:getVar("MissionStatus") == 3) then
-            player:startEvent(0x00D);
-        else
-            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+function onTrigger(player, npc)
+    -- ENTER THE TALEKEEPER
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER then
+        local missionStatus = player:getVar("MissionStatus")
+        local anyGhostsAlive = false
+        for i = 0, 2 do
+            if GetMobByID(ID.mob.TALEKEEPER_OFFSET + i):isAlive() then
+                anyGhostsAlive = true
+                break
+            end
         end
+
+        if player:getVar("MissionStatus") == 2 and not anyGhostsAlive then
+            player:messageSpecial(ID.text.EVIL)
+            for i = 0, 2 do
+                SpawnMob(ID.mob.TALEKEEPER_OFFSET + i)
+            end
+        elseif player:getVar("MissionStatus") == 3 and not anyGhostsAlive then
+            player:startEvent(13)
+        else
+            player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+        end
+
+    -- DEFAULT DIALOG
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-        
-end; 
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-
-function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-    
-    if (csid == 0x00D) then
-        player:setVar("MissionStatus",4);
-        player:addKeyItem(OLD_PIECE_OF_WOOD);
-        player:messageSpecial(KEYITEM_OBTAINED,OLD_PIECE_OF_WOOD);
+function onEventFinish(player, csid, option)
+    if csid == 13 then
+        player:setVar("MissionStatus", 4)
+        npcUtil.giveKeyItem(player, dsp.ki.OLD_PIECE_OF_WOOD)
     end
-    
-end;
+end

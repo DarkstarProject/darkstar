@@ -2,51 +2,47 @@
 -- Area: Valley of Sorrows
 --  HNM: Adamantoise
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize
+local ID = require("scripts/zones/Valley_of_Sorrows/IDs")
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
+function onMobSpawn(mob)
+    if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
+        GetNPCByID(ID.npc.ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR)
+    end
+    if LandKingSystem_HQ == 0 then
+        SetDropRate(24,3344,0) -- do not drop clump_of_red_pondweed
+    end
 
------------------------------------
--- onMobDeath
------------------------------------
+    mob:setLocalVar("[rage]timer", 1800) -- 30 minutes
+end
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(TORTOISE_TORTURER);
-end;
-
------------------------------------
--- onMobDespawn
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.TORTOISE_TORTURER)
+end
 
 function onMobDespawn(mob)
-    local Adamantoise = mob:getID();
-    local Aspidochelone = mob:getID()+1;
-    local ToD = GetServerVariable("[POP]Aspidochelone");
-    local kills = GetServerVariable("[PH]Aspidochelone");
-    local popNow = (math.random(1,5) == 3 or kills > 6);
+    local ToD = GetServerVariable("[POP]Aspidochelone")
+    local kills = GetServerVariable("[PH]Aspidochelone")
+    local popNow = (math.random(1,5) == 3 or kills > 6)
 
-    if (LandKingSystem_HQ ~= 1 and ToD <= os.time(t) and popNow == true) then
+    if LandKingSystem_HQ ~= 1 and ToD <= os.time() and popNow then
         -- 0 = timed spawn, 1 = force pop only, 2 = BOTH
-        if (LandKingSystem_NQ == 0) then
-            DeterMob(Adamantoise, true);
+        if LandKingSystem_NQ == 0 then
+            DisallowRespawn(ID.mob.ADAMANTOISE, true)
         end
 
-        DeterMob(Aspidochelone, false);
-        UpdateNMSpawnPoint(Aspidochelone);
-        GetMobByID(Aspidochelone):setRespawnTime(math.random(75600,86400));
+        DisallowRespawn(ID.mob.ASPIDOCHELONE, false)
+        UpdateNMSpawnPoint(ID.mob.ASPIDOCHELONE)
+        GetMobByID(ID.mob.ASPIDOCHELONE):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     else
-        if (LandKingSystem_NQ ~= 1) then
-            UpdateNMSpawnPoint(Adamantoise);
-            mob:setRespawnTime(math.random(75600,86400));
-            SetServerVariable("[PH]Aspidochelone", kills + 1);
+        if LandKingSystem_NQ ~= 1 then
+            UpdateNMSpawnPoint(ID.mob.ADAMANTOISE)
+            GetMobByID(ID.mob.ADAMANTOISE):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
+            SetServerVariable("[PH]Aspidochelone", kills + 1)
         end
     end
-end;
+end

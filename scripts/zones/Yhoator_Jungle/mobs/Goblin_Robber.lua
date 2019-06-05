@@ -2,13 +2,9 @@
 -- Area: Yhoator Jungle
 --  MOB: Goblin Robber
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,129,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 129, 2, dsp.regime.type.FIELDS)
+end

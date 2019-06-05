@@ -2,33 +2,32 @@
 -- Spell: Dispelga
 --
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    -- Pull base stats.
-    local dINT = (caster:getStat(MOD_INT)*1.3 - target:getStat(MOD_INT));
-
-    local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL);
-    local effect = EFFECT_NONE;
+    local params = {}
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    local resist = applyResistance(caster, target, spell, params)
+    local effect = dsp.effect.NONE
 
     if (resist > 0.0625) then
-        spell:setMsg(341);
-        effect = target:dispelStatusEffect();
-        if (effect == EFFECT_NONE) then
+        spell:setMsg(dsp.msg.basic.MAGIC_ERASE)
+        effect = target:dispelStatusEffect()
+        if (effect == dsp.effect.NONE) then
             -- no effect
-            spell:setMsg(75);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
 
-    return effect;
-end;
+    return effect
+end

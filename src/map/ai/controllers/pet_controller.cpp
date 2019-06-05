@@ -30,7 +30,7 @@ This file is part of DarkStar-server source code.
 #include "../../../common/utils.h"
 
 CPetController::CPetController(CPetEntity* _PPet) :
-    CAIController(_PPet), PPet(_PPet)
+    CMobController(_PPet), PPet(_PPet)
 {
     //#TODO: this probably will have to depend on pet type (automaton does WS on its own..)
     SetWeaponSkillEnabled(false);
@@ -43,12 +43,12 @@ void CPetController::Tick(time_point tick)
         petutils::DespawnPet(PPet->PMaster);
         return;
     }
-    CAIController::Tick(tick);
+    CMobController::Tick(tick);
 }
 
 void CPetController::DoRoamTick(time_point tick)
 {
-    if (PPet->PMaster == nullptr || PPet->PMaster->isDead()) {
+    if ((PPet->PMaster == nullptr || PPet->PMaster->isDead()) && PPet->isAlive()) {
         PPet->Die();
         return;
     }
@@ -58,6 +58,9 @@ void CPetController::DoRoamTick(time_point tick)
         if (PetIsHealing()) {
             return;
         }
+    }
+    else if (PPet->isBstPet() && PPet->StatusEffectContainer->GetStatusEffect(EFFECT_HEALING)) {
+        return;
     }
 
     float currentDistance = distance(PPet->loc.p, PPet->PMaster->loc.p);
@@ -83,7 +86,7 @@ bool CPetController::PetIsHealing()
     if (isMasterHealing && !isPetHealing && !PPet->StatusEffectContainer->HasPreventActionEffect()) {
         //animation down
         PPet->animation = ANIMATION_HEALING;
-        PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));
+        PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, map_config.healing_tick_delay, 0));
         PPet->updatemask |= UPDATE_HP;
         return true;
     }
@@ -106,7 +109,7 @@ bool CPetController::TryDeaggro()
 
     // target is no longer valid, so wipe them from our enmity list
     if (PTarget->isDead() ||
-        PTarget->animation == ANIMATION_CHOCOBO ||
+        PTarget->isMounted() ||
         PTarget->loc.zone->GetID() != PPet->loc.zone->GetID() ||
         PPet->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -115,10 +118,11 @@ bool CPetController::TryDeaggro()
     return false;
 }
 
-void CPetController::Ability(uint16 targid, uint16 abilityid)
+bool CPetController::Ability(uint16 targid, uint16 abilityid)
 {
     if (PPet->PAI->CanChangeState())
     {
-        PPet->PAI->Internal_Ability(targid, abilityid);
+        return PPet->PAI->Internal_Ability(targid, abilityid);
     }
+    return false;
 }

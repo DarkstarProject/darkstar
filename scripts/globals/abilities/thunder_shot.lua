@@ -3,76 +3,67 @@
 -- Consumes a Thunder Card to enhance lightning-based debuffs. Deals lightning-based magic damage
 -- Shock Effect: Enhanced DoT and MND-
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/ability")
+require("scripts/globals/magic")
+require("scripts/globals/status")
 -----------------------------------
 
-function onAbilityCheck(player,target,ability)
+function onAbilityCheck(player, target, ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(SLOT_RANGED) ~= SKILL_MRK or player:getWeaponSkillType(SLOT_AMMO) ~= SKILL_MRK) then
-        return 216,0;
+    if player:getWeaponSkillType(dsp.slot.RANGED) ~= dsp.skill.MARKSMANSHIP or player:getWeaponSkillType(dsp.slot.AMMO) ~= dsp.skill.MARKSMANSHIP then
+        return 216, 0
     end
-    if (player:hasItem(2180, 0) or player:hasItem(2974, 0)) then
-        return 0,0;
+    if player:hasItem(2180, 0) or player:hasItem(2974, 0) then
+        return 0, 0
     else
-        return 71, 0;
+        return 71, 0
     end
-end;
+end
 
------------------------------------
--- onUseAbility
------------------------------------
+function onUseAbility(player, target, ability, action)
+    local params = {}
+    params.includemab = true
+    local dmg = (2 * (player:getRangedDmg() + player:getAmmoDmg()) + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * (1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT) / 100)
+    dmg  = addBonusesAbility(player, dsp.magic.ele.LIGHTNING, target, dmg, params)
+    local bonusAcc = player:getStat(dsp.mod.AGI) / 2 + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY) + player:getMod(dsp.mod.QUICK_DRAW_MACC)
+    dmg = dmg * applyResistanceAbility(player, target, dsp.magic.ele.LIGHTNING, dsp.skill.NONE, bonusAcc)
+    dmg = adjustForTarget(target, dmg, dsp.magic.ele.LIGHTNING)
 
-function onUseAbility(player,target,ability)
-    local params = {};
-    params.includemab = true;
-    local dmg = 2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG);
-    dmg  = addBonusesAbility(player, ELE_LIGHTNING, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,ELE_LIGHTNING,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
-    dmg = adjustForTarget(target,dmg,ELE_LIGHTNING);
-    
-    dmg = utils.stoneskin(target, dmg);
-        
-    target:delHP(dmg);
-    target:updateEnmityFromDamage(player,dmg);
-    
-    local effects = {};
-    local counter = 1;
-    local shock = target:getStatusEffect(EFFECT_SHOCK);
-    if (shock ~= nil) then
-        effects[counter] = shock;
-        counter = counter + 1;
-    end
-    local threnody = target:getStatusEffect(EFFECT_THRENODY);
-    if (threnody ~= nil and threnody:getSubPower() == MOD_WATERRES) then
-        effects[counter] = threnody;
-        counter = counter + 1;
-    end
-    
-    if counter > 1 then
-        local effect = effects[math.random(1, counter-1)];
-        local duration = effect:getDuration();
-        local startTime = effect:getStartTime();
-        local tick = effect:getTick();
-        local power = effect:getPower();
-        local subpower = effect:getSubPower();
-        local tier = effect:getTier();
-        local effectId = effect:getType();
-        local subId = effect:getSubType();
-        power = power * 1.2;
-        target:delStatusEffectSilent(effectId);
-        target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier);
-        local newEffect = target:getStatusEffect(effectId);
-        newEffect:setStartTime(startTime);
+    params.targetTPMult = 0 -- Quick Draw does not feed TP
+    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.attackType.MAGICAL, dsp.damageType.LIGHTNING, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
+
+    if dmg > 0 then
+        local effects = {}
+        local shock = target:getStatusEffect(dsp.effect.SHOCK)
+        if shock ~= nil then
+            table.insert(effects, shock)
+        end
+
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY)
+        if threnody ~= nil and threnody:getSubPower() == dsp.mod.WATERRES then
+            table.insert(effects, threnody)
+        end
+
+        if #effects > 0 then
+            local effect = effects[math.random(#effects)]
+            local duration = effect:getDuration()
+            local startTime = effect:getStartTime()
+            local tick = effect:getTick()
+            local power = effect:getPower()
+            local subpower = effect:getSubPower()
+            local tier = effect:getTier()
+            local effectId = effect:getType()
+            local subId = effect:getSubType()
+            power = power * 1.2
+            target:delStatusEffectSilent(effectId)
+            target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier)
+            local newEffect = target:getStatusEffect(effectId)
+            newEffect:setStartTime(startTime)
+        end
     end
 
     local del = player:delItem(2180, 1) or player:delItem(2974, 1)
-    target:updateClaim(player);
-    return dmg;
-end;
+    target:updateClaim(player)
+    return dmg
+end

@@ -1,71 +1,54 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
--- NPC:  ??? (Ix'aern (Dark Knight) Spawn)
+--  NPC: ??? (Ix'aern (Dark Knight) Spawn)
 -- Allows players to spawn the Ix'aern (Dark Knight) by checking ??? only after killing the required mobs in the same room as the ???.
--- @pos ,-560 5 239
+-- !pos -240 5.00 440 35
+-- !pos -280 5.00 240 35
+-- !pos -560 5.00 239 35
+-- !pos -600 5.00 440 35
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-        
-end; 
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
- 
 function onTrigger(player,npc)
-    --[[
-    Kills = GetServerVariable("[PH]Ix_aern_drk");
-        --print(Kills)
-    moba = GetMobByID(16921018);
-    mobb = GetMobByID(16921019);
-    mobc = GetMobByID(16921020);
-    if (Kills == 0) then 
-        player:messageSpecial(UNKNOWN_PRESENCE);
-    elseif (Kills == 1) then
-        player:messageSpecial(NONE_HOSTILE);
-    elseif (Kills == 2) then
-        player:messageSpecial(NONE_HOSTILE);--(SHEER_ANIMOSITY);
-    elseif (Kills == 3) then 
-        moba:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921018,180):updateClaim(player);
-        mobb:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921019,180):updateClaim(player);
-        mobc:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921020,180):updateClaim(player);
-        GetNPCByID(16921028):hideNPC(900);
-            if (math.random(0,1) == 1) then -- random do select which item do drop. Will select one item 100% of the time.
-                SetDropRate(4397,1854,000);
-                else
-                SetDropRate(4397,1902,000);
-            end
-    end
-    ]]--
-end;
+    local hatedPlayer = npc:getLocalVar("hatedPlayer")
+    local isInTime = npc:getLocalVar("hateTimer") > os.time()
 
------------------------------------
--- onEventUpdate
------------------------------------
+    if hatedPlayer ~= 0 and not isInTime then
+        -- player took too long, so reset animosity
+        npc:setLocalVar("hatedPlayer",0)
+        npc:setLocalVar("hateTimer",0)
+        player:messageSpecial(ID.text.UNKNOWN_PRESENCE)
+
+    elseif hatedPlayer == 0 then
+        -- nobody has animosity
+        player:messageSpecial(ID.text.UNKNOWN_PRESENCE)
+
+    elseif hatedPlayer ~= player:getID() then
+        -- someone else has animosity
+        player:messageSpecial(ID.text.NONE_HOSTILE)
+
+    else
+        -- this player has animosity
+        -- spawn Ix'Aern DRK and its two minions near the QM
+        player:messageSpecial(ID.text.MENACING_CREATURES)
+        npcUtil.popFromQM(player, npc, {ID.mob.IXAERN_DRK, ID.mob.IXAERN_DRK + 1, ID.mob.IXAERN_DRK + 2}, {radius = 3})
+
+        -- move QM to random location, and reset animosity
+        local pos = math.random(1,4)
+        npcUtil.queueMove(npc, ID.npc.IXAERN_DRK_QM_POS[pos])
+        npc:setLocalVar("position", pos)
+        npc:setLocalVar("hatedPlayer",0)
+        npc:setLocalVar("hateTimer",0)
+    end
+end
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
-    end;
-
------------------------------------
--- onEventFinish Action 
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
-    end;
+end

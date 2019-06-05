@@ -1,191 +1,173 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Brutus
+--  NPC: Brutus
 -- Starts Quest: Chocobo's Wounds, Save My Son, Path of the Beastmaster, Wings of gold, Scattered into Shadow, Chocobo on the Loose!
--- @pos -55 8 95 244
+-- !pos -55 8 95 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/wsquest")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+local wsQuest = dsp.wsquest.decimation
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrade(player, npc, trade)
+    local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest, player, trade)
 
-function onTrigger(player,npc)
+    if wsQuestEvent ~= nil then
+        player:startEvent(wsQuestEvent)
+    end
+end
 
-        local chocoboOnTheLoose = player:getQuestStatus(JEUNO,CHOCOBO_ON_THE_LOOSE);
-            local chocoboOnTheLooseStatus = player:getVar("ChocoboOnTheLoose");
-        local ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
-        local saveMySon = player:getQuestStatus(JEUNO,SAVE_MY_SON);
-        local wingsOfGold = player:getQuestStatus(JEUNO,WINGS_OF_GOLD);
-        local scatIntoShadow = player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW);
+function onTrigger(player, npc)
+    local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest, player)
+    local chocoboOnTheLoose = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
+    local chocoboOnTheLooseStat = player:getVar("ChocoboOnTheLoose")
+    local chocobosWounds = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS)
+    local chocobosWoundsStat = player:getVar("ChocobosWounds_Event")
+    local saveMySon = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON)
+    local pathOfTheBeastmaster = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
+    local wingsOfGold = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
+    local scatteredIntoShadow = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW)
+    local scatteredIntoShadowStat = player:getVar("scatIntoShadowCS")
 
-        local mLvl = player:getMainLvl();
-        local mJob = player:getMainJob();
+    local mLvl = player:getMainLvl()
+    local mJob = player:getMainJob()
 
-        if (chocoboOnTheLoose == QUEST_AVAILABLE) then
-                player:startEvent(0x276D);
-        elseif (chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStatus == 0) then
-                player:startEvent(0x276E);
-        elseif (chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStatus == 2) then
-                player:startEvent(0x276F);
-        elseif (chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStatus == 3) then
-                player:startEvent(0x2773);
-        elseif (chocoboOnTheLoose == QUEST_ACCEPTED and (chocoboOnTheLooseStatus == 5 or chocoboOnTheLooseStatus == 6)) then
-                player:startEvent(0x2774);
-        elseif (chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStatus == 7 and player:needToZone() == false and (player:getVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getVar("ChocoboOnTheLooseYear") < VanadielYear())) then
-                player:startEvent(0x277D);
-        elseif (player:getMainLvl() >= 20 and ChocobosWounds ~= QUEST_COMPLETED) then
-                local chocoFeed = player:getVar("ChocobosWounds_Event");
+    -- AXE THE COMPETITION
+    if wsQuestEvent ~= nil then
+        player:startEvent(wsQuestEvent)
 
-                if (ChocobosWounds == QUEST_AVAILABLE) then
-                        player:startEvent(0x0047);
-                elseif (chocoFeed == 1) then
-                        player:startEvent(0x0041);
-                elseif (chocoFeed == 2) then
-                        player:startEvent(0x0042);
-                else
-                        player:startEvent(0x0066);
-                end
-        elseif (ChocobosWounds == QUEST_COMPLETED and saveMySon == QUEST_AVAILABLE) then
-                player:startEvent(0x0016);
-        elseif (saveMySon == QUEST_COMPLETED and player:getQuestStatus(JEUNO,PATH_OF_THE_BEASTMASTER) == QUEST_AVAILABLE) then
-                player:startEvent(0x0046);
-        elseif (mLvl >= AF1_QUEST_LEVEL and mJob == 9 and wingsOfGold == QUEST_AVAILABLE) then
-                if (player:getVar("wingsOfGold_shortCS") == 1) then
-                        player:startEvent(0x0089); -- Start Quest "Wings of gold" (Short dialog)
-                else
-                        player:setVar("wingsOfGold_shortCS",1);
-                        player:startEvent(0x008b); -- Start Quest "Wings of gold" (Long dialog)
-                end
-        elseif (wingsOfGold == QUEST_ACCEPTED) then
-                if (player:hasKeyItem(GUIDING_BELL) == false) then
-                        player:startEvent(0x0088);
-                else
-                        player:startEvent(0x008a); -- Finish Quest "Wings of gold"
-                end
-        elseif (wingsOfGold == QUEST_COMPLETED and mLvl < AF2_QUEST_LEVEL and mJob == 9) then
-                player:startEvent(0x0086); -- Standard dialog after "Wings of gold"
-        elseif (scatIntoShadow == QUEST_AVAILABLE and mLvl >= AF2_QUEST_LEVEL and mJob == 9) then
-                if (player:getVar("scatIntoShadow_shortCS") == 1) then
-                        player:startEvent(0x008f);
-                else
-                        player:setVar("scatIntoShadow_shortCS",1);
-                        player:startEvent(0x008d);
-                end
-        elseif (scatIntoShadow == QUEST_ACCEPTED) then
-                local scatIntoShadowCS = player:getVar("scatIntoShadowCS");
-                if (player:hasKeyItem(AQUAFLORA1) or player:hasKeyItem(AQUAFLORA2) or player:hasKeyItem(AQUAFLORA3)) then
-                        player:startEvent(0x008e);
-                elseif (scatIntoShadowCS == 0) then
-                        player:startEvent(0x0090);
-                elseif (scatIntoShadowCS == 1) then
-                        player:startEvent(0x0095);
-                elseif (scatIntoShadowCS == 2) then
-                        player:startEvent(0x0087);
-                end
-        elseif (scatIntoShadow == QUEST_COMPLETED) then
-                player:startEvent(0x0097);
-        elseif (player:getQuestStatus(JEUNO,PATH_OF_THE_BEASTMASTER) == QUEST_COMPLETED) then
-                player:startEvent(0x0014);
+    -- CHOCOBO ON THE LOOSE
+    elseif chocoboOnTheLoose == QUEST_AVAILABLE then
+        player:startEvent(10093)
+    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 0 then
+        player:startEvent(10094)
+    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 2 then
+        player:startEvent(10095)
+    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 3 then
+        player:startEvent(10099)
+    elseif chocoboOnTheLoose == QUEST_ACCEPTED and (chocoboOnTheLooseStat == 5 or chocoboOnTheLooseStat == 6) then
+        player:startEvent(10100)
+    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 7 and not player:needToZone() and (player:getVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getVar("ChocoboOnTheLooseYear") < VanadielYear()) then
+        player:startEvent(10109)
+
+    -- CHOCOBO'S WOUNDS
+    elseif chocobosWounds == QUEST_AVAILABLE and mLvl >= 20 then
+        player:startEvent(71)
+    elseif chocobosWoundsStat == 1 then
+        player:startEvent(65)
+    elseif chocobosWoundsStat == 2 then
+        player:startEvent(66)
+
+    -- PATH OF THE BEASTMASTER
+    elseif saveMySon == QUEST_COMPLETED and pathOfTheBeastmaster == QUEST_AVAILABLE then
+        player:startEvent(70)
+
+    -- WINGS OF GOLD
+    elseif pathOfTheBeastmaster == QUEST_COMPLETED and wingsOfGold == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF1_QUEST_LEVEL then
+        if player:getVar("wingsOfGold_shortCS") == 1 then
+            player:startEvent(137) -- Start Quest "Wings of gold" (Short dialog)
         else
-                player:startEvent(0x0042, player:getMainLvl());
+            player:setVar("wingsOfGold_shortCS", 1)
+            player:startEvent(139) -- Start Quest "Wings of gold" (Long dialog)
         end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-        -- printf("CSID: %u",csid);
-        -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-        -- printf("CSID: %u",csid);
-        -- printf("RESULT: %u",option);
-
-        if (csid == 0x276D) then
-                player:addQuest(JEUNO,CHOCOBO_ON_THE_LOOSE);
-        elseif (csid == 0x276E) then
-                player:setVar("ChocoboOnTheLoose", 1);
-        elseif (csid == 0x276F) then
-                player:setVar("ChocoboOnTheLoose", 3);
-        elseif (csid == 0x2773) then
-                player:setVar("ChocoboOnTheLoose", 4);
-        elseif (csid == 0x2774) then
-                player:setVar("ChocoboOnTheLoose", 7);
-                player:setVar("ChocoboOnTheLooseDay", VanadielDayOfTheYear());
-                player:setVar("ChocoboOnTheLooseYear", VanadielYear());
-                player:needToZone(true);
-        elseif (csid == 0x277D) then
-                player:setVar("ChocoboOnTheLoose", 0);
-                player:setVar("ChocoboOnTheLooseDay", 0);
-                player:setVar("ChocoboOnTheLooseYear", 0);
-                player:addFame(JEUNO, JEUNO_FAME*30);
-                player:addItem(2317);
-                player:messageSpecial(ITEM_OBTAINED,2317); -- Chocobo Egg (a bit warm)
-                player:completeQuest(JEUNO,CHOCOBO_ON_THE_LOOSE);
-        elseif (csid == 0x0047 and option == 1) then
-                player:addQuest(JEUNO,CHOCOBO_S_WOUNDS);
-                player:setVar("ChocobosWounds_Event",1);
-        elseif (csid == 0x0046) then
-                player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
-                player:addTitle(ANIMAL_TRAINER);
-                player:unlockJob(9); -- Beastmaster
-                player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER);
-                player:addFame(JEUNO, JEUNO_FAME*30);
-                player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
-        elseif ((csid == 0x008b or csid == 0x0089) and option == 1) then
-                player:addQuest(JEUNO,WINGS_OF_GOLD);
-                player:setVar("wingsOfGold_shortCS",0);
-        elseif (csid == 0x008a) then
-                if (player:getFreeSlotsCount() < 1) then
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16680);
-                else
-                        player:delKeyItem(GUIDING_BELL);
-                        player:addItem(16680);
-                        player:messageSpecial(ITEM_OBTAINED,16680); -- Barbaroi Axe
-                        player:addFame(JEUNO,AF1_FAME);
-                        player:completeQuest(JEUNO,WINGS_OF_GOLD);
-                end
-        elseif ((csid == 0x008f or csid == 0x008d) and option == 1) then
-                player:addQuest(JEUNO,SCATTERED_INTO_SHADOW);
-                player:setVar("scatIntoShadow_shortCS",0);
-                player:addKeyItem(AQUAFLORA1);
-                player:addKeyItem(AQUAFLORA2);
-                player:addKeyItem(AQUAFLORA3);
-                player:messageSpecial(KEYITEM_OBTAINED,AQUAFLORA1);
-        elseif (csid == 0x0090) then
-                player:setVar("scatIntoShadowCS",1);
-        elseif (csid == 0x0087) then
-                if (player:getFreeSlotsCount() < 1) then
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14097);
-                else
-                        player:setVar("scatIntoShadowCS",0);
-                        player:addItem(14097);
-                        player:messageSpecial(ITEM_OBTAINED,14097); -- Beast Gaiters
-                        player:addFame(JEUNO,JEUNO_FAME*AF2_FAME);
-                        player:completeQuest(JEUNO,SCATTERED_INTO_SHADOW);
-                end
+    elseif wingsOfGold == QUEST_ACCEPTED then
+        if not player:hasKeyItem(dsp.ki.GUIDING_BELL) then
+            player:startEvent(136)
+        else
+            player:startEvent(138) -- Finish Quest "Wings of gold"
         end
-end;
+
+    -- SCATTERED INTO SHADOW
+    elseif wingsOfGold == QUEST_COMPLETED and scatteredIntoShadow == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF2_QUEST_LEVEL then
+        if player:getVar("scatIntoShadow_shortCS") == 1 then
+            player:startEvent(143)
+        else
+            player:setVar("scatIntoShadow_shortCS", 1)
+            player:startEvent(141)
+        end
+    elseif scatteredIntoShadow == QUEST_ACCEPTED then
+        if player:hasKeyItem(dsp.ki.AQUAFLORA1) or player:hasKeyItem(dsp.ki.AQUAFLORA2) or player:hasKeyItem(dsp.ki.AQUAFLORA3) then
+            player:startEvent(142)
+        elseif scatteredIntoShadowStat == 0 then
+            player:startEvent(144)
+        elseif scatteredIntoShadowStat == 1 then
+            player:startEvent(149)
+        elseif scatteredIntoShadowStat == 2 then
+            player:startEvent(135)
+        end
+
+    -- STANDARD DIALOGS
+    elseif scatteredIntoShadow == QUEST_COMPLETED then
+        player:startEvent(151)
+    elseif wingsOfGold == QUEST_COMPLETED then
+        player:startEvent(134)
+    elseif pathOfTheBeastmaster == QUEST_COMPLETED then
+        player:startEvent(20)
+    elseif chocobosWounds == QUEST_COMPLETED and saveMySon == QUEST_AVAILABLE then
+        player:startEvent(22)
+    elseif chocobosWounds == QUEST_ACCEPTED then
+        player:startEvent(102)
+    else
+        player:startEvent(66, mLvl)
+    end
+end
+
+function onEventFinish(player, csid, option)
+    -- CHOCOBO ON THE LOOSE
+    if csid == 10093 then
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
+    elseif csid == 10094 then
+        player:setVar("ChocoboOnTheLoose", 1)
+    elseif csid == 10095 then
+        player:setVar("ChocoboOnTheLoose", 3)
+    elseif csid == 10099 then
+        player:setVar("ChocoboOnTheLoose", 4)
+    elseif csid == 10100 then
+        player:setVar("ChocoboOnTheLoose", 7)
+        player:setVar("ChocoboOnTheLooseDay", VanadielDayOfTheYear())
+        player:setVar("ChocoboOnTheLooseYear", VanadielYear())
+        player:needToZone(true)
+    elseif csid == 10109 then
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE, {item = 2317, var = {"ChocoboOnTheLoose", "ChocoboOnTheLooseDay", "ChocoboOnTheLooseYear"}})
+
+    -- CHOCOBO'S WOUNDS
+    elseif csid == 71 and option == 1 then
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS)
+        player:setVar("ChocobosWounds_Event", 1)
+
+    -- PATH OF THE BEASTMASTER
+    elseif csid == 70 then
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER, {title = dsp.title.ANIMAL_TRAINER})
+        player:unlockJob(dsp.job.BST)
+        player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_BEASTMASTER)
+
+    -- WINGS OF GOLD
+    elseif (csid == 137 or csid == 139) and option == 1 then
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
+        player:setVar("wingsOfGold_shortCS", 0)
+    elseif csid == 138 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD, {item = 16680, fame = AF1_FAME}) then
+        player:delKeyItem(dsp.ki.GUIDING_BELL)
+
+    -- SCATTERED INTO SHADOW
+    elseif (csid == 141 or csid == 143) and option == 1 then
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW)
+        player:setVar("scatIntoShadow_shortCS", 0)
+        npcUtil.giveKeyItem(player, {dsp.ki.AQUAFLORA1, dsp.ki.AQUAFLORA2, dsp.ki.AQUAFLORA3})
+    elseif csid == 144 then
+        player:setVar("scatIntoShadowCS", 1)
+    elseif csid == 135 then
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW, {item = 14097, fame = AF2_FAME, var = "scatIntoShadowCS"})
+
+    -- AXE THE COMPETITION
+    else
+        dsp.wsquest.handleEventFinish(wsQuest, player, csid, option, ID.text.DECIMATION_LEARNED)
+    end
+end

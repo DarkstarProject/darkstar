@@ -1,21 +1,10 @@
 -----------------------------------
--- Area:
---  MOB: Verthandi
+-- Area: Batallia Downs
+--  VNM: Verthandi
+-----------------------------------
+require("scripts/globals/titles")
 -----------------------------------
 
-require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(VERTHANDI_ENSNARER);
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.VERTHANDI_ENSNARER)
+end

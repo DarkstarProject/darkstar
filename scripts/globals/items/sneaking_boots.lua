@@ -1,21 +1,15 @@
 -----------------------------------------
---  ID: 15320
---  Powder Boots
---  Enchantment: "Flee"
+--  ID: 15698
+--  Sneaking Boots
 -----------------------------------------
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/settings")
+require("scripts/globals/status")
 
 function onItemCheck(target)
-    return 0;
-end;
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    target:delStatusEffect(EFFECT_SNEAK);
-    target:addStatusEffect(EFFECT_SNEAK,1,0,180);
-end;
+    target:delStatusEffect(dsp.effect.SNEAK)
+    target:addStatusEffect(dsp.effect.SNEAK, 1, 0, math.floor(180 * SNEAK_INVIS_DURATION_MULTIPLIER))
+end

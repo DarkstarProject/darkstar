@@ -3,82 +3,70 @@
 -- Consumes a Light Card to enhance light-based debuffs. Additional effect: Light-based Sleep
 -- Dia Effect: Defense Down Effect +5% and DoT + 1
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/magic")
+require("scripts/globals/status")
 -----------------------------------
 
-function onAbilityCheck(player,target,ability)
+function onAbilityCheck(player, target, ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(SLOT_RANGED) ~= SKILL_MRK or player:getWeaponSkillType(SLOT_AMMO) ~= SKILL_MRK) then
-        return 216,0;
+    if player:getWeaponSkillType(dsp.slot.RANGED) ~= dsp.skill.MARKSMANSHIP or player:getWeaponSkillType(dsp.slot.AMMO) ~= dsp.skill.MARKSMANSHIP then
+        return 216, 0
     end
-    if (player:hasItem(2182, 0) or player:hasItem(2974, 0)) then
-        return 0,0;
+    if player:hasItem(2182, 0) or player:hasItem(2974, 0) then
+        return 0, 0
     else
-        return 71, 0;
+        return 71, 0
     end
-end;
+end
 
------------------------------------
--- onUseAbility
------------------------------------
+function onUseAbility(player, target, ability)
+    local duration = 60
+    local bonusAcc = player:getStat(dsp.mod.AGI) / 2 + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY) + player:getMod(dsp.mod.QUICK_DRAW_MACC)
+    local resist = applyResistanceAbility(player, target, dsp.magic.ele.LIGHT, dsp.skill.NONE, bonusAcc)
 
-function onUseAbility(player,target,ability)
-    
-    local duration = 60;
-    local resist = applyResistanceAbility(player,target,ELE_LIGHT,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
-    
-    if (resist < 0.5) then
-        ability:setMsg(324);--resist message
-        return EFFECT_SLEEP_I;
+    if resist < 0.5 then
+        ability:setMsg(dsp.msg.basic.JA_MISS_2) -- resist message
+        return dsp.effect.SLEEP_I
     end
-    
-    duration = duration * resist;
-    
-    local effects = {};
-    local counter = 1;
-    local dia = target:getStatusEffect(EFFECT_DIA);
-    if (dia ~= nil) then
-        effects[counter] = dia;
-        counter = counter + 1;
+
+    duration = duration * resist
+
+    local effects = {}
+    local dia = target:getStatusEffect(dsp.effect.DIA)
+    if dia ~= nil then
+        table.insert(effects, dia)
     end
-    local threnody = target:getStatusEffect(EFFECT_THRENODY);
-    if (threnody ~= nil and threnody:getSubPower() == MOD_DARKRES) then
-        effects[counter] = threnody;
-        counter = counter + 1;
+    local threnody = target:getStatusEffect(dsp.effect.THRENODY)
+    if threnody ~= nil and threnody:getSubPower() == dsp.mod.DARKRES then
+        table.insert(effects, threnody)
     end
-    
-    if counter > 1 then
-        local effect = effects[math.random(1, counter-1)];
-        local duration = effect:getDuration();
-        local startTime = effect:getStartTime();
-        local tick = effect:getTick();
-        local power = effect:getPower();
-        local subpower = effect:getSubPower();
-        local tier = effect:getTier();
-        local effectId = effect:getType();
-        local subId = effect:getSubType();
-        power = power * 1.5;
-        subpower = subpower * 1.5;
-        target:delStatusEffectSilent(effectId);
-        target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier);
-        local newEffect = target:getStatusEffect(effectId);
-        newEffect:setStartTime(startTime);
+
+    if #effects > 0 then
+        local effect = effects[math.random(#effects)]
+        local duration = effect:getDuration()
+        local startTime = effect:getStartTime()
+        local tick = effect:getTick()
+        local power = effect:getPower()
+        local subpower = effect:getSubPower()
+        local tier = effect:getTier()
+        local effectId = effect:getType()
+        local subId = effect:getSubType()
+        power = power * 1.5
+        subpower = subpower * 1.5
+        target:delStatusEffectSilent(effectId)
+        target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier)
+        local newEffect = target:getStatusEffect(effectId)
+        newEffect:setStartTime(startTime)
     end
-    
-    if (target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration)) then
-        ability:setMsg(127);
+
+    if target:addStatusEffect(dsp.effect.SLEEP_I, 1, 0, duration) then
+        ability:setMsg(dsp.msg.basic.JA_ENFEEB_IS)
     else
-        ability:setMsg(323);
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2)
     end
 
     local del = player:delItem(2182, 1) or player:delItem(2974, 1)
-    target:updateClaim(player);
-    return EFFECT_SLEEP_I;
-end;
+    target:updateClaim(player)
+    return dsp.effect.SLEEP_I
+end

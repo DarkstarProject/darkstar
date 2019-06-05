@@ -1,14 +1,17 @@
 -----------------------------------
 -- Area: Western Altepa Desert
 --  MOB: Tulwar Scorpion
+-- Note: PH for Calchas
+-----------------------------------
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 137, 2, dsp.regime.type.FIELDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,137,2);
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.CALCHAS_PH, 10, 3600) -- 1 hour
+end

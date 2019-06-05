@@ -2,24 +2,13 @@
 -- Area: Fei'Yin
 --  NM:  Jenglot
 -----------------------------------
-
 require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     -- Curses, Foiled A-Golem!?
-    if (ally:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-        ally:delKeyItem(SHANTOTTOS_NEW_SPELL);
-        ally:addKeyItem(SHANTOTTOS_EXSPELL);
+    if (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then
+        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL);
+        player:addKeyItem(dsp.ki.SHANTOTTOS_EXSPELL);
     end
 end;

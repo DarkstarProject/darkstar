@@ -2,62 +2,56 @@
 -- Area: Dragons Aery
 --  HNM: Nidhogg
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
+local ID = require("scripts/zones/Dragons_Aery/IDs")
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
+function onMobSpawn(mob)
+    if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
+        GetNPCByID(ID.npc.FAFNIR_QM):setStatus(dsp.status.DISAPPEAR)
+    end
 
------------------------------------
--- onMobFight Action
------------------------------------
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
+end
 
 function onMobFight(mob, target)
-    local battletime = mob:getBattleTime();
-    local twohourTime = mob:getLocalVar("twohourTime");
+    local battletime = mob:getBattleTime()
+    local twohourTime = mob:getLocalVar("twohourTime")
 
-    if (twohourTime == 0) then
-        mob:setLocalVar("twohourTime",math.random(30,90));
+    if twohourTime == 0 then
+        mob:setLocalVar("twohourTime",math.random(30,90))
     end
 
-    if (battletime >= twohourTime) then
-        mob:useMobAbility(956);
+    if battletime >= twohourTime then
+        mob:useMobAbility(956)
         -- technically aerial hurricane wing, but I'm using 700 for his two hour
         --(since I have no inclination to spend millions on a PI to cap one name you never see)
-        mob:setLocalVar("twohourTime",battletime + math.random(60,120));
+        mob:setLocalVar("twohourTime",battletime + math.random(60,120))
     end
-end;
+end
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.NIDHOGG_SLAYER)
+end
 
-function onMobDeath(mob, killer, ally)
-
-    ally:addTitle(NIDHOGG_SLAYER);
-
+function onMobDespawn(mob)
     -- Set Nidhogg's Window Open Time
-    if (LandKingSystem_HQ ~= 1) then
-        local wait = 72 * 3600;
-        SetServerVariable("[POP]Nidhogg", os.time(t) + wait); -- 3 days
-        if (LandKingSystem_HQ == 0) then -- Is time spawn only
-            DeterMob(mob:getID(), true);
+    if LandKingSystem_HQ ~= 1 then
+        local wait = 72 * 3600
+        SetServerVariable("[POP]Nidhogg", os.time() + wait) -- 3 days
+        if LandKingSystem_HQ == 0 then -- Is time spawn only
+            DisallowRespawn(mob:getID(), true)
         end
     end
 
     -- Set Fafnir's spawnpoint and respawn time (21-24 hours)
-    if (LandKingSystem_NQ ~= 1) then
-        local Fafnir = mob:getID()-1;
-        SetServerVariable("[PH]Nidhogg", 0);
-        DeterMob(Fafnir, false);
-        UpdateNMSpawnPoint(Fafnir);
-        GetMobByID(Fafnir):setRespawnTime(math.random(75600,86400));
+    if LandKingSystem_NQ ~= 1 then
+        SetServerVariable("[PH]Nidhogg", 0)
+        DisallowRespawn(ID.mob.FAFNIR, false)
+        UpdateNMSpawnPoint(ID.mob.FAFNIR)
+        GetMobByID(ID.mob.FAFNIR):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     end
-
-end;
+end

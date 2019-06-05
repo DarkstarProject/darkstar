@@ -2,27 +2,15 @@
 -- Area: Dynamis Valkurm
 --  MOB: Cirrate_Christelle
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
+local ID = require("scripts/zones/Dynamis-Valkurm/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
 
-if (GetServerVariable("[DynaValkurm]Boss_Trigger")==0) then
+if (GetServerVariable("[DynaValkurm]Boss_Trigger") == 0) then
    --spwan additional mob :
            -- print("Serjeant_Tombstone:");
            for Serjeant_Tombstone = 16937494, 16937499, 1 do
@@ -100,19 +88,15 @@ if (GetServerVariable("[DynaValkurm]Boss_Trigger")==0) then
            SpawnMob(Nightmare_Goobbue);
            end
      SetServerVariable("[DynaValkurm]Boss_Trigger",1);
-   end
+    end
 
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-  if (ally:hasKeyItem(DYNAMIS_VALKURM_SLIVER ) == false) then
-       ally:addKeyItem(DYNAMIS_VALKURM_SLIVER);
-       ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
+function onMobDeath(mob, player, isKiller)
+  if (player:hasKeyItem(dsp.ki.DYNAMIS_VALKURM_SLIVER ) == false) then
+       player:addKeyItem(dsp.ki.DYNAMIS_VALKURM_SLIVER);
+       player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DYNAMIS_VALKURM_SLIVER);
   end
-       ally:addTitle(DYNAMISVALKURM_INTERLOPER);
+       player:addTitle(dsp.title.DYNAMISVALKURM_INTERLOPER);
 end;

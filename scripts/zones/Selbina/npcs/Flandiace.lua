@@ -1,44 +1,19 @@
 -----------------------------------
---  Area: Selbina
---  NPC:  Flandiace
---  Type: Adventurer's Assistant
---  @pos 21.313 -15.558 84.298 248
------------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Selbina/TextIDs");
-
------------------------------------
--- onTrade Action
+-- Area: Selbina
+--  NPC: Flandiace
+-- Type: Adventurer's Assistant
+-- !pos 21.313 -15.558 84.298 248
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x000c);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(12)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4982
---    Scroll of Foe Requiem VII
---    Teaches the song Foe Requiem VII
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4982
+-- Scroll of Foe Requiem VII
+-- Teaches the song Foe Requiem VII
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(374);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(374)
+end
 
 function onItemUse(target)
-    target:addSpell(374);
-end;
+    target:addSpell(374)
+end

@@ -1,78 +1,41 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Aveline
+--  NPC: Aveline
 -- Standard Merchant NPC
--- @zone 230 
--- @pos -139 -6 46
+-- !pos -139 -6 46 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local stock =
+    {
+        625,  79, 1,    -- Apple Vinegar
+        623, 117, 1,    -- Bay Leaves
+        4382, 28, 1,    -- Frost Turnip
+        4392, 28, 1,    -- Saruta Orange
+        4363, 39, 2,    -- Faerie Apple
+        4366, 21, 2,    -- La Theine Cabbage
+        633,  14, 3,    -- Olive Oil
+        638, 166, 3,    -- Sage
+        4389, 28, 3,    -- San d'Orian Carrot
+        4431, 68, 3,    -- San d'Orian Grape
+    }
 
-    player:showText(npc,AVELINE_SHOP_DIALOG);
-
-    stock = {0x0271,79,1,    --Apple Vinegar
-             0x026f,117,1,    --Bay Leaves
-             0x111e,28,1,    --Frost Turnip
-             0x1128,28,1,    --Saruta Orange
-
-             0x110b,39,2,    --Faerie Apple
-             0x110E,21,2,    --La Theine Cabbage
-
-             0x0279,14,3,    --Olive Oil
-             0x027e,166,3,    --Sage
-             0x1125,28,3,    --San d'Orian Carrot
-             0x114f,68,3}    --San d'Orian Grape
-     
-    showNationShop(player, SANDORIA, stock);
-
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.AVELINE_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
-
+end

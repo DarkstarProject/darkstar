@@ -2,26 +2,12 @@
 -- Area: Labyrinth of Onzozo
 --   NM: Soulstealer Skullnix
 -----------------------------------
-
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/regimes")
 -----------------------------------
--- onMobDeath
------------------------------------
 
-function onMobDeath(mob,killer,ally)
-
-    checkGoVregime(ally,mob,771,2);
-    checkGoVregime(ally,mob,772,2);
-    checkGoVregime(ally,mob,774,2);
-
-    -- Set Soulstealer_Skullnix's Window Open Time
-    local wait = math.random((7200),(10800))
-    SetServerVariable("[POP]Ose", os.time(t) + wait); -- 2-3 hours
-    DeterMob(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Soulstealer_Skullnix");
-    SetServerVariable("[PH]Soulstealer_Skullnix", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 771, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 772, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 774, 2, dsp.regime.type.GROUNDS)
+end

@@ -1,21 +1,10 @@
 -----------------------------------
---  Area: Zeruhn Mines (172)
---   Mob: Ding_Bats
+-- Area: Zeruhn Mines (172)
+--  Mob: Ding Bats
+-----------------------------------
+require("scripts/globals/regimes")
 -----------------------------------
 
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobInitialize
------------------------------------
-
-function onMobInitialize(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,626,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 626, 1, dsp.regime.type.GROUNDS)
+end

@@ -2,14 +2,10 @@
 -- Area: Konschtat Highlands
 --  MOB: Huge Wasp
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,81,2);
-    checkRegime(ally,mob,82,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 81, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 82, 1, dsp.regime.type.FIELDS)
 end;

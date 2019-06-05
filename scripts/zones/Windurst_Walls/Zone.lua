@@ -3,25 +3,18 @@
 -- Zone: Windurst_Walls (239)
 --
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-require("scripts/globals/settings");
-require("scripts/zones/Windurst_Walls/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Windurst_Walls/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/settings")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/quests")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -2,-17,140, 2,-16,142);
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -30,74 +23,58 @@ function onZoneIn(player,prevZone)
         position = math.random(1,5) - 123;
         player:setPos(-257.5,-5.05,position,0);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-            cs = 0x7534;
+            cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
-    elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == A_SHANTOTTO_ASCENSION
-        and (prevZone == 238 or prevZone == 241) and player:getMainLvl()>=10) then
-        cs = 0x01fe;
+    elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == dsp.mission.id.asa.A_SHANTOTTO_ASCENSION
+        and (prevZone == dsp.zone.WINDURST_WATERS or prevZone == dsp.zone.WINDURST_WOODS) and player:getMainLvl()>=10) then
+        cs = 510;
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getVar("MissionStatus") == 4) then
+        cs = 443;
     end
 
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Heaven's Tower enter portal
-            player:startEvent(0x56);
+            player:startEvent(86);
         end,
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x56) then
+    if (csid == 86) then
         player:setPos(0,0,-22.40,192,242);
-    elseif (csid == 0x7534 and option == 0) then
+    elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
-    elseif (csid == 0x01fe) then
-        player:startEvent(0x0202);
-    elseif (csid == 0x0202) then
-        player:completeMission(ASA,A_SHANTOTTO_ASCENSION);
-        player:addMission(ASA,BURGEONING_DREAD);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
+    elseif (csid == 510) then
+        player:startEvent(514);
+    elseif (csid == 514) then
+        player:completeMission(ASA,dsp.mission.id.asa.A_SHANTOTTO_ASCENSION);
+        player:addMission(ASA,dsp.mission.id.asa.BURGEONING_DREAD);
         player:setVar("ASA_Status",0);
+    elseif (csid == 443) then
+        player:completeMission(WINDURST,dsp.mission.id.windurst.MOON_READING);
+        player:setVar("MissionStatus",0);
+        player:setRank(10);
+        player:addGil(GIL_RATE*100000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000);
+        player:addItem(183);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,183);
+        player:addTitle(dsp.title.VESTAL_CHAMBERLAIN);
     end
 end;

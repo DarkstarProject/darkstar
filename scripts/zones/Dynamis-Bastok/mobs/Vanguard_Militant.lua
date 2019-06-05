@@ -1,33 +1,17 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  MOB: Vanguard Militant
+--  MOB: Vanguard_Militant
 -----------------------------------
-
-require("scripts/globals/dynamis");
-
------------------------------------
--- onMobSpawn Action
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobSpawn(mob)
-end;
+    mob:setLocalVar("dynamis_currency", 1455)
+end
 
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    if (mob:getID() == 17539301 and alreadyReceived(killer,6) == false) then
-        ally:addTimeToDynamis(10);
-        addDynamisList(killer,32);
-    end
-
-end;
+function onMobDeath(mob, player, isKiller)
+end

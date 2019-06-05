@@ -1,38 +1,23 @@
 -----------------------------------
--- Area:  Sacrarium
--- NPC:   _0sw (Reliquiarium Gate)
--- @pos 23.447 -1.563 50.941 28
+-- Area: Sacrarium
+--  NPC: _0sw (Reliquiarium Gate)
+-- !pos 23.447 -1.563 50.941 28
 -----------------------------------
-
-
------------------------------------
--- onTrigger Action
+local ID = require("scripts/zones/Sacrarium/IDs")
 -----------------------------------
 
 function onTrigger(player,npc)
 
     if (player:getZPos() < 52) then
-      player:messageSpecial(STURDY_GATE);    
+        player:messageSpecial(ID.text.STURDY_GATE);
     else
-      player:messageSpecial(KEYHOLE_DAMAGED);            
-    end    
-    
-end;
+        player:messageSpecial(ID.text.KEYHOLE_DAMAGED);
+    end
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

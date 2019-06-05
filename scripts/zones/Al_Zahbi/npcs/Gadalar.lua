@@ -1,45 +1,19 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Gadalar
---  Type: Fireserpent General
--- @zone: 48
---  @pos -105.979 -7 39.692
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Area: Al Zahbi
+--  NPC: Gadalar
+-- Type: Fireserpent General
+-- !pos -105.979 -7 39.692 48
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x010a);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(266)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

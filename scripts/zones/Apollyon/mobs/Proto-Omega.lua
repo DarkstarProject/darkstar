@@ -2,37 +2,24 @@
 -- Area: Apollyon (Central)
 --  MOB: Proto-Omega
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/titles");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
-
------------------------------------
--- onMobInitialize Action
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
+    mob:setMod(dsp.mod.COUNTER, 10) -- "Possesses a Counter trait"
+    mob:setMod(dsp.mod.REGEN, 25) -- "Posseses an Auto-Regen (low to moderate)"
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-    mob:setMod(MOD_UDMGPHYS, -75);
-    mob:setMod(MOD_UDMGRANGE, -75);
-    mob:setMod(MOD_UDMGMAGIC, 0);
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+    mob:setMod(dsp.mod.UDMGPHYS, -75);
+    mob:setMod(dsp.mod.UDMGRANGE, -75);
+    mob:setMod(dsp.mod.UDMGMAGIC, 0);
+    mob:setMod(dsp.mod.MOVE, 100) -- "Moves at Flee Speed in Quadrupedal stance and in the Final Form"
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local mobID = mob:getID();
@@ -45,9 +32,10 @@ function onMobFight(mob,target)
         mob:setLocalVar("form", currentForm)
         mob:AnimationSub(2);
         formTime = os.time() + 60;
-        mob:setMod(MOD_UDMGPHYS, 0);
-        mob:setMod(MOD_UDMGRANGE, 0);
-        mob:setMod(MOD_UDMGMAGIC, -75);
+        mob:setMod(dsp.mod.UDMGPHYS, 0);
+        mob:setMod(dsp.mod.UDMGRANGE, 0);
+        mob:setMod(dsp.mod.UDMGMAGIC, -75);
+        mob:setMod(dsp.mod.MOVE, 0)
     end
 
     if (currentForm == 1) then
@@ -62,44 +50,30 @@ function onMobFight(mob,target)
 
         if (lifePercent < 30) then
             mob:AnimationSub(2);
-            mob:setMod(MOD_UDMGPHYS, -50);
-            mob:setMod(MOD_UDMGRANGE, -50);
-            mob:setMod(MOD_UDMGMAGIC, -50);
-            mob:addStatusEffect(EFFECT_REGAIN,7,3,0); -- The final form has Regain,
-            mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
+            mob:setMod(dsp.mod.UDMGPHYS, -50);
+            mob:setMod(dsp.mod.UDMGRANGE, -50);
+            mob:setMod(dsp.mod.UDMGMAGIC, -50);
+            mob:setMod(dsp.mod.MOVE, 100)
+            mob:addStatusEffect(dsp.effect.REGAIN,7,3,0); -- The final form has Regain,
+            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH);
             currentForm = 2;
             mob:setLocalVar("form", currentForm)
         end
     end
 end;
 
------------------------------------
--- onAdditionalEffect
------------------------------------
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.STUN)
+end
 
-function onAdditionalEffect(mob, player)
-    local chance = 20; -- wiki lists ~20% stun chance
-    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,EFFECT_STUN);
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0;
-    else
-        local duration = 5 * resist;
-        if (player:hasStatusEffect(EFFECT_STUN) == false) then
-            player:addStatusEffect(EFFECT_STUN, 0, 0, duration);
-        end
-        return SUBEFFECT_STUN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_STUN;
-    end
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.APOLLYON_RAVAGER);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    ally:addTitle(APOLLYON_RAVAGER);
+function onMobDespawn(mob)
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
     GetNPCByID(16932864+39):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+39):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+39):setStatus(dsp.status.NORMAL);
 end;

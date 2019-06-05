@@ -1,45 +1,27 @@
 -----------------------------------
---  Area: Port Windurst
+-- Area: Port Windurst
 --   NPC: Mojo-Pojo
---  Type: Standard NPC
--- @zone: 240
---  @pos -108.041 -4.25 109.545
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
+-- Type: Standard NPC
+-- !pos -108.041 -4.25 109.545 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/magic")
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
+function onSpawn(npc)
+    npcUtil.castingAnimation(npc, dsp.magic.spellGroup.BLACK, 14)
+end
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x00e5);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(229)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

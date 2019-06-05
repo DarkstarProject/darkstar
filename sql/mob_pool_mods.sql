@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.13-log
+-- Server version   5.6.13-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,7 +40,6 @@ LOCK TABLES `mob_pool_mods` WRITE;
 INSERT INTO `mob_pool_mods` VALUES (519,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (532,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (676,160,-50,0);
-INSERT INTO `mob_pool_mods` VALUES (697,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (2643,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (2647,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (733,302,5,0);
@@ -61,7 +60,6 @@ INSERT INTO `mob_pool_mods` VALUES (3916,370,25,0);
 INSERT INTO `mob_pool_mods` VALUES (3916,164,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (3916,29,50,0);
 INSERT INTO `mob_pool_mods` VALUES (3796,21,97,1);
-INSERT INTO `mob_pool_mods` VALUES (4396,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (979,8,60,1);
 INSERT INTO `mob_pool_mods` VALUES (979,9,60,1);
 INSERT INTO `mob_pool_mods` VALUES (639,63,25,0);
@@ -107,26 +105,9 @@ INSERT INTO `mob_pool_mods` VALUES (1841,28,10,1);
 INSERT INTO `mob_pool_mods` VALUES (3853,28,23,1);
 INSERT INTO `mob_pool_mods` VALUES (2675,4,25,1);
 INSERT INTO `mob_pool_mods` VALUES (1456,368,20,0);
-INSERT INTO `mob_pool_mods` VALUES (1154,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1798,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (2729,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4052,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4670,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4673,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4671,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4672,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1491,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (3816,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (3540,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (592,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (592,302,45,0);
 INSERT INTO `mob_pool_mods` VALUES (592,68,15,0);
-INSERT INTO `mob_pool_mods` VALUES (2460,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1773,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (595,14,703,1);
 INSERT INTO `mob_pool_mods` VALUES (595,169,250,0);
-INSERT INTO `mob_pool_mods` VALUES (595,171,40,0);
-INSERT INTO `mob_pool_mods` VALUES (595,23,15,1);
 INSERT INTO `mob_pool_mods` VALUES (2083,29,25,0);
 INSERT INTO `mob_pool_mods` VALUES (2664,12,1,1);
 INSERT INTO `mob_pool_mods` VALUES (276,12,1,1);
@@ -160,26 +141,11 @@ INSERT INTO `mob_pool_mods` VALUES (2748,370,5,0);
 INSERT INTO `mob_pool_mods` VALUES (3129,370,50,0);
 INSERT INTO `mob_pool_mods` VALUES (2922,370,100,0);
 INSERT INTO `mob_pool_mods` VALUES (930,370,15,0);
-INSERT INTO `mob_pool_mods` VALUES (4494,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1034,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1100,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1101,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4224,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4235,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (3425,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (877,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (60,370,20,0);
 INSERT INTO `mob_pool_mods` VALUES (410,236,20,0);
 INSERT INTO `mob_pool_mods` VALUES (237,44,1,1);
 INSERT INTO `mob_pool_mods` VALUES (4361,5,16,1);
 INSERT INTO `mob_pool_mods` VALUES (4361,288,55,0);
-INSERT INTO `mob_pool_mods` VALUES (4361,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (2766,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (3828,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (707,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (4005,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (559,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (2916,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (242,40,30,1);
 INSERT INTO `mob_pool_mods` VALUES (242,41,936,1);
 INSERT INTO `mob_pool_mods` VALUES (242,42,962,1);
@@ -189,29 +155,22 @@ INSERT INTO `mob_pool_mods` VALUES (3124,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (2105,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
-INSERT INTO `mob_pool_mods` VALUES (1851,16,1,1);
-INSERT INTO `mob_pool_mods` VALUES (1851,32,1,1);
-
--- -------------------------
---  Antlion MOBMOD_SPECIAL_SKILL Pit_Ambush 
--- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (586,30,278,1); -- Burrow Antlion 
-INSERT INTO `mob_pool_mods` VALUES (3141,30,278,1); -- Pit Antlion 
-INSERT INTO `mob_pool_mods` VALUES (3996,30,278,1); -- Trench Antlion 
-INSERT INTO `mob_pool_mods` VALUES (662,30,278,1); -- Cave Antlion 
+INSERT INTO `mob_pool_mods` VALUES (181,1,6000,1); -- (Antican_Praetor) GIL_MIN
+INSERT INTO `mob_pool_mods` VALUES (181,2,9234,1); -- (Antican_Praetor) GIL_MAX
+INSERT INTO `mob_pool_mods` VALUES (955,28,-100,1); -- Defender EXP_BONUS: don't give XP
+INSERT INTO `mob_pool_mods` VALUES (1013,28,-100,1); -- Detector EXP_BONUS: don't give XP
 
 -- -------------------------
 --  Race Runner
 -- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def 
-INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack 
+INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
 
 -- -------------------------
 --  Bloodlapper
 -- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (459, 430, 20, 0); -- Quad Attack 
-INSERT INTO `mob_pool_mods` VALUES (459, 23, 50, 0); -- Attack 
-INSERT INTO `mob_pool_mods` VALUES (459, 73, 25, 0); -- Store TP  
+INSERT INTO `mob_pool_mods` VALUES (459, 430, 20, 0); -- Quad Attack
+INSERT INTO `mob_pool_mods` VALUES (459, 23, 50, 0); -- Attack
+INSERT INTO `mob_pool_mods` VALUES (459, 73, 25, 0); -- Store TP
 
 -- Add promyvian boss mods
 INSERT INTO `mob_pool_mods` VALUES (681,14,706,1);
@@ -281,6 +240,28 @@ INSERT INTO `mob_pool_mods` VALUES (1750,56,1,1);
 INSERT INTO `mob_pool_mods` VALUES (680,1,322,0); -- 650 defense total
 INSERT INTO `mob_pool_mods` VALUES (680,31,200,0); -- 120 magic evasion boost recommended but 200 felt more retail
 INSERT INTO `mob_pool_mods` VALUES (680,251,-50,0); -- he shouldn't be so resistant to stun, tho this is a systemic stun problem, this is a hack
+
+-- Variable Hare 10% exp bonus
+INSERT INTO `mob_pool_mods` VALUES (4204,28,10,1);
+
+-- Morbolger
+INSERT INTO `mob_pool_mods` VALUES (2742,37,1,1);
+
+INSERT INTO `mob_pool_mods` VALUES (5408,30,1036,1); -- Maat (PLD) SPECIAL_SKILL: maats_bash
+INSERT INTO `mob_pool_mods` VALUES (5408,33,50,1); -- Maat (PLD) SPECIAL_COOLDOWN: 50 sec
+INSERT INTO `mob_pool_mods` VALUES (5408,58,40,1); -- Maat (PLD) SPECIAL_DELAY: 40 sec
+INSERT INTO `mob_pool_mods` VALUES (5409,30,1036,1); -- Maat (DRK) SPECIAL_SKILL: maats_bash
+INSERT INTO `mob_pool_mods` VALUES (5409,33,50,1); -- Maat (DRK) SPECIAL_COOLDOWN: 50 sec
+INSERT INTO `mob_pool_mods` VALUES (5409,58,40,1); -- Maat (DRK) SPECIAL_DELAY: 40 sec
+INSERT INTO `mob_pool_mods` VALUES (4932,30,1017,1); -- Maat (BST) SPECIAL_SKILL: call_beast
+INSERT INTO `mob_pool_mods` VALUES (4932,33,50,1); -- Maat (BST) SPECIAL_COOLDOWN: 50 sec
+INSERT INTO `mob_pool_mods` VALUES (4836,62,1,1); -- Maat (BLM) NO_STANDBACK
+INSERT INTO `mob_pool_mods` VALUES (4837,62,1,1); -- Maat (RNG) NO_STANDBACK
+INSERT INTO `mob_pool_mods` VALUES (5403,62,1,1); -- Maat (NIN) NO_STANDBACK
+
+INSERT INTO `mob_pool_mods` VALUES (3784,2,-1,1); -- Stray GIL_MAX: don't drop gil
+INSERT INTO `mob_pool_mods` VALUES (3784,28,-100,1); -- Stray EXP_BONUS: don't give XP
+INSERT INTO `mob_pool_mods` VALUES (2614,368,100,0); -- Memory Receptacle regain 10%
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;

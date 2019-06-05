@@ -1,29 +1,15 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
 --  MOB: Yagudo_Oracle
+-- Note: PH for Quu Domi the Gallant
+-----------------------------------
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/zones/Castle_Oztroja/MobIDs");
+function onMobDeath(mob, player, isKiller)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    local mobID = mob:getID();
-    if (Quu_Domi_the_Gallant_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Quu_Domi_the_Gallant");
-        if (ToD <= os.time(t) and GetMobAction(Quu_Domi_the_Gallant) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Quu_Domi_the_Gallant);
-                GetMobByID(Quu_Domi_the_Gallant):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Quu_Domi_the_Gallant", mobID);
-                DeterMob(mobID, true);
-            end
-        end
-    end
-
-end;
-
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.QUU_DOMI_THE_GALLANT_PH,5,3600) -- 1 hour
+end

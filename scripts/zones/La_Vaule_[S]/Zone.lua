@@ -3,62 +3,34 @@
 -- Zone: La_Vaule_[S] (85)
 --
 -----------------------------------
-package.loaded["scripts/zones/La_Vaule_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/La_Vaule_[S]/TextIDs");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/La_Vaule_[S]/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end
 
------------------------------------     
--- onZoneIn     
------------------------------------     
-
-function onZoneIn(player,prevZone)      
-    local cs = -1;  
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then   
-        player:setPos(236.547,-2.25,20,120);
+function onZoneIn(player, prevZone)
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(236.547, -2.25, 20, 120)
     end
-    if (prevZone == 82) then
-        if (player:getCurrentMission(WOTG) == A_TIMESWEPT_BUTTERFLY) then
-            cs = 0x0001;
-        end
+    if player:getCurrentMission(WOTG) == dsp.mission.id.wotg.A_TIMESWEPT_BUTTERFLY and prevZone == dsp.zone.JUGNER_FOREST_S then
+        cs = 1
     end
-    return cs;  
-end;        
+    return cs
+end
 
------------------------------------     
--- onRegionEnter        
------------------------------------     
+function onRegionEnter(player, region)
+end
 
-function onRegionEnter(player,region)   
-end;    
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------ 
--- onEventUpdate    
------------------------------------ 
-
-function onEventUpdate(player,csid,option)  
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;    
-
------------------------------------ 
--- onEventFinish    
------------------------------------ 
-
-function onEventFinish(player,csid,option)  
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x0001) then
-        player:completeMission(WOTG, A_TIMESWEPT_BUTTERFLY);
-        player:addMission(WOTG, PURPLE,_THE_NEW_BLACK);
+function onEventFinish(player, csid, option)
+    if csid == 1 then
+        player:completeMission(WOTG, dsp.mission.id.wotg.A_TIMESWEPT_BUTTERFLY)
+        player:addMission(WOTG, dsp.mission.id.wotg.PURPLE_THE_NEW_BLACK)
     end
-end;    
+end

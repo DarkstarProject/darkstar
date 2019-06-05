@@ -2,13 +2,11 @@
 -- Area: Gusgen Mines
 --  MOB: Accursed Soldier
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,685,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 679, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 680, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 685, 1, dsp.regime.type.GROUNDS)
 end;

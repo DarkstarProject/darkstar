@@ -3,65 +3,40 @@
 -- Zone: Mount_Zhayolm (61)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Mount_Zhayolm/IDs")
+require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-   GetMobByID(17027458):setRespawnTime( ( math.random((12),(36)) * 3600 ) + 43200 );
-end;
+    GetMobByID(ID.mob.CERBERUS):setRespawnTime(math.random(12, 36) * 3600)
 
------------------------------------        
--- onZoneIn        
------------------------------------        
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
+end
 
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
-        player:setPos(-521.016,-6.191,60.013,126);
-    end    
-    if (prevZone == 63) then
-        player:setPos(681.950,-24.00,369.936,40);
+function onZoneIn(player, prevZone)
+    local cs = -1
+    if prevZone == dsp.zone.LEBROS_CAVERN then
+        player:setPos(681.950, -24.00, 369.936, 40)
+    elseif player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-521.016, -6.191, 60.013, 126)
     end
-    return cs;    
-end;        
-
------------------------------------        
--- afterZoneIn        
------------------------------------        
+    return cs
+end
 
 function afterZoneIn(player)
-    player:entityVisualPacket("1pb1");
-    player:entityVisualPacket("2pb1");
-end;
+    player:entityVisualPacket("1pb1")
+    player:entityVisualPacket("2pb1")
+end
 
------------------------------------        
--- onRegionEnter        
------------------------------------        
+function onRegionEnter(player, region)
+end
 
-function onRegionEnter(player,region)    
-end;    
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------    
--- onEventUpdate    
------------------------------------    
-
-function onEventUpdate(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-end;    
-
------------------------------------    
--- onEventFinish    
------------------------------------    
-
-function onEventFinish(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-end;    
+function onEventFinish(player, csid, option)
+    if csid == 208 then
+        player:setPos(0, 0, 0, 0, 63)
+    end
+end

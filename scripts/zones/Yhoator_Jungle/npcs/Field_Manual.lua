@@ -1,38 +1,21 @@
------------------------------------    
--- Field Manual    
+-----------------------------------
+-- Field Manual
 -- Area: Yhoator Jungle
------------------------------------    
-    
-require("scripts/globals/settings");    
-require("scripts/globals/fieldsofvalor");    
-    
------------------------------------    
--- onTrigger Action    
------------------------------------    
-    
-function onTrigger(player,npc)    
-    startFov(FOV_EVENT_YHOATOR,player);
-end;    
-    
------------------------------------    
--- onTrade Action    
------------------------------------    
-    
-function onTrade(player,npc,trade)    
-end;    
-    
------------------------------------    
--- onEventSelection    
------------------------------------    
-    
-function onEventUpdate(player,csid,menuchoice)    
-    updateFov(player,csid,menuchoice,129,130,131,132,133);
-end;    
-    
------------------------------------    
--- onEventFinish Action    
------------------------------------    
-    
-function onEventFinish(player,csid,option)    
-    finishFov(player,csid,option,129,130,131,132,133,FOV_MSG_YHOATOR);
-end;    
+-----------------------------------
+require("scripts/globals/regimes")
+-----------------------------------
+
+function onTrade(player,npc,trade)
+end
+
+function onTrigger(player,npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
+
+function onEventUpdate(player,csid,option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
+
+function onEventFinish(player,csid,option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

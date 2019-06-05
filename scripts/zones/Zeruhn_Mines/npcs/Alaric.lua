@@ -1,41 +1,18 @@
 -----------------------------------
 -- Area: Zeruhn Mines
--- NPC: Alaric
+--  NPC: Alaric
 -- Standard Info NPC
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x0064);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(100)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

@@ -40,7 +40,7 @@ CBazaarPurchasePacket::CBazaarPurchasePacket(CCharEntity* PChar, bool result)
 	this->type = 0x06;  // 0x106
 	this->size = 0x0D;
 
-	WBUFB(data,(0x04)) = !result;
+	ref<uint8>(0x04) = !result;
 
     memcpy(data+(0x08), PChar->GetName(), PChar->name.size());
 }

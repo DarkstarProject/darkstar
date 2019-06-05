@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Blighting Brand
+--   NM: Blighting Brand
+-----------------------------------
+require("scripts/globals/regimes")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,100,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 100, 2, dsp.regime.type.FIELDS)
+end

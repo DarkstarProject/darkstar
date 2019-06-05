@@ -1,73 +1,39 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC: Patolle
---    Only sells when San d'Oria controlls Kuzotz Region
---    Working 100%
+-- Area: Port San d'Oria
+--  NPC: Patolle
+-- Kuzotz Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    if GetRegionOwner(dsp.region.KUZOTZ) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.PATOLLE_CLOSED_DIALOG)
+    else
+        local stock =
+        {
+            916,  855,    -- Cactuar Needle
+            4412, 299,    -- Thundermelon
+            4491, 184,    -- Watermelon
+        }
 
-RegionOwner = GetRegionOwner(KUZOTZ);
-
-if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,PATOLLE_CLOSED_DIALOG);
-else
-    player:showText(npc,PATOLLE_OPEN_DIALOG);
-    
-    stock = {0x0394,855, --Cactuar Needle
-             0x113c,299, --Thundermelon
-             0x118b,184} --Watermelon
- 
-showShop(player,SANDORIA,stock);
+        player:showText(npc, ID.text.PATOLLE_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
+    end
 end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
-
+end

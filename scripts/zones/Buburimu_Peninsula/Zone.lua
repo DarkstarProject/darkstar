@@ -3,77 +3,23 @@
 -- Zone: Buburimu_Peninsula (118)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
------------------------------------
-
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs")
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/helm")
+require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
-                    { 847, 45, DIGREQ_NONE },
-                    { 887, 1, DIGREQ_NONE },
-                    { 893, 53, DIGREQ_NONE },
-                    { 17395, 98, DIGREQ_NONE },
-                    { 738, 3, DIGREQ_NONE },
-                    { 888, 195, DIGREQ_NONE },
-                    { 4484, 47, DIGREQ_NONE },
-                    { 17397, 66, DIGREQ_NONE },
-                    { 641, 134, DIGREQ_NONE },
-                    { 885, 12, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 845, 125, DIGREQ_BURROW },
-                    { 843, 1, DIGREQ_BURROW },
-                    { 844, 64, DIGREQ_BURROW },
-                    { 1845, 34, DIGREQ_BURROW },
-                    { 838, 7, DIGREQ_BURROW },
-                    { 880, 34, DIGREQ_BORE },
-                    { 902, 5, DIGREQ_BORE },
-                    { 886, 3, DIGREQ_BORE },
-                    { 867, 3, DIGREQ_BORE },
-                    { 864, 21, DIGREQ_BORE },
-                    { 1587, 19, DIGREQ_BORE },
-                    { 1586, 9, DIGREQ_BORE },
-                    { 866, 2, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-                };
-
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
-
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
-
------------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
-    local manuals = {17261199,17261200};
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 
-    SetFieldManual(manuals);
-
-    SetRegionalConquestOverseers(zone:getRegionID())
-
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -83,58 +29,35 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0003;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0005; -- zone 4 buburimu no update (north)
+        cs = 3;
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1) then
+        cs = 5; -- zone 4 buburimu no update (north)
     end
 
     return cs;
 end;
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x0003) then
+    if (csid == 3) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0005) then
-        if (player:getPreviousZone() == 213 or player:getPreviousZone() == 249) then
+    elseif (csid == 5) then
+        if (player:getPreviousZone() == dsp.zone.LABYRINTH_OF_ONZOZO or player:getPreviousZone() == dsp.zone.MHAURA) then
             player:updateEvent(0,0,0,0,0,7);
-        elseif (player:getPreviousZone() == 198) then
+        elseif (player:getPreviousZone() == dsp.zone.MAZE_OF_SHAKHRAMI) then
             player:updateEvent(0,0,0,0,0,6);
         end
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x0003) then
+    if (csid == 3) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

@@ -3,86 +3,42 @@
 -- Zone: The_Eldieme_Necropolis (195)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.treasure.initZone(zone)
+end
 
-    local tomes = {17576425,17576426,17576427,17576428};
-    
-    SetGroundsTome(tomes);
-
-    UpdateTreasureSpawnPoint(17576352);
-    
-    UpdateTreasureSpawnPoint(17576353);
-
-end;
-
------------------------------------        
--- onZoneIn        
------------------------------------        
-
-function onZoneIn(player,prevZone)        
-    
+function onZoneIn(player,prevZone)
     -- rng af2
-    local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");    
-    if (FireAndBrimstoneCS == 2) then
-        return 4;
+    if player:getVar("fireAndBrimstone") == 2 then
+        return 4
     end
-    
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
-        player:setPos(-438.878,-26.091,540.004,126);
-    end    
-    return cs;    
-end;        
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+    local cs = -1
+
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-438.878, -26.091, 540.004, 126)
+    end
+
+    return cs
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    dsp.conq.onConquestUpdate(zone, updatetype)
+end
+
+function onRegionEnter(player,region)
+end
+
+function onEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+    if csid == 4 then
+        player:setVar("fireAndBrimstone", 3)
     end
-end;
-
------------------------------------        
--- onRegionEnter        
------------------------------------        
-
-function onRegionEnter(player,region)    
-end;    
-
------------------------------------    
--- onEventUpdate    
------------------------------------    
-
-function onEventUpdate(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-end;    
-
------------------------------------    
--- onEventFinish    
------------------------------------    
-
-function onEventFinish(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-    
-    if (csid == 4) then
-        player:setVar("fireAndBrimstone",3);        
-    end
-    
-end;    
+end

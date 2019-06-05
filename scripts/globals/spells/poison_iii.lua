@@ -1,45 +1,39 @@
 -----------------------------------------
---  Spell: Poison
+-- Spell: Poison
+-----------------------------------------
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------------
 
-require("scripts/globals/status");
-require("scripts/globals/magic");
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
------------------------------------------
--- OnSpellCast
------------------------------------------
+function onSpellCast(caster, target, spell)
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    local power = math.min(caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 15 + 1, 25)
+    power = calculatePotency(power, spell:getSkillType(), caster, target)
 
-function onSpellCast(caster,target,spell)
-    local effect = EFFECT_POISON;
+    local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
-    local duration = 180;
-
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
-
-    local dINT = (pINT - mINT);
-    local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 15 + 1;
-    if power > 25 then
-        power = 25;
-    end
-
-    local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);
-    if (resist == 1 or resist == 0.5) then -- effect taken
-        duration = duration * resist;
-
-        if (target:addStatusEffect(effect,power,3,duration)) then
-            spell:setMsg(236);
+    local params = {}
+    params.diff = dINT
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.bonus = 0
+    params.effect = dsp.effect.POISON
+    local resist = applyResistanceEffect(caster, target, spell, params)
+    
+    if resist >= 0.5 then -- effect taken
+        if target:addStatusEffect(params.effect, power, 3, duration * resist) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(75);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
-
     else -- resist entirely.
-        spell:setMsg(85);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
 
-    return effect;
-end;
+    return params.effect
+end

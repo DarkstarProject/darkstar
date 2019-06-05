@@ -77,6 +77,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('73', '3', '17367202');
 INSERT INTO `bcnm_treasure_chests` VALUES ('100', '1', '17375293');
 INSERT INTO `bcnm_treasure_chests` VALUES ('100', '2', '17375300'); 
 INSERT INTO `bcnm_treasure_chests` VALUES ('100', '3', '17375307');
+INSERT INTO `bcnm_treasure_chests` VALUES ('104', '1', '17375316');
+INSERT INTO `bcnm_treasure_chests` VALUES ('104', '2', '17375325');
+INSERT INTO `bcnm_treasure_chests` VALUES ('104', '3', '17375334');
 INSERT INTO `bcnm_treasure_chests` VALUES ('105', '1', '17375272');
 INSERT INTO `bcnm_treasure_chests` VALUES ('105', '2', '17375276'); 
 INSERT INTO `bcnm_treasure_chests` VALUES ('105', '3', '17375280');
@@ -88,9 +91,15 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375286');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '1', '17444884');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '2', '17444891');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '3', '17444898');
+INSERT INTO `bcnm_treasure_chests` VALUES ('130', '1', '17444929');
+INSERT INTO `bcnm_treasure_chests` VALUES ('130', '2', '17444934');
+INSERT INTO `bcnm_treasure_chests` VALUES ('130', '3', '17444939');
 
 -- Boneyard Gully
 INSERT INTO `bcnm_treasure_chests` VALUES ('673', '1', '16810019');
+
+-- Bearclaw Pinnacle
+INSERT INTO `bcnm_treasure_chests` VALUES ('643', '1', '16801802');
 
 -- Throne Room
 

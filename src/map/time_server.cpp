@@ -26,6 +26,7 @@
 #include "utils/guildutils.h"
 #include "utils/instanceutils.h"
 #include "time_server.h"
+#include "timetriggers.h"
 #include "transport.h"
 #include "vana_time.h"
 #include "utils/zoneutils.h"
@@ -38,10 +39,10 @@
 int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
 {
     TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
-    uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
+    // uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
 
     // weekly update for conquest (sunday at midnight)
-    if (CVanaTime::getInstance()->getSysWeekDay() == 0  && CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
+    if (CVanaTime::getInstance()->getSysWeekDay() == 1  && CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
     {
         if (tick > (CVanaTime::getInstance()->lastConquestTally + 1h))
         {
@@ -125,7 +126,9 @@ int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
         }
     }
 
+    CTriggerHandler::getInstance()->triggerTimer();
     CTransportHandler::getInstance()->TransportTimer();
+    
 	instanceutils::CheckInstance();
     return 0;
 }

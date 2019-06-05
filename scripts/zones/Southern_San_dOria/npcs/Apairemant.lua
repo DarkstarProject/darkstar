@@ -1,76 +1,42 @@
 -----------------------------------
---      Area: Southern San d'Oria
---      NPC: Apairemant
---      Only sells when San d'Oria controls Gustaberg Region
---      @zone 230
---      @pos 72 2 0
+-- Area: Southern San d'Oria
+--  NPC: Apairemant
+-- Gustaberg Regional Merchant
+-- !pos 72 2 0 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/events/harvest_festivals");
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-require("scripts/globals/conquest");
-require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
+require("scripts/globals/events/harvest_festivals")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
-    
-    -- "Flyers for Regine" conditional script
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == 1) then
-        if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
-                player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     else
-        onHalloweenTrade(player,trade,npc);
+        onHalloweenTrade(player, trade, npc)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(GUSTABERG);
-
-    if (RegionOwner ~= SANDORIA) then
-            player:showText(npc,APAIREMANT_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.GUSTABERG) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.APAIREMANT_CLOSED_DIALOG)
     else
-            player:showText(npc,APAIREMANT_OPEN_DIALOG);
-           
-            stock = {0x0454,703,    -- Sulfur
-                             0x026b,43,             -- Popoto
-                             0x0263,36,             -- Rye Flour
-                             0x1124,40}             -- Eggplant
-                             
-            showShop(player,SANDORIA,stock);
+        local stock =
+        {
+            1108, 703,    -- Sulfur
+            619,   43,    -- Popoto
+            611,   36,    -- Rye Flour
+            4388,  40,    -- Eggplant
+        }
+
+        player:showText(npc, ID.text.APAIREMANT_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
     end
-
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
-
+end

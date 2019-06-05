@@ -1,45 +1,21 @@
 -----------------------------------
---  Area: Windurst Walls
+-- Area: Windurst Walls
 --   NPC: Shinchai-Tocchai
---  Type: Moghouse Renter
--- @zone: 239
---  @pos -220.551 -0.001 -116.916
+-- Type: Moghouse Renter
+-- !pos -220.551 -0.001 -116.916 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    player:startEvent(0x01f9);
+    player:startEvent(505);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

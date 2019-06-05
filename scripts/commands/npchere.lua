@@ -1,35 +1,45 @@
 ---------------------------------------------------------------------------------------------------
--- func: @npchere <npcId>
+-- func: npchere <npcId>
 -- desc: Spawns an NPC and then moves it to the current position, if in same zone.
---       Errors will despawn the mobID unless "noDepop" was specified (any value works).
+--       Errors will despawn the NPC unless "noDepop" was specified (any value works).
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
     permission = 1,
-    parameters = "i"
+    parameters = "is"
 };
 
-function onTrigger(player, npcId)
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!npchere {npcID} {noDepop}");
+end;
+
+function onTrigger(player, npcId, noDepop)
     require("scripts/globals/status");
 
+    -- validate npc
+    local targ;
     if (npcId == nil) then
-        player:PrintToPlayer("You must enter a valid npcId.");
-        return;
+        targ = player:getCursorTarget();
+        if (targ == nil or not targ:isNPC()) then
+            error(player, "You must either provide an npcID or target an NPC.");
+            return;
+        end
+    else
+        targ = GetNPCByID(npcId);
+        if (targ == nil) then
+            error(player, "Invalid npcID.");
+            return;
+        end
     end
 
-    local npc = GetNPCByID(npcId);
-    if (npc == nil) then
-        player:PrintToPlayer( string.format( "NPC with ID '%i' not found!", npcId ) );
-        return;
-    end
-
-    if (player:getZoneID() == npc:getZoneID()) then
-        npc:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
-        npc:setStatus(STATUS_NORMAL);
+    if (player:getZoneID() == targ:getZoneID()) then
+        targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
+        targ:setStatus(dsp.status.NORMAL);
     else
         if (noDepop == nil or noDepop == 0) then
-            npc:setStatus(STATUS_DISAPPEAR);
+            targ:setStatus(dsp.status.DISAPPEAR);
             player:PrintToPlayer("Despawned the NPC because of an error.");
         end
         player:PrintToPlayer("NPC could not be moved to current pos - you are probably in the wrong zone.");

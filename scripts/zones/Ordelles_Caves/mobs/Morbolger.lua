@@ -1,27 +1,20 @@
 -----------------------------------
 -- Area: Ordelles Caves (193)
---  MOB: Morbolger
+--   NM: Morbolger
+-----------------------------------
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
-require("scripts/globals/titles");
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1) -- "Aggros regardless of level"
+end
 
------------------------------------
--- onMobSpawn Action
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.MORBOLBANE)
+end
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    ally:addTitle(MORBOLBANE);
-
-    -- Set Morbolger's spawnpoint and respawn time (21-24 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
-end;
+function onMobDespawn(mob)
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(75600, 86400)) -- 21 to 24 hours
+end

@@ -37,9 +37,7 @@
 class CFishingPacket : public CBasicPacket
 {
 public:
-
-    CFishingPacket();
-	CFishingPacket(uint16 stamina, uint8 regen, uint8 id1, uint8 id2, uint8 id3, uint8 id4, uint8 time, uint8 unknown1, uint8 unknown2);
+    CFishingPacket(uint16 stamina, uint16 regen, uint16 response, uint16 hitDmg, uint16 arrowDelay, uint16 missRegen, uint16 gameTime, uint8 sense, uint32 special);
 };
 
 #endif

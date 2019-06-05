@@ -1,58 +1,34 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Generoit
+--  NPC: Generoit
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Rabao/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,GENEROIT_SHOP_DIALOG);
+    local stock =
+    {
+        4545,    61,    -- Gysahl Greens
+        840,      7,    -- Chocobo Feather
+        17016,   10,    -- Pet Food Alpha Biscuit
+        17017,   81,    -- Pet Food Beta Biscuit
+        17860,   81,    -- Carrot Broth
+        17862,  687,    -- Bug Broth
+        17864,  125,    -- Herbal Broth
+        17866,  687,    -- Carrion Broth
+        5073, 50784,    -- Scroll of Chocobo Mazurka
+    }
 
-stock = {0x11C1,61,    -- Gysahl Greens
-     0x0348,7,    -- Chocobo Feather
-     0x4278,10,    -- Pet Food Alpha Biscuit
-     0x4279,81,    -- Pet Food Beta Biscuit
-     0x45C4,81,    -- Carrot Broth
-     0x45C6,687,    -- Bug Broth
-     0x45C8,125,    -- Herbal Broth
-     0x45CA,687,    -- Carrion Broth
-     0x13D1,50784}    -- Scroll of Chocobo Mazurka
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.GENEROIT_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

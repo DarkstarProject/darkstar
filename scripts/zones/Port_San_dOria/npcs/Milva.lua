@@ -1,74 +1,40 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC:  Milva
---     Only sells when San d'Oria has control of Sarutabaruta
+-- Area: Port San d'Oria
+--  NPC: Milva
+-- Sarutabaruta Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    if GetRegionOwner(dsp.region.SARUTABARUTA) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.MILVA_CLOSED_DIALOG)
+    else
+        local stock =
+        {
+            4444, 22,    -- Rarab Tail
+            689,  33,    -- Lauan Log
+            619,  43,    -- Popoto
+            4392, 29,    -- Saruta Orange
+            635,  18,    -- Windurstian Tea Leaves
+        }
 
-RegionOwner = GetRegionOwner(SARUTABARUTA);
-
-if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,MILVA_CLOSED_DIALOG);
-else
-    player:showText(npc,MILVA_OPEN_DIALOG);
-    
-    stock = {0x115c,22, --Rarab Tail
-             0x02b1,33, --Lauan Log
-             0x026b,43, --Popoto
-             0x1128,29, --Saruta Orange
-             0x027b,18} --Windurstian Tea Leaves
-    
-showShop(player,SANDORIA,stock);    
+        player:showText(npc, ID.text.MILVA_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
+    end
 end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
-
+end

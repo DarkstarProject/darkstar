@@ -49,7 +49,7 @@ struct automaton_equip_t
 {
     uint8 Frame{ 0 };
     uint8 Head{ 0 };
-    std::array<uint8, 12> Attachments{};
+    std::array<uint8, 12> Attachments {};
 };
 
 class CCharEntity;
@@ -61,8 +61,8 @@ public:
 	~CAutomatonEntity();
 
     automaton_equip_t m_Equip;
-    std::array<uint8, 8> m_ElementMax;
-    std::array<uint8, 8> m_ElementEquip;
+    std::array<uint8, 8> m_ElementMax {};
+    std::array<uint8, 8> m_ElementEquip {};
 
     void setFrame(AUTOFRAMETYPE frame);
     void setHead(AUTOHEADTYPE head);
@@ -80,12 +80,21 @@ public:
     uint8 getElementCapacity(uint8 element);
 
     void burdenTick();
-    uint8 addBurden(uint8 element, uint8 burden);
+    void setInitialBurden();
+    uint8 addBurden(uint8 element, int8 burden);
 
     void PostTick() override;
 
+    virtual void Spawn() override;
+    virtual void Die() override;
+
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
+
+    virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
+
 private:
-    std::array<uint8, 8> m_Burden;
+    std::array<uint8, 8> m_Burden {};
 };
 
 #endif

@@ -2,13 +2,9 @@
 -- Area: Gustav Tunnel
 --  MOB: Labyrinth Leech
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,763,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 763, 2, dsp.regime.type.GROUNDS)
 end;

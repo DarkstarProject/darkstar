@@ -12,8 +12,10 @@ TestResults
 *.suo
 *.user
 *.sln.docstates
+*.DS_Store
 
 # Build results
+build/
 [Dd]ebug/
 [Rr]elease/
 x64/
@@ -44,6 +46,8 @@ ipch/
 *.ncb
 *.opensdf
 *.sdf
+*.opendb
+*.VC.db
 
 # Visual Studio profiler
 *.psess
@@ -155,3 +159,17 @@ log/DSP.leaks
 #Lua Developement Tools project files
 .metadata/**
 .project
+.vs
+/win32/.vs/darkstar/v15
+
+#VS Code
+.vscode
+
+# CMake files
+CMakeCache.txt
+Makefile
+**/CMakeFiles
+cmake_install.cmake
+
+# ignore servers
+*-server

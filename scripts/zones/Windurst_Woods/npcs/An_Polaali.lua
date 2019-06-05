@@ -1,48 +1,26 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  An Polaali
---    Working 100%
+-- Area: Windurst Woods
+--  NPC: An Polaali
+-- Working 100%
 -----------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-
-    if (player:hasKeyItem(126) == true) then
-        player:startEvent(0x0197);
-    elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
-        player:startEvent(0x0194); -- Neeed CS here
-            
-    else    
-        player:startEvent(0x2c);
+    if player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) then
+        player:startEvent(407)
+    elseif player:getVar("CHASING_TALES_TRACK_BOOK") == 1 then
+        player:startEvent(404) -- Neeed CS here
+    else
+        player:startEvent(44)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

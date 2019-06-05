@@ -1,38 +1,21 @@
------------------------------------    
--- Field Manual    
--- Area: RuAun Gardens    
------------------------------------    
-    
-require("scripts/globals/settings");    
-require("scripts/globals/fieldsofvalor");    
-    
------------------------------------    
--- onTrigger Action    
------------------------------------    
-    
-function onTrigger(player,npc)    
-    startFov(FOV_EVENT_RUAUN_GARDENS,player);
-end;    
-    
------------------------------------    
--- onTrade Action    
------------------------------------    
-    
-function onTrade(player,npc,trade)    
-end;    
-    
------------------------------------    
--- onEventSelection    
------------------------------------    
-    
-function onEventUpdate(player,csid,menuchoice)    
-    updateFov(player,csid,menuchoice,142,143,144,145,146);
-end;    
-    
------------------------------------    
--- onEventFinish Action    
------------------------------------    
-    
-function onEventFinish(player,csid,option)    
-    finishFov(player,csid,option,142,143,144,145,146,FOV_MSG_RUAUN_GARDENS);
-end;    
+-----------------------------------
+-- Field Manual
+-- Area: RuAun Gardens
+-----------------------------------
+require("scripts/globals/regimes")
+-----------------------------------
+
+function onTrade(player,npc,trade)
+end
+
+function onTrigger(player,npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
+
+function onEventUpdate(player,csid,option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
+
+function onEventFinish(player,csid,option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

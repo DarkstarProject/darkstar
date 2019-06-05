@@ -1,71 +1,49 @@
 -----------------------------------
 -- Area: Rabao
--- NPC:  Maryoh Comyujah
+--  NPC: Maryoh Comyujah
 -- Involved in Mission: The Mithra and the Crystal (Zilart 12)
--- @pos 0 8 73 247
+-- !pos 0 8 73 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Rabao/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL) then
-        if (player:getVar("ZilartStatus") == 0) then
-            player:startEvent(0x0051); -- Start
-        elseif (player:hasKeyItem(SCRAP_OF_PAPYRUS)) then
-            player:startEvent(0x0053); -- Finish
-        elseif (player:getVar("ZilartStatus") == 2) then
-            player:startEvent(0x0054); -- Go to hall of the gods
-        else
-            player:startEvent(0x0052);
-        end
-    elseif (player:hasCompletedMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL)) then
-        player:startEvent(0x0055); -- New standard dialog after ZM12
-    else
-        player:startEvent(0x002b); -- Standard dialog
-    end
-
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onTrigger(player,npc)
+
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
+        if (player:getVar("ZilartStatus") == 0) then
+            player:startEvent(81); -- Start
+        elseif (player:hasKeyItem(dsp.ki.SCRAP_OF_PAPYRUS)) then
+            player:startEvent(83); -- Finish
+        elseif (player:getVar("ZilartStatus") == 2) then
+            player:startEvent(84); -- Go to hall of the gods
+        else
+            player:startEvent(82);
+        end
+    elseif (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL)) then
+        player:startEvent(85); -- New standard dialog after ZM12
+    else
+        player:startEvent(43); -- Standard dialog
+    end
+
+end;
+
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x0051 and option == 1) then
+
+    if (csid == 81 and option == 1) then
         player:setVar("ZilartStatus",1);
-    elseif (csid == 0x0053) then
+    elseif (csid == 83) then
         player:setVar("ZilartStatus",2);
-        player:delKeyItem(SCRAP_OF_PAPYRUS);
-        player:addKeyItem(CERULEAN_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,CERULEAN_CRYSTAL);
+        player:delKeyItem(dsp.ki.SCRAP_OF_PAPYRUS);
+        player:addKeyItem(dsp.ki.CERULEAN_CRYSTAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CERULEAN_CRYSTAL);
     end
-    
+
 end;

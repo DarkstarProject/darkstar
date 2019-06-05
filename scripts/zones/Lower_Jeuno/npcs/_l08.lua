@@ -1,62 +1,21 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Streetlamp
+--  NPC: Streetlamp
 -- Involved in Quests: Community Service
--- @zone 245
--- @pos -32.897 0 -28.521
+-- !pos -44 0 -47 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Lower_Jeuno/globals");
 
 function onTrade(player,npc,trade)
-
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-local hour = VanadielHour();
-
-if (hour >= 18 and hour < 21) then
-if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_ACCEPTED) then
-if (player:getVar("cService") == 3) then
-    player:setVar("cService",4);
-            end
-        
-elseif (hour >= 18 and hour < 21) then
-if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) then
-if (player:getVar("cService") == 16) then
-    player:setVar("cService",17);
-                end
-            end
-        end
-    end
+    LOWER_JEUNO.lampTrigger(player, npc);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);    
+    LOWER_JEUNO.lampEventFinish(player, csid, option, 8);
 end;

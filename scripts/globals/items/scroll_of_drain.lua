@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4853
---    Scroll of Drain
---    Teaches the black magic Drain
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4853
+-- Scroll of Drain
+-- Teaches the black magic Drain
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(245);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(245)
+end
 
 function onItemUse(target)
-    target:addSpell(245);
-end;
+    target:addSpell(245)
+end

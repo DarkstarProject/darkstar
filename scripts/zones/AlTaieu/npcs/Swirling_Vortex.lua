@@ -1,55 +1,29 @@
 -----------------------------------
---  Area: Al'Taieu
---  NPC:  Swirling_Vortex
---  Type: Standard NPC
---  @zone 33
+-- Area: Al'Taieu
+--  NPC: Swirling_Vortex
+-- Type: Standard NPC
+-- !pos ? ? ? 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/AlTaieu/TextIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/limbus");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    if (npc:getID() == 16912908) then
-        player:startEvent(0x009F);
-    else
-        player:startEvent(0x00A0);   
+    local offset = npc:getID() - ID.npc.SWIRLING_VORTEX_OFFSET;
+    if (offset >= 0 and offset <= 1) then
+        player:startEvent(159 + offset);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 0x00A0 and option == 1 ) then
-        ResetPlayerLimbusVariable(player);
-        LimbusEntrance(player,APPOLLYON_NW_SW);
-    elseif (csid == 0x009F and option == 1 ) then
-        ResetPlayerLimbusVariable(player);
-        LimbusEntrance(player,APPOLLYON_SE_NE);
-    end 
+    if (csid == 160 and option == 1 ) then
+        enterApollyon(player,APOLLYON_NW_SW);
+    elseif (csid == 159 and option == 1 ) then
+        enterApollyon(player,APOLLYON_SE_NE);
+    end
 end;

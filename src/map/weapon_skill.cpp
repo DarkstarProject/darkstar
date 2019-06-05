@@ -27,18 +27,18 @@
 CWeaponSkill::CWeaponSkill(uint16 id)
 {
 	m_ID = id;
-
+    m_TypeID = 0;
+    memset(m_Job, 0, sizeof(m_Job));
+    m_Skilllevel = 0;
 	m_AnimationId = 0;
-	m_AOE         = 0;
-	m_Skilllevel  = 0;
-	m_TypeID      = 0;
-	m_Range       = 0;
-	m_PrimarySkillchain   = SC_NONE;
+    m_Element = 0;
+    m_PrimarySkillchain = SC_NONE;
     m_SecondarySkillchain = SC_NONE;
-    m_TertiarySkillchain  = SC_NONE;
+    m_TertiarySkillchain = SC_NONE;
+    m_Range = 0;
+    m_AOE = 0;
     m_mainOnly = 0;
-
-	memset(m_Job, 0, sizeof(m_Job));
+    m_unlockId = 0;
 }
 
 void CWeaponSkill::setID(uint16 id)
@@ -66,6 +66,11 @@ void CWeaponSkill::setMainOnly(uint8 main)
     m_mainOnly = main;
 }
 
+void CWeaponSkill::setUnlockId(uint8 id)
+{
+    m_unlockId = id;
+}
+
 void CWeaponSkill::setJob(int8* jobs)
 {
 	memcpy(&m_Job[1], jobs, 22);
@@ -78,7 +83,7 @@ void CWeaponSkill::setSkillLevel(uint16 level)
 
 const int8* CWeaponSkill::getName()
 {
-	return m_name.c_str();
+	return (const int8*)m_name.c_str();
 }
 
 void CWeaponSkill::setElement(uint8 element)
@@ -104,7 +109,7 @@ void CWeaponSkill::setTertiarySkillchain(uint8 skillchain)
 void CWeaponSkill::setName(int8* name)
 {
 	m_name.clear();
-	m_name.insert(0,name);
+	m_name.insert(0, (const char*)name);
 }
 
 void CWeaponSkill::setAnimationId(int8 id)
@@ -135,6 +140,11 @@ uint16 CWeaponSkill::getID()
 uint8 CWeaponSkill::getType()
 {
 	return m_TypeID;
+}
+
+uint8 CWeaponSkill::getUnlockId()
+{
+    return m_unlockId;
 }
 
 uint8 CWeaponSkill::getJob(JOBTYPE job)

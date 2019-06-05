@@ -1,54 +1,38 @@
 -----------------------------------
--- 
+--
 -- Zone: Mamool_Ja_Training_Grounds
--- 
+--
 -----------------------------------
-
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Mamool_Ja_Training_Grounds/TextIDs"] = nil;
-require("scripts/zones/Mamool_Ja_Training_Grounds/TextIDs");
-
------------------------------------
---  onInitialize
+local ID = require("scripts/zones/Mamool_Ja_Training_Grounds/IDs")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
+function onInstanceZoneIn(player,instance)
+    local cs = -1;
 
-function onZoneIn(player,prevZone)
-cs = -1;
+    local pos = player:getPos();
+    if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
+        local entrypos = instance:getEntryPos();
+        player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot);
+    end
 
-return cs;
+    player:addTempItem(5344);
 end;
-
------------------------------------
--- onRegionEnter          
------------------------------------
 
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    if csid == 102 then
+        player:setPos(0,0,0,0,52);
+    end
 end;
 
-
-
+function onInstanceLoadFailed()
+    return 79;
+end;

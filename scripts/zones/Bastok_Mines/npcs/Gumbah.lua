@@ -1,70 +1,57 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Gumbah
--- Finishes Quest: Blade of Darkness
+--  NPC: Gumbah
+-- Finishes Quest: Blade of Darkness, Inheritance
+-- !pos 52 0 -36 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
+require("scripts/globals/settings")
+require("scripts/globals/wsquest")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local wsQuest = dsp.wsquest.ground_strike
 
 function onTrade(player,npc,trade)
-end; 
+    local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest,player,trade)
 
------------------------------------
--- onTrigger Action
------------------------------------
+    if wsQuestEvent ~= nil then
+        player:startEvent(wsQuestEvent)
+    end
+end
 
 function onTrigger(player,npc)
+    local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
+    local bladeDarkness = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS)
 
-    local bladeDarkness = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS);
-
-    if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and  bladeDarkness == QUEST_AVAILABLE) then
+    if wsQuestEvent ~= nil then
+        player:startEvent(wsQuestEvent)
+    elseif (player:getMainLvl() >= ADVANCED_JOB_LEVEL and  bladeDarkness == QUEST_AVAILABLE) then
         --DARK KNIGHT QUEST
-        player:startEvent(0x0063);
-    elseif (bladeDarkness == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_DEATH) == QUEST_AVAILABLE) then    
-        player:startEvent(0x0082);
-    elseif ((player:hasCompletedMission(BASTOK, ON_MY_WAY) == true) 
-    or ((player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 3)))
+        player:startEvent(99)
+    elseif (bladeDarkness == QUEST_COMPLETED and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_AVAILABLE) then
+        player:startEvent(130)
+    elseif ((player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.ON_MY_WAY) == true)
+    or ((player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 3)))
         and (player:getVar("[B7-2]Werei") == 0) then
-        player:startEvent(0x00b1);
-    else 
-        --DEFAULT 
-        player:startEvent(0x0034);
+        player:startEvent(177)
+    else
+        --DEFAULT
+        player:startEvent(52)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-    if (csid == 0x0063) then
-        player:addQuest(BASTOK, BLADE_OF_DARKNESS);
-    elseif (csid == 0x0082) then
-        player:addQuest(BASTOK, BLADE_OF_DEATH);
-        player:addKeyItem(LETTER_FROM_ZEID);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_ZEID);
-    elseif (csid == 0x00b1) then
-        player:setVar("[B7-2]Werei", 1);
+    if (csid == 99) then
+        player:addQuest(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS)
+    elseif (csid == 130) then
+        player:addQuest(BASTOK, dsp.quest.id.bastok.BLADE_OF_DEATH)
+        player:addKeyItem(dsp.ki.LETTER_FROM_ZEID)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZEID)
+    elseif (csid == 177) then
+        player:setVar("[B7-2]Werei", 1)
+    else
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.GROUND_STRIKE_LEARNED)
     end
-end;
+end

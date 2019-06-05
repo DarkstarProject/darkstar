@@ -1,43 +1,18 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Nine of Spades
---    Working 100%
------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Woods
+--  NPC: Nine of Spades
+-- Working 100%
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x10a);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(266)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

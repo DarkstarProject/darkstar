@@ -1,30 +1,23 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 --  MOB: Tonberry Harrier
+-- Note: PH for Sozu Terberry
+-----------------------------------
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
+mixins = {require("scripts/mixins/families/tonberry")}
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 790, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 791, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 792, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 793, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 794, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 795, 1, dsp.regime.type.GROUNDS)
+end
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    checkGoVregime(ally,mob,790,1);
-    checkGoVregime(ally,mob,791,1);
-    checkGoVregime(ally,mob,792,1);
-    checkGoVregime(ally,mob,793,1);
-    checkGoVregime(ally,mob,794,1);
-    checkGoVregime(ally,mob,795,1);
-
-    local kills = ally:getVar("EVERYONES_GRUDGE_KILLS");
-    if (kills < 480) then
-        ally:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
-    end
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.SOZU_TERBERRY_PH, 10, 3600) -- 1 hour
+end

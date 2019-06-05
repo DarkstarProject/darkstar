@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  DRG Vanguard Drakekeeper + Vanguard's Wyvern
+--  MOB: Vanguard_Drakekeeper
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobSpawn(mob)
-end;
+    mob:setLocalVar("dynamis_currency", 1455)
+end
 
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-end;
+function onMobDeath(mob, player, isKiller)
+end

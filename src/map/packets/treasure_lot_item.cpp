@@ -36,9 +36,8 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE Message
 	this->type = 0xD3;
 	this->size = 0x1E;
 	
-	WBUFB(data,(0x14)) = slotID;	
-	WBUFB(data,(0x15)) = MessageType;
-	
+	ref<uint8>(0x14) = slotID;	
+	ref<uint8>(0x15) = MessageType;
 }
 
 CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotID, uint16 Lot, ITEMLOTTYPE MessageType)
@@ -46,28 +45,35 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotI
 	this->type = 0xD3;
 	this->size = 0x1E;
 
-	WBUFL(data,(0x04)) = PWinner->id;
-	WBUFW(data,(0x0C)) = PWinner->targid;
-	WBUFW(data,(0x0E)) = Lot;
+	ref<uint32>(0x04) = PWinner->id;
+	ref<uint16>(0x0C) = PWinner->targid;
+	ref<uint16>(0x0E) = Lot;
 
-	WBUFB(data,(0x14)) = slotID;	
-	WBUFB(data,(0x15)) = MessageType;
+	ref<uint8>(0x14) = slotID;	
+	ref<uint8>(0x15) = MessageType;
 
 	memcpy(data+(0x16), PWinner->GetName(), PWinner->name.size());
 }
 
-CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID, uint16 Lot) 
+CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PHighestLotter, uint16 HighestLot, CBaseEntity* PLotter, uint8 SlotID, uint16 Lot)
 {
-	
 	this->type = 0xD3;
 	this->size = 0x1E;
 
-	WBUFL(data,(0x08)) = PChar->id;
-	WBUFW(data,(0x10)) = PChar->targid;	
+    if (PHighestLotter)
+    {
+        ref<uint32>(0x04) = PHighestLotter->id;
+        ref<uint16>(0x0C) = PHighestLotter->targid;
+        ref<uint16>(0x0E) = HighestLot;
+        memcpy(data + 0x16, PHighestLotter->GetName(), PHighestLotter->name.size());
+    }
+
+	ref<uint32>(0x08) = PLotter->id;
+    ref<uint16>(0x10) = PLotter->targid;
 	packBitsBE(data, Lot, 144, 16);  //this fixes an offset problem with lot numbers
-	//WBUFB(data,(0x12)) = Lot;
-	WBUFB(data,(0x14)) = slotID; 
-	
-	memcpy(data+0x26, PChar->GetName(), 16);
+	//ref<uint8>(data,(0x12)) = Lot;
+	ref<uint8>(0x14) = SlotID; 
+
+	memcpy(data + 0x26, PLotter->GetName(), PLotter->name.size());
 	
 }

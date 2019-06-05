@@ -3,55 +3,39 @@
 -- Item: Meatloaf +1
 -- Food Effect: 3 Hrs, All Races
 -----------------------------------------
--- TODO: Needs verification
 -- Strength 6
 -- Agility 2
--- Intelligence -2
--- Attack 25% Cap 85
+-- Intelligence -3
+-- Attack 18% Cap 95
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD)) then
-        result = 246;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.FOOD)) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5690);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,5690)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR, 6);
-    target:addMod(MOD_AGI, 2);
-    target:addMod(MOD_INT, -2);
-    target:addMod(MOD_FOOD_ATTP, 25);
-    target:addMod(MOD_FOOD_ATT_CAP, 85);
-end;
+    target:addMod(dsp.mod.STR, 6)
+    target:addMod(dsp.mod.AGI, 2)
+    target:addMod(dsp.mod.INT, -3)
+    target:addMod(dsp.mod.FOOD_ATTP, 18)
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 95)
+end
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_STR, 6);
-    target:delMod(MOD_AGI, 2);
-    target:delMod(MOD_INT, -2);
-    target:delMod(MOD_FOOD_ATTP, 25);
-    target:delMod(MOD_FOOD_ATT_CAP, 85);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.STR, 6)
+    target:delMod(dsp.mod.AGI, 2)
+    target:delMod(dsp.mod.INT, -3)
+    target:delMod(dsp.mod.FOOD_ATTP, 18)
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 95)
+end

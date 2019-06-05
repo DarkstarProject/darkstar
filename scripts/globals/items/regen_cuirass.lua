@@ -3,28 +3,17 @@
 -- Item: regen cuirass
 -- Item Effect: gives regen
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-
-    if (target:hasStatusEffect(EFFECT_REGEN)) then
-        target:messageBasic(423);
+    if (target:hasStatusEffect(dsp.effect.REGEN)) then
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     else
-        -- delete old
-        target:delStatusEffect(EFFECT_REGEN);
-        target:addStatusEffect(EFFECT_REGEN, 15, 3, 180);
+        target:addStatusEffect(dsp.effect.REGEN, 15, 3, 180)
     end
-end;
+end

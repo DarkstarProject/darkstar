@@ -1,59 +1,33 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Sheia Pohrichamaha
--- Only sells when Windurst controlls Fauregandi Region
--- Confirmed shop stock, August 2013
+--  NPC: Sheia Pohrichamaha
+-- Fauregandi Regional Merchant
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Port_Windurst/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(FAUREGANDI);
-
-    if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,SHEIAPOHRICHAMAHA_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.FAUREGANDI) ~= dsp.nation.WINDURST then
+        player:showText(npc, ID.text.SHEIAPOHRICHAMAHA_CLOSED_DIALOG)
     else
-        player:showText(npc,SHEIAPOHRICHAMAHA_OPEN_DIALOG);
-
-        stock = {
-            0x11DB,    90,   --Beaugreens
-            0x110B,    39,   --Faerie Apple
-            0x02B3,    54    --Maple Log
+        local stock =
+        {
+            4571, 90,    -- Beaugreens
+            4363, 39,    -- Faerie Apple
+            691,  54,    -- Maple Log
         }
-        showShop(player,WINDURST,stock);
 
+        player:showText(npc, ID.text.SHEIAPOHRICHAMAHA_OPEN_DIALOG)
+        dsp.shop.general(player, stock, WINDURST)
     end
-
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

@@ -1,62 +1,37 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  Dreamrose
+--  NPC: Dreamrose
 -- Involved in Mission: San D'Oria 6-1
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-local currentMission = player:getCurrentMission(SANDORIA);
-      MissionStatus = player:getVar("MissionStatus");
-    
-    if (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
-        if (GetMobAction(17289653) == 0) then
-            if (player:getVar("Mission6-1MobKilled") == 1) then
-                player:addKeyItem(DREAMROSE);
-                player:messageSpecial(KEYITEM_OBTAINED,DREAMROSE);
-                player:setVar("Mission6-1MobKilled",0);
-                player:setVar("MissionStatus",3);
-            else
-                SpawnMob(17289653):updateClaim(player);
-            end
+    if
+        player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and
+        player:getVar("MissionStatus") == 2 and
+        not GetMobByID(ID.mob.SABOTENDER_ENAMORADO):isSpawned()
+    then
+        if player:getVar("Mission6-1MobKilled") == 1 then
+            player:addKeyItem(dsp.ki.DREAMROSE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DREAMROSE)
+            player:setVar("Mission6-1MobKilled", 0)
+            player:setVar("MissionStatus", 3)
+        else
+            SpawnMob(ID.mob.SABOTENDER_ENAMORADO):updateClaim(player)
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-    
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

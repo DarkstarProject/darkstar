@@ -1,27 +1,26 @@
----------------------------------------------------
---
----------------------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
+-- Slowga
+---------------------------------------------
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
+---------------------------------------------
 
 function onAbilityCheck(player, target, ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onPetAbility(target, pet, skill, summoner)
-    local duration = 180 + summoner:getMod(MOD_SUMMONING);
+    local duration = 180 + summoner:getMod(dsp.mod.SUMMONING)
     if duration > 350 then
-        duration = 350;
-    end;
-
-    if (target:addStatusEffect(EFFECT_SLOW,300,0,duration)) then
-        skill:setMsg(MSG_ENFEEB_IS);
-    else
-        skill:setMsg(MSG_NO_EFFECT);
+        duration = 350
     end
-    return EFFECT_SLOW;
+
+    if target:addStatusEffect(dsp.effect.SLOW, 3000, 0, duration) then
+        skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS)
+    else
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
+    end
+    return dsp.effect.SLOW
 end

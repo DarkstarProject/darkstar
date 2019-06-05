@@ -1,53 +1,30 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Mulnith
+--  NPC: Mulnith
 -- Standard Merchant NPC
+-- TODO: Stock needs to be modified based on
+--       status of Astral Candescence
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,MULNITH_SHOP_DIALOG);
+    local stock =
+    {
+        4410,  344,    -- Roast Mushroom
+        5598, 2000,    -- Sis Kebabi (Requires Astral Candescence)
+        5600, 3000     -- Balik Sis (Requires Astral Candescence)
+    }
 
-stock = {0x113A,344,        -- Roast Mushroom
-     0x15DE,2000,        -- Sis Kebabi (available when AC is in Al Zahbi)
-     0x15E0,3000}        -- Balik Sis (available when AC is in Al Zahbi)
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.MULNITH_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

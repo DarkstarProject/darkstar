@@ -2,51 +2,47 @@
 -- Area: Dragons Aery
 --  HNM: Fafnir
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize
+local ID = require("scripts/zones/Dragons_Aery/IDs")
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
+function onMobSpawn(mob)
+    if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
+        GetNPCByID(ID.npc.FAFNIR_QM):setStatus(dsp.status.DISAPPEAR)
+    end
+    if LandKingSystem_HQ == 0 then
+        SetDropRate(918,3340,0) -- do not drop cup_of_sweet_tea
+    end
 
------------------------------------
--- onMobDeath
------------------------------------
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
+end
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(FAFNIR_SLAYER);
-end;
-
------------------------------------
--- onMobDespawn
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.FAFNIR_SLAYER)
+end
 
 function onMobDespawn(mob)
-    local Fafnir = mob:getID();
-    local Nidhogg = mob:getID()+1;
-    local ToD = GetServerVariable("[POP]Nidhogg");
-    local kills = GetServerVariable("[PH]Nidhogg");
-    local popNow = (math.random(1,5) == 3 or kills > 6);
+    local ToD = GetServerVariable("[POP]Nidhogg")
+    local kills = GetServerVariable("[PH]Nidhogg")
+    local popNow = (math.random(1,5) == 3 or kills > 6)
 
-    if (LandKingSystem_HQ ~= 1 and ToD <= os.time(t) and popNow == true) then
+    if LandKingSystem_HQ ~= 1 and ToD <= os.time() and popNow then
         -- 0 = timed spawn, 1 = force pop only, 2 = BOTH
-        if (LandKingSystem_NQ == 0) then
-            DeterMob(Fafnir, true);
+        if LandKingSystem_NQ == 0 then
+            DisallowRespawn(ID.mob.FAFNIR, true)
         end
 
-        DeterMob(Nidhogg, false);
-        UpdateNMSpawnPoint(Nidhogg);
-        GetMobByID(Nidhogg):setRespawnTime(math.random(75600,86400));
+        DisallowRespawn(ID.mob.NIDHOGG, false)
+        UpdateNMSpawnPoint(ID.mob.NIDHOGG)
+        GetMobByID(ID.mob.NIDHOGG):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     else
-        if (LandKingSystem_NQ ~= 1) then
-            UpdateNMSpawnPoint(Fafnir);
-            mob:setRespawnTime(math.random(75600,86400));
-            SetServerVariable("[PH]Nidhogg", kills + 1);
+        if LandKingSystem_NQ ~= 1 then
+            UpdateNMSpawnPoint(ID.mob.FAFNIR)
+            GetMobByID(ID.mob.FAFNIR):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
+            SetServerVariable("[PH]Nidhogg", kills + 1)
         end
     end
-end;
+end

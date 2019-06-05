@@ -3,52 +3,34 @@
 -- Zone: Windurst_Waters_[S] (94)
 --
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
-end;
-
------------------------------------
--- onZoneIn
------------------------------------
+    dsp.chocobo.initZone(zone)
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-39.996,-7.64,235,64);
-    end
-    return cs;
-end;
+    local cs = -1
 
------------------------------------
--- onRegionEnter
------------------------------------
+    -- MOG HOUSE EXIT
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(157 + math.random(1,5), -5, -62, 192)
+        if player:getMainJob() ~= player:getVar("PlayerMainJob") then
+            cs = 30004
+        end
+        player:setVar("PlayerMainJob", 0)
+    end
+
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

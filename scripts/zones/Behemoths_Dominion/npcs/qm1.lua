@@ -1,53 +1,34 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
--- NPC:  ???
+--  NPC: ???
 -- Involved In Quest: The Talekeeper's Gift
--- @pos 211 4 -79 127
+-- !pos 211 4 -79 127
 -----------------------------------
-package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Behemoths_Dominion/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Behemoths_Dominion/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-    if (player:getVar("theTalekeeperGiftCS") == 3 and player:getVar("theTalekeepersGiftKilledNM") < 3) then
-        player:messageSpecial(SENSE_OF_FOREBODING);
-        SpawnMob(17297446,180):updateClaim(player);
-        SpawnMob(17297447,180):updateClaim(player);
-        SpawnMob(17297448,180):updateClaim(player);
+    if
+        player:getVar("theTalekeeperGiftCS") == 3 and
+        player:getVar("theTalekeepersGiftKilledNM") < 3 and
+        not GetMobByID(ID.mob.TALEKEEPERS_GIFT_OFFSET + 0):isSpawned() and
+        not GetMobByID(ID.mob.TALEKEEPERS_GIFT_OFFSET + 1):isSpawned() and
+        not GetMobByID(ID.mob.TALEKEEPERS_GIFT_OFFSET + 2):isSpawned()
+    then
+        player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
+        SpawnMob(ID.mob.TALEKEEPERS_GIFT_OFFSET + 0):updateClaim(player) -- Picklix_Longindex
+        SpawnMob(ID.mob.TALEKEEPERS_GIFT_OFFSET + 1):updateClaim(player) -- Moxnix_Nightgoggle
+        SpawnMob(ID.mob.TALEKEEPERS_GIFT_OFFSET + 2):updateClaim(player) -- Doglix_Muttsnout
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-    
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

@@ -2,25 +2,12 @@
 -- Area: The Shrine of Ru'Avitau
 --  MOB: Olla Grande
 -----------------------------------
+local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
+require("scripts/globals/settings");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
+function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
-    GetNPCByID(17506692):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.OLLAS_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

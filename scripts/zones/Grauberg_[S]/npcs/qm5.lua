@@ -1,52 +1,26 @@
 -----------------------------------
---  Area: Grauberg [S]
---  NPC:  ???
+-- Area: Grauberg [S]
+--  NPC: ???
 --  Quest - Fires of Discontent
 -- pos 258 33 516
 -----------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
--------------------------------------
-
-require("scripts/globals/harvesting");
-require("scripts/zones/Grauberg_[S]/TextIDs");
-
------------------------------------
--- onTrade
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
-
-    if (player:getQuestStatus(CRYSTAL_WAR,FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
-        if (player:getVar("FiresOfDiscProg") == 3) then
-            player:startEvent(0x000B);
-        end
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED and player:getVar("FiresOfDiscProg") == 3) then
+        player:startEvent(11);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    
-    if (csid==0x000B) then
+    if (csid==11) then
         player:setVar("FiresOfDiscProg",4);
     end
-
 end;

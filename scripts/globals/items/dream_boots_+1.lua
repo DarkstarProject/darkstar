@@ -5,23 +5,15 @@
 -- Duration: 3 Mins 20 Secs
 -- TODO: Enhances duration of Sneak Effect
 -----------------------------------------
+require("scripts/globals/settings")
+require("scripts/globals/status")
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_SNEAK)) then
-        target:addStatusEffect(EFFECT_SNEAK,1,10,200);
+    if (not target:hasStatusEffect(dsp.effect.SNEAK)) then
+        target:addStatusEffect(dsp.effect.SNEAK, 1, 10, math.floor(200 * SNEAK_INVIS_DURATION_MULTIPLIER))
     end
-end;
+end

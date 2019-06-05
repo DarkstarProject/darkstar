@@ -1,69 +1,38 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Arachagnon 
+--  NPC: Arachagnon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,ARACHAGNON_SHOP_DIALOG);
+    local stock =
+    {
+        12633, 270,    -- Elvaan Jerkin
+        12634, 270,    -- Elvaan Bodice
+        12755, 162,    -- Elvaan Gloves
+        12759, 162,    -- Elvaan Gauntlets
+        12885, 234,    -- Elvaan M Chausses
+        12889, 234,    -- Elvaan F Chausses
+        13006, 162,    -- Elvaan M Ledelsens
+        13011, 162,    -- Elvaan F Ledelsens
+    }
 
-    stock = {0x3159,270, --Elvaan Jerkin
-             0x315a,270, --Elvaan Bodice
-             0x31d3,162, --Elvaan Gloves
-             0x31d7,162, --Elvaan Gauntlets
-             0x3255,234, --Elvaan M Chausses
-             0x3259,234, --Elvaan F Chausses
-             0x32ce,162, --Elvaan M Ledelsens
-             0x32d3,162} --Elvaan F Ledelsens
-        
-    showShop(player, SANDORIA, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, ID.text.ARACHAGNON_SHOP_DIALOG)
+    dsp.shop.general(player, stock, SANDORIA)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

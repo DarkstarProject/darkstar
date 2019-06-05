@@ -1,20 +1,25 @@
 -----------------------------------
 -- Area: Dynamis Bastok
 -- Name: Dynamis Bastok
+require("scripts/globals/battlefield")
 -----------------------------------
 
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
-    
-    SetServerVariable("[DynaBastok]UniqueID",player:getDynamisUniqueID(1280));
+function onBattlefieldRegister(player,battlefield)
+
+    SetServerVariable("[DynaBastok]UniqueID",os.time());
     SetServerVariable("[DynaBastok]Boss_Trigger",0);
     SetServerVariable("[DynaBastok]Already_Received",0);
-    
+
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
-    
+function onBattlefieldEnter(player,battlefield)
+
     player:setVar("DynamisID",GetServerVariable("[DynaBastok]UniqueID"));
     local realDay = os.time();
     if (DYNA_MIDNIGHT_RESET == true) then
@@ -22,22 +27,22 @@ function onBcnmEnter(player,instance)
     end
     local dynaWaitxDay = player:getVar("dynaWaitxDay");
 
-    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay) then
+    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay) then
         player:setVar("dynaWaitxDay",realDay);
     end
-    
+
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
-    
-    if (leavecode == 4) then
+
+    if leavecode == dsp.battlefield.leaveCode.LOST then
         GetNPCByID(17539323):setStatus(2);
         SetServerVariable("[DynaBastok]UniqueID",0);
     end
-    
+
 end;

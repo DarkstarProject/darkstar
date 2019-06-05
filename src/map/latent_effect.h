@@ -26,6 +26,7 @@
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
+#include "modifier.h"
 
 enum LATENT
 {
@@ -33,23 +34,23 @@ enum LATENT
     LATENT_HP_OVER_PERCENT          = 1,  //hp more than % - PARAM: HP PERCENT
     LATENT_HP_UNDER_TP_UNDER_100    = 2,  //hp less than or equal to %, tp under 100 - PARAM: HP PERCENT
     LATENT_HP_OVER_TP_UNDER_100     = 3,  //hp more than %, tp over 100 - PARAM: HP PERCENT
-    LATENT_HP_OVER_VISIBLE_GEAR     = 46, //hp more than or equal to %, calculated using HP bonuses from visible gear only 
     LATENT_MP_UNDER_PERCENT         = 4,  //mp less than or equal to % - PARAM: MP PERCENT
     LATENT_MP_UNDER                 = 5,  //mp less than # - PARAM: MP #
-    LATENT_MP_OVER                  = 55, //mp greater than # - PARAM: MP #
-    LATENT_WEAPON_DRAWN_MP_OVER     = 56, //while weapon is drawn and mp greater than # - PARAM: MP #
-    LATENT_MP_UNDER_VISIBLE_GEAR    = 45, //mp less than or equal to %, calculated using MP bonuses from visible gear only
     LATENT_TP_UNDER                 = 6,  //tp under # and during WS - PARAM: TP VALUE
     LATENT_TP_OVER                  = 7,  //tp over # - PARAM: TP VALUE
     LATENT_SUBJOB                   = 8,  //subjob - PARAM: JOBTYPE
     LATENT_PET_ID                   = 9,  //pettype - PARAM: PETID
     LATENT_WEAPON_DRAWN             = 10, //weapon drawn
     LATENT_WEAPON_SHEATHED          = 11, //weapon sheathed
+    LATENT_SIGNET_BONUS             = 12, // While in conquest region and engaged to an even match or less target
     LATENT_STATUS_EFFECT_ACTIVE     = 13, //status effect on player - PARAM: EFFECTID
-    LATENT_FOOD_ACTIVE              = 49, //food effect (foodId) active - PARAM: FOOD ITEMID
     LATENT_NO_FOOD_ACTIVE           = 14, //no food effects active on player
     LATENT_PARTY_MEMBERS            = 15, //party size # - PARAM: # OF MEMBERS
     LATENT_PARTY_MEMBERS_IN_ZONE    = 16, //party size # and members in zone - PARAM: # OF MEMBERS
+    LATENT_SANCTION_REGEN_BONUS     = 17, // While in besieged region and HP is less than PARAM%
+    LATENT_SANCTION_REFRESH_BONUS   = 18, // While in besieged region and MP is less than PARAM%
+    LATENT_SIGIL_REGEN_BONUS        = 19, // While in campaign region and HP is less than PARAM%
+    LATENT_SIGIL_REFRESH_BONUS      = 20, // While in campaign region and MP is less than PARAM%
     LATENT_AVATAR_IN_PARTY          = 21, //party has a specific avatar - PARAM: same as globals/pets.lua (21 for any avatar)
     LATENT_JOB_IN_PARTY             = 22, //party has job - PARAM: JOBTYPE
     LATENT_ZONE                     = 23, //in zone - PARAM: zoneid
@@ -72,16 +73,25 @@ enum LATENT
     LATENT_JOB_LEVEL_ODD            = 41,
     LATENT_JOB_LEVEL_EVEN           = 42,
     LATENT_WEAPON_DRAWN_HP_UNDER    = 43, //PARAM: HP PERCENT
+    //                              = 44  //Unused
+    LATENT_MP_UNDER_VISIBLE_GEAR    = 45, //mp less than or equal to %, calculated using MP bonuses from visible gear only
+    LATENT_HP_OVER_VISIBLE_GEAR     = 46, //hp more than or equal to %, calculated using HP bonuses from visible gear only 
     LATENT_WEAPON_BROKEN            = 47,
     LATENT_IN_DYNAMIS               = 48,
+    LATENT_FOOD_ACTIVE              = 49, //food effect (foodId) active - PARAM: FOOD ITEMID
     LATENT_JOB_LEVEL_BELOW          = 50, //PARAM: level
     LATENT_JOB_LEVEL_ABOVE          = 51, //PARAM: level
     LATENT_WEATHER_ELEMENT          = 52, //PARAM: 0: NONE, 1: FIRE, 2: EARTH, 3: WATER, 4: WIND, 5: ICE, 6: THUNDER, 7: LIGHT, 8: DARK
     LATENT_NATION_CONTROL           = 53, //checks if player region is under nation's control - PARAM: 0: Under own nation's control, 1: Outside own nation's control
-    LATENT_ZONE_HOME_NATION         = 54  //in zone and citizen of nation (aketons)
+    LATENT_ZONE_HOME_NATION         = 54, //in zone and citizen of nation (aketons)
+    LATENT_MP_OVER                  = 55, //mp greater than # - PARAM: MP #
+    LATENT_WEAPON_DRAWN_MP_OVER     = 56, //while weapon is drawn and mp greater than # - PARAM: MP #
+    LATENT_ELEVEN_ROLL_ACTIVE       = 57, //corsair roll of 11 active
+    LATENT_IN_ASSAULT               = 58, // is in an Instance battle in a TOAU zone
+    LATENT_VS_ECOSYSTEM             = 59  // Vs. Ecosystem (e.g. Vs. Birds: Accuracy+3)
 };
 
-#define MAX_LATENTEFFECTID    57
+#define MAX_LATENTEFFECTID    58
 
 /************************************************************************
 *																		*
@@ -98,45 +108,67 @@ class CLatentEffect
 {
 public:
 
-    LATENT      GetConditionsID();
-    uint16      GetConditionsValue();
-    uint8       GetSlot();
-    uint16      GetModValue();
-    int16       GetModPower();
-    bool        IsActivated();
-    uint16      GetFlag();
+    LATENT      GetConditionsID() const;
+    uint16      GetConditionsValue() const;
+    uint8       GetSlot() const;
+    Mod         GetModValue() const;
+    int16       GetModPower() const;
+    bool        IsActivated() const;
 
-    CBattleEntity* GetOwner();
+    CBattleEntity* GetOwner() const;
 
     void    SetConditionsId(LATENT id);
     void    SetConditionsValue(uint16 value);
     void    SetSlot(uint8 slot);
-    void    SetModValue(uint16 value);
+    void    SetModValue(Mod value);
     void    SetModPower(int16 power);
-    void    Activate();
-    void    Deactivate();
-    void    SetOwner(CBattleEntity* Owner);
+    bool    Activate();
+    bool    Deactivate();
 
     CLatentEffect(
+         CBattleEntity* owner,
          LATENT conditionsId,
          uint16 conditionsValue,
          uint8 slot, 
-         uint16 modValue, 
+         Mod modValue, 
          int16 modPower
     );
+    CLatentEffect(const CLatentEffect&) = delete;
+    CLatentEffect& operator=(const CLatentEffect&) = delete;
+    CLatentEffect(CLatentEffect&& o) noexcept
+    {
+        std::swap(m_POwner, o.m_POwner);
+        std::swap(m_ConditionsID, o.m_ConditionsID);
+        std::swap(m_ConditionsValue, o.m_ConditionsValue);
+        std::swap(m_SlotID, o.m_SlotID);
+        std::swap(m_ModValue, o.m_ModValue);
+        std::swap(m_ModPower, o.m_ModPower);
+        std::swap(m_Activated, o.m_Activated);
+    }
+    CLatentEffect& operator=(CLatentEffect&& o) noexcept
+    {
+        std::swap(m_POwner, o.m_POwner);
+        std::swap(m_ConditionsID, o.m_ConditionsID);
+        std::swap(m_ConditionsValue, o.m_ConditionsValue);
+        std::swap(m_SlotID, o.m_SlotID);
+        std::swap(m_ModValue, o.m_ModValue);
+        std::swap(m_ModPower, o.m_ModPower);
+        std::swap(m_Activated, o.m_Activated);
+        return *this;
+    }
 
    ~CLatentEffect();
 
 private:
 
-    CBattleEntity* m_POwner;            
+    CBattleEntity* m_POwner{nullptr};
 
-    LATENT      m_ConditionsID;         //condition type to be true
-    uint16      m_ConditionsValue;      //condition parameter to be met
-    uint8       m_SlotID;               //slot associated with latent
-    uint16      m_ModValue;             //mod ID to be applied when active
-    uint16      m_ModPower;             //power of mod to be applied when active
-    bool        m_Activated;            //active or not active
+    LATENT      m_ConditionsID{LATENT_HP_UNDER_PERCENT};         //condition type to be true
+    uint16      m_ConditionsValue{0};      //condition parameter to be met
+    uint8       m_SlotID{0};               //slot associated with latent
+    Mod         m_ModValue{Mod::NONE};     //mod ID to be applied when active
+    int16       m_ModPower{0};             //power of mod to be applied when active
+    bool        m_Activated{false};        //active or not active
 };
 
 #endif

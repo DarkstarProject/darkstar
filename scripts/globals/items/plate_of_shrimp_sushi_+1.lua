@@ -3,57 +3,44 @@
 -- Item: plate_of_shrimp_sushi_+1
 -- Food Effect: 60Min, All Races
 -----------------------------------------
--- Vitality 1
--- Defense 5
--- Accuracy % 12 (unknown, assuming HQ stat)
--- Store TP 2
--- Triple Attack 1 (unknown, assuming same as NQ)
+-- Vitality 2
+-- Defense 10
+-- Accuracy % 15 (cap 72)
+-- Ranged Accuracy % 15 (cap 72)
+-- Resist Sleep +2
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5692);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,5692)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.VIT, 2)
+    target:addMod(dsp.mod.DEF, 10)
+    target:addMod(dsp.mod.FOOD_ACCP, 15)
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 72)
+    target:addMod(dsp.mod.FOOD_RACCP, 15)
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 72)
+    target:addMod(dsp.mod.SLEEPRES, 2)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_VIT, 1);
-    target:addMod(MOD_DEF, 5);
-    target:addMod(MOD_FOOD_ACCP, 12);
-    target:addMod(MOD_FOOD_ACC_CAP, 999);
-    target:addMod(MOD_STORETP, 2);
-    target:addMod(MOD_TRIPLE_ATTACK, 1);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_VIT, 1);
-    target:delMod(MOD_DEF, 5);
-    target:delMod(MOD_FOOD_ACCP, 12);
-    target:delMod(MOD_FOOD_ACC_CAP, 999);
-    target:delMod(MOD_STORETP, 2);
-    target:delMod(MOD_TRIPLE_ATTACK, 1);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.VIT, 2)
+    target:delMod(dsp.mod.DEF, 10)
+    target:delMod(dsp.mod.FOOD_ACCP, 15)
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 72)
+    target:delMod(dsp.mod.FOOD_RACCP, 15)
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 72)
+    target:delMod(dsp.mod.SLEEPRES, 2)
+end

@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- func: godmode
--- desc: Toggles god mode on the player; granting them several special abilities.
+-- desc: Toggles god mode on the player, granting them several special abilities.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -15,29 +15,29 @@ function onTrigger(player)
         player:setVar("GodMode", 1);
 
         -- Add bonus effects to the player..
-        player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_SENTINEL,100,0,0);
-        player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
-        player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
-        player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
-        player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
-        player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
-        player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,150,1,0);
-        player:addStatusEffect(EFFECT_REFRESH,99,0,0);
-        player:addStatusEffect(EFFECT_REGEN,99,0,0);
+        player:addStatusEffect(dsp.effect.MAX_HP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effect.MAX_MP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effect.MIGHTY_STRIKES,1,0,0);
+        player:addStatusEffect(dsp.effect.HUNDRED_FISTS,1,0,0);
+        player:addStatusEffect(dsp.effect.CHAINSPELL,1,0,0);
+        player:addStatusEffect(dsp.effect.PERFECT_DODGE,1,0,0);
+        player:addStatusEffect(dsp.effect.INVINCIBLE,1,0,0);
+        player:addStatusEffect(dsp.effect.ELEMENTAL_SFORZO,1,0,0);
+        player:addStatusEffect(dsp.effect.MANAFONT,1,0,0);
+        player:addStatusEffect(dsp.effect.REGAIN,300,0,0);
+        player:addStatusEffect(dsp.effect.REFRESH,99,0,0);
+        player:addStatusEffect(dsp.effect.REGEN,99,0,0);
 
         -- Add bonus mods to the player..
-        player:addMod(MOD_RACC,2500);
-        player:addMod(MOD_RATT,2500);
-        player:addMod(MOD_ACC,2500);
-        player:addMod(MOD_ATT,2500);
-        player:addMod(MOD_MATT,2500);
-        player:addMod(MOD_MACC,2500);
-        player:addMod(MOD_RDEF,2500);
-        player:addMod(MOD_DEF,2500);
-        player:addMod(MOD_MDEF,2500);
+        player:addMod(dsp.mod.RACC,2500);
+        player:addMod(dsp.mod.RATT,2500);
+        player:addMod(dsp.mod.ACC,2500);
+        player:addMod(dsp.mod.ATT,2500);
+        player:addMod(dsp.mod.MATT,2500);
+        player:addMod(dsp.mod.MACC,2500);
+        player:addMod(dsp.mod.RDEF,2500);
+        player:addMod(dsp.mod.DEF,2500);
+        player:addMod(dsp.mod.MDEF,2500);
 
         -- Heal the player from the new buffs..
         player:addHP( 50000 );
@@ -47,28 +47,28 @@ function onTrigger(player)
         player:setVar("GodMode", 0);
 
         -- Remove bonus effects..
-        player:delStatusEffect(EFFECT_MAX_HP_BOOST);
-        player:delStatusEffect(EFFECT_MAX_MP_BOOST);
-        player:delStatusEffect(EFFECT_SENTINEL);
-        player:delStatusEffect(EFFECT_MIGHTY_STRIKES);
-        player:delStatusEffect(EFFECT_HUNDRED_FISTS);
-        player:delStatusEffect(EFFECT_CHAINSPELL);
-        player:delStatusEffect(EFFECT_PERFECT_DODGE);
-        player:delStatusEffect(EFFECT_INVINCIBLE);
-        player:delStatusEffect(EFFECT_MANAFONT);
-        player:delStatusEffect(EFFECT_REGAIN);
-        player:delStatusEffect(EFFECT_REFRESH);
-        player:delStatusEffect(EFFECT_REGEN);
+        player:delStatusEffect(dsp.effect.MAX_HP_BOOST);
+        player:delStatusEffect(dsp.effect.MAX_MP_BOOST);
+        player:delStatusEffect(dsp.effect.MIGHTY_STRIKES);
+        player:delStatusEffect(dsp.effect.HUNDRED_FISTS);
+        player:delStatusEffect(dsp.effect.CHAINSPELL);
+        player:delStatusEffect(dsp.effect.PERFECT_DODGE);
+        player:delStatusEffect(dsp.effect.INVINCIBLE);
+        player:delStatusEffect(dsp.effect.ELEMENTAL_SFORZO);
+        player:delStatusEffect(dsp.effect.MANAFONT);
+        player:delStatusEffect(dsp.effect.REGAIN);
+        player:delStatusEffect(dsp.effect.REFRESH);
+        player:delStatusEffect(dsp.effect.REGEN);
 
         -- Remove bonus mods..
-        player:delMod(MOD_RACC,2500);
-        player:delMod(MOD_RATT,2500);
-        player:delMod(MOD_ACC,2500);
-        player:delMod(MOD_ATT,2500);
-        player:delMod(MOD_MATT,2500);
-        player:delMod(MOD_MACC,2500);
-        player:delMod(MOD_RDEF,2500);
-        player:delMod(MOD_DEF,2500);
-        player:delMod(MOD_MDEF,2500);
+        player:delMod(dsp.mod.RACC,2500);
+        player:delMod(dsp.mod.RATT,2500);
+        player:delMod(dsp.mod.ACC,2500);
+        player:delMod(dsp.mod.ATT,2500);
+        player:delMod(dsp.mod.MATT,2500);
+        player:delMod(dsp.mod.MACC,2500);
+        player:delMod(dsp.mod.RDEF,2500);
+        player:delMod(dsp.mod.DEF,2500);
+        player:delMod(dsp.mod.MDEF,2500);
     end
 end

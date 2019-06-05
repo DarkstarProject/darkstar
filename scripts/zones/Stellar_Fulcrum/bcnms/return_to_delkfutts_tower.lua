@@ -1,23 +1,25 @@
 -----------------------------------
 -- Area: Stellar Fulcrum
 -- Name: Mission 5-2
--- @pos -520 -4 17 179
+-- !pos -520 -4 17 179
 -----------------------------------
-package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
+require("scripts/globals/battlefield")
 
 -----------------------------------
 
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -28,32 +30,33 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedMission(ZILART,RETURN_TO_DELKFUTTS_TOWER)) then
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+        local name, clearTime, partySize = battlefield:getRecord()
+        if (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER)) then
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         end
-    elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
-    if (csid == 0x7d01) then
-        if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER) then
-            player:completeMission(ZILART,RETURN_TO_DELKFUTTS_TOWER);
-            player:addMission(ZILART,ROMAEVE);
+
+    if (csid == 32001) then
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER) then
+            player:completeMission(ZILART,dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER);
+            player:addMission(ZILART,dsp.mission.id.zilart.ROMAEVE);
             player:setVar("ZilartStatus",0);
         end
         -- Play last CS if not skipped.
@@ -61,5 +64,5 @@ function onEventFinish(player,csid,option)
             player:startEvent(17);
         end
     end
-    
+
 end;

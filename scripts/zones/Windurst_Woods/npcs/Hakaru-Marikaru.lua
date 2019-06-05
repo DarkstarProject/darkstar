@@ -1,43 +1,18 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Hakaru-Marikaru
---    Working 100%
------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Woods
+--  NPC: Hakaru-Marikaru
+-- Working 100%
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x19c);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(412)
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

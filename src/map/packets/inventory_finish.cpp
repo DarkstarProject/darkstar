@@ -30,5 +30,5 @@ CInventoryFinishPacket::CInventoryFinishPacket()
 	this->type = 0x1D;
 	this->size = 0x04;
 
-	WBUFB(data,(0x04)) = 1;
+	ref<uint8>(0x04) = 1;
 }

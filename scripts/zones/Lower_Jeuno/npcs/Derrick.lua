@@ -1,68 +1,50 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Derrick
+--  NPC: Derrick
 -- Involved in Quests and finish : Save the Clock Tower
--- @zone 245
--- @pos -32 -1 -7
+-- !pos -32 -1 -7 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     TotalNPC = player:getVar("saveTheClockTowerNPCz1") + player:getVar("saveTheClockTowerNPCz2");
-    if (TotalNPC == 1023 and trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
-        player:startEvent(0x00e7); -- Ending quest "save the clock tower"
+    if (TotalNPC == 1023 and trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
+        player:startEvent(231); -- Ending quest "save the clock tower"
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
-    AirshipKI = player:hasKeyItem(AIRSHIP_PASS);
-    saveTheClockTower = player:getQuestStatus(JEUNO,SAVE_THE_CLOCK_TOWER);
+    AirshipKI = player:hasKeyItem(dsp.ki.AIRSHIP_PASS);
+    saveTheClockTower = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER);
     NPCNumber = player:getVar("saveTheClockTowerVar"); -- Quest step & number of npc
     AgreeSignPetition = player:getVar("saveTheClockTowerVar2"); -- Sum of all NPC
-    
+
     if (AirshipKI == false and saveTheClockTower == QUEST_ACCEPTED and NPCNumber >= 1 and NPCNumber <= 11) then
-        player:startEvent(0x00e6,4,10); -- airship + petition help/restart
+        player:startEvent(230,4,10); -- airship + petition help/restart
     elseif (AirshipKI == true and saveTheClockTower == QUEST_ACCEPTED and NPCNumber >= 1 and NPCNumber <= 11) then
-        player:startEvent(0x00e6,6,10); -- petition help/restart
+        player:startEvent(230,6,10); -- petition help/restart
     elseif (AirshipKI == false and saveTheClockTower == QUEST_ACCEPTED and NPCNumber == 0) then
-        player:startEvent(0x00e6,8,10); -- airship + petition
+        player:startEvent(230,8,10); -- airship + petition
     elseif (AirshipKI == true and saveTheClockTower == QUEST_ACCEPTED and NPCNumber == 0) then
-        player:startEvent(0x00e6,10,10); -- petition
+        player:startEvent(230,10,10); -- petition
     elseif (AirshipKI == false) then
-        player:startEvent(0x00e6,12); -- airship
+        player:startEvent(230,12); -- airship
     else
-        player:startEvent(0x00e6,14); -- rien
+        player:startEvent(230,14); -- rien
     end
 end;
 
------------------------------------
--- onEventUpdate Action
------------------------------------
-
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
-    if (csid == 0x00e6 and option == 10) then
+    if (csid == 230 and option == 10) then
         if (player:delGil(500000)) then
-            player:addKeyItem(AIRSHIP_PASS);
+            player:addKeyItem(dsp.ki.AIRSHIP_PASS);
             player:updateEvent(0, 1);
         else
             player:updateEvent(0, 0);
@@ -71,55 +53,46 @@ function onEventUpdate(player,csid,option)
 
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
-    if (csid == 0x00e6 and option == 10) then
-        if (player:hasKeyItem(AIRSHIP_PASS) == true) then
-            player:messageSpecial(KEYITEM_OBTAINED,AIRSHIP_PASS);
+    if (csid == 230 and option == 10) then
+        if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true) then
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AIRSHIP_PASS);
         end
-    elseif (csid == 0x00e6 and option == 20) then 
-        if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,555);
-        else 
+    elseif (csid == 230 and option == 20) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,555);
+        else
             player:addItem(555);
-            player:messageSpecial(ITEM_OBTAINED,555);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,555);
             player:setVar("saveTheClockTowerVar",1);
             player:setVar("saveTheClockTowerNPCz1",0);
             player:setVar("saveTheClockTowerNPCz2",0);
         end
-    elseif (csid == 0x00e6 and option == 30) then 
-        if (player:hasItem(555) == true) then 
-            player:messageSpecial(ITEM_OBTAINED,555);
+    elseif (csid == 230 and option == 30) then
+        if (player:hasItem(555) == true) then
+            player:messageSpecial(ID.text.ITEM_OBTAINED,555);
             player:setVar("saveTheClockTowerVar",1);
             player:setVar("saveTheClockTowerNPCz1",0);
             player:setVar("saveTheClockTowerNPCz2",0);
-        else 
-            if (player:getFreeSlotsCount() == 0) then 
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,555);
+        else
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,555);
             else
                 player:addItem(555);
-                player:messageSpecial(ITEM_OBTAINED,555);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,555);
                 player:setVar("saveTheClockTowerVar",1);
                 player:setVar("saveTheClockTowerNPCz1",0);
                 player:setVar("saveTheClockTowerNPCz2",0);
             end
         end
-    elseif (csid == 0x00e7) then 
+    elseif (csid == 231) then
         player:setVar("saveTheClockTowerVar",0);
         player:setVar("saveTheClockTowerNPCz1",0);
         player:setVar("saveTheClockTowerNPCz2",0);
-        player:addTitle(CLOCK_TOWER_PRESERVATIONIST);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addTitle(dsp.title.CLOCK_TOWER_PRESERVATIONIST);
+        player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
-        player:completeQuest(JEUNO,SAVE_THE_CLOCK_TOWER);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER);
     end
 end;
-
-
-

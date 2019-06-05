@@ -9,55 +9,40 @@
 -- Intelligence -8
 -- Demon Killer 10
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
-    if (target:getRace() ~= 8) then
-        result = 247;
+    local result = 0
+    if (target:getRace() ~= dsp.race.GALKA) then
+        result = dsp.msg.basic.CANNOT_EAT
     end
-    if (target:getMod(MOD_EAT_RAW_MEAT) == 1) then
-        result = 0;
+    if (target:getMod(dsp.mod.EAT_RAW_MEAT) == 1) then
+        result = 0
     end
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,5564);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,300,5564)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 10);
-    target:addMod(MOD_MP, -10);
-    target:addMod(MOD_STR, 6);
-    target:addMod(MOD_INT, -8);
-    target:addMod(MOD_DEMON_KILLER, 10);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------
+    target:addMod(dsp.mod.HP, 10)
+    target:addMod(dsp.mod.MP, -10)
+    target:addMod(dsp.mod.STR, 6)
+    target:addMod(dsp.mod.INT, -8)
+    target:addMod(dsp.mod.DEMON_KILLER, 10)
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HP, 10);
-    target:delMod(MOD_MP, -10);
-    target:delMod(MOD_STR, 6);
-    target:delMod(MOD_INT, -8);
-    target:delMod(MOD_DEMON_KILLER, 10);
-end;
+    target:delMod(dsp.mod.HP, 10)
+    target:delMod(dsp.mod.MP, -10)
+    target:delMod(dsp.mod.STR, 6)
+    target:delMod(dsp.mod.INT, -8)
+    target:delMod(dsp.mod.DEMON_KILLER, 10)
+end

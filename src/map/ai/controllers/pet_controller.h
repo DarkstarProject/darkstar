@@ -24,10 +24,10 @@ This file is part of DarkStar-server source code.
 #ifndef _PET_CONTROLLER_H
 #define _PET_CONTROLLER_H
 
-#include "ai_controller.h"
+#include "mob_controller.h"
 
 class CPetEntity;
-class CPetController : public CAIController
+class CPetController : public CMobController
 {
 public:
     CPetController(CPetEntity* PPet);
@@ -41,7 +41,7 @@ protected:
     virtual void HandleEnmity() override {}
     virtual bool TryDeaggro() override;
     virtual void TryLink() override {}
-    virtual void Ability(uint16 targid, uint16 abilityid) override;
+    virtual bool Ability(uint16 targid, uint16 abilityid) override;
 
 private:
 

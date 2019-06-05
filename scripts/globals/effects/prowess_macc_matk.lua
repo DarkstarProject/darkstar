@@ -1,30 +1,18 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Enhanced magic acc. and magic atk
+-- dsp.effect.PROWESS : Enhanced magic acc. and magic atk
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_MATT, effect:getPower());
-    target:addMod(MOD_MACC, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.MATT, effect:getPower())
+    target:addMod(dsp.mod.MACC, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MATT, effect:getPower());
-    target:delMod(MOD_MACC, effect:getPower());
-end;
+    target:delMod(dsp.mod.MATT, effect:getPower())
+    target:delMod(dsp.mod.MACC, effect:getPower())
+end

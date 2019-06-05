@@ -1,23 +1,20 @@
 -----------------------------------------
--- ID: 18318
+-- ID: 18318, 18319, 18646, 18660, 18674, 19755, 19848, 21015, 21016, 21954
 -- Item: Amanomurakumo
 -- Additional Effect: 10% Attack Down
 -----------------------------------------
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
 
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
-    local chance = 10;
+    local chance = 10
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
-        return 0,0,0;
-    else
-        target:delStatusEffect(EFFECT_ATTACK_BOOST);
-        target:addStatusEffect(EFFECT_ATTACK_DOWN, 10, 0, 60); -- Power needs verification/correction
-        return SUBEFFECT_ATTACK_DOWN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_ATTACK_DOWN;
+    if math.random(100) <= chance and applyResistanceAddEffect(player, target, dsp.magic.ele.WATER, 0) > 0.5 then
+        target:delStatusEffect(dsp.effect.ATTACK_BOOST)
+        target:addStatusEffect(dsp.effect.ATTACK_DOWN, 10, 0, 60) -- Power needs verification/correction
+        return dsp.subEffect.ATTACK_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.ATTACK_DOWN
     end
-end;
+
+    return 0, 0, 0
+end

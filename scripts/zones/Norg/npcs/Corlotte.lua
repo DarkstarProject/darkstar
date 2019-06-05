@@ -1,41 +1,18 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Corlotte
+--  NPC: Corlotte
 -- Standard Info NPC
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-player:startEvent(0x0049);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(73);
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
-
-

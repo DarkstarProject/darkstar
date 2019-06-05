@@ -1,75 +1,59 @@
 -----------------------------------
 -- Area: Chamber of Oracles
--- NPC:  Pedestal of Light
+--  NPC: Pedestal of Light
 -- Involved in Zilart Mission 7
--- @pos 199 -2 36 168
+-- !pos 199 -2 36 168
 -------------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
--------------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
-
+local ID = require("scripts/zones/Chamber_of_Oracles/IDs");
 -------------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local ZilartStatus = player:getVar("ZilartStatus");
-    
-    if (player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then
-        if (player:hasKeyItem(LIGHT_FRAGMENT)) then
-            player:delKeyItem(LIGHT_FRAGMENT);
+
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES) then
+        if (player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT)) then
+            player:delKeyItem(dsp.ki.LIGHT_FRAGMENT);
             player:setVar("ZilartStatus",ZilartStatus + 16);
-            player:messageSpecial(YOU_PLACE_THE,LIGHT_FRAGMENT);
-            
+            player:messageSpecial(ID.text.YOU_PLACE_THE,dsp.ki.LIGHT_FRAGMENT);
+
             if (ZilartStatus == 255) then
-                player:startEvent(0x0001);
+                player:startEvent(1);
             end
         elseif (ZilartStatus == 255) then -- Execute cutscene if the player is interrupted.
-            player:startEvent(0x0001);
+            player:startEvent(1);
         else
-            player:messageSpecial(IS_SET_IN_THE_PEDESTAL,LIGHT_FRAGMENT);
+            player:messageSpecial(ID.text.IS_SET_IN_THE_PEDESTAL,dsp.ki.LIGHT_FRAGMENT);
         end
-    elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES)) then
-        player:messageSpecial(HAS_LOST_ITS_POWER,LIGHT_FRAGMENT);
+    elseif (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES)) then
+        player:messageSpecial(ID.text.HAS_LOST_ITS_POWER,dsp.ki.LIGHT_FRAGMENT);
     else
-        player:messageSpecial(PLACED_INTO_THE_PEDESTAL);
+        player:messageSpecial(ID.text.PLACED_INTO_THE_PEDESTAL);
     end
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
-    
-    if (csid == 0x0001) then
-        player:addTitle(LIGHTWEAVER);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
+
+    if (csid == 1) then
+        player:addTitle(dsp.title.LIGHTWEAVER);
         player:setVar("ZilartStatus",0);
-        player:addKeyItem(PRISMATIC_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,PRISMATIC_FRAGMENT);
-        player:completeMission(ZILART,THE_CHAMBER_OF_ORACLES);
-        player:addMission(ZILART,RETURN_TO_DELKFUTTS_TOWER);
+        player:addKeyItem(dsp.ki.PRISMATIC_FRAGMENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PRISMATIC_FRAGMENT);
+        player:completeMission(ZILART,dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES);
+        player:addMission(ZILART,dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER);
     end
-    
+
 end;

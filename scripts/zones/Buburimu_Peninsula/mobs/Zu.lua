@@ -1,29 +1,14 @@
 -----------------------------------
 -- Area: Buburimu Peninsula (118)
 --  MOB: Zu
+-- Note: PH for Helldiver
 -----------------------------------
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs");
+require("scripts/globals/mobs");
 
-require("scripts/zones/Buburimu_Peninsula/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    local mobID = mob:getID();
-    if (Helldiver_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Helldiver");
-        if (ToD <= os.time(t) and GetMobAction(Helldiver) == 0) then
-            if (math.random((1),(20)) == 5) then
-                UpdateNMSpawnPoint(Helldiver);
-                GetMobByID(Helldiver):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Helldiver", mobID);
-                DeterMob(mobID, true);
-            end
-        end
-    end
-
+function onMobDeath(mob, player, isKiller)
 end;
 
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob,ID.mob.HELLDIVER_PH,5,math.random(3600,28800)); -- 1 to 8 hours
+end;

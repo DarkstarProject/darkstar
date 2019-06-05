@@ -2,34 +2,15 @@
 -- Area: Rolanberry Fields (110)
 --  HMN: Simurgh
 -----------------------------------
-
-require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/titles")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(dsp.title.SIMURGH_POACHER)
+end
 
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-end;
-
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer, ally)
-
-    ally:addTitle(SIMURGH_POACHER);
-
-    -- Set Simurgh's spawnpoint and respawn time (21-24 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
-end;
+function onMobDespawn(mob)
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(3600, 7200)) -- 1 to 2 hours
+end

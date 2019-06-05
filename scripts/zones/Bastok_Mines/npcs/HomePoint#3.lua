@@ -1,54 +1,18 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  HomePoint#3
--- @pos 87 7 1 234
+--  NPC: HomePoint#3
+-- !pos 87 7 1 234
+-----------------------------------
+require("scripts/globals/homepoint")
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-
-require("scripts/globals/settings");
-require("scripts/zones/Bastok_Mines/TextIDs");
-require("scripts/globals/homepoint");
-
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+local hpEvent = 8702
+local hpIndex = 99
 
 function onTrigger(player,npc)
-    homepointMenu( player, 0x21fe, 99);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+    dsp.homepoint.onTrigger(player, hpEvent, hpIndex)
+end
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-
-    if (csid == 0x21fe) then
-
-        if (option == 1) then    
-            player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
-        else
-            hpTeleport( player, option);
-        end
-    end
-end;
+    dsp.homepoint.onEventFinish(player, csid, option, hpEvent)
+end

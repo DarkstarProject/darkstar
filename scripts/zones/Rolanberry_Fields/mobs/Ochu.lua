@@ -3,30 +3,15 @@
 --  MOB: Ochu
 -- Note: PH for Drooling Daisy
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
-require("scripts/zones/Rolanberry_Fields/MobIDs");
-
------------------------------------
--- onMobDeath
+local ID = require("scripts/zones/Rolanberry_Fields/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 88, 1, dsp.regime.type.FIELDS)
+end
 
-    checkRegime(ally,mob,88,1);
-
-    mob = mob:getID();
-    if (Drooling_Daisy_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Drooling_Daisy");
-        if (ToD <= os.time(t) and GetMobAction(Drooling_Daisy) == 0) then
-            if (math.random((1),(10)) == 5) then
-                UpdateNMSpawnPoint(Drooling_Daisy);
-                GetMobByID(Drooling_Daisy):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Drooling_Daisy", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end
-
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.DROOLING_DAISY_PH, 10, 3600) -- 1 hour
+end

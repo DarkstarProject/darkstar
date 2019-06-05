@@ -1,97 +1,72 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Gomada-Vulmada
+--  NPC: Gomada-Vulmada
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
-TruthJusticeOnionWay = player:getQuestStatus(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
-KnowOnesOnions       = player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS);
-InspectorsGadget     = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
-OnionRings           = player:getQuestStatus(WINDURST,ONION_RINGS);
-CryingOverOnions     = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
-ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
+TruthJusticeOnionWay = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+KnowOnesOnions       = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
+InspectorsGadget     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
+OnionRings           = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
+CryingOverOnions     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS);
+ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
 
     if (ThePromise == QUEST_COMPLETED) then
         Message = math.random(0,1)
-        
+
         if (Message == 1) then
-            player:startEvent(0x0210);
+            player:startEvent(528);
         else
-            player:startEvent(0x021c);
+            player:startEvent(540);
         end
     elseif (ThePromise == QUEST_ACCEPTED) then
-        player:startEvent(0x0206);
+        player:startEvent(518);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
-        player:startEvent(0x01fb);
+        player:startEvent(507);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
-        player:startEvent(0x01f4);
+        player:startEvent(500);
     elseif (OnionRings == QUEST_COMPLETED) then
-        player:startEvent(0x01ba);
+        player:startEvent(442);
     elseif (OnionRings == QUEST_ACCEPTED ) then
-        player:startEvent(0x01b3);
+        player:startEvent(435);
     elseif (InspectorsGadget == QUEST_COMPLETED) then
-        player:startEvent(0x01a9);
+        player:startEvent(425);
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
-        player:startEvent(0x01a1);
+        player:startEvent(417);
     elseif (KnowOnesOnions == QUEST_COMPLETED) then
-        player:startEvent(0x0195);
+        player:startEvent(405);
     elseif (KnowOnesOnions == QUEST_ACCEPTED) then
         KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
-        
+
         if (KnowOnesOnionsVar == 2) then
-            player:startEvent(0x0194);
+            player:startEvent(404);
         else
-            player:startEvent(0x018a);
+            player:startEvent(394);
         end
     elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
-        player:startEvent(0x017d);
+        player:startEvent(381);
     elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
-        player:startEvent(0x0175);
+        player:startEvent(373);
     else
-        player:startEvent(0x016b);
+        player:startEvent(363);
     end
-   
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 
 end;
-
-
-
-

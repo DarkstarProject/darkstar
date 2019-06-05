@@ -28,7 +28,6 @@ This file is part of DarkStar-server source code.
 #include "../../entities/charentity.h"
 
 #include "../../item_container.h"
-#include "../../recast_container.h"
 #include "../../status_effect_container.h"
 #include "../../universal_container.h"
 
@@ -39,20 +38,21 @@ This file is part of DarkStar-server source code.
 
 #include "../../utils/battleutils.h"
 #include "../../utils/charutils.h"
-#include "../../../common/utils.h"
 
 
 CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
-    m_PItem(nullptr)
+    m_PItem(nullptr),
+    m_location(loc),
+    m_slot(slotid)
 {
     auto PItem = dynamic_cast<CItemUsable*>(m_PEntity->getStorage(loc)->GetItem(slotid));
     m_PItem = PItem;
-    
+
     if (m_PItem && m_PItem->isType(ITEM_USABLE))
     {
-        if (m_PItem->isType(ITEM_ARMOR))
+        if (m_PItem->isType(ITEM_EQUIPMENT))
         {
             // check if this item is equipped
             bool found = false;
@@ -79,24 +79,33 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     }
 
     auto PTarget = m_PEntity->IsValidTarget(targid, m_PItem->getValidTarget(), m_errorMsg);
-    auto error = luautils::OnItemCheck(PTarget, m_PItem);
 
     if (!PTarget || m_errorMsg)
     {
         throw CStateInitException(std::move(m_errorMsg));
     }
 
+    auto [error, param, value] = luautils::OnItemCheck(PTarget, m_PItem, ITEMCHECK::NONE, m_PEntity);
     if (error || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
     {
-        auto param = m_PItem->getFlag() & ITEM_FLAG_SCROLL ? m_PItem->getSubID() : m_PItem->getID();
-
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, param, 0, error == -1 ? 56 : error));
+        if (error == -1)
+        {
+            throw CStateInitException(nullptr);
+        }
+        else
+        {
+            if (value == 0)
+            {
+                param = m_PItem->getFlag() & ITEM_FLAG_SCROLL ? m_PItem->getSubID() : m_PItem->getID();
+            }
+            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget ? PTarget : m_PEntity, param, value, error));
+        }
     }
 
     m_PEntity->UContainer->SetType(UCONTAINER_USEITEM);
     m_PEntity->UContainer->SetItem(0, m_PItem);
 
-    UpdateTarget(m_targid);
+    CState::UpdateTarget(m_targid);
 
     m_startPos = m_PEntity->loc.p;
     m_castTime = std::chrono::milliseconds(m_PItem->getActivationTime());
@@ -132,7 +141,8 @@ bool CItemState::Update(time_point tick)
     if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         m_interrupted = false;
-        auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg);
+        m_interruptable = false;
+        UpdateTarget(m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg));
 
         action_t action;
 
@@ -159,11 +169,17 @@ void CItemState::Cleanup(time_point tick)
 {
     m_PEntity->UContainer->Clean();
 
-    if (m_interrupted && !m_PItem->isType(ITEM_ARMOR))
+    if ((m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_EQUIPMENT))
         m_PItem->setSubType(ITEM_UNLOCKED);
 
-    m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
-    m_PEntity->pushPacket(new CInventoryItemPacket(m_PItem, m_PItem->getLocationID(), m_PItem->getSlotID()));
+    auto PItem = m_PEntity->getStorage(m_location)->GetItem(m_slot);
+
+    if (PItem && PItem == m_PItem)
+        m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
+    else
+        m_PItem = nullptr;
+
+    m_PEntity->pushPacket(new CInventoryItemPacket(m_PItem, m_location, m_slot));
     m_PEntity->pushPacket(new CInventoryFinishPacket());
 }
 
@@ -243,6 +259,6 @@ void CItemState::FinishItem(action_t& action)
 
 bool CItemState::HasMoved()
 {
-    return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
-        floorf(m_startPos.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
+    return floorf(m_startPos.x * 10 + 0.5f) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5f) / 10 ||
+        floorf(m_startPos.z * 10 + 0.5f) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5f) / 10;
 }

@@ -1,37 +1,36 @@
 ---------------------------------------------------
 -- Howling Moon
 ---------------------------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/status");
-require("/scripts/globals/monstertpmoves");
-require("/scripts/globals/magic");
+require("/scripts/globals/settings")
+require("/scripts/globals/status")
+require("/scripts/globals/monstertpmoves")
+require("/scripts/globals/magic")
 
 ---------------------------------------------------
 
 function onAbilityCheck(player, target, ability)
-    local level = player:getMainLvl() * 2;
+    local level = player:getMainLvl() * 2
     
     if(player:getMP()<level) then
-       return 87,0;
+       return 87,0
     end
     
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onPetAbility(target, pet, skill, master)
-    local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = math.floor(pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
     
     local level = pet:getMainLvl()
-    local damage = 48 + (level * 8);
-    damage = damage + (dINT * 1.5);
-    damage = MobMagicalMove(pet,target,skill,damage,ELE_DARK,1,TP_NO_EFFECT,0);
-    damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_DARK);
-    damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
+    local damage = 48 + (level * 8)
+    damage = damage + (dINT * 1.5)
+    damage = MobMagicalMove(pet,target,skill,damage,dsp.magic.ele.DARK,1,TP_NO_EFFECT,0)
+    damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.DARK)
+    damage = AvatarFinalAdjustments(damage,pet,skill,target,dsp.attackType.MAGICAL,dsp.damageType.DARK,1)
 
-    master:setMP(0);
-    target:delHP(damage);
-    target:updateEnmityFromDamage(pet,damage);
+    master:setMP(0)
+    target:takeDamage(damage, pet, dsp.attackType.MAGICAL, dsp.damageType.DARK)
+    target:updateEnmityFromDamage(pet,damage)
 
-    return damage; 
+    return damage
 end

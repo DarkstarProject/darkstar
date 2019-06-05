@@ -33,11 +33,12 @@
 
 enum EFFECTOVERWRITE
 {
-    EFFECTOVERWRITE_EQUAL_HIGHER = 0, // only overwrite if equal or higher
-    EFFECTOVERWRITE_HIGHER = 1, // only overwrite if higher
+    EFFECTOVERWRITE_EQUAL_HIGHER = 0, // only overwrite if equal or higher (tier, power)
+    EFFECTOVERWRITE_HIGHER = 1, // only overwrite if higher (tier, power)
     EFFECTOVERWRITE_NEVER = 2, // never overwrite
     EFFECTOVERWRITE_ALWAYS = 3, // always overwrite no matter
-    EFFECTOVERWRITE_IGNORE = 4 // ignore dupes
+    EFFECTOVERWRITE_IGNORE = 4, // ignore dupes
+    EFFECTOVERWRITE_TIER_HIGHER = 5 // only overwrite if tier is higher (regardless of power)
 };
 
 enum EFFECTFLAG
@@ -64,7 +65,11 @@ enum EFFECTFLAG
     EFFECTFLAG_SYNTH_SUPPORT    = 0x40000,  // Synthesis Image Support
     EFFECTFLAG_CONFRONTATION    = 0x80000,
     EFFECTFLAG_LOGOUT           = 0x100000,
-    EFFECTFLAG_BLOODPACT        = 0x200000
+    EFFECTFLAG_BLOODPACT        = 0x200000,
+    EFFECTFLAG_ON_JOBCHANGE     = 0x400000, // Removes effect when you change jobs
+    EFFECTFLAG_NO_CANCEL        = 0x800000, // CAN NOT CLICK IT OFF IN CLIENT
+    EFFECTFLAG_INFLUENCE        = 0x1000000, // Influence effects - e.g. Signet, Sanction, Sigil, Ionis
+    EFFECTFLAG_OFFLINE_TICK     = 0x2000000, // Duration elapses while offline
 };
 
 enum EFFECT
@@ -315,7 +320,7 @@ enum EFFECT
     EFFECT_DEDICATION               = 249,
     EFFECT_EF_BADGE                 = 250,
     EFFECT_FOOD                     = 251,
-    EFFECT_CHOCOBO                  = 252,
+    EFFECT_MOUNTED                  = 252,
     EFFECT_SIGNET                   = 253,
     EFFECT_BATTLEFIELD              = 254,
     EFFECT_NONE                     = 255,
@@ -402,7 +407,7 @@ enum EFFECT
     EFFECT_MISERS_ROLL              = 336,
     EFFECT_COMPANIONS_ROLL          = 337,
     EFFECT_AVENGERS_ROLL            = 338,
-    // EFFECT_NONE                      = 339,
+    EFFECT_NATURALISTS_ROLL         = 339,
     EFFECT_WARRIORS_CHARGE          = 340,
     EFFECT_FORMLESS_STRIKES         = 341,
     EFFECT_ASSASSINS_CHARGE         = 342,
@@ -616,7 +621,7 @@ enum EFFECT
     EFFECT_ACCURACY_BOOST_II        = 553,
     EFFECT_EVASION_BOOST_II         = 554,
     EFFECT_MAGIC_ACC_BOOST_II       = 555,
-    EFFECT_MAGIC_EVASION_BOOST_II   = 556,
+    EFFECT_MAGIC_EVASION_BOOST      = 556,
     EFFECT_ATTACK_DOWN_II           = 557,
     EFFECT_DEFENSE_DOWN_II          = 558,
     EFFECT_MAGIC_ATK_DOWN_II        = 559,
@@ -633,7 +638,7 @@ enum EFFECT
     EFFECT_BATTUTA                  = 570,
     EFFECT_RAYKE                    = 571,
     EFFECT_AVOIDANCE_DOWN           = 572,
-    EFFECT_DELUGE_SPIKES            = 573, // Exists in client, unused on retail?
+    EFFECT_DELUGE_SPIKES            = 573,
     EFFECT_FAST_CAST                = 574,
     EFFECT_GESTATION                = 575,
     EFFECT_DOUBT                    = 576, // Bully: Intimidation Enfeeble status
@@ -643,19 +648,47 @@ enum EFFECT
     EFFECT_HASTE_II                 = 580,
     EFFECT_FLURRY_II                = 581,
     EFFECT_APOGEE                   = 583,
+    EFFECT_ENTRUST                  = 584,
+    EFFECT_COSTUME_II               = 585,
+    EFFECT_CURING_CONDUIT           = 586,
+    EFFECT_TP_BONUS                 = 587,
+    EFFECT_FINISHING_MOVE_6         = 588,
+    EFFECT_FIRESTORM_II             = 589,
+    EFFECT_HAILSTORM_II             = 590,
+    EFFECT_WINDSTORM_II             = 591,
+    EFFECT_SANDSTORM_II             = 592,
+    EFFECT_THUNDERSTORM_II          = 593,
+    EFFECT_RAINSTORM_II             = 594,
+    EFFECT_AURORASTORM_II           = 595,
+    EFFECT_VOIDSTORM_II             = 596,
+    EFFECT_INUNDATION               = 597,
+    EFFECT_CASCADE                  = 598,
+    EFFECT_CONSUME_MANA             = 599,
+    EFFECT_RUNEISTS_ROLL            = 600,
+    EFFECT_CROOKED_CARDS            = 601,
+    EFFECT_VORSEAL                  = 602,
+    EFFECT_ELVORSEAL                = 603,
+    EFFECT_MIGHTY_GUARD             = 604,
+    EFFECT_GALE_SPIKES              = 605,
+    EFFECT_CLOD_SPIKES              = 606,
+    EFFECT_GLINT_SPIKES             = 607,
+    EFFECT_NEGATE_VIRUS             = 608,
+    EFFECT_NEGATE_CURSE             = 609,
+    EFFECT_NEGATE_CHARM             = 610,
+    EFFECT_MAGIC_EVASION_BOOST_II   = 611,
 
     // Effect icons in packet can go from 0-767, so no custom effects should go in that range.
 
     // Purchased from Cruor Prospector
     EFFECT_ABYSSEA_STR              = 768,
-    EFFECT_ABYSSEA_DEX              = 769, 
-    EFFECT_ABYSSEA_VIT              = 770, 
-    EFFECT_ABYSSEA_AGI              = 771, 
-    EFFECT_ABYSSEA_INT              = 772, 
-    EFFECT_ABYSSEA_MND              = 773, 
-    EFFECT_ABYSSEA_CHR              = 774, 
-    EFFECT_ABYSSEA_HP               = 775, 
-    EFFECT_ABYSSEA_MP               = 776, 
+    EFFECT_ABYSSEA_DEX              = 769,
+    EFFECT_ABYSSEA_VIT              = 770,
+    EFFECT_ABYSSEA_AGI              = 771,
+    EFFECT_ABYSSEA_INT              = 772,
+    EFFECT_ABYSSEA_MND              = 773,
+    EFFECT_ABYSSEA_CHR              = 774,
+    EFFECT_ABYSSEA_HP               = 775,
+    EFFECT_ABYSSEA_MP               = 776,
 
     // *Prowess increases not currently retail accurate.
     // GoV Prowess bonus effects, real effect at ID 474
@@ -718,7 +751,7 @@ public:
 
     uint32  GetTickTime();
     uint32  GetDuration();
-    time_point  GetLastTick();
+    int  GetElapsedTickCount();
     time_point  GetStartTime();
     CBattleEntity* GetOwner();
 
@@ -733,17 +766,18 @@ public:
     void    SetOwner(CBattleEntity* Owner);
     void    SetTickTime(uint32 tick);
 
-    void    SetLastTick(time_point LastTick);
+    void    IncrementElapsedTickCount();
     void    SetStartTime(time_point StartTime);
 
-    void    addMod(uint16 modType, int16 amount);
+    void    addMod(Mod modType, int16 amount);
 
     void    SetName(string_t name);
     void    SetName(const int8* name);
 
     const int8* GetName();
 
-    std::vector<CModifier*> modList;    // список модификаторов
+    std::vector<CModifier> modList;    // список модификаторов
+    bool deleted{false};
 
     CStatusEffect(
          EFFECT id,
@@ -753,27 +787,28 @@ public:
          uint32 duration,
          uint32 subid = 0,
          uint16 subPower = 0,
-         uint16 tier = 0);
+         uint16 tier = 0,
+         uint32 flags = 0);
 
    ~CStatusEffect();
 
 private:
 
-    CBattleEntity* m_POwner;            // владелец
+    CBattleEntity* m_POwner {nullptr};            // владелец
 
-    EFFECT      m_StatusID;             // основной тип эффекта
-    uint32      m_SubID;                // дополнительный тип эффекта
-    uint16      m_Icon;                 // иконка эффекта
-    uint16      m_Power;                // сила эффекта
-    uint16      m_SubPower;             // Secondary power of the effect
-    uint16      m_Tier;                 // Tier of the effect
-    uint32      m_Flag;                 // флаг эффекта (условия его исчезновения)
-    uint16      m_Type;                 // used to enforce only one
+    EFFECT      m_StatusID {EFFECT_NONE};             // основной тип эффекта
+    uint32      m_SubID {0};                // дополнительный тип эффекта
+    uint16      m_Icon {0};                 // иконка эффекта
+    uint16      m_Power {0};                // сила эффекта
+    uint16      m_SubPower {0};             // Secondary power of the effect
+    uint16      m_Tier {0};                 // Tier of the effect
+    uint32      m_Flag {0};                 // флаг эффекта (условия его исчезновения)
+    uint16      m_Type {0};                 // used to enforce only one
 
-    uint32      m_TickTime;             // время повторения эффекта (млс)
-    uint32      m_Duration;             // продолжительность эффекта (млс)
+    uint32      m_TickTime {0};             // время повторения эффекта (млс)
+    uint32      m_Duration {0};             // продолжительность эффекта (млс)
     time_point  m_StartTime;            // время получения эффекта (млс)
-    time_point  m_LastTick;             // премя последнего выполнения эффекта (млс)
+    int         m_tickCount {0};             // премя последнего выполнения эффекта (млс)
 
     string_t    m_Name;                 // имя эффекта для скриптов
 };

@@ -7,44 +7,43 @@
 -- Blue Magic Points: 3
 -- Stat Bonus: DEX+1, AGI+2
 -- Level: 78
--- Casting Time: 3 seconds 
+-- Casting Time: 3 seconds
 -- Recast Time: 20 seconds
--- 
+--
 -- Combos: Magic Burst Bonus
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;-----------------------------------------
--- OnSpellCast
------------------------------------------
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
-function onSpellCast(caster,target,spell)
+function onSpellCast(caster, target, spell)
+    local pINT = caster:getStat(dsp.mod.INT)
+    local mINT = target:getStat(dsp.mod.INT)
+    local dINT = pINT - mINT
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.bonus = 0
+    params.effect = nil
+    local resist = applyResistance(caster, target, spell, params)
 
-    local duration = math.random(60,180);
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
-    local dINT = (pINT - mINT);
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL,0);
-
-    if (resist < 0.5) then
-        spell:setMsg(85); --resist message
-        return EFFECT_SLOW;
-    end
-
-    if (target:addStatusEffect(EFFECT_SLOW,200,0,getBlueEffectDuration(caster,resist,EFFECT_SLOW))) then
-        spell:setMsg(236);
+    if resist < 0.5 then
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); --resist message
     else
-        spell:setMsg(75);
+        if target:addStatusEffect(dsp.effect.SLOW, 2000, 0, getBlueEffectDuration(caster, resist, dsp.effect.SLOW)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+        else
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        end
     end
 
-    return EFFECT_SLOW;
-end;
+    return dsp.effect.SLOW
+end

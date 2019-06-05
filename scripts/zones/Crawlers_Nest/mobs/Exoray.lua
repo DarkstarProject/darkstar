@@ -2,13 +2,9 @@
 -- Area: Crawlers' Nest
 --  MOB: Exoray
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,690,1);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 690, 1, dsp.regime.type.GROUNDS)
 end;

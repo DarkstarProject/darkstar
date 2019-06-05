@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
 #include "../../mobskill.h"
+#include "../../status_effect_container.h"
 
 CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) :
     CState(PEntity, targid),
@@ -34,6 +35,11 @@ CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) 
 {
     auto skill = battleutils::GetMobSkill(wsid);
     if (!skill)
+    {
+        throw CStateInitException(nullptr);
+    }
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
     {
         throw CStateInitException(nullptr);
     }
@@ -67,6 +73,7 @@ CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) 
         actionTarget.messageID = 43;
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CActionPacket(action));
     }
+    m_PEntity->PAI->EventHandler.triggerListener("WEAPONSKILL_STATE_ENTER", m_PEntity, m_PSkill->getID());
     SpendCost();
 }
 
@@ -77,8 +84,11 @@ CMobSkill* CMobSkillState::GetSkill()
 
 void CMobSkillState::SpendCost()
 {
-    m_spentTP = m_PEntity->health.tp;
-    m_PEntity->health.tp = 0;
+    if (m_PSkill->isTpSkill())
+    {
+        m_spentTP = m_PEntity->health.tp;
+        m_PEntity->health.tp = 0;
+    }
 }
 
 bool CMobSkillState::Update(time_point tick)

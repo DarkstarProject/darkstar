@@ -2,14 +2,10 @@
 -- Area: Gustav Tunnel
 --  MOB: Goblin Poacher
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,764,3);
-    checkGoVregime(ally,mob,765,3);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 764, 3, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 765, 3, dsp.regime.type.GROUNDS)
 end;

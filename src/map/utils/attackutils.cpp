@@ -26,6 +26,7 @@
 #include "battleutils.h"
 #include "../attack.h"
 #include "../items/item_weapon.h"
+#include "../status_effect_container.h"
 
 namespace attackutils
 {
@@ -94,7 +95,7 @@ namespace attackutils
                 else { num += 7; break; }
                 break;
         }
-        return dsp_min(num, 8); // не более восьми ударов за одну атаку
+        return std::min<uint8>(num, 8); // не более восьми ударов за одну атаку
     }
 
     /************************************************************************
@@ -132,7 +133,7 @@ namespace attackutils
     ************************************************************************/
     bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     {
-        if (isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+        if (isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->StatusEffectContainer->HasPreventActionEffect())
         {
             return(dsprand::GetRandomNumber(100) < battleutils::GetBlockRate(PAttacker, PDefender));
         }
@@ -144,30 +145,66 @@ namespace attackutils
     *  Handles damage multiplier, relic weapons etc.                        *
     *                                                                       *
     ************************************************************************/
-    uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
+    uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType, uint8 weaponSlot)
     {
         if (PWeapon == nullptr)
         {
             return damage;
         }
+
         uint32 originalDamage = damage;
-        auto occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, MOD_OCC_DO_EXTRA_DMG);
-        auto occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, MOD_EXTRA_DMG_CHANCE);
-        if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0)
+        int16 occ_do_triple_dmg = 0;
+        int16 occ_do_double_dmg = 0;
+
+        switch (attackType)
         {
-            if (dsprand::GetRandomNumber(100) <= (occ_extra_dmg_chance / 10))
-            {
-                return (damage = (damage * (occ_extra_dmg / 100.f)));
-            }
+            case PHYSICAL_ATTACK_TYPE::RANGED:
+            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:
+                occ_do_triple_dmg = PChar->getMod(Mod::REM_OCC_DO_TRIPLE_DMG_RANGED) / 10;
+                occ_do_double_dmg = PChar->getMod(Mod::REM_OCC_DO_DOUBLE_DMG_RANGED) / 10;
+                break;
+            case PHYSICAL_ATTACK_TYPE::NORMAL:
+                if (weaponSlot == SLOT_MAIN) // Only applies to mainhand
+                {
+                    occ_do_triple_dmg = PChar->getMod(Mod::REM_OCC_DO_TRIPLE_DMG) / 10;
+                    occ_do_double_dmg = PChar->getMod(Mod::REM_OCC_DO_DOUBLE_DMG) / 10;
+                }
+                break;
+            default:
+                break;
+        }
+
+        float occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG) / 100.f;
+        int16 occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE) / 10;
+
+        if (occ_extra_dmg > 3.f && occ_extra_dmg_chance > 0 && dsprand::GetRandomNumber(100) <= occ_extra_dmg_chance)
+        {
+            return (uint32)(damage * occ_extra_dmg);
+        }
+        else if (occ_do_triple_dmg > 0 && dsprand::GetRandomNumber(100) <= occ_do_triple_dmg)
+        {
+            return (uint32)(damage * 3.f);
+        }
+        else if (occ_extra_dmg > 2.f && occ_extra_dmg_chance > 0 && dsprand::GetRandomNumber(100) <= occ_extra_dmg_chance)
+        {
+            return (uint32)(damage * occ_extra_dmg);
+        }
+        else if (occ_do_double_dmg > 0 && dsprand::GetRandomNumber(100) <= occ_do_double_dmg)
+        {
+            return (uint32)(damage * 2.f);
+        }
+        else if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0 && dsprand::GetRandomNumber(100) <= occ_extra_dmg_chance)
+        {
+            return (uint32)(damage * occ_extra_dmg);
         }
 
         switch (attackType)
         {
-            case ZANSHIN_ATTACK:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
-            case TRIPLE_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
-            case DOUBLE_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
-            case RAPID_SHOT_ATTACK:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
-            case SAMBA_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::ZANSHIN:	    if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::TRIPLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::TA_TRIPLE_DAMAGE))			return originalDamage * 3;
+            case PHYSICAL_ATTACK_TYPE::DOUBLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::DA_DOUBLE_DAMAGE))			return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:	if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::SAMBA:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::SAMBA_DOUBLE_DAMAGE))		    return originalDamage * 2;
             default: break;
         }
         return originalDamage;

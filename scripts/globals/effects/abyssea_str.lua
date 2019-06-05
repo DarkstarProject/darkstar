@@ -1,30 +1,18 @@
 -----------------------------------
 --
---  EFFECT_ABYSSEA_STR
+-- dsp.effect.ABYSSEA_STR
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.STR,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_STR,effect:getPower());
-end;
+    target:delMod(dsp.mod.STR,effect:getPower())
+end

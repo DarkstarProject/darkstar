@@ -35,8 +35,9 @@ This file is part of DarkStar-server source code.
 #include "states/trigger_state.h"
 #include "states/weaponskill_state.h"
 #include "states/range_state.h"
+#include "states/respawn_state.h"
 #include "controllers/player_controller.h"
-#include "controllers/ai_controller.h"
+#include "controllers/mob_controller.h"
 #include "../entities/baseentity.h"
 #include "../entities/battleentity.h"
 #include "../entities/charentity.h"
@@ -50,106 +51,117 @@ CAIContainer::CAIContainer(CBaseEntity* _PEntity) :
 
 CAIContainer::CAIContainer(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
     std::unique_ptr<CController>&& _controller, std::unique_ptr<CTargetFind>&& _targetfind) :
+    TargetFind(std::move(_targetfind)),
+    PathFind(std::move(_pathfind)),
+    Controller(std::move(_controller)),
     m_Tick(server_clock::now()),
     m_PrevTick(server_clock::now()),
     PEntity(_PEntity),
-    ActionQueue(_PEntity),
-    PathFind(std::move(_pathfind)),
-    Controller(std::move(_controller)),
-    TargetFind(std::move(_targetfind))
+    ActionQueue(_PEntity)
 {
 }
 
-void CAIContainer::Cast(uint16 targid, uint16 spellid)
+bool CAIContainer::Cast(uint16 targid, SpellID spellid)
 {
     if (Controller)
     {
-        Controller->Cast(targid, spellid);
+        return Controller->Cast(targid, spellid);
     }
+    return false;
 }
 
-void CAIContainer::Engage(uint16 targid)
+bool CAIContainer::Engage(uint16 targid)
 {
     if (Controller)
     {
-        Controller->Engage(targid);
+        return Controller->Engage(targid);
     }
+    return false;
 }
 
-void CAIContainer::ChangeTarget(uint16 targid)
+bool CAIContainer::ChangeTarget(uint16 targid)
 {
     if (Controller)
     {
-        Controller->ChangeTarget(targid);
+        return Controller->ChangeTarget(targid);
     }
+    return false;
 }
 
-void CAIContainer::Disengage()
+bool CAIContainer::Disengage()
 {
     if (Controller)
     {
-        Controller->Disengage();
+        return Controller->Disengage();
     }
+    return false;
 }
 
-void CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
+bool CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
 {
     if (Controller)
     {
-        Controller->WeaponSkill(targid, wsid);
+        return Controller->WeaponSkill(targid, wsid);
     }
+    return false;
 }
 
-void CAIContainer::MobSkill(uint16 targid, uint16 wsid)
+bool CAIContainer::MobSkill(uint16 targid, uint16 wsid)
 {
-    auto AIController = dynamic_cast<CAIController*>(Controller.get());
+    auto AIController = dynamic_cast<CMobController*>(Controller.get());
     if (AIController)
     {
-        AIController->MobSkill(targid, wsid);
+        return AIController->MobSkill(targid, wsid);
     }
+    return false;
 }
 
-void CAIContainer::Ability(uint16 targid, uint16 abilityid)
+bool CAIContainer::Ability(uint16 targid, uint16 abilityid)
 {
     if (Controller)
     {
-        Controller->Ability(targid, abilityid);
+        return Controller->Ability(targid, abilityid);
     }
+    return false;
 }
 
-void CAIContainer::RangedAttack(uint16 targid)
+bool CAIContainer::RangedAttack(uint16 targid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(Controller.get());
     if (PlayerController)
     {
-        PlayerController->RangedAttack(targid);
+        return PlayerController->RangedAttack(targid);
     }
+    return false;
 }
 
-void CAIContainer::Trigger(uint16 targID)
+bool CAIContainer::Trigger(uint16 targID)
 {
     if (CanChangeState())
     {
-        ChangeState<CTriggerState>(PEntity, targID);
+        auto ret = ChangeState<CTriggerState>(PEntity, targID);
         if (PathFind)
         {
             PathFind->Clear(); //#TODO: pause/resume after?
         }
+        return ret;
     }
+    return false;
 }
 
-void CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
+bool CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(PEntity->PAI->GetController());
     if (PlayerController)
     {
-        PlayerController->UseItem(targid, loc, slotid);
+        return PlayerController->UseItem(targid, loc, slotid);
     }
+    return false;
 }
 
-void CAIContainer::Inactive(duration _duration, bool canChangeState)
+bool CAIContainer::Inactive(duration _duration, bool canChangeState)
 {
-    ForceChangeState<CInactiveState>(PEntity, _duration, canChangeState);
+    return ForceChangeState<CInactiveState>(PEntity, _duration, canChangeState);
 }
 
 bool CAIContainer::Internal_Engage(uint16 targetid)
@@ -157,10 +169,14 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     //#TODO: pet engage/disengage
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
 
-    if (entity && entity->PAI->IsEngaged() && entity->GetBattleTargetID() != targetid)
+    if (entity && entity->PAI->IsEngaged())
     {
-        ChangeTarget(targetid);
-        return true;
+        if (entity->GetBattleTargetID() != targetid)
+        {
+            ChangeTarget(targetid);
+            return true;
+        }
+        return false;
     }
     //#TODO: use valid target stuff from spell
     if (entity)
@@ -178,7 +194,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     return false;
 }
 
-bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
+bool CAIContainer::Internal_Cast(uint16 targetid, SpellID spellid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -186,23 +202,33 @@ bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
     return false;
 }
 
-void CAIContainer::Internal_ChangeTarget(uint16 targetid)
+bool CAIContainer::Internal_ChangeTarget(uint16 targetid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
     {
-        if (IsEngaged() || targetid == 0)
+        if(IsEngaged() || targetid == 0)
+        {
             entity->SetBattleTargetID(targetid);
+            return true;
+        }
         else
-            Engage(targetid);
+        {
+            return Engage(targetid);
+        }
     }
+    return false;
 }
 
-void CAIContainer::Internal_Disengage()
+bool CAIContainer::Internal_Disengage()
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
-    if (entity)
+    if(entity)
+    {
         entity->SetBattleTargetID(0);
+        return true;
+    }
+    return false;
 }
 
 bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
@@ -237,25 +263,28 @@ bool CAIContainer::Internal_RangedAttack(uint16 targetid)
     return false;
 }
 
-void CAIContainer::Internal_Die(duration deathTime)
+bool CAIContainer::Internal_Die(duration deathTime)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
-        ChangeState<CDeathState>(entity, deathTime);
+        return ChangeState<CDeathState>(entity, deathTime);
+    return false;
 }
 
-void CAIContainer::Internal_Raise()
+bool CAIContainer::Internal_Raise()
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
-        ForceChangeState<CRaiseState>(entity);
+        return ForceChangeState<CRaiseState>(entity);
+    return false;
 }
 
-void CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
+bool CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
 {
     auto entity {dynamic_cast<CCharEntity*>(PEntity)};
     if (entity)
-        ChangeState<CItemState>(entity, targetid, loc, slotid);
+        return ChangeState<CItemState>(entity, targetid, loc, slotid);
+    return false;
 }
 
 CState* CAIContainer::GetCurrentState()
@@ -293,6 +322,12 @@ void CAIContainer::Reset()
     {
         PathFind->Clear();
     }
+
+    if (Controller)
+    {
+        Controller->Reset();
+    }
+
     while (!m_stateStack.empty())
     {
         m_stateStack.pop();
@@ -304,12 +339,14 @@ void CAIContainer::Tick(time_point _tick)
     m_PrevTick = m_Tick;
     m_Tick = _tick;
 
+    //#TODO: timestamp in the event?
+    EventHandler.triggerListener("TICK", PEntity);
     PEntity->Tick(_tick);
 
-    //#TODO: check this in the controller instead maybe? (might not want to check every tick) - same for pathfind
+    //#TODO: check this in the controller instead maybe? (might not want to check every tick)
     ActionQueue.checkAction(_tick);
 
-    // check pathfinding
+    // check pathfinding only if there is no controller to do it
     if (!Controller && CanFollowPath())
     {
         PathFind->FollowPath();
@@ -361,7 +398,7 @@ void CAIContainer::InterruptStates()
 
 bool CAIContainer::IsSpawned()
 {
-    return PEntity->status != STATUS_DISAPPEAR && !IsCurrentState<CDespawnState>();
+    return PEntity->status != STATUS_DISAPPEAR;
 }
 
 bool CAIContainer::IsRoaming()
@@ -392,7 +429,7 @@ void CAIContainer::Despawn()
     }
     else
     {
-        Internal_Despawn(0s);
+        Internal_Despawn();
     }
 }
 
@@ -406,9 +443,23 @@ bool CAIContainer::QueueEmpty()
     return ActionQueue.isEmpty();
 }
 
-void CAIContainer::Internal_Despawn(duration spawnTime)
+bool CAIContainer::Internal_Despawn()
 {
-    ForceChangeState<CDespawnState>(PEntity, spawnTime);
+    if (!IsCurrentState<CDespawnState>() && !IsCurrentState<CRespawnState>())
+    {
+        return ForceChangeState<CDespawnState>(PEntity);
+    }
+    return false;
+}
+
+bool CAIContainer::Internal_Respawn(duration _duration)
+{
+    if (!IsCurrentState<CRespawnState>())
+    {
+        return ForceChangeState<CRespawnState>(PEntity, _duration);
+    }
+    return false;
+
 }
 
 void CAIContainer::CheckCompletedStates()

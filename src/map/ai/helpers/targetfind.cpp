@@ -147,7 +147,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
         }
 
         if (m_findFlags & FINDFLAGS_HIT_ALL ||
-            m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp())
+            (m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp()))
         {
             addAllInZone(m_PMasterTarget, withPet);
         }
@@ -177,15 +177,15 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
 
     float halfAngle = (angle * (256.0f / 360.0f)) / 2.0f;
 
-    float rightAngle = rotationToRadian(m_APoint->rotation + halfAngle);
-    float leftAngle = rotationToRadian(m_APoint->rotation - halfAngle);
+    float rightAngle = rotationToRadian(m_APoint->rotation + (uint8)halfAngle);
+    float leftAngle = rotationToRadian(m_APoint->rotation - (uint8)halfAngle);
 
     // calculate end points for triangle
-    m_BPoint.x = cosf((2 * M_PI) - rightAngle) * distance + m_APoint->x;
-    m_BPoint.z = sinf((2 * M_PI) - rightAngle) * distance + m_APoint->z;
+    m_BPoint.x = cosf((2 * (float)M_PI) - rightAngle) * distance + m_APoint->x;
+    m_BPoint.z = sinf((2 * (float)M_PI) - rightAngle) * distance + m_APoint->z;
 
-    m_CPoint.x = cosf((2 * M_PI) - leftAngle) * distance + m_APoint->x;
-    m_CPoint.z = sinf((2 * M_PI) - leftAngle) * distance + m_APoint->z;
+    m_CPoint.x = cosf((2 * (float)M_PI) - leftAngle) * distance + m_APoint->x;
+    m_CPoint.z = sinf((2 * (float)M_PI) - leftAngle) * distance + m_APoint->z;
 
     // ShowDebug("angle %f, rotation %f, distance %f, A (%f, %f) B (%f, %f) C (%f, %f)\n", angle, rightAngle, distance, m_APoint->x, m_APoint->z, m_BPoint.x, m_BPoint.z, m_CPoint.x, m_CPoint.z);
     // ShowDebug("Target: (%f, %f)\n", PTarget->loc.p.x, PTarget->loc.p.z);
@@ -205,18 +205,17 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
 
 void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 {
-    CCharEntity* PChar = (CCharEntity*)findMaster(m_PBattleEntity);
-    CBattleEntity* PBattleTarget = nullptr;
-
-    for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+    CCharEntity* PChar = dynamic_cast<CCharEntity*>(findMaster(m_PBattleEntity));
+    if (PChar)
     {
-
-        PBattleTarget = (CBattleEntity*)it->second;
-
-        if (PBattleTarget && isMobOwner(PBattleTarget)){
-            addEntity(PBattleTarget, withPet);
+        for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+        {
+            CBattleEntity* PBattleTarget = dynamic_cast<CBattleEntity*>(it->second);
+            if (PBattleTarget && isMobOwner(PBattleTarget))
+            {
+                addEntity(PBattleTarget, withPet);
+            }
         }
-
     }
 }
 
@@ -236,8 +235,6 @@ void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
-    CParty* party = nullptr;
-
     PTarget->ForAlliance([this, withPet](CBattleEntity* PMember)
     {
         addEntity(PMember, withPet);
@@ -263,8 +260,11 @@ void CTargetFind::addAllInEnmityList()
 
         for (EnmityList_t::iterator it = enmityList->begin(); it != enmityList->end(); ++it)
         {
-            EnmityObject_t* PEnmityObject = it->second;
-			addEntity(PEnmityObject->PEnmityOwner, false);
+            EnmityObject_t& PEnmityObject = it->second;
+            if (PEnmityObject.PEnmityOwner)
+            {
+                addEntity(PEnmityObject.PEnmityOwner, false);
+            }
         }
     }
 }
@@ -330,12 +330,13 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
         return false;
     }
 
-    if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+    if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
+        m_PBattleEntity->PBattlefield != PTarget->PBattlefield || m_PBattleEntity->PInstance != PTarget->PInstance)
     {
         return false;
     }
 
-    if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden())
+    if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden() || PTarget->status == STATUS_INVISIBLE)
     {
         return false;
     }
@@ -447,6 +448,19 @@ bool CTargetFind::isWithinCone(position_t* pos)
 bool CTargetFind::isWithinRange(position_t* pos, float range)
 {
     return distance(m_PBattleEntity->loc.p, *pos) <= range;
+}
+
+
+bool CTargetFind::canSee(position_t* point)
+{
+    //TODO: the detours raycast is not a line of sight raycast (it's a walkability raycast)
+    //if (m_PBattleEntity->loc.zone && m_PBattleEntity->loc.zone->m_navMesh)
+    //{
+    //    position_t pA {0, m_PBattleEntity->loc.p.x, m_PBattleEntity->loc.p.y - 1, m_PBattleEntity->loc.p.z};
+    //    position_t pB {0, point->x, point->y - 1, point->z};
+    //    return m_PBattleEntity->loc.zone->m_navMesh->raycast(pA, pB);
+    //}
+    return true;
 }
 
 CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint16 validTargetFlags)

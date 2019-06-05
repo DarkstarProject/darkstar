@@ -1,24 +1,22 @@
 -----------------------------------
 -- Zone: Abyssea-Grauberg
---  NPC: ???
--- Spawns: Bomblix Flamefinger
+--  NPC: qm4 (???)
+-- Spawns Bomblix Flamefinger
+-- !pos 555 23 -317 254
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/abyssea")
 -----------------------------------
 
 function onTrade(player,npc,trade)
---[[
-    if (trade:hasItemQty(3274,1) == false or trade:hasItemQty(3264,1) == false) then -- Player is missing at least one required item.
-        player:startEvent(1010, 3274 ,3264); -- Inform payer what items they need.
-    elseif (GetMobAction(17818044) == ACTION_NONE) then -- mob not already spawned from this
-        if (trade:hasItemQty(3274,1) and trade:hasItemQty(3264,1) and trade:getItemCount() == 2) then -- Player has all the required items.
-            SpawnMob(17818044):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
-            player:tradeComplete();
-        end
-    end
-]]
-end;
+    abysseaOnTrade(player,npc,trade)
+end
+
+function onTrigger(player,npc)
+    abysseaOnTrigger(player,npc)
+end
+
+function onEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+end

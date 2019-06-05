@@ -12,40 +12,35 @@
 -- Magic Bursts on: Liquefaction, Fusion, and Light
 -- Combos: Magic Attack Bonus
 -----------------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-
-    local typeEffect = EFFECT_INT_DOWN;
-    local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
-    local duration = 30 * resist;
-    local power = 6;
+    local params = {}
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.effect = dsp.effect.INT_DOWN
+    local resist = applyResistance(caster, target, spell, params)
+    local duration = 30 * resist
+    local power = 6
 
     if (resist > 0.5) then -- Do it!
-        if (target:addStatusEffect(typeEffect,power,0,duration)) then
-            spell:setMsg(236);
+        if (target:addStatusEffect(params.effect,power,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(75);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(85);
-    end;
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+    end
 
-    return typeEffect;
-end;    
+    return params.effect
+end
+

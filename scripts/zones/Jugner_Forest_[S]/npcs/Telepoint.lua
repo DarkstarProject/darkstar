@@ -1,49 +1,26 @@
 -----------------------------------
 -- Area: Jugner Forest [S]
--- NPC:  Telepoint
+--  NPC: Telepoint
+-- !pos -122.862 0.000 -163.154 82
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Jugner_Forest_[S]/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-    if (player:hasKeyItem(JUGNER_GATE_CRYSTAL) == false) then
-        player:addKeyItem(JUGNER_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,JUGNER_GATE_CRYSTAL);
+    if not player:hasKeyItem(dsp.ki.JUGNER_GATE_CRYSTAL) then
+        npcUtil.giveKeyItem(player, dsp.ki.JUGNER_GATE_CRYSTAL)
     else
-        player:messageSpecial(ALREADY_OBTAINED_TELE);
+        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE)
     end
-    
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+end

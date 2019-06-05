@@ -1,53 +1,33 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Abda Lurabda
+--  NPC: Abda Lurabda
 -- Standard Info NPC
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/pets");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/status")
+require("scripts/globals/pets")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    if (player:getMainJob() == JOB_PUP) then
-        player:startEvent(0x288, 0, 9800, player:getGil());
+    if player:getMainJob() == dsp.job.PUP then
+        player:startEvent(648, 0, 9800, player:getGil())
     else
-        player:startEvent(0x101);
+        player:startEvent(257)
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %d",option);
-    
-    if (csid == 0x288 and bit.band(option, 0x80000000) ~= 0) then
-        player:delGil(9800);
-        local page = bit.band(option, 0xF);
-        local val = bit.rshift(bit.band(option, 0xFFFFF0), 4);
-        player:setPetName(PETTYPE_AUTOMATON,86 + val + page*32);
-        player:messageSpecial(5747);
+    if csid == 648 and bit.band(option, 0x80000000) ~= 0 then
+        player:delGil(9800)
+        local page = bit.band(option, 0xF)
+        local val = bit.rshift(bit.band(option, 0xFFFFF0), 4)
+        player:setPetName(dsp.pet.type.AUTOMATON, 86 + val + page * 32)
+        player:messageSpecial(ID.text.AUTOMATON_RENAME)
     end
-end;
+end

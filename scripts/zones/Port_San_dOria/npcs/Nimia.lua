@@ -1,77 +1,42 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC: Nimia
---    Only sells when San d'Oria controlls Elshimo Lowlands
---    Working 100%
+-- Area: Port San d'Oria
+--  NPC: Nimia
+-- Elshimo Lowlands Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    if GetRegionOwner(dsp.region.ELSHIMOLOWLANDS) ~= dsp.nation.SANDORIA then
+        player:showText(npc, ID.text.NIMIA_CLOSED_DIALOG)
+    else
+        local stock =
+        {
+            612,    55,    -- Kazham Peppers
+            4432,   55,    -- Kazham Pineapple
+            4390,   36,    -- Mithran Tomato
+            626,   234,    -- Black Pepper
+            630,    88,    -- Ogre Pumpkin
+            632,   110,    -- Kukuru Bean
+            1411, 1656,    -- Phalaenopsis
+        }
 
-RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
-
-if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,NIMIA_CLOSED_DIALOG);
-else
-    player:showText(npc,NIMIA_OPEN_DIALOG);
-    
-    stock = {0x0264,55,      --Kazham Peppers
-             0x1150,55,      --Kazham Pineapple
-             0x1126,36,      --Mithran Tomato
-             0x0272,234,  --Black Pepper
-             0x0276,88,      --Ogre Pumpkin
-             0x0278,110,  --Kukuru Bean
-             0x0583,1656} --Phalaenopsis
-              
-showShop(player,SANDORIA,stock);
+        player:showText(npc, ID.text.NIMIA_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
+    end
 end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
-
+end

@@ -3,35 +3,16 @@
 --  MOB: Vermilion-eared_Noberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
+mixins =
+{
+    require("scripts/mixins/families/tonberry"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    local elemental = mob:getID()+2;
-    local kills = ally:getVar("EVERYONES_GRUDGE_KILLS");
-
-    if (kills < 480) then
-        ally:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
+function onMobDeath(mob, player, isKiller)
+    local elementalId = mob:getID() + 1
+    if GetMobByID(elementalId):isSpawned() then
+        DespawnMob(elementalId)
     end
-
-    if (GetMobAction(elemental) ~= 0) then
-        DespawnMob(elemental);
-    end
-
-end;
+end

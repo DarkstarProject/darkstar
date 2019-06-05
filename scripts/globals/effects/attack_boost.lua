@@ -1,33 +1,21 @@
 -----------------------------------
 --
--- EFFECT_ATTACK_BOOST
+-- dsp.effect.ATTACK_BOOST
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
     if (effect:getPower()>100) then
-        effect:setPower(50);
+        effect:setPower(50)
     end
-    target:addMod(MOD_ATTP,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ATTP,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ATTP,effect:getPower());
-end;
+    target:delMod(dsp.mod.ATTP,effect:getPower())
+end

@@ -2,22 +2,11 @@
 -- Area: Zeruhn Mines (172)
 --  Mob: Colliery Bat
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobInitialize
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,628,1);
-    checkGoVregime(ally,mob,629,1);
-    checkGoVregime(ally,mob,630,1);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 628, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 629, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 630, 1, dsp.regime.type.GROUNDS)
+end

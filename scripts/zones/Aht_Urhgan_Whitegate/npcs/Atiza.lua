@@ -1,48 +1,22 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Atiza
+--  NPC: Atiza
 -- Admits players to the dock in Aht Urhgan
--- @pos 5.195 -1 98.966 50
------------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
+-- !pos 5.195 -1 98.966 50
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(0x00df,player:getGil(),100);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(223,player:getGil(),100)
+end
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-    
-    if (csid == 0x00df and option == 333) then
-        player:delGil(100);
+    if csid == 223 and option == 333 then
+        player:delGil(100)
     end
-    
-end;
+end

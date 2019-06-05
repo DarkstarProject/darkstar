@@ -1,45 +1,21 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC:  Shiva's Gate
--- @pos 110 -34 -60 195
+--  NPC: Shiva's Gate
+-- !pos 110 -34 -60 195
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
-
------------------------------------
--- onTrade Action
+local func = require("scripts/zones/The_Eldieme_Necropolis/globals")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end; 
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+    func.gateOnTrigger(player, npc)
+    return 0
+end
 
-function onTrigger(player,npc)
-    if (npc:getAnimation() == 9) then
-        player:messageSpecial(SOLID_STONE);
-    end
-    return 0;
-end;
--- 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

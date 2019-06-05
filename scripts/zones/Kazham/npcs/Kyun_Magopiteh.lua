@@ -1,47 +1,22 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Kyun Magopiteh
+--  NPC: Kyun Magopiteh
 -- Standard Info NPC
 -----------------------------------
 
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-require("scripts/zones/Kazham/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     if (player:getVar("BathedInScent") == 1) then
-        player:startEvent(0x00AE); -- scent from Blue Rafflesias
+        player:startEvent(174); -- scent from Blue Rafflesias
     else
-        player:startEvent(0x0056);
+        player:startEvent(86);
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
-
-

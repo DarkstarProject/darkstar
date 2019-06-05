@@ -3,38 +3,22 @@
 --  MOB: Adamantking_Effigy
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Buburimu/TextIDs");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     dynamis.spawnGroup(mob, BuburimuQuadavList);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    
+function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
-    
-    if (mobID ==16941457) then --mp
-        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
-        ally:restoreMP(3000);        
+    if (mobID ==16941457) then
+        player:messageBasic(dsp.msg.basic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
+        player:restoreMP(3000);
     end
 end;

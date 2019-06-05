@@ -1,42 +1,21 @@
 -----------------------------------
 -- Area: Garlaige Citidel
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    startGov(GOV_EVENT_GARLAIGE_CITADEL,player);
-end;
-
------------------------------------
--- onEventSelection
------------------------------------
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    updateGov(player,csid,option,703,704,705,706,707,708,708,710,0,0);
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    finishGov(player,csid,option,703,704,705,706,707,708,708,710,0,0,GOV_MSG_GARLAIGE_CITADEL);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

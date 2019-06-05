@@ -2,54 +2,43 @@
 -- Area: Riverne Site A01
 --  MOB: Carmine Dobsonfly
 -----------------------------------
-
-
------------------------------------
--- onMobSpawn Action
+local ID = require("scripts/zones/Riverne-Site_A01/IDs");
+require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, 16900230); -- mobID of the first one
+    mob:setMobMod(dsp.mobMod.SUPERLINK, ID.mob.CARMINE_DOBSONFLY_OFFSET);
     mob:SetMagicCastingEnabled(false); -- does not cast spells while idle
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     mob:SetMagicCastingEnabled(true);
 end;
 
------------------------------------
--- onMobDisengage
------------------------------------
-
 function onMobDisengage(mob)
     mob:SetMagicCastingEnabled(false);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
+end;
 
-function onMobDeath(mob, killer, ally)
-    local firstDobsonfly = 16900230;
-    local mobID = mob:getID();
-    local carminesKilled = GetServerVariable("[NM]Carmine_Dobsonflies_Killed");
+function onMobDespawn(mob)
+    -- each dead dobsonfly should stay despawned until all 10 are killed. then they respawn as a group.
 
-    if (bit.band(carminesKilled, bit.lshift(1, (mobID - firstDobsonfly))) == 0) then
-        carminesKilled = bit.bor(carminesKilled, bit.lshift(1, (mobID - firstDobsonfly)));
-        if (carminesKilled == 1023) then -- all have been defeated, allow for them to respawn while setting their respawn time to be all the same
-            local respawnTime = math.random(75600,86400);
-            for  i = firstDobsonfly, firstDobsonfly + 9, 1 do    
-                DeterMob(i, false);
-                GetMobByID(i):setRespawnTime(respawnTime);
-            end
-            carminesKilled = 0; -- clear the server var
-        else -- prevent them from respawning
-            DeterMob(mobID, true);
+    local allFliesDead = true;
+    for i = ID.mob.CARMINE_DOBSONFLY_OFFSET, ID.mob.CARMINE_DOBSONFLY_OFFSET + 9 do
+        if (GetMobByID(i):isAlive()) then
+            allFliesDead = false;
         end
-        SetServerVariable("[NM]Carmine_Dobsonflies_Killed", carminesKilled);
+    end
+    
+    if (allFliesDead) then
+        local respawnTime = math.random(75600,86400);
+        for i = ID.mob.CARMINE_DOBSONFLY_OFFSET, ID.mob.CARMINE_DOBSONFLY_OFFSET + 9 do
+            DisallowRespawn(i, false);
+            GetMobByID(i):setRespawnTime(respawnTime);
+        end
+    else
+        DisallowRespawn(mobID, true);
     end
 end;

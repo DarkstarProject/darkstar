@@ -2,51 +2,31 @@
 -- Spell: Regen IV
 -- Gradually restores target's HP.
 -----------------------------------------
--- Cleric's Briault enhances the effect
 -- Scale down duration based on level
 -- Composure increases duration 3x
 -----------------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
+    local hp = math.ceil(30 * (1 + 0.01 * caster:getMod(dsp.mod.REGEN_MULTIPLIER))) -- spell base times gear multipliers
+    hp = hp + caster:getMerit(dsp.merit.REGEN_EFFECT) -- bonus hp from merits
+    hp = hp + caster:getMod(dsp.mod.LIGHT_ARTS_REGEN) -- bonus hp from light arts
 
-    local hp = 30;
-    local meritBonus = caster:getMerit(MERIT_REGEN_EFFECT);
+    local duration = calculateDuration(60 + caster:getMod(dsp.mod.REGEN_DURATION), spell:getSkillType(), spell:getSpellGroup(), caster, target)
+    duration = calculateDurationForLvl(duration, 86, target:getMainLvl())
 
-    --printf("Regen IV: Merit Bonus = Extra +%d", meritBonus);    
-
-    local body = caster:getEquipID(SLOT_BODY);
-    if (body == 15089 or body == 14502) then
-        hp = hp+4;
-    end
-
-    hp = hp + caster:getMod(MOD_REGEN_EFFECT) + meritBonus;
-
-    local duration = 60;
-
-    duration = duration + caster:getMod(MOD_REGEN_DURATION);
-
-    duration = calculateDurationForLvl(duration, 86, target:getMainLvl());
-
-    if (target:hasStatusEffect(EFFECT_REGEN) and target:getStatusEffect(EFFECT_REGEN):getTier() == 1) then
-        target:delStatusEffect(EFFECT_REGEN);
-    end
-
-    if (target:addStatusEffect(EFFECT_REGEN,hp,3,duration,0,0,0)) then
-        spell:setMsg(230);
+    if target:addStatusEffect(dsp.effect.REGEN, hp, 0, duration) then
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(75); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
     end
 
-    return EFFECT_REGEN;
-end;
+    return dsp.effect.REGEN
+end

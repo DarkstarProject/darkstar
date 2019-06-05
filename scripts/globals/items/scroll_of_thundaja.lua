@@ -4,18 +4,10 @@
 -- Teaches the black magic Thundaj
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
-    return target:canLearnSpell(500);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(500)
+end
 
 function onItemUse(target)
-    target:addSpell(500);
-end;
+    target:addSpell(500)
+end

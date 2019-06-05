@@ -11,53 +11,38 @@
 -- Defense Cap 70
 -- Store TP 6
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5200);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,5200)
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.FOOD_HPP, 15)
+    target:addMod(dsp.mod.FOOD_HP_CAP, 160)
+    target:addMod(dsp.mod.VIT, 3)
+    target:addMod(dsp.mod.MND, -1)
+    target:addMod(dsp.mod.FOOD_DEFP, 22)
+    target:addMod(dsp.mod.FOOD_DEF_CAP, 70)
+    target:addMod(dsp.mod.STORETP, 6)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_HPP, 15);
-    target:addMod(MOD_FOOD_HP_CAP, 160);
-    target:addMod(MOD_VIT, 3);
-    target:addMod(MOD_MND, -1);
-    target:addMod(MOD_FOOD_DEFP, 22);
-    target:addMod(MOD_FOOD_DEF_CAP, 70);
-    target:addMod(MOD_STORETP, 6);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_FOOD_HPP, 15);
-    target:delMod(MOD_FOOD_HP_CAP, 160);
-    target:delMod(MOD_VIT, 3);
-    target:delMod(MOD_MND, -1);
-    target:delMod(MOD_FOOD_DEFP, 22);
-    target:delMod(MOD_FOOD_DEF_CAP, 70);
-    target:delMod(MOD_STORETP, 6);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.FOOD_HPP, 15)
+    target:delMod(dsp.mod.FOOD_HP_CAP, 160)
+    target:delMod(dsp.mod.VIT, 3)
+    target:delMod(dsp.mod.MND, -1)
+    target:delMod(dsp.mod.FOOD_DEFP, 22)
+    target:delMod(dsp.mod.FOOD_DEF_CAP, 70)
+    target:delMod(dsp.mod.STORETP, 6)
+end

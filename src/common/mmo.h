@@ -29,6 +29,8 @@
 #include <string>
 #include <time.h>
 #include <stdlib.h>
+#include <bitset>
+#include <array>
 
 #define FIFOSIZE_SERVERLINK	256*1024
 
@@ -55,10 +57,19 @@ enum FLAGTYPE : uint32
     FLAG_GM_LEAD        = 0x06000000,
     FLAG_GM_PRODUCER    = 0x07000000,
     FLAG_BAZAAR         = 0x80000000,
+};
 
-//  FLAG_AUTOGROUP      = 0x00000000,
-//  FLAG_NEWPLAYER      = 0x00000000,
-//  FLAG_MENTOR         = 0x00000000,
+enum NFLAGTYPE : uint32
+{
+    NFLAG_INVITE        = 0x00000001,
+    NFLAG_AWAY          = 0x00000002,
+    NFLAG_ANON          = 0x00000004,
+    NFLAG_AUTOTARGET    = 0x00004000,
+    NFLAG_AUTOGROUP     = 0x00008000,
+    NFLAG_MENTOR        = 0x02000000,
+    NFLAG_NEWPLAYER     = 0x04000000,
+    NFLAG_DISPLAY_HEAD  = 0x08000000,
+    NFLAG_RECRUIT       = 0x20000000,
 };
 
 enum ELEMENTS
@@ -87,7 +98,11 @@ enum MSGSERVTYPE : uint8
     MSG_PT_DISBAND,
     MSG_DIRECT,
     MSG_LINKSHELL_RANK_CHANGE,
-    MSG_LINKSHELL_REMOVE
+    MSG_LINKSHELL_REMOVE,
+
+    // gm commands
+    MSG_SEND_TO_ZONE,
+    MSG_SEND_TO_ENTITY,
 };
 
 typedef std::string string_t;
@@ -141,19 +156,24 @@ struct skills_t
 	uint8 rank[64];
 };
 
+struct keyitems_table_t
+{
+    std::bitset<512> keyList;
+    std::bitset<512> seenList;
+};
+
 struct keyitems_t 
 {
-	 uint8 keysList[320];	// таблица ключевых предметов
-	 uint8 seenList[320];	// таблица ключевых предметов, отмеченных как "увиденные" 
+    std::array<keyitems_table_t, 7> tables;
 };
 
 struct position_t 
 {
+    float x;
+    float y;				// высота расположения сущности относительно "уровня моря"
+    float z;
+    uint16 moving;			// что-то вроде расстояния перемещения, необходимое для правильной отрисовки в клиенте количества шагов сущности 
 	uint8 rotation;			// угол поворота сущности относительно своей позиции (используется 255 система, место 360°)
-	float x;			
-	float y;				// высота расположения сущности относительно "уровня моря"
-	float z;
-	uint16 moving;			// что-то вроде расстояния перемещения, необходимое для правильной отрисовки в клиенте количества шагов сущности 
 };
 
 struct stats_t

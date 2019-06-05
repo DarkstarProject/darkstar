@@ -2,41 +2,50 @@
 -- Area: Dynamis Xarcabard
 --  NM:  Yang
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob,target)
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
+function onMobSpawn(mob)
+    local dynaLord = GetMobByID(17330177);
+    if (dynaLord:getLocalVar("physImmune") < 2) then -- both dragons have not been killed initially
+        dynaLord:addMod(dsp.mod.UDMGPHYS, 100);
+        dynaLord:addMod(dsp.mod.UDMGRANGE, 100);
+        dynaLord:setLocalVar("physImmune", 0);
+        mob:setSpawn(-364,-35.974,24.254); -- Reset Yang's spawn point to initial spot.
+    else
+        mob:setSpawn(-414.282,-44,20.427); -- Spawned by DL, reset to DL's spawn point.
+    end
+end;
 
 function onMobFight(mob,target)
     local YingID = 17330183;
     local YingToD = mob:getLocalVar("YingToD");
     -- Repop Ying every 30 seconds if Yang is up and Ying is not.
-    if (mob:getBattleTime() > YingToD+30 and GetMobAction(YingID) == ACTION_NONE) then
+    if (GetMobAction(YingID) == dsp.act.NONE and os.time() > YingToD+30) then
+        GetMobByID(YingID):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos());
         SpawnMob(YingID):updateEnmity(target);
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDeath(mob, player, isKiller)
+end;
 
-function onMobDeath(mob,killer,ally)
-    local YingID = 17330183;
+function onMobDespawn(mob)
+    local Ying = GetMobByID(17330183);
+    local dynaLord = GetMobByID(17330177);
     -- localVars clear on death, so setting it on its partner
-    GetMobByID(YingID):setLocalVar("YangToD", os.time());
-
-    -- This is not retail, this is not how you pop DynaLord:
-    if (GetMobAction(17330177) == ACTION_NONE and GetMobAction(YingID) == ACTION_NONE) then
-        -- GetMobByID(17330177):setLocalVar("timeLimit", os.time() + 1800); -- Time for the 30min limit
-        SpawnMob(17330177); -- Dynamis Lord
+    Ying:setLocalVar("YangToD", os.time());
+    if (dynaLord:getLocalVar("physImmune") == 0) then
+        dynaLord:delMod(dsp.mod.UDMGPHYS, 100);
+        dynaLord:delMod(dsp.mod.UDMGRANGE, 100);
+        if (dynaLord:getLocalVar("magImmune") == 1) then -- other dragon is also dead
+            dynaLord:setLocalVar("physImmune", 2);
+            dynaLord:setLocalVar("magImmune", 2);
+        else
+            dynaLord:setLocalVar("physImmune", 1);
+        end
     end
 end;

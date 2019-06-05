@@ -1,43 +1,21 @@
 -----------------------------------
 -- Area: Qufim Island
--- NPC:  Giant Footprint
+--  NPC: Giant Footprint
 -- Involved in quest: Regaining Trust
--- @pos 501 -11 354 126
+-- !pos 501 -11 354 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Qufim_Island/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Qufim_Island/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.GIGANTIC_FOOTPRINT)
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(GIGANTIC_FOOTPRINT);
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("updateRESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("finishRESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

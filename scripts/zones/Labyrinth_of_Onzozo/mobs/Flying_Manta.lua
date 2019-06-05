@@ -1,41 +1,18 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
 --  MOB: Flying Manta
--- Note: Place holder Lord of Onzozo
+-- Note: PH for Lord of Onzozo and Peg Powler
+-----------------------------------
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 774, 1, dsp.regime.type.GROUNDS)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-
-    checkGoVregime(ally,mob,774,1);
-
-    local mob = mob:getID();
-    if (Lord_of_Onzozo_PH[mob] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Lord_of_Onzozo");
-        if (ToD <= os.time(t) and GetMobAction(Lord_of_Onzozo) == 0) then
-            if (math.random((1),(25)) == 5) then
-                UpdateNMSpawnPoint(Lord_of_Onzozo);
-                GetMobByID(Lord_of_Onzozo):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Lord_of_Onzozo", mob);
-                DeterMob(mob, true);
-            end
-        end
-    elseif (Peg_Powler_PH[mob] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Peg_Powler");
-        if (ToD <= os.time(t) and GetMobAction(Peg_Powler) == 0) then
-            if (math.random((1),(25)) == 5) then
-                UpdateNMSpawnPoint(Peg_Powler);
-                GetMobByID(Peg_Powler):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Peg_Powler", mob);
-                DeterMob(mob, true);
-            end
-        end
-    end;
-end;
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.LORD_OF_ONZOZO_PH, 4, math.random(75600, 86400)) -- 18 to 24 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.PEG_POWLER_PH, 4, math.random(7200, 57600)) -- 2 to 16 hours
+end

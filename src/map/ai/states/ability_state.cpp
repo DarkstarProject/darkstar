@@ -32,6 +32,7 @@ This file is part of DarkStar-server source code.
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
+#include "../../utils/charutils.h"
 
 CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abilityid) :
     CState(PEntity, targid),
@@ -84,10 +85,15 @@ void CAbilityState::ApplyEnmity()
             !(m_PAbility->getCE() == 0 && m_PAbility->getVE() == 0))
         {
             CMobEntity* mob = (CMobEntity*)PTarget;
-            mob->m_OwnerID.id = m_PEntity->id;
-            mob->m_OwnerID.targid = m_PEntity->targid;
+            if (!mob->CalledForHelp())
+            {
+                mob->m_OwnerID.id = m_PEntity->id;
+                mob->m_OwnerID.targid = m_PEntity->targid;
+            }
             mob->updatemask |= UPDATE_STATUS;
-            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE());
+            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE(), false, m_PAbility->getID() == ABILITY_CHARM);
+            if (mob->m_HiPCLvl < m_PEntity->GetMLevel())
+                mob->m_HiPCLvl = m_PEntity->GetMLevel();
         }
     }
     else if (PTarget->allegiance == m_PEntity->allegiance)
@@ -111,6 +117,10 @@ bool CAbilityState::Update(time_point tick)
             m_PEntity->OnAbility(*this, action);
             m_PEntity->PAI->EventHandler.triggerListener("ABILITY_USE", m_PEntity, GetTarget(), m_PAbility.get(), &action);
             m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+            if (auto target = GetTarget())
+            {
+                target->PAI->EventHandler.triggerListener("ABILITY_TAKE", target, m_PEntity, m_PAbility.get(), &action);
+            }
         }
         Complete();
     }
@@ -130,22 +140,30 @@ bool CAbilityState::CanUseAbility()
     {
         auto PAbility = GetAbility();
         auto PChar = static_cast<CCharEntity*>(m_PEntity);
-        if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId()))
+        if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId(), PAbility->getRecastTime()))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             return false;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA)) {
+        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}) ||
+            (!PAbility->isPetAbility() && !charutils::hasAbility(PChar, PAbility->getID())) ||
+            (PAbility->isPetAbility() && !charutils::hasPetAbility(PChar, PAbility->getID() - 496)))
+        {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
             return false;
         }
-        std::unique_ptr<CMessageBasicPacket> errMsg;
+        std::unique_ptr<CBasicPacket> errMsg;
         auto PTarget = GetTarget();
         if (PChar->IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
         {
             if (PChar != PTarget && distance(PChar->loc.p, PTarget->loc.p) > PAbility->getRange())
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
+                return false;
+            }
+            if (!m_PEntity->PAI->TargetFind->canSee(&PTarget->loc.p))
+            {
+                m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, PAbility->getID(), 0, MSGBASIC_CANNOT_PERFORM_ACTION);
                 return false;
             }
             if (PAbility->getID() >= ABILITY_HEALING_RUBY)

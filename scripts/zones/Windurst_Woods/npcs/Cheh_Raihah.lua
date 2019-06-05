@@ -1,43 +1,17 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Cheh Raihah
---    
------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
+-- Area: Windurst Woods
+--  NPC: Cheh Raihah
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    --player:startEvent(0xf7); or player:showText(npc,801); ???
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    -- player:startEvent(247) or player:showText(npc,801) ???
+end
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+end

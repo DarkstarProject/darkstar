@@ -2,27 +2,20 @@
 -- Area: Rolanberry Fields
 --  MOB: Goblin Leecher
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
+local ID = require("scripts/zones/Rolanberry_Fields/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/regimes")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/zones/Rolanberry_Fields/TextIDs");
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 86, 2, dsp.regime.type.FIELDS)
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,86,2);
-
-    if (ENABLE_ACP == 1 and (ally:hasKeyItem(JUG_OF_GREASY_GOBLIN_JUICE) == false) and ally:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
+    if ENABLE_ACP == 1 and player:getCurrentMission(ACP) >= dsp.mission.id.acp.THE_ECHO_AWAKENS and not player:hasKeyItem(dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE) then
         -- Guesstimating 15% chance
-        if (math.random(1,100) >= 85) then
-            ally:addKeyItem(JUG_OF_GREASY_GOBLIN_JUICE);
-            ally:messageSpecial(KEYITEM_OBTAINED,JUG_OF_GREASY_GOBLIN_JUICE);
+        if math.random(100) <= 15 then
+            player:addKeyItem(dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE)
         end
     end
-
-end;
+end

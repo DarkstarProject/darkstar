@@ -3,15 +3,10 @@
 -- Zone: Attohwa_Chasm (7)
 --
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/Attohwa_Chasm/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Attohwa_Chasm/IDs")
+require("scripts/globals/settings")
+require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -47,13 +42,11 @@ function onInitialize(zone)
     zone:registerRegion(29, -238, 5, -118, 0,0,0);
     zone:registerRegion(30, -385.349, 5, -173.973, 0,0,0);
 
-    -- Tiamat
-    SetRespawnTime(16806227, 86400, 259200);
-end;
+    UpdateNMSpawnPoint(ID.mob.TIAMAT);
+    GetMobByID(ID.mob.TIAMAT):setRespawnTime(math.random(86400, 259200));
 
------------------------------------
--- onZoneIn
------------------------------------
+    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
+end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -63,76 +56,38 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
-    local Gasponia_Offset = 16806299;
-
-    if (region:GetRegionID() <= 30) then
     -- TODO: Gasponia's shouldn't "always" poison you. However, in retail regions constantly reapply themselves without having to re-enter the region. In DSP that doesn't happen so I'm leaving it as-is for now.
-        for i = 0, 30, 1 do
-            if (region:GetRegionID() == i) then
-            local Gasponia_Offset = Gasponia_Offset + (i -1);
-                GetNPCByID(Gasponia_Offset):openDoor(3);
-                -- print("i is "..i);
-            -- printf("Player is: %s | Flower ID is: %i",player:getName(), Gasponia_Offset);
+    local regionId = region:GetRegionID();
+    if (regionId <= 30) then
+        local gasponia = GetNPCByID(ID.npc.GASPONIA_OFFSET + (regionId - 1));
+        if (gasponia ~= nil) then
+            gasponia:openDoor(3);
+            if (not player:hasStatusEffect(dsp.effect.POISON)) then
+                player:addStatusEffect(dsp.effect.POISON, 15, 0, math.random(30,60));
+                player:messageSpecial(ID.text.GASPONIA_POISON);
             end
-        end
-
-        if (player:hasStatusEffect(EFFECT_POISON) == false) then
-            player:messageSpecial(GASPONIA_POISON);
-            local duration = math.random(30,60);
-            player:addStatusEffect(EFFECT_POISON, 15, 0, duration);
         end
     end
 end;
-
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
 
------------------------------------
--- onGameHour
------------------------------------
-
-function onGameHour()
-    local npc = GetNPCByID(16806283);
-    if (npc ~= nil) then
-        npc:openDoor(); -- Attohwa Chasm miasma
-    end
+function onGameHour(zone)
+    --[[
+        the hard-coded id that was here was wrong. there are 22 miasmas in attohwa chasm
+        starting at ID.npc.MIASMA_OFFSET. some are supposed to toggle open, but need retail test
+        to determine which.  for now, they're just statically set per npc_list.animation
+    --]]
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

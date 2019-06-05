@@ -1,51 +1,26 @@
 -----------------------------------
 -- Area: Palborough Mines
--- NPC:  ???
+--  NPC: ???
 -- Involved In Quest: The Talekeeper's Truth
--- @zone 143
--- @pos 15 -31 -94
+-- !pos 15 -31 -94 143
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Palborough_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Palborough_Mines/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    
-    if (player:getVar("theTalekeeperTruthCS") == 3) then
-        player:messageSpecial(SENSE_OF_FOREBODING);
-        SpawnMob(17363318,180):updateClaim(player);
+function onTrigger(player, npc)
+    if player:getVar("theTalekeeperTruthCS") == 3 and npcUtil.popFromQM(player, npc, ID.mob.NI_GHU_NESTFENDER, {hide = 0}) then
+        player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

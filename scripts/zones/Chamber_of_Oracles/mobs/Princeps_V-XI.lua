@@ -3,17 +3,8 @@
 --  MOB: Princeps V-XI
 -- Zilart 6 Fight
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
-
-function onMobDeath(mob,killer,ally)
-end;
+function onMobDeath(mob, player, isKiller)
+end

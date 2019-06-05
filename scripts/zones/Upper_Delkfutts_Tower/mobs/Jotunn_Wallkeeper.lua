@@ -2,14 +2,10 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Jotunn Wallkeeper
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,786,1);
-    checkGoVregime(ally,mob,789,2);
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 786, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 789, 2, dsp.regime.type.GROUNDS)
+end

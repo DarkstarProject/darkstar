@@ -1,25 +1,19 @@
 -----------------------------------------
---    ID: 16226
---    Pamama Tank
---    When used, you will obtain one Pamama au lait
+-- ID: 16226
+-- Pamama Tank
+-- When used, you will obtain one Pamama au lait
 -----------------------------------------
-
------------------------------------------
--- OnItemCheck
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
+    local result = 0
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return result
+end
 
 function onItemUse(target)
-    target:addItem(4302,1);
-end;
+    target:addItem(4302,1)
+end

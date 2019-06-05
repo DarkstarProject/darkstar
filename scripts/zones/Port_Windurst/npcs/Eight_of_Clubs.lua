@@ -1,43 +1,20 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC:  Eight of Clubs
---    Working 100%
+-- Area: Port Windurst
+--  NPC: Eight of Clubs
+-- Working 100%
 -----------------------------------
-
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    player:startEvent(0xdb);
+    player:startEvent(219);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
-
-
-

@@ -1,17 +1,17 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Timeworn Warrior
+--   NM: Timeworn Warrior
+-----------------------------------
+require("scripts/globals/mobs")
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.HP_DRAIN)
+end
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,51,1);
-    checkRegime(ally,mob,52,1);
-    checkRegime(ally,mob,53,2);
-    checkRegime(ally,mob,54,3);
-end;
+function onMobDeath(mob, player, isKiller)
+end

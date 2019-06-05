@@ -3,72 +3,91 @@
 -- Zone: Arrapago_Reef (54)
 --
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Arrapago_Reef/TextIDs");
-
------------------------------------
--- onInitialize
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-zone:registerRegion(1,-462,-4,-420,-455,-1,-392);
-end;
-
------------------------------------
--- onZoneIn
------------------------------------
+    zone:registerRegion(1,-462,-4,-420,-455,-1,-392) -- approach the Cutter
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-180.028,-10.335,-559.987,182);
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-456, -3, -405, 64)
     end
-    return cs;
-end;
 
------------------------------------
--- afterZoneIn
------------------------------------
+    if prevZone == dsp.zone.THE_ASHU_TALIF then
+        if player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2 then
+            player:setPos(-456, -3, -405, 64)
+            cs = 9
+        elseif player:getVar("AgainstAllOdds") == 3 then
+            cs = 238
+        end
+    elseif prevZone == dsp.zone.CAEDARVA_MIRE then
+        if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 0 then
+            cs = 13
+        end
+    elseif prevZone == dsp.zone.ILRUSI_ATOLL then
+        player:setPos(26, -7, 606, 222)
+    end
+    return cs
+end
 
 function afterZoneIn(player)
-    player:entityVisualPacket("1pb1");
-    player:entityVisualPacket("2pb1");
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
+    player:entityVisualPacket("1pb1")
+    player:entityVisualPacket("2pb1")
+end
 
 function onRegionEnter(player,region)
-if (player:getCurrentMission(TOAU) ==  THE_BLACK_COFFIN and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) and player:getVar("TOAUM15") ==0) then
-player:startEvent(0x0008);
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
+        player:startEvent(8)
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 1) then
+        player:startEvent(14)
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.TESTING_THE_WATERS and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
+        player:startEvent(15)
+    elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_ACCEPTED and player:getVar("AgainstAllOdds") == 1) then
+        player:startEvent(237)
+    end
 end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-if (csid == 0x0008) then
-player:setVar("TOAUM15",1);
-player:delKeyItem(EPHRAMADIAN_GOLD_COIN);
-player:startEvent(0x0022,1,1,1,1,1,1,1,1);
-elseif (csid == 0x0022 and player:getVar("TOAUM15") == 1) then
-player:startEvent(0x0023);
-end    
-end;
+    if (csid == 8) then
+        player:setVar("AhtUrganStatus",1)
+        player:startEvent(34,1,1,1,1,1,1,1,1)
+    elseif (csid == 9) then
+        player:setVar("AhtUrganStatus",3)
+        player:setPos(0,0,0,0,53)
+    elseif (csid == 13) then
+        player:setVar("AhtUrganStatus",1)
+    elseif (csid == 14) then
+        player:completeMission(TOAU,dsp.mission.id.toau.PREVALENCE_OF_PIRATES)
+        player:setVar("AhtUrganStatus",0)
+        player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
+        player:addMission(TOAU,dsp.mission.id.toau.SHADES_OF_VENGEANCE)
+    elseif (csid == 15) then
+        player:setVar("AhtUrganStatus",1)
+        player:setPos(0,0,0,0,57)
+    elseif (csid == 34 and player:getVar("AhtUrganStatus") == 1) then
+        player:startEvent(35)
+    elseif (csid == 90) then -- enter instance: the ashu talif
+        player:setPos(0,0,0,0,60)
+    elseif (csid == 108) then -- enter instance: illrusi atoll
+        player:setPos(0,0,0,0,55)
+    elseif (csid == 237) then
+        player:startEvent(240)
+    elseif csid == 238 then
+        npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS, { item=15266, var="AgainstAllOdds"})
+    elseif (csid == 240) then
+        player:setVar("AgainstAllOdds",2)
+    end
+end

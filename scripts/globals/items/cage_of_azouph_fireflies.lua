@@ -1,25 +1,20 @@
 -----------------------------------------
---    ID: 5343
---    Azouph Fireflies
---  Transports the user to Azouph Isle
+-- ID: 5343
+-- Azouph Fireflies
+-- Transports the user to Azouph Isle
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/teleports");
------------------------------------------
--- OnItemCheck
+require("scripts/globals/teleports")
+require("scripts/globals/status")
+require("scripts/globals/zone")
 -----------------------------------------
 
 function onItemCheck(target)
-    if (target:getZone() == 69) then
-        return 0;
+    if target:getZoneID() == dsp.zone.LEUJAOAM_SANCTUM then
+        return 0
     end
-    return 56;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 56
+end
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,FIREFLIES_AZOUPH,0,1);
-end;
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.AZOUPH,0,1)
+end

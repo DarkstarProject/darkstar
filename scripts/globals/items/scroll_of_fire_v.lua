@@ -1,21 +1,13 @@
 -----------------------------------------
---    ID: 4756
---    Scroll of Fire V
---    Teaches the Black magic Fire V
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4756
+-- Scroll of Fire V
+-- Teaches the Black magic Fire V
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(148);
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return target:canLearnSpell(148)
+end
 
 function onItemUse(target)
-    target:addSpell(148);
-end;
+    target:addSpell(148)
+end

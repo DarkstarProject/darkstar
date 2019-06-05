@@ -1,42 +1,21 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC:  Cumetouflaix
+--  NPC: Cumetouflaix
 -- Standard NPC
 -----------------------------------
-
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Port_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Port_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    player:messageSpecial(CUMETOUFLAIX_DIALOG);
+    player:messageSpecial(ID.text.CUMETOUFLAIX_DIALOG);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

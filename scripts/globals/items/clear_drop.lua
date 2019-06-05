@@ -1,29 +1,19 @@
 -----------------------------------------
 --  ID: 4259
 --  Item: Clear Drop
------------------------------------------
 --  Intelligence 5
 -----------------------------------------
-
-require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-local result = 0;
-    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
-        result = 111;
+    if (target:hasStatusEffect(dsp.effect.MEDICINE)) then
+        return dsp.msg.basic.ITEM_NO_USE_MEDICATED
     end
-return result;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    return 0
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_INT_BOOST,5,0,600);
-    target:addStatusEffect(EFFECT_MEDICINE,0,0,3600);
-end;
+    target:addStatusEffect(dsp.effect.INT_BOOST,5,0,600)
+    target:addStatusEffect(dsp.effect.MEDICINE,0,0,3600)
+end

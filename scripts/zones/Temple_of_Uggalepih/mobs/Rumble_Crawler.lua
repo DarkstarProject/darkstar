@@ -1,25 +1,10 @@
 -----------------------------------
--- Area: Temple Of Uggalepih
+-- Area: Temple of Uggalepih
 --  MOB: Rumble Crawler
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,791,2);
-end;
-
------------------------------------
--- onMobDespawn
------------------------------------
-
-function onMobDespawn(mob)
-    -- Rumble Crawler that spawns in place of Habetrot
-    if(mob:getID() == 17428812) then
-        GetNPCByID(17428871):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
-    end
-end;
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 791, 2, dsp.regime.type.GROUNDS)
+end

@@ -3,28 +3,21 @@
 -- Item: High Healing Harness
 -- Item Effect: Restores 90-105 HP
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
+    if (target:getHP() == target:getMaxHP()) then
+        return dsp.msg.basic.ITEM_UNABLE_TO_USE
+    end
+    return 0
+end
 
 function onItemUse(target)
-    local hpHeal = math.random(90,105);
-
-    local dif = target:getMaxHP() - target:getHP();
+    local hpHeal = math.random(90,105)
+    local dif = target:getMaxHP() - target:getHP()
     if (hpHeal > dif) then
-        hpHeal = dif;
+        hpHeal = dif
     end
-    target:addHP(hpHeal);
-    target:messageBasic(263,0,hpHeal);
-end;
+    target:addHP(hpHeal)
+    target:messageBasic(dsp.msg.basic.RECOVERS_HP,0,hpHeal)
+end

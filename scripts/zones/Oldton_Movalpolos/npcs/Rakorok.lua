@@ -1,42 +1,19 @@
 -----------------------------------
---  Area: Oldton Movalpolos
---  NPC:  Rakorok
+-- Area: Oldton Movalpolos
+--  NPC: Rakorok
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/Oldton_Movalpolos/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrigger(player, npc)
+    npc:showText(npc, ID.text.RAKOROK_DIALOGUE)
+end
 
-function onTrigger(player,npc)
-    npc:showText(npc, RAKOROK_DIALOGUE); 
-end;
+function onEventUpdate(player, csid, option)
+end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-end;
-
+function onEventFinish(player, csid, option)
+end

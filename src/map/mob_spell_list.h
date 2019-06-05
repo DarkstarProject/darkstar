@@ -35,7 +35,7 @@
 
 typedef struct
 {
-	uint16 spellId;
+	SpellID spellId;
 	uint16 min_level;
 	uint16 max_level;
 } MobSpell_t;
@@ -46,7 +46,7 @@ public:
 
 	CMobSpellList();
 
-  void AddSpell(uint16 spellId, uint16 minLvl, uint16 maxLvl);
+  void AddSpell(SpellID spellId, uint16 minLvl, uint16 maxLvl);
 
   // main spell list
   std::vector<MobSpell_t> m_spellList;

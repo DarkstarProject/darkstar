@@ -1,52 +1,39 @@
 -----------------------------------
 -- Area: Al'Taieu
--- NPC:  ??? (Jailer of Love and Absolute Virtue Spawn)
+--  NPC: ??? (Jailer of Love and Absolute Virtue Spawn)
 -- Allows players to spawn the Jailer of Love by trading the Fourth Virtue, Fifth Virtue and Sixth Virtue to a ???.
 -- Allows players to spawn Absolute Virtue by killing Jailer of Love.
--- @pos , 431 -0 -603 
+-- !pos , 431 -0 -603
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/AlTaieu/TextIDs");
-
-
------------------------------------
--- onTrade Action
+local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    -- Trade the Fourth Virtue, Fifth Virtue and Sixth Virtue
-    --[[if (GetMobAction(16912848) == 0 and GetMobAction(16912876) == 0 and trade:hasItemQty(1848,1) and trade:hasItemQty(1847,1) and 
-    trade:hasItemQty(1849,1) and trade:getItemCount() == 3) then
+    --[[
+    -- JAILER OF LOVE
+    if (
+        not GetMobByID(ID.mob.JAILER_OF_LOVE):isSpawned() and
+        not GetMobByID(ID.mob.ABSOLUTE_VIRTUE):isSpawned() and
+        trade:hasItemQty(1848,1) and -- fourth_virtue
+        trade:hasItemQty(1847,1) and -- fifth_virtue
+        trade:hasItemQty(1849,1) and -- sixth_virtue
+        trade:getItemCount() == 3
+    ) then
         player:tradeComplete();
-        SpawnMob(16912848,900):updateClaim(player); -- Spawn Jailer of Love
-    end]]
-    
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+        SpawnMob(ID.mob.JAILER_OF_LOVE):updateClaim(player);
+    end
+    --]]
+end;
 
 function onTrigger(player,npc)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action 
------------------------------------
-
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
 end;

@@ -2,15 +2,11 @@
 -- Area: Ifrit's Cauldron
 --  MOB: Volcanic Bomb
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,760,2);
-    checkGoVregime(ally,mob,761,2);
-    checkGoVregime(ally,mob,762,2);
+function onMobDeath(mob, player, isKiller)
+    dsp.regime.checkRegime(player, mob, 760, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 761, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 762, 2, dsp.regime.type.GROUNDS)
 end;

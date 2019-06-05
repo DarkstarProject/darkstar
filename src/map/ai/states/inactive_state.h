@@ -39,7 +39,6 @@ protected:
     virtual void Cleanup(time_point tick) override;
 private:
     duration m_duration;
-    bool m_couldUpdate {true};
     bool m_canChangeState {false};
 };
 

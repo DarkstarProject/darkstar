@@ -28,60 +28,67 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
 
-#include "../entities/petentity.h"
-
 enum PETID
 {
-	PETID_FIRESPIRIT         = 0,
-	PETID_ICESPIRIT          = 1,
-	PETID_AIRSPIRIT          = 2,
-	PETID_EARTHSPIRIT        = 3,
-	PETID_THUNDERSPIRIT      = 4,
-	PETID_WATERSPIRIT        = 5,
-	PETID_LIGHTSPIRIT        = 6,
-	PETID_DARKSPIRIT         = 7,
-	PETID_CARBUNCLE          = 8,
-	PETID_FENRIR             = 9,
-	PETID_IFRIT              = 10,
-	PETID_TITAN              = 11,
-	PETID_LEVIATHAN          = 12,
-	PETID_GARUDA             = 13,
-	PETID_SHIVA              = 14,
-	PETID_RAMUH              = 15,
-	PETID_DIABOLOS           = 16,
-	PETID_ALEXANDER          = 17,
-	PETID_ODIN               = 18,
-	PETID_ATOMOS             = 19,
-	PETID_CAIT_SITH          = 20,
-	PETID_WYVERN             = 48,
-	PETID_HARLEQUINFRAME     = 69,
+    PETID_FIRESPIRIT         = 0,
+    PETID_ICESPIRIT          = 1,
+    PETID_AIRSPIRIT          = 2,
+    PETID_EARTHSPIRIT        = 3,
+    PETID_THUNDERSPIRIT      = 4,
+    PETID_WATERSPIRIT        = 5,
+    PETID_LIGHTSPIRIT        = 6,
+    PETID_DARKSPIRIT         = 7,
+    PETID_CARBUNCLE          = 8,
+    PETID_FENRIR             = 9,
+    PETID_IFRIT              = 10,
+    PETID_TITAN              = 11,
+    PETID_LEVIATHAN          = 12,
+    PETID_GARUDA             = 13,
+    PETID_SHIVA              = 14,
+    PETID_RAMUH              = 15,
+    PETID_DIABOLOS           = 16,
+    PETID_ALEXANDER          = 17,
+    PETID_ODIN               = 18,
+    PETID_ATOMOS             = 19,
+    PETID_CAIT_SITH          = 20,
+    PETID_WYVERN             = 48,
+    PETID_HARLEQUINFRAME     = 69,
     PETID_VALOREDGEFRAME     = 70,
     PETID_SHARPSHOTFRAME     = 71,
     PETID_STORMWAKERFRAME    = 72,
-	PETID_ADVENTURING_FELLOW = 73,
-	PETID_CHOCOBO            = 74
+    PETID_ADVENTURING_FELLOW = 73,
+    PETID_CHOCOBO            = 74,
+
+    // Trusts are 896 and above
+    // PETID_SHANTOTTO          = 896
+    PETID_SHANTOTTO          = 75
+    // Todo: change how this works so trusts don't need PetID at all..
 };
 
 
 class CBattleEntity;
+class CPetEntity;
+class CTrustEntity;
 
 namespace petutils
 {
-	void	LoadPetList();
-	void	FreePetList();
+	void LoadPetList();
+	void FreePetList();
 
-	void	SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
-  void  SpawnMobPet(CBattleEntity* PMaster, uint32 PetID);
-  void  DetachPet(CBattleEntity* PMaster);
-  void  DespawnPet(CBattleEntity* PMaster);
-  void  AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
-  void  RetreatToMaster(CBattleEntity* PMaster);
-  void  MakePetStay(CBattleEntity* PMaster);
-  int16 PerpetuationCost(uint32 id, uint8 level);
-  void  Familiar(CBattleEntity* PPet);
-  void  LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
-  void  LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize);
-  void  FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet);
+	void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
+    void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID);
+    void SpawnTrust(CCharEntity * PMaster, uint32 TrustID);
+    void DetachPet(CBattleEntity* PMaster);
+    void DespawnPet(CBattleEntity* PMaster);
+    void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
+    void RetreatToMaster(CBattleEntity* PMaster);
+    int16 PerpetuationCost(uint32 id, uint8 level);
+    void Familiar(CBattleEntity* PPet);
+    void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
+    void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize);
+    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet);
+    bool CheckPetModType(CBattleEntity* PPet, PetModType petmod);
+    CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID);
 };
 
 #endif
