@@ -836,7 +836,7 @@ function fSTR(atk_str, def_vit, weapon_rank)
     if weapon_rank == 0 then
         lower_cap = -1
     end
-    fSTR = utils.clamp(weapon_rank, lower_cap, weapon_rank + 8)
+    fSTR = utils.clamp(fSTR, lower_cap, weapon_rank + 8)
     return fSTR
 end
 
@@ -869,7 +869,7 @@ function fSTR2(atk_str, def_vit, weapon_rank)
     elseif weapon_rank == 1 then
         lower_cap = -3
     end
-    fSTR2 = utils.clamp(weapon_rank, lower_cap, (weapon_rank + 8) * 2)
+    fSTR2 = utils.clamp(fSTR2, lower_cap, (weapon_rank + 8) * 2)
     return fSTR2
 end
 
