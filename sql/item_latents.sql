@@ -24,6 +24,11 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
 -- -------------------------------------------------------
+-- Abyss Sollerets +2
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10737, 63, 10, 13, 64);   -- +2: Enhances "Last Resort" effect
+
+-- -------------------------------------------------------
 -- Oneiros Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11671, 302, 2, 55, 100);  -- Triple Attack +2% when mp is greater than or equal to 100
@@ -48,42 +53,49 @@ INSERT INTO `item_latents` VALUES(13289, 28, 10, 2, 76);    -- "Magic Atk. Bonus
 -- Opo-opo crown
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4468);  -- HP +50 (pamamas)
-INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4468);  -- MP +50
-INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468); -- CHR +14
-INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596);  -- Opo-opo crown HP +50 (wild pamamas)
-INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596);  -- MP +50
-INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14
+INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596);  -- HP +50 (wild pamamas)
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4468);  -- MP +50 (pamamas)
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596);  -- MP +50 (wild pamamas)
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468); -- CHR +14 (pamamas)
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14 (wild pamamas)
 
 -- -------------------------------------------------------
 -- Carapace Gauntlets
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14008, 23, 8, 0, 75);     -- Attack+8 when HP <=75%
 INSERT INTO `item_latents` VALUES(14008, 1, 16, 0, 75);     -- DEF:16 whem HP <= 75%
+INSERT INTO `item_latents` VALUES(14008, 23, 8, 0, 75);     -- Attack+8 when HP <=75%
 
 -- -------------------------------------------------------
 -- Cpc. Gauntlets +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14009, 23, 9, 0, 75);     -- Attack+9 when HP <=75%
 INSERT INTO `item_latents` VALUES(14009, 1, 17, 0, 75);     -- DEF:17 whem HP <= 75%
+INSERT INTO `item_latents` VALUES(14009, 23, 9, 0, 75);     -- Attack+9 when HP <=75%
 
 -- -------------------------------------------------------
--- Melody Earring (+1)
+-- Melody Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14725, 68, 5, 25, 0);     -- EVA+5 song/roll active
+
+-- -------------------------------------------------------
+-- Melody Earring +1
+-- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14726, 68, 6, 25, 0);     -- EVA+6 song/roll active
 
 -- -------------------------------------------------------
--- Abyss Sollerets (+1) (+2)
+-- Abyss Sollerets
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(10737, 63, 10, 13, 64);   -- +2: Enhances "Last Resort" effect
 INSERT INTO `item_latents` VALUES(15139, 63, 10, 13, 64);   -- Enhances "Last Resort" effect
-INSERT INTO `item_latents` VALUES(15672, 63, 10, 13, 64);   -- +1: Enhances "Last Resort" effect
 
 -- -------------------------------------------------------
 -- Berserker's Torque
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15530, 368, 10, 10, 0);   -- HP-50/Tick of TP while weapon drawn
 INSERT INTO `item_latents` VALUES(15530,370,-50,10,0);
+
+-- -------------------------------------------------------
+-- Abyss Sollerets +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15672, 63, 10, 13, 64);   -- +1: Enhances "Last Resort" effect
 
 -- -------------------------------------------------------
 -- Balrahn's Ring
@@ -135,48 +147,80 @@ INSERT INTO `item_latents` VALUES(16355, 23, 25, 0, 25);    -- Attack+25 when HP
 -- -------------------------------------------------------
 -- Avengers
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 92);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 82);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 73);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 64);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 55);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 46);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 37);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 28);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 19);
-INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 10);
 INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 1);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 10);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 19);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 28);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 37);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 46);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 55);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 64);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 73);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 82);
+INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 92);
 
 INSERT INTO `item_latents` VALUES(16686, 165, 7, 59, 3);    -- Arcanabane - Vs. arcana: Critical hit rate +7%
 INSERT INTO `item_latents` VALUES(16792, 25, 7, 59, 19);    -- Goshisho's Scythe - Vs. undead: Accuracy+7
 INSERT INTO `item_latents` VALUES(16899, 110, 5, 25, 0);    -- Hototogisu, parry skill +5 song/roll active
+
+-- -------------------------------------------------------
+-- Amanojaku  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 1);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 10);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 19);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 28);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 37);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 46);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 55);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 64);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 73);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 82);
+INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 92);
+
 INSERT INTO `item_latents` VALUES(16912, 165, 5, 59, 17);   -- Kitsutsuki - Vs. plantoids: Critical hit rate +5%
 INSERT INTO `item_latents` VALUES(16968, 165, 7, 59, 3);    -- Kamewari - Vs. arcana: Critical hit rate +7%
 INSERT INTO `item_latents` VALUES(16969, 165, 5, 59, 9);    -- Onikiri - Vs. demons: Critical hit rate +5%
-INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2);    -- Mistilteinn drains 30TP if TP >= 30
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2);     -- Mistilteinn adds Refresh 1MP per tick
+INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2);    -- Mistilteinn drains 30TP if TP >= 30
 INSERT INTO `item_latents` VALUES(17208, 26, 10, 59, 12);   -- Hamayumi - Vs. Empty: Ranged Accuracy+10
 INSERT INTO `item_latents` VALUES(17208, 66, 10, 59, 12);   -- Vs. Empty: Ranged Attack+10%
 INSERT INTO `item_latents` VALUES(17365, 8, 4, 25, 0);      -- Frenzy Fife, STR+4 song/roll active
 
-INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4468); -- Primate Staff
-INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4468);
-INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4596);
-INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4596);
-INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4468); -- Primate Staff +1
-INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4468);
-INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4596);
-INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4596);
-INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4468); -- Kinkobo
-INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4468);
-INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4596);
-INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4596);
+INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4468); -- Primate Staff (pamamas)
+INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4596); -- (wild pamamas)
+INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4468); -- (pamamas)
+INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4596); -- (wild pamamas)
+INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4468); -- Primate Staff +1 (pamamas)
+INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4596); -- (wild pamamas)
+INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4468); -- (pamamas)
+INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4596); -- (wild pamamas)
+INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4468); -- Kinkobo (pamamas)
+INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4596); -- (wild pamamas)
+INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4468); -- (pamamas)
+INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4596); -- (wild pamamas)
 
 INSERT INTO `item_latents` VALUES(17759, 165, 7, 59, 20);   -- Koggelmander - Vs. vermin: Critical hit rate +7%
 INSERT INTO `item_latents` VALUES(17804, 25, 7, 59, 6);     -- Ushikirimaru - Vs. beasts: Accuracy+7
 INSERT INTO `item_latents` VALUES(17964, 165, 7, 59, 17);   -- Barkborer - Vs. plantoid: Critical hit rate +7%
-INSERT INTO `item_latents` VALUES(18256, 25, 1, 25, 0);     -- Orphic Egg, ACC+1 song/roll active
+
+-- -------------------------------------------------------
+-- Valiant Knife  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 1);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 10);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 19);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 28);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 37);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 46);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 55);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 64);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 73);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 82);
+INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 92);
+
 INSERT INTO `item_latents` VALUES(18256, 23, 1, 25, 0);     -- Orphic Egg, ATT+1 song/roll active
+INSERT INTO `item_latents` VALUES(18256, 25, 1, 25, 0);     -- Orphic Egg, ACC+1 song/roll active
 INSERT INTO `item_latents` VALUES(18256, 68, 1, 25, 0);     -- Orphic Egg, EVA+1 song/roll active
 INSERT INTO `item_latents` VALUES(18438, 165, 8, 59, 20);   -- Kumokirimaru - Vs. vermin: Critical hit rate +8%
 
@@ -208,29 +252,7 @@ INSERT INTO `item_latents` VALUES(27343, 63, 10, 13, 64);   -- Fallen's Solleret
 INSERT INTO `item_latents` VALUES(28235,169,25,26,2);       -- Hachiya Kyahan: Dusk to dawn: Movement speed +25%
 INSERT INTO `item_latents` VALUES(28256,169,25,26,2);       -- Hachiya Kyahan +1: Dusk to dawn: Movement speed +25%
 
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 92);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 82);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 73);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 64);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 55);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 46);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 37);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 28);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 19);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 10);
-INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 1);
-
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 92);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 82);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 73);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 64);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 55);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 46);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 37);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 28);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 19);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 10);
-INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 1);
+-- Items below still need sorted with primary keys
 
 -- -------------------------------------------------------
 -- Carapace Helm
