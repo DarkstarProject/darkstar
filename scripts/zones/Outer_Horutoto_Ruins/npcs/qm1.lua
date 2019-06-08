@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins (194)
---  NPC: ???
+-- NPC: ???
 -- Involved In Mission: AMK6
--- pos 420 -10 745
+-- !pos 420 -10 745
 -----------------------------------
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")
 require("scripts/globals/npc_util")
@@ -56,22 +56,17 @@ function onTrigger(player, npc)
     end
 
     if
-        player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and
-        npcUtil.popFromQM(player, npc, cardian_ids, {radius=3, claim=true, hide=1, onSpawn=mob_setup_function})
+        player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE
+        --npcUtil.popFromQM(player, npc, cardian_ids, {radius=3, claim=true, hide=1, onSpawn=mob_setup_function})
     then
-        -- TODO: Just one for now, fire off an event once ALL cardians are dead
-        local cardian = GetMobByID(ID.mob.CUSTOM_CARDIAN_OFFSET)
-        cardian:addListener("DEATH", "AMK_"..cardian:getID(), function(m, killer)
-            m:removeListener("AMK_"..m:getID())
-            for _, member in pairs(killer:getAlliance()) do
-                if
-                    not member:hasKeyItem(dsp.ki.RIPE_STARFRUIT)
-                then
-                    npcUtil.giveKeyItem(member, dsp.ki.RIPE_STARFRUIT)
-                    member:addExp(500)
-                end
-            end
-        end)
+        -- lv50 Restriction
+        player:PrintToPlayer( "Confrontation Battles are not working yet." )
+        if
+            not player:hasKeyItem(dsp.ki.RIPE_STARFRUIT)
+        then
+            npcUtil.giveKeyItem(player, dsp.ki.RIPE_STARFRUIT)
+            player:addExp(500)
+        end
     end
 end
 

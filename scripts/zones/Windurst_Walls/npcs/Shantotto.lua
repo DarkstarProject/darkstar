@@ -64,7 +64,7 @@ function onTrigger(player,npc)
     elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and player:hasKeyItem(dsp.ki.RIPE_STARFRUIT) then
         local hasGil = player:getGil() >= 5000 and 0 or 1
         player:startEvent(507, 0, player:getGil(), hasGil, 6, 3500, 7, 0x0FE10FE0, 0)
-    elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE then
+    elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and player:getVar("AMK") == 0 then
         player:startEvent(508)
 
     -- Curses Foiled Again!

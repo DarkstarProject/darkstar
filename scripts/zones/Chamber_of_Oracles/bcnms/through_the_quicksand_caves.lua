@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
--- Name: Zilart Mission 6
+-- Name: Zilart Mission 6 (BCNM 192)
 -- !pos -221 -24 19 206
 -----------------------------------
 require("scripts/globals/battlefield")
