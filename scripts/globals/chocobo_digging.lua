@@ -8,7 +8,7 @@ require("scripts/globals/weather")
 require("scripts/globals/status")
 require("scripts/globals/utils")
 require("scripts/globals/zone")
-require("scripts/globals/keyitems");
+require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 -----------------------------------
 

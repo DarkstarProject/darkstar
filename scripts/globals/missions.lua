@@ -376,7 +376,7 @@ dsp.mission.id =
     -----------------------------------
     [dsp.mission.area[dsp.mission.log_id.AMK]] =
     {
-        A_MOOGLE_KUPO_DETAT                 = 0, -- (TODO: Location after CS)
+        A_MOOGLE_KUPO_DETAT                 = 0, -- ± --
         DRENCHED_IT_BEGAN_WITH_A_RAINDROP   = 1, -- ± --
         HASTEN_IN_A_JAM_IN_JEUNO            = 2, -- ± --
         WELCOME_TO_MY_DECREPIT_DOMICILE     = 3, -- (TODO: Restrict areas)
