@@ -27,7 +27,7 @@ npcUtil = {}
         do spawned mobs automatically aggro the player
     hide (number, default FORCE_SPAWN_QM_RESET_TIME)
         how long to hide the QM for after mobs die
-    funcMob (function)
+    onSpawn (function)
         if set, apply this function to each mob once
         it has been spawned
 ******************************************************************************* --]]
@@ -97,8 +97,8 @@ function npcUtil.popFromQM(player, qm, mobId, params)
         end
 
         -- apply function once per mob
-        if params.funcMob and type(params.funcMob) == "function" then
-            params.funcMob(player, mob)
+        if params.onSpawn and type(params.onSpawn) == "function" then
+            params.onSpawn(player, mob)
         end
 
         -- reappear the QM when all spawned mobs are dead, plus params.hide seconds

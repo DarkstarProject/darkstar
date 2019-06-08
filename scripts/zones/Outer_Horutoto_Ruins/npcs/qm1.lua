@@ -1,10 +1,12 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins (194)
---  NPC:
--- Involved In Mission:
+--  NPC: ???
+-- Involved In Mission: AMK6
+-- pos 420 -10 745
 -----------------------------------
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")
 require("scripts/globals/npc_util")
+require("scripts/globals/utils")
 require("scripts/globals/keyitems")
 require("scripts/globals/status")
 require("scripts/globals/missions")
@@ -55,7 +57,7 @@ function onTrigger(player, npc)
 
     if
         player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and
-        npcUtil.popFromQM(player, npc, cardian_ids, {radius=3, claim=true, hide=1, funcMob=mob_setup_function})
+        npcUtil.popFromQM(player, npc, cardian_ids, {radius=3, claim=true, hide=1, onSpawn=mob_setup_function})
     then
         -- TODO: Just one for now, fire off an event once ALL cardians are dead
         local cardian = GetMobByID(ID.mob.CUSTOM_CARDIAN_OFFSET)
