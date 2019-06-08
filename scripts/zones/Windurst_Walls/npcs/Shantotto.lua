@@ -62,8 +62,8 @@ function onTrigger(player,npc)
     elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX then
         player:startEvent(506)
     elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE and player:hasKeyItem(dsp.ki.RIPE_STARFRUIT) then
-        player:startEvent(507)
-        -- TODO: Where to check for 5000gil being available?
+        local hasGil = player:getGil() >= 5000 and 0 or 1
+        player:startEvent(507, 0, player:getGil(), hasGil, 6, 3500, 7, 0x0FE10FE0, 0)
     elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE then
         player:startEvent(508)
 
