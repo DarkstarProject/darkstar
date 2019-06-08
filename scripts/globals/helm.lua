@@ -1430,28 +1430,27 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
             npcUtil.giveKeyItem(player, dsp.ki.RAINBOW_BERRY)
         end
 
+        local amkChance = 20
         if 
             player:getCurrentMission(AMK) == dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE and
             broke ~= 1
         then
             if
                 helmType == dsp.helm.type.MINING and
-                not player:hasKeyItem(dsp.ki.STURDY_METAL_STRIP)
-                -- zoneId == dsp.zone.ZERUHN_MINES -- TODO: Find a way of filtering original RotZ areas
+                not player:hasKeyItem(dsp.ki.STURDY_METAL_STRIP) and
+                ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
             then
                 npcUtil.giveKeyItem(player, dsp.ki.STURDY_METAL_STRIP)
-            end
-            if
+            elseif
                 helmType == dsp.helm.type.LOGGING and
-                not player:hasKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
-                -- zoneId == dsp.zone.ZERUHN_MINES -- TODO: Find a way of filtering original RotZ areas
+                not player:hasKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK) and
+                ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
             then
                 npcUtil.giveKeyItem(player, dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
-            end
-            if
+            elseif
                 helmType == dsp.helm.type.HARVESTING and
-                not player:hasKeyItem(dsp.ki.SAVORY_LAMB_ROAST)
-                -- zoneId == dsp.zone.ZERUHN_MINES -- TODO: Find a way of filtering original RotZ areas
+                not player:hasKeyItem(dsp.ki.SAVORY_LAMB_ROAST) and
+                ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
             then
                 npcUtil.giveKeyItem(player, dsp.ki.SAVORY_LAMB_ROAST)
             end

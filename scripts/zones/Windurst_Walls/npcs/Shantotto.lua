@@ -197,7 +197,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 507 and option == 1 then -- Pay
         player:delGil(5000)
         player:delKeyItem(dsp.ki.RIPE_STARFRUIT)
-        player:setVar("AMK6", 1)
+        player:setVar("AMK", 1)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.RETRIBUTION_LEARNED)
     end
