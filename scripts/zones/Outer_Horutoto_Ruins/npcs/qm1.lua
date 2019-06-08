@@ -60,7 +60,7 @@ function onTrigger(player, npc)
         --npcUtil.popFromQM(player, npc, cardian_ids, {radius=3, claim=true, hide=1, onSpawn=mob_setup_function})
     then
         -- lv50 Restriction
-        player:PrintToPlayer( "Confrontation Battles are not working yet." )
+        player:PrintToPlayer("Confrontation Battles are not working yet.")
         if
             not player:hasKeyItem(dsp.ki.RIPE_STARFRUIT)
         then

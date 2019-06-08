@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Castle_Zvahl_Baileys
+-- Area: Castle_Zvahl_Baileys (161)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------

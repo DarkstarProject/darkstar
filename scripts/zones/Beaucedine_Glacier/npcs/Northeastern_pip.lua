@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Castle Zvahl Baileys 161
--- NPC: Shadowy Pillar
--- A Moogle Kupo d'Etat 13: A Challenge! You Could Be a Winner
--- !pos 373 -12 -15
+-- Area: Beaucedine Glacier
+--  NPC: Northeastern Pip
+-- Type: AMK
+-- !pos X 9.7923  Y -60.8249  Z -10.3649
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -11,8 +11,8 @@ end
 function onTrigger(player,npc)
     local youCouldBeAWinner = player:getCurrentMission(AMK) == dsp.mission.id.amk.A_CHALLENGE_YOU_COULD_BE_A_WINNER
 
-    if youCouldBeAWinner and player:getVar("AMK") == 0 then
-        player:startEvent(100, 1) -- Festival Souvenir Kupon (part 4)
+    if youCouldBeAWinner and player:getVar("AMK") == 3 then
+        player:startEvent(510)
     end
 end
 
@@ -20,7 +20,4 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if csid == 100 then
-        player:setVar("AMK", 1)
-    end
 end
