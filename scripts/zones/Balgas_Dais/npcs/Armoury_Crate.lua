@@ -354,7 +354,44 @@ local loot =
             {itemid = 844, droprate = 196},  -- Phoenix Feather
             {itemid = 1132, droprate = 225}, -- Square Of Raxa
         },
-    }
+    },
+    -- BCNM Royal Succession
+    [108] =
+    {
+        {
+            {itemid =  4596, droprate = 1000}, -- bunch_of_wild_pamamas
+        },
+        {
+            {itemid = 17572, droprate =  100}, -- dusky_staff
+            {itemid = 17995, droprate =  100}, -- jongleurs_dagger
+            {itemid = 17994, droprate =  100}, -- calveleys_dagger
+            {itemid = 17463, droprate =  100}, -- sealed_mace
+            {itemid = 17821, droprate =  100}, -- himmel_stock
+            {itemid = 17787, droprate =  100}, -- kagehide
+            {itemid = 17787, droprate =  100}, -- ohaguro
+        },
+        {
+            {itemid = 14736, droprate =  300}, -- genin_earring
+            {itemid = 13164, droprate =  300}, -- agile_gorget
+            {itemid = 13165, droprate =  300}, -- jagd_gorget
+        },
+        {
+            {itemid =   798, droprate =  100}, -- turquoise
+            {itemid =  4468, droprate =  100}, -- bunch_of_pamamas
+            {itemid =   829, droprate =  110}, -- square_of_silk_cloth
+            {itemid =   701, droprate =  140}, -- rosewood_log
+            {itemid =   792, droprate =  180}, -- pearl
+        },
+        {
+            {itemid =  4714, droprate =  250}, -- scroll_of_phalanx
+            {itemid =  4874, droprate =  250}, -- scroll_of_absorb
+            {itemid =  4717, droprate =  250}, -- scroll_of_refresh
+            {itemid =  4751, droprate =  250}, -- scroll_of_erase
+        },
+        {
+            {itemid =   748, droprate =  400}, -- gold_beastcoin
+        },
+    },
 }
 function onTrade(player,npc,trade)
 end

@@ -249,7 +249,7 @@ local battlefields = {
         { 9,  105, 1551},   -- Charming Trio (BS20)
         {10,  106, 1552},   -- Harem Scarem (BS30)
         {11,  107, 1553},   -- Early Bird Catches the Wyrm (KS99)
-     -- {12,  108, 1131},   -- Royal Succession (BS40)
+        {12,  108, 1131},   -- Royal Succession (BS40)
      -- {13,  109, 1177},   -- Rapid Raptors (BS50)
      -- {14,  110, 1130},   -- Wild Wild Whiskers (BS60)
      -- {15,  111, 1175},   -- Seasons Greetings (KS30)
