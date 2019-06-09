@@ -19,6 +19,8 @@ end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
+    -- Lose item even if you lose :(
+    player:delKeyItem(dsp.ki.NAVARATNA_TALISMAN)
 end
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -31,9 +33,6 @@ end
 
 function onBattlefieldLeave(player,battlefield,leavecode)
     -- print("leave code "..leavecode);
-
-    -- TODO: Lose item even if you lose :(
-    --player:delKeyItem(dsp.ki.NAVARATNA_TALISMAN)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
