@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Throne Room 165
---  MOB: Riko_Kupenreich
--- Mission 5-2 BCNM Fight
+-- MOB: Riko Kupenreich
+-- Mission AMK14 Fight
 -----------------------------------
 
 function onMobSpawn(mob)

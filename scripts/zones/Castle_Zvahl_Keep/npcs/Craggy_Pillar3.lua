@@ -26,7 +26,6 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    print(csid)
     if csid == 101 then
         if not player:hasKeyItem(dsp.ki.MEGA_BONANZA_KUPON) then
             npcUtil.giveKeyItem(player, dsp.ki.MEGA_BONANZA_KUPON)

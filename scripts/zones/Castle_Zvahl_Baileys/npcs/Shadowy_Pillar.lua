@@ -24,8 +24,6 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    player:PrintToPlayer(csid)
-    player:PrintToPlayer(option)
     if csid == 100 and option == 1 then
         -- start the race
         player:PrintToPlayer("Run to Flame of Fate...")
