@@ -59,6 +59,55 @@ local loot =
             {itemid =  4947, droprate =  125}, -- scroll_of_utsusemi_ni
         },
     },
+    -- BCNM Divine Punishers
+    [98] =
+    {
+        {
+            {itemid = 16726, droprate =  250}, -- forsetis_axe
+            {itemid = 17647, droprate =  250}, -- aramiss_rapier
+            {itemid = 17491, droprate =  250}, -- spartan_cesti
+            {itemid = 17429, droprate =  250}, -- dominion_mace
+        },
+        {
+            {itemid = 13054, droprate =  100}, -- fuma_kyahan
+            {itemid = 13555, droprate =  200}, -- peace_ring
+            {itemid = 13624, droprate =  200}, -- enhancing_mantle
+            {itemid = 13236, droprate =  150}, -- master_belt
+            {itemid = 13952, droprate =  100}, -- ochiudos_kote
+        },
+        {
+            {itemid =  4173, droprate =  100}, -- hi-reraiser
+            {itemid =  4175, droprate =   50}, -- vile_elixir_+1
+        },
+        {
+            {itemid =   774, droprate =  166}, -- purple_rock
+            {itemid =   773, droprate =  166}, -- translucent_rock
+            {itemid =   769, droprate =  167}, -- red_rock
+            {itemid =   775, droprate =  167}, -- black_rock
+            {itemid =   771, droprate =  167}, -- yellow_rock
+            {itemid =   776, droprate =  167}, -- white_rock
+        },
+        {
+            {itemid =   797, droprate =  125}, -- painite
+            {itemid =   791, droprate =  125}, -- aquamarine
+            {itemid =   810, droprate =  125}, -- fluorite
+            {itemid =   805, droprate =  125}, -- zircon
+            {itemid =   803, droprate =  125}, -- sunstone
+            {itemid =   801, droprate =  125}, -- chrysoberyl
+            {itemid =   802, droprate =  125}, -- moonstone
+            {itemid =   784, droprate =  125}, -- jadeite
+        },
+        {
+            {itemid =   700, droprate =  333}, -- mahogany_log
+            {itemid =   702, droprate =  150}, -- ebony_log
+        },
+        {
+            {itemid =   652, droprate =  350}, -- steel_ingot
+            {itemid =   653, droprate =  150}, -- mythril_ingot
+            {itemid =   654, droprate =  150}, -- darksteel_ingot
+            {itemid =   745, droprate =  350}, -- gold_ingot
+        },
+    },
     -- BCNM Treasure and Tribulations
     [100] =
     {

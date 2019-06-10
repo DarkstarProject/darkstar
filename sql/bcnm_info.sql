@@ -97,7 +97,7 @@ INSERT INTO `bcnm_info` VALUES (84,144,'shell_shocked','nobody',0,1800,1800,0,6,
 INSERT INTO `bcnm_info` VALUES (85,144,'beyond_infinity','nobody',0,600,600,0,6,0,6,0);
 INSERT INTO `bcnm_info` VALUES (96,146,'rank_2_mission','nobody',0,1800,1800,25,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (97,146,'steamed_sprouts','nobody',0,1800,1800,40,6,97,15,0);
-INSERT INTO `bcnm_info` VALUES (98,146,'divine_punishers','nobody',0,1800,1800,60,6,0,15,0);
+INSERT INTO `bcnm_info` VALUES (98,146,'divine_punishers','nobody',0,1800,1800,60,6,98,15,0);
 INSERT INTO `bcnm_info` VALUES (99,146,'saintly_invitation','nobody',0,1800,1800,99,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (100,146,'treasure_and_tribulations','nobody',0,1800,1800,50,6,100,15,0);
 INSERT INTO `bcnm_info` VALUES (101,146,'shattering_stars','nobody',0,600,600,99,1,0,22,0);
