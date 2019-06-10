@@ -17,9 +17,11 @@ local loot =
             {itemid =   749, droprate =  500}, -- mythril_beastcoin
         },
         {
+            {itemid =     0, droprate =  750}, -- nothing
             {itemid =  4174, droprate =  250}, -- vile_elixir
         },
         {
+            {itemid =     0, droprate =  600}, -- nothing
             {itemid = 13237, droprate =  100}, -- survival_belt
             {itemid = 13127, droprate =  100}, -- guarding_gorget
             {itemid = 13405, droprate =  100}, -- enhancing_earring
@@ -50,6 +52,7 @@ local loot =
             {itemid =   788, droprate =  150}, -- peridot
         },
         {
+            {itemid =     0, droprate =  125}, -- nothing
             {itemid =  4717, droprate =  125}, -- scroll_of_refresh
             {itemid =  4896, droprate =  125}, -- fire_spirit_pact
             {itemid =  4751, droprate =  125}, -- scroll_of_erase
@@ -69,6 +72,7 @@ local loot =
             {itemid = 17429, droprate =  250}, -- dominion_mace
         },
         {
+            {itemid =     0, droprate =  250}, -- nothing
             {itemid = 13054, droprate =  100}, -- fuma_kyahan
             {itemid = 13555, droprate =  200}, -- peace_ring
             {itemid = 13624, droprate =  200}, -- enhancing_mantle
@@ -76,6 +80,7 @@ local loot =
             {itemid = 13952, droprate =  100}, -- ochiudos_kote
         },
         {
+            {itemid =     0, droprate =  850}, -- nothing
             {itemid =  4173, droprate =  100}, -- hi-reraiser
             {itemid =  4175, droprate =   50}, -- vile_elixir_+1
         },
@@ -98,6 +103,7 @@ local loot =
             {itemid =   784, droprate =  125}, -- jadeite
         },
         {
+            {itemid =     0, droprate =  517}, -- nothing
             {itemid =   700, droprate =  333}, -- mahogany_log
             {itemid =   702, droprate =  150}, -- ebony_log
         },
@@ -461,6 +467,7 @@ local loot =
             {itemid =  4596, droprate = 1000}, -- bunch_of_wild_pamamas
         },
         {
+            {itemid =     0, droprate =  300}, -- nothing
             {itemid = 17572, droprate =  100}, -- dusky_staff
             {itemid = 17995, droprate =  100}, -- jongleurs_dagger
             {itemid = 17994, droprate =  100}, -- calveleys_dagger
@@ -470,11 +477,13 @@ local loot =
             {itemid = 17787, droprate =  100}, -- ohaguro
         },
         {
+            {itemid =     0, droprate =  100}, -- nothing
             {itemid = 14736, droprate =  300}, -- genin_earring
             {itemid = 13164, droprate =  300}, -- agile_gorget
             {itemid = 13165, droprate =  300}, -- jagd_gorget
         },
         {
+            {itemid =     0, droprate =  370}, -- nothing
             {itemid =   798, droprate =  100}, -- turquoise
             {itemid =  4468, droprate =  100}, -- bunch_of_pamamas
             {itemid =   829, droprate =  110}, -- square_of_silk_cloth
@@ -488,6 +497,7 @@ local loot =
             {itemid =  4751, droprate =  250}, -- scroll_of_erase
         },
         {
+            {itemid =     0, droprate =  600}, -- nothing
             {itemid =   748, droprate =  400}, -- gold_beastcoin
         },
     },
@@ -501,6 +511,7 @@ local loot =
             {itemid =   655, droprate = 1000}, -- adaman_ingot
         },
         {
+            {itemid =     0, droprate =  190}, -- nothing
             {itemid = 14845, droprate =  110}, -- sly_gauntlets
             {itemid = 14843, droprate =  120}, -- spiked_finger_gauntlets
             {itemid = 14844, droprate =  140}, -- rush_gloves
@@ -509,6 +520,7 @@ local loot =
             {itemid = 14842, droprate =  150}, -- ivory_mitts
         },
         {
+            {itemid =     0, droprate =   30}, -- nothing
             {itemid = 13167, droprate =  100}, -- storm_gorget
             {itemid = 13168, droprate =  100}, -- intellect_torque
             {itemid = 13169, droprate =  120}, -- benign_necklace
@@ -518,11 +530,13 @@ local loot =
             {itemid = 13679, droprate =  180}, -- templars_mantle
         },
         {
+            {itemid =     0, droprate =  230}, -- nothing
             {itemid =   653, droprate =  200}, -- mythril_ingot
             {itemid =   643, droprate =  200}, -- chunk_of_iron_ore
             {itemid =   703, droprate =  370}, -- petrified_log
         },
         {
+            {itemid =     0, droprate =  560}, -- nothing
             {itemid =  4172, droprate =  440}, -- reraiser
         },
     },
@@ -556,6 +570,7 @@ local loot =
             {itemid = 14665, droprate =  574}, -- teleport_ring_yhoat
         },
         {
+            {itemid =     0, droprate =  848}, -- nothing
             {itemid = 15185, droprate =   58}, -- walkure_mask
             {itemid =  4173, droprate =   78}, -- hi-reraiser
             {itemid =   702, droprate =   16}, -- ebony_log
@@ -580,7 +595,7 @@ local loot =
             {itemid =   745, droprate =   98}, -- gold_ingot
             {itemid =   784, droprate =   98}, -- jadeite
             {itemid =   797, droprate =   98}, -- painite
-            {itemid =  4175, droprate =  115}, -- vile_elixir_+1
+            {itemid =  4175, droprate =   99}, -- vile_elixir_+1
         },
     },
 }
