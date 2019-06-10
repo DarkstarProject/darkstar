@@ -108,7 +108,7 @@ INSERT INTO `bcnm_info` VALUES (105,146,'charming_trio','nobody',0,900,900,20,3,
 INSERT INTO `bcnm_info` VALUES (106,146,'harem_scarem','nobody',0,1800,1800,30,6,106,15,0);
 INSERT INTO `bcnm_info` VALUES (107,146,'early_bird_catches_the_wyrm','nobody',0,1800,1800,0,18,107,15,0);
 INSERT INTO `bcnm_info` VALUES (108,146,'royal_succession','nobody',0,900,900,40,3,108,15,0);
-INSERT INTO `bcnm_info` VALUES (109,146,'rapid_raptors','nobody',0,900,900,50,3,0,15,0);
+INSERT INTO `bcnm_info` VALUES (109,146,'rapid_raptors','nobody',0,900,900,50,3,109,15,0);
 INSERT INTO `bcnm_info` VALUES (110,146,'wild_wild_whiskers','nobody',0,900,900,60,3,0,15,0);
 INSERT INTO `bcnm_info` VALUES (111,146,'seasons_greetings','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (112,146,'royale_ramble','nobody',0,1800,1800,0,6,0,15,0);

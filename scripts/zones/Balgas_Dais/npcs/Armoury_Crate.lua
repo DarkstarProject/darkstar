@@ -392,6 +392,41 @@ local loot =
             {itemid =   748, droprate =  400}, -- gold_beastcoin
         },
     },
+    -- BCNM Rapid Raptors
+    [109] =
+    {
+        {
+            {itemid =   853, droprate = 1000}, -- raptor_skin
+        },
+        {
+            {itemid =   655, droprate = 1000}, -- adaman_ingot
+        },
+        {
+            {itemid = 14845, droprate =  110}, -- sly_gauntlets
+            {itemid = 14843, droprate =  120}, -- spiked_finger_gauntlets
+            {itemid = 14844, droprate =  140}, -- rush_gloves
+            {itemid = 15149, droprate =  140}, -- rival_ribbon
+            {itemid = 15148, droprate =  150}, -- mana_circlet
+            {itemid = 14842, droprate =  150}, -- ivory_mitts
+        },
+        {
+            {itemid = 13167, droprate =  100}, -- storm_gorget
+            {itemid = 13168, droprate =  100}, -- intellect_torque
+            {itemid = 13169, droprate =  120}, -- benign_necklace
+            {itemid = 13676, droprate =  130}, -- heavy_mantle
+            {itemid = 13166, droprate =  170}, -- hateful_collar
+            {itemid = 13677, droprate =  170}, -- esoteric_mantle
+            {itemid = 13679, droprate =  180}, -- templars_mantle
+        },
+        {
+            {itemid =   653, droprate =  200}, -- mythril_ingot
+            {itemid =   643, droprate =  200}, -- chunk_of_iron_ore
+            {itemid =   703, droprate =  370}, -- petrified_log
+        },
+        {
+            {itemid =  4172, droprate =  440}, -- reraiser
+        },
+    },
 }
 function onTrade(player,npc,trade)
 end
