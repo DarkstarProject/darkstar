@@ -12385,7 +12385,7 @@ INSERT INTO `item_equipment` VALUES (26971,'chozor._coselete',99,119,10433,406,0
 INSERT INTO `item_equipment` VALUES (26972,'jumalik_mail',99,119,8641,400,0,0,32,0);
 INSERT INTO `item_equipment` VALUES (26973,'samnuha_coat',99,119,2593826,401,0,0,32,0);
 INSERT INTO `item_equipment` VALUES (26974,'agent_coat',1,0,4194303,407,0,0,32,0);
-INSERT INTO `item_equipment` VALUES (26975,'starlet_jabot',1,0,4194303,407,0,0,32,0);
+INSERT INTO `item_equipment` VALUES (26975,'starlet_jabot',1,0,4194303,408,0,0,32,0);
 INSERT INTO `item_equipment` VALUES (26976,'agoge_mufflers',99,109,1,65,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (26977,'agoge_mufflers_+1',99,119,1,65,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (26978,'hes._gloves',99,109,2,67,0,0,64,0);
@@ -12522,7 +12522,7 @@ INSERT INTO `item_equipment` VALUES (27108,'lamassu_mitts',99,119,16384,11,0,0,6
 INSERT INTO `item_equipment` VALUES (27109,'lamassu_mitts_+1',99,119,16384,11,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (27110,'kachina_gloves',1,0,4194303,24,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (27111,'agent_cuffs',1,0,4194303,407,0,0,64,0);
-INSERT INTO `item_equipment` VALUES (27112,'starlet_gloves',1,0,4194303,407,0,0,64,0);
+INSERT INTO `item_equipment` VALUES (27112,'starlet_gloves',1,0,4194303,408,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (27113,'emicho_gauntlets',99,119,8641,323,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (27114,'emi._gauntlets_+1',99,119,8641,323,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (27115,'ryuo_tekko',99,119,137218,324,0,0,64,0);
@@ -12704,7 +12704,7 @@ INSERT INTO `item_equipment` VALUES (27293,'cossie_bottom',1,0,4194303,404,0,0,1
 INSERT INTO `item_equipment` VALUES (27294,'cossie_bottom_+1',1,0,4194303,404,0,0,128,256);
 INSERT INTO `item_equipment` VALUES (27295,'samnuha_tights',99,119,2593826,401,0,0,128,0);
 INSERT INTO `item_equipment` VALUES (27296,'agent_pants',1,0,4194303,407,0,0,128,0);
-INSERT INTO `item_equipment` VALUES (27297,'starlet_skirt',1,0,4194303,407,0,0,128,0);
+INSERT INTO `item_equipment` VALUES (27297,'starlet_skirt',1,0,4194303,408,0,0,128,0);
 INSERT INTO `item_equipment` VALUES (27298,'emicho_hose',99,119,8641,323,0,0,128,0);
 INSERT INTO `item_equipment` VALUES (27299,'emicho_hose_+1',99,119,8641,323,0,0,128,0);
 INSERT INTO `item_equipment` VALUES (27300,'ryuo_hakama',99,119,137218,324,0,0,128,0);
@@ -12873,7 +12873,7 @@ INSERT INTO `item_equipment` VALUES (27463,'vanya_clogs',99,119,1589788,395,0,0,
 INSERT INTO `item_equipment` VALUES (27464,'inspirited_boots',99,119,1589276,199,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27466,'diama._sollerets',99,119,6593,13,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27467,'agent_boots',1,0,4194303,407,0,0,256,0);
-INSERT INTO `item_equipment` VALUES (27468,'starlet_boots',1,0,4194303,407,0,0,256,0);
+INSERT INTO `item_equipment` VALUES (27468,'starlet_boots',1,0,4194303,408,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27469,'emicho_gambieras',99,119,8641,323,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27470,'emi._gambieras_+1',99,119,8641,323,0,0,256,0);
 INSERT INTO `item_equipment` VALUES (27471,'ryuo_sune-ate',99,119,137218,324,0,0,256,0);
