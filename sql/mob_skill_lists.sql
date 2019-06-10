@@ -2111,7 +2111,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2790);
 INSERT INTO `mob_skill_lists` VALUES ('Umbril',468,2970);
 INSERT INTO `mob_skill_lists` VALUES ('Umbril',468,2971);
 INSERT INTO `mob_skill_lists` VALUES ('Umbril',468,2972);
--- 469: free
+INSERT INTO `mob_skill_lists` VALUES ('Macan_Gadangan',469,480); -- petrifactive_breath
+INSERT INTO `mob_skill_lists` VALUES ('Macan_Gadangan',469,483); -- charged_whisker
 INSERT INTO `mob_skill_lists` VALUES ('Yilbegan',470,2519);
 INSERT INTO `mob_skill_lists` VALUES ('Yilbegan',470,2520);
 INSERT INTO `mob_skill_lists` VALUES ('Yilbegan',470,2521);
