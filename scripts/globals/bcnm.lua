@@ -238,7 +238,7 @@ local battlefields = {
 
     [146] = {               -- BALGA'S DIAS
         { 0,   96,    0},   -- The Rank 2 Final Mission (Mission 2-3)
-     -- { 1,   97, 1131},   -- Steamed Sprouts (BS40)
+        { 1,   97, 1131},   -- Steamed Sprouts (BS40)
      -- { 2,   98, 1130},   -- Divine Punishers (BS60)
         { 3,   99,    0},   -- Saintly Invitation (Windy 6-2)
      -- { 4,  100, 1177},   -- Treasure and Tribulations (BS50)

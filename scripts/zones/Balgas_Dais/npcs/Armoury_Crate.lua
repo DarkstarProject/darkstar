@@ -9,6 +9,56 @@ require("scripts/globals/quests")
 -----------------------------------
 local loot =
 {
+    -- BCNM Steamed Sprouts
+    [97] =
+    {
+        {
+            {itemid =   748, droprate =  500}, -- gold_beastcoin
+            {itemid =   749, droprate =  500}, -- mythril_beastcoin
+        },
+        {
+            {itemid =  4174, droprate =  250}, -- vile_elixir
+        },
+        {
+            {itemid = 13237, droprate =  100}, -- survival_belt
+            {itemid = 13127, droprate =  100}, -- guarding_gorget
+            {itemid = 13405, droprate =  100}, -- enhancing_earring
+            {itemid = 12349, droprate =  100}, -- balance_buckler
+        },
+        {
+            {itemid =   776, droprate =  125}, -- white_rock
+            {itemid =   773, droprate =  125}, -- translucent_rock
+            {itemid =   774, droprate =  125}, -- purple_rock
+            {itemid =   769, droprate =  125}, -- red_rock
+            {itemid =   770, droprate =  125}, -- blue_rock
+            {itemid =   771, droprate =  125}, -- yellow_rock
+            {itemid =   772, droprate =  125}, -- green_rock
+            {itemid =   775, droprate =  125}, -- black_rock
+        },
+        {
+            {itemid =   790, droprate =   50}, -- garnet
+            {itemid =   793, droprate =   50}, -- black_pearl
+            {itemid =   811, droprate =   50}, -- ametrine
+            {itemid =   797, droprate =   50}, -- painite
+            {itemid =   792, droprate =   50}, -- pearl
+            {itemid =   699, droprate =  100}, -- oak_log
+            {itemid =   808, droprate =  100}, -- goshenite
+            {itemid =   815, droprate =  100}, -- sphene
+            {itemid =   701, droprate =  100}, -- rosewood_log
+            {itemid =   798, droprate =  100}, -- turquoise
+            {itemid =   794, droprate =  100}, -- sapphire
+            {itemid =   788, droprate =  150}, -- peridot
+        },
+        {
+            {itemid =  4717, droprate =  125}, -- scroll_of_refresh
+            {itemid =  4896, droprate =  125}, -- fire_spirit_pact
+            {itemid =  4751, droprate =  125}, -- scroll_of_erase
+            {itemid =  4874, droprate =  125}, -- scroll_of_absorb-str
+            {itemid =  4714, droprate =  125}, -- scroll_of_phalanx
+            {itemid =  4858, droprate =  125}, -- scroll_of_ice_spikes
+            {itemid =  4947, droprate =  125}, -- scroll_of_utsusemi_ni
+        },
+    },
     -- BCNM Treasure and Tribulations
     [100] =
     {
