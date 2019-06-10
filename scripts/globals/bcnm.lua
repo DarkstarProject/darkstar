@@ -463,31 +463,31 @@ function checkReqs(player, npc, bfid, registrant)
     {
         [   0] = function() return ( (basty == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) and natStat == 9                    ) end, -- Mission 2-3
         [   3] = function() return ( sandy == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2                                        ) end, -- Sandy 7-2: The Secret Weapon
-        [   5] = function() return ( mjob == JOBS.WAR and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WAR LB5)
-        [   6] = function() return ( mjob == JOBS.BLM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BLM LB5)
-        [   7] = function() return ( mjob == JOBS.RNG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RNG LB5)
+        [   5] = function() return ( mjob == dsp.job.WAR and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WAR LB5)
+        [   6] = function() return ( mjob == dsp.job.BLM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BLM LB5)
+        [   7] = function() return ( mjob == dsp.job.RNG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RNG LB5)
         [  20] = function() return ( player:hasKeyItem(dsp.ki.SOUL_GEM_CLASP)                                                                              ) end, -- Quest: Beyond Infinity
         [  32] = function() return ( sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and ((stc and missionStatus <= 2) or (not stc and natStat == 2))                    ) end, -- Sandy 1-3: Save the Children
         [  33] = function() return ( player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY)                                                                         ) end, -- Quest: The Holy Crest
         [  64] = function() return ( (sandy == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and natStat == 10                         ) end, -- Mission 2-3
         [  67] = function() return ( basty == dsp.mission.id.bastok.ON_MY_WAY and natStat == 2                                                                            ) end, -- Basty 7-2: On My Way
         [  68] = function() return ( player:getVar("aThiefinNorgCS") == 6                                                                           ) end, -- Quest: A Thief in Norg!?
-        [  70] = function() return ( mjob == JOBS.RDM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RDM LB5)
-        [  71] = function() return ( mjob == JOBS.THF and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (THF LB5)
-        [  72] = function() return ( mjob == JOBS.BST and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BST LB5)
+        [  70] = function() return ( mjob == dsp.job.RDM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RDM LB5)
+        [  71] = function() return ( mjob == dsp.job.THF and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (THF LB5)
+        [  72] = function() return ( mjob == dsp.job.BST and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BST LB5)
         [  96] = function() return ( player:hasKeyItem(dsp.ki.DARK_KEY)                                                                                    ) end, -- Mission 2-3
         [  99] = function() return ( windy == dsp.mission.id.windurst.SAINTLY_INVITATION and natStat == 1                                                                   ) end, -- Windy 6-2: A Saintly Invitation
-        [ 101] = function() return ( mjob == JOBS.MNK and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (MNK LB5)
-        [ 102] = function() return ( mjob == JOBS.WHM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WHM LB5)
-        [ 103] = function() return ( mjob == JOBS.SMN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SMN LB5)
+        [ 101] = function() return ( mjob == dsp.job.MNK and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (MNK LB5)
+        [ 102] = function() return ( mjob == dsp.job.WHM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WHM LB5)
+        [ 103] = function() return ( mjob == dsp.job.SMN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SMN LB5)
         [ 128] = function() return ( roz == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH                                                                                 ) end, -- ZM4: The Temple of Uggalepih
         [ 160] = function() return ( mission == 15 and natStat == 3                                                                                 ) end, -- Mission 5-2
         [ 161] = function() return ( basty == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1                                           ) end, -- Basty 9-2: Where Two Paths Converge
-        [ 163] = function() return ( mjob == JOBS.SCH and mlvl >= 66                                                                                ) end, -- Quest: Survival of the Wisest (SCH LB5)
+        [ 163] = function() return ( mjob == dsp.job.SCH and mlvl >= 66                                                                                ) end, -- Quest: Survival of the Wisest (SCH LB5)
         [ 192] = function() return ( roz == dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES                                                                             ) end, -- ZM6: Through the Quicksand Caves
-        [ 194] = function() return ( mjob == JOBS.SAM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SAM LB5)
-        [ 195] = function() return ( mjob == JOBS.NIN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (NIN LB5)
-        [ 196] = function() return ( mjob == JOBS.DRG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (DRG LB5)
+        [ 194] = function() return ( mjob == dsp.job.SAM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SAM LB5)
+        [ 195] = function() return ( mjob == dsp.job.NIN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (NIN LB5)
+        [ 196] = function() return ( mjob == dsp.job.DRG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (DRG LB5)
         [ 224] = function() return ( player:hasKeyItem(dsp.ki.MOON_BAUBLE)                                                                                 ) end, -- Quest: The Moonlit Path
         [ 225] = function() return ( windy == dsp.mission.id.windurst.MOON_READING and player:getVar("WINDURST92") == 2                                                     ) end, -- Windy 9-2: Moon Reading
         [ 256] = function() return ( roz == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and rozStat == 3                                                              ) end, -- ZM8: Return to Delkfutt's Tower
@@ -500,31 +500,31 @@ function checkReqs(player, npc, bfid, registrant)
         [ 320] = function() return ( roz == dsp.mission.id.zilart.THE_CELESTIAL_NEXUS                                                                                     ) end, -- ZM16: The Celestial Nexus
         [ 416] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND)                                                                         ) end, -- Quest: Trial by Wind
         [ 417] = function() return ( player:getVar("CarbuncleDebacleProgress") == 6                                                                 ) end, -- Quest: Carbuncle Debacle
-        [ 418] = function() return ( mjob == JOBS.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Wind
+        [ 418] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Wind
         [ 420] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL)                                      ) end, -- ASA4: Sugar-coated Directive
         [ 448] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING)                                                                    ) end, -- Quest: Trial by Lightning
         [ 449] = function() return ( player:getVar("CarbuncleDebacleProgress") == 3                                                                 ) end, -- Quest: Carbuncle Debacle
-        [ 450] = function() return ( mjob == JOBS.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Lightning
+        [ 450] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Lightning
         [ 452] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL)                                       ) end, -- ASA4: Sugar-coated Directive
         [ 480] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_ICE)                                                                          ) end, -- Quest: Trial by Ice
         [ 481] = function() return ( player:getVar("ClassReunionProgress") == 5                                                                     ) end, -- Quest: Class Reunion
-        [ 482] = function() return ( mjob == JOBS.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Ice
+        [ 482] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Ice
         [ 484] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AZURE_SEAL)                                        ) end, -- ASA4: Sugar-coated Directive
         [ 512] = function() return ( nat == 14 and natStat == 11                                                                                    ) end, -- Mission 5-1
         [ 516] = function() return ( sandy == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and natStat == 3                                                                ) end, -- Sandy 9-2: The Heir to the Light
-        [ 517] = function() return ( mjob == JOBS.PLD and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (PLD LB5)
-        [ 518] = function() return ( mjob == JOBS.DRK and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (DRK LB5)
-        [ 519] = function() return ( mjob == JOBS.BRD and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BRD LB5)
-        [ 530] = function() return ( mjob == JOBS.DNC and mlvl >= 66                                                                                ) end, -- Quest: A Furious Finale (DNC LB5)
+        [ 517] = function() return ( mjob == dsp.job.PLD and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (PLD LB5)
+        [ 518] = function() return ( mjob == dsp.job.DRK and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (DRK LB5)
+        [ 519] = function() return ( mjob == dsp.job.BRD and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BRD LB5)
+        [ 530] = function() return ( mjob == dsp.job.DNC and mlvl >= 66                                                                                ) end, -- Quest: A Furious Finale (DNC LB5)
         [ 544] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_FIRE)                                                                         ) end, -- Quest: Trial by Fire
-        [ 545] = function() return ( mjob == JOBS.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Fire
+        [ 545] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Fire
         [ 547] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL)                                      ) end, -- ASA4: Sugar-coated Directive
         [ 576] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_EARTH)                                                                        ) end, -- Quest: Trial by Earth
         [ 577] = function() return ( player:getVar("ThePuppetMasterProgress") == 2                                                                  ) end, -- Quest: The Puppet Master
-        [ 578] = function() return ( mjob == JOBS.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Earth
+        [ 578] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Earth
         [ 580] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AMBER_SEAL)                                        ) end, -- ASA4: Sugar-coated Directive
         [ 608] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WATER)                                                                        ) end, -- Quest: Trial by Water
-        [ 609] = function() return ( mjob == JOBS.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Water
+        [ 609] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Water
         [ 611] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL)                                     ) end, -- ASA4: Sugar-coated Directive
         [ 640] = function() return ( cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 6                                                  ) end, -- PM5-3 U3: Flames for the Dead
         [ 641] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                  ) end, -- ENM: Follow the White Rabbit
@@ -565,11 +565,11 @@ function checkReqs(player, npc, bfid, registrant)
         [1024] = function() return ( cop == dsp.mission.id.cop.WHEN_ANGELS_FALL and copStat == 4                                                                       ) end, -- PM8-3: When Angels Fall
         [1056] = function() return ( cop == dsp.mission.id.cop.DAWN and copStat == 2                                                                                   ) end, -- PM8-4: Dawn
         [1090] = function() return ( player:hasKeyItem(dsp.ki.TOGGLE_SWITCH)                                                                               ) end, -- Quest: Puppetmaster Blues
-        [1091] = function() return ( mjob == JOBS.COR and mlvl >= 66                                                                                ) end, -- Quest: Breaking the Bonds of Fate (COR LB5)
+        [1091] = function() return ( mjob == dsp.job.COR and mlvl >= 66                                                                                ) end, -- Quest: Breaking the Bonds of Fate (COR LB5)
         [1092] = function() return ( toau == dsp.mission.id.toau.LEGACY_OF_THE_LOST                                                                                     ) end, -- TOAU35: Legacy of the Lost
-        [1123] = function() return ( mjob == JOBS.PUP and mlvl >= 66                                                                                ) end, -- Quest: Achieving True Power (PUP LB5)
+        [1123] = function() return ( mjob == dsp.job.PUP and mlvl >= 66                                                                                ) end, -- Quest: Achieving True Power (PUP LB5)
         [1124] = function() return ( toau == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY and toauStat == 2                                                                  ) end, -- TOAU22: Shield of Diplomacy
-        [1154] = function() return ( mjob == JOBS.BLU and mlvl >= 66                                                                                ) end, -- Quest: The Beast Within (BLU LB5)
+        [1154] = function() return ( mjob == dsp.job.BLU and mlvl >= 66                                                                                ) end, -- Quest: The Beast Within (BLU LB5)
         [1156] = function() return ( toau == dsp.mission.id.toau.PUPPET_IN_PERIL and toauStat == 1                                                                      ) end, -- TOAU29: Puppet in Peril
         [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                ) end, -- NW Apollyon
         [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                ) end, -- SW Apollyon
