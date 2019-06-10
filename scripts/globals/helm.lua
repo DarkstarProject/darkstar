@@ -1438,19 +1438,19 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
             if
                 helmType == dsp.helm.type.MINING and
                 not player:hasKeyItem(dsp.ki.STURDY_METAL_STRIP) and
-                ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
+                dsp.expansionZone.ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
             then
                 npcUtil.giveKeyItem(player, dsp.ki.STURDY_METAL_STRIP)
             elseif
                 helmType == dsp.helm.type.LOGGING and
                 not player:hasKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK) and
-                ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
+                dsp.expansionZone.ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
             then
                 npcUtil.giveKeyItem(player, dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
             elseif
                 helmType == dsp.helm.type.HARVESTING and
                 not player:hasKeyItem(dsp.ki.SAVORY_LAMB_ROAST) and
-                ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
+                dsp.expansionZone.ORIGINAL_ROTZ[zoneId] and math.random(0,99) < amkChance
             then
                 npcUtil.giveKeyItem(player, dsp.ki.SAVORY_LAMB_ROAST)
             end
