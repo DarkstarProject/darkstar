@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/item");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
@@ -169,7 +170,7 @@ function onEventFinish(player,csid,option)
             player:setVar("AhtUrganStatus",1)
             player:addKeyItem(dsp.ki.RAILLEFALS_NOTE);
             player:setTitle(dsp.title.AGENT_OF_THE_ALLIED_FORCES);
-            player:addItem(2185,1);
+            player:addItem(dsp.item.imp_slv_piece,1);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_NOTE);
             player:messageSpecial(ID.text.ITEM_OBTAINED,2185);
         end
@@ -191,7 +192,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3097) then
         player:completeMission(TOAU,dsp.mission.id.toau.FOILED_AMBITION);
         player:setTitle(dsp.title.KARABABAS_SECRET_AGENT);
-        player:addItem(2187,5);
+        player:addItem(dsp.item.imp_gold_piece,5);
         player:setVar("TOAUM23_STARTDAY", 0);
         player:needToZone(true);
         player:setVar("TOAUM24_STARTDAY", VanadielDayOfTheYear());
