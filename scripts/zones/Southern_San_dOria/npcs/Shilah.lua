@@ -23,7 +23,7 @@ function onTrigger(player,npc)
         4356,  180, 2,    -- White Bread
         4533, 1080, 2,    -- Delicious Puls
         4560, 1355, 2,    -- Vegetable Soup
-        4572, 1633, 2,    -- Beaugreen Sautee
+        4572, 1669, 2,    -- Beaugreen Saute
         4441,  837, 2,    -- Grape Juice
         4364,  108, 3,    -- Black Bread
         4492,  540, 3,    -- Puls

@@ -32068,12 +32068,14 @@ INSERT INTO `mob_droplist` VALUES (4367,0,0,1000,3541,100);
 INSERT INTO `mob_droplist` VALUES (4367,0,0,1000,3542,100);
 INSERT INTO `mob_droplist` VALUES (4367,4,0,1000,5569,0);
 INSERT INTO `mob_droplist` VALUES (4367,0,0,1000,5569,130);
-INSERT INTO `mob_droplist` VALUES (4368,0,0,1000,646,980);
-INSERT INTO `mob_droplist` VALUES (4368,0,0,1000,3543,100);
-INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,640,10);
-INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,641,610);
-INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,3541,100);
-INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,3543,100);
+INSERT INTO `mob_droplist` VALUES (4368,0,0,1000,646,72);   -- Pygmytoise, Adaman Ore
+INSERT INTO `mob_droplist` VALUES (4368,0,0,1000,3541,137); -- Pygmytoise, Seasoning stone
+INSERT INTO `mob_droplist` VALUES (4368,0,0,1000,3543,71);  -- Pygmytoise, Fossilized Fang
+INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,640,258);  -- Boulder Eater, Copper Ore
+INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,641,135);  -- Boulder Eater, Tin Ore
+INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,738,16);   -- Boulder Eater, Platinum Ore
+INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,3541,137); -- Boulder Eater, Seasoning Stone
+INSERT INTO `mob_droplist` VALUES (4369,0,0,1000,3543,65);  -- Boulder Eater, Fossilized Fang
 INSERT INTO `mob_droplist` VALUES (4370,0,0,1000,494,1000);
 INSERT INTO `mob_droplist` VALUES (4370,0,0,1000,494,1000);
 INSERT INTO `mob_droplist` VALUES (4370,0,0,1000,494,500);

@@ -2720,9 +2720,9 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     auto CharID = data.ref<uint32>(0x10);
     auto Result = data.ref<uint32>(0x14);
     auto ZoneID = data.ref<uint16>(0x18);
-    
+
     auto EventID = data.ref<uint16>(0x1A);
-   
+
     PrintPacket(data);
     if (PChar->m_event.EventID == EventID)
     {
@@ -2748,7 +2748,7 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->loc.p.z = data.ref<float>(0x0C);
             PChar->loc.p.rotation = data.ref<uint8>(0x1F);
         }
-        
+
         PChar->pushPacket(new CCSPositionPacket(PChar));
         PChar->pushPacket(new CPositionPacket(PChar));
     }
@@ -4197,8 +4197,8 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         char escaped_recipient[16 * 2 + 1];
         Sql_EscapeString(SqlHandle, escaped_recipient, (const char*)data[5]);
 
-        std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
-        Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+        std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[20]) * 2 + 1);
+        Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[20]);
 
         const char* fmtQuery = "INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('%s','TELL','%s','%s',current_timestamp())";
         if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_recipient, escaped_full_string.data()) == SQL_ERROR)

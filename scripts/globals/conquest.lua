@@ -1092,16 +1092,18 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         sRegion == guardRegion and
         sOutpost ~= nil and
         player:hasKeyItem(sOutpost.ki) and
-        guardNation == pNation and
-        not hasOutpost(player, sRegion)
+        guardNation == pNation
     then
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
         player:messageSpecial(mOffset) -- "You've earned conquest points!"
-        player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
         player:setVar("supplyQuest_fresh", 0)
+
+        if not hasOutpost(player, sRegion) then
+            player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
+        end
 
     -- SET HOMEPOINT
     elseif option == 4 then
