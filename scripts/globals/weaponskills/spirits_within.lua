@@ -19,6 +19,22 @@ require("scripts/globals/utils")
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
+    local attack =
+    {
+        ['type'] = dsp.attackType.BREATH,
+        ['slot'] = dsp.slot.MAIN,
+        ['weaponType'] = player:getWeaponSkillType(dsp.slot.MAIN),
+        ['damageType'] = dsp.damageType.ELEMENTAL
+    }
+    local calcParams =
+    {
+        criticalHit = false,
+        tpHitsLanded = 0,
+        extraHitsLanded = 0,
+        shadowsAbsorbed = 0,
+        bonusTP = 0
+    }
+
     local HP = player:getHP()
     local WSC = 0
     local tpHits = 0
@@ -45,18 +61,19 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local damage = target:breathDmgTaken(WSC)
     if (damage > 0) then
         if (player:getOffhandDmg() > 0) then
-            tpHits = 2
+            calcParams.tpHitsLanded = 2
         else
-            tpHits = 1
+            calcParams.tpHitsLanded = 1
         end
     end
     if (player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
         damage = damage * (100 + player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     damage = damage * WEAPON_SKILL_POWER
+    calcParams.finalDmg = damage
 
-    damage = takeWeaponskillDamage(target, player, {}, primary, damage, dsp.attackType.BREATH, dsp.damageType.ELEMENTAL, dsp.slot.MAIN, tpHits, 0, 0, 0, action, nil)
+    damage = takeWeaponskillDamage(target, player, {}, primary, attack, calcParams, action)
 
-    return tpHits, 0, false, damage
+    return calcParams.tpHitsLanded, calcParams.extraHitsLanded, calcParams.criticalHit, damage
 
 end
