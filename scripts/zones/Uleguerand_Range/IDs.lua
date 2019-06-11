@@ -17,10 +17,22 @@ zones[dsp.zone.ULEGUERAND_RANGE] =
         KEYITEM_OBTAINED        = 6404, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY = 6415, -- There is nothing out of the ordinary here.
         CONQUEST_BASE           = 7062, -- Tallying conquest results...
+        SOMETHING_GLITTERING    = 7333, -- You see something glittering beneath the surface of the ice.
+        WHAT_LIES_BENEATH       = 7334, -- There are many cold <item> scattered around the area. Could someone be trying to melt the ice to retrieve what lies beneath?
+        SOMETHING_GLITTERING_BUT= 7335, -- You see something glittering below the surface here, but the ice encases it completely.
         HOMEPOINT_SET           = 8327, -- Home point set!
     },
     mob =
     {
+        SKVADER_PH =
+        {
+            [16797769] = 16797770,
+        },
+        MAGNOTAUR_PH =
+        {
+            [16797966] = 16797968,
+            [16797967] = 16797968,
+        },
         BONNACON_PH =
         {
             [16798050] = 16798056, -- -623.154 -40.604 -51.621

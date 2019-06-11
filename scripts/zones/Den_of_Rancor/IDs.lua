@@ -18,10 +18,10 @@ zones[dsp.zone.DEN_OF_RANCOR] =
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         LANTERN_OFFSET          = 7208, -- The grating will not budge.
         FISHING_MESSAGE_OFFSET  = 7236, -- You can't fish here.
-        CHEST_UNLOCKED          = 7343, -- You unlock the chest!
-        SENSE_OMINOUS_PRESENCE  = 7353, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 9486, -- New training regime registered!
-        HOMEPOINT_SET           = 10536, -- Home point set!
+        CHEST_UNLOCKED          = 7344, -- You unlock the chest!
+        SENSE_OMINOUS_PRESENCE  = 7354, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9487, -- New training regime registered!
+        HOMEPOINT_SET           = 10537, -- Home point set!
     },
     mob =
     {

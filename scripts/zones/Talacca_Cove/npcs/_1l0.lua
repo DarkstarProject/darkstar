@@ -11,6 +11,7 @@ require("scripts/globals/bcnm");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    TradeBCNM(player,npc,trade);
 end;
 
 function onTrigger(player,npc)
@@ -25,10 +26,8 @@ function onTrigger(player,npc)
 
 end;
 
-function onEventUpdate(player,csid,option)
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 function onEventFinish(player,csid,option)
@@ -42,7 +41,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.FORGOTTEN_HEXAGUN);
             player:unlockJob(dsp.job.COR);
             player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_CORSAIR);
-            player:completeQuest(AHT_URHGAN,LUCK_OF_THE_DRAW);
+            player:completeQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.LUCK_OF_THE_DRAW);
         end
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

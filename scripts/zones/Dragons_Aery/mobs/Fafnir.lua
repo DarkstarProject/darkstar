@@ -37,11 +37,11 @@ function onMobDespawn(mob)
 
         DisallowRespawn(ID.mob.NIDHOGG, false)
         UpdateNMSpawnPoint(ID.mob.NIDHOGG)
-        GetMobByID(ID.mob.NIDHOGG):setRespawnTime(math.random(75600,86400))
+        GetMobByID(ID.mob.NIDHOGG):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     else
         if LandKingSystem_NQ ~= 1 then
             UpdateNMSpawnPoint(ID.mob.FAFNIR)
-            mob:setRespawnTime(math.random(75600,86400))
+            GetMobByID(ID.mob.FAFNIR):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
             SetServerVariable("[PH]Nidhogg", kills + 1)
         end
     end

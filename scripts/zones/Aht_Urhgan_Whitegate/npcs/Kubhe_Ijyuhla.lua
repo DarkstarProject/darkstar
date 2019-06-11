@@ -14,8 +14,8 @@ end
 
 function onTrigger(player,npc)
     local threeMenProg = player:getVar("threemenandaclosetCS")
-    local threeMenQuest = player:getQuestStatus(AHT_URHGAN,THREE_MEN_AND_A_CLOSET)
-    if player:getQuestStatus(AHT_URHGAN,GOT_IT_ALL) == QUEST_COMPLETED and threeMenQuest == QUEST_AVAILABLE then
+    local threeMenQuest = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THREE_MEN_AND_A_CLOSET)
+    if player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.GOT_IT_ALL) == QUEST_COMPLETED and threeMenQuest == QUEST_AVAILABLE then
         player:startEvent(836)
     elseif threeMenProg == 2 then
         player:startEvent(837)
@@ -37,11 +37,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 836 then
-        player:addQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET)
+        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THREE_MEN_AND_A_CLOSET)
         player:setVar("threemenandaclosetCS",2)
     elseif csid == 838 then
         player:setVar("threemenandaclosetCS",4)
     elseif csid == 845 then
-        npcUtil.completeQuest(player, AHT_URHGAN, THREE_MEN_AND_A_CLOSET, { item=2184, var="threemenandaclosetCS"})
+        npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.THREE_MEN_AND_A_CLOSET, { item=2184, var="threemenandaclosetCS"})
     end
 end

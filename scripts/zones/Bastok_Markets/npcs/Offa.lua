@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local SmokeOnTheMountain = player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN);
+    local SmokeOnTheMountain = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN);
     if (SmokeOnTheMountain == QUEST_ACCEPTED) then
         player:startEvent(222);
     else

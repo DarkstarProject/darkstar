@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 2 then
+    if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getVar("MissionStatus") == 2 then
         player:addKeyItem(dsp.ki.FIGURE_OF_GARUDA)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FIGURE_OF_GARUDA)
         player:setVar("MissionStatus",3)

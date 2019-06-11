@@ -14,6 +14,7 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
         ITEM_OBTAINED               = 6388, -- Obtained: <item>.
         GIL_OBTAINED                = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED            = 6391, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                = 6392, -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY     = 6402, -- There is nothing out of the ordinary here.
         CONQUEST_BASE               = 7049, -- Tallying conquest results...
         BEASTMEN_BANNER             = 7130, -- There is a beastmen's banner.
@@ -33,7 +34,13 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     mob =
     {
+        HOAR_KNUCKLED_RIMBERRY_PH =
+        {
+            [17285392] = 17285394,
+            [17285393] = 17285394,
+        },
         WOODLAND_SAGE          = 17285220,
+        POWDERER_PENNY         = 17285248,
         BISQUE_HEELED_SUNBERRY = 17285460,
         BRIGHT_HANDED_KUNBERRY = 17285526,
         KAPPA_AKUSO            = 17285544,

@@ -10,6 +10,9 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.MYRADROSH)
+    GetMobByID(ID.mob.MYRADROSH):setRespawnTime(math.random(5400, 7200))
+
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
@@ -19,7 +22,7 @@ function onZoneIn(player,prevZone)
         player:setPos(86.131,-65.817,273.861,25);
     end
     if (prevZone == dsp.zone.SOUTHERN_SAN_DORIA_S) then
-        if (player:getCurrentMission(WOTG) == WHILE_THE_CAT_IS_AWAY) then
+        if (player:getCurrentMission(WOTG) == dsp.mission.id.wotg.WHILE_THE_CAT_IS_AWAY) then
             cs = 7;
         end
     end
@@ -34,7 +37,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 7) then
-        player:completeMission(WOTG, WHILE_THE_CAT_IS_AWAY);
-        player:addMission(WOTG, A_TIMESWEPT_BUTTERFLY);
+        player:completeMission(WOTG, dsp.mission.id.wotg.WHILE_THE_CAT_IS_AWAY);
+        player:addMission(WOTG, dsp.mission.id.wotg.A_TIMESWEPT_BUTTERFLY);
     end
 end;

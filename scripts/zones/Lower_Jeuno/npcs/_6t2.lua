@@ -16,13 +16,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
+    local ANewDawn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN);
     local ANewDawnEvent = player:getVar("ANewDawn_Event");
-    local ScatteredIntoShadow = player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW);
+    local ScatteredIntoShadow = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW);
 
     local SaveMySon = player:getVar("SaveMySon_Event");
 
-    local ChocobosWounds = player:getQuestStatus(JEUNO, CHOCOBO_S_WOUNDS);
+    local ChocobosWounds = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
 
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
@@ -48,15 +48,15 @@ function onTrigger(player,npc)
         player:startEvent(0);
 
     -- Save My Son
-    elseif (player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_AVAILABLE and mLvl >= 30) then
+    elseif (player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON) == QUEST_AVAILABLE and mLvl >= 30) then
         player:startEvent(164);
-    elseif (player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON) == QUEST_ACCEPTED) then
         if (SaveMySon == 0) then
             player:startEvent(229);
         elseif (SaveMySon == 1) then
             player:startEvent(163);
         end
-    elseif (player:needToZone() == false and player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_COMPLETED and SaveMySon == 2) then
+    elseif (player:needToZone() == false and player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON) == QUEST_COMPLETED and SaveMySon == 2) then
         player:startEvent(132);
 
     -- Chocobos Wounds
@@ -80,7 +80,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 164 and option == 0) then
-        player:addQuest(JEUNO, SAVE_MY_SON);
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON);
     elseif (csid == 163) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addTitle(dsp.title.LIFE_SAVER);
@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
             player:setVar("SaveMySon_Event",2);
             player:needToZone(true);
             player:addFame(JEUNO,30);
-            player:completeQuest(JEUNO,SAVE_MY_SON);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.SAVE_MY_SON);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13110);
         end
@@ -100,11 +100,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 5) then
         player:setVar("ANewDawn_Event",1);
         if (option == 1) then
-            player:addQuest(JEUNO, A_NEW_DAWN);
+            player:addQuest(JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN);
             player:setVar("ANewDawn_Event",2);
         end
     elseif (csid == 4 and option == 1) then
-        player:addQuest(JEUNO, A_NEW_DAWN);
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN);
         player:setVar("ANewDawn_Event",2);
     elseif (csid == 0) then
         player:setVar("ANewDawn_Event",0);

@@ -14,7 +14,7 @@ function onItemCheck(target)
     local result = 0
     local region = target:getCurrentRegion()
 
-    if not dsp.conq.canTeleportToOutpost(target, region) then
+    if not dsp.conq.canTeleportToOutpost(target, region) or GetRegionOwner(region) ~= target:getNation() then
         result = dsp.msg.basic.CANT_BE_USED_IN_AREA
     end
 

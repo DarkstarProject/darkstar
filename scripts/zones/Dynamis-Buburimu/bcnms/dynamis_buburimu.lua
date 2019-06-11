@@ -1,12 +1,17 @@
 -----------------------------------
 -- Area: dynamis_Buburimu
 -- Name: dynamis_Buburimu
+require("scripts/globals/battlefield")
 -----------------------------------
 
 
 
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 
     SetServerVariable("[DynaBuburimu]UniqueID",os.time());
     SetServerVariable("[DynaBuburimu]Boss_Trigger",0);
@@ -16,7 +21,7 @@ function onBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 
     player:setVar("DynamisID",GetServerVariable("[DynaBuburimu]UniqueID"));
     local realDay = os.time();
@@ -35,10 +40,10 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
 
-    if (leavecode == 4) then
+    if leavecode == dsp.battlefield.leaveCode.LOST then
         SetServerVariable("[DynaBuburimu]UniqueID",0);
     end
 

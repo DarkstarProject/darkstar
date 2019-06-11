@@ -3,6 +3,7 @@
 -----------------------------------
 require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     -- We do not have support to do a fraction of a percent so we rounded

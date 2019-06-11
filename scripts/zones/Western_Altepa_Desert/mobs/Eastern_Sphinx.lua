@@ -19,7 +19,7 @@ function onMobDeath(mob, player, isKiller)
     if
         GetMobByID(ID.mob.EASTERN_SPHINX):isDead() and
         GetMobByID(ID.mob.WESTERN_SPHINX):isDead() and
-        player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and
+        player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and
         player:getVar("MissionStatus") == 2
     then
         player:setVar("Mission6-1MobKilled", 1)

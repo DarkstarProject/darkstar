@@ -49,7 +49,8 @@ function onPetAbility(target, automaton, skill, master, action)
 
     damage = damage * (pdif / 1000)
 
-    target:delHP(damage)
+    damage = utils.stoneskin(target, damage)
+    target:takeDamage(damage, automaton, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(automaton, damage)
     target:addEnmity(automaton, 450, 900)
 

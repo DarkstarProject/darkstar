@@ -97,7 +97,7 @@ function onSpellCast(caster,target,spell)
         target:addHP(final)
 
         target:wakeUp()
-        caster:updateEnmityFromCure(target,final)
+        caster:updateEnmityFromCure(target, 65535)
     else
         if (target:isUndead()) then -- e.g. PCs healing skeles for damage (?)
             spell:setMsg(dsp.msg.basic.MAGIC_DMG)
@@ -120,7 +120,7 @@ function onSpellCast(caster,target,spell)
             dmg = adjustForTarget(target,dmg,spell:getElement())
             dmg = finalMagicAdjustments(caster,target,spell,dmg)
             final = dmg
-            target:delHP(final)
+            target:takeDamage(final, caster, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
             target:updateEnmityFromDamage(caster,final)
         elseif (caster:getObjType() == dsp.objType.PC) then
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

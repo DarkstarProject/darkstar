@@ -1,34 +1,30 @@
 -----------------------------------
 -- Area: Qufim Island
 --  NPC: Swirling Vortex
---  Entrance to Qufim Island
+-- Entrance to Qufim Island
 -- !pos -436.000 -13.499 340.117 126
 -----------------------------------
-require("scripts/globals/teleports");
-require("scripts/globals/missions");
-local ID = require("scripts/zones/Qufim_Island/IDs");
+local ID = require("scripts/zones/Qufim_Island/IDs")
+require("scripts/globals/teleports")
+require("scripts/globals/missions")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-
-    if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
-        player:startEvent(300);
+function onTrigger(player, npc)
+    if player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
+        player:startEvent(300)
     else
-        player:messageSpecial(ID.text.AN_EMPTY_LIGHT_SWIRLS);
+        player:messageSpecial(ID.text.AN_EMPTY_LIGHT_SWIRLS)
     end
+end
 
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-
-    if (csid == 300 and option == 1) then
-        dsp.teleport.to(player, dsp.teleport.id.MISAREAUX_VORTEX);
+function onEventFinish(player, csid, option)
+    if csid == 300 and option == 1 then
+        dsp.teleport.to(player, dsp.teleport.id.MISAREAUX_VORTEX)
     end
-
-end;
+end

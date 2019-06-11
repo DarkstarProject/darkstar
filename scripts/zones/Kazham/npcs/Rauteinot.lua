@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    MissionaryMan = player:getQuestStatus(OUTLANDS,MISSIONARY_MAN);
+    MissionaryMan = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.MISSIONARY_MAN);
     MissionaryManVar = player:getVar("MissionaryManVar");
 
     if (MissionaryMan == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 3) then
@@ -42,7 +42,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 137 and option == 1) then
-        player:addQuest(OUTLANDS,MISSIONARY_MAN);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.MISSIONARY_MAN);
         player:setVar("MissionaryManVar",1);
     elseif (csid == 139) then
         player:setVar("MissionaryManVar",2);
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4728);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4728);
             player:addFame(WINDURST,30);
-            player:completeQuest(OUTLANDS,MISSIONARY_MAN);
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.MISSIONARY_MAN);
         end
     end
 end;

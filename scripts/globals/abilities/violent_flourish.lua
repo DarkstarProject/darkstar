@@ -48,12 +48,12 @@ function onUseAbility(player,target,ability,action)
     local fstr = fSTR(player:getStat(dsp.mod.STR),target:getStat(dsp.mod.VIT),player:getWeaponDmgRank())
 
     local params = {}
-    params.atkmulti = 1
+    params.atk100 = 1 params.atk200 = 1 params.atk300 = 1
 
     --apply WSC
     local weaponDamage = player:getWeaponDmg()
 
-    if (player:getWeaponSkillType(0) == 1) then
+    if (player:getWeaponSkillType(dsp.slot.MAIN) == 1) then
         local h2hSkill = ((player:getSkillLevel(1) * 0.11) + 3)
         weaponDamage = player:getWeaponDmg()-3
 
@@ -87,8 +87,7 @@ function onUseAbility(player,target,ability,action)
         end
 
         dmg = utils.stoneskin(target, dmg)
-
-        target:delHP(dmg)
+        target:takeDamage(dmg, player, dsp.attackType.PHYSICAL, player:getWeaponDamageType(dsp.slot.MAIN))
         target:updateEnmityFromDamage(player,dmg)
 
         action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(dsp.slot.MAIN)))

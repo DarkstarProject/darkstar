@@ -27,13 +27,13 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
     params.canCrit = false
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = 1.0
+    params.atk100 = 1.0; params.atk200 = 1.0; params.atk300 = 1.0;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.agi_wsc = 0.7 + (player:getMerit(dsp.merit.EXENTERATOR) / 100)
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
 
     if (damage > 0 and target:hasStatusEffect(dsp.effect.ACCURACY_DOWN) == false) then
         local duration = (45 + (tp/1000 * 45)) * applyResistanceAddEffect(player,target,dsp.magic.ele.EARTH,0)

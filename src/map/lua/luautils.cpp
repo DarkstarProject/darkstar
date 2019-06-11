@@ -53,6 +53,7 @@
 #include "../weapon_skill.h"
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
+#include "../timetriggers.h"
 #include "../transport.h"
 #include "../packets/action.h"
 #include "../packets/char_update.h"
@@ -80,6 +81,7 @@
 #include "../ai/states/mobskill_state.h"
 #include "../ai/states/magic_state.h"
 #include <optional>
+#include "../battlefield.h"
 
 namespace luautils
 {
@@ -105,7 +107,6 @@ namespace luautils
         lua_register(LuaHandle, "print", luautils::print);
         lua_register(LuaHandle, "GetNPCByID", luautils::GetNPCByID);
         lua_register(LuaHandle, "GetMobByID", luautils::GetMobByID);
-        lua_register(LuaHandle, "GetMobIDByJob", luautils::GetMobIDByJob);
         lua_register(LuaHandle, "WeekUpdateConquest", luautils::WeekUpdateConquest);
         lua_register(LuaHandle, "GetRegionOwner", luautils::GetRegionOwner);
         lua_register(LuaHandle, "GetRegionInfluence", luautils::GetRegionInfluence);
@@ -311,18 +312,18 @@ namespace luautils
     {
         switch (lua_gettop(L))
         {
-            case 0:
-                lua_pushnumber(L, dsprand::GetRandomNumber(1.));
-                break;
-            case 1:
-                luaL_checkinteger(L, 1);
-                lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(1, lua_tointeger(L, 1) + 1));
-                break;
-            default:
-                luaL_checkinteger(L, 1);
-                luaL_checkinteger(L, 2);
-                lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(lua_tointeger(L, 1), lua_tointeger(L, 2) + 1));
-                break;
+        case 0:
+            lua_pushnumber(L, dsprand::GetRandomNumber(1.));
+            break;
+        case 1:
+            luaL_checkinteger(L, 1);
+            lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(1, lua_tointeger(L, 1) + 1));
+            break;
+        default:
+            luaL_checkinteger(L, 1);
+            luaL_checkinteger(L, 2);
+            lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(lua_tointeger(L, 1), lua_tointeger(L, 2) + 1));
+            break;
         }
         return 1;
     }
@@ -383,8 +384,8 @@ namespace luautils
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint32 mobid = (uint32)lua_tointeger(L, 1);
-            CInstance* PInstance {nullptr};
-            CBaseEntity* PMob {nullptr};
+            CInstance* PInstance{ nullptr };
+            CBaseEntity* PMob{ nullptr };
 
             if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
             {
@@ -421,38 +422,6 @@ namespace luautils
         return 1;
     }
 
-    /************************************************************************
-    * GetMobIDByJob                                                         *
-    * Get a mobid by his job (used in dynamis)                              *
-    * GetMobIDByJob(mobid_min,mobid_max,mobjob)                             *
-    ************************************************************************/
-
-    int32 GetMobIDByJob(lua_State *L)
-    {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1) || lua_isnil(L, 2) || !lua_isnumber(L, 2) || lua_isnil(L, 3) || !lua_isnumber(L, 3));
-
-        uint32 id_min = (uint32)lua_tointeger(L, 1);
-        uint32 id_max = (uint32)lua_tointeger(L, 2);
-        JOBTYPE mobJob = (JOBTYPE)lua_tointeger(L, 3);
-
-        for (uint32 mobid = id_min; mobid <= id_max; mobid++)
-        {
-            CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-
-            if (PMob != nullptr &&
-                PMob->isDead() &&
-                !PMob->PAI->IsSpawned() && // exclude mobs that haven't yet despawned
-                PMob->m_Type == MOBTYPE_BATTLEFIELD && // exclude NMs and pets
-                (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 && // exclude Replicas and Ahrimans
-                PMob->GetMJob() == mobJob)
-            {
-                lua_pushinteger(L, PMob->id);
-                return 1;
-            }
-        }
-        lua_pushnil(L);
-        return 1;
-    }
 
     /************************************************************************
     *                                                                       *
@@ -507,22 +476,22 @@ namespace luautils
         uint8 balance = conquest::GetBalance();
         switch (lua_tointeger(L, 1))
         {
-            case SANDORIA:
-                balance &= 0x3U;
-                lua_pushinteger(L, balance);
-                return 1;
-            case BASTOK:
-                balance &= 0xCU;
-                balance >>= 2;
-                lua_pushinteger(L, balance);
-                return 1;
-            case WINDURST:
-                balance >>= 4;
-                lua_pushinteger(L, balance);
-                return 1;
-            default:
-                lua_pushinteger(L, 0);
-                return 1;
+        case SANDORIA:
+            balance &= 0x3U;
+            lua_pushinteger(L, balance);
+            return 1;
+        case BASTOK:
+            balance &= 0xCU;
+            balance >>= 2;
+            lua_pushinteger(L, balance);
+            return 1;
+        case WINDURST:
+            balance >>= 4;
+            lua_pushinteger(L, balance);
+            return 1;
+        default:
+            lua_pushinteger(L, 0);
+            return 1;
         }
     }
 
@@ -795,26 +764,26 @@ namespace luautils
 
         switch (CVanaTime::getInstance()->getMoonDirection())
         {
-            case 0: // None
-                if (phase == 0)
-                {
-                    lua_pushboolean(L, true);
-                    return 1;
-                }
+        case 0: // None
+            if (phase == 0)
+            {
+                lua_pushboolean(L, true);
+                return 1;
+            }
 
-            case 1: // Waning (decending)
-                if (phase <= 10 && phase >= 0)
-                {
-                    lua_pushboolean(L, true);
-                    return 1;
-                }
+        case 1: // Waning (decending)
+            if (phase <= 10 && phase >= 0)
+            {
+                lua_pushboolean(L, true);
+                return 1;
+            }
 
-            case 2: // Waxing (increasing)
-                if (phase >= 0 && phase <= 5)
-                {
-                    lua_pushboolean(L, true);
-                    return 1;
-                }
+        case 2: // Waxing (increasing)
+            if (phase >= 0 && phase <= 5)
+            {
+                lua_pushboolean(L, true);
+                return 1;
+            }
         }
         lua_pushboolean(L, false);
         return 1;
@@ -836,26 +805,26 @@ namespace luautils
 
         switch (CVanaTime::getInstance()->getMoonDirection())
         {
-            case 0: // None
-                if (phase == 100)
-                {
-                    lua_pushboolean(L, true);
-                    return 1;
-                }
+        case 0: // None
+            if (phase == 100)
+            {
+                lua_pushboolean(L, true);
+                return 1;
+            }
 
-            case 1: // Waning (decending)
-                if (phase >= 95 && phase <= 100)
-                {
-                    lua_pushboolean(L, true);
-                    return 1;
-                }
+        case 1: // Waning (decending)
+            if (phase >= 95 && phase <= 100)
+            {
+                lua_pushboolean(L, true);
+                return 1;
+            }
 
-            case 2: // Waxing (increasing)
-                if (phase >= 90 && phase <= 100)
-                {
-                    lua_pushboolean(L, true);
-                    return 1;
-                }
+        case 2: // Waxing (increasing)
+            if (phase >= 90 && phase <= 100)
+            {
+                lua_pushboolean(L, true);
+                return 1;
+            }
         }
         lua_pushboolean(L, false);
         return 1;
@@ -1522,9 +1491,50 @@ namespace luautils
     }
 
     /************************************************************************
-    *                                                                       *
     *  Запущенное событие нуждается в дополнительных параметрах             *
-    *                                                                       *
+    *  A triggered event needs additional parameters  (battlefield extras)  *
+    ************************************************************************/
+
+    int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result, uint16 extras)
+    {
+        int32 oldtop = lua_gettop(LuaHandle);
+
+        lua_pushnil(LuaHandle);
+        lua_setglobal(LuaHandle, "onEventUpdate");
+
+        auto loadResult = LoadEventScript(PChar, "onEventUpdate");
+
+        if (!loadResult)
+        {
+            ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, eventID);
+        lua_pushinteger(LuaHandle, result);
+        lua_pushinteger(LuaHandle, extras);
+
+        CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+        if (lua_pcall(LuaHandle, 5, 1, 0))
+        {
+            ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+        int32 updatePosition = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 1);
+        lua_pop(LuaHandle, 1);
+
+        return updatePosition;
+    }
+
+    /************************************************************************
+    *  Запущенное событие нуждается в дополнительных параметрах             *
+    *  A triggered event needs additional parameters                        *
     ************************************************************************/
 
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
@@ -1549,13 +1559,17 @@ namespace luautils
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
-        if (lua_pcall(LuaHandle, 4, 0, 0))
+        if (lua_pcall(LuaHandle, 4, 1, 0))
         {
             ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
         }
-        return 0;
+
+        int32 updatePosition = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 1);
+        lua_pop(LuaHandle, 1);
+
+        return updatePosition;
     }
 
     int32 OnEventUpdate(CCharEntity* PChar, int8* string)
@@ -2142,8 +2156,11 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua",
-            PSpell->getName());
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
         if (prepFile(File, "onSpellCast"))
         {
@@ -2429,6 +2446,103 @@ namespace luautils
         return 0;
     }
 
+    int32 OnBattlefieldHandlerInitialise(CZone* PZone)
+    {
+        DSP_DEBUG_BREAK_IF(PZone == nullptr);
+
+        lua_prepscript("scripts/globals/battlefield.lua");
+
+        int32 MaxAreas = 3;
+
+        if (prepFile(File, "onBattlefieldHandlerInitialise"))
+        {
+            return MaxAreas;
+        }
+
+        CLuaZone LuaZone(PZone);
+        Lunar<CLuaZone>::push(LuaHandle, &LuaZone);
+
+        if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onBattlefieldHandlerInitialise: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return MaxAreas;
+        }
+
+        MaxAreas = (int32)lua_tointeger(LuaHandle, -1);
+        lua_pop(LuaHandle, 1);
+        return MaxAreas;
+    }
+
+    int32 OnBattlefieldInitialise(CBattlefield* PBattlefield)
+    {
+        DSP_DEBUG_BREAK_IF(PBattlefield == nullptr);
+
+        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PBattlefield->GetZone()->GetName(), PBattlefield->GetName().c_str());
+
+        if (prepFile(File, "onBattlefieldInitialise"))
+        {
+            return -1;
+        }
+
+        CLuaBattlefield LuaBattlefield(PBattlefield);
+        Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefield);
+
+        if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onBattlefieldInitialise: %s\n", lua_tostring(LuaHandle, -1));
+            return -1;
+        }
+        return 0;
+    }
+
+    int32 OnBattlefieldTick(CBattlefield* PBattlefield)
+    {
+        DSP_DEBUG_BREAK_IF(PBattlefield == nullptr);
+
+        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PBattlefield->GetZone()->GetName(), PBattlefield->GetName().c_str());
+
+        if (prepFile(File, "onBattlefieldTick"))
+        {
+            ShowError("luautils::onBattlefieldTick: Unable to find onBattlefieldTick function for %s\n", &File[0]);
+            return -1;
+        }
+
+        CLuaBattlefield LuaBattlefield(PBattlefield);
+        Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefield);
+        lua_pushinteger(LuaHandle, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(PBattlefield->GetTimeInside()).count());
+
+        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onBattlefieldTick: %s\n", lua_tostring(LuaHandle, -1));
+            return -1;
+        }
+        return 0;
+    }
+
+    int32 OnBattlefieldStatusChange(CBattlefield* PBattlefield)
+    {
+        DSP_DEBUG_BREAK_IF(PBattlefield == nullptr);
+
+        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PBattlefield->GetZone()->GetName(), PBattlefield->GetName().c_str());
+
+        if (prepFile(File, "onBattlefieldStatusChange"))
+        {
+            return -1;
+        }
+
+        CLuaBattlefield LuaBattlefield(PBattlefield);
+        Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefield);
+        lua_pushinteger(LuaHandle, PBattlefield->GetStatus());
+
+        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onBattlefieldStatusChange: %s\n", lua_tostring(LuaHandle, -1));
+            return -1;
+        }
+        return 0;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Сalled when a monster engages a target for the first time            *
@@ -2446,7 +2560,7 @@ namespace luautils
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-        if (PTarget->objtype != TYPE_PET && PTarget->objtype != TYPE_MOB)
+        if (PTarget->objtype == TYPE_PC)
         {
             ((CCharEntity*)PTarget)->m_event.reset();
             ((CCharEntity*)PTarget)->m_event.Target = PMob;
@@ -3147,10 +3261,15 @@ namespace luautils
 
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell)
     {
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua", PSpell->getName());
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
         if (prepFile(File, "onMagicCastingCheck"))
         {
+            // ShowDebug("luautils::OnMagicCastingCheck: could not load %s/%s.lua \n", scriptPath, PSpell->getName());
             return 47;
         }
 
@@ -3747,6 +3866,30 @@ namespace luautils
         return 0;
     }
 
+    int32 OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID)
+    {
+        lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
+
+        if (prepFile(File, "onTimeTrigger"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PNpc);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, triggerID);
+
+        if (lua_pcall(LuaHandle, 2, 0, 0))
+        {
+            ShowError("luautils::onTimeTrigger: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
     int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
@@ -3771,16 +3914,16 @@ namespace luautils
     }
 
     /********************************************************************
-        onBcnmEnter - callback when you enter a BCNM via a lua call to bcnmEnter(bcnmid)
+        onBattlefieldEnter - callback when you enter a BCNM via a lua call to bcnmEnter(bcnmid)
     *********************************************************************/
-    int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield)
+    int32 OnBattlefieldEnter(CCharEntity* PChar, CBattlefield* PBattlefield)
     {
 
         CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
-        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
+        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->GetName().c_str());
 
-        if (prepFile(File, "onBcnmEnter"))
+        if (prepFile(File, "onBattlefieldEnter"))
         {
             return 0;
         }
@@ -3793,7 +3936,7 @@ namespace luautils
 
         if (lua_pcall(LuaHandle, 2, 0, 0))
         {
-            ShowError("luautils::onBcnmEnter: %s\n", lua_tostring(LuaHandle, -1));
+            ShowError("luautils::onBattlefieldEnter: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return 0;
         }
@@ -3802,7 +3945,7 @@ namespace luautils
     }
 
     /********************************************************************
-        onBcnmLeave - callback when you leave a BCNM via multiple means.
+        onBattlefieldLeave - callback when you leave a BCNM via multiple means.
         The method of leaving is given by the LeaveCode as follows:
         1 - Leaving via burning circle e.g. "run away"
         2 - Leaving via win
@@ -3811,14 +3954,14 @@ namespace luautils
         This callback is executed for everyone in the BCNM when they leave
         so if they leave via win, this will be called for each char.
     *********************************************************************/
-    int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode)
+    int32 OnBattlefieldLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode)
     {
 
         CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
-        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
+        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->GetName().c_str());
 
-        if (prepFile(File, "onBcnmLeave"))
+        if (prepFile(File, "onBattlefieldLeave"))
         {
             return 0;
         }
@@ -3837,7 +3980,7 @@ namespace luautils
 
         if (lua_pcall(LuaHandle, 3, 0, 0))
         {
-            ShowError("luautils::onBcnmLeave: %s\n", lua_tostring(LuaHandle, -1));
+            ShowError("luautils::onBattlefieldLeave: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return 0;
         }
@@ -3846,20 +3989,19 @@ namespace luautils
     }
 
     /********************************************************************
-        onBcnmRegister - callback when you successfully register a BCNM.
+        onBattlefieldRegister - callback when you successfully register a BCNM.
         For example, trading an orb, selecting the battle.
         Called AFTER assigning BCNM status to all valid characters.
         This callback is called only for the character initiating the
         registration, and after CBattlefield:init() procedure.
     *********************************************************************/
-    int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield)
+    int32 OnBattlefieldRegister(CCharEntity* PChar, CBattlefield* PBattlefield)
     {
-
         CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
-        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
+        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->GetName().c_str());
 
-        if (prepFile(File, "onBcnmRegister"))
+        if (prepFile(File, "onBattlefieldRegister"))
         {
             return 0;
         }
@@ -3871,7 +4013,7 @@ namespace luautils
         Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
         if (lua_pcall(LuaHandle, 2, 0, 0))
         {
-            ShowError("luautils::onBcnmRegister: %s\n", lua_tostring(LuaHandle, -1));
+            ShowError("luautils::onBattlefieldRegister: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return 0;
         }
@@ -3880,14 +4022,13 @@ namespace luautils
     }
 
     /********************************************************************
-    onBcnmDestroy - called when BCNM is destroyed (cleanup)
+    onBattlefieldDestroy - called when BCNM is destroyed (cleanup)
     *********************************************************************/
-    int32 OnBcnmDestroy(CBattlefield* PBattlefield)
+    int32 OnBattlefieldDestroy(CBattlefield* PBattlefield)
     {
+        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PBattlefield->GetZone()->GetName(), PBattlefield->GetName().c_str());
 
-        lua_prepscript("scripts/zones/%s/bcnms/%s.lua", zoneutils::GetZone(PBattlefield->getZoneId())->GetName(), PBattlefield->getBcnmName());
-
-        if (prepFile(File, "onBcnmDestroy"))
+        if (prepFile(File, "onBattlefieldDestroy"))
         {
             return 0;
         }
@@ -3897,7 +4038,7 @@ namespace luautils
 
         if (lua_pcall(LuaHandle, 1, 0, 0))
         {
-            ShowError("luautils::onBcnmDestroy: %s\n", lua_tostring(LuaHandle, -1));
+            ShowError("luautils::onBattlefieldDestroy: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return 0;
         }
@@ -4265,6 +4406,44 @@ namespace luautils
         }
 
         return effectId;
+    }
+
+    void OnFurniturePlaced(CCharEntity* PChar, CItemFurnishing* PItem)
+    {
+        lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
+
+        if (prepFile(File, "onFurniturePlaced"))
+        {
+            return;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::onFurniturePlaced: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+        }
+    }
+
+    void OnFurnitureRemoved(CCharEntity* PChar, CItemFurnishing* PItem)
+    {
+        lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
+
+        if (prepFile(File, "onFurnitureRemoved"))
+        {
+            return;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::onFurnitureRemoved: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+        }
     }
 
 }; // namespace luautils

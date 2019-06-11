@@ -1,7 +1,9 @@
-require("scripts/globals/keyitems");
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/keyitems")
+require("scripts/globals/battlefield")
+require("scripts/globals/msg")
 
-dynamis = {};
+dynamis = {}
 
 -----------------------------------
 -- Dynamis-Bastok
@@ -25,7 +27,7 @@ dynamis = {};
 
 -- [Position on the map] Adamantking mobid, {spawnlist: mob1, mob2,...}
 bastyList = {
-    --[[001]] 17539350,{13,4},
+    --[[001]] 17539350,{13,4}, -- 17539452
     --[[002]] 17539351,{12,10},
     --[[003]] 17539352,{5,1},
     --[[004]] 17539353,{6,1},
@@ -704,33 +706,43 @@ end;
 
 --------------------------------------------------
 -- checkFirstDyna
--- true if the first dyna
+--[[ CS Option params
+        1 = First CS - if first time visiting ANY dyna zone
+        2 = Second CS - if first time visiting THIS dyna zone
+        3 = Completed CS - if second time or more visiting THIS dyna zone
+        Add 65536 if obtained KI that removes dyna wait time restriction (Rhapsody in Azure) --]]
 --------------------------------------------------
 
 function checkFirstDyna(player,number)
 
-    local dynaVar = 0;
-    local bit = {};
+    local dynaVar = 0
+    local bit = {}
+    local timeKI = 0
+    if player:hasKeyItem(dsp.ki.RHAPSODY_IN_AZURE) then timeKI = 65536 end
 
-    dynaVar = player:getVar("Dynamis_Status");
+    dynaVar = player:getVar("Dynamis_Status")
 
-    for i = 7,0,-1 do
-        twop = 2^i;
-        if (dynaVar >= twop) then
-            bit[i+1] = 1;
-            dynaVar = dynaVar - twop;
-        else
-            bit[i+1] = 0;
-        end;
-        --printf("bit %u: %u\n",i,bit[i+1]);
-    end;
-    --printf("received %u",bit[number+1]);
-    if (bit[number+1] == 0) then
-        return true;
+    if dynaVar == 0 then
+        return 1+timeKI
     else
-        return false;
+        for i = 7,0,-1 do
+            twop = 2^i
+            if dynaVar >= twop then
+                bit[i+1] = 1
+                dynaVar = dynaVar - twop
+            else
+                bit[i+1] = 0
+            end
+            -- printf("bit %u: %u\n",i,bit[i+1])
+        end
+        -- printf("received %u",bit[number+1])
+        if bit[number+1] == 0 then
+            return 2+timeKI
+        else
+            return 3+timeKI
+        end
     end
-end;
+end
 
 --------------------------------------------------
 -- alreadyReceived
@@ -941,3 +953,52 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
         end
     end
 end;
+
+function dynamis.extendTimeLimit(battlefield, minutes)
+    dsp.battlefield.ExtendTimeLimit(battlefield, minutes, msgBasic.TIME_DYNAMIS_EXTENDED)
+end
+
+-- todo: fix these to use tables
+function dynamis.getExtensions(player)
+    local count = 0
+    for i=dsp.ki.CRIMSON_GRANULES_OF_TIME, dsp.ki.OBSIDIAN_GRANULES_OF_TIME do
+        if player:hasKeyItem(i) then count = count + 1 end
+    end
+    return count
+end
+
+function dynamis.procMonster(mob, player)
+    if player and player:getAllegiance() == 1 then
+        local extensions = dynamis.getExtensions(player)
+        if extensions > 2 then
+            if player:getSubJob() == dsp.job.NONE and math.random(0,99) == 0 then
+                mob:setLocalVar("dynamis_proc", 4)
+                mob:weaknessTrigger(3)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            elseif extensions == 5 then
+                mob:setLocalVar("dynamis_proc", 3)
+                mob:weaknessTrigger(2)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            elseif extensions == 4 then
+                mob:setLocalVar("dynamis_proc", 2)
+                mob:weaknessTrigger(1)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            elseif extensions == 3 then
+                mob:setLocalVar("dynamis_proc", 1)
+                mob:weaknessTrigger(0)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            end
+        end
+    end
+end
+
+function dynamis.addExtension(player, keyitem, duration)
+    if not player:hasKeyItem(keyitem) then
+        npcUtil.giveKeyItem(player, keyitem)
+        local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
+        local old_duration = effect:getDuration()
+        effect:setDuration((old_duration + (duration * 60)) * 1000)
+        player:setLocalVar("dynamis_lasttimeupdate", effect:getTimeRemaining() / 1000)
+        player:messageSpecial(zones[player:getZoneID()].text.DYNAMIS_TIME_EXTEND, duration)
+    end
+end

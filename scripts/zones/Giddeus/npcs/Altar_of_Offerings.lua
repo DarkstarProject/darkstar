@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    crisisstatus = player:getQuestStatus(WINDURST,A_CRISIS_IN_THE_MAKING);
+    crisisstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
     if (crisisstatus >= 1 and player:getVar("QuestCrisisMaking_var") == 1) then
         player:startEvent(53); -- A Crisis in the Making: Receive Offering
     else

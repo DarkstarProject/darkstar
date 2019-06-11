@@ -15,18 +15,18 @@ function onInitialize(zone)
     dsp.promyvion.initZone(zone)
 end
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
 
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         player:setPos(185.891, 0, -52.331, 128)
     end
 
-    if player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 2 then
-        player:completeMission(COP, BELOW_THE_ARKS)
-        player:addMission(COP, THE_MOTHERCRYSTALS)
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 2 then
+        player:completeMission(COP, dsp.mission.id.cop.BELOW_THE_ARKS)
+        player:addMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS)
         player:setVar("PromathiaStatus", 0)
-    elseif player:getCurrentMission(COP) == THE_MOTHERCRYSTALS then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS then
         if player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) then
             if player:getVar("cslastpromy") == 1 then
                 player:setVar("cslastpromy", 0)
@@ -53,17 +53,17 @@ function afterZoneIn(player)
     end
 end
 
-function onRegionEnter(player,region)
+function onRegionEnter(player, region)
     dsp.promyvion.onRegionEnter(player, region)
 end
 
-function onRegionLeave(player,region)
+function onRegionLeave(player, region)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 46 and option == 1 then
         player:setPos(-226.193, -46.459, -280.046, 127, 14) -- To Hall of Transference {R}
     elseif csid == 50 then

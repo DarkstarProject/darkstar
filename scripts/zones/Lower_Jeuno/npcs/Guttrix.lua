@@ -46,7 +46,7 @@ function onTrigger(player,npc)
     local pFame = player:getFameLevel(JEUNO);
     local pRace = player:getRace();
     local pLevel = player:getMainLvl();
-    local questStatus = player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR);
+    local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
     local rseGear = hasRSE(player);
     local rseRace = VanadielRSERace();
     local rseLocation = VanadielRSELocation();
@@ -72,10 +72,10 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    local questStatus = player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR);
+    local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
 
     if (csid == 10016) then
-        player:addQuest(JEUNO,THE_GOBLIN_TAILOR);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
     elseif (csid == 10018 and option >= 1 and option <= 4) then
         local rseGear = rse_map[player:getRace()][option]
 
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
         else
             if (questStatus == QUEST_ACCEPTED) then
                 player:addFame(JEUNO, 30);
-                player:completeQuest(JEUNO,THE_GOBLIN_TAILOR);
+                player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
             end
 
             player:delKeyItem(dsp.ki.MAGICAL_PATTERN);

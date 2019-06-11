@@ -383,11 +383,11 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
-        PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+        ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->resetDelay();
     }
 
     uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
@@ -799,7 +799,6 @@ void SetupDynamisMob(CMobEntity* PMob)
     // no gil drop and no mugging!
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
-    PMob->setMobMod(MOBMOD_PROC_2HOUR, 80);
 
     // used for dynamis stat-spawned mobs
     PMob->m_StatPoppedMobs = false;
@@ -807,24 +806,13 @@ void SetupDynamisMob(CMobEntity* PMob)
     // dynamis mobs have true sight
     PMob->m_TrueDetection = true;
 
-    // Hydra's and beastmen can 2 hour
-    if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-            PMob->m_EcoSystem == SYSTEM_UNDEAD)
-    {
-        PMob->setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    }
-
     // boost dynamis mobs weapon damage
     PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     // never despawn
     PMob->SetDespawnTime(0s);
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-
-    // do not roam around
-    PMob->m_roamFlags |= ROAMFLAG_EVENT;
-    PMob->m_maxRoamDistance = 0.5f;
 
     // job resist traits are much more powerful in dynamis
     // according to wiki
@@ -883,8 +871,6 @@ void SetupNMMob(CMobEntity* PMob)
     uint8 mLvl = PMob->GetMLevel();
 
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-    // enmity range is larger
-    PMob->m_enmityRange = 28;
 
     // NMs cure earlier
     PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
@@ -908,15 +894,7 @@ void SetupNMMob(CMobEntity* PMob)
             // whm nms have stronger regen effect
             PMob->addModifier(Mod::REGEN, mLvl/4);
         }
-
-        // add two hours
-        if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-                PMob->m_EcoSystem == SYSTEM_HUMANOID)
-        {
-            PMob->defaultMobMod(MOBMOD_MAIN_2HOUR, 1);
-        }
     }
-
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
@@ -978,7 +956,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
     PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
     PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
-    PMob->defaultMobMod(MOBMOD_PROC_2HOUR, 60);
     PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, (int16)CMobEntity::sight_range);
     PMob->defaultMobMod(MOBMOD_SOUND_RANGE, (int16)CMobEntity::sound_range);
 
@@ -1270,18 +1247,18 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
             PMob->SetMJob(Sql_GetIntData(SqlHandle, 10));
             PMob->SetSJob(Sql_GetIntData(SqlHandle, 11));
 
-            PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
-            PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle, 12));
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setSkillType(Sql_GetIntData(SqlHandle, 12));
             PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 13);
-            PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
-            PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
 
             PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 15);
             PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 16);
             PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 17);
             PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 18);
             PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 19);
-            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 10);
+            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 20);
 
             PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 21);
             PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 21);

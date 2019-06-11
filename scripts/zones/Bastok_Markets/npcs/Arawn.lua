@@ -15,10 +15,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    local StampHunt = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.STAMP_HUNT);
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,11) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,11) == false) then
         player:startEvent(429);
     elseif (StampHunt == QUEST_AVAILABLE) then
         player:startEvent(225);
@@ -36,7 +36,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 225 and option == 0) then
-        player:addQuest(BASTOK,STAMP_HUNT);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.STAMP_HUNT);
         player:addKeyItem(dsp.ki.STAMP_SHEET);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAMP_SHEET);
     elseif (csid == 226) then
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.STAMP_SHEET);
             player:setVar("StampHunt_Mask",0);
             player:addFame(BASTOK,50);
-            player:completeQuest(BASTOK,STAMP_HUNT);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.STAMP_HUNT);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 13081);
         end

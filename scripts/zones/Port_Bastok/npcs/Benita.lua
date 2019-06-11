@@ -14,7 +14,7 @@ count = trade:getItemCount();
 BombAsh = trade:hasItemQty(928,1);
 
     if (count == 1 and BombAsh == true) then
-        TheWisdom = player:getQuestStatus(BASTOK,THE_WISDOM_OF_ELDERS);
+        TheWisdom = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS);
         TheWisdomVar = player:getVar("TheWisdomVar");
         if (TheWisdom == 1 and TheWisdomVar == 2) then
             player:tradeComplete();
@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 
-TheWisdom = player:getQuestStatus(BASTOK,THE_WISDOM_OF_ELDERS);
+TheWisdom = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS);
 pLevel = player:getMainLvl();
 
     if (TheWisdom == 0 and pLevel >= 6) then
@@ -48,13 +48,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 174) then
-        player:addQuest(BASTOK,THE_WISDOM_OF_ELDERS);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS);
         player:setVar("TheWisdomVar",1);
     elseif (csid == 176) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12500);
         else
-            player:completeQuest(BASTOK,THE_WISDOM_OF_ELDERS);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS);
             player:addFame(BASTOK,120);
             player:addItem(12500);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12500);

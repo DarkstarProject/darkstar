@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.YAGUDO_CREST) == false) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.YAGUDO_CREST) == false) then
         player:addKeyItem(dsp.ki.YAGUDO_CREST);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.YAGUDO_CREST);
     else

@@ -192,7 +192,7 @@ function onTrigger(player,npc)
     --cs 904 - give coffee
     --cs 905 - head complete
 
-    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED)
+    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED)
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress")
     local Automaton = player:hasKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     local automatonName = player:getAutomatonName()

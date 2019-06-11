@@ -29,7 +29,7 @@ function onMobFight(mob, target)
     if mob:getBattleTime() % 30 == 0 and mob:getBattleTime() > 3 then
         for i = motherGlobe + 1, motherGlobe + 6 do
             local pet = GetMobByID(i)
-            if not pet:isSpawn() then
+            if not pet:isSpawned() then
                 pet:setSpawn(mob:getXPos() + 1, mob:getYPos(), mob:getZPos() + 1)
                 pet:spawn()
                 pet:updateEnmity(target)
@@ -55,4 +55,8 @@ function onMobDeath(mob, player, isKiller)
             DespawnMob(i)
         end
     end
+end
+
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(10800, 21600)) -- 3 to 6 hours
 end

@@ -33,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.3 params.mnd_wsc = 0.7
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params)
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, action, primary)
     if damage > 0 then
         if not target:hasStatusEffect(dsp.effect.DEFENSE_DOWN) then
             local duration = (30 + tp / 1000 * 30) * applyResistanceAddEffect(player, target, dsp.magic.ele.WIND, 0)

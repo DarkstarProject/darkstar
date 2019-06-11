@@ -21,9 +21,9 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 3, 60)
 
-    local dmg = MobFinalAdjustments(needles,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_WATER,MOBPARAM_WIPE_SHADOWS)
+    local dmg = MobFinalAdjustments(needles,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.WATER,MOBPARAM_WIPE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.WATER)
 
     return dmg
 end

@@ -18,7 +18,7 @@ function onTrigger(player,npc)
 
     local mLvl          = player:getMainLvl();
     local mJob          = player:getMainJob();
-    local downwardHelix = player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX);
+    local downwardHelix = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX);
 
     -- Controls the progress of each step. Everything will start at 1 and end at 4 (complete).
     local loafersQuestProgress = player:getVar("AF_SCH_BOOTS");

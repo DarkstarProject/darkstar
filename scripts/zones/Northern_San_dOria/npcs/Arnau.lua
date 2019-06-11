@@ -11,11 +11,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 2) then
         player:startEvent(51); --COP event
-    elseif (player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") < 2) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and player:getVar("MissionStatus") < 2) then
         player:startEvent(693);
-    elseif (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) and player:getVar("OptionalCSforSTC") == 1) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SAVE_THE_CHILDREN) and player:getVar("OptionalCSforSTC") == 1) then
         player:startEvent(694);
     else
         player:startEvent(20);

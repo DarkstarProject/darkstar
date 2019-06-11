@@ -11,7 +11,7 @@ function onMobInitialize(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 3) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 3) then
         player:setVar("QuestStatus_DNC_AF1", 4);
     end
 end;

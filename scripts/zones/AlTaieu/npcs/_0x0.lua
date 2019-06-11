@@ -19,9 +19,9 @@ function onTrigger(player,npc)
         player:setVar("PromathiaStatus", 3);
     end
 
-    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(164);
-    elseif (player:getCurrentMission(COP) > GARDEN_OF_ANTIQUITY or (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 3)) then
+    elseif (player:getCurrentMission(COP) > dsp.mission.id.cop.GARDEN_OF_ANTIQUITY or (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 3)) then
         player:startEvent(100); -- Teleport inside
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY); -- Access should be restricted if below requirements. Message is probably wrong, though.

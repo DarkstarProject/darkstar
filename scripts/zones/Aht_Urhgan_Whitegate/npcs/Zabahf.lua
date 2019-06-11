@@ -23,7 +23,7 @@ function onTrigger(player,npc)
         player:startEvent(540)
     elseif gotItAllProg == 7 then
         player:startEvent(535)
-    elseif player:getQuestStatus(AHT_URHGAN,GOT_IT_ALL) == QUEST_COMPLETED then
+    elseif player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.GOT_IT_ALL) == QUEST_COMPLETED then
         player:startEvent(530)
     end
 end

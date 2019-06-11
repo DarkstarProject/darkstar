@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.FUNGUS_BEETLE_PH,10,math.random(900,10800)); -- 15 minutes to 3 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.FUNGUS_BEETLE_PH,10,math.random(900,10800)); -- 15 minutes to 3 hours
 end;

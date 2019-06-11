@@ -23,10 +23,19 @@ zones[dsp.zone.CASTLE_OZTROJA_S] =
             [17182827] = 17182843,
             [17182838] = 17182843,
         },
-        ZHUU_BUXU_THE_SILENT =
+        ZHUU_BUXU_THE_SILENT_PH =
         {
             [17182813] = 17182813,
         },
+        DUU_MASA_THE_ONECUT    = 17182790,
+        DEE_ZELKO_THE_ESOTERIC = 17183031,
+        MARQUIS_FORNEUS        = 17183032,
+        LOO_KUTTO_THE_PENSIVE  = 17183033,
+        FLESHGNASHER           = 17183034,
+        VEE_LADU_THE_TITTERER  = 17183035,
+        MAA_ILLMU_THE_BESTOWER = 17183036,
+        ASTERION               = 17183037,
+        SUU_XICU_THE_CANTABILE = 17183038,
     },
     npc =
     {

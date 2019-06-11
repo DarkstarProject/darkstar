@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Lower_Jeuno/IDs");
 
 function onTrade(player,npc,trade)
 
-    local questStatus = player:getQuestStatus(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+    local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_ROAD_TO_AHT_URHGAN);
     local questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
 
     if (questStatus == QUEST_ACCEPTED and questStatusVar == 1) then
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
         elseif (trade:hasItemQty(1692,1) and trade:hasItemQty(1693,1) and trade:hasItemQty(1694,1) and trade:getItemCount() == 3 and trade:getGil() == 0) then -- Advanced List (Chips)
             player:startEvent(10070);
         elseif (trade:hasItemQty(1042,1) or trade:hasItemQty(1043,1) or trade:hasItemQty(1044,1) or trade:hasItemQty(1049,1) or trade:hasItemQty(1050,1) or
-            trade:hasItemQty(1054,1) or trade:hasItemQty(10459,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then -- Advanced List (Coffer Keys)
+            trade:hasItemQty(1054,1) or trade:hasItemQty(1059,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then -- Advanced List (Coffer Keys)
                 player:startEvent(10070);
         elseif (trade:hasItemQty(1426,1) or trade:hasItemQty(1427,1) or trade:hasItemQty(1428,1) or trade:hasItemQty(1429,1) or trade:hasItemQty(1430,1) or
             trade:hasItemQty(1431,1) or trade:hasItemQty(1432,1) or trade:hasItemQty(1433,1) or trade:hasItemQty(1434,1) or trade:hasItemQty(1435,1) or
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
     local passYear = player:getVar("THE_ROAD_TO_AHT_URHGAN_Year");
     local currentDay = VanadielDayOfTheYear();
     local passReady = ((passDay < currentDay) or (passDay > currentDay and passYear < VanadielYear()));
-    local questStatus = player:getQuestStatus(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+    local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_ROAD_TO_AHT_URHGAN);
     local questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
 
     if (questStatus == QUEST_AVAILABLE and ENABLE_TOAU == 1) then
@@ -91,7 +91,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 10062 and option == 1) then -- Offer Quest, First Dialog.
-        player:addQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_ROAD_TO_AHT_URHGAN);
     elseif (csid == 10063 or csid == 10064) then
         if (csid == 10063 and option == 1 or csid == 10063 and option == 2) then -- Offically offer quest, Second Dialog.
         player:setVar("THE_ROAD_TO_AHT_URHGAN",1);
@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
         player:setVar("THE_ROAD_TO_AHT_URHGAN",4);
         dsp.teleport.to(player, dsp.teleport.id.WAJAOM_LEYPOINT);
     elseif (csid == 10068) then
-        player:completeQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_ROAD_TO_AHT_URHGAN);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Day",0);
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",0);
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10070) then
         player:addKeyItem(dsp.ki.BOARDING_PERMIT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOARDING_PERMIT);
-        player:completeQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_ROAD_TO_AHT_URHGAN);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Day",0);
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",0);

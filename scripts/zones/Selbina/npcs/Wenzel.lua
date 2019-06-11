@@ -4,19 +4,19 @@
 -- Type: Item Deliverer
 -- !pos 31.961 -14.661 57.997 248
 -----------------------------------
-local ID = require("scripts/zones/Selbina/IDs");
+local ID = require("scripts/zones/Selbina/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc, ID.text.WENZEL_DELIVERY_DIALOG);
-    player:openSendBox();
-end;
+    player:showText(npc, ID.text.WENZEL_DELIVERY_DIALOG)
+    player:openSendBox()
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

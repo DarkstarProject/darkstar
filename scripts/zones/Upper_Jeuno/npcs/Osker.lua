@@ -22,10 +22,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
+    local ANewDawn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN);
     local ANewDawnEvent = player:getVar("ANewDawn_Event");
 
-    local ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
+    local ChocobosWounds = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
     local feed = player:getVar("ChocobosWounds_Event");
 
     -- A New Dawn

@@ -7,6 +7,9 @@
 	#include "../common/cbasetypes.h"
 #endif
 
+#ifdef __APPLE__
+	#include <CoreFoundation/CoreFoundation.h>
+#endif
 
 #ifdef WIN32
     #define FD_SETSIZE 1000

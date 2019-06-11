@@ -1,30 +1,31 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- NPC:  Tome of Magic ( Needed for Mission )
+--  NPC: Tome of Magic ( Needed for Mission )
 -- Involved In Windurst Mission 7-1
 -- !zone 169
 -----------------------------------
-local ID = require("scripts/zones/Toraimarai_Canal/IDs");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/Toraimarai_Canal/IDs")
+require("scripts/globals/missions")
+-----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.TOME_OF_MAGIC_OFFSET;
-    
-    if (offset == 4 and player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
-        player:startEvent(69);
-    elseif (offset >= 0 and offset <= 3) then
-        player:startEvent(65 + offset);
+    local offset = npc:getID() - ID.npc.TOME_OF_MAGIC_OFFSET
+
+    if offset == 4 and player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1 then
+        player:startEvent(69)
+    elseif offset >= 0 and offset <= 3 then
+        player:startEvent(65 + offset)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 69) then
-        player:setVar("MissionStatus",2);
+    if csid == 69 then
+        player:setVar("MissionStatus", 2)
     end
-end;
+end

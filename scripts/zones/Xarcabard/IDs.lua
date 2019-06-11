@@ -15,6 +15,7 @@ zones[dsp.zone.XARCABARD] =
         ITEM_OBTAINED                  = 6401, -- Obtained: <item>.
         GIL_OBTAINED                   = 6402, -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6404, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6405, -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY        = 6415, -- There is nothing out of the ordinary here.
         CONQUEST_BASE                  = 7062, -- Tallying conquest results...
         BEASTMEN_BANNER                = 7141, -- There was a curse on the beastmen's banner!
@@ -31,7 +32,22 @@ zones[dsp.zone.XARCABARD] =
     },
     mob =
     {
-        SHADOW_EYE_PH   =
+        BARBARIC_WEAPON_PH =
+        {
+            [17236026] = 17236027,
+        },
+        TIMEWORN_WARRIOR_PH =
+        {
+            [17236041] = 17236045,
+            [17236042] = 17236045,
+            [17236043] = 17236045,
+            [17236044] = 17236045,
+            [17236046] = 17236045,
+            [17236047] = 17236045,
+            [17236048] = 17236045,
+            [17236049] = 17236045,
+        },
+        SHADOW_EYE_PH =
         {
             [17236149] = 17236180, -- -223.872 -11.784 80.972
             [17236174] = 17236180, -- -254.799 -15.003 -8.120

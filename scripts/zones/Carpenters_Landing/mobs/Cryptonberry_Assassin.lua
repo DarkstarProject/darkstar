@@ -13,7 +13,18 @@ function onMobInitialize(mob)
 end
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainQuote", ID.text.CRYPTONBERRY_ASSASSIN_2HR)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {
+                id = dsp.jsa.MIJIN_GAKURE,
+                begCode = function(mob)
+                    mob:messageText(mob, ID.text.CRYPTONBERRY_ASSASSIN_2HR)
+                end,
+            },
+        },
+    })
+
     mob:setLocalVar("despawnTime", os.time() + 180)
 end
 
@@ -30,7 +41,7 @@ function onMobRoam(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") < 2 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") < 2 then
         local offset = mob:getID() - ID.mob.CRYPTONBERRY_EXECUTOR
         player:setVar(string.format("Cryptonberry_Assassins-%i_KILL", offset), 1)
     end

@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
+    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_STARS_OF_IFRIT);
 
     if (player:getFameLevel(BASTOK) >= 3 and TheStarsOfIfrit == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true) then
         player:startEvent(180);
@@ -31,12 +31,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 180) then
-        player:addQuest(BASTOK,THE_STARS_OF_IFRIT);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_STARS_OF_IFRIT);
     elseif (csid == 181) then
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
         player:addFame(BASTOK,100);
         player:addTitle(dsp.title.STAR_OF_IFRIT);
-        player:completeQuest(BASTOK,THE_STARS_OF_IFRIT);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_STARS_OF_IFRIT);
     end
 end;

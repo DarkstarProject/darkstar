@@ -11,6 +11,6 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.AA_XALMO_THE_SAVAGE_PH, 10, 7200) -- 2 hour
-    phOnDespawn(mob, ID.mob.ZHUU_BUXU_THE_SILENT_PH, 10, 7200) -- 2 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.AA_XALMO_THE_SAVAGE_PH, 10, 7200) -- 2 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.ZHUU_BUXU_THE_SILENT_PH, 10, 7200) -- 2 hour
 end

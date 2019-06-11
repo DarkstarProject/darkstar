@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 
     if player:hasKeyItem(dsp.ki.REMNANTS_PERMIT) then
         player:startEvent(821)
---[[    elseif player:getCurrentMission(TOAU) > GUESTS_OF_THE_EMPIRE and player:getMainLvl() >= 65 then
+--[[    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE and player:getMainLvl() >= 65 then
         if lastPermit == 0 then
             player:startEvent(818,a1,a2,a3,a4,a5)
         elseif diffday > 0 then
@@ -48,6 +48,8 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
+    local currentday = tonumber(os.date("%j"))
+    
     if (csid == 818 or csid == 820) and option == 100 then
         if player:getLocalVar("SalvageValid") == 1 then
             player:addKeyItem(dsp.ki.REMNANTS_PERMIT)
@@ -65,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:delCurrency("ILRUSI_ASSAULT_POINT",500)
             player:addKeyItem(dsp.ki.REMNANTS_PERMIT)
         end
+        player:setLocalVar("SalvageValid",0)
+        player:setVar("LAST_PERMIT",currentday)
     end
-    player:setLocalVar("SalvageValid",0)
-    player:setVar("LAST_PERMIT",currentday)
 end

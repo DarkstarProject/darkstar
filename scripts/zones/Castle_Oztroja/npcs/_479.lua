@@ -16,7 +16,6 @@ function onTrade(player,npc,trade)
 
     if
         npcUtil.tradeHas(trade, 1142) and
-        player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and
         player:hasKeyItem(dsp.ki.BALGA_CHAMPION_CERTIFICATE) and
         Z >= 80 and Z < 86
     then

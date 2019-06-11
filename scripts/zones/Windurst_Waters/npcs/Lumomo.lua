@@ -18,7 +18,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local ecoWarWindurst = player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN);
+    local ecoWarWindurst = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR_WIN);
     local ecoWarActiveNation = player:getVar("ECO_WARRIOR_ACTIVE");
     if (player:hasKeyItem(dsp.ki.INDIGESTED_MEAT) and ecoWarActiveNation == 238) then
         player:startEvent(822); -- quest done
@@ -38,14 +38,14 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 818 and option == 1) then
-        if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) == QUEST_AVAILABLE) then
-            player:addQuest(WINDURST,ECO_WARRIOR_WIN);
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR_WIN) == QUEST_AVAILABLE) then
+            player:addQuest(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR_WIN);
         end
         player:setVar("ECO_WARRIOR_ACTIVE",player:getZoneID());
         player:setVar("ECO-WAR_ConquestWeek",0);
     elseif (csid == 822) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:completeQuest(WINDURST,ECO_WARRIOR_WIN);
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR_WIN);
             player:delKeyItem(dsp.ki.INDIGESTED_MEAT);
             player:addGil(GIL_RATE * 5000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE * 5000);

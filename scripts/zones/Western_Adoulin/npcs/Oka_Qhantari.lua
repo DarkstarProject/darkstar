@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
+    local Order_Up = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ORDER_UP);
     local Order_Oka_Qhantari = player:getMaskBit(player:getVar("Order_Up_NPCs"), 9);
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Oka_Qhantari)) then

@@ -1,14 +1,13 @@
 -----------------------------------
 -- Area: The Ashu Talif (The Black Coffin)
---  MOB: Ashu Talif Crew
+--   NM: Ashu Talif Captain
 -----------------------------------
-require("scripts/globals/instance")
 local ID = require("scripts/zones/The_Ashu_Talif/IDs")
+require("scripts/globals/instance")
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setUnkillable(true)
-    mob:setMobMod(dsp.mobMod.SCRIPTED_2HOUR, 1)
 end
 
 function onMobFight(mob, target)

@@ -12,9 +12,9 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local needles = 10000 / skill:getTotalTargets()
-    local dmg = MobFinalAdjustments(needles, mob, skill, target, MOBSKILL_MAGICAL, MOBPARAM_LIGHT, MOBPARAM_WIPE_SHADOWS)
+    local dmg = MobFinalAdjustments(needles, mob, skill, target, dsp.attackType.MAGICAL, dsp.damageType.LIGHT, MOBPARAM_WIPE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
 
     return dmg
 end

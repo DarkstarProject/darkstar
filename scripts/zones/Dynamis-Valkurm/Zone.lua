@@ -1,60 +1,59 @@
 -----------------------------------
---
+-- 
 -- Zone: Dynamis-Valkurm
---
+-- 
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
-require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+    for i,v in ipairs (ID.mob.TE5_RANDOM) do
+        DisallowRespawn(v, true)
+    end
+    local randomTE5 = ID.mob.TE5_RANDOM[math.random(#ID.mob.TE5_RANDOM)]
+    DisallowRespawn(randomTE5, false)
+    SpawnMob(randomTE5)
+end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
-end;
+    local players = zone:getPlayers()
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, ID.text.CONQUEST_BASE)
+    end
+end
 
 function onZoneIn(player,prevZone)
-    local cs = 0;
-    local inst = 0;
+    local cs = -1
 
-    if player:isBcnmsFull() == 1 then
-        -- run currently in progress
-        -- add player to the run if they entered via markings, or if they reconnected to a run they were previously in
-        -- gms will be automatically registered
-        if player:getVar("enteringDynamis") == 1 or player:getVar("DynamisID") == GetServerVariable("[DynaValkurm]UniqueID") or player:getGMLevel() > 0 then
-            inst = player:addPlayerToDynamis(1286);
+    if player:getVar("Dynamis_Entry") == 1 then
+        if player:getVar("Dynamis_subjob") == 1 then
+            player:timer(5000, function(player) player:messageBasic(107) end)
+            player:addStatusEffect(dsp.effect.SJ_RESTRICTION, 0, 0, 0, 7200)
         end
+        player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 3, 3600)
+        player:timer(5500, function(player) player:messageSpecial(ID.text.DYNAMIS_TIME_BEGIN, 60, dsp.ki.PRISMATIC_HOURGLASS) end)
+        player:setVar("Dynamis_Entry", 0)
+        player:setVar("Dynamis_subjob", 0)
     else
-        -- no run yet in progress
-        -- register run by player if they entered via markings
-        -- gms will be automatically registered
-        if player:getVar("enteringDynamis") == 1 or player:getGMLevel() > 0 then
-            inst = player:bcnmRegister(1286);
+        if not player:hasStatusEffect(dsp.effect.DYNAMIS) then
+            cs = 100
         end
     end
 
-    if inst == 1 then
-        player:bcnmEnter(1286);
-        cs = -1;
-        if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-            player:setPos(100,-8,131,47);
-        end
-    end
-
-    player:setVar("enteringDynamis",0);
-    return cs;
-end;
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
+end
 
 function onEventUpdate(player,csid,option)
-
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 0) then
-        player:setPos(117,-9,132,162,103);
+    if csid == 100 then
+        player:setPos(117,-9,132,162,103)
     end
-end;
+end

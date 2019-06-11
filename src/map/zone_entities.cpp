@@ -52,6 +52,7 @@ This file is part of DarkStar-server source code.
 #include "utils/petutils.h"
 #include "utils/zoneutils.h"
 #include "utils/synthutils.h"
+#include "battlefield.h"
 
 CZoneEntities::CZoneEntities(CZone* zone)
 {
@@ -209,8 +210,23 @@ void CZoneEntities::TransportDepart(uint16 boundary, uint16 zone)
 
         if (PCurrentChar->loc.boundary == boundary)
         {
+            if (PCurrentChar->m_event.Target != nullptr)
+            {
+                //The player talked to one of the guys on the boat, and the event target is wrong.
+                //This leads to the wrong script being loaded and you get stuck on a black screen
+                //instead of loading into the port.
+                
+                //Attempt to load the proper script
+                PCurrentChar->m_event.Target = nullptr;
+                size_t deleteStart = PCurrentChar->m_event.Script.find("npcs/");
+                size_t deleteEnd = PCurrentChar->m_event.Script.find(".lua");
+
+                if (deleteStart != std::string::npos && deleteEnd != std::string::npos)
+                    PCurrentChar->m_event.Script.replace(deleteStart, deleteEnd - deleteStart, "Zone");
+            }
             luautils::OnTransportEvent(PCurrentChar, zone);
         }
+            
     }
 }
 
@@ -304,53 +320,8 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         }
     }
 
-    //remove bcnm status
-    if (m_zone->m_BattlefieldHandler != nullptr && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
-    {
-        if (m_zone->m_BattlefieldHandler->disconnectFromBcnm(PChar)) {
-            ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n", PChar->GetName());
-        }
-
-        if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
-            //move depending on zone
-            float pos[4] = {0.f, 0.f, 0.f, 0.f};
-            battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
-                PChar->loc.p.x = pos[0];
-                PChar->loc.p.y = pos[1];
-                PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = (uint8)pos[3];
-                PChar->updatemask |= UPDATE_POS;
-                charutils::SaveCharPosition(PChar);
-            }
-            else {
-                ShowWarning("%s has disconnected from the BCNM but cannot move them to the lobby as the lobby position is unknown!\n", PChar->GetName());
-            }
-        }
-    }
-    else if (m_zone->m_BattlefieldHandler != nullptr && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
-    {
-        if (m_zone->m_BattlefieldHandler->disconnectFromDynamis(PChar)) {
-            ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n", PChar->GetName());
-        }
-
-        if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
-            //move depending on zone
-            float pos[4] = {0.f, 0.f, 0.f, 0.f};
-            battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
-                PChar->loc.p.x = pos[0];
-                PChar->loc.p.y = pos[1];
-                PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = (uint8)pos[3];
-                PChar->updatemask |= UPDATE_POS;
-                charutils::SaveCharPosition(PChar);
-            }
-            else {
-                ShowWarning("%s has disconnected from the BCNM but cannot move them to the lobby as the lobby position is unknown!\n", PChar->GetName());
-            }
-        }
-    }
+    if (m_zone->m_BattlefieldHandler)
+        m_zone->m_BattlefieldHandler->RemoveFromBattlefield(PChar, PChar->PBattlefield, BATTLEFIELD_LEAVE_CODE_WARPDC);
 
     for (auto PMobIt : m_mobList)
     {
@@ -645,7 +616,7 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
     }
     else if (targid < 0x800)
     {
-        if (filter & TYPE_PET)
+        if (filter & TYPE_PET || filter & TYPE_TRUST)
         {
             EntityList_t::const_iterator it = m_petList.find(targid);
             if (it != m_petList.end())
@@ -957,7 +928,7 @@ void CZoneEntities::ZoneServer(time_point tick, bool check_regions)
     {
         CMobEntity* PMob = (CMobEntity*)it->second;
 
-        if (PMob->PBCNM && PMob->PBCNM->cleared())
+        if (PMob->PBattlefield && PMob->PBattlefield->CanCleanup())
         {
             continue;
         }

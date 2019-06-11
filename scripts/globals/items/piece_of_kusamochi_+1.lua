@@ -9,12 +9,13 @@
 -- Ranged Attack + 21% Cap: 77 (Pet & Master) Pet Cap: 120
 -----------------------------------------
 require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
     local result = 0
     if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = 246
+        result = dsp.msg.basic.IS_FULL
     end
     return result
 end

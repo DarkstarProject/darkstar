@@ -13,11 +13,11 @@ function onSpawn(npc)
     npc:timer(5000, function(npc) KUFTAL_TUNNEL.movePhantomWormQM() end)
 end
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
     if npcUtil.tradeHas(trade, 645) and npcUtil.popFromQM(player, npc, ID.mob.PHANTOM_WORM, {radius=1}) then -- Darksteel Ore
         player:confirmTrade()
     end
 end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
 end

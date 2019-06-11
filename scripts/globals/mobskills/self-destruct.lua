@@ -18,11 +18,11 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
-        BOMB_TOSS_HPP = skill:getHPP() / 100
+        BOMB_TOSS_HPP = skill:getMobHPP() / 100
 
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*18*BOMB_TOSS_HPP,dsp.magic.ele.FIRE,dmgmod,TP_MAB_BONUS,1)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.FIRE,MOBPARAM_IGNORE_SHADOWS)
     mob:setHP(0)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.FIRE)
     return dmg
 end

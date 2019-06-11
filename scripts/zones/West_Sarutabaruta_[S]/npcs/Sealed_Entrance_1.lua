@@ -9,7 +9,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrigger(player,npc)
-    local snakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR, SNAKE_ON_THE_PLAINS)
+    local snakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
     local maskBit1 = player:getMaskBit(player:getVar("SEALED_DOORS"), 0)
     local maskBit2 = player:getMaskBit(player:getVar("SEALED_DOORS"), 1)
     local maskBit3 = player:getMaskBit(player:getVar("SEALED_DOORS"), 2)

@@ -15,13 +15,13 @@ function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
+    if (currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
         player:startEvent(107);
-    elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and MissionStatus == 2) then
         player:startEvent(108);
-    elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 4) then
+    elseif (currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and MissionStatus == 4) then
         player:startEvent(114);
-    elseif (player:getCurrentMission(WINDURST) == MOON_READING and (MissionStatus >= 3 or player:hasCompletedMission(WINDURST, MOON_READING))) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and (MissionStatus >= 3 or player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING))) then
         player:startEvent(405);
     else
         player:startEvent(93);

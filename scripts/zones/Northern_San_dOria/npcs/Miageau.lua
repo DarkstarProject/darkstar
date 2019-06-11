@@ -14,13 +14,13 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
-    if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
         if (trade:getItemCount() == 1 and trade:hasItemQty(603, 1)) then
             player:startEvent(515);
         end;
@@ -30,7 +30,7 @@ end;
 
 function onTrigger(player,npc)
 
-    watersOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
+    watersOfTheCheval = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.WATER_OF_THE_CHEVAL);
     if (watersOfTheCheval == QUEST_ACCEPTED) then
         if (player:hasItem(602) == true) then
             player:startEvent(512);
@@ -59,10 +59,10 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 13183);
             player:addFame(SANDORIA,30);
             player:addTitle(dsp.title.THE_PURE_ONE);
-            player:completeQuest(SANDORIA,WATER_OF_THE_CHEVAL);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.WATER_OF_THE_CHEVAL);
         end;
     elseif (csid == 504) then
-        player:addQuest(SANDORIA, WATER_OF_THE_CHEVAL);
+        player:addQuest(SANDORIA, dsp.quest.id.sandoria.WATER_OF_THE_CHEVAL);
     end;
 
 end;

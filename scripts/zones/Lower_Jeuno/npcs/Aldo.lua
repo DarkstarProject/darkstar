@@ -21,9 +21,9 @@ function onTrigger(player,npc)
         player:startEvent(152);
     elseif (player:getCurrentMission(player:getNation()) == 13 and player:getVar("MissionStatus") == 3) then
         player:startEvent(183);
-    elseif (ZilartMission == RETURN_TO_DELKFUTTS_TOWER and ZilartStatus == 0) then
+    elseif (ZilartMission == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and ZilartStatus == 0) then
         player:startEvent(104);
-    elseif (ZilartMission == THE_SEALED_SHRINE and ZilartStatus == 1) then
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_SEALED_SHRINE and ZilartStatus == 1) then
         player:startEvent(111);
     end
 end;

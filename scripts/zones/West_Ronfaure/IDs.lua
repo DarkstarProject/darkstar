@@ -14,6 +14,7 @@ zones[dsp.zone.WEST_RONFAURE] =
         ITEM_OBTAINED           = 6410, -- Obtained: <item>.
         GIL_OBTAINED            = 6411, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6413, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST            = 6414, -- Lost key item: <keyitem>.
         CONQUEST_BASE           = 7071, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7230, -- You can't fish here.
         DIG_THROW_AWAY          = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
@@ -22,6 +23,8 @@ zones[dsp.zone.WEST_RONFAURE] =
         COLMAIE_DIALOG          = 7331, -- Orcish scouts lurk in the shadows. Consider yourself warned!
         ADALEFONT_DIALOG        = 7332, -- If you sense danger, just flee into the city. I'll not endanger myself on your account!
         LAILLERA_DIALOG         = 7333, -- I mustn't chat while on duty. Sorry.
+        PICKPOCKET_GACHEMAGE    = 7334, -- A pickpocket? Now that you mention it, I did see a woman flee the city. She ran west.
+        PICKPOCKET_ADALEFONT    = 7335, -- What, someone picked your pocket? And you call yourself an adventurer!
         PALCOMONDAU_REPORT      = 7377, -- Scout reporting! All is quiet on the road to Ghelsba!
         PALCOMONDAU_DIALOG      = 7378, -- Let me be! I must patrol the road to Ghelsba.
         ZOVRIACE_REPORT         = 7380, -- Scout reporting! All is quiet on the roads to La Theine!
@@ -52,8 +55,8 @@ zones[dsp.zone.WEST_RONFAURE] =
     },
     npc =
     {
-        SIGNPOST_OFFSET = 17187504,
-        OVERSEER_BASE   = 17187524,
+        SIGNPOST_OFFSET = 17187537,
+        OVERSEER_BASE   = 17187557,
     },
 }
 

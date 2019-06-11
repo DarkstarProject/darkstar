@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Nashmau/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 4) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 4) then
         if (trade:hasItemQty(5455,1) and trade:hasItemQty(5453,1) and trade:hasItemQty(5136,1) and trade:hasItemQty(5456,1) and trade:hasItemQty(5454,1) and trade:getItemCount() == 5) then
             player:startEvent(310);
         end

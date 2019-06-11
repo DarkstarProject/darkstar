@@ -56,6 +56,7 @@
 
 #include "charentity.h"
 #include "automatonentity.h"
+#include "trustentity.h"
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
@@ -468,6 +469,37 @@ bool CCharEntity::ReloadParty()
     return m_reloadParty;
 }
 
+void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
+{
+    if (!PTrust->PAI->IsSpawned())
+        return;
+
+    auto trustIt = std::remove_if(PTrusts.begin(), PTrusts.end(), [PTrust](auto trust) { return PTrust == trust; });
+    if (trustIt != PTrusts.end())
+    {
+        PTrust->PAI->Despawn();
+        PTrusts.erase(trustIt);
+    }
+    if (PParty != nullptr)
+    {
+        PParty->ReloadParty();
+    }
+}
+
+void CCharEntity::ClearTrusts()
+{
+    if (PTrusts.size() == 0)
+    {
+        return;
+    }
+
+    for (auto trust : PTrusts)
+    {
+        trust->PAI->Despawn();
+    }
+    PTrusts.clear();
+}
+
 void CCharEntity::Tick(time_point tick)
 {
     CBattleEntity::Tick(tick);
@@ -520,12 +552,15 @@ void CCharEntity::PostTick()
         {
             ForAlliance([&](auto PEntity)
             {
-                static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                if (PEntity->objtype == TYPE_PC)
+                {
+                    static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                }
             });
         }
         // Do not send an update packet when only the position has change
         if (updatemask ^ UPDATE_POS)
-            pushPacket(new CCharUpdatePacket(this));
+        pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
     }
 }
@@ -711,7 +746,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
         if (PSpell->getSkillType() == SKILL_SINGING)
         {
             CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
-            if (PItem && PItem->isType(ITEM_ARMOR))
+            if (PItem && PItem->isType(ITEM_EQUIPMENT))
             {
                 SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
                 if (Skilltype == SKILL_STRING_INSTRUMENT || Skilltype == SKILL_WIND_INSTRUMENT || Skilltype == SKILL_SINGING)
@@ -948,11 +983,11 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             }
         }
 
-        // remove invisible if aggresive
+        // remove invisible if aggressive
         if (PAbility->getID() != ABILITY_TAME && PAbility->getID() != ABILITY_FIGHT)
         {
             if (PAbility->getValidTarget() & TARGET_ENEMY) {
-                // aggresive action
+                // aggressive action
                 StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
             }
             else if (PAbility->getID() != ABILITY_TRICK_ATTACK) {
@@ -978,7 +1013,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         // #TODO: get rid of this to script, too
         if (PAbility->isPetAbility())
         {
-            if (PPet) //is a bp - dont display msg and notify pet
+            if (PPet) //is a bp - don't display msg and notify pet
             {
                 actionList_t& actionList = action.getNewActionList();
                 actionList.ActionTargetID = PTarget->id;
@@ -1535,7 +1570,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     actionTarget_t& actionTarget = actionList.getNewActionTarget();
     actionTarget.animation = PItem->getAnimationID();
 
-    if (PItem->isType(ITEM_ARMOR))
+    if (PItem->isType(ITEM_EQUIPMENT))
     {
         if (PItem->getMaxCharges() > 1)
         {

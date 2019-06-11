@@ -11,7 +11,7 @@ local ID = require("scripts/zones/West_Ronfaure/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(600,1) and trade:getItemCount() == 1) then
             player:startEvent(100);
         else

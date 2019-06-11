@@ -37,7 +37,8 @@ enum ENTITYTYPE
     TYPE_NPC    = 0x02,
     TYPE_MOB    = 0x04,
     TYPE_PET    = 0x08,
-    TYPE_SHIP   = 0x10
+    TYPE_SHIP   = 0x10,
+    TYPE_TRUST  = 0x20
 };
 
 enum STATUSTYPE
@@ -242,8 +243,8 @@ public:
     uint8           updatemask;         // what to update next server tick to players nearby
 
     std::unique_ptr<CAIContainer> PAI;       // AI container
-    CBattlefield*   PBCNM;              // pointer to bcnm (if in one)
-    CInstance*      PInstance;
+    CBattlefield* PBattlefield;            // pointer to battlefield (if in one)
+    CInstance*		PInstance;
 protected:
     std::map<std::string, uint32> m_localVars;
 };

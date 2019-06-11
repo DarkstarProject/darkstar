@@ -12,6 +12,7 @@ require("scripts/globals/zone")
 
 function onInitialize(zone)
     zone:registerRegion(1,-112,-3,-17,-96,3,-3);--event COP
+    zone:registerRegion(2, 53.5, 5, -165.3, 66.5, 6, -72)--drawbridge area
 end;
 
 function onConquestUpdate(zone, updatetype)
@@ -43,7 +44,7 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 0) then
         cs = 306;
     end
 
@@ -53,7 +54,7 @@ end;
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
     -- printf("regionID: %u",regionID);
-    if (regionID == 1 and player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus") == 0) then
+    if (regionID == 1 and player:getCurrentMission(COP) == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(305);
     end
 end;

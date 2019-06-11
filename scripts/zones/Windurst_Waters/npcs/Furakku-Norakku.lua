@@ -16,10 +16,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
-    local chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+    local bookwormStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
+    local chasingStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
     local bookNotifications = player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
-    local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+    local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
     local ClassReunionProgress = player:getVar("ClassReunionProgress");
     local talk2 = player:getVar("ClassReunion_TalkedToFurakku");
 
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("EARLY_BIRD_TRACK_BOOK",0);
         player:addFame(WINDURST,120);
-        player:completeQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
     elseif (csid == 404) then
         player:addKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OVERDUE_BOOK_NOTIFICATION);
@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.A_SONG_OF_LOVE);
         player:setVar("CHASING_TALES_TRACK_BOOK",0);
         player:addFame(WINDURST,120);
-        player:completeQuest(WINDURST,CHASING_TALES);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
     elseif (csid == 816) then
         player:setVar("ClassReunion_TalkedToFurakku",1);
     end

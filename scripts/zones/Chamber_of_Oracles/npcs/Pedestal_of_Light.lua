@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
     local ZilartStatus = player:getVar("ZilartStatus");
 
-    if (player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES) then
         if (player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT)) then
             player:delKeyItem(dsp.ki.LIGHT_FRAGMENT);
             player:setVar("ZilartStatus",ZilartStatus + 16);
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         else
             player:messageSpecial(ID.text.IS_SET_IN_THE_PEDESTAL,dsp.ki.LIGHT_FRAGMENT);
         end
-    elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES)) then
+    elseif (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES)) then
         player:messageSpecial(ID.text.HAS_LOST_ITS_POWER,dsp.ki.LIGHT_FRAGMENT);
     else
         player:messageSpecial(ID.text.PLACED_INTO_THE_PEDESTAL);
@@ -52,8 +52,8 @@ function onEventFinish(player,csid,option)
         player:setVar("ZilartStatus",0);
         player:addKeyItem(dsp.ki.PRISMATIC_FRAGMENT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PRISMATIC_FRAGMENT);
-        player:completeMission(ZILART,THE_CHAMBER_OF_ORACLES);
-        player:addMission(ZILART,RETURN_TO_DELKFUTTS_TOWER);
+        player:completeMission(ZILART,dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES);
+        player:addMission(ZILART,dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER);
     end
 
 end;

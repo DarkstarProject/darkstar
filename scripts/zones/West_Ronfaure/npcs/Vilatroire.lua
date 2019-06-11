@@ -15,7 +15,7 @@ end;
 function onTrigger(player,npc)
     --player:startEvent(131); -- Same job
     --player:startEvent(133); -- Same race
-    local intermedTmwrk = player:getQuestStatus(SANDORIA,INTRODUCTION_TO_TEAMWORK);
+    local intermedTmwrk = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.INTRODUCTION_TO_TEAMWORK);
     local sFame = player:getFameLevel(SANDORIA);
     if (intermedTmwrk == QUEST_AVAILABLE and sFame >= 2) then
         player:startEvent(135); -- Starts first quest - 6 members same alliance

@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+    local SirensTear = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
 
     if (SirensTear ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(576,1) and trade:getItemCount() == 1) then
@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+    local SirensTear = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
 
     if (SirensTear == QUEST_AVAILABLE) then
         player:startEvent(81);
@@ -38,10 +38,10 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 81) then
-        player:addQuest(BASTOK,THE_SIREN_S_TEAR);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
     elseif (csid == 82) then
         player:tradeComplete();
-        player:completeQuest(BASTOK,THE_SIREN_S_TEAR);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
         player:addFame(BASTOK,120);
         player:addGil(150*GIL_RATE);
         player:messageSpecial(ID.text.GIL_OBTAINED,150*GIL_RATE);

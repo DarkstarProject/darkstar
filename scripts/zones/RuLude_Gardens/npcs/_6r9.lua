@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
 
     CurrentMission = player:getCurrentMission(player:getNation());
-    if ( player:getCurrentMission(COP) ==MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==1) then
+    if ( player:getCurrentMission(COP) ==dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==1) then
         player:startEvent(10050);
     elseif (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) and CurrentMission == 255 and player:getVar("MissionStatus") == 1) then
         player:startEvent(128);

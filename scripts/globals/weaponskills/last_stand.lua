@@ -31,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
     params.canCrit = false
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = 1
+    params.atk100 = 1; params.atk200 = 1; params.atk300 = 1;
     params.multiHitfTP = true
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
@@ -39,7 +39,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.agi_wsc = 0.7 + (player:getMerit(dsp.merit.LAST_STAND) / 100)
     end
 
-    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary, action)
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, action, primary)
     return tpHits, extraHits, criticalHit, damage
 
 end

@@ -14,7 +14,7 @@ function onTrigger(player,npc)
 
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
-    if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,9) == false) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,9) == false) then
         player:startEvent(500);
     else
         player:startEvent(326);

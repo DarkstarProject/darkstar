@@ -26,15 +26,15 @@ end
 
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
-    local twentyInPirateYears = player:getQuestStatus(OUTLANDS,TWENTY_IN_PIRATE_YEARS)
-    local illTakeTheBigBox = player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX)
-    local trueWill = player:getQuestStatus(OUTLANDS,TRUE_WILL)
+    local twentyInPirateYears = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TWENTY_IN_PIRATE_YEARS)
+    local illTakeTheBigBox = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX)
+    local trueWill = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL)
     local mLvl = player:getMainLvl()
     local mJob = player:getMainJob()
 
     if (wsQuestEvent ~= nil) then
         player:startEvent(wsQuestEvent)
-    elseif (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
         if (player:getVar("AyameAndKaede_Event") == 3) then
             player:startEvent(95) -- During Quest "Ayame and Kaede"
         else
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL)
         player:setVar("AyameAndKaede_Event", 4)
     elseif (csid == 133) then
-        player:addQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS)
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.TWENTY_IN_PIRATE_YEARS)
         player:setVar("twentyInPirateYearsCS",1)
     elseif (csid == 134) then
         if (player:getFreeSlotsCount() <= 1) then
@@ -79,12 +79,12 @@ function onEventFinish(player,csid,option)
             player:needToZone()
             player:setVar("twentyInPirateYearsCS",0)
             player:addFame(NORG,30)
-            player:completeQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS)
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TWENTY_IN_PIRATE_YEARS)
         end
     elseif (csid == 135) then
-        player:addQuest(OUTLANDS,I_LL_TAKE_THE_BIG_BOX)
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX)
     elseif (csid == 136) then
-        player:addQuest(OUTLANDS,TRUE_WILL)
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL)
     elseif (csid == 137) then
         player:setVar("trueWillCS",1)
     else

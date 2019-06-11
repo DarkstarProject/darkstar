@@ -15,6 +15,7 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
         ITEM_OBTAINED           = 6410, -- Obtained: <item>.
         GIL_OBTAINED            = 6411, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6413, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST            = 6414, -- Lost key item: <keyitem>.
         CONQUEST_BASE           = 7071, -- Tallying conquest results...
         BEASTMEN_BANNER         = 7152, -- There is a beastmen's banner.
         FISHING_MESSAGE_OFFSET  = 7230, -- You can't fish here.
