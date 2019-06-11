@@ -579,7 +579,7 @@ enum class Mod
     ADDS_WEAPONSKILL_DYN      = 356, // In Dynamis
 
     STEALTH                   = 358, //
-    SNEAK_DURATION            = 946, // Additional duration in seconds 
+    SNEAK_DURATION            = 946, // Additional duration in seconds
     INVISIBLE_DURATION        = 947, // Additional duration in seconds
 
     MAIN_DMG_RATING           = 366, // adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
@@ -655,6 +655,14 @@ enum class Mod
     ITEM_SPIKES_TYPE          = 499, // Type spikes an item has
     ITEM_SPIKES_DMG           = 500, // Damage of an items spikes
     ITEM_SPIKES_CHANCE        = 501, // Chance of an items spike proc
+    // ITEM_ADDEFFECT_TYPE       = 431, // 1 = Status Effect/DMG/HP Drain, 2 = MP Drain, 3 = TP Drain, 4 = Dispel, 5 = Self-Buff, 6 = Instant Death
+    // ITEM_SUBEFFECT            = 499, // Animation ID of Spikes and Additional Effects
+    // ITEM_ADDEFFECT_DMG        = 500, // Damage of an items Additional Effect or Spikes
+    // ITEM_ADDEFFECT_CHANCE     = 501, // Chance of an items Additional Effect or Spikes
+    // ITEM_ADDEFFECT_ELEMENT    = 950, // Element of the Additional Effect or Spikes, for resist purposes
+    // ITEM_ADDEFFECT_STATUS     = 951, // Status Effect ID to try to apply via Additional Effect or Spikes
+    // ITEM_ADDEFFECT_POWER      = 952, // Base Power for effect in MOD_ITEM_ADDEFFECT_STATUS
+    // ITEM_ADDEFFECT_DURATION   = 953, // Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
 
     GOV_CLEARS                = 496, // 4% bonus per Grounds of Valor Page clear
 
@@ -776,9 +784,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 950, // stuff
-    // SPARE = 951, // stuff
-    // SPARE = 952, // stuff
+    // SPARE = 954, // stuff
+    // SPARE = 955, // stuff
+    // SPARE = 956, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
