@@ -1321,7 +1321,6 @@ dsp.mod =
     QUICK_DRAW_MACC                 = 191, -- Quick draw magic accuracy
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
 
-    ADDITIONAL_EFFECT               = 431, -- All additional effects
     ENSPELL_DMG_BONUS               = 432,
 
     FIRE_ABSORB                     = 459, -- Occasionally absorbs fire elemental damage, in percents
@@ -1529,7 +1528,7 @@ dsp.mod =
     FENCER_TP_BONUS                 = 903, -- TP Bonus to weapon skills from Fencer Trait
     FENCER_CRITHITRATE              = 904, -- Increased Crit chance from Fencer Trait
     SHIELD_DEF_BONUS                = 905, -- Shield Defense Bonus
-    SNEAK_DURATION                  = 946, -- Additional duration in seconds 
+    SNEAK_DURATION                  = 946, -- Additional duration in seconds
     INVISIBLE_DURATION              = 947, -- Additional duration in seconds
     BERSERK_EFFECT                  = 948, -- Conqueror Berserk Effect
 

@@ -579,7 +579,7 @@ enum class Mod
     ADDS_WEAPONSKILL_DYN      = 356, // In Dynamis
 
     STEALTH                   = 358, //
-    SNEAK_DURATION            = 946, // Additional duration in seconds 
+    SNEAK_DURATION            = 946, // Additional duration in seconds
     INVISIBLE_DURATION        = 947, // Additional duration in seconds
 
     MAIN_DMG_RATING           = 366, // adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
