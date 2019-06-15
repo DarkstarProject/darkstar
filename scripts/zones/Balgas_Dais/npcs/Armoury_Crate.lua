@@ -118,50 +118,50 @@ local loot =
     [100] =
     {
         {
-            {itemid = 13292, droprate = 75}, -- Guardians Ring
-            {itemid = 13287, droprate = 32}, -- Kampfer Ring
-            {itemid = 13300, droprate = 54}, -- Conjurers Ring
-            {itemid = 13298, droprate = 32}, -- Shinobi Ring
-            {itemid = 13293, droprate = 97}, -- Slayers Ring
-            {itemid = 13289, droprate = 75}, -- Sorcerers Ring
-            {itemid = 13286, droprate = 108},-- Soldiers Ring
-            {itemid = 13294, droprate = 22}, -- Tamers Ring
-            {itemid = 13296, droprate = 65}, -- Trackers Ring
-            {itemid = 13299, droprate = 32}, -- Drake Ring
-            {itemid = 13290, droprate = 32}, -- Fencers Ring
-            {itemid = 13295, droprate = 86}, -- Minstrels Ring
-            {itemid = 13288, droprate = 86}, -- Medicine Ring
-            {itemid = 13291, droprate = 75}, -- Rogues Ring
-            {itemid = 13297, droprate = 11}, -- Ronin Ring
-            {itemid = 13447, droprate = 32}, -- Platinum Ring
+            {itemid = 13292, droprate =   75}, -- Guardians Ring
+            {itemid = 13287, droprate =   32}, -- Kampfer Ring
+            {itemid = 13300, droprate =   54}, -- Conjurers Ring
+            {itemid = 13298, droprate =   32}, -- Shinobi Ring
+            {itemid = 13293, droprate =   97}, -- Slayers Ring
+            {itemid = 13289, droprate =   75}, -- Sorcerers Ring
+            {itemid = 13286, droprate =  108}, -- Soldiers Ring
+            {itemid = 13294, droprate =   22}, -- Tamers Ring
+            {itemid = 13296, droprate =   65}, -- Trackers Ring
+            {itemid = 13299, droprate =   32}, -- Drake Ring
+            {itemid = 13290, droprate =   32}, -- Fencers Ring
+            {itemid = 13295, droprate =   86}, -- Minstrels Ring
+            {itemid = 13288, droprate =   86}, -- Medicine Ring
+            {itemid = 13291, droprate =   75}, -- Rogues Ring
+            {itemid = 13297, droprate =   11}, -- Ronin Ring
+            {itemid = 13447, droprate =   32}, -- Platinum Ring
         },
         {
-            {itemid = 13548, droprate = 376},-- Astral Ring
-            {itemid = 13447, droprate = 22}, -- Platinum Ring
-            {itemid = 4818, droprate = 65},  -- Scroll Of Quake
-            {itemid = 859, droprate = 0},    -- Ram Skin
-            {itemid = 4172, droprate = 11},  -- Reraiser
-            {itemid = 653, droprate = 22},   -- Mythril Ingot
-            {itemid = 4902, droprate = 0},   -- Light Spirit Pact
-            {itemid = 4814, droprate = 32},  -- Scroll Of Freeze
-            {itemid = 4719, droprate = 43},  -- Scroll Of Regen Iii
-            {itemid = 4621, droprate = 32},  -- Scroll Of Raise Ii
-            {itemid = 703, droprate = 11},   -- Petrified Log
-            {itemid = 887, droprate = 11},   -- Coral Fragment
-            {itemid = 700, droprate = 11},   -- Mahogany Log
-            {itemid = 738, droprate = 43},   -- Chunk Of Platinum Ore
-            {itemid = 737, droprate = 108},  -- Chunk Of Gold Ore
-            {itemid = 645, droprate = 32},   -- Chunk Of Darksteel Ore
-            {itemid = 644, droprate = 65},   -- Chunk Of Mythril Ore
-            {itemid = 745, droprate = 0},    -- Gold Ingot
-            {itemid = 654, droprate = 11},   -- Darksteel Ingot
-            {itemid = 746, droprate = 11},   -- Platinum Ingot
-            {itemid = 702, droprate = 11},   -- Ebony Log
-            {itemid = 895, droprate = 11},   -- Ram Horn
-            {itemid = 902, droprate = 11},   -- Demon Horn
-            {itemid = 1116, droprate = 0},   -- Manticore Hide
-            {itemid = 1122, droprate = 11},  -- Wyvern Skin
-            {itemid = 866, droprate = 11},   -- Handful Of Wyvern Scales
+            {itemid = 13548, droprate =  376}, -- Astral Ring
+            {itemid = 13447, droprate =   22}, -- Platinum Ring
+            {itemid =  4818, droprate =   65}, -- Scroll Of Quake
+            {itemid =   859, droprate =   10}, -- Ram Skin
+            {itemid =  4172, droprate =   11}, -- Reraiser
+            {itemid =   653, droprate =   22}, -- Mythril Ingot
+            {itemid =  4902, droprate =   10}, -- Light Spirit Pact
+            {itemid =  4814, droprate =   32}, -- Scroll Of Freeze
+            {itemid =  4719, droprate =   43}, -- Scroll Of Regen Iii
+            {itemid =  4621, droprate =   32}, -- Scroll Of Raise Ii
+            {itemid =   703, droprate =   11}, -- Petrified Log
+            {itemid =   887, droprate =   11}, -- Coral Fragment
+            {itemid =   700, droprate =   11}, -- Mahogany Log
+            {itemid =   738, droprate =   43}, -- Chunk Of Platinum Ore
+            {itemid =   737, droprate =  108}, -- Chunk Of Gold Ore
+            {itemid =   645, droprate =   32}, -- Chunk Of Darksteel Ore
+            {itemid =   644, droprate =   65}, -- Chunk Of Mythril Ore
+            {itemid =   745, droprate =   10}, -- Gold Ingot
+            {itemid =   654, droprate =   11}, -- Darksteel Ingot
+            {itemid =   746, droprate =   11}, -- Platinum Ingot
+            {itemid =   702, droprate =   11}, -- Ebony Log
+            {itemid =   895, droprate =   11}, -- Ram Horn
+            {itemid =   902, droprate =   11}, -- Demon Horn
+            {itemid =  1116, droprate =    9}, -- Manticore Hide
+            {itemid =  1122, droprate =   11}, -- Wyvern Skin
+            {itemid =   866, droprate =   11}, -- Handful Of Wyvern Scales
         },
     },
     -- BCNM Creeping Doom

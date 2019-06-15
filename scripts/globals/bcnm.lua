@@ -241,7 +241,7 @@ local battlefields = {
         { 1,   97, 1131},   -- Steamed Sprouts (BS40)
         { 2,   98, 1130},   -- Divine Punishers (BS60)
         { 3,   99,    0},   -- Saintly Invitation (Windy 6-2)
-     -- { 4,  100, 1177},   -- Treasure and Tribulations (BS50)
+        { 4,  100, 1177},   -- Treasure and Tribulations (BS50)
         { 5,  101, 1427},   -- Shattering Stars (MNK LB5)
         { 6,  102, 1428},   -- Shattering Stars (WHM LB5)
         { 7,  103, 1440},   -- Shattering Stars (SMN LB5)
