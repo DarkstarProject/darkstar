@@ -2,33 +2,33 @@
 -- Area: King Ranperre's Tomb
 --  MOB: Vrtra
 -----------------------------------
-require("scripts/globals/status");
-require("scripts/globals/titles");
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
-local offsets = {1, 3, 5, 2, 4, 6};
+local offsets = {1, 3, 5, 2, 4, 6}
 
 function onMobEngaged(mob, target)
-    mob:resetLocalVars();
-end;
+    mob:resetLocalVars()
+end
 
 function onMobFight(mob, target)
-    local spawnTime = mob:getLocalVar("spawnTime");
-    local twohourTime = mob:getLocalVar("twohourTime");
+    local spawnTime = mob:getLocalVar("spawnTime")
+    local twohourTime = mob:getLocalVar("twohourTime")
 
     if (twohourTime == 0) then
-        twohourTime = math.random(4, 6);
-        mob:setLocalVar("twohourTime", twohourTime);
+        twohourTime = math.random(4, 6)
+        mob:setLocalVar("twohourTime", twohourTime)
     end
 
     if (spawnTime == 0) then
-        spawnTime = math.random(3, 5);
-        mob:setLocalVar("spawnTime", spawnTime);
+        spawnTime = math.random(3, 5)
+        mob:setLocalVar("spawnTime", spawnTime)
     end
 
     if (mob:getBattleTime()/15 > twohourTime) then
-        mob:useMobAbility(710);
-        mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4,6));
+        mob:useMobAbility(710)
+        mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4, 6))
     elseif (mob:getBattleTime()/15 > spawnTime) then
         local mobId = mob:getID()
 
@@ -37,30 +37,30 @@ function onMobFight(mob, target)
 
             if not pet:isSpawned() then
                 pet:spawn(60)
-                local pos = mob:getPos();
-                pet:setPos(pos.x, pos.y, pos.z);
+                local pos = mob:getPos()
+                pet:setPos(pos.x, pos.y, pos.z)
                 pet:updateEnmity(target)
-                break;
+                break
             end
         end
-        mob:setLocalVar("spawnTime", (mob:getBattleTime()/15)+4);
+        mob:setLocalVar("spawnTime", (mob:getBattleTime()/15)+4)
     end
-end;
+end
 
 function onMobDisengage(mob, weather)
     for i, offset in ipairs(offsets) do
-        DespawnMob(mob:getID()+offset);
+        DespawnMob(mob:getID()+offset)
     end
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.VRTRA_VANQUISHER);
-end;
+    player:addTitle(dsp.title.VRTRA_VANQUISHER)
+end
 
 function onMobDespawn(mob)
 
     -- Set Vrtra's spawnpoint and respawn time (3-5 days)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(259200,432000));
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(259200, 432000))
 
-end;
+end
