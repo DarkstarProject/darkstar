@@ -17278,6 +17278,7 @@ INSERT INTO `item_basic` VALUES (20679,0,'tanmogayi','tanmogayi',1,63568,0,0,0);
 INSERT INTO `item_basic` VALUES (20680,0,'tanmogayi_+1','tanmogayi_+1',1,63568,0,0,0);
 INSERT INTO `item_basic` VALUES (20681,0,'flyssa','flyssa',1,63568,0,0,0);
 INSERT INTO `item_basic` VALUES (20682,0,'flyssa_+1','flyssa_+1',1,63568,0,0,0);
+INSERT INTO `item_basic` VALUES (20683,0,'zantetsuken','zantetsuken',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (20685,0,'excalibur','excalibur',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (20686,0,'murgleis','murgleis',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (20687,0,'burtgang','burtgang',1,63552,0,0,0);
@@ -18123,6 +18124,7 @@ INSERT INTO `item_basic` VALUES (21660,0,'beryllium_sword_+1','bery._sword_+1',1
 INSERT INTO `item_basic` VALUES (21661,0,'rune_algol','rune_algol',1,2052,4,0,0);
 INSERT INTO `item_basic` VALUES (21662,0,'raetic_algol','raetic_algol',1,2080,4,0,0);
 INSERT INTO `item_basic` VALUES (21663,0,'raetic_algol_+1','raetic_algol_+1',1,2080,4,0,0);
+INSERT INTO `item_basic` VALUES (21664,0,'zantetsuken_x','zantetsuken_x',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (21667,0,'futhark_claymore','futhark_claymore',1,2080,4,0,0);
 INSERT INTO `item_basic` VALUES (21668,0,'peord_claymore','peord_claymore',1,2080,4,0,0);
 INSERT INTO `item_basic` VALUES (21669,0,'morgelai','morgelai',1,2080,4,0,0);
@@ -18224,6 +18226,7 @@ INSERT INTO `item_basic` VALUES (21829,0,'kaja_scythe','kaja_scythe',1,63552,0,1
 INSERT INTO `item_basic` VALUES (21830,0,'drepanum','drepanum',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21854,0,'reienkyo','reienkyo',1,30800,0,0,0);
 INSERT INTO `item_basic` VALUES (21855,0,'lembing','lembing',1,63568,0,0,0);
+INSERT INTO `item_basic` VALUES (21856,0,'geirrothr','geirrothr',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (21857,0,'gungnir','gungnir',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (21858,0,'ryunohige','ryunohige',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (21859,0,'rhongomiant','rhongomiant',1,63552,0,0,0);
@@ -18232,6 +18235,8 @@ INSERT INTO `item_basic` VALUES (21862,0,'mizukage-no-naginata','mizukage_nagina
 INSERT INTO `item_basic` VALUES (21863,0,'tzee_xicus_blade','tzee_xicus_blade',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (21865,0,'arasy_lance','arasy_lance',1,2084,8,0,0);
 INSERT INTO `item_basic` VALUES (21866,0,'arasy_lance_+1','arasy_lance_+1',1,2080,8,0,0);
+INSERT INTO `item_basic` VALUES (21867,0,'sha_wujings_lance','sha_wujings_lance',1,30784,0,1,0);
+INSERT INTO `item_basic` VALUES (21868,0,'sha_wujings_lance_+1','sha_wujings_la._+1',1,31816,0,1,0);
 INSERT INTO `item_basic` VALUES (21869,0,'exalted_spear','exalted_spear',1,2084,8,0,0);
 INSERT INTO `item_basic` VALUES (21870,0,'exalted_spear_+1','exalted_spear_+1',1,2080,8,0,0);
 INSERT INTO `item_basic` VALUES (21871,0,'raetic_halberd','raetic_halberd',1,2080,8,0,0);
