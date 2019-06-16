@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperre's Tomb
---  MOB: Barbastelle (NM)
+--   NM: Barbastelle
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

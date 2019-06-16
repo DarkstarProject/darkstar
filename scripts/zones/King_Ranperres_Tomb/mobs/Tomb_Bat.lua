@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/King_Ranperres_Tomb/IDs")
 require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end

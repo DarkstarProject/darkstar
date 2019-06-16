@@ -4,19 +4,20 @@
 -- Involved in Quest: Grave Concerns
 -- !pos 1 0.1 -101 190
 -----------------------------------
-require("scripts/globals/settings")
-require("scripts/globals/missions")
-require("scripts/globals/quests")
 local ID = require("scripts/zones/King_Ranperres_Tomb/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-
-        if (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED) then
-            if (trade:hasItemQty(567, 1) and trade:getItemCount() == 1) then -- Trade Well Water
-            player:startEvent(3)
-            end
-        end
+    if
+        player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED and
+        npcUtil.tradeHas(trade, 567) -- Well Water
+    then
+        player:startEvent(3)
+    end
 end
 
 function onTrigger(player, npc)
@@ -26,13 +27,13 @@ function onTrigger(player, npc)
     local X = npc:getXPos()
     local Z = npc:getZPos()
 
-    if (X >= -1 and X <= 1 and Z >= -106 and Z <= -102) then
-        if (currentMission == dsp.mission.id.sandoria.BAT_HUNT and MissionStatus <= 1) then
+    if X >= -1 and X <= 1 and Z >= -106 and Z <= -102 then
+        if currentMission == dsp.mission.id.sandoria.BAT_HUNT and MissionStatus <= 1 then
             player:startEvent(4)
         else
             player:startEvent(2)
         end
-    elseif (currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 2) then
+    elseif currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 2 then
         player:startEvent(8)
     end
 
@@ -42,29 +43,21 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-
-    if (csid == 4) then
+    if csid == 4 then
         player:setVar("MissionStatus", 2)
-    elseif (csid == 2) then
-        local graveConcerns = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.GRAVE_CONCERNS)
-
-        if (graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then
-            if (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 547) -- Tomb Waterskin
-            else
-                player:addItem(547)
-                player:messageSpecial(ID.text.ITEM_OBTAINED, 547) -- Tomb Waterskin
-            end
-        end
-    elseif (csid == 3) then
-        player:tradeComplete()
+    elseif
+        csid == 2 and
+        player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED and
+        not player:hasItem(547) and
+        not player:hasItem(567) and
+        npcUtil.giveItem(player, 547) -- Tomb Waterskin
+    then
+        -- no further action needed
+    elseif csid == 3 and npcUtil.giveItem(player, 547) then
+        player:confirmTrade()
         player:setVar("OfferingWaterOK", 1)
-        player:addItem(547)
-        player:messageSpecial(ID.text.ITEM_OBTAINED, 547) -- Tomb Waterskin
-    elseif (csid == 8) then
+    elseif csid == 8 then
         player:setVar("MissionStatus", 3)
-        player:addKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ANCIENT_SANDORIAN_BOOK)
+        npcUtil.giveKeyItem(player, dsp.ki.ANCIENT_SANDORIAN_BOOK)
     end
-
 end

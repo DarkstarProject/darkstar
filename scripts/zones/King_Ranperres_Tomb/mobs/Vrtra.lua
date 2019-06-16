@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperre's Tomb
---  MOB: Vrtra
+--   NM: Vrtra
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/titles")
@@ -15,21 +15,22 @@ end
 function onMobFight(mob, target)
     local spawnTime = mob:getLocalVar("spawnTime")
     local twohourTime = mob:getLocalVar("twohourTime")
+    local fifteenBlock = mob:getBattleTime() / 15
 
-    if (twohourTime == 0) then
+    if twohourTime == 0 then
         twohourTime = math.random(4, 6)
         mob:setLocalVar("twohourTime", twohourTime)
     end
 
-    if (spawnTime == 0) then
+    if spawnTime == 0 then
         spawnTime = math.random(3, 5)
         mob:setLocalVar("spawnTime", spawnTime)
     end
 
-    if (mob:getBattleTime()/15 > twohourTime) then
+    if fifteenBlock > twohourTime then
         mob:useMobAbility(710)
-        mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4, 6))
-    elseif (mob:getBattleTime()/15 > spawnTime) then
+        mob:setLocalVar("twohourTime", fifteenBlock + math.random(4, 6))
+    elseif fifteenBlock > spawnTime then
         local mobId = mob:getID()
 
         for i, offset in ipairs(offsets) do
@@ -43,7 +44,7 @@ function onMobFight(mob, target)
                 break
             end
         end
-        mob:setLocalVar("spawnTime", (mob:getBattleTime()/15)+4)
+        mob:setLocalVar("spawnTime", fifteenBlock + 4)
     end
 end
 
@@ -58,9 +59,7 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-
     -- Set Vrtra's spawnpoint and respawn time (3-5 days)
     UpdateNMSpawnPoint(mob:getID())
     mob:setRespawnTime(math.random(259200, 432000))
-
 end

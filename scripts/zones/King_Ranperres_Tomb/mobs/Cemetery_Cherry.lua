@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  NM:  Cemetery Cherry
+--   NM: Cemetery Cherry
 -- !pos 33.000 0.500 -287.000 190
 -----------------------------------
 local ID = require("scripts/zones/King_Ranperres_Tomb/IDs")
@@ -10,7 +10,7 @@ require("scripts/globals/titles")
 function spawnSaplings()
     for i = ID.mob.CHERRY_SAPLING_OFFSET, ID.mob.CHERRY_SAPLING_OFFSET + 12 do
         local mob = GetMobByID(i)
-        if (mob ~= nil and mob:getName() == 'Cherry_Sapling' and not mob:isSpawned()) then
+        if mob ~= nil and mob:getName() == 'Cherry_Sapling' and not mob:isSpawned() then
             SpawnMob(i)
         end
     end
@@ -35,7 +35,7 @@ end
 
 function onMobDespawn(mob)
     local saplingsRespawn = 0
-    if (mob:getLocalVar("wasKilled") == 1) then
+    if mob:getLocalVar("wasKilled") == 1 then
         saplingsRespawn = math.random(216000, 259200) -- 60 to 72 hours
     else
         saplingsRespawn = math.random(1800, 3600) -- 30 to 60 minutes
