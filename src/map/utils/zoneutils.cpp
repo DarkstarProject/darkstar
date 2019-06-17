@@ -532,7 +532,8 @@ void LoadMOBList()
         LEFT JOIN mob_spawn_points ON mob_pets.mob_mobid = mob_spawn_points.mobid \
         LEFT JOIN mob_groups ON mob_spawn_points.groupid = mob_groups.groupid \
         INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
+        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
+        AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
     ret = Sql_Query(SqlHandle, PetQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
