@@ -3,7 +3,7 @@
 --  NPC: Dimensional Portal
 -----------------------------------
 local ID = require("scripts/zones/La_Theine_Plateau/IDs")
-require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player, npc, trade)
