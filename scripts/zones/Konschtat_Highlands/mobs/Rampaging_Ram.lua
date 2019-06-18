@@ -3,7 +3,6 @@
 --   NM: Rampaging Ram
 -----------------------------------
 local ID = require("scripts/zones/Konschtat_Highlands/IDs")
------------------------------------
 require("scripts/globals/mobs")
 -----------------------------------
 
