@@ -378,6 +378,7 @@ dsp.zone = {
     DYNAMIS_JEUNO_D = 297
 }
 
+dsp.expansionZone = {}
 dsp.expansionZone.ORIGINAL_ROTZ = {
     [dsp.zone.WEST_RONFAURE] = true,
     [dsp.zone.EAST_RONFAURE] = true,
