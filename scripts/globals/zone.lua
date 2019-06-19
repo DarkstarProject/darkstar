@@ -381,6 +381,7 @@ dsp.zone =
     DYNAMIS_BASTOK_D                = 295,
     DYNAMIS_WINDURST_D              = 296,
     DYNAMIS_JEUNO_D                 = 297,
+    WALK_OF_ECHOES_P                = 298,
 }
 
 -----------------------------------
