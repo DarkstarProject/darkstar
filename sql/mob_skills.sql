@@ -2289,9 +2289,9 @@ INSERT INTO `mob_skills` VALUES (2457,1695,'level-6-holy',1,18.0,2000,1000,4,0,0
 -- INSERT INTO `mob_skills` VALUES (2465,2209,'bill_toss',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2466,2210,'washtub',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2467,2211,'crystalline_flare',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (2468,2468,'king_cobra_clamp',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (2469,2469,'wasp_sting',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (2470,2470,'dancing_edge',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2468,1508,'king_cobra_clamp',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2469,31,'wasp_sting',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2470,38,'dancing_edge',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2471,2215,'bistillot_blast',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2472,2216,'songbird_swoop',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2473,2217,'vunkerl_herb_tonic',0,7.0,2000,1500,4,0,0,0,0,0,0);
