@@ -326,7 +326,7 @@ function onTrigger(player, bytes)
             return;
         end
     end
-    
+
     -- validate destination
     if (atpos ~= nil) then
         -- destination is an auto-translate phrase
@@ -351,7 +351,7 @@ function onTrigger(player, bytes)
         if (tonumber(dest) ~= nil) then
             -- destination is a zone ID.
             zone = tonumber(dest);
-            if (zone < 0 or zone > 288) then
+            if (zone < 0 or zone > 298) then
                 error(player, "Invalid zone ID.");
                 return;
             end
@@ -380,7 +380,7 @@ function onTrigger(player, bytes)
             zone = dest:getZoneID();
         end
     end
-    
+
     -- send target to destination
     targ:setPos(x, y, z, rot, zone);
     if (targ:getID() ~= player:getID()) then
