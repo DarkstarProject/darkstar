@@ -267,7 +267,7 @@ enum MERIT_TYPE
 	MERIT_ANCIENT_CIRCLE_RECAST		= MCATEGORY_DRG_1 + 0x00,
     MERIT_JUMP_RECAST               = MCATEGORY_DRG_1 + 0x02,
     MERIT_HIGH_JUMP_RECAST          = MCATEGORY_DRG_1 + 0x04,
-    MERIT_SUPER_JUMP_RECAST         = MCATEGORY_DRG_1 + 0x05,
+    MERIT_SUPER_JUMP_RECAST         = MCATEGORY_DRG_1 + 0x06,
     MERIT_SPIRIT_LINK_RECAST        = MCATEGORY_DRG_1 + 0x08,
 
     //SMN 1
@@ -517,7 +517,7 @@ struct Merit_t
         uint32 data;        // data sent in packet
     };
 
-    uint32 value;           // the coefficient of variation of the parameter that is bound to merit 
+    uint32 value;           // the coefficient of variation of the parameter that is bound to merit
     uint8  upgrade;         // maximum number of upgrades
     uint32 jobs;            // bitmask of jobs for which merit has effect
 	uint8  upgradeid;		// which set of upgrade values the merit will use
