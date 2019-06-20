@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.ALTEPA_POLISHING_STONE);
             player:addItem(16887);
             player:messageSpecial(ID.text.ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
-            player:addFame(SANDORIA,AF1_FAME);
+            player:addFame(SANDORIA,20);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
         end
     elseif (csid == 67) then

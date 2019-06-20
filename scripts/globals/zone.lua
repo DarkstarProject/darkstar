@@ -389,7 +389,7 @@ dsp.zone =
 ----------------------------------
 
 function SetExplorerMoogles(moogle)
-    if EXPLORER_MOOGLE == 1 then
+    if EXPLORER_MOOGLE_LV ~= 0 then
         local npc = GetNPCByID(moogle)
         if npc == nil then
             printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", moogle)

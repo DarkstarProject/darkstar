@@ -514,7 +514,7 @@ dsp.teleport.explorerMoogleOnTrigger = function(player, event)
         accept = 1
     end
 
-    if player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP then
+    if player:getMainLvl() < EXPLORER_MOOGLE_LV then
         event = event + 1
     end
 
