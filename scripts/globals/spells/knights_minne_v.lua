@@ -16,13 +16,13 @@ function onSpellCast(caster,target,spell)
 
     local power = 50 + math.floor((sLvl + iLvl)/10)
 
-    if (power >= 120) then
-        power = 120
+    if (power >= 204) then
+        power = 204
     end
 
     local iBoost = caster:getMod(dsp.mod.MINNE_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
     if (iBoost > 0) then
-        power = power + 1 + (iBoost-1)*4
+        power = power + iBoost*20
     end
 
     power =  power + caster:getMerit(dsp.merit.MINNE_EFFECT)
