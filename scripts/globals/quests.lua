@@ -20,7 +20,7 @@ QUEST_COMPLETED = 2;
 
 -- These integers are the ones used by the client
 -- to diffierentiate different quest log update packets
-dsp.quest.log_id =
+dsp.quest.log =
 {
     SANDORIA    =  0,
     BASTOK      =  1,
@@ -40,21 +40,21 @@ dsp.quest.log_id =
 -- These areas are keyed by the area's quest log ID to facilitate
 -- fetching the area's quests.
 -- Ex: If all you have is a quest log ID, you can pull all
--- quest IDs for that area by: dsp.quest.id[dsp.quest.area[log_id]]
+-- quest IDs for that area by: dsp.quest.id[dsp.quest.area[log]]
 -- These can also be tied into quest file directories later.
 dsp.quest.area =
 {
-    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-    [dsp.quest.log_id.BASTOK]      = 'bastok',
-    [dsp.quest.log_id.WINDURST]    = 'windurst',
-    [dsp.quest.log_id.JEUNO]       = 'jeuno',
-    [dsp.quest.log_id.OTHER_AREAS] = 'otherAreas',
-    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-    [dsp.quest.log_id.AHT_URHGAN]  = 'ahtUrhgan',
-    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystalWar',
-    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-    [dsp.quest.log_id.COALITION]   = 'coalition'
+    [dsp.quest.log.SANDORIA]    = 'sandoria',
+    [dsp.quest.log.BASTOK]      = 'bastok',
+    [dsp.quest.log.WINDURST]    = 'windurst',
+    [dsp.quest.log.JEUNO]       = 'jeuno',
+    [dsp.quest.log.OTHER_AREAS] = 'otherAreas',
+    [dsp.quest.log.OUTLANDS]    = 'outlands',
+    [dsp.quest.log.AHT_URHGAN]  = 'ahtUrhgan',
+    [dsp.quest.log.CRYSTAL_WAR] = 'crystalWar',
+    [dsp.quest.log.ABYSSEA]     = 'abyssea',
+    [dsp.quest.log.ADOULIN]     = 'adoulin',
+    [dsp.quest.log.COALITION]   = 'coalition'
 }
 
 -----------------------------------
@@ -66,7 +66,7 @@ dsp.quest.id =
     -----------------------------------
     --  San d'Oria
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] =
+    [dsp.quest.area[dsp.quest.log.SANDORIA]] =
     {
         A_SENTRY_S_PERIL                = 0,  -- ± --
         WATER_OF_THE_CHEVAL             = 1,  -- ± --
@@ -154,7 +154,7 @@ dsp.quest.id =
     -----------------------------------
     --  Bastok
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.BASTOK]] =
+    [dsp.quest.area[dsp.quest.log.BASTOK]] =
     {
         THE_SIREN_S_TEAR                = 0,  -- ± --
         BEAUTY_AND_THE_GALKA            = 1,  -- ± --
@@ -252,7 +252,7 @@ dsp.quest.id =
     -----------------------------------
     --  Windurst
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.WINDURST]] =
+    [dsp.quest.area[dsp.quest.log.WINDURST]] =
     {
         HAT_IN_HAND                     = 0,  -- + --
         A_FEATHER_IN_ONE_S_CAP          = 1,  -- + --
@@ -348,7 +348,7 @@ dsp.quest.id =
     -----------------------------------
     --  Jeuno
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.JEUNO]] =
+    [dsp.quest.area[dsp.quest.log.JEUNO]] =
     {
         CREST_OF_DAVOI                  = 0,  -- + --
         SAVE_MY_SISTER                  = 1,  -- + --
@@ -499,7 +499,7 @@ dsp.quest.id =
     -----------------------------------
     --  Other Areas
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] =
+    [dsp.quest.area[dsp.quest.log.OTHER_AREAS]] =
     {
         RYCHARDE_THE_CHEF               = 0,  -- + --
         WAY_OF_THE_COOK                 = 1,  -- + --
@@ -572,7 +572,7 @@ dsp.quest.id =
     -----------------------------------
     --  Outlands
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] =
+    [dsp.quest.area[dsp.quest.log.OUTLANDS]] =
     {
         -- Kazham (1-15)
         THE_FIREBLOOM_TREE              = 1,
@@ -644,7 +644,7 @@ dsp.quest.id =
     -----------------------------------
     --  Aht Urhgan
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] =
+    [dsp.quest.area[dsp.quest.log.AHT_URHGAN]] =
     {
         KEEPING_NOTES                   = 0,
         ARTS_AND_CRAFTS                 = 1,
@@ -702,7 +702,7 @@ dsp.quest.id =
     -----------------------------------
     --  Crystal War
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] =
+    [dsp.quest.area[dsp.quest.log.CRYSTAL_WAR]] =
     {
         LOST_IN_TRANSLOCATION            = 0,
         MESSAGE_ON_THE_WINDS             = 1,
@@ -801,7 +801,7 @@ dsp.quest.id =
     -----------------------------------
     --  Abyssea
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] =
+    [dsp.quest.area[dsp.quest.log.ABYSSEA]] =
     {
         -- For some reason these did not match dat file order,
         -- had to adjust IDs >120 after using @addquest
@@ -1002,7 +1002,7 @@ dsp.quest.id =
     -----------------------------------
     --  Adoulin
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] =
+    [dsp.quest.area[dsp.quest.log.ADOULIN]] =
     {
         -- These also do not match the DAT file order, had
         -- discrepencies and swapped orders from the start.
@@ -1108,7 +1108,7 @@ dsp.quest.id =
     -----------------------------------
     --  Coalition
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.COALITION]] =
+    [dsp.quest.area[dsp.quest.log.COALITION]] =
     {
         -- Also slightly incongruent with DAT file order
         PROCURE_CEIZAK_BATTLEGROUNDS    = 0,
@@ -1239,17 +1239,17 @@ dsp.quest.string = buildQuestStringTable(dsp.quest.id)
 -- Quest objects inside these tables will be loaded/reloaded as required by NPC scripts and GM commands
 dsp.quest.object =
 {
-    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] = {},
-    [dsp.quest.area[dsp.quest.log_id.BASTOK]] = {},
-    [dsp.quest.area[dsp.quest.log_id.WINDURST]] = {},
-    [dsp.quest.area[dsp.quest.log_id.JEUNO]] = {},
-    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] = {},
-    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] = {},
-    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] = {},
-    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] = {},
-    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] = {},
-    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] = {},
-    [dsp.quest.area[dsp.quest.log_id.COALITION]] = {}
+    [dsp.quest.area[dsp.quest.log.SANDORIA]] = {},
+    [dsp.quest.area[dsp.quest.log.BASTOK]] = {},
+    [dsp.quest.area[dsp.quest.log.WINDURST]] = {},
+    [dsp.quest.area[dsp.quest.log.JEUNO]] = {},
+    [dsp.quest.area[dsp.quest.log.OTHER_AREAS]] = {},
+    [dsp.quest.area[dsp.quest.log.OUTLANDS]] = {},
+    [dsp.quest.area[dsp.quest.log.AHT_URHGAN]] = {},
+    [dsp.quest.area[dsp.quest.log.CRYSTAL_WAR]] = {},
+    [dsp.quest.area[dsp.quest.log.ABYSSEA]] = {},
+    [dsp.quest.area[dsp.quest.log.ADOULIN]] = {},
+    [dsp.quest.area[dsp.quest.log.COALITION]] = {}
 }
 
 -----------------------------------
@@ -1261,6 +1261,7 @@ dsp.quest.stage =
     STAGE0   =  0, STAGE1  =  1, STAGE2  =  2, STAGE3   =  3, STAGE4   =  4,
     STAGE5   =  5, STAGE6  =  6, STAGE7  =  7, STAGE8   =  8, STAGE9   =  9,
     STAGE10  = 10, STAGE11 = 11, STAGE12 = 12, STAGE13  = 13, STAGE14  = 14,
+    COMPLETE = 255
 }
 
 dsp.quest.fame =
@@ -1345,7 +1346,7 @@ dsp.quest.newQuest = function()
         end
 
         if not var then
-            ret.message = " unable to find "..varname.." for quest: "..quest.name.." (log_id: "..quest.log_id..")"
+            ret.message = " unable to find "..varname.." for quest: "..quest.name.." (log: "..quest.log..")"
         else
             if vartype == dsp.quest.var.CHAR then
                 if get then
@@ -1415,7 +1416,14 @@ dsp.quest.newQuest = function()
     ---------------------------------------------------------------
     this.getStage = function(entity)
         local message = this.string_key.. ".getStage -> "
-        return this.getVar(entity, this.vars.stage, message)
+        local stage = this.getVar(entity, this.vars.stage, message)
+        if stage > 0 then
+            return stage
+        elseif player:getQuestStatus(this.log, this.quest_id) == dsp.quest.status.COMPLETED then
+            return dsp.quest.stage.COMPLETE
+        else
+            return 0
+        end
     end
 
     -- Advances the player's current quest stage by 1
@@ -1430,16 +1438,16 @@ dsp.quest.newQuest = function()
     -- Returns true if the player meets all the listed quest requirements
     ---------------------------------------------------------------
     this.checkRequirements = function(player)
-        local questStatusCheck = player:getQuestStatus(this.log_id, this.quest_id)
+        local questStatusCheck = player:getQuestStatus(this.log, this.quest_id)
 
         if questStatusCheck == dsp.quest.status.AVAILABLE
         or (questStatusCheck == dsp.quest.status.COMPLETED and this.repeatable) then
             -- Check all required quests
             if this.requirements.quests then
                 for i, requiredQuest in ipairs(this.requirements.quests) do
-                    local requiredQuestStatus = player:getQuestStatus(requiredQuest.log_id, requiredQuest.quest_id)
+                    local requiredQuestStatus = player:getQuestStatus(requiredQuest.log, requiredQuest.quest_id)
                     if requiredQuest.stage then
-                        local quest = dsp.quest.getQuest(requiredQuest.log_id, requiredQuest.quest_id)
+                        local quest = dsp.quest.getQuest(requiredQuest.log, requiredQuest.quest_id)
                         if quest then
                             if quest.getStage(player) < requiredQuest.stage then
                                 return false
@@ -1494,7 +1502,7 @@ dsp.quest.newQuest = function()
     -- Adds a quest to the player's log and sets their stage to 1
     ---------------------------------------------------------------
     this.begin = function(player)
-        player:addQuest(this.log_id, this.quest_id)
+        player:addQuest(this.log, this.quest_id)
         return this.advanceStage(player)
     end
 
@@ -1517,8 +1525,7 @@ dsp.quest.newQuest = function()
     ---------------------------------------------------------------
     this.startEvent = function(player, event, params)
         if not params then params = {} end
-        player:startEvent(event, params[1], params[2], params[3], params[4],
-                                 params[5], params[6], params[7], params[8])
+        player:startEvent(event, unpack(params))
         return true
     end
 
@@ -1531,7 +1538,6 @@ dsp.quest.newQuest = function()
         if npcUtil.giveItem(player, item, silent_fail) then
             return true
         else
-            this.holdItem(player, item)
             return false
         end
     end
@@ -1678,7 +1684,7 @@ dsp.quest.newQuest = function()
                     end
                 end
 
-                rewards_given = npcUtil.completeQuest(player, this.log_id, this.quest_id, reward_set)
+                rewards_given = npcUtil.completeQuest(player, this.log, this.quest_id, reward_set)
                 if not rewards_given then
                     error(player, message.. "Unable to give quest rewards.")
                 end
@@ -1786,17 +1792,17 @@ dsp.quest.getQuest = function(area_log_id, quest_id)
                 local quest_filename = 'scripts/quests/'
                 local area_dirs =
                 {
-                    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-                    [dsp.quest.log_id.BASTOK]      = 'bastok',
-                    [dsp.quest.log_id.WINDURST]    = 'windurst',
-                    [dsp.quest.log_id.JEUNO]       = 'jeuno',
-                    [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
-                    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-                    [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
-                    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
-                    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-                    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-                    [dsp.quest.log_id.COALITION]   = 'coalition'
+                    [dsp.quest.log.SANDORIA]    = 'sandoria',
+                    [dsp.quest.log.BASTOK]      = 'bastok',
+                    [dsp.quest.log.WINDURST]    = 'windurst',
+                    [dsp.quest.log.JEUNO]       = 'jeuno',
+                    [dsp.quest.log.OTHER_AREAS] = 'other_areas',
+                    [dsp.quest.log.OUTLANDS]    = 'outlands',
+                    [dsp.quest.log.AHT_URHGAN]  = 'aht_urhgan',
+                    [dsp.quest.log.CRYSTAL_WAR] = 'crystal_war',
+                    [dsp.quest.log.ABYSSEA]     = 'abyssea',
+                    [dsp.quest.log.ADOULIN]     = 'adoulin',
+                    [dsp.quest.log.COALITION]   = 'coalition'
                 }
                 quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_string)
                 local quest = require(quest_filename)

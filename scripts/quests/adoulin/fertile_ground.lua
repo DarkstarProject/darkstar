@@ -4,12 +4,12 @@ require("scripts/globals/quests")
 local thisQuest = dsp.quest.newQuest()
 
 thisQuest.name = "Fertile Ground"
-thisQuest.log_id = dsp.quest.log_id.ADOULIN
+thisQuest.log = dsp.quest.log.ADOULIN
 thisQuest.quest_id = dsp.quest.id.adoulin.FERTILE_GROUND
 thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
 thisQuest.repeatable = false
-thisQuest.var_prefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.var_prefix = "[Q]["..thisQuest.log.."]["..thisQuest.quest_id.."]"
 thisQuest.vars =
 {
     stage = thisQuest.var_prefix,
@@ -21,7 +21,7 @@ thisQuest.requirements =
     quests =
     {
         {
-            log_id = dsp.quest.log_id.ADOULIN,
+            log = dsp.quest.log.ADOULIN,
             quest_id = dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON
         }
     },

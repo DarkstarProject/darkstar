@@ -3,12 +3,12 @@ require("scripts/globals/quests")
 local thisQuest = dsp.quest.newQuest()
 
 thisQuest.name = "The Brugaire Consortium"
-thisQuest.log_id = dsp.quest.log_id.SANDORIA
+thisQuest.log = dsp.quest.log.SANDORIA
 thisQuest.quest_id = dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM
 thisQuest.string_key = dsp.quest.string.sandoria[thisQuest.quest_id]
 
 thisQuest.repeatable = false
-thisQuest.var_prefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.var_prefix = "[Q]["..thisQuest.log.."]["..thisQuest.quest_id.."]"
 thisQuest.vars =
 {
     stage = thisQuest.var_prefix,
