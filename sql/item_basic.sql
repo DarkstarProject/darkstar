@@ -5327,8 +5327,8 @@ INSERT INTO `item_basic` VALUES (5672,0,'dried_berry','dried_berry',12,1548,57,0
 INSERT INTO `item_basic` VALUES (5673,0,'rolsin','rolsin',12,1548,57,0,84);
 INSERT INTO `item_basic` VALUES (5674,0,'aileens_delight','aileens_delight',1,58968,0,0,3198);
 INSERT INTO `item_basic` VALUES (5675,0,'withered_rolanberry','withered_berry',1,58968,0,0,4624);
-INSERT INTO `item_basic` VALUES (5676,0,'serving_of_mushroom_saute','mushroom_saute',1,1580,54,0,4025);
-INSERT INTO `item_basic` VALUES (5677,0,'serving_of_patriarch_saute','patriarch_saute',1,1580,54,0,4912);    -- https://www.bg-wiki.com/bg/Patriarch_Saute
+INSERT INTO `item_basic` VALUES (5676,0,'serving_of_mushroom_saute','mushroom_saute',1,1580,54,0,3904);
+INSERT INTO `item_basic` VALUES (5677,0,'serving_of_patriarch_saute','patriarch_saute',1,1580,54,0,4753);    -- https://www.bg-wiki.com/bg/Patriarch_Saute
 INSERT INTO `item_basic` VALUES (5678,0,'mushroom_salad','mushroom_salad',1,1580,54,0,681);
 INSERT INTO `item_basic` VALUES (5679,0,'cathedral_salad','cathedral_salad',1,1580,54,0,851);
 INSERT INTO `item_basic` VALUES (5680,0,'agaricus_mushroom','agaricus',12,1548,59,0,1237);
