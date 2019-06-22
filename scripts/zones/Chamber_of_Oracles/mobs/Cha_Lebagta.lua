@@ -9,6 +9,7 @@ local ID = require("scripts/zones/Chamber_of_Oracles/IDs")
 
 function onMobSpawn(mob)
     mob:messageText(mob, ID.text.YA_RANG_BOSS)
+    mob:setTP(1000)
     dsp.mix.jobSpecial.config(mob, {
     specials =
         {
@@ -24,7 +25,7 @@ function onMobSpawn(mob)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    mob:messageText(mob, ID.text.SIT_STILL_WILL_YA + math.random(0,5))
+    mob:messageText(mob, ID.text.SIT_STILL_WILL_YA + math.random(0,4))
 end
 
 function onMobDeath(mob, player, isKiller)

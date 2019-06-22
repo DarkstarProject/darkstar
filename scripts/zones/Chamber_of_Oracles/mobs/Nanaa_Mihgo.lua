@@ -34,14 +34,13 @@ function onMobFight(mob,target)
     local cha = mob:getID() + 1
     local bopa = mob:getID() + 2
 
-    if mob:getHPP() < 70 and mob:getLocalVar("cha_spawned") == 0 then
+    -- Can respawn, so set a low random spawn chance
+    if not GetMobByID(cha):isSpawned() and math.random(0,99) < 1 then
         mob:messageText(mob, ID.text.CHA_SHOW_EM_WHAT_YOUVE_GOT)
         SpawnMob(cha):updateEnmity(target)
-        mob:setLocalVar("cha_spawned", 1)
-    elseif mob:getHPP() < 60 and mob:getLocalVar("bopa_spawned") == 0 then
+    elseif not GetMobByID(bopa):isSpawned() and math.random(0,99) < 1 then
         mob:messageText(mob, ID.text.BOPA_A_LITTLE_HELP_HERE)
         SpawnMob(bopa):updateEnmity(target)
-        mob:setLocalVar("bopa_spawned", 1)
     end
 end
 
