@@ -23,7 +23,6 @@ function onTrigger(player,npc)
 
     if jamInJeuno then
         player:startEvent(10178)
-        player:setVar("AMK", 1)
     elseif myDecrepitDomicile and hasMetalStrip and player:getVar("AMK") == 1 then
         player:startEvent(10179) -- Metal Strip handed in
     elseif myDecrepitDomicile and player:getVar("AMK") == 1 then
@@ -44,17 +43,18 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10178 then
+        player:setVar("AMK", 1)
         player:completeMission(AMK,dsp.mission.id.amk.HASTEN_IN_A_JAM_IN_JEUNO)
         player:addMission(AMK,dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE)
     elseif csid == 10179 then
-        player:delKeyItem(dsp.ki.STURDY_METAL_STRIP)
         player:setVar("AMK", 2)
+        player:delKeyItem(dsp.ki.STURDY_METAL_STRIP)
     elseif csid == 10180 then
-        player:delKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
         player:setVar("AMK", 3)
+        player:delKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
     elseif csid == 10181 then
-        player:delKeyItem(dsp.ki.SAVORY_LAMB_ROAST)
         player:setVar("AMK", 0)
+        player:delKeyItem(dsp.ki.SAVORY_LAMB_ROAST)
         player:completeMission(AMK,dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE)
         player:addMission(AMK,dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX)
     end
