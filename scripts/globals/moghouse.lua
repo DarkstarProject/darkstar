@@ -4,8 +4,10 @@
 
 require("scripts/globals/npc_util")
 require("scripts/globals/quests");
+require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
+require("scripts/globals/zone")
 ------------------------------------
 -- Mog Locker constants
 ------------------------------------
@@ -17,6 +19,28 @@ MOGLOCKER_ACCESS_TYPE_ALLAREAS = 1
 MOGLOCKER_PLAYERVAR_ACCESS_TYPE = "mog-locker-access-type"
 MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP = "mog-locker-expiry-timestamp"
 
+function isInMogHouseInHomeNation(player)
+    if not player:isInMogHouse() then
+        return false
+    end
+
+    local currentZone = player:getZoneID()
+    local nation = player:getNation()
+    if nation == dsp.nation.BASTOK then
+        if currentZone >= 234 and currentZone <= 237 then
+            return true
+        end
+    elseif nation == dsp.nation.SANDORIA then
+        if currentZone >= 230 and currentZone <= 233 then
+            return true
+        end
+    else -- Windurst
+        if currentZone >= 238 and currentZone <= 241 then
+            return true
+        end
+    end
+    return false
+end
 
 function moogleTrade(player,npc,trade)
     if player:isInMogHouse() then
@@ -39,6 +63,11 @@ function moogleTrade(player,npc,trade)
             player:startEvent(30011)
         elseif moogleInTheWild == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {13593, 12474}) then
             player:startEvent(30015)
+        end
+
+        if isInMogHouseInHomeNation(player) and player:getCurrentMission(AMK) == dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP and
+            npcUtil.tradeHas(trade, {2757, 2758, 2759}) then
+            player:startEvent(30024)
         end
 
         return true
@@ -64,6 +93,10 @@ function moogleTrigger(player,npc)
 
         if player:getVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
+
+        -- A Moogle Kupo d'Etat
+        elseif ENABLE_AMK and isInMogHouseInHomeNation(player) and player:getMainLvl() >= 10 and player:getCurrentMission(AMK) == dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT then
+            player:startEvent(30023)
 
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
                player:getVar("[MS1]BedPlaced") == 1 then
@@ -108,6 +141,13 @@ function moogleEventFinish(player,csid,option)
     if player:isInMogHouse() then
         if csid == 30000 then
             player:setVar("MoghouseExplication", 0)
+
+        elseif csid == 30023 then
+            player:completeMission(AMK,dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT)
+            player:addMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP)
+        elseif csid == 30024 then
+            player:completeMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP)
+            player:addMission(AMK,dsp.mission.id.amk.HASTEN_IN_A_JAM_IN_JEUNO)
 
         elseif csid == 30005 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
