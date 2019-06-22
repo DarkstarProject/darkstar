@@ -15,12 +15,11 @@ zones[dsp.zone.DYNAMIS_VALKURM] =
         GIL_OBTAINED            = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         CONQUEST_BASE           = 7149, -- Tallying conquest results...
-        -- dynamis
-        DYNAMIS_TIME_BEGIN = 7312; -- The sands of the <item> have begun to fall.  You have <number> minutes (Earth time) remaining in Dynamis.
-        DYNAMIS_TIME_EXTEND = 7313; -- Your stay in Dynamis has been extended by <number> minutes.
-        DYNAMIS_TIME_UPDATE_1 = 7314; -- You will be expelled from Dynamis in <number> second/minute.
-        DYNAMIS_TIME_UPDATE_2 = 7315; -- You will be expelled from Dynamis in <number> seconds/minutes.
-        DYNAMIS_TIME_EXPIRED = 7317; -- The sands of the hourglass have emptied...
+        DYNAMIS_TIME_BEGIN      = 7314, -- The sands of the <item> have begun to fall. You have <number> minutes (Earth time) remaining in Dynamis.
+        DYNAMIS_TIME_EXTEND     = 7315, -- our stay in Dynamis has been extended by <number> minute[/s].
+        DYNAMIS_TIME_UPDATE_1   = 7316, -- ou will be expelled from Dynamis in <number> [second/minute] (Earth time).
+        DYNAMIS_TIME_UPDATE_2   = 7317, -- ou will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
+        DYNAMIS_TIME_EXPIRED    = 7319, -- The sands of the hourglass have emptied...
     },
     mob =
     {
@@ -30,7 +29,7 @@ zones[dsp.zone.DYNAMIS_VALKURM] =
             [2] = 16937525, -- Adamantking_Image
             [3] = 16937550, -- Avatar_Idol
             [4] = 16937575, -- Goblin_Statue
-        }
+        },
     },
     npc =
     {

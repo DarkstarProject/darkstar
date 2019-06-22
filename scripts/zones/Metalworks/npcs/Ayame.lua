@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.PARAGON_OF_MONK_EXCELLENCE);
             player:addItem(14215);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14215); -- Temple Hose
-            player:addFame(BASTOK,AF3_FAME);
+            player:addFame(BASTOK,60);
             player:completeQuest(BASTOK,dsp.quest.id.bastok.TRUE_STRENGTH);
         end
     elseif (csid == 935) then

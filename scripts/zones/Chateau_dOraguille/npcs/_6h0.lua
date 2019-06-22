@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
             player:addItem(14095);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14095); -- Gallant Leggings
             player:setVar("aBoysDreamCS",0);
-            player:addFame(SANDORIA,AF2_FAME);
+            player:addFame(SANDORIA,40);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.A_BOY_S_DREAM);
         end
     elseif (csid == 90 and option ==1) then
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
             player:addItem(12644);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12644); -- Gallant Surcoat
             player:setVar("UnderOathCS",9);
-            player:addFame(SANDORIA,AF3_FAME);
+            player:addFame(SANDORIA,60);
             player:setTitle(dsp.title.PARAGON_OF_PALADIN_EXCELLENCE);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH);
         end

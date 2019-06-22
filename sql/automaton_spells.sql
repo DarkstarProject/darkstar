@@ -52,7 +52,7 @@ INSERT INTO `automaton_spells` VALUES (17,60,16,0,0,6);
 INSERT INTO `automaton_spells` VALUES (18,120,16,0,0,7);
 INSERT INTO `automaton_spells` VALUES (19,105,16,0,0,2079);
 INSERT INTO `automaton_spells` VALUES (20,90,16,0,0,594974);
-INSERT INTO `automaton_spells` VALUES (23,1,61,134,0,0);
+INSERT INTO `automaton_spells` VALUES (23,0,61,134,0,0);
 INSERT INTO `automaton_spells` VALUES (24,96,61,134,0,0);
 INSERT INTO `automaton_spells` VALUES (43,24,24,0,0,0);
 INSERT INTO `automaton_spells` VALUES (44,84,24,0,0,0);
