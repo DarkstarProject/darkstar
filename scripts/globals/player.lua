@@ -134,6 +134,7 @@ local function CharCreate(player)
     player:addItem(536) -- adventurer coupon
     player:addTitle(dsp.title.NEW_ADVENTURER)
     player:setVar("MoghouseExplication", 1) -- needs Moghouse intro
+	player:setVar("FishingCatches", 0) -- counter for fishing
     player:setNewPlayer(true) -- apply new player flag
 end
 

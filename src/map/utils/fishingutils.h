@@ -48,6 +48,7 @@ namespace fishingutils
 
     void StartFishing(CCharEntity* PChar);
     void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32 special);
+    void ClearPlayersFishingCatches();
 };
 
 #endif

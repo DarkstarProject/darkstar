@@ -804,6 +804,20 @@ namespace charutils
         PChar->health.mp = zoneutils::IsResidentialArea(PChar) ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
         PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+        fmtQuery =
+            "SELECT "
+            "value "    // 0
+            "FROM char_vars "
+            "WHERE charid = %u and varname = 'FishingCatches';";
+
+        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+        if (ret != SQL_ERROR &&
+            Sql_NumRows(SqlHandle) != 0 &&
+            Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            PChar->fishingCatches = (uint8)Sql_GetUIntData(SqlHandle, 0);
+        }
         luautils::OnGameIn(PChar, zoning == 1);
     }
 
@@ -4957,6 +4971,21 @@ namespace charutils
         const char* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, var);
+
+        if (ret != SQL_ERROR &&
+            Sql_NumRows(SqlHandle) != 0 &&
+            Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            return Sql_GetIntData(SqlHandle, 0);
+        }
+        return 0;
+    }
+
+    int32 SetVar(CCharEntity* PChar, const char* var, int32 value)
+    {
+        const char* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
+
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, var, value, value);
 
         if (ret != SQL_ERROR &&
             Sql_NumRows(SqlHandle) != 0 &&

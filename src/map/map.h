@@ -136,6 +136,7 @@ struct map_config_t
     uint16 msg_server_port;           // central message server port
     std::string msg_server_ip;        // central message server IP
     bool   skillup_bloodpact;         // Enable/disable skillups for bloodpacts
+    uint16 fishing_daily_limit;
 };
 
 /************************************************************************

@@ -30,6 +30,7 @@
 
 #include "../lua/luautils.h"
 
+#include "../packets/char_skills.h"
 #include "../packets/char_update.h"
 #include "../packets/char_sync.h"
 #include "../packets/fishing.h"
@@ -65,6 +66,13 @@ void LoadFishingMessages()
     });
 }
 
+void ClearPlayersFishingCatches()
+{
+    Sql_Query(SqlHandle, "update char_vars set value = 0 WHERE varname = 'FishingCatches';");
+
+    ShowDebug(CL_CYAN"Reset players fishing catches done\n" CL_RESET);
+}
+
 /************************************************************************
 *																		*
 *  Получение смещения для сообщений рыбалки								*
@@ -74,6 +82,28 @@ void LoadFishingMessages()
 uint16 GetMessageOffset(uint16 ZoneID)
 {
 	return MessageOffset[ZoneID];
+}
+
+// get player skill with item mod bonus added
+uint16 getPlayerFishingSkill(CCharEntity* PChar)
+{
+    uint16 skill = 0;
+
+    // player skill
+    skill += PChar->RealSkills.skill[SKILL_FISHING];
+
+#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+    ShowDebug(CL_CYAN"player skill = %u\n" CL_RESET, skill);
+#endif
+
+    // mod bonus
+    skill += PChar->getMod(Mod::FISH)*10;
+
+#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+    ShowDebug(CL_CYAN"player skill with mod bonus = %u\n" CL_RESET, skill);
+#endif
+
+    return skill;
 }
 
 /************************************************************************
@@ -149,8 +179,13 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		return false;
 	}
 
+    // if there's a daily limit and the player reached it, then he can't get more fish
+    if (map_config.fishing_daily_limit != 0 && PChar->fishingCatches >= map_config.fishing_daily_limit)
+        return false;
+
 	CItemFish* PFish = nullptr;
 	CItemWeapon* WeaponItem = nullptr;
+    uint16 playerFishingSkill = getPlayerFishingSkill(PChar);
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 
@@ -172,6 +207,12 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	if (FishingChance <= 20)
 	{
+
+        // at time of this comment 2019-06-03 , all fish on lure.luck = 0 , have min and max = 0
+        // so no need to add filter conditions
+        //
+        // for future check : SELECT * FROM dspdb.fishing_lure as l , fishing_fish as f where l.luck = 0 and l.fishid = f.fishid and ( f.min > 0 or f.max > 0 )
+
 		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
@@ -240,6 +281,9 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	}
 	else
 	{
+        // fishes with min 90 max 100 , are the legendary / mythical
+        // added filter so player can only get chance to fish within min gap off his skill
+
 		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
@@ -248,16 +292,16 @@ bool CheckFisherLuck(CCharEntity* PChar)
                 "fish.size,"        // 3
                 "fish.stamina,"     // 4
                 "fish.watertype,"   // 5
-                "rod.flag, "         // 6
+                "rod.flag, "        // 6
                 "lure.luck "        // 7
             "FROM fishing_zone AS zone "
             "INNER JOIN fishing_rod  AS rod  USING (fishid) "
 			"INNER JOIN fishing_lure AS lure USING (fishid) "
 			"INNER JOIN fishing_fish AS fish USING (fishid) "
-			"WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck != 0 "
+			"WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck != 0 AND fish.min <= %u "
 			"ORDER BY luck"; 
 		
-		int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
+		int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID, playerFishingSkill);
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
@@ -270,7 +314,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 				if (FishingChance <= FisherLuck)
 				{
-					PFish = new CItemFish(*itemutils::GetItemPointer(Sql_GetIntData(SqlHandle,0)));
+					PFish = new CItemFish(*itemutils::GetItemPointer(Sql_GetIntData(SqlHandle,0)), Sql_GetIntData(SqlHandle, 1), Sql_GetIntData(SqlHandle, 2));
 
 					PChar->UContainer->SetType(UCONTAINER_FISHING);
 					PChar->UContainer->SetItem(0, PFish);
@@ -352,6 +396,106 @@ void RodBreaks(CCharEntity* PChar)
 	charutils::AddItem(PChar, LOC_INVENTORY, BrokenRodID, 1);
 }
 
+int32 doFishingSkillUp(CCharEntity* PChar)
+{
+    CItemFish* PIFish = (CItemFish*)PChar->UContainer->GetItem(0);
+
+    uint8  skillRank = PChar->RealSkills.rank[SKILL_FISHING];
+    uint16 maxSkill = (skillRank + 1) * 100;
+
+    int32  charSkill = PChar->RealSkills.skill[SKILL_FISHING];
+    int32  baseDiff = PIFish->GetMax() - charSkill / 10;
+
+    if (charSkill < maxSkill && baseDiff > 0)
+    {
+        // higher the baseDiff, lower the chance
+        double difChance = (double)(100 - baseDiff) / 100;
+
+        double skillUpChance = difChance * ((map_config.craft_chance_multiplier - (log(1.2 + charSkill / 100)))) / 10;
+
+        // Apply synthesis skill gain rate modifier before synthesis fail modifier
+        int16 modSynthSkillGain = PChar->getMod(Mod::SYNTH_SKILL_GAIN);
+        skillUpChance += (double)modSynthSkillGain * 0.01;
+
+        double random = dsprand::GetRandomNumber(1.);
+#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+        ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n" CL_RESET, skillUpChance, random);
+#endif
+
+        if (random < skillUpChance)
+        {
+            int32  satier = 0;
+            int32  skillAmount = 1;
+            double chance = 0;
+
+            if ((baseDiff >= 1) && (baseDiff < 11))
+                satier = 1;
+            else if ((baseDiff >= 11) && (baseDiff < 21))
+                satier = 2;
+            else if ((baseDiff >= 21) && (baseDiff < 31))
+                satier = 3;
+            else if ((baseDiff >= 31) && (baseDiff < 41))
+                satier = 4;
+            else if (baseDiff >= 41)
+                satier = 5;
+
+            for (uint8 i = 0; i < 4; i++)
+            {
+                random = dsprand::GetRandomNumber(1.);
+#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n" CL_RESET, satier, random);
+#endif
+
+                switch (satier)
+                {
+                case 5:  chance = 0.900; break;
+                case 4:  chance = 0.700; break;
+                case 3:  chance = 0.500; break;
+                case 2:  chance = 0.300; break;
+                case 1:  chance = 0.200; break;
+                default: chance = 0.000; break;
+                }
+
+                if (chance < random)
+                    break;
+
+                skillAmount++;
+                satier--;
+            }
+
+            // Do craft amount multiplier
+            if (map_config.craft_amount_multiplier > 1)
+            {
+                skillAmount += (int32)(skillAmount * map_config.craft_amount_multiplier);
+                if (skillAmount > 9)
+                {
+                    skillAmount = 9;
+                }
+            }
+
+            if ((skillAmount + charSkill) > maxSkill)
+            {
+                skillAmount = maxSkill - charSkill;
+            }
+
+            PChar->RealSkills.skill[SKILL_FISHING] += skillAmount;
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SKILL_FISHING, skillAmount, 38));
+
+            if ((charSkill / 10) < (charSkill + skillAmount) / 10)
+            {
+                PChar->WorkingSkills.skill[SKILL_FISHING] += 0x20;
+
+                PChar->pushPacket(new CCharSkillsPacket(PChar));
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SKILL_FISHING, (charSkill + skillAmount) / 10, 53));
+            }
+
+            charutils::SaveCharSkills(PChar, SKILL_FISHING);
+        }
+    }
+
+    return 0;
+}
+
 /************************************************************************
 *																		*
 *																		*
@@ -397,17 +541,32 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
                 PChar->updatemask |= UPDATE_HP;
 
-				CItem* PFish = PChar->UContainer->GetItem(0);
+                CItem * PFish = PChar->UContainer->GetItem(0);
+                CItemFish * PIFish = (CItemFish*)PChar->UContainer->GetItem(0);
+
+                #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                  ShowDebug(CL_BG_GREEN"player skill got fish with min = %u max = %u\n" CL_RESET, PIFish->GetMin(), PIFish->GetMax());
+                #endif
 
                 // TODO: анализируем RodFlag
 
 				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageNamePacket(PChar, MessageOffset + 0x27, PChar, PFish->getID()));
 
-				if (PFish->isType(ITEM_USABLE))
-				{
-					LureLoss(PChar, false);
-				}
+                if (PFish->isType(ITEM_USABLE))
+                {
+                    LureLoss(PChar, false);
+                }
+
+                doFishingSkillUp(PChar);
+
+                //if there's a daily limit, then update player fish count
+                if (map_config.fishing_daily_limit != 0)
+                {
+                    PChar->fishingCatches += 1;
+                    charutils::SetVar(PChar, "FishingCatches", PChar->fishingCatches);
+                }
+
                 delete PFish;
 			}
 			else if (stamina <= 0x64)
