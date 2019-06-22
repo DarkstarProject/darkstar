@@ -247,18 +247,16 @@ local function startMapMarkerEvent(eventid,player,zd)
             Full args from a retail capture for this point were:
                 101, 123, 32, 369795, 201805, 425920, 760, 529191, 4095
                 103, 123, 32, 369795, 201805, 308060, 1694, 529191, 4095 ]]--
-    local zoneid = player:getZoneID()
     local digsite = getAssignedDigSite(player, zd)
 
-    player:startEvent(eventid, zoneid, 0, digsite.x * 1000, digsite.y * 1000)
+    player:startEvent(eventid, player:getZoneID(), 0, digsite.x * 1000, digsite.y * 1000)
 end
 
 dsp.beastmentreasure.handleNpcOnTrigger = function(player)
     local zd = zoneData[player:getZoneID()]
     local status = player:getVar(zd.statusvar)
-    local hasMap = player:hasKeyItem(zd.mapid)
 
-    if not hasMap then
+    if not player:hasKeyItem(zd.mapid) then
         player:startEvent(102) -- Peddlestox lectures you for not having a map
     elseif status == QUEST_AVAILABLE then
         player:startEvent(100) -- Peddlestox says go fetch
@@ -273,9 +271,8 @@ end
 
 dsp.beastmentreasure.handleNpcOnTrade = function(player,trade)
     local zd = zoneData[player:getZoneID()]
-    local status = player:getVar(zd.statusvar)
 
-    if status == QUEST_ACCEPTED and npcUtil.tradeHasExactly(trade, zd.fetchitems) then
+    if player:getVar(zd.statusvar) == QUEST_ACCEPTED and npcUtil.tradeHasExactly(trade, zd.fetchitems) then
         -- Select a random dig site from the zone and store the qm# as a player var
         player:setVar(zd.qmvar, getRandomQm(zd.digsites))
 
@@ -301,10 +298,8 @@ dsp.beastmentreasure.updatePeddlestox = function(zoneid)
     only need to enable her on the appropriate day and disable her on the following day. ]]--
     local zd = zoneData[zoneid]
     local peddlestox = GetNPCByID(zd.peddlestox.id)
-    local activeday = zd.peddlestox.day
-    local today = VanadielDayElement()
 
-    if today == activeday then
+    if VanadielDayElement() == zd.peddlestox.day then
         peddlestox:setStatus(dsp.status.NORMAL)
     elseif peddlestox:getStatus() == dsp.status.NORMAL then
         --[[
@@ -322,8 +317,7 @@ dsp.beastmentreasure.updatePeddlestox = function(zoneid)
 end
 
 dsp.beastmentreasure.handleQmOnTrigger = function(player,npc,buriedtext,nothingtext)
-    local zd = zoneData[player:getZoneID()]
-    local digsite = getAssignedDigSite(player, zd)
+    local digsite = getAssignedDigSite(player, zoneData[player:getZoneID()])
     local qmid = npc:getID()
 
     if digsite == nil or digsite.id ~= qmid then
