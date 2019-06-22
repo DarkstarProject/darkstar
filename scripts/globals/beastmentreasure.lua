@@ -211,14 +211,6 @@ local function weightedRandomSelect(w_loot)
     return w_loot[math.random(#w_loot)]
 end
 
-local function getZoneID(entity)
-    return entity:getZone():getID()
-end
-
-local function getZoneData(entity)
-    return zoneData[getZoneID(entity)]
-end
-
 local function getRandomQm(digsites)
     --[[ We specify digsite indices in zoneData that correspond to their qm number.
     For example, zoneData[123].digsites[10] refers to qm10 in zone 123 (Yuhtunga Jungle).
@@ -257,14 +249,14 @@ local function startMapMarkerEvent(eventid,player,zd)
             Full args from a retail capture for this point were:
                 101, 123, 32, 369795, 201805, 425920, 760, 529191, 4095
                 103, 123, 32, 369795, 201805, 308060, 1694, 529191, 4095 ]]--
-    local zoneid = getZoneID(player)
+    local zoneid = player:getZoneID()
     local digsite = getAssignedDigSite(player, zd)
 
     player:startEvent(eventid, zoneid, 0, digsite.x * 1000, digsite.y * 1000)
 end
 
 dsp.beastmentreasure.handleNpcOnTrigger = function(player)
-    local zd = getZoneData(player)
+    local zd = zoneData[player:getZoneID()]
     local status = player:getVar(zd.statusvar)
     local hasMap = player:hasKeyItem(zd.mapid)
 
@@ -282,7 +274,7 @@ dsp.beastmentreasure.handleNpcOnTrigger = function(player)
 end
 
 dsp.beastmentreasure.handleNpcOnTrade = function(player,trade)
-    local zd = getZoneData(player)
+    local zd = zoneData[player:getZoneID()]
     local status = player:getVar(zd.statusvar)
 
     if status == QUEST_ACCEPTED and npcUtil.tradeHasExactly(trade, zd.fetchitems) then
@@ -294,7 +286,7 @@ dsp.beastmentreasure.handleNpcOnTrade = function(player,trade)
 end
 
 dsp.beastmentreasure.handleNpcOnEventFinish = function(player,csid)
-    local zd = getZoneData(player)
+    local zd = zoneData[player:getZoneID()]
 
     if csid == 100 then
         player:addVar(zd.statusvar, QUEST_ACCEPTED)
@@ -332,7 +324,7 @@ dsp.beastmentreasure.updatePeddlestox = function(zoneid)
 end
 
 dsp.beastmentreasure.handleQmOnTrigger = function(player,npc,buriedtext,nothingtext)
-    local zd = getZoneData(player)
+    local zd = zoneData[player:getZoneID()]
     local digsite = getAssignedDigSite(player, zd)
     local qmid = npc:getID()
 
@@ -345,7 +337,7 @@ dsp.beastmentreasure.handleQmOnTrigger = function(player,npc,buriedtext,nothingt
 end
 
 dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade)
-    local zoneid = getZoneID(player)
+    local zoneid = player:getZoneID()
     local zd = zoneData[zoneid]
     local digsite = getAssignedDigSite(player, zd)
 
@@ -365,7 +357,7 @@ dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade)
 end
 
 dsp.beastmentreasure.handleQmOnEventFinish = function(player,csid)
-    local zoneid = getZoneID(player)
+    local zoneid = player:getZoneID()
     local zd = zoneData[zoneid]
 
     if csid == 105 then
