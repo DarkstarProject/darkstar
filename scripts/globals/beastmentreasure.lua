@@ -10,8 +10,6 @@ require('scripts/globals/weather')
 dsp = dsp or {}
 dsp.beastmentreasure = dsp.beastmentreasure or {}
 
-local PICKAXE = 605
-
 local zoneData = {
     -- Yuhtunga Jungle (Elshimo Lowlands)
     [123] =
@@ -332,7 +330,7 @@ dsp.beastmentreasure.handleQmOnTrigger = function(player,npc,buriedtext,nothingt
         player:messageSpecial(nothingtext)
     elseif digsite.id == qmid then
         -- "It looks like something is buried here. If you had a <pickaxe> you could dig it up."
-        player:messageSpecial(buriedtext, PICKAXE)
+        player:messageSpecial(buriedtext, 605)
     end
 end
 
@@ -341,7 +339,7 @@ dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade)
     local zd = zoneData[zoneid]
     local digsite = getAssignedDigSite(player, zd)
 
-    if npcUtil.tradeHasExactly(trade, PICKAXE)
+    if npcUtil.tradeHasExactly(trade, 605)
         and player:getVar(zd.statusvar) == QUEST_COMPLETED
         and npc:getID() == digsite.id then
             --[[ Event 105 needs args to spawn and animate a treasure chest
