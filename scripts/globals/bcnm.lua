@@ -285,7 +285,7 @@ local battlefields = {
         { 1,  161,    0},   -- Where Two Paths Converge (Basty 9-2)
      -- { 2,  162, 1130},   -- Kindred Spirits (BS60)
         { 3,  163, 2557},   -- Survival of the Wisest (SCH LB5)
-     -- { 4,  164,    0},   -- Smash! A Malevolent Menace (MKD14)
+        { 4,  164,    0},   -- Smash! A Malevolent Menace (AMK14)
      -- { 5,    ?, 4063},   -- *Kindred Spirits (SKC20)
      -- { 6,    ?,    0},   -- *The Shadowlord Battle (HTMBF)
     },
@@ -299,7 +299,7 @@ local battlefields = {
      -- { 5,  197, 1175},   -- Cactuar Suave (KS30)
      -- { 6,  198, 1178},   -- Eye of the Storm (KS30)
      -- { 7,  199, 1180},   -- The Scarlet King (KS30)
-     -- { 8,  200,    0},   -- Roar! A Cat Burglar Bares Her Fangs (MKD10)
+        { 8,  200,    0},   -- Roar! A Cat Burglar Bares Her Fangs (AMK10)
      -- { 9,  201, 3352},   -- Dragon Scales (KC50)
      -- {10,    ?, 4063},   -- *Legion XI Comitatensis (SKC20)
     },

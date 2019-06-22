@@ -125,7 +125,7 @@ INSERT INTO `bcnm_info` VALUES (160,165,'shadow_lord_battle','nobody',0,1800,180
 INSERT INTO `bcnm_info` VALUES (161,165,'where_two_paths_converge','nobody',0,1800,1800,90,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (162,165,'kindred_spirits','nobody',0,1800,1800,90,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (163,165,'survival_of_the_wisest','nobody',0,600,600,90,1,0,6,0);
-INSERT INTO `bcnm_info` VALUES (164,165,'smash_a_malevolent_menace','nobody',0,1800,1800,90,6,0,5,0);
+INSERT INTO `bcnm_info` VALUES (164,165,'smash_a_malevolent_menace','nobody',0,1800,1800,90,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (192,168,'through_the_quicksand_caves','nobody',0,1800,1800,99,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (193,168,'legion_xi_comitatensis','nobody',0,1800,1800,60,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (194,168,'shattering_stars','nobody',0,600,600,99,1,0,22,0);
