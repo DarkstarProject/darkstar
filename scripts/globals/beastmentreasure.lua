@@ -6,13 +6,13 @@ require('scripts/globals/keyitems')
 require('scripts/globals/quests')
 require('scripts/globals/status')
 require('scripts/globals/weather')
+require('scripts/globals/zone')
 ------------------------------------
 dsp = dsp or {}
 dsp.beastmentreasure = dsp.beastmentreasure or {}
 
 local zoneData = {
-    -- Yuhtunga Jungle (Elshimo Lowlands)
-    [123] =
+    [dsp.zone.YUHTUNGA_JUNGLE] =
     {
         statusvar = 'BMT_Lowlands_Status',
         qmvar = 'BMT_Lowlands_DigQM',
@@ -46,8 +46,7 @@ local zoneData = {
             racial = {[887] = 3}    -- Coral Fragment
         }
     },
-    -- Yhoator Jungle (Elshimo Uplands)
-    [124] =
+    [dsp.zone.YHOATOR_JUNGLE] =
     {
         statusvar = 'BMT_Uplands_Status',
         qmvar = 'BMT_Uplands_DigQM',
@@ -81,8 +80,7 @@ local zoneData = {
             racial = {[4158] = 3}   -- Venom Potion
         }
     },
-    -- Western Altepa Desert (Kuzotz)
-    [125] =
+    [dsp.zone.WESTERN_ALTEPA_DESERT] =
     {
         statusvar = 'BMT_Kuzotz_Status',
         qmvar = 'BMT_Kuzotz_DigQM',
