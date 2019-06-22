@@ -33,11 +33,11 @@ function onInitialize(zone)
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
     dsp.chocobo.initZone(zone)
 
-    dsp.bmt.updatePeddlestox(dsp.zone.YHOATOR_JUNGLE)
+    dsp.bmt.updatePeddlestox(dsp.zone.YUHTUNGA_JUNGLE, ID.npc.PEDDLESTOX)
 end
 
 function onGameDay()
-    dsp.bmt.updatePeddlestox(dsp.zone.YHOATOR_JUNGLE)
+    dsp.bmt.updatePeddlestox(dsp.zone.YHOATOR_JUNGLE, ID.npc.PEDDLESTOX)
 end
 
 function onConquestUpdate(zone, updatetype)

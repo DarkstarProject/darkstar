@@ -58,7 +58,19 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
     },
     npc =
     {
-        ALTEPA_GATE = 17289744,
+        ALTEPA_GATE       = 17289744,
+        PEDDLESTOX        = 17289769,
+        BEASTMEN_TREASURE =
+        {
+            17289772, -- qm3
+            17289773, -- qm4
+            17289774, -- qm5
+            17289775, -- qm6
+            17289776, -- qm7
+            17289777, -- qm8
+            17289778, -- qm9
+            17289779, -- qm10
+        },
     },
 }
 

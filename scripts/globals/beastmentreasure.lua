@@ -15,30 +15,15 @@ local zoneData = {
     [dsp.zone.YUHTUNGA_JUNGLE] =
     {
         statusvar = 'BMT_Lowlands_Status',
-        qmvar = 'BMT_Lowlands_DigQM',
+        dsvar = 'BMT_Lowlands_Digsite',
         mapid = dsp.ki.MAP_OF_THE_ELSHIMO_REGIONS,
-        peddlestox =
-        {
-            id = 17281639,
-            day = dsp.day.WINDSDAY
-        },
+        day = dsp.day.WINDSDAY,
         fetchitems =
         {
             1480, -- Mermaid Head
             1481, -- Mermaid Body
             1482, -- Mermaid Hands
             1483  -- Mermaid Tail
-        },
-        digsites =
-        {
-            [3]  = {id = 17281642, x = 83.726,   y = 448.329,  chest = 0},
-            [4]  = {id = 17281643, x = -114.254, y = -125.471, chest = 1},
-            [5]  = {id = 17281644, x = -300.823, y = 9.208,    chest = 2},
-            [6]  = {id = 17281645, x = -539.311, y = 203.151,  chest = 3},
-            [7]  = {id = 17281646, x = -577.734, y = -82.563,  chest = 4},
-            [8]  = {id = 17281647, x = -361.835, y = -399.517, chest = 5},
-            [9]  = {id = 17281648, x = -294.827, y = -453.237, chest = 6},
-            [10] = {id = 17281649, x = 369.795,  y = 201.805,  chest = 7}
         },
         loot =
         {
@@ -49,30 +34,15 @@ local zoneData = {
     [dsp.zone.YHOATOR_JUNGLE] =
     {
         statusvar = 'BMT_Uplands_Status',
-        qmvar = 'BMT_Uplands_DigQM',
+        dsvar = 'BMT_Uplands_Digsite',
         mapid = dsp.ki.MAP_OF_THE_ELSHIMO_REGIONS,
-        peddlestox =
-        {
-            id = 17285685,
-            day = dsp.day.LIGHTNINGDAY
-        },
+        day = dsp.day.LIGHTNINGDAY,
         fetchitems =
         {
             1484, -- Rancor Mantle
             1485, -- Rancor Globe
             1486, -- Rancor Tank
             1487  -- Rancor Handle
-        },
-        digsites =
-        {
-            [5]  = {id = 17285688, x = 80.52,    y = 200.147,  chest = 1},
-            [6]  = {id = 17285689, x = 198.65,   y = 58.046,   chest = 2},
-            [7]  = {id = 17285690, x = 205.932,  y = -174.886, chest = 3},
-            [8]  = {id = 17285691, x = 525.239,  y = -394.046, chest = 4},
-            [9]  = {id = 17285692, x = 240.341,  y = -402.532, chest = 5},
-            [10] = {id = 17285693, x = 16.069,   y = -393.843, chest = 6},
-            [11] = {id = 17285694, x = -255.358, y = -405.178, chest = 7},
-            [4]  = {id = 17285695, x = -149.929, y = 56.761,   chest = 0}
         },
         loot =
         {
@@ -83,30 +53,15 @@ local zoneData = {
     [dsp.zone.WESTERN_ALTEPA_DESERT] =
     {
         statusvar = 'BMT_Kuzotz_Status',
-        qmvar = 'BMT_Kuzotz_DigQM',
+        dsvar = 'BMT_Kuzotz_Digsite',
         mapid = dsp.ki.MAP_OF_THE_KUZOTZ_REGION,
-        peddlestox =
-        {
-            id = 17289769,
-            day = dsp.day.EARTHSDAY
-        },
+        day = dsp.day.EARTHSDAY,
         fetchitems =
         {
             1476, -- Xhifhut Strings
             1477, -- Xhifhut Body
             1478, -- Xhifhut Bow
             1479  -- Xhifhut Head
-        },
-        digsites =
-        {
-            [3]  = {id = 17289772, x = -197.901, y = 357.648,  chest = 0},
-            [4]  = {id = 17289773, x = -113.454, y = -58.319,  chest = 1},
-            [5]  = {id = 17289774, x = 3.302,    y = -250.435, chest = 2},
-            [6]  = {id = 17289775, x = -476.967, y = 17.835,   chest = 3},
-            [7]  = {id = 17289776, x = -454.701, y = -286.864, chest = 4},
-            [8]  = {id = 17289777, x = -223.055, y = -672.207, chest = 5},
-            [9]  = {id = 17289778, x = -631.524, y = -336.254, chest = 6},
-            [10] = {id = 17289779, x = -670.697, y = -677.751, chest = 7}
         },
         loot =
         {
@@ -190,16 +145,16 @@ end
 local w_rocksgems   = convertToWeighted(sharedLoot.rocksgems)
 local w_seedsracial =
 {
-    [123] = convertToWeighted(addLoot(sharedLoot.seeds, zoneData[123].loot.racial)),
-    [124] = convertToWeighted(addLoot(sharedLoot.seeds, zoneData[124].loot.racial)),
-    [125] = convertToWeighted(addLoot(sharedLoot.seeds, zoneData[125].loot.racial))
+    [dsp.zone.YUHTUNGA_JUNGLE] = convertToWeighted(addLoot(sharedLoot.seeds, zoneData[dsp.zone.YUHTUNGA_JUNGLE].loot.racial)),
+    [dsp.zone.YHOATOR_JUNGLE] = convertToWeighted(addLoot(sharedLoot.seeds, zoneData[dsp.zone.YHOATOR_JUNGLE].loot.racial)),
+    [dsp.zone.WESTERN_ALTEPA_DESERT] = convertToWeighted(addLoot(sharedLoot.seeds, zoneData[dsp.zone.WESTERN_ALTEPA_DESERT].loot.racial))
 }
 local w_coins       = convertToWeighted(sharedLoot.coins)
 local w_sealsunique =
 {
-    [123] = convertToWeighted(addLoot(sharedLoot.seals, zoneData[123].loot.unique)),
-    [124] = convertToWeighted(addLoot(sharedLoot.seals, zoneData[124].loot.unique)),
-    [125] = convertToWeighted(addLoot(sharedLoot.seals, zoneData[125].loot.unique)),
+    [dsp.zone.YUHTUNGA_JUNGLE] = convertToWeighted(addLoot(sharedLoot.seals, zoneData[dsp.zone.YUHTUNGA_JUNGLE].loot.unique)),
+    [dsp.zone.YHOATOR_JUNGLE] = convertToWeighted(addLoot(sharedLoot.seals, zoneData[dsp.zone.YHOATOR_JUNGLE].loot.unique)),
+    [dsp.zone.WESTERN_ALTEPA_DESERT] = convertToWeighted(addLoot(sharedLoot.seals, zoneData[dsp.zone.WESTERN_ALTEPA_DESERT].loot.unique)),
 }
 
 local function weightedRandomSelect(w_loot)
@@ -207,23 +162,12 @@ local function weightedRandomSelect(w_loot)
     return w_loot[math.random(#w_loot)]
 end
 
-local function getRandomQm(digsites)
-    --[[ We specify digsite indices in zoneData that correspond to their qm number.
-    For example, zoneData[123].digsites[10] refers to qm10 in zone 123 (Yuhtunga Jungle).
-    This has a few advantages, but it also makes the table nonconsecutive, which means Lua
-    can't find its length without iteration. ]]--
-    local qms = {}
-    for qm in pairs(digsites) do
-        table.insert(qms, qm)
-    end
-    return qms[math.random(#qms)]
+local function getAssignedDigSite(player)
+    -- Returns the player's assigned digsite for the zone they're currently in
+    return player:getVar(zoneData[player:getZoneID()].dsvar)
 end
 
-local function getAssignedDigSite(player, zd)
-    return zd.digsites[player:getVar(zd.qmvar)]
-end
-
-local function startMapMarkerEvent(eventid,player,zd)
+local function startMapMarkerEvent(eventid,player,digsiteids)
     --[[ Map marker event notes:
         Event 101 creates the "Treasure" map marker using coordinate args
         Event 103 shows the "Treasure" map marker using coordinate args
@@ -233,11 +177,11 @@ local function startMapMarkerEvent(eventid,player,zd)
             1: zone id
             2: unknown, seems static
             3: (x position of qm) * 1000
-            4: (y position of qm) * 1000
+            4: (z position of qm) * 1000
             5: unknown, dynamic
             6: unknown, dynamic
             7: unknown, seems static
-            8: unknown*, seems static (possibly z position of qm + 95)
+            8: unknown*, seems static (possibly y position of qm + 95)
 
         Example: `player:startEvent(101, 123, 0, 369795, 201805, 0, 0, 0, 4095)`
             ...plays event 101 in Yuhtunga Jungle (zone 123), which creates a map marker
@@ -245,12 +189,12 @@ local function startMapMarkerEvent(eventid,player,zd)
             Full args from a retail capture for this point were:
                 101, 123, 32, 369795, 201805, 425920, 760, 529191, 4095
                 103, 123, 32, 369795, 201805, 308060, 1694, 529191, 4095 ]]--
-    local digsite = getAssignedDigSite(player, zd)
+    local pos = GetNPCByID(digsiteids[getAssignedDigSite(player)]):getPos()
 
-    player:startEvent(eventid, player:getZoneID(), 0, digsite.x * 1000, digsite.y * 1000)
+    player:startEvent(eventid, player:getZoneID(), 0, pos.x * 1000, pos.z * 1000)
 end
 
-dsp.beastmentreasure.handleNpcOnTrigger = function(player)
+dsp.beastmentreasure.handleNpcOnTrigger = function(player,digsiteids)
     local zd = zoneData[player:getZoneID()]
     local status = player:getVar(zd.statusvar)
 
@@ -263,18 +207,18 @@ dsp.beastmentreasure.handleNpcOnTrigger = function(player)
     elseif status == QUEST_COMPLETED then
         -- Note: Quest will be "completed" after trading the correct items,
         -- but will be set to available again after excavating the reward.
-        startMapMarkerEvent(103,player,zd) -- Peddlestox reminds you where your digsite is
+        startMapMarkerEvent(103,player,digsiteids) -- Peddlestox reminds you where your digsite is
     end
 end
 
-dsp.beastmentreasure.handleNpcOnTrade = function(player,trade)
+dsp.beastmentreasure.handleNpcOnTrade = function(player,trade,digsiteids)
     local zd = zoneData[player:getZoneID()]
 
     if player:getVar(zd.statusvar) == QUEST_ACCEPTED and npcUtil.tradeHasExactly(trade, zd.fetchitems) then
-        -- Select a random dig site from the zone and store the qm# as a player var
-        player:setVar(zd.qmvar, getRandomQm(zd.digsites))
+        -- Assign a random dig site to the player
+        player:setVar(zd.dsvar, math.random(1,8))
 
-        startMapMarkerEvent(101,player,zd) -- Peddlestox shows you where to dig
+        startMapMarkerEvent(101,player,digsiteids) -- Peddlestox shows you where to dig
     end
 end
 
@@ -289,15 +233,14 @@ dsp.beastmentreasure.handleNpcOnEventFinish = function(player,csid)
     end
 end
 
-dsp.beastmentreasure.updatePeddlestox = function(zoneid)
+dsp.beastmentreasure.updatePeddlestox = function(zone, peddlestox)
     --[[ Allows Peddlestox to appear on the appropriate day and disappear when the day is over.
     This function is called by each of the three zones where Peddlestox can appear: once on init,
     and once at the start of each new game day. Since Peddlestox is disabled in the db by default, we
     only need to enable her on the appropriate day and disable her on the following day. ]]--
-    local zd = zoneData[zoneid]
-    local peddlestox = GetNPCByID(zd.peddlestox.id)
+    local peddlestox = GetNPCByID(peddlestox)
 
-    if VanadielDayElement() == zd.peddlestox.day then
+    if zoneData[zone].day == VanadielDayElement() then
         peddlestox:setStatus(dsp.status.NORMAL)
     elseif peddlestox:getStatus() == dsp.status.NORMAL then
         --[[
@@ -314,26 +257,26 @@ dsp.beastmentreasure.updatePeddlestox = function(zoneid)
     end
 end
 
-dsp.beastmentreasure.handleQmOnTrigger = function(player,npc,buriedtext,nothingtext)
-    local digsite = getAssignedDigSite(player, zoneData[player:getZoneID()])
+dsp.beastmentreasure.handleQmOnTrigger = function(player,npc,buriedtext,nothingtext,digsiteids)
+    local digsiteid = digsiteids[getAssignedDigSite(player)]
     local qmid = npc:getID()
 
-    if digsite == nil or digsite.id ~= qmid then
+    if digsiteid == nil or digsiteid ~= qmid then
         player:messageSpecial(nothingtext)
-    elseif digsite.id == qmid then
+    elseif digsiteid == qmid then
         -- "It looks like something is buried here. If you had a <pickaxe> you could dig it up."
         player:messageSpecial(buriedtext, 605)
     end
 end
 
-dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade)
+dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade,digsiteids)
     local zoneid = player:getZoneID()
     local zd = zoneData[zoneid]
-    local digsite = getAssignedDigSite(player, zd)
+    local digsite = getAssignedDigSite(player)
 
     if npcUtil.tradeHasExactly(trade, 605)
         and player:getVar(zd.statusvar) == QUEST_COMPLETED
-        and npc:getID() == digsite.id then
+        and npc:getID() == digsiteids[digsite] then
             --[[ Event 105 needs args to spawn and animate a treasure chest
                  Example args from retail capture: 105 123 450762 1745 201805 7 723 490292 4095
                  An arg in the 5th parameter will spawn and animate a chest somewhere in the zone
@@ -342,7 +285,7 @@ dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade)
                     qm10. Chests will spawn at a static location regardless of whether or not
                     coordinates are passed in, and will always be rotated to face the player.
             ]]--
-            player:startEvent(105, zoneid, 0, 0, 0, digsite.chest)
+            player:startEvent(105, zoneid, 0, 0, 0, digsite - 1)
     end
 end
 
@@ -369,7 +312,7 @@ dsp.beastmentreasure.handleQmOnEventFinish = function(player,csid)
         player:addTreasure(item4)
         -- Reset player vars
         player:setVar(zd.statusvar, QUEST_AVAILABLE)
-        player:setVar(zd.qmvar, 0)
+        player:setVar(zd.dsvar, 0)
     end
 end
 

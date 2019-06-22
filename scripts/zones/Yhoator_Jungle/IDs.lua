@@ -44,7 +44,19 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     npc =
     {
-        OVERSEER_BASE = 17285649,
+        OVERSEER_BASE     = 17285649,
+        PEDDLESTOX        = 17285685,
+        BEASTMEN_TREASURE =
+        {
+            17285695, -- qm4
+            17285688, -- qm5
+            17285689, -- qm6
+            17285690, -- qm7
+            17285691, -- qm8
+            17285692, -- qm9
+            17285693, -- qm10
+            17285694, -- qm11
+        },
         HARVESTING =
         {
             17285680,
