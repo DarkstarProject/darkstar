@@ -2,24 +2,20 @@
 -- Area: Windurst Woods
 --   NPC: Erpolant
 -- Type: Standard NPC
--- @zone 241
--- !pos -63.224 -0.749 -33.424
+-- !pos -63.224 -0.749 -33.424 241
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(444);
-end;
+    player:startEvent(444)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

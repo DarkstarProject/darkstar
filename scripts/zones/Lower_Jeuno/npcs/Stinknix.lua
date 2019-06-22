@@ -3,9 +3,7 @@
 --  NPC: Stinknix
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
         2865, 10000,    -- Dutchy Waystone
     }
 
-    player:showText(npc, STINKNIX_SHOP_DIALOG)
+    player:showText(npc, ID.text.STINKNIX_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

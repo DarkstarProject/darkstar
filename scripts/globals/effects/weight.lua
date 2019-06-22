@@ -3,33 +3,16 @@
 --     dsp.effect.WEIGHT
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
-function onEffectGain(target,effect)
-    if (effect:getPower()>100) then
-        effect:setPower(50);
-    end
-    target:addMod(dsp.mod.MOVE,-effect:getPower());
-    target:addMod(dsp.mod.EVA,-effect:getPower()/5);
-end;
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.MOVE, -effect:getPower())
+end
 
------------------------------------
--- onEffectTick Action
------------------------------------
+function onEffectTick(target, effect)
+end
 
-function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(dsp.mod.MOVE,-effect:getPower());
-    target:delMod(dsp.mod.EVA,-effect:getPower()/5);
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.MOVE, -effect:getPower())
+end

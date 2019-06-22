@@ -1,11 +1,13 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Lii_Jixa_the_Somnolist
+--   NM: Lii Jixa the Somnolist
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    mob:setRespawnTime(math.random(3600, 5400)); -- 60 to 90 minutes
-end;
+    mob:setRespawnTime(math.random(3600, 5400)) -- 60 to 90 minutes
+end

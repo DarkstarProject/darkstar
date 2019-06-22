@@ -1,13 +1,10 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Krabkatoa
+--  MOB: Orcus
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/titles")
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.ORCUS_TROPHY_HUNTER);
-end;
+    player:addTitle(dsp.title.ORCUS_TROPHY_HUNTER)
+end

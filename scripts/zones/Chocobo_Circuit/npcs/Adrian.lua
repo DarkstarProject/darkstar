@@ -3,10 +3,6 @@
 --  NPC: Adrian
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Chocobo_Circuit/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Chocobo_Circuit/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -7,38 +7,38 @@
 -- Range: 15' radial
 -- Notes: Used only by Lamia NM's, particularly in Besieged.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
     --[[
-    power = 1;
-    tic = 0;
-    duration = 60;
+    power = 1
+    tic = 0
+    duration = 60
 
-    isEnfeeble = true;
-    typeEffect = dsp.effect.NAME;
-    statmod = dsp.mod.INT;
+    isEnfeeble = true
+    typeEffect = dsp.effect.NAME
+    statmod = dsp.mod.INT
 
-    resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod);
+    resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod)
     if (resist > 0.2) then
         if (target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,power,tic,duration);
+            skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS)
+            target:addStatusEffect(typeEffect,power,tic,duration)
         else
-            skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT);
+            skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
         end
     else
-        skill:setMsg(dsp.msg.basic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS)
     end
-    return typeEffect;
+    return typeEffect
     ]]
-end;
+end

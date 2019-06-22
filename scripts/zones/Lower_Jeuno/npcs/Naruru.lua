@@ -4,31 +4,29 @@
 -- Starts and Finishes Quests: Cook's Pride
 -- !pos -56 0.1 -138 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
-    local CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
-    local TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
+    local TheWonderMagicSet = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
+    local CooksPride = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE);
+    local TheKindCardian = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN);
     local WildcatJeuno = player:getVar("WildcatJeuno");
 
-    if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,13) == false) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,13) == false) then
         player:startEvent(10053);
     elseif (TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then
         if (player:getVar("CooksPrideVar") == 0) then
             player:startEvent(189); -- Start quest "Cook's pride" Long CS
-         else
+        else
             player:startEvent(188); -- Start quest "Cook's pride" Short CS
         end
     elseif (CooksPride == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SUPER_SOUP_POT) == false) then
@@ -55,22 +53,22 @@ end;
 
 function onEventFinish(player,csid,option)
     if ((csid == 189 or csid == 188) and option == 0) then
-        player:addQuest(JEUNO,COOK_S_PRIDE);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE);
     elseif (csid == 189 and option == 1) then
         player:setVar("CooksPrideVar",1);
     elseif (csid == 187) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13446);
         else
             player:addTitle(dsp.title.MERCY_ERRAND_RUNNER);
             player:delKeyItem(dsp.ki.SUPER_SOUP_POT);
             player:setVar("CooksPrideVar",0);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
             player:addItem(13446);
-            player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13446); -- Mythril Ring
             player:addFame(JEUNO, 30);
-            player:completeQuest(JEUNO,COOK_S_PRIDE);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE);
         end
     elseif (csid == 10053) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",13,true);

@@ -3,9 +3,7 @@
 --  NPC: Fayeewah
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -18,7 +16,7 @@ function onTrigger(player,npc)
         5572, 2075     -- Irmik Helvasi
     }
 
-    player:showText(npc, FAYEEWAH_SHOP_DIALOG)
+    player:showText(npc, ID.text.FAYEEWAH_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

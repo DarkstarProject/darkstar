@@ -2,9 +2,9 @@
 -- Area: The Boyahda Tree
 --  MOB: Darter
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,724,2);
-end;
+    dsp.regime.checkRegime(player, mob, 724, 2, dsp.regime.type.GROUNDS)
+end

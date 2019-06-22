@@ -4,25 +4,23 @@
 -- Involved in Quests: RNG AF3 quest - Unbridled Passion
 -- !pos -295.065 -25.054 151.250 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
+local ID = require("scripts/zones/Xarcabard/IDs")
 -----------------------------------
-require("scripts/zones/Xarcabard/TextIDs");
-require("scripts/zones/Xarcabard/MobIDs");
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    if (player:getVar("unbridledPassion") == 4 and not GetMobByID(KOENIGSTIGER):isSpawned()) then
-        player:startEvent(8);
+    if player:getVar("unbridledPassion") == 4 and not GetMobByID(ID.mob.KOENIGSTIGER):isSpawned() then
+        player:startEvent(8)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 8) then
-        SpawnMob(KOENIGSTIGER):updateClaim(player);
+    if csid == 8 then
+        SpawnMob(ID.mob.KOENIGSTIGER):updateClaim(player)
     end
-end;
+end

@@ -4,7 +4,7 @@
 require("scripts/globals/automatonweaponskills")
 require("scripts/globals/settings")
 require("scripts/globals/status")
-require("scripts/globals/msg");
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
@@ -46,7 +46,7 @@ function onPetAbility(target, automaton, skill, master, action)
     end
     amount = amount + math.floor(bonus)
 
-    if target:addStatusEffect(dsp.effect.STONESKIN, amount, 0, duration) then
+    if target:addStatusEffect(dsp.effect.STONESKIN, amount, 0, duration, 0, 0, 4) then
         skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
     else
         skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)

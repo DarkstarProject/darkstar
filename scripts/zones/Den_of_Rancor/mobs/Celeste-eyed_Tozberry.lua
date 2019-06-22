@@ -1,11 +1,22 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Celeste-eyed Tozberry
+--   NM: Celeste-eyed Tozberry
 -----------------------------------
-mixins = {require("scripts/mixins/families/tonberry")}
+mixins =
+{
+    require("scripts/mixins/families/tonberry"),
+    require("scripts/mixins/job_special")
+}
+-----------------------------------
 
 function onMobSpawn(mob)
-end;
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MIJIN_GAKURE, hpp = math.random(20, 30)},
+        },
+    })
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

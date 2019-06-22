@@ -3,20 +3,17 @@
 --  NPC: ??? (Spawn Chigre(ZNM T1))
 -- !pos -217 35 12 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aydeewa_Subterrane/TextIDs")
-require("scripts/zones/Aydeewa_Subterrane/MobIDs")
+local ID = require("scripts/zones/Aydeewa_Subterrane/IDs")
 require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 2602) and not GetMobByID(CHIGRE):isSpawned() then -- Spoilt Blood
+    if npcUtil.tradeHas(trade, 2602) and npcUtil.popFromQM(player, npc, ID.mob.CHIGRE) then
         player:confirmTrade()
-        SpawnMob(CHIGRE):updateClaim(player)
+        player:messageSpecial(ID.text.DRAWS_NEAR)
     end
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS)
+    player:messageSpecial(ID.text.BLOOD_STAINS)
 end

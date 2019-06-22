@@ -114,6 +114,7 @@ struct map_config_t
     float  mob_stat_multiplier;       // Multiplier for str/vit/etc of mobs
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
     float  ability_recast_multiplier; // Adjust ability recast time
+    int8   blood_pact_shared_timer;   // Default is 0. Disable/enable old school shared timer for SMN blood pacts.
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
@@ -134,6 +135,7 @@ struct map_config_t
     uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
     std::string msg_server_ip;        // central message server IP
+    bool   skillup_bloodpact;         // Enable/disable skillups for bloodpacts
 };
 
 /************************************************************************

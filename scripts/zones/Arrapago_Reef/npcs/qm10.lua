@@ -4,9 +4,7 @@
 -- Involved in quests: "No Strings Attached"
 -- !pos 457.128 -8.249 60.795 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs")
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 -----------------------------------
@@ -18,7 +16,7 @@ function onTrigger(player,npc)
     if player:getVar("NoStringsAttachedProgress") == 3 then
         player:startEvent(214)
     else
-        player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 

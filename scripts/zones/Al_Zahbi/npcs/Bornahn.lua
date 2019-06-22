@@ -4,25 +4,22 @@
 --  Guild Merchant NPC: Goldsmithing Guild
 -- !pos 46.011 0.000 -42.713 48
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/zones/Al_Zahbi/TextIDs");
+require("scripts/globals/settings")
+require("scripts/globals/shop")
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
     if (player:sendGuild(60429,8,23,4)) then
-        player:showText(npc,BORNAHN_SHOP_DIALOG);
+        player:showText(npc,ID.text.BORNAHN_SHOP_DIALOG)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

@@ -1,31 +1,27 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ru_aern
+--   NM: Ru'aern
+-- Note: Spawned by Rubious Crystals for PM 8-1
 -----------------------------------
-require("scripts/zones/AlTaieu/MobIDs");
-require("scripts/globals/missions");
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/AlTaieu/IDs")
+require("scripts/globals/missions")
 -----------------------------------
-
-function onMobInitialize(mob)
-end;
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
 
-    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
         local aernKills =
         {
-            [AERNS_TOWER_SOUTH + 0] = "Ru_aern_1-1KILL",
-            [AERNS_TOWER_SOUTH + 1] = "Ru_aern_1-2KILL",
-            [AERNS_TOWER_SOUTH + 2] = "Ru_aern_1-3KILL",
-            [AERNS_TOWER_WEST  + 0] = "Ru_aern_2-1KILL",
-            [AERNS_TOWER_WEST  + 1] = "Ru_aern_2-2KILL",
-            [AERNS_TOWER_WEST  + 2] = "Ru_aern_2-3KILL",
-            [AERNS_TOWER_EAST  + 0] = "Ru_aern_3-1KILL",
-            [AERNS_TOWER_EAST  + 1] = "Ru_aern_3-2KILL",
-            [AERNS_TOWER_EAST  + 2] = "Ru_aern_3-3KILL",
+            [ID.mob.AERNS_TOWER_SOUTH + 0] = "Ru_aern_1-1KILL",
+            [ID.mob.AERNS_TOWER_SOUTH + 1] = "Ru_aern_1-2KILL",
+            [ID.mob.AERNS_TOWER_SOUTH + 2] = "Ru_aern_1-3KILL",
+            [ID.mob.AERNS_TOWER_WEST  + 0] = "Ru_aern_2-1KILL",
+            [ID.mob.AERNS_TOWER_WEST  + 1] = "Ru_aern_2-2KILL",
+            [ID.mob.AERNS_TOWER_WEST  + 2] = "Ru_aern_2-3KILL",
+            [ID.mob.AERNS_TOWER_EAST  + 0] = "Ru_aern_3-1KILL",
+            [ID.mob.AERNS_TOWER_EAST  + 1] = "Ru_aern_3-2KILL",
+            [ID.mob.AERNS_TOWER_EAST  + 2] = "Ru_aern_3-3KILL",
         }
 
         local varToSet = aernKills[mob:getID()];

@@ -45,7 +45,7 @@ public:
         return m_PLuaMobSkill;
     }
     int32 getTP(lua_State*);
-    int32 getHPP(lua_State*);
+    int32 getMobHPP(lua_State*);
     int32 getID(lua_State*);
     int32 getParam(lua_State*);
     int32 isAoE(lua_State*);

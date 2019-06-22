@@ -2,6 +2,7 @@
 -- Area: The Garden of Ru'Hmet
 --   NM: Jailer of Faith
 -----------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
@@ -30,8 +31,7 @@ function onMobDeath(mob)
 end
 
 function onMobDespawn(mob)
-    local qm3 = GetNPCByID(Jailer_of_Faith_QM)
-    qm3:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME)
-    local qm3position = math.random(1,5)
-    qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3])
+    -- Move QM to random location
+    local pos = math.random(1, 5)
+    GetNPCByID(ID.npc.JAILER_OF_FAITH_QM):setPos(ID.npc.JAILER_OF_FAITH_QM_POS[pos][1], ID.npc.JAILER_OF_FAITH_QM_POS[pos][2], ID.npc.JAILER_OF_FAITH_QM_POS[pos][3])
 end

@@ -3,33 +3,30 @@
 -- Zone: Lufaise_Meadows (24)
 --
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lufaise_Meadows/TextIDs");
-require("scripts/zones/Lufaise_Meadows/MobIDs");
+local ID = require("scripts/zones/Lufaise_Meadows/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");
 require("scripts/globals/titles");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1,179,-26,327,219,-18,347);
 
     SetServerVariable("realPadfoot",math.random(1,5));
-    for _, v in pairs(PADFOOT) do
+    for _, v in pairs(ID.mob.PADFOOT) do
         SpawnMob(v);
     end
 
-    SetRegionalConquestOverseers(zone:getRegionID());
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID());
+
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -39,9 +36,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-475.825,-20.461,281.149,11);
     end
 
-    if (player:getCurrentMission(COP) == AN_INVITATION_WEST and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_INVITATION_WEST and player:getVar("PromathiaStatus") == 0) then
         cs = 110;
-    elseif (player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 0) then
         cs = 111;
     end
 
@@ -50,7 +47,7 @@ end;
 
 function onRegionEnter(player,region)
     local regionID = region:GetRegionID();
-    if (regionID == 1 and player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus") == 6) then
+    if (regionID == 1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus") == 6) then
         player:startEvent(116);
     end
 end;
@@ -63,7 +60,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 110) then
-        player:messageSpecial(KI_STOLEN,0,dsp.ki.MYSTERIOUS_AMULET);
+        player:messageSpecial(ID.text.KI_STOLEN,0,dsp.ki.MYSTERIOUS_AMULET);
         player:delKeyItem(dsp.ki.MYSTERIOUS_AMULET);
         player:setVar("PromathiaStatus",1);
     elseif (csid == 111 and npcUtil.giveItem(player, 14657)) then

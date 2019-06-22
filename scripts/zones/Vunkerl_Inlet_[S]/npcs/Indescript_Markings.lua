@@ -1,12 +1,10 @@
 ----------------------------------
--- Area: Meriphataud_Mountains_[S]
+-- Area: Vunkerl Inlet [S]
 --  NPC: Indescript Markings
 -- Type: Quest
 -- !pos -629.179 -49.002 -429.104 1 83
 -----------------------------------
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
+local ID = require("scripts/zones/Vunkerl_Inlet_[S]/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -22,12 +20,12 @@ function onTrigger(player,npc)
     -- SCH AF Quest - Legs
     if (pantsQuestProgress > 0 and pantsQuestProgress < 3 and player:hasKeyItem(dsp.ki.DJINN_EMBER) == false) then
         player:addKeyItem(dsp.ki.DJINN_EMBER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.DJINN_EMBER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DJINN_EMBER);
         player:setVar("AF_SCH_PANTS", pantsQuestProgress + 1);
         npc:hideNPC(60);
 
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -36,4 +34,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

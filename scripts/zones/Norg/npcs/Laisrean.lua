@@ -2,23 +2,20 @@
 -- Area: Norg
 --  NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
--- @zone 252
--- !pos -2.251 -1 21.654
------------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
+-- !pos -2.251 -1 21.654 252
 -----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    Stash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
+    Stash = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.THE_SAHAGINS_STASH);
     mLvl = player:getMainLvl();
     SeaStatue = player:hasKeyItem(dsp.ki.SEA_SERPENT_STATUE);
 
@@ -40,19 +37,18 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 33 and option == 1) then
-        player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.THE_SAHAGINS_STASH);
     elseif (csid == 35) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4946);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4946);
         else
             player:delKeyItem(dsp.ki.SEA_SERPENT_STATUE);
             player:addItem(4946); -- Scroll of Utsusemi: Ichi
-            player:messageSpecial(ITEM_OBTAINED, 4946);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 4946);
             player:addTitle(dsp.title.TREASUREHOUSE_RANSACKER);
             player:addFame(NORG,75);
-            player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.THE_SAHAGINS_STASH);
         end
     end
 
 end;
-

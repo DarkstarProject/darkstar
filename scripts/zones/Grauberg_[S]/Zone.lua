@@ -3,12 +3,14 @@
 -- Zone: Grauberg_[S] (89)
 --
 -----------------------------------
-require("scripts/zones/Grauberg_[S]/MobIDs");
+local ID = require("scripts/zones/Grauberg_[S]/IDs");
 require("scripts/globals/weather");
 require("scripts/globals/status");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
 
 function onZoneIn(player,prevZone)
@@ -23,7 +25,7 @@ function onRegionEnter(player,region)
 end;
 
 function onZoneWeatherChange(weather)
-    local npc = GetNPCByID(GRAUBERG_INDESCRIPT_MARKINGS);
+    local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS);
     if (weather == dsp.weather.WIND or weather == dsp.weather.GALES) then
         npc:setStatus(dsp.status.NORMAL);
     else

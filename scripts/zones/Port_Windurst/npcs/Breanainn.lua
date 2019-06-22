@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Breanainn
--- @zone 240
--- !pos 212 -6 96
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-- !pos 212 -6 96 240
 -----------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +18,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

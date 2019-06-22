@@ -28,26 +28,26 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `exp_table`;
 CREATE TABLE IF NOT EXISTS `exp_table` (
   `level` tinyint(2) NOT NULL,
-  `r1` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r2` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r3` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r4` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r5` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r6` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r7` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r8` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r9` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r10` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r11` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r12` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r13` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r14` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r15` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r16` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r17` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r18` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r19` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `r20` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `r1` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 1 to 5
+  `r2` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 6 to 10
+  `r3` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 11 to 15
+  `r4` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 16 to 20
+  `r5` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 21 to 25
+  `r6` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 26 to 30
+  `r7` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 31 to 35
+  `r8` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 36 to 40
+  `r9` smallint(4) unsigned NOT NULL DEFAULT '0',  -- 41 to 45
+  `r10` smallint(4) unsigned NOT NULL DEFAULT '0', -- 46 to 50
+  `r11` smallint(4) unsigned NOT NULL DEFAULT '0', -- 51 to 55
+  `r12` smallint(4) unsigned NOT NULL DEFAULT '0', -- 56 to 60
+  `r13` smallint(4) unsigned NOT NULL DEFAULT '0', -- 61 to 65
+  `r14` smallint(4) unsigned NOT NULL DEFAULT '0', -- 66 to 70
+  `r15` smallint(4) unsigned NOT NULL DEFAULT '0', -- 71 to 75
+  `r16` smallint(4) unsigned NOT NULL DEFAULT '0', -- 76 to 80
+  `r17` smallint(4) unsigned NOT NULL DEFAULT '0', -- 81 to 85
+  `r18` smallint(4) unsigned NOT NULL DEFAULT '0', -- 86 to 90
+  `r19` smallint(4) unsigned NOT NULL DEFAULT '0', -- 91 to 95
+  `r20` smallint(4) unsigned NOT NULL DEFAULT '0', -- 96 to 99
   PRIMARY KEY (`level`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=65;
 
@@ -71,18 +71,18 @@ INSERT INTO `exp_table` VALUES (3, 160, 160, 160, 160, 160, 160, 200, 200, 200, 
 INSERT INTO `exp_table` VALUES (2, 140, 140, 140, 140, 140, 140, 150, 150, 150, 150, 150, 160, 160, 160, 160, 180, 180, 180, 180, 180);
 INSERT INTO `exp_table` VALUES (1, 120, 120, 120, 120, 120, 120, 125, 125, 125, 125, 125, 130, 130, 130, 130, 140, 140, 140, 140, 140);
 INSERT INTO `exp_table` VALUES (0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100);
-INSERT INTO `exp_table` VALUES (-1, 90, 90, 90, 90, 90, 90, 93, 95, 95, 95, 96, 96, 96, 96, 96, 97, 97, 97, 98, 98);
-INSERT INTO `exp_table` VALUES (-2, 80, 80, 80, 80, 80, 80, 86, 86, 90, 90, 93, 93, 93, 93, 94, 95, 95, 95, 96, 96);
-INSERT INTO `exp_table` VALUES (-3, 70, 70, 75, 75, 75, 75, 75, 80, 86, 86, 88, 88, 91, 91, 92, 92, 92, 92, 93, 93);
-INSERT INTO `exp_table` VALUES (-4, 65, 65, 70, 70, 70, 70, 72, 76, 80, 80, 82, 84, 86, 86, 90, 90, 90, 90, 90, 90);
-INSERT INTO `exp_table` VALUES (-5, 60, 60, 65, 65, 65, 65, 68, 72, 76, 76, 78, 80, 83, 83, 86, 86, 86, 86, 87, 87);
-INSERT INTO `exp_table` VALUES (-6, 50, 50, 60, 60, 60, 60, 65, 70, 72, 72, 74, 76, 80, 80, 83, 0, 0, 0, 0, 0);
-INSERT INTO `exp_table` VALUES (-7, 0, 40, 50, 50, 55, 55, 60, 65, 68, 68, 70, 72, 76, 77, 80, 0, 0, 0, 0, 0);
-INSERT INTO `exp_table` VALUES (-8, 0, 30, 40, 40, 50, 50, 55, 60, 65, 65, 68, 68, 73, 75, 77, 0, 0, 0, 0, 0);
-INSERT INTO `exp_table` VALUES (-9, 0, 0, 30, 30, 40, 40, 50, 55, 60, 60, 65, 65, 70, 72, 75, 0, 0, 0, 0, 0);
-INSERT INTO `exp_table` VALUES (-10, 0, 0, 0, 0, 30, 30, 40, 50, 55, 56, 60, 62, 66, 70, 73, 0, 0, 0, 0, 0);
-INSERT INTO `exp_table` VALUES (-11, 0, 0, 0, 0, 0, 0, 30, 40, 50, 53, 56, 58, 63, 66, 70, 0, 0, 0, 0, 0);
-INSERT INTO `exp_table` VALUES (-12, 0, 0, 0, 0, 0, 0, 0, 30, 40, 50, 53, 56, 60, 63, 66, 0, 0, 0, 0, 0);
+INSERT INTO `exp_table` VALUES (-1, 90, 90, 90, 90, 90, 90, 93, 95, 95, 95, 96, 96, 96, 96, 97, 97, 97, 97, 98, 98);
+INSERT INTO `exp_table` VALUES (-2, 80, 80, 80, 80, 80, 80, 86, 86, 90, 90, 93, 93, 93, 93, 95, 95, 95, 95, 96, 96);
+INSERT INTO `exp_table` VALUES (-3, 70, 70, 75, 75, 75, 75, 80, 80, 85, 85, 90, 90, 90, 90, 92, 92, 92, 92, 93, 93);
+INSERT INTO `exp_table` VALUES (-4, 65, 65, 70, 70, 70, 70, 75, 76, 80, 80, 85, 85, 86, 86, 90, 90, 90, 90, 90, 90);
+INSERT INTO `exp_table` VALUES (-5, 60, 60, 65, 65, 65, 65, 70, 73, 76, 76, 80, 80, 83, 83, 86, 86, 86, 86, 87, 87);
+INSERT INTO `exp_table` VALUES (-6, 50, 50, 60, 60, 60, 60, 65, 70, 73, 73, 76, 76, 80, 80, 83, 0, 0, 0, 0, 0);
+INSERT INTO `exp_table` VALUES (-7, 0, 40, 50, 50, 55, 55, 60, 65, 70, 70, 73, 73, 76, 77, 80, 0, 0, 0, 0, 0);
+INSERT INTO `exp_table` VALUES (-8, 0, 30, 40, 40, 50, 50, 55, 60, 65, 66, 70, 70, 73, 75, 77, 0, 0, 0, 0, 0);
+INSERT INTO `exp_table` VALUES (-9, 0, 0, 30, 30, 40, 40, 50, 55, 60, 63, 66, 66, 70, 72, 75, 0, 0, 0, 0, 0);
+INSERT INTO `exp_table` VALUES (-10, 0, 0, 0, 0, 30, 30, 40, 50, 55, 60, 63, 63, 66, 70, 72, 0, 0, 0, 0, 0);
+INSERT INTO `exp_table` VALUES (-11, 0, 0, 0, 0, 0, 0, 30, 40, 50, 55, 60, 60, 63, 66, 70, 0, 0, 0, 0, 0);
+INSERT INTO `exp_table` VALUES (-12, 0, 0, 0, 0, 0, 0, 0, 30, 40, 50, 55, 56, 60, 63, 66, 0, 0, 0, 0, 0);
 INSERT INTO `exp_table` VALUES (-13, 0, 0, 0, 0, 0, 0, 0, 0, 30, 40, 50, 53, 56, 60, 63, 0, 0, 0, 0, 0);
 INSERT INTO `exp_table` VALUES (-14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 40, 50, 53, 56, 60, 0, 0, 0, 0, 0);
 INSERT INTO `exp_table` VALUES (-15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 40, 50, 53, 56, 0, 0, 0, 0, 0);

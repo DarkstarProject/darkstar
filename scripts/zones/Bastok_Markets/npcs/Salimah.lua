@@ -4,17 +4,15 @@
 -- Notes: Start & Finishes Quest: Gourmet
 -- !pos -31.687 -6.824 -73.282 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    local Gourmet = player:getQuestStatus(BASTOK,GOURMET);
+    local Gourmet = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GOURMET);
 
     if (Gourmet ~= QUEST_AVAILABLE and player:needToZone() == false) then
         local count = trade:getItemCount();
@@ -53,7 +51,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(BASTOK,GOURMET) ~= QUEST_AVAILABLE and player:needToZone()) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GOURMET) ~= QUEST_AVAILABLE and player:needToZone()) then
         player:startEvent(121);
     else
         player:startEvent(200);
@@ -65,16 +63,16 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    local Gourmet = player:getQuestStatus(BASTOK,GOURMET);
+    local Gourmet = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GOURMET);
 
     if (csid == 200) then
         if (Gourmet == QUEST_AVAILABLE) then
-            player:addQuest(BASTOK,GOURMET);
+            player:addQuest(BASTOK,dsp.quest.id.bastok.GOURMET);
         end
     elseif (csid ~= 121) then
         player:tradeComplete();
         if (Gourmet == QUEST_ACCEPTED) then
-            player:completeQuest(BASTOK,GOURMET);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.GOURMET);
         end
 
         local gil=350;
@@ -87,7 +85,7 @@ function onEventFinish(player,csid,option)
         end
 
         player:addGil(gil*GIL_RATE);
-        player:messageSpecial(GIL_OBTAINED,gil*GIL_RATE);
+        player:messageSpecial(ID.text.GIL_OBTAINED,gil*GIL_RATE);
         player:addFame(BASTOK,fame);
         player:addTitle(dsp.title.MOMMYS_HELPER);
         player:needToZone(true);

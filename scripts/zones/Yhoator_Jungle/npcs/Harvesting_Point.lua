@@ -2,22 +2,19 @@
 -- Area: Yhoator Jungle
 --  NPC: Harvesting Point
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
--------------------------------------
-require("scripts/globals/harvesting");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,0x000B);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.HARVESTING, 11)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.HARVESTING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

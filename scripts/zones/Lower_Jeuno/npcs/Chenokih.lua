@@ -3,9 +3,7 @@
 --  NPC: Chenokih
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
         12851, 57600,    -- Wool Hose
         12858, 14756,    -- Wool Slops
         12865,  6348,    -- Black Slacks
-        129781, 6000,    -- Socks
+        12978, 16000,    -- Socks
         12994, 14352,    -- Shoes
         12979, 35200,    -- Wool Socks
         12986,  9180,    -- Chestnut Sabots
@@ -28,7 +26,7 @@ function onTrigger(player,npc)
         13568,  1250,    -- Scarlet Ribbon
     }
 
-    player:showText(npc, CHENOKIH_SHOP_DIALOG)
+    player:showText(npc, ID.text.CHENOKIH_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -37,4 +35,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

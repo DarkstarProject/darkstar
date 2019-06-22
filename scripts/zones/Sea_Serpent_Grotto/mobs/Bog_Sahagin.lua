@@ -1,12 +1,19 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Bog Sahagin
+-- Note: PH for Mouu the Waverider
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,806,1);
-    checkGoVregime(player,mob,807,1);
-    checkGoVregime(player,mob,808,1);
-end;
+    dsp.regime.checkRegime(player, mob, 806, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 807, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 808, 1, dsp.regime.type.GROUNDS)
+end
+
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.MOUU_THE_WAVERIDER_PH, 10, 7200) -- 2 hours
+end

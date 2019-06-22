@@ -3,9 +3,7 @@
 --  NPC: Boytz
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -40,7 +38,7 @@ function onTrigger(player,npc)
         table.insert(stock, 3)
     end
 
-    player:showText(npc, BOYTZ_SHOP_DIALOG)
+    player:showText(npc, ID.text.BOYTZ_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end
 

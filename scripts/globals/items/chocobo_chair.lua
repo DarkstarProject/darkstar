@@ -3,11 +3,11 @@
 -- Item: Chocobo Chair
 -- Item Effect: Grant Chocobo chair key item
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/keyitems")
+require("scripts/globals/msg")
 
-local keyItemId = dsp.ki.CHOCOBO_CHAIR;
+local keyItemId = dsp.ki.CHOCOBO_CHAIR
 
 function onItemCheck(target)
     if target:hasKeyItem(keyItemId) then
@@ -18,5 +18,5 @@ end
 
 function onItemUse(target)
     target:addKeyItem(keyItemId)
-    target:messageBasic(dsp.basic.OBTAINED_KEY_ITEM,6411,keyItemId);
+    target:messageBasic(dsp.basic.OBTAINED_KEY_ITEM,6411,keyItemId)
 end

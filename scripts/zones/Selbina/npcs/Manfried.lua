@@ -3,21 +3,16 @@
 --  NPC: Manfried
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(15);
-end;
+    player:startEvent(15)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

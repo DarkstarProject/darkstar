@@ -2,7 +2,7 @@
 -- Area: The Shrouded Maw
 --  MOB: Diabolos
 -----------------------------------
-require("scripts/zones/The_Shrouded_Maw/MobIDs");
+local ID = require("scripts/zones/The_Shrouded_Maw/IDs");
 
 -- TODO: CoP Diabolos
 -- 1) Make the diremites in the pit all aggro said player that falls into region. Should have a respawn time of 10 seconds.
@@ -15,7 +15,7 @@ require("scripts/zones/The_Shrouded_Maw/MobIDs");
 -- Note: Diabolos Prime fight drops all tiles at once.
 
 function onMobFight(mob,target)
-    local mobOffset = mob:getID() - DIABOLOS_OFFSET;
+    local mobOffset = mob:getID() - ID.mob.DIABOLOS_OFFSET;
     if (mobOffset >= 0 and mobOffset <= 14) then
         local inst = math.floor(mobOffset/7);
 
@@ -34,7 +34,7 @@ function onMobFight(mob,target)
         local hpp = ((mob:getHP()/mob:getMaxHP())*100);
         for k,v in pairs(tileDrops) do
             if (hpp < v[1]) then
-                local tileId = DARKNESS_NAMED_TILE_OFFSET + (inst * 8) + (k - 1);
+                local tileId = ID.npc.DARKNESS_NAMED_TILE_OFFSET + (inst * 8) + (k - 1);
                 local tile = GetNPCByID(tileId);
                 if (tile:getAnimation() == dsp.anim.CLOSE_DOOR) then
                     SendEntityVisualPacket(tileId, v[inst+2]);  -- Animation for floor dropping

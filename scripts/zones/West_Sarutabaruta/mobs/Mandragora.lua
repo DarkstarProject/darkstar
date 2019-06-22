@@ -3,14 +3,15 @@
 --  MOB: Mandragora
 -- Note: PH for Tom Tit Tat
 -----------------------------------
-require("scripts/zones/West_Sarutabaruta/MobIDs");
-require("scripts/globals/fieldsofvalor");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/West_Sarutabaruta/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,26,1);
-end;
+    dsp.regime.checkRegime(player, mob, 26, 1, dsp.regime.type.FIELDS)
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,TOM_TIT_TAT_PH,7,math.random(3600,7200)); -- 1 to 2 hours
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.TOM_TIT_TAT_PH, 7, math.random(3600,7200)) -- 1 to 2 hours
+end

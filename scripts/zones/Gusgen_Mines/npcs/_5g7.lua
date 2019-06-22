@@ -3,9 +3,6 @@
 --  NPC: Strange Apparatus
 -- !pos 219 -39 255 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Gusgen_Mines/TextIDs")
 require("scripts/globals/strangeapparatus")
 -----------------------------------
 

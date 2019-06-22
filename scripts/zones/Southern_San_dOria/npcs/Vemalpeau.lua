@@ -3,12 +3,10 @@
 --  NPC: Vemalpeau
 -- Involved in Quests: Under Oath
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
@@ -17,14 +15,14 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_ACCEPTED and player:getVar("UnderOathCS") == 0) then   -- Quest: Under Oath - PLD AF3
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH) == QUEST_ACCEPTED and player:getVar("UnderOathCS") == 0) then   -- Quest: Under Oath - PLD AF3
         player:startEvent(7); --Under Oath - mentions the boy missing
     elseif (player:getVar("UnderOathCS") == 3 and player:hasKeyItem(dsp.ki.MIQUES_PAINTBRUSH)) then
         player:startEvent(5); --Under Oath - upset about the paintbrush

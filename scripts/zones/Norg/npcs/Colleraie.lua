@@ -2,12 +2,9 @@
 -- Area: Norg
 --   NPC: Colleraie
 -- Type: Event Scene Replayer
--- @zone 252
--- !pos -24.684 0.097 -39.409
+-- !pos -24.684 0.097 -39.409 252
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

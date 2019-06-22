@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Eamonn
 -- Type: Standard NPC and Quest NPC
---  Starts and Involved with Quests: 'Scaredy-Cats'
---  @zone 256
---  !pos -91 3 2 256
+-- Starts and Involved with Quests: 'Scaredy-Cats'
+-- !pos -91 3 2 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------
@@ -13,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Scaredycats = player:getQuestStatus(ADOULIN, SCAREDYCATS);
+    local Scaredycats = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.SCAREDYCATS);
     local Scaredycats_Status = player:getVar("Scaredycats_Status");
     if ((Scaredycats_Status < 1) and (Scaredycats == QUEST_AVAILABLE)) then
         -- Dialogue before seeing the initial walk-in CS with Bilp, Eamonn, and Lhe.
@@ -42,6 +41,6 @@ function onEventFinish(player,csid,option)
     if ((csid == 5024) and (option == 1)) then
         -- Starts Quest: 'Scaredy-Cats', after first refusal.
         player:setVar("Scaredycats_Status", 2);
-        player:addQuest(ADOULIN, SCAREDYCATS);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.SCAREDYCATS);
     end
 end;

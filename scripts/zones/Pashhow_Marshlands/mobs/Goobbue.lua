@@ -3,15 +3,15 @@
 --  MOB: Goobbue
 -- Note: PH for Jolly Green
 -----------------------------------
-require("scripts/zones/Pashhow_Marshlands/MobIDs");
-require("scripts/globals/fieldsofvalor");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Pashhow_Marshlands/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,60,3);
-end;
+    dsp.regime.checkRegime(player, mob, 60, 3, dsp.regime.type.FIELDS)
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,JOLLY_GREEN_PH,5,1); -- 1 second / no cooldown
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.JOLLY_GREEN_PH, 5, 1) -- 1 second / no cooldown
+end

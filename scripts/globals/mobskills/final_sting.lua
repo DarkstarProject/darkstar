@@ -6,40 +6,40 @@
 --
 --
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    local param = skill:getParam();
+    local param = skill:getParam()
     if (param == 0) then
-        param = 50;
+        param = 50
     end
 
     if (mob:getHPP() <= param) then
-        return 0;
+        return 0
     end
 
-    return 1;
-end;
+    return 1
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 1;
+    local numhits = 1
+    local accmod = 1
+    local dmgmod = 1
 
-    local mobHP = mob:getHP();
-    local hpMod = skill:getHPP() / 100;
-    dmgmod = dmgmod + hpMod * 14 + math.random(2,6);
+    local mobHP = mob:getHP()
+    local hpMod = skill:getMobHPP() / 100
+    dmgmod = dmgmod + hpMod * 14 + math.random(2,6)
 
     if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        dmgmod = dmgmod * 5;
+        dmgmod = dmgmod * 5
     end
 
-    mob:setHP(0);
+    mob:setHP(0)
 
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-    target:delHP(dmg);
-    return dmg;
-end;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
+    return dmg
+end

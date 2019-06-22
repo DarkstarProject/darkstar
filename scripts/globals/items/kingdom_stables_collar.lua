@@ -3,8 +3,8 @@
 -- Item: Kingdom Stables Collar
 -- Teleports to Chocobo Stables (San d'Oria)
 -----------------------------------------
-require("scripts/globals/teleports");
-require("scripts/globals/status");
+require("scripts/globals/teleports")
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
@@ -13,8 +13,8 @@ function onItemCheck(target)
         result = 56
     end
     return result
-end;
+end
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.CHOCOSANDORIA,0,4);
-end;
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.CHOCO_SANDORIA,0,4)
+end

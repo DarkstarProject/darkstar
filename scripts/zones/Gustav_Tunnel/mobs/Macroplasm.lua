@@ -3,13 +3,17 @@
 --   NM: Macroplasm
 -- Note: Part of mission "The Salt of the Earth"
 -----------------------------------
-require("scripts/zones/Gustav_Tunnel/MobIDs");
+local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 -----------------------------------
+
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+end
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         local mobId = mob:getID();
-        local offset = mobId - GIGAPLASM;
+        local offset = mobId - ID.mob.GIGAPLASM;
         local x = mob:getXPos();
         local y = mob:getYPos();
         local z = mob:getZPos();

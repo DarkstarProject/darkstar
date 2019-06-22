@@ -5,13 +5,11 @@
 -- Starts and Finishes; The Weight of Your Limits
 -- !pos 92.936 -19.532 1.814 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil
------------------------------------
 require("scripts/globals/missions")
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Metalworks/TextIDs")
+local ID = require("scripts/zones/Metalworks/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.steel_cyclone
@@ -31,29 +29,29 @@ function onTrigger(player,npc)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (currentMission == THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
+    elseif (currentMission == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
         player:startEvent(715)
-    elseif (currentMission == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 0) then
         player:startEvent(780)
-    elseif (currentMission == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 2) then
+    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 2) then
         player:startEvent(782)
     elseif (player:getVar("Flagbastok") == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,182)
         else
             player:setVar("Flagbastok",0)
             player:addItem(182)
-            player:messageSpecial(ITEM_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
-    elseif (currentMission == THE_FOUR_MUSKETEERS and missionStatus == 1) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 1) then
         player:startEvent(716)
-    elseif (currentMission == THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
         player:startEvent(767) -- First cutscene of mission
-    elseif (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
         player:showText(npc, 8596) -- Dialogue after first cutscene
-    elseif (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
         player:startEvent(768) -- Cutscene on return from Quicksand Caves
-    elseif (player:getQuestStatus(CRYSTAL_WAR,FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
         if (player:getVar("FiresOfDiscProg") == 1) then
             player:startEvent(956)
         else
@@ -75,21 +73,21 @@ function onEventFinish(player,csid,option)
         finishMissionTimeline(player, 1, csid, option)
     elseif (csid == 782) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,182)
             player:setVar("Flagbastok",1)
         else
             player:addItem(182)
-            player:messageSpecial(ITEM_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
         player:setVar("BASTOK92",0)
-        player:completeMission(BASTOK,WHERE_TWO_PATHS_CONVERGE)
+        player:completeMission(BASTOK,dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*100000)
-        player:setTitle(296)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000)
+        player:setTitle(dsp.title.HERO_AMONG_HEROES)
     elseif (csid == 956) then
         player:setVar("FiresOfDiscProg",2)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,STEEL_CYCLONE_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.STEEL_CYCLONE_LEARNED)
     end
 end

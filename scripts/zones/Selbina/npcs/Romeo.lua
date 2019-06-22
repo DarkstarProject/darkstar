@@ -2,56 +2,47 @@
 -- Area: Selbina
 --  NPC: Romeo
 -- Starts and Finishes Quest: Donate to Recycling
--- @zone 248
--- !pos -11 -11 -6
+-- !pos -11 -11 -6 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS_LOG,DONATE_TO_RECYCLING) == QUEST_ACCEPTED) then
-        if ((trade:hasItemQty(16482,5) == true or trade:hasItemQty(16483,5) == true or trade:hasItemQty(16534,5) == true or
-            trade:hasItemQty(17068,5) == true or trade:hasItemQty(17104,5) == true) and trade:getGil() == 0 and trade:getItemCount() == 5) then
-            player:startEvent(21); -- Finish quest "Donate to Recycling"
-        end
+    if
+        player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.DONATE_TO_RECYCLING) == QUEST_ACCEPTED and
+        (
+            npcUtil.tradeHas(trade, {{16482, 5}}) or
+            npcUtil.tradeHas(trade, {{16483, 5}}) or
+            npcUtil.tradeHas(trade, {{16534, 5}}) or
+            npcUtil.tradeHas(trade, {{17068, 5}}) or
+            npcUtil.tradeHas(trade, {{17104, 5}})
+        )
+    then
+        player:startEvent(21) -- Finish quest "Donate to Recycling"
     end
-end;
+end
 
 function onTrigger(player,npc)
-    DonateToRecycling = player:getQuestStatus(OTHER_AREAS_LOG,DONATE_TO_RECYCLING);
+    donateToRecycling = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.DONATE_TO_RECYCLING)
 
-    if (DonateToRecycling == QUEST_AVAILABLE) then
-        player:startEvent(20); -- Start quest "Donate to Recycling"
-    elseif (DonateToRecycling == QUEST_ACCEPTED) then
-        player:startEvent(22); -- During quest "Donate to Recycling"
+    if donateToRecycling == QUEST_AVAILABLE then
+        player:startEvent(20) -- Start quest "Donate to Recycling"
+    elseif donateToRecycling == QUEST_ACCEPTED then
+        player:startEvent(22) -- During quest "Donate to Recycling"
     else
-        player:startEvent(23); -- Standard dialog
+        player:startEvent(23) -- Standard dialog
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 20) then
-        player:addQuest(OTHER_AREAS_LOG,DONATE_TO_RECYCLING);
-    elseif (csid == 21) then
-        if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,89);
-        else
-            player:completeQuest(OTHER_AREAS_LOG,DONATE_TO_RECYCLING);
-            player:addTitle(dsp.title.ECOLOGIST);
-            player:addItem(89);
-            player:messageSpecial(ITEM_OBTAINED,89); -- Wastebasket
-            player:addFame(SELBINA,30);
-            player:tradeComplete();
-        end
+    if csid == 20 then
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.DONATE_TO_RECYCLING)
+    elseif csid == 21 and npcUtil.completeQuest(player, OTHER_AREAS_LOG, dsp.quest.id.otherAreas.DONATE_TO_RECYCLING, {item = 89, fame_area = SELBINA, title = dsp.title.ECOLOGIST}) then
+        player:confirmTrade()
     end
-end;
-
+end

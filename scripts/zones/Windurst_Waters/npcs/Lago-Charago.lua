@@ -4,10 +4,7 @@
 -- Type: Adventurer's Assistant
 -- !pos -57.271 -11.75 92.503 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +14,7 @@ function onTrigger(player,npc)
 
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
-    if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,11) == false) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,11) == false) then
         player:startEvent(940);
     else
         player:startEvent(300);
@@ -34,4 +31,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

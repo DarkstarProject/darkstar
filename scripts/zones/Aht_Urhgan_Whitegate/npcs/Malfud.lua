@@ -3,9 +3,7 @@
 --  NPC: Malfud
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
         2213, 12     -- Pine Nuts
     }
 
-    player:showText(npc,MALFUD_SHOP_DIALOG)
+    player:showText(npc,ID.text.MALFUD_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -31,4 +29,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

@@ -2,12 +2,8 @@
 -- Area: Southern San d'Oria
 --   NPC: Hantileon
 -- Type: VCS Chocobo Trainer
--- @zone 230
--- !pos -2.675 -1.1 -105.287
+-- !pos -2.675 -1.1 -105.287 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

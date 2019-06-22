@@ -3,33 +3,16 @@
 --  NPC: HomePoint#2
 -- !pos 45 2 -35 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Southern_San_dOria/TextIDs");
-require("scripts/globals/homepoint");
+require("scripts/globals/homepoint")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+local hpEvent = 8701
+local hpIndex = 1
 
 function onTrigger(player,npc)
-
-    homepointMenu(player, 8701, 1);
-end;
-
-function onEventUpdate(player,csid,option)
-end;
+    dsp.homepoint.onTrigger(player, hpEvent, hpIndex)
+end
 
 function onEventFinish(player,csid,option)
-
-    if (csid == 8701) then
-
-        if (option == 1) then
-            player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
-        else
-            hpTeleport(player, option);
-        end
-    end
-end;
+    dsp.homepoint.onEventFinish(player, csid, option, hpEvent)
+end

@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Touttaures
--- @zone 80
--- !pos 94 4 50
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+-- !pos 94 4 50 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -2,21 +2,20 @@
 -- Area: Ifrit's Cauldron
 --  NPC: Grounds Tome
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    startGov(GOV_EVENT_IFRITS_CAULDRON,player);
-end;
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
 function onEventUpdate(player,csid,option)
-    updateGov(player,csid,option,755,756,757,758,759,760,761,762,0,0);
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
 end;
 
 function onEventFinish(player,csid,option)
-    finishGov(player,csid,option,755,756,757,758,759,760,761,762,0,0,GOV_MSG_IFRITS_CAULDRON);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

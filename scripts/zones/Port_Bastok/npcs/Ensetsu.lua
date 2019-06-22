@@ -5,9 +5,7 @@
 -- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box
 -- !pos 33 -6 67 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -20,7 +18,7 @@ end;
 
 function onTrigger(player,npc)
 
-    AyameAndKaede = player:getQuestStatus(BASTOK,AYAME_AND_KAEDE);
+    AyameAndKaede = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE);
 
     if (AyameAndKaede == QUEST_ACCEPTED) then
 
@@ -37,13 +35,13 @@ function onTrigger(player,npc)
         else
             player:startEvent(27);
         end
-    elseif (AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
+    elseif (AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
         player:startEvent(247);
     elseif (player:getVar("twentyInPirateYearsCS") == 2) then
         player:startEvent(262);
     elseif (player:getVar("twentyInPirateYearsCS") == 4) then
         player:startEvent(263);
-    elseif (player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 0) then
+    elseif (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 0) then
         player:startEvent(264);
     elseif (player:getVar("illTakeTheBigBoxCS") == 1) then
         player:startEvent(265);
@@ -53,7 +51,7 @@ function onTrigger(player,npc)
 
 end;
 
--- 27  0x00f0  242  243  245  246  247  262  263  264  265  0x0105
+-- 27  240  242  243  245  246  247  262  263  264  265  261
 function onEventUpdate(player,csid,option)
 end;
 
@@ -67,10 +65,10 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SEALED_DAGGER);
         player:addTitle(dsp.title.SHADOW_WALKER);
         player:unlockJob(dsp.job.NIN);
-        player:messageSpecial(UNLOCK_NINJA);
+        player:messageSpecial(ID.text.UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);
-        player:completeQuest(BASTOK,AYAME_AND_KAEDE);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE);
     elseif (csid == 262) then
         player:setVar("twentyInPirateYearsCS",3);
     elseif (csid == 264) then

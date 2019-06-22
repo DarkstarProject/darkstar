@@ -3,10 +3,7 @@
 --  NPC: Sharzalion
 -- Starts and Finishes Quest: The Crimson Trial
 -- Involved in Quest: Peace for the Spirit
--- @zone 230
--- !pos 95 0 111
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-- !pos 95 0 111 230
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
@@ -14,7 +11,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,9 +19,9 @@ end;
 
 function onTrigger(player,npc)
 
-    theCrimsonTrial = player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL);
-    envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
-    peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
+    theCrimsonTrial = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
+    envelopedInDarkness = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS);
+    peaceForTheSpirit = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT);
     peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
     OrcishDriedFood = player:hasKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
 
@@ -63,18 +60,18 @@ function onEventFinish(player,csid,option)
         if (csid == 70 and option == 0) then
             player:setVar("has_seen_rdmaf1_quest_already",1);
         elseif (option == 1) then
-            player:addQuest(SANDORIA,THE_CRIMSON_TRIAL);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
             player:setVar("has_seen_rdmaf1_quest_already",0);
         end
     elseif (csid == 75) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
         else
             player:delKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
             player:addItem(16829);
-            player:messageSpecial(ITEM_OBTAINED, 16829); -- Fencing Degen
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 16829); -- Fencing Degen
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,THE_CRIMSON_TRIAL);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
         end
     elseif (csid == 64) then
         player:setVar("peaceForTheSpiritCS",1);

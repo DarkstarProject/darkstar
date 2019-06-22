@@ -22,6 +22,7 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/utils.h"
 
 #include <string.h>
 
@@ -57,7 +58,7 @@ CMessageSpecialPacket::CMessageSpecialPacket(
 	{
 		this->size = 0x18;
 
-		memcpy(data+(0x1E), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size())); 
+		memcpy(data+(0x1E), PEntity->GetName(), std::min<size_t>(PEntity->name.size(), PacketNameLength));
 	}
 	else if (PEntity->objtype == TYPE_PC)
 	{

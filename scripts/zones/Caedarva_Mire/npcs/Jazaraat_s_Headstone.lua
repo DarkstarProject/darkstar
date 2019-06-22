@@ -4,10 +4,7 @@
 -- Involved in mission: The Lost Kingdom (TOAUM 13)
 -- !pos -389 6 -570 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs");
-require("scripts/zones/Caedarva_Mire/MobIDs");
+local ID = require("scripts/zones/Caedarva_Mire/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
@@ -15,28 +12,28 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasCompletedMission(TOAU,LOST_KINGDOM)) then
+    if (player:hasCompletedMission(TOAU,dsp.mission.id.toau.LOST_KINGDOM)) then
         if (not player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
             player:addKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
         end
-    elseif (player:getCurrentMission(TOAU) == LOST_KINGDOM) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.LOST_KINGDOM) then
         if (player:hasKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT) and player:getVar("AhtUrganStatus") == 0) then
             player:startEvent(8);
         elseif (player:getVar("AhtUrganStatus") == 1) then
-            if (not GetMobByID(JAZARAAT):isSpawned()) then
-                SpawnMob(JAZARAAT):updateEnmity(player);
+            if (not GetMobByID(ID.mob.JAZARAAT):isSpawned()) then
+                SpawnMob(ID.mob.JAZARAAT):updateEnmity(player);
             end
         elseif (player:getVar("AhtUrganStatus") == 2) then
             player:startEvent(9);
         elseif (player:getVar("AhtUrganStatus") == 3) then
             player:setVar("AhtUrganStatus", 0);
             player:addKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
-            player:completeMission(TOAU,LOST_KINGDOM);
-            player:addMission(TOAU,THE_DOLPHIN_CREST);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
+            player:completeMission(TOAU,dsp.mission.id.toau.LOST_KINGDOM);
+            player:addMission(TOAU,dsp.mission.id.toau.THE_DOLPHIN_CREST);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
         else
-            player:messageSpecial(JAZARAATS_HEADSTONE);
+            player:messageSpecial(ID.text.JAZARAATS_HEADSTONE);
         end
     end
 end;

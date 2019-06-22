@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Door: Departures Exit (for Bastok)
--- @zone 246
--- !pos -61 7 -54
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-- !pos -61 7 -54 246
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,4 +33,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

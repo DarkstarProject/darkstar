@@ -3,16 +3,13 @@
 --  NPC:  Auroral Updraft
 --  Type: Standard NPC
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/AlTaieu/TextIDs");
-require("scripts/zones/AlTaieu/MobIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - AURORAL_UPDRAFT_OFFSET;
+    local offset = npc:getID() - ID.npc.AURORAL_UPDRAFT_OFFSET;
     if (offset == 0) then
         player:startEvent(150);
     elseif (offset >= 1 and offset <= 5) then

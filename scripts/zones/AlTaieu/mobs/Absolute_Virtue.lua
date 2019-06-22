@@ -2,7 +2,7 @@
 -- Area: Al'Taieu
 --  HNM: Absolute Virtue
 -----------------------------------
-require("scripts/zones/AlTaieu/MobIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/magic");
@@ -12,7 +12,7 @@ function onMobSpawn(mob)
     -- setMod
     mob:setMod(dsp.mod.REGEN, 500);
 
-    local JoL = GetMobByID(JAILER_OF_LOVE);
+    local JoL = GetMobByID(ID.mob.JAILER_OF_LOVE);
     -- Special check for regen modification by JoL pets killed
     if (JoL:getLocalVar("JoL_Qn_xzomit_Killed") == 9) then
         mob:addMod(dsp.mod.REGEN, -130)
@@ -20,9 +20,6 @@ function onMobSpawn(mob)
     if (JoL:getLocalVar("JoL_Qn_hpemde_Killed") == 9) then
         mob:addMod(dsp.mod.REGEN, -130)
     end
-end;
-
-function onMobFight(mob, target)
 end;
 
 function onSpellPrecast(mob, spell)
@@ -33,9 +30,6 @@ function onSpellPrecast(mob, spell)
         spell:setAnimation(280); -- AoE Meteor Animation
         spell:setMPCost(1);
     end
-end;
-
-function onMonsterMagicPrepare(caster, target)
 end;
 
 function onMagicHit(caster, target, spell)
@@ -50,9 +44,6 @@ function onMagicHit(caster, target, spell)
         end
     end
     return 1;
-end;
-
-function onMobDespawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)

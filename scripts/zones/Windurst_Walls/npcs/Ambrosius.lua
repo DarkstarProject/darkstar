@@ -4,15 +4,12 @@
 --
 -- Quest NPC for "The Postman Always KOs Twice"
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    QuestStatus = player:getQuestStatus(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
+    QuestStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
 
     if (QuestStatus == QUEST_AVAILABLE) then
         player:startEvent(48);
@@ -24,7 +21,7 @@ function onTrigger(player,npc)
 end;
 
 function onTrade(player,npc,trade)
-    QuestStatus = player:getQuestStatus(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
+    QuestStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
 
     if (QuestStatus ~= QUEST_AVAILABLE) then
         reward = 0;
@@ -72,27 +69,27 @@ function onEventFinish(player,csid,option)
     -- printf("Finish CSID: %u",csid);
 
     if (csid == 48 and option == 0) then
-        player:addQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
     elseif (csid == 52) then
         player:tradeComplete();
         player:addGil(GIL_RATE*50);
         player:addFame(WINDURST,80);
-        player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
     elseif (csid == 53) then
         player:tradeComplete();
         player:addGil(GIL_RATE*150);
         player:addFame(WINDURST,80);
-        player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
     elseif (csid == 54) then
         player:tradeComplete();
         player:addGil(GIL_RATE*250);
         player:addFame(WINDURST,80);
-        player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
     elseif (csid == 55) then
         player:tradeComplete();
         player:addGil(GIL_RATE*500);
         player:addFame(WINDURST,80);
-        player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
     elseif (csid == 57) then
         player:tradeComplete();
         player:addGil(GIL_RATE*50);
@@ -111,7 +108,3 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,50);
     end
 end;
-
-
-
-

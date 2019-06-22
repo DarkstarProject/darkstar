@@ -3,10 +3,7 @@
 -- Zone: Yorcia Weald U
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Yorcia_Weald_U/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Yorcia_Weald_U/TextIDs");
+local ID = require("scripts/zones/Yorcia_Weald_U/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,4 +23,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

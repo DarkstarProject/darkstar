@@ -4,12 +4,10 @@
 -- Involved in Quest: In Defiant Challenge
 -- !pos -50.175 6.264 251.669 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,17 +16,17 @@ end;
 function onTrigger(player,npc)
     if (OldSchoolG1 == false) then
         if (player:hasItem(1090) == false and player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT2) == false
-        and player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
+        and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
             player:addKeyItem(dsp.ki.BOMB_COAL_FRAGMENT2);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOMB_COAL_FRAGMENT2);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOMB_COAL_FRAGMENT2);
         end
 
         if (player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT1) and player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT2) and player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT3)) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(1090, 1);
-                player:messageSpecial(ITEM_OBTAINED, 1090);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, 1090);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1090);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1090);
             end
         end
 

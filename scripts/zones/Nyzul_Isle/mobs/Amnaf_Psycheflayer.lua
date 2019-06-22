@@ -2,7 +2,7 @@
 -- Area: Nyzul Isle (Path of Darkness)
 --  MOB: Amnaf Psycheflayer
 -----------------------------------
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");
 require("scripts/globals/msg");
 -----------------------------------
@@ -13,19 +13,14 @@ end;
 
 function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
-        mob:showText(mob,NyzulIsle.text.WHEEZE);
+        mob:showText(mob,ID.text.WHEEZE);
     end);
 end;
 
 function onMobEngaged(mob,target)
-    local allies = mob:getInstance():getAllies();
-    for i,v in pairs(allies) do
-        v:setLocalVar("ready",1);
-    end
-    mob:showText(mob,NyzulIsle.text.CANNOT_LET_YOU_PASS);
-end;
-
-function onMobFight(mob,target)
+    local naja = mob:getInstance():getEntity(bit.band(ID.mob[58].NAJA, 0xFFF))
+    naja:setLocalVar("ready",1)
+    mob:showText(mob,ID.text.CANNOT_LET_YOU_PASS);
 end;
 
 --[[
@@ -49,12 +44,12 @@ end;
 ]]
 
 function onSpellPrecast(mob, spell)
-    mob:showText(mob,NyzulIsle.text.PHSHOOO);
+    mob:showText(mob,ID.text.PHSHOOO);
 end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
-        mob:showText(mob,NyzulIsle.text.NOT_POSSIBLE);
+        mob:showText(mob,ID.text.NOT_POSSIBLE);
     end
 end;
 

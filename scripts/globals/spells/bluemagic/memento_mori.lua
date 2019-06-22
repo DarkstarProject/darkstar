@@ -12,34 +12,34 @@
 --
 -- Combos: Magic Attack Bonus
 -----------------------------------------
-require("scripts/globals/bluemagic");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effect.MAGIC_ATK_BOOST;
-    local power = 20;
-    local duration = 60;
+    local typeEffect = dsp.effect.MAGIC_ATK_BOOST
+    local power = 20
+    local duration = 60
 
     if (caster:hasStatusEffect(dsp.effect.DIFFUSION)) then
-        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION);
+        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION)
 
         if (diffMerit > 0) then
-            duration = duration + (duration/100)* diffMerit;
-        end;
+            duration = duration + (duration/100)* diffMerit
+        end
 
-        caster:delStatusEffect(dsp.effect.DIFFUSION);
-    end;
+        caster:delStatusEffect(dsp.effect.DIFFUSION)
+    end
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
-    end;
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+    end
 
-    return typeEffect;
-end;
+    return typeEffect
+end

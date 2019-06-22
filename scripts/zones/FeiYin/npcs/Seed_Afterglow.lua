@@ -12,10 +12,7 @@
 -- !pos -50.000 0.114 32.000 204        White
 -- Todo: NPC moving. In retail these move around with 3-5+ pos EACH
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil
------------------------------------
-require("scripts/zones/FeiYin/TextIDs")
-require("scripts/zones/FeiYin/MobIDs")
+local ID = require("scripts/zones/FeiYin/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
@@ -26,7 +23,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local offset        = npc:getID() - FEIYIN_AFTERGRLOW_OFFSET
+    local offset        = npc:getID() - ID.npc.AFTERGRLOW_OFFSET
     local ACP           = player:getCurrentMission(ACP)
     local currentDay    = tonumber(os.date("%j"))
     local needToZone    = player:needToZone()
@@ -39,30 +36,30 @@ function onTrigger(player,npc)
         player:hasKeyItem(dsp.ki.IVORY_KEY) or
         CurrentDay == player:getVar("LastAzureKey") or
         CurrentDay == player:getVar("LastIvoryKey") or
-        ACP < THOSE_WHO_LURK_IN_SHADOWS_II
+        ACP < dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II
     ) then
-        player:messageSpecial(SOFTLY_SHIMMERING_LIGHT)
+        player:messageSpecial(ID.text.SOFTLY_SHIMMERING_LIGHT)
 
     elseif (needToZone and not player:hasStatusEffect(dsp.effect.MARK_OF_SEED)) then
-        player:messageSpecial(YOU_REACH_FOR_THE_LIGHT)
-    elseif (ACP >= THOSE_WHO_LURK_IN_SHADOWS_II and not player:getMaskBit(progressMask, offset)) then
+        player:messageSpecial(ID.text.YOU_REACH_FOR_THE_LIGHT)
+    elseif (ACP >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II and not player:getMaskBit(progressMask, offset)) then
         player:setMaskBit(progressMask, "SEED_AFTERGLOW_MASK", offset, true)
         intensity = intensity + 1
         if (intensity == 9) then
             player:startEvent(28)
         elseif (not needToZone and not player:hasStatusEffect(dsp.effect.MARK_OF_SEED)) then
             player:setVar("SEED_AFTERGLOW_INTENSITY", intensity)
-            player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT, 0)
+            player:messageSpecial(ID.text.YOU_REACH_OUT_TO_THE_LIGHT, 0)
             player:addStatusEffectEx(dsp.effect.MARK_OF_SEED, 0, 0, 30, 1800)
             player:needToZone(true)
-            player:messageSpecial(THE_LIGHT_DWINDLES, 0)
+            player:messageSpecial(ID.text.THE_LIGHT_DWINDLES, 0)
         else
             player:setVar("SEED_AFTERGLOW_INTENSITY", intensity)
-            player:messageSpecial(EVEN_GREATER_INTENSITY, offset)
+            player:messageSpecial(ID.text.EVEN_GREATER_INTENSITY, offset)
         end
 
     else
-        player:messageSpecial(SOFTLY_SHIMMERING_LIGHT)
+        player:messageSpecial(ID.text.SOFTLY_SHIMMERING_LIGHT)
     end
 end
 
@@ -74,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:delStatusEffectSilent(dsp.effect.MARK_OF_SEED)
 
         if option == 100 then
-            player:messageSpecial(SCINTILLATING_BURST_OF_LIGHT)
+            player:messageSpecial(ID.text.SCINTILLATING_BURST_OF_LIGHT)
             npcUtil.giveKeyItem(player, dsp.ki.MARK_OF_SEED)
         elseif option == 200 then
             npcUtil.giveKeyItem(player, dsp.ki.AZURE_KEY)

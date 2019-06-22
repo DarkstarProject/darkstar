@@ -1,15 +1,16 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Signpost
---  @zone 100
+-- Area: West Ronfaure
+--  NPC: Signpost
+-- !zone 100
 -----------------------------------
-require("scripts/zones/West_Sarutabaruta/MobIDs");
+local ID = require("scripts/zones/West_Ronfaure/IDs")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - W_RONFAURE_SIGNPOST_OFFSET;
+    local offset = npc:getID() - ID.npc.SIGNPOST_OFFSET;
     if (offset == 4) then
         player:startEvent(115);
     elseif (offset >=0 and offset <= 3) then

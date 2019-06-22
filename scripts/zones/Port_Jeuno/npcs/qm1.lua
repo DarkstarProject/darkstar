@@ -2,17 +2,13 @@
 -- Area: Port Jeuno
 --  NPC: ???
 -- Finish Quest: Borghertz's Hands (AF Hands, Many job)
--- @zone 246
--- !pos -51 8 -4
+-- !pos -51 8 -4 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Port_Jeuno/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,13 +35,13 @@ function onEventFinish(player,csid,option)
     if (csid == 20 and option == 1) then
         player:setVar("BorghertzCS",2);
     elseif (csid == 48) then
-        NumQuest = 43 + player:getVar("BorghertzAlreadyActiveWithJob");
+        NumQuest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS + player:getVar("BorghertzAlreadyActiveWithJob") - 1;
         NumHands = 13960 + player:getVar("BorghertzAlreadyActiveWithJob");
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,NumHands);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,NumHands);
         else
             player:addItem(NumHands);
-            player:messageSpecial(ITEM_OBTAINED,NumHands);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,NumHands);
             player:delKeyItem(dsp.ki.OLD_GAUNTLETS);
             player:delKeyItem(dsp.ki.SHADOW_FLAMES);
             player:setVar("BorghertzCS",0);

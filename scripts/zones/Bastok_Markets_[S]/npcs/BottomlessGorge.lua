@@ -2,10 +2,6 @@
 -- Area: Bastok Markets (S) (F-8)
 --  NPC: Bottomless Gorge
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

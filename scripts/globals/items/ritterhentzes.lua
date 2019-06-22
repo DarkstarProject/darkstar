@@ -4,13 +4,13 @@
 -- Item Effect: Blaze Spikes
 -----------------------------------------
 
-require("scripts/globals/settings");
+require("scripts/globals/settings")
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.BLAZE_SPIKES, 20, 0, 210);
-end;
+    target:addStatusEffect(dsp.effect.BLAZE_SPIKES, 20, 0, 210)
+end

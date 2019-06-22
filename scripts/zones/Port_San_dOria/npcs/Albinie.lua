@@ -3,9 +3,7 @@
 --  NPC: Albinie
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs")
+local ID = require("scripts/zones/Port_San_dOria/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
         1,   1800, 3,    -- Chocobo Bedding
     }
 
-    player:showText(npc, ALBINIE_SHOP_DIALOG)
+    player:showText(npc, ID.text.ALBINIE_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
 end
 
@@ -35,4 +33,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

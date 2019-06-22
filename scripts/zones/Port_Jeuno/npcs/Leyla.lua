@@ -3,9 +3,7 @@
 --  NPC: Leyla
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs")
+local ID = require("scripts/zones/Port_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         5032, 3146,    -- Sinewy Etude
     }
 
-    player:showText(npc, LEYLA_SHOP_DIALOG)
+    player:showText(npc, ID.text.LEYLA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -36,4 +34,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

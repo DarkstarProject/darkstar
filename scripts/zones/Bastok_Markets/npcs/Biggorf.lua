@@ -5,9 +5,6 @@
 -- Involved in Quest: The Bare Bones
 -----------------------------------
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-BareBones = player:getQuestStatus(BASTOK,THE_BARE_BONES);
+BareBones = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_BARE_BONES);
 
     if (BareBones == QUEST_ACCEPTED) then
         player:startEvent(257);

@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Afdeen
 -- Standard Merchant NPC
--- @zone 244
--- !pos 1.462 0.000 21.627
+-- !pos 1.462 0.000 21.627 244
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,4 +20,3 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,44);
     end
 end;
-

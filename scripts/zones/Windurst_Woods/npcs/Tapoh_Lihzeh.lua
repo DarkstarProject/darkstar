@@ -3,9 +3,7 @@
 --  NPC: Tapoh Lihzeh
 -- Starts & Finishes Repeatable Quest: Paying Lip Service
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
@@ -14,11 +12,11 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
     -- CHOCOBILIOUS
-    if player:getQuestStatus(WINDURST,CHOCOBILIOUS) == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 1 and npcUtil.tradeHas(trade, 938) then
+    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHOCOBILIOUS) == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 1 and npcUtil.tradeHas(trade, 938) then
         player:startEvent(229, 0, 938)
 
     -- PAYING LIP SERVICE
-    elseif player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE) >= QUEST_ACCEPTED then
+    elseif player:getQuestStatus(WINDURST,dsp.quest.id.windurst.PAYING_LIP_SERVICE) >= QUEST_ACCEPTED then
         if npcUtil.tradeHas(trade, {{912, 3}}) then
             player:startEvent(479, 0, 912, 1016, 0, 1)
         elseif npcUtil.tradeHas(trade, {{1016, 2}}) then
@@ -28,9 +26,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS)
+    local chocobilious = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHOCOBILIOUS)
     local chocobiliousCS = player:getVar("ChocobiliousQuest")
-    local payingLipService = player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE)
+    local payingLipService = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.PAYING_LIP_SERVICE)
 
     -- CHOCOBILIOUS
     if chocobilious == QUEST_ACCEPTED and chocobiliousCS == 2 then
@@ -64,20 +62,20 @@ function onEventFinish(player,csid,option)
 
     -- PAYING LIP SERVICE
     elseif csid == 477 and option == 1 then
-        player:addQuest(WINDURST,PAYING_LIP_SERVICE)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.PAYING_LIP_SERVICE)
     elseif csid == 479 then
-        if player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE) == QUEST_ACCEPTED then
-            npcUtil.completeQuest(player, WINDURST, PAYING_LIP_SERVICE, {fame=60, title=dsp.title.KISSER_MAKEUPPER})
+        if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.PAYING_LIP_SERVICE) == QUEST_ACCEPTED then
+            npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.PAYING_LIP_SERVICE, {fame=60, title=dsp.title.KISSER_MAKEUPPER})
         else
             player:addFame(WINDURST,8)
         end
 
         if option == 1 then
             player:addGil(GIL_RATE*150)
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE*150)
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*150)
         else
             player:addGil(GIL_RATE*200)
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE*200)
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*200)
         end
         
         player:confirmTrade()

@@ -4,12 +4,10 @@
 --  Involved In Quest: Making Headlines, Curses, Foiled...Again!?
 -- Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local ID = require("scripts/zones/Windurst_Walls/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,8 +18,8 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
-    local CFA2 = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2);
+    local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
+    local CFA2 = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2);
 
     -- Curses,Foiled ... Again!?
     if (CFA2 == QUEST_ACCEPTED and player:hasItem(552) == false) then
@@ -39,7 +37,7 @@ function onTrigger(player,npc)
         -- 8 = Umumu
         -- 16 = Mahogany Door
         if (testflag(tonumber(prog),4) == false) then
-            if (player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1) == 1) then
+            if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1) == 1) then
                 if (math.random(1,2) == 1) then
                     player:startEvent(283); -- Give scoop while sick
                 else
@@ -82,19 +80,16 @@ function onEventFinish(player,csid,option)
     if (csid == 281 or csid == 283 or csid == 284) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WINDURST_WALLS_SCOOP);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WALLS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+4);
 
     -- Curses,Foiled...Again!?
     elseif (csid == 182) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,552); -- Hiwon's hair
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,552); -- Hiwon's hair
         else
             player:addItem(552);
-            player:messageSpecial(ITEM_OBTAINED,552); -- Hiwon's hair
+            player:messageSpecial(ID.text.ITEM_OBTAINED,552); -- Hiwon's hair
         end
     end
 end;
-
-
-

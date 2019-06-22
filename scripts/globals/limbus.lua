@@ -309,10 +309,10 @@ function LimbusEntrance(player, entrance)
     switch (entrance): caseof
     {
         [1] = function (x)
-            player:setPos(643, 0.1, -600, 124, 0x26)  --  instance entrer 600 1 -600
+            player:setPos(643, 0.1, -600, 124, 38)  --  instance entrer 600 1 -600
         end, --  sortiezone  637, -4, -642, 642, 4, -637
         [2] = function (x)
-            player:setPos(-668, 0.1, -666, 209, 0x26)  --  instance entrer -599 0 -600
+            player:setPos(-668, 0.1, -666, 209, 38)  --  instance entrer -599 0 -600
         end, --  sortiezone -642, -4, -642, -637, 4, -637
     }
 end
@@ -759,75 +759,57 @@ function ResetKeyForEmptyLimbus(player, instanceID)
         {
             [1290] = function (x)
                 SetServerVariable("[NW_Apollyon]UniqueID", 0)
-                print("[NW_Apollyon]KeyDelete")
             end,
             [1291] = function (x)
                 SetServerVariable("[SW_Apollyon]UniqueID", 0)
-                print("[SW_Apollyon]KeyDelete")
             end,
             [1292] = function (x)
                 SetServerVariable("[NE_Apollyon]UniqueID", 0)
-                print("[NE_Apollyon]KeyDelete")
             end,
             [1293] = function (x)
                 SetServerVariable("[SE_Apollyon]UniqueID", 0)
-                print("[SE_Apollyon]KeyDelete")
             end,
             [1294] = function (x)
                 SetServerVariable("[CS_Apollyon]UniqueID", 0)
-                print("[CS_Apollyon]KeyDelete")
             end,
             [1295] = function (x)
                 SetServerVariable("[CS_Apollyon_II]UniqueID", 0)
-                print("[CS_Apollyon_II]KeyDelete")
             end,
             [1296] = function (x)
                 SetServerVariable("[Central_Apollyon]UniqueID", 0)
-                print("[Central_Apollyon]KeyDelete")
             end,
             [1297] = function (x)
                 SetServerVariable("[Central_Apollyon_II]UniqueID", 0)
-                print("[Central_Apollyon_II]KeyDelete")
             end,
             [1298] = function (x)
                 SetServerVariable("[Temenos_W_Tower]UniqueID", 0)
-                print("[Temenos_W_Tower]KeyDelete")
             end,
             [1299] = function (x)
                 SetServerVariable("[Temenos_N_Tower]UniqueID", 0)
-                print("[Temenos_N_Tower]KeyDelete")
             end,
             [1300] = function (x)
                 SetServerVariable("[Temenos_E_Tower]UniqueID", 0)
-                print("[Temenos_E_Tower]KeyDelete")
             end,
             [1301] = function (x)
                 SetServerVariable("[C_Temenos_Base]UniqueID", 0)
-                print("[C_Temenos_Base]KeyDelete")
             end,
             [1302] = function (x)
                 SetServerVariable("[C_Temenos_Base_II]UniqueID", 0)
-                print("[C_Temenos_Base_II]KeyDelete")
             end,
             [1303] = function (x)
                 SetServerVariable("[C_Temenos_1st]UniqueID", 0)
-                print("[C_Temenos_1st]KeyDelete")
             end,
             [1304] = function (x)
                 SetServerVariable("[C_Temenos_2nd]UniqueID", 0)
-                print("[C_Temenos_2nd]KeyDelete")
             end,
             [1305] = function (x)
                 SetServerVariable("[C_Temenos_3rd]UniqueID", 0)
-                print("[C_Temenos_3rd]KeyDelete")
             end,
             [1306] = function (x)
                 SetServerVariable("[C_Temenos_4th]UniqueID", 0)
-                print("[C_Temenos_4th]KeyDelete")
             end,
             [1307] = function (x)
                 SetServerVariable("[C_Temenos_4th_II]UniqueID", 0)
-                print("[C_Temenos_4th_II]KeyDelete")
             end,
         }
     end
@@ -871,11 +853,8 @@ function RegisterLimbusInstance(player, instanceID)
     if (playerLimbusID ~= 0) then
         if (GetLimbusKeyFromInstance(playerLimbusID) == 0 and playerLimbusKeyID == 0) then
             inst = player:bcnmRegister(playerLimbusID)    --  Build Limbus
-            printf("Regionfound: %u", inst)
-
             if (inst == GetInstanceRegion(playerLimbusID)) then
                 player:bcnmEnter(playerLimbusID)
-                printf("BCNM_CREATE_WITH_REGION: %u", inst)
             else
                 if (playerLimbusID == 1290 or playerLimbusID == 1291
                 or playerLimbusID == 1294 or playerLimbusID == 1295

@@ -4,12 +4,9 @@
 -- Quests: Orastery Woes (Black Halo WSNM "Eldhrimnir")
 -- !pos 197 -8 -27.5 122
 -----------------------------------
-package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil
------------------------------------
 require("scripts/globals/wsquest")
-require("scripts/zones/RoMaeve/TextIDs")
-require("scripts/zones/RoMaeve/MobIDs")
+local ID = require("scripts/zones/RoMaeve/IDs")
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.black_halo,player,ELDHRIMNIR)
+    dsp.wsquest.handleQmTrigger(dsp.wsquest.black_halo,player,ID.mob.ELDHRIMNIR)
 end

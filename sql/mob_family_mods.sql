@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.13-log
+-- Server version   5.6.13-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -98,15 +98,8 @@ INSERT INTO `mob_family_mods` VALUES (294,10,14,1);
 INSERT INTO `mob_family_mods` VALUES (169,11,15,1);
 INSERT INTO `mob_family_mods` VALUES (358,11,15,1);
 INSERT INTO `mob_family_mods` VALUES (110,3,50,1);
-INSERT INTO `mob_family_mods` VALUES (111,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (121,242,20,0);
 INSERT INTO `mob_family_mods` VALUES (52,242,20,0);
-INSERT INTO `mob_family_mods` VALUES (358,16,1,1);
-INSERT INTO `mob_family_mods` VALUES (327,16,1,1);
-INSERT INTO `mob_family_mods` VALUES (334,16,1,1);
-INSERT INTO `mob_family_mods` VALUES (337,16,1,1);
-INSERT INTO `mob_family_mods` VALUES (360,16,1,1);
-INSERT INTO `mob_family_mods` VALUES (359,16,1,1);
 INSERT INTO `mob_family_mods` VALUES (258,34,25,1);
 INSERT INTO `mob_family_mods` VALUES (217,23,256,1);
 INSERT INTO `mob_family_mods` VALUES (274,23,256,1);
@@ -127,13 +120,14 @@ INSERT INTO `mob_family_mods` VALUES (253,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (194,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (271,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (135,4,4,1);
-INSERT INTO `mob_family_mods` VALUES (373,16,1,1);
 INSERT INTO `mob_family_mods` VALUES (394,41,988,1);
 INSERT INTO `mob_family_mods` VALUES (394,42,989,1);
 INSERT INTO `mob_family_mods` VALUES (394,43,2,1);
 INSERT INTO `mob_family_mods` VALUES (150,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (394,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (236,4,30,1);
+INSERT INTO `mob_family_mods` VALUES (481,41,988,1);
+INSERT INTO `mob_family_mods` VALUES (481,42,989,1);
 
 -- Adjust magic damage taken
 INSERT INTO `mob_family_mods` VALUES (4,389,-25,0);
@@ -155,7 +149,7 @@ INSERT INTO `mob_family_mods` VALUES (169,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (115,254,25,0);
 INSERT INTO `mob_family_mods` VALUES (359,254,25,0);
 
--- Most undead, Rocs, and Hecteyes are highly resistant to sleep, 
+-- Most undead, Rocs, and Hecteyes are highly resistant to sleep,
 -- Kindred and bat(s) are fairly resistant
 INSERT INTO `mob_family_mods` VALUES (47,240,50,0);
 INSERT INTO `mob_family_mods` VALUES (48,240,50,0);

@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- !pos 450 -40 -31 139
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Horlais_Peak/TextIDs");
+local ID = require("scripts/zones/Horlais_Peak/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -46,21 +46,18 @@ typedef u_int SOCKET;
 #include <vector>
 #include <string.h>
 
-#include "tcp_request.h" 
+#include "tcp_request.h"
 
-#define DEFAULT_BUFLEN	1024
+#define DEFAULT_BUFLEN  1024
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
-CTCPRequestPacket::CTCPRequestPacket(SOCKET* socket)
+CTCPRequestPacket::CTCPRequestPacket(SOCKET* socket) : m_data(nullptr), m_size(0), m_socket(socket), blowfish(blowfish_t())
 {
-    m_data = nullptr;
-    m_socket = socket;
-
     uint8 keys[24] =
     {
         0x30, 0x73, 0x3D, 0x6D,
@@ -88,9 +85,9 @@ CTCPRequestPacket::~CTCPRequestPacket()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 uint8* CTCPRequestPacket::GetData()
@@ -99,9 +96,9 @@ uint8* CTCPRequestPacket::GetData()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 CTCPRequestPacket::GetSize()
@@ -110,9 +107,9 @@ int32 CTCPRequestPacket::GetSize()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 CTCPRequestPacket::ReceiveFromSocket()
@@ -172,9 +169,9 @@ int32 CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
@@ -214,9 +211,9 @@ int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 CTCPRequestPacket::CheckPacketHash()
@@ -243,9 +240,9 @@ int32 CTCPRequestPacket::CheckPacketHash()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 uint8 CTCPRequestPacket::GetPacketType()
@@ -256,9 +253,9 @@ uint8 CTCPRequestPacket::GetPacketType()
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 CTCPRequestPacket::decipher()

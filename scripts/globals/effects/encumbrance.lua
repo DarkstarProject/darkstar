@@ -4,25 +4,13 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:setEquipBlock(effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:setEquipBlock(effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:setEquipBlock(0);
-end;
+    target:setEquipBlock(0)
+end

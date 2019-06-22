@@ -1,5 +1,9 @@
 -----------------------------------------
-require("scripts/globals/status");
+-- Castellanus Cell
+-- ID 5366
+-- Unlocks head and neck equipment
+-----------------------------------------
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
@@ -7,11 +11,11 @@ function onItemCheck(target)
     if (encumbrance) then
         local power = encumbrance:getPower()
         if bit.band(power, 0x0210) > 0 then
-            return 0;
+            return 0
         end
     end
-    return -1;
-end;
+    return -1
+end
 
 function onItemUse(target)
     local encumbrance = target:getStatusEffect(dsp.effect.ENCUMBRANCE_I)
@@ -21,6 +25,5 @@ function onItemUse(target)
     if (newpower > 0) then
         target:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, newpower, 0, 0)
     end
-    target:messageText(target, 7209)
-end;
-
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 1)
+end

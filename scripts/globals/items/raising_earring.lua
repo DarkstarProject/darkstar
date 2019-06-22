@@ -5,11 +5,11 @@
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    local duration = 2100;
-    target:delStatusEffect(dsp.effect.RERAISE);
-    target:addStatusEffect(dsp.effect.RERAISE,1,0,duration);
-end;
+    local duration = 2100
+    target:delStatusEffect(dsp.effect.RERAISE)
+    target:addStatusEffect(dsp.effect.RERAISE,1,0,duration)
+end

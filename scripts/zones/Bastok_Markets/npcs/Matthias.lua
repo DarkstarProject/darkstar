@@ -4,58 +4,56 @@
 -- Standard Info NPC
 -- Involved in Quest:
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
-    --local variables for item IDs to make things clearer;
-    local imperialSilk = 2340;
-    local wolfFelt = 2010;
-    local silverBrocade = 1991;
+--local variables for item IDs to make things clearer;
+local imperialSilk = 2340;
+local wolfFelt = 2010;
+local silverBrocade = 1991;
 
-    local karakulCloth = 2288;
-    local rainbowCloth = 830;
-    local rainbowVelvet = 1996;
+local karakulCloth = 2288;
+local rainbowCloth = 830;
+local rainbowVelvet = 1996;
 
-    local wamouraCloth = 2289;
-    local moblinWeave = 1636;
-    local goldBrocade = 1999;
+local wamouraCloth = 2289;
+local moblinWeave = 1636;
+local goldBrocade = 1999;
 
 function onTrade(player,npc,trade)
 
     if (player:getVar("dancerTailorCS") == 4) then
         local playersAFChoice = player:getVar("dancerAFChoice");
 
-            if (playersAFChoice == 1 and
-                trade:hasItemQty(imperialSilk, 1) == true and
-                trade:hasItemQty(wolfFelt, 1) == true and
-                trade:hasItemQty(silverBrocade, 1) == true and
-                trade:getItemCount() == 3 and
-                trade:getGil() == 0) then
+        if (playersAFChoice == 1 and
+            trade:hasItemQty(imperialSilk, 1) == true and
+            trade:hasItemQty(wolfFelt, 1) == true and
+            trade:hasItemQty(silverBrocade, 1) == true and
+            trade:getItemCount() == 3 and
+            trade:getGil() == 0) then
 
-                rewardThePlayer(player);
+            rewardThePlayer(player);
 
-             elseif (playersAFChoice == 2 and
-                trade:hasItemQty(karakulCloth, 1) == true and
-                trade:hasItemQty(rainbowCloth, 1) == true and
-                trade:hasItemQty(rainbowVelvet, 1) == true and
-                trade:getItemCount() == 3 and
-                trade:getGil() == 0) then
+        elseif (playersAFChoice == 2 and
+            trade:hasItemQty(karakulCloth, 1) == true and
+            trade:hasItemQty(rainbowCloth, 1) == true and
+            trade:hasItemQty(rainbowVelvet, 1) == true and
+            trade:getItemCount() == 3 and
+            trade:getGil() == 0) then
 
-                rewardThePlayer(player);
+            rewardThePlayer(player);
 
-             elseif (playersAFChoice == 3 and
-                trade:hasItemQty(wamouraCloth, 1) == true and
-                trade:hasItemQty(moblinWeave, 1) == true and
-                trade:hasItemQty(goldBrocade, 1) == true and
-                trade:getItemCount() == 3 and
-                trade:getGil() == 0) then
+        elseif (playersAFChoice == 3 and
+            trade:hasItemQty(wamouraCloth, 1) == true and
+            trade:hasItemQty(moblinWeave, 1) == true and
+            trade:hasItemQty(goldBrocade, 1) == true and
+            trade:getItemCount() == 3 and
+            trade:getGil() == 0) then
 
-                rewardThePlayer(player);
-            end;
-     end;
+            rewardThePlayer(player);
+        end;
+    end;
 end;
 
 function rewardThePlayer(player)
@@ -68,9 +66,9 @@ function rewardThePlayer(player)
 end;
 
 -- local variables for item IDs to make things clearer
-    local dancersTiara = 16139;
-    local dancersBangles = 15003;
-    local dancersToeshoes = 15747;
+local dancersTiara = 16139;
+local dancersBangles = 15003;
+local dancersToeshoes = 15747;
 
 function onTrigger(player,npc)
 
@@ -102,7 +100,7 @@ function onTrigger(player,npc)
         if (completedPieces == 3) then
             player:setVar("dancerTailorCS", 6);
             player:startEvent(498);
-         else
+        else
             player:startEvent(493, playerCompletedTiara, playerCompletedBangles, playerCompletedShoes);
         end;
 
@@ -184,11 +182,11 @@ function onEventFinish(player,csid,option)
         end;
 
         if (player:getFreeSlotsCount() == 0) then --check to see if the player has enough inventory space before rewarding them.
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, dancerAFID);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, dancerAFID);
         else
             local playerGender = player:getGender();
             player:addItem(dancerAFID - playerGender);
-            player:messageSpecial(ITEM_OBTAINED, dancerAFID);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, dancerAFID);
 
             local allPiecesCompleted = 7;
             if (bit.band(completedPieces, allPiecesCompleted) == allPiecesCompleted) then
@@ -198,7 +196,7 @@ function onEventFinish(player,csid,option)
                 completedPieces = bit.bor(completedPieces, playersReward);
                 player:setVar("dancerCompletedAF", completedPieces);
                 player:setVar("dancerTailorCS", 3);
-             end;
+            end;
         end;
     else
     -- do nothing

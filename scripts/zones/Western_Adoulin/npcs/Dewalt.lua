@@ -2,9 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Dewalt
 -- Type: Standard NPC and Quest NPC
---  Involved with Quests: 'Flavors of our Lives'
---                        'Dont Ever Leaf Me'
---  @zone 256
+-- Involved with Quests: 'Flavors of our Lives', 'Dont Ever Leaf Me'
 --  !pos -23 0 28 256
 -----------------------------------
 require("scripts/globals/quests");
@@ -14,8 +12,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local DELM = player:getQuestStatus(ADOULIN, DONT_EVER_LEAF_ME);
-    local FOOL = player:getQuestStatus(ADOULIN, FLAVORS_OF_OUR_LIVES);
+    local DELM = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.DONT_EVER_LEAF_ME);
+    local FOOL = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.FLAVORS_OF_OUR_LIVES);
     if ((DELM == QUEST_ACCEPTED) and (player:getVar("DELM_Dewalt_Branch") < 1)) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
         player:startEvent(5013);

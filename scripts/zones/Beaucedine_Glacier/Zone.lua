@@ -3,9 +3,7 @@
 -- Zone: Beaucedine_Glacier (111)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Beaucedine_Glacier/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Beaucedine_Glacier/TextIDs")
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/missions")
 require("scripts/globals/conquest")
@@ -13,13 +11,16 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    UpdateNMSpawnPoint(ID.mob.HUMBABA)
+    GetMobByID(ID.mob.HUMBABA):setRespawnTime(math.random(3600, 4200))
+
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onZoneIn( player, prevZone)
     local cs = -1
 
-    if prevZone == 134 then -- warp player to a correct position after dynamis
+    if prevZone == dsp.zone.DYNAMIS_BEAUCEDINE then -- warp player to a correct position after dynamis
         player:setPos(-284.751,-39.923,-422.948,235)
     end
 
@@ -27,11 +28,11 @@ function onZoneIn( player, prevZone)
         player:setPos( -247.911, -82.165, 260.207, 248)
     end
 
-    if player:getCurrentMission( COP) == DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9 then
+    if player:getCurrentMission( COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9 then
         cs = 206
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 114
-    elseif player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1 then
+    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1 then
         cs = 116
     end
 
@@ -39,11 +40,7 @@ function onZoneIn( player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers()
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter( player, region)
@@ -66,7 +63,7 @@ function onEventFinish( player, csid, option)
 end
 
 function onZoneWeatherChange(weather)
-    local mirrorPond = GetNPCByID(MIRROR_POND_J8) -- Quest: Love And Ice
+    local mirrorPond = GetNPCByID(ID.npc.MIRROR_POND_J8) -- Quest: Love And Ice
 
     if weather ~= dsp.weather.SNOW and weather ~= dsp.weather.BLIZZARDS then
         mirrorPond:setStatus(dsp.status.NORMAL)

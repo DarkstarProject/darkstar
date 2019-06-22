@@ -3,11 +3,9 @@
 -- Zone: Castle_Zvahl_Baileys (161)
 --
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Castle_Zvahl_Baileys/TextIDs")
-require("scripts/zones/Castle_Zvahl_Baileys/MobIDs")
+local ID = require("scripts/zones/Castle_Zvahl_Baileys/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -18,27 +16,26 @@ function onInitialize(zone)
     zone:registerRegion(3, -34,17,-10, -30,18,-5)  -- map 4 SE porter
     zone:registerRegion(4, -34,17,45, -30,18,51)  -- map 4 NE porter
 
-    UpdateNMSpawnPoint(MARQUIS_ALLOCEN)
-    GetMobByID(MARQUIS_ALLOCEN):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.LIKHO)
+    GetMobByID(ID.mob.LIKHO):setRespawnTime(math.random(3600, 4200))
 
-    UpdateNMSpawnPoint(MARQUIS_AMON)
-    GetMobByID(MARQUIS_AMON):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.MARQUIS_ALLOCEN)
+    GetMobByID(ID.mob.MARQUIS_ALLOCEN):setRespawnTime(math.random(900, 10800))
 
-    UpdateNMSpawnPoint(DUKE_HABORYM)
-    GetMobByID(DUKE_HABORYM):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.MARQUIS_AMON)
+    GetMobByID(ID.mob.MARQUIS_AMON):setRespawnTime(math.random(900, 10800))
 
-    UpdateNMSpawnPoint(GRAND_DUKE_BATYM)
-    GetMobByID(GRAND_DUKE_BATYM):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.DUKE_HABORYM)
+    GetMobByID(ID.mob.DUKE_HABORYM):setRespawnTime(math.random(900, 10800))
 
-    UpdateTreasureSpawnPoint(ZVAHL_BAILEYS_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(ZVAHL_BAILEYS_TREASURE_COFFER)
+    UpdateNMSpawnPoint(ID.mob.GRAND_DUKE_BATYM)
+    GetMobByID(ID.mob.GRAND_DUKE_BATYM):setRespawnTime(math.random(900, 10800))
+
+    dsp.treasure.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers()
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onZoneIn(player,prevZone)

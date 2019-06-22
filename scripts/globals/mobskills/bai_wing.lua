@@ -7,25 +7,25 @@
 -- Range: 30' radial.
 -- Notes: Used only by Ouryu and Cuelebre while flying.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
-    if (mob:AnimationSub() ~= 1) then
-        return 1;
+function onMobSkillCheck(target, mob, skill)
+    if mob:AnimationSub() ~= 1 then
+        return 1
     end
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,dsp.magic.ele.EARTH,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
+    local dmgmod = 1
+    local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * 5, dsp.magic.ele.EARTH, dmgmod, TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, dsp.attackType.MAGICAL, dsp.damageType.EARTH,MOBPARAM_WIPE_SHADOWS)
 
-    MobStatusEffectMove(mob, target, dsp.effect.SLOW, 300, 0, 120);
+    MobStatusEffectMove(mob, target, dsp.effect.SLOW, 3000, 0, 120)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.EARTH)
+    return dmg
+end

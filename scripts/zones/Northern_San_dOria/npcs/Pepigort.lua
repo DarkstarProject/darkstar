@@ -1,26 +1,29 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 --  NPC: Pepigort
--- Type: Standard Dialogue NPC
---  @zone 231
--- !pos -126.739 11.999 262.757
---
+-- !pos -126.739 11.999 262.757 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
+    end
+end
 
-function onTrigger(player,npc)
-    player:showText(npc,PEPIGORT_DIALOG);
-end;
+function onTrigger(player, npc)
+    if player:getVar("thePickpocket") == 1 then
+        player:showText(npc, ID.text.PICKPOCKET_PEPIGORT)
+    else
+        player:showText(npc, ID.text.PEPIGORT_DIALOG)
+    end
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
-
+function onEventFinish(player, csid, option)
+end

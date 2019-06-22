@@ -3,10 +3,6 @@
 --  NPC: Thali Mhobrum
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
 
 local path =
 {
@@ -51,4 +47,3 @@ end;
 function onEventFinish(player,csid,option,npc)
     npc:wait(0);
 end;
-

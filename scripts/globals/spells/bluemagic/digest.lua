@@ -12,31 +12,31 @@
 -- Magic Bursts on: Compression, Gravitation, Darkness
 -- Combos: None
 -----------------------------------------
-require("scripts/globals/magic");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/magic")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
 
-    local dmg = 5 + 0.575 * caster:getSkillLevel(dsp.skill.BLUE_MAGIC);
+    local dmg = 5 + 0.575 * caster:getSkillLevel(dsp.skill.BLUE_MAGIC)
     --get resist multiplier (1x if no resist)
-    local params = {};
-    params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND);
-    params.attribute = dsp.mod.MND;
-    params.skillType = dsp.skill.BLUE_MAGIC;
-    params.bonus = 1.0;
-    local resist = applyResistance(caster, target, spell, params);
+    local params = {}
+    params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND)
+    params.attribute = dsp.mod.MND
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.bonus = 1.0
+    local resist = applyResistance(caster, target, spell, params)
     --get the resisted damage
-    dmg = dmg*resist;
+    dmg = dmg*resist
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg);
+    dmg = addBonuses(caster,spell,target,dmg)
     --add in target adjustment
-    dmg = adjustForTarget(target,dmg,spell:getElement());
+    dmg = adjustForTarget(target,dmg,spell:getElement())
     --add in final adjustments
 
     if (dmg < 0) then
@@ -44,16 +44,16 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:isUndead()) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
-        return dmg;
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        return dmg
     end
 
     if (target:getHP() < dmg) then
-        dmg = target:getHP();
+        dmg = target:getHP()
     end
 
-    dmg = BlueFinalAdjustments(caster,target,spell,dmg);
-    caster:addHP(dmg);
+    dmg = BlueFinalAdjustments(caster,target,spell,dmg,params)
+    caster:addHP(dmg)
 
-    return dmg;
-end;
+    return dmg
+end

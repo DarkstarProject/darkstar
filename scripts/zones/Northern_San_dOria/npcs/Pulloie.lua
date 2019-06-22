@@ -3,10 +3,6 @@
 --  NPC: Pulloie
 -- Quest NPC
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 

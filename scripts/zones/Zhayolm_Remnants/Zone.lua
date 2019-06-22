@@ -3,26 +3,23 @@
 -- Zone: Zhayolm_Remnants
 --
 -----------------------------------
-package.loaded["scripts/zones/Zhayolm_Remnants/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Zhayolm_Remnants/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Zhayolm_Remnants/IDs")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
+    local cs = -1
 
-    return cs;
-end;
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

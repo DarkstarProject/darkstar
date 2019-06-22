@@ -3,10 +3,7 @@
 -- Zone: Diorama_Abdhaljs-Ghelsba
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Diorama_Abdhaljs-Ghelsba/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Diorama_Abdhaljs-Ghelsba/TextIDs");
+local ID = require("scripts/zones/Diorama_Abdhaljs-Ghelsba/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,4 +23,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

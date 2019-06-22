@@ -3,12 +3,10 @@
 -- Zone: Sacrarium (28)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Sacrarium/TextIDs");
-require("scripts/zones/Sacrarium/MobIDs");
+local ID = require("scripts/zones/Sacrarium/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
+require("scripts/globals/treasure")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -16,7 +14,7 @@ function onInitialize(zone)
     -- Set random variable for determining Old Prof. Mariselle's spawn location
     SetServerVariable("Old_Prof_Spawn_Location", math.random(2,7));
 
-    UpdateTreasureSpawnPoint(SACRARIUM_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -34,10 +32,7 @@ function afterZoneIn(player)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -58,7 +53,7 @@ function onGameDay()
     };
     local doors = labyrinthDoorsByDay[VanadielDayElement()];
     for i = 0, 17 do
-        GetNPCByID(SACRARIUM_LABYRINTH_OFFSET + i):setAnimation(dsp.anim.OPEN_DOOR + doors[i+1]);
+        GetNPCByID(ID.npc.LABYRINTH_OFFSET + i):setAnimation(dsp.anim.OPEN_DOOR + doors[i+1]);
     end
 end;
 

@@ -3,13 +3,12 @@
 -- Zone: Hall_of_Transference
 --
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Hall_of_Transference/TextIDs");
+local ID = require("scripts/zones/Hall_of_Transference/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -29,17 +28,17 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(274,-82,-62 ,180);
 
-    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
         if (player:getVar("cspromy3") == 1) then
-            if (prevZone == 102) then
+            if (prevZone == dsp.zone.LA_THEINE_PLATEAU) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
                     cs = 155;
                 end
-            elseif (prevZone == 108) then
+            elseif (prevZone == dsp.zone.KONSCHTAT_HIGHLANDS) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
                     cs = 155;
                 end
-            elseif (prevZone == 117) then
+            elseif (prevZone == dsp.zone.TAHRONGI_CANYON) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
                     cs = 155;
                 end
@@ -137,11 +136,11 @@ function onEventFinish(player,csid,option)
             player:setPos(-93.268, 0, 170.749, 162, 20); -- To Promyvion Mea {R}
         end
     elseif (csid == 161 and option == 1) then
-        if (player:getPreviousZone() == 102) then -- Holla
+        if (player:getPreviousZone() == dsp.zone.LA_THEINE_PLATEAU) then -- Holla
             player:setVar("LastSkyWarpHolla", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == 108) then -- Dem
+        elseif (player:getPreviousZone() == dsp.zone.KONSCHTAT_HIGHLANDS) then -- Dem
             player:setVar("LastSkyWarpDem", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == 117) then -- Mea
+        elseif (player:getPreviousZone() == dsp.zone.TAHRONGI_CANYON) then -- Mea
             player:setVar("LastSkyWarpMea", tonumber(os.date("%j")));
         end
         dsp.teleport.to(player, dsp.teleport.id.SKY);

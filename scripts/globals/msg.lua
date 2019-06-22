@@ -43,6 +43,16 @@ dsp.msg.channel =
     UNITY          = 33
 }
 
+-- used by PrintToArea
+dsp.msg.area =
+{
+    SYSTEM      = 0, -- Server wide like the purple stuff :)
+    SAY         = 1, -- Will display in small area around player
+    SHOUT       = 2, -- Will display in wide area around player
+    PARTY       = 3, -- Will display to players entire party/alliance
+    YELL        = 4  -- If yell is enabled in zone, will display.
+}
+
 ------------------------------------
 -- Message Basic
 ------------------------------------
@@ -63,6 +73,7 @@ dsp.msg.basic =
     MAGIC_REMOVE_EFFECT    = 83,  -- <caster> casts <spell>. <caster> successfully removes <target>'s <status>.
     MAGIC_RESIST           = 85,  -- <caster> casts <spell>. <target> resists the spell.
     MAGIC_TELEPORT         = 93,  -- <caster> casts <spell>. <target> vanishes.
+    MAGIC_FAIL             = 114, -- <caster> casts <spell> on <target>, but the spell fails to take effect
     MAGIC_RESIST_2         = 284, -- <target> resists the effects of the spell!
     MAGIC_DRAIN_HP         = 227, -- <caster> casts <spell>. <amount> HP drained from <target>.
     MAGIC_DRAIN_MP         = 228, -- <caster> casts <spell>. <amount> MP drained from <target>.
@@ -78,6 +89,7 @@ dsp.msg.basic =
     MAGIC_ABSORB_MND       = 334, -- <caster> casts <spell>. <target>'s MND is drained.
     MAGIC_ABSORB_CHR       = 335, -- <caster> casts <spell>. <target>'s CHR is drained.
     MAGIC_ERASE            = 341, -- <caster> casts <spell>. <target>'s <status> effect disappears!
+    MAGIC_STEAL            = 430, -- <caster> casts <spell>. 1 of <target>'s effects is drained.
     MAGIC_TP_REDUCE        = 431, -- <caster> casts <spell>. <target>'s TP is reduced.
     MAGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
     MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
@@ -89,6 +101,8 @@ dsp.msg.basic =
     SKILL_RECOVERS_HP      = 103, -- The <player> uses .. <target> recovers .. HP.
     SELF_HEAL              = 238, -- <user> uses <skill>. <user> recovers <amount> HP.
     SELF_HEAL_SECONDARY    = 263, -- <target> recovers <amount> HP.
+    AOE_REGAIN_HP          = 357, -- <target> regains <amount> HP.
+    AOE_REGAIN_MP          = 358, -- <target> regains <amount> MP.
     SKILL_ERASE            = 159, -- <user> uses <skill> <target>'s <status> effect disappears!
     DAMAGE                 = 185, -- player uses, target takes 10 damage. DEFAULT
     DAMAGE_SECONDARY       = 264,
@@ -125,7 +139,8 @@ dsp.msg.basic =
     IS_EFFECT              = 277, -- "is <status>" - that's the entire message.
     EVADES                 = 282,
     NO_EFFECT              = 283, -- "No effect" - that's the entire message.
-    FAMILIAR               = 108,
+    FAMILIAR_PC            = 108, -- The <player> uses .. Pet's powers increase!
+    FAMILIAR_MOB           = 109, -- The <mob> uses .. Pet's powers increase!
     DISAPPEAR_NUM          = 231, -- <num> of <target>'s effects disappear!
     TP_REDUCED             = 362, -- tp reduced to
     ATTR_DRAINED           = 369,
@@ -241,6 +256,12 @@ dsp.msg.basic =
     ABOUT_TO_WEAR_OFF       = 251,  -- The effect of ${status} is about to wear off.
     ALL_ABILITIES_RECHARGED = 361,  -- All of ${target}'s abilities are recharged.
 
+    -- Battlefield
+    TIME_LEFT               = 202,  -- Time left: (0:00:00)
+
+    -- Dynamis
+    TIME_DYNAMIS_EXTENDED  = 448, -- Time allowed in Dynamis has been extended by <param> minutes
+    TIME_DYNAMIS_REMAINING = 449, -- ----== WARNING ==----Time remaining in Dynamis: <param> minutes.
     -- Charm
     CANNOT_CHARM           = 210, -- <actor> cannot charm <target>!
     VERY_DIFFICULT_CHARM   = 211, -- It would be very difficult for <actor> to charm <target>.
@@ -275,7 +296,7 @@ dsp.msg.basic =
     FOV_OBTAINS_GIL         = 565,  -- ${target} obtains ${gil}.
     FOV_OBTAINS_TABS        = 566,  -- ${target} obtains ${number} tab.${lb}(Total: ${number})
     FOV_REGIME_BEGINS_ANEW  = 643,  -- Your current training regime will begin anew!
-
+    
     -- Depoil Statuses
     DESPOIL_ATT_DOWN        = 593,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Attack Down.
     DESPOIL_DEF_DOWN        = 594,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Defense Down.

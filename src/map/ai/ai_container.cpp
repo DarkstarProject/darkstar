@@ -323,7 +323,10 @@ void CAIContainer::Reset()
         PathFind->Clear();
     }
 
-    Controller->Reset();
+    if (Controller)
+    {
+        Controller->Reset();
+    }
 
     while (!m_stateStack.empty())
     {
@@ -442,7 +445,7 @@ bool CAIContainer::QueueEmpty()
 
 bool CAIContainer::Internal_Despawn()
 {
-    if (!IsCurrentState<CDespawnState>())
+    if (!IsCurrentState<CDespawnState>() && !IsCurrentState<CRespawnState>())
     {
         return ForceChangeState<CDespawnState>(PEntity);
     }

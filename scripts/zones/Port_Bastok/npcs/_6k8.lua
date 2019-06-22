@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Port Bastok
 --  NPC: Door: Departures Exit
--- @zone 236
--- !pos -62 1 -8
------------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-- !pos -62 1 -8 236
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,4 +35,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

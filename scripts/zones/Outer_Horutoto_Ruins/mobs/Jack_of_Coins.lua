@@ -1,29 +1,23 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
---  MOB: Jack of Coins
+--   NM: Jack of Coins
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/missions");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/missions")
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setLocalVar("popTime", os.time())
-end;
+end
 
 function onMobRoam(mob)
-    local spawnTime = mob:getLocalVar("popTime");
-
-    if (os.time() - spawnTime > 180) then
-        DespawnMob(mob:getID());
+    if os.time() - mob:getLocalVar("popTime") > 180 then
+        DespawnMob(mob:getID())
     end
-
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-    local CurrentMission = player:getCurrentMission(WINDURST);
-    local MissionStatus = player:getVar("MissionStatus");
-
-    if (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1) then
-        player:setVar("MissionStatus",2);
+    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 1 then
+        player:setVar("MissionStatus", 2)
     end
-end;
+end

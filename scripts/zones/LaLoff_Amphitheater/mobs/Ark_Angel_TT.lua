@@ -2,27 +2,38 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel TT
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(dsp.mod.UFASTCAST, 30);
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
-    mob:setMobMod(dsp.mobMod.SUB_2HOUR, 1);
 end;
 
 function onMobSpawn(mob)
-end;
+    dsp.mix.jobSpecial.config(mob, {
+        between = 30,
+        specials =
+        {
+            {id = dsp.jsa.BLOOD_WEAPON},
+            {
+                id = dsp.jsa.MANAFONT,
+                endCode = function(mob) -- "Uses Manafont and ... Will cast Sleepga followed by Meteor."
+                    mob:castSpell(273) -- sleepga
+                    mob:castSpell(218) -- meteor
+                end,
+            },
+        },
+    })
+end
 
 function onMobEngaged(mob,target)
-   local mobid = mob:getID()
+    local mobid = mob:getID()
 
     for member = mobid-5, mobid+2 do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
+        local m = GetMobByID(member)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
         end
     end
 end;

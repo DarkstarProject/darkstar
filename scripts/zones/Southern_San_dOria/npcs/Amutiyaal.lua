@@ -4,9 +4,7 @@
 --  Warp NPC (Aht Urhgan)
 -- !pos 116 0.1 84 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
@@ -46,13 +44,13 @@ Chateau d'Oraguille (East to West)
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(881);
     end
@@ -61,7 +59,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local LureSandy = player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+    local LureSandy = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
     local WildcatSandy = player:getVar("WildcatSandy");
 
     if (LureSandy ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
@@ -76,7 +74,7 @@ function onTrigger(player,npc)
                 player:startEvent(814);
             end
         end
-    elseif (player:getCurrentMission(TOAU) >= 2) then
+    elseif (player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM) then
         player:startEvent(880);
     else
         player:startEvent(816);
@@ -88,18 +86,18 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 812) then
-        player:addQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:setVar("WildcatSandy",0);
         player:addKeyItem(dsp.ki.RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
     elseif (csid == 815) then
-        player:completeQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:addFame(SANDORIA,150);
         player:setVar("WildcatSandy",0);
         player:delKeyItem(dsp.ki.RED_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.RED_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,dsp.ki.RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RED_INVITATION_CARD);
+        player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_INVITATION_CARD);
     elseif (csid == 881) then
         player:tradeComplete();
         dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);

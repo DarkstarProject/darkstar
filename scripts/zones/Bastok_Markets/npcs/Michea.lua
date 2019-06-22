@@ -6,17 +6,14 @@
 -- Involed in: Distant Loyalties
 -- !pos -298 -16 -157 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,THE_ELVAAN_GOLDSMITH);
-    local distantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
-    local fatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
+    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
+    local distantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
+    local fatherFigure = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FATHER_FIGURE);
 
     -- THE ELVAAN GOLDSMITH
     if (theElvaanGoldsmith >= QUEST_ACCEPTED and npcUtil.tradeHas(trade, 648)) then
@@ -33,10 +30,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,THE_ELVAAN_GOLDSMITH);
-    local distantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
+    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
+    local distantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
     local distantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
-    local fatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
+    local fatherFigure = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FATHER_FIGURE);
     
     -- THE ELVAAN GOLDSMITH
     if (theElvaanGoldsmith == QUEST_AVAILABLE) then
@@ -71,10 +68,10 @@ function onEventFinish(player,csid,option)
 
     -- THE ELVAAN GOLDSMITH
     if (csid == 215) then
-        player:addQuest(BASTOK,THE_ELVAAN_GOLDSMITH);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
     elseif (csid == 216) then
-        local fame = player:hasCompletedQuest(BASTOK, THE_ELVAAN_GOLDSMITH) and 8 or 100;
-        if (npcUtil.completeQuest(player, BASTOK, THE_ELVAAN_GOLDSMITH, {gil=180, fame=fame})) then
+        local fame = player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH) and 8 or 100;
+        if (npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH, {gil=180, fame=fame})) then
             player:confirmTrade();
         end
 
@@ -92,9 +89,9 @@ function onEventFinish(player,csid,option)
         
     -- FATHER FIGURE
     elseif (csid == 240) then
-        player:addQuest(BASTOK,FATHER_FIGURE);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.FATHER_FIGURE);
     elseif (csid == 241) then
-        if (npcUtil.completeQuest(player, BASTOK, FATHER_FIGURE, {gil=2200, fame=120})) then
+        if (npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.FATHER_FIGURE, {gil=2200, fame=120})) then
             player:confirmTrade();
         end
     end

@@ -4,9 +4,7 @@
 -- Corsair AF2 and AF3 quests
 -- !pos -14.687 0.000 25.114 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
+local ID = require("scripts/zones/Nashmau/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
@@ -14,7 +12,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") <= 2) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") <= 2) then
         if (trade:hasItemQty(2341,1) and trade:getItemCount() == 1) then -- Trade Hydrogauage
             player:startEvent(283);
             player:setVar("NavigatingtheUnfriendlySeas",2);
@@ -23,7 +21,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) >= QUEST_ACCEPTED) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) >= QUEST_ACCEPTED) then
         local letterGreen = player:getVar("LeleroonsLetterGreen");
         local letterBlue = player:getVar("LeleroonsLetterBlue");
         local letterRed = player:getVar("LeleroonsLetterRed");
@@ -55,15 +53,15 @@ function onEventFinish(player,csid,option)
     if (csid == 282) then
         if (option == 1) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_GREEN);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_GREEN)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_GREEN)
             player:setVar("LeleroonsLetterGreen",1);
         elseif (option == 2) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_BLUE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_BLUE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_BLUE)
             player:setVar("LeleroonsLetterBlue",1);
         elseif (option == 3) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_RED);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_RED)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_RED)
             player:setVar("LeleroonsLetterRed",1);
         end;
     end;

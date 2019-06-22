@@ -3,20 +3,16 @@
 --  NPC: Taraihi-Perunhi
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Altepa/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Abyssea-Altepa/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(333);
-end;
+    player:startEvent(333)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

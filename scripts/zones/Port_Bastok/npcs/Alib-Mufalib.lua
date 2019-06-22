@@ -4,14 +4,12 @@
 -- Type: Warp NPC
 -- !pos 116.080 7.372 -31.820 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 
 --[[
 Bitmask Designations:
@@ -45,14 +43,14 @@ Bastok Mines (Clockwise, starting at Ore Street, upper floor to lower floor)
 ]]--
 
 function onTrade(player,npc,trade)
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(379);
     end
 end;
 
 function onTrigger(player,npc)
-    local LureBastok = player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
+    local LureBastok = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK);
     local WildcatBastok = player:getVar("WildcatBastok");
     if (LureBastok ~= 2 and ENABLE_TOAU == 1) then
         if (LureBastok == 0) then
@@ -66,7 +64,7 @@ function onTrigger(player,npc)
                 player:startEvent(359);
             end
         end
-    elseif (player:getCurrentMission(TOAU) >= 2) then
+    elseif (player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM) then
         player:startEvent(378);
     else
         player:startEvent(361);
@@ -78,21 +76,20 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 357) then
-        player:addQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK);
         player:setVar("WildcatBastok",0);
         player:addKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BLUE_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BLUE_SENTINEL_BADGE);
     elseif (csid == 360) then
-        player:completeQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK);
         player:addFame(BASTOK,150);
         player:setVar("WildcatBastok",0);
         player:delKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.BLUE_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,dsp.ki.BLUE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BLUE_INVITATION_CARD);
+        player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.BLUE_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BLUE_INVITATION_CARD);
     elseif (csid == 379) then
         player:tradeComplete();
         dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
     end
 end;
-

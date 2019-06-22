@@ -7,33 +7,33 @@
 --  Range: Melee
 --  Notes:
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() == 1318 and mob:getLocalVar("AMBUSH") == 1) then
-        return 1;
+        return 1
     else
-        return 0;
+        return 0
     end
-end;
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 3.3;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_WIPE_SHADOWS);
+    local numhits = 1
+    local accmod = 1
+    local dmgmod = 3.3
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,MOBPARAM_WIPE_SHADOWS)
 
     -- These are here as it doesn't look right otherwise
-    mob:hideName(false);
-    mob:untargetable(false);
-    mob:AnimationSub(1);
-    mob:setLocalVar("AMBUSH",1); -- Used it for the last time!
+    mob:hideName(false)
+    mob:untargetable(false)
+    mob:AnimationSub(1)
+    mob:setLocalVar("AMBUSH",1) -- Used it for the last time!
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
+    return dmg
+end

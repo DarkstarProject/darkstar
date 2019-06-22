@@ -1,6 +1,8 @@
 -----------------------------------
 -- A collection of frequently needed teleport shortcuts.
 -----------------------------------
+require("scripts/globals/settings")
+require("scripts/globals/zone")
 
 dsp = dsp or {}
 dsp.teleport = dsp.teleport or {}
@@ -33,15 +35,15 @@ local ids =
     B_REM               = 21,
     S_REM               = 22,
     MAAT                = 23,
-    HOMING              = 24,
+    OUTPOST             = 24,
     LEADER              = 25,
     EXITPROMMEA         = 26,
     EXITPROMHOLLA       = 27,
     EXITPROMDEM         = 28,
     LUFAISE             = 29,
-    CHOCOWINDURST       = 30,
-    CHOCOSANDORIA       = 31,
-    CHOCOBASTOK         = 32,
+    CHOCO_WINDURST      = 30,
+    CHOCO_SANDORIA      = 31,
+    CHOCO_BASTOK        = 32,
     DUCALGUARD          = 33,
     PURGONORGO          = 34,
     AZOUPH_SP           = 35,
@@ -66,6 +68,9 @@ local ids =
     MINESHAFT           = 54,
     WHITEGATE           = 55,
     SEA                 = 56,
+    HOME_NATION         = 57,
+    CHOCO_UPPER_JEUNO   = 58,
+    ZVAHL_KEEP          = 59
 }
 dsp.teleport.id = ids
 
@@ -90,16 +95,20 @@ local destinations =
     [ids.DVUCCA]                = {-252.715,   -7.666,  -30.640, 128,  79}, -- {R}
     [ids.REEF]                  = {   9.304,   -7.376,  620.133,   0,  54}, -- {R}
     [ids.ALZADAAL]              = { 180.000,    0.000,   20.000,   0,  72}, -- {R}
-    [ids.B_REM]                 = { 620.000,    0.000, -260,640,  72,  72}, -- {R}
+    [ids.CUTTER]                = {-456.000,   -3.000, -405.000,-405,  54},
+    [ids.A_REM]                 = {-579.000,   -0.050, -100.000, 192,  72},
+    [ids.B_REM]                 = { 620.000,    0.000, -260.640,  72,  72}, -- {R}
     [ids.S_REM]                 = { 580.000,    0.000,  500.000, 192,  72}, -- {R}
+--  [ids.Z_REM]                 = { 000.000,    0.000,  000.000, 000,  72},
     [ids.MAAT]                  = {  11.000,    3.000,  117.000,   0, 243},
     [ids.EXITPROMMEA]           = { 179.000,   35.000,  256.000,  63, 117},
     [ids.EXITPROMHOLLA]         = { 337.000,   19.000,  -60.000, 125, 102},
     [ids.EXITPROMDEM]           = { 136.000,   19.000,  220.000, 130, 108},
     [ids.LUFAISE]               = { 438.000,    0.000,  -18.000,  11,  24},
-    [ids.CHOCOWINDURST]         = { 113.355,   -5.000, -133.118,   0, 241}, -- {R}
-    [ids.CHOCOSANDORIA]         = {  -8.557,    1.999,  -80.093,  64, 230}, -- {R}
-    [ids.CHOCOBASTOK]           = {  40.164,    0.000,  -83.578,  64, 234}, -- {R}
+    [ids.CHOCO_SANDORIA]        = {  -8.557,    1.999,  -80.093,  64, 230}, -- {R}
+    [ids.CHOCO_BASTOK]          = {  40.164,    0.000,  -83.578,  64, 234}, -- {R}
+    [ids.CHOCO_WINDURST]        = { 113.355,   -5.000, -133.118,   0, 241}, -- {R}
+    [ids.CHOCO_UPPER_JEUNO]     = { -44.000,    7.900,   98.000, 170, 244},
     [ids.DUCALGUARD]            = {  48.930,   10.002,  -71.032, 195, 243},
     [ids.PURGONORGO]            = {-398.689,   -3.038, -415.835,   0,   4}, -- {R}
     [ids.AZOUPH_SP]             = { 522.730,  -28.009, -502.621, 161,  79}, -- {R}
@@ -124,6 +133,31 @@ local destinations =
     [ids.MINESHAFT]             = { -93.657, -120.000, -583.561,   0,  13}, -- (R)
     [ids.WHITEGATE]             = {  27.424,   -6.000, -123.792, 192,  50}, -- {R}
     [ids.SEA]                   = { -31.800,    0.000, -618.700, 190,  33}, -- {R}
+    [ids.ZVAHL_KEEP]            = {-555.996,  -70.100,   59.989,   0, 162}
+}
+
+-- Use to call to player:getNationTeleport
+-- Called nation for lack of a better name
+dsp.teleport.nation =
+{
+    OUTPOST_SANDORIA   = 0,
+    OUTPOST_BASTOK     = 1,
+    OUTPOST_WINDURST   = 2,
+    RUNIC_PORTAL       = 3,
+    MAW                = 4,
+    CAMPAIGN_SANDORIA  = 5,
+    CAMPAIGN_BASTOK    = 6,
+    CAMPAIGN_WINDURST  = 7
+}
+
+dsp.teleport.runic_portal =
+{
+    AZOUPH  = 0x02,
+    DVUCCA  = 0x04,
+    MAMOOL  = 0x08,
+    HALVUNG = 0x10,
+    ILRUSI  = 0x20,
+    NYZUL   = 0x40,
 }
 
 dsp.teleport.to = function(player, destination)
@@ -219,6 +253,52 @@ dsp.teleport.toMaw = function(player, option)
     local dest = mawDestinations[option]
     if dest then
         player:setPos(unpack(dest))
+    end
+end
+
+-----------------------------------
+-- TELEPORT TO REGIONAL OUTPOST
+-----------------------------------
+
+local outpostDestinations =
+{
+    [dsp.region.RONFAURE]        = {-437.688, -20.255, -219.227, 124, 100}, -- Ronfaure {R}
+    [dsp.region.ZULKHEIM]        = { 148.231,  -7.975,   93.479, 154, 103}, -- Zulkheim {R}
+    [dsp.region.NORVALLEN]       = {  62.030,   0.463,   -2.025,  67, 104}, -- Norvallen {R}
+    [dsp.region.GUSTABERG]       = {-580.161,  39.578,   62.680,  89, 106}, -- Gustaberg {R}
+    [dsp.region.DERFLAND]        = { 465.820,  23.625,  423.164,  29, 109}, -- Derfland {R}
+    [dsp.region.SARUTABARUTA]    = { -17.921, -13.335,  318.156, 254, 115}, -- Sarutabaruta {R}
+    [dsp.region.KOLSHUSHU]       = {-480.237, -30.943,   58.079,  62, 118}, -- Kolshushu {R}
+    [dsp.region.ARAGONEU]        = {-297.047,  16.988,  418.026, 225, 119}, -- Aragoneu {R}
+    [dsp.region.FAUREGANDI]      = { -18.690, -60.048, -109.243, 100, 111}, -- Fauregandi {R}
+    [dsp.region.VALDEAUNIA]      = { 211.210, -24.016, -207.338, 160, 112}, -- Valdeaunia {R}
+    [dsp.region.QUFIMISLAND]     = {-243.049, -19.983,  306.712,  71, 126}, -- Qufim Island {R}
+    [dsp.region.LITELOR]         = { -37.669,   0.419, -141.216,  69, 121}, -- Li'Telor {R}
+    [dsp.region.KUZOTZ]          = {-249.983,   7.965, -252.976, 122, 114}, -- Kuzotz {R}
+    [dsp.region.VOLLBOW]         = {-176.360,   7.624,  -63.580, 122, 113}, -- Vollbow {R}
+    [dsp.region.ELSHIMOLOWLANDS] = {-240.860,  -0.031, -388.434,  64, 123}, -- Elshimo Lowlands {R}
+    [dsp.region.ELSHIMOUPLANDS]  = { 207.821,  -0.128,  -86.623, 159, 124}, -- Elshimo Uplands {R}
+    [dsp.region.TULIA]           = {   4.000, -54.000, -600.000, 192, 130}, -- Tu'Lia (can't acquire on retail, but exists in NCP event menu)
+    [dsp.region.TAVNAZIANARCH]   = {-535.861,  -7.149,  -53.628, 122,  24}, -- Tavnazia {R}
+}
+
+dsp.teleport.toOutpost = function(player, region)
+    local dest = outpostDestinations[region]
+    player:setPos(unpack(dest))
+end
+
+-----------------------------------
+-- TELEPORT TO HOME NATION
+-----------------------------------
+
+dsp.teleport.toHomeNation = function(player)
+    local pNation = player:getNation()
+    if pNation == dsp.nation.BASTOK then
+        player:setPos(89, 0 , -66, 0, 234)
+    elseif pNation == dsp.nation.SANDORIA then
+        player:setPos(49, -1 , 29, 164, 231)
+    else
+        player:setPos(193, -12 , 220, 64, 240)
     end
 end
 
@@ -424,64 +504,37 @@ dsp.teleport.escape = function(player)
 end
 
 -----------------------------------
--- USE HOMING RING
+-- EXPLORER MOOGLE EVENTS
 -----------------------------------
 
-dsp.teleport.homingRing = function(player) -- homing ring and return ring should return same positions.
-    local zone = player:getZoneID()
-    -- Ronfaure
-    if zone == 100 or zone == 101 or zone == 139 or zone == 140 or zone == 141 or zone == 142 or zone == 190 or zone == 167 or zone == 230 or zone == 231 or zone == 232 or zone == 233 then
-        player:setPos(-437.688, -20.255, -219.227, 124, 100) -- {R}
-    -- Zulkheim
-    elseif zone == 248 or zone == 102 or zone == 103 or zone == 108 or zone == 193 or zone == 196 then
-        player:setPos(148.231, -7.975 , 93.479, 154, 103)       -- {R}
-    -- Norvallen
-    elseif zone == 104 or zone == 105 or zone == 1 or zone == 2 or zone == 149 or zone == 150 or zone == 195 then
-        player:setPos(62.030, 0.463, -2.025, 67, 104)           -- {R}
-    -- Gustaberg
-    elseif zone == 234 or zone == 235 or zone == 236 or zone == 237 or zone == 106 or zone == 107 or zone == 172 or zone == 191 or zone == 143 or zone == 173 or zone == 144 then
-        player:setPos(-580.161, 39.578, 62.68, 89, 106)      -- {R}
-    -- Derfland
-    elseif zone == 110 or zone == 109 or zone == 197 or zone == 148 or zone == 147 then
-        player:setPos(465.820, 23.625, 423.164, 29, 109)       -- {R}
-    -- Sarutabatura
-    elseif zone == 238 or zone == 239 or zone == 240 or zone == 241 or zone == 242 or zone == 115 or zone == 116 or zone == 169 or zone == 170 or zone == 192 or zone == 194 or zone == 145 or zone == 146 then
-        player:setPos(-17.921, -13.335, 318.156, 254, 115)      -- {R}
-    -- Kolshushu
-    elseif zone == 249 or zone == 4 or zone == 117 or zone == 118 or zone == 198 or zone == 213 then
-        player:setPos(-480.237, -30.943, 58.079, 62, 118)      -- {R}
-    -- Aragoneu
-    elseif zone == 7 or zone == 119 or zone == 120 or zone == 200 or zone == 151 or zone == 152 or zone == 8 then
-        player:setPos(-297.047, 16.988, 418.026, 225, 119)      -- {R}
-    -- Fauregandi
-    elseif zone == 111 or zone == 166 or zone == 9 or zone == 204 or zone == 10 or zone == 206 or zone == 203 then
-        player:setPos(-18.690, -60.048, -109.243, 100, 111)  -- {R}
-    -- Valdeaunia
-    elseif zone == 112 or zone == 5 or zone == 161 or zone == 162 or zone == 165 or zone == 6 then
-        player:setPos(211.210, -24.016, -207.338, 160, 112)  -- {R}
-    -- Qufim Island
-    elseif zone == 127 or zone == 126 or zone == 157 or zone == 158 or zone == 184 or zone == 179 then
-        player:setPos(-243.049, -19.983, 306.712, 71, 126)   -- {R}
-    -- Li'Telor
-    elseif zone == 122 or zone == 121 or zone == 251 or zone == 153 or zone == 154 or zone ==202 then
-        player:setPos(-37.669, 0.419, -141.216, 69, 121)      -- {R}
-    -- Kuzotz
-    elseif zone == 247 or zone == 114 or zone == 125 or zone == 208 or zone == 209 or zone == 168 then
-        player:setPos(-249.983, 7.965, -252.976, 122, 114)   -- {R}
-    -- Vollbow
-    elseif zone == 113 or zone == 128 or zone == 174 or zone == 212 or zone == 201 then
-        player:setPos(-176.360, 7.624, -63.580, 122, 113)      -- {R}
-    -- Elshimo Lowlands
-    elseif zone == 250 or zone == 252 or zone == 176 or zone == 123 then
-        player:setPos(-240.860, -0.031, -388.434, 64, 123)   -- {R}
-    -- Elshimo Uplands
-    elseif zone == 124 or zone == 159 or zone == 160 or zone == 205 or zone == 163 or zone == 211 or zone == 207 then
-        player:setPos(207.821, -0.128, -86.623, 159, 124)      -- {R}
-    -- Tulia ?!
-    elseif zone == 130 or zone == 177 or zone == 178 or zone == 180 or zone == 181 then
-        player:setPos(4, -54, -600, 192, 130)                -- Dummied out?
-    -- Tavnazia
-    elseif zone == 26 or zone == 25 or zone ==24 or zone == 28 or zone == 29 or zone == 30 or zone == 31 or zone == 32 or zone == 27 then
-        player:setPos(-535.861, -7.149, -53.628, 122, 24)    -- {R}
+dsp.teleport.explorerMoogleOnTrigger = function(player, event)
+    local accept = 0
+
+    if player:getGil() < 300 then
+        accept = 1
+    end
+
+    if player:getMainLvl() < EXPLORER_MOOGLE_LV then
+        event = event + 1
+    end
+
+    player:startEvent(event, player:getZoneID(), 0, accept)
+end
+
+dsp.teleport.explorerMoogleOnEventFinish = function(player, csid, option, event)
+    local price = 300
+
+    if csid == event then
+        if option == 1 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 231)
+        elseif option == 2 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 234)
+        elseif option == 3 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 240)
+        elseif option == 4 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 248)
+        elseif option == 5 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 249)
+        end
     end
 end

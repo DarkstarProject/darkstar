@@ -5,9 +5,9 @@
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    target:addTP(3000);
-end;
+    target:addTP(3000)
+end

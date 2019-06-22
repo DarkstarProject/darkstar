@@ -5,9 +5,6 @@
 -- Invlolved in Quest: A Foreman's Best Friend
 -----------------------------------
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-ForemansBestFriend = player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND);
+ForemansBestFriend = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_FOREMAN_S_BEST_FRIEND);
 
     if (ForemansBestFriend == QUEST_ACCEPTED) then
         player:startEvent(111);

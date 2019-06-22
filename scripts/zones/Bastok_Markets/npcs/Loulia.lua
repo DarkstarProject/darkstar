@@ -6,10 +6,6 @@
 --
 -- Auto-Script: Requires Verification. Validated standard dialog - thrydwolf 12/8/2011
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -23,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

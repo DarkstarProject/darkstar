@@ -3,9 +3,7 @@
 --  NPC: Tomasa
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Metalworks/TextIDs")
+local ID = require("scripts/zones/Metalworks/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         4509,   10, 3,    -- Distilled Water
     }
 
-    player:showText(npc, TOMASA_SHOP_DIALOG)
+    player:showText(npc, ID.text.TOMASA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end
 

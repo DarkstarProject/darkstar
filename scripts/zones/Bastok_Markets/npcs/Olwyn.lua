@@ -4,10 +4,8 @@
 -- Standard Merchant NPC
 -- !pos -322.123 -10.319 -169.418 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -24,6 +22,6 @@ function onTrigger(player,npc)
         4148,  290, 3,    -- Antidote
     }
 
-    player:showText(npc,OLWYN_SHOP_DIALOG)
+    player:showText(npc,ID.text.OLWYN_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

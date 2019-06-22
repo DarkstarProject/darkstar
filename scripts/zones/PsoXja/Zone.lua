@@ -3,13 +3,11 @@
 -- Zone: PsoXja (9)
 --
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/PsoXja/TextIDs");
-require("scripts/zones/PsoXja/MobIDs");
+local ID = require("scripts/zones/PsoXja/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
+require("scripts/globals/treasure")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -21,15 +19,11 @@ function onInitialize(zone)
     zone:registerRegion(5, -302.493, 42, -179.995, -297.386, 48, -176.078); -- Uncapped area 2 (G-9 Tower)
     zone:registerRegion(6,  299.847, 42,  257.716,  303.824, 48,  262.391); -- Uncapped area 3 (I-7 Tower)
 
-    UpdateTreasureSpawnPoint(PSO_XJA_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -39,9 +33,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-29.956,-1.903,212.521,188);
     end
 
-    if (player:getXPos() == -300 and player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 2) then
+    if (player:getXPos() == -300 and player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 2) then
         cs = 1; -- COP event
-    elseif (player:getXPos() == 220 and player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
+    elseif (player:getXPos() == 220 and player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
         cs = 4;
     end
 

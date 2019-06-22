@@ -2,12 +2,9 @@
 -- Area: Windurst Walls
 --   NPC: Tsuaora-Tsuora
 -- Type: Standard NPC
--- @zone 239
--- !pos 71.489 -3.418 -67.809
+-- !pos 71.489 -3.418 -67.809 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

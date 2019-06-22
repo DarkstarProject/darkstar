@@ -5,9 +5,6 @@
 -- Involved in quest: No Strings Attached
 -- !pos -285.382 -13.021 -84.743 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -16,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
+    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED);
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
 
     if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and NoStringsAttached == QUEST_AVAILABLE) then
@@ -35,6 +32,6 @@ function onEventFinish(player,csid,option)
 
     if (csid == 434) then
         player:setVar("NoStringsAttachedProgress",1);
-        player:addQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
+        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED);
     end;
 end;

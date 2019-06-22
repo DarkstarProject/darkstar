@@ -3,10 +3,7 @@
 --  NPC: Rubious Crystal (East Tower)
 -- !pos 683.718 -6.250 -222.167 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/AlTaieu/TextIDs");
-require("scripts/zones/AlTaieu/MobIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 
@@ -15,20 +12,20 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY
         and player:getVar("PromathiaStatus") == 2
         and player:getVar("[SEA][AlTieu]EastTower") == 0
         and player:getVar("[SEA][AlTieu]EastTowerCS") == 0
-        and not GetMobByID(AERNS_TOWER_EAST+0):isSpawned()
-        and not GetMobByID(AERNS_TOWER_EAST+1):isSpawned()
-        and not GetMobByID(AERNS_TOWER_EAST+2):isSpawned()
+        and not GetMobByID(ID.mob.AERNS_TOWER_EAST+0):isSpawned()
+        and not GetMobByID(ID.mob.AERNS_TOWER_EAST+1):isSpawned()
+        and not GetMobByID(ID.mob.AERNS_TOWER_EAST+2):isSpawned()
     ) then
-        player:messageSpecial(OMINOUS_SHADOW);
-        SpawnMob(AERNS_TOWER_EAST+0):updateClaim(player);
-        SpawnMob(AERNS_TOWER_EAST+1):updateClaim(player);
-        SpawnMob(AERNS_TOWER_EAST+2):updateClaim(player);
+        player:messageSpecial(ID.text.OMINOUS_SHADOW);
+        SpawnMob(ID.mob.AERNS_TOWER_EAST+0):updateClaim(player);
+        SpawnMob(ID.mob.AERNS_TOWER_EAST+1):updateClaim(player);
+        SpawnMob(ID.mob.AERNS_TOWER_EAST+2):updateClaim(player);
 
-    elseif (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY
         and player:getVar("PromathiaStatus") == 2
         and player:getVar("[SEA][AlTieu]EastTower") == 1
         and player:getVar("[SEA][AlTieu]EastTowerCS") == 0
@@ -36,7 +33,7 @@ function onTrigger(player,npc)
         player:startEvent(163);
 
     else
-        player:messageSpecial(NOTHING_OF_INTEREST);
+        player:messageSpecial(ID.text.NOTHING_OF_INTEREST);
     end
 end;
 

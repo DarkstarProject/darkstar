@@ -2,10 +2,6 @@
 -- Area: The Shrine of Ru'Avitau
 --  NPC: Door (Yellow)
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

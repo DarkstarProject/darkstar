@@ -3,12 +3,10 @@
 --   NM: Tzee Xicu the Manifest
 -- TODO: messages should be zone-wide
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
------------------------------------
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/zones/Castle_Oztroja/TextIDs")
-require("scripts/globals/status")
 require("scripts/globals/titles")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -16,28 +14,17 @@ function onMobInitialize(mob)
 end
 
 function onMobEngaged(mob,target)
-    mob:showText(mob, YAGUDO_KING_ENGAGE)
+    mob:showText(mob, ID.text.YAGUDO_KING_ENGAGE)
 end
 
-function onAdditionalEffect(mob, player)
-    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.ICE,dsp.effect.PARALYSIS)
-    if resist <= 0.5 then
-        return 0,0,0
-    else
-        local duration = 60
-        local power = 20
-        duration = duration * resist
-        if not player:hasStatusEffect(dsp.effect.PARALYSIS) then
-            player:addStatusEffect(dsp.effect.PARALYSIS, power, 0, duration)
-        end
-        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS
-    end
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PARALYZE, {duration = 60})
 end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.DEITY_DEBUNKER)
     if isKiller then
-        mob:showText(mob, YAGUDO_KING_DEATH)
+        mob:showText(mob, ID.text.YAGUDO_KING_DEATH)
     end
 end
 
@@ -51,4 +38,3 @@ function onMobDespawn(mob)
     UpdateNMSpawnPoint(nqId)
     GetMobByID(nqId):setRespawnTime(math.random(75600, 86400))
 end
-

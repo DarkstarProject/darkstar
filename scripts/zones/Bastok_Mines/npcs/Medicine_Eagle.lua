@@ -4,9 +4,6 @@
 -- Involved in Mission: Bastok 6-1, 8-1
 -- !pos -40 0 38 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/missions");
 -----------------------------------
 
@@ -15,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 0) then
         player:startEvent(180);
     else
         player:startEvent(25);
@@ -24,10 +21,10 @@ function onTrigger(player,npc)
 end;
 
 -- if Bastok Mission 8-1
--- 0x00b0
+-- 176
 -- player:startEvent(180);
 -- player:startEvent(181);
---0x0001  25  0x00b0  181  180
+--1  25  176  181  180
 function onEventUpdate(player,csid,option)
 end;
 

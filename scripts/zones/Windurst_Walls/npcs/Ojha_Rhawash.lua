@@ -2,13 +2,10 @@
 -- Area: Windurst Walls
 --  NPC: Ojha Rhawash
 -- Starts and Finishes Quest: Flower Child
--- @zone 239
--- !pos -209 0 -134
+-- !pos -209 0 -134 239
 
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
+local ID = require("scripts/zones/Windurst_Walls/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
@@ -46,7 +43,7 @@ itemQuality = 0;
         end
     end
 
-    FlowerChild = player:getQuestStatus(WINDURST,FLOWER_CHILD);
+    FlowerChild = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FLOWER_CHILD);
 
     if (itemQuality == 2) then
         if (FlowerChild == QUEST_COMPLETED) then
@@ -79,12 +76,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 10000 and option == 3002) then
         player:tradeComplete();
-        player:completeQuest(WINDURST,FLOWER_CHILD);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.FLOWER_CHILD);
         player:addFame(WINDURST,120);
         player:moghouseFlag(4);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
     elseif (csid == 10000 and option == 1) then
         player:tradeComplete();
-        player:addQuest(WINDURST,FLOWER_CHILD);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.FLOWER_CHILD);
     end
 end;

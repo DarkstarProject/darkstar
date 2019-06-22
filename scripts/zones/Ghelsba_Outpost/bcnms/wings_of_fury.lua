@@ -3,22 +3,28 @@
 -- Name: Wings of Fury BCNM20
 -- !pos -162 -11 78 140
 -----------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
+require("scripts/globals/battlefield")
 
 -----------------------------------
 
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+end
+
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -29,12 +35,13 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 -- print(leave code ..leavecode);
 
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(32001,1,1,1,instance:getTimeInside(),2,2,2);
-    elseif (leavecode == 4) then
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+        local name, clearTime, partySize = battlefield:getRecord()
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 2, battlefield:getLocalVar("[cs]bit"), 2)
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
 

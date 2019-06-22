@@ -3,9 +3,7 @@
 --  NPC: Marble Bridge Eatery (Door)
 -- !pos -96.6 -0.2 92.3 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/settings")
 -----------------------------------
@@ -24,13 +22,13 @@ function onTrigger(player,npc)
     local status = player:getVar("PromathiaStatus")
     local mission = player:getCurrentMission(COP)
 
-    if (mission == FOR_WHOM_THE_VERSE_IS_SUNG and status == 1) then
+    if (mission == dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG and status == 1) then
         player:startEvent(10011)
-    elseif (mission == FLAMES_IN_THE_DARKNESS and status == 3) then
+    elseif (mission == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and status == 3) then
         player:startEvent(10012)
-    elseif (mission == DAWN and status == 4) then
+    elseif (mission == dsp.mission.id.cop.DAWN and status == 4) then
         player:startEvent(129)
-    elseif ((mission == DAWN and status > 4) or player:hasCompletedMission(COP,DAWN)) then
+    elseif ((mission == dsp.mission.id.cop.DAWN and status > 4) or player:hasCompletedMission(COP,dsp.mission.id.cop.DAWN)) then
         local hasRing = false
 
         for key, value in pairs(ring) do
@@ -66,8 +64,8 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus", 2);
     elseif (csid == 10012) then
         player:setVar("PromathiaStatus", 0);
-        player:completeMission(COP, FLAMES_IN_THE_DARKNESS);
-        player:addMission(COP, FIRE_IN_THE_EYES_OF_MEN);
+        player:completeMission(COP, dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS);
+        player:addMission(COP, dsp.mission.id.cop.FIRE_IN_THE_EYES_OF_MEN);
     elseif (csid == 129) then
         player:setVar("PromathiaStatus", 5);
     elseif ((csid == 84 or csid == 204) and option >= 5 and option <= 7) then
@@ -75,11 +73,11 @@ function onEventFinish(player,csid,option)
             local currentDay = tonumber(os.date("%j"))
             local ringsTaken = player:getVar("COP-ringsTakenbr")
             player:addItem(ring[option - 4])
-            player:messageSpecial(ITEM_OBTAINED, ring[option - 4])
+            player:messageSpecial(ID.text.ITEM_OBTAINED, ring[option - 4])
             player:setVar("COP-ringsTakenbr", ringsTaken + 1)
             player:setVar("COP-lastRingday", currentDay)
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ring[option - 4])
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, ring[option - 4])
         end
     end
 end;

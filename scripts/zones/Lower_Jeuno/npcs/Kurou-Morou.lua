@@ -3,34 +3,32 @@
 -- Starts and Finishes Quest: Your Crystal Ball & Never to return
 -- !pos -4 -6 -28 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(JEUNO,YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and trade:getItemCount() == 1) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and trade:getItemCount() == 1) then
         if (trade:hasItemQty(557,1) == true) then
             player:startEvent(192); -- CS for ahriman lens trade; Trading the lens to Kurou-Morou is optional
         elseif (trade:hasItemQty(556,1) == true) then
             player:startEvent(196); -- Trade divination sphere, finish quest
         end
-    elseif (player:getQuestStatus(JEUNO,NEVER_TO_RETURN) == QUEST_ACCEPTED and trade:hasItemQty(12507,1) == true and trade:getItemCount() == 1) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN) == QUEST_ACCEPTED and trade:hasItemQty(12507,1) == true and trade:getItemCount() == 1) then
         player:startEvent(203); -- Finish "Never to return" quest
     end
 end;
 
 function onTrigger(player,npc)
     -- printf("Ontrigger completed");
-    local YourCrystalBall = player:getQuestStatus(JEUNO,YOUR_CRYSTAL_BALL);
-    local SearchingForTheRightWords = player:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
-    local ACandlelightVigil = player:getQuestStatus(JEUNO,A_CANDLELIGHT_VIGIL);
-    local RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
-    local NeverToReturn = player:getQuestStatus(JEUNO,NEVER_TO_RETURN);
+    local YourCrystalBall = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL);
+    local SearchingForTheRightWords = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS);
+    local ACandlelightVigil = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_CANDLELIGHT_VIGIL);
+    local RubbishDay = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
+    local NeverToReturn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
     local JFame = player:getFameLevel(JEUNO);
     local SearchingForWords_prereq = player:getVar("QuestSearchRightWords_prereq");
 
@@ -38,7 +36,7 @@ function onTrigger(player,npc)
     if (JFame >= 2 and YourCrystalBall == QUEST_AVAILABLE) then
         player:startEvent(194); -- Start "Your Crystal Ball" quest
 
-    elseif (JFame >= 5 and YourCrystalBall == QUEST_COMPLETED and player:getQuestStatus(JEUNO,NEVER_TO_RETURN) == QUEST_AVAILABLE and player:getVar("QuestNeverToReturn_day") ~= VanadielDayOfTheYear()) then
+    elseif (JFame >= 5 and YourCrystalBall == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN) == QUEST_AVAILABLE and player:getVar("QuestNeverToReturn_day") ~= VanadielDayOfTheYear()) then
         prog = player:getVar("QuestNeverToReturn_prog");
         if (prog <= 2) then
             fortune = math.random(1,99);
@@ -78,30 +76,30 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 194 and option == 0) then
-        player:addQuest(JEUNO,YOUR_CRYSTAL_BALL);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL);
     elseif (csid == 196) then
         player:addTitle(dsp.title.FORTUNETELLER_IN_TRAINING);
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
-        player:completeQuest(JEUNO,YOUR_CRYSTAL_BALL);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL);
     elseif (csid == 204 and option == 0) then
-        player:setVar("QuestNeverToReturn_prog", player:getVar("QuestNeverToReturn_prog") + 1);  -- Keep track of how many times the players fortune has been read
+        player:addVar("QuestNeverToReturn_prog", 1);  -- Keep track of how many times the players fortune has been read
         player:setVar("QuestNeverToReturn_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 202 and option == 0) then
-        player:addQuest(JEUNO,NEVER_TO_RETURN);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
         player:setVar("QuestNeverToReturn_prog", 0);
         player:setVar("QuestNeverToReturn_day", 0);
     elseif (csid == 203) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13477);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13477);
         else
             player:addGil(GIL_RATE*1200);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1200);
             player:addItem(13477);
-            player:messageSpecial(ITEM_OBTAINED,13477);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13477);
             player:addFame(JEUNO, 30);
             player:tradeComplete(trade);
-            player:completeQuest(JEUNO,NEVER_TO_RETURN);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
         end
     elseif (csid == 17) then
         player:setVar("QuestSearchRightWords_prereq", 1);

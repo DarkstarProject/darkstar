@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Grevan
 -- Type: Standard NPC and Quest NPC
---  Involved With Quest: 'Order Up'
---  @zone 256
---  !pos 50 0 6 256
+-- Involved With Quest: 'Order Up'
+-- !pos 50 0 6 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------
@@ -13,15 +12,15 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
+    local Order_Up = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ORDER_UP);
     local Order_Grevan = player:getMaskBit(player:getVar("Order_Up_NPCs"), 10);
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Grevan)) then
         -- Progresses Quest: 'Order Up'
         player:startEvent(69);
     else
-        if (player:getQuestStatus(ADOULIN, HYPOCRITICAL_OATH) == QUEST_COMPLETED) then
-            if (player:getQuestStatus(ADOULIN, NOTSOCLEAN_BILL) == QUEST_COMPLETED) then
+        if (player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.HYPOCRITICAL_OATH) == QUEST_COMPLETED) then
+            if (player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.NOTSOCLEAN_BILL) == QUEST_COMPLETED) then
                 -- Standard dialogue after stamping out plague in Svenja quest line
                 player:startEvent(188);
             else
@@ -44,7 +43,3 @@ function onEventFinish(player,csid,option)
         player:setMaskBit("Order_Up_NPCs", 10, true);
     end
 end;
-
-
-
-

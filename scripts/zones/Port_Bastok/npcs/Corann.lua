@@ -3,16 +3,14 @@
 --  NPC: Corann
 -- Start & Finishes Quest: The Quadav's Curse
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-TheQuadav = player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE);
+TheQuadav = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_QUADAV_S_CURSE);
 
     if (TheQuadav == QUEST_ACCEPTED) then
         count = trade:getItemCount();
@@ -27,8 +25,8 @@ end;
 
 function onTrigger(player,npc)
 
-TheQuadav = player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE);
-OutOfOneShell = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
+TheQuadav = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_QUADAV_S_CURSE);
+OutOfOneShell = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL);
 
     if (OutOfOneShell == QUEST_COMPLETED) then
         player:startEvent(88);
@@ -48,17 +46,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 80) then
-        player:addQuest(BASTOK,THE_QUADAV_S_CURSE);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_QUADAV_S_CURSE);
     elseif (csid == 81) then
         player:tradeComplete();
-        player:completeQuest(BASTOK,THE_QUADAV_S_CURSE);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_QUADAV_S_CURSE);
         player:addFame(BASTOK,120);
         player:addItem(12832);
-        player:messageSpecial(ITEM_OBTAINED,12832);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,12832);
     end
 
 end;
-
-
-
-

@@ -2,14 +2,9 @@
 -- Area: Bastok Mines
 --   NPC: Zopago
 -- Type: VCS Chocobo Trainer
--- @zone 234
--- !pos 51.706 -0.126 -109.065
+-- !pos 51.706 -0.126 -109.065 234
 --
 -- Auto-Script: Requires Verification
------------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -4,11 +4,9 @@
 -- Involved in Mission: The Davoi Report
 -- !pos 215 0.1 -10 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local ID = require("scripts/zones/Davoi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,15 +15,15 @@ end;
 function onTrigger(player,npc)
 
     local CurrentMission = player:getCurrentMission(SANDORIA);
-    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.INFILTRATE_DAVOI);
 
-    if (CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
+    if (CurrentMission == dsp.mission.id.sandoria.THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
         player:startEvent(100);
-    elseif (CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(dsp.ki.LOST_DOCUMENT)) then
+    elseif (CurrentMission == dsp.mission.id.sandoria.THE_DAVOI_REPORT and player:hasKeyItem(dsp.ki.LOST_DOCUMENT)) then
         player:startEvent(104);
-    elseif (CurrentMission == INFILTRATE_DAVOI and infiltrateDavoi and player:getVar("MissionStatus") == 0) then
+    elseif (CurrentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and infiltrateDavoi and player:getVar("MissionStatus") == 0) then
         player:startEvent(102);
-    elseif (CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 9) then
+    elseif (CurrentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and player:getVar("MissionStatus") == 9) then
         player:startEvent(105);
     else
         player:startEvent(101);
@@ -44,7 +42,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",3);
         player:delKeyItem(dsp.ki.LOST_DOCUMENT);
         player:addKeyItem(dsp.ki.TEMPLE_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TEMPLE_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TEMPLE_KNIGHTS_DAVOI_REPORT);
     elseif (csid == 102) then
         player:setVar("MissionStatus",6);
     elseif (csid == 105) then

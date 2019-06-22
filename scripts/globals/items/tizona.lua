@@ -3,167 +3,31 @@
 -- Item: Tizona
 -- Additional effect: MP Gain from damage dealt
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
-require("scripts/globals/weaponskills");
-require("scripts/globals/weaponskillids");
+require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------
 
-local NAME_WEAPONSKILL = "AFTERMATH_TIZONA";
-local NAME_EFFECT_LOSE = "AFTERMATH_LOST_TIZONA";
-
--- https://www.bg-wiki.com/bg/Mythic_Aftermath
-local aftermathTable = {};
-
--- Nirvana (75)
-aftermathTable[19006] =
+local chance =
 {
-    {   -- Tier 1
-        duration = 60,
-        mods =
-        {
-            { id = dsp.mod.ACC, power = function(tp) return math.floor(tp / 100); end }
-        }
-    },
-    {   -- Tier 2
-        duration = 90,
-        mods =
-        {
-            { id = dsp.mod.MACC, power = function(tp) return math.floor(tp / 100 - 10); end }
-        }
-    },
-    {   -- Tier 3
-        duration = 120,
-        mods =
-        {
-            { id = dsp.mod.MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end }
-        }
-    }
-};
+    [19006] = 10, -- 75
+    [19075] = 15, -- 80
+    [19095] = 20, -- 85
+    [19627] = 25, -- 90
+    [19725] = 25, -- 95
+    [19834] = 30, -- 99
+    [19963] = 30, -- 99 AG
+    [20651] = 30, -- 119
+    [20652] = 30, -- 119 AG
+    [20688] = 30  -- 119 III
+}
 
--- Nirvana (80)
-aftermathTable[19075] =
-{
-    {   -- Tier 1
-        duration = 90,
-        mods =
-        {
-            { id = dsp.mod.ACC, power = function(tp) return math.floor(3 * tp / 200); end }
-        }
-    },
-    {   -- Tier 2
-        duration = 120,
-        mods =
-        {
-            { id = dsp.mod.MACC, power = function(tp) return math.floor(3 * tp / 200 - 15); end }
-        }
-    },
-    {   -- Tier 3
-        duration = 180,
-        mods =
-        {
-            { id = dsp.mod.MYTHIC_OCC_ATT_TWICE, power = function(tp) return 60; end }
-        }
-    }
-};
-aftermathTable[19095] = aftermathTable[19075]; -- Nirvana (85)
-aftermathTable[19627] = aftermathTable[19075]; -- Nirvana (90)
+function onAdditionalEffect(player, target, damage)
+    if math.random(100) <= chance[player:getEquipID(dsp.slot.MAIN)] then
+        local drain = math.floor(damage * math.random(10, 20) / 100)
+        player:addMP(drain)
 
--- Nirvana (95)
-aftermathTable[19725] =
-{
-    {   -- Tier 1
-        duration = 90,
-        mods =
-        {
-            { id = dsp.mod.ACC, power = function(tp) return math.floor(tp / 50 + 10); end }
-        }
-    },
-    {   -- Tier 2
-        duration = 120,
-        mods =
-        {
-            { id = dsp.mod.MACC, power = function(tp) return math.floor(tp / 50 - 10); end }
-        }
-    },
-    {   -- Tier 3
-        duration = 180,
-        mods =
-        {
-            { id = dsp.mod.MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end },
-            { id = dsp.mod.MYTHIC_OCC_ATT_THRICE, power = function(tp) return 20; end }
-        }
-    }
-};
-aftermathTable[19834] = aftermathTable[19725]; -- Nirvana (99)
-aftermathTable[19963] = aftermathTable[19725]; -- Nirvana (99/II)
-aftermathTable[20651] = aftermathTable[19725]; -- Nirvana (119)
-aftermathTable[20652] = aftermathTable[19725]; -- Nirvana (119/II)
-aftermathTable[20688] = aftermathTable[19725]; -- Nirvana (119/III)
-
-function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == dsp.ws.EXPIACION) then -- Expiacion onry
-        if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(dsp.slot.MAIN);
-            if (aftermathTable[itemId]) then
-                -- Apply the effect and add mods
-                addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
-                -- Add a listener for when aftermath wears (to remove mods)
-                user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
-            end
-        end
+        return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, drain
     end
+
+    return 0, 0, 0
 end
-
-function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(dsp.slot.MAIN);
-        if (aftermathTable[itemId]) then
-            -- Remove mods
-            removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);
-            -- Remove the effect listener
-            target:removeListener(NAME_EFFECT_LOSE);
-        end
-    end
-end
-
-function onItemCheck(player, param, caster)
-    if (param == dsp.itemCheck.EQUIP) then
-        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
-    elseif (param == dsp.itemCheck.UNEQUIP) then
-        -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
-        end
-        player:removeListener(NAME_WEAPONSKILL);
-    end
-    
-    return 0;
-end
-
-function onAdditionalEffect(player,target,damage)
-
-    local chance = 0;
-
-    if ( player:getEquipID(dsp.slot.MAIN) == 19006 ) then -- Tizona 75
-        chance = 10;
-    elseif ( player:getEquipID(dsp.slot.MAIN) == 19075 ) then -- Tizona 80
-        chance = 15;
-    elseif ( player:getEquipID(dsp.slot.MAIN) == 19095 ) then -- Tizona 85
-        chance = 20;
-    elseif ( ( player:getEquipID(dsp.slot.MAIN) == 19627 ) or ( player:getEquipID(dsp.slot.MAIN) == 19725 ) ) then -- Tizona 90 or Tizona 95
-        chance = 25;
-    elseif ( ( player:getEquipID(dsp.slot.MAIN) == 19963 ) or ( player:getEquipID(dsp.slot.MAIN) == 20651 ) or ( player:getEquipID(dsp.slot.MAIN) == 20652 )
-                or ( player:getEquipID(dsp.slot.MAIN) == 20688 ) or ( player:getEquipID(dsp.slot.MAIN) == 19834 ) ) then -- Tizona 99
-        chance = 30;
-    end
-
-    if (math.random(0,99) >= chance) then
-        return 0,0,0;
-    else
-        local drain = math.floor(damage * (math.random(100,200)/1000));
-        player:addMP(drain);
-
-        return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, drain;
-    end
-end;

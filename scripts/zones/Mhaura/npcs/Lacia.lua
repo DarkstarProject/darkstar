@@ -4,24 +4,22 @@
 -- Starts Quest: Trial Size Trial By Lightning
 --  The "TrialSizeLightning_date" still needs to be set at the BCNM/Mob level to reflect defeat by the Avatar
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(1548,1) == true and player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
+    if (trade:hasItemQty(1548,1) == true and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
         player:startEvent(10026,0,1548,5,20);
     end
 end;
 
 function onTrigger(player,npc)
 
-    local TrialSizeLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
+    local TrialSizeLightning = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING);
 
     if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(10025,0,1548,5,20);     --mini tuning fork of lightning, zone, level
@@ -46,19 +44,19 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10025 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
         else
             player:setVar("TrialSizeLightning_date", 0);
-            player:addQuest(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
+            player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING);
             player:addItem(1548);
-            player:messageSpecial(ITEM_OBTAINED,1548);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1548);
         end
     elseif (csid == 10029 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
         else
             player:addItem(1548);
-            player:messageSpecial(ITEM_OBTAINED,1548);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1548);
         end
     elseif (csid == 10026 and option == 1) then
         dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_STORMS);

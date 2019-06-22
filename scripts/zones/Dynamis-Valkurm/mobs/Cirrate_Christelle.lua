@@ -2,16 +2,11 @@
 -- Area: Dynamis Valkurm
 --  MOB: Cirrate_Christelle
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
+local ID = require("scripts/zones/Dynamis-Valkurm/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobEngaged(mob,target)
 
@@ -101,7 +96,7 @@ end;
 function onMobDeath(mob, player, isKiller)
   if (player:hasKeyItem(dsp.ki.DYNAMIS_VALKURM_SLIVER ) == false) then
        player:addKeyItem(dsp.ki.DYNAMIS_VALKURM_SLIVER);
-       player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DYNAMIS_VALKURM_SLIVER);
+       player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DYNAMIS_VALKURM_SLIVER);
   end
        player:addTitle(dsp.title.DYNAMISVALKURM_INTERLOPER);
 end;

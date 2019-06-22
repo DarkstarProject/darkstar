@@ -7,27 +7,27 @@
 --  Range: Melee
 -- Special weaponskill unique to Ark Angel GK. Deals ~100-300 damage.
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
    -- TODO: Can skillchain?  Unknown property.
 
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 2.7;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_2_SHADOW);
+    local numhits = 1
+    local accmod = 1
+    local dmgmod = 2.7
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,MOBPARAM_2_SHADOW)
 
-   MobStatusEffectMove(mob, target, dsp.effect.BIND, 1, 0, 30);
+   MobStatusEffectMove(mob, target, dsp.effect.BIND, 1, 0, 30)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
+    return dmg
+end

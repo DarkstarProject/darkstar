@@ -4,10 +4,8 @@
 --  Involved in Mission: The Horutoto Ruins Experiment (optional)
 -- !pos 377 -13 98 116
 -----------------------------------
-package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/East_Sarutabaruta/TextIDs");
+local ID = require("scripts/zones/East_Sarutabaruta/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,10 +13,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
-        player:showText(npc,SAMA_GOHJIMA_PREDIALOG);
-    elseif (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") ~= 1) then
-        player:messageSpecial(SAMA_GOHJIMA_POSTDIALOG);
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
+        player:showText(npc,ID.text.SAMA_GOHJIMA_PREDIALOG);
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") ~= 1) then
+        player:messageSpecial(ID.text.SAMA_GOHJIMA_POSTDIALOG);
     else
         player:startEvent(43);
     end

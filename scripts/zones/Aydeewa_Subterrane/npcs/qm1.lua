@@ -3,20 +3,17 @@
 --  NPC: ??? (Spawn Nosferatu(ZNM T3))
 -- !pos -199 8 -62 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aydeewa_Subterrane/TextIDs")
-require("scripts/zones/Aydeewa_Subterrane/MobIDs")
+local ID = require("scripts/zones/Aydeewa_Subterrane/IDs")
 require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 2584) and not GetMobByID(NOSFERATU):isSpawned() then -- Pure Blood
+    if npcUtil.tradeHas(trade, 2584) and not GetMobByID(ID.mob.NOSFERATU):isSpawned() then -- Pure Blood
         player:confirmTrade()
-        SpawnMob(NOSFERATU):updateClaim(player)
+        SpawnMob(ID.mob.NOSFERATU):updateClaim(player)
     end
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS)
+    player:messageSpecial(ID.text.NOTHING_HAPPENS)
 end

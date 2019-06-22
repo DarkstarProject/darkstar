@@ -3,10 +3,7 @@
 -- Zone: Dragons_Aery (154)
 --
 -----------------------------------
-package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dragons_Aery/TextIDs");
-require("scripts/zones/Dragons_Aery/MobIDs");
+local ID = require("scripts/zones/Dragons_Aery/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
@@ -14,8 +11,8 @@ require("scripts/globals/zone");
 
 function onInitialize(zone)
     if (LandKingSystem_NQ ~= 1) then
-        UpdateNMSpawnPoint(FAFNIR);
-        GetMobByID(FAFNIR):setRespawnTime(math.random(900, 10800));
+        UpdateNMSpawnPoint(ID.mob.FAFNIR);
+        GetMobByID(ID.mob.FAFNIR):setRespawnTime(900 + math.random(0, 6) * 1800)
     end
 end;
 
@@ -30,11 +27,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

@@ -9,21 +9,21 @@
 --  Notes: Water Damage Knockback.
 ---------------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local dmgmod = MobBreathMove(mob, target, 0.1, 1.25, dsp.magic.ele.WATER, 200);
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
+    local dmgmod = MobBreathMove(mob, target, 0.1, 1.25, dsp.magic.ele.WATER, 200)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.WATER,MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg);
-    return dmg;
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.WATER)
+    return dmg
 
-end;
+end

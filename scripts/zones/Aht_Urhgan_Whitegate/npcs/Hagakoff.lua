@@ -5,9 +5,7 @@
 -- TODO: Stock needs to be modified based on
 --       status of Astral Candescence
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -35,7 +33,7 @@ function onTrigger(player,npc)
         18259,    238     -- Angon
     }
 
-    player:showText(npc, HAGAKOFF_SHOP_DIALOG)
+    player:showText(npc, ID.text.HAGAKOFF_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

@@ -3,10 +3,7 @@
 -- Zone: Silver_Sea_route_to_Al_Zahbi
 --
 -----------------------------------
-package.loaded["scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Silver_Sea_route_to_Al_Zahbi/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -33,5 +30,3 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,50);
     end
 end;
-
-

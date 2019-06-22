@@ -4,12 +4,9 @@
 -- Involved in Mission 1-3
 -- !pos -22 0 148 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE) then
         if (player:hasKeyItem(dsp.ki.FOOD_OFFERINGS)) then
             -- We have the offerings
             player:startEvent(45);

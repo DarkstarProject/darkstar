@@ -3,10 +3,7 @@
 -- Zone: Outer Ra’Kanzar [U] (275)
 --
 -----------------------------------
-package.loaded["scripts/zones/Outer_RaKaznar_U/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Outer_RaKaznar_U/TextIDs");
+local ID = require("scripts/zones/Outer_RaKaznar_U/IDs")
 -----------------------------------
 
 function onInitialize(zone)

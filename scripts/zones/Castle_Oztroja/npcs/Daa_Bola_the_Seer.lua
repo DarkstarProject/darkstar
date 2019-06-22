@@ -4,8 +4,6 @@
 -- Type: Quest NPC
 -- !pos -157.978 -18.179 193.458 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -19,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

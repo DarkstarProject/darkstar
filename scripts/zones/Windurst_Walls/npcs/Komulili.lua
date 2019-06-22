@@ -1,11 +1,7 @@
 -----------------------------------
--- Area: Port Windurst
+-- Area: Windurst Walls
 --  NPC: Komulili
 -- Warps players to Port Windurst
------------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,4 +19,3 @@ function onEventFinish(player,csid,option)
         player:setPos(-111.919,-8.75,92.093,62,240); -- {R}
     end
 end;
-

@@ -3,9 +3,6 @@
 --  NPC: Red Ghost
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/pathfind");
 -----------------------------------
@@ -41,7 +38,7 @@ end;
 
 function onTrigger(player,npc)
     local WildcatJeuno = player:getVar("WildcatJeuno");
-    if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,15) == false) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,15) == false) then
         player:startEvent(314);
     else
         player:startEvent(34);

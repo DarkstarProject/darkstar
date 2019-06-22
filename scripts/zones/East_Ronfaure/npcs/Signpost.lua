@@ -4,11 +4,9 @@
 -- Involved in Quest: To Cure a Cough
 -- !pos 257 -45 212 101
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/East_Ronfaure/TextIDs");
+local ID = require("scripts/zones/East_Ronfaure/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
             player:startEvent(20);
             player:delKeyItem(dsp.ki.SCROLL_OF_TREASURE);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         else
             player:startEvent(5);
         end

@@ -86,9 +86,6 @@ local path =
 };
 
 function onMobSpawn(mob)
-end;
-
-function onMobSpawn(mob)
     onMobRoam(mob);
 end;
 

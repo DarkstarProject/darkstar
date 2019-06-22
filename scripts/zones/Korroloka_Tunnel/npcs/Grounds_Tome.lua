@@ -2,21 +2,20 @@
 -- Area: Korroloka Tunnel
 --  NPC: Grounds Tome
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    startGov(GOV_EVENT_KORROLOKA_TUNNEL,player);
-end;
+function onTrigger(player, npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
-function onEventUpdate(player,csid,option)
-    updateGov(player,csid,option,727,728,729,730,731,732,733,734,0,0);
-end;
+function onEventUpdate(player, csid, option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
+end
 
-function onEventFinish(player,csid,option)
-    finishGov(player,csid,option,727,728,729,730,731,732,733,734,0,0,GOV_MSG_KORROLOKA_TUNNEL);
-end;
+function onEventFinish(player, csid, option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

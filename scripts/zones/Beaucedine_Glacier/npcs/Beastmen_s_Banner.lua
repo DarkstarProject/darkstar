@@ -3,16 +3,14 @@
 --  NPC: Beastmen_s_Banner
 -- !pos 20.169 -80.078 180.063 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(BEASTMEN_BANNER);
+    player:messageSpecial(ID.text.BEASTMEN_BANNER);
 end;
 
 function onEventUpdate(player,csid,option)

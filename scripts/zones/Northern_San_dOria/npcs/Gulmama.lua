@@ -5,13 +5,11 @@
 -- Involved in Quest: Class Reunion
 -- !pos -186 0 107 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,10 +17,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialByIce = player:getQuestStatus(SANDORIA,TRIAL_BY_ICE);
+    local TrialByIce = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
     local WhisperOfFrost = player:hasKeyItem(dsp.ki.WHISPER_OF_FROST);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+    local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
     local ClassReunionProgress = player:getVar("ClassReunionProgress");
 
     ------------------------------------------------------------
@@ -60,16 +58,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 706 and option == 1) then
-        if (player:getQuestStatus(SANDORIA,TRIAL_BY_ICE) == QUEST_COMPLETED) then
-            player:delQuest(SANDORIA,TRIAL_BY_ICE);
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE) == QUEST_COMPLETED) then
+            player:delQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         end
-        player:addQuest(SANDORIA,TRIAL_BY_ICE);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         player:setVar("TrialByIce_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
     elseif (csid == 718) then
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
     elseif (csid == 709) then
         local item = 0;
         if (option == 1) then item = 17492;         -- Shiva's Claws
@@ -79,31 +77,31 @@ function onEventFinish(player,csid,option)
         end
 
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         else
             if (option == 5) then
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then
                 player:addSpell(302); -- Avatar
-                player:messageSpecial(SHIVA_UNLOCKED,0,0,4);
+                player:messageSpecial(ID.text.SHIVA_UNLOCKED,0,0,4);
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_ICE);
             player:delKeyItem(dsp.ki.WHISPER_OF_FROST); --Whisper of Frost, as a trade for the above rewards
             player:setVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,TRIAL_BY_ICE);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         end
     elseif (csid == 713 or csid == 712) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1171);
-            player:messageSpecial(ITEM_OBTAINED,1171);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1171);
             player:setVar("ClassReunionProgress",5);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1171);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1171);
         end;
     end;
 

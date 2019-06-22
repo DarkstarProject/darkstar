@@ -3,9 +3,7 @@
 --  NPC: Kucha Malkobhi
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
         13008, 163,    -- Mithran Gaiters
     }
 
-    player:showText(npc, KUCHAMALKOBHI_SHOP_DIALOG)
+    player:showText(npc, ID.text.KUCHAMALKOBHI_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

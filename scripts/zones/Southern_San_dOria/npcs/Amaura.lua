@@ -2,16 +2,13 @@
 -- Area: Southern San d'Oria
 --  NPC: Amaura
 -- Involved in Quest: The Medicine Woman, To Cure a Cough
--- @zone 230
--- !pos -85 -6 89
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-- !pos -85 -6 89 230
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 
-    medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
-    toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+    medicineWoman = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
+    toCureaCough = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
 
     if (medicineWoman == QUEST_ACCEPTED) then
         amaurasFormulaKI = player:hasKeyItem(dsp.ki.AMAURAS_FORMULA);
@@ -57,18 +54,18 @@ function onEventFinish(player,csid,option)
 
     if (csid == 636 and option == 0) then
         player:addKeyItem(dsp.ki.AMAURAS_FORMULA);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AMAURAS_FORMULA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AMAURAS_FORMULA);
     elseif (csid == 637) then
         player:tradeComplete();
         player:delKeyItem(dsp.ki.AMAURAS_FORMULA);
         player:addKeyItem(dsp.ki.COLD_MEDICINE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.COLD_MEDICINE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.COLD_MEDICINE);
     elseif (csid == 645) then
-        player:addQuest(SANDORIA,TO_CURE_A_COUGH);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
     elseif (csid == 646) then
         player:delKeyItem(dsp.ki.THYME_MOSS);
         player:addKeyItem(dsp.ki.COUGH_MEDICINE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.COUGH_MEDICINE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.COUGH_MEDICINE);
     end
 
 end;

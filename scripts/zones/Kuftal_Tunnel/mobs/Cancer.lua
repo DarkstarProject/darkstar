@@ -2,20 +2,17 @@
 -- Area: Kuftal Tunnel
 --   NM: Cancer
 -----------------------------------
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
-require("scripts/globals/settings");
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
-end;
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
-function onMobSpawn(mob)
-end;
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENWATER)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-    GetNPCByID(CANCER_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
-end;
+end

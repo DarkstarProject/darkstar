@@ -3,7 +3,7 @@
 --  MOB: Animated Claymore
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,7 +14,7 @@ function onMobEngaged(mob,target)
         SetDropRate(102,1574,0);
     end
 
-    target:showText(mob,ANIMATED_CLAYMORE_DIALOG);
+    target:showText(mob,ID.text.ANIMATED_CLAYMORE_DIALOG);
 
     SpawnMob(17330365):updateEnmity(target);
     SpawnMob(17330366):updateEnmity(target);
@@ -30,12 +30,12 @@ function onMobFight(mob,target)
 end;
 
 function onMobDisengage(mob)
-    mob:showText(mob,ANIMATED_CLAYMORE_DIALOG+2);
+    mob:showText(mob,ID.text.ANIMATED_CLAYMORE_DIALOG+2);
 end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:showText(mob,ANIMATED_CLAYMORE_DIALOG+1);
+    player:showText(mob,ID.text.ANIMATED_CLAYMORE_DIALOG+1);
 
     DespawnMob(17330365);
     DespawnMob(17330366);

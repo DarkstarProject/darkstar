@@ -1,25 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Wenonah, C.A.
+--  NPC: Wenonah, C.A.
 -- Type: Campaign Arbiter
--- @zone 94
--- !pos -2.175 -2 10.184
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-- !pos -2.175 -2 10.184 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(459);
-end;
+    player:startEvent(459)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

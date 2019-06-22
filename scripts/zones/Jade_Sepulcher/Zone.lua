@@ -3,10 +3,7 @@
 -- Zone: Jade_Sepulcher (67)
 --
 -----------------------------------
-package.loaded["scripts/zones/Jade_Sepulcher/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Jade_Sepulcher/TextIDs");
+local ID = require("scripts/zones/Jade_Sepulcher/IDs")
 -----------------------------------
 
 function onInitialize(zone)

@@ -2,12 +2,9 @@
 -- Area: Windurst Walls
 --   NPC: Esmeralda
 -- Type: Consul. Rep.
--- @zone 239
--- !pos 128.629 -12.5 139.387
+-- !pos 128.629 -12.5 139.387 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

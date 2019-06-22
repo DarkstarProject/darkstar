@@ -8,7 +8,7 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
 
-    if (player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
         if (trade:hasItemQty(1160,1) and trade:getItemCount() == 1) then -- Frag Rock
             player:startEvent(99); -- Bastok Mission 6-2
         end
@@ -20,34 +20,34 @@ function onTrigger(player,npc)
 
     local ZilartMission = player:getCurrentMission(ZILART);
 
-    if (ZilartMission == KAZAMS_CHIEFTAINESS) then
+    if (ZilartMission == dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS) then
         player:startEvent(7);
-    elseif (ZilartMission == THE_TEMPLE_OF_UGGALEPIH) then
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
         player:startEvent(8);
-    elseif (ZilartMission == HEADSTONE_PILGRIMAGE) then
+    elseif (ZilartMission == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
         player:startEvent(9);
-    elseif (ZilartMission == RETURN_TO_DELKFUTTS_TOWER) then
+    elseif (ZilartMission == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER) then
         player:startEvent(13);
-    elseif (ZilartMission == ROMAEVE) then
+    elseif (ZilartMission == dsp.mission.id.zilart.ROMAEVE) then
         player:startEvent(11);
-    elseif (ZilartMission == THE_MITHRA_AND_THE_CRYSTAL) then
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
         player:startEvent(170);
-    elseif (ZilartMission == ARK_ANGELS) then
+    elseif (ZilartMission == dsp.mission.id.zilart.ARK_ANGELS) then
         player:startEvent(171);
-    elseif (ZilartMission == THE_CELESTIAL_NEXUS) then
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_CELESTIAL_NEXUS) then
         player:startEvent(173);
-    elseif (ZilartMission == AWAKENING) then
+    elseif (ZilartMission == dsp.mission.id.zilart.AWAKENING) then
         player:startEvent(177);
     end
 
 end;
 
---0x00af  0x0000  0x0002  0x0003  0x0004  7  8  9  0x000a  0x0062  99  0x001d  0x000c
---13  0x0092  0x009e  0x00a4  0x00a9  170  171  0x00ac  173  0x00b0  177  0x00e8  0x00e9
---0x00ea
--- 0x0062  99 mission bastok
--- 0x000c parle de kuzotz ? parle de bijoux aussi
--- 0x000a parle de zitah
+--175  0  2  3  4  7  8  9  10  98  99  29  12
+--13  146  158  164  169  170  171  172  173  176  177  232  233
+--234
+-- 98  99 mission bastok
+-- 12 parle de kuzotz ? parle de bijoux aussi
+-- 10 parle de zitah
 function onEventUpdate(player,csid,option)
 end;
 

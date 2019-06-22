@@ -12,8 +12,10 @@ TestResults
 *.suo
 *.user
 *.sln.docstates
+*.DS_Store
 
 # Build results
+build/
 [Dd]ebug/
 [Rr]elease/
 x64/
@@ -160,3 +162,14 @@ log/DSP.leaks
 .vs
 /win32/.vs/darkstar/v15
 
+#VS Code
+.vscode
+
+# CMake files
+CMakeCache.txt
+Makefile
+**/CMakeFiles
+cmake_install.cmake
+
+# ignore servers
+*-server

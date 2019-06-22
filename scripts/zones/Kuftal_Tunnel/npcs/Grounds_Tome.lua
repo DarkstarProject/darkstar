@@ -2,21 +2,20 @@
 -- Area: Kuftal Tunnel
 --  NPC: Grounds Tome
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    startGov(GOV_EVENT_KUFTAL_TUNNEL,player);
-end;
+function onTrigger(player, npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
-function onEventUpdate(player,csid,option)
-    updateGov(player,csid,option,735,736,737,738,739,740,741,742,0,0);
-end;
+function onEventUpdate(player, csid, option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
+end
 
-function onEventFinish(player,csid,option)
-    finishGov(player,csid,option,735,736,737,738,739,740,741,742,0,0,GOV_MSG_KUFTAL_TUNNEL);
-end;
+function onEventFinish(player, csid, option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

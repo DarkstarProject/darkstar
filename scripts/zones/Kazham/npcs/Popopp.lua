@@ -3,10 +3,6 @@
 --  NPC: Popopp
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
     -- item IDs
@@ -20,7 +16,7 @@ function onTrade(player,npc,trade)
     -- 905       Wyvern Skull
     -- 1147      Ancient Salt
     -- 4600      Lucky Egg
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local goodtrade = trade:hasItemQty(1158,1);
@@ -38,7 +34,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local retry = player:getVar("OPO_OPO_RETRY");

@@ -7,26 +7,26 @@
 --  Range: Unknown radial
 --  Notes: Paralysis effect has a very long duration.
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = math.random(2,3);
-    local accmod = 1;
-    local dmgmod = .7;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
+    local numhits = math.random(2,3)
+    local accmod = 1
+    local dmgmod = .7
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,info.hitslanded)
 
-    local typeEffect = dsp.effect.PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 15, 0, 360);
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 15, 0, 360)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    return dmg
+end

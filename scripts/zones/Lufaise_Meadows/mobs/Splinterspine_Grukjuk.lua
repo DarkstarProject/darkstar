@@ -2,9 +2,6 @@
 -- Area: Lufaise Meadows (24)
 --  MOB: Splinterspine_Grukjuk
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lufaise_Meadows/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 -----------------------------------
@@ -14,7 +11,7 @@ function onMobInitialize(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getQuestStatus(OTHER_AREAS_LOG,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
         player:setVar("SPLINTERSPINE_GRUKJUK",2);
     end
 end;

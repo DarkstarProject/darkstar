@@ -3,9 +3,7 @@
 --  NPC: Hasim
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -72,9 +70,11 @@ function onTrigger(player,npc)
         4849, 130378,    -- Scroll of Addle
         4629,  35000,    -- Scroll of Holy
         4647,  20000,    -- Scroll of Banishga II
+        4737, 119240,    -- Scroll of Protecra V
+        4742, 124540,    -- Scroll of Shellra V
     }
 
-    player:showText(npc,HASIM_SHOP_DIALOG)
+    player:showText(npc,ID.text.HASIM_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

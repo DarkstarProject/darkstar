@@ -3,10 +3,6 @@
 --  NPC: Doumina
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Chateau_dOraguille/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -20,4 +16,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -4,9 +4,9 @@
 --
 ---------------------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------------
 
@@ -14,27 +14,27 @@ function onMobSkillCheck(target,mob,skill)
     local currentForm = mob:getLocalVar("form") -- this var is only set for proto-omega
 
     if (currentForm == 2) then
-        return 0;
+        return 0
     end
-    return 1;
-end;
+    return 1
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local currentHP = target:getHP();
+    local currentHP = target:getHP()
     -- remove all by 5%
-    local damage = 0;
+    local damage = 0
 
     -- if have more hp then 30%, then reduce to 5%
     if (target:getHPP() > 30) then
-        damage = currentHP * .95;
+        damage = currentHP * .95
     else
         -- else you die
-        damage = currentHP;
+        damage = currentHP
     end
-    local dmg = MobFinalAdjustments(damage,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(damage,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg);
-    mob:resetEnmity(target);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
+    mob:resetEnmity(target)
+    return dmg
+end

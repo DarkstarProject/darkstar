@@ -4,7 +4,7 @@
 require("scripts/globals/automatonweaponskills")
 require("scripts/globals/settings")
 require("scripts/globals/status")
-require("scripts/globals/msg");
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
@@ -13,7 +13,7 @@ end
 
 function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 65)
-    local pMod = math.max(automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE), automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED), automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC))
+    local pMod = automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC)
     local duration = 60
     local power = math.floor((pMod/56)^3 / 8) + 4 -- No idea how the actual formula used Automaton skill level, so heres a placeholder (4 @ lvl 1, 10 @ lvl 61, 20 @ lvl 75, 62 @ lvl 99)
 

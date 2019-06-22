@@ -5,21 +5,21 @@
 --  Type: Magical (Flame)
 ---------------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local dmgmod = MobBreathMove(mob, target, 0.3, 0.75, dsp.magic.ele.THUNDER, 460);
+    local dmgmod = MobBreathMove(mob, target, 0.3, 0.75, dsp.magic.ele.THUNDER, 460)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_THUNDER,MOBPARAM_IGNORE_SHADOWS);
-    target:delHP(dmg);
-    return dmg;
-end;
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.LIGHTNING,MOBPARAM_IGNORE_SHADOWS)
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.LIGHTNING)
+    return dmg
+end

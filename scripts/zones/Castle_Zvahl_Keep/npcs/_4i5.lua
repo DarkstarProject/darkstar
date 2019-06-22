@@ -4,15 +4,13 @@
 -- Involved In Quest: Recollections
 -- !pos -14 0 69 162
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Keep/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Castle_Zvahl_Keep/TextIDs");
+local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(WINDURST,RECOLLECTIONS) == QUEST_ACCEPTED and player:getVar("recollectionsQuest") == 2) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.RECOLLECTIONS) == QUEST_ACCEPTED and player:getVar("recollectionsQuest") == 2) then
         if (trade:hasItemQty(1106,1) and trade:getItemCount() == 1) then
             player:startEvent(8,1106);
         end
@@ -34,7 +32,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("recollectionsQuest",3);
         player:addKeyItem(dsp.ki.FOE_FINDER_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FOE_FINDER_MK_I);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FOE_FINDER_MK_I);
     end
 
 end;

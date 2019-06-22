@@ -7,33 +7,33 @@
 -- Range:
 -- Notes:
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target, mob, skill)
     if (mob:getHPP() > 50 and mob:getPool() == 3326) then
         -- Raskovnik doesn't use this for the 1st half of its HP.
-        return 1;
+        return 1
     end
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.CHARM_I;
+    local typeEffect = dsp.effect.CHARM_I
 
     if (not target:isPC()) then
-        skill:setMsg(dsp.msg.basic.SKILL_MISS);
-        return typeEffect;
+        skill:setMsg(dsp.msg.basic.SKILL_MISS)
+        return typeEffect
     end
 
     local msg = MobStatusEffectMove(mob, target, typeEffect, 0, 3, 150)
     if (msg == dsp.msg.basic.SKILL_ENFEEB_IS) then
-        mob:charm(target);
+        mob:charm(target)
     end
-    skill:setMsg(msg);
+    skill:setMsg(msg)
 
-    return typeEffect;
-end;
+    return typeEffect
+end

@@ -4,14 +4,12 @@
 -- Type: Assault
 -- !pos 22.446 -7.920 573.390 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local ID = require("scripts/zones/Arrapago_Reef/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,10 +17,10 @@ end;
 
 function onTrigger(player,npc)
     local toauMission = player:getCurrentMission(TOAU);
-    local beginnings = player:getQuestStatus(AHT_URHGAN,BEGINNINGS);
+    local beginnings = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS);
 
     -- IMMORTAL SENTRIES
-    if (toauMission == IMMORTAL_SENTRIES) then
+    if (toauMission == dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         if (player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE)) then
             player:startEvent(5);
         elseif (player:getVar("AhtUrganStatus") == 1) then
@@ -38,7 +36,7 @@ function onTrigger(player,npc)
         end;
 
     -- ASSAULT --
-    elseif (toauMission >= PRESIDENT_SALAHEEM) then
+    elseif (toauMission >= dsp.mission.id.toau.PRESIDENT_SALAHEEM) then
         local IPpoint = player:getCurrency("imperial_standing");
         if (player:hasKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS) and player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) == false) then
             player:startEvent(223,50,IPpoint);
@@ -65,12 +63,12 @@ function onEventFinish(player,csid,option)
     -- BEGINNINGS
     elseif (csid == 10) then
         player:addKeyItem(dsp.ki.BRAND_OF_THE_SPRINGSERPENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_SPRINGSERPENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_SPRINGSERPENT);
 
     -- ASSAULT --
     elseif (csid == 223 and option == 1) then
         player:delCurrency("imperial_standing", 50);
         player:addKeyItem(dsp.ki.ASSAULT_ARMBAND);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
     end;
 end;

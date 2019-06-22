@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Illauvolahaut
--- @zone 246
--- !pos -12 8 54
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-- !pos -12 8 54 246
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,7 +25,7 @@ function onTrigger(player,npc)
 
 end;
 
--- 0x0029  without addons (ZM) ?
+-- 41  without addons (ZM) ?
 function onEventUpdate(player,csid,option)
 end;
 
@@ -44,4 +40,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

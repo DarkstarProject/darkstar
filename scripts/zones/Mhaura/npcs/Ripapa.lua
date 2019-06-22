@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: Trial by Lightning
 -- !pos 29 -15 55 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,10 +17,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialByLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
+    local TrialByLightning = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
     local WhisperOfStorms = player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
+    local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
     local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
 
     ---------------------------------------------------------------------
@@ -61,16 +59,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 10016 and option == 1) then
-        if (player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then
-            player:delQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
+        if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then
+            player:delQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
         end
-        player:addQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
+        player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
         player:setVar("TrialByLightning_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10024) then
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10019) then
         item = 0;
         if (option == 1) then item = 17531;         -- Ramuh's Staff
@@ -80,31 +78,31 @@ function onEventFinish(player,csid,option)
         end
 
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         else
             if (option == 5) then
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then
                 player:addSpell(303); -- Ramuh Spell
-                player:messageSpecial(RAMUH_UNLOCKED,0,0,5);
+                player:messageSpecial(ID.text.RAMUH_UNLOCKED,0,0,5);
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(dsp.ki.WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
             player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(MHAURA,30);
-            player:completeQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
+            player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
         end
     elseif (csid == 10022 or csid == 10023) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1172);
-            player:messageSpecial(ITEM_OBTAINED,1172);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1172);
             player:setVar("CarbuncleDebacleProgress",3);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1172);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1172);
         end;
     end
 

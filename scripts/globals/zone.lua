@@ -315,8 +315,8 @@ dsp.zone =
     BASTOK_JEUNO_AIRSHIP            = 224,
     WINDURST_JEUNO_AIRSHIP          = 225,
     KAZHAM_JEUNO_AIRSHIP            = 226,
-    SHIP_BOUND_FOR_SELBINA          = 227,
-    SHIP_BOUND_FOR_MHAURA           = 228,
+    SHIP_BOUND_FOR_SELBINA_PIRATES  = 227,
+    SHIP_BOUND_FOR_MHAURA_PIRATES   = 228,
     SOUTHERN_SAN_DORIA              = 230,
     NORTHERN_SAN_DORIA              = 231,
     PORT_SAN_DORIA                  = 232,
@@ -381,6 +381,7 @@ dsp.zone =
     DYNAMIS_BASTOK_D                = 295,
     DYNAMIS_WINDURST_D              = 296,
     DYNAMIS_JEUNO_D                 = 297,
+    WALK_OF_ECHOES_P                = 298,
 }
 
 -----------------------------------
@@ -388,7 +389,7 @@ dsp.zone =
 ----------------------------------
 
 function SetExplorerMoogles(moogle)
-    if EXPLORER_MOOGLE == 1 then
+    if EXPLORER_MOOGLE_LV ~= 0 then
         local npc = GetNPCByID(moogle)
         if npc == nil then
             printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", moogle)

@@ -10,35 +10,36 @@
 -- HP recovered while healing 2
 -- MP recovered while healing 2
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,5587);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,5587)
+end
 
 function onEffectGain(target, effect)
-    target:addMod(dsp.mod.HP, 35);
-    target:addMod(dsp.mod.MP, 35);
-    target:addMod(dsp.mod.AGI, 2);
-    target:addMod(dsp.mod.INT, -2);
-    target:addMod(dsp.mod.HPHEAL, 2);
-    target:addMod(dsp.mod.MPHEAL, 2);
-end;
+    target:addMod(dsp.mod.HP, 35)
+    target:addMod(dsp.mod.MP, 35)
+    target:addMod(dsp.mod.AGI, 2)
+    target:addMod(dsp.mod.INT, -2)
+    target:addMod(dsp.mod.HPHEAL, 2)
+    target:addMod(dsp.mod.MPHEAL, 2)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.HP, 35);
-    target:delMod(dsp.mod.MP, 35);
-    target:delMod(dsp.mod.AGI, 2);
-    target:delMod(dsp.mod.INT, -2);
-    target:delMod(dsp.mod.HPHEAL, 2);
-    target:delMod(dsp.mod.MPHEAL, 2);
-end;
+    target:delMod(dsp.mod.HP, 35)
+    target:delMod(dsp.mod.MP, 35)
+    target:delMod(dsp.mod.AGI, 2)
+    target:delMod(dsp.mod.INT, -2)
+    target:delMod(dsp.mod.HPHEAL, 2)
+    target:delMod(dsp.mod.MPHEAL, 2)
+end

@@ -1,13 +1,15 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
 --  MOB: Yagudo_Prior
+-- Note: PH for Yaa Haqa the Profane
 -----------------------------------
-require("scripts/zones/Castle_Oztroja/MobIDs");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,YAA_HAQA_THE_PROFANE_PH,5,math.random(3600,7200)); -- 1 to 2 hours
-end;
+    dsp.mob.phOnDespawn(mob,ID.mob.YAA_HAQA_THE_PROFANE_PH,5,3600) -- 1 hour
+end

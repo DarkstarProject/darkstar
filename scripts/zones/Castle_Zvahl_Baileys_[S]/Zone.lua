@@ -3,10 +3,7 @@
 -- Zone: Castle_Zvahl_Baileys_[S] (138)
 --
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Baileys_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Castle_Zvahl_Baileys_[S]/TextIDs");
+local ID = require("scripts/zones/Castle_Zvahl_Baileys_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

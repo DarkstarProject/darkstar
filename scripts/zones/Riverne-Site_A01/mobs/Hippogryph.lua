@@ -3,11 +3,11 @@
 --  MOB: Hippogryph
 -- Note: PH for Heliodromos
 -----------------------------------
-require("scripts/zones/Riverne-Site_A01/MobIDs");
+local ID = require("scripts/zones/Riverne-Site_A01/IDs");
 -----------------------------------
 
 function disturbMob(mob)
-    local offset = mob:getID() - HELIODROMOS_PH_OFFSET;
+    local offset = mob:getID() - ID.mob.HELIODROMOS_PH_OFFSET;
     if (offset >= 0 and offset <= 2) then
         SetServerVariable("Heliodromos_ToD", os.time() + math.random(43200, 54000)); -- 12 to 15 hours
     end
@@ -29,19 +29,19 @@ function onMobRoam(mob)
     -- no PH has been disturbed for 12-15 hours
     if (os.time() > GetServerVariable("Heliodromos_ToD")) then
         local noHeliodromosSpawned = true;
-        for i = HELIODROMOS_OFFSET, HELIODROMOS_OFFSET + 2 do
+        for i = ID.mob.HELIODROMOS_OFFSET, ID.mob.HELIODROMOS_OFFSET + 2 do
             if (GetMobByID(i):isSpawned()) then
                 noHeliodromosSpawned = false;
             end
         end
         if (noHeliodromosSpawned) then
             -- despawn placeholders
-            for i = HELIODROMOS_PH_OFFSET, HELIODROMOS_PH_OFFSET + 2 do
+            for i = ID.mob.HELIODROMOS_PH_OFFSET, ID.mob.HELIODROMOS_PH_OFFSET + 2 do
                 DisallowRespawn(i, true);
                 DespawnMob(i);
             end
             -- spawn heliodromos
-            for i = HELIODROMOS_OFFSET, HELIODROMOS_OFFSET + 2 do
+            for i = ID.mob.HELIODROMOS_OFFSET, ID.mob.HELIODROMOS_OFFSET + 2 do
                 SpawnMob(i);
             end
         end

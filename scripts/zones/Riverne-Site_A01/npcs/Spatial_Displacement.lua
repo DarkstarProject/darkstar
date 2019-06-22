@@ -2,13 +2,13 @@
 -- Area: Riverne Site #A01
 --  NPC: Spacial Displacement
 -----------------------------------
-require("scripts/zones/Riverne-Site_A01/MobIDs");
+local ID = require("scripts/zones/Riverne-Site_A01/IDs");
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - RIV_A_DISPLACEMENT_OFFSET;
+    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET;
     if (offset >= 0 and offset <= 2) then
         player:startEvent(offset + 2);
     elseif (offset >= 7 and offset <= 39) then

@@ -4,9 +4,7 @@
 -- Type: Merchant
 -- !pos -283.147 -11.319 -143.680 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
@@ -29,6 +27,6 @@ function onTrigger(player,npc)
         17095,  386, 3,    -- Ash Pole
     }
 
-    player:showText(npc, CIQALA_SHOP_DIALOG)
+    player:showText(npc, ID.text.CIQALA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

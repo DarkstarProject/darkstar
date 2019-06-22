@@ -3,13 +3,11 @@
 --  MOB: Angra Mainyu
 -- Mega Boss
 -----------------------------------
+local ID = require("scripts/zones/Dynamis-Beaucedine/IDs")
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
 -----------------------------------
-
-function onMobInitialize(mob)
-end;
 
 function onMobEngaged(mob,target)
 
@@ -71,7 +69,7 @@ function onMobDeath(mob, player, isKiller)
 
     if (player:hasKeyItem(dsp.ki.HYDRA_CORPS_INSIGNIA) == false) then
         player:addKeyItem(dsp.ki.HYDRA_CORPS_INSIGNIA);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.HYDRA_CORPS_INSIGNIA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.HYDRA_CORPS_INSIGNIA);
     end
 
 end;

@@ -2,21 +2,20 @@
 -- Area: Meriphataud Mountains
 --  NPC: Field Manual
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_MERIPH,player);
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrade(player,npc,trade)
-end;
+function onTrigger(player, npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,36,37,38,39,63);
-end;
+function onEventUpdate(player, csid, option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
-function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,36,37,38,39,63,FOV_MSG_MERIPH);
-end;
+function onEventFinish(player, csid, option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

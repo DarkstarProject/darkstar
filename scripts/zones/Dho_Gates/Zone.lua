@@ -1,12 +1,9 @@
 -----------------------------------
 --
--- Zone: Foret de Hennetiel
+-- Zone: Dho Gates
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Dho_Gates/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dho_Gates/TextIDs");
+local ID = require("scripts/zones/Dho_Gates/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -14,9 +11,9 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-player:setPos(62,-10,83,84);
-end
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos(62,-10,83,84);
+    end
     return cs;
 end;
 
@@ -28,4 +25,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -8,26 +8,26 @@
 --  Notes: Used only when wielding their initial sword, or the dagger on their backs.
 ---------------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:AnimationSub() == 0 or mob:AnimationSub() == 2) then
-        return 0;
+        return 0
     else
-        return 1;
+        return 1
     end
-end;
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 3;
-    local accmod = 1;
-    local dmgmod = .8;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-    target:delHP(dmg);
-    return dmg;
-end;
+    local numhits = 3
+    local accmod = 1
+    local dmgmod = .8
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
+    return dmg
+end

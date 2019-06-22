@@ -5,12 +5,9 @@
 -- Involved in Mission 2-1
 -- !pos -11 0 20 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,13 +15,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+    local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
     local CurrentMission = player:getCurrentMission(WINDURST)
     local MissionStatus = player:getVar("MissionStatus");
 
     -- Check for Missions first (priority?)
     -- We should allow both missions and quests to activate
-    if (CurrentMission == LOST_FOR_WORDS and MissionStatus == 4) then
+    if (CurrentMission == dsp.mission.id.windurst.LOST_FOR_WORDS and MissionStatus == 4) then
         player:startEvent(46);
     elseif (MakingHeadlines == 1) then
         function testflag(set,flag)

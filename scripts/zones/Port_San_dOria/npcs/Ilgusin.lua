@@ -2,12 +2,9 @@
 -- Area: Port San d'Oria
 --   NPC: Ilgusin
 -- Type: Standard NPC
--- @zone 232
--- !pos -68.313 -6.5 -36.985
+-- !pos -68.313 -6.5 -36.985 232
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

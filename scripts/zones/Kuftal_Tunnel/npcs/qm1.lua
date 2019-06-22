@@ -4,27 +4,20 @@
 -- Note: Spawns Phantom Worm
 -- position changes every 5 seconds
 -----------------------------------
-require("scripts/zones/Kuftal_Tunnel/globals");
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs")
+require("scripts/zones/Kuftal_Tunnel/globals")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onSpawn(npc)
-    npc:timer(5000, function(npc) KUFTAL_TUNNEL.movePhantomWormQM(); end);
-end;
+    npc:timer(5000, function(npc) KUFTAL_TUNNEL.movePhantomWormQM() end)
+end
 
-function onTrade(player,npc,trade)
-    if (not GetMobByID(PHANTOM_WORM):isSpawned() and npcUtil.tradeHas(trade, 645)) then -- Darksteel Ore
-        local x = npc:getXPos();
-        local y = npc:getYPos();
-        local z = npc:getZPos();
-        npc:setStatus(dsp.status.DISAPPEAR);
-        player:confirmTrade();
-        SpawnMob(PHANTOM_WORM):updateClaim(player);
-        GetMobByID(PHANTOM_WORM):setPos(x+1,y,z+1);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 645) and npcUtil.popFromQM(player, npc, ID.mob.PHANTOM_WORM, {radius=1}) then -- Darksteel Ore
+        player:confirmTrade()
     end
-end;
+end
 
-function onTrigger(player,npc)
-end;
+function onTrigger(player, npc)
+end

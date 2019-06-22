@@ -2,41 +2,35 @@
 -- Area: Port San d'Oria
 --  NPC: Sheridan
 -- Involved in Quests: Riding on the Clouds
--- @zone 232
--- !pos -19 -8 -129
+-- !pos -19 -8 -129 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    elseif player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 5 and npcUtil.tradeHas(trade, 1127) then
+        player:setVar("ridingOnTheClouds_1", 0)
+        npcUtil.giveKeyItem(player, dsp.ki.SCOWLING_STONE)
+        player:confirmTrade()
     end
+end
 
-    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 5) then
-        if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_1",0);
-            player:tradeComplete();
-            player:addKeyItem(dsp.ki.SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
-        end
+function onTrigger(player, npc)
+    if player:getVar("thePickpocket") == 1 then
+        player:showText(npc, ID.text.PICKPOCKET_SHERIDAN)
+    else
+        player:startEvent(572)
     end
+end
 
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onTrigger(player,npc)
-    player:startEvent(572);
-end;
-
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

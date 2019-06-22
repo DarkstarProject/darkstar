@@ -3,14 +3,15 @@
 --  Mob: Clipper
 -- Note: PH for Cargo Crab Colin
 -----------------------------------
-require("scripts/zones/Korroloka_Tunnel/MobIDs");
-require("scripts/globals/groundsofvalor");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,731,1);
-end;
+    dsp.regime.checkRegime(player, mob, 731, 1, dsp.regime.type.GROUNDS)
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,CARGO_CRAB_COLIN_PH,5,math.random(7200,21600)); -- 1 to 6 hours
-end;
+    dsp.mob.phOnDespawn(mob, ID.mob.CARGO_CRAB_COLIN_PH, 5, math.random(7200, 21600)) -- 1 to 6 hours
+end

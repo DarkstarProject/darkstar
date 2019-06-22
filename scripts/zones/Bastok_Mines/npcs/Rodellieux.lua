@@ -3,9 +3,7 @@
 --  NPC: Rodellieux
 -- Fauregandi Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.FAUREGANDI) ~= dsp.nation.BASTOK then
-        player:showText(npc, RODELLIEUX_CLOSED_DIALOG)
+        player:showText(npc, ID.text.RODELLIEUX_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
             691,     54,     -- Maple Log
         }
 
-        player:showText(npc, RODELLIEUX_OPEN_DIALOG)
+        player:showText(npc, ID.text.RODELLIEUX_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

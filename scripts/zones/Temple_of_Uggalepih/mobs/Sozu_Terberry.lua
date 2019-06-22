@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  NM:  Sozu Terberry
+--   NM: Sozu Terberry
 -----------------------------------
 mixins =
 {

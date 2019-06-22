@@ -1,33 +1,27 @@
 -----------------------------------
 -- Area: South Gustaberg
--- NPC:  qm1 (???)
+--  NPC: qm1 (???)
 -- Involved in Quest: The Cold Light of Day
--- !pos  744 0 -671 107
+-- !pos 744 0 -671 107
 -----------------------------------
-package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
+local ID = require("scripts/zones/South_Gustaberg/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
-require("scripts/zones/South_Gustaberg/TextIDs");
-require("scripts/zones/South_Gustaberg/MobIDs");
 
-function onTrade(player,npc,trade)
-    if (
-        (trade:hasItemQty(4514,1) or trade:hasItemQty(5793,1)) and
-        trade:getItemCount() == 1 and trade:getGil() == 0 and
-        not GetMobByID(BUBBLY_BERNIE):isSpawned()
-    ) then
-        player:tradeComplete();
-        SpawnMob(BUBBLY_BERNIE);
+function onTrade(player, npc, trade)
+    if (npcUtil.tradeHas(trade, 4514) or npcUtil.tradeHas(trade, 5793)) and npcUtil.popFromQM(player, npc, ID.mob.BUBBLY_BERNIE, {hide = 0}) then
+        player:confirmTrade()
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(MONSTER_TRACKS);
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.MONSTER_TRACKS)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

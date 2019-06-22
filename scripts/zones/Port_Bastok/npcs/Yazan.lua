@@ -3,17 +3,15 @@
 --  NPC: Yazan
 -- Starts Quests: Bite the Dust (100%)
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
+    BiteDust = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BITE_THE_DUST);
 
     if (BiteDust ~= QUEST_AVAILABLE and trade:hasItemQty(1015,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
@@ -24,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-    BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
+    BiteDust = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BITE_THE_DUST);
 
     if (BiteDust == QUEST_AVAILABLE) then
         player:startEvent(191);
@@ -44,18 +42,18 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 191) then
-        player:addQuest(BASTOK,BITE_THE_DUST);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.BITE_THE_DUST);
     elseif (csid == 193) then
-        if (player:getQuestStatus(BASTOK,BITE_THE_DUST) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BITE_THE_DUST) == QUEST_ACCEPTED) then
             player:addTitle(dsp.title.SAND_BLASTER)
             player:addFame(BASTOK,120);
-            player:completeQuest(BASTOK,BITE_THE_DUST);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.BITE_THE_DUST);
         else
             player:addFame(BASTOK,80);
         end
 
         player:addGil(GIL_RATE*350);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*350);
     end
 
 end;

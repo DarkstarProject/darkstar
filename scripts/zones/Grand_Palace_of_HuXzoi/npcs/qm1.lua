@@ -4,16 +4,13 @@
 -- Note: Spawns Ix'Aern (MNK)
 -- !pos 460 0 540
 -----------------------------------
-package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
-require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
+local ID = require("scripts/zones/Grand_Palace_of_HuXzoi/IDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local nm = GetMobByID(IXAERN_MNK);
+    local nm = GetMobByID(ID.mob.IXAERN_MNK);
     
     if (not nm:isSpawned()) then
         local chance = 0; -- percent chance that an item will drop.
@@ -33,14 +30,14 @@ function onTrade(player,npc,trade)
 
             -- spawn Ix'Aern (MNK) and minions
             nm:setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos());
-            SpawnMob(IXAERN_MNK):updateClaim(player);
+            SpawnMob(ID.mob.IXAERN_MNK):updateClaim(player);
             if (chance >= 66) then
-                GetMobByID(IXAERN_MNK + 1):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()-4);
-                SpawnMob(IXAERN_MNK + 1):updateClaim(player);
+                GetMobByID(ID.mob.IXAERN_MNK + 1):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()-4);
+                SpawnMob(ID.mob.IXAERN_MNK + 1):updateClaim(player);
             end
             if (chance == 100) then
-                GetMobByID(IXAERN_MNK + 2):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()+4);
-                SpawnMob(IXAERN_MNK + 2):updateClaim(player);
+                GetMobByID(ID.mob.IXAERN_MNK + 2):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()+4);
+                SpawnMob(ID.mob.IXAERN_MNK + 2):updateClaim(player);
             end
 
         end;

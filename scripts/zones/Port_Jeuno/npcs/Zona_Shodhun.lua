@@ -2,14 +2,12 @@
 -- Area: Port Jeuno
 --  NPC: Zona Shodhun
 -- Starts and Finishes Quest: Pretty Little Things
--- @zone 246
--- !pos -175 -5 -4
+-- !pos -175 -5 -4 246
 -----------------------------------
------------------------------------
+local ID = require("scripts/zones/Port_Jeuno/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -52,7 +50,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    local PrettyLittleThings = player:getQuestStatus(JEUNO,PRETTY_LITTLE_THINGS);
+    local PrettyLittleThings = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
 
     if (itemQuality == 2) then
         if (PrettyLittleThings == QUEST_COMPLETED) then
@@ -85,12 +83,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 10023 and option == 4002) then
         player:moghouseFlag(8);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
-        player:completeQuest(JEUNO,PRETTY_LITTLE_THINGS);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
     elseif (csid == 10023 and option == 1) then
         player:tradeComplete();
-        player:addQuest(JEUNO,PRETTY_LITTLE_THINGS);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
     end
 end;

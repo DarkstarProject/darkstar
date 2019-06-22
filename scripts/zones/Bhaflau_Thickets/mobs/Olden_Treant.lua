@@ -3,12 +3,12 @@
 --  MOB: Olden Treant
 -- Note: Place holder Emergent Elm
 -----------------------------------
-require("scripts/zones/Bhaflau_Thickets/MobIDs");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,EMERGENT_ELM_PH,5,14400); -- 4 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.EMERGENT_ELM_PH,5,14400); -- 4 hours
 end;

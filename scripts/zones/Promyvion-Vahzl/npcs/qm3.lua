@@ -4,23 +4,17 @@
 -- Notes: Spawn Provoker Floor 5
 -- !pos -260.000 -0.003 72.000 22
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Promyvion-Vahzl/TextIDs");
-require("scripts/zones/Promyvion-Vahzl/MobIDs");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Promyvion-Vahzl/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-    if (not GetMobByID(PROVOKER):isSpawned() and npcUtil.tradeHas(trade, 1758)) then -- Satiator Remnant
-        player:confirmTrade();
-        player:messageSpecial(ON_NM_SPAWN);
-        SpawnMob(PROVOKER):updateClaim(player);
-        npc:setStatus(dsp.status.DISAPPEAR);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 1758) and npcUtil.popFromQM(player, npc, ID.mob.PROVOKER) then -- Satiator Remnant
+        player:messageSpecial(ID.text.ON_NM_SPAWN)
+        player:confirmTrade()
     end
-end;
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(POPPED_NM_OFFSET+2);
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.POPPED_NM_OFFSET + 2)
+end

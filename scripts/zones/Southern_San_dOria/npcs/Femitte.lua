@@ -4,18 +4,16 @@
 -- Involved in Quest: Lure of the Wildcat (San d'Oria), Distant Loyalties
 -- !pos -17 2 10 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -24,10 +22,10 @@ end;
 function onTrigger(player,npc)
 
     local DistantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
-    local DistantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
+    local DistantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
     local WildcatSandy = player:getVar("WildcatSandy");
 
-    if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
         player:startEvent(807);
     elseif (player:getFameLevel(SANDORIA) >= 4 and DistantLoyalties == 0) then
         player:startEvent(663);
@@ -50,32 +48,32 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
     elseif (csid == 663 and option == 0) then
         player:addKeyItem(dsp.ki.GOLDSMITHING_ORDER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);
-        player:addQuest(SANDORIA,DISTANT_LOYALTIES);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
         player:setVar("DistantLoyaltiesProgress",1);
     elseif (csid == 665) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13585);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13585);
         else
             player:delKeyItem(dsp.ki.MYTHRIL_HEARTS);
             player:addItem(13585,1);
-            player:messageSpecial(ITEM_OBTAINED,13585);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13585);
             player:setVar("DistantLoyaltiesProgress",0);
-            player:completeQuest(SANDORIA,DISTANT_LOYALTIES);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
         end;
     end;
 
 end;
 
 --------Other CS
---0x7fb4
---0x0000
---0x0295  Standard dialog
+--32692
+--0
+--661  Standard dialog
 --663
 --664
 --665
---0x02d5
---0x02eb
---0x02ec
+--725
+--747
+--748
 --807  Lure of the Wildcat
---0x03b1  CS with small mythra dancer
+--945  CS with small mythra dancer

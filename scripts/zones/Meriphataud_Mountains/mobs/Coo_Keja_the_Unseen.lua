@@ -1,16 +1,23 @@
 -----------------------------------
 -- Area: Meriphataud Mountains (119)
---  NM:  Coo_Keja_the_Unseen
+--   NM: Coo Keja the Unseen
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
+function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MIJIN_GAKURE, hpp = math.random(10, 15)},
+        },
+    })
+end
+
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-
-    -- Set Coo_Keja_the_Unseen's spawnpoint and respawn time (21-24 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
-end;
-
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(75600, 86400)) -- 21 to 24 hours
+end

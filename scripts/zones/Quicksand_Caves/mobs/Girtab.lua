@@ -2,9 +2,9 @@
 -- Area: Quicksand Caves
 --  MOB: Girtab
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,818,1);
+    dsp.regime.checkRegime(player, mob, 818, 1, dsp.regime.type.GROUNDS)
 end;

@@ -3,9 +3,7 @@
 --  NPC: Zemedars
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         12289,   110, 3,    --Lauan Shield
     }
 
-    player:showText(npc, ZEMEDARS_SHOP_DIALOG)
+    player:showText(npc, ID.text.ZEMEDARS_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end
 

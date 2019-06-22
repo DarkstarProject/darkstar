@@ -146,7 +146,8 @@ int32 lobbydata_parse(int32 fd)
                 pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
                             race, face, head, body, hands, legs, feet, main, sub,\
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng,\
-                            sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
+                            sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, \
+                            gmlevel \
                         FROM chars \
                             INNER JOIN char_stats USING(charid)\
                             INNER JOIN char_look  USING(charid) \
@@ -185,41 +186,70 @@ int32 lobbydata_parse(int32 fd)
 
                     Sql_GetData(SqlHandle, 1, &strCharName, nullptr);
 
-                    uint32 CharID = Sql_GetIntData(SqlHandle, 0);
+                    auto gmlevel = Sql_GetIntData(SqlHandle, 36);
+                    if (maint_config.maint_mode == 0 || gmlevel > 0)
+                    {
+                        uint32 CharID = Sql_GetIntData(SqlHandle, 0);
 
-                    uint16 zone = (uint16)Sql_GetIntData(SqlHandle, 2);
+                        uint16 zone = (uint16)Sql_GetIntData(SqlHandle, 2);
 
-                    uint8 MainJob = (uint8)Sql_GetIntData(SqlHandle, 4);
-                    uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
+                        uint8 MainJob = (uint8)Sql_GetIntData(SqlHandle, 4);
+                        uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
 
-                    // Update the character and user list content ids..
-                    ref<uint32>(uList, 16 * (i + 1)) = CharID;
-                    ref<uint32>(CharList, 32 + 140 * i) = CharID;
+                        // Update the character and user list content ids..
+                        ref<uint32>(uList, 16 * (i + 1)) = CharID;
+                        ref<uint32>(CharList, 32 + 140 * i) = CharID;
 
-                    ref<uint32>(uList, 20 * (i + 1)) = CharID;
+                        ref<uint32>(uList, 20 * (i + 1)) = CharID;
 
-                    ////////////////////////////////////////////////////
-                    ref<uint32>(CharList, 4 + 32 + i * 140) = CharID;
+                        ////////////////////////////////////////////////////
+                        ref<uint32>(CharList, 4 + 32 + i * 140) = CharID;
 
-                    memcpy(CharList + 12 + 32 + i * 140, strCharName, 15);
+                        memcpy(CharList + 12 + 32 + i * 140, strCharName, 15);
 
-                    ref<uint8>(CharList, 46 + 32 + i * 140) = MainJob;
-                    ref<uint8>(CharList, 73 + 32 + i * 140) = lvlMainJob;
+                        ref<uint8>(CharList, 46 + 32 + i * 140) = MainJob;
+                        ref<uint8>(CharList, 73 + 32 + i * 140) = lvlMainJob;
 
-                    ref<uint8>(CharList, 44 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 5); // race;
-                    ref<uint8>(CharList, 56 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 6); // face;
-                    ref<uint16>(CharList, 58 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 7); // head;
-                    ref<uint16>(CharList, 60 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 8); // body;
-                    ref<uint16>(CharList, 62 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 9); // hands;
-                    ref<uint16>(CharList, 64 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 10); // legs;
-                    ref<uint16>(CharList, 66 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 11); // feet;
-                    ref<uint16>(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
-                    ref<uint16>(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
+                        ref<uint8>(CharList, 44 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 5); // race;
+                        ref<uint8>(CharList, 56 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 6); // face;
+                        ref<uint16>(CharList, 58 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 7); // head;
+                        ref<uint16>(CharList, 60 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 8); // body;
+                        ref<uint16>(CharList, 62 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 9); // hands;
+                        ref<uint16>(CharList, 64 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 10); // legs;
+                        ref<uint16>(CharList, 66 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 11); // feet;
+                        ref<uint16>(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
+                        ref<uint16>(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
 
-                    ref<uint8>(CharList, 72 + 32 + i * 140) = (uint8)zone;
-                    ref<uint16>(CharList, 78 + 32 + i * 140) = zone;
-                    ///////////////////////////////////////////////////
-                    ++i;
+                        ref<uint8>(CharList, 72 + 32 + i * 140) = (uint8)zone;
+                        ref<uint16>(CharList, 78 + 32 + i * 140) = zone;
+                        ///////////////////////////////////////////////////
+                        ++i;
+                    }
+                }
+
+                // the filtering above removes any non-GM characters so
+                // at this point we need to make sure stop players with empty lists
+                // from logging in or creating new characters
+                if (maint_config.maint_mode > 0 && i == 0)
+                {
+                    LOBBBY_ERROR_MESSAGE(ReservePacket);
+                    ref<uint16>(ReservePacket, 32) = 321;
+                    //memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
+
+                    unsigned char Hash[16];
+                    uint8 SendBuffSize = ref<uint8>(ReservePacket, 0);
+
+                    memset(ReservePacket + 12, 0, sizeof(Hash));
+                    md5(ReservePacket, Hash, SendBuffSize);
+
+                    memcpy(ReservePacket + 12, Hash, sizeof(Hash));
+                    session[sd->login_lobbyview_fd]->wdata.assign((const char*)ReservePacket, SendBuffSize);
+
+                    RFIFOSKIP(sd->login_lobbyview_fd, session[sd->login_lobbyview_fd]->rdata.size());
+                    RFIFOFLUSH(sd->login_lobbyview_fd);
+                    ShowWarning("lobbydata_parse: char:(%i) login during maintenance mode (0xA2). Sending error to client.\n", sd->accid);
+                    // TODO: consider logging failed attempts during maintenance
+                    return -1;
                 }
 
                 if (session[sd->login_lobbyview_fd] != nullptr)
@@ -271,21 +301,23 @@ int32 lobbydata_parse(int32 fd)
 
                 uint32 charid = ref<uint32>(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
-                const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
+                const char* fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone, gmlevel \
                                         FROM zone_settings, chars \
-                                        WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
+                                        WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u AND accid = %u;";
                 uint32 ZoneIP = sd->servip;
                 uint16 ZonePort = 54230;
                 uint16 ZoneID = 0;
                 uint16 PrevZone = 0;
+                uint16 gmlevel = 0;
 
-                if (Sql_Query(SqlHandle, fmtQuery, charid) != SQL_ERROR &&
+                if (Sql_Query(SqlHandle, fmtQuery, charid, sd->accid) != SQL_ERROR &&
                     Sql_NumRows(SqlHandle) != 0)
                 {
                     Sql_NextRow(SqlHandle);
 
                     ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 2);
                     PrevZone = (uint16)Sql_GetUIntData(SqlHandle, 3);
+                    gmlevel = (uint16)Sql_GetUIntData(SqlHandle, 4);
 
                     //new char only (first login from char create)
                     if (PrevZone == 0)  key3[16] += 6;
@@ -295,42 +327,54 @@ int32 lobbydata_parse(int32 fd)
                     ref<uint32>(ReservePacket, (0x38)) = ZoneIP;
                     ref<uint16>(ReservePacket, (0x3C)) = ZonePort;
                     ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n", ZoneID, ip2str(ntohl(ZoneIP), nullptr), ZonePort, charid);
+
+                    if (maint_config.maint_mode == 0 || gmlevel > 0)
+                    {
+                        if (PrevZone == 0)
+                            Sql_Query(SqlHandle, "UPDATE chars SET pos_prevzone = %d WHERE charid = %u;", ZoneID, charid);
+
+                        ref<uint32>(ReservePacket, (0x40)) = sd->servip;                                  // search-server ip
+                        ref<uint16>(ReservePacket, (0x44)) = login_config.search_server_port;             // search-server port
+
+                        memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
+
+                        // необходиму одалять сессию, необработанную игровым сервером
+                        Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0", sd->accid);
+
+                        char session_key[sizeof(key3) * 2 + 1];
+                        bin2hex(session_key, key3, sizeof(key3));
+
+                        fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
+
+                        if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (uint8)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
+                        {
+                            //отправляем клиенту сообщение об ошибке
+                            LOBBBY_ERROR_MESSAGE(ReservePacket);
+                            // устанавливаем код ошибки
+                            // Unable to connect to world server. Specified operation failed
+                            ref<uint16>(ReservePacket, 32) = 305;
+                            memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
+                        }
+
+                        fmtQuery = "UPDATE char_stats SET zoning = 2 WHERE charid = %u";
+                        Sql_Query(SqlHandle, fmtQuery, charid);
+                    }
+                    else
+                    {
+                        LOBBBY_ERROR_MESSAGE(ReservePacket);
+                        ref<uint16>(ReservePacket, 32) = 321;
+                        memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
+                    }
                 }
                 else
                 {
-                    ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n", ip2str(sd->servip, nullptr), charid);
-                    ref<uint32>(ReservePacket, (0x38)) = sd->servip;  // map-server ip
-                  //ref<uint16>(ReservePacket,(0x3C)) = port;         // map-server port
-                }
-
-                if (PrevZone == 0)
-                    Sql_Query(SqlHandle, "UPDATE chars SET pos_prevzone = %d WHERE charid = %u;", ZoneID, charid);
-
-                ref<uint32>(ReservePacket, (0x40)) = sd->servip;                                  // search-server ip
-                ref<uint16>(ReservePacket, (0x44)) = login_config.search_server_port;             // search-server port
-
-                memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
-
-                // необходиму одалять сессию, необработанную игровым сервером
-                Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0", sd->accid);
-
-                char session_key[sizeof(key3) * 2 + 1];
-                bin2hex(session_key, key3, sizeof(key3));
-
-                fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
-
-                if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (uint8)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
-                {
-                    //отправляем клиенту сообщение об ошибке
+                    //either there is no character for this charid/accid, or there is no zone for this char's zone
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
                     // устанавливаем код ошибки
                     // Unable to connect to world server. Specified operation failed
                     ref<uint16>(ReservePacket, 32) = 305;
                     memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
                 }
-
-                fmtQuery = "UPDATE char_stats SET zoning = 2 WHERE charid = %u";
-                Sql_Query(SqlHandle, fmtQuery, charid);
 
                 unsigned char Hash[16];
                 uint8 SendBuffSize = ref<uint8>(MainReservePacket, 0);
@@ -477,18 +521,42 @@ int32 lobbyview_parse(int32 fd)
 
                 string_t expected_version(version_info.client_ver, 0, 6); // Same deal here!
                 expected_version = expected_version + "xx_x";
-                bool ver_mismatch;
+                bool ver_mismatch = expected_version != client_ver_data;
+                bool fatalMismatch = false;
 
-                if ((ver_mismatch = (expected_version != client_ver_data)))
+                if (ver_mismatch)
                 {
                     ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver_data.c_str(), expected_version.c_str());
-                    if (expected_version < client_ver_data)
-                        ShowError("lobbyview_parse: The server must be updated to support this client version\n");
-                    else
-                        ShowError("lobbyview_parse: The client must be updated to support this server version\n");
+
+                    switch (version_info.ver_lock)
+                    {
+                        // enabled
+                        case 1:
+                            if (expected_version < client_ver_data)
+                            {
+                                ShowError("lobbyview_parse: The server must be updated to support this client version\n");
+                            }
+                            else
+                            {
+                                ShowError("lobbyview_parse: The client must be updated to support this server version\n");
+                            }
+                            fatalMismatch = true;
+                            break;
+                        // enabled greater than or equal
+                        case 2:
+                            if (expected_version > client_ver_data)
+                            {
+                                ShowError("lobbyview_parse: The client must be updated to support this server version\n");
+                                fatalMismatch = true;
+                            }
+                            break;
+                        default:
+                            // no-op - not enabled or unknown verlock type
+                            break;
+                    }
                 }
 
-                if (ver_mismatch && version_info.enable_ver_lock)
+                if (fatalMismatch)
                 {
                     sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
@@ -633,66 +701,76 @@ int32 lobbyview_parse(int32 fd)
                 session[fd]->wdata.assign((const char*)ReservePacket, sendsize);
                 RFIFOSKIP(fd, session[fd]->rdata.size());
                 RFIFOFLUSH(fd);
-
             }
             break;
             case 0x22:
             {
-                //creating new char
-                char CharName[15];
-                memset(CharName, 0, sizeof(CharName));
-                memcpy(CharName, session[fd]->rdata.data() + 32, sizeof(CharName));
-
-                //find assigns
-                const char *fmtQuery = "SELECT charname FROM chars WHERE charname LIKE '%s'";
-
                 int32 sendsize = 0x24;
                 unsigned char MainReservePacket[0x24];
 
-                std::string myNameIs(&CharName[0]);
-                bool invalidName = false;
-                for (auto letters : myNameIs)
+                // block creation of character if in maintenance mode
+                if (maint_config.maint_mode > 0)
                 {
-                    if (!std::isalpha(letters))
-                    {
-                        invalidName = true;
-                        break;
-                    }
-                }
-
-                char escapedCharName[16*2 +1];
-                Sql_EscapeString(SqlHandle, escapedCharName, CharName);
-                if (Sql_Query(SqlHandle, fmtQuery, escapedCharName) == SQL_ERROR)
-                {
-                    do_close_lobbyview(sd, fd);
-                    return -1;
-                }
-
-                if (Sql_NumRows(SqlHandle) != 0 || invalidName == true)
-                {
-                    if (invalidName == true)
-                    {
-                        ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET" invalid\n", CharName);
-                    }
-                    else
-                    {
-                        ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET" already taken\n", CharName);
-                    }
-                    // Send error code
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
-                    // The character name you entered is unavailable. Please choose another name.
-                    // A message is displayed in Japanese
-                    ref<uint16>(ReservePacket, 32) = 313;
+                    ref<uint16>(ReservePacket, 32) = 314;
                     memcpy(MainReservePacket, ReservePacket, sendsize);
                 }
                 else
                 {
-                    //copy charname
-                    memcpy(sd->charname, CharName, 15);
-                    sendsize = 0x20;
-                    LOBBY_ACTION_DONE(ReservePacket);
-                    memcpy(MainReservePacket, ReservePacket, sendsize);
+                    //creating new char
+                    char CharName[15];
+                    memset(CharName, 0, sizeof(CharName));
+                    memcpy(CharName, session[fd]->rdata.data() + 32, sizeof(CharName));
+
+                    //find assigns
+                    const char *fmtQuery = "SELECT charname FROM chars WHERE charname LIKE '%s'";
+
+                    std::string myNameIs(&CharName[0]);
+                    bool invalidName = false;
+                    for (auto letters : myNameIs)
+                    {
+                        if (!std::isalpha(letters))
+                        {
+                            invalidName = true;
+                            break;
+                        }
+                    }
+
+                    char escapedCharName[16 * 2 + 1];
+                    Sql_EscapeString(SqlHandle, escapedCharName, CharName);
+                    if (Sql_Query(SqlHandle, fmtQuery, escapedCharName) == SQL_ERROR)
+                    {
+                        do_close_lobbyview(sd, fd);
+                        return -1;
+                    }
+
+                    if (Sql_NumRows(SqlHandle) != 0 || invalidName == true)
+                    {
+                        if (invalidName == true)
+                        {
+                            ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET" invalid\n", CharName);
+                        }
+                        else
+                        {
+                            ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET" already taken\n", CharName);
+                        }
+                        // Send error code
+                        LOBBBY_ERROR_MESSAGE(ReservePacket);
+                        // The character name you entered is unavailable. Please choose another name.
+                        // A message is displayed in Japanese
+                        ref<uint16>(ReservePacket, 32) = 313;
+                        memcpy(MainReservePacket, ReservePacket, sendsize);
+                    }
+                    else
+                    {
+                        //copy charname
+                        memcpy(sd->charname, CharName, 15);
+                        sendsize = 0x20;
+                        LOBBY_ACTION_DONE(ReservePacket);
+                        memcpy(MainReservePacket, ReservePacket, sendsize);
+                    }
                 }
+
                 unsigned char hash[16];
 
                 md5(MainReservePacket, hash, sendsize);
@@ -790,8 +868,6 @@ int32 lobby_createchar(login_session_data_t *loginsd, int8 *buf)
         CharID = (uint32)Sql_GetUIntData(SqlHandle, 0) + 1;
     }
 
-    CharID = (CharID < 21828 ? 21828 : CharID);
-
     if (lobby_createchar_save(loginsd->accid, CharID, &createchar) == -1)
         return -1;
 
@@ -847,6 +923,10 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 
     Query = "INSERT INTO char_points(charid) VALUES(%u) \
+            ON DUPLICATE KEY UPDATE charid = charid;";
+    if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
+
+    Query = "INSERT INTO char_unlocks(charid) VALUES(%u) \
             ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 

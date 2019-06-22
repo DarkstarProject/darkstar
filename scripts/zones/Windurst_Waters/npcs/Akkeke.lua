@@ -4,9 +4,6 @@
 -- Involved in Quest: Making the Grade
 -- !pos 135 -6 165 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -17,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE) == QUEST_ACCEPTED) then
         player:startEvent(453); -- During Making the GRADE
     else
         player:startEvent(427);  -- Standard conversation

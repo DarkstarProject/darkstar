@@ -209,7 +209,7 @@
     <ClInclude Include="..\..\src\map\items\item.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\items\item_armor.h">
+    <ClInclude Include="..\..\src\map\items\item_equipment.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\items\item_currency.h">
@@ -466,9 +466,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\party.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\caught_fish.h">
-      <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\alliance.h">
       <Filter>Header Files</Filter>
@@ -863,6 +860,33 @@
     <ClInclude Include="..\..\src\map\packets\event_update_string.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\release_special.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\message_name.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\furniture_interact.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\map_marker.h">
+      <Filter>Source Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="timetriggers.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\timetriggers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\trustentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\trust_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\trust_sync.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -955,7 +979,7 @@
     <ClCompile Include="..\..\src\map\items\item.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\items\item_armor.cpp">
+    <ClCompile Include="..\..\src\map\items\item_equipment.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\items\item_currency.cpp">
@@ -1209,9 +1233,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\party.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\caught_fish.cpp">
-      <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\alliance.cpp">
       <Filter>Source Files</Filter>
@@ -1581,6 +1602,30 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\event_update_string.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\release_special.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\message_name.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\trustentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\trust_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\trust_sync.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\furniture_interact.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\map_marker.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\timetriggers.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

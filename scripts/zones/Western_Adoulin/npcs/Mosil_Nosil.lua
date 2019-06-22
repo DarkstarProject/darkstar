@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Mosil-Nosil
 -- Type: Standard NPC
---  @zone 256
---  !pos -45 0 -29
+-- !pos -45 0 -29 256
 -----------------------------------
 
 function onTrade(player,npc,trade)

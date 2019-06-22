@@ -1,8 +1,8 @@
 -----------------------------------------
 -- Implementation of Bar-spells
 -----------------------------------------
-
-require("scripts/globals/status");
+require("scripts/globals/magic")
+require("scripts/globals/status")
 
 function calculateBarspellPower(caster,enhanceSkill)
     local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT)
@@ -32,7 +32,7 @@ function applyBarspell(effectType,caster,target,spell)
     local enhanceSkill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC)
     local mdefBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT) + caster:getMod(dsp.mod.BARSPELL_MDEF_BONUS)
 
-    local power = calculateBarspellPower(caster,enhanceSkill);
+    local power = calculateBarspellPower(caster,enhanceSkill)
     local duration = calculateBarspellDuration(caster, enhanceSkill)
     duration = calculateDuration(duration, dsp.skill.ENHANCING_MAGIC, dsp.magic.spellGroup.WHITE, caster, target)
     

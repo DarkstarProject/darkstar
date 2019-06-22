@@ -4,16 +4,14 @@
 -- Type: Standard NPC
 -- !pos -4.349 1 134.014 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
         local count = trade:getItemCount();
         local reward = 0;
         local anima = 0;
@@ -37,11 +35,11 @@ function onTrade(player,npc,trade)
                 player:setVar("harithreward",reward);
                 player:startEvent(110);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,reward);
             end
         elseif (anima > 5000) then
             if (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,anima);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,anima);
             elseif (trade:getGil() ~= 2000) then
                 player:startEvent(108,2000);
             else
@@ -55,12 +53,12 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(113);
-    elseif (player:getQuestStatus(JEUNO,EMPTY_MEMORIES) == QUEST_AVAILABLE and player:getCurrentMission(COP) >= THE_MOTHERCRYSTALS) then
-        player:addQuest(JEUNO,EMPTY_MEMORIES);
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_AVAILABLE and player:getCurrentMission(COP) >= dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES);
         player:startEvent(114);
-    elseif (player:getQuestStatus(JEUNO,EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
         player:startEvent(114);
     else
         player:startEvent(111);
@@ -78,11 +76,11 @@ function onEventFinish(player,csid,option)
 
         player:tradeComplete();
         player:addItem(objecttrade);
-        player:messageSpecial(ITEM_OBTAINED,objecttrade);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,objecttrade);
         player:setVar("harithreward", 0);
-        if (player:getQuestStatus(JEUNO, EMPTY_MEMORIES) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_ACCEPTED) then
             player:addFame(JEUNO, 30);
-            player:completeQuest(JEUNO, EMPTY_MEMORIES)
+            player:completeQuest(JEUNO, dsp.quest.id.jeuno.EMPTY_MEMORIES)
         else
             player:addFame(JEUNO, 5);
         end

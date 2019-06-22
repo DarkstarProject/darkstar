@@ -11,43 +11,44 @@
 -- Evasion +6% (cap 95)
 -- Resist Slow +15
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6463);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6463)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.DEX, 6);
-    target:addMod(dsp.mod.VIT, 6);
-    target:addMod(dsp.mod.AGI, 6);
-    target:addMod(dsp.mod.FOOD_ACCP, 6);
-    target:addMod(dsp.mod.FOOD_ACC_CAP, 95);
-    target:addMod(dsp.mod.FOOD_RACCP, 6);
-    target:addMod(dsp.mod.FOOD_RACC_CAP, 95);
-    -- target:addMod(dsp.mod.FOOD_EVAP, 6);
-    -- target:addMod(dsp.mod.FOOD_EVA_CAP, 95);
-    target:addMod(dsp.mod.SLOWRES, 15);
-end;
+    target:addMod(dsp.mod.DEX, 6)
+    target:addMod(dsp.mod.VIT, 6)
+    target:addMod(dsp.mod.AGI, 6)
+    target:addMod(dsp.mod.FOOD_ACCP, 6)
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 95)
+    target:addMod(dsp.mod.FOOD_RACCP, 6)
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 95)
+    -- target:addMod(dsp.mod.FOOD_EVAP, 6)
+    -- target:addMod(dsp.mod.FOOD_EVA_CAP, 95)
+    target:addMod(dsp.mod.SLOWRES, 15)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.DEX, 6);
-    target:delMod(dsp.mod.VIT, 6);
-    target:delMod(dsp.mod.AGI, 6);
-    target:delMod(dsp.mod.FOOD_ACCP, 6);
-    target:delMod(dsp.mod.FOOD_ACC_CAP, 95);
-    target:delMod(dsp.mod.FOOD_RACCP, 6);
-    target:delMod(dsp.mod.FOOD_RACC_CAP, 95);
-    -- target:delMod(dsp.mod.FOOD_EVAP, 6);
-    -- target:delMod(dsp.mod.FOOD_EVA_CAP, 95);
-    target:delMod(dsp.mod.SLOWRES, 15);
-end;
+    target:delMod(dsp.mod.DEX, 6)
+    target:delMod(dsp.mod.VIT, 6)
+    target:delMod(dsp.mod.AGI, 6)
+    target:delMod(dsp.mod.FOOD_ACCP, 6)
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 95)
+    target:delMod(dsp.mod.FOOD_RACCP, 6)
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 95)
+    -- target:delMod(dsp.mod.FOOD_EVAP, 6)
+    -- target:delMod(dsp.mod.FOOD_EVA_CAP, 95)
+    target:delMod(dsp.mod.SLOWRES, 15)
+end

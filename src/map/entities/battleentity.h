@@ -228,9 +228,21 @@ enum SLOTTYPE
     SLOT_LINK2 = 0x11,
 };
 
+#define MAX_SLOTTYPE	18
+
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
 // для возможности различить эти орудия при экипировке и избавиться от ошибки
 // использования пуль с арбалетом и арбалетных стрел с огнестрельным оружием (только персонажи)
+
+enum ATTACKTYPE
+{
+    ATTACK_NONE = 0,
+    ATTACK_PHYSICAL = 1,
+    ATTACK_MAGICAL = 2,
+    ATTACK_RANGED = 3,
+    ATTACK_SPECIAL = 4,
+    ATTACK_BREATH = 5,
+};
 
 enum DAMAGETYPE
 {
@@ -238,7 +250,16 @@ enum DAMAGETYPE
     DAMAGE_PIERCING = 1,
     DAMAGE_SLASHING = 2,
     DAMAGE_IMPACT = 3,
-    DAMAGE_HTH = 4
+    DAMAGE_HTH = 4,
+    DAMAGE_ELEMENTAL = 5,
+    DAMAGE_FIRE = 6,
+    DAMAGE_EARTH = 7,
+    DAMAGE_WATER = 8,
+    DAMAGE_WIND = 9,
+    DAMAGE_ICE = 10,
+    DAMAGE_LIGHTNING = 11,
+    DAMAGE_LIGHT = 12,
+    DAMAGE_DARK = 13,
 };
 
 enum REACTION
@@ -447,7 +468,7 @@ class CParty;
 class CStatusEffectContainer;
 class CPetEntity;
 class CSpell;
-class CItemWeapon;
+class CItemArmor;
 class CAbilityState;
 class CAttackState;
 class CWeaponSkillState;
@@ -480,6 +501,7 @@ public:
 
     bool            isDead();					// проверяем, мертва ли сущность
     bool            isAlive();
+    bool            isInAssault();
     bool            isInDynamis();
     bool            hasImmunity(uint32 imID);
     bool            isAsleep();
@@ -518,6 +540,9 @@ public:
     virtual int16	addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
     virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
     virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
+
+    //Deals damage and updates the last attacker which is used when sending a player death message
+    virtual int32   takeDamage(int32 amount, CBattleEntity* attacker = nullptr, ATTACKTYPE attackType = ATTACK_NONE, DAMAGETYPE damageType = DAMAGE_NONE);
 
     int16		    getMod(Mod modID);		// величина модификатора
 
@@ -622,7 +647,6 @@ public:
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
     uint16		    m_Immunity;					// Mob immunity
     uint16			m_magicEvasion;		        // store this so it can be removed easily
-    uint8			m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
     time_point  	charmTime;					// to hold the time entity is charmed
@@ -630,7 +654,7 @@ public:
 
     uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
     ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
-    CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
+    CItemArmor*	    m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
     TraitList_t     TraitList;                  // список постянно активных способностей в виде указателей
 
@@ -641,6 +665,7 @@ public:
     CParty*			PParty;					    // описание группы, в которой состоит сущность
     CBattleEntity*	PPet;					    // питомец сущности
     CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
+    CBattleEntity*	PLastAttacker;
 
     std::unique_ptr<CStatusEffectContainer> StatusEffectContainer;
     std::unique_ptr<CRecastContainer> PRecastContainer;         //

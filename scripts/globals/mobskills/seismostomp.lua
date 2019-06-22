@@ -6,39 +6,39 @@
 --
 --
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 2.3;
+    local numhits = 1
+    local accmod = 1
+    local dmgmod = 2.3
 
     if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        dmgmod = dmgmod + math.random();
+        dmgmod = dmgmod + math.random()
     end
 
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
 
-    local shadows = info.hitslanded;
+    local shadows = info.hitslanded
 
     -- wipe shadows
     if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        shadows = MOBPARAM_WIPE_SHADOWS;
+        shadows = MOBPARAM_WIPE_SHADOWS
     end
 
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,shadows);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,shadows)
 
-    local typeEffect = dsp.effect.STUN;
+    local typeEffect = dsp.effect.STUN
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    return dmg
+end

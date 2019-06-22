@@ -4,18 +4,16 @@
 -- Starts and Ends Quest: Like a Shining Subligar
 -- !pos -1 -5 25 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    ShiningSubligar = player:getQuestStatus(OUTLANDS,LIKE_A_SHINING_SUBLIGAR);
+    ShiningSubligar = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_SUBLIGAR);
     Subligar = trade:getItemQty(14242);
 
     if (Subligar > 0 and Subligar == trade:getItemCount()) then
@@ -40,7 +38,7 @@ end;
 
 function onTrigger(player,npc)
 
-    ShiningSubligar = player:getQuestStatus(OUTLANDS,LIKE_A_SHINING_SUBLIGAR);
+    ShiningSubligar = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_SUBLIGAR);
 
     if (ShiningSubligar == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3) then
         player:startEvent(123); -- Start Like a Shining Subligar
@@ -58,15 +56,15 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 123) then
-        player:addQuest(OUTLANDS,LIKE_A_SHINING_SUBLIGAR);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_SUBLIGAR);
     elseif (csid == 125) then
         player:tradeComplete();
         player:addTitle(dsp.title.LOOKS_SUBLIME_IN_A_SUBLIGAR);
         player:addItem(4955); -- Scroll of Kurayami: Ichi
-        player:messageSpecial(ITEM_OBTAINED, 4955); -- Scroll of Kurayami: Ichi
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 4955); -- Scroll of Kurayami: Ichi
         player:setVar("shiningSubligar_nb",0);
         player:addFame(NORG,100);
-        player:completeQuest(OUTLANDS,LIKE_A_SHINING_SUBLIGAR);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_SUBLIGAR);
     end
 
 end;

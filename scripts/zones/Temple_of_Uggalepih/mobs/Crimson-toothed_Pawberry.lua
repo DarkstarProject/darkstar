@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Crimson-toothed Pawberry
+--   NM: Crimson-toothed Pawberry
 -----------------------------------
 mixins =
 {
@@ -10,5 +10,4 @@ mixins =
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    SetServerVariable("[POP]Crimson-toothed_Pawberry",os.time() + 900) -- 15min
 end

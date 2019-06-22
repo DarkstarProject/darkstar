@@ -4,21 +4,19 @@
 -- Involved in Quest: Gullible's Travels, Even More Gullible's Travels,
 -- Location: (I-7)
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then
         if (trade:getGil() >= player:getVar("MAGRIFFON_GIL_REQUEST")) then
             player:startEvent(146);
         end
-    elseif (player:getQuestStatus(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS) == QUEST_ACCEPTED and player:getVar("EVEN_MORE_GULLIBLES_PROGRESS") == 0) then
+    elseif (player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.EVEN_MORE_GULLIBLES_TRAVELS) == QUEST_ACCEPTED and player:getVar("EVEN_MORE_GULLIBLES_PROGRESS") == 0) then
         if (trade:getGil() >= 35000) then
             player:startEvent(150, 0, 256);
         end
@@ -26,8 +24,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local gulliblesTravelsStatus = player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS);
-    local evenmoreTravelsStatus = player:getQuestStatus(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS);
+    local gulliblesTravelsStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.GULLIBLES_TRAVELS);
+    local evenmoreTravelsStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.EVEN_MORE_GULLIBLES_TRAVELS);
 
     if (gulliblesTravelsStatus == QUEST_ACCEPTED) then
         local magriffonGilRequest = player:getVar("MAGRIFFON_GIL_REQUEST");
@@ -60,27 +58,27 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 144 and option == 1)  then                     -- Gullible's Travels: First CS
-        player:addQuest(OUTLANDS, GULLIBLES_TRAVELS);
+        player:addQuest(OUTLANDS, dsp.quest.id.outlands.GULLIBLES_TRAVELS);
     elseif (csid == 146) then                                  -- Gullible's Travels: Final CS
         player:confirmTrade();
         player:delGil(player:getVar("MAGRIFFON_GIL_REQUEST"));
         player:setVar("MAGRIFFON_GIL_REQUEST", 0);
         player:addFame(KAZHAM, 30);
-        player:setTitle(285);                                     -- Global Variable not working for this quest
-        player:completeQuest(OUTLANDS, GULLIBLES_TRAVELS);
+        player:setTitle(dsp.title.GULLIBLES_TRAVELS);
+        player:completeQuest(OUTLANDS, dsp.quest.id.outlands.GULLIBLES_TRAVELS);
         player:needToZone(true);
     elseif (csid == 148 and option == 1) then                  -- Even More Guillible's Travels First CS
-        player:addQuest(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS);
+        player:addQuest(OUTLANDS, dsp.quest.id.outlands.EVEN_MORE_GULLIBLES_TRAVELS);
     elseif (csid == 150) then                                  -- Even More Guillible's Travels Second CS
         player:confirmTrade();
         player:delGil(35000);
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 1);
-        player:setTitle(286);
-        player:addKeyItem(256);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TREASURE_MAP);
+        player:setTitle(dsp.title.EVEN_MORE_GULLIBLES_TRAVELS);
+        player:addKeyItem(dsp.ki.TREASURE_MAP);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TREASURE_MAP);
     elseif (csid == 152) then
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 0);
         player:addFame(KAZHAM, 30);
-        player:completeQuest(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS);
+        player:completeQuest(OUTLANDS, dsp.quest.id.outlands.EVEN_MORE_GULLIBLES_TRAVELS);
     end
 end;

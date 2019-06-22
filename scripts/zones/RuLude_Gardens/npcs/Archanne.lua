@@ -2,12 +2,9 @@
 -- Area: Ru'Lude Gardens
 --   NPC: Archanne
 -- Type: Event Scene Replayer
--- @zone 243
--- !pos -54.104 10.999 -34.144
+-- !pos -54.104 10.999 -34.144 243
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

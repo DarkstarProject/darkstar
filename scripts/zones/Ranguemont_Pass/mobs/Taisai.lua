@@ -2,7 +2,7 @@
 -- Area: Ranguemont Pass
 --  MOB: Taisai
 -----------------------------------
-require("scripts/zones/Ranguemont_Pass/MobIDs");
+local ID = require("scripts/zones/Ranguemont_Pass/IDs");
 
 function disturbMob(mob)
     local phIndex = mob:getLocalVar("phIndex");
@@ -28,7 +28,7 @@ function onMobRoam(mob)
     local phIndex = mob:getLocalVar("phIndex");
     if (phIndex > 0 and os.time() > mob:getLocalVar("timeToGrow")) then
         mob:setLocalVar("phIndex", 0);
-        local nm = GetMobByID(TAISAIJIN);
+        local nm = GetMobByID(ID.mob.TAISAIJIN);
         DisallowRespawn(mob:getID(), true);
         DespawnMob(mob:getID());
         DisallowRespawn(nm:getID(), false);
@@ -38,7 +38,4 @@ function onMobRoam(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
 end;

@@ -85,8 +85,11 @@ void CAbilityState::ApplyEnmity()
             !(m_PAbility->getCE() == 0 && m_PAbility->getVE() == 0))
         {
             CMobEntity* mob = (CMobEntity*)PTarget;
-            mob->m_OwnerID.id = m_PEntity->id;
-            mob->m_OwnerID.targid = m_PEntity->targid;
+            if (!mob->CalledForHelp())
+            {
+                mob->m_OwnerID.id = m_PEntity->id;
+                mob->m_OwnerID.targid = m_PEntity->targid;
+            }
             mob->updatemask |= UPDATE_STATUS;
             mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE(), false, m_PAbility->getID() == ABILITY_CHARM);
             if (mob->m_HiPCLvl < m_PEntity->GetMLevel())
@@ -114,6 +117,10 @@ bool CAbilityState::Update(time_point tick)
             m_PEntity->OnAbility(*this, action);
             m_PEntity->PAI->EventHandler.triggerListener("ABILITY_USE", m_PEntity, GetTarget(), m_PAbility.get(), &action);
             m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+            if (auto target = GetTarget())
+            {
+                target->PAI->EventHandler.triggerListener("ABILITY_TAKE", target, m_PEntity, m_PAbility.get(), &action);
+            }
         }
         Complete();
     }

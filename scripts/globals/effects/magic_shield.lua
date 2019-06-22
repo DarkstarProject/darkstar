@@ -4,7 +4,7 @@
 --
 -----------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEffectGain(target,effect)
     if effect:getPower() == 3 then -- arcane stomp

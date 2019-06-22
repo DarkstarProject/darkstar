@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- !pos -14 -3 56 128
 -----------------------------------
-package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Valley_of_Sorrows/TextIDs");
+local ID = require("scripts/zones/Valley_of_Sorrows/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

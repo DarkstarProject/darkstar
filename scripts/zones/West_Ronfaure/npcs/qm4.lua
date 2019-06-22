@@ -4,10 +4,7 @@
 -- Involved in Mission: San d'Orian Mission 7-1 (Prestige of the Papsque)
 -- !pos -695 -40 21 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/West_Ronfaure/TextIDs");
-require("scripts/zones/West_Ronfaure/MobIDs");
+local ID = require("scripts/zones/West_Ronfaure/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -18,15 +15,15 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1
-        and not GetMobByID(MARAUDER_DVOGZOG):isSpawned()) then
+    if (player:getCurrentMission(SANDORIA,dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1
+        and not GetMobByID(ID.mob.MARAUDER_DVOGZOG):isSpawned()) then
         if (player:getVar("Mission7-1MobKilled") == 1 and player:needToZone() == true) then
             player:addKeyItem(dsp.ki.ANCIENT_SANDORIAN_TABLET);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_SANDORIAN_TABLET);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_SANDORIAN_TABLET);
             player:setVar("Mission7-1MobKilled",0);
             player:setVar("MissionStatus",2);
         else
-            SpawnMob(MARAUDER_DVOGZOG):updateClaim(player);
+            SpawnMob(ID.mob.MARAUDER_DVOGZOG):updateClaim(player);
         end
     end;
 

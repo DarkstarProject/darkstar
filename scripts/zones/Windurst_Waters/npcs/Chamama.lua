@@ -4,9 +4,7 @@
 -- Involved In Quest: Inspector's Gadget
 -- Starts Quest: In a Pickle
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
@@ -16,7 +14,7 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
     local FakeMoustache = player:hasKeyItem(dsp.ki.FAKE_MOUSTACHE);
     local InvisibleManSticker = player:hasKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
-    local InAPickle = player:getQuestStatus(WINDURST,IN_A_PICKLE);
+    local InAPickle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.IN_A_PICKLE);
     local count = trade:getItemCount();
     local gil = trade:getGil();
 
@@ -36,7 +34,7 @@ function onTrade(player,npc,trade)
             player:tradeComplete(trade);
         end
     elseif (FakeMoustache == false) then
-        local InspectorsGadget = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
+        local InspectorsGadget = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
 
         if (InspectorsGadget == QUEST_ACCEPTED) then
             local SarutaCotton = trade:hasItemQty(834,4);
@@ -46,7 +44,7 @@ function onTrade(player,npc,trade)
             end
         end
     elseif (InvisibleManSticker == false) then
-        local ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
+        local ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
 
         if (ThePromise == QUEST_ACCEPTED) then
             local ShoalWeed = trade:hasItemQty(1148,1);
@@ -60,9 +58,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local InspectorsGadget = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
-    local ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
-    local InAPickle = player:getQuestStatus(WINDURST,IN_A_PICKLE);
+    local InspectorsGadget = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
+    local ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
+    local InAPickle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.IN_A_PICKLE);
     local NeedToZone = player:needToZone();
 
     if (ThePromise == QUEST_ACCEPTED) then
@@ -108,7 +106,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(651); -- Standard Conversation
     end
--- player:delQuest(WINDURST,IN_A_PICKLE); [[[[[[[[[[[[[ FOR TESTING ONLY ]]]]]]]]]]]]]
+-- player:delQuest(WINDURST,dsp.quest.id.windurst.IN_A_PICKLE); [[[[[[[[[[[[[ FOR TESTING ONLY ]]]]]]]]]]]]]
 end;
 
 function onEventUpdate(player,csid,option)
@@ -121,23 +119,23 @@ function onEventFinish(player,csid,option)
     if (csid == 552) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.FAKE_MOUSTACHE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FAKE_MOUSTACHE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FAKE_MOUSTACHE);
     elseif (csid == 797) then
         player:setVar("ThePromise",1);
     elseif (csid == 799) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.INVISIBLE_MAN_STICKER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.INVISIBLE_MAN_STICKER);
     elseif (csid == 654 and option == 1) then  -- IN A PICKLE + RARAB TAIL: Quest Begin
-        player:addQuest(WINDURST,IN_A_PICKLE);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.IN_A_PICKLE);
     elseif (csid == 659) then  -- IN A PICKLE: Quest Turn In (1st Time)
         player:tradeComplete(trade);
-        player:completeQuest(WINDURST,IN_A_PICKLE);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.IN_A_PICKLE);
         player:needToZone(true);
         player:addItem(12505);
-        player:messageSpecial(ITEM_OBTAINED,12505);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,12505);
         player:addGil(GIL_RATE*200);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*200);
         player:addFame(WINDURST,75);
     elseif (csid == 661 and option == 1) then
         player:setVar("QuestInAPickle_var",1)

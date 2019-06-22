@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -25.749 -0.044 52.360 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/quests")
 require("scripts/globals/shop")
 
@@ -16,7 +14,7 @@ end
 function onTrigger(player,npc)
     local WildcatBastok = player:getVar("WildcatBastok")
 
-    if player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and not player:getMaskBit(WildcatBastok,15)  then
+    if player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and not player:getMaskBit(WildcatBastok,15)  then
         player:startEvent(507)
     else
         local stock =
@@ -30,7 +28,7 @@ function onTrigger(player,npc)
             4509,  10, 3,    -- Distilled Water
         }
 
-        player:showText(npc, GRISELDA_SHOP_DIALOG)
+        player:showText(npc, ID.text.GRISELDA_SHOP_DIALOG)
         dsp.shop.nation(player, stock, dsp.nation.BASTOK)
     end
 end

@@ -207,6 +207,16 @@ void CTradeContainer::setType(uint8 type)
 	m_type = type;
 }
 
+uint8 CTradeContainer::getCraftType()
+{
+    return m_craftType;
+}
+
+void CTradeContainer::setCraftType(uint8 craftType)
+{
+    m_craftType = craftType;
+}
+
 void CTradeContainer::Clean()
 {
     for (auto PItem : m_PItem)
@@ -217,6 +227,7 @@ void CTradeContainer::Clean()
         }
     }
 	m_type = 0;
+    m_craftType = 0;
 	m_ItemsCount = 0;
 
     m_PItem.clear();

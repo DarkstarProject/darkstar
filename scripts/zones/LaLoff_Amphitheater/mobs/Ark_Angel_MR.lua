@@ -2,16 +2,20 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel MR
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
 
 function onMobSpawn(mob)
-end;
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.PERFECT_DODGE},
+        },
+    })
+end
 
 function onMobEngaged(mob,target)
     --[[ TODO:
@@ -23,8 +27,9 @@ function onMobEngaged(mob,target)
     local mobid = mob:getID()
 
     for member = mobid-1, mobid+6 do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
+        local m = GetMobByID(member)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
         end
     end
 end;

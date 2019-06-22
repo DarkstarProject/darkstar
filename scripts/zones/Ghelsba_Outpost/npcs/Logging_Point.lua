@@ -2,22 +2,19 @@
 -- Area: Ghelsba Outpost
 --  NPC: Logging Point
 -----------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
--------------------------------------
-require("scripts/globals/logging");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,0x0064);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.LOGGING, 100)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(LOGGING_IS_POSSIBLE_HERE,1021);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.LOGGING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

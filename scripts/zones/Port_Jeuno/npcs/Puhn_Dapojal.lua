@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC:
--- @zone 246
--- !pos
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
+-- NPC: Puhn Dapojal
+-- !zone 246
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,4 +16,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -3,23 +3,19 @@
 -- Zone: Norg (252)
 --
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -29,9 +25,9 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-19.238,-2.163,-63.964,187);
     end
-    if (player:getCurrentMission(ZILART) == THE_NEW_FRONTIER) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_NEW_FRONTIER) then
         cs = 1;
-    elseif (player:getCurrentMission(ZILART) == AWAKENING and player:getVar("ZilartStatus") == 0 or player:getVar("ZilartStatus") == 2) then
+    elseif (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and player:getVar("ZilartStatus") == 0 or player:getVar("ZilartStatus") == 2) then
         cs = 176;
     end
 
@@ -50,12 +46,12 @@ function onEventFinish(player,csid,option)
     if (csid == 1) then
         if (player:hasKeyItem(dsp.ki.MAP_OF_NORG) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_NORG);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_NORG);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_NORG);
         end
-        player:completeMission(ZILART,THE_NEW_FRONTIER);
-        player:addMission(ZILART,WELCOME_TNORG);
+        player:completeMission(ZILART,dsp.mission.id.zilart.THE_NEW_FRONTIER);
+        player:addMission(ZILART,dsp.mission.id.zilart.WELCOME_TNORG);
     elseif (csid == 176) then
-        player:setVar("ZilartStatus", player:getVar("ZilartStatus")+1);
+        player:addVar("ZilartStatus", 1);
     end
 
 end;

@@ -2,13 +2,9 @@
 -- Area: Upper Jeuno
 --  NPC: Paya-Sabya
 -- Involved in Mission: Magicite
--- @zone 244
--- !pos 9 1 70
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-- !pos 9 1 70 244
 -----------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

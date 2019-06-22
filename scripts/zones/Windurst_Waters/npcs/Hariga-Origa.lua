@@ -5,9 +5,7 @@
 -- Involved in Mission 2-1
 -- !pos -62 -6 105 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -15,7 +13,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-    smudgeStatus = player:getQuestStatus(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
+    smudgeStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_SMUDGE_ON_ONE_S_RECORD);
 
     if (smudgeStatus == QUEST_ACCEPTED and trade:hasItemQty(637,1) and trade:hasItemQty(4382,1)) then
         player:startEvent(417,3000);
@@ -25,9 +23,9 @@ end;
 
 function onTrigger(player,npc)
 
-    GlyphHanger = player:getQuestStatus(WINDURST,GLYPH_HANGER);
-    chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-    smudgeStatus = player:getQuestStatus(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
+    GlyphHanger = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.GLYPH_HANGER);
+    chasingStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
+    smudgeStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_SMUDGE_ON_ONE_S_RECORD);
     Fame = player:getFameLevel(WINDURST);
 
     if (smudgeStatus == QUEST_COMPLETED and player:needToZone() == true) then
@@ -59,30 +57,30 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 381 and option == 0) then
-        player:addQuest(WINDURST,GLYPH_HANGER);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.GLYPH_HANGER);
         player:addKeyItem(dsp.ki.NOTES_FROM_HARIGAORIGA);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NOTES_FROM_HARIGAORIGA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NOTES_FROM_HARIGAORIGA);
     elseif (csid == 385) then
         player:needToZone(true);
         player:delKeyItem(dsp.ki.NOTES_FROM_IPUPU);
         if (player:hasKeyItem(dsp.ki.MAP_OF_THE_HORUTOTO_RUINS) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_THE_HORUTOTO_RUINS);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_HORUTOTO_RUINS);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_HORUTOTO_RUINS);
         end
         player:addFame(WINDURST,120);
-        player:completeQuest(WINDURST,GLYPH_HANGER);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.GLYPH_HANGER);
     elseif (csid == 413 and option == 0) then
-        player:addQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.A_SMUDGE_ON_ONE_S_RECORD);
     elseif (csid == 417) then
         player:needToZone(true);
         player:addGil(GIL_RATE*3000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         if (player:hasKeyItem(dsp.ki.MAP_OF_FEIYIN) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_FEIYIN);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_FEIYIN);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_FEIYIN);
         end
         player:addFame(WINDURST,120);
-        player:completeQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.A_SMUDGE_ON_ONE_S_RECORD);
     end
 
 end;

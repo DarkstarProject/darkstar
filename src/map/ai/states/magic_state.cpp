@@ -292,31 +292,40 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
         m_PEntity->addModifier(Mod::ENMITY, -(m_PEntity->getMod(Mod::DIVINE_BENISON) >> 1)); // Half of divine benison mod amount = -enmity
     }
 
-    if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
+    if (PTarget != nullptr)
     {
-        if (PTarget->isDead())
+        if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
         {
-            ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
-        }
-
-        if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
-        {
-            if (m_PEntity->objtype == TYPE_PC)
+            if (auto mob = dynamic_cast<CMobEntity*>(PTarget))
             {
-                ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
-                ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
-                ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
+                if (PTarget->isDead())
+                {
+                    mob->m_DropItemTime = m_PSpell->getAnimationTime();
+                }
+
+                if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+                {
+                    if (m_PEntity->objtype == TYPE_PC)
+                    {
+                        if (!mob->CalledForHelp())
+                        {
+                            mob->m_OwnerID.id = m_PEntity->id;
+                            mob->m_OwnerID.targid = m_PEntity->targid;
+                        }
+                        mob->updatemask |= UPDATE_STATUS;
+                    }
+                    mob->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
+                    if (mob->m_HiPCLvl < m_PEntity->GetMLevel())
+                        mob->m_HiPCLvl = m_PEntity->GetMLevel();
+                    enmityApplied = true;
+                }
             }
-            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
-            if (PTarget && ((CMobEntity*)PTarget)->m_HiPCLvl < m_PEntity->GetMLevel())
-                ((CMobEntity*)PTarget)->m_HiPCLvl = m_PEntity->GetMLevel();
+        }
+        else if (PTarget->allegiance == m_PEntity->allegiance)
+        {
+            battleutils::GenerateInRangeEnmity(m_PEntity, ce, ve);
             enmityApplied = true;
         }
-    }
-    else if (PTarget->allegiance == m_PEntity->allegiance)
-    {
-        battleutils::GenerateInRangeEnmity(m_PEntity, ce, ve);
-        enmityApplied = true;
     }
 
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)

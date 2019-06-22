@@ -3,17 +3,14 @@
 --  NPC: Door_House
 -- (Corsair's Gants) !pos -200 -4 -111 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
-require("scripts/zones/Windurst_Waters/MobIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     local npcID = npc:getID();
-    if (npcID == LELEROON_GREEN_DOOR) then
+    if (npcID == ID.npc.LELEROON_GREEN_DOOR) then
         local letterGreen = player:getVar("LeleroonsLetterGreen");
 
         -- gold thread, karakul leather, red grass cloth, wamoura silk
@@ -30,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
     local npcID = npc:getID();
-    if (npcID == LELEROON_GREEN_DOOR) then
+    if (npcID == ID.npc.LELEROON_GREEN_DOOR) then
         local letterGreen = player:getVar("LeleroonsLetterGreen");
         if (player:hasKeyItem(dsp.ki.LELEROONS_LETTER_GREEN)) then
             player:startEvent(941); -- accept letter, now bring me four items
@@ -65,6 +62,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 944) then
         player:setVar("LeleroonsletterGreen", 5);
         player:addItem(14929); -- corsair's gants
-        player:messageSpecial(ITEM_OBTAINED,14929);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,14929);
     end;
 end;

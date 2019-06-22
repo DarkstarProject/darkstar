@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -220.217 -2.824 51.542 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
@@ -30,6 +28,6 @@ function onTrigger(player,npc)
         4721, 29700, 3, -- Repose
     }
 
-    player:showText(npc, SORORO_SHOP_DIALOG)
+    player:showText(npc, ID.text.SORORO_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

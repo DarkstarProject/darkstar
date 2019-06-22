@@ -3,10 +3,9 @@
 -- Zone: Stellar_Fulcrum
 --
 -----------------------------------
-package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
+local ID = require("scripts/zones/Stellar_Fulcrum/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
@@ -17,18 +16,14 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
 
     local cs = -1;
 
-    if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 2) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 2) then
         cs = 0;
     end
 
@@ -59,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 8 and option == 1) then
-        player:setPos(-370, -178, -40, 243, 0x9e);
+        player:setPos(-370, -178, -40, 243, 158);
     elseif (csid == 0) then
         player:setVar("ZilartStatus",3);
     end

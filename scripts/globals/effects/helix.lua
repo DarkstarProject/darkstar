@@ -4,39 +4,26 @@
 --
 -----------------------------------
 
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/utils");
-
------------------------------------
--- onEffectGain Action
------------------------------------
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/utils")
 
 function onEffectGain(target,effect)
 
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-    local dmg = utils.stoneskin(target, effect:getPower());
+    local dmg = utils.stoneskin(target, effect:getPower())
 
     if (dmg > 0) then
-        target:delHP(dmg);
-        target:wakeUp();
+        target:takeDamage(dmg)
     end
 
     if (effect:getTick() == 3000) then
-        effect:setTick(9000);
+        effect:setTick(9000)
     end
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
 
-end;
+end

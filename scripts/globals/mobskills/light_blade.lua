@@ -4,21 +4,21 @@
 --  Type: Ranged
 --  Damage decreases the farther away the target is from him.
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 8;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_SLASH,info.hitslanded);
+    local numhits = 1
+    local accmod = 1
+    local dmgmod = 8
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.SLASHING,info.hitslanded)
     -- TODO: There's no MOBPARAM_RANGED, but MOBPARAM doesn't appear to do anything?
     -- Guessing ~40-100% damage based on range (20/50+).
     -- TODO: Find better data?
@@ -27,8 +27,8 @@ function onMobWeaponSkill(target, mob, skill)
     -- Wiki says 1k, videos were actually less, so trusting videos.
     local distance = mob:checkDistance(target)
     distance = utils.clamp(distance, 0, 40)
-    dmg = dmg * ((50 - distance) / 50);
+    dmg = dmg * ((50 - distance) / 50)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.SLASHING)
+    return dmg
+end

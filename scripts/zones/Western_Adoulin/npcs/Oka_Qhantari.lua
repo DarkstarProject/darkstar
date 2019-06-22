@@ -3,8 +3,7 @@
 --  NPC: Oka Qhantari
 -- Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'Order Up'
---  @zone 256
--- !pos -30 3 -6
+-- !pos -30 3 -6 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------
@@ -13,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
+    local Order_Up = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ORDER_UP);
     local Order_Oka_Qhantari = player:getMaskBit(player:getVar("Order_Up_NPCs"), 9);
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Oka_Qhantari)) then

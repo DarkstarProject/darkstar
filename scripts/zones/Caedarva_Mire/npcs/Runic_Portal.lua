@@ -5,64 +5,49 @@
 -- !pos -264 -6 -28 79 (Dvucca)
 -- !pos 524 -28 -503 79 (Azouph)
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
+local ID = require("scripts/zones/Caedarva_Mire/IDs")
 -----------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs");
-require("scripts/globals/teleports");
-require("scripts/globals/missions");
-require("scripts/globals/besieged");
+require("scripts/globals/besieged")
+require("scripts/globals/missions")
+require("scripts/globals/teleports")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
+    local npcid = npc:getID()
+    local event = nil
 
-    local X = player:getXPos();
-    local Z = player:getZPos();
-
-    if ((X < -258.512 and X > -270.512) and (Z < -22.285 and Z > -34.285)) then
-        -- Dvucca Staging Point
-        if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
-            player:startEvent(125);
-        elseif (player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
-            if (hasRunicPortal(player,2) == 1) then
-                player:startEvent(134);
-            else
-                player:startEvent(125);
-            end
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1 then
+        event = npcid == ID.npc.RUNIC_PORTAL_AZOUPH and 124 or 125
+    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
+        local runicPortal = npcid == ID.npc.RUNIC_PORTAL_AZOUPH and dsp.teleport.runic_portal.AZOUPH or dsp.teleport.runic_portal.DVUCCA
+        if dsp.besieged.hasRunicPortal(player, runicPortal) then
+            event = npcid == ID.npc.RUNIC_PORTAL_AZOUPH and 131 or 134
         else
-            player:messageSpecial(RESPONSE);
+            event = npcid == ID.npc.RUNIC_PORTAL_AZOUPH and 124 or 125
         end
     else
-        -- Azouph Staging Point
-        if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
-            player:startEvent(124);
-        elseif (player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
-            if (hasRunicPortal(player,1) == 1) then
-                player:startEvent(134);
-            else
-                player:startEvent(124);
-            end
-        else
-            player:messageSpecial(RESPONSE);
+        player:messageSpecial(ID.text.RESPONSE)
+    end
+
+    if event then
+        player:startEvent(event)
+    end
+end
+
+function onEventUpdate(player, csid, option)
+end
+
+function onEventFinish(player, csid, option)
+    if option == 1 then
+        if csid == 124 then
+            dsp.besieged.addRunicPortal(player, dsp.teleport.runic_portal.AZOUPH)
+        elseif csid == 125 then
+            dsp.besieged.addRunicPortal(player, dsp.teleport.runic_portal.DVUCCA)
         end
+
+        dsp.teleport.toChamberOfPassage(player)
     end
-end;
-
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-
-    if (csid == 124 and option == 1) then
-        player:addNationTeleport(AHTURHGAN,2);
-        dsp.teleport.toChamberOfPassage(player);
-    elseif (csid == 125 and option == 1) then
-        player:addNationTeleport(AHTURHGAN,4);
-        dsp.teleport.toChamberOfPassage(player);
-    elseif ((csid == 134 or 131) and option == 1) then
-        dsp.teleport.toChamberOfPassage(player);
-    end
-
-end;
+end

@@ -6,22 +6,22 @@
 --
 --
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.BIND;
+    local typeEffect = dsp.effect.BIND
 
-    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 20);
+    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 20)
 
-    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75, dsp.magic.ele.ICE, 600);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75, dsp.magic.ele.ICE, 600)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
-    target:delHP(dmg);
-    return dmg;
-end;
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.ICE)
+    return dmg
+end

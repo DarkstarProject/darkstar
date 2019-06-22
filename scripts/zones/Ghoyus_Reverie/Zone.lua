@@ -3,10 +3,7 @@
 -- Zone: Ghoyus_Reverie
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Ghoyus_Reverie/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ghoyus_Reverie/TextIDs");
+local ID = require("scripts/zones/Ghoyus_Reverie/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,4 +23,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

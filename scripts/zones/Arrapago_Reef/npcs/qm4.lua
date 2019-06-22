@@ -3,20 +3,17 @@
 --  NPC: ??? (Spawn Nuhn(ZNM T3))
 -- !pos -451 -7 389 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs");
-require("scripts/zones/Arrapago_Reef/MobIDs");
+local ID = require("scripts/zones/Arrapago_Reef/IDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(2596,1) and trade:getItemCount() == 1) then -- Trade Rose Scampi
-        if (not GetMobByID(NUHN):isSpawned()) then
+        if (not GetMobByID(ID.mob.NUHN):isSpawned()) then
             player:tradeComplete();
-            SpawnMob(NUHN):updateClaim(player);
+            SpawnMob(ID.mob.NUHN):updateClaim(player);
         end
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(ID.text.NOTHING_HAPPENS);
 end;

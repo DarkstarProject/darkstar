@@ -4,9 +4,7 @@
 -- Type: Fishing Guild Master
 -- !pos -182.230 -3.835 61.373 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
 -----------------------------------
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
     player:startEvent(10009,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 10009  10010  0x0253  0x0255
+-- 10009  10010  595  597
 function onEventUpdate(player,csid,option)
 end;
 
@@ -40,10 +38,10 @@ function onEventFinish(player,csid,option)
         local crystal = 4101; -- water crystal
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(ITEM_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,crystal);
             signupGuild(player, guild.fishing);
         end
     end

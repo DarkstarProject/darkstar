@@ -3,21 +3,19 @@
 --  MOB: Overlord Bakgodek
 -- TODO: messages should be zone-wide
 -----------------------------------
-package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil
------------------------------------
+local ID = require("scripts/zones/Monastic_Cavern/IDs")
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/zones/Monastic_Cavern/TextIDs")
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobEngaged(mob,target)
-    mob:showText(mob, ORC_KING_ENGAGE)
+function onMobEngaged(mob, target)
+    mob:showText(mob, ID.text.ORC_KING_ENGAGE)
 end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.OVERLORD_OVERTHROWER)
     if isKiller then
-        mob:showText(mob, ORC_KING_DEATH)
+        mob:showText(mob, ID.text.ORC_KING_DEATH)
     end
 end
 

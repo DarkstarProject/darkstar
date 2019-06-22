@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Leonyone
--- @zone 80
--- !pos -192 -1 42
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+-- !pos -192 -1 42 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

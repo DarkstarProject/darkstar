@@ -4,10 +4,7 @@
 -- Used In Quest: A Boy's Dream
 -- !pos -18 -8 124 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Crawlers_Nest/TextIDs")
-require("scripts/zones/Crawlers_Nest/MobIDs")
+local ID = require("scripts/zones/Crawlers_Nest/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 -----------------------------------
@@ -16,16 +13,16 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getQuestStatus(SANDORIA, A_BOY_S_DREAM) == QUEST_ACCEPTED and VanadielDayOfTheYear() ~= player:getVar("DreadbugNM_Day") then
-        if os.time() > player:getVar("DreadbugNM_Timer") + 30 and npcUtil.popFromQM(player, npc, DREADBUG, true, false) then
-            player:messageSpecial(SENSE_OF_FOREBODING)
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_BOY_S_DREAM) == QUEST_ACCEPTED and VanadielDayOfTheYear() ~= player:getVar("DreadbugNM_Day") then
+        if os.time() > player:getVar("DreadbugNM_Timer") + 30 and npcUtil.popFromQM(player, npc, ID.mob.DREADBUG, {claim=true, hide=0}) then
+            player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
             player:setVar("DreadbugNM_Timer", os.time() + 180)
             player:setVar("DreadbugNM_Day", VanadielDayOfTheYear())
         else
-            player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN)
+            player:messageSpecial(ID.text.NOTHING_SEEMS_TO_HAPPEN)
         end
     else
-        player:messageSpecial(NOTHING_WILL_HAPPEN_YET)
+        player:messageSpecial(ID.text.NOTHING_WILL_HAPPEN_YET)
     end
 end
 

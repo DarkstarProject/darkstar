@@ -4,24 +4,21 @@
 --  Involved in Mission 9-1 (San dOria)
 --  !pos 210 17 -615 105
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Batallia_Downs/TextIDs");
-require("scripts/zones/Batallia_Downs/MobIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3
-        and not GetMobByID(SUPARNA):isSpawned() and not GetMobByID(SUPARNA_FLEDGLING):isSpawned()) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getVar("MissionStatus") == 3
+        and not GetMobByID(ID.mob.SUPARNA):isSpawned() and not GetMobByID(ID.mob.SUPARNA_FLEDGLING):isSpawned()) then
         if (player:getVar("Mission9-1Kills") > 0) then
             player:startEvent(904);
         else
-            SpawnMob(SUPARNA);
-            SpawnMob(SUPARNA_FLEDGLING);
+            SpawnMob(ID.mob.SUPARNA);
+            SpawnMob(ID.mob.SUPARNA_FLEDGLING);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -34,7 +31,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 904) then
         player:addKeyItem(dsp.ki.FIGURE_OF_LEVIATHAN);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FIGURE_OF_LEVIATHAN);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FIGURE_OF_LEVIATHAN);
         player:setVar("MissionStatus",4);
         player:setVar("Mission9-1Kills",0);
     end

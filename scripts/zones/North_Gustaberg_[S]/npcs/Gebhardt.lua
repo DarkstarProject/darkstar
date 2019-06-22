@@ -3,11 +3,7 @@
 --  NPC: Gebhardt
 -- Involved in Quests: The Fighting Fourth
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
-package.loaded["scripts/globals/quests"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -16,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:hasKeyItem(917)) == true then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.BATTLE_RATIONS)) == true then
         player:startEvent(102)
     else
         player:startEvent(110)

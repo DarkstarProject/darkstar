@@ -3,10 +3,8 @@
 --  NPC: _5cs (Magical Gizmo) #4
 --  Involved In Mission: The Horutoto Ruins Experiment
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,14 +18,14 @@ function onTrigger(player,npc)
     local magical_gizmo_no = 4; -- of the 6
 
     -- Check if we are on Windurst Mission 1-1
-    if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
         -- Check if we found the correct Magical Gizmo or not
         if (player:getVar("MissionStatus_rv") == magical_gizmo_no) then
             player:startEvent(54);
         else
             if (player:getVar("MissionStatus_op4") == 2) then
                 -- We've already examined this
-                player:messageSpecial(EXAMINED_RECEPTACLE);
+                player:messageSpecial(ID.text.EXAMINED_RECEPTACLE);
             else
                 -- Opened the wrong one
                 player:startEvent(55);
@@ -50,12 +48,12 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",3);
         player:setVar("MissionStatus_rv", 0);
         player:addKeyItem(dsp.ki.CRACKED_MANA_ORBS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRACKED_MANA_ORBS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRACKED_MANA_ORBS);
     elseif (csid == 55) then
         -- Opened the wrong one
         player:setVar("MissionStatus_op4", 2);
         -- Give the message that thsi orb is not broken
-        player:messageSpecial(NOT_BROKEN_ORB);
+        player:messageSpecial(ID.text.NOT_BROKEN_ORB);
     end
 
 end;

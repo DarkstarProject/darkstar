@@ -3,9 +3,6 @@
 --  NPC: Deigoff
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/pathfind");
 -----------------------------------
 

@@ -2,12 +2,8 @@
 -- Area: Northern San d'Oria
 --   NPC: Durogg
 -- Type: Past Event Watcher
--- @zone 231
--- !pos 15 0 -18
+-- !pos 15 0 -18 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -18,18 +14,18 @@ function onTrigger(player,npc)
 
     -- Add-on Scenarios
     local AddonScenarios = 0xFFFFFFFE;
-    if (player:hasCompletedMission(AMK,DRENCHED_IT_BEGAN_WITH_A_RAINDROP)) then
+    if (player:hasCompletedMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP)) then
         AddonScenarios = AddonScenarios - 2; -- Drenched! It Began with a Raindrop.
     end
 -- *Need the correct csid
---    if (player:hasCompletedMission(AMK,HASTEN_IN_A_JAM_IN_JEUNO)) then
+--    if (player:hasCompletedMission(AMK,dsp.mission.id.amk.HASTEN_IN_A_JAM_IN_JEUNO)) then
 --        AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
 --    end
 
     -- Seekers of Adoulin
     local SeekersOfAdoulin = 0xFFFFFFFE;
 -- *Need the correct csid
---    if (player:hasCompletedMission(SOA,RUMORS_FROM_THE_WEST)) then
+--    if (player:hasCompletedMission(SOA,dsp.mission.id.soa.RUMORS_FROM_THE_WEST)) then
 --        SeekersOfAdoulin = SeekersOfAdoulin - 2; -- Rumors from the West
 --    end
 

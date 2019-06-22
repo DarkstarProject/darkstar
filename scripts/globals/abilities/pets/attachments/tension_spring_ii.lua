@@ -1,40 +1,39 @@
 -----------------------------------
 -- Attachment: Tension Spring II
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/automaton")
+require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.ATTP, 6)
-    pet:addMod(dsp.mod.RATTP, 6)
+    onUpdate(pet, 0)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.ATTP, 6)
-    pet:delMod(dsp.mod.RATTP, 6)
+    updateModPerformance(pet, dsp.mod.ATTP, 'tension_ii_attp', 0)
+    updateModPerformance(pet, dsp.mod.RATTP, 'tension_ii_rattp', 0)
 end
 
-function onManeuverGain(pet,maneuvers)
-    if (maneuvers == 1) then
-        pet:addMod(dsp.mod.ATTP, 3);
-        pet:addMod(dsp.mod.RATTP, 3)
-    elseif (maneuvers == 2) then
-        pet:addMod(dsp.mod.ATTP, 3);
-        pet:addMod(dsp.mod.RATTP, 3)
-    elseif (maneuvers == 3) then
-        pet:addMod(dsp.mod.ATTP, 3);
-        pet:addMod(dsp.mod.RATTP, 3)
-    end
+function onManeuverGain(pet, maneuvers)
+    onUpdate(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
-    if (maneuvers == 1) then
-        pet:delMod(dsp.mod.ATTP, 3);
-        pet:delMod(dsp.mod.RATTP, 3)
-    elseif (maneuvers == 2) then
-        pet:delMod(dsp.mod.ATTP, 3);
-        pet:delMod(dsp.mod.RATTP, 3)
-    elseif (maneuvers == 3) then
-        pet:delMod(dsp.mod.ATTP, 3);
-        pet:delMod(dsp.mod.RATTP, 3)
+function onManeuverLose(pet, maneuvers)
+    onUpdate(pet, maneuvers - 1)
+end
+
+function onUpdate(pet, maneuvers)
+    if maneuvers == 0 then
+        updateModPerformance(pet, dsp.mod.ATTP, 'tension_ii_attp', 6)
+        updateModPerformance(pet, dsp.mod.RATTP, 'tension_ii_rattp', 6)
+    elseif maneuvers == 1 then
+        updateModPerformance(pet, dsp.mod.ATTP, 'tension_ii_attp', 9)
+        updateModPerformance(pet, dsp.mod.RATTP, 'tension_ii_rattp', 9)
+    elseif maneuvers == 2 then
+        updateModPerformance(pet, dsp.mod.ATTP, 'tension_ii_attp', 12)
+        updateModPerformance(pet, dsp.mod.RATTP, 'tension_ii_rattp', 12)
+    elseif maneuvers == 3 then
+        updateModPerformance(pet, dsp.mod.ATTP, 'tension_ii_attp', 15)
+        updateModPerformance(pet, dsp.mod.RATTP, 'tension_ii_rattp', 15)
     end
 end

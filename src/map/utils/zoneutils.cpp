@@ -64,45 +64,6 @@ void TOTDChange(TIMETYPE TOTD)
     }
 }
 
-void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
-{
-    CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
-
-    int32 ret = Sql_Query(SqlHandle, "SELECT treasure_spawn_points.pos, treasure_spawn_points.pos_rot, treasure_spawn_points.pos_x, treasure_spawn_points.pos_y, treasure_spawn_points.pos_z, npc_list.content_tag FROM `treasure_spawn_points` INNER JOIN `npc_list` ON treasure_spawn_points.npcid = npc_list.npcid WHERE treasure_spawn_points.npcid=%u ORDER BY RAND() LIMIT 1", npcid);
-
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-    {
-        const char* contentTag = (const char*)Sql_GetData(SqlHandle, 5);
-
-        if (luautils::IsContentEnabled(contentTag) == false)
-        {
-            return;
-        }
-
-        if (PNpc != nullptr)
-        {
-            PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle, 1);
-            PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 2);
-            PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
-            PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 4);
-            // ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
-            PNpc->PAI->QueueAction(queueAction_t(std::chrono::milliseconds(respawnTime), false, [](CBaseEntity* PNpc)
-            {
-                PNpc->status = STATUS_NORMAL;
-                PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
-            }));
-        }
-        else
-        {
-            ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: treasure <%u> not found\n" CL_RESET, npcid);
-        }
-    }
-    else
-    {
-        ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: SQL error or treasure <%u> not found in treasurespawnpoints table.\n" CL_RESET, npcid);
-    }
-}
-
 /************************************************************************
 *                                                                       *
 *  Initialize weather for each zone and launch task if not weather      *
@@ -254,7 +215,7 @@ CCharEntity* GetCharToUpdate(uint32 primary, uint32 ternary)
     CCharEntity* PPrimary = nullptr;
     CCharEntity* PSecondary = nullptr;
     CCharEntity* PTernary = nullptr;
-    
+
     for (auto PZone : g_PZoneList)
     {
         PZone.second->ForEachChar([primary, ternary, &PPrimary, &PSecondary, &PTernary](CCharEntity* PChar)
@@ -274,7 +235,7 @@ CCharEntity* GetCharToUpdate(uint32 primary, uint32 ternary)
     }
     if (PSecondary)
         return PSecondary;
-            
+
     return PTernary;
 }
 /************************************************************************
@@ -438,11 +399,11 @@ void LoadMOBList()
                 PMob->SetMJob(Sql_GetIntData(SqlHandle, 15));
                 PMob->SetSJob(Sql_GetIntData(SqlHandle, 16));
 
-                PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
-                PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle, 17));
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setSkillType(Sql_GetIntData(SqlHandle, 17));
                 PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 18);
-                PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
-                PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
 
                 PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 20);
                 PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 21);
@@ -571,7 +532,8 @@ void LoadMOBList()
         LEFT JOIN mob_spawn_points ON mob_pets.mob_mobid = mob_spawn_points.mobid \
         LEFT JOIN mob_groups ON mob_spawn_points.groupid = mob_groups.groupid \
         INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
+        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
+        AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
     ret = Sql_Query(SqlHandle, PetQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 

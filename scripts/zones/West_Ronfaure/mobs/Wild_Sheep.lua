@@ -2,9 +2,9 @@
 -- Area: West Ronfaure
 --  MOB: Wild Sheep
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,56,1);
+    dsp.regime.checkRegime(player, mob, 56, 1, dsp.regime.type.FIELDS)
 end;

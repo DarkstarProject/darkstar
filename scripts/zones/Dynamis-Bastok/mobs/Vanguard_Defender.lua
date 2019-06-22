@@ -1,12 +1,17 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  NPC: Vanguard Defender
+--  MOB: Vanguard_Defender
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
+-----------------------------------
 
 function onMobSpawn(mob)
-end;
+    mob:setLocalVar("dynamis_currency", 1455)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

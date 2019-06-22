@@ -3,13 +3,16 @@
 --  NPC: Cermet Portal
 -- !pos -419 0.1 356 35
 -----------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
+require("scripts/globals/missions")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-     -- the door breaks during the CS in Al'Taieu after receiving the Dawn mission, which sets the var to 1. Also checking for The Last Verse mission for whenever that gets implemented.
-    if ((player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus") > 0) or player:getCurrentMission(COP) > DAWN) then
+    -- the door breaks during the CS in Al'Taieu after receiving the Dawn mission, which sets the var to 1. Also checking for The Last Verse mission for whenever that gets implemented.
+    if ((player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus") > 0) or player:getCurrentMission(COP) > dsp.mission.id.cop.DAWN) then
         if (player:getZPos() <= 360) then
             player:startEvent(140);
         else
@@ -17,7 +20,7 @@ function onTrigger(player,npc)
         end
     else
         if (player:getZPos() <= 360) then
-            player:messageSpecial(PORTAL_SEALED);
+            player:messageSpecial(ID.text.PORTAL_SEALED);
         else
             player:startEvent(139);
         end

@@ -4,11 +4,8 @@
 -- Start Quest: The Sand Charmz
 -- !pos 23 -7 41 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     local X = player:getXPos(); Z = player:getZPos();
-    local TheSandCharm = player:getQuestStatus(OTHER_AREAS_LOG,THE_SAND_CHARM);
+    local TheSandCharm = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_SAND_CHARM);
 
     if (Z <= 29 or Z >= 38 or X <= 16 or X >= 32) then
         if (player:getFameLevel(WINDURST) >= 4 and TheSandCharm == QUEST_AVAILABLE) then
@@ -38,7 +35,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 125) then
-        player:addQuest(OTHER_AREAS_LOG,THE_SAND_CHARM);
+        player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_SAND_CHARM);
         player:setVar("theSandCharmVar",1);
     elseif (csid == 124) then
         player:setVar("theSandCharmVar",3);
@@ -46,4 +43,3 @@ function onEventFinish(player,csid,option)
         player:setVar("SmallDialogByBlandine",0);
     end
 end;
-

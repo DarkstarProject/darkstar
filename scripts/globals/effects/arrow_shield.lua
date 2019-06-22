@@ -3,28 +3,16 @@
 -- Blocks all ranged attacks
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.UDMGRANGE, -100);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.UDMGRANGE, -100)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.UDMGRANGE, -100);
-end;
+    target:delMod(dsp.mod.UDMGRANGE, -100)
+end

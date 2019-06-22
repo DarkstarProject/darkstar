@@ -4,45 +4,44 @@
 -- Type: Alchemy Adv. Image Support
 -- !pos -10.470 -6.25 -141.700 241
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/crafting");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/globals/status")
+require("scripts/globals/crafting")
+require("scripts/globals/npc_util")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local guildMember = isGuildMember(player,1);
+    local guildMember = isGuildMember(player,1)
 
-    if (guildMember == 1) then
-        if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
-            if (player:hasStatusEffect(dsp.effect.ALCHEMY_IMAGERY) == false) then
-                player:tradeComplete();
-                player:startEvent(637,17160,1,19405,21215,30030,0,7,0);
+    if guildMember == 1 then
+        if npcUtil.tradeHas(trade,2184) then
+            if player:hasStatusEffect(dsp.effect.ALCHEMY_IMAGERY) == false then
+                player:confirmTrade()
+                player:startEvent(637,17160,1,19405,21215,30030,0,7,0)
             else
-                npc:showText(npc, IMAGE_SUPPORT_ACTIVE);
+                npc:showText(npc, ID.text.IMAGE_SUPPORT_ACTIVE)
             end
         end
     end
-end;
+end
 
 function onTrigger(player,npc)
-    local guildMember = isGuildMember(player,1);
-    local SkillLevel = player:getSkillLevel(dsp.skill.ALCHEMY);
+    local guildMember = isGuildMember(player,1)
+    local SkillLevel = player:getSkillLevel(dsp.skill.ALCHEMY)
 
-    if (guildMember == 1) then
-        player:startEvent(636,2,SkillLevel,0,511,0,0,7,2184);
+    if guildMember == 1 then
+        player:startEvent(636,2,SkillLevel,0,511,0,0,7,2184)
     else
-        player:startEvent(636,0,0,0,0,0,0,7,0); -- Standard Dialogue
+        player:startEvent(636,0,0,0,0,0,0,7,0) -- Standard Dialogue
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 637) then
-        player:messageSpecial(IMAGE_SUPPORT,0,7,0);
-        player:addStatusEffect(dsp.effect.ALCHEMY_IMAGERY,3,0,480);
+    if csid == 637 then
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,7,0)
+        player:addStatusEffect(dsp.effect.ALCHEMY_IMAGERY,3,0,480)
     end
-end;
+end

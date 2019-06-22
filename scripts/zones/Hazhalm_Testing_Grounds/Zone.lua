@@ -3,11 +3,9 @@
 -- Zone: Hazhalm_Testing_Grounds (78)
 --
 -----------------------------------
-package.loaded["scripts/zones/Hazhalm_Testing_Grounds/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/settings");
-require("scripts/zones/Hazhalm_Testing_Grounds/TextIDs");
+local ID = require("scripts/zones/Hazhalm_Testing_Grounds/IDs");
 -----------------------------------
 
 function onInitialize(zone)
@@ -19,7 +17,7 @@ function onZoneIn(player,prevZone)
         player:setPos(652.174,-272.632,-104.92,148);
     end
 
-    if (player:getCurrentMission(TOAU) == GAZE_OF_THE_SABOTEUR and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.GAZE_OF_THE_SABOTEUR and player:getVar("AhtUrganStatus") == 0) then
         cs = 6;
     end
 

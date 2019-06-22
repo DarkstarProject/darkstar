@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Thierride
--- @zone 80
--- !pos -124 -2 14
+-- !pos -124 -2 14 80
 -----------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -15,7 +14,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
     local lufetSalt = trade:hasItemQty(1019,1);
     local cnt = trade:getItemCount();
-    local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,BEANS_AHOY);
+    local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
     if (lufetSalt and cnt == 1 and beansAhoy == QUEST_ACCEPTED) then
         if (player:getVar("BeansAhoy") == 0 == true) then
 
@@ -34,7 +33,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,BEANS_AHOY);
+    local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
     if (beansAhoy == QUEST_AVAILABLE) then
         player:startEvent(334); -- Quest Start
 
@@ -57,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 334) then
-        player:addQuest(CRYSTAL_WAR,BEANS_AHOY);
+        player:addQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
 
     elseif (csid == 337) then
         player:tradeComplete();
@@ -66,14 +65,14 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 340 or csid == 342) then
         if (player:hasItem(5704,1) or player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,5704)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,5704)
 
         else
             player:addItem(5704,1);
-            player:messageSpecial(ITEM_OBTAINED,5704);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5704);
             player:setVar("BeansAhoy_ConquestWeek",getConquestTally());
             if (csid == 340) then
-                player:completeQuest(CRYSTAL_WAR,BEANS_AHOY);
+                player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
                 player:setVar("BeansAhoy",0);
                 player:tradeComplete();
             end

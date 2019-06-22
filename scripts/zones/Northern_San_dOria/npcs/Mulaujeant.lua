@@ -2,15 +2,12 @@
 -- Area: Northern San d'Oria
 --  NPC: Mulaujeant
 -- Involved in Quests: Missionary Man
--- @zone 231
--- !pos -175 0 181
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-- !pos -175 0 181 231
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -48,7 +45,6 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionaryManVar",4);
         player:setVar("MissionaryMan_date", 0);
         player:addKeyItem(dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
     end
 end;
-

@@ -4,11 +4,9 @@
 -- Type: Guild Merchant (Blacksmithing Guild)
 -- !pos -106.093 0.999 -24.564 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(5332,8,23,2)) then
-        player:showText(npc, AMULYA_SHOP_DIALOG);
+        player:showText(npc, ID.text.AMULYA_SHOP_DIALOG);
     end
 end;
 
@@ -25,4 +23,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

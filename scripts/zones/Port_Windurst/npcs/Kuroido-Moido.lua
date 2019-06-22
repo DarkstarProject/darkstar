@@ -5,15 +5,13 @@
 -- Starts and Finishes: Making Amens!, Orastery Woes
 -- !pos -112.5 -4.2 102.9 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/quests")
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.black_halo
@@ -28,12 +26,12 @@ end
 
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
-    local makingAmends = player:getQuestStatus(WINDURST,MAKING_AMENDS) --First quest in series
-    local makingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS) --Second quest in series
-    local wonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS) --Third and final quest in series
+    local makingAmends = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_AMENDS) --First quest in series
+    local makingAmens = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_AMENS) --Second quest in series
+    local wonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS) --Third and final quest in series
     local pfame = player:getFameLevel(WINDURST)
     local needToZone = player:needToZone()
-    local brokenWand = player:hasKeyItem(128)
+    local brokenWand = player:hasKeyItem(dsp.ki.BROKEN_WAND)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
@@ -59,7 +57,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(286,0,937) -- Post Making Amens! dialogue (before Wonder Wands)
         end
-    elseif (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD) then
+    elseif (player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD) then
         local item = 0
         local asaStatus = player:getVar("ASA_Status")
 
@@ -84,19 +82,16 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 280) then
-        player:addQuest(WINDURST,MAKING_AMENS)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.MAKING_AMENS)
     elseif (csid == 284) then
         player:needToZone(true)
         player:delKeyItem(dsp.ki.BROKEN_WAND)
         player:addTitle(dsp.title.HAKKURURINKURUS_BENEFACTOR)
         player:addGil(GIL_RATE*6000)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*6000)
         player:addFame(WINDURST,150)
-        player:completeQuest(WINDURST,MAKING_AMENS)
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.MAKING_AMENS)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLACK_HALO_LEARNED)
     end
 end
-
-
-

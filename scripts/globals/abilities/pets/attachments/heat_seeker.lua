@@ -2,6 +2,7 @@
 -- Attachment: Heat Seeker
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:addListener("ENGAGE", "AUTO_HEAT_SEEKER_ENGAGE", function(pet, target)
@@ -54,8 +55,8 @@ function onUnequip(pet)
     pet:removeListener("AUTO_HEAT_SEEKER_DISENGAGE")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

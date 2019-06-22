@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Bacherume
 -- Type: Standard Info NPC
---  @zone 231
--- !pos 4.500 0.000 99.000
+-- !pos 4.500 0.000 99.000 231
 --
 -----------------------------------
 
@@ -18,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -3,12 +3,12 @@
 --  MOB: Old Quadav
 -- PH for Ge'Dha Evileye
 -----------------------------------
-require("scripts/zones/Beadeaux/MobIDs");
+local ID = require("scripts/zones/Beadeaux/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,GE_DHA_EVILEYE_PH,25,math.random(3600,7200)); -- 1 to 2 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.GE_DHA_EVILEYE_PH,25,math.random(3600,7200)); -- 1 to 2 hours
 end;

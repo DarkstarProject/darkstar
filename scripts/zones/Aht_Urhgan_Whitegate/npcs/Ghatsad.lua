@@ -4,13 +4,12 @@
 -- Standard Info NPC
 -- Involved in quest: No String Attached
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
 require("scripts/globals/common")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
 require("scripts/globals/status")
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/keyitems")
 -----------------------------------
 
 -- Items in trades
@@ -193,9 +192,9 @@ function onTrigger(player,npc)
     --cs 904 - give coffee
     --cs 905 - head complete
 
-    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED)
+    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED)
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress")
-    local Automaton = player:hasKeyItem(798)
+    local Automaton = player:hasKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     local automatonName = player:getAutomatonName()
     local CreationStarted_Day = player:getVar("CreationStarted_Day")
     local currentDay = VanadielDayOfTheYear()
@@ -322,7 +321,7 @@ function onEventFinish(player,csid,option)
         player:setVar("CreationStarted_Day",VanadielDayOfTheYear())
         player:setVar("CreationStarted_Year",VanadielYear())
         player:setVar("NoStringsAttachedProgress",5)
-        player:delKeyItem(798)
+        player:delKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     elseif csid == 265 then
         player:setVar("NoStringsAttachedProgress",6)
         player:setVar("CreationStarted_Day",0)
@@ -340,7 +339,7 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+2)
             player:setVar("PUP_AttachmentReady", 0)
-            player:messageSpecial(AUTOMATON_VALOREDGE_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_VALOREDGE_UNLOCK)
         elseif attachmentStatus == 9 then
             player:unlockAttachment(8226)
             player:unlockAttachment(8195)
@@ -348,7 +347,7 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+4)
             player:setVar("PUP_AttachmentReady", 0)
-            player:messageSpecial(AUTOMATON_SHARPSHOT_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_SHARPSHOT_UNLOCK)
         elseif attachmentStatus == 10 then
             player:unlockAttachment(8227)
             player:unlockAttachment(8196)
@@ -356,7 +355,7 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+8)
             player:setVar("PUP_AttachmentReady", 0)
-            player:messageSpecial(AUTOMATON_STORMWAKER_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_STORMWAKER_UNLOCK)
         end
     elseif csid == 900 then
         player:setVar("PUP_AttachmentStatus", 11)
@@ -372,14 +371,14 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentReady", 0)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+16)
-            player:messageSpecial(AUTOMATON_SOULSOOTHER_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_SOULSOOTHER_UNLOCK)
         elseif attachmentStatus == 13 then
             player:unlockAttachment(8198)
             player:setVar("PUP_AttachmentStatus", 0)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentReady", 0)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+32)
-            player:messageSpecial(AUTOMATON_SPIRITREAVER_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_SPIRITREAVER_UNLOCK)
         end
     end
 end

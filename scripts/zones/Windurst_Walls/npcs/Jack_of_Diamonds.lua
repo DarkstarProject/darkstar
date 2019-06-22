@@ -5,12 +5,9 @@
 -- Working 100%
 -------------------------------------
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
 
 function onTrade(player,npc,trade)
-    if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
+    if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then
         player:startEvent(10002,GIL_RATE*50);
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
@@ -26,6 +23,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-
-
-

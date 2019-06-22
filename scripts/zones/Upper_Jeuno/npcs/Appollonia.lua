@@ -3,10 +3,7 @@
 --  NPC: Appollonia
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
