@@ -36,8 +36,6 @@ function onTrigger(player,npc)
         player:startEvent(10181) -- Lamb Roast handed in
     elseif myDecrepitDomicile and player:getVar("AMK") == 3 then
         player:startEvent(10188) -- Lamb Roast reminder
-    elseif theProfessorsPrice and player:getVar("AMK") == 1 then
-        player:startEvent(10182)
     end
 end
 
