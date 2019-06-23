@@ -27,15 +27,15 @@ function isInMogHouseInHomeNation(player)
     local currentZone = player:getZoneID()
     local nation = player:getNation()
     if nation == dsp.nation.BASTOK then
-        if currentZone >= 234 and currentZone <= 237 then
+        if currentZone >= dsp.zone.BASTOK_MINES and currentZone <= dsp.zone.METALWORKS then
             return true
         end
     elseif nation == dsp.nation.SANDORIA then
-        if currentZone >= 230 and currentZone <= 233 then
+        if currentZone >= dsp.zone.SOUTHERN_SAN_DORIA and currentZone <= dsp.zone.CHATEAU_DORAGUILLE then
             return true
         end
     else -- Windurst
-        if currentZone >= 238 and currentZone <= 241 then
+        if currentZone >= dsp.zone.WINDURST_WATERS and currentZone <= dsp.zone.WINDURST_WOODS then
             return true
         end
     end
