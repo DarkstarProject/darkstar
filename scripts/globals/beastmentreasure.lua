@@ -271,11 +271,10 @@ end
 
 dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade,digsiteids)
     local zoneid = player:getZoneID()
-    local zd = zoneData[zoneid]
     local digsite = getAssignedDigSite(player)
 
     if npcUtil.tradeHasExactly(trade, 605)
-        and player:getVar(zd.statusvar) == QUEST_COMPLETED
+        and player:getVar(zoneData[zoneid].statusvar) == QUEST_COMPLETED
         and npc:getID() == digsiteids[digsite] then
             --[[ Event 105 needs args to spawn and animate a treasure chest
                  Example args from retail capture: 105 123 450762 1745 201805 7 723 490292 4095
@@ -291,7 +290,6 @@ end
 
 dsp.beastmentreasure.handleQmOnEventFinish = function(player,csid)
     local zoneid = player:getZoneID()
-    local zd = zoneData[zoneid]
 
     if csid == 105 then
         -- Successfully excavating a dig site rewards 4000 gil plus the following items:
@@ -311,8 +309,8 @@ dsp.beastmentreasure.handleQmOnEventFinish = function(player,csid)
         player:addTreasure(item3)
         player:addTreasure(item4)
         -- Reset player vars
-        player:setVar(zd.statusvar, QUEST_AVAILABLE)
-        player:setVar(zd.dsvar, 0)
+        player:setVar(zoneData[zoneid].statusvar, QUEST_AVAILABLE)
+        player:setVar(zoneData[zoneid].dsvar, 0)
     end
 end
 
