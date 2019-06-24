@@ -295,6 +295,7 @@ enum class Mod
     // Warrior
     DOUBLE_ATTACK             = 288, // Percent chance to proc
     WARCRY_DURATION           = 483, // Warcy duration bonus from gear
+    BERSERK_EFFECT            = 948, // Conqueror Berserk Effect
 
     // Monk
     BOOST_EFFECT              = 97,  // Boost power in tenths
@@ -440,6 +441,7 @@ enum class Mod
 
     // Blue Mage
     BLUE_POINTS               = 309, // Tracks extra blue points
+    BLUE_LEARN_CHANCE         = 945, // Additional chance to learn blue magic
 
     // Corsair
     EXP_BONUS                 = 382, //
@@ -577,6 +579,8 @@ enum class Mod
     ADDS_WEAPONSKILL_DYN      = 356, // In Dynamis
 
     STEALTH                   = 358, //
+    SNEAK_DURATION            = 946, // Additional duration in seconds
+    INVISIBLE_DURATION        = 947, // Additional duration in seconds
 
     MAIN_DMG_RATING           = 366, // adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
     SUB_DMG_RATING            = 367, // adds damage rating to off hand weapon
@@ -651,6 +655,14 @@ enum class Mod
     ITEM_SPIKES_TYPE          = 499, // Type spikes an item has
     ITEM_SPIKES_DMG           = 500, // Damage of an items spikes
     ITEM_SPIKES_CHANCE        = 501, // Chance of an items spike proc
+    // ITEM_ADDEFFECT_TYPE       = 431, // 1 = Status Effect/DMG/HP Drain, 2 = MP Drain, 3 = TP Drain, 4 = Dispel, 5 = Self-Buff, 6 = Instant Death
+    // ITEM_SUBEFFECT            = 499, // Animation ID of Spikes and Additional Effects
+    // ITEM_ADDEFFECT_DMG        = 500, // Damage of an items Additional Effect or Spikes
+    // ITEM_ADDEFFECT_CHANCE     = 501, // Chance of an items Additional Effect or Spikes
+    // ITEM_ADDEFFECT_ELEMENT    = 950, // Element of the Additional Effect or Spikes, for resist purposes
+    // ITEM_ADDEFFECT_STATUS     = 951, // Status Effect ID to try to apply via Additional Effect or Spikes
+    // ITEM_ADDEFFECT_POWER      = 952, // Base Power for effect in MOD_ITEM_ADDEFFECT_STATUS
+    // ITEM_ADDEFFECT_DURATION   = 953, // Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
 
     GOV_CLEARS                = 496, // 4% bonus per Grounds of Valor Page clear
 
@@ -762,6 +774,7 @@ enum class Mod
     ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
+    WS_NO_DEPLETE             = 949, // % chance a Weaponskill depletes no TP.
 
     EXPERIENCE_RETAINED       = 914, // Experience points retained upon death (this is a percentage)
     CAPACITY_BONUS            = 915, // Capacity point bonus granted
@@ -771,9 +784,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 945, // stuff
-    // SPARE = 946, // stuff
-    // SPARE = 947, // stuff
+    // SPARE = 954, // stuff
+    // SPARE = 955, // stuff
+    // SPARE = 956, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

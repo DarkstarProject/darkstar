@@ -32,6 +32,6 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         target:addStatusEffect(dsp.effect.STUN, 1, 0, duration)
     end
 
-    local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
     return tpHits, extraHits, damage
 end

@@ -17,6 +17,7 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
         ITEM_OBTAINED            = 6596, -- Obtained: <item>.
         GIL_OBTAINED             = 6597, -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6599, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST             = 6600, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL      = 6601, -- You do not have enough gil.
         MOG_LOCKER_OFFSET        = 6829, -- Your Mog Locker lease is valid until <timestamp>, kupo.
         IMAGE_SUPPORT            = 6953, -- Your [fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up [a little/ever so slightly/ever so slightly].

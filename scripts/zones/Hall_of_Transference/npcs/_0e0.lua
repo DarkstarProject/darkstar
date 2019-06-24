@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) > BELOW_THE_ARKS) then
+    if (player:getCurrentMission(COP) > dsp.mission.id.cop.BELOW_THE_ARKS) then
         player:startEvent(150);
     else
         player:messageSpecial(ID.text.NO_RESPONSE_OFFSET+1); -- The door is firmly shut.

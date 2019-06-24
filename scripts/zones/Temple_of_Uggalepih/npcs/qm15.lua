@@ -39,7 +39,7 @@ end
 function onEventFinish(player, csid, option)
     if
         csid == 67 and
-        npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.KNIGHT_STALKER, {item = 12519, fame = AF3_FAME, title = dsp.title.PARAGON_OF_DRAGOON_EXCELLENCE, var = {"KnightStalker_Kill", "KnightStalker_Progress"}})
+        npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.KNIGHT_STALKER, {item = 12519, fame = 60, title = dsp.title.PARAGON_OF_DRAGOON_EXCELLENCE, var = {"KnightStalker_Kill", "KnightStalker_Progress"}})
     then
         player:delKeyItem(dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS)
         player:setVar("KnightStalker_Option1", 1) -- Optional post-quest cutscenes.

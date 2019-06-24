@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  Mob: Tremor Ram
+--   NM: Tremor Ram
 -----------------------------------
 local ID = require("scripts/zones/Konschtat_Highlands/IDs")
------------------------------------
 require("scripts/globals/mobs")
 -----------------------------------
 

@@ -2,11 +2,9 @@
 -- Brain Crush
 -- Deals damage to single target. Additional effect: Silence
 ---------------------------------------------------
-
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
-
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -22,9 +20,9 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,info.hitslanded)
     target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
 
-    local typeEffect = dsp.effect.SILENCE
-
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60)
+    if dmg > 0 then
+        MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.SILENCE, 1, 0, 60)
+    end
 
     return dmg
 end

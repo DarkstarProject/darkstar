@@ -22,17 +22,17 @@ function onTrigger(player,npc)
 
     local teacherstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TEACHER_S_PET);
 
-    if (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 0) then
         player:startEvent(752,0,dsp.ki.STAR_SEEKER);
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") >= 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") >= 1) then
         if (player:getVar("MissionStatus") < 4) then
             player:startEvent(753);
         elseif (player:getVar("MissionStatus") == 4) then
             player:startEvent(758);
         end
-    elseif (player:getCurrentMission(WINDURST) == A_TESTING_TIME) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.A_TESTING_TIME) then
         local MissionStatus = player:getVar("MissionStatus");
-        local alreadyCompleted = player:hasCompletedMission(WINDURST,A_TESTING_TIME);
+        local alreadyCompleted = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_TESTING_TIME);
         if (MissionStatus == 0) then
             if (alreadyCompleted == false) then
                 player:startEvent(182); -- First start at tahrongi
@@ -146,7 +146,7 @@ function onEventFinish(player,csid,option)
         player:setVar("testingTime_start_day",0);
         player:setVar("testingTime_start_hour",0);
         player:setVar("testingTime_start_time",0);
-        player:delMission(WINDURST,A_TESTING_TIME);
+        player:delMission(WINDURST,dsp.mission.id.windurst.A_TESTING_TIME);
     elseif (csid == 200 or csid == 201) then -- first time win
         finishMissionTimeline(player,1,csid,option);
 

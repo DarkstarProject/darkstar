@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
         if npcUtil.tradeHas(trade,2184) then
             player:startEvent(850)
         end
-    elseif player:getCurrentMission(TOAU) == KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 1 then
+    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 1 then
         if npcUtil.tradeHas(trade,{{"gil", 1000}}) or npcUtil.tradeHas(trade,2184) then
             player:startEvent(3022,0,0,0,0,0,0,0,0,0)
         end
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         player:startEvent(853)
     elseif player:getVar("ratraceCS") >= 3 then
         player:startEvent(854)
-    elseif player:getCurrentMission(TOAU) == KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 0 then
+    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 0 then
         player:startEvent(3035,0,0,0,0,0,0,0,0,0)
     elseif player:getVar("AhtUrganStatus") == 1 then
         player:startEvent(3036,0,0,0,0,0,0,0,0,0)

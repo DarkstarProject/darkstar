@@ -16,6 +16,7 @@ zones[dsp.zone.RULUDE_GARDENS] =
         ITEM_OBTAINED                    = 6528, -- Obtained: <item>.
         GIL_OBTAINED                     = 6529, -- Obtained <number> gil.
         KEYITEM_OBTAINED                 = 6531, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                     = 6532, -- Lost key item: <keyitem>.
         ITEMS_OBTAINED                   = 6537, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY          = 6542, -- There is nothing out of the ordinary here.
         YOUR_MAXIMUM_LEVEL               = 6584, -- Your maximum level has been raised to [50/55/60/65/70/75/80/85/90/95/99]!
@@ -44,7 +45,7 @@ zones[dsp.zone.RULUDE_GARDENS] =
         YOUR_LEVEL_LIMIT_IS_NOW_95       = 12436, -- Your level limit is now 95!
         WINDURST_EMBASSY                 = 12437, -- I have a letter for you here from none other than Atori-Tutori. It reads, ahem...
         YOUR_LEVEL_LIMIT_IS_NOW_99       = 12516, -- Your level limit is now 99!
-        TEAR_IN_FABRIC_OF_SPACE          = 15915, -- There appears to be a tear in the fabric of space...
+        TEAR_IN_FABRIC_OF_SPACE          = 15937, -- There appears to be a tear in the fabric of space...
     },
     mob =
     {

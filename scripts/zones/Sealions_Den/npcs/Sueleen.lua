@@ -12,11 +12,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
+    if (player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH) then
         player:startEvent(12);
-    elseif (player:getCurrentMission(COP) == FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(16);
-    elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE)) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE)) then
         player:startEvent(17);
     else
         player:startEvent(20);
@@ -37,8 +37,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 16) then
         player:setVar("PromathiaStatus",2);
     elseif (csid == 17) then
-        player:completeMission(COP,CALM_BEFORE_THE_STORM);
-        player:addMission(COP,THE_WARRIOR_S_PATH);
+        player:completeMission(COP,dsp.mission.id.cop.CALM_BEFORE_THE_STORM);
+        player:addMission(COP,dsp.mission.id.cop.THE_WARRIOR_S_PATH);
         player:setVar("PromathiaStatus",0);
         player:setVar("COP_Dalham_KILL",0);
         player:setVar("COP_Boggelmann_KILL",0);

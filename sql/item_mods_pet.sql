@@ -225,7 +225,21 @@ INSERT INTO `item_mods_pet` VALUES (21167,28,120,1);    -- Avatar: "Magic Atk. B
 INSERT INTO `item_mods_pet` VALUES (21167,27,10,1);     -- Avatar: Enmity+10
 INSERT INTO `item_mods_pet` VALUES (21183,28,108,1);    -- Eminent Pole Avatar: "Magic Atk. Bonus"+108
 INSERT INTO `item_mods_pet` VALUES (21361,28,6,0);      -- Esper Stone +1 Pet: "Magic Atk. Bonus"+6
+INSERT INTO `item_mods_pet` VALUES (21526,25,50,3);     -- Xiucoatl: Automaton: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21526,26,50,3);     -- Xiucoatl: Automaton: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21526,30,50,3);     -- Xiucoatl: Automaton: Magic Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21715,25,30,0);     -- Monster Axe: Pet: Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21715,26,30,0);     -- Monster Axe: Pet: Ranged Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21715,30,30,0);     -- Monster Axe: Pet: Magic Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21716,25,40,0);     -- Ankusa Axe: Pet: Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21716,26,40,0);     -- Ankusa Axe: Pet: Ranged Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21716,30,40,0);     -- Ankusa Axe: Pet: Magic Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21717,25,50,0);     -- Pangu: Pet: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21717,26,50,0);     -- Pangu: Pet: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21717,30,50,0);     -- Pangu: Pet: Magic Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21751,23,80,0);     -- Aymur 119 III Pet: Attack Bonus V
+INSERT INTO `item_mods_pet` VALUES (21865,370,5,2);     -- Arasy Lance: Wyvern: "Regen"+5
+INSERT INTO `item_mods_pet` VALUES (21866,370,8,2);     -- Arasy Lance +1: Wyvern: "Regen"+8
 INSERT INTO `item_mods_pet` VALUES (22063,126,40,1);    -- Nirvana 119 III Avatar: "Blood Pact" damage +40
 INSERT INTO `item_mods_pet` VALUES (23057,25,31,3);     -- Foire Taj +2 Automaton: Accuracy +31
 INSERT INTO `item_mods_pet` VALUES (23057,369,1,3);     -- Automaton: Refresh +1

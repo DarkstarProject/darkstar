@@ -2,10 +2,11 @@
 -- Area: Full Moon Fountain
 -- Name: The Moonlit Path
 -----------------------------------
+require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
+require("scripts/globals/missions");
 local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
-require("scripts/globals/keyitems")
-require("scripts/globals/missions")
-require("scripts/globals/quests")
+
 -----------------------------------
 
 -- What should go here:
@@ -18,11 +19,14 @@ require("scripts/globals/quests")
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -33,17 +37,19 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
     moonlitPath = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH)
-    
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
+
+        local name, clearTime, partySize = battlefield:getRecord()
         if (moonlitPath == QUEST_COMPLETED) then
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         else
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         end
-    elseif (leavecode == 4) then
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
 end;
@@ -51,7 +57,7 @@ end;
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-        
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 

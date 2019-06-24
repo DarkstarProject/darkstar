@@ -1088,7 +1088,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     end
 
     -- Set spell message and apply status effect
-    target:addStatusEffect(dsp.effect.THRENODY, power, 0, duration, 0, modifier, 0);
+    target:addStatusEffect(dsp.effect.THRENODY, -power, 0, duration, 0, modifier, 0);
 
     return dsp.effect.THRENODY;
 end;
@@ -1125,27 +1125,35 @@ function doElementalNuke(caster, spell, target, spellParams)
     local V = 0;
     local M = 0;
 
-    if (USE_OLD_MAGIC_DAMAGE and spellParams.V ~= nil and spellParams.M ~= nil) then
-        V = spellParams.V;
-        M = spellParams.M;
-        local I = spellParams.I; -- inflection point
-        local cap = (I * 2) + V;
+    if USE_OLD_MAGIC_DAMAGE and spellParams.V ~= nil and spellParams.M ~= nil then
+        V = spellParams.V; -- Base value
+        M = spellParams.M; -- Tier multiplier
+        local I = spellParams.I; -- Inflection point
+        local cap = I * 2 + V; -- Base damage soft cap
 
-        --For dINT < 0: DMG = V + dINT (when dINT is a penalty, the tier mult. is always 1)
-        if dINT < 0 then DMG = V + dINT;
+        if dINT < 0 then 
+            -- If dINT is a negative value the tier multiplier is always 1
+            DMG = V + dINT;
+
+            -- Check/ set lower limit of 0 damage for negative dINT
+            if DMG < 1 then
+                return 0;
+            end			
+
+        elseif dINT < I then 
+             -- If dINT > 0 but below inflection point I
+            DMG = V + dINT * M;
+
         else
-            --, but after some cap: DMG = cap `
-            if dINT > cap then DMG = cap;
-
-            --, but less than some inflection point: DMG = V + (dINT * M)
-            elseif DMG < I then DMG = V + (dINT * M);
-
-            --, but after some inflection point: DMG = V + (inflectionPoint + (dINT-inflectionPoint) * M / 2))
-            --(above some critical value, adding INT/MND becomes half as effective)
-            else DMG = V + (I + ((dINT - I) / 2) * 1); end
+             -- Above inflection point I additional dINT is only half as effective
+            DMG = V + I + ((dINT - I) * (M / 2));
         end
 
-        if DMG < 0 then DMG = 0; end
+        -- Check/ set damage soft cap
+        if DMG > cap then
+            DMG = cap; 
+        end	
+
     else
         local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
         local resistBonus = spellParams.resistBonus;

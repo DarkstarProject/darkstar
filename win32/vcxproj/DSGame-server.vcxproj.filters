@@ -209,7 +209,7 @@
     <ClInclude Include="..\..\src\map\items\item.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\items\item_armor.h">
+    <ClInclude Include="..\..\src\map\items\item_equipment.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\items\item_currency.h">
@@ -979,7 +979,7 @@
     <ClCompile Include="..\..\src\map\items\item.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\items\item_armor.cpp">
+    <ClCompile Include="..\..\src\map\items\item_equipment.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\items\item_currency.cpp">

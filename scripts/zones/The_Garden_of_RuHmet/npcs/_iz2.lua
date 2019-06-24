@@ -16,9 +16,9 @@ end;
 function onTrigger(player,npc)
     local Race = player:getRace();
 
-    if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(202);
-    elseif (player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 2) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 2) then
         if ( Race==dsp.race.HUME_M or Race==dsp.race.HUME_F) then
             player:startEvent(120);
         else

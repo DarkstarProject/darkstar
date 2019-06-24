@@ -44,7 +44,7 @@ using uint64 = std::uint64_t;
 #include <chrono>
 
 using namespace std::literals::chrono_literals;
-using server_clock = std::chrono::steady_clock;
+using server_clock = std::chrono::system_clock;
 using time_point = server_clock::time_point;
 using duration = server_clock::duration;
 

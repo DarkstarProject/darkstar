@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     local magical_gizmo_no = 3; -- of the 6
 
     -- Check if we are on Windurst Mission 1-1
-    if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
         -- Check if we found the correct Magical Gizmo or not
         if (player:getVar("MissionStatus_rv") == magical_gizmo_no) then
             player:startEvent(52);

@@ -153,7 +153,7 @@ function onEventFinish(player, csid, option)
     elseif (csid == 137 or csid == 139) and option == 1 then
         player:addQuest(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
         player:setVar("wingsOfGold_shortCS", 0)
-    elseif csid == 138 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD, {item = 16680, fame = AF1_FAME}) then
+    elseif csid == 138 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD, {item = 16680, fame = 20}) then
         player:delKeyItem(dsp.ki.GUIDING_BELL)
 
     -- SCATTERED INTO SHADOW
@@ -164,7 +164,7 @@ function onEventFinish(player, csid, option)
     elseif csid == 144 then
         player:setVar("scatIntoShadowCS", 1)
     elseif csid == 135 then
-        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW, {item = 14097, fame = AF2_FAME, var = "scatIntoShadowCS"})
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW, {item = 14097, fame = 40, var = "scatIntoShadowCS"})
 
     -- AXE THE COMPETITION
     else

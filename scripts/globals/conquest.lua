@@ -146,7 +146,7 @@ local function suppliesAvailableBitmask(player, nation)
 
     if mask ~= -1 and mask ~= 4294967295 then
         for i = 0, 18 do
-            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, DARKNESS_NAMED)) then
+            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED)) then
                 mask = mask + 2^(i + 5)
             end
         end
@@ -828,7 +828,7 @@ local function canBuyExpRing(player, item)
     end
 
     -- one exp ring per conquest tally
-    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_TIMER") > os.time() then
+    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_RECHARGE") > os.time() then
         player:messageSpecial(text.CONQUEST + 60, 0, 0, item)
         return false
     end
@@ -1072,6 +1072,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
         player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         player:addStatusEffect(dsp.effect.SIGNET, 0, 0, duration)
+        player:messageSpecial(mOffset + 1) -- "You've received your nation's Signet!"
 
     -- BEGIN SUPPLY RUN
     elseif option >= 65541 and option <= 65565 and guardType <= dsp.conquest.guard.FOREIGN then
@@ -1091,16 +1092,18 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         sRegion == guardRegion and
         sOutpost ~= nil and
         player:hasKeyItem(sOutpost.ki) and
-        guardNation == pNation and
-        not hasOutpost(player, sRegion)
+        guardNation == pNation
     then
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
         player:messageSpecial(mOffset) -- "You've earned conquest points!"
-        player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
         player:setVar("supplyQuest_fresh", 0)
+
+        if not hasOutpost(player, sRegion) then
+            player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
+        end
 
     -- SET HOMEPOINT
     elseif option == 4 then
@@ -1156,7 +1159,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         if npcUtil.giveItem(player, stock.item) then
             player:delCP(price)
             if option >= 32933 and option <= 32935 then
-                player:setVar("CONQUEST_RING_TIMER", getConquestTally())
+                player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
             end
         end
     end

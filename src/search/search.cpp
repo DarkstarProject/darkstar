@@ -646,7 +646,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
         ShowMessage(" Param%u: %u\n", i, param);
         switch (param) {
         case 2:
-            OrderByString.append(" item_armor.level DESC,");
+            OrderByString.append(" item_equipment.level DESC,");
         case 5:
             OrderByString.append(" item_weapon.dmg DESC,");
         case 6:

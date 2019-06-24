@@ -38,10 +38,10 @@ function onZoneIn(player,prevZone)
             cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
-    elseif (player:getCurrentMission(COP) == TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus") == 0) then
         player:setVar("PromathiaStatus",1);
         cs = 70;
-    elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
+    elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == dsp.mission.id.acp.A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
         cs = 10094;
     end
 
@@ -54,7 +54,7 @@ end;
 
 function onRegionEnter(player,region)
     if (region:GetRegionID() == 1) then
-        if (player:getCurrentMission(ZILART) == AWAKENING and player:getVar("ZilartStatus") < 2) then
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and player:getVar("ZilartStatus") < 2) then
             player:startEvent(20);
         end
     end
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 20) then
         player:addVar("ZilartStatus", 2);
     elseif (csid == 10094) then
-        player:completeMission(ACP,A_CRYSTALLINE_PROPHECY);
-        player:addMission(ACP,THE_ECHO_AWAKENS);
+        player:completeMission(ACP,dsp.mission.id.acp.A_CRYSTALLINE_PROPHECY);
+        player:addMission(ACP,dsp.mission.id.acp.THE_ECHO_AWAKENS);
     end
 end;

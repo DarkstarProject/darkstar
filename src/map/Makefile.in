@@ -46,7 +46,7 @@ MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/char
      obj_map/packets/party_member_update.o obj_map/packets/party_search.o obj_map/packets/pet_sync.o obj_map/packets/treasure_find_item.o      \
      obj_map/packets/treasure_lot_item.o obj_map/packets/uncnown_39.o obj_map/packets/world_pass.o   obj_map/packets/linkshell_equip.o         \
      obj_map/packets/linkshell_message.o obj_map/packets/bazaar_confirmation.o obj_map/packets/bazaar_purchase.o                               \
-     obj_map/items/item.o obj_map/items/item_armor.o obj_map/items/item_furnishing.o obj_map/items/item_general.o                              \
+     obj_map/items/item.o obj_map/items/item_equipment.o obj_map/items/item_furnishing.o obj_map/items/item_general.o                              \
      obj_map/items/item_linkshell.o obj_map/items/item_currency.o                                                                              \
      obj_map/items/item_puppet.o obj_map/items/item_usable.o obj_map/items/item_weapon.o obj_map/items/item_shop.o                             \
      obj_map/lua/lua_baseentity.o obj_map/lua/luautils.o obj_map/lua/lua_region.o obj_map/lua/lua_spell.o obj_map/lua/lua_zone.o               \
@@ -85,7 +85,7 @@ MAP_H    = map.h baseentity.h battleentity.h charentity.h mobentity.h npcentity.
    packets/party_map.h packets/party_member_update.h packets/party_search.h packets/pet_sync.h packets/treasure_find_item.h                    \
    packets/treasure_lot_item.h packets/uncnown_39.h packets/world_pass.h packets/bazaar_confirmation.h packets/bazaar_purchase.h               \
    packets/trade_action.h  packets/trade_item.h  packets/trade_request.h  packets/trade_update.h                                               \
-   items/item.h items/item_armor.h items/item_furnishing.h items/item_general.h                                                                \
+   items/item.h items/item_equipment.h items/item_furnishing.h items/item_general.h                                                                \
    items/item_linkshell.h items/item_puppet.h items/item_usable.h items/item_weapon.h                                                          \
    items/item_currency.h items/item_shop.h                                                                                                     \
    lua/lua_baseentity.h lua/luautils.h  lua/lua_trade_container.h lua/lua_statuseffect.h                                                       \

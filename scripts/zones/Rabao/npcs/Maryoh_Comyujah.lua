@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
         if (player:getVar("ZilartStatus") == 0) then
             player:startEvent(81); -- Start
         elseif (player:hasKeyItem(dsp.ki.SCRAP_OF_PAPYRUS)) then
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(82);
         end
-    elseif (player:hasCompletedMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL)) then
+    elseif (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL)) then
         player:startEvent(85); -- New standard dialog after ZM12
     else
         player:startEvent(43); -- Standard dialog

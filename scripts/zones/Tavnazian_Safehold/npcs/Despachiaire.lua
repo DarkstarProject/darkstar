@@ -13,15 +13,15 @@ function onTrigger(player,npc)
     local currentCOPMission = player:getCurrentMission(COP);
     local LouverancePathStatut = player:getVar("COP_Louverance_s_Path");
 
-    if (currentCOPMission  == THE_LOST_CITY and player:getVar("PromathiaStatus") == 0) then
+    if (currentCOPMission  == dsp.mission.id.cop.THE_LOST_CITY and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(102);
-    elseif (currentCOPMission  == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1) then
+    elseif (currentCOPMission  == dsp.mission.id.cop.SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(108);
-    elseif (currentCOPMission  == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Despachaire") == 0) then
+    elseif (currentCOPMission  == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Despachaire") == 0) then
         player:startEvent(117); --117
-    elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 0) then
+    elseif (currentCOPMission  == dsp.mission.id.cop.THREE_PATHS and LouverancePathStatut == 0) then
         player:startEvent(118);
-    elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 1 ) then
+    elseif (currentCOPMission  == dsp.mission.id.cop.THREE_PATHS and LouverancePathStatut == 1 ) then
         player:startEvent(134);
     else
         player:startEvent(106);

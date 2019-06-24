@@ -34,7 +34,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.dex_wsc = 0.8
     end
 
-    local damage, criticalHit, tpHits, extraHits, shadowsAbsorbed = doRangedWeaponskill(player, target, wsID, params, tp, primary, action)
+    local damage, criticalHit, tpHits, extraHits, shadowsAbsorbed = doRangedWeaponskill(player, target, wsID, params, tp, action, primary)
 
     if shadowsAbsorbed + tpHits + extraHits == 3 then
         action:speceffect(target:getID(), bit.bor(action:speceffect(target:getID()), 8))

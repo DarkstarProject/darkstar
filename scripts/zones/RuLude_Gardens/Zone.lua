@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
         player:setVar("PlayerMainJob",0);
     end
 
-    if (player:getCurrentMission(COP) == FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getVar("PromathiaStatus") == 2) then
         cs = 10047;
     end
 
@@ -42,17 +42,17 @@ function onRegionEnter(player,region)
     -- printf("regionID: %u",regionID);
 
     if (regionID == 1) then
-        if (player:getCurrentMission(COP) == A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus") == 1) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus") == 1) then
             player:startEvent(65,player:getNation());
-        elseif (player:getCurrentMission(COP) == A_PLACE_TO_RETURN and player:getVar("PromathiaStatus") == 0) then
+        elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.A_PLACE_TO_RETURN and player:getVar("PromathiaStatus") == 0) then
             player:startEvent(10048);
-        elseif (player:getCurrentMission(COP) == FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 2) then
+        elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 2) then
             player:startEvent(10051);
-        elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
+        elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
             player:startEvent(10094);
-        elseif (player:getCurrentMission(TOAU) == ALLIED_RUMBLINGS) then
+        elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ALLIED_RUMBLINGS) then
             player:startEvent(10097);
-        elseif (player:getCurrentMission(COP) == DAWN) then
+        elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN) then
             if (player:getVar("COP_3-taru_story") == 2 and player:getVar("COP_shikarees_story") == 1 and player:getVar("COP_louverance_story") == 3
             and player:getVar("COP_tenzen_story") == 1 and player:getVar("COP_jabbos_story") == 1) then
                 player:startEvent(122);
@@ -76,8 +76,8 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 65) then
         player:setVar("PromathiaStatus",0);
-        player:completeMission(COP,A_VESSEL_WITHOUT_A_CAPTAIN);
-        player:addMission(COP,THE_ROAD_FORKS); -- THE_ROAD_FORKS -- global mission 3.3
+        player:completeMission(COP,dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN);
+        player:addMission(COP,dsp.mission.id.cop.THE_ROAD_FORKS); -- THE_ROAD_FORKS -- global mission 3.3
         -- We can't have more than 1 current mission at the time, so we keep The road forks as current mission
         -- progress are recorded in the following two variables
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",1); -- MEMORIES_OF_A_MAIDEN--3-3B: Windurst Road
@@ -87,8 +87,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 10047) then
         player:setVar("PromathiaStatus",0);
-        player:completeMission(COP,FOR_WHOM_THE_VERSE_IS_SUNG);
-        player:addMission(COP,A_PLACE_TO_RETURN);
+        player:completeMission(COP,dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG);
+        player:addMission(COP,dsp.mission.id.cop.A_PLACE_TO_RETURN);
     elseif (csid == 10048) then
         player:setVar("PromathiaStatus",1);
     elseif (csid == 10051) then
@@ -105,22 +105,22 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() == 0) then
                 player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2184);
             else
-                player:completeMission(TOAU,EASTERLY_WINDS);
-                player:addMission(TOAU,WESTERLY_WINDS);
+                player:completeMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS);
+                player:addMission(TOAU,dsp.mission.id.toau.WESTERLY_WINDS);
                 player:setVar("AhtUrganStatus", 0);
                 player:addItem(2184,10);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,2184);
             end
         else
-            player:completeMission(TOAU,EASTERLY_WINDS);
-            player:addMission(TOAU,WESTERLY_WINDS);
+            player:completeMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS);
+            player:addMission(TOAU,dsp.mission.id.toau.WESTERLY_WINDS);
             player:setVar("AhtUrganStatus", 0);
         end
     elseif (csid == 10097) then
-        player:completeMission(TOAU,ALLIED_RUMBLINGS);
+        player:completeMission(TOAU,dsp.mission.id.toau.ALLIED_RUMBLINGS);
         player:needToZone(true);
         player:setVar("TOAUM40_STARTDAY", VanadielDayOfTheYear());
-        player:addMission(TOAU,UNRAVELING_REASON);
+        player:addMission(TOAU,dsp.mission.id.toau.UNRAVELING_REASON);
     elseif (csid == 142) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE);
     elseif (csid == 143) then

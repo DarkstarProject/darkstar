@@ -50,7 +50,7 @@ function onTrigger(player,npc)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
         player:startEvent(397,0,0,0,282)
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
         player:startEvent(498)
@@ -102,7 +102,7 @@ function onTrigger(player,npc)
 
     elseif (CFA2 == QUEST_COMPLETED) then
         player:startEvent(184)     -- New standard dialog after CFA2
-    elseif (player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
+    elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
         player:startEvent(399,0,0,282)
     else
         player:startEvent(164)

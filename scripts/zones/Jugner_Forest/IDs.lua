@@ -15,6 +15,7 @@ zones[dsp.zone.JUGNER_FOREST] =
         ITEM_OBTAINED            = 6410, -- Obtained: <item>.
         GIL_OBTAINED             = 6411, -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6413, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST             = 6414, -- Lost key item: <keyitem>.
         CONQUEST_BASE            = 7071, -- Tallying conquest results...
         BEASTMEN_BANNER          = 7152, -- There is a beastmen's banner.
         FISHING_MESSAGE_OFFSET   = 7704, -- You can't fish here.
@@ -34,6 +35,10 @@ zones[dsp.zone.JUGNER_FOREST] =
         SUPPLESPINE_MUJWUJ_PH =
         {
             [17203437] = 17203475,
+        },
+        FRADUBIO_PH =
+        {
+            [17203447] = 17203448,
         },
         KING_ARTHRO = 17203216,
         FRAELISSA   = 17203447,

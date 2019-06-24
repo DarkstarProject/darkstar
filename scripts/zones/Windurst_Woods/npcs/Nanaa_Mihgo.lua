@@ -47,7 +47,7 @@ function onTrigger(player,npc)
     local lvl = player:getMainLvl()
 
     -- WINDURST 2-1: LOST FOR WORDS
-    if player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and missionStatus > 0 and missionStatus < 5 then
+    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.LOST_FOR_WORDS and missionStatus > 0 and missionStatus < 5 then
         if missionStatus == 1 then
             player:startEvent(165, 0, dsp.ki.LAPIS_CORAL, dsp.ki.LAPIS_MONOCLE)
         elseif missionStatus == 2 then

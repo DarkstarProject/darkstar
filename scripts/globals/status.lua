@@ -801,7 +801,7 @@ dsp.effect =
     -- End GoV Prowess fakery
     FIELD_SUPPORT_FOOD       = 789, -- Used by Fov/GoV food buff.
     MARK_OF_SEED             = 790, -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
-    ALL_MISS                 = 791,
+    TOO_HIGH                 = 791, -- Indicates a target is airborne and unable to be hit by normal melee attacks
     SUPER_BUFF               = 792,
     NINJUTSU_ELE_DEBUFF      = 793,
     HEALING                  = 794,
@@ -1131,7 +1131,8 @@ dsp.mod =
     UTSUSEMI                        = 307,
     UTSUSEMI_BONUS                  = 900, -- Extra shadows from gear
     NINJA_TOOL                      = 308,
-    BLUE_POINTS                     = 309,
+    BLUE_POINTS                     = 309, -- Tracks extra blue points
+    BLUE_LEARN_CHANCE               = 945, -- Additional chance to learn blue magic
     DMG_REFLECT                     = 316,
     ROLL_ROGUES                     = 317,
     ROLL_GALLANTS                   = 318,
@@ -1320,7 +1321,6 @@ dsp.mod =
     QUICK_DRAW_MACC                 = 191, -- Quick draw magic accuracy
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
 
-    ADDITIONAL_EFFECT               = 431, -- All additional effects
     ENSPELL_DMG_BONUS               = 432,
 
     FIRE_ABSORB                     = 459, -- Occasionally absorbs fire elemental damage, in percents
@@ -1359,9 +1359,18 @@ dsp.mod =
     RERAISE_II                      = 457, -- Reraise II.
     RERAISE_III                     = 458, -- Reraise III.
 
+    ADDITIONAL_EFFECT               = 431, -- All additional effects
     ITEM_SPIKES_TYPE                = 499, -- Type spikes an item has
     ITEM_SPIKES_DMG                 = 500, -- Damage of an items spikes
     ITEM_SPIKES_CHANCE              = 501, -- Chance of an items spike proc
+    -- ITEM_ADDEFFECT_TYPE     = 431, -- 1 = Status Effect/DMG/HP Drain, 2 = MP Drain, 3 = TP Drain, 4 = Dispel, 5 = Self-Buff, 6 = Instant Death
+    -- ITEM_SUBEFFECT          = 499, -- Animation ID of Spikes and Additional Effects
+    -- ITEM_ADDEFFECT_DMG      = 500, -- Damage of an items Additional Effect or Spikes
+    -- ITEM_ADDEFFECT_CHANCE   = 501, -- Chance of an items Additional Effect or Spikes
+    -- ITEM_ADDEFFECT_ELEMENT  = 950, -- Element of the Additional Effect or Spikes, for resist purposes
+    -- ITEM_ADDEFFECT_STATUS   = 951, -- Status Effect ID to try to apply via Additional Effect or Spikes
+    -- ITEM_ADDEFFECT_POWER    = 952, -- Base Power for effect in MOD_ITEM_ADDEFFECT_STATUS
+    -- ITEM_ADDEFFECT_DURATION = 953, -- Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
 
     FERAL_HOWL_DURATION             = 503, -- +20% duration per merit when wearing augmented Monster Jackcoat +2
     MANEUVER_BONUS                  = 504, -- Maneuver Stat Bonus
@@ -1507,6 +1516,7 @@ dsp.mod =
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
     -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT             = 841, -- Generic (all Weaponskills) damage, first hit only.
+    WS_NO_DEPLETE                   = 949, -- % chance a Weaponskill depletes no TP.
 
     -- Circle Abilities Extended Duration from AF/AF+1
     HOLY_CIRCLE_DURATION            = 857,
@@ -1522,12 +1532,15 @@ dsp.mod =
     FENCER_TP_BONUS                 = 903, -- TP Bonus to weapon skills from Fencer Trait
     FENCER_CRITHITRATE              = 904, -- Increased Crit chance from Fencer Trait
     SHIELD_DEF_BONUS                = 905, -- Shield Defense Bonus
+    SNEAK_DURATION                  = 946, -- Additional duration in seconds
+    INVISIBLE_DURATION              = 947, -- Additional duration in seconds
+    BERSERK_EFFECT                  = 948, -- Conqueror Berserk Effect
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 944, -- stuff
-    -- SPARE = 945, -- stuff
-    -- SPARE = 946, -- stuff
+    -- SPARE = 954, -- stuff
+    -- SPARE = 955, -- stuff
+    -- SPARE = 956, -- stuff
 };
 
 dsp.latent =

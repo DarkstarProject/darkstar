@@ -15,6 +15,7 @@ zones[dsp.zone.XARCABARD] =
         ITEM_OBTAINED                  = 6401, -- Obtained: <item>.
         GIL_OBTAINED                   = 6402, -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6404, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6405, -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY        = 6415, -- There is nothing out of the ordinary here.
         CONQUEST_BASE                  = 7062, -- Tallying conquest results...
         BEASTMEN_BANNER                = 7141, -- There was a curse on the beastmen's banner!

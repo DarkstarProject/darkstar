@@ -32,7 +32,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.4 params.agi_wsc = 0.0 params.int_wsc = 0.4
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
 
     if not target:isUndead() then
         local drain = math.floor(damage * 0.4)

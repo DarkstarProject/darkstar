@@ -30,20 +30,20 @@ function onTrigger(player,npc)
 
     if (player:hasKeyItem(dsp.ki.YASINS_SWORD)) then -- The Doorman, WAR AF1
         player:startEvent(750);
-    elseif (player:getCurrentMission(BASTOK) ~= 255) then
+    elseif (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
         local currentMission = player:getCurrentMission(BASTOK);
 
-        if (currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(dsp.ki.ZERUHN_REPORT)) then
+        if (currentMission == dsp.mission.id.bastok.THE_ZERUHN_REPORT and player:hasKeyItem(dsp.ki.ZERUHN_REPORT)) then
             if (player:seenKeyItem(dsp.ki.ZERUHN_REPORT)) then
                 player:startEvent(710,0);
             else
                 player:startEvent(710,1);
             end
-        elseif (currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(dsp.ki.C_L_REPORTS)) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_CRYSTAL_LINE and player:hasKeyItem(dsp.ki.C_L_REPORTS)) then
             player:startEvent(711);
-        elseif (currentMission == THE_EMISSARY and player:hasKeyItem(dsp.ki.KINDRED_REPORT)) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY and player:hasKeyItem(dsp.ki.KINDRED_REPORT)) then
             player:startEvent(714);
-        elseif (currentMission == THE_EMISSARY) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY) then
             if (player:hasKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
                 player:startEvent(713);
             else
@@ -51,13 +51,13 @@ function onTrigger(player,npc)
             end
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
             player:startEvent(720);
-        elseif (currentMission == DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
+        elseif (currentMission == dsp.mission.id.bastok.DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
             player:startEvent(721);
         elseif (player:hasKeyItem(dsp.ki.BURNT_SEAL)) then
             player:startEvent(722);
-        elseif (currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 0) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 0) then
             player:startEvent(761);
-        elseif (currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 3) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 3) then
             player:startEvent(762);
         else
             player:startEvent(700);
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 710) then
         player:delKeyItem(dsp.ki.ZERUHN_REPORT);
-        player:completeMission(BASTOK,THE_ZERUHN_REPORT);
+        player:completeMission(BASTOK,dsp.mission.id.bastok.THE_ZERUHN_REPORT);
     elseif (csid == 713) then
         player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
