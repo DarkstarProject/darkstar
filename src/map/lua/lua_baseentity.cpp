@@ -8927,13 +8927,13 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
 *  Function: getBattlefieldID()
 *  Purpose : Returns the integer ID for the battlefield, -1 if not found
 *  Example : local battlefieldId = player:getBattlefieldID()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getBattlefieldID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    
+
     lua_pushinteger(L, m_PBaseEntity->PBattlefield ? m_PBaseEntity->PBattlefield->GetID() : -1);
     return 1;
 }
@@ -8990,7 +8990,7 @@ inline int32 CLuaBaseEntity::battlefieldAtCapacity(lua_State *L)
 *  Function: enterBattlefield(area)
 *  Purpose : Places an entity into a battlefield they are registered for (or tries enter a specific area if not full)
 *  Example : player:enterBattlefield(area)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::enterBattlefield(lua_State* L)
@@ -13706,7 +13706,7 @@ inline int32 CLuaBaseEntity::getTHlevel(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
-    lua_pushinteger(L, PMob->m_THLvl);
+    lua_pushinteger(L, PMob->PEnmityContainer->GetHighestTH());
     return 1;
 }
 
