@@ -2619,24 +2619,25 @@ INSERT INTO `mob_droplist` VALUES (438,0,0,1000,5568,80);
 INSERT INTO `mob_droplist` VALUES (438,0,0,1000,11908,100);
 INSERT INTO `mob_droplist` VALUES (438,0,0,1000,12318,100);
 INSERT INTO `mob_droplist` VALUES (439,0,0,1000,846,60);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1406,1000);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1406,300);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,18163,1000);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,658,20);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,18198,200);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,12818,150);
-INSERT INTO `mob_droplist` VALUES (440,1,1,500,1317,240);
-INSERT INTO `mob_droplist` VALUES (440,1,1,500,1323,240);
-INSERT INTO `mob_droplist` VALUES (440,1,1,500,1324,240);
-INSERT INTO `mob_droplist` VALUES (440,1,1,500,1341,280);
-INSERT INTO `mob_droplist` VALUES (440,1,2,200,1317,240);
-INSERT INTO `mob_droplist` VALUES (440,1,2,200,1323,240);
-INSERT INTO `mob_droplist` VALUES (440,1,2,200,1324,240);
-INSERT INTO `mob_droplist` VALUES (440,1,2,200,1341,280);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,658,40);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,12818,460);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1317,260);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1317,130);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1323,260);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1323,130);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1324,290);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1324,150);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1341,340);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1341,170);
 INSERT INTO `mob_droplist` VALUES (440,0,0,1000,722,200);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,837,200);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,860,200);
-INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1311,20);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,837,230);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,860,370);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1110,40);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1311,50);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1406,1000);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,1406,500);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,18163,1000);
+INSERT INTO `mob_droplist` VALUES (440,0,0,1000,18198,500);
 INSERT INTO `mob_droplist` VALUES (441,2,0,1000,1449,0);
 INSERT INTO `mob_droplist` VALUES (441,0,0,1000,1449,90);
 INSERT INTO `mob_droplist` VALUES (441,0,0,1000,1464,80);
@@ -33062,10 +33063,9 @@ INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,644,212); -- (Aura Sculpture) C
 INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3541,182); -- (Aura Sculpture) Seasoning stone
 INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,955,30); -- (Aura Sculpture) Golem shard
 INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3543,91); -- (Aura Sculpture) Fossilized fang
-INSERT INTO `mob_droplist` VALUES (4804,1,1,1000,15734,115); -- Nyzul ilse Floor 20
-INSERT INTO `mob_droplist` VALUES (4804,1,1,1000,15733,129); -- Nyzul ilse Floor 20
-INSERT INTO `mob_droplist` VALUES (4804,1,1,1000,15735,138); -- Nyzul ilse Floor 20
-INSERT INTO `mob_droplist` VALUES (4804,1,1,1000,0,618);     -- Nyzul ilse Floor 20 no drop
+INSERT INTO `mob_droplist` VALUES (4804,1,1,382,15734,321); -- Nyzul ilse Floor 20
+INSERT INTO `mob_droplist` VALUES (4804,1,1,382,15733,335); -- Nyzul ilse Floor 20
+INSERT INTO `mob_droplist` VALUES (4804,1,1,382,15735,344); -- Nyzul ilse Floor 20
 INSERT INTO `mob_droplist` VALUES (4804,1,2,1000,18492,50);     -- Nyzul ilse Floor 20 Study-axe
 INSERT INTO `mob_droplist` VALUES (4804,1,2,1000,18753,50);     -- Nyzul ilse Floor 20 Burning-fists
 INSERT INTO `mob_droplist` VALUES (4804,1,2,1000,18851,50);     -- Nyzul ilse Floor 20 werebuster
@@ -33086,123 +33086,118 @@ INSERT INTO `mob_droplist` VALUES (4804,1,2,1000,18720,50);     -- Nyzul ilse Fl
 INSERT INTO `mob_droplist` VALUES (4804,1,2,1000,18754,50);     -- Nyzul ilse Floor 20 inferno-claws
 INSERT INTO `mob_droplist` VALUES (4804,1,2,1000,19102,50);     -- Nyzul ilse Floor 20 main-gauche
 INSERT INTO `mob_droplist` VALUES (4804,1,2,1000,18592,50);     -- Nyzul ilse Floor 20 elder-staff
-INSERT INTO `mob_droplist` VALUES (4805,1,1,1000,15648,111);     -- Nyzul ilse Floor 40 Denali Kecks
-INSERT INTO `mob_droplist` VALUES (4805,1,1,1000,15647,179);     -- Nyzul ilse Floor 40 Askar Dirs
-INSERT INTO `mob_droplist` VALUES (4805,1,1,1000,15649,139);     -- Nyzul ilse Floor 40 Goliard Trews
-INSERT INTO `mob_droplist` VALUES (4805,1,1,1000,0,575);     -- Nyzul ilse Floor 40 no drop
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18492,50);     -- Nyzul ilse Floor 20 Study-axe
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18753,50);     -- Nyzul ilse Floor 20 Burning-fists
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18851,50);     -- Nyzul ilse Floor 20 werebuster
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18589,50);     -- Nyzul ilse Floor 20 mages-staff
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17742,50);     -- Nyzul ilse Floor 20 vorpal-sword
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18003,50);     -- Nyzul ilse Floor 20 swordbreaker
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17744,50);     -- Nyzul ilse Floor 20 brave-blade
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18944,50);     -- Nyzul ilse Floor 20 death-sickle
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17956,50);     -- Nyzul ilse Floor 20 double-axe
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18034,50);     -- Nyzul ilse Floor 20 dancing-dagger
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18719,50);     -- Nyzul ilse Floor 20 killer-bow
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18443,50);     -- Nyzul ilse Floor 20 windslicer
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18426,50);     -- Nyzul ilse Floor 20 sasuke-katana
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18120,50);     -- Nyzul ilse Floor 20 radiant-lance
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18590,50);     -- Nyzul ilse Floor 20 scepter-staff
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17743,50);     -- Nyzul ilse Floor 20 wightslayer
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18720,50);     -- Nyzul ilse Floor 20 quicksilver
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18754,50);     -- Nyzul ilse Floor 20 inferno-claws
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,19102,50);     -- Nyzul ilse Floor 20 main-gauche
-INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18592,50);     -- Nyzul ilse Floor 20 elder-staff
-INSERT INTO `mob_droplist` VALUES (4806,1,1,1000,14984,122);     -- Nyzul ilse Floor 60 Denali Wristbands
-INSERT INTO `mob_droplist` VALUES (4806,1,1,1000,14983,189);     -- Nyzul ilse Floor 60 Askar-Monopolas
-INSERT INTO `mob_droplist` VALUES (4806,1,1,1000,14985,122);     -- Nyzul ilse Floor 60 Goliard Cuffs
-INSERT INTO `mob_droplist` VALUES (4806,1,1,1000,0,568);     -- Nyzul ilse Floor 60 No Drop
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18492,50);     -- Nyzul ilse Floor 20 Study-axe
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18753,50);     -- Nyzul ilse Floor 20 Burning-fists
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18851,50);     -- Nyzul ilse Floor 20 werebuster
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18589,50);     -- Nyzul ilse Floor 20 mages-staff
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17742,50);     -- Nyzul ilse Floor 20 vorpal-sword
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18003,50);     -- Nyzul ilse Floor 20 swordbreaker
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17744,50);     -- Nyzul ilse Floor 20 brave-blade
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18944,50);     -- Nyzul ilse Floor 20 death-sickle
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17956,50);     -- Nyzul ilse Floor 20 double-axe
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18034,50);     -- Nyzul ilse Floor 20 dancing-dagger
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18719,50);     -- Nyzul ilse Floor 20 killer-bow
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18443,50);     -- Nyzul ilse Floor 20 windslicer
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18426,50);     -- Nyzul ilse Floor 20 sasuke-katana
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18120,50);     -- Nyzul ilse Floor 20 radiant-lance
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18590,50);     -- Nyzul ilse Floor 20 scepter-staff
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17743,50);     -- Nyzul ilse Floor 20 wightslayer
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18720,50);     -- Nyzul ilse Floor 20 quicksilver
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18754,50);     -- Nyzul ilse Floor 20 inferno-claws
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,19102,50);     -- Nyzul ilse Floor 20 main-gauche
-INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18592,50);     -- Nyzul ilse Floor 20 elder-staff
-INSERT INTO `mob_droplist` VALUES (4807,1,1,1000,14569,126);     -- Nyzul ilse Floor 80 Denali-Jacket
-INSERT INTO `mob_droplist` VALUES (4807,1,1,1000,14568,160);     -- Nyzul ilse Floor 80 Askar-Korazin
-INSERT INTO `mob_droplist` VALUES (4807,1,1,1000,14570,95);     -- Nyzul ilse Floor 80 Goliard-Saio
-INSERT INTO `mob_droplist` VALUES (4807,1,1,1000,0,625);     -- Nyzul ilse Floor 80 No Drop
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18492,50);     -- Nyzul ilse Floor 20 Study-axe
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18753,50);     -- Nyzul ilse Floor 20 Burning-fists
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18851,50);     -- Nyzul ilse Floor 20 werebuster
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18589,50);     -- Nyzul ilse Floor 20 mages-staff
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17742,50);     -- Nyzul ilse Floor 20 vorpal-sword
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18003,50);     -- Nyzul ilse Floor 20 swordbreaker
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17744,50);     -- Nyzul ilse Floor 20 brave-blade
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18944,50);     -- Nyzul ilse Floor 20 death-sickle
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17956,50);     -- Nyzul ilse Floor 20 double-axe
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18034,50);     -- Nyzul ilse Floor 20 dancing-dagger
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18719,50);     -- Nyzul ilse Floor 20 killer-bow
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18443,50);     -- Nyzul ilse Floor 20 windslicer
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18426,50);     -- Nyzul ilse Floor 20 sasuke-katana
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18120,50);     -- Nyzul ilse Floor 20 radiant-lance
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18590,50);     -- Nyzul ilse Floor 20 scepter-staff
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17743,50);     -- Nyzul ilse Floor 20 wightslayer
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18720,50);     -- Nyzul ilse Floor 20 quicksilver
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18754,50);     -- Nyzul ilse Floor 20 inferno-claws
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,19102,50);     -- Nyzul ilse Floor 20 main-gauche
-INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18592,50);     -- Nyzul ilse Floor 20 elder-staff
-INSERT INTO `mob_droplist` VALUES (4808,1,1,1000,16108,104);     -- Nyzul ilse Floor 100 Goliard Chapeau
-INSERT INTO `mob_droplist` VALUES (4808,1,1,1000,16106,179);     -- Nyzul ilse Floor 100 Askar Zucchetto
-INSERT INTO `mob_droplist` VALUES (4808,1,1,1000,16107,153);     -- Nyzul ilse Floor 100 Denali Bonnet
-INSERT INTO `mob_droplist` VALUES (4808,1,1,1000,0,581);     -- Nyzul ilse Floor 100 No drop
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18492,50);     -- Nyzul ilse Floor 20 Study-axe
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18753,50);     -- Nyzul ilse Floor 20 Burning-fists
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18851,50);     -- Nyzul ilse Floor 20 werebuster
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18589,50);     -- Nyzul ilse Floor 20 mages-staff
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17742,50);     -- Nyzul ilse Floor 20 vorpal-sword
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18003,50);     -- Nyzul ilse Floor 20 swordbreaker
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17744,50);     -- Nyzul ilse Floor 20 brave-blade
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18944,50);     -- Nyzul ilse Floor 20 death-sickle
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17956,50);     -- Nyzul ilse Floor 20 double-axe
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18034,50);     -- Nyzul ilse Floor 20 dancing-dagger
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18719,50);     -- Nyzul ilse Floor 20 killer-bow
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18443,50);     -- Nyzul ilse Floor 20 windslicer
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18426,50);     -- Nyzul ilse Floor 20 sasuke-katana
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18120,50);     -- Nyzul ilse Floor 20 radiant-lance
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18590,50);     -- Nyzul ilse Floor 20 scepter-staff
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17743,50);     -- Nyzul ilse Floor 20 wightslayer
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18720,50);     -- Nyzul ilse Floor 20 quicksilver
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18754,50);     -- Nyzul ilse Floor 20 inferno-claws
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,19102,50);     -- Nyzul ilse Floor 20 main-gauche
-INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18592,50);     -- Nyzul ilse Floor 20 elder-staff
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18492,50);     -- Nyzul ilse Floor 20 Study-axe
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18753,50);     -- Nyzul ilse Floor 20 Burning-fists
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18851,50);     -- Nyzul ilse Floor 20 werebuster
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18589,50);     -- Nyzul ilse Floor 20 mages-staff
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17742,50);     -- Nyzul ilse Floor 20 vorpal-sword
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18003,50);     -- Nyzul ilse Floor 20 swordbreaker
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17744,50);     -- Nyzul ilse Floor 20 brave-blade
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18944,50);     -- Nyzul ilse Floor 20 death-sickle
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17956,50);     -- Nyzul ilse Floor 20 double-axe
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18034,50);     -- Nyzul ilse Floor 20 dancing-dagger
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18719,50);     -- Nyzul ilse Floor 20 killer-bow
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18443,50);     -- Nyzul ilse Floor 20 windslicer
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18426,50);     -- Nyzul ilse Floor 20 sasuke-katana
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18120,50);     -- Nyzul ilse Floor 20 radiant-lance
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18590,50);     -- Nyzul ilse Floor 20 scepter-staff
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17743,50);     -- Nyzul ilse Floor 20 wightslayer
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18720,50);     -- Nyzul ilse Floor 20 quicksilver
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18754,50);     -- Nyzul ilse Floor 20 inferno-claws
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,19102,50);     -- Nyzul ilse Floor 20 main-gauche
-INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18592,50);     -- Nyzul ilse Floor 20 elder-staff
-
+INSERT INTO `mob_droplist` VALUES (4805,1,1,425,15648,301);     -- Nyzul ilse Floor 40 Denali Kecks
+INSERT INTO `mob_droplist` VALUES (4805,1,1,425,15647,370);     -- Nyzul ilse Floor 40 Askar Dirs
+INSERT INTO `mob_droplist` VALUES (4805,1,1,425,15649,329);     -- Nyzul ilse Floor 40 Goliard Trews
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18492,50);     -- Nyzul ilse Floor 40 Study-axe
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18753,50);     -- Nyzul ilse Floor 40 Burning-fists
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18851,50);     -- Nyzul ilse Floor 40 werebuster
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18589,50);     -- Nyzul ilse Floor 40 mages-staff
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17742,50);     -- Nyzul ilse Floor 40 vorpal-sword
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18003,50);     -- Nyzul ilse Floor 40 swordbreaker
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17744,50);     -- Nyzul ilse Floor 40 brave-blade
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18944,50);     -- Nyzul ilse Floor 40 death-sickle
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17956,50);     -- Nyzul ilse Floor 40 double-axe
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18034,50);     -- Nyzul ilse Floor 40 dancing-dagger
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18719,50);     -- Nyzul ilse Floor 40 killer-bow
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18443,50);     -- Nyzul ilse Floor 40 windslicer
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18426,50);     -- Nyzul ilse Floor 40 sasuke-katana
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18120,50);     -- Nyzul ilse Floor 40 radiant-lance
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18590,50);     -- Nyzul ilse Floor 40 scepter-staff
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,17743,50);     -- Nyzul ilse Floor 40 wightslayer
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18720,50);     -- Nyzul ilse Floor 40 quicksilver
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18754,50);     -- Nyzul ilse Floor 40 inferno-claws
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,19102,50);     -- Nyzul ilse Floor 40 main-gauche
+INSERT INTO `mob_droplist` VALUES (4805,1,2,1000,18592,50);     -- Nyzul ilse Floor 40 elder-staff
+INSERT INTO `mob_droplist` VALUES (4806,1,1,432,14984,311);     -- Nyzul ilse Floor 60 Denali Wristbands
+INSERT INTO `mob_droplist` VALUES (4806,1,1,432,14983,378);     -- Nyzul ilse Floor 60 Askar-Monopolas
+INSERT INTO `mob_droplist` VALUES (4806,1,1,432,14985,311);     -- Nyzul ilse Floor 60 Goliard Cuffs
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18492,50);     -- Nyzul ilse Floor 60 Study-axe
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18753,50);     -- Nyzul ilse Floor 60 Burning-fists
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18851,50);     -- Nyzul ilse Floor 60 werebuster
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18589,50);     -- Nyzul ilse Floor 60 mages-staff
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17742,50);     -- Nyzul ilse Floor 60 vorpal-sword
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18003,50);     -- Nyzul ilse Floor 60 swordbreaker
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17744,50);     -- Nyzul ilse Floor 60 brave-blade
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18944,50);     -- Nyzul ilse Floor 60 death-sickle
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17956,50);     -- Nyzul ilse Floor 60 double-axe
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18034,50);     -- Nyzul ilse Floor 60 dancing-dagger
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18719,50);     -- Nyzul ilse Floor 60 killer-bow
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18443,50);     -- Nyzul ilse Floor 60 windslicer
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18426,50);     -- Nyzul ilse Floor 60 sasuke-katana
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18120,50);     -- Nyzul ilse Floor 60 radiant-lance
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18590,50);     -- Nyzul ilse Floor 60 scepter-staff
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,17743,50);     -- Nyzul ilse Floor 60 wightslayer
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18720,50);     -- Nyzul ilse Floor 60 quicksilver
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18754,50);     -- Nyzul ilse Floor 60 inferno-claws
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,19102,50);     -- Nyzul ilse Floor 60 main-gauche
+INSERT INTO `mob_droplist` VALUES (4806,1,2,1000,18592,50);     -- Nyzul ilse Floor 60 elder-staff
+INSERT INTO `mob_droplist` VALUES (4807,1,1,385,14569,332);     -- Nyzul ilse Floor 80 Denali-Jacket
+INSERT INTO `mob_droplist` VALUES (4807,1,1,385,14568,367);     -- Nyzul ilse Floor 80 Askar-Korazin
+INSERT INTO `mob_droplist` VALUES (4807,1,1,385,14570,301);     -- Nyzul ilse Floor 80 Goliard-Saio
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18492,50);     -- Nyzul ilse Floor 80 Study-axe
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18753,50);     -- Nyzul ilse Floor 80 Burning-fists
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18851,50);     -- Nyzul ilse Floor 80 werebuster
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18589,50);     -- Nyzul ilse Floor 80 mages-staff
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17742,50);     -- Nyzul ilse Floor 80 vorpal-sword
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18003,50);     -- Nyzul ilse Floor 80 swordbreaker
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17744,50);     -- Nyzul ilse Floor 80 brave-blade
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18944,50);     -- Nyzul ilse Floor 80 death-sickle
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17956,50);     -- Nyzul ilse Floor 80 double-axe
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18034,50);     -- Nyzul ilse Floor 80 dancing-dagger
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18719,50);     -- Nyzul ilse Floor 80 killer-bow
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18443,50);     -- Nyzul ilse Floor 80 windslicer
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18426,50);     -- Nyzul ilse Floor 80 sasuke-katana
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18120,50);     -- Nyzul ilse Floor 80 radiant-lance
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18590,50);     -- Nyzul ilse Floor 80 scepter-staff
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,17743,50);     -- Nyzul ilse Floor 80 wightslayer
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18720,50);     -- Nyzul ilse Floor 80 quicksilver
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18754,50);     -- Nyzul ilse Floor 80 inferno-claws
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,19102,50);     -- Nyzul ilse Floor 80 main-gauche
+INSERT INTO `mob_droplist` VALUES (4807,1,2,1000,18592,50);     -- Nyzul ilse Floor 80 elder-staff
+INSERT INTO `mob_droplist` VALUES (4808,1,1,419,16108,341);     -- Nyzul ilse Floor 100 Goliard Chapeau
+INSERT INTO `mob_droplist` VALUES (4808,1,1,419,16106,367);     -- Nyzul ilse Floor 100 Askar Zucchetto
+INSERT INTO `mob_droplist` VALUES (4808,1,1,419,16107,292);     -- Nyzul ilse Floor 100 Denali Bonnet
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18492,50);     -- Nyzul ilse Floor 100 Study-axe
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18753,50);     -- Nyzul ilse Floor 100 Burning-fists
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18851,50);     -- Nyzul ilse Floor 100 werebuster
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18589,50);     -- Nyzul ilse Floor 100 mages-staff
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17742,50);     -- Nyzul ilse Floor 100 vorpal-sword
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18003,50);     -- Nyzul ilse Floor 100 swordbreaker
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17744,50);     -- Nyzul ilse Floor 100 brave-blade
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18944,50);     -- Nyzul ilse Floor 100 death-sickle
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17956,50);     -- Nyzul ilse Floor 100 double-axe
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18034,50);     -- Nyzul ilse Floor 100 dancing-dagger
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18719,50);     -- Nyzul ilse Floor 100 killer-bow
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18443,50);     -- Nyzul ilse Floor 100 windslicer
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18426,50);     -- Nyzul ilse Floor 100 sasuke-katana
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18120,50);     -- Nyzul ilse Floor 100 radiant-lance
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18590,50);     -- Nyzul ilse Floor 100 scepter-staff
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,17743,50);     -- Nyzul ilse Floor 100 wightslayer
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18720,50);     -- Nyzul ilse Floor 100 quicksilver
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18754,50);     -- Nyzul ilse Floor 100 inferno-claws
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,19102,50);     -- Nyzul ilse Floor 100 main-gauche
+INSERT INTO `mob_droplist` VALUES (4808,1,2,1000,18592,50);     -- Nyzul ilse Floor 100 elder-staff
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18492,50);     -- Nyzul ilse Floor 100 Study-axe
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18753,50);     -- Nyzul ilse Floor 100 Burning-fists
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18851,50);     -- Nyzul ilse Floor 100 werebuster
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18589,50);     -- Nyzul ilse Floor 100 mages-staff
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17742,50);     -- Nyzul ilse Floor 100 vorpal-sword
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18003,50);     -- Nyzul ilse Floor 100 swordbreaker
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17744,50);     -- Nyzul ilse Floor 100 brave-blade
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18944,50);     -- Nyzul ilse Floor 100 death-sickle
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17956,50);     -- Nyzul ilse Floor 100 double-axe
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18034,50);     -- Nyzul ilse Floor 100 dancing-dagger
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18719,50);     -- Nyzul ilse Floor 100 killer-bow
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18443,50);     -- Nyzul ilse Floor 100 windslicer
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18426,50);     -- Nyzul ilse Floor 100 sasuke-katana
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18120,50);     -- Nyzul ilse Floor 100 radiant-lance
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18590,50);     -- Nyzul ilse Floor 100 scepter-staff
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,17743,50);     -- Nyzul ilse Floor 100 wightslayer
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18720,50);     -- Nyzul ilse Floor 100 quicksilver
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18754,50);     -- Nyzul ilse Floor 100 inferno-claws
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,19102,50);     -- Nyzul ilse Floor 100 main-gauche
+INSERT INTO `mob_droplist` VALUES (4808,1,3,1000,18592,50);     -- Nyzul ilse Floor 100 elder-staff
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
