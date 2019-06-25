@@ -5,6 +5,10 @@
 -----------------------------------
 require("scripts/globals/status");
 
+function onMobSpawn(mob)
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID())
+end
+
 function onMobFight (mob,target)
     local partner = (mob:getID() + 1);
     if (GetMobByID(partner):isDead() and mob:getLocalVar("buffed") == 0) then

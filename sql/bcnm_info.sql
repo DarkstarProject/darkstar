@@ -96,8 +96,8 @@ INSERT INTO `bcnm_info` VALUES (83,144,'palborough_project','nobody',0,900,900,0
 INSERT INTO `bcnm_info` VALUES (84,144,'shell_shocked','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (85,144,'beyond_infinity','nobody',0,600,600,0,6,0,6,0);
 INSERT INTO `bcnm_info` VALUES (96,146,'rank_2_mission','nobody',0,1800,1800,25,6,0,5,1);
-INSERT INTO `bcnm_info` VALUES (97,146,'steamed_sprouts','nobody',0,1800,1800,40,6,0,15,0);
-INSERT INTO `bcnm_info` VALUES (98,146,'divine_punishers','nobody',0,1800,1800,60,6,0,15,0);
+INSERT INTO `bcnm_info` VALUES (97,146,'steamed_sprouts','nobody',0,1800,1800,40,6,97,15,0);
+INSERT INTO `bcnm_info` VALUES (98,146,'divine_punishers','nobody',0,1800,1800,60,6,98,15,0);
 INSERT INTO `bcnm_info` VALUES (99,146,'saintly_invitation','nobody',0,1800,1800,99,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (100,146,'treasure_and_tribulations','nobody',0,1800,1800,50,6,100,15,0);
 INSERT INTO `bcnm_info` VALUES (101,146,'shattering_stars','nobody',0,600,600,99,1,0,22,0);
@@ -105,11 +105,11 @@ INSERT INTO `bcnm_info` VALUES (102,146,'shattering_stars','nobody',0,600,600,99
 INSERT INTO `bcnm_info` VALUES (103,146,'shattering_stars','nobody',0,600,600,99,1,0,22,0);
 INSERT INTO `bcnm_info` VALUES (104,146,'creeping_doom','nobody',0,900,900,30,3,104,15,0);
 INSERT INTO `bcnm_info` VALUES (105,146,'charming_trio','nobody',0,900,900,20,3,105,15,0);
-INSERT INTO `bcnm_info` VALUES (106,146,'harem_scarem','nobody',0,1800,1800,30,6,0,15,0);
+INSERT INTO `bcnm_info` VALUES (106,146,'harem_scarem','nobody',0,1800,1800,30,6,106,15,0);
 INSERT INTO `bcnm_info` VALUES (107,146,'early_bird_catches_the_wyrm','nobody',0,1800,1800,0,18,107,15,0);
-INSERT INTO `bcnm_info` VALUES (108,146,'royal_succession','nobody',0,900,900,40,3,0,15,0);
-INSERT INTO `bcnm_info` VALUES (109,146,'rapid_raptors','nobody',0,900,900,50,3,0,15,0);
-INSERT INTO `bcnm_info` VALUES (110,146,'wild_wild_whiskers','nobody',0,900,900,60,3,0,15,0);
+INSERT INTO `bcnm_info` VALUES (108,146,'royal_succession','nobody',0,900,900,40,3,108,15,0);
+INSERT INTO `bcnm_info` VALUES (109,146,'rapid_raptors','nobody',0,900,900,50,3,109,15,0);
+INSERT INTO `bcnm_info` VALUES (110,146,'wild_wild_whiskers','nobody',0,900,900,60,3,110,15,0);
 INSERT INTO `bcnm_info` VALUES (111,146,'seasons_greetings','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (112,146,'royale_ramble','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (113,146,'moa_constrictors','nobody',0,1800,1800,0,6,0,15,0);
