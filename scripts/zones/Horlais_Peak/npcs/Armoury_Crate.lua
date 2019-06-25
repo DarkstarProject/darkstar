@@ -2,14 +2,87 @@
 -- Area: Horlais Peak
 -- NPC:  Armoury Crate
 -------------------------------------
--------------------------------------
-require("scripts/globals/bcnm")
 require("scripts/globals/battlefield")
+require("scripts/globals/bcnm")
 -------------------------------------
+
 local loot =
 {
+    -- BCNM Tails of Woe
+    [1] =
+    {
+        {
+            {itemid = 13553, droprate =  500}, -- blitz_ring
+            {itemid = 13554, droprate =  500}, -- aegis_ring
+        },
+        {
+            {itemid =     0, droprate =  600}, -- nothing
+            {itemid = 13238, droprate =  200}, -- druids_rope
+            {itemid = 13625, droprate =  200}, -- tundra_mantle
+        },
+        {
+            {itemid =     0, droprate =  500}, -- nothing
+            {itemid =   788, droprate =  250}, -- pearl
+            {itemid =   792, droprate =  250}, -- peridot
+        },
+        {
+            {itemid =     0, droprate =  900}, -- nothing
+            {itemid =  4174, droprate =  100}, -- vile_elixir
+        },
+        {
+            {itemid =     0, droprate =  125}, -- nothing
+            {itemid =  4717, droprate =  125}, -- scroll_of_refresh
+            {itemid =  4896, droprate =  125}, -- fire_spirit_pact
+            {itemid =  4751, droprate =  125}, -- scroll_of_erase
+            {itemid =  4874, droprate =  125}, -- scroll_of_absorb-str
+            {itemid =  4714, droprate =  125}, -- scroll_of_phalanx
+            {itemid =  4858, droprate =  125}, -- scroll_of_ice_spikes
+            {itemid =  4947, droprate =  125}, -- scroll_of_utsusemi_ni
+        },
+    },
+
+    -- BCNM Dismemberment Brigade
+    [2] =
+    {
+        {
+            {itemid = 16684, droprate =  250}, -- kabrakans_axe
+            {itemid = 17190, droprate =  250}, -- sarnga
+            {itemid = 17648, droprate =  250}, -- dragvandil
+            {itemid = 17379, droprate =  250}, -- hamelin_flute
+        },
+        {
+            {itemid =     0, droprate =  400}, -- nothing
+            {itemid = 13128, droprate =  200}, -- spectacles
+            {itemid = 13403, droprate =  200}, -- assault_earring
+            {itemid = 13555, droprate =  200}, -- peace_ring
+        },
+        {
+            {itemid =     0, droprate =  200}, -- nothing
+            {itemid =   773, droprate =  200}, -- translucent_rock
+            {itemid =   772, droprate =  200}, -- green_rock
+            {itemid =   771, droprate =  200}, -- yellow_rock
+            {itemid =   774, droprate =  200}, -- purple_rock
+        },
+        {
+            {itemid =   797, droprate =  100}, -- painite
+            {itemid =   784, droprate =  100}, -- jadeite
+            {itemid =   653, droprate =  100}, -- mythril_ingot
+            {itemid =   652, droprate =  100}, -- steel_ingot
+            {itemid =   810, droprate =  100}, -- fluorite
+            {itemid =   745, droprate =  100}, -- gold_ingot
+            {itemid =   805, droprate =  100}, -- zircon
+            {itemid =   801, droprate =  100}, -- chrysoberyl
+            {itemid =   654, droprate =  100}, -- darksteel_ingot
+            {itemid =   802, droprate =  100}, -- moonstone
+        },
+        {
+            {itemid =     0, droprate =  900}, -- nothing
+            {itemid =  4175, droprate =  100}, -- vile_elixir_+1
+        },
+    },
+
     -- BCNM Hostile Herbivores
-    [4] = 
+    [4] =
     {
         {
             {itemid = 0, droprate = 50},     -- Nothing
@@ -88,9 +161,116 @@ local loot =
             {itemid = 746, droprate = 90},   -- Platinum Ingot
         },
     },
-    
+
+    -- BCNM Carapace Combatants
+    [8] =
+    {
+        {
+            {itemid =   894, droprate = 1000}, -- beetle_jaw
+        },
+        {
+            {itemid =   889, droprate = 1000}, -- beetle_shell
+        },
+        {
+            {itemid =     0, droprate =  250}, -- nothing
+            {itemid = 15282, droprate =  150}, -- katana_obi
+            {itemid = 15274, droprate =  150}, -- staff_belt
+            {itemid = 15280, droprate =  150}, -- song_belt
+            {itemid = 15272, droprate =  150}, -- cestus_belt
+            {itemid = 15279, droprate =  150}, -- pick_belt
+        },
+        {
+            {itemid =     0, droprate =  125}, -- nothing
+            {itemid = 14736, droprate =  125}, -- genin_earring
+            {itemid = 14738, droprate =  125}, -- magicians_earring
+            {itemid = 14729, droprate =  125}, -- pilferers_earring
+            {itemid = 13439, droprate =  125}, -- warlocks_earring
+            {itemid = 13436, droprate =  125}, -- wrestlers_earring
+            {itemid = 14737, droprate =  125}, -- wyvern_earring
+            {itemid = 14731, droprate =  125}, -- killer_earring
+        },
+        {
+            {itemid =     0, droprate =  160}, -- nothing
+            {itemid =   645, droprate =  140}, -- chunk_of_darksteel_ore
+            {itemid =   653, droprate =  140}, -- mythril_ingot
+            {itemid =   744, droprate =  140}, -- silver_ingot
+            {itemid =   652, droprate =  140}, -- steel_ingot
+            {itemid =   644, droprate =  140}, -- chunk_of_mythril_ore
+            {itemid =   807, droprate =  140}, -- sardonyx
+        },
+        {
+            {itemid =     0, droprate =  250}, -- nothing
+            {itemid =  4868, droprate =  125}, -- scroll_of_dispel
+            {itemid =  4947, droprate =  125}, -- scroll_of_utsusemi_ni
+            {itemid =  4753, droprate =  125}, -- scroll_of_fire_ii
+            {itemid =  5070, droprate =  125}, -- scroll_of_magic_finale
+            {itemid =  4877, droprate =  125}, -- scroll_of_absorb-agi
+            {itemid =  4878, droprate =  125}, -- scroll_of_absorb-int
+        },
+        {
+            {itemid =     0, droprate =  500}, -- nothing
+            {itemid = 17873, droprate =  500}, -- jug_of_scarlet_sap
+        },
+        {
+            {itemid =     0, droprate =  750}, -- nothing
+            {itemid = 17873, droprate =  250}, -- jug_of_scarlet_sap
+        },
+        {
+            {itemid =     0, droprate =  900}, -- nothing
+            {itemid =  4132, droprate =  100}, -- hi-ether
+        },
+    },
+
+    -- BCNM Shooting Fish
+    [9] =
+    {
+        {
+            {itemid =  1601, droprate = 1000}, -- mannequin_head
+        },
+        {
+            {itemid =  4484, droprate = 1000}, -- shall_shell
+        },
+        {
+            {itemid =   749, droprate =  300}, -- mythril_beastcoin
+            {itemid =   775, droprate =   70}, -- black_rock
+            {itemid =   774, droprate =   30}, -- purple_rock
+            {itemid =   776, droprate =  100}, -- white_rock
+            {itemid = 17202, droprate =  100}, -- platoon_bow
+            {itemid = 17462, droprate =  100}, -- platoon_mace
+            {itemid = 18171, droprate =  150}, -- platoon_disc
+            {itemid = 17271, droprate =  150}, -- platoon_gun
+        },
+        {
+            {itemid =   749, droprate =  310}, -- mythril_beastcoin
+            {itemid =   772, droprate =   50}, -- green_rock
+            {itemid =   771, droprate =   40}, -- yellow_rock
+            {itemid =   770, droprate =   40}, -- blue_rock
+            {itemid =   769, droprate =   40}, -- red_rock
+            {itemid =   773, droprate =  110}, -- translucent_rock
+            {itemid = 17519, droprate =  130}, -- platoon_cesti
+            {itemid = 18209, droprate =  100}, -- platoon_cutter
+            {itemid = 17692, droprate =   80}, -- platoon_spatha
+            {itemid = 18045, droprate =  100}, -- platoon_zaghnal
+        },
+        {
+            {itemid =     0, droprate =  670}, -- nothing
+            {itemid =   868, droprate =  190}, -- handful_of_pugil_scales
+            {itemid =  4484, droprate =  140}, -- shall_shell
+        },
+        {
+            {itemid =     0, droprate =  930}, -- nothing
+            {itemid =  1602, droprate =   70}, -- mannequin_body
+        },
+        {
+            {itemid =  4857, droprate =  180}, -- scroll_of_blaze_spikes
+            {itemid =  4984, droprate =  510}, -- scroll_of_horde_lullaby
+            {itemid =  4900, droprate =  280}, -- thunder_spirit_pact
+            {itemid =  4869, droprate =   30}, -- scroll_of_warp
+        },
+    },
+
     -- BCNM Dropping Like Flies
-    [10] = 
+    [10] =
     {
         {
             {itemid = 65535, droprate = 1000, amount = 4000}, -- Gil
@@ -133,9 +313,9 @@ local loot =
             {itemid = 1602, droprate = 70},  -- Mannequin Body
         },
     },
-    
+
     -- KSNM Horns of War
-    [11] = 
+    [11] =
     {
         {
             {itemid = 1441, droprate = 169},  -- Libation Abjuration
@@ -246,7 +426,7 @@ local loot =
     },
 
     -- BCNM Under Observation
-    [12] = 
+    [12] =
     {
         {
             {itemid = 0, droprate = 910},    -- Nothing
@@ -318,9 +498,93 @@ local loot =
             {itemid = 914, droprate = 1000}, -- Vial Of Mercury
         },
     },
-    
+
+    -- BCNM Eye of the Tiger
+    [13] =
+    {
+        {
+            {itemid =   884, droprate = 1000}, -- black_tiger_fang
+        },
+        {
+            {itemid =   884, droprate = 1000}, -- black_tiger_fang
+        },
+        {
+            {itemid =     0, droprate =  700}, -- nothing
+            {itemid =  1012, droprate =  300}, -- nue_fang
+        },
+        {
+            {itemid =     0, droprate =  125}, -- nothing
+            {itemid = 14842, droprate =  125}, -- ivory_mitts
+            {itemid = 15151, droprate =  125}, -- super_ribbon
+            {itemid = 15148, droprate =  125}, -- mana_circlet
+            {itemid = 15149, droprate =  125}, -- rival_ribbon
+            {itemid = 14845, droprate =  125}, -- sly_gauntlets
+            {itemid = 15150, droprate =  125}, -- shock_mask
+            {itemid = 14843, droprate =  125}, -- spiked_finger_gauntlets
+        },
+        {
+            {itemid = 13168, droprate =  125}, -- intellect_torque
+            {itemid = 13677, droprate =  125}, -- esoteric_mantle
+            {itemid = 13679, droprate =  125}, -- templars_mantle
+            {itemid = 13678, droprate =  125}, -- snipers_mantle
+            {itemid = 13166, droprate =  125}, -- hateful_collar
+            {itemid = 13167, droprate =  125}, -- storm_gorget
+            {itemid = 13676, droprate =  125}, -- heavy_mantle
+            {itemid = 13169, droprate =  125}, -- benign_necklace
+        },
+        {
+            {itemid =     0, droprate =  125}, -- nothing
+            {itemid =   745, droprate =  125}, -- gold_ingot
+            {itemid =   895, droprate =  125}, -- ram_horn
+            {itemid =  1122, droprate =  125}, -- wyvern_skin
+            {itemid =   702, droprate =  125}, -- ebony_log
+            {itemid =   653, droprate =  125}, -- mythril_ingot
+            {itemid =   859, droprate =  125}, -- ram_skin
+            {itemid =   887, droprate =  125}, -- coral_fragment
+        },
+        {
+            {itemid =     0, droprate =  400}, -- nothing
+            {itemid =  5152, droprate =  200}, -- slice_of_buffalo_meat
+            {itemid =  4272, droprate =  200}, -- slice_of_dragon_meat
+            {itemid =  4377, droprate =  200}, -- slice_of_coeurl_meat
+        },
+        {
+            {itemid =     0, droprate =  625}, -- nothing
+            {itemid =  4814, droprate =  125}, -- scroll_of_freeze
+            {itemid =  4621, droprate =  125}, -- scroll_of_raise_ii
+            {itemid =  4818, droprate =  125}, -- scroll_of_quake
+        },
+    },
+
+    -- BCNM Shots in the Dark
+    [14] =
+    {
+        {
+            {itemid =   748, droprate =  500}, -- gold_beastcoin
+            {itemid =   749, droprate =  500}, -- mythril_beastcoin
+        },
+        {
+            {itemid =   652, droprate =  500}, -- steel_ingot
+            {itemid =   791, droprate =  500}, -- aquamarine
+        },
+        {
+            {itemid =     0, droprate =  500}, -- nothing
+            {itemid =  4224, droprate =  500}, -- demon_quiver
+        },
+        {
+            {itemid =     0, droprate =  600}, -- nothing
+            {itemid = 14661, droprate =  200}, -- teleport_ring_holla
+            {itemid = 14664, droprate =  200}, -- teleport_ring_vahzl
+        },
+        {
+            {itemid =     0, droprate =  600}, -- nothing
+            {itemid = 13687, droprate =  200}, -- sapient_cape
+            {itemid = 14870, droprate =  200}, -- trainers_wristbands
+        },
+    },
+
     -- KSNM Double Dragonian
-    [15] = 
+    [15] =
     {
         {
             {itemid = 18378, droprate = 222}, -- Subduer
@@ -388,7 +652,7 @@ local loot =
     },
 
     -- KSNM Contaminated Colosseum
-    [17] = 
+    [17] =
     {
         {
             {itemid = 837, droprate = 1000}, -- Spool Of Malboro Fiber
@@ -460,10 +724,6 @@ end
 
 function onEventUpdate(player,csid,option)
 end
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
 end
