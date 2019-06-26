@@ -467,7 +467,7 @@ function checkReqs(player, npc, bfid, registrant)
         [   6] = function() return ( mjob == dsp.job.BLM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BLM LB5)
         [   7] = function() return ( mjob == dsp.job.RNG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RNG LB5)
         [  20] = function() return ( player:hasKeyItem(dsp.ki.SOUL_GEM_CLASP)                                                                              ) end, -- Quest: Beyond Infinity
-        [  32] = function() return ( sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and ((stc and missionStatus <= 2) or (not stc and natStat == 2))                    ) end, -- Sandy 1-3: Save the Children
+        [  32] = function() return ( sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and ((stc and natStat <= 2) or (not stc and natStat == 2))                    ) end, -- Sandy 1-3: Save the Children
         [  33] = function() return ( player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY)                                                                         ) end, -- Quest: The Holy Crest
         [  64] = function() return ( (sandy == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and natStat == 10                         ) end, -- Mission 2-3
         [  67] = function() return ( basty == dsp.mission.id.bastok.ON_MY_WAY and natStat == 2                                                                            ) end, -- Basty 7-2: On My Way
