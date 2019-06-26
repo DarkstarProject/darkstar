@@ -685,7 +685,23 @@ INSERT INTO `mob_skill_lists` VALUES ('Asterion_0',156,499); -- back_swish
 INSERT INTO `mob_skill_lists` VALUES ('Asterion_0',156,500); -- mow
 INSERT INTO `mob_skill_lists` VALUES ('Asterion_0',156,501); -- frightful_roar
 INSERT INTO `mob_skill_lists` VALUES ('Asterion_0',156,502); -- mortal_ray
--- 157 to 163: free
+INSERT INTO `mob_skill_lists` VALUES ('Toadcushion',157,310); -- queasyshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadcushion',157,311); -- numbshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadcushion',157,312); -- shakeshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadcushion',157,315); -- dark_spore
+INSERT INTO `mob_skill_lists` VALUES ('Toadsquab',158,309); -- spore
+INSERT INTO `mob_skill_lists` VALUES ('Toadsquab',158,310); -- queasyshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadsquab',158,311); -- numbshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadsquab',158,312); -- shakeshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadpillow',159,308); -- frogkick
+INSERT INTO `mob_skill_lists` VALUES ('Toadpillow',159,310); -- queasyshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadpillow',159,311); -- numbshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadpillow',159,312); -- shakeshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,310); -- queasyshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,311); -- numbshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,312); -- shakeshroom
+INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,314); -- silence_gas
+-- 161 to 163: free
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1828);
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1829);
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1830);
@@ -2336,7 +2352,8 @@ INSERT INTO `mob_skill_lists` VALUES ('DynamisYagudoNM',710,619);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisYagudoNM',710,620);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisYagudoNM',710,633);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisYagudoNM',710,1067);
--- 711: free
+INSERT INTO `mob_skill_lists` VALUES ('Petrifying_Pair',711,370); -- baleful_gaze
+INSERT INTO `mob_skill_lists` VALUES ('Petrifying_Pair',711,373); -- secretion
 INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,770);
 INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,771);
 INSERT INTO `mob_skill_lists` VALUES ('Sahagin DRG',712,774);

@@ -202,9 +202,9 @@ local battlefields = {
     [140] = {               -- GHELSBA OUTPOST
         { 0,   32,    0},   -- Save the Children (Sandy 1-3)
         { 1,   33,    0},   -- The Holy Crest (Quest)
-        { 2,   34, 1551},   -- Wings of Fury (BS20)
+        { 2,   34, 1551},   -- Wings of Fury (BS20) -- TODO: mobskills Slipstream and Turbulence
         { 3,   35, 1552},   -- Petrifying Pair (BS30)
-        { 4,   36, 1552},   -- Toadal Recall (BS30)
+        { 4,   36, 1552},   -- Toadal Recall (BS30) -- TODO: shroom-in-cap mechanic
      -- { 5,   37,    0},   -- Mirror, Mirror (Quest)
     },
 
