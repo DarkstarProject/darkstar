@@ -481,7 +481,7 @@ function checkReqs(player, npc, bfid, registrant)
         [ 102] = function() return ( mjob == dsp.job.WHM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WHM LB5)
         [ 103] = function() return ( mjob == dsp.job.SMN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SMN LB5)
         [ 128] = function() return ( roz == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH                                                                                 ) end, -- ZM4: The Temple of Uggalepih
-        [ 160] = function() return ( sandy == dsp.mission.id.sandoria.THE_SHADOW_LORD and natStat == 3                                                                                 ) end, -- Mission 5-2
+        [ 160] = function() return ( nat == 15 and natStat == 3                                                                                 ) end, -- Mission 5-2
         [ 161] = function() return ( basty == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1                                           ) end, -- Basty 9-2: Where Two Paths Converge
         [ 163] = function() return ( mjob == dsp.job.SCH and mlvl >= 66                                                                                ) end, -- Quest: Survival of the Wisest (SCH LB5)
         [ 192] = function() return ( roz == dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES                                                                             ) end, -- ZM6: Through the Quicksand Caves
