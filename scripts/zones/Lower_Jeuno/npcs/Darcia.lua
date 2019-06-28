@@ -17,14 +17,22 @@ function onTrigger(player,npc)
     local rumorsFromTheWest = player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST
     local theGeomagnetron = player:getCurrentMission(SOA) == dsp.mission.id.soa.THE_GEOMAGNETRON
 
+    -- Dialog options bits
+    local turnOffNevermind = 1
+    local turnOffApply = 2
+    local turnOffSystemInfo = 4
+    local turnOffDungeonInfo = 8
+    local turnOffOptionToPay = 16
+    local turnOffAskingForWork = 32
+
     if not ENABLE_SOA then
         player:startEvent(10124)
     elseif rumorsFromTheWest then
-        player:startEvent(10117, 0, 40, 26, 0)
+        player:startEvent(10117, 0, turnOffOptionToPay)
     elseif theGeomagnetron and player:getVar("SOA") == 1 then
         player:startEvent(10118)
     elseif theGeomagnetron then
-        player:startEvent(10117, 1, 40, 26, 0)
+        player:startEvent(10117, 1, turnOffOptionToPay)
     else
         player:startEvent(10123)
     end
