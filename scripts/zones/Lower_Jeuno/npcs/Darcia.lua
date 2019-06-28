@@ -39,14 +39,12 @@ function onEventFinish(player,csid,option)
 
         player:completeMission(SOA,dsp.mission.id.soa.RUMORS_FROM_THE_WEST)
         player:addMission(SOA,dsp.mission.id.soa.THE_GEOMAGNETRON)
-    elseif csid == 10117 and option == 2 then -- paid or
-        player:delKeyItem(dsp.ki.GEOMAGNETRON)
-        npcUtil.giveKeyItem(player, dsp.ki.GEOMAGNETRON)
-        npcUtil.giveKeyItem(player, dsp.ki.ADOULINIAN_CHARTER_PERMIT)
+    elseif
+        (csid == 10117 and option == 2) or -- paid
+        csid == 10118  -- quest complete
+    then
+        if option == 2 then player:delGil(1000000) end
 
-        player:completeMission(SOA,dsp.mission.id.soa.THE_GEOMAGNETRON)
-        player:addMission(SOA,dsp.mission.id.soa.ONWARD_TO_ADOULIN)
-    elseif csid == 10118 then -- handed in geomagnetron
         player:delKeyItem(dsp.ki.GEOMAGNETRON)
         npcUtil.giveKeyItem(player, dsp.ki.GEOMAGNETRON)
         npcUtil.giveKeyItem(player, dsp.ki.ADOULINIAN_CHARTER_PERMIT)

@@ -6,9 +6,9 @@ require("scripts/globals/missions")
 -----------------------------------
 
 dsp = dsp or {}
-dsp.geomagnetic_fount = dsp.geomagnetic_fount or {}
+dsp.geomagneticFount = dsp.geomagneticFount or {}
 
-dsp.geomagnetic_fount.check_fount = function(player)
+dsp.geomagneticFount.checkFount = function(player, npc)
     local theGeomagnetron = player:getCurrentMission(SOA) == dsp.mission.id.soa.THE_GEOMAGNETRON
     local charged = player:getVar("SOA") == 1
 
