@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Lower Jeuno (245)
 --  NPC: Waypoint
--- SoA Waypoint
--- pos  20 -34.922 0.000
+--  SoA: Waypoint
+-- !pos: 20 -34.922 0.000
 -----------------------------------
 require("scripts/globals/missions")
 require("scripts/globals/zone")
