@@ -6,6 +6,7 @@
 -----------------------------------
 require("scripts/globals/missions")
 require("scripts/globals/zone")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,7 +19,9 @@ function onTrigger(player,npc)
     if onwardToAdoulin then
         player:startEvent(10120)
     elseif adoulinAccess then
-        -- player:startEvent(10121)
+        player:startEvent(10121)
+    else
+        player:messageSpecial(ID.text.WAYPOINT_EXAMINE)
     end
 end
 
