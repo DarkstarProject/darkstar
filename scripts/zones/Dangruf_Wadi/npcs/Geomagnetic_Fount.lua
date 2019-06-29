@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi (191)
---  NPC: Geomagnetic Fount (17559937)
+--  NPC: Geomagnetic Fount
 -- !pos: -480.364 2.458 -58.355
 -----------------------------------
 local ID = require("scripts/zones/Dangruf_Wadi/IDs")

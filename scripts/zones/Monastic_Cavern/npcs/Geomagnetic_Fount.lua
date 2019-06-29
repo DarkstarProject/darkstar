@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monastic Cavern (150)
---  NPC: Geomagnetic Fount (17391859)
+--  NPC: Geomagnetic Fount
 -- !pos: 0.000 0.000 -312.000
 -----------------------------------
 local ID = require("scripts/zones/Monastic_Cavern/IDs")

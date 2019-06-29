@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines (196)
---  NPC: Geomagnetic Fount (17580419)
+--  NPC: Geomagnetic Fount
 -- !pos: -79.402 -27.000 439.369
 -----------------------------------
 local ID = require("scripts/zones/Gusgen_Mines/IDs")

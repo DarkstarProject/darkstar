@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
---  NPC: Geomagnetic Fount (17486267)
--- !pos: 0.000 0.000 0.000 -- TODO: Place me
+--  NPC: Geomagnetic Fount
+-- !pos: 0.000 0.000 0.000 -- TODO: Capture me
 -----------------------------------
 local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
 require("scripts/globals/geomagnetic_fount")

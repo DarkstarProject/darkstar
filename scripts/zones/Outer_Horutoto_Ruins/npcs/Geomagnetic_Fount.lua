@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins (194)
---  NPC: Geomagnetic Fount (17572313)
+--  NPC: Geomagnetic Fount
 -- !pos: 289.792 0.001 708.071
 -----------------------------------
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel (212)
---  NPC: Geomagnetic Fount (17645914)
+--  NPC: Geomagnetic Fount
 -- !pos: -71.932 -8.897 -209.707
 -----------------------------------
 local ID = require("scripts/zones/Gustav_Tunnel/IDs")

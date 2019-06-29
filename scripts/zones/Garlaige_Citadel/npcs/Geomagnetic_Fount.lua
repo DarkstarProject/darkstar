@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel (200)
---  NPC: Geomagnetic Fount (17596865)
+--  NPC: Geomagnetic Fount
 -- !pos: -156.374 0.000 237.283
 -----------------------------------
 local ID = require("scripts/zones/Garlaige_Citadel/IDs")

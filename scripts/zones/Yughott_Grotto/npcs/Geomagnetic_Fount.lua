@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yughott Grotto (142)
---  NPC: Geomagnetic Fount (17359093)
+--  NPC: Geomagnetic Fount
 -- !pos: 199.133 -11.515 110.606
 -----------------------------------
 local ID = require("scripts/zones/Yughott_Grotto/IDs")

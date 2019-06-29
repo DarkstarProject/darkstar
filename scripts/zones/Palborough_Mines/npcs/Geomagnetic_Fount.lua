@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Palborough Mines (143)
---  NPC: Geomagnetic Fount (XXX)
--- !pos: XXX TODO: Capture
+--  NPC: Geomagnetic Fount
+-- !pos: XXX TODO: Capture me
 -----------------------------------
 local ID = require("scripts/zones/Palborough_Mines/IDs")
 require("scripts/globals/geomagnetic_fount")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo (213)
---  NPC: Geomagnetic Fount (17649905)
+--  NPC: Geomagnetic Fount
 -- !pos: 136.955 14.892 185.412
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")
