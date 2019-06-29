@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (195)
 --  NPC: Geomagnetic Fount
--- !pos: XXX TODO: Capture me
+-- !pos: 51.805 -2.495 6.825
 -----------------------------------
 local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs")
 require("scripts/globals/geomagnetic_fount")
