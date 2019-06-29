@@ -13,11 +13,11 @@ dsp.geomagneticFount.checkFount = function(player, npc)
     local charged = player:getVar("SOA") == 1
 
     if theGeomagnetron and charged then
-        player:messageSpecial(zones[player:getZoneID()].text.YOUR_GEOMAGNETRON_HAS_ALREADY)
+        player:messageSpecial(zones[player:getZoneID()].text.GEOMAGNETRON_ATTUNED + 2) -- Your device has already been attuned to a geomantic fount in the corresponding locale.
     elseif theGeomagnetron then
-        player:messageSpecial(zones[player:getZoneID()].text.YOUR_GEOMAGNETRON_HAS_ATTUNED, 0, dsp.ki.GEOMAGNETRON)
+        player:messageSpecial(zones[player:getZoneID()].text.GEOMAGNETRON_ATTUNED, 0, dsp.ki.GEOMAGNETRON) -- Your <Geomagnetron> has been attuned to a geomantic fount in the corresponding locale.
         player:setVar("SOA", 1)
     else
-        player:messageSpecial(zones[player:getZoneID()].text.A_FAINT_ENERGY_WAFTS_UP)
+        player:messageSpecial(zones[player:getZoneID()].text.GEOMAGNETRON_ATTUNED + 1) -- A faint energy wafts up from the ground.
     end
 end
