@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Yughott_Grotto
+-- Area: Yughott Grotto (142)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -10,15 +10,18 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
 {
     text =
     {
-        CONQUEST_BASE           = 0,    -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED = 6541, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6547, -- Obtained: <item>.
-        GIL_OBTAINED            = 6548, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
-        FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
-        CHEST_UNLOCKED          = 7334, -- You unlock the chest!
-        MINING_IS_POSSIBLE_HERE = 7342, -- Mining is possible here if you have <item>.
-        HOMEPOINT_SET           = 7442, -- Home point set!
+        CONQUEST_BASE                  = 0,    -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED       = 6541, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6547, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6548, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6550, -- Obtained key item: <keyitem>.
+        YOUR_GEOMAGNETRON_HAS_ATTUNED = 7169, -- Your <Geomagnetron> has been attuned.
+        A_FAINT_ENERGY_WAFTS_UP       = 7170, -- A faint energy wafts up from the ground
+        YOUR_GEOMAGNETRON_HAS_ALREADY = 7171, -- Your Geomagnetron has already been attuned.
+        FISHING_MESSAGE_OFFSET        = 7208, -- You can't fish here.
+        CHEST_UNLOCKED                = 7334, -- You unlock the chest!
+        MINING_IS_POSSIBLE_HERE       = 7342, -- Mining is possible here if you have <item>.
+        HOMEPOINT_SET                 = 7442, -- Home point set!
     },
     mob =
     {
