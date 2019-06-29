@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Monastic Cavern (150)
 --  NPC: Geomagnetic Fount (17391859)
--- !pos: 0.000 0.000 -312.000 -- TODO: Place me
+-- !pos: 0.000 0.000 -312.000
 -----------------------------------
-local ID = require("scripts/zones/Crawlers_Nest/IDs")
+local ID = require("scripts/zones/Monastic_Cavern/IDs")
 require("scripts/globals/geomagnetic_fount")
 -----------------------------------
 
