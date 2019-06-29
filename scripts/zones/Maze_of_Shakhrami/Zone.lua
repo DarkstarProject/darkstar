@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Maze_of_Shakhrami (198)
+-- Zone: Maze of Shakhrami (198)
 --
 -----------------------------------
 local ID = require("scripts/zones/Maze_of_Shakhrami/IDs")

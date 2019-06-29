@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Inner_Horutoto_Ruins
+-- Area: Inner Horutoto Ruins (192)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -10,18 +10,21 @@ zones[dsp.zone.INNER_HORUTOTO_RUINS] =
 {
     text =
     {
-        PORTAL_SEALED_BY_3_MAGIC  = 8, -- The Sealed Portal is sealed by three kinds of magic.
-        PORTAL_NOT_OPEN_THAT_SIDE = 9, -- The Sealed Portal cannot be opened from this side.
-        CONQUEST_BASE             = 10, -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED   = 6551, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED             = 6557, -- Obtained: <item>.
-        GIL_OBTAINED              = 6558, -- Obtained <number> gil.
-        KEYITEM_OBTAINED          = 6560, -- Obtained key item: <keyitem>.
-        NOT_BROKEN_ORB            = 7234, -- The Mana Orb in this receptacle is not broken.
-        EXAMINED_RECEPTACLE       = 7235, -- You have already examined this receptacle.
-        DOOR_FIRMLY_CLOSED        = 7262, -- The door is firmly closed.
-        CHEST_UNLOCKED            = 7338, -- You unlock the chest!
-        REGIME_REGISTERED         = 9487, -- New training regime registered!
+        PORTAL_SEALED_BY_3_MAGIC      = 8, -- The Sealed Portal is sealed by three kinds of magic.
+        PORTAL_NOT_OPEN_THAT_SIDE     = 9, -- The Sealed Portal cannot be opened from this side.
+        CONQUEST_BASE                 = 10, -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED       = 6551, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6557, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6558, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6560, -- Obtained key item: <keyitem>.
+        YOUR_GEOMAGNETRON_HAS_ATTUNED = 7179, -- Your <Geomagnetron> has been attuned.
+        A_FAINT_ENERGY_WAFTS_UP       = 7180, -- A faint energy wafts up from the ground
+        YOUR_GEOMAGNETRON_HAS_ALREADY = 7181, -- Your Geomagnetron has already been attuned.
+        NOT_BROKEN_ORB                = 7234, -- The Mana Orb in this receptacle is not broken.
+        EXAMINED_RECEPTACLE           = 7235, -- You have already examined this receptacle.
+        DOOR_FIRMLY_CLOSED            = 7262, -- The door is firmly closed.
+        CHEST_UNLOCKED                = 7338, -- You unlock the chest!
+        REGIME_REGISTERED             = 9487, -- New training regime registered!
     },
     mob =
     {

@@ -1,0 +1,21 @@
+-----------------------------------
+-- Area: Korroloka Tunnel (173)
+--  NPC: Geomagnetic Fount (17486267)
+-- !pos: 0.000 0.000 0.000 -- TODO: Place me
+-----------------------------------
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
+require("scripts/globals/geomagnetic_fount")
+-----------------------------------
+
+function onTrade(player, npc, trade)
+end
+
+function onTrigger(player, npc)
+    dsp.geomagneticFount.checkFount(player, npc)
+end
+
+function onEventUpdate(player, csid, option)
+end
+
+function onEventFinish(player, csid, option)
+end

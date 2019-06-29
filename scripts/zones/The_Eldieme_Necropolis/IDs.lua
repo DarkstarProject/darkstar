@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: The_Eldieme_Necropolis
+-- Area: The Eldieme Necropolis (195)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -17,6 +17,9 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         KEYITEM_OBTAINED                        = 6550, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY                 = 6561, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING                     = 6562, -- You are suddenly overcome with a sense of foreboding...
+        YOUR_GEOMAGNETRON_HAS_ATTUNED           = 7169, -- Your <Geomagnetron> has been attuned.
+        A_FAINT_ENERGY_WAFTS_UP                 = 7170, -- A faint energy wafts up from the ground
+        YOUR_GEOMAGNETRON_HAS_ALREADY           = 7171, -- Your Geomagnetron has already been attuned.
         DEVICE_NOT_WORKING                      = 7318, -- The device is not working.
         SYS_OVERLOAD                            = 7327, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
         YOU_LOST_THE                            = 7332, -- You lost the <item>.
