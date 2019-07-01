@@ -28,17 +28,21 @@ function onTrigger(player,npc)
     if not ENABLE_SOA then
         player:startEvent(10124)
     elseif rumorsFromTheWest then
-        player:startEvent(10117, 0, turnOffDungeonInfo + turnOffAskingForWork + turnOffOptionToPay)
+        player:startEvent(10117, 0, turnOffDungeonInfo + turnOffAskingForWork)
     elseif theGeomagnetron and player:getVar("SOA") == 1 then
         player:startEvent(10118)
     elseif theGeomagnetron then
-        player:startEvent(10117, 1, turnOffAskingForWork + turnOffOptionToPay)
+        player:startEvent(10117, 1, turnOffAskingForWork)
     else
         player:startEvent(10123)
     end
 end
 
 function onEventUpdate(player,csid,option)
+    if csid == 10117 then
+        local hasEnoughGil = player:getGil() >= 1000000 and 1 or 0
+        player:updateEvent(hasEnoughGil)
+    end
 end
 
 function onEventFinish(player,csid,option)
