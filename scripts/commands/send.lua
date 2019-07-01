@@ -4,6 +4,7 @@
 -- A) The given zone
 -- B) another player
 ---------------------------------------------------------------------------------------------------
+require("scripts/globals/zone");
 
 cmdprops =
 {
@@ -351,7 +352,7 @@ function onTrigger(player, bytes)
         if (tonumber(dest) ~= nil) then
             -- destination is a zone ID.
             zone = tonumber(dest);
-            if (zone < 0 or zone > 298) then
+            if (zone < 0 or zone >= dsp.zone.MAX_ZONE) then
                 error(player, "Invalid zone ID.");
                 return;
             end

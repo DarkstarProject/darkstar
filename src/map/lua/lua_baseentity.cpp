@@ -2711,9 +2711,9 @@ inline int32 CLuaBaseEntity::showPosition(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageStandardPacket(
-        (uint32)m_PBaseEntity->loc.p.x,
-        (uint32)m_PBaseEntity->loc.p.y,
-        (uint32)m_PBaseEntity->loc.p.z,
+        (int32)m_PBaseEntity->loc.p.x,
+        (int32)m_PBaseEntity->loc.p.y,
+        (int32)m_PBaseEntity->loc.p.z,
         m_PBaseEntity->loc.p.rotation,
         MsgStd::Compass));
     return 0;
