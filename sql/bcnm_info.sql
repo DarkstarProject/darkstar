@@ -236,7 +236,7 @@ INSERT INTO `bcnm_info` VALUES (770,17,'empty_hopes','nobody',0,900,900,0,6,0,5,
 INSERT INTO `bcnm_info` VALUES (800,19,'ancient_flames_beckon','nobody',0,1800,1800,30,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (801,19,'you_are_what_you_eat','nobody',0,1800,1800,30,18,0,15,0);
 INSERT INTO `bcnm_info` VALUES (802,19,'empty_dreams','nobody',0,900,900,0,6,0,5,0);
-INSERT INTO `bcnm_info` VALUES (832,21,'ancient_flames_backon','nobody',0,1800,1800,30,6,0,5,1);
+INSERT INTO `bcnm_info` VALUES (832,21,'ancient_flames_beckon','nobody',0,1800,1800,30,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (833,21,'playing_host','nobody',0,1800,1800,30,18,0,15,0);
 INSERT INTO `bcnm_info` VALUES (834,21,'empty_desires','nobody',0,900,900,0,6,0,5,0);
 INSERT INTO `bcnm_info` VALUES (864,23,'desires_of_emptiness','nobody',0,1800,1800,50,6,0,5,1);

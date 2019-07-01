@@ -1,8 +1,8 @@
 -----------------------------------
 -- Ancient Flames Beckon
--- Spire of Holla mission battlefield
+-- Spire of Mea mission battlefield
 -----------------------------------
-local ID = require("scripts/zones/Spire_of_Holla/IDs")
+local ID = require("scripts/zones/Spire_of_Mea/IDs")
 require("scripts/globals/battlefield")
 require("scripts/globals/teleports")
 require("scripts/globals/keyitems")
@@ -11,8 +11,8 @@ require("scripts/globals/status")
 -----------------------------------
 
 local function otherLights(player)
-    return (player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and 1 or 0) +
-           (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and 1 or 0)
+    return (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)   and 1 or 0) +
+           (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and 1 or 0)
 end
 
 function onBattlefieldTick(battlefield, tick)
@@ -40,8 +40,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 32001 then
-        local teleportTo = dsp.teleport.id.EXITPROMHOLLA
-        local ki = dsp.ki.LIGHT_OF_HOLLA
+        local teleportTo = dsp.teleport.id.EXITPROMMEA
+        local ki = dsp.ki.LIGHT_OF_MEA
 
         -- first promyvion completed
         if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS then
