@@ -289,9 +289,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         // Check for ammo
         CCharEntity* PChar = (CCharEntity*)m_attacker;
-        CItemArmor* PAmmo = PChar->getEquip(SLOT_AMMO);
-        CItemArmor* PMain = PChar->getEquip(SLOT_MAIN);
-        CItemArmor* PSub = PChar->getEquip(SLOT_SUB);
+        CItemEquipment* PAmmo = PChar->getEquip(SLOT_AMMO);
+        CItemEquipment* PMain = PChar->getEquip(SLOT_MAIN);
+        CItemEquipment* PSub = PChar->getEquip(SLOT_SUB);
         uint8 slot = PChar->equip[SLOT_AMMO];
         uint8 loc = PChar->equipLoc[SLOT_AMMO];
         uint8 ammoCount = 0;

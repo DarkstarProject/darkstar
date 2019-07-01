@@ -3300,7 +3300,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                 {
                     lua_getfield(L, 1, "trial");
                     uint16 trial = (uint16)lua_tointeger(L, -1);
-                    if (trial != 0) ((CItemArmor*)PItem)->setTrialNumber(trial);
+                    if (trial != 0) ((CItemEquipment*)PItem)->setTrialNumber(trial);
                     lua_getfield(L, 1, "augments");
                     if (lua_istable(L,-1))
                     {
@@ -3310,7 +3310,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                         {
                             uint16 augid = (uint16)lua_tointeger(L, -2);
                             uint8 augval = (uint8)lua_tointeger(L, -1);
-                            ((CItemArmor*)PItem)->PushAugment(augid, augval);
+                            ((CItemEquipment*)PItem)->PushAugment(augid, augval);
                             lua_pop(L, 1);
                         }
                     }
@@ -3384,11 +3384,11 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
                 if (PItem->isType(ITEM_EQUIPMENT))
                 {
-                    if (augment0 != 0) ((CItemArmor*)PItem)->setAugment(0, augment0, augment0val);
-                    if (augment1 != 0) ((CItemArmor*)PItem)->setAugment(1, augment1, augment1val);
-                    if (augment2 != 0) ((CItemArmor*)PItem)->setAugment(2, augment2, augment2val);
-                    if (augment3 != 0) ((CItemArmor*)PItem)->setAugment(3, augment3, augment3val);
-                    if (trialNumber != 0) ((CItemArmor*)PItem)->setTrialNumber(trialNumber);
+                    if (augment0 != 0) ((CItemEquipment*)PItem)->setAugment(0, augment0, augment0val);
+                    if (augment1 != 0) ((CItemEquipment*)PItem)->setAugment(1, augment1, augment1val);
+                    if (augment2 != 0) ((CItemEquipment*)PItem)->setAugment(2, augment2, augment2val);
+                    if (augment3 != 0) ((CItemEquipment*)PItem)->setAugment(3, augment3, augment3val);
+                    if (trialNumber != 0) ((CItemEquipment*)PItem)->setTrialNumber(trialNumber);
                 }
                 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silence);
             }
@@ -3810,7 +3810,7 @@ inline int32 CLuaBaseEntity::tradeComplete(lua_State *L)
 *  Function: canEquipItem()
 *  Purpose : Returns true if a player can equip the item
 *  Example : if (player:canEquipItem(JOY_TOY)) then
-*  Notes   : CItemArmor* is a pointer to weapons or armor
+*  Notes   : CItemEquipment* is a pointer to weapons or armor
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::canEquipItem(lua_State *L)
@@ -3827,7 +3827,7 @@ inline int32 CLuaBaseEntity::canEquipItem(lua_State *L)
     if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
         checkLevel = lua_toboolean(L, 2);
 
-    CItemArmor* PItem = (CItemArmor*)itemutils::GetItem(itemID);
+    CItemEquipment* PItem = (CItemEquipment*)itemutils::GetItem(itemID);
     CBattleEntity* PChar = (CBattleEntity*)m_PBaseEntity;
 
     if (!(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))))
@@ -3868,11 +3868,11 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
     else
         containerID = (uint8)lua_tointeger(L, 2);
     uint8 SLOT = PChar->getStorage(containerID)->SearchItem(itemID);
-    CItemArmor* PItem;
+    CItemEquipment* PItem;
 
     if (SLOT != ERROR_SLOTID)
     {
-        PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(SLOT);
+        PItem = (CItemEquipment*)PChar->getStorage(containerID)->GetItem(SLOT);
         charutils::EquipItem(PChar, SLOT, PItem->getSlotType(), containerID);
         charutils::SaveCharEquip(PChar);
         charutils::SaveCharLook(PChar);
@@ -4199,7 +4199,7 @@ inline int32 CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
             {
                 // TODO: Items need to be checked for an in-progress magian trial before storing.
                 //auto item = PChar->getStorage(LOC_INVENTORY)->GetItem(slotId);
-                //if (item->isType(ITEM_EQUIPMENT) && ((CItemArmor*)item)->getTrialNumber() != 0)
+                //if (item->isType(ITEM_EQUIPMENT) && ((CItemEquipment*)item)->getTrialNumber() != 0)
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slotId, -1);
                 //else
                 //{

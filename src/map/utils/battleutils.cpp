@@ -498,7 +498,7 @@ namespace battleutils
 
         if (PAttacker->objtype == TYPE_PC)
         {
-            CItemArmor* waist = ((CCharEntity*)PAttacker)->getEquip(SLOT_WAIST);
+            CItemEquipment* waist = ((CCharEntity*)PAttacker)->getEquip(SLOT_WAIST);
             if (waist && waist->getID() == obi[element])
             {
                 obiBonus = true;
@@ -715,7 +715,7 @@ namespace battleutils
 
                 for (auto&& slot : {SLOT_SUB, SLOT_BODY, SLOT_LEGS, SLOT_HEAD, SLOT_HANDS, SLOT_FEET})
                 {
-                    CItemArmor* PItem = PCharDef->getEquip(slot);
+                    CItemEquipment* PItem = PCharDef->getEquip(slot);
                     if (PItem)
                     {
                         uint8 chance;
@@ -1622,7 +1622,7 @@ namespace battleutils
         if (PDefender->objtype == TYPE_PC)
         {
             CCharEntity* PChar = (CCharEntity*)PDefender;
-            CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
+            CItemEquipment* PItem = (CItemEquipment*)PChar->getEquip(SLOT_SUB);
 
             if (PItem)
                 shieldSize = PItem->getShieldSize();
@@ -3148,7 +3148,7 @@ namespace battleutils
         return damage;
     }
 
-    CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
+    CItemEquipment* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
     {
         DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK2);
 
@@ -3609,7 +3609,7 @@ namespace battleutils
             lvl = PChar->GetSLevel();
 
         // Hunters bracers+1 will add an extra shot
-        CItemArmor* PItemHands = PChar->getEquip(SLOT_HANDS);
+        CItemEquipment* PItemHands = PChar->getEquip(SLOT_HANDS);
 
 
         if (PItemHands && PItemHands->getID() == 14900)
@@ -5441,7 +5441,7 @@ namespace battleutils
         return 0;
     }
 
-    int32 GetScaledItemModifier(CBattleEntity* PEntity, CItemArmor* PItem, Mod mod)
+    int32 GetScaledItemModifier(CBattleEntity* PEntity, CItemEquipment* PItem, Mod mod)
     {
         if (PEntity->GetMLevel() < PItem->getReqLvl())
         {

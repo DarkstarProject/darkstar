@@ -29,7 +29,7 @@
 #include "item_equipment.h"
 
 
-class CItemWeapon : public CItemArmor
+class CItemWeapon : public CItemEquipment
 {
 public:
 
