@@ -34,7 +34,7 @@
 #include "lua/luautils.h"
 #include "entities/charentity.h"
 #include "latent_effect_container.h"
-
+#include "utils/fishingutils.h"
 
 int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
 {
@@ -86,6 +86,7 @@ int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
         {
             guildutils::UpdateGuildPointsPattern();
             CVanaTime::getInstance()->lastMidnight = tick;
+            fishingutils::ClearPlayersFishingCatches();
         }
     }
 
