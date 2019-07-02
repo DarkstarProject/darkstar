@@ -944,8 +944,8 @@ namespace charutils
                         for (uint8 j = 0; j < 4; ++j)
                         {
                             // found a match, apply the augment
-                            if (((CItemArmor*)PItem)->getAugment(j) != 0)
-                                ((CItemArmor*)PItem)->ApplyAugment(j);
+                            if (((CItemEquipment*)PItem)->getAugment(j) != 0)
+                                ((CItemEquipment*)PItem)->ApplyAugment(j);
                         }
                     }
                 }
@@ -1413,7 +1413,7 @@ namespace charutils
                         }
                     }
                     else if (PItem->isType(ITEM_EQUIPMENT)) {
-                        auto equipSlotID = ((CItemArmor*)PItem)->getSlotType();
+                        auto equipSlotID = ((CItemEquipment*)PItem)->getSlotType();
                         if (PChar->styleItems[equipSlotID] == ItemID) {
                             switch (equipSlotID)
                             {
@@ -1513,7 +1513,7 @@ namespace charutils
 
         if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
         {
-            auto removeSlotID = ((CItemArmor*)PItem)->getRemoveSlotId();
+            auto removeSlotID = ((CItemEquipment*)PItem)->getRemoveSlotId();
 
             for (auto i = 0u; i < sizeof(removeSlotID) * 8; ++i)
             {
@@ -1544,7 +1544,7 @@ namespace charutils
             }
 
             // Call the LUA event before actually "unequipping" the item so the script can do stuff with it first
-            if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
+            if (((CItemEquipment*)PItem)->getScriptType() & SCRIPT_EQUIP)
             {
                 luautils::OnItemCheck(PChar, PItem, ITEMCHECK::UNEQUIP, nullptr);
             }
@@ -1554,7 +1554,7 @@ namespace charutils
             PChar->equip[equipSlotID] = 0;
             PChar->equipLoc[equipSlotID] = 0;
 
-            if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
+            if (((CItemEquipment*)PItem)->getScriptType() & SCRIPT_EQUIP)
             {
                 PChar->m_EquipFlag = 0;
                 for (uint8 i = 0; i < 16; ++i)
@@ -1563,7 +1563,7 @@ namespace charutils
 
                     if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
                     {
-                        PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
+                        PChar->m_EquipFlag |= ((CItemEquipment*)PItem)->getScriptType();
                     }
                 }
             }
@@ -1581,9 +1581,9 @@ namespace charutils
                     CheckUnarmedWeapon(PChar);
                 }
             }
-            PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
-            PChar->PLatentEffectContainer->DelLatentEffects(((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
-            PChar->delPetModifiers(&((CItemArmor*)PItem)->petModList);
+            PChar->delEquipModifiers(&((CItemEquipment*)PItem)->modList, ((CItemEquipment*)PItem)->getReqLvl(), equipSlotID);
+            PChar->PLatentEffectContainer->DelLatentEffects(((CItemEquipment*)PItem)->getReqLvl(), equipSlotID);
+            PChar->delPetModifiers(&((CItemEquipment*)PItem)->petModList);
 
             PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL)); //???
             PChar->pushPacket(new CEquipPacket(0, equipSlotID, LOC_INVENTORY));
@@ -1670,7 +1670,7 @@ namespace charutils
 
     void RemoveSub(CCharEntity* PChar)
     {
-        CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
+        CItemEquipment* PItem = (CItemEquipment*)PChar->getEquip(SLOT_SUB);
 
         if (PItem != nullptr && PItem->isType(ITEM_EQUIPMENT))
         {
@@ -1686,8 +1686,8 @@ namespace charutils
 
     bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
-        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
-        CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
+        CItemEquipment* PItem = (CItemEquipment*)PChar->getStorage(containerID)->GetItem(slotID);
+        CItemEquipment* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
         if (PItem == nullptr)
         {
@@ -1709,7 +1709,7 @@ namespace charutils
                 (oldItem->isType(ITEM_WEAPON) && PItem->isType(ITEM_WEAPON)) &&
                 ((((CItemWeapon*)PItem)->isTwoHanded() == true) && (((CItemWeapon*)oldItem)->isTwoHanded() == true))))
             {
-                CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
+                CItemEquipment* PSubItem = PChar->getEquip(SLOT_SUB);
 
                 if (PSubItem != nullptr && PSubItem->isType(ITEM_EQUIPMENT) && (PSubItem->IsShield() != true))
                     RemoveSub(PChar);
@@ -1753,7 +1753,7 @@ namespace charutils
 
             for (uint8 i = 0; i < SLOT_BACK; ++i)
             {
-                CItemArmor* armor = PChar->getEquip((SLOTTYPE)i);
+                CItemEquipment* armor = PChar->getEquip((SLOTTYPE)i);
                 if (armor && armor->isType(ITEM_EQUIPMENT) && armor->getRemoveSlotId() & PItem->getEquipSlotId())
                 {
                     UnequipItem(PChar, i, false);
@@ -1776,7 +1776,7 @@ namespace charutils
                             case SKILL_GREAT_KATANA:
                             case SKILL_STAFF:
                             {
-                                CItemArmor* armor = (CItemArmor*)PChar->getEquip(SLOT_SUB);
+                                CItemEquipment* armor = (CItemEquipment*)PChar->getEquip(SLOT_SUB);
                                 if ((armor != nullptr) && armor->isType(ITEM_EQUIPMENT))
                                 {
                                     if (armor->isType(ITEM_WEAPON))
@@ -1947,7 +1947,7 @@ namespace charutils
         return true;
     }
 
-    bool canEquipItemOnAnyJob(CCharEntity* PChar, CItemArmor* PItem)
+    bool canEquipItemOnAnyJob(CCharEntity* PChar, CItemEquipment* PItem)
     {
         if (PItem == nullptr)
             return true;
@@ -1958,7 +1958,7 @@ namespace charutils
         return false;
     }
 
-    bool hasValidStyle(CCharEntity* PChar, CItemArmor* PItem, CItemArmor* AItem)
+    bool hasValidStyle(CCharEntity* PChar, CItemEquipment* PItem, CItemEquipment* AItem)
     {
         return (PItem != nullptr && AItem != nullptr
             && (((CItemWeapon*)AItem)->getSkillType() == ((CItemWeapon*)PItem)->getSkillType())
@@ -1991,7 +1991,7 @@ namespace charutils
         if (!PChar->getStyleLocked())
             return;
 
-        auto appearance = (CItemArmor*)itemutils::GetItem(PChar->styleItems[equipSlotID]);
+        auto appearance = (CItemEquipment*)itemutils::GetItem(PChar->styleItems[equipSlotID]);
         auto appearanceModel = (appearance == nullptr) ? 0 : appearance->getModelId();
 
         switch (equipSlotID)
@@ -2039,7 +2039,7 @@ namespace charutils
             return;
 
         auto itemID = PChar->styleItems[equipSlotID];
-        auto appearance = (CItemArmor*)itemutils::GetItem(itemID);
+        auto appearance = (CItemEquipment*)itemutils::GetItem(itemID);
         auto appearanceModel = (appearance == nullptr || !HasItem(PChar, itemID)) ? 0 : appearance->getModelId();
 
         if (!canEquipItemOnAnyJob(PChar, appearance))
@@ -2073,14 +2073,14 @@ namespace charutils
 
     void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
-        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
+        CItemEquipment* PItem = (CItemEquipment*)PChar->getStorage(containerID)->GetItem(slotID);
 
         if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
             return;
 
         if (equipSlotID == SLOT_SUB && PItem && !PItem->IsShield() && ((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE)
         {
-            CItemArmor* PMainItem = PChar->getEquip(SLOT_MAIN);
+            CItemEquipment* PMainItem = PChar->getEquip(SLOT_MAIN);
             if (!PMainItem || !((CItemWeapon*)PMainItem)->isTwoHanded())
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 0x200));
@@ -2090,7 +2090,7 @@ namespace charutils
 
         if (slotID == 0)
         {
-            CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
+            CItemEquipment* PSubItem = PChar->getEquip(SLOT_SUB);
 
             UnequipItem(PChar, equipSlotID);
 
@@ -2132,8 +2132,8 @@ namespace charutils
                         }
                     }
 
-                    PChar->addEquipModifiers(&PItem->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
-                    PChar->PLatentEffectContainer->AddLatentEffects(PItem->latentList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
+                    PChar->addEquipModifiers(&PItem->modList, ((CItemEquipment*)PItem)->getReqLvl(), equipSlotID);
+                    PChar->PLatentEffectContainer->AddLatentEffects(PItem->latentList, ((CItemEquipment*)PItem)->getReqLvl(), equipSlotID);
                     PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
                     PChar->addPetModifiers(&PItem->petModList);
 
@@ -2177,7 +2177,7 @@ namespace charutils
 
     void CheckValidEquipment(CCharEntity* PChar)
     {
-        CItemArmor* PItem = nullptr;
+        CItemEquipment* PItem = nullptr;
 
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
@@ -2230,7 +2230,7 @@ namespace charutils
 
     void RemoveAllEquipment(CCharEntity* PChar)
     {
-        CItemArmor* PItem = nullptr;
+        CItemEquipment* PItem = nullptr;
 
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
@@ -2270,7 +2270,7 @@ namespace charutils
 
             if ((PItem != nullptr) && PItem->isType(ITEM_EQUIPMENT))
             {
-                if (((CItemArmor*)PItem)->getScriptType() & ScriptType)
+                if (((CItemEquipment*)PItem)->getScriptType() & ScriptType)
                 {
                     luautils::OnItemCheck(PChar, PItem, static_cast<ITEMCHECK>(param), nullptr);
                 }
@@ -4647,7 +4647,7 @@ namespace charutils
     {
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
-            CItemArmor* PItem = PChar->getEquip((SLOTTYPE)slotID);
+            CItemEquipment* PItem = PChar->getEquip((SLOTTYPE)slotID);
             if (PItem)
             {
                 PChar->delEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);
@@ -4664,7 +4664,7 @@ namespace charutils
     {
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
-            CItemArmor* PItem = (CItemArmor*)PChar->getEquip((SLOTTYPE)slotID);
+            CItemEquipment* PItem = (CItemEquipment*)PChar->getEquip((SLOTTYPE)slotID);
             if (PItem)
             {
                 PChar->addEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);

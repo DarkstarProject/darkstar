@@ -150,7 +150,7 @@ class CLatentEffectContainer;
 class CTradeContainer;
 class CItemContainer;
 class CUContainer;
-class CItemArmor;
+class CItemEquipment;
 class CAutomatonEntity;
 class CAbilityState;
 class CRangeState;
@@ -314,7 +314,7 @@ public:
     void SetPlayTime(uint32 playTime);				// Set playtime
     uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
 
-    CItemArmor*	getEquip(SLOTTYPE slot);
+    CItemEquipment*	getEquip(SLOTTYPE slot);
 
     void		ReloadPartyInc();
     void        ReloadPartyDec();

@@ -67,7 +67,7 @@ public:
     void CheckLatentsWeather(uint16 weather);
     void CheckLatentsTargetChange();
 
-	void AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot);
+	void AddLatentEffects(std::vector<CItemEquipment::itemLatent>& latentList, uint8 reqLvl, uint8 slot);
     void DelLatentEffects(uint8 reqLvl, uint8 slot);
 
     void AddLatentEffect(LATENT conditionID, uint16 conditionValue, Mod modID, int16 modValue);
