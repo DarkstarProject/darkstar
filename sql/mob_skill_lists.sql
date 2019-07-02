@@ -2300,7 +2300,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Cactrot_Rapido',703,321);
 INSERT INTO `mob_skill_lists` VALUES ('Cactrot_Rapido',703,322);
 INSERT INTO `mob_skill_lists` VALUES ('Cactrot_Rapido',703,324);
 INSERT INTO `mob_skill_lists` VALUES ('Cactrot_Rapido',703,1120);
--- 704: free
+INSERT INTO `mob_skill_lists` VALUES ('Fee_special_attack',704,1671); -- ink_jet_alt
 INSERT INTO `mob_skill_lists` VALUES ('Effigy_Shield',705,1075);
 INSERT INTO `mob_skill_lists` VALUES ('Effigy_Shield',705,1076);
 INSERT INTO `mob_skill_lists` VALUES ('Effigy_Shield',705,1077);
@@ -2563,7 +2563,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,532);
 INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,533);
 INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,1326);
 INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,1329);
--- 769: free
+INSERT INTO `mob_skill_lists` VALUES ('Platoon_Scorpion',769,354); -- wild_rage
+INSERT INTO `mob_skill_lists` VALUES ('Platoon_Scorpion',769,355); -- earth_pounder
 INSERT INTO `mob_skill_lists` VALUES ('Hippomaritimus',770,449);
 INSERT INTO `mob_skill_lists` VALUES ('Hippomaritimus',770,452);
 INSERT INTO `mob_skill_lists` VALUES ('Rambukk',771,267);

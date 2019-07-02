@@ -1,14 +1,17 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Ku'Tya Hotblood
--- BCNM: Grimshell Shocktroopers
+--  Mob: Metsanneitsyt
+-- BCNM: Grove Guardians
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
 -----------------------------------
 
+function onMobInitialize(mob)
+    mob:setMod(dsp.mod.SLEEPRES, 50)
+end
+
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, GetMobByID(mob:getID() - 4):getShortID())
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID())
 end
 
 function onMobDeath(mob, player, isKiller)
