@@ -64,7 +64,7 @@ class CStatusEffect;
 class CTradeContainer;
 class CItemPuppet;
 class CItemWeapon;
-class CItemArmor;
+class CItemEquipment;
 class CItemFurnishing;
 class CInstance;
 class CWeaponSkill;
@@ -239,7 +239,7 @@ namespace luautils
     int32 OnBattlefieldInitialise(CBattlefield* PBattlefield);                    // what to do when initialising battlefield, battlefield:setLocalVar("lootId") here for any which have loot
     int32 OnBattlefieldTick(CBattlefield* PBattlefield);
     int32 OnBattlefieldStatusChange(CBattlefield* PBattlefield);
-    
+
     int32 OnBattlefieldEnter(CCharEntity* PChar, CBattlefield* PBattlefield);        // triggers when enter a bcnm
     int32 OnBattlefieldLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode); // see battlefield.h BATTLEFIELD_LEAVE_CODE
 
@@ -274,8 +274,8 @@ namespace luautils
 
     int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, uint32 damage); // for mobs with additional effects
     int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, uint32 damage);                         // for mobs with spikes
-    int32 additionalEffectAttack(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, uint32 baseAttackDamage); // for items with additional effects
-    int32 additionalEffectSpikes(CBattleEntity* PDefender, CBattleEntity* PAttacker, CItemArmor* PItem, actionTarget_t* Action, uint32 baseAttackDamage);  // for armor with spikes
+    int32 additionalEffectAttack(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, uint32 baseAttackDamage);    // for items with additional effects
+    int32 additionalEffectSpikes(CBattleEntity* PDefender, CBattleEntity* PAttacker, CItemEquipment* PItem, actionTarget_t* Action, uint32 baseAttackDamage); // for armor with spikes
 
     int32 nearLocation(lua_State*);
 
