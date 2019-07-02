@@ -347,7 +347,7 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 
 int8 CCharEntity::getShieldSize()
 {
-    CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
+    CItemEquipment* PItem = (CItemEquipment*)(getEquip(SLOT_SUB));
 
     if (PItem == nullptr) {
         return 0;
@@ -441,15 +441,15 @@ uint32 CCharEntity::GetPlayTime(bool needUpdate)
     return m_PlayTime;
 }
 
-CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
+CItemEquipment* CCharEntity::getEquip(SLOTTYPE slot)
 {
     uint8 loc = equip[slot];
     uint8 est = equipLoc[slot];
-    CItemArmor* item = nullptr;
+    CItemEquipment* item = nullptr;
 
     if (loc != 0)
     {
-        item = (CItemArmor*)getStorage(est)->GetItem(loc);
+        item = (CItemEquipment*)getStorage(est)->GetItem(loc);
     }
     return item;
 }

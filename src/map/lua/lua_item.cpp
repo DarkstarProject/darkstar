@@ -147,7 +147,7 @@ inline int32 CLuaItem::getMod(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
+    CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
 
@@ -161,7 +161,7 @@ inline int32 CLuaItem::addMod(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
+    CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
     auto power = (int16)lua_tointeger(L, 2);
@@ -176,7 +176,7 @@ inline int32 CLuaItem::delMod(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
+    CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
     auto power = (int16)lua_tointeger(L, 2);
@@ -190,7 +190,7 @@ inline int32 CLuaItem::getAugment(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
+    CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
     auto slot = (uint8)lua_tointeger(L, 1);
     uint16 augment = PItem->getAugment(slot);
@@ -269,7 +269,7 @@ inline int32 CLuaItem::isShield(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
-    if (CItemArmor* PArmor = dynamic_cast<CItemArmor*>(m_PLuaItem))
+    if (CItemEquipment* PArmor = dynamic_cast<CItemEquipment*>(m_PLuaItem))
     {
         lua_pushboolean(L, PArmor->IsShield());
     }
