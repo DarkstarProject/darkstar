@@ -5,14 +5,13 @@
 -----------------------------------
 local ID = require("scripts/zones/Tahrongi_Canyon/IDs")
 require("scripts/globals/missions")
-require("scripts/globals/settings")
 -----------------------------------
 
 function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH or DIMENSIONAL_PORTAL_UNLOCK then
+    if player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH then
         player:startEvent(915)
     else
         player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE + 1) -- Telepoint Disappeared

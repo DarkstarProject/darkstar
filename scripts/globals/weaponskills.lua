@@ -242,7 +242,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, wsParams, tp, action, pri
     calcParams.assassinApplicable = calcParams.trickApplicable and attacker:hasTrait(68)
     calcParams.guaranteedHit = calcParams.sneakApplicable or calcParams.trickApplicable
     calcParams.mightyStrikesApplicable = attacker:hasStatusEffect(dsp.effect.MIGHTY_STRIKES)
-    calcParams.forcedFirstCrit = calcParams.isSneakValid or calcParams.isAssassinValid
+    calcParams.forcedFirstCrit = calcParams.sneakApplicable or calcParams.assassinApplicable
     calcParams.extraOffhandHit = (calcParams.weaponDamage[2] ~= 0) and
                                  (calcParams.weaponDamage[2] > 0 or attack.weaponType == dsp.skill.HAND_TO_HAND)
     calcParams.hybridHit = wsParams.hybridWS

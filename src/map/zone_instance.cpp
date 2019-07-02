@@ -30,9 +30,9 @@ This file is part of DarkStar-server source code.
 #include "ai/ai_container.h"
 
 /************************************************************************
-*																		*
-*  Класс CZoneInstance													*
-*																		*
+*                                                                       *
+*  Класс CZoneInstance                                                  *
+*                                                                       *
 ************************************************************************/
 
 CZoneInstance::CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
@@ -223,7 +223,7 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
         uint16 zoneid = luautils::OnInstanceLoadFailed(this);
 
-        zoneutils::GetZone(zoneid > MAX_ZONEID ? PChar->loc.prevzone : zoneid)->IncreaseZoneCounter(PChar);
+        zoneutils::GetZone(zoneid >= MAX_ZONEID ? PChar->loc.prevzone : zoneid)->IncreaseZoneCounter(PChar);
     }
 }
 

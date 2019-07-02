@@ -2711,9 +2711,9 @@ inline int32 CLuaBaseEntity::showPosition(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageStandardPacket(
-        (uint32)m_PBaseEntity->loc.p.x,
-        (uint32)m_PBaseEntity->loc.p.y,
-        (uint32)m_PBaseEntity->loc.p.z,
+        (int32)m_PBaseEntity->loc.p.x,
+        (int32)m_PBaseEntity->loc.p.y,
+        (int32)m_PBaseEntity->loc.p.z,
         m_PBaseEntity->loc.p.rotation,
         MsgStd::Compass));
     return 0;
@@ -8709,14 +8709,16 @@ inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L)
 }
 
 /************************************************************************
-*  Function: checkValorCredit()
-*  Purpose : Used to determine if kill counts towards regime
-*  Example : if (player:checkValorCredit(mob)) then
+*  Function: checkKillCredit()
+*  Purpose : Used to determine if kill counts towards regimes/etc.
+*  Example : if (player:checkKillCredit(mob)) then
+*          : optionally specify lv diff and distance e.g.
+*          : player:checkKillCredit(mob, 15, 100)
 *  Notes   : Returns true if player is in range of sync target upon kill
 *  Notes   : and the mob is able to give exp to the members
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::checkValorCredit(lua_State *L)
+inline int32 CLuaBaseEntity::checkKillCredit(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -8732,18 +8734,22 @@ inline int32 CLuaBaseEntity::checkValorCredit(lua_State *L)
 
     bool credit = false;
     int lvlDiff = (int)(PMob->GetMLevel()) - (int)(PChar->GetMLevel());
+    int maxDiff = (lua_isnil(L, 2) || !lua_isnumber(L, 2)) ? (int)lua_tonumber(L, 2) : 15;
+    float range = (lua_isnil(L, 3) || !lua_isnumber(L, 3)) ? (float)lua_tonumber(L, 3) : 100;
 
-    if (charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel()) && distance(PMob->loc.p, PChar->loc.p) < 100 && lvlDiff < 15)
+    if (charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel()) && distance(PMob->loc.p, PChar->loc.p) < range && lvlDiff < maxDiff)
     {
         if (PChar->PParty && PChar->PParty->GetSyncTarget())
         {
-            if (distance(PMob->loc.p, PChar->PParty->GetSyncTarget()->loc.p) < 100 && PChar->PParty->GetSyncTarget()->health.hp)
+            if (distance(PMob->loc.p, PChar->PParty->GetSyncTarget()->loc.p) < range && PChar->PParty->GetSyncTarget()->health.hp)
             {
                 credit = true;
             }
         }
         else
+        {
             credit = true;
+        }
     }
 
     lua_pushboolean(L, credit);
@@ -8927,13 +8933,13 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
 *  Function: getBattlefieldID()
 *  Purpose : Returns the integer ID for the battlefield, -1 if not found
 *  Example : local battlefieldId = player:getBattlefieldID()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getBattlefieldID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    
+
     lua_pushinteger(L, m_PBaseEntity->PBattlefield ? m_PBaseEntity->PBattlefield->GetID() : -1);
     return 1;
 }
@@ -8990,7 +8996,7 @@ inline int32 CLuaBaseEntity::battlefieldAtCapacity(lua_State *L)
 *  Function: enterBattlefield(area)
 *  Purpose : Places an entity into a battlefield they are registered for (or tries enter a specific area if not full)
 *  Example : player:enterBattlefield(area)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::enterBattlefield(lua_State* L)
@@ -13706,7 +13712,7 @@ inline int32 CLuaBaseEntity::getTHlevel(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
-    lua_pushinteger(L, PMob->m_THLvl);
+    lua_pushinteger(L, PMob->PEnmityContainer->GetHighestTH());
     return 1;
 }
 
@@ -14094,7 +14100,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovAllianceAllowed),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkValorCredit),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkKillCredit),
 
     // Instances
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),

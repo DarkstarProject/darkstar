@@ -2,6 +2,7 @@
 -- func: zone
 -- desc: Teleports a player to the given zone.
 ---------------------------------------------------------------------------------------------------
+require("scripts/globals/zone");
 
 cmdprops =
 {
@@ -331,7 +332,7 @@ function onTrigger(player, bytes)
     else
         -- destination is a zone ID.
         zone = tonumber(bytes);
-        if (zone == nil or zone < 0 or zone > 297) then
+        if (zone == nil or zone < 0 or zone >= dsp.zone.MAX_ZONE) then
             error(player, "Invalid zone ID.");
             return;
         end
