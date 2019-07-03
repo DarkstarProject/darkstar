@@ -3159,6 +3159,77 @@ INSERT INTO `item_latents` VALUES(21817, 369, -4, 55, 0);   -- Drains 4 MP/tic f
 -- INSERT INTO `item_latents` VALUES(21876, 30, 10, ??, 0); -- Wyrm Lance: (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21877, 25, 10, ??, 0); -- Pteroslaver Lance: (D): Accuracy+10
 -- INSERT INTO `item_latents` VALUES(21877, 30, 10, ??, 0); -- Pteroslaver Lance: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21915, 23, 5, ??, ??); -- Koga shinobi-gatana: Attack+5 for each Utsusemi shadow image
+-- INSERT INTO `item_latents` VALUES(21915, 25, 10, ??, 0); -- Koga shinobi-gatana: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21915, 30, 10, ??, 0); -- Koga shinobi-gatana: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21916, 23, 10, ??, ??); -- Mochizuki shinobi-gatana: Attack+10 for each Utsusemi shadow image
+-- INSERT INTO `item_latents` VALUES(21916, 25, 10, ??, 0); -- Mochizuki shinobi-gatana: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21916, 30, 10, ??, 0); -- Mochizuki shinobi-gatana: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21917, 23, 15, ??, ??); -- Fudo Masamune: Attack+15 for each Utsusemi shadow image
+-- INSERT INTO `item_latents` VALUES(21922, 368, 1, ??, ??); -- Gokotai: Regain based on Dual Wield, 1 TP/tic for every 1 Dual Wield
+-- INSERT INTO `item_latents` VALUES(21968, 25, 10, ??, 0); -- Saotome-no-Tachi: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21968, 30, 10, ??, 0); -- Saotome-no-Tachi: (D): Magic Accuracy+10
+INSERT INTO `item_latents` VALUES(21968, 345, 50, 13, 408); -- Saotome-no-Tachi: Sekkanoki: TP Bonus +50% based on remaining TP
+-- INSERT INTO `item_latents` VALUES(21969, 25, 10, ??, 0); -- Sakonji-no-Tachi: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21969, 30, 10, ??, 0); -- Sakonji-no-Tachi: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(21969, ??, 50, ??, 0); -- Sakonji-no-Tachi: Sekkanoki: TP Bonus +60% based on remaining TP
+-- INSERT INTO `item_latents` VALUES(21970, ??, 70, 13, 408); -- Fusenaikyo: Sekkanoki: TP Bonus +70% based on remaining TP
+INSERT INTO `item_latents` VALUES(21970, 355, 144, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Enpi)
+INSERT INTO `item_latents` VALUES(21970, 355, 145, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Hobaku)
+INSERT INTO `item_latents` VALUES(21970, 355, 146, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Goten)
+INSERT INTO `item_latents` VALUES(21970, 355, 147, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Kagero)
+INSERT INTO `item_latents` VALUES(21970, 355, 148, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Jinpu)
+INSERT INTO `item_latents` VALUES(21970, 355, 149, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Koki)
+INSERT INTO `item_latents` VALUES(21970, 355, 150, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Yukikaze)
+INSERT INTO `item_latents` VALUES(21970, 355, 151, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Gekko)
+INSERT INTO `item_latents` VALUES(21970, 355, 152, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Kasha)
+INSERT INTO `item_latents` VALUES(21970, 355, 153, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Kaiten)
+INSERT INTO `item_latents` VALUES(21970, 355, 154, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Rana)
+INSERT INTO `item_latents` VALUES(21970, 355, 155, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Ageha)
+INSERT INTO `item_latents` VALUES(21970, 355, 156, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Fudo)
+INSERT INTO `item_latents` VALUES(21970, 355, 157, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Shoha)
+INSERT INTO `item_latents` VALUES(21970, 355, 158, 13, 408); -- Fusenaikyo: Sekkanoki: Able to use all Great Katana weapon skills (Suikawari)
+-- INSERT INTO `item_latents` VALUES(22031, ??, ??, ??, 0); -- Maxentius: Main hand: Increases magic burst damage based on skillchain length
+-- INSERT INTO `item_latents` VALUES(22033, 25, 10, ??, 0); -- Cleric's Wand: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22033, 30, 10, ??, 0); -- Cleric's Wand: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22033, ??, ??, ??, 0); -- Cleric's Wand: Afflatus Misery: Esuna removes one extra status ailment
+-- INSERT INTO `item_latents` VALUES(22034, 25, 10, ??, 0); -- Piety Wand: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22034, 30, 10, ??, 0); -- Piety Wand: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22034, ??, ??, ??, 0); -- Piety Wand: Afflatus Misery: Esuna removes two extra status ailments
+-- INSERT INTO `item_latents` VALUES(22035, ??, ??, ??, 0); -- Asclepius: Afflatus Misery: Esuna removes three extra status ailments
+-- INSERT INTO `item_latents` VALUES(22036, 25, 10, ??, 0); -- Bagua Wand: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22036, 30, 10, ??, 0); -- Bagua Wand: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22037, 25, 10, ??, 0); -- Sifang Wand: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22037, 30, 10, ??, 0); -- Sifang Wand: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22057, 369, 1, ??, 0); -- Contemplator: Unity Ranking: "Refresh"+1
+-- INSERT INTO `item_latents` VALUES(22058, 369, 1, ??, 0); -- Contemplator +1: Unity Ranking: "Refresh"+1~2
+-- INSERT INTO `item_latents` VALUES(22091, 25, 10, ??, 0); -- Sorcerer's Staff: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22091, 30, 10, ??, 0); -- Sorcerer's Staff: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22092, 25, 10, ??, 0); -- Archmage's Staff: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22092, 30, 10, ??, 0); -- Archmage's Staff: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22094, 25, 10, ??, 0); -- Summoner's Staff: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22094, 30, 10, ??, 0); -- Summoner's Staff: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22094, ??, 30, ??, 0); -- Summoner's Staff: (D): Avatar: Accuracy+30
+-- INSERT INTO `item_latents` VALUES(22094, ??, 30, ??, 0); -- Summoner's Staff: (D): Avatar: Ranged Accuracy+30
+-- INSERT INTO `item_latents` VALUES(22094, ??, 30, ??, 0); -- Summoner's Staff: (D): Avatar: Magic Accuracy+30
+-- INSERT INTO `item_latents` VALUES(22095, 25, 10, ??, 0); -- Glyphic Staff: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22095, 30, 10, ??, 0); -- Glyphic Staff: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22095, ??, 40, ??, 0); -- Glyphic Staff: (D): Avatar: Accuracy+40
+-- INSERT INTO `item_latents` VALUES(22095, ??, 40, ??, 0); -- Glyphic Staff: (D): Avatar: Ranged Accuracy+40
+-- INSERT INTO `item_latents` VALUES(22095, ??, 40, ??, 0); -- Glyphic Staff: (D): Avatar: Magic Accuracy+40
+-- INSERT INTO `item_latents` VALUES(22097, 25, 10, ??, 0); -- Argute Staff: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22097, 30, 10, ??, 0); -- Argute Staff: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22098, 25, 10, ??, 0); -- Pedagogy Staff: (D): Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22098, 30, 10, ??, 0); -- Pedagogy Staff: (D): Magic Accuracy+10
+INSERT INTO `item_latents` VALUES(22118, 24, 35, 13, 198);  -- Venery Bow: Minuet: Ranged Attack+35
+INSERT INTO `item_latents` VALUES(22118, 174, 5, 13, 198);  -- Venery Bow: Minuet: "Skillchain Bonus"+5
+INSERT INTO `item_latents` VALUES(22118, 944, 5, 13, 198);  -- Venery Bow: Minuet: "Conserve TP"+5
+-- INSERT INTO `item_latents` VALUES(22120, 24, ??, ??, 0); -- Imati: Unity Ranking: Ranged Attack+20~30
+-- INSERT INTO `item_latents` VALUES(22121, 24, ??, ??, 0); -- Imati +1: Unity Ranking: Ranged Attack+20~30
+-- INSERT INTO `item_latents` VALUES(22254, 8, ??, ??, 0);  -- Seething Bomblet: Unity ranking: STR+1～5
+-- INSERT INTO `item_latents` VALUES(22255, 8, ??, ??, 0);  -- Seething Bomblet +1: Unity ranking: STR+1～5
+-- INSERT INTO `item_latents` VALUES(22266, 288, ??, ??, 0); -- Antitail: Unity Ranking: "Double Attack"+1~3%
+-- INSERT INTO `item_latents` VALUES(22267, 288, ??, ??, 0); -- Antitail +1: Unity Ranking: "Double Attack"+1~3%
 
 -- -------------------------------------------------------
 -- Hachiya Kyahan +2
