@@ -29,7 +29,11 @@ function onZoneIn(player,prevZone)
     local cs = -1
 
     -- SOA 1-1 Optional CS
-    if player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and player:getVar("SOA_1_CS1") == 0 then
+    if 
+        ENABLE_SOA and 
+        player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
+        player:getVar("SOA_1_CS1") == 0 
+    then
         cs = 878
     end
 
@@ -108,6 +112,6 @@ function onEventFinish(player,csid,option)
         player:setVar("Wait1DayM8-1_date",0)
         player:setVar("Mission8-1Completed",1)
     elseif csid == 878 then
-        player:setVar("SOA_1_CS1", 1)
+        f
     end
 end

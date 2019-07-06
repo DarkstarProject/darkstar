@@ -20,7 +20,11 @@ function onZoneIn(player,prevZone)
     local cs = -1
 
     -- SOA 1-1 Optional CS
-    if player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and player:getVar("SOA_1_CS3") == 0 then
+    if 
+        ENABLE_SOA and 
+        player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
+        player:getVar("SOA_1_CS3") == 0 
+    then
         cs = 839
     end
 
