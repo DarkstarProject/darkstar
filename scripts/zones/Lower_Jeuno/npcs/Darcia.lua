@@ -60,6 +60,11 @@ function onEventFinish(player,csid,option)
         (csid == 10117 and option == 2) or -- paid
         csid == 10118  -- quest complete
     then
+        -- Clear option CS flags
+        player:setVar("SOA_1_CS1", 0)
+        player:setVar("SOA_1_CS2", 0)
+        player:setVar("SOA_1_CS3", 0)
+        
         if option == 2 then player:delGil(1000000) end
 
         player:delKeyItem(dsp.ki.GEOMAGNETRON)
