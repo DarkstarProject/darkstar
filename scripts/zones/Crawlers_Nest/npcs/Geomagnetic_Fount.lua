@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Crawlers Nest (197)
 --  NPC: Geomagnetic Fount
--- !pos: -137.728 -32.314 33.123
+-- !pos -137.728 -32.314 33.123
 -----------------------------------
 local ID = require("scripts/zones/Crawlers_Nest/IDs")
 require("scripts/globals/geomagnetic_fount")

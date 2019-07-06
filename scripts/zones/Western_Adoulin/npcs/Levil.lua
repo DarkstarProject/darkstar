@@ -2,7 +2,7 @@
 -- Area: Western Adoulin (256)
 --  NPC: Levil
 -- Type: Quest and SoA Missions NPC
--- !pos: -87.204 3.350 12.655
+-- !pos -87.204 3.350 12.655
 -----------------------------------
 
 function onTrade(player,npc,trade)

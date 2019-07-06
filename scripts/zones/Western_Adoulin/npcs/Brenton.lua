@@ -2,7 +2,7 @@
 -- Area: Western Adoulin (256)
 --  NPC: Brenton
 -- Type: SOA Mission NPC
--- !pos: 127 -86.036 3.349
+-- !pos 127 -86.036 3.349
 -----------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")

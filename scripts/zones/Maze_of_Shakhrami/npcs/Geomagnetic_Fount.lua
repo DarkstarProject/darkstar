@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Maze of Shakhrami (198)
 --  NPC: Geomagnetic Fount
--- !pos: 289.404 -6.741 -149.664
+-- !pos 289.404 -6.741 -149.664
 -----------------------------------
 local ID = require("scripts/zones/Maze_of_Shakhrami/IDs")
 require("scripts/globals/geomagnetic_fount")

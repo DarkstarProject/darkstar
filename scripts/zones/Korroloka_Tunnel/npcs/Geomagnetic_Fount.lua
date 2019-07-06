@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
 --  NPC: Geomagnetic Fount
--- !pos: -112.997 1.500 -103.864
+-- !pos -112.997 1.500 -103.864
 -----------------------------------
 local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
 require("scripts/globals/geomagnetic_fount")

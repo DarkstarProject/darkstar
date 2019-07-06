@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Toraimarai Canal (169)
 --  NPC: Geomagnetic Fount
--- !pos: -60.004 21.503 194.314
+-- !pos -60.004 21.503 194.314
 -----------------------------------
 local ID = require("scripts/zones/Toraimarai_Canal/IDs")
 require("scripts/globals/geomagnetic_fount")

@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno (245)
 --  NPC: Darcia
 --  SoA: Mission NPC
--- !pos: 25 -38.617 -1.000
+-- !pos 25 -38.617 -1.000
 -----------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
