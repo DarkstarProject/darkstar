@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Western Adoulin
+-- Area: Western Adoulin (256)
 --  NPC: Brenton
 -- Type: SOA Mission NPC
--- !pos 127 -86.036 3.349
+-- !pos: 127 -86.036 3.349
 -----------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
@@ -15,9 +15,12 @@ end
 
 function onTrigger(player,npc)
     local pioneerRegistration = player:getCurrentMission(SOA) == dsp.mission.id.soa.PIONEER_REGISTRATION
+    local lifeOnTheFrontier = player:getCurrentMission(SOA) == dsp.mission.id.soa.LIFE_ON_THE_FRONTIER
 
     if pioneerRegistration then
         player:startEvent(3)
+    elseif lifeOnTheFrontier and player:getFameLevel(ADOULIN) >= 2 then
+        player:startEvent(4)
     else
         player:startEvent(576)
     end
@@ -36,5 +39,10 @@ function onEventFinish(player,csid,option)
 
         player:completeMission(SOA,dsp.mission.id.soa.PIONEER_REGISTRATION)
         player:addMission(SOA,dsp.mission.id.soa.LIFE_ON_THE_FRONTIER)
+    elseif csid == 4 then
+        npcUtil.giveKeyItem(player, dsp.ki.DINNER_INVITATION)
+        
+        player:completeMission(SOA,dsp.mission.id.soa.LIFE_ON_THE_FRONTIER)
+        player:addMission(SOA,dsp.mission.id.soa.MEETING_OF_THE_MINDS)
     end
 end
