@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 require("scripts/globals/zone")
@@ -35,6 +36,10 @@ function onZoneIn(player,prevZone)
         cs = 1101
     end
 
+    if player:getCurrentMission(ROV) == dsp.mission.id.rov.RESONACE then
+        cs = 176
+    end
+
     return cs
 end
 
@@ -58,5 +63,10 @@ function onEventFinish(player,csid,option)
         end
     elseif csid == 1101 and npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX, {item = 14226, fame_area = NORG, var = {"Enagakure_Killed", "illTakeTheBigBoxCS"}}) then
         player:delKeyItem(dsp.ki.SEANCE_STAFF)
+    elseif csid == 176 then
+        -- Flag ROV Selbina Route (1)
+        player:setVar("ROV", 1)
+        player:completeMission(ROV,dsp.mission.id.rov.RESONACE)
+        player:addMission(ROV,dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS)
     end
 end

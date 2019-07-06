@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Selbina
+-- Area: Selbina (248)
 --  NPC: Abelard
 --  An Explorer's Footsteps
 -- !pos -52 -11 -13 248
@@ -9,6 +9,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
@@ -60,9 +61,18 @@ function onTrade(player,npc,trade)
             end
         end
     end
+
+    if  
+        player:getCurrentMission(ROV) == dsp.mission.id.rov.SET_FREE and 
+        npcUtil.tradeHas(trade,{{9082, 3}}) and 
+        player:getVar("ROV") == 1 
+    then
+        player:startEvent(178)
+    end
 end
 
 function onTrigger(player,npc)
+    player:setVar("ROV", 1)
     local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
     local signedInBlood = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
     local signedInBloodStat = player:getCharVar("SIGNED_IN_BLOOD_Prog")
@@ -152,5 +162,8 @@ function onEventFinish(player,csid,option)
         if (tablets % (2 * 0x7fff)) >= 0x7fff then
             npcUtil.giveKeyItem(player, dsp.ki.MAP_OF_THE_CRAWLERS_NEST)
         end
+    elseif csid == 178 then
+        player:completeMission(ROV,dsp.mission.id.rov.SET_FREE)
+        player:addMission(ROV,dsp.mission.id.rov.THE_BEGINNING)
     end
 end
