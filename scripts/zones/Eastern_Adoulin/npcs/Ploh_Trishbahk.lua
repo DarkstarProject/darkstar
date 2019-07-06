@@ -13,10 +13,9 @@ end
 
 function onTrigger(player,npc)
     local meetingOfTheMinds = player:getCurrentMission(SOA) == dsp.mission.id.soa.MEETING_OF_THE_MINDS
-    local hasDinnerInvite = player:hasKeyItem(dsp.ki.DINNER_INVITATION)
     local dinnerTime = VanadielHour() >= 15 and VanadielHour() <= 22
 
-    if meetingOfTheMinds and hasDinnerInvite and dinnerTime then
+    if meetingOfTheMinds and dinnerTime then
         player:startEvent(1500)
     else
         player:startEvent(563)
