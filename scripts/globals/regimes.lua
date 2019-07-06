@@ -1212,7 +1212,7 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
     end
 
     -- mobs that give no XP give no credit
-    if not player:checkValorCredit(mob) then
+    if not player:checkKillCredit(mob) then
         return
     end
 

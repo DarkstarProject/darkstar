@@ -200,6 +200,7 @@ dsp.weaponskill =
     TACHI_AGEHA         = 155,
     TACHI_FUDO          = 156,
     TACHI_SHOHA         = 157,
+    TACHI_SUIKAWARI     = 158,
 
     ------------------------------------
     -- CLUB

@@ -240,7 +240,18 @@ INSERT INTO `item_mods_pet` VALUES (21717,30,50,0);     -- Pangu: Pet: Magic Acc
 INSERT INTO `item_mods_pet` VALUES (21751,23,80,0);     -- Aymur 119 III Pet: Attack Bonus V
 INSERT INTO `item_mods_pet` VALUES (21865,370,5,2);     -- Arasy Lance: Wyvern: "Regen"+5
 INSERT INTO `item_mods_pet` VALUES (21866,370,8,2);     -- Arasy Lance +1: Wyvern: "Regen"+8
+INSERT INTO `item_mods_pet` VALUES (22015,30,10,1);     -- Arasy Rod: Avatar: Magic Accuracy+10
+INSERT INTO `item_mods_pet` VALUES (22016,30,15,1);     -- Arasy Rod +1: Avatar: Magic Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (22054,28,115,1);    -- Grioavolr: Avatar: "Magic Atk. Bonus"+115
+INSERT INTO `item_mods_pet` VALUES (22054,30,35,1);     -- Grioavolr: Avatar: Magic Accuracy+35
 INSERT INTO `item_mods_pet` VALUES (22063,126,40,1);    -- Nirvana 119 III Avatar: "Blood Pact" damage +40
+INSERT INTO `item_mods_pet` VALUES (22074,126,3,1);     -- Arasy Staff: Avatar: "Blood Pact" damage +3
+INSERT INTO `item_mods_pet` VALUES (22075,126,5,1);     -- Arasy Staff +1: Avatar: "Blood Pact" damage +5
+INSERT INTO `item_mods_pet` VALUES (22096,25,50,1);     -- Draumstafir: Avatar: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (22096,26,50,1);     -- Draumstafir: Avatar: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (22096,30,50,1);     -- Draumstafir: Avatar: Magic Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (22210,126,3,1);     -- Elan Strap: Avatar: "Blood Pact" damage +3
+INSERT INTO `item_mods_pet` VALUES (22211,126,5,1);     -- Elan Strap +1: Avatar: "Blood Pact" damage +5
 INSERT INTO `item_mods_pet` VALUES (23057,25,31,3);     -- Foire Taj +2 Automaton: Accuracy +31
 INSERT INTO `item_mods_pet` VALUES (23057,369,1,3);     -- Automaton: Refresh +1
 INSERT INTO `item_mods_pet` VALUES (23057,370,3,3);     -- Automaton: Regen +3
