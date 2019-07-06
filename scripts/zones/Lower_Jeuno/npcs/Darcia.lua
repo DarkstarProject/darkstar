@@ -47,6 +47,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10117 and option == 1 then -- accepted geomagnetron
+        -- Clear option CS flags
+        player:setVar("SOA_1_CS1", 0)
+        player:setVar("SOA_1_CS2", 0)
+        player:setVar("SOA_1_CS3", 0)
+
         npcUtil.giveKeyItem(player, dsp.ki.GEOMAGNETRON)
 
         player:completeMission(SOA,dsp.mission.id.soa.RUMORS_FROM_THE_WEST)
