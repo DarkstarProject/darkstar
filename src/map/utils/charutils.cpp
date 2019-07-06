@@ -2734,6 +2734,11 @@ namespace charutils
                 }
                 MaxSkill = MaxSkill * 10;
 
+                if(hasKeyItem(PChar, 2884)) // Rhapsody in White
+                {
+                    SkillAmount *= 2;
+                }
+
                 // Do skill amount multiplier (Will only be applied if default setting is changed)
                 if (map_config.skillup_amount_multiplier > 1)
                 {
@@ -4452,7 +4457,7 @@ namespace charutils
         Sql_Query(SqlHandle, query, column, value, PChar->id);
     }
 
-    float  AddExpBonus(CCharEntity* PChar, float exp)
+    float AddExpBonus(CCharEntity* PChar, float exp)
     {
         int32 bonus = 0;
         if (PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION))
@@ -4476,6 +4481,11 @@ namespace charutils
             exp = 0;
         else
             exp = exp + bonus;
+
+        if (hasKeyItem(PChar, 2884)) // Rhapsody in White
+        {
+            exp *= 1.3f;
+        }
 
         return exp;
     }
