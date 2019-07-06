@@ -163,6 +163,7 @@ function onEventFinish(player,csid,option)
             npcUtil.giveKeyItem(player, dsp.ki.MAP_OF_THE_CRAWLERS_NEST)
         end
     elseif csid == 178 then
+        player:confirmTrade()
         player:completeMission(ROV,dsp.mission.id.rov.SET_FREE)
         player:addMission(ROV,dsp.mission.id.rov.THE_BEGINNING)
     end
