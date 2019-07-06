@@ -20,7 +20,7 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if csid == 6 then
+    if csid == 6 and option == 1 then
         player:completeMission(SOA,dsp.mission.id.soa.ARCIELA_APPEARS_AGAIN)
         player:addMission(SOA,dsp.mission.id.soa.BUILDING_PROSPECTS)
     end
