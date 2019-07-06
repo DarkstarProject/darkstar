@@ -112,6 +112,6 @@ function onEventFinish(player,csid,option)
         player:setVar("Wait1DayM8-1_date",0)
         player:setVar("Mission8-1Completed",1)
     elseif csid == 878 then
-        f
+        player:setVar("SOA_1_CS1", 1)
     end
 end
