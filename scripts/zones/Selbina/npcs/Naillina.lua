@@ -10,6 +10,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
+    -- TODO This is meant to be an additional menu option
     if player:getCurrentMission(ROV) == dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS and player:getVar("ROV") == 1 then
         player:startEvent(177)
     else

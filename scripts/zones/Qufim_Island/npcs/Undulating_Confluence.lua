@@ -14,7 +14,7 @@ function onTrigger(player, npc)
         player:startEvent(63)
     elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_LIONS_ROAR then
         player:startEvent(64)
-    elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.EDDIES_OF_DESPAIR_I then
+    elseif player:getCurrentMission(ROV) >= dsp.mission.id.rov.EDDIES_OF_DESPAIR_I then
         player:startEvent(65)
     end
 end
@@ -31,6 +31,7 @@ function onEventFinish(player, csid, option)
         -- Mission is updated on it's death
         player:completeMission(ROV,dsp.mission.id.rov.THE_LIONS_ROAR)
         player:addMission(ROV,dsp.mission.id.rov.EDDIES_OF_DESPAIR_I)
+        player:setPos(0, 0, 0, 0, 288)
     elseif csid == 65 and option == 1 then
         player:setPos(0, 0, 0, 0, 288)
     end
