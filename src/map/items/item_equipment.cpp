@@ -26,7 +26,7 @@
 #include <string.h>
 #include "../map.h"
 
-CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
+CItemEquipment::CItemEquipment(uint16 id) : CItemUsable(id)
 {
 	setType(ITEM_EQUIPMENT);
 
@@ -41,82 +41,82 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
     m_absorption   = 0;
 }
 
-CItemArmor::~CItemArmor()
+CItemEquipment::~CItemEquipment()
 {
 	// ни в коем случае не освобождать здесь указатели на модификатоты и спецеффекты. они глобальны.
 }
 
-uint16 CItemArmor::getModelId()
+uint16 CItemEquipment::getModelId()
 {
 	return m_modelID;
 }
 
-uint8 CItemArmor::getShieldSize()
+uint8 CItemEquipment::getShieldSize()
 {
 	return m_shieldSize;
 }
 
-uint16 CItemArmor::getEquipSlotId()
+uint16 CItemEquipment::getEquipSlotId()
 {
 	return m_equipSlotID;
 }
 
-uint16 CItemArmor::getRemoveSlotId()
+uint16 CItemEquipment::getRemoveSlotId()
 {
 	return m_removeSlotID;
 }
 
-uint8 CItemArmor::getReqLvl()
+uint8 CItemEquipment::getReqLvl()
 {
 	return m_reqLvl;
 }
 
-uint8 CItemArmor::getILvl()
+uint8 CItemEquipment::getILvl()
 {
     return m_iLvl;
 }
 
-uint32 CItemArmor::getJobs()
+uint32 CItemEquipment::getJobs()
 {
 	return m_jobs;
 }
 
-void CItemArmor::setReqLvl(uint8 lvl)
+void CItemEquipment::setReqLvl(uint8 lvl)
 {
 	m_reqLvl = lvl;
 }
 
-void CItemArmor::setILvl(uint8 lvl)
+void CItemEquipment::setILvl(uint8 lvl)
 {
     m_iLvl = lvl;
 }
 
-void CItemArmor::setJobs(uint32 jobs)
+void CItemEquipment::setJobs(uint32 jobs)
 {
 	m_jobs = jobs;
 }
 
-void CItemArmor::setModelId(uint16 mdl)
+void CItemEquipment::setModelId(uint16 mdl)
 {
 	m_modelID = mdl;
 }
 
-void CItemArmor::setShieldSize(uint8 shield)
+void CItemEquipment::setShieldSize(uint8 shield)
 {
 	m_shieldSize = shield;
 }
 
-void CItemArmor::setEquipSlotId(uint16 equipSlot)
+void CItemEquipment::setEquipSlotId(uint16 equipSlot)
 {
 	m_equipSlotID = equipSlot;
 }
 
-void CItemArmor::setRemoveSlotId(uint16 removSlot)
+void CItemEquipment::setRemoveSlotId(uint16 removSlot)
 {
 	m_removeSlotID = removSlot;
 }
 
-uint8 CItemArmor::getSlotType()
+uint8 CItemEquipment::getSlotType()
 {
 	uint32 result = 0;
 	getMSB(&result,(uint32)m_equipSlotID);
@@ -129,7 +129,7 @@ uint8 CItemArmor::getSlotType()
 *																		*
 ************************************************************************/
 
-uint8 CItemArmor::getShieldAbsorption()
+uint8 CItemEquipment::getShieldAbsorption()
 {
     return m_absorption;
 }
@@ -140,7 +140,7 @@ uint8 CItemArmor::getShieldAbsorption()
 *																		*
 ************************************************************************/
 
-bool CItemArmor::IsShield()
+bool CItemEquipment::IsShield()
 {
     return m_shieldSize > 0 && m_shieldSize <= 6;
 }
@@ -155,12 +155,12 @@ bool CItemArmor::IsShield()
 *																		*
 ************************************************************************/
 
-uint16 CItemArmor::getScriptType()
+uint16 CItemEquipment::getScriptType()
 {
 	return m_scriptType;
 }
 
-void CItemArmor::setScriptType(uint16 ScriptType)
+void CItemEquipment::setScriptType(uint16 ScriptType)
 {
 	m_scriptType = ScriptType;
 }
@@ -171,7 +171,7 @@ void CItemArmor::setScriptType(uint16 ScriptType)
 *                                                                       *
 ************************************************************************/
 
-void CItemArmor::addModifier(CModifier modifier)
+void CItemEquipment::addModifier(CModifier modifier)
 {
     if (IsShield() && modifier.getModID() == Mod::DEF)
     {
@@ -201,7 +201,7 @@ void CItemArmor::addModifier(CModifier modifier)
     modList.push_back(modifier);
 }
 
-int16 CItemArmor::getModifier(Mod mod)
+int16 CItemEquipment::getModifier(Mod mod)
 {
 	for (uint16 i = 0; i < modList.size(); ++i)
 	{
@@ -213,12 +213,12 @@ int16 CItemArmor::getModifier(Mod mod)
 	return 0;
 }
 
-void CItemArmor::addPetModifier(CPetModifier modifier)
+void CItemEquipment::addPetModifier(CPetModifier modifier)
 {
     petModList.push_back(modifier);
 }
 
-void CItemArmor::addLatent(LATENT ConditionsID, uint16 ConditionsValue, Mod ModValue, int16 ModPower)
+void CItemEquipment::addLatent(LATENT ConditionsID, uint16 ConditionsValue, Mod ModValue, int16 ModPower)
 {
     itemLatent latent{ ConditionsID, ConditionsValue, ModValue, ModPower };
     latentList.push_back(latent);
@@ -230,7 +230,7 @@ void CItemArmor::addLatent(LATENT ConditionsID, uint16 ConditionsValue, Mod ModV
 *                                                                       *
 ************************************************************************/
 
-void CItemArmor::setTrialNumber(uint16 trial)
+void CItemEquipment::setTrialNumber(uint16 trial)
 {
     if (trial)
         ref<uint8>(m_extra, 0x01) |= 0x40;
@@ -240,7 +240,7 @@ void CItemArmor::setTrialNumber(uint16 trial)
     ref<uint8>(m_extra, 0x0A) = (uint8)trial;
 }
 
-uint16 CItemArmor::getTrialNumber()
+uint16 CItemEquipment::getTrialNumber()
 {
     return ref<uint8>(m_extra, 0x0A);
 }
@@ -250,12 +250,12 @@ uint16 CItemArmor::getTrialNumber()
 *  Augments: 5 bits for value, 11 bits for augment ID                   *
 *                                                                       *
 ************************************************************************/
-void CItemArmor::LoadAugment(uint8 slot, uint16 augment)
+void CItemEquipment::LoadAugment(uint8 slot, uint16 augment)
 {
     ref<uint16>(m_extra, 2 + (slot * 2)) = augment;
 }
 
-bool CItemArmor::PushAugment(uint16 type, uint8 value)
+bool CItemEquipment::PushAugment(uint16 type, uint8 value)
 {
     uint8 slot = 0;
     uint16 augment = ref<uint16>(m_extra, 2 + (slot * 2));
@@ -272,7 +272,7 @@ bool CItemArmor::PushAugment(uint16 type, uint8 value)
     return false;
 }
 
-void CItemArmor::ApplyAugment(uint8 slot)
+void CItemEquipment::ApplyAugment(uint8 slot)
 {
     SetAugmentMod(
         (uint16)unpackBitsBE(m_extra, 2 + (slot * 2), 0, 11),
@@ -280,7 +280,7 @@ void CItemArmor::ApplyAugment(uint8 slot)
         );
 }
 
-void CItemArmor::setAugment(uint8 slot, uint16 type, uint8 value)
+void CItemEquipment::setAugment(uint8 slot, uint16 type, uint8 value)
 {
     packBitsBE(m_extra, type, 2 + (slot * 2), 0, 11);
     packBitsBE(m_extra, value, 2 + (slot * 2), 11, 5);
@@ -288,7 +288,7 @@ void CItemArmor::setAugment(uint8 slot, uint16 type, uint8 value)
     SetAugmentMod(type, value);
 }
 
-void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
+void CItemEquipment::SetAugmentMod(uint16 type, uint8 value)
 {
     if (type != 0)
     {
@@ -327,7 +327,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
     }
 }
 
-uint16 CItemArmor::getAugment(uint8 slot)
+uint16 CItemEquipment::getAugment(uint8 slot)
 {
     return ref<uint16>(m_extra, 2 + (slot * 2));
 }

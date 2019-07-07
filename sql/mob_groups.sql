@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: wiggo32
 -- ------------------------------------------------------
--- Server version	10.2.7-MariaDB
+-- Server version   10.2.7-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -5122,7 +5122,7 @@ INSERT INTO `mob_groups` VALUES (7,1753,92,'Gold_Quadav',960,0,1516,0,0,77,79,0)
 INSERT INTO `mob_groups` VALUES (8,3541,92,'Seneschal_Imp',960,0,3120,0,0,77,79,0);
 INSERT INTO `mob_groups` VALUES (9,2102,92,'Iron_Quadav',960,0,1806,0,0,77,79,0);
 INSERT INTO `mob_groups` VALUES (10,5553,92,'Adaman_Quadav',960,0,25,0,0,77,79,0);
-INSERT INTO `mob_groups` VALUES (11,1167,92,'EaTho_Cruelheart',0,32,4606,0,0,80,81,0);
+INSERT INTO `mob_groups` VALUES (11,6068,92,'EaTho_Cruelheart',0,32,4606,0,0,80,81,0);
 INSERT INTO `mob_groups` VALUES (12,1195,92,'Electrumcap',960,0,854,0,0,68,70,0);
 INSERT INTO `mob_groups` VALUES (13,1094,92,'Doyen_Quadav',960,0,782,0,0,79,82,0);
 INSERT INTO `mob_groups` VALUES (14,703,92,'Chatoyant_Quadav',960,0,516,0,0,79,82,0);
@@ -8619,17 +8619,17 @@ INSERT INTO `mob_groups` VALUES (12,4838,144,'Maat',0,128,0,2300,1000,70,70,0);
 INSERT INTO `mob_groups` VALUES (13,4839,144,'Maat',0,128,4485,2300,0,70,70,0);
 INSERT INTO `mob_groups` VALUES (14,4932,144,'Maat',0,128,0,2300,0,70,70,0);
 INSERT INTO `mob_groups` VALUES (15,2462,144,'Maat_s_Pet',0,128,0,0,0,56,56,0);
-INSERT INTO `mob_groups` VALUES (16,1910,144,'Heavy_Metal_Crab',0,128,0,0,0,20,20,0);
-INSERT INTO `mob_groups` VALUES (17,2635,144,'Metal_Crab',0,128,0,0,0,20,20,0);
+INSERT INTO `mob_groups` VALUES (16,1910,144,'Heavy_Metal_Crab',0,128,0,35,0,20,20,0);
+INSERT INTO `mob_groups` VALUES (17,2635,144,'Metal_Crab',0,128,0,25,0,20,20,0);
 INSERT INTO `mob_groups` VALUES (18,2468,144,'Macha',0,128,0,0,0,30,30,0);
 INSERT INTO `mob_groups` VALUES (19,2820,144,'Neman',0,128,0,0,0,30,30,0);
 INSERT INTO `mob_groups` VALUES (20,2646,144,'Metsanneitsyt',0,128,0,0,0,30,30,0);
 INSERT INTO `mob_groups` VALUES (21,2645,144,'Metsanhaltija',0,128,0,0,0,30,30,0);
-INSERT INTO `mob_groups` VALUES (22,1363,144,'Flayer_Franz',0,128,0,0,0,40,40,0);
-INSERT INTO `mob_groups` VALUES (23,1369,144,'Flesh_Eater',0,128,0,0,0,40,40,0);
+INSERT INTO `mob_groups` VALUES (22,1363,144,'Flayer_Franz',0,128,0,0,0,45,45,0);
+INSERT INTO `mob_groups` VALUES (23,1369,144,'Flesh_Eater',0,128,0,0,0,38,40,0);
 INSERT INTO `mob_groups` VALUES (24,3282,144,'Queen_Jelly',0,128,0,0,0,40,40,0);
 INSERT INTO `mob_groups` VALUES (25,3196,144,'Princess_Jelly',0,128,0,0,0,40,40,0);
-INSERT INTO `mob_groups` VALUES (26,3920,144,'Time_Bomb',0,128,0,0,0,50,50,0);
+INSERT INTO `mob_groups` VALUES (26,3920,144,'Time_Bomb',0,128,0,9999,0,50,50,0);
 INSERT INTO `mob_groups` VALUES (27,4479,144,'Yo_Bhu_Hideousmask',0,128,0,0,0,62,64,0);
 INSERT INTO `mob_groups` VALUES (28,4521,144,'Zo_Dhu_Legslicer',0,128,0,0,0,62,64,0);
 INSERT INTO `mob_groups` VALUES (29,2200,144,'Ka_Nha_Jabbertongue',0,128,0,0,0,62,64,0);
@@ -8700,11 +8700,11 @@ INSERT INTO `mob_groups` VALUES (17,2822,146,'Nenaunir',0,128,0,0,0,30,30,0);
 INSERT INTO `mob_groups` VALUES (18,2823,146,'Nenaunir_s_Wife',0,128,0,0,0,30,30,0);
 INSERT INTO `mob_groups` VALUES (19,1149,146,'Dvorovoi',0,128,0,0,0,45,45,0);
 INSERT INTO `mob_groups` VALUES (20,1078,146,'Domovoi',0,128,0,0,0,40,41,0);
-INSERT INTO `mob_groups` VALUES (21,2990,146,'Opo-opo_Monarch',0,128,0,0,0,40,40,0);
-INSERT INTO `mob_groups` VALUES (22,2989,146,'Opo-opo_Heir',0,128,0,0,0,40,40,0);
-INSERT INTO `mob_groups` VALUES (23,2789,146,'Myrmidon_Spo-spo',0,128,0,0,0,40,40,0);
-INSERT INTO `mob_groups` VALUES (24,2787,146,'Myrmidon_Apu-apu',0,128,0,0,0,40,40,0);
-INSERT INTO `mob_groups` VALUES (25,2788,146,'Myrmidon_Epa-epa',0,128,0,0,0,40,40,0);
+INSERT INTO `mob_groups` VALUES (21,2990,146,'Opo-opo_Monarch',0,128,0,2300,0,40,40,0);
+INSERT INTO `mob_groups` VALUES (22,2989,146,'Opo-opo_Heir',0,128,0,2300,0,40,40,0);
+INSERT INTO `mob_groups` VALUES (23,2789,146,'Myrmidon_Spo-spo',0,128,0,1200,0,40,40,0);
+INSERT INTO `mob_groups` VALUES (24,2787,146,'Myrmidon_Apu-apu',0,128,0,1200,0,40,40,0);
+INSERT INTO `mob_groups` VALUES (25,2788,146,'Myrmidon_Epa-epa',0,128,0,1200,0,40,40,0);
 INSERT INTO `mob_groups` VALUES (26,3675,146,'Small_Box',0,128,0,0,0,50,50,0);
 INSERT INTO `mob_groups` VALUES (27,2605,146,'Medium_Box',0,128,0,0,0,50,50,0);
 INSERT INTO `mob_groups` VALUES (28,2376,146,'Large_Box',0,128,0,0,0,50,50,0);

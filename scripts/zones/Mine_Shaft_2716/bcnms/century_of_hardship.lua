@@ -1,57 +1,39 @@
 -----------------------------------
--- Area: Mine_Shaft_2716
--- Name: century_of_hardship
--- bcnmID : 736
--- inst 2 -54 -1 -100
--- inst 3 425 -121 -99
+-- A Century of Hardship
+-- Mine Shaft #2716 mission battlefield
+-----------------------------------
+require("scripts/globals/battlefield")
+require("scripts/globals/missions")
 -----------------------------------
 
-require("scripts/globals/missions");
-require("scripts/globals/battlefield")
-
--- After registering the BCNM via bcnmRegister(bcnmid)
-function onBattlefieldRegister(player,battlefield)
-end;
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
--- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBattlefieldEnter(player,battlefield)
-end;
+function onBattlefieldRegister(player, battlefield)
+end
 
--- Leaving the BCNM by every mean possible, given by the LeaveCode
--- 1=Select Exit on circle
--- 2=Winning the BC
--- 3=Disconnected or warped out
--- 4=Losing the BC
--- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
--- from the core when a player disconnects or the time limit is up, etc
+function onBattlefieldEnter(player, battlefield)
+end
 
-function onBattlefieldLeave(player,battlefield,leavecode)
-
-    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
-
+function onBattlefieldLeave(player, battlefield, leavecode)
+    if leavecode == dsp.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 5) then
-            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
-            player:setVar("COP_Louverance_s_Path",6);
-        else
-            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
-        end
+        local arg8 = (player:getCurrentMission(COP) ~= dsp.mission.id.cop.THREE_PATHS or player:getVar("COP_Louverance_s_Path") ~= 5) and 1 or 0
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), arg8)
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
-        player:startEvent(32002);
+        player:startEvent(32002)
     end
+end
 
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
-end;
-
-function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 32001) then
-        player:addExp(1000);
+function onEventFinish(player, csid, option)
+    if csid == 32001 then
+        if player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 5 then
+            player:setVar("COP_Louverance_s_Path", 6)
+        end
+        player:addExp(1000)
     end
-end;
+end

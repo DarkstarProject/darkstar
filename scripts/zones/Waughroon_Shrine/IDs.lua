@@ -22,9 +22,16 @@ zones[dsp.zone.WAUGHROON_SHRINE] =
         TAKE_THAT_YOU_WHIPPERSNAPPER = 7680, -- Take that, you whippersnapper!
         NOW_THAT_IM_WARMED_UP        = 7681, -- Now that I'm warmed up...
         THAT_LL_HURT_IN_THE_MORNING  = 7682, -- Ungh... That'll hurt in the morning...
+        ONE_TENTACLE_WOUNDED         = 7700, -- One of the sea creature's tentacles have been wounded.
+        ALL_TENTACLES_WOUNDED        = 7701, -- All of the sea creature's tentacles have been wounded.
     },
     mob =
     {
+        HEAVY_METAL_CRAB_OFFSET = 17367086,
+        MACHA_OFFSET            = 17367098,
+        METSANNEITSYT_OFFSET    = 17367110,
+        FLAYER_FRANZ_OFFSET     = 17367122,
+        PLATOON_SCORPION_OFFSET = 17367266,
     },
     npc =
     {

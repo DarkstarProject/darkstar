@@ -21,8 +21,8 @@
 ===========================================================================
 */
 
-#ifndef _CITEMARMOR_H
-#define _CITEMARMOR_H
+#ifndef _CITEMEQUIPMENT_H
+#define _CITEMEQUIPMENT_H
 
 #include "../../common/utils.h"
 
@@ -56,12 +56,12 @@ enum class ITEMCHECK
     UNEQUIP             = 2
 };
 
-class CItemArmor : public CItemUsable
+class CItemEquipment : public CItemUsable
 {
 public:
 
-	CItemArmor(uint16);
-	virtual ~CItemArmor();
+	CItemEquipment(uint16);
+	virtual ~CItemEquipment();
 
     struct itemLatent
     {

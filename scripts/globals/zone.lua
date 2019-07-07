@@ -382,6 +382,9 @@ dsp.zone =
     DYNAMIS_WINDURST_D              = 296,
     DYNAMIS_JEUNO_D                 = 297,
     WALK_OF_ECHOES_P                = 298,
+
+    -- Increment this when adding new zones
+    MAX_ZONE                        = 299
 }
 
 dsp.expansionRegion = dsp.expansionRegion or {}
