@@ -2588,7 +2588,7 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             auto PItem = itemutils::GetItem(itemId);
             if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_EQUIPMENT)))
                 itemId = 0;
-            else if (!(((CItemArmor*)PItem)->getEquipSlotId() & (1 << equipSlotId)))
+            else if (!(((CItemEquipment*)PItem)->getEquipSlotId() & (1 << equipSlotId)))
                 itemId = 0;
 
             PChar->styleItems[equipSlotId] = itemId;

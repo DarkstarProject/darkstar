@@ -210,24 +210,24 @@ local battlefields = {
 
     [144] = {               -- WAUGHROON SHRINE
         { 0,   64,    0},   -- The Rank 2 Final Mission (Mission 2-3)
-     -- { 1,   65, 1131},   -- The Worm's Turn (BS40)
-     -- { 2,   66, 1130},   -- Grimshell Shocktroopers (BS60)
+        { 1,   65, 1131},   -- The Worm's Turn (BS40)
+        { 2,   66, 1130},   -- Grimshell Shocktroopers (BS60)
         { 3,   67,    0},   -- On My Way (Basty 7-2)
         { 4,   68, 1166},   -- A Thief in Norg!? (Quest)
-     -- { 5,   69, 1177},   -- 3, 2, 1... (BS50)
+        { 5,   69, 1177},   -- 3, 2, 1... (BS50) -- TODO: Self Destruct does not display correct message in chat log
         { 6,   70, 1430},   -- Shattering Stars (RDM LB5)
         { 7,   71, 1431},   -- Shattering Stars (THF LB5)
         { 8,   72, 1434},   -- Shattering Stars (BST LB5)
-     -- { 9,   73, 1552},   -- Birds of a Feather (BS30)
-     -- {10,   74, 1551},   -- Crustacean Conundrum (BS20)
-     -- {11,   75, 1552},   -- Grove Guardians (BS30)
-        {12,   76, 1553},   -- The Hills are Alive (KS99)
-     -- {13,   77, 1131},   -- Royal Jelly (BS40)
-     -- {14,   78, 1177},   -- The Final Bout (BS50)
+        { 9,   73, 1552},   -- Birds of a Feather (BS30)
+     -- {10,   74, 1551},   -- Crustacean Conundrum (BS20) -- TODO: You can only do 0-2 damage no matter what your attack is
+        {11,   75, 1552},   -- Grove Guardians (BS30)
+     -- {12,   76, 1553},   -- The Hills are Alive (KS99) -- TODO: Tartaruga Gigante is not coded
+     -- {13,   77, 1131},   -- Royal Jelly (BS40) -- TODO: all combat mechanics, loot
+        {14,   78, 1177},   -- The Final Bout (BS50) -- TODO: mobskills Big Blow and Counterstance
         {15,   79, 1130},   -- Up in Arms (BS60)
      -- {16,   80, 1175},   -- Copycat (KS30)
-        {17,   81, 1178},   -- Operation Desert Storm (KS30)
-        {18,   82, 1180},   -- Prehistoric Pigeons (KS30)
+     -- {17,   81, 1178},   -- Operation Desert Swarm (KS30) -- TODO: Wild Rage gets stronger as they die.  Sync TP moves.  Self-bind/stun.  Build sleep resistance.
+     -- {18,   82, 1180},   -- Prehistoric Pigeons (KS30) -- TODO: Build resistance to sleep quickly. When one dies, remaining ones become more powerful.
      -- {19,   83, 3351},   -- The Palborough Project (KC30)
      -- {20,   84, 3352},   -- Shell Shocked (KC50)
      -- {21,   85,    0},   -- Beyond Infinity (Quest)
@@ -248,10 +248,10 @@ local battlefields = {
         { 8,  104, 1552},   -- Creeping Doom (BS30)
         { 9,  105, 1551},   -- Charming Trio (BS20)
         {10,  106, 1552},   -- Harem Scarem (BS30)
-        {11,  107, 1553},   -- Early Bird Catches the Wyrm (KS99)
+     -- {11,  107, 1553},   -- Early Bird Catches the Wyrm (KS99) -- TODO: Wyrm is not coded at all
         {12,  108, 1131},   -- Royal Succession (BS40)
         {13,  109, 1177},   -- Rapid Raptors (BS50)
-        {14,  110, 1130},   -- Wild Wild Whiskers (BS60)
+        {14,  110, 1130},   -- Wild Wild Whiskers (BS60) -- TODO: should use petrifactive breath more often than other mobskill. Message before spellcasting.
      -- {15,  111, 1175},   -- Seasons Greetings (KS30)
      -- {16,  112, 1178},   -- Royale Ramble (KS30)
      -- {17,  113, 1180},   -- Moa Constrictors (KS30)
@@ -467,7 +467,7 @@ function checkReqs(player, npc, bfid, registrant)
         [   6] = function() return ( mjob == dsp.job.BLM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BLM LB5)
         [   7] = function() return ( mjob == dsp.job.RNG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RNG LB5)
         [  20] = function() return ( player:hasKeyItem(dsp.ki.SOUL_GEM_CLASP)                                                                              ) end, -- Quest: Beyond Infinity
-        [  32] = function() return ( sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and ((stc and missionStatus <= 2) or (not stc and natStat == 2))                    ) end, -- Sandy 1-3: Save the Children
+        [  32] = function() return ( sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and ((stc and natStat <= 2) or (not stc and natStat == 2))                    ) end, -- Sandy 1-3: Save the Children
         [  33] = function() return ( player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY)                                                                         ) end, -- Quest: The Holy Crest
         [  64] = function() return ( (sandy == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and natStat == 10                         ) end, -- Mission 2-3
         [  67] = function() return ( basty == dsp.mission.id.bastok.ON_MY_WAY and natStat == 2                                                                            ) end, -- Basty 7-2: On My Way
@@ -647,7 +647,7 @@ function checkSkip(player, bfid)
         [   0] = function() return ( mission2_3a                                                                                                                            ) end, -- Mission 2-3
         [   3] = function() return ( player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.THE_SECRET_WEAPON) or (sandy == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") > 2)    ) end, -- Sandy 7-2: The Secret Weapon
         [  32] = function() return ( player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.SAVE_THE_CHILDREN) or (sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and natStat > 2)                                ) end, -- Sandy 1-3: Save the Children
-        [  33] = function() return ( player:hasCompleteQuest(SANDORIA, dsp.quest.id.sandoria.THE_HOLY_CREST)                                                                                      ) end, -- Quest: The Holy Crest
+        [  33] = function() return ( player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.THE_HOLY_CREST)                                                                                      ) end, -- Quest: The Holy Crest
         [  64] = function() return ( mission2_3b                                                                                                                            ) end, -- Mission 2-3
         [  67] = function() return ( player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.ON_MY_WAY) or (basty == dsp.mission.id.bastok.ON_MY_WAY and natStat > 2)                                                  ) end, -- Basty 7-2: On My Way
         [  96] = function() return ( mission2_3c                                                                                                                            ) end, -- Mission 2-3
@@ -655,7 +655,7 @@ function checkSkip(player, bfid)
         [ 160] = function() return ( player:hasCompletedMission(player:getNation(), 15) or (nat == 15 and natStat > 3)                                                      ) end, -- Mission 5-2
         [ 161] = function() return ( player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE) or (basty == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and natStat > 4)                    ) end, -- Basty 9-2: Where Two Paths Converge
         [ 192] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES)                                                                        ) end, -- ZM6: Through the Quicksand Caves
-        [ 224] = function() return ( player:hasCompleteQuest(WINDURST, dsp.quest.id.windurst.THE_MOONLIT_PATH) or player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON)                                          ) end, -- Quest: The Moonlit Path
+        [ 224] = function() return ( player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.THE_MOONLIT_PATH) or player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON)                                          ) end, -- Quest: The Moonlit Path
         [ 225] = function() return ( player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING) or (windy == dsp.mission.id.windurst.MOON_READING and natStat > 4)                                          ) end, -- Windy 9-2: Moon Reading
         [ 256] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER)                                                                          ) end, -- ZM8: Return to Delkfutt's Tower
         [ 288] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Hume)
@@ -664,18 +664,18 @@ function checkSkip(player, bfid)
         [ 291] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Elvaan)
         [ 292] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Galka)
         [ 320] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.THE_CELESTIAL_NEXUS)                                                                                ) end, -- ZM16: The Celestial Nexus
-        [ 416] = function() return ( player:hasCompleteQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WIND) or player:hasKeyItem(dsp.ki.WHISPER_OF_GALES)                                                ) end, -- Quest: Trial by Wind
-        [ 448] = function() return ( player:hasCompleteQuest(OTHER_AREAS, dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING) or player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS)                                       ) end, -- Quest: Trial by Lightning
-        [ 480] = function() return ( player:hasCompleteQuest(SANDORIA, dsp.quest.id.sandoria.TRIAL_BY_ICE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FROST)                                                 ) end, -- Quest: Trial by Ice
+        [ 416] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WIND) or player:hasKeyItem(dsp.ki.WHISPER_OF_GALES)                                                ) end, -- Quest: Trial by Wind
+        [ 448] = function() return ( player:hasCompletedQuest(OTHER_AREAS, dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING) or player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS)                                       ) end, -- Quest: Trial by Lightning
+        [ 480] = function() return ( player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.TRIAL_BY_ICE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FROST)                                                 ) end, -- Quest: Trial by Ice
         [ 512] = function() return ( player:hasCompletedMission(player:getNation(), 14) or (nat == 14 and natStat > 11)                                                     ) end, -- Mission 5-1
         [ 516] = function() return ( player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT) or (sandy == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and natStat > 4)                        ) end, -- Sandy 9-2: The Heir to the Light
-        [ 544] = function() return ( player:hasCompleteQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_FIRE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES)                                               ) end, -- Quest: Trial by Fire
-        [ 576] = function() return ( player:hasCompleteQuest(BASTOK, dsp.quest.id.bastok.TRIAL_BY_EARTH) or player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS)                                               ) end, -- Quest: Trial by Earth
-        [ 608] = function() return ( player:hasCompleteQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WATER) or player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES)                                               ) end, -- Quest: Trial by Water
+        [ 544] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_FIRE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES)                                               ) end, -- Quest: Trial by Fire
+        [ 576] = function() return ( player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.TRIAL_BY_EARTH) or player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS)                                               ) end, -- Quest: Trial by Earth
+        [ 608] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WATER) or player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES)                                               ) end, -- Quest: Trial by Water
         [ 640] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THREE_PATHS) or (cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") > 6)                         ) end, -- PM5-3 U3: Flames for the Dead
         [ 672] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THREE_PATHS) or (cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") > 5)                         ) end, -- PM5-3 U2: Head Wind
         [ 704] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED) or (cop == dsp.mission.id.cop.DARKNESS_NAMED and copStat > 2)                                             ) end, -- PM3-5: Darkness Named
-        [ 706] = function() return ( player:hasCompleteQuest(WINDURST, dsp.quest.id.windurst.WAKING_DREAMS) or player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS)                                               ) end, -- Quest: Waking Dreams
+        [ 706] = function() return ( player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.WAKING_DREAMS) or player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS)                                               ) end, -- Quest: Waking Dreams
         [ 736] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THREE_PATHS) or (cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") > 5)                    ) end, -- PM5-3 L3: A Century of Hardship
         [ 768] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)                                               ) end, -- PM1-3: The Mothercrystals
         [ 800] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)                                                 ) end, -- PM1-3: The Mothercrystals

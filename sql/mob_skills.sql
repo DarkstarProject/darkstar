@@ -1491,7 +1491,7 @@ INSERT INTO `mob_skills` VALUES (1647,875,'berserk',0,7.0,2000,1500,1,0,0,0,0,0,
 -- INSERT INTO `mob_skills` VALUES (1668,1412,'slipstream',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1669,1413,'turbulence',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1670,1414,'tentacle',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1671,1415,'ink_jet',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1671,202,'ink_jet_alt',0,7.0,2000,0,4,16,0,3,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1672,1416,'hard_membrane',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1673,1417,'cross_attack',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1674,1418,'regeneration',0,7.0,2000,1500,4,0,0,0,0,0,0);
