@@ -8734,8 +8734,8 @@ inline int32 CLuaBaseEntity::checkKillCredit(lua_State *L)
 
     bool credit = false;
     int lvlDiff = (int)(PMob->GetMLevel()) - (int)(PChar->GetMLevel());
-    int maxDiff = (lua_isnil(L, 2) || !lua_isnumber(L, 2)) ? (int)lua_tonumber(L, 2) : 15;
-    float range = (lua_isnil(L, 3) || !lua_isnumber(L, 3)) ? (float)lua_tonumber(L, 3) : 100;
+    int maxDiff = (!lua_isnil(L, 2) && lua_isnumber(L, 2)) ? (int)lua_tonumber(L, 2) : 15;
+    float range = (!lua_isnil(L, 3) && lua_isnumber(L, 3)) ? (float)lua_tonumber(L, 3) : 100;
 
     if (charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel()) && distance(PMob->loc.p, PChar->loc.p) < range && lvlDiff < maxDiff)
     {
