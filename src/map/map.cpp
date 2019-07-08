@@ -1342,7 +1342,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "fishing_daily_limit") == 0)
         {
-        map_config.fishing_daily_limit = atoi(w2);
+            map_config.fishing_daily_limit = atoi(w2);
         }
         else
         {
