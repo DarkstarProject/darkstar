@@ -26,7 +26,6 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    printf("csid: %s option: %s", csid, option)
     if (csid == 6 or csid == 7) and option == 1 then
         player:setVar("SOA", 0)
         player:completeMission(SOA,dsp.mission.id.soa.ARCIELA_APPEARS_AGAIN)
