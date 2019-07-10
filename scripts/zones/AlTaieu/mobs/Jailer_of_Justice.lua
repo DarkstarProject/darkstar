@@ -30,10 +30,6 @@ function onMobFight(mob, target)
     end
 end
 
-function onMobDespawn(mob)
-    for i = 1,6 do DespawnMob(mob:getID() + i) end
-end
-
 function onMobDeath(mob, player, isKiller)
     for i = 1,6 do DespawnMob(mob:getID() + i) end
 end
