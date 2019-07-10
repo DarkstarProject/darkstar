@@ -11,17 +11,11 @@ require("scripts/globals/npc_util")
 function onTrade(player,npc,trade)
     if npcUtil.tradeHas(trade, {1853, 1854, 1855}) and npcUtil.popFromQM(player, npc, ID.mob.JAILER_OF_JUSTICE) then
         player:confirmTrade()
-        SpawnMob(ID.mob.JAILER_OF_JUSTICE):updateClaim(player)
     end
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.JAILER_SPEACH +6)
-    player:messageSpecial(ID.text.JAILER_SPEACH +7)
-    player:messageSpecial(ID.text.JAILER_SPEACH +8)
-    player:messageSpecial(ID.text.JAILER_SPEACH +9)
-    player:messageSpecial(ID.text.JAILER_SPEACH +10)
-    player:messageSpecial(ID.text.JAILER_SPEACH +11)
+    player:startEvent(201)
 end
 
 function onEventUpdate(player,csid,option)

@@ -19,7 +19,6 @@ zones[dsp.zone.ALTAIEU] =
         QUASILUMIN_01           = 7365, -- This is Al'Taieu. The celestial capital overflowing with the blessings of Altana.
         NOTHING_OF_INTEREST     = 7475, -- There is nothing of interest here.
         OMINOUS_SHADOW          = 7476, -- An ominous shadow falls over you...
-        JAILER_SPEACH           = 7525, -- A distant voice emanates from the depths of your soul.
         HOMEPOINT_SET           = 7564, -- Home point set!
     },
     mob =
