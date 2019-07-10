@@ -19,6 +19,12 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
+    player:messageSpecial(ID.text.JAILER_SPEACH +18)
+    player:messageSpecial(ID.text.JAILER_SPEACH +19)
+    player:messageSpecial(ID.text.JAILER_SPEACH +20)
+    player:messageSpecial(ID.text.JAILER_SPEACH +21)
+    player:messageSpecial(ID.text.JAILER_SPEACH +22)
+    player:messageSpecial(ID.text.JAILER_SPEACH +23)
 end
 
 function onEventUpdate(player,csid,option)
