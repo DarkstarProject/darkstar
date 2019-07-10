@@ -92,16 +92,12 @@ uint16 getPlayerFishingSkill(CCharEntity* PChar)
     // player skill
     skill += PChar->RealSkills.skill[SKILL_FISHING];
 
-#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
     ShowDebug(CL_CYAN"Player fishing skill = %u\n" CL_RESET, skill);
-#endif
 
     // mod bonus
     skill += PChar->getMod(Mod::FISH)*10;
 
-#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
     ShowDebug(CL_CYAN"Player fishing skill with mod bonus = %u\n" CL_RESET, skill);
-#endif
 
     return skill;
 }
