@@ -54,7 +54,7 @@ end
 
 function onRegionEnter(player,region)
     if region:GetRegionID() == 1 then
-        if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and player:getVar("Awakening_Jeuno") == 1 then
+        if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and player:getVar("ZilartStatus") < 2 then
             player:startEvent(20)
         end
     end
@@ -115,7 +115,7 @@ function onEventFinish(player, csid, option)
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
     elseif csid == 20 then
-        player:addVar("ZilartStatus", 1)
+        player:addVar("ZilartStatus", 2)
         player:setVar("Awakening_Jeuno", 0)
     elseif csid == 10094 then
         player:completeMission(ACP,dsp.mission.id.acp.A_CRYSTALLINE_PROPHECY)

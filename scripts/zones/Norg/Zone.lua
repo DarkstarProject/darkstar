@@ -27,7 +27,7 @@ function onZoneIn(player, prevZone)
     end
     if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_NEW_FRONTIER then
         cs = 1
-    elseif player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and player:getVar("Awakening_Norg") == 1 then
+    elseif player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and (player:getVar("ZilartStatus") == 0 or player:getVar("ZilartStatus") == 2) then
         cs = 176
     end
 
@@ -47,6 +47,5 @@ function onEventFinish(player, csid, option)
         player:addMission(ZILART,dsp.mission.id.zilart.WELCOME_TNORG)
     elseif csid == 176 then
         player:addVar("ZilartStatus", 1)
-        player:setVar("Awakening_Norg", 0)
     end
 end

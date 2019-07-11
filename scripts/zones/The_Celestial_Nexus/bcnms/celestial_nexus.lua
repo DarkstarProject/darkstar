@@ -54,8 +54,6 @@ function onEventFinish(player, csid, option)
             player:addMission(ZILART,dsp.mission.id.zilart.AWAKENING)
             player:addTitle(dsp.title.BURIER_OF_THE_ILLUSION)
             player:setVar("ZilartStatus",0)
-            player:setVar("Awakening_Jeuno", 1)
-            player:setVar("Awakening_Norg", 1)
         end
         -- You will be transported to the Hall of the Gods
         player:setPos(0,-18,137,64,251)

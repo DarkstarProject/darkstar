@@ -62,7 +62,7 @@ function onRegionEnter(player, region)
                     player:startEvent(143)
                 end
             end
-        elseif player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SHADOWS_OF_THE_DEPARTED) == QUEST_AVAILABLE and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_COMPLETED and player:getVar("ZilartStatus") == 2 then
+        elseif player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SHADOWS_OF_THE_DEPARTED) == QUEST_AVAILABLE and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_COMPLETED and player:getVar("ZilartStatus") == 3 then
             player:startEvent(161)
         elseif player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SHADOWS_OF_THE_DEPARTED) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.PROMYVION_HOLLA_SLIVER) and player:hasKeyItem(dsp.ki.PROMYVION_DEM_SLIVER) and player:hasKeyItem(dsp.ki.PROMYVION_MEA_SLIVER) then
             player:startEvent(162)
