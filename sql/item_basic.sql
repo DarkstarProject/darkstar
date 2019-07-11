@@ -3588,6 +3588,7 @@ INSERT INTO `item_basic` VALUES (3728,0,'ullegore_statue','ullegore_statue',1,61
 INSERT INTO `item_basic` VALUES (3729,0,'light_chest','light_chest',1,4,34,0,0);
 INSERT INTO `item_basic` VALUES (3730,0,'bulky_coffer','bulky_coffer',1,36,34,0,0);
 INSERT INTO `item_basic` VALUES (3731,0,'azure_chest','azure_chest',1,36,34,0,0);
+INSERT INTO `item_basic` VALUES (3732,0,'crimson_chest','crimson_chest',1,28736,0,1,0);
 INSERT INTO `item_basic` VALUES (3735,0,'aurum_coffer','aurum_coffer',1,28752,0,0,0);
 INSERT INTO `item_basic` VALUES (3736,0,'well','well',1,28752,0,0,0);
 INSERT INTO `item_basic` VALUES (3737,0,'doll_stand','doll_stand',1,61520,0,1,0);
