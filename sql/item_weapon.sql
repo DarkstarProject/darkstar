@@ -4712,7 +4712,7 @@ INSERT INTO `item_weapon` VALUES (22128,'raetic_bow_+1',25,0,242,0,0,1,1,351,211
 INSERT INTO `item_weapon` VALUES (22129,'yoichinoyumi',25,0,269,0,0,1,1,524,303,0);       -- DMG:303 Delay:524
 INSERT INTO `item_weapon` VALUES (22130,'gandiva',25,0,269,0,0,1,1,490,286,0);            -- DMG:286 Delay:490
 INSERT INTO `item_weapon` VALUES (22131,'fail-not',25,0,269,0,0,1,1,600,330,0);           -- DMG:330 Delay:600
-INSERT INTO `item_weapon` VALUES (22132,'artemiss_bow_+',25,0,0,0,0,1,1,351,2,0);         -- DMG:2 Delay:351
+INSERT INTO `item_weapon` VALUES (22132,'artemiss_bow_+1',25,0,0,0,0,1,1,351,2,0);         -- DMG:2 Delay:351
 INSERT INTO `item_weapon` VALUES (22134,'holliday',26,1,242,0,0,1,1,600,107,0);
 INSERT INTO `item_weapon` VALUES (22135,'arasy_gun',26,1,242,0,0,1,1,600,107,0);
 INSERT INTO `item_weapon` VALUES (22136,'arasy_gun_+1',26,1,242,0,0,1,1,582,108,0);
