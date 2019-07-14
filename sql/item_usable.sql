@@ -2214,6 +2214,15 @@ INSERT INTO `item_usable` VALUES (21269,'armageddon',1,1,55,0,1,10,3600,0);
 -- INSERT INTO `item_usable` VALUES (22020,'jingly_rod_+1',1,1,55,0,1,30,3600,0);   -- Costume: lamb or Chacharoon
 INSERT INTO `item_usable` VALUES (22115,'yoichinoyumi',1,1,55,0,1,10,3600,0);
 INSERT INTO `item_usable` VALUES (22116,'gandiva',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22117,'fail-not',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22129,'yoichinoyumi',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22130,'gandiva',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22131,'fail-not',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22139,'gastraphetes',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22140,'annihilator',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22141,'death_penalty',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22142,'armageddon',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22143,'fomalhaut',1,1,55,0,1,10,3600,0);
 INSERT INTO `item_usable` VALUES (25585,'black_chocobo_cap',1,8,79,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (26517,'shadow_lord_shirt',1,8,79,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (26720,'sheep_cap_+1',1,2,55,0,1,30,86400,0);
