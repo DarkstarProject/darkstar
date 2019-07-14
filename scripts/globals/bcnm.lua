@@ -481,7 +481,7 @@ function checkReqs(player, npc, bfid, registrant)
         [ 102] = function() return ( mjob == dsp.job.WHM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WHM LB5)
         [ 103] = function() return ( mjob == dsp.job.SMN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SMN LB5)
         [ 128] = function() return ( roz == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH                                                                                 ) end, -- ZM4: The Temple of Uggalepih
-        [ 160] = function() return ( mission == 15 and natStat == 3                                                                                 ) end, -- Mission 5-2
+        [ 160] = function() return ( nat == 15 and natStat == 3                                                                                 ) end, -- Mission 5-2
         [ 161] = function() return ( basty == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1                                           ) end, -- Basty 9-2: Where Two Paths Converge
         [ 163] = function() return ( mjob == dsp.job.SCH and mlvl >= 66                                                                                ) end, -- Quest: Survival of the Wisest (SCH LB5)
         [ 192] = function() return ( roz == dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES                                                                             ) end, -- ZM6: Through the Quicksand Caves
@@ -680,7 +680,7 @@ function checkSkip(player, bfid)
         [ 768] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)                                               ) end, -- PM1-3: The Mothercrystals
         [ 800] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)                                                 ) end, -- PM1-3: The Mothercrystals
         [ 832] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_MEA)                                                 ) end, -- PM1-3: The Mothercrystals
-        [ 864] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.DESIRES_OF_EMPTINESS) (cop == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and copStat > 8)                                    ) end, -- PM5-2: Desires of Emptiness
+        [ 864] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.DESIRES_OF_EMPTINESS) or (cop == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and copStat > 8)                                    ) end, -- PM5-2: Desires of Emptiness
         [ 896] = function() return ( sofStat == QUEST_COMPLETED or (sofStat == QUEST_ACCEPTED and player:getVar("StormsOfFate") > 2)                                        ) end, -- Quest: Storms of Fate
         [ 960] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.ANCIENT_VOWS)                                                                                          ) end, -- PM2-5: Ancient Vows
         [ 961] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_SAVAGE) or (cop == dsp.mission.id.cop.THE_SAVAGE and copStat > 1)                                                     ) end, -- PM4-2: The Savage
