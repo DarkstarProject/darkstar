@@ -53,6 +53,11 @@ CBaseEntity::CBaseEntity()
 
 CBaseEntity::~CBaseEntity()
 {
+    if (destructing)
+        return;
+
+    destructing = true;
+
     if (PBattlefield)
         PBattlefield->RemoveEntity(this, BATTLEFIELD_LEAVE_CODE_WARPDC);
 }
