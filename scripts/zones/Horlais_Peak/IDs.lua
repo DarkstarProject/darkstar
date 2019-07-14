@@ -28,6 +28,8 @@ zones[dsp.zone.HORLAIS_PEAK] =
     },
     mob =
     {
+        HELLTAIL_HARRY_OFFSET = 17346645,
+        FIGHTING_SHEEP_OFFSET = 17346684,
     },
     npc =
     {

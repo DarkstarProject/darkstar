@@ -2286,7 +2286,10 @@ INSERT INTO `mob_skill_lists` VALUES ('Morimar',491,3161);
 INSERT INTO `mob_skill_lists` VALUES ('Morimar',491,3162);
 INSERT INTO `mob_skill_lists` VALUES ('Morimar',491,3163);
 INSERT INTO `mob_skill_lists` VALUES ('Morimar',491,3164);
--- 492: free
+INSERT INTO `mob_skill_lists` VALUES ('Sobbing_Eyes',492,437); -- death_ray
+INSERT INTO `mob_skill_lists` VALUES ('Sobbing_Eyes',492,438); -- hex_eye
+INSERT INTO `mob_skill_lists` VALUES ('Sobbing_Eyes',492,439); -- petro_gaze
+INSERT INTO `mob_skill_lists` VALUES ('Sobbing_Eyes',492,440); -- catharsis
 INSERT INTO `mob_skill_lists` VALUES ('Ashrakk',493,3363);
 INSERT INTO `mob_skill_lists` VALUES ('Ashrakk',493,3364);
 INSERT INTO `mob_skill_lists` VALUES ('Ashrakk',493,3365);
@@ -2305,7 +2308,11 @@ INSERT INTO `mob_skill_lists` VALUES ('Astral_Flow_Pet',495,916);
 INSERT INTO `mob_skill_lists` VALUES ('Astral_Flow_Pet',495,917);
 INSERT INTO `mob_skill_lists` VALUES ('Astral_Flow_Pet',495,918);
 INSERT INTO `mob_skill_lists` VALUES ('ChanequeMandragora',496,2210);
--- 497: free
+INSERT INTO `mob_skill_lists` VALUES ('Gerjis',497,270); -- roar
+INSERT INTO `mob_skill_lists` VALUES ('Gerjis',497,271); -- razor_fang
+INSERT INTO `mob_skill_lists` VALUES ('Gerjis',497,273); -- claw_cyclone
+INSERT INTO `mob_skill_lists` VALUES ('Gerjis',497,1322); -- gerjis_grip
+-- INSERT INTO `mob_skill_lists` VALUES ('Gerjis',497,1681); -- crossthrash
 -- 498: Cyranuce_M_Cutauleon
 -- 499 to 699: free
 INSERT INTO `mob_skill_lists` VALUES ('Demonic_Tiphia',700,334);

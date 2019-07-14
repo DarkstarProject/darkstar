@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Horlais Peak
--- MOB: Longarmed Gottditt
--- BCNM Fight: Dismemberment Brigade
+--  Mob: Bisan
+-- BCNM: Carapace Combatants
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn (mob)

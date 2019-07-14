@@ -1,13 +1,13 @@
 -----------------------------------
 -- Area: Horlais Peak
--- MOB: Longarmed Gottditt
--- BCNM Fight: Dismemberment Brigade
+--  Mob: Helltail Harry
+-- BCNM: Tails of Woe
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn (mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, GetMobByID(mob:getID() - 1):getShortID())
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID())
 end
 
 function onMobDeath(mob, player, isKiller)

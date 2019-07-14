@@ -259,7 +259,7 @@ INSERT INTO `mob_skills` VALUES (435,807,'palsy_pollen',4,10.0,2000,1500,4,0,0,0
 INSERT INTO `mob_skills` VALUES (436,808,'gloeosuccus',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (437,181,'death_ray',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (438,182,'hex_eye',4,10.0,2000,500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (439,183,'petro_gaze',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (439,183,'petro_gaze',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (440,184,'catharsis',0,7.0,2000,1500,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (441,892,'microquake',0,3.0,2000,1500,4,0,0,0,0,0,0); -- polearm form only
 INSERT INTO `mob_skills` VALUES (442,186,'bubble_shower',1,12.0,2000,1500,4,0,0,0,0,0,0);
@@ -1142,7 +1142,7 @@ INSERT INTO `mob_skills` VALUES (1317,975,'mucus_spread',1,10,2000,1500,4,0,0,0,
 INSERT INTO `mob_skills` VALUES (1319,977,'epoxy_spread',1,10,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1320,1064,'wz_eyes_04',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1321,1065,'wz_crawl_03',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1322,1066,'gerjis'_grip',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1322,14,'gerjis_grip',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1323,1067,'wz_bees_04',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1324,1068,'debilitating_drone',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1325,1069,'wz_trsap_03',0,7.0,2000,1500,4,0,0,0,0,0,0);
