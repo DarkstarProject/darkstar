@@ -70,7 +70,7 @@ local loot =
             {itemid =   652, droprate =  100}, -- Steel Ingot
         },
         {
-            {itemid = 15282, droprate =  925}, -- nothing (50%)
+            {itemid =     0, droprate =  925}, -- nothing (50%)
             {itemid = 15282, droprate =   50}, -- Katana Obi
             {itemid = 15275, droprate =   75}, -- Rapier Belt
             {itemid = 15278, droprate =  175}, -- Scythe Belt
