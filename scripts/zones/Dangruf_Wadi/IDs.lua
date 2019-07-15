@@ -40,10 +40,11 @@ zones[dsp.zone.DANGRUF_WADI] =
     {
         TEPORINGO_PH  =
         {
-            [17559583] = 17559584, -- -189,3,79
+            [17559583] = 17559584,
         },
-        GEYSER_LIZARD = 17559558,
-        CHOCOBOLEECH  = 17559869,
+        GEYSER_LIZARD       = 17559558,
+        CHOCOBOLEECH        = 17559869,
+        APPARATUS_ELEMENTAL = 17559870,
     },
     npc =
     {

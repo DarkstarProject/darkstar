@@ -30,8 +30,9 @@ zones[dsp.zone.GUSGEN_MINES] =
     },
     mob =
     {
-        BLIND_MOBY      = 17580038,
-        WANDERING_GHOST = 17580337,
+        BLIND_MOBY          = 17580038,
+        WANDERING_GHOST     = 17580337,
+        APPARATUS_ELEMENTAL = 17580340,
     },
     npc =
     {

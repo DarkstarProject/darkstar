@@ -32,11 +32,12 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
             [17588276] = 17588278,
             [17588277] = 17588278,
         },
-        ICHOROUS_IRE   = 17588225,
-        ARGUS          = 17588674,
-        LEECH_KING     = 17588685,
-        WYRMFLY_OFFSET = 17588701,
-        LOST_SOUL      = 17588706,
+        ICHOROUS_IRE        = 17588225,
+        ARGUS               = 17588674,
+        LEECH_KING          = 17588685,
+        WYRMFLY_OFFSET      = 17588701,
+        APPARATUS_ELEMENTAL = 17588704,
+        LOST_SOUL           = 17588706,
     },
     npc =
     {
