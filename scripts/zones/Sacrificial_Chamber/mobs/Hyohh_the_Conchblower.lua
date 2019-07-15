@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Cyaneous-toed_Yallberry
--- BCNM: Jungle Boogymen
+--  MOB: Hyohh the Conchblower
+-- BCNM: Amphibian Assault
 -----------------------------------
-mixins =
-{
-    require("scripts/mixins/families/tonberry"),
-    require("scripts/mixins/job_special")
-}
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
 -----------------------------------
 

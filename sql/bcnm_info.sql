@@ -117,8 +117,8 @@ INSERT INTO `bcnm_info` VALUES (114,146,'v_formation','nobody',0,900,900,0,3,0,1
 INSERT INTO `bcnm_info` VALUES (115,146,'avian_apostates','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (116,146,'beyond_infinity','nobody',0,600,600,0,6,0,6,0);
 INSERT INTO `bcnm_info` VALUES (128,163,'temple_of_uggalepih','nobody',0,1800,1800,99,6,0,5,1);
-INSERT INTO `bcnm_info` VALUES (129,163,'jungle_boogymen','nobody',0,1800,1800,60,6,10,15,0);
-INSERT INTO `bcnm_info` VALUES (130,163,'amphibian_assault','nobody',0,1800,1800,60,6,156,15,0);
+INSERT INTO `bcnm_info` VALUES (129,163,'jungle_boogymen','nobody',0,1800,1800,60,6,129,15,0);
+INSERT INTO `bcnm_info` VALUES (130,163,'amphibian_assault','nobody',0,1800,1800,60,6,130,15,0);
 INSERT INTO `bcnm_info` VALUES (131,163,'project_shantottofication','nobody',0,1800,1800,99,6,0,5,0);
 INSERT INTO `bcnm_info` VALUES (132,163,'whom_wilt_thou_call','nobody',0,1800,1800,0,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (160,165,'shadow_lord_battle','nobody',0,1800,1800,90,6,0,5,1);
