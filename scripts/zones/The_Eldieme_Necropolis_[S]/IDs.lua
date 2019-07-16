@@ -19,7 +19,7 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS_S] =
         NAMES_CARVED_ON_STONE         = 7598, -- The names of the deceased in this area are carved upon the stone.
         YOU_CAN_NOW_BECOME_A_SCHOLAR  = 7712, -- You can now become a scholar!
         YOU_LEARN_EMBRAVA_AND_KAUSTRA = 7896, -- <name> learns Embrava and Kaustra!
-        ITEM_DELIVERY_DIALOG          = 7902  -- Have something to send?
+        ITEM_DELIVERY_DIALOG          = 7902, -- Have something to send?
     },
     mob =
     {
