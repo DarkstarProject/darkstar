@@ -1777,15 +1777,15 @@ INSERT INTO `mob_skills` VALUES (1953,1347,'proboscis',4,10.0,2000,1000,4,0,0,0,
 INSERT INTO `mob_skills` VALUES (1954,1348,'erosion_dust',1,15.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1955,1349,'exuviation',0,7.0,2000,1000,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1956,1350,'fire_break',4,10.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1957,1701,'frog_song',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1957,1359,'frog_song',1,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1958,1360,'magic_hammer',0,16.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1959,1361,'water_bomb',1,16.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1960,1362,'frog_cheer',0,7.0,2000,1500,2,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1961,1705,'providence',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1962,1706,'frog_chorus',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1963,1327,'mind_blast',4,10.0,2000,1000,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1964,1708,'immortal_mind',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1965,1709,'immortal_shield',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1964,1328,'immortal_mind',0,7.0,2000,1500,1,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1965,1329,'immortal_shield',0,7.0,2000,1500,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1966,1330,'mind_purge',0,7.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1967,1331,'tribulation',1,15.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1968,1332,'immortal_anathema',1,15.0,2000,1000,4,0,0,0,0,0,0);
