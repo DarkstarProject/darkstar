@@ -211,7 +211,7 @@ INSERT INTO `bcnm_info` VALUES (611,211,'sugar-coated_directive','nobody',0,1800
 INSERT INTO `bcnm_info` VALUES (640,6,'flames_for_the_dead','nobody',0,1800,1800,60,6,0,5,0);
 INSERT INTO `bcnm_info` VALUES (641,6,'follow_the_white_rabbit','nobody',0,1800,1800,75,18,0,15,0);
 INSERT INTO `bcnm_info` VALUES (642,6,'when_hell_freezes_over','nobody',0,900,900,75,18,0,15,0);
-INSERT INTO `bcnm_info` VALUES (643,6,'brothers','nobody',0,1800,1800,75,18,180,15,0);
+INSERT INTO `bcnm_info` VALUES (643,6,'brothers','nobody',0,1800,1800,75,18,643,15,0);
 INSERT INTO `bcnm_info` VALUES (644,6,'holy_cow','nobody',0,1800,1800,75,18,0,15,0);
 INSERT INTO `bcnm_info` VALUES (672,8,'head_wind','nobody',0,1800,1800,50,6,0,5,1);
 INSERT INTO `bcnm_info` VALUES (673,8,'like_the_wind','nobody',0,900,900,75,18,179,15,0);
