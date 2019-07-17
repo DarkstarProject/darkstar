@@ -1158,7 +1158,7 @@ INSERT INTO `mob_skills` VALUES (1330,1074,'hoof_volley',0,7.0,2000,1500,4,0,0,2
 -- INSERT INTO `mob_skills` VALUES (1335,1079,'toxic_pick',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1336,289,'frenzied_rage',0,7.0,2000,1500,1,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1337,1081,'charm',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1338,1082,'infernal_pestilence',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1338,234,'infernal_pestilence',4,10.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1339,1083,'bane',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1340,1084,'crossthrash',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1341,1085,'knife_edge_circle',0,7.0,2000,1500,4,0,0,0,0,0,0);

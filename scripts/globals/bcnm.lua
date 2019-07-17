@@ -388,15 +388,15 @@ local battlefields = {
         { 5,  517, 1432},   -- Shattering Stars (PLD LB5)
         { 6,  518, 1433},   -- Shattering Stars (DRK LB5)
         { 7,  519, 1435},   -- Shattering Stars (BRD LB5)
-     -- { 8,  520, 1130},   -- Demolition Squad (BS60)
-     -- { 9,  521, 1552},   -- Die by the Sword (BS30)
-     -- {10,  522, 1552},   -- Let Sleeping Dogs Lie (BS30)
-     -- {11,  523, 1130},   -- Brothers D'Aurphe (BS60)
-     -- {12,  524, 1131},   -- Undying Promise (BS40)
-     -- {13,  525, 1131},   -- Factory Rejects (BS40)
-     -- {14,  526, 1177},   -- Idol Thoughts (BS50)
-     -- {15,  527, 1177},   -- An Awful Autopsy (BS50)
-     -- {16,  528, 1130},   -- Celery (BS60)
+        { 8,  520, 1130},   -- Demolition Squad (BS60)
+     -- { 9,  521, 1552},   -- Die by the Sword (BS30) -- TODO: mob damage type rotation; mobskills furious flurry, smite of fury, whispers of ire
+        {10,  522, 1552},   -- Let Sleeping Dogs Die (BS30)
+        {11,  523, 1130},   -- Brothers D'Aurphe (BS60)
+        {12,  524, 1131},   -- Undying Promise (BS40) -- TODO: model size increases with each reraise
+        {13,  525, 1131},   -- Factory Rejects (BS40) -- TODO: dolls grow size/power based on hidden timer. (wikis disagree on TP moves? factory immune? factory model?)
+        {14,  526, 1177},   -- Idol Thoughts (BS50)
+        {15,  527, 1177},   -- An Awful Autopsy (BS50) -- TODO: mobskill Infernal Pestilence
+     -- {16,  528, 1130},   -- Celery (BS60) -- TODO: mobs do not have their specific weaknesses. mobskill Bane.
      -- {17,  529,    0},   -- Mirror Images (Quest)
         {18,  530, 2556},   -- A Furious Finale (DNC LB5)
      -- {19,  531,    0},   -- Clash of the Comrades (Quest)
