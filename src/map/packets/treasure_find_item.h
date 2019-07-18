@@ -41,7 +41,7 @@ class CTreasureFindItemPacket : public CBasicPacket
 {
 public:
 
-	CTreasureFindItemPacket(TreasurePoolItem* PItem, CBaseEntity* PMob, bool isOldItem, CBaseEntity* PEntity = nullptr);
+	CTreasureFindItemPacket(TreasurePoolItem* PItem, CBaseEntity* PEntity = nullptr, bool isOldItem);
 };
 
 #endif
