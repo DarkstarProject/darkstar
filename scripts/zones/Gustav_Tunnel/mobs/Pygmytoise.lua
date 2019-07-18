@@ -7,8 +7,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.MDEF, 250) -- "Highly resistant to magic damage"
-    mob:setMod(dsp.mod.THUNDERRES, 75) -- "Very resistant to Lightning damage"
+    mob:setMod(dsp.mod.DMGMAGIC, -50) -- "Highly resistant to magic damage"
 end
 
 function onMobDeath(mob, player, isKiller)
