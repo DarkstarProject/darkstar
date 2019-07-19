@@ -5,14 +5,6 @@
 require("scripts/globals/limbus");
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
   if   (IsMobDead(16929023)==true and IsMobDead(16929024)==true and IsMobDead(16929025)==true and
         IsMobDead(16929026)==true and IsMobDead(16929027)==true and IsMobDead(16929028)==true
@@ -30,10 +22,6 @@ function onMobEngaged(mob,target)
   GetMobByID(16929005):updateEnmity(target);
   GetMobByID(16929006):updateEnmity(target);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
           if (IsMobDead(16929005)==true and IsMobDead(16929006)==true and IsMobDead(16929007)==true) then

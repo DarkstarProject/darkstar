@@ -5,24 +5,12 @@
 require("scripts/globals/limbus");
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
  if (IsMobDead(16929046)==true) then
      mob:addStatusEffect(dsp.effect.REGAIN,7,3,0);
      mob:addStatusEffect(dsp.effect.REGEN,50,3,0);
   end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local mobX = mob:getXPos();

@@ -5,14 +5,6 @@
 require("scripts/globals/limbus");
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
     local mobID = mob:getID();
     if (mobID==16929030) then --Carbuncle (Central Temenos 2nd Floor)
@@ -58,10 +50,6 @@ function onMobEngaged(mob,target)
         mob:setMod(dsp.mod.DARKDEF,-128);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();

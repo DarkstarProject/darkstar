@@ -5,14 +5,6 @@
 require("scripts/globals/limbus");
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
    local mobID = mob:getID();
   if (mobID==16929031) then
@@ -23,10 +15,6 @@ function onMobEngaged(mob,target)
         GetMobByID(16929030):updateEnmity(target);
   end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
    local mobID = mob:getID();

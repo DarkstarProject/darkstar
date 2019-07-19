@@ -6,16 +6,8 @@
 
 require("scripts/globals/dynamis");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
 end;
@@ -25,10 +17,6 @@ end;
 
 
 
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 
