@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Ground Guzzler
+--  Mob: Ground Guzzler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

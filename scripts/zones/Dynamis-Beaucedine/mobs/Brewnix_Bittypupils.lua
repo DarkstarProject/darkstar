@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Brewnix_Bittypupils
+-- Area: Dynamis - Beaucedine
+--  Mob: Brewnix Bittypupils
 -----------------------------------
 mixins =
 {

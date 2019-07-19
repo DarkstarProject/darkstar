@@ -1,11 +1,12 @@
-----------------------------------
+-----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Erlik
+--  Mob: Erlik
 -- Note: Place holder Baobhan Sith
 -----------------------------------
 local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 require("scripts/globals/regimes")
 require("scripts/globals/mobs");
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 767, 2, dsp.regime.type.GROUNDS)

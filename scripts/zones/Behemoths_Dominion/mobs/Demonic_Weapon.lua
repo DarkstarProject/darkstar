@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Demonic Weapon
+--  Mob: Demonic Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

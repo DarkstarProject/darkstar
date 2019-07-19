@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier (111)
---  MOB: Tundra Tiger
+--  Mob: Tundra Tiger
 -- Note: PH for Nue, Kirata
 -----------------------------------
 local ID = require("scripts/zones/Beaucedine_Glacier/IDs");

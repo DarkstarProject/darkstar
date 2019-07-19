@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Slasher
+--  Mob: Tonberry Slasher
 -- Note: PH for Tawny-fingered Mugberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}

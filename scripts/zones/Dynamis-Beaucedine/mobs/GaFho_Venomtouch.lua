@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: GaFho_Venomtouch
+-- Area: Dynamis - Beaucedine
+--  Mob: GaFho Venomtouch
 -----------------------------------
 mixins =
 {

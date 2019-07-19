@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: BCNM
---  MOB: Lambton Worm
+-- Area: Everbloom Hollow
+--  Mob: Lambton Worm
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Acro Bat
+--  Mob: Acro Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

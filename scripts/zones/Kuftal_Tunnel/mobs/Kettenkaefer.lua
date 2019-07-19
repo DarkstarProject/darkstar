@@ -1,7 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Kuftal Tunnel (174)
 --   NM: Kettenkaefer
---   ID: 17490235
 -- Note: Popped by qm3
 -- !pos 204.052 10.25 96.414 174
 -- Involved in Quest: The Potential Within

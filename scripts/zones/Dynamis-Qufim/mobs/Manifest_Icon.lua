@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis-Qufim
---  NPC: Manifest_Icon
+--  Mob: Manifest Icon
 -----------------------------------
 require("scripts/globals/dynamis");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  MOB: Avatar Icon
+-- Area: Dynamis - Windurst
+--  Mob: Avatar Icon
 -- Map1 Position: http://images2.wikia.nocookie.net/__cb20090312004752/ffxi/images/8/84/Win1.jpg
 -- Map2 Position: http://images2.wikia.nocookie.net/__cb20090312004839/ffxi/images/6/61/Win2.jpg
 -----------------------------------

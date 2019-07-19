@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Exoray
+--  Mob: Exoray
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

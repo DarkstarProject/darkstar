@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Ghost_Clot
-
+--  Mob: Ghost Clot
 -----------------------------------
 
 function onMobEngaged(mob,target)

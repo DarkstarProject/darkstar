@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Machairodus
+--  Mob: Machairodus
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

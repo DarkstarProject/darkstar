@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: River Sahagin
+--  Mob: River Sahagin
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

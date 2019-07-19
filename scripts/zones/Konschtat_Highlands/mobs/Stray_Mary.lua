@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---   NM: Stray_Mary
+--   NM: Stray Mary
 -----------------------------------
 require("scripts/globals/titles")
 -----------------------------------

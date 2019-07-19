@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Demon_Pawn
+--  Mob: Demon Pawn
 -- Note: PH for Baronet Romwe
 -----------------------------------
 local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");

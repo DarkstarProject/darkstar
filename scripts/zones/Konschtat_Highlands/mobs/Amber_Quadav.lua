@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Amber Quadav
+--  Mob: Amber Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

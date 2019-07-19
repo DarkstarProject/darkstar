@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Wild_Karakul
+--  Mob: Wild Karakul
 -- Note: PH for Peallaidh
 -----------------------------------
 local ID = require("scripts/zones/Caedarva_Mire/IDs")

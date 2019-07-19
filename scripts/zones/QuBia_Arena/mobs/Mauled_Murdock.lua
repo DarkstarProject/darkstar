@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
---  MOB: Mauled Murdock
+--  Mob: Mauled Murdock
 -- BCNM: Celery
 -----------------------------------
 require("scripts/globals/status")

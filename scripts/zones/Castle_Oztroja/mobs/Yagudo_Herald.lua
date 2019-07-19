@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Herald
+--  Mob: Yagudo Herald
 -- Note: PH for Quu Domi the Gallant
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja/IDs")

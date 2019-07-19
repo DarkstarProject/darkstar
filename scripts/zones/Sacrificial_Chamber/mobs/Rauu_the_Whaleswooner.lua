@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Rauu the Whaleswooner
+--  Mob: Rauu the Whaleswooner
 -- BCNM: Amphibian Assault
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Galkarider_Retzpratz
+-- Area: Dynamis - Beaucedine
+--  Mob: Galkarider Retzpratz
 -----------------------------------
 mixins =
 {

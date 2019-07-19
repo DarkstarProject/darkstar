@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Wild Dhalmel
+--  Mob: Wild Dhalmel
 -- Note: PH for Serpopard Ishtar
 -----------------------------------
 local ID = require("scripts/zones/Tahrongi_Canyon/IDs")

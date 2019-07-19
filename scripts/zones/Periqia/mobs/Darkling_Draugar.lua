@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Periqia (Requiem)
---  MOB: DARKLING_DRAUGAR
+--  Mob: Darkling Draugar
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

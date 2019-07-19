@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Goblin Replica
+-- Area: Dynamis - Valkurm
+--  Mob: Goblin Replica
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/globals/status");

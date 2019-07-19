@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Lesser Manticore
+--  Mob: Lesser Manticore
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

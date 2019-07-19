@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Riverne Site A01
---  MOB: Carmine Dobsonfly
+-- Area: Riverne - Site A01
+--  Mob: Carmine Dobsonfly
 -----------------------------------
 local ID = require("scripts/zones/Riverne-Site_A01/IDs");
 require("scripts/globals/status");
@@ -31,7 +31,7 @@ function onMobDespawn(mob)
             allFliesDead = false;
         end
     end
-    
+
     if (allFliesDead) then
         local respawnTime = math.random(75600,86400);
         for i = ID.mob.CARMINE_DOBSONFLY_OFFSET, ID.mob.CARMINE_DOBSONFLY_OFFSET + 9 do

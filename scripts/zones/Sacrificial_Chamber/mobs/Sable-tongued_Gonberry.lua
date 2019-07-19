@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Sable-tongued_Gonberry
+--  Mob: Sable-tongued Gonberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 mixins =

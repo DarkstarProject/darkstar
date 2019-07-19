@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Ossuary Worm
+--  Mob: Ossuary Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

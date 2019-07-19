@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Gigas Sculptor
+--  Mob: Gigas Sculptor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

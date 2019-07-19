@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ul'Hpemde
+--  Mob: Ul'hpemde
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

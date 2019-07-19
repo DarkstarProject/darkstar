@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  MOB: Serjeant Tombstone
+-- Area: Dynamis - San d'Oria
+--  Mob: Serjeant Tombstone
 -- Map1 Position: http://www.dynamislounge.com/html/zone/frame_san1.htm
 -- Map2 Position: http://www.dynamislounge.com/html/zone/frame_san2.htm
 -----------------------------------

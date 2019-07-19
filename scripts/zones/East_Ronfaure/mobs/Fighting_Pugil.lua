@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Fighting Pugil
+--  Mob: Fighting Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

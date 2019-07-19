@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Gavotvut
+--  Mob: Gavotvut
 -- Involved in Quest: The Doorman
 -----------------------------------
 require("scripts/globals/settings");

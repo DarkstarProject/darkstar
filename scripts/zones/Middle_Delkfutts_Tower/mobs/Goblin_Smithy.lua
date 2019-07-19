@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Goblin Smithy
+--  Mob: Goblin Smithy
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Deloknok
+--  Mob: Deloknok
 -- Involved in Quest: The First Meeting
 -----------------------------------
 require("scripts/globals/keyitems");

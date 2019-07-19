@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Lamia Dartist
+--  Mob: Lamia Dartist
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------

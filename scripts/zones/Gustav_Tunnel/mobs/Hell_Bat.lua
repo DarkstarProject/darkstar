@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Hell Bat
+--  Mob: Hell Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

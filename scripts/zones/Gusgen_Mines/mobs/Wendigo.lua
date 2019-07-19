@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Wendigo
+--  Mob: Wendigo
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

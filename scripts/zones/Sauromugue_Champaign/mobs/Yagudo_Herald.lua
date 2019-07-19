@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Herald
+--  Mob: Yagudo Herald
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

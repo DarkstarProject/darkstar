@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Promyvion vahzl
+-- Area: Promyvion - Vahzl
 --   NM: Ponderer
 -----------------------------------
 require("scripts/globals/missions")

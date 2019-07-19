@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Icon Prototype
+-- Area: Dynamis - Xarcabard
+--  Mob: Icon Prototype
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/globals/msg");

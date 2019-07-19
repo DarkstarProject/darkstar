@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Volcanic Bomb
+--  Mob: Volcanic Bomb
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

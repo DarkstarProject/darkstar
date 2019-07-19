@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Soo_Jopo_the_Fiendking
+-- Area: Dynamis - Beaucedine
+--  Mob: Soo Jopo the Fiendking
 -----------------------------------
 mixins =
 {

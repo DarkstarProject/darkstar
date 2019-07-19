@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Misareaux_Coast
--- mob :Gigas Warwolf
+--  Mob: Gigas Warwolf
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
+-----------------------------------
 
 function onMobSpawn(mob)
     mob:setLocalVar("fomorHateAdj", -1);

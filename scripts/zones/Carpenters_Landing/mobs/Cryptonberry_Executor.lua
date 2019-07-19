@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---   NM: Cryptonberry_Executor
+--   NM: Cryptonberry Executor
 -- !pos 120.615 -5.457 -390.133 2
 -----------------------------------
 local ID = require("scripts/zones/Carpenters_Landing/IDs")

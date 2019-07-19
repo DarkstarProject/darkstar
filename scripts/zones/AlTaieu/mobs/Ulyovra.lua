@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ru_aern
+--  Mob: Ul'yovra
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Wadi Hare
+--  Mob: Wadi Hare
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

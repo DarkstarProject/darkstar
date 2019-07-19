@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Desert Spider
+--  Mob: Desert Spider
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

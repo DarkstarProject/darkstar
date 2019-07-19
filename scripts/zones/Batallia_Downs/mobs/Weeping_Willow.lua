@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Weeping Willow
+--  Mob: Weeping Willow
 -----------------------------------
 
 function onMobFight(mob,target)

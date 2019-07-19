@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Sauromugue Skink
+--  Mob: Sauromugue Skink
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

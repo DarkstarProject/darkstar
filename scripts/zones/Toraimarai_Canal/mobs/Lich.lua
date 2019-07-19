@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Lich
+-- Area: Toraimarai Canal
+--  Mob: Lich
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

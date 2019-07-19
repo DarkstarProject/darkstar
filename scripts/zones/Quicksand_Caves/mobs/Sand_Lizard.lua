@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sand Lizard
+--  Mob: Sand Lizard
 -- Note: PH for Nussknacker
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

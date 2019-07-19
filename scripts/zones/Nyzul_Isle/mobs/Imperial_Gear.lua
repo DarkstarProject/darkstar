@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle (Path of Darkness)
---  MOB: Imperial Gear
+--  Mob: Imperial Gear
 -----------------------------------
 local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");

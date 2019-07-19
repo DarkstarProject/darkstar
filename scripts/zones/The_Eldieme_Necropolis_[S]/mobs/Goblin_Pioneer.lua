@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Goblin_Pioneer
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Goblin Pioneer
 -----------------------------------
 
 -- -----------------------------------

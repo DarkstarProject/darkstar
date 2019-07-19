@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Vermilion-eared_Noberry
+--  Mob: Vermilion-eared Noberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 mixins =

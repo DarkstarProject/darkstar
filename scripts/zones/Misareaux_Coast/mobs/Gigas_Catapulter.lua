@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Gigas Catapulter
+--  Mob: Gigas Catapulter
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

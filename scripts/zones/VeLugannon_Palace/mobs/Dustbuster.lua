@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Dustbuster
+--  Mob: Dustbuster
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

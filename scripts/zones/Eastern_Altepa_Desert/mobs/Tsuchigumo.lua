@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Tsuchigumo
+--  Mob: Tsuchigumo
 -- Involved in Quest: 20 in Pirate Years
 -----------------------------------
 

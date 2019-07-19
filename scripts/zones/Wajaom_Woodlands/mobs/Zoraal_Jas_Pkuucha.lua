@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
---  MOB: Zoraal Ja's Pkuucha
+--  Mob: Zoraal Ja's Pkuucha
 -----------------------------------
 local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
 

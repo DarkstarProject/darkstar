@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Accursed Soldier
+--  Mob: Accursed Soldier
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

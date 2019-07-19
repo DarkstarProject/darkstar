@@ -1,7 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Bostaunieux Oubliette (167)
 --   NM: Bodach
---   ID: 17461479
 -- Note: Popped by qm1
 -- Involved in Quest: The Walls of Your Mind
 -- !pos 29 16 -140 167

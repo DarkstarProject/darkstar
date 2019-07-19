@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Ghelsba outpost
---  MOB: Toadsquab
+-- Area: Ghelsba Outpost
+--  Mob: Toadsquab
 -- BCNM: Toadal Recall
 -----------------------------------
 require("scripts/globals/status")

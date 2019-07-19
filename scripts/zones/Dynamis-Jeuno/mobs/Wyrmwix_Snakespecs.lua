@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Wyrmwix_Snakespecs
+-- Area: Dynamis - Jeuno
+--  Mob: Wyrmwix Snakespecs
 -----------------------------------
 mixins =
 {

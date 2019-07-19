@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Woodnix_Shrillwhistle
+-- Area: Dynamis - Buburimu
+--  Mob: Woodnix Shrillwhistle
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

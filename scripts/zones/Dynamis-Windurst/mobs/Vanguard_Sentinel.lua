@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Vanguard Sentinel
+-- Area: Dynamis - Windurst
+--  Mob: Vanguard Sentinel
 -----------------------------------
 mixins =
 {

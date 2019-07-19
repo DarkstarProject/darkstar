@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Xoo Kaza the Solemn
+-- Area: Dynamis - Windurst
+--  Mob: Xoo Kaza the Solemn
 -- Boss Trigger for RDM NM
 -----------------------------------
 mixins =

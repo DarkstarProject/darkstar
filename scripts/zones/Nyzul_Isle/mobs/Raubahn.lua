@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle (Nashmeira's Plea)
---  MOB: Raubahn
+--  Mob: Raubahn
 -----------------------------------
 local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");

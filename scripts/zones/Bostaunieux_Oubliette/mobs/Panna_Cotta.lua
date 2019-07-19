@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Panna Cotta
+--  Mob: Panna Cotta
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Tabar Beak
+--  Mob: Tabar Beak
 -- Note: PH for Deadly Dodo
 -----------------------------------
 local ID = require("scripts/zones/Sauromugue_Champaign/IDs")

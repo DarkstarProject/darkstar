@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Akbaba
+--  Mob: Akbaba
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

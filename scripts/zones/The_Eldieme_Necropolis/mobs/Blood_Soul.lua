@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Blood Soul
+--  Mob: Blood Soul
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

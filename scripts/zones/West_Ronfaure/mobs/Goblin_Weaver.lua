@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Goblin Weaver
+--  Mob: Goblin Weaver
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

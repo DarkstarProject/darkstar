@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Haunt
+--  Mob: Haunt
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

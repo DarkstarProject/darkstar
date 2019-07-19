@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Seeker Bats
+--  Mob: Seeker Bats
 -- Note: PH for Gloom Eye
 -----------------------------------
 local ID = require("scripts/zones/Ranguemont_Pass/IDs")

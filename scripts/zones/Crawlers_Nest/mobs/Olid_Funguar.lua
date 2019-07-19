@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Olid Funguar
+--  Mob: Olid Funguar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

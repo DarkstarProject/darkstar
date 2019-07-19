@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Mithraslaver_Debhabob
+-- Area: Dynamis - Beaucedine
+--  Mob: Mithraslaver Debhabob
 -----------------------------------
 mixins =
 {

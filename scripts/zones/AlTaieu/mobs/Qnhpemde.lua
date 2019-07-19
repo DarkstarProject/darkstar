@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Qn'hpemde
+--  Mob: Qn'hpemde
 -- Jailor of Love Pet version
 -----------------------------------
 local ID = require("scripts/zones/AlTaieu/IDs");

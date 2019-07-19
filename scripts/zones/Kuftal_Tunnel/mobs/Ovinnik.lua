@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Ovinnik
+--  Mob: Ovinnik
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

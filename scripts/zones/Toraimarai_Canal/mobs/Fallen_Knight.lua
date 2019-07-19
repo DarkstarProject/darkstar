@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Fallen Knight
+-- Area: Toraimarai Canal
+--  Mob: Fallen Knight
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

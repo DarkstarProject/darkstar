@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Vaule [S]
---   NM: All-seeing Onyx_Eye
+--   NM: All-seeing Onyx Eye
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

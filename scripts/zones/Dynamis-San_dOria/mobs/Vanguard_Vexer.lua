@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Vexer
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Vexer
 -----------------------------------
 mixins =
 {

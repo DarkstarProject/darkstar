@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
--- MOB: Keeneyed Aufwuf
+--  Mob: Keeneyed Aufwuf
 -- BCNM Fight: Dismemberment Brigade
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

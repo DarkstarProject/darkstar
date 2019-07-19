@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Bifrons
+--  Mob: Bifrons
 -- Note: PH for Friar Rush
 -----------------------------------
 local ID = require("scripts/zones/Den_of_Rancor/IDs")

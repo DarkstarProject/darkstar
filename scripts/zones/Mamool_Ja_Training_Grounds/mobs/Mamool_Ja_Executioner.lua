@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamool Ja Training Grounds (Preemptive Strike)
---  MOB: Mamool Ja Executioner
+--  Mob: Mamool Ja Executioner
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

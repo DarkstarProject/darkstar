@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Shadowfang_Void
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Shadowfang Void
 -----------------------------------
 
 -- -----------------------------------

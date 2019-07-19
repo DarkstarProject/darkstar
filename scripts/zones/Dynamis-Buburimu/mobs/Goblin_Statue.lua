@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Goblin_Statue
+-- Area: Dynamis - Buburimu
+--  Mob: Goblin Statue
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");

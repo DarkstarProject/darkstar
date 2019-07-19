@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Babban_Ny_Mheillea
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Babban Ny Mheillea
 -----------------------------------
 
 -- -----------------------------------

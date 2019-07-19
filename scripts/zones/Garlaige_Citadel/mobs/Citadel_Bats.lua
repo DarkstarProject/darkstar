@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Citadel Bats
+--  Mob: Citadel Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Forest Funguar
+--  Mob: Forest Funguar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

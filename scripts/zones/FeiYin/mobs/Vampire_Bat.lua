@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Vampire Bat
+--  Mob: Vampire Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

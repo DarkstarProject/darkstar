@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Air Elemental
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Air Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

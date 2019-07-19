@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Heavymail_Djidzbad
+-- Area: Dynamis - Beaucedine
+--  Mob: Heavymail Djidzbad
 -----------------------------------
 mixins =
 {

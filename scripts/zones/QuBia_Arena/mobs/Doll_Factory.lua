@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
---  MOB: Doll Factory
+--  Mob: Doll Factory
 -- BCNM: Factory Rejects
 -----------------------------------
 

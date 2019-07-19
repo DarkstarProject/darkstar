@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Guu_Waji_the_Preacher
+-- Area: Dynamis - Beaucedine
+--  Mob: Guu Waji the Preacher
 -----------------------------------
 mixins =
 {

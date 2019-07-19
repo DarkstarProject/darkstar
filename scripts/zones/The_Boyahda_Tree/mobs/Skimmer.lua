@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Skimmer
+--  Mob: Skimmer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Hellbound Warrior
+--  Mob: Hellbound Warrior
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

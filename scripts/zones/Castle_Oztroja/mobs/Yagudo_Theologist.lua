@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Theologist
+--  Mob: Yagudo Theologist
 -- Note: PH for Moo Ouzi the Swiftblade
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja/IDs")

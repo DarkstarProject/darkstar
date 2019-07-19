@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Toraimorai Canal
+-- Area: Toraimarai Canal
 --   NM: Canal Moocher
 -----------------------------------
 require("scripts/globals/mobs")

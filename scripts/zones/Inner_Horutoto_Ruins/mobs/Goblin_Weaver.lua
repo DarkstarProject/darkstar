@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Weaver
+--  Mob: Goblin Weaver
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

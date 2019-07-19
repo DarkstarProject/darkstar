@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Navukgo Execution Chamber
--- MOB: Khimaira 13
+--  Mob: Khimaira 13
 -----------------------------------
 require("scripts/globals/allyassist");
 -----------------------------------

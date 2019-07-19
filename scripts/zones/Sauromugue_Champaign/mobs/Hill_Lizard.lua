@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Hill Lizard
+--  Mob: Hill Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

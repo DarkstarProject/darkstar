@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Goblin Golem
+-- Area: Dynamis - Jeuno
+--  Mob: Goblin Golem
 -----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");

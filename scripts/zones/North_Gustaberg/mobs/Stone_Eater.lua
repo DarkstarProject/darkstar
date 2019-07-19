@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Stone Eater
+--  Mob: Stone Eater
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

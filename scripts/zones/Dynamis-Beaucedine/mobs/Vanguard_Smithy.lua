@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Vanguard_Smithy
+-- Area: Dynamis - Beaucedine
+--  Mob: Vanguard Smithy
 -----------------------------------
 mixins =
 {

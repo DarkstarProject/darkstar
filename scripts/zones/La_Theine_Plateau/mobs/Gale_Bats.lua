@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Gale Bats
+--  Mob: Gale Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

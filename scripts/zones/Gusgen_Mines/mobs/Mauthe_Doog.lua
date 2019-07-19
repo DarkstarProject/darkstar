@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Mauthe Doog
+--  Mob: Mauthe Doog
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

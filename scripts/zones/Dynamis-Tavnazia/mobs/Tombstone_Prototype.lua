@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis tavnazia
---  MOB: Tombstone_Prototype
+-- Area: Dynamis - Tavnazia
+--  Mob: Tombstone Prototype
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");

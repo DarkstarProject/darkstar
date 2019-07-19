@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  MOB: Hydra_Dragoon
+-- Area: Dynamis - Tavnazia
+--  Mob: Hydra Dragoon
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

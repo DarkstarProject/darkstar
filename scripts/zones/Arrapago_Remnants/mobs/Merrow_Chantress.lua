@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Merrow Chantress
+--  Mob: Merrow Chantress
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------

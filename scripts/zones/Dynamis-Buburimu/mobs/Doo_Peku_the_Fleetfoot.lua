@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Doo_Peku_the_Fleetfoot
+-- Area: Dynamis - Buburimu
+--  Mob: Doo Peku the Fleetfoot
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

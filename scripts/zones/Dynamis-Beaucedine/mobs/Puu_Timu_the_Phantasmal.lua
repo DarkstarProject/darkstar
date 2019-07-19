@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Puu_Timu_the_Phantasmal
+-- Area: Dynamis - Beaucedine
+--  Mob: Puu Timu the Phantasmal
 -----------------------------------
 mixins =
 {

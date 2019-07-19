@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Lagoon Sahagin
+--  Mob: Lagoon Sahagin
 -- Note: PH for Yarr the Pearleyed and Novv the Whitehearted
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Ghelsba outpost
---  MOB: Kalamainu
+-- Area: Ghelsba Outpost
+--  Mob: Kalamainu
 -- BCNM: Petrifying Pair
 -----------------------------------
 require("scripts/globals/status")

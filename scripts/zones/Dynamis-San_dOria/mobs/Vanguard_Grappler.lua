@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Grappler
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Grappler
 -----------------------------------
 mixins =
 {

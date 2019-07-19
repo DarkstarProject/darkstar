@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Ghelsba
---  MOB: Orcish Fighter
+--  Mob: Orcish Fighter
 -----------------------------------
 local ID = require("scripts/zones/Fort_Ghelsba/IDs");
 -----------------------------------

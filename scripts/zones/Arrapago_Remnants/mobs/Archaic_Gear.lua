@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Archaic Gear
---  MOB: Arrapago Remnants
+-- Area: Arrapago Remnants
+--  Mob: Archaic Gear
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

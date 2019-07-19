@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Arrapago Reef
+-- Area: Caedarva Mire
 --  Mob: Lamia Chaukidar
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}

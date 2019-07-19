@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Labyrinth Scorpion
+--  Mob: Labyrinth Scorpion
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

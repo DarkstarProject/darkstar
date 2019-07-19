@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Flying Manta
+--  Mob: Flying Manta
 -- Note: PH for Lord of Onzozo and Peg Powler
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")

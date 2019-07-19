@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Qufimu
---  MOB: Manifest_Idol
+-- Area: Dynamis - Qufim
+--  Mob: Avatar Idol
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/globals/status");

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: West Saurtabaruta (S)
+-- Area: West Sarutabaruta [S]
 --  Mob: Toad
 -- Note: Place holder Ramponneau
 -----------------------------------

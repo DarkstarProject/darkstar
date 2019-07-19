@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Swagger Spruce
+--  Mob: Swagger Spruce
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

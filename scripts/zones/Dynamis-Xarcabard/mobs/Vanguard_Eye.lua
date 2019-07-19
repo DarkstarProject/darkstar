@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  NPC: Vanguard_Eye
+-- Area: Dynamis - Xarcabard
+--  Mob: Vanguard Eye
 -- Map Position: http://images.wikia.com/ffxi/images/c/cc/Xar.jpg
 -----------------------------------
 require("scripts/globals/status");

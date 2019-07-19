@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Karashix_Swollenskull
+-- Area: Dynamis - Jeuno
+--  Mob: Karashix Swollenskull
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Kikklix_Longlegs
+-- Area: Dynamis - Jeuno
+--  Mob: Kikklix Longlegs
 -----------------------------------
 mixins =
 {

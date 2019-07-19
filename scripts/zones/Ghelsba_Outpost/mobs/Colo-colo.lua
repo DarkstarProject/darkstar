@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Ghelsba outpost
---  MOB: Colo-colo
+-- Area: Ghelsba Outpost
+--  Mob: Colo-colo
 -- BCNM: Wings of Fury
 -----------------------------------
 require("scripts/globals/status")

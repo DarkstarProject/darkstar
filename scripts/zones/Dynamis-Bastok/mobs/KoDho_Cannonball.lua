@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Bastok
---  NPC: Ko'Dho Cannonball
+-- Area: Dynamis - Bastok
+--  Mob: Ko'Dho Cannonball
 -- Boss Trigger for Gu'Dha Effigy
 -----------------------------------
 mixins =

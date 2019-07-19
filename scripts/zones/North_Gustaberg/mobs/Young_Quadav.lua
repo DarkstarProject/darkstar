@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Young Quadav
+--  Mob: Young Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

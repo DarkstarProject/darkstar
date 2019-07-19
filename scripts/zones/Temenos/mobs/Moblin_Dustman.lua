@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T
---  NPC: Moblin_Dustman
-
+--  Mob: Moblin Dustman
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

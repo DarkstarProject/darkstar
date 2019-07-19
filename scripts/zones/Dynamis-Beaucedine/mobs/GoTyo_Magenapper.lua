@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: GoTyo_Magenapper
+-- Area: Dynamis - Beaucedine
+--  Mob: GoTyo Magenapper
 -----------------------------------
 mixins =
 {

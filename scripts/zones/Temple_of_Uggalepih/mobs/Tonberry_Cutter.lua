@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Tonberry Cutter
+--  Mob: Tonberry Cutter
 -- Note: PH for Sozu Sarberry
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")

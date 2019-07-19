@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Koo_Saxu_the_Everfast
+-- Area: Dynamis - Beaucedine
+--  Mob: Koo Saxu the Everfast
 -----------------------------------
 mixins =
 {

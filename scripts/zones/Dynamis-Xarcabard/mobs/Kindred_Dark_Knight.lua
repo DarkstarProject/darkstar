@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Kindred_Dark_Knight
+-- Area: Dynamis - Xarcabard
+--  Mob: Kindred Dark Knight
 -----------------------------------
 mixins =
 {

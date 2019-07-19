@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Stone Eater
+--  Mob: Stone Eater
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

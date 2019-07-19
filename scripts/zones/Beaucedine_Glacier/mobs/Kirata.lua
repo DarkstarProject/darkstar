@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier (111)
---  NM:  Kirata
+--   NM: Kirata
 -----------------------------------
 require("scripts/globals/mobs")
 -----------------------------------

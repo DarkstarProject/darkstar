@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Angra Mainyu
+-- Area: Dynamis - Beaucedine
+--  Mob: Angra Mainyu
 -- Mega Boss
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Beaucedine/IDs")

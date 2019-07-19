@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Shepherd
+--  Mob: Goblin Shepherd
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

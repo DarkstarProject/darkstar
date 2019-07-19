@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Scruffix_Shaggychest
+-- Area: Dynamis - Jeuno
+--  Mob: Scruffix Shaggychest
 -----------------------------------
 mixins =
 {

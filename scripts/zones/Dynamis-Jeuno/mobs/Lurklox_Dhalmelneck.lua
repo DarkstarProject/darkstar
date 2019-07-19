@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Lurklox_Dhalmelneck
+-- Area: Dynamis - Jeuno
+--  Mob: Lurklox Dhalmelneck
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields [S]
---  MOB: Ochu
+--  Mob: Ochu
 -- Note: PH for Delicieuse Delphine
 -----------------------------------
 local ID = require("scripts/zones/Rolanberry_Fields_[S]/IDs")

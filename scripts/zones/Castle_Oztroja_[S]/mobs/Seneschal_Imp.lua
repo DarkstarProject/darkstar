@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
---  MOB: Seneschal Imp
+-- Area: Castle Oztroja [S]
+--  Mob: Seneschal Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

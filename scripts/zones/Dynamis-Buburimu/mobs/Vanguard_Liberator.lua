@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Vanguard_Liberator
+-- Area: Dynamis - Buburimu
+--  Mob: Vanguard Liberator
 -----------------------------------
 mixins =
 {

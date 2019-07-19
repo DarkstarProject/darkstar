@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: JiFhu_Infiltrator
+-- Area: Dynamis - Beaucedine
+--  Mob: JiFhu Infiltrator
 -----------------------------------
 mixins =
 {

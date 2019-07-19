@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Temple Guardian
+--  Mob: Temple Guardian
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
 -----------------------------------

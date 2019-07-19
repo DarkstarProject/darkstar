@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Trailblazer
+--  Mob: Goblin Trailblazer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

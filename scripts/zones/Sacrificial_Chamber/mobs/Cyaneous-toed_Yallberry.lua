@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Cyaneous-toed_Yallberry
+--  Mob: Cyaneous-toed Yallberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 mixins =

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Jeunoraider_Gepkzip
+-- Area: Dynamis - Beaucedine
+--  Mob: Jeunoraider Gepkzip
 -----------------------------------
 mixins =
 {

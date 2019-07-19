@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Groundskeeper
+--  Mob: Groundskeeper
 -- Note: Place holder Despot
 -----------------------------------
 local ID = require("scripts/zones/RuAun_Gardens/IDs");

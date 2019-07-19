@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Vunkerl
---  MOB: Clammy Imp
+--  Mob: Clammy Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

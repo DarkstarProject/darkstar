@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Pevv the Riverleaper
+--  Mob: Pevv the Riverleaper
 -- BCNM: Amphibian Assault
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

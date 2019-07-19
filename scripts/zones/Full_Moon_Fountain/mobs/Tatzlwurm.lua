@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Full Moon Fountain
--- Mob: Tatzlwurm
+--  Mob: Tatzlwurm
 -- Windurst Mission 9-2
 -----------------------------------
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Empyreal Paradox
---  MOB: Selh'teus
+--  Mob: Selh'teus
 -- Chains of Promathia 8-4 BCNM Fight
 -----------------------------------
 require("scripts/globals/status");

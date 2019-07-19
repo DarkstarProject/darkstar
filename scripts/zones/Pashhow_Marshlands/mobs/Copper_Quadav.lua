@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Copper Quadav
+--  Mob: Copper Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Princeps
+--  Mob: Antican Princeps
 -- Note: PH for Sagittarius X-XIII and Antican Praefectus
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

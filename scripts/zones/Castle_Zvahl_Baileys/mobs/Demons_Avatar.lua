@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys
---  MOB: Demon's Avatar
+--  Mob: Demon's Avatar
 -----------------------------------
 mixins = {require("scripts/mixins/families/avatar")}
 

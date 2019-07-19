@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Navukgo Execution Chamber
--- MOB: Karababa
+--  Mob: Karababa
 -----------------------------------
 require("scripts/globals/status");
 local ID = require("scripts/zones/Navukgo_Execution_Chamber/IDs");

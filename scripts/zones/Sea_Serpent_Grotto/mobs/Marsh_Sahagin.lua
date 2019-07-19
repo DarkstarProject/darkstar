@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Marsh Sahagin
+--  Mob: Marsh Sahagin
 -- Note: PH for Worr the Clawfisted and Voll the Sharkfinned
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

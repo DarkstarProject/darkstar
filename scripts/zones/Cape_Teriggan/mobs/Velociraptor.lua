@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Velociraptor
+--  Mob: Velociraptor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

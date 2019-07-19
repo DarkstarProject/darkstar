@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Manifest_Icon
+-- Area: Dynamis - Buburimu
+--  Mob: Manifest Icon
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/globals/status");

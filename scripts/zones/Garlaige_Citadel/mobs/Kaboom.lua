@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Kaboom
+--  Mob: Kaboom
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

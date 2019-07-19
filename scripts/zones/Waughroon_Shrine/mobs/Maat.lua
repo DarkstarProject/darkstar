@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Waughroom Shrine
---  MOB: Maat
+-- Area: Waughroon Shrine
+--  Mob: Maat
 -- Genkai 5 Fight
 -----------------------------------
 mixins = {require("scripts/mixins/families/maat")};

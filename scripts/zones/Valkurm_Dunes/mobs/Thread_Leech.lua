@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Thread Leech
+--  Mob: Thread Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

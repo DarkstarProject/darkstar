@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Marsh Funguar
+--  Mob: Marsh Funguar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

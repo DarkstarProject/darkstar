@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: GiBhe_Fleshfeaster
+-- Area: Dynamis - Buburimu
+--  Mob: GiBhe Fleshfeaster
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

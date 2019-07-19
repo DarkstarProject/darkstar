@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Lobais
+--  Mob: Lobais
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

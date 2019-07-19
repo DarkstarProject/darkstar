@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Vanguard_Salvager
+-- Area: Dynamis - Valkurm
+--  Mob: Vanguard Salvager
 -----------------------------------
 mixins =
 {

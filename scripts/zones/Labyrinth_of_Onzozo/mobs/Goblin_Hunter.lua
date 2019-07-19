@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Labyrinth of Onzozo
---  MOB: Goblin Hunter
+-- Area: Labyrinth of Onzozo
+--  Mob: Goblin Hunter
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

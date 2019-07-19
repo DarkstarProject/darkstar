@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Desert Dhalmel
+--  Mob: Desert Dhalmel
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

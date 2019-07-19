@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Hermitrix_Toothrot
+-- Area: Dynamis - Jeuno
+--  Mob: Hermitrix Toothrot
 -----------------------------------
 mixins =
 {

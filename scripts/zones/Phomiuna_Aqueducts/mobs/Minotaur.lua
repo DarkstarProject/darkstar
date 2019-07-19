@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna Aqueducts
---  MOB: Minotaur
+--  Mob: Minotaur
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 require("scripts/globals/missions");

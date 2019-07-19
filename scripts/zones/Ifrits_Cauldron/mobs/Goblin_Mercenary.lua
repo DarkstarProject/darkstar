@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Mercenary
+--  Mob: Goblin Mercenary
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------
