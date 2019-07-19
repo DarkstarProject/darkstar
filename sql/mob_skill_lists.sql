@@ -2940,7 +2940,12 @@ INSERT INTO `mob_skill_lists` VALUES ('Berstuk',857,2185); -- corrosive_ooze
 INSERT INTO `mob_skill_lists` VALUES ('Drekavac',859,472); -- grave reel
 INSERT INTO `mob_skill_lists` VALUES ('Gaizkin',860,490); -- undead mold
 INSERT INTO `mob_skill_lists` VALUES ('Gaizkin',860,492); -- abyss blast
--- 861: free
+INSERT INTO `mob_skill_lists` VALUES ('Chahnameeds_Stomach',861,486); -- whip_tongue
+INSERT INTO `mob_skill_lists` VALUES ('Chahnameeds_Stomach',861,488); -- acid_breath
+INSERT INTO `mob_skill_lists` VALUES ('Chahnameeds_Stomach',861,489); -- stinking_gas
+INSERT INTO `mob_skill_lists` VALUES ('Chahnameeds_Stomach',861,491); -- call_of_the_grave
+INSERT INTO `mob_skill_lists` VALUES ('Chahnameeds_Stomach',861,492); -- abyss_blast
+INSERT INTO `mob_skill_lists` VALUES ('Chahnameeds_Stomach',861,1338); -- infernal_pestilence
 INSERT INTO `mob_skill_lists` VALUES ('Granite_Borer',862,1816); -- vitrolic spray
 INSERT INTO `mob_skill_lists` VALUES ('Granite_Borer',862,1817); -- thermal pulse
 INSERT INTO `mob_skill_lists` VALUES ('Granite_Borer',862,1818); -- cannonball
@@ -3079,7 +3084,15 @@ INSERT INTO `mob_skill_lists` VALUES ('Jala',897,863); -- water_iv
 INSERT INTO `mob_skill_lists` VALUES ('Jala',897,864); -- spinning_dive
 INSERT INTO `mob_skill_lists` VALUES ('Jala',897,865); -- grand_fall
 INSERT INTO `mob_skill_lists` VALUES ('Jala',897,866); -- tidal_wave
--- 898: ffree
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,246); -- shackled_fists
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,247); -- foxfire
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,248); -- grim_halo
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,249); -- netherspikes
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,250); -- carnal_nightmare
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,251); -- aegis_schism
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,252); -- dancing_chains
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,253); -- barbed_crescent
+INSERT INTO `mob_skill_lists` VALUES ('Brothers_DAurphe',898,255); -- dimensional_death
 INSERT INTO `mob_skill_lists` VALUES ('Kutharei',899,2566); -- Diabolic_Claw
 INSERT INTO `mob_skill_lists` VALUES ('Kutharei',899,2570); -- Afflicting_Gaze
 INSERT INTO `mob_skill_lists` VALUES ('Kutharei',899,2571); -- Stygian_Sphere
