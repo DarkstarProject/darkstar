@@ -701,7 +701,16 @@ INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,310); -- queasyshroom
 INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,311); -- numbshroom
 INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,312); -- shakeshroom
 INSERT INTO `mob_skill_lists` VALUES ('Toadbolster',160,314); -- silence_gas
--- 161 to 163: free
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_CoP',161,480); -- petrifactive_breath
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_CoP',161,482); -- pounce
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_CoP',161,652); -- blaster
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_CoP',161,653); -- chaotic_eye
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_CoP',161,1336); -- frenzied_rage
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_CoP',161,3416); -- charged_whisker
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_WoTG',162,652); -- blaster
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_WoTG',162,653); -- chaotic_eye
+INSERT INTO `mob_skill_lists` VALUES ('Coeurl_WoTG',162,3416); -- charged_whisker
+-- 163: free
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1828);
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1829);
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1830);
