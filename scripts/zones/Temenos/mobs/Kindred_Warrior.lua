@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC:  Kindred_Warrior
-
+--  Mob: Kindred Warrior
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

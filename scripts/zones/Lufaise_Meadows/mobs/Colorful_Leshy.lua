@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
---  MOB: Colorful Leshy
+--  Mob: Colorful Leshy
 -----------------------------------
 
 function onMobInitialize(mob)

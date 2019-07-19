@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Sand Lizard
+--  Mob: Sand Lizard
 -- Note: Place Holder for Amemet
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs")

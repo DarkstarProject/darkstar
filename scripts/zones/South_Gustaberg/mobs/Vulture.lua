@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Vulture
+--  Mob: Vulture
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

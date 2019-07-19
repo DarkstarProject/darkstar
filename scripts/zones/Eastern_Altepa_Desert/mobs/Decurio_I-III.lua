@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  NPC: Decurio I-III
+--  Mob: Decurio I-III
 -- Involved in Quest: A Craftsman's Work
 -- !pos X:113 Y:-7 Z:-72 (106)
 -----------------------------------

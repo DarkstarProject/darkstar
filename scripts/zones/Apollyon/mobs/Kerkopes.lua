@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE
---  NPC: Kerkopes
-
+--  Mob: Kerkopes
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Prowlox_Barrelbelly
+-- Area: Dynamis - Jeuno
+--  Mob: Prowlox Barrelbelly
 -----------------------------------
 mixins =
 {

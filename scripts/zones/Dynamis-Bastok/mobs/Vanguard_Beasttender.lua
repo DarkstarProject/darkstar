@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Bastok
---  MOB: Vanguard_Beasttender
+-- Area: Dynamis - Bastok
+--  Mob: Vanguard Beasttender
 -----------------------------------
 mixins =
 {

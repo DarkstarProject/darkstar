@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert (114)
---   NM: Centurio_XII-I
+--   NM: Centurio XII-I
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

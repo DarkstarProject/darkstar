@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Wadi Leech
+--  Mob: Wadi Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

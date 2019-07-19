@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Nightmare Treant
+-- Area: Dynamis - Valkurm
+--  Mob: Nightmare Treant
 -----------------------------------
 mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------

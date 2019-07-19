@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

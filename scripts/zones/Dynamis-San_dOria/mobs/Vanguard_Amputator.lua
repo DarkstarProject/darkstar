@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Amputator
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Amputator
 -----------------------------------
 mixins =
 {

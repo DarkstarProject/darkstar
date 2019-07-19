@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Boyahda Sapling
+--  Mob: Boyahda Sapling
 -- Note: PH for Leshonki
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs")

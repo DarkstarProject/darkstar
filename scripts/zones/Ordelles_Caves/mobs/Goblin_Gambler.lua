@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Gambler
+--  Mob: Goblin Gambler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

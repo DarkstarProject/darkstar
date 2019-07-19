@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Da'Shu Knightslayer
+--  Mob: Da'Shu Knightslayer
 -- BCNM mob in Bastok mission 7-2.
 -----------------------------------
 

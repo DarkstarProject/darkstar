@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  NPC: Cherry Sapling
+--  Mob: Cherry Sapling
 -- Note: PH for Cemetery Cherry
 -----------------------------------
 local ID = require("scripts/zones/King_Ranperres_Tomb/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Chaser Bats
+--  Mob: Chaser Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Shisox_Widebrow
+-- Area: Dynamis - Beaucedine
+--  Mob: Shisox Widebrow
 -----------------------------------
 mixins =
 {

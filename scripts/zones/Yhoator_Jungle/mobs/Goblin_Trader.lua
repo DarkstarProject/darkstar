@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Goblin Trader
+--  Mob: Goblin Trader
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

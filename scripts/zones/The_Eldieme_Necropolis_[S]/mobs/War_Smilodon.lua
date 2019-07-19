@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: War_Smilodon
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: War Smilodon
 -----------------------------------
 
 -- -----------------------------------

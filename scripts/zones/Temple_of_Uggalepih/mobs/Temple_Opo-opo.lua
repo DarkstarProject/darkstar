@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Temple Opo-opo
+--  Mob: Temple Opo-opo
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

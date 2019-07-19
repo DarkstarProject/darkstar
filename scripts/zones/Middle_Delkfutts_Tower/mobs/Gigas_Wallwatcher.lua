@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Wallwatcher
+--  Mob: Gigas Wallwatcher
 -- Note: PH for Ogygos
 -----------------------------------
 local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs")

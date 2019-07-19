@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Tower Bats
+--  Mob: Tower Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

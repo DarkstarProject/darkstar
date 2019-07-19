@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Foo_Peku_the_Bloodcloak
+-- Area: Dynamis - Beaucedine
+--  Mob: Foo Peku the Bloodcloak
 -----------------------------------
 mixins =
 {

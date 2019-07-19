@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC: Goblin_Theurgist
-
+--  Mob: Goblin Theurgist
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

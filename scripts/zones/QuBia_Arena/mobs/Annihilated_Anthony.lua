@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
---  MOB: Annihilated Anthony
+--  Mob: Annihilated Anthony
 -- BCNM: Celery
 -----------------------------------
 require("scripts/globals/status")

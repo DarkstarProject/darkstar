@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Eremix_Snottynostril
+-- Area: Dynamis - Jeuno
+--  Mob: Eremix Snottynostril
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Ornamental Weapon
+--  Mob: Ornamental Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Yumi Kimil
+--  Mob: Yum Kimil
 -- Involved in Quest: The Requiem (BARD AF2)
 -- !pos -414 8 499 195
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Oracle
+--  Mob: Yagudo Oracle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

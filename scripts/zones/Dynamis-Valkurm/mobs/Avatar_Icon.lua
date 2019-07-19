@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
--- NPC:  Manifest_Icon
+-- Area: Dynamis - Valkurm
+--  Mob: Avatar Icon
 -----------------------------------
 
 require("scripts/globals/dynamis");
@@ -24,9 +24,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    
+
     --local mobID = mob:getID();
-    
-    
-    
+
+
+
 end;

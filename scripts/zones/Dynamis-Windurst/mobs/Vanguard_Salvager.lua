@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Vanguard Salvager
+-- Area: Dynamis - Windurst
+--  Mob: Vanguard Salvager
 -----------------------------------
 mixins =
 {

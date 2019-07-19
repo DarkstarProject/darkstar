@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Balga's Dais
---   NM: Myrmidon Spo-spo
--- BCNM Fight: Royal Succession
+--  Mob: Myrmidon Spo-spo
+-- BCNM: Royal Succession
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------

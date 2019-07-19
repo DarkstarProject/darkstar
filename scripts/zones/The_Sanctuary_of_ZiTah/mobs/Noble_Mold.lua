@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
---  MOB: Noble Mold
+--  Mob: Noble Mold
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Hellish Weapon
+--  Mob: Hellish Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

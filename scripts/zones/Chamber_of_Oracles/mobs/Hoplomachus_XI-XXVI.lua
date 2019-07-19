@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
--- MOB: Hoplomachus XI-XXVI
+--  Mob: Hoplomachus XI-XXVI
 -- BCNM Fight: Legion XI Comitatensis
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SW
---  NPC: elemental
-
+--  Mob: Air Elemental
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

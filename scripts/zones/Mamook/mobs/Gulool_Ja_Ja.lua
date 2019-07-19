@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamook
---  MOB: Gulool Ja Ja
+--  Mob: Gulool Ja Ja
 -----------------------------------
 require("scripts/globals/titles")
 require("scripts/globals/status")

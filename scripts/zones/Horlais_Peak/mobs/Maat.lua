@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Maat
+--  Mob: Maat
 -- Genkai 5 Fight
 -----------------------------------
 mixins = {require("scripts/mixins/families/maat")};

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta (116)
---  NM:  Sharp-Eared_Ropipi
+--   NM: Sharp-Eared Ropipi
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

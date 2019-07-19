@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers Nest
---  NM:  Dreadbug
+--   NM: Dreadbug
 -- Used in Quests: A Boy's Dream
 -- !pos -18 -8 124 197
 -----------------------------------

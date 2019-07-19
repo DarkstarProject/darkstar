@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Draklix_Scalecrust
+-- Area: Dynamis - Beaucedine
+--  Mob: Draklix Scalecrust
 -----------------------------------
 mixins =
 {

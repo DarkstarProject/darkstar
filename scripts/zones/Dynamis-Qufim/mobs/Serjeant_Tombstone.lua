@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis-Qufim
---  NPC: Serjeant_Tombstone
+--  Mob: Serjeant Tombstone
 -----------------------------------
 require("scripts/globals/dynamis");
 -----------------------------------

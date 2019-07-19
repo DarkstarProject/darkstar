@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Balga's Dais
---  MOB: Wyrm
--- KSNM99
+--  Mob: Wyrm
+-- KSNM: Early Bird Catches the Wyrm
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

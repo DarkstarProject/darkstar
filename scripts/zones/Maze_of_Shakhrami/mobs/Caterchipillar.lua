@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Caterchipillar
+--  Mob: Caterchipillar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

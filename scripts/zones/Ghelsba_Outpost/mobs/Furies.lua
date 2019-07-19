@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Ghelsba outpost
---  MOB: Furies
+-- Area: Ghelsba Outpost
+--  Mob: Furies
 -- BCNM: Wings of Fury
 -----------------------------------
 local ID = require("scripts/zones/Ghelsba_Outpost/IDs")

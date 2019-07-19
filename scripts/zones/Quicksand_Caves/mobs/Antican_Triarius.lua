@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Triarius
+--  Mob: Antican Triarius
 -- Note: PH for Triarius X-XV and Hastatus XI-XII
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

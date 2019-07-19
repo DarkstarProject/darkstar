@@ -1,9 +1,9 @@
 -----------------------------------
--- Area: Temenos Central 1floor
--- NPC: Enhanced_Ahriman
-
+-- Area: Temenos Central Floor
+--  Mob: Enhanced Ahriman
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

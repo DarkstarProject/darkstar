@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Ambusher
+--  Mob: Goblin Ambusher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

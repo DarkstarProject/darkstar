@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ul'Phuabo
+--  Mob: Om'phuabo
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/status");

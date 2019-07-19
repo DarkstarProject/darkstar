@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Bleeder Leech
+--  Mob: Bleeder Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

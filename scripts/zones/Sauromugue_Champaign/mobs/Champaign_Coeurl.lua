@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Champaign Coeurl
+--  Mob: Champaign Coeurl
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

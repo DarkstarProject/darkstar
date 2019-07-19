@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Bandersnatch
+--  Mob: Bandersnatch
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

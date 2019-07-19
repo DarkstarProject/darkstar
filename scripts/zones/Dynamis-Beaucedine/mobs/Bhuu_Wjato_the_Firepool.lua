@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Bhuu_Wjato_the_Firepool
+-- Area: Dynamis - Beaucedine
+--  Mob: Bhuu Wjato the Firepool
 -----------------------------------
 mixins =
 {

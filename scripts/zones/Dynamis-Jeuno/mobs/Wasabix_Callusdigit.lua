@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Wasabix_Callusdigit
+-- Area: Dynamis - Jeuno
+--  Mob: Wasabix Callusdigit
 -----------------------------------
 mixins =
 {

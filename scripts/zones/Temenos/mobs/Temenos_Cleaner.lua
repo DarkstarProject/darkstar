@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos Central 1floor
--- NPC: Temenos_Cleaner
-
+--  Mob: Temenos Cleaner
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

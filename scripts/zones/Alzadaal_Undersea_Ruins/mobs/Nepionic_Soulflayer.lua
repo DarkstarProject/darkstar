@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins (72)
---  MOB: Nepionic Soulflayer
+--  Mob: Nepionic Soulflayer
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

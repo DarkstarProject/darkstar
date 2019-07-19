@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Quaestor
+--  Mob: Antican Quaestor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

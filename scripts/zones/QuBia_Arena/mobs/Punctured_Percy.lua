@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
---  MOB: Punctured Percy
+--  Mob: Punctured Percy
 -- BCNM: Celery
 -----------------------------------
 require("scripts/globals/status")

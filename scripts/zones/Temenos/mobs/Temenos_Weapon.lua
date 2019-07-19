@@ -1,9 +1,9 @@
 -----------------------------------
--- Area: Temenos Central 1floor
--- NPC: Temenos_Weapon
-
+-- Area: Temenos Central Floor
+--  Mob: Temenos Weapon
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

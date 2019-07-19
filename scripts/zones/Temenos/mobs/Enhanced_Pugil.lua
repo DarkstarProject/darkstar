@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T
---  NPC: Enhanced_Pugil
-
+--  Mob: Enhanced Pugil
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

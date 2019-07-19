@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
--- MOB: Undefeatable Sappdapp
+--  Mob: Undefeatable Sappdapp
 -- BCNM Fight: Dismemberment Brigade
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

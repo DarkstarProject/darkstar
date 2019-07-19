@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC: Goblin_Fencer
-
+--  Mob: Goblin Fencer
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

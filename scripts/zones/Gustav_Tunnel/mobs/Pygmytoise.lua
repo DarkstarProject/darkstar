@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Pygmytoise
+--  Mob: Pygmytoise
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: AlTaieu
---  MOB: Aw_euvhi
+--  Mob: Aw'euvhi
 -----------------------------------
 local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/keyitems");

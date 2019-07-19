@@ -1,6 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Grand Palace of Hu'Xzoi
---  NM:  Jailer of Temperance
+--   NM: Jailer of Temperance
 -----------------------------------
 require("scripts/zones/Grand_Palace_of_HuXzoi/globals");
 mixins = {require("scripts/mixins/job_special")};

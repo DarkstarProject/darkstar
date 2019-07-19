@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Choh_Moui
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Choh Moui
 -----------------------------------
 
 -- -----------------------------------

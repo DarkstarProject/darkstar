@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Tunnel Worm
+--  Mob: Tunnel Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

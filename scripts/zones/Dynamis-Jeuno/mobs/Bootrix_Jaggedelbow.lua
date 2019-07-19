@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Bootrix_Jaggedelbow
+-- Area: Dynamis - Jeuno
+--  Mob: Bootrix Jaggedelbow
 -----------------------------------
 mixins =
 {

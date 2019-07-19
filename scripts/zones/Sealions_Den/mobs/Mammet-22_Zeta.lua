@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealions Den
---  Mob: Mammet-22_Zeta
+--  Mob: Mammet-22 Zeta
 -----------------------------------
 local ID = require("scripts/zones/Sealions_Den/IDs")
 require("scripts/globals/titles")

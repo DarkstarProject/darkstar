@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Vault Weapon
+--  Mob: Vault Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

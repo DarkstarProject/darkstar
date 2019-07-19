@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC:  Kindred_Summoner.
-
+--  Mob: Kindred Summoner
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

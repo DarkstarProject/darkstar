@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys (161)
---   NM: Marquis_Allocen
+--   NM: Marquis Allocen
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

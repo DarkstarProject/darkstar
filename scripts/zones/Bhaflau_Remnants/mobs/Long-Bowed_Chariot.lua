@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Remnants
---  MOB: Long-Bowed_Chariot
+--  Mob: Long-Bowed Chariot
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

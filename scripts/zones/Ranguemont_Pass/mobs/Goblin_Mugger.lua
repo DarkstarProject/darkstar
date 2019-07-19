@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Mugger
+--  Mob: Goblin Mugger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

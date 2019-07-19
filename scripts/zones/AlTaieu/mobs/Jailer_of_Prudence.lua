@@ -1,9 +1,7 @@
 -----------------------------------
 -- Area: Al'Taieu
---  NM:  Jailer of Prudence
--- IDs: 16912846, 16912847
+--   NM: Jailer of Prudence
 -- AnimationSubs: 0 - Normal, 3 - Mouth Open
--- Wiki: http://ffxiclopedia.wikia.com/wiki/Jailer_of_Prudence
 -----------------------------------
 local ID = require("scripts/zones/AlTaieu/IDs");
 mixins = {require("scripts/mixins/job_special")}

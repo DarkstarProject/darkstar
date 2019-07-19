@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Orcish Footsoldier
+--  Mob: Orcish Footsoldier
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

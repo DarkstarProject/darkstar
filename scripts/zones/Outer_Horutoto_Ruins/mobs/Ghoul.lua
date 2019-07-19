@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
---  MOB: Ghoul
+--  Mob: Ghoul
 -- Note: Place holder for Ah Puch
 -----------------------------------
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis qufim
---  MOB: Warchief_Tombstone
+-- Area: Dynamis - Qufim
+--  Mob: Warchief Tombstone
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");

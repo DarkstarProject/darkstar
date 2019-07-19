@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---   Mob: Battlemaster_Vatgit
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Battlemaster Vatgit
 -----------------------------------
 
 -- -----------------------------------

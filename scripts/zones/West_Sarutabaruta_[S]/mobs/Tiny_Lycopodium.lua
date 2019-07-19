@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: West Saurtabaruta (S)
+-- Area: West Sarutabaruta [S]
 --  Mob: Tiny Lycopodium
 -- Note: PH for Jeduah
 -----------------------------------

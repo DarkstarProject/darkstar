@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC:  Praetorian_Guard
-
+--  Mob: Praetorian Guard CCCXI
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Bogy
+--  Mob: Bogy
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

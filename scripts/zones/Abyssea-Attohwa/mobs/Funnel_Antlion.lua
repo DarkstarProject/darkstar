@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea-Attohwa
---  MOB: Funnel Antlion
+--  Mob: Funnel Antlion
 -----------------------------------
 mixins = {require("scripts/mixins/families/antlion_ambush")}
 -----------------------------------

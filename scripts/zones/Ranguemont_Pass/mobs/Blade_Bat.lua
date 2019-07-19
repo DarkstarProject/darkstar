@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Blade Bat
+--  Mob: Blade Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

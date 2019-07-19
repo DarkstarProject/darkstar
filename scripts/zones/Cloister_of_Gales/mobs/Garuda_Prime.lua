@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Gales
---  MOB: Garuda Prime
+--  Mob: Garuda Prime
 -- Involved in Quest: Trial by Wind
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------

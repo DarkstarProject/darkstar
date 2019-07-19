@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Backstabber
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Backstabber
 -----------------------------------
 mixins =
 {

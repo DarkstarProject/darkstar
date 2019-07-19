@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T
---  NPC: Telchines_Dragoon
+--  Mob: Telchines Dragoon
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

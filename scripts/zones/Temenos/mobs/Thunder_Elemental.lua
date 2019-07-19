@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos E T
--- NPC: Thunder_Elemental
-
+--  Mob: Thunder Elemental
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

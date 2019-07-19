@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Graupel Gigas
+--  Mob: Graupel Gigas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Anvilix_Sootwrists
+-- Area: Dynamis - Jeuno
+--  Mob: Anvilix Sootwrists
 -----------------------------------
 mixins =
 {

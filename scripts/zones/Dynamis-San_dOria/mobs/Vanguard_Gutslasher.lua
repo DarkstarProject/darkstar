@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Gutslasher
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Gutslasher
 -----------------------------------
 mixins =
 {

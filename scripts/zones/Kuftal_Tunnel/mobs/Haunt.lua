@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Haunt
+--  Mob: Haunt
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Temple_Knight
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Temple Knight
 -----------------------------------
 
 -- -----------------------------------

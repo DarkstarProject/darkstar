@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Draugar Servant
+--  Mob: Draugar Servant
 -- Note: PH for Bloody Bones
 -----------------------------------
 local ID = require("scripts/zones/Arrapago_Reef/IDs")

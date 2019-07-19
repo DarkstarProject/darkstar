@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos W T
--- NPC: Enhanced_Vulture
-
+--  Mob: Enhanced Vulture
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

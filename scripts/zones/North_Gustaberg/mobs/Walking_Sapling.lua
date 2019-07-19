@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Walking Sapling
+--  Mob: Walking Sapling
 -- Note: Place Holder For Maighdean Uaine
 -----------------------------------
 local ID = require("scripts/zones/North_Gustaberg/IDs");

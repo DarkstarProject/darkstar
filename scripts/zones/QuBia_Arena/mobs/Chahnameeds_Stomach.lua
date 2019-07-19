@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
---  MOB: Chahnameed's Stomach
+--  Mob: Chahnameed's Stomach
 -- BCNM: An Awful Autopsy
 -----------------------------------
 

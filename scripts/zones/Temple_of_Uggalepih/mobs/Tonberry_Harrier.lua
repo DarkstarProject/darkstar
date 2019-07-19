@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Tonberry Harrier
+--  Mob: Tonberry Harrier
 -- Note: PH for Sozu Terberry
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")

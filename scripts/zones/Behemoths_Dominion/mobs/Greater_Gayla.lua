@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Greater Gayla
+--  Mob: Greater Gayla
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Soldier Crawler
+--  Mob: Soldier Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

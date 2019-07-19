@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: VeLugannon Palace
---  NPC: Zipacna
+--  Mob: Zipacna
 -----------------------------------
 require("scripts/globals/pathfind");
 

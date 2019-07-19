@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Maze Of Shakhrami
+-- Area: Maze of Shakhrami
 --   NM: Wyrmfly
 -- Involved in Eco Warrior (Windurst)
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Akbaba
+--  Mob: Akbaba
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

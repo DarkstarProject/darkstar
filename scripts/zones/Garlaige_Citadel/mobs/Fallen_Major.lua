@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Fallen Major
+--  Mob: Fallen Major
 -- Note: Place holder Hovering Hotpot
 -----------------------------------
 local ID = require("scripts/zones/Garlaige_Citadel/IDs");

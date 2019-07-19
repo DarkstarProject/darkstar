@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Orcish_Footsoldier
+--  Mob: Orcish Footsoldier
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

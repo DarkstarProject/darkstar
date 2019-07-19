@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Qufim
---  MOB: Vanguard_Backstabber
+-- Area: Dynamis - Qufim
+--  Mob: Vanguard Backstabber
 -----------------------------------
 mixins =
 {

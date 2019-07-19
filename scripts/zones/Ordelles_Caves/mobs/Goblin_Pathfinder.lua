@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Pathdfinder
+--  Mob: Goblin Pathfinder
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

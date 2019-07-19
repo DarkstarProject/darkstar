@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Empyreal Paradox
---  MOB: Promathia (phase 2)
+--  Mob: Promathia
+-- Note: Phase 2
 -----------------------------------
 local ID = require("scripts/zones/Empyreal_Paradox/IDs");
 require("scripts/globals/status");

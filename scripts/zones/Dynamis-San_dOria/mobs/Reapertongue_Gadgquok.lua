@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Reapertongue Gadgquok
+-- Area: Dynamis - San d'Oria
+--  Mob: Reapertongue Gadgquok
 -- Boss Trigger for Overlord's Tombstone
 -----------------------------------
 mixins =

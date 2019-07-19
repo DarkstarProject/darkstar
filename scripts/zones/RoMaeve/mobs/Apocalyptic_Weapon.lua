@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Apocalyptic Weapon
+--  Mob: Apocalyptic Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

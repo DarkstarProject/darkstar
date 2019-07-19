@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos
--- NPC:
-
+--  Mob: Pee Qoho the Python
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

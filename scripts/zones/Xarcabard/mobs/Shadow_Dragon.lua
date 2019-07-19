@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Shadow_Dragon
+--  Mob: Shadow Dragon
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

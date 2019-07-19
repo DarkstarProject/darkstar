@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Bumblebee
+--  Mob: Bumblebee
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  MOB: Overlord's Tombstone
+-- Area: Dynamis - San d'Oria
+--  Mob: Overlord's Tombstone
 -----------------------------------
 require("scripts/globals/titles")
 require("scripts/globals/dynamis")

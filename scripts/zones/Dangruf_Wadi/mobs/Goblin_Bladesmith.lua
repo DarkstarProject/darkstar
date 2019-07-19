@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Bladesmith
+--  Mob: Goblin Bladesmith
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

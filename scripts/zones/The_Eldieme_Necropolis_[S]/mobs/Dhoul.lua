@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Dhoul
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Dhoul
 -----------------------------------
 
 -- -----------------------------------

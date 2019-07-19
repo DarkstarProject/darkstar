@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC:  Kindred_Dark_Knight
-
+--  Mob: Kindred Dark Knight
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC: Goblin_Warlord
+--  Mob: Goblin Warlord
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

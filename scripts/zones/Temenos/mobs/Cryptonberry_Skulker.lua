@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC: Cryptonberry_Skulker
-
+--  Mob: Cryptonberry Skulker
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

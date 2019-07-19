@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos
--- NPC:
-
+--  Mob: Orichalcum Quadav
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Red Mage
+--  Mob: Fomor Red Mage
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Xhoo_Fuza_the_Sublime
+-- Area: Dynamis - Beaucedine
+--  Mob: Xhoo Fuza the Sublime
 -----------------------------------
 mixins =
 {

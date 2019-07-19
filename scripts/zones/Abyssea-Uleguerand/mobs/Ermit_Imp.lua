@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Uleguerand
---  MOB: Ermit Imp
+--  Mob: Ermit Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

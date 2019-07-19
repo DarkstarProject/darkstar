@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Goblin Mugger
+--  Mob: Goblin Mugger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

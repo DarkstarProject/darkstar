@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  NM:  Boreal Tiger
+--   NM: Boreal Tiger
 -- Involved in Quests: Atop the Highest Mountains
 -- !pos 341 -29 370 112
 -----------------------------------

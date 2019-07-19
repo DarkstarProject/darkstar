@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Ambusher
+--  Mob: Goblin Ambusher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

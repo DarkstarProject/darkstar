@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
---  MOB: Shredded Samson
+--  Mob: Shredded Samson
 -- BCNM: Celery
 -----------------------------------
 require("scripts/globals/status")

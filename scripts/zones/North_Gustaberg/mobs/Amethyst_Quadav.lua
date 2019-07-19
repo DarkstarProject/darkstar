@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Amethyst Quadav
+--  Mob: Amethyst Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos E T
--- NPC: mystic Avatar
-
+--  Mob: Mystic Avatar
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action
@@ -23,7 +23,7 @@ function onMobEngaged(mob,target)
         else
             mob:setMod(dsp.mod.FIREDEF,256);
         end
-    
+
         if (IsMobDead(16929034)==true and IsMobDead(16929040)==true) then
             mob:setMod(dsp.mod.ICEDEF,-128);
         else

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle (Nashmeira's Plea)
---  MOB: Razfahd
+--  Mob: Razfahd
 -----------------------------------
 require("scripts/zones/Nyzul_Isle/IDs");
 require("scripts/globals/status");

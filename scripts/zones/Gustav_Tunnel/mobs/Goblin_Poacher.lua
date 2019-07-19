@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Poacher
+--  Mob: Goblin Poacher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Onyx Quadav
+--  Mob: Onyx Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

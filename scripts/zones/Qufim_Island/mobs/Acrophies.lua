@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Acrophies
+--  Mob: Acrophies
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

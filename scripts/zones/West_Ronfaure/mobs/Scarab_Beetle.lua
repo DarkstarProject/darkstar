@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure(100)
---  MOB: Scarab Beetle
+--  Mob: Scarab Beetle
 -- Note: Place holder for Fungus Beetle
 -----------------------------------
 local ID = require("scripts/zones/West_Ronfaure/IDs");

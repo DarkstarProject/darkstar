@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Goblin Digger
+--  Mob: Goblin Digger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

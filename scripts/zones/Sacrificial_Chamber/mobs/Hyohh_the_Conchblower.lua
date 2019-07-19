@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Hyohh the Conchblower
+--  Mob: Hyohh the Conchblower
 -- BCNM: Amphibian Assault
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

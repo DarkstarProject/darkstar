@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Hovering Oculus
+--  Mob: Hovering Oculus
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

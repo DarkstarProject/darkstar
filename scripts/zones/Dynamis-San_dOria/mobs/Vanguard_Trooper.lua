@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Trooper
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Trooper
 -----------------------------------
 mixins =
 {

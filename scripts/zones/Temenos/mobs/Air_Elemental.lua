@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos E T
--- NPC: Air_Elemental
-
+--  Mob: Air Elemental
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

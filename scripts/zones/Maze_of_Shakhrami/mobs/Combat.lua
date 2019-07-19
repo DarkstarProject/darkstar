@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Combat
+--  Mob: Combat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

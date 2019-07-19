@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Orcish Beastrider
+--  Mob: Orcish Beastrider
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

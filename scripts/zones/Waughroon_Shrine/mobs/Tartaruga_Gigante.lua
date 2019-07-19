@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Tartaruga Gigante
+--  Mob: Tartaruga Gigante
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

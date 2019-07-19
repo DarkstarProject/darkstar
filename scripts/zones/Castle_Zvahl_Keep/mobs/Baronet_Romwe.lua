@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Baronet_Romwe
+--  Mob: Baronet Romwe
 -----------------------------------
 require("scripts/globals/titles");
 

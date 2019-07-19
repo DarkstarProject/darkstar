@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Ka'Nha Jabbertongue
+--  Mob: Ka'Nha Jabbertongue
 -- BCNM: Grimshell Shocktroopers
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

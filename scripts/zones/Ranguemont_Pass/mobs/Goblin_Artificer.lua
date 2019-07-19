@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Artificer
+--  Mob: Goblin Artificer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

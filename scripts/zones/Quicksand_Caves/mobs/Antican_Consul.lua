@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---   NM: Antican_Consul
+--   NM: Antican Consul
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

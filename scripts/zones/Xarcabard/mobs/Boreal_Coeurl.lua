@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  NM:  Boreal Coeurl
+--   NM: Boreal Coeurl
 -- Involved in Quests: Atop the Highest Mountains
 -- !pos 580 -9 290 112
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
--- NPC:  Serjeant_Tombstone
+-- Area: Dynamis - Valkurm
+--  Mob: Serjeant Tombstone
 
 -----------------------------------
 
@@ -21,8 +21,8 @@ function onMobEngaged(mob,target)
 end;
 
 
-                     
-                    
+
+
 
 
 
@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    
+
 --    local mobID = mob:getID();
-    
+
 end;

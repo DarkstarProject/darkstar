@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Brawler
+--  Mob: Orcish Brawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

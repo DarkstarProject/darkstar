@@ -1,9 +1,9 @@
 -----------------------------------
--- Area: Temenos Central 1floor
--- NPC: Airi
-
+-- Area: Temenos Central Floor
+--  Mob: Airi
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

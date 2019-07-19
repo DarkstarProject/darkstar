@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Bastok
---  NPC: Ze'Vho Fallsplitter
+-- Area: Dynamis - Bastok
+--  Mob: Ze'Vho Fallsplitter
 -- Boss Trigger for Gu'Dha Effigy
 -----------------------------------
 mixins =

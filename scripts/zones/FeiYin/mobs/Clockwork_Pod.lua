@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Clockwork Pod
+--  Mob: Clockwork Pod
 -- Note: PH for Mind Hoarder
 -----------------------------------
 local ID = require("scripts/zones/FeiYin/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Predator
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Predator
 -----------------------------------
 mixins =
 {

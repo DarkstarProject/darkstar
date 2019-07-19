@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---   NM: Moo_Ouzi_the_Swiftblade
+--   NM: Moo Ouzi the Swiftblade
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

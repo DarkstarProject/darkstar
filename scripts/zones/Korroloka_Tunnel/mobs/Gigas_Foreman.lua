@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Gigas Foreman
+--  Mob: Gigas Foreman
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

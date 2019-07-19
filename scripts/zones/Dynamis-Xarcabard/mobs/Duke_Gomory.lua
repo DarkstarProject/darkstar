@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Duke Gomory
+-- Area: Dynamis - Xarcabard
+--  Mob: Duke Gomory
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Xarcabard/IDs")
 mixins =

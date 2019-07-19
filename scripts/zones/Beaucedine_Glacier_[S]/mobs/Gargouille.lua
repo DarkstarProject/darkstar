@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Beaucedine Glacier (S)
+-- Area: Beaucedine Glacier [S]
 --  Mob: Gargouille
 -- Note: PH for Grand'Goule
 -----------------------------------

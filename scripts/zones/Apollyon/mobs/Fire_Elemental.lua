@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SW
---  NPC: elemental
-
+--  Mob: Fire Elemental
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

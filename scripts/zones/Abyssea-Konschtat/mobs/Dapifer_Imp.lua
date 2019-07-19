@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Konschtat
---  MOB: Dapifer Imp
+--  Mob: Dapifer Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Orcish Trooper
+--  Mob: Orcish Trooper
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

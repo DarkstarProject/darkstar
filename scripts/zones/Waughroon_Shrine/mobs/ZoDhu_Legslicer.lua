@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Zo'Dha Legslicer
+--  Mob: Zo'Dhu Legslicer
 -- BCNM: Grimshell Shocktroopers
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

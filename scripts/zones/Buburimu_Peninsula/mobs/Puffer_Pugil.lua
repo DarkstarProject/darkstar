@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Puffer Pugil
+--  Mob: Puffer Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC:  Telchines_Bard
-
+--  Mob: Telchines Bard
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Balga's Dais
---  MOB: Searcher
+--  Mob: Searcher
 -- Mission 2-3 BCNM Fight
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)

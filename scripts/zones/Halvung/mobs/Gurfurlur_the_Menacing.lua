@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
--- MOB: Gurfurlur the Menacing
+--  Mob: Gurfurlur the Menacing
 -- !pos -59.000 -23.000 3.000 62
 -----------------------------------
 require("scripts/globals/titles")

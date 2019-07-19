@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Grass Funguar
+--  Mob: Grass Funguar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

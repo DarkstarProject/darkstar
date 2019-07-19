@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Chaos Idol
+--  Mob: Chaos Idol
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

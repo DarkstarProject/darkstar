@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
+-- Area: Castle Oztroja [S]
 --   NM: Asterion
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

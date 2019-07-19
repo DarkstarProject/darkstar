@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Goblin Digger
+--  Mob: Goblin Digger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

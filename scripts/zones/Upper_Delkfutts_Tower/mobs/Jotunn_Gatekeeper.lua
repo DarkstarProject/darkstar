@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Jotunn Gatekeeper
+--  Mob: Jotunn Gatekeeper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

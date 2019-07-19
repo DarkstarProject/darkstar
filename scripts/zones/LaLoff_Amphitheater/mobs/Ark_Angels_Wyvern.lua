@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel's Wyvern
+--  Mob: Ark Angel's Wyvern
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

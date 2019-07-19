@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Labyrinth Lizard
+--  Mob: Labyrinth Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos E T
--- NPC: Water_Elemental
-
+--  Mob: Water Elemental
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

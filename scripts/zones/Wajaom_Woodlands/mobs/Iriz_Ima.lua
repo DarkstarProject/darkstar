@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Wajoam Woodlands
+-- Area: Wajaom Woodlands
 --  ZNM: Iriz Ima
 -----------------------------------
 mixins = {require("scripts/mixins/rage")}

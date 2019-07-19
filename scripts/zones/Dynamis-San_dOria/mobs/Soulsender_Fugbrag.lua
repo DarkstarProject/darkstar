@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  Mob: Soulsender_Fugbrag
+-- Area: Dynamis - San d'Oria
+--  Mob: Soulsender Fugbrag
 -----------------------------------
 mixins =
 {

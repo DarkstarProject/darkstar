@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Allied_Mantelet
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Allied Mantelet
 -----------------------------------
 
 -- -----------------------------------

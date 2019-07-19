@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Gigas Fighter
+--  Mob: Gigas Fighter
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
--- MOB: Secutor XI-XXXII
+--  Mob: Secutor XI-XXXII
 -- BCNM Fight: Legion XI Comitatensis
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

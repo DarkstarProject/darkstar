@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Stirge
+--  Mob: Stirge
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

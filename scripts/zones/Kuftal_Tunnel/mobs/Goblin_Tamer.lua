@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Goblin Tamer
+--  Mob: Goblin Tamer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

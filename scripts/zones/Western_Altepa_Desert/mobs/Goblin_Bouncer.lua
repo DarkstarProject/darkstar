@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Bouncer
+--  Mob: Goblin Bouncer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Spriggan
+--  Mob: Spriggan
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

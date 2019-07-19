@@ -1,9 +1,9 @@
 -----------------------------------
--- Area: Temenos Central 1floor
--- NPC: Enhanced_Dragon
-
+-- Area: Temenos Central Floor
+--  Mob: Enhanced Dragon
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

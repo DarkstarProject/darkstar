@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Hastatus
+--  Mob: Antican Hastatus
 -- Note: PH for Antican Magister
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Wraithdancer_Gidbnod
+-- Area: Dynamis - Beaucedine
+--  Mob: Wraithdancer Gidbnod
 -----------------------------------
 mixins =
 {

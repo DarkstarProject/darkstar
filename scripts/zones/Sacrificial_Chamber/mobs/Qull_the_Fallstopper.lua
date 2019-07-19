@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Qull the Fallstopper
+--  Mob: Qull the Fallstopper
 -- BCNM: Amphibian Assault
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

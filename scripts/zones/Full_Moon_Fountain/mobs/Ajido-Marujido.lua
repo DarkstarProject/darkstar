@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Full Moon Fountain
---  MOB: Ajido-Marujido
+--  Mob: Ajido-Marujido
 -- Ally during Windurst Mission 9-2
 -----------------------------------
 local ID = require("scripts/zones/Full_Moon_Fountain/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Dancing Jewel
+--  Mob: Dancing Jewel
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

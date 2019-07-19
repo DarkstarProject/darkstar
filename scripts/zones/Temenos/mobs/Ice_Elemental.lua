@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos E T
--- NPC: Ice_Elemental
-
+--  Mob: Ice Elemental
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action
@@ -51,6 +51,6 @@ function onMobDeath(mob, player, isKiller)
            end
         end    ,
 
-        
+
      }
 end;

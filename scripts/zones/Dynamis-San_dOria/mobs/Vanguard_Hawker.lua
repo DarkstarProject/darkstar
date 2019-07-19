@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Hawker
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Hawker
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
---  MOB: Ob
+--  Mob: Ob
 -----------------------------------
 mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/status")

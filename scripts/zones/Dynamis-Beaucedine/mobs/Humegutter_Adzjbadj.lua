@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Humegutter_Adzjbadj
+-- Area: Dynamis - Beaucedine
+--  Mob: Humegutter Adzjbadj
 -----------------------------------
 mixins =
 {

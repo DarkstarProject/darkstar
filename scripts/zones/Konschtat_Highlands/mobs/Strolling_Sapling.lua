@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Strolling Sapling
+--  Mob: Strolling Sapling
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

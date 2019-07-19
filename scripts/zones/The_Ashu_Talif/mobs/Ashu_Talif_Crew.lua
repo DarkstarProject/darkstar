@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Ashu Talif (The Black Coffin)
---  MOB: Ashu Talif Crew
+--  Mob: Ashu Talif Crew
 -----------------------------------
 require("scripts/globals/status");
 local ID = require("scripts/zones/The_Ashu_Talif/IDs")

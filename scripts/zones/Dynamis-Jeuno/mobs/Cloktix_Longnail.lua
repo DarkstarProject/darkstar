@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Cloktix_Longnail
+-- Area: Dynamis - Jeuno
+--  Mob: Cloktix Longnail
 -----------------------------------
 mixins =
 {

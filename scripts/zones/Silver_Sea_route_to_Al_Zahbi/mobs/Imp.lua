@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Silver Sea route to Al Zahbi
---  MOB: Imp
+--  Mob: Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

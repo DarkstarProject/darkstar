@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Brutal Sheep
+--  Mob: Brutal Sheep
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

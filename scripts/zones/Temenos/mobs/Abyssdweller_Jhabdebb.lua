@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos
--- NPC:
-
+--  Mob: Abyssdweller Jhabdebb
 -----------------------------------
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

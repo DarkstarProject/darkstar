@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains (119)
---   NM: Waraxe_Beak
+--   NM: Waraxe Beak
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------

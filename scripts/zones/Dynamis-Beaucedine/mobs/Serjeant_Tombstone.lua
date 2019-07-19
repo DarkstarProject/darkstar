@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Serjeant Tombstone
+-- Area: Dynamis - Beaucedine
+--  Mob: Serjeant Tombstone
 -- Map Position: http://images1.wikia.nocookie.net/__cb20090312005233/ffxi/images/thumb/b/b6/Bea.jpg/375px-Bea.jpg
 -----------------------------------
 require("scripts/globals/dynamis");

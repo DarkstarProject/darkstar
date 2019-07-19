@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Dragonian_Bezerker
+--  Mob: Dragonian Berzerker
 -- KSNM30
 -- TODO: Chaos Blade effect gets stronger after they use their respective 2-hour.
 --       50% HP/MP reduction pre-2 hour and 75% HP/MP reduction post-2 hour.

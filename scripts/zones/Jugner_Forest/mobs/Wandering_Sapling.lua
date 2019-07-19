@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Wandering Sapling
+--  Mob: Wandering Sapling
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

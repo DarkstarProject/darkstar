@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Jotunn Wildkeeper
+--  Mob: Jotunn Wildkeeper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

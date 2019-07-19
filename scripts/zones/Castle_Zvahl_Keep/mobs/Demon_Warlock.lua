@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Demon_Warlock
+--  Mob: Demon Warlock
 -- Note: PH for Viscount Morax
 -----------------------------------
 local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");

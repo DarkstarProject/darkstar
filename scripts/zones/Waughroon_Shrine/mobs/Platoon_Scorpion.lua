@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Platoon Scorpion
+--  Mob: Platoon Scorpion
 -- BCNM: Operation Desert Swarm
 -----------------------------------
 require("scripts/globals/status")

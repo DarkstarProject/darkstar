@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel's Mandragora
+--  Mob: Ark Angel's Mandragora
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------
