@@ -31990,7 +31990,7 @@ INSERT INTO `mob_droplist` VALUES (4346,0,0,1000,18390,100);
 INSERT INTO `mob_droplist` VALUES (4347,0,0,1000,1424,1000); -- (Zipacna) gem_of_the_north
 INSERT INTO `mob_droplist` VALUES (4347,0,0,1000,1424,300); -- (Zipacna) gem_of_the_north #2
 INSERT INTO `mob_droplist` VALUES (4347,0,0,1000,1442,200); -- (Zipacna) obl._abjuration
-INSERT INTO `mob_droplist` VALUES (4347,0,0,1000,17804,100); -- (Zipacna) ushikikimaru 
+INSERT INTO `mob_droplist` VALUES (4347,0,0,1000,17804,100); -- (Zipacna) ushikikimaru
 INSERT INTO `mob_droplist` VALUES (4348,0,0,1000,14807,370);
 INSERT INTO `mob_droplist` VALUES (4349,2,0,1000,751,0);
 INSERT INTO `mob_droplist` VALUES (4349,0,0,1000,2525,20);
@@ -33063,6 +33063,11 @@ INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,644,212); -- (Aura Sculpture) C
 INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3541,182); -- (Aura Sculpture) Seasoning stone
 INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,955,30); -- (Aura Sculpture) Golem shard
 INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3543,91); -- (Aura Sculpture) Fossilized fang
+INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,846,295); -- (Starborer) insect_wing
+INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,889,200); -- (Starborer) beetle_shell
+INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,894,92); -- (Starborer) beetle_jaw
+INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,3541,77); -- (Starborer) seasoning_stone
+INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,3542,62); -- (Starborer) fossilized_bone
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
