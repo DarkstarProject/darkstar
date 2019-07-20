@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel's Tiger
+--  Mob: Ark Angel's Tiger
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

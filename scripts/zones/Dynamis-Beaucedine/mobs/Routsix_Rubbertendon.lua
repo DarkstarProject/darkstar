@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Routsix_Rubbertendon
+-- Area: Dynamis - Beaucedine
+--  Mob: Routsix Rubbertendon
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Gambler
+--  Mob: Goblin Gambler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

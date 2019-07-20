@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Torturer
+--  Mob: Gigas Torturer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Hee_Mida_the_Meticulous
+-- Area: Dynamis - Beaucedine
+--  Mob: Hee Mida the Meticulous
 -----------------------------------
 mixins =
 {

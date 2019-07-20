@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Adamantshell
-
+--  Mob: Adamantshell
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

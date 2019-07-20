@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner_Forest_[S]
---  MOB: Dark Ixion
+--  Mob: Dark Ixion
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

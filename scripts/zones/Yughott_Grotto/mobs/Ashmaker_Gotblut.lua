@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yughott Grotto (142)
---   NM: Ashmaker_Gotblut
+--   NM: Ashmaker Gotblut
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

@@ -45,9 +45,10 @@ zones[dsp.zone.ORDELLES_CAVES] =
             [17567899] = 17567901, -- -80.77 31.979 193.542
             [17567900] = 17567901, -- -79.82 31.968 208.309
         },
-        MORBOLGER          = 17568127,
-        POLEVIK            = 17568134,
-        DARK_PUPPET_OFFSET = 17568135,
+        MORBOLGER           = 17568127,
+        POLEVIK             = 17568134,
+        DARK_PUPPET_OFFSET  = 17568135,
+        APPARATUS_ELEMENTAL = 17568139,
     },
     npc =
     {

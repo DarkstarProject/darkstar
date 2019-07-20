@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Drakefeast_Wubmfub
+-- Area: Dynamis - Beaucedine
+--  Mob: Drakefeast Wubmfub
 -----------------------------------
 mixins =
 {

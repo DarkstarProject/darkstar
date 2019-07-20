@@ -21,6 +21,7 @@ zones[dsp.zone.LALOFF_AMPHITHEATER] =
     },
     npc =
     {
+        SHIMMERING_CIRCLE_OFFSET = 17514791, -- used by scripts/globals/bcnm.lua
     },
 }
 

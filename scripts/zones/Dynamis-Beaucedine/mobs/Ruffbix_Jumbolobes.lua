@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Ruffbix_Jumbolobes
+-- Area: Dynamis - Beaucedine
+--  Mob: Ruffbix Jumbolobes
 -----------------------------------
 mixins =
 {

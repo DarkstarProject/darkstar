@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Vanguard_Smithy
+-- Area: Dynamis - Jeuno
+--  Mob: Vanguard Smithy
 -----------------------------------
 mixins =
 {

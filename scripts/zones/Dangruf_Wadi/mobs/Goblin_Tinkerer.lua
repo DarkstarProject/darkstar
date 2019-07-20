@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Tinkerer
+--  Mob: Goblin Tinkerer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

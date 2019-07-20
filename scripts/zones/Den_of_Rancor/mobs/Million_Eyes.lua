@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Million Eyes
+--  Mob: Million Eyes
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

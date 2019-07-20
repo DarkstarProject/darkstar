@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Nee_Huxa_the_Judgmental
+-- Area: Dynamis - Beaucedine
+--  Mob: Nee Huxa the Judgmental
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis-Tavnazia
---  MOB: Diabolos_Club
+--  Mob: Diabolos Club
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Tavnazia/IDs")
 require("scripts/globals/titles");

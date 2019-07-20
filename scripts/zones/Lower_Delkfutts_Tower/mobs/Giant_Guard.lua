@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Giant Guard
+--  Mob: Giant Guard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

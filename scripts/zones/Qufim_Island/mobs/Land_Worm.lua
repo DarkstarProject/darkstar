@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Land Worm
+--  Mob: Land Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

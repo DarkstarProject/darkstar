@@ -3,6 +3,7 @@ require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/quests")
 require("scripts/globals/status")
+require("scripts/globals/zone")
 
 -----------------------------------------------
 -- battlefields by zone
@@ -20,7 +21,7 @@ local battlefields = {
         { 0,  640,    0},   -- Flames of the Dead (PM5-3 U3)
      -- { 1,  641,    0},   -- Follow the White Rabbit (ENM)
      -- { 2,  642,    0},   -- When Hell Freezes Over (ENM)
-        { 3,  643,    0},   -- Brothers (ENM)
+        { 3,  643,    0},   -- Brothers (ENM) -- TODO: Chthonian Ray mobskill
      -- { 4,  644,    0},   -- Holy Cow (ENM)
      -- { 5,    ?, 3454},   -- Taurassic Park (HKC30)
     },
@@ -174,23 +175,23 @@ local battlefields = {
 
     [139] = {               -- HORLAIS PEAK
         { 0,    0,    0},   -- The Rank 2 Final Mission (Mission 2-3)
-     -- { 1,    1, 1131},   -- Tails of Woe (BS40)
-     -- { 2,    2, 1130},   -- Dismemberment Brigade (BS60)
+        { 1,    1, 1131},   -- Tails of Woe (BS40)
+        { 2,    2, 1130},   -- Dismemberment Brigade (BS60)
         { 3,    3,    0},   -- The Secret Weapon (Sandy 7-2)
-        { 4,    4, 1177},   -- Hostile Herbivores (BS50)
+     -- { 4,    4, 1177},   -- Hostile Herbivores (BS50) -- TODO: mobs need knockback on melee attacks
         { 5,    5, 1426},   -- Shattering Stars (WAR LB5)
         { 6,    6, 1429},   -- Shattering Stars (BLM LB5)
         { 7,    7, 1436},   -- Shattering Stars (RNG LB5)
-     -- { 8,    8, 1552},   -- Carapace Combatants (BS30)
-     -- { 9,    9, 1551},   -- Shooting Fish (BS20)
+        { 8,    8, 1552},   -- Carapace Combatants (BS30)
+     -- { 9,    9, 1551},   -- Shooting Fish (BS20) -- TODO: mobs use ranged attacks with knockback
         {10,   10, 1552},   -- Dropping Like Flies (BS30)
-        {11,   11, 1553},   -- Horns of War (KS99)
+     -- {11,   11, 1553},   -- Horns of War (KS99) -- TODO: Chlevnik is unscripted
         {12,   12, 1131},   -- Under Observation (BS40)
-     -- {13,   13, 1177},   -- Eye of the Tiger (BS50)
-     -- {14,   14, 1130},   -- Shots in the Dark (BS60)
-        {15,   15, 1175},   -- Double Dragonian (KS30)
+        {13,   13, 1177},   -- Eye of the Tiger (BS50) -- TODO: Crossthrash mobskill
+     -- {14,   14, 1130},   -- Shots in the Dark (BS60) -- TODO: Warmachine combat behavior
+        {15,   15, 1175},   -- Double Dragonian (KS30) -- TODO: Chaos Blade strengthens after 2hr
      -- {16,   16, 1178},   -- Today's Horoscope (KS30)
-        {17,   17, 1180},   -- Contaminated Colosseum (KS30)
+     -- {17,   17, 1180},   -- Contaminated Colosseum (KS30) -- TODO: Extremely Bad Breath mobskill
      -- {18,   18, 3351},   -- Kindergarten Cap (KC30)
      -- {19,   19, 3352},   -- Last Orc-Shunned Hero (KC50)
      -- {20,   20,    0},   -- Beyond Infinity (Quest)
@@ -202,9 +203,9 @@ local battlefields = {
     [140] = {               -- GHELSBA OUTPOST
         { 0,   32,    0},   -- Save the Children (Sandy 1-3)
         { 1,   33,    0},   -- The Holy Crest (Quest)
-        { 2,   34, 1551},   -- Wings of Fury (BS20)
+        { 2,   34, 1551},   -- Wings of Fury (BS20) -- TODO: mobskills Slipstream and Turbulence
         { 3,   35, 1552},   -- Petrifying Pair (BS30)
-        { 4,   36, 1552},   -- Toadal Recall (BS30)
+        { 4,   36, 1552},   -- Toadal Recall (BS30) -- TODO: shroom-in-cap mechanic
      -- { 5,   37,    0},   -- Mirror, Mirror (Quest)
     },
 
@@ -387,15 +388,15 @@ local battlefields = {
         { 5,  517, 1432},   -- Shattering Stars (PLD LB5)
         { 6,  518, 1433},   -- Shattering Stars (DRK LB5)
         { 7,  519, 1435},   -- Shattering Stars (BRD LB5)
-     -- { 8,  520, 1130},   -- Demolition Squad (BS60)
-     -- { 9,  521, 1552},   -- Die by the Sword (BS30)
-     -- {10,  522, 1552},   -- Let Sleeping Dogs Lie (BS30)
-     -- {11,  523, 1130},   -- Brothers D'Aurphe (BS60)
-     -- {12,  524, 1131},   -- Undying Promise (BS40)
-     -- {13,  525, 1131},   -- Factory Rejects (BS40)
-     -- {14,  526, 1177},   -- Idol Thoughts (BS50)
-     -- {15,  527, 1177},   -- An Awful Autopsy (BS50)
-     -- {16,  528, 1130},   -- Celery (BS60)
+        { 8,  520, 1130},   -- Demolition Squad (BS60)
+     -- { 9,  521, 1552},   -- Die by the Sword (BS30) -- TODO: mob damage type rotation; mobskills furious flurry, smite of fury, whispers of ire
+        {10,  522, 1552},   -- Let Sleeping Dogs Die (BS30)
+        {11,  523, 1130},   -- Brothers D'Aurphe (BS60)
+        {12,  524, 1131},   -- Undying Promise (BS40) -- TODO: model size increases with each reraise
+        {13,  525, 1131},   -- Factory Rejects (BS40) -- TODO: dolls grow size/power based on hidden timer. (wikis disagree on TP moves? factory immune? factory model?)
+        {14,  526, 1177},   -- Idol Thoughts (BS50)
+        {15,  527, 1177},   -- An Awful Autopsy (BS50) -- TODO: mobskill Infernal Pestilence
+     -- {16,  528, 1130},   -- Celery (BS60) -- TODO: mobs do not have their specific weaknesses. mobskill Bane.
      -- {17,  529,    0},   -- Mirror Images (Quest)
         {18,  530, 2556},   -- A Furious Finale (DNC LB5)
      -- {19,  531,    0},   -- Clash of the Comrades (Quest)
@@ -439,6 +440,7 @@ local battlefields = {
 -----------------------------------------------
 
 function checkReqs(player, npc, bfid, registrant)
+    local mi      = dsp.mission.id
     local npcid   = npc:getID()
     local mjob    = player:getMainJob()
     local mlvl    = player:getMainLvl()
@@ -454,158 +456,159 @@ function checkReqs(player, npc, bfid, registrant)
     local rozStat  = player:getVar("ZilartStatus")
     local copStat  = player:getVar("PromathiaStatus")
     local toauStat = player:getVar("AhtUrganStatus")
-    local stc = player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.SAVE_THE_CHILDREN)
+    local stc = player:hasCompletedMission(SANDORIA, mi.sandoria.SAVE_THE_CHILDREN)
     local dm1 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT)
     local dm2 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT)
+    local arkCircleOffset = zones[dsp.zone.LALOFF_AMPHITHEATER].npc.SHIMMERING_CIRCLE_OFFSET
 
     -- requirements to register a battlefield
     local registerReqs =
     {
-        [   0] = function() return ( (basty == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) and natStat == 9                    ) end, -- Mission 2-3
-        [   3] = function() return ( sandy == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2                                        ) end, -- Sandy 7-2: The Secret Weapon
-        [   5] = function() return ( mjob == dsp.job.WAR and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WAR LB5)
-        [   6] = function() return ( mjob == dsp.job.BLM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BLM LB5)
-        [   7] = function() return ( mjob == dsp.job.RNG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RNG LB5)
-        [  20] = function() return ( player:hasKeyItem(dsp.ki.SOUL_GEM_CLASP)                                                                              ) end, -- Quest: Beyond Infinity
-        [  32] = function() return ( sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and ((stc and natStat <= 2) or (not stc and natStat == 2))                    ) end, -- Sandy 1-3: Save the Children
-        [  33] = function() return ( player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY)                                                                         ) end, -- Quest: The Holy Crest
-        [  64] = function() return ( (sandy == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and natStat == 10                         ) end, -- Mission 2-3
-        [  67] = function() return ( basty == dsp.mission.id.bastok.ON_MY_WAY and natStat == 2                                                                            ) end, -- Basty 7-2: On My Way
-        [  68] = function() return ( player:getVar("aThiefinNorgCS") == 6                                                                           ) end, -- Quest: A Thief in Norg!?
-        [  70] = function() return ( mjob == dsp.job.RDM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (RDM LB5)
-        [  71] = function() return ( mjob == dsp.job.THF and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (THF LB5)
-        [  72] = function() return ( mjob == dsp.job.BST and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BST LB5)
-        [  96] = function() return ( player:hasKeyItem(dsp.ki.DARK_KEY)                                                                                    ) end, -- Mission 2-3
-        [  99] = function() return ( windy == dsp.mission.id.windurst.SAINTLY_INVITATION and natStat == 1                                                                   ) end, -- Windy 6-2: A Saintly Invitation
-        [ 101] = function() return ( mjob == dsp.job.MNK and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (MNK LB5)
-        [ 102] = function() return ( mjob == dsp.job.WHM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WHM LB5)
-        [ 103] = function() return ( mjob == dsp.job.SMN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SMN LB5)
-        [ 128] = function() return ( roz == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH                                                                                 ) end, -- ZM4: The Temple of Uggalepih
-        [ 160] = function() return ( mission == 15 and natStat == 3                                                                                 ) end, -- Mission 5-2
-        [ 161] = function() return ( basty == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1                                           ) end, -- Basty 9-2: Where Two Paths Converge
-        [ 163] = function() return ( mjob == dsp.job.SCH and mlvl >= 66                                                                                ) end, -- Quest: Survival of the Wisest (SCH LB5)
-        [ 192] = function() return ( roz == dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES                                                                             ) end, -- ZM6: Through the Quicksand Caves
-        [ 194] = function() return ( mjob == dsp.job.SAM and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (SAM LB5)
-        [ 195] = function() return ( mjob == dsp.job.NIN and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (NIN LB5)
-        [ 196] = function() return ( mjob == dsp.job.DRG and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (DRG LB5)
-        [ 224] = function() return ( player:hasKeyItem(dsp.ki.MOON_BAUBLE)                                                                                 ) end, -- Quest: The Moonlit Path
-        [ 225] = function() return ( windy == dsp.mission.id.windurst.MOON_READING and player:getVar("WINDURST92") == 2                                                     ) end, -- Windy 9-2: Moon Reading
-        [ 256] = function() return ( roz == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and rozStat == 3                                                              ) end, -- ZM8: Return to Delkfutt's Tower
-        [ 288] = function() return ( roz == dsp.mission.id.zilart.ARK_ANGELS and rozStat == 1 and npcid == 17514791 and not player:hasKeyItem(dsp.ki.SHARD_OF_APATHY)            ) end, -- ZM14: Ark Angels (Hume)
-        [ 289] = function() return ( roz == dsp.mission.id.zilart.ARK_ANGELS and rozStat == 1 and npcid == 17514792 and not player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE)         ) end, -- ZM14: Ark Angels (Tarutaru)
-        [ 290] = function() return ( roz == dsp.mission.id.zilart.ARK_ANGELS and rozStat == 1 and npcid == 17514793 and not player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)              ) end, -- ZM14: Ark Angels (Mithra)
-        [ 291] = function() return ( roz == dsp.mission.id.zilart.ARK_ANGELS and rozStat == 1 and npcid == 17514794 and not player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)         ) end, -- ZM14: Ark Angels (Elvaan)
-        [ 292] = function() return ( roz == dsp.mission.id.zilart.ARK_ANGELS and rozStat == 1 and npcid == 17514795 and not player:hasKeyItem(dsp.ki.SHARD_OF_RAGE)              ) end, -- ZM14: Ark Angels (Galka)
-        [ 293] = function() return ( dm1 == QUEST_ACCEPTED or dm2 == QUEST_ACCEPTED                                                                 ) end, -- ZM14 Divine Might
-        [ 320] = function() return ( roz == dsp.mission.id.zilart.THE_CELESTIAL_NEXUS                                                                                     ) end, -- ZM16: The Celestial Nexus
-        [ 416] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND)                                                                         ) end, -- Quest: Trial by Wind
-        [ 417] = function() return ( player:getVar("CarbuncleDebacleProgress") == 6                                                                 ) end, -- Quest: Carbuncle Debacle
-        [ 418] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Wind
-        [ 420] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL)                                      ) end, -- ASA4: Sugar-coated Directive
-        [ 448] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING)                                                                    ) end, -- Quest: Trial by Lightning
-        [ 449] = function() return ( player:getVar("CarbuncleDebacleProgress") == 3                                                                 ) end, -- Quest: Carbuncle Debacle
-        [ 450] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Lightning
-        [ 452] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL)                                       ) end, -- ASA4: Sugar-coated Directive
-        [ 480] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_ICE)                                                                          ) end, -- Quest: Trial by Ice
-        [ 481] = function() return ( player:getVar("ClassReunionProgress") == 5                                                                     ) end, -- Quest: Class Reunion
-        [ 482] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Ice
-        [ 484] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AZURE_SEAL)                                        ) end, -- ASA4: Sugar-coated Directive
-        [ 512] = function() return ( nat == 14 and natStat == 11                                                                                    ) end, -- Mission 5-1
-        [ 516] = function() return ( sandy == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and natStat == 3                                                                ) end, -- Sandy 9-2: The Heir to the Light
-        [ 517] = function() return ( mjob == dsp.job.PLD and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (PLD LB5)
-        [ 518] = function() return ( mjob == dsp.job.DRK and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (DRK LB5)
-        [ 519] = function() return ( mjob == dsp.job.BRD and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (BRD LB5)
-        [ 530] = function() return ( mjob == dsp.job.DNC and mlvl >= 66                                                                                ) end, -- Quest: A Furious Finale (DNC LB5)
-        [ 544] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_FIRE)                                                                         ) end, -- Quest: Trial by Fire
-        [ 545] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Fire
-        [ 547] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL)                                      ) end, -- ASA4: Sugar-coated Directive
-        [ 576] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_EARTH)                                                                        ) end, -- Quest: Trial by Earth
-        [ 577] = function() return ( player:getVar("ThePuppetMasterProgress") == 2                                                                  ) end, -- Quest: The Puppet Master
-        [ 578] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Earth
-        [ 580] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AMBER_SEAL)                                        ) end, -- ASA4: Sugar-coated Directive
-        [ 608] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WATER)                                                                        ) end, -- Quest: Trial by Water
-        [ 609] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                ) end, -- Quest: Trial-size Trial by Water
-        [ 611] = function() return ( asa == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL)                                     ) end, -- ASA4: Sugar-coated Directive
-        [ 640] = function() return ( cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 6                                                  ) end, -- PM5-3 U3: Flames for the Dead
-        [ 641] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                  ) end, -- ENM: Follow the White Rabbit
-        [ 642] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                  ) end, -- ENM: When Hell Freezes Over
-        [ 643] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                  ) end, -- ENM: Brothers
-        [ 644] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                  ) end, -- ENM: Holy Cow
-        [ 672] = function() return ( cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 5                                                  ) end, -- PM5-3 U2: Head Wind
-        [ 673] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                               ) end, -- ENM: Like the Wind
-        [ 674] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                               ) end, -- ENM: Sheep in Antlion's Clothing
-        [ 675] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                               ) end, -- ENM: Shell We Dance?
-        [ 676] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                               ) end, -- ENM: Totentanz
-        [ 677] = function() return ( player:hasKeyItem(dsp.ki.LETTER_FROM_SHIKAREE_X)                                                                      ) end, -- Quest: Tango with a Tracker
-        [ 678] = function() return ( player:hasKeyItem(dsp.ki.LETTER_FROM_SHIKAREE_Y)                                                                      ) end, -- Quest: Requiem of Sin
-        [ 704] = function() return ( cop == dsp.mission.id.cop.DARKNESS_NAMED and copStat == 2                                                                         ) end, -- PM3-5: Darkness Named
-        [ 705] = function() return ( player:hasKeyItem(dsp.ki.ASTRAL_COVENANT)                                                                             ) end, -- ENM: Test Your Mite
-        [ 706] = function() return ( player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)                                                                       ) end, -- Quest: Waking Dreams
-        [ 736] = function() return ( cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 5                                             ) end, -- PM5-3 L3: A Century of Hardship
-        [ 738] = function() return ( player:hasKeyItem(dsp.ki.SHAFT_2716_OPERATING_LEVER)                                                                  ) end, -- ENM: Bionic Bug
-        [ 739] = function() return ( player:hasKeyItem(dsp.ki.SHAFT_GATE_OPERATING_DIAL)                                                                   ) end, -- ENM: Pulling Your Strings
-        [ 740] = function() return ( player:hasKeyItem(dsp.ki.SHAFT_GATE_OPERATING_DIAL)                                                                   ) end, -- ENM: Automaton Assault
-        [ 768] = function() return ( (cop == dsp.mission.id.cop.BELOW_THE_ARKS and copStat==1) or (cop == dsp.mission.id.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))    ) end, -- PM1-3: The Mothercrystals
-        [ 769] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ABANDONMENT)                                                                       ) end, -- ENM: Simulant
-        [ 800] = function() return ( (cop == dsp.mission.id.cop.BELOW_THE_ARKS and copStat==1) or (cop == dsp.mission.id.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))      ) end, -- PM1-3: The Mothercrystals
-        [ 801] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ANTIPATHY)                                                                         ) end, -- ENM: You Are What You Eat
-        [ 832] = function() return ( (cop == dsp.mission.id.cop.BELOW_THE_ARKS and copStat==1) or (cop == dsp.mission.id.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))      ) end, -- PM1-3: The Mothercrystals
-        [ 833] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ANIMUS)                                                                            ) end, -- ENM: Playing Host
-        [ 864] = function() return ( cop == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and copStat == 8                                                                   ) end, -- PM5-2: Desires of Emptiness
-        [ 865] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ACRIMONY)                                                                          ) end, -- ENM: Pulling the Plug
-        [ 896] = function() return ( player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2           ) end, -- Quest: Storms of Fate
-        [ 960] = function() return ( cop == dsp.mission.id.cop.ANCIENT_VOWS and copStat == 2                                                                           ) end, -- PM2-5: Ancient Vows
-        [ 961] = function() return ( cop == dsp.mission.id.cop.THE_SAVAGE and copStat == 1                                                                             ) end, -- PM4-2: The Savage
-        [ 962] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                               ) end, -- ENM: Fire in the Sky
-        [ 963] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                               ) end, -- ENM: Bad Seed
-        [ 964] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                               ) end, -- ENM: Bugard in the Clouds
-        [ 965] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                               ) end, -- ENM: Beloved of Atlantes
-        [ 992] = function() return ( cop == dsp.mission.id.cop.ONE_TO_BE_FEARED and copStat == 2                                                                       ) end, -- PM6-4: One to be Feared
-        [ 993] = function() return ( cop == dsp.mission.id.cop.THE_WARRIOR_S_PATH                                                                                      ) end, -- PM7-5: The Warrior's Path
-        [1024] = function() return ( cop == dsp.mission.id.cop.WHEN_ANGELS_FALL and copStat == 4                                                                       ) end, -- PM8-3: When Angels Fall
-        [1056] = function() return ( cop == dsp.mission.id.cop.DAWN and copStat == 2                                                                                   ) end, -- PM8-4: Dawn
-        [1090] = function() return ( player:hasKeyItem(dsp.ki.TOGGLE_SWITCH)                                                                               ) end, -- Quest: Puppetmaster Blues
-        [1091] = function() return ( mjob == dsp.job.COR and mlvl >= 66                                                                                ) end, -- Quest: Breaking the Bonds of Fate (COR LB5)
-        [1092] = function() return ( toau == dsp.mission.id.toau.LEGACY_OF_THE_LOST                                                                                     ) end, -- TOAU35: Legacy of the Lost
-        [1123] = function() return ( mjob == dsp.job.PUP and mlvl >= 66                                                                                ) end, -- Quest: Achieving True Power (PUP LB5)
-        [1124] = function() return ( toau == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY and toauStat == 2                                                                  ) end, -- TOAU22: Shield of Diplomacy
-        [1154] = function() return ( mjob == dsp.job.BLU and mlvl >= 66                                                                                ) end, -- Quest: The Beast Within (BLU LB5)
-        [1156] = function() return ( toau == dsp.mission.id.toau.PUPPET_IN_PERIL and toauStat == 1                                                                      ) end, -- TOAU29: Puppet in Peril
-        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                ) end, -- NW Apollyon
-        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                ) end, -- SW Apollyon
-        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                                              ) end, -- NE Apollyon
-        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                                              ) end, -- SE Apollyon
-        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                ) end, -- CS Apollyon
-        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                ) end, -- Central Apollyon
-        [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Temenos Western Tower
-        [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Temenos Northern Tower
-        [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Temenos Eastern Tower
-        [1301] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos Basement
-        [1303] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 1st Floor
-        [1304] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 2nd Floor
-        [1305] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 3rd Floor
-        [1306] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 4th Floor
+        [   0] = function() return ( (basty == mi.bastok.THE_EMISSARY_SANDORIA2 or windy == mi.windurst.THE_THREE_KINGDOMS_SANDORIA2) and natStat == 9                      ) end, -- Mission 2-3
+        [   3] = function() return ( sandy == mi.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2                                                    ) end, -- Sandy 7-2: The Secret Weapon
+        [   5] = function() return ( mjob == dsp.job.WAR and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (WAR LB5)
+        [   6] = function() return ( mjob == dsp.job.BLM and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (BLM LB5)
+        [   7] = function() return ( mjob == dsp.job.RNG and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (RNG LB5)
+        [  20] = function() return ( player:hasKeyItem(dsp.ki.SOUL_GEM_CLASP)                                                                                               ) end, -- Quest: Beyond Infinity
+        [  32] = function() return ( sandy == mi.sandoria.SAVE_THE_CHILDREN and ((stc and natStat <= 2) or (not stc and natStat == 2))                                      ) end, -- Sandy 1-3: Save the Children
+        [  33] = function() return ( player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY)                                                                                          ) end, -- Quest: The Holy Crest
+        [  64] = function() return ( (sandy == mi.sandoria.JOURNEY_TO_BASTOK2 or windy == mi.windurst.THE_THREE_KINGDOMS_BASTOK2) and natStat == 10                         ) end, -- Mission 2-3
+        [  67] = function() return ( basty == mi.bastok.ON_MY_WAY and natStat == 2                                                                                          ) end, -- Basty 7-2: On My Way
+        [  68] = function() return ( player:getVar("aThiefinNorgCS") == 6                                                                                                   ) end, -- Quest: A Thief in Norg!?
+        [  70] = function() return ( mjob == dsp.job.RDM and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (RDM LB5)
+        [  71] = function() return ( mjob == dsp.job.THF and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (THF LB5)
+        [  72] = function() return ( mjob == dsp.job.BST and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (BST LB5)
+        [  96] = function() return ( player:hasKeyItem(dsp.ki.DARK_KEY)                                                                                                     ) end, -- Mission 2-3
+        [  99] = function() return ( windy == mi.windurst.SAINTLY_INVITATION and natStat == 1                                                                               ) end, -- Windy 6-2: A Saintly Invitation
+        [ 101] = function() return ( mjob == dsp.job.MNK and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (MNK LB5)
+        [ 102] = function() return ( mjob == dsp.job.WHM and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (WHM LB5)
+        [ 103] = function() return ( mjob == dsp.job.SMN and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (SMN LB5)
+        [ 128] = function() return ( roz == mi.zilart.THE_TEMPLE_OF_UGGALEPIH                                                                                               ) end, -- ZM4: The Temple of Uggalepih
+        [ 160] = function() return ( nat == 15 and natStat == 3                                                                                                             ) end, -- Mission 5-2
+        [ 161] = function() return ( basty == mi.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1                                                         ) end, -- Basty 9-2: Where Two Paths Converge
+        [ 163] = function() return ( mjob == dsp.job.SCH and mlvl >= 66                                                                                                     ) end, -- Quest: Survival of the Wisest (SCH LB5)
+        [ 192] = function() return ( roz == mi.zilart.THROUGH_THE_QUICKSAND_CAVES                                                                                           ) end, -- ZM6: Through the Quicksand Caves
+        [ 194] = function() return ( mjob == dsp.job.SAM and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (SAM LB5)
+        [ 195] = function() return ( mjob == dsp.job.NIN and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (NIN LB5)
+        [ 196] = function() return ( mjob == dsp.job.DRG and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (DRG LB5)
+        [ 224] = function() return ( player:hasKeyItem(dsp.ki.MOON_BAUBLE)                                                                                                  ) end, -- Quest: The Moonlit Path
+        [ 225] = function() return ( windy == mi.windurst.MOON_READING and player:getVar("WINDURST92") == 2                                                                 ) end, -- Windy 9-2: Moon Reading
+        [ 256] = function() return ( roz == mi.zilart.RETURN_TO_DELKFUTTS_TOWER and rozStat == 3                                                                            ) end, -- ZM8: Return to Delkfutt's Tower
+        [ 288] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 0 and not player:hasKeyItem(dsp.ki.SHARD_OF_APATHY)        ) end, -- ZM14: Ark Angels (Hume)
+        [ 289] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 1 and not player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE)     ) end, -- ZM14: Ark Angels (Tarutaru)
+        [ 290] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 2 and not player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)          ) end, -- ZM14: Ark Angels (Mithra)
+        [ 291] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 3 and not player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)     ) end, -- ZM14: Ark Angels (Elvaan)
+        [ 292] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 4 and not player:hasKeyItem(dsp.ki.SHARD_OF_RAGE)          ) end, -- ZM14: Ark Angels (Galka)
+        [ 293] = function() return ( dm1 == QUEST_ACCEPTED or dm2 == QUEST_ACCEPTED                                                                                         ) end, -- ZM14 Divine Might
+        [ 320] = function() return ( roz == mi.zilart.THE_CELESTIAL_NEXUS                                                                                                   ) end, -- ZM16: The Celestial Nexus
+        [ 416] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND)                                                                                          ) end, -- Quest: Trial by Wind
+        [ 417] = function() return ( player:getVar("CarbuncleDebacleProgress") == 6                                                                                         ) end, -- Quest: Carbuncle Debacle
+        [ 418] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                                     ) end, -- Quest: Trial-size Trial by Wind
+        [ 420] = function() return ( asa == mi.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL)                                                ) end, -- ASA4: Sugar-coated Directive
+        [ 448] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING)                                                                                     ) end, -- Quest: Trial by Lightning
+        [ 449] = function() return ( player:getVar("CarbuncleDebacleProgress") == 3                                                                                         ) end, -- Quest: Carbuncle Debacle
+        [ 450] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                                     ) end, -- Quest: Trial-size Trial by Lightning
+        [ 452] = function() return ( asa == mi.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL)                                                 ) end, -- ASA4: Sugar-coated Directive
+        [ 480] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_ICE)                                                                                           ) end, -- Quest: Trial by Ice
+        [ 481] = function() return ( player:getVar("ClassReunionProgress") == 5                                                                                             ) end, -- Quest: Class Reunion
+        [ 482] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                                     ) end, -- Quest: Trial-size Trial by Ice
+        [ 484] = function() return ( asa == mi.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AZURE_SEAL)                                                  ) end, -- ASA4: Sugar-coated Directive
+        [ 512] = function() return ( nat == 14 and natStat == 11                                                                                                            ) end, -- Mission 5-1
+        [ 516] = function() return ( sandy == mi.sandoria.THE_HEIR_TO_THE_LIGHT and natStat == 3                                                                            ) end, -- Sandy 9-2: The Heir to the Light
+        [ 517] = function() return ( mjob == dsp.job.PLD and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (PLD LB5)
+        [ 518] = function() return ( mjob == dsp.job.DRK and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (DRK LB5)
+        [ 519] = function() return ( mjob == dsp.job.BRD and mlvl >= 66                                                                                                     ) end, -- Quest: Shattering Stars (BRD LB5)
+        [ 530] = function() return ( mjob == dsp.job.DNC and mlvl >= 66                                                                                                     ) end, -- Quest: A Furious Finale (DNC LB5)
+        [ 544] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_FIRE)                                                                                          ) end, -- Quest: Trial by Fire
+        [ 545] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                                     ) end, -- Quest: Trial-size Trial by Fire
+        [ 547] = function() return ( asa == mi.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL)                                                ) end, -- ASA4: Sugar-coated Directive
+        [ 576] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_EARTH)                                                                                         ) end, -- Quest: Trial by Earth
+        [ 577] = function() return ( player:getVar("ThePuppetMasterProgress") == 2                                                                                          ) end, -- Quest: The Puppet Master
+        [ 578] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                                     ) end, -- Quest: Trial-size Trial by Earth
+        [ 580] = function() return ( asa == mi.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AMBER_SEAL)                                                  ) end, -- ASA4: Sugar-coated Directive
+        [ 608] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WATER)                                                                                         ) end, -- Quest: Trial by Water
+        [ 609] = function() return ( mjob == dsp.job.SMN and mlvl >= 20                                                                                                     ) end, -- Quest: Trial-size Trial by Water
+        [ 611] = function() return ( asa == mi.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL)                                               ) end, -- ASA4: Sugar-coated Directive
+        [ 640] = function() return ( cop == mi.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 6                                                                   ) end, -- PM5-3 U3: Flames for the Dead
+        [ 641] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                                   ) end, -- ENM: Follow the White Rabbit
+        [ 642] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                                   ) end, -- ENM: When Hell Freezes Over
+        [ 643] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                                   ) end, -- ENM: Brothers
+        [ 644] = function() return ( player:hasKeyItem(dsp.ki.ZEPHYR_FAN)                                                                                                   ) end, -- ENM: Holy Cow
+        [ 672] = function() return ( cop == mi.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 5                                                                   ) end, -- PM5-3 U2: Head Wind
+        [ 673] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                                                ) end, -- ENM: Like the Wind
+        [ 674] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                                                ) end, -- ENM: Sheep in Antlion's Clothing
+        [ 675] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                                                ) end, -- ENM: Shell We Dance?
+        [ 676] = function() return ( player:hasKeyItem(dsp.ki.MIASMA_FILTER)                                                                                                ) end, -- ENM: Totentanz
+        [ 677] = function() return ( player:hasKeyItem(dsp.ki.LETTER_FROM_SHIKAREE_X)                                                                                       ) end, -- Quest: Tango with a Tracker
+        [ 678] = function() return ( player:hasKeyItem(dsp.ki.LETTER_FROM_SHIKAREE_Y)                                                                                       ) end, -- Quest: Requiem of Sin
+        [ 704] = function() return ( cop == mi.cop.DARKNESS_NAMED and copStat == 2                                                                                          ) end, -- PM3-5: Darkness Named
+        [ 705] = function() return ( player:hasKeyItem(dsp.ki.ASTRAL_COVENANT)                                                                                              ) end, -- ENM: Test Your Mite
+        [ 706] = function() return ( player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)                                                                                        ) end, -- Quest: Waking Dreams
+        [ 736] = function() return ( cop == mi.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 5                                                              ) end, -- PM5-3 L3: A Century of Hardship
+        [ 738] = function() return ( player:hasKeyItem(dsp.ki.SHAFT_2716_OPERATING_LEVER)                                                                                   ) end, -- ENM: Bionic Bug
+        [ 739] = function() return ( player:hasKeyItem(dsp.ki.SHAFT_GATE_OPERATING_DIAL)                                                                                    ) end, -- ENM: Pulling Your Strings
+        [ 740] = function() return ( player:hasKeyItem(dsp.ki.SHAFT_GATE_OPERATING_DIAL)                                                                                    ) end, -- ENM: Automaton Assault
+        [ 768] = function() return ( (cop == mi.cop.BELOW_THE_ARKS and copStat==1) or (cop == mi.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))   ) end, -- PM1-3: The Mothercrystals
+        [ 769] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ABANDONMENT)                                                                                        ) end, -- ENM: Simulant
+        [ 800] = function() return ( (cop == mi.cop.BELOW_THE_ARKS and copStat==1) or (cop == mi.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))     ) end, -- PM1-3: The Mothercrystals
+        [ 801] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ANTIPATHY)                                                                                          ) end, -- ENM: You Are What You Eat
+        [ 832] = function() return ( (cop == mi.cop.BELOW_THE_ARKS and copStat==1) or (cop == mi.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))     ) end, -- PM1-3: The Mothercrystals
+        [ 833] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ANIMUS)                                                                                             ) end, -- ENM: Playing Host
+        [ 864] = function() return ( cop == mi.cop.DESIRES_OF_EMPTINESS and copStat == 8                                                                                    ) end, -- PM5-2: Desires of Emptiness
+        [ 865] = function() return ( player:hasKeyItem(dsp.ki.CENSER_OF_ACRIMONY)                                                                                           ) end, -- ENM: Pulling the Plug
+        [ 896] = function() return ( player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2               ) end, -- Quest: Storms of Fate
+        [ 960] = function() return ( cop == mi.cop.ANCIENT_VOWS and copStat == 2                                                                                            ) end, -- PM2-5: Ancient Vows
+        [ 961] = function() return ( cop == mi.cop.THE_SAVAGE and copStat == 1                                                                                              ) end, -- PM4-2: The Savage
+        [ 962] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                                                ) end, -- ENM: Fire in the Sky
+        [ 963] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                                                ) end, -- ENM: Bad Seed
+        [ 964] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                                                ) end, -- ENM: Bugard in the Clouds
+        [ 965] = function() return ( player:hasKeyItem(dsp.ki.MONARCH_BEARD)                                                                                                ) end, -- ENM: Beloved of Atlantes
+        [ 992] = function() return ( cop == mi.cop.ONE_TO_BE_FEARED and copStat == 2                                                                                        ) end, -- PM6-4: One to be Feared
+        [ 993] = function() return ( cop == mi.cop.THE_WARRIOR_S_PATH                                                                                                       ) end, -- PM7-5: The Warrior's Path
+        [1024] = function() return ( cop == mi.cop.WHEN_ANGELS_FALL and copStat == 4                                                                                        ) end, -- PM8-3: When Angels Fall
+        [1056] = function() return ( cop == mi.cop.DAWN and copStat == 2                                                                                                    ) end, -- PM8-4: Dawn
+        [1090] = function() return ( player:hasKeyItem(dsp.ki.TOGGLE_SWITCH)                                                                                                ) end, -- Quest: Puppetmaster Blues
+        [1091] = function() return ( mjob == dsp.job.COR and mlvl >= 66                                                                                                     ) end, -- Quest: Breaking the Bonds of Fate (COR LB5)
+        [1092] = function() return ( toau == mi.toau.LEGACY_OF_THE_LOST                                                                                                     ) end, -- TOAU35: Legacy of the Lost
+        [1123] = function() return ( mjob == dsp.job.PUP and mlvl >= 66                                                                                                     ) end, -- Quest: Achieving True Power (PUP LB5)
+        [1124] = function() return ( toau == mi.toau.SHIELD_OF_DIPLOMACY and toauStat == 2                                                                                  ) end, -- TOAU22: Shield of Diplomacy
+        [1154] = function() return ( mjob == dsp.job.BLU and mlvl >= 66                                                                                                     ) end, -- Quest: The Beast Within (BLU LB5)
+        [1156] = function() return ( toau == mi.toau.PUPPET_IN_PERIL and toauStat == 1                                                                                      ) end, -- TOAU29: Puppet in Peril
+        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                          ) end, -- NW Apollyon
+        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                          ) end, -- SW Apollyon
+        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                                                        ) end, -- NE Apollyon
+        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                                                        ) end, -- SE Apollyon
+        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                                 ) end, -- CS Apollyon
+        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                                 ) end, -- Central Apollyon
+        [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Western Tower
+        [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Northern Tower
+        [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Eastern Tower
+        [1301] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Central Temenos Basement
+        [1303] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Central Temenos 1st Floor
+        [1304] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Central Temenos 2nd Floor
+        [1305] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Central Temenos 3rd Floor
+        [1306] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Central Temenos 4th Floor
     }
 
     -- requirements to enter a battlefield already registered by a party member
     local enterReqs =
     {
-        [ 897] = function() return ( player:hasKeyItem(dsp.ki.WHISPER_OF_THE_WYRMKING)                                                                     ) end, -- Quest: The Wyrmking Descends
-        [ 928] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.ANCIENT_VOWS) or (cop == dsp.mission.id.cop.ANCIENT_VOWS and copStat >= 2)                        ) end, -- Quest: Ouryu Cometh
-        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                ) end, -- NW Apollyon
-        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                ) end, -- SW Apollyon
-        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                                              ) end, -- NE Apollyon
-        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                ) end, -- SE Apollyon
-        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                ) end, -- CS Apollyon
-        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                ) end, -- Central Apollyon
-        [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Temenos Western Tower
-        [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Temenos Northern Tower
-        [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Temenos Eastern Tower
-        [1301] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos Basement
-        [1303] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 1st Floor
-        [1304] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 2nd Floor
-        [1305] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 3rd Floor
-        [1306] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                              ) end, -- Central Temenos 4th Floor
+        [ 897] = function() return ( player:hasKeyItem(dsp.ki.WHISPER_OF_THE_WYRMKING)                                                      ) end, -- Quest: The Wyrmking Descends
+        [ 928] = function() return ( player:hasCompletedMission(COP, mi.cop.ANCIENT_VOWS) or (cop == mi.cop.ANCIENT_VOWS and copStat >= 2)  ) end, -- Quest: Ouryu Cometh
+        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                          ) end, -- NW Apollyon
+        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                          ) end, -- SW Apollyon
+        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                        ) end, -- NE Apollyon
+        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                 ) end, -- SE Apollyon
+        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                 ) end, -- CS Apollyon
+        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                 ) end, -- Central Apollyon
+        [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Temenos Western Tower
+        [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Temenos Northern Tower
+        [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Temenos Eastern Tower
+        [1301] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos Basement
+        [1303] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 1st Floor
+        [1304] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 2nd Floor
+        [1305] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 3rd Floor
+        [1306] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 4th Floor
     }
 
     -- determine whether player meets battlefield requirements
@@ -624,6 +627,7 @@ end
 -----------------------------------------------
 
 function checkSkip(player, bfid)
+    local mi        = dsp.mission.id
     local nat       = player:getCurrentMission(player:getNation())
     local sandy     = player:getCurrentMission(SANDORIA)
     local basty     = player:getCurrentMission(BASTOK)
@@ -637,57 +641,78 @@ function checkSkip(player, bfid)
     local copStat   = player:getVar("PromathiaStatus")
     local toauStat  = player:getVar("AhtUrganStatus")
     local sofStat   = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.STORMS_OF_FATE)
-    local mission2_3a = (basty > dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2 or windy > dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) or ((basty == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) and natStat > 9)
-    local mission2_3b = (sandy > dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or windy > dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) or ((sandy == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or windy == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and natStat > 10)
-    local mission2_3c = (sandy > dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2 or basty > dsp.mission.id.bastok.THE_EMISSARY_WINDURST2) or ((sandy == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2 or basty == dsp.mission.id.bastok.THE_EMISSARY_WINDURST2) and natStat > 8)
+    local mission2_3a =
+        player:hasCompletedMission(BASTOK, mi.bastok.THE_EMISSARY_SANDORIA2) or
+        player:hasCompletedMission(WINDURST, mi.windurst.THE_THREE_KINGDOMS_SANDORIA2) or
+        natStat > 9 and
+        (
+            basty == mi.bastok.THE_EMISSARY_SANDORIA2 or
+            windy == mi.windurst.THE_THREE_KINGDOMS_SANDORIA2
+        )
+    local mission2_3b =
+        player:hasCompletedMission(SANDORIA, mi.sandoria.JOURNEY_TO_BASTOK2) or
+        player:hasCompletedMission(WINDURST, mi.windurst.THE_THREE_KINGDOMS_BASTOK2) or
+        natStat > 10 and
+        (
+            sandy == mi.sandoria.JOURNEY_TO_BASTOK2 or
+            windy == mi.windurst.THE_THREE_KINGDOMS_BASTOK2
+        )
+    local mission2_3c =
+        player:hasCompletedMission(SANDORIA, mi.sandoria.JOURNEY_TO_WINDURST2) or
+        player:hasCompletedMission(BASTOK, mi.bastok.THE_EMISSARY_WINDURST2) or
+        natStat > 8 and
+        (
+            sandy == mi.sandoria.JOURNEY_TO_WINDURST2 or
+            basty == mi.bastok.THE_EMISSARY_WINDURST2
+        )
 
     -- requirements to skip a battlefield
     local skipReqs =
     {
-        [   0] = function() return ( mission2_3a                                                                                                                            ) end, -- Mission 2-3
-        [   3] = function() return ( player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.THE_SECRET_WEAPON) or (sandy == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") > 2)    ) end, -- Sandy 7-2: The Secret Weapon
-        [  32] = function() return ( player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.SAVE_THE_CHILDREN) or (sandy == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and natStat > 2)                                ) end, -- Sandy 1-3: Save the Children
-        [  33] = function() return ( player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.THE_HOLY_CREST)                                                                                      ) end, -- Quest: The Holy Crest
-        [  64] = function() return ( mission2_3b                                                                                                                            ) end, -- Mission 2-3
-        [  67] = function() return ( player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.ON_MY_WAY) or (basty == dsp.mission.id.bastok.ON_MY_WAY and natStat > 2)                                                  ) end, -- Basty 7-2: On My Way
-        [  96] = function() return ( mission2_3c                                                                                                                            ) end, -- Mission 2-3
-        [  99] = function() return ( player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.SAINTLY_INVITATION) or (windy == dsp.mission.id.windurst.SAINTLY_INVITATION and natStat > 1)                              ) end, -- Windy 6-2: A Saintly Invitation
-        [ 160] = function() return ( player:hasCompletedMission(player:getNation(), 15) or (nat == 15 and natStat > 3)                                                      ) end, -- Mission 5-2
-        [ 161] = function() return ( player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE) or (basty == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and natStat > 4)                    ) end, -- Basty 9-2: Where Two Paths Converge
-        [ 192] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES)                                                                        ) end, -- ZM6: Through the Quicksand Caves
-        [ 224] = function() return ( player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.THE_MOONLIT_PATH) or player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON)                                          ) end, -- Quest: The Moonlit Path
-        [ 225] = function() return ( player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING) or (windy == dsp.mission.id.windurst.MOON_READING and natStat > 4)                                          ) end, -- Windy 9-2: Moon Reading
-        [ 256] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER)                                                                          ) end, -- ZM8: Return to Delkfutt's Tower
-        [ 288] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Hume)
-        [ 289] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Tarutaru)
-        [ 290] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Mithra)
-        [ 291] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Elvaan)
-        [ 292] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)                                                                                         ) end, -- ZM14: Ark Angels (Galka)
-        [ 320] = function() return ( player:hasCompletedMission(ZILART, dsp.mission.id.zilart.THE_CELESTIAL_NEXUS)                                                                                ) end, -- ZM16: The Celestial Nexus
-        [ 416] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WIND) or player:hasKeyItem(dsp.ki.WHISPER_OF_GALES)                                                ) end, -- Quest: Trial by Wind
-        [ 448] = function() return ( player:hasCompletedQuest(OTHER_AREAS, dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING) or player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS)                                       ) end, -- Quest: Trial by Lightning
-        [ 480] = function() return ( player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.TRIAL_BY_ICE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FROST)                                                 ) end, -- Quest: Trial by Ice
-        [ 512] = function() return ( player:hasCompletedMission(player:getNation(), 14) or (nat == 14 and natStat > 11)                                                     ) end, -- Mission 5-1
-        [ 516] = function() return ( player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT) or (sandy == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and natStat > 4)                        ) end, -- Sandy 9-2: The Heir to the Light
-        [ 544] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_FIRE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES)                                               ) end, -- Quest: Trial by Fire
-        [ 576] = function() return ( player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.TRIAL_BY_EARTH) or player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS)                                               ) end, -- Quest: Trial by Earth
-        [ 608] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WATER) or player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES)                                               ) end, -- Quest: Trial by Water
-        [ 640] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THREE_PATHS) or (cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") > 6)                         ) end, -- PM5-3 U3: Flames for the Dead
-        [ 672] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THREE_PATHS) or (cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") > 5)                         ) end, -- PM5-3 U2: Head Wind
-        [ 704] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED) or (cop == dsp.mission.id.cop.DARKNESS_NAMED and copStat > 2)                                             ) end, -- PM3-5: Darkness Named
-        [ 706] = function() return ( player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.WAKING_DREAMS) or player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS)                                               ) end, -- Quest: Waking Dreams
-        [ 736] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THREE_PATHS) or (cop == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") > 5)                    ) end, -- PM5-3 L3: A Century of Hardship
-        [ 768] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)                                               ) end, -- PM1-3: The Mothercrystals
-        [ 800] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)                                                 ) end, -- PM1-3: The Mothercrystals
-        [ 832] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_MEA)                                                 ) end, -- PM1-3: The Mothercrystals
-        [ 864] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.DESIRES_OF_EMPTINESS) or (cop == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and copStat > 8)                                    ) end, -- PM5-2: Desires of Emptiness
-        [ 896] = function() return ( sofStat == QUEST_COMPLETED or (sofStat == QUEST_ACCEPTED and player:getVar("StormsOfFate") > 2)                                        ) end, -- Quest: Storms of Fate
-        [ 960] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.ANCIENT_VOWS)                                                                                          ) end, -- PM2-5: Ancient Vows
-        [ 961] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_SAVAGE) or (cop == dsp.mission.id.cop.THE_SAVAGE and copStat > 1)                                                     ) end, -- PM4-2: The Savage
-        [ 992] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.ONE_TO_BE_FEARED)                                                                                      ) end, -- PM6-4: One to be Feared
-        [ 993] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.THE_WARRIOR_S_PATH)                                                                                    ) end, -- PM7-5: The Warrior's Path
-        [1024] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.WHEN_ANGELS_FALL) or (cop == dsp.mission.id.cop.WHEN_ANGELS_FALL and copStat > 4)                                         ) end, -- PM8-3: When Angels Fall
-        [1056] = function() return ( player:hasCompletedMission(COP, dsp.mission.id.cop.DAWN) or (cop == dsp.mission.id.cop.DAWN and copStat > 2)                                                                 ) end, -- PM8-4: Dawn
+        [   0] = function() return ( mission2_3a                                                                                                                                                    ) end, -- Mission 2-3
+        [   3] = function() return ( player:hasCompletedMission(SANDORIA, mi.sandoria.THE_SECRET_WEAPON) or (sandy == mi.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") > 2)    ) end, -- Sandy 7-2: The Secret Weapon
+        [  32] = function() return ( player:hasCompletedMission(SANDORIA, mi.sandoria.SAVE_THE_CHILDREN) or (sandy == mi.sandoria.SAVE_THE_CHILDREN and natStat > 2)                                ) end, -- Sandy 1-3: Save the Children
+        [  33] = function() return ( player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.THE_HOLY_CREST)                                                                                       ) end, -- Quest: The Holy Crest
+        [  64] = function() return ( mission2_3b                                                                                                                                                    ) end, -- Mission 2-3
+        [  67] = function() return ( player:hasCompletedMission(BASTOK, mi.bastok.ON_MY_WAY) or (basty == mi.bastok.ON_MY_WAY and natStat > 2)                                                      ) end, -- Basty 7-2: On My Way
+        [  96] = function() return ( mission2_3c                                                                                                                                                    ) end, -- Mission 2-3
+        [  99] = function() return ( player:hasCompletedMission(WINDURST, mi.windurst.SAINTLY_INVITATION) or (windy == mi.windurst.SAINTLY_INVITATION and natStat > 1)                              ) end, -- Windy 6-2: A Saintly Invitation
+        [ 160] = function() return ( player:hasCompletedMission(player:getNation(), 15) or (nat == 15 and natStat > 3)                                                                              ) end, -- Mission 5-2
+        [ 161] = function() return ( player:hasCompletedMission(BASTOK, mi.bastok.WHERE_TWO_PATHS_CONVERGE) or (basty == mi.bastok.WHERE_TWO_PATHS_CONVERGE and natStat > 4)                        ) end, -- Basty 9-2: Where Two Paths Converge
+        [ 192] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.THROUGH_THE_QUICKSAND_CAVES)                                                                                      ) end, -- ZM6: Through the Quicksand Caves
+        [ 224] = function() return ( player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.THE_MOONLIT_PATH) or player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON)                                    ) end, -- Quest: The Moonlit Path
+        [ 225] = function() return ( player:hasCompletedMission(WINDURST, mi.windurst.MOON_READING) or (windy == mi.windurst.MOON_READING and natStat > 4)                                          ) end, -- Windy 9-2: Moon Reading
+        [ 256] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.RETURN_TO_DELKFUTTS_TOWER)                                                                                        ) end, -- ZM8: Return to Delkfutt's Tower
+        [ 288] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.ARK_ANGELS)                                                                                                       ) end, -- ZM14: Ark Angels (Hume)
+        [ 289] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.ARK_ANGELS)                                                                                                       ) end, -- ZM14: Ark Angels (Tarutaru)
+        [ 290] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.ARK_ANGELS)                                                                                                       ) end, -- ZM14: Ark Angels (Mithra)
+        [ 291] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.ARK_ANGELS)                                                                                                       ) end, -- ZM14: Ark Angels (Elvaan)
+        [ 292] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.ARK_ANGELS)                                                                                                       ) end, -- ZM14: Ark Angels (Galka)
+        [ 320] = function() return ( player:hasCompletedMission(ZILART, mi.zilart.THE_CELESTIAL_NEXUS)                                                                                              ) end, -- ZM16: The Celestial Nexus
+        [ 416] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WIND) or player:hasKeyItem(dsp.ki.WHISPER_OF_GALES)                                          ) end, -- Quest: Trial by Wind
+        [ 448] = function() return ( player:hasCompletedQuest(OTHER_AREAS, dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING) or player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS)                               ) end, -- Quest: Trial by Lightning
+        [ 480] = function() return ( player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.TRIAL_BY_ICE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FROST)                                           ) end, -- Quest: Trial by Ice
+        [ 512] = function() return ( player:hasCompletedMission(player:getNation(), 14) or (nat == 14 and natStat > 11)                                                                             ) end, -- Mission 5-1
+        [ 516] = function() return ( player:hasCompletedMission(SANDORIA, mi.sandoria.THE_HEIR_TO_THE_LIGHT) or (sandy == mi.sandoria.THE_HEIR_TO_THE_LIGHT and natStat > 4)                        ) end, -- Sandy 9-2: The Heir to the Light
+        [ 544] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_FIRE) or player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES)                                         ) end, -- Quest: Trial by Fire
+        [ 576] = function() return ( player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.TRIAL_BY_EARTH) or player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS)                                           ) end, -- Quest: Trial by Earth
+        [ 608] = function() return ( player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WATER) or player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES)                                         ) end, -- Quest: Trial by Water
+        [ 640] = function() return ( player:hasCompletedMission(COP, mi.cop.THREE_PATHS) or (cop == mi.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") > 6)                                   ) end, -- PM5-3 U3: Flames for the Dead
+        [ 672] = function() return ( player:hasCompletedMission(COP, mi.cop.THREE_PATHS) or (cop == mi.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") > 5)                                   ) end, -- PM5-3 U2: Head Wind
+        [ 704] = function() return ( player:hasCompletedMission(COP, mi.cop.DARKNESS_NAMED) or (cop == mi.cop.DARKNESS_NAMED and copStat > 2)                                                       ) end, -- PM3-5: Darkness Named
+        [ 706] = function() return ( player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.WAKING_DREAMS) or player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS)                                         ) end, -- Quest: Waking Dreams
+        [ 736] = function() return ( player:hasCompletedMission(COP, mi.cop.THREE_PATHS) or (cop == mi.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") > 5)                              ) end, -- PM5-3 L3: A Century of Hardship
+        [ 768] = function() return ( player:hasCompletedMission(COP, mi.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)                                                         ) end, -- PM1-3: The Mothercrystals
+        [ 800] = function() return ( player:hasCompletedMission(COP, mi.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)                                                           ) end, -- PM1-3: The Mothercrystals
+        [ 832] = function() return ( player:hasCompletedMission(COP, mi.cop.THE_MOTHERCRYSTALS) or player:hasKeyItem(dsp.ki.LIGHT_OF_MEA)                                                           ) end, -- PM1-3: The Mothercrystals
+        [ 864] = function() return ( player:hasCompletedMission(COP, mi.cop.DESIRES_OF_EMPTINESS) or (cop == mi.cop.DESIRES_OF_EMPTINESS and copStat > 8)                                           ) end, -- PM5-2: Desires of Emptiness
+        [ 896] = function() return ( sofStat == QUEST_COMPLETED or (sofStat == QUEST_ACCEPTED and player:getVar("StormsOfFate") > 2)                                                                ) end, -- Quest: Storms of Fate
+        [ 960] = function() return ( player:hasCompletedMission(COP, mi.cop.ANCIENT_VOWS)                                                                                                           ) end, -- PM2-5: Ancient Vows
+        [ 961] = function() return ( player:hasCompletedMission(COP, mi.cop.THE_SAVAGE) or (cop == mi.cop.THE_SAVAGE and copStat > 1)                                                               ) end, -- PM4-2: The Savage
+        [ 992] = function() return ( player:hasCompletedMission(COP, mi.cop.ONE_TO_BE_FEARED)                                                                                                       ) end, -- PM6-4: One to be Feared
+        [ 993] = function() return ( player:hasCompletedMission(COP, mi.cop.THE_WARRIOR_S_PATH)                                                                                                     ) end, -- PM7-5: The Warrior's Path
+        [1024] = function() return ( player:hasCompletedMission(COP, mi.cop.WHEN_ANGELS_FALL) or (cop == mi.cop.WHEN_ANGELS_FALL and copStat > 4)                                                   ) end, -- PM8-3: When Angels Fall
+        [1056] = function() return ( player:hasCompletedMission(COP, mi.cop.DAWN) or (cop == mi.cop.DAWN and copStat > 2)                                                                           ) end, -- PM8-4: Dawn
     }
 
     -- determine whether player meets cutscene skip requirements

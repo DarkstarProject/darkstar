@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Zeid
+--  Mob: Zeid
 -- Mission 9-2 BASTOK BCNM Fight
 -----------------------------------
 local ID = require("scripts/zones/Throne_Room/IDs");

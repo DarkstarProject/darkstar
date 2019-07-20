@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Hecatomb Hound
+--  Mob: Hecatomb Hound
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

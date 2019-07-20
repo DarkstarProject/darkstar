@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Rivulet Sahagin
+--  Mob: Rivulet Sahagin
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

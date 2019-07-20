@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Adamantking_Image
+-- Area: Dynamis - Buburimu
+--  Mob: Adamantking Image
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Zeidpart2
+--  Mob: Zeid (Phase 2)
 -- Mission 9-2 BASTOK BCNM Fight
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

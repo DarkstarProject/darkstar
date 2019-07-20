@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Borer Beetle
+--  Mob: Borer Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

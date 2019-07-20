@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Adamantking_Image
+-- Area: Dynamis - Valkurm
+--  Mob: Adamantking Image
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
 require("scripts/globals/keyitems")

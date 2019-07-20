@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: MiRhe_Whisperblade
+-- Area: Dynamis - Beaucedine
+--  Mob: MiRhe Whisperblade
 -----------------------------------
 mixins =
 {

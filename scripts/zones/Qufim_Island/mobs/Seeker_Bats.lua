@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Seeker Bats
+--  Mob: Seeker Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

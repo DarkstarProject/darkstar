@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Jabbrox_Grannyguise
+-- Area: Dynamis - Jeuno
+--  Mob: Jabbrox Grannyguise
 -----------------------------------
 mixins =
 {

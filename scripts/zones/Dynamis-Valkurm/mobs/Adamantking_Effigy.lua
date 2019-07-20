@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Adamantking_Effigy
+-- Area: Dynamis - Valkurm
+--  Mob: Adamantking Effigy
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/globals/status");

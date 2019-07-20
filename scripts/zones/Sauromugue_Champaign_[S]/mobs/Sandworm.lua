@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Crystal War Areas
---  MOB: Sandworm
+-- Area: Sauromugue Champaign [S]
+--  Mob: Sandworm
 -- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------
 require("scripts/globals/titles");

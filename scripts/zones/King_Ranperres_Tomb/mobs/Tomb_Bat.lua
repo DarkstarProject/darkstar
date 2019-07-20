@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Tomb Bat
+--  Mob: Tomb Bat
 -- Note: Place holder Crypt Ghost
 -----------------------------------
 local ID = require("scripts/zones/King_Ranperres_Tomb/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Shade
+--  Mob: Shade
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

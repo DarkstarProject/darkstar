@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Hunter
+--  Mob: Goblin Hunter
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Spinalsucker_Galflmall
+-- Area: Dynamis - Beaucedine
+--  Mob: Spinalsucker Galflmall
 -----------------------------------
 mixins =
 {

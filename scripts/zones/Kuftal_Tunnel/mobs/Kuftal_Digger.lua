@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Kuftal Digger
+--  Mob: Kuftal Digger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Tufflix_Loglimbs
+-- Area: Dynamis - Jeuno
+--  Mob: Tufflix Loglimbs
 -----------------------------------
 mixins =
 {

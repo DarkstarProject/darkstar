@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Lockbuster_Zapdjipp
+-- Area: Dynamis - Beaucedine
+--  Mob: Lockbuster Zapdjipp
 -----------------------------------
 mixins =
 {

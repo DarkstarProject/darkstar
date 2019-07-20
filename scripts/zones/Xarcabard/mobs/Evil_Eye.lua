@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Evil Eye
+--  Mob: Evil Eye
 -- Note: PH for Shadow Eye
 -----------------------------------
 local ID = require("scripts/zones/Xarcabard/IDs")

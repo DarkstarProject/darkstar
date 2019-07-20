@@ -5,7 +5,7 @@
 -----------------------------------
 mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/mobs")
-----------------------------------
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)

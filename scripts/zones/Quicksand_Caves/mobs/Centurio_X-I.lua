@@ -1,9 +1,10 @@
-----------------------------------
+-----------------------------------
 -- Area: Quicksand Caves
---  NM:  Centurio X-I
+--   NM: Centurio X-I
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Empyreal Paradox
---  MOB: Prishe
+--  Mob: Prishe
 -- Chains of Promathia 8-4 BCNM Fight
 -----------------------------------
 local ID = require("scripts/zones/Empyreal_Paradox/IDs")

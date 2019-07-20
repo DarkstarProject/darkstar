@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Bastok
---  MOB: Adamantking Effigy
+-- Area: Dynamis - Bastok
+--  Mob: Adamantking Effigy
 -- Map Position: http://www.dynamislounge.com/html/zone/frame_bas1.htm
 -- Map Position: http://www.dynamislounge.com/html/zone/frame_bas2.htm
 -----------------------------------

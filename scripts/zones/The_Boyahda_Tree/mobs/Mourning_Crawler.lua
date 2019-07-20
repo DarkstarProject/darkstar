@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Mourning Crawler
+--  Mob: Mourning Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

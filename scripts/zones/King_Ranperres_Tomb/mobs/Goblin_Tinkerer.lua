@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Goblin Tinkerer
+--  Mob: Goblin Tinkerer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

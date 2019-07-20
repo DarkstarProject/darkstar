@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Qufim
---  MOB: Antaeus
+-- Area: Dynamis - Qufim
+--  Mob: Antaeus
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Qufim/IDs");
 require("scripts/globals/keyitems");

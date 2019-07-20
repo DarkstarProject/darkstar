@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Eraser (Monster)
+--  Mob: Eraser (Monster)
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

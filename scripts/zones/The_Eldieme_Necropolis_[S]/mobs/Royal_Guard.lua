@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Royal_Guard
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Royal Guard
 -----------------------------------
 
 -- -----------------------------------

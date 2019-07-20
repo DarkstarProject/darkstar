@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Water Elemental
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Water Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

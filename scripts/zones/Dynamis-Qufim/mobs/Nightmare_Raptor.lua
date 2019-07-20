@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Qufim
---  MOB: Nightmare Raptor
+-- Area: Dynamis - Qufim
+--  Mob: Nightmare Raptor
 -----------------------------------
 mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------

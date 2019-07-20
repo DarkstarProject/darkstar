@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Eastern_Spriggan
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Eastern Spriggan
 -----------------------------------
 
 -- -----------------------------------

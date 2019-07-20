@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Wuu Qoho the Razorclaw
+-- Area: Dynamis - Windurst
+--  Mob: Wuu Qoho the Razorclaw
 -- Boss Trigger for RDM NM
 -----------------------------------
 mixins =

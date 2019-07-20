@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Cold Gigas
+--  Mob: Cold Gigas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Bordox_Kittyback
+-- Area: Dynamis - Beaucedine
+--  Mob: Bordox Kittyback
 -----------------------------------
 mixins =
 {

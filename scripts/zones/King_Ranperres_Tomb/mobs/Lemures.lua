@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Lemures
+--  Mob: Lemures
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

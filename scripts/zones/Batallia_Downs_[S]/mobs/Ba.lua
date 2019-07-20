@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Batallia Downs (S)
+-- Area: Batallia Downs [S]
 --  Mob: Ba
 -- Note: PH for Habergoass
 -----------------------------------

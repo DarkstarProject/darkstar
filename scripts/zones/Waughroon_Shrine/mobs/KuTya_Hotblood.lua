@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Ku'Tya Hotblood
+--  Mob: Ku'Tya Hotblood
 -- BCNM: Grimshell Shocktroopers
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

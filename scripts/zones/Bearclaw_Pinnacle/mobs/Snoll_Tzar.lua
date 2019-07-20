@@ -1,9 +1,6 @@
 -----------------------------------
 -- Area: Bearclaw Pinnacle
--- Name: Snoll Tzar
------------------------------------
-require("scripts/globals/titles");
-require("scripts/globals/status");
+--  Mob: Snoll Tzar
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

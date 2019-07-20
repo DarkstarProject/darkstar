@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  NM:  Tros
+--   NM: Tros
 -- Used in Quests: Painful Memory
 -- !pos -289 -45 212 166
 -----------------------------------

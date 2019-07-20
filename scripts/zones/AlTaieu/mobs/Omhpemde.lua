@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Om'Hpemde
+--  Mob: Om'hpemde
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/status");

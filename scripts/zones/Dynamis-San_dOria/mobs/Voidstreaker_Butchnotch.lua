@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  MOB: Voidstreaker Butchnotch
+-- Area: Dynamis - San d'Oria
+--  Mob: Voidstreaker Butchnotch
 -----------------------------------
 mixins =
 {

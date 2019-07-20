@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Pso'xja
---  MOB: Nunyunuwi
+-- Area: Pso'Xja
+--  Mob: Nunyunuwi
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------

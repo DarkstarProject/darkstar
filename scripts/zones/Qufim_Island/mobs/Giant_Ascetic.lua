@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Giant Ascetic
+--  Mob: Giant Ascetic
 -- Note: PH for Slippery Sucker
 -----------------------------------
 local ID = require("scripts/zones/Qufim_Island/IDs")

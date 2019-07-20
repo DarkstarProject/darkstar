@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Sabotender Enamorado
+--  Mob: Sabotender Enamorado
 -----------------------------------
 require("scripts/globals/missions")
 require("scripts/globals/status")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: War Lizard
+--  Mob: War Lizard
 -- Note: PH for Tigerbane Bakdak
 -----------------------------------
 local ID = require("scripts/zones/Davoi/IDs")

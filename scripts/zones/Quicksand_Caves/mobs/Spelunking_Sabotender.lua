@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Spelunking Sabotender
+--  Mob: Spelunking Sabotender
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

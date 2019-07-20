@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg [S]
---  MOB: Coppercap
+--  Mob: Coppercap
 -- Note: PH for Gloomanita
 -----------------------------------
 local ID = require("scripts/zones/North_Gustaberg_[S]/IDs")

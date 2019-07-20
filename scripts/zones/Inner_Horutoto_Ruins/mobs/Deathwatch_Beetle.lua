@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Deathwatch Beetle
+--  Mob: Deathwatch Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

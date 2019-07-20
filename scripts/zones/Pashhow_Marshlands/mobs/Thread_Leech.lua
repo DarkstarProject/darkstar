@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Thread Leech
+--  Mob: Thread Leech
 -- Note: PH for Bloodpool Vorax
 -----------------------------------
 local ID = require("scripts/zones/Pashhow_Marshlands/IDs")

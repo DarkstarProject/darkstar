@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Veteran Quadav
+--  Mob: Veteran Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

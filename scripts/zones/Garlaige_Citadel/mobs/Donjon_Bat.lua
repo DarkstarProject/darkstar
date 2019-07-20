@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Donjon Bat
+--  Mob: Donjon Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

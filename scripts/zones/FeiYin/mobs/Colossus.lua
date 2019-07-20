@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Colossus
+--  Mob: Colossus
 -- Note: PH for Goliath
 -----------------------------------
 local ID = require("scripts/zones/FeiYin/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Flume Toad
+-- Area: Toraimarai Canal
+--  Mob: Flume Toad
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

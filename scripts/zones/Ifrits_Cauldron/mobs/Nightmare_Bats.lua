@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Nightmare Bats
+--  Mob: Nightmare Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

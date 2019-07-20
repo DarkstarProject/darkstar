@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: JiKhu_Towercleaver
+-- Area: Dynamis - Beaucedine
+--  Mob: JiKhu Towercleaver
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Jugner_Forest
---   NM:  Fradubio
+--   NM: Fradubio
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

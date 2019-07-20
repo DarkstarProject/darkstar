@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Tonberry Jinxer
+--  Mob: Tonberry Jinxer
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
 require("scripts/globals/regimes")

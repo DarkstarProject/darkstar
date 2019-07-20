@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Ticktox_Beadyeyes
+-- Area: Dynamis - Jeuno
+--  Mob: Ticktox Beadyeyes
 -----------------------------------
 mixins =
 {

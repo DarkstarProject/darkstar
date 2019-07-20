@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Periqia (Requiem)
---  MOB: BATTEILANT_BHOOT
+--  Mob: Batteilant Bhoot
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Hill Lizard
+--  Mob: Hill Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

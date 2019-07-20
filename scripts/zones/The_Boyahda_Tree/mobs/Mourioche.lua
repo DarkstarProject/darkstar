@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Mourioche
+--  Mob: Mourioche
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

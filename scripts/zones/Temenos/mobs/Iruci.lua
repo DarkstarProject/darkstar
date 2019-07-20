@@ -1,16 +1,8 @@
 -----------------------------------
--- Area: Temenos Central 1floor
--- NPC: Iruci
-
+-- Area: Temenos Central Floor
+--  Mob: Iruci
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -20,15 +12,11 @@ function onMobEngaged(mob,target)
  end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
- 
+
   if (IsMobDead(16929046)==true and IsMobDead(16929047)==true and IsMobDead(16929048)==true and IsMobDead(16929049)==true and IsMobDead(16929050)==true and IsMobDead(16929051)==true) then
        GetNPCByID(16928768+71):setPos(mobX,mobY,mobZ);
     GetNPCByID(16928768+71):setStatus(dsp.status.NORMAL);

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Neckchopper
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Neckchopper
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
---  MOB: Armed Gears
+--  Mob: Armed Gears
 -- !pos -19 -4 -153
 -----------------------------------
 -- todo

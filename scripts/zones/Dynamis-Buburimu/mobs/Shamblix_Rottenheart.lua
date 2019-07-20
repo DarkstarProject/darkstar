@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Shamblix_Rottenheart
+-- Area: Dynamis - Buburimu
+--  Mob: Shamblix Rottenheart
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

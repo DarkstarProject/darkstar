@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Tipha
+--  Mob: Tipha
 -----------------------------------
 local ID = require("scripts/zones/Yuhtunga_Jungle/IDs");
 

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Taruroaster_Biggsjig
+-- Area: Dynamis - Beaucedine
+--  Mob: Taruroaster Biggsjig
 -----------------------------------
 mixins =
 {

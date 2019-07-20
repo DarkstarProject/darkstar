@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
---  NPC: Cynoprosopi
-
+--  Mob: Cynoprosopi
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

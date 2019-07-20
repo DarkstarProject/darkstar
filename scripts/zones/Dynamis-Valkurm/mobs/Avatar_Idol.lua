@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Manifest_Idol
+-- Area: Dynamis - Valkurm
+--  Mob: Avatar Idol
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
 require("scripts/globals/keyitems")

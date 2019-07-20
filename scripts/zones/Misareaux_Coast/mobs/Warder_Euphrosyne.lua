@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux Coast
---  Mob: Warder_Euphrosyne
+--  Mob: Warder Euphrosyne
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------

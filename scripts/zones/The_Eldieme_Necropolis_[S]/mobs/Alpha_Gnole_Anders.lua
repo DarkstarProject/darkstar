@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Alpha_Gnole_Anders
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Alpha Gnole Anders
 -----------------------------------
 
 -- -----------------------------------

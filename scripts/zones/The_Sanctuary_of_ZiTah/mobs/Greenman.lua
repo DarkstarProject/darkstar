@@ -1,7 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: The Sanctuary of Zi'Tah (121)
 --   NM: Greenman
---   ID: 17273295
 -- Note: Popped by qm1
 -- Involved in Quest: The Weight Of Your Limits
 -- !pos -325.406 -0.198 471.459 121

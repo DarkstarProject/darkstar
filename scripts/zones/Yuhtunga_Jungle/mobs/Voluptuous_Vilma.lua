@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Voluptuous Vilma
+--  Mob: Voluptuous Vilma
 -----------------------------------
 local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
 -----------------------------------

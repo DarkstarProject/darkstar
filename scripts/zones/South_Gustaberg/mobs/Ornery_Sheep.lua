@@ -1,6 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: South Gustaberg
---  MOB: Ornery Sheep
+--  Mob: Ornery Sheep
 -- Note: PH for Carnero
 -----------------------------------
 local ID = require("scripts/zones/South_Gustaberg/IDs")

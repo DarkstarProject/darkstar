@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll (Extermination)
---  MOB: Undead Leech
+--  Mob: Undead Leech
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

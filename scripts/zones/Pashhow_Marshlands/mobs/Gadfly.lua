@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Gadfly
+--  Mob: Gadfly
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lebros Cavern (Troll Fugitives)
---  MOB: Troll Fugitive
+--  Mob: Broken Troll Soldier
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Barakbok
+--  Mob: Barakbok
 -- Involved in Quest: The Doorman
 -----------------------------------
 require("scripts/globals/settings");

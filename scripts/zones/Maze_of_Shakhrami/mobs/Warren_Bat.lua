@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Warren Bat
+--  Mob: Warren Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

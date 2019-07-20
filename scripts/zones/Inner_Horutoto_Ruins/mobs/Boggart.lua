@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Boggart
+--  Mob: Boggart
 -- Note: Place holder Nocuous Weapon
 -----------------------------------
 local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs");

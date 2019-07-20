@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
---  NPC: Millenary Mossback
-
+--  Mob: Millenary Mossback
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

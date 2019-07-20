@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Skinmask_Ugghfogg
+-- Area: Dynamis - Beaucedine
+--  Mob: Skinmask Ugghfogg
 -----------------------------------
 mixins =
 {

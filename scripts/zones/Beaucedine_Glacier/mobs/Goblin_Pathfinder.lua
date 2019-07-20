@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Pathfinder
+--  Mob: Goblin Pathfinder
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

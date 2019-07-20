@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Snypestix_Eaglebeak
+-- Area: Dynamis - Jeuno
+--  Mob: Snypestix Eaglebeak
 -----------------------------------
 mixins =
 {

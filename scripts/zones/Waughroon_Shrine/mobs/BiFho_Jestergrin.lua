@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Bi'Fho Jestergrin
+--  Mob: Bi'Fho Jestergrin
 -- BCNM: Grimshell Shocktroopers
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

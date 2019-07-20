@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Desert Beetle
+--  Mob: Desert Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

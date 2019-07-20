@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Baa_Dava_the_Bibliophage
+-- Area: Dynamis - Buburimu
+--  Mob: Baa Dava the Bibliophage
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  NM:  Despot
+--   NM: Despot
 -----------------------------------
 
 function onMobWeaponSkill(target, mob, skill)

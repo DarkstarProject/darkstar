@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Temple Bee
+--  Mob: Temple Bee
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

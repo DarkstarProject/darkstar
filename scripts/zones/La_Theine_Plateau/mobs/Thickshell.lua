@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Thickshell
+--  Mob: Thickshell
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

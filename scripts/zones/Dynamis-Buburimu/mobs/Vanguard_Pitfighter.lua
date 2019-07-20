@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Vanguard_Pitfighter
+-- Area: Dynamis - Buburimu
+--  Mob: Vanguard Pitfighter
 -----------------------------------
 mixins =
 {

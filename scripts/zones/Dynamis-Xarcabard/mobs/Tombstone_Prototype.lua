@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Tombstone Prototype
+-- Area: Dynamis - Xarcabard
+--  Mob: Tombstone Prototype
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");

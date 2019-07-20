@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Demonic Pugil
+--  Mob: Demonic Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

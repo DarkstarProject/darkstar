@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Valor
+--  Mob: Valor
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

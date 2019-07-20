@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Tieholtsodi
-
+--  Mob: Tieholtsodi
 -----------------------------------
 
 function onMobEngaged(mob,target)

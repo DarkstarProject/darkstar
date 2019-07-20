@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: SoGho_Adderhandler
+-- Area: Dynamis - Beaucedine
+--  Mob: SoGho Adderhandler
 -----------------------------------
 mixins =
 {

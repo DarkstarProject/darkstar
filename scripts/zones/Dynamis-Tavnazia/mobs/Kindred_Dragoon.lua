@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  MOB: Kindred_Dragoon
+-- Area: Dynamis - Tavnazia
+--  Mob: Kindred Dragoon
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

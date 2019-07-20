@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux Coast
---  Mob: Warder_Thalia
+--  Mob: Warder Thalia
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Screamer
+--  Mob: Screamer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Blade Bat
+--  Mob: Blade Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

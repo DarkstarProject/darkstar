@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Vanguard Ogresoother
+-- Area: Dynamis - Windurst
+--  Mob: Vanguard Ogresoother
 -----------------------------------
 mixins =
 {

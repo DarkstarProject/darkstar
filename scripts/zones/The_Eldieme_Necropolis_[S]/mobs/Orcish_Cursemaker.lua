@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Orcish_Cursemaker
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Orcish Cursemaker
 -----------------------------------
 
 -- -----------------------------------

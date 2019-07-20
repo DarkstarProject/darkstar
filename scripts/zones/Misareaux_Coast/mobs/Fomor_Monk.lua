@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Fomor Monk
+--  Mob: Fomor Monk
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

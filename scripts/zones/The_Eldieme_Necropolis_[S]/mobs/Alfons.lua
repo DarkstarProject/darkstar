@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Alfons
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Alfons
 -----------------------------------
 
 -- -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Vanguard Prelate
+-- Area: Dynamis - Windurst
+--  Mob: Vanguard Prelate
 -----------------------------------
 mixins =
 {

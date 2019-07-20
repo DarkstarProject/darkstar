@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Bounty Hunter
+--  Mob: Goblin Bounty Hunter
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

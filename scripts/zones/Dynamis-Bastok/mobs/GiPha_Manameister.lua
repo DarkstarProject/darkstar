@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Bastok
---  NPC: Gi'Pha Manameister
+-- Area: Dynamis - Bastok
+--  Mob: Gi'Pha Manameister
 -- Boss Trigger for Gu'Dha Effigy
 -----------------------------------
 mixins =

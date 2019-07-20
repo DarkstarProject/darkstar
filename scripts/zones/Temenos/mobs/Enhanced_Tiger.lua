@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T
---  NPC: Enhanced_Tiger
-
+--  Mob: Enhanced Tiger
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

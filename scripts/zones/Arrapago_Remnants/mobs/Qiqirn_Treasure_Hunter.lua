@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Qiqirn Treasure Hunter
+--  Mob: Qiqirn Treasure Hunter
 -----------------------------------
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/status")

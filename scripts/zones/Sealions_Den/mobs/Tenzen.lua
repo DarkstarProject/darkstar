@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealion's Den
---  NPC: Tenzen
+--  Mob: Tenzen
 -----------------------------------
 local ID = require("scripts/zones/Sealions_Den/IDs");
 -----------------------------------

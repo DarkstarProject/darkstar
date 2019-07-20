@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

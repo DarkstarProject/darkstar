@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Grauberg[S]
---   NM: Migratory_Hippogryph
+-- Area: Grauberg [S]
+--   NM: Migratory Hippogryph
 -- Note: Spawned for quest "The Unfinished Waltz"
 -----------------------------------
 require("scripts/globals/quests");

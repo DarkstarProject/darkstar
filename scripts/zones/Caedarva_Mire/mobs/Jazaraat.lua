@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Jazaraat
+--  Mob: Jazaraat
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Recluse Spider
+--  Mob: Recluse Spider
 -- Note: Place Holder for Arachne
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs")

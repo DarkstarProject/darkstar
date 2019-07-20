@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Crystal War Areas
+-- Area: Rolanberry Fields [S]
 --   NM: Dark Ixion
 -----------------------------------
 require("scripts/globals/titles")

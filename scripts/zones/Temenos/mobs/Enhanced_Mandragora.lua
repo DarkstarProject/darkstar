@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T
---  NPC: Enhanced_Mandragora
-
+--  Mob: Enhanced Mandragora
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

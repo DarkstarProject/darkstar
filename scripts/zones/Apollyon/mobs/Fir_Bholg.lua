@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SW
---  NPC: Fir Bholg
-
+--  Mob: Fir Bholg
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Snaggletooth Peapuk
+--  Mob: Snaggletooth Peapuk
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

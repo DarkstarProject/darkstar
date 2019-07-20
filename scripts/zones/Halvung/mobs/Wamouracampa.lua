@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
---  MOB: Wamouracampa
+--  Mob: Wamouracampa
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

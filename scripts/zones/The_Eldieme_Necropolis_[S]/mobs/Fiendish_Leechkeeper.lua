@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Fiendish_Leechkeeper
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Fiendish Leechkeeper
 -----------------------------------
 
 -- -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Wespe
+--  Mob: Wespe
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

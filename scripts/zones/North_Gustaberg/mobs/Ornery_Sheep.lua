@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Ornery Sheep
+--  Mob: Ornery Sheep
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

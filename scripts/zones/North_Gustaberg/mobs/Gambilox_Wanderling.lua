@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: North Gusberg
---  MOB: Gambilox Wanderling
+-- Area: North Gustaberg
+--  Mob: Gambilox Wanderling
 -- Quest NM - "As Thick as Thieves"
 -----------------------------------
 require("scripts/globals/status")

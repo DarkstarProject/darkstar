@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Adamantking_Effigy
+-- Area: Dynamis - Buburimu
+--  Mob: Adamantking Effigy
 
 -----------------------------------
 require("scripts/globals/dynamis");

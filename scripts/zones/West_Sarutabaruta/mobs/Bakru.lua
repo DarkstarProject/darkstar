@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Bakru
+--  Mob: Bakru
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

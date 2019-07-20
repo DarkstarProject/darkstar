@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Ice Elemental
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Ice Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

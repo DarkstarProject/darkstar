@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Gales
---  MOB: Ogmios
+--  Mob: Ogmios
 -- Involved in Quest: Carbuncle Debacle
 -----------------------------------
 require("scripts/globals/settings");

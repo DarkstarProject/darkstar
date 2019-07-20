@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Wind Bats
+--  Mob: Wind Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Thorn Bat
+-- Area: Outer Horutoto Ruins
+--  Mob: Thorn Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

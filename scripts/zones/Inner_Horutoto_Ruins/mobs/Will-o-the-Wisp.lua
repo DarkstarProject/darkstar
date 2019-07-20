@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Will-o-the-Wisp
+--  Mob: Will-o-the-Wisp
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

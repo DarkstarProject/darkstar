@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Smeltix_Thickhide
+-- Area: Dynamis - Jeuno
+--  Mob: Smeltix Thickhide
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Battue Bats
+--  Mob: Battue Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Batallia Downs (S)
+-- Area: Batallia Downs [S]
 --   NM: Chaneque
 -----------------------------------
 require("scripts/globals/mobs")

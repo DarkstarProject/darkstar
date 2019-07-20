@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Vanguard_Hatamoto
+-- Area: Dynamis - Buburimu
+--  Mob: Vanguard Hatamoto
 -----------------------------------
 mixins =
 {

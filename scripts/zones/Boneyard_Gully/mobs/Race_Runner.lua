@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Boneyard_Gully
--- Name: Race Runner
+--  Mob: Race Runner
 -----------------------------------
 require("scripts/globals/pathfind");
 require("scripts/globals/titles");

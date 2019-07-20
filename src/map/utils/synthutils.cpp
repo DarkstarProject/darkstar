@@ -72,7 +72,7 @@ bool isRightRecipe(CCharEntity* PChar)
     const char* fmtQuery =
 
         "SELECT ID, KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, \
-            Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty, Type \
+            Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty, Desynth \
         FROM synth_recipes \
         WHERE (Crystal = %u OR HQCrystal = %u) \
             AND Ingredient1 = %u \

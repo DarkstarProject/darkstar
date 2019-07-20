@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE
---  NPC: Thiazi
-
+--  Mob: Thiazi
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Viscount_Morax
+--  Mob: Viscount Morax
 -----------------------------------
 require("scripts/globals/titles");
 

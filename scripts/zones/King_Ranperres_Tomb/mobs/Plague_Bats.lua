@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Plague Bats
+--  Mob: Plague Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

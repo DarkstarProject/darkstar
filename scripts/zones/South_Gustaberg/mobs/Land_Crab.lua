@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Land Crab
+--  Mob: Land Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

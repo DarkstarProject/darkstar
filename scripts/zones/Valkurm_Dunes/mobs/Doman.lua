@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Doman
+--  Mob: Doman
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
 require("scripts/globals/keyitems");

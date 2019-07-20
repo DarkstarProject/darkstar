@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Riverne - Site B01 (BCNM)
---  NM:  Bahamut
+--   NM: Bahamut
 -----------------------------------
 local ID = require("scripts/zones/Riverne-Site_B01/IDs")
 require("scripts/globals/quests");

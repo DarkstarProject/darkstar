@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lebros Cavern (Excavation Duty)
--- MOB: Brittle Rock
+--  Mob: Brittle Rock
 -----------------------------------
 local ID = require("scripts/zones/Lebros_Cavern/IDs")
 require("scripts/globals/status")

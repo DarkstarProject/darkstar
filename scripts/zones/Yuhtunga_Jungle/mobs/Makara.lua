@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Makara
+--  Mob: Makara
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

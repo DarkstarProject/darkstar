@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Knii_Hoqo_the_Bisector
+-- Area: Dynamis - Beaucedine
+--  Mob: Knii Hoqo the Bisector
 -----------------------------------
 mixins =
 {

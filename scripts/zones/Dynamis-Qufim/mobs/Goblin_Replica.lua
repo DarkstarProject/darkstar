@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis qufim
---  MOB: Goblin Replica
+-- Area: Dynamis - Qufim
+--  Mob: Goblin Replica
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/globals/status");

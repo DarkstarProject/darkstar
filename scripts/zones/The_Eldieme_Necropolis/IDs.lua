@@ -44,12 +44,13 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
             [17576052] = 17576054, -- -384.019 0.509 384.26
             [17576053] = 17576054, -- -376.974 0.586 343.750
         },
-        LICH_C_MAGNUS = 17575937,
-        YUM_KIMIL     = 17576264,
-        STURM         = 17576267,
-        TAIFUN        = 17576268,
-        TROMBE        = 17576269,
-        MIMIC         = 17576270,
+        LICH_C_MAGNUS       = 17575937,
+        YUM_KIMIL           = 17576264,
+        STURM               = 17576267,
+        TAIFUN              = 17576268,
+        TROMBE              = 17576269,
+        MIMIC               = 17576270,
+        APPARATUS_ELEMENTAL = 17576271,
     },
     npc =
     {

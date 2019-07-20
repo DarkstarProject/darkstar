@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Carrion Crow
+--  Mob: Carrion Crow
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

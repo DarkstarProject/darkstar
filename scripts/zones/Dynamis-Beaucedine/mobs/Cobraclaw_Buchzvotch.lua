@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Cobraclaw_Buchzvotch
+-- Area: Dynamis - Beaucedine
+--  Mob: Cobraclaw Buchzvotch
 -----------------------------------
 mixins =
 {

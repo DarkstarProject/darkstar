@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Tunnel Worm
+--  Mob: Tunnel Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

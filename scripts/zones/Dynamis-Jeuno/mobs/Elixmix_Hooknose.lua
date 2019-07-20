@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Elixmix_Hooknose
+-- Area: Dynamis - Jeuno
+--  Mob: Elixmix Hooknose
 -----------------------------------
 mixins =
 {

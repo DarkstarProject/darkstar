@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Huge Hornet
+--  Mob: Huge Hornet
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

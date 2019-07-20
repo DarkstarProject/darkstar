@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Droprix_Granitepalms
+-- Area: Dynamis - Beaucedine
+--  Mob: Droprix Granitepalms
 -----------------------------------
 mixins =
 {

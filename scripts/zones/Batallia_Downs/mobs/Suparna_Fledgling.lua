@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Suparna Fledgling
+--  Mob: Suparna Fledgling
 -- Involved in Mission: San d'Orian 9-1
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

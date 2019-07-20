@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Honor
+--  Mob: Honor
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
 require("scripts/globals/missions");

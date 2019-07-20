@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Spartoi Warrior
+--  Mob: Spartoi Warrior
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

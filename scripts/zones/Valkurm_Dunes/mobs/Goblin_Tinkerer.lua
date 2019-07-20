@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Tinkerer
+--  Mob: Goblin Tinkerer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------
