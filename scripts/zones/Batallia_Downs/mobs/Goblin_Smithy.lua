@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Smithy
+--  Mob: Goblin Smithy
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

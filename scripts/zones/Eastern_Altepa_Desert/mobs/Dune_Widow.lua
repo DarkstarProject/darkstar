@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert (114)
---   NM: Dune_Widow
+--   NM: Dune Widow
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

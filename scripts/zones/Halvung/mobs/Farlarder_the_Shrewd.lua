@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
---  MOB: Farlarder the Shrewd
+--  Mob: Farlarder the Shrewd
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 -----------------------------------

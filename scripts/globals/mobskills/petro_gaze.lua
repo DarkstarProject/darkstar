@@ -4,20 +4,14 @@
 -- Type: Gaze
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Single gaze
--- Notes: Nightmare Cockatrice extends this to a fan-shaped AOE.
+-- Known users: Hecteyes in CoP areas, Sobbing Eyes in Under Observation, Shoggoth
 ---------------------------------------------
 require("scripts/globals/monstertpmoves")
-require("scripts/globals/settings")
 require("scripts/globals/status")
-require("scripts/globals/zone")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (target:getCurrentRegion() == dsp.region.TAVNAZIANARCH) then
-        return 0
-    end
-
-    return 1
+    return 0
 end
 
 function onMobWeaponSkill(target, mob, skill)

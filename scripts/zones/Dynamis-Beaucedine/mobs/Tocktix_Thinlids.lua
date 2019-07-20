@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Tocktix_Thinlids
+-- Area: Dynamis - Beaucedine
+--  Mob: Tocktix Thinlids
 -----------------------------------
 mixins =
 {

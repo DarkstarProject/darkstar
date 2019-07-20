@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Batillia Downs S
---  MOB: Gnole
+-- Area: Batallia Downs [S]
+--  Mob: Gnole
 -----------------------------------
 
 mixins = { require("scripts/mixins/families/gnole") }

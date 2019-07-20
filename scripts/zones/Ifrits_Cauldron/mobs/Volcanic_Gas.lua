@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Volcanic Gas
+--  Mob: Volcanic Gas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

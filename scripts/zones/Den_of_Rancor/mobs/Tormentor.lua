@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tormentor
+--  Mob: Tormentor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

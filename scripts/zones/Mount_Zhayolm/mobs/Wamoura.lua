@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
---  MOB: Wamoura
+--  Mob: Wamoura
 -- Note: PH for Ignamoth
 -----------------------------------
 local ID = require("scripts/zones/Mount_Zhayolm/IDs")

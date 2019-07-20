@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Oldton Movalpolos
---  MOB: Bugbear Bondman
+--  Mob: Bugbear Bondman
 -- Note: PH for Bugbear Strongman
 -----------------------------------
 local ID = require("scripts/zones/Oldton_Movalpolos/IDs")

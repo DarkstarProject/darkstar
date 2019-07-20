@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Ashu Talif (Against All Odds)
---  MOB: Gowam
+--  Mob: Gowam
 -----------------------------------
 require("scripts/globals/status")
 local ID = require("scripts/zones/The_Ashu_Talif/IDs")

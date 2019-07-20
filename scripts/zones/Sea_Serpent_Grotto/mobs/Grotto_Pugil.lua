@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Grotto Pugil
+--  Mob: Grotto Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

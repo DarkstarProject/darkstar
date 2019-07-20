@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Nightmare Dhalmel
+-- Area: Dynamis - Buburimu
+--  Mob: Nightmare Dhalmel
 -----------------------------------
 mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------

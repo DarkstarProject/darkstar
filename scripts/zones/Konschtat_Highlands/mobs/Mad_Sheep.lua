@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Mad Sheep
+--  Mob: Mad Sheep
 -- Note: Place holder Stray Mary
 -----------------------------------
 local ID = require("scripts/zones/Konschtat_Highlands/IDs")

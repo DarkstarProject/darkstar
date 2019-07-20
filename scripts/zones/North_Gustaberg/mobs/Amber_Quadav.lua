@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Amber Quadav
+--  Mob: Amber Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

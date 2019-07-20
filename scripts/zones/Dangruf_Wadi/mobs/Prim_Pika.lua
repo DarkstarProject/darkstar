@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Prim Pika
+--  Mob: Prim Pika
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

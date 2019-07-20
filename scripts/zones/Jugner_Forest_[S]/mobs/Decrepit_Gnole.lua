@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Jugner Forest (S)
---  NPC: Decrepit Gnole
+-- Area: Jugner Forest [S]
+--  Mob: Decrepit Gnole
 -----------------------------------
 
 mixins = { require("scripts/mixins/families/gnole") }

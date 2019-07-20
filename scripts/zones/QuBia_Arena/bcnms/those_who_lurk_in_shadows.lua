@@ -1,71 +1,50 @@
 -----------------------------------
--- Area: Qu'Bia Arena
--- NPC:  Those Who Lurk in Shadows
--- !pos -221 -24 19 206
+-- Those Who Lurk in Shadows (III)
+-- Qu'Bia Arena mission battlefield
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/QuBia_Arena/IDs")
 require("scripts/globals/battlefield")
-local ID = require("scripts/zones/QuBia_Arena/IDs");
-
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
--- After registering the BCNM via bcnmRegister(bcnmid)
-function onBattlefieldRegister(player,battlefield)
-end;
+function onBattlefieldRegister(player, battlefield)
+end
 
--- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBattlefieldEnter(player,battlefield)
-end;
+function onBattlefieldEnter(player, battlefield)
+end
 
--- Leaving the BCNM by every mean possible, given by the LeaveCode
--- 1=Select Exit on circle
--- 2=Winning the BC
--- 3=Disconnected or warped out
--- 4=Losing the BC
--- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
--- from the core when a player disconnects or the time limit is up, etc
-
-function onBattlefieldLeave(player,battlefield,leavecode)
-    -- print("leave code "..leavecode);
-    if (player:hasKeyItem(dsp.ki.MARK_OF_SEED)) then
-        player:delKeyItem(dsp.ki.MARK_OF_SEED);
+function onBattlefieldLeave(player, battlefield, leavecode)
+    if player:hasKeyItem(dsp.ki.MARK_OF_SEED) then
+        player:delKeyItem(dsp.ki.MARK_OF_SEED)
     end
-
-    if leavecode == dsp.battlefield.leaveCode.WON then -- Play end CS. Need time and battle id for record keeping + storage
+    if leavecode == dsp.battlefield.leaveCode.WON then
+        player:addExp(700)
         local name, clearTime, partySize = battlefield:getRecord()
-        player:addExp(700);
-        if (player:getCurrentMission(ACP) == dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III) then
-            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
-        else -- Gives skip dialog if previously completed
-            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
-        end
+        local arg8 = (player:getCurrentMission(ACP) ~= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III) and 1 or 0
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), arg8)
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
-        player:startEvent(32002);
+        player:startEvent(32002)
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-    -- print("bc update csid "..csid.." and option "..option);
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-    -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 32001) then
-        if (player:getCurrentMission(ACP) == dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III) then
-            player:completeMission(ACP,dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III);
-            player:addMission(ACP,dsp.mission.id.acp.REMEMBER_ME_IN_YOUR_DREAMS);
+function onEventFinish(player, csid, option)
+    if csid == 32001 then
+        if player:getCurrentMission(ACP) == dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III then
+            player:completeMission(ACP, dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III)
+            player:addMission(ACP, dsp.mission.id.acp.REMEMBER_ME_IN_YOUR_DREAMS)
         end
-
-        if (player:hasKeyItem(dsp.ki.IVORY_KEY) == false and player:getCurrentMission(ACP) >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III) then
-            player:addKeyItem(dsp.ki.IVORY_KEY);
-            player:setVar("LastIvoryKey", os.date("%j"));
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.IVORY_KEY);
+        if not player:hasKeyItem(dsp.ki.IVORY_KEY) and player:getCurrentMission(ACP) >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III then
+            player:setVar("LastIvoryKey", os.date("%j"))
+            player:addKeyItem(dsp.ki.IVORY_KEY)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.IVORY_KEY)
         end
     end
-end;
+end

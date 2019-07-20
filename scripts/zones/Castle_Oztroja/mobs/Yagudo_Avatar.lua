@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---   NM: Yagudo_Avatar
+--   NM: Yagudo Avatar
 -- Note: PH for Tzee Xicu the Manifest
 -- TODO: messages should be zone-wide
 -----------------------------------

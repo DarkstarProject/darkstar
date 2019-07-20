@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Foul Meat
+--  Mob: Foul Meat
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

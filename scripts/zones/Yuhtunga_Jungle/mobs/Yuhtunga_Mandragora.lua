@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Yuhtunga Mandragora
+--  Mob: Yuhtunga Mandragora
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tides
---  MOB: Leviathan Prime
+--  Mob: Leviathan Prime
 -- Involved in Quest: Trial by Water, Trial Size Trial by Water
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------

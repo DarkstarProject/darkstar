@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Ore Golem
+--  Mob: Ore Golem
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/keyitems");

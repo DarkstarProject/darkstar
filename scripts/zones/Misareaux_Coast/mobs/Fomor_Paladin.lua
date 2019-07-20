@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Fomor Paladin
+--  Mob: Fomor Paladin
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

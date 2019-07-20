@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Troika Bats
+--  Mob: Troika Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

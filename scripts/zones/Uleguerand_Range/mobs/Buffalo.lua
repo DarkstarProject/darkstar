@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Uleguerand Range
---  MOB: Buffalo
+--  Mob: Buffalo
 -- Note: PH for Bonnacon
 -----------------------------------
 local ID = require("scripts/zones/Uleguerand_Range/IDs")

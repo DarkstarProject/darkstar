@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Metalloid_Amoeba
-
+--  Mob: Metalloid Amoeba
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

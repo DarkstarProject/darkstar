@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Rime Gigas
+--  Mob: Rime Gigas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

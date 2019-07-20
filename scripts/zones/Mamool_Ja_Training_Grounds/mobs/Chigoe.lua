@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamool Ja Training Grounds
---  MOB: Chigoe
+--  Mob: Chigoe
 -----------------------------------
 mixins = {require("scripts/mixins/families/chigoe")}
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  MOB: Kf'ghrah WHM
+--  Mob: Kf'ghrah WHM
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic"); -- no spells are currently set due to lack of info

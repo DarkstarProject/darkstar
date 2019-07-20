@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Blob
+--  Mob: Blob
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

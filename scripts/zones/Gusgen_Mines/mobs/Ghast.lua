@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Ghast
+--  Mob: Ghast
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -192,6 +192,15 @@ INSERT INTO bcnm_treasure_chests VALUES (193,3,17465380);
 -- Qu'Bia Arena
 -- ----------------------------
 
+INSERT INTO bcnm_treasure_chests VALUES (513,1,17621198); -- come_into_my_parlor
+INSERT INTO bcnm_treasure_chests VALUES (513,2,17621208);
+INSERT INTO bcnm_treasure_chests VALUES (513,3,17621218);
+INSERT INTO bcnm_treasure_chests VALUES (514,1,17621233); -- e-vase-ive_action
+INSERT INTO bcnm_treasure_chests VALUES (514,2,17621240);
+INSERT INTO bcnm_treasure_chests VALUES (514,3,17621247);
+INSERT INTO bcnm_treasure_chests VALUES (515,1,17621257); -- infernal_swarm
+INSERT INTO bcnm_treasure_chests VALUES (515,2,17621267);
+INSERT INTO bcnm_treasure_chests VALUES (515,3,17621277);
 INSERT INTO bcnm_treasure_chests VALUES (520,1,17621141); -- demolition_squad
 INSERT INTO bcnm_treasure_chests VALUES (520,2,17621146);
 INSERT INTO bcnm_treasure_chests VALUES (520,3,17621151);

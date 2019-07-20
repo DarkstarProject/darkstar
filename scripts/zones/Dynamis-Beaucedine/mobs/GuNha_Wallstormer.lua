@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: GuNha_Wallstormer
+-- Area: Dynamis - Beaucedine
+--  Mob: GuNha Wallstormer
 -----------------------------------
 mixins =
 {

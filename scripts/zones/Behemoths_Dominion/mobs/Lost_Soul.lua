@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Lost Soul
+--  Mob: Lost Soul
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

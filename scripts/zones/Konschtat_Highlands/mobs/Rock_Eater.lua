@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Rock Eater
+--  Mob: Rock Eater
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

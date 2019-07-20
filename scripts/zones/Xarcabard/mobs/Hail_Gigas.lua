@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Hail Gigas
+--  Mob: Hail Gigas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

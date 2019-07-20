@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters_Landing
---  Mob: Overgrown_Ivy
+--  Mob: Overgrown Ivy
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Torama
+--  Mob: Torama
 -- Note: Place holder Ose
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")

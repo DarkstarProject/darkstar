@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Cutter
+--  Mob: Cutter
 -----------------------------------
 
 function onMobSpawn(mob)

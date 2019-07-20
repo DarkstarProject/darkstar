@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Tymexox_Ninefingers
+-- Area: Dynamis - Jeuno
+--  Mob: Tymexox Ninefingers
 -----------------------------------
 mixins =
 {

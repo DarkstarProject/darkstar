@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Orcish_Turret
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Orcish Turret
 -----------------------------------
 
 -- -----------------------------------

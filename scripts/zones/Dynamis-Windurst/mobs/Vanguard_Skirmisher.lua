@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Vanguard Skirmisher
+-- Area: Dynamis - Windurst
+--  Mob: Vanguard Skirmisher
 -----------------------------------
 mixins =
 {

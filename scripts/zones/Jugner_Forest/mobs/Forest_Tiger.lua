@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Forest Tiger
+--  Mob: Forest Tiger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

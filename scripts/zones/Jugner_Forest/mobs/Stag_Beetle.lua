@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Stag Beetle
+--  Mob: Stag Beetle
 -- Note: PH for Panzer Percival
 -----------------------------------
 local ID = require("scripts/zones/Jugner_Forest/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Deathcaller_Bidfbid
+-- Area: Dynamis - Beaucedine
+--  Mob: Deathcaller Bidfbid
 -----------------------------------
 mixins =
 {

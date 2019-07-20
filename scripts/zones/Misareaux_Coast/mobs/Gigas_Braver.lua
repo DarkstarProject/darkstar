@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Gigas Braver
+--  Mob: Gigas Braver
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Gigas Stonecarrier
+--  Mob: Gigas Stonecarrier
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

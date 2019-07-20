@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---   NM: Ghast
+--   NM: Namtar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

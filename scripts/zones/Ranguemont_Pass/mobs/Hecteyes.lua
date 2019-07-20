@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Hecteyes
+--  Mob: Hecteyes
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

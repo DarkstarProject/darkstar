@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Hellbound Warlock
+--  Mob: Hellbound Warlock
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

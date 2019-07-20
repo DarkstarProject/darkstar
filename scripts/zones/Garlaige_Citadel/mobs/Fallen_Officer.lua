@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Fallen Officer
+--  Mob: Fallen Officer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

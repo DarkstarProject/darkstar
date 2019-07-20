@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Xaa_Chau_the_Roctalon
+-- Area: Dynamis - Beaucedine
+--  Mob: Xaa Chau the Roctalon
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Cirrate_Christelle
+-- Area: Dynamis - Valkurm
+--  Mob: Cirrate Christelle
 -----------------------------------
 require("scripts/globals/dynamis");
 local ID = require("scripts/zones/Dynamis-Valkurm/IDs");

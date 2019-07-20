@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Battering Ram
+--  Mob: Battering Ram
 -----------------------------------
 local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 -----------------------------------

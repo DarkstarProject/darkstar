@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Taisai
+--  Mob: Taisai
 -----------------------------------
 local ID = require("scripts/zones/Ranguemont_Pass/IDs");
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  Mob: Dark_Aspic
+--  Mob: Dark Aspic
 -- Note: PH for Sewer Syrup
 -----------------------------------
 local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs")

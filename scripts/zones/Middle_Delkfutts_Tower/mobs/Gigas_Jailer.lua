@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Jailer
+--  Mob: Gigas Jailer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Megapod Megalops
+--  Mob: Megapod Megalops
 --   ID: 17649861
 -- Note: Popped by qm1
 -- !pos 115 14.68 164.1 213

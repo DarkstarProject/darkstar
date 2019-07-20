@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Serjeant
+--  Mob: Orcish Serjeant
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

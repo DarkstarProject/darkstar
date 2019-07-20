@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Batallia Downs (S)
+-- Area: Batallia Downs [S]
 --   NM: Burlibix Brawnback
 -----------------------------------
 require("scripts/globals/status")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: GuKhu_Dukesniper
+-- Area: Dynamis - Beaucedine
+--  Mob: GuKhu Dukesniper
 -----------------------------------
 mixins =
 {

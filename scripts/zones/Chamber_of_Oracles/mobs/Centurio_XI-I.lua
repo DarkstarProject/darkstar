@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
--- MOB: Centurio XI-I
+--  Mob: Centurio XI-I
 -- BCNM Fight: Legion XI Comitatensis
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

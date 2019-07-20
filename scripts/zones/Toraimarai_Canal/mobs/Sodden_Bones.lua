@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Sodden Bones
+-- Area: Toraimarai Canal
+--  Mob: Sodden Bones
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

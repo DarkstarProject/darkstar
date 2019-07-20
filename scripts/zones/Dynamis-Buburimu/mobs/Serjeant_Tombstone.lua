@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Serjeant_Tombstone
+-- Area: Dynamis - Buburimu
+--  Mob: Serjeant Tombstone
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/globals/status");

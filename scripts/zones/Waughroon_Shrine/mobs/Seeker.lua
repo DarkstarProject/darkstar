@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Searcher
+--  Mob: Seeker
 -- Mission 2-3 BCNM Fight
 -----------------------------------
-
 require("scripts/globals/status");
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.HP_STANDBACK, 50);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Blind Bat
+--  Mob: Blind Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

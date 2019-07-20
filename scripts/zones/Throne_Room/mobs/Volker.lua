@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Volker
+--  Mob: Volker
 -- Ally during Bastok Mission 9-2
 -----------------------------------
 local ID = require("scripts/zones/Throne_Room/IDs");

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  NPC: Loo Hepe the Eyepiercer
+-- Area: Dynamis - Windurst
+--  Mob: Loo Hepe the Eyepiercer
 -- Boss Trigger for MEGA BOSS
 -----------------------------------
 mixins =

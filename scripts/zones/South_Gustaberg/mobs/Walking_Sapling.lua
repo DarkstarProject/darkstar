@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Walking Sapling
+--  Mob: Walking Sapling
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

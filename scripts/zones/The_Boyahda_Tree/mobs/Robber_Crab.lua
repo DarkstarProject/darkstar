@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Robber Crab
+--  Mob: Robber Crab
 -- Note: PH for Aquarius
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs")

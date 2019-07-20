@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Warchief_Tombstone
+-- Area: Dynamis - Buburimu
+--  Mob: Warchief Tombstone
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");

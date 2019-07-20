@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Hoodoo
+--  Mob: Goblin Hoodoo
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

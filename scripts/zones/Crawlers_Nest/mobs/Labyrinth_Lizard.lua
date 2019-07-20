@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Labyrinth Lizard
+--  Mob: Labyrinth Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

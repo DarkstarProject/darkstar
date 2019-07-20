@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Nachtmahr
+--  Mob: Nachtmahr
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

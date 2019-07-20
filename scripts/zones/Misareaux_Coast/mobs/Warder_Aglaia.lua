@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux Coast
---  Mob: Warder_Aglaia
+--  Mob: Warder Aglaia
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------

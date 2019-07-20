@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Jelly
+--  Mob: Jelly
 -- Note: PH for Agar Agar
 -----------------------------------
 local ID = require("scripts/zones/Ordelles_Caves/IDs")

@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Grave_Digger
-
+--  Mob: Grave Digger
 -----------------------------------
 
 function onMobEngaged(mob,target)

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Accursed Sorcerer
+--  Mob: Accursed Sorcerer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

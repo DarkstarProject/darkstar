@@ -44,6 +44,7 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
         BALLOON_NM_OFFSET           = 17572141,
         FULL_MOON_FOUNTAIN_OFFSET   = 17572197,
         JESTER_WHO_D_BE_KING_OFFSET = 17572201,
+        APPARATUS_ELEMENTAL         = 17572203,
     },
     npc =
     {

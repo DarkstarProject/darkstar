@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Corse
+--  Mob: Corse
 -- Note: PH for Citipati
 -----------------------------------
 local ID = require("scripts/zones/Attohwa_Chasm/IDs");

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Jabkix_Pigeonpecs
+-- Area: Dynamis - Jeuno
+--  Mob: Jabkix Pigeonpecs
 -----------------------------------
 mixins =
 {

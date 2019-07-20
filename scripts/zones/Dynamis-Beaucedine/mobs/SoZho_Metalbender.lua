@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: SoZho_Metalbender
+-- Area: Dynamis - Beaucedine
+--  Mob: SoZho Metalbender
 -----------------------------------
 mixins =
 {

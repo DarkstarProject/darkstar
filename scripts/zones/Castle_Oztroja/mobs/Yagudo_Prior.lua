@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Prior
+--  Mob: Yagudo Prior
 -- Note: PH for Yaa Haqa the Profane
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja/IDs")

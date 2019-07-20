@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
---  Mob: Maa_Febi_the_Steadfast
+-- Area: Dynamis - Windurst
+--  Mob: Maa Febi the Steadfast
 -----------------------------------
 mixins =
 {

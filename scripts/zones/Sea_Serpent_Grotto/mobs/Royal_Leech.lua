@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Royal Leech
+--  Mob: Royal Leech
 -- Note: PH for Masan
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

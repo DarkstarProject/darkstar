@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Elvaansticker_Bxafraff
+-- Area: Dynamis - Buburimu
+--  Mob: Elvaansticker Bxafraff
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

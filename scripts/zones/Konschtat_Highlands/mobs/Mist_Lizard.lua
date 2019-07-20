@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Mist Lizard
+--  Mob: Mist Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

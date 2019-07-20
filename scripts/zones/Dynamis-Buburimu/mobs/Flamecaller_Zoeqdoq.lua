@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Flamecaller_Zoeqdoq
+-- Area: Dynamis - Buburimu
+--  Mob: Flamecaller Zoeqdoq
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

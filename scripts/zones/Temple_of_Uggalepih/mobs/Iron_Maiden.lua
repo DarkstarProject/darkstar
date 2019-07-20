@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Iron Maiden
+--  Mob: Iron Maiden
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus (145)
---   NM: Vuu_Puqu_the_Beguiler
+--   NM: Vuu Puqu the Beguiler
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 -----------------------------------

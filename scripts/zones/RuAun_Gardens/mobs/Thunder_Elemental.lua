@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Thunder Elemental
+--  Mob: Thunder Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Essedarius
+--  Mob: Antican Essedarius
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

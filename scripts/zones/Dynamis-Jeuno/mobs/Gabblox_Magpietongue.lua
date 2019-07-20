@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Gabblox_Magpietongue
+-- Area: Dynamis - Jeuno
+--  Mob: Gabblox Magpietongue
 -----------------------------------
 mixins =
 {

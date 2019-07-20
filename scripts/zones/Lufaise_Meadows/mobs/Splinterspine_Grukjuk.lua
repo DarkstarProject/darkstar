@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows (24)
---  MOB: Splinterspine_Grukjuk
+--  Mob: Splinterspine Grukjuk
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/status");

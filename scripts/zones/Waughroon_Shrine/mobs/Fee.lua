@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Fe'e
+--  Mob: Fe'e
 -- BCNM: Up In Arms
 -----------------------------------
 local ID = require("scripts/zones/Waughroon_Shrine/IDs")

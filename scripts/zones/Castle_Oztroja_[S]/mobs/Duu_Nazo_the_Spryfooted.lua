@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
+-- Area: Castle Oztroja [S]
 --   NM: Duu Nazo the Spryfooted
 -----------------------------------
 require("scripts/globals/status")

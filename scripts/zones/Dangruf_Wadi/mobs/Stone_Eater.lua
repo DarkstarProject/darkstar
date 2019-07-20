@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Stone Eater
+--  Mob: Stone Eater
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

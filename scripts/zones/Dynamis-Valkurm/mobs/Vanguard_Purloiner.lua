@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Vanguard_Purloiner
+-- Area: Dynamis - Valkurm
+--  Mob: Vanguard Purloiner
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula (118)
---  MOB: Buburimboo
+--  Mob: Buburimboo
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

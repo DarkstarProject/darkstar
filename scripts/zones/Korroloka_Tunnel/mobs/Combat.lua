@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Combat
+--  Mob: Combat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

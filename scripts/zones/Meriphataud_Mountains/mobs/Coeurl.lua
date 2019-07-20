@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Coeurl
+--  Mob: Coeurl
 -- Note: PH for Patripatan
 -----------------------------------
 local ID = require("scripts/zones/Meriphataud_Mountains/IDs")

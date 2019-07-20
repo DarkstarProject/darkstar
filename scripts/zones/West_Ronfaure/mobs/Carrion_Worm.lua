@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Carrion Worm
+--  Mob: Carrion Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

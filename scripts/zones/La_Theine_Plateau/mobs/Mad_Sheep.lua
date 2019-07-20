@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Mad Sheep
+--  Mob: Mad Sheep
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

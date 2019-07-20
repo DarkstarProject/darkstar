@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Beach Bunny
+--  Mob: Beach Bunny
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

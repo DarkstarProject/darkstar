@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: BeZhe_Keeprazer
+-- Area: Dynamis - Beaucedine
+--  Mob: BeZhe Keeprazer
 -----------------------------------
 mixins =
 {

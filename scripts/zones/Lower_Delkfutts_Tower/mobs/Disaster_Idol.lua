@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Lower_Delkfutts_tower
---   NM: Disaster_Idol
+-- Area: Lower Delkfutt's Tower
+--   NM: Disaster Idol
 -----------------------------------
 require("scripts/globals/missions")
 -----------------------------------

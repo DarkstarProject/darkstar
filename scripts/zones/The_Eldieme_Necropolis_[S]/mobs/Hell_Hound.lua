@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Hell_Hound
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Hell Hound
 -----------------------------------
 
 -- -----------------------------------

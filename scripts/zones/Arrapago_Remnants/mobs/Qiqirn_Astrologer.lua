@@ -1,28 +1,25 @@
 -----------------------------------
--- MOB: Qiqirn Astrologer
 -- Area: Arrapago Remnants
+--  Mob: Qiqirn Astrologer
 -----------------------------------
+local ID = require("scripts/zones/Arrapago_Remnants/IDs")
 require("scripts/globals/monstertpmoves")
-require("scripts/globals/status")
-require("scripts/globals/msg")
 require("scripts/globals/teleports")
 require("scripts/globals/pathfind")
-local ID = require("scripts/zones/Arrapago_Remnants/IDs")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onMobSpawn(mob)
-   mob:setMobMod(dsp.mobMod.HP_STANDBACK, -1) 
+   mob:setMobMod(dsp.mobMod.HP_STANDBACK, -1)
 end
 
-
-
 function onMobDisengage(mob)
-    
     local run = mob:getLocalVar("run")
     local instance = mob:getInstance()
     local stage = instance:getStage()
     local prog = instance:getProgress()
-    
+
     if run == 1 then
         mob:pathThrough(ID.points[stage][prog - 1].point1, 9)
         mob:setLocalVar("run", 2)
@@ -55,7 +52,7 @@ function onMobFight(mob, target)
     local instance = mob:getInstance()
     local stage = instance:getStage()
     local prog = instance:getProgress()
-    
+
     if act == dsp.act.MOBABILITY_START or act == dsp.act.MOBABILITY_USING or act == dsp.act.MOBABILITY_FINISH or act == dsp.act.MAGIC_START or act == dsp.act.MAGIC_CASTING or act == dsp.act.MAGIC_START then
         isBusy = true; -- is set to true if mob is in any stage of using a mobskill or casting a spell
     end
@@ -74,7 +71,7 @@ function onMobFight(mob, target)
                     DespawnMob(ID.mob[stage - 1][prog - 1].astrologer, instance)
                 end
             end
-        end 
+        end
     end
 end
 

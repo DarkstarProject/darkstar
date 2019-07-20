@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Apocalyptic_Beast
+-- Area: Dynamis - Buburimu
+--  Mob: Apocalyptic Beast
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Buburimu/IDs");
 require("scripts/globals/keyitems");

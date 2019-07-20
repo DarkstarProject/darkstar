@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tremors
---  MOB: Galgalim
+--  Mob: Galgalim
 -- Involved in Quest: The Puppet Master
 -----------------------------------
 require("scripts/globals/settings");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Giant Spider
+--  Mob: Giant Spider
 -- Note: PH for Dune Widow
 -----------------------------------
 local ID = require("scripts/zones/Eastern_Altepa_Desert/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: VeLugannon Palace
---  MOB: Detector
+--  Mob: Detector
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

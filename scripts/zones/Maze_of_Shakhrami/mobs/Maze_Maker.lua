@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Maze Maker
+--  Mob: Maze Maker
 -- Note: PH for Trembler Tabitha
 -----------------------------------
 local ID = require("scripts/zones/Maze_of_Shakhrami/IDs")

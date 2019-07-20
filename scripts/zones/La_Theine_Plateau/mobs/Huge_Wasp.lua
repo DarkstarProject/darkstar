@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Huge Wasp
+--  Mob: Huge Wasp
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

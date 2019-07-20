@@ -1,7 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Water Leaper
---   ID: 17498565
+--  Mob: Water Leaper
 -- Note: Popped by qm1
 -- !pos 112.5 0.8 -126.2 176
 -- Involved in Quest: Methods Create Madness

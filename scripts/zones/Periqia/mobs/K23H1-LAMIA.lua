@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Periqia (Shades of Vengeance)
---  MOB: K23H1-LAMIA
+--  Mob: K23H1-LAMIA
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

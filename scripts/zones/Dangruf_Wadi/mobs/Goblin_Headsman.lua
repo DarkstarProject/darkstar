@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Headsman
+--  Mob: Goblin Headsman
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

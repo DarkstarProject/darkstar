@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Mobpix_Mucousmouth
+-- Area: Dynamis - Jeuno
+--  Mob: Mobpix Mucousmouth
 -----------------------------------
 mixins =
 {

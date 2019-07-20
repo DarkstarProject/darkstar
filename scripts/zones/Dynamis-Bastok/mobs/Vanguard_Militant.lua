@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Bastok
---  MOB: Vanguard_Militant
+-- Area: Dynamis - Bastok
+--  Mob: Vanguard Militant
 -----------------------------------
 mixins =
 {

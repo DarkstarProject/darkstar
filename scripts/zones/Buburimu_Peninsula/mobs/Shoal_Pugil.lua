@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula (118)
---  MOB: Shoal Pugil
+--  Mob: Shoal Pugil
 -- Note: PH for Buburimboo
 -----------------------------------
 local ID = require("scripts/zones/Buburimu_Peninsula/IDs");

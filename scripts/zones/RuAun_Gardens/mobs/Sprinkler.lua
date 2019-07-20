@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Sprinkler
+--  Mob: Sprinkler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

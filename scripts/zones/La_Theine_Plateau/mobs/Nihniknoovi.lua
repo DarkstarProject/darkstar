@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Nihniknoovi
+--  Mob: Nihniknoovi
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Kuu_Xuka_the_Nimble
+-- Area: Dynamis - Beaucedine
+--  Mob: Kuu Xuka the Nimble
 -----------------------------------
 mixins =
 {

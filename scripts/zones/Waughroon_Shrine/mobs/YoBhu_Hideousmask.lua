@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Yo'Bhu Hideousmask
+--  Mob: Yo'Bhu Hideousmask
 -- BCNM: Grimshell Shocktroopers
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

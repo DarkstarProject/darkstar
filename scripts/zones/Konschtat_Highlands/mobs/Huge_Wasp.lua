@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Huge Wasp
+--  Mob: Huge Wasp
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

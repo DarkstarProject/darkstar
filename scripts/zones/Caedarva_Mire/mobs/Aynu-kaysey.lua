@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---   NM: Aynu-kasey
+--   NM: Aynu-kaysey
 -----------------------------------
 mixins = {require("scripts/mixins/families/qutrub")}
 -----------------------------------

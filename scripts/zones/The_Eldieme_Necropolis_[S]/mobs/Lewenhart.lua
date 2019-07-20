@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Lewenhart
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Lewenhart
 -----------------------------------
 
 -- -----------------------------------

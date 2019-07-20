@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
---  MOB: Proto-Ultima
+--  Mob: Proto-Ultima
 -----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/limbus");

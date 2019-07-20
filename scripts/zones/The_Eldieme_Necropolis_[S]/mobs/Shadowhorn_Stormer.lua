@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Shadowhorn_Stormer
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Shadowhorn Stormer
 -----------------------------------
 
 -- -----------------------------------

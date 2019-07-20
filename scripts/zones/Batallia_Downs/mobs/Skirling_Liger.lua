@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs (105)
---  MOB: Skirling Liger
+--  Mob: Skirling Liger
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

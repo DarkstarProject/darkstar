@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Blazox_Boneybod
+-- Area: Dynamis - Jeuno
+--  Mob: Blazox Boneybod
 -----------------------------------
 mixins =
 {

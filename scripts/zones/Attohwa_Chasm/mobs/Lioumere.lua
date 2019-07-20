@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Lioumere
+--  Mob: Lioumere
 -----------------------------------
 mixins = {require("scripts/mixins/families/antlion_ambush")}
 require("scripts/globals/keyitems");

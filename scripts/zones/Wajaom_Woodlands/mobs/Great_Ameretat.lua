@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
---  MOB: Great Ameretat
+--  Mob: Great Ameretat
 -- Note: PH for Jaded Jody
 -----------------------------------
 local ID = require("scripts/zones/Wajaom_Woodlands/IDs")

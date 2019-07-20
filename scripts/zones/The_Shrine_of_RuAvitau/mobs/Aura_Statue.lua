@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Aura Statue
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Aura Statue
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

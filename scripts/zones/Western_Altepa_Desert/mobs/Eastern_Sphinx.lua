@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Eastern Sphinx
+--  Mob: Eastern Sphinx
 -----------------------------------
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
 require("scripts/globals/missions")

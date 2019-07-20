@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: qubia arena
---  MOB: Trion
+-- Area: Qu'Bia Arena
+--  Mob: Trion
 -- Ally during San d'Oria Mission 9-2
 -----------------------------------
 local ID = require("scripts/zones/QuBia_Arena/IDs");

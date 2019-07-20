@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Gosspix_Blabberlips
+-- Area: Dynamis - Buburimu
+--  Mob: Gosspix Blabberlips
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

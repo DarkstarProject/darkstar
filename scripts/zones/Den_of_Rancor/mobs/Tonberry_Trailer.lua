@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Trailer
+--  Mob: Tonberry Trailer
 -- Note: PH for Celeste-eyed Tozberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}

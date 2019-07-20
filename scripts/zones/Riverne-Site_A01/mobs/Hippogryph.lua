@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Riverne Site A01
---  MOB: Hippogryph
+-- Area: Riverne - Site A01
+--  Mob: Hippogryph
 -- Note: PH for Heliodromos
 -----------------------------------
 local ID = require("scripts/zones/Riverne-Site_A01/IDs");

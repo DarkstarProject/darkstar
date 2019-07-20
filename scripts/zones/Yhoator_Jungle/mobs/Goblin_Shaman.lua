@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Goblin Shaman
+--  Mob: Goblin Shaman
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

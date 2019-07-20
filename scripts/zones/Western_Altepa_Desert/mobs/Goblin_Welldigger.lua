@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Welldigger
+--  Mob: Goblin Welldigger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

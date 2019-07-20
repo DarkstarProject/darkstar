@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Targe Beetle
+--  Mob: Targe Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

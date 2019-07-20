@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Passhow Marshlands [S]
+-- Area: Pashhow Marshlands [S]
 --   NM: Sugaar
 -----------------------------------
 require("scripts/globals/mobs")

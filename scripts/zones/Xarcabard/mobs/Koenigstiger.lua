@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Koenigstiger
+--  Mob: Koenigstiger
 -- Involved in Quests: Unbridled Passion (RNG AF3)
 -- !zone 112
 -----------------------------------

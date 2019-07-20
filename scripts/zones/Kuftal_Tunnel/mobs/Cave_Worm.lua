@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Cave Worm
+--  Mob: Cave Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

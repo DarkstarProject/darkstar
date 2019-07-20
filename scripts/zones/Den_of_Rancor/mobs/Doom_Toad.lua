@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Doom Toad
+--  Mob: Doom Toad
 -- Note: PH for Ogama
 -----------------------------------
 local ID = require("scripts/zones/Den_of_Rancor/IDs")

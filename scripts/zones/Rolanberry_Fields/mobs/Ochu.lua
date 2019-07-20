@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Ochu
+--  Mob: Ochu
 -- Note: PH for Drooling Daisy
 -----------------------------------
 local ID = require("scripts/zones/Rolanberry_Fields/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Goblin Leacher
+--  Mob: Goblin Leecher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

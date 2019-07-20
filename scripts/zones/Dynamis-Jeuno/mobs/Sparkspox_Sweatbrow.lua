@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Sparkspox_Sweatbrow
+-- Area: Dynamis - Jeuno
+--  Mob: Sparkspox Sweatbrow
 -----------------------------------
 mixins =
 {

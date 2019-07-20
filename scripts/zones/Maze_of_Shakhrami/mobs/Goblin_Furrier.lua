@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Furrier
+--  Mob: Goblin Furrier
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

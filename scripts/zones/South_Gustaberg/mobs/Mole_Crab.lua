@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Mole Crab
+--  Mob: Mole Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

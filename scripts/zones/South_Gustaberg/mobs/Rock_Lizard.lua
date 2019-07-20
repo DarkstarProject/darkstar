@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Rock Lizard
+--  Mob: Rock Lizard
 -- Note: Place holder Leaping Lizzy
 -----------------------------------
 local ID = require("scripts/zones/South_Gustaberg/IDs")

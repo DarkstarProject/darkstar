@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
---  ZNM: Pandemonium_Warden
+--  ZNM: Pandemonium Warden
 -----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/status");

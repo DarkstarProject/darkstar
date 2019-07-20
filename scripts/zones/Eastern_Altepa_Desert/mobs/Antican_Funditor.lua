@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Funditor
+--  Mob: Antican Funditor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

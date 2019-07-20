@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Footsoldier
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Footsoldier
 -----------------------------------
 mixins =
 {

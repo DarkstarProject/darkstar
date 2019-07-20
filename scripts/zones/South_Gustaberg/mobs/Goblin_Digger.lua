@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Goblin Digger
+--  Mob: Goblin Digger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

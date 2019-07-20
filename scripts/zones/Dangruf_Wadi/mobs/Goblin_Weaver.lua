@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Weaver
+--  Mob: Goblin Weaver
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

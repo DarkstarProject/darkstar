@@ -36,10 +36,11 @@ zones[dsp.zone.CRAWLERS_NEST] =
             [17584396] = 17584398, -- -75.000 -1.000 299.000
             [17584391] = 17584398, -- -101.000 -1.000 285.000
         },
-        AWD_GOGGIE        = 17584135,
-        DYNAST_BEETLE     = 17584312,
-        DREADBUG          = 17584425,
-        MIMIC             = 17584426,
+        AWD_GOGGIE          = 17584135,
+        DYNAST_BEETLE       = 17584312,
+        DREADBUG            = 17584425,
+        MIMIC               = 17584426,
+        APPARATUS_ELEMENTAL = 17584427,
     },
     npc =
     {

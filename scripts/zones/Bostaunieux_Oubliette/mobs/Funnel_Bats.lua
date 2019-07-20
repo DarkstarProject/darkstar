@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Funnel Bats
+--  Mob: Funnel Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

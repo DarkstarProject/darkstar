@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yughott Grotto (142)
---  MOB: Orcish_Grunt
+--  Mob: Orcish Grunt
 -- Note: PH for Ashmaker Gotblut
 -----------------------------------
 local ID = require("scripts/zones/Yughott_Grotto/IDs");

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Dollmaster - smn
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Dollmaster
 -----------------------------------
 mixins =
 {

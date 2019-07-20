@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Bandrix_Rockjaw
+-- Area: Dynamis - Jeuno
+--  Mob: Bandrix Rockjaw
 -----------------------------------
 mixins =
 {

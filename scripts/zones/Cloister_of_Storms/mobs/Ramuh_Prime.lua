@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Storms
---  MOB: Ramuh Prime
+--  Mob: Ramuh Prime
 -- Involved in Quest: Trial by Lightning
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------

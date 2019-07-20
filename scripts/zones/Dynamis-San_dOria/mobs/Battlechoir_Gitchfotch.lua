@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  Mob: Battlechoir_Gitchfotch
+-- Area: Dynamis - San d'Oria
+--  Mob: Battlechoir Gitchfotch
 -----------------------------------
 mixins =
 {

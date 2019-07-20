@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Funnel Bats
+--  Mob: Funnel Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

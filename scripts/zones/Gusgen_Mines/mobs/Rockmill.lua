@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Rockmill
+--  Mob: Rockmill
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

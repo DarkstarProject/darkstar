@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Giant Sentry
+--  Mob: Giant Sentry
 -- Note: PH for Hippolytos and Eurymedon
 -----------------------------------
 local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs")

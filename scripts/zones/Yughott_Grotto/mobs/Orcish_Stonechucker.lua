@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yughott Grotto (142)
---  MOB: Orcish_Stonechucker
+--  Mob: Orcish Stonechucker
 -- Note: PH for Ashmaker Gotblut
 -----------------------------------
 local ID = require("scripts/zones/Yughott_Grotto/IDs");

@@ -1,15 +1,12 @@
----------------------------------
+-----------------------------------
 -- Area: Garlaige Citadel (200)
---   NM: Skewer_Sam
+--   NM: Skewer Sam
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-
-    -- Set Skewer_Sam's spawnpoint and respawn time (21-24 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
-end;
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(75600, 86400)) -- 21 to 24 hours
+end

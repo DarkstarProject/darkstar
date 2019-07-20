@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: TeZha_Ironclad
+-- Area: Dynamis - Buburimu
+--  Mob: TeZha Ironclad
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

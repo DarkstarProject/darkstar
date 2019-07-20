@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Deinonychus
+--  Mob: Deinonychus
 -- Note: Place Holder for Yowie
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs")

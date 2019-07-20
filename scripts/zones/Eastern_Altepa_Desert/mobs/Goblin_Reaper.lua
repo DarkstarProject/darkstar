@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Goblin Reaper
+--  Mob: Goblin Reaper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

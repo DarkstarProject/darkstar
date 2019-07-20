@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Forest Hare
+--  Mob: Forest Hare
 -----------------------------------
 local ID = require("scripts/zones/West_Ronfaure/IDs");
 require("scripts/globals/regimes")

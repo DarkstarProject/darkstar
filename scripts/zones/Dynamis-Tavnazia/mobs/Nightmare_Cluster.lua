@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  NPC: Nightmare_Cluster
+-- Area: Dynamis - Tavnazia
+--  Mob: Nightmare Cluster
 
 -----------------------------------
 require("scripts/globals/dynamis");

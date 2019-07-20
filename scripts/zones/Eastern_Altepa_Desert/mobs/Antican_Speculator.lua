@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Speculator
+--  Mob: Antican Speculator
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

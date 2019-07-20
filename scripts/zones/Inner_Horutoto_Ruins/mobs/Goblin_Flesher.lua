@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Flesher
+--  Mob: Goblin Flesher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Diving Beetle
+--  Mob: Diving Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

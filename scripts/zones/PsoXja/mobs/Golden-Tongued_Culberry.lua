@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Pso'xja
+-- Area: Pso'Xja
 --   NM: Golden-Tongued Culberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}

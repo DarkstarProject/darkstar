@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Evil_Armory
-
+--  Mob: Evil Armory
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

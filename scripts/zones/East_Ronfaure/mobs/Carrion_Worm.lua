@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Carrion Worm
+--  Mob: Carrion Worm
 -- Note: PH for Bigmouth Billy
 -----------------------------------
 local ID = require("scripts/zones/East_Ronfaure/IDs");

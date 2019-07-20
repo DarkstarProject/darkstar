@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Marauder Dvogzog
+--  Mob: Marauder Dvogzog
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/regimes")

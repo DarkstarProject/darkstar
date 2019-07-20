@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Faber
+--  Mob: Antican Faber
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

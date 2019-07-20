@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
---  MOB: Lesser Colibri
+--  Mob: Lesser Colibri
 -- Note: Place holder Zoraal Ja's Pkuucha
 -----------------------------------
 local ID = require("scripts/zones/Wajaom_Woodlands/IDs");

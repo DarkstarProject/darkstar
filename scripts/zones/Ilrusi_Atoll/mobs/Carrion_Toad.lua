@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll (Extermination)
---  MOB: Carrion Toad
+--  Mob: Carrion Toad
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

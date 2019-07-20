@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Shadow Lord
+--  Mob: Shadow Lord
 -- Mission 5-2 BCNM Fight
 -----------------------------------
 local ID = require("scripts/zones/Throne_Room/IDs");

@@ -1,16 +1,8 @@
 -----------------------------------
 -- Area: Temenos
--- NPC:
-
+--  Mob: Pee Qoho the Python
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -30,10 +22,6 @@ function onMobEngaged(mob,target)
   GetMobByID(16929005):updateEnmity(target);
   GetMobByID(16929006):updateEnmity(target);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
           if (IsMobDead(16929005)==true and IsMobDead(16929006)==true and IsMobDead(16929007)==true) then

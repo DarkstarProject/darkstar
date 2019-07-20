@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula (118)
---  MOB: Zu
+--  Mob: Zu
 -- Note: PH for Helldiver
 -----------------------------------
 local ID = require("scripts/zones/Buburimu_Peninsula/IDs");

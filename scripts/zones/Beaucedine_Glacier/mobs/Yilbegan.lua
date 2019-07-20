@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Yilbegan
+--  Mob: Yilbegan
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

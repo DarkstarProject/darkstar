@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---   NM: Lost_Soul
+--   NM: Lost Soul
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

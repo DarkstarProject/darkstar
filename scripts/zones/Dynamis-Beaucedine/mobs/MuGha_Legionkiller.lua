@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: MuGha_Legionkiller
+-- Area: Dynamis - Beaucedine
+--  Mob: MuGha Legionkiller
 -----------------------------------
 mixins =
 {

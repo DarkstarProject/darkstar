@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Promyvion vahzl
+-- Area: Promyvion - Vahzl
 --   NM: Propagator
 -----------------------------------
 require("scripts/globals/missions")

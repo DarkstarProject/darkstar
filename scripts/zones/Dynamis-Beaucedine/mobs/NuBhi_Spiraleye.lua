@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: NuBhi_Spiraleye
+-- Area: Dynamis - Beaucedine
+--  Mob: NuBhi Spiraleye
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
---  MOB: Faust
+--  Mob: Faust
 -----------------------------------
 -- TODO: Faust should WS ~3 times in a row each time.
 

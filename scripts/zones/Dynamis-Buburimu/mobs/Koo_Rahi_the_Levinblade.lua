@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Koo_Rahi_the_Levinblade
+-- Area: Dynamis - Buburimu
+--  Mob: Koo Rahi the Levinblade
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

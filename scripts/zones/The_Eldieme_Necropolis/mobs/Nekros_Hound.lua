@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Nekros Hound
+--  Mob: Nekros Hound
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

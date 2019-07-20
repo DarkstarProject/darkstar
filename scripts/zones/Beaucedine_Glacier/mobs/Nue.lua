@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier (111)
---  NM:  Nue
+--   NM: Nue
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

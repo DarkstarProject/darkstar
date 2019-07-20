@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Luaith
+--  Mob: Luaith
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

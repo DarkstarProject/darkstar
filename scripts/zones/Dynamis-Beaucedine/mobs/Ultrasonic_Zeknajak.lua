@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Ultrasonic_Zeknajak
+-- Area: Dynamis - Beaucedine
+--  Mob: Ultrasonic Zeknajak
 -----------------------------------
 mixins =
 {

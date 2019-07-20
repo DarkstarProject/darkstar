@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  MOB: Hydra_Dark_Knight
+-- Area: Dynamis - Tavnazia
+--  Mob: Hydra Dark Knight
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

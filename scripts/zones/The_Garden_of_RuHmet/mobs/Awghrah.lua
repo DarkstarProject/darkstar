@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  MOB: Aw'ghrah
+--  Mob: Aw'ghrah
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------
