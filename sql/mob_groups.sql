@@ -8701,7 +8701,7 @@ INSERT INTO `mob_groups` VALUES (13,4432,145,'Yagudo_Mendicant',330,0,4265,0,0,1
 INSERT INTO `mob_groups` VALUES (14,4454,145,'Yagudo_s_Elemental',0,128,0,0,0,4,6,0);
 INSERT INTO `mob_groups` VALUES (15,4441,145,'Yagudo_Piper',330,0,4280,0,0,11,18,0);
 INSERT INTO `mob_groups` VALUES (16,4439,145,'Yagudo_Persecutor',330,0,4276,0,0,11,18,0);
-INSERT INTO `mob_groups` VALUES (17,1036,145,'Digger_Wasp',330,0,732,0,0,11,13,0);
+INSERT INTO `mob_groups` VALUES (17,6071,145,'Digger_Wasp',330,0,732,0,0,11,13,0);
 INSERT INTO `mob_groups` VALUES (18,2170,145,'Juu_Duzu_the_Whirlwind',0,32,1867,0,0,13,13,0);
 INSERT INTO `mob_groups` VALUES (19,1535,145,'Giant_Pugil',330,0,1133,0,0,9,11,0);
 INSERT INTO `mob_groups` VALUES (20,5850,145,'Quu_Xijo_the_Illusory',3600,0,4636,900,0,25,25,0);
@@ -10893,7 +10893,7 @@ INSERT INTO `mob_groups` VALUES (13,3697,197,'Soldier_Crawler',924,0,3276,0,0,47
 INSERT INTO `mob_groups` VALUES (14,1990,197,'Hornfly',960,0,1705,0,0,50,53,0);
 INSERT INTO `mob_groups` VALUES (15,1271,197,'Exoray',960,0,912,0,0,51,54,0);
 INSERT INTO `mob_groups` VALUES (16,5839,197,'King_Crawler',330,0,4582,0,0,92,96,0);
-INSERT INTO `mob_groups` VALUES (17,4322,197,'Wespe',330,0,4135,0,0,93,96,0);
+INSERT INTO `mob_groups` VALUES (17,3335,197,'Vespo',330,0,4135,0,0,93,96,0);
 INSERT INTO `mob_groups` VALUES (18,1990,197,'Hornfly',330,0,1705,0,0,93,96,0);
 INSERT INTO `mob_groups` VALUES (19,2229,197,'Killer_Mushroom',330,0,1897,0,0,93,96,0);
 INSERT INTO `mob_groups` VALUES (20,1341,197,'Fire_Elemental',960,4,959,0,0,52,54,0);
