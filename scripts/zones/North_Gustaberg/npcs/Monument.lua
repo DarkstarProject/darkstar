@@ -14,7 +14,7 @@ end
 function onTrigger(player, npc)
     if
         player:getQuestStatus(BASTOK, dsp.quest.id.bastok.HEARTS_OF_MYTHRIL) == QUEST_ACCEPTED and
-        player:hasKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS
+        player:hasKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS)
     then
         player:startEvent(11)
     end

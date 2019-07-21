@@ -14,8 +14,8 @@ end
 function onTrigger(player, npc)
     local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
 
-    if thickAsThievesGamblingCS == 5 and not GetMobByID(ID.mob.GAMBILOX_WANDERLING):isSpawned() then
-        SpawnMob(ID.mob.GAMBILOX_WANDERLING):updateClaim(player)
+    if thickAsThievesGamblingCS == 5 then
+        npcUtil.popFromQM(player, npc, ID.mob.GAMBILOX_WANDERLING, {hide = 0})
     elseif thickAsThievesGamblingCS == 6 then
         player:startEvent(200, 1092)
     end

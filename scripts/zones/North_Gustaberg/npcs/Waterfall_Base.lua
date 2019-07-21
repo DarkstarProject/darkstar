@@ -5,16 +5,12 @@
 -- !pos -217.594 98.644 464.722 106
 -----------------------------------
 local ID = require("scripts/zones/North_Gustaberg/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    local count = trade:getItemCount()
-    local BrassCanteen = trade:hasItemQty(493, 1)
-
-    if BrassCanteen == true and count == 1 then
-        player:tradeComplete()
-        player:addItem(492)
-        player:messageSpecial(ID.text.ITEM_OBTAINED, 492)
+    if npcUtil.tradeHas(trade, 493) and npcUtil.giveItem(player, 492) then
+        player:confirmTrade()
     end
 end
 
