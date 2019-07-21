@@ -11,9 +11,7 @@ function onMobInitialize(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
-
-    if thickAsThievesGamblingCS == 5 then
-        player:setVar("thickAsThievesGamblingCS",6)
+    if player:getVar("thickAsThievesGamblingCS") == 5 then
+        player:setVar("thickAsThievesGamblingCS", 6)
     end
 end
