@@ -9434,8 +9434,6 @@ INSERT INTO `mob_groups` VALUES (12,2038,163,'Hyohh_the_Conchblower',0,128,0,0,0
 INSERT INTO `mob_groups` VALUES (13,3123,163,'Pevv_the_Riverleaper',0,128,0,0,0,60,60,0);
 INSERT INTO `mob_groups` VALUES (14,3442,163,'Sahagin_s_Wyvern',0,128,0,0,0,48,48,0);
 INSERT INTO `mob_groups` VALUES (15,3584,163,'Shantotto',0,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (16,1158,163,'Eald_narche',0,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (17,2184,163,'Kam_lanaut',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1,1044,164,'Dire_Bat',330,0,745,0,0,63,65,0);
 INSERT INTO `mob_groups` VALUES (2,5482,164,'Yagudo_Zealot_past',330,0,4324,0,0,71,73,0);
 INSERT INTO `mob_groups` VALUES (3,2073,164,'Incubus_Bats',330,0,1784,0,0,63,65,0);
