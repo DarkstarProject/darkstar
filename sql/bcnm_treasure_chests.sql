@@ -240,3 +240,35 @@ INSERT INTO bcnm_treasure_chests VALUES (643,1,16801802); -- brothers
 -- ----------------------------
 
 INSERT INTO bcnm_treasure_chests VALUES (673,1,16810019); -- like_the_wind
+
+-- ----------------------------
+-- Spire of Holla
+-- ----------------------------
+
+INSERT INTO bcnm_treasure_chests VALUES (769,1,16846856); -- simulant
+INSERT INTO bcnm_treasure_chests VALUES (769,2,16846861);
+INSERT INTO bcnm_treasure_chests VALUES (769,3,16846866);
+
+-- ----------------------------
+-- Spire of Dem
+-- ----------------------------
+
+INSERT INTO bcnm_treasure_chests VALUES (801,1,16855061); -- you_are_what_you_eat
+INSERT INTO bcnm_treasure_chests VALUES (801,2,16855067);
+INSERT INTO bcnm_treasure_chests VALUES (801,3,16855073);
+
+-- ----------------------------
+-- Spire of Mea
+-- ----------------------------
+
+INSERT INTO bcnm_treasure_chests VALUES (833,1,16863240); -- playing_host
+INSERT INTO bcnm_treasure_chests VALUES (833,2,16863245);
+INSERT INTO bcnm_treasure_chests VALUES (833,3,16863250);
+
+-- ----------------------------
+-- Spire of Vahzl
+-- ----------------------------
+
+INSERT INTO bcnm_treasure_chests VALUES (865,1,16871455); -- pulling_the_plug
+INSERT INTO bcnm_treasure_chests VALUES (865,2,16871465);
+INSERT INTO bcnm_treasure_chests VALUES (865,3,16871475);
