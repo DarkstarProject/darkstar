@@ -8944,10 +8944,6 @@ INSERT INTO `mob_groups` VALUES (6,1320,152,'Fee_Jugu_the_Ramfist',0,0,0,0,0,0,0
 INSERT INTO `mob_groups` VALUES (7,3175,152,'Poo_Yozo_the_Babbler',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (8,2205,152,'Kee_Taw_the_Nightingale',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (9,1762,152,'Goo_Pake_the_Bloodhound',0,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (10,4455,152,'Yagudo_Templar_present',0,0,0,0,9999,72,74,0);
-INSERT INTO `mob_groups` VALUES (11,4425,152,'Yagudo_High_Priest',0,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (12,4072,152,'Tzee_Xicu_the_Manifest',0,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (8124,75,152,'Ajido-Marujido',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1,3496,153,'Scavenger_Crab',0,128,3075,0,0,60,62,0);
 INSERT INTO `mob_groups` VALUES (2,3803,153,'Stygian_Pugil',0,128,3395,0,0,60,62,0);
 INSERT INTO `mob_groups` VALUES (3,514,153,'Bouncing_Ball',0,128,379,0,0,65,67,0);
