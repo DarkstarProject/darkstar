@@ -1108,7 +1108,7 @@ INSERT INTO `mob_droplist` VALUES (187,0,0,1000,16360,10);
 INSERT INTO `mob_droplist` VALUES (188,0,0,1000,924,100);
 INSERT INTO `mob_droplist` VALUES (188,0,0,1000,930,10);
 INSERT INTO `mob_droplist` VALUES (188,0,0,1000,1125,20);
-INSERT INTO `mob_droplist` VALUES (189,0,0,1000,15760,100);
+INSERT INTO `mob_droplist` VALUES (189,0,0,1000,15760,250); -- (Ashmaker Gotblut) Marabout Sandals
 INSERT INTO `mob_droplist` VALUES (190,2,0,1000,656,0);
 INSERT INTO `mob_droplist` VALUES (190,0,0,1000,13729,120);
 INSERT INTO `mob_droplist` VALUES (190,0,0,1000,17413,780);
@@ -32936,7 +32936,7 @@ INSERT INTO `mob_droplist` VALUES (4606,0,0,1000,15818,296); -- (Ea'Tho Cruelhea
 INSERT INTO `mob_droplist` VALUES (4607,0,0,1000,16319,400); -- (Zhuu Buxu the Silent) Sangoma Lappa
 INSERT INTO `mob_droplist` VALUES (4607,0,0,1000,2520,400); -- (Zhuu Buxu the Silent) Yagudo Kote
 INSERT INTO `mob_droplist` VALUES (4608,0,0,1000,2837,200); -- (Ratatoskr) Ratatoskr Pelt
-INSERT INTO `mob_droplist` VALUES (4609,0,0,1000,15760,333); -- (Ashmaker Gotblut) Marabout Sandals
+-- 4609: free
 INSERT INTO `mob_droplist` VALUES (4610,0,0,1000,19208,222); -- (Hawkeyed Dnatbat) Grand Crossbow
 INSERT INTO `mob_droplist` VALUES (4611,0,0,1000,16030,100); -- (Agar Agar) Soarer Earring
 INSERT INTO `mob_droplist` VALUES (4612,0,0,1000,19306,250); -- (Nommo) Lyft Lance
