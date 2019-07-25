@@ -293,7 +293,7 @@ local battlefields = {
 
     [168] = {               -- CHAMBER OF ORACLES
         { 0,  192,    0},   -- Through the Quicksand Caves (ZM6)
-     -- { 1,  193, 1130},   -- Legion XI Comitatensis (BS60)
+        { 1,  193, 1130},   -- Legion XI Comitatensis (BS60)
         { 2,  194, 1437},   -- Shattering Stars (SAM LB5)
         { 3,  195, 1438},   -- Shattering Stars (NIN LB5)
         { 4,  196, 1439},   -- Shattering Stars (DRG LB5)
