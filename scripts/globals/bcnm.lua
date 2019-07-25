@@ -28,7 +28,7 @@ local battlefields = {
 
     [8] = {                 -- BONEYARD GULLY
         { 0,  672,    0},   -- Head Wind (PM5-3 U2)
-        { 1,  673,    0},   -- Like the Wind (ENM)
+     -- { 1,  673,    0},   -- Like the Wind (ENM) -- TODO: mob constantly runs during battle
      -- { 2,  674,    0},   -- Sheep in Antlion's Clothing (ENM)
      -- { 3,  675,    0},   -- Shell We Dance? (ENM)
      -- { 4,  676,    0},   -- Totentanz (ENM)
