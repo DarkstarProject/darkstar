@@ -1,9 +1,332 @@
-require("scripts/globals/status")
-require("scripts/globals/keyitems")
 require("scripts/globals/battlefield")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
+require("scripts/globals/status")
+require("scripts/globals/zone")
 require("scripts/globals/msg")
+-----------------------------------
+
+local entryInfo =
+{
+    [dsp.zone.SOUTHERN_SAN_DORIA] =
+    {
+        csBit = 1,
+        csSand = 686,
+        csWin = 698,
+        csDyna = 685,
+        winVar = "DynaSandoria_Win",
+        winKI = dsp.ki.HYDRA_CORPS_COMMAND_SCEPTER,
+        enterPos = {161.838, -2.000, 161.673, 93, 185},
+        reqs = function(player) return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) end,
+    },
+    [dsp.zone.BASTOK_MINES] =
+    {
+        csBit = 2,
+        csSand = 203,
+        csWin = 215,
+        csDyna = 201,
+        winVar = "DynaBastok_Win",
+        winKI = dsp.ki.HYDRA_CORPS_EYEGLASS,
+        enterPos = {116.482, 0.994, -72.121, 128, 186},
+        reqs = function(player) return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) end,
+    },
+    [dsp.zone.WINDURST_WALLS] =
+    {
+        csBit = 3,
+        csSand = 455,
+        csWin = 465,
+        csDyna = 452,
+        winVar = "DynaWindurst_Win",
+        winKI = dsp.ki.HYDRA_CORPS_LANTERN,
+        enterPos = {-221.988, 1.000, -120.184, 0, 187},
+        reqs = function(player) return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) end,
+    },
+    [dsp.zone.RULUDE_GARDENS] =
+    {
+        csBit = 4,
+        csSand = 10016,
+        csWin = 10026,
+        csDyna = 10012,
+        winVar = "DynaJeuno_Win",
+        winKI = dsp.ki.HYDRA_CORPS_TACTICAL_MAP,
+        enterPos = {48.930, 10.002, -71.032, 195, 188},
+        reqs = function(player) return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) end,
+    },
+    [dsp.zone.BEAUCEDINE_GLACIER] =
+    {
+        csBit = 5,
+        csWin = 134,
+        csDyna = 119,
+        winVar = "DynaBeaucedine_Win",
+        winKI = dsp.ki.HYDRA_CORPS_INSIGNIA,
+        enterPos = {-284.751, -39.923, -422.948, 235, 134},
+        reqs = function(player)
+            return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
+                   player:hasKeyItem(dsp.ki.HYDRA_CORPS_COMMAND_SCEPTER) and
+                   player:hasKeyItem(dsp.ki.HYDRA_CORPS_EYEGLASS) and
+                   player:hasKeyItem(dsp.ki.HYDRA_CORPS_LANTERN) and
+                   player:hasKeyItem(dsp.ki.HYDRA_CORPS_TACTICAL_MAP)
+        end,
+    },
+    [dsp.zone.XARCABARD] =
+    {
+        csBit = 6,
+        csWin = 32,
+        csDyna = 16,
+        winVar = "DynaXarcabard_Win",
+        winKI = dsp.ki.HYDRA_CORPS_BATTLE_STANDARD,
+        enterPos = {569.312, -0.098, -270.158, 90, 135},
+        reqs = function(player)
+            return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
+                   player:hasKeyItem(dsp.ki.HYDRA_CORPS_INSIGNIA)
+        end,
+    },
+    [dsp.zone.VALKURM_DUNES] =
+    {
+        csBit = 7,
+        csFirst = 33,
+        csWin = 39,
+        csDyna = 58,
+        winVar = "DynaValkurm_Win",
+        winKI = dsp.ki.DYNAMIS_VALKURM_SLIVER,
+        enterPos = {100, -8, 131, 47, 39},
+        reqs = function(player)
+            return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
+                  (player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1)
+        end,
+    },
+    [dsp.zone.BUBURIMU_PENINSULA] =
+    {
+        csBit = 8,
+        csFirst = 40,
+        csWin = 46,
+        csDyna = 22,
+        winVar = "DynaBuburimu_Win",
+        winKI = dsp.ki.DYNAMIS_BUBURIMU_SLIVER,
+        enterPos = {155, -1, -169, 170, 40},
+        reqs = function(player)
+            return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
+                  (player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1)
+        end,
+    },
+    [dsp.zone.QUFIM_ISLAND] =
+    {
+        csBit = 9,
+        csFirst = 22,
+        csWin = 28,
+        csDyna = 3,
+        winVar = "DynaQufim_Win",
+        winKI = dsp.ki.DYNAMIS_QUFIM_SLIVER,
+        enterPos = {-19, -17, 104, 253, 41},
+        reqs = function(player)
+            return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
+                  (player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1)
+        end,
+    },
+    [dsp.zone.TAVNAZIAN_SAFEHOLD] =
+    {
+        csBit = 10,
+        csFirst = 614,
+        csWin = 615,
+        csDyna = 588,
+        winVar = "DynaTavnazia_Win",
+        winKI = dsp.ki.DYNAMIS_TAVNAZIA_SLIVER,
+        enterPos = {0.1, -7, -21, 190, 42},
+        reqs = function(player)
+            return player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and
+                   player:hasKeyItem(dsp.ki.DYNAMIS_BUBURIMU_SLIVER) and
+                   player:hasKeyItem(dsp.ki.DYNAMIS_QUFIM_SLIVER) and
+                   player:hasKeyItem(dsp.ki.DYNAMIS_VALKURM_SLIVER) and
+                  (player:hasCompletedMission(COP,dsp.mission.id.cop.DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1)
+        end,
+    },
+}
+
+local dynaInfo =
+{
+    [dsp.zone.DYNAMIS_SAN_DORIA] =
+    {
+        entryPos = {161.838, -2.000, 161.673, 93},
+        ejectPos = {161.000, -2.000, 161.000, 94, 230},
+    },
+    [dsp.zone.DYNAMIS_BASTOK] =
+    {
+        entryPos = {116.482, 0.994, -72.121, 128},
+        ejectPos = {112.000, 0.994, -72.000, 127, 234},
+    },
+    [dsp.zone.DYNAMIS_WINDURST] =
+    {
+        entryPos = {-221.988, 1.000, -120.184, 0},
+        ejectPos = {-217.000, 1.000, -119.000, 94, 239},
+    },
+    [dsp.zone.DYNAMIS_JEUNO] =
+    {
+        entryPos = {48.930, 10.002, -71.032, 195},
+        ejectPos = {48.930, 10.002, -71.032, 195, 243},
+    },
+    [dsp.zone.DYNAMIS_BEAUCEDINE] =
+    {
+        entryPos = {-284.751, -39.923, -422.948, 235},
+        ejectPos = {-284.751, -39.923, -422.948, 235, 111},
+    },
+    [dsp.zone.DYNAMIS_XARCABARD] =
+    {
+        entryPos = {569.312, -0.098, -270.158, 90},
+        ejectPos = {569.312, -0.098, -270.158, 90, 112},
+    },
+    [dsp.zone.DYNAMIS_VALKURM] =
+    {
+        entryPos = {100, -8, 131, 47},
+        ejectPos = {117, -9, 132, 162, 103},
+    },
+    [dsp.zone.DYNAMIS_BUBURIMU] =
+    {
+        entryPos = {155, -1, -169, 170},
+        ejectPos = {154, -1, -170, 190, 118},
+    },
+    [dsp.zone.DYNAMIS_QUFIM] =
+    {
+        entryPos = {-19, -17, 104, 253},
+        ejectPos = {18, -19, 162, 240, 126},
+    },
+    [dsp.zone.DYNAMIS_TAVNAZIA] =
+    {
+        entryPos = {0.1, -7, -21, 190},
+        ejectPos = {0, -7, -23, 195, 26},
+    },
+}
 
 dynamis = {}
+
+local function arg3(player, bit)
+    local csVar = player:getVar("Dynamis_Status")
+    local timeKI = player:hasKeyItem(dsp.ki.RHAPSODY_IN_AZURE) and 65536 or 0
+
+    if csVar == 0 then
+        return 1 + timeKI -- first time visiting any dynamis zone
+    elseif not player:getMaskBit(csVar, bit) then
+        return 2 + timeKI -- first time visiting this dynamis zone
+    else
+        return 3 + timeKI -- have visited this dynamis zone more than once
+    end
+end
+
+dynamis.entryNpcOnTrigger = function(player, npc)
+    local zoneId = player:getZoneID()
+    local info = entryInfo[zoneId]
+    local ID = zones[zoneId]
+
+    -- shrouded sand cutscene
+    if info.csSand and player:getMaskBit(player:getVar("Dynamis_Status"), 0) then
+        player:startEvent(info.csSand)
+
+    -- first visit cutscene
+    elseif info.csFirst and player:getMaskBit(player:getVar("Dynamis_Status"), info.csBit) then
+        player:startEvent(info.csFirst)
+
+    -- victory cutscene
+    elseif player:getVar(info.winVar) == 1 then
+        player:startEvent(info.csWin, info.winKI)
+
+    -- dynamis entry
+    elseif not info.reqs or info.reqs(player) then
+        local realDay = os.time()
+        local dynaWaitxDay = player:getVar("dynaWaitxDay")
+
+        if player:getMainLvl() < DYNA_LEVEL_MIN then
+            player:messageSpecial(ID.text.PLAYERS_HAVE_NOT_REACHED_LEVEL, DYNA_LEVEL_MIN)
+        elseif (dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME * 60 * 60) < realDay then
+            -- params: bit, cutscene option, Prismatic Hourglass KI, sJob option, junk, Shrouded Sand KI, Timeless Hourglass item ID, Perpetual Hourglass item ID
+            player:startEvent(info.csDyna, info.csBit, arg3(player, info.csBit), dsp.ki.PRISMATIC_HOURGLASS, 1, 0, dsp.ki.VIAL_OF_SHROUDED_SAND, 4236, 4237)
+        else
+            local dayRemaining = math.floor(((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME * 60 * 60) - realDay) / 3456)
+            player:messageSpecial(ID.text.YOU_CANNOT_ENTER_DYNAMIS, dayRemaining, info.csBit)
+        end
+
+    -- standard dialog
+    else
+        player:messageSpecial(ID.text.DYNA_NPC_DEFAULT_MESSAGE)
+    end
+end
+
+dynamis.entryNpcOnEventFinish = function(player, csid, option)
+    local info = entryInfo[player:getZoneID()]
+
+    -- shrouded sand cutscene
+    if info.csSand and csid == info.csSand then
+        npcUtil.giveKeyItem(player, dsp.ki.VIAL_OF_SHROUDED_SAND)
+        player:setMaskBit("Dynamis_Status", 0, false)
+
+    -- first visit cutscene
+    elseif info.csFirst and csid == info.csFirst then
+        player:setMaskBit("Dynamis_Status", info.csBit, true)
+
+    -- victory cutscene
+    elseif csid == info.csWin then
+        player:setVar(info.winVar, 0)
+
+    -- dynamis entry
+    elseif csid == info.csDyna then
+        player:setMaskBit("Dynamis_Status", info.csBit, true)
+
+        if option == 0 or option == 1 then
+            player:setVar("Dynamis_subjob", option)
+            player:setVar("Dynamis_Entry", 1)
+
+            local realDay = os.time()
+            if DYNA_MIDNIGHT_RESET then
+                realDay = getMidnight() - 86400
+            end
+            local dynaWaitxDay = player:getVar("dynaWaitxDay")
+
+            if
+                (dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME * 60 * 60) < realDay and
+                not player:hasKeyItem(dsp.ki.RHAPSODY_IN_AZURE)
+            then
+                player:setVar("dynaWaitxDay", realDay)
+            end
+
+            player:setPos(unpack(info.enterPos))
+        end
+    end
+end
+
+dynamis.zoneOnZoneIn = function(player, prevZone)
+    local zoneId = player:getZoneID()
+    local info = dynaInfo[zoneId]
+    local ID = zones[zoneId]
+
+    local cs = -1
+
+    if player:getVar("Dynamis_Entry") == 1 or player:getGMLevel() > 0 then
+        if player:getVar("Dynamis_subjob") == 1 then
+            player:timer(5000, function(player) player:messageBasic(dsp.msg.basic.UNABLE_TO_ACCESS_SJ) end)
+            player:addStatusEffect(dsp.effect.SJ_RESTRICTION, 0, 0, 0, 7200)
+        end
+        player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 3, 3600)
+        player:timer(5500, function(player) player:messageSpecial(ID.text.DYNAMIS_TIME_BEGIN, 60, dsp.ki.PRISMATIC_HOURGLASS) end)
+        player:setVar("Dynamis_Entry", 0)
+        player:setVar("Dynamis_subjob", 0)
+    else
+        if not player:hasStatusEffect(dsp.effect.DYNAMIS) then
+            cs = 100 -- eject event (same event in all dynamis zones)
+        elseif player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+            player:setPos(unpack(info.entryPos))
+        end
+    end
+
+    return cs
+end
+
+dynamis.zoneOnEventFinish = function(player, csid, option)
+    local zoneId = player:getZoneID()
+    local info = dynaInfo[zoneId]
+
+    if csid == 100 then
+        player:setPos(unpack(info.ejectPos))
+    end
+end
 
 -----------------------------------
 -- Dynamis-Bastok
@@ -703,46 +1026,6 @@ function getDynaMob(player,mobjob,list)
         return GetMobIDByJob(16949349,16949375,mobjob); -- kindred
     end
 end;
-
---------------------------------------------------
--- checkFirstDyna
---[[ CS Option params
-        1 = First CS - if first time visiting ANY dyna zone
-        2 = Second CS - if first time visiting THIS dyna zone
-        3 = Completed CS - if second time or more visiting THIS dyna zone
-        Add 65536 if obtained KI that removes dyna wait time restriction (Rhapsody in Azure) --]]
---------------------------------------------------
-
-function checkFirstDyna(player,number)
-
-    local dynaVar = 0
-    local bit = {}
-    local timeKI = 0
-    if player:hasKeyItem(dsp.ki.RHAPSODY_IN_AZURE) then timeKI = 65536 end
-
-    dynaVar = player:getVar("Dynamis_Status")
-
-    if dynaVar == 0 then
-        return 1+timeKI
-    else
-        for i = 7,0,-1 do
-            twop = 2^i
-            if dynaVar >= twop then
-                bit[i+1] = 1
-                dynaVar = dynaVar - twop
-            else
-                bit[i+1] = 0
-            end
-            -- printf("bit %u: %u\n",i,bit[i+1])
-        end
-        -- printf("received %u",bit[number+1])
-        if bit[number+1] == 0 then
-            return 2+timeKI
-        else
-            return 3+timeKI
-        end
-    end
-end
 
 --------------------------------------------------
 -- alreadyReceived

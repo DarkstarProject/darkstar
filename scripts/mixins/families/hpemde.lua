@@ -61,8 +61,8 @@ g_mixins.families.hpemde = function(mob)
         surface(mob)
     end)
 
-    mob:addListener("MAGIC_TAKE", "HPEMDE_MAGIC_TAKE", function(mob, target)
-        mob:setLocalVar("[hpemde]disengageTime",  mob:getBattleTime() + 45)
+    mob:addListener("MAGIC_TAKE", "HPEMDE_MAGIC_TAKE", function(target, caster, spell)
+        target:setLocalVar("[hpemde]disengageTime",  target:getBattleTime() + 45)
     end)
 
     mob:addListener("COMBAT_TICK", "HPEMDE_CTICK", function(mob)
