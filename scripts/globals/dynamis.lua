@@ -7,6 +7,24 @@ require("scripts/globals/zone")
 require("scripts/globals/msg")
 -----------------------------------
 
+dynamis = {}
+
+--[[
+[zone] =
+{
+    csBit    = the bit in the Dynamis_Status player variable that records whether player has beaten this dynamis
+               this bit number is also given to the start Dynamis event and message.
+    csSand   = event ID for cutscene where Cornelia gives you the vial of shrouded sand
+    csWin    = event ID for cutscene after you have beaten this Dynamis
+    csDyna   = event ID for entering Dynamis
+    winVar   = variable used to denote players who have beaten this Dynamis, but not yet viewed the cutscene
+    winKI    = key item given as reward for this Dynamis
+    enterPos = coordinates where player will be placed when entering this Dynamis
+    reqs     = function that returns true if player meets requirements for entering this Dynamis
+               minimum level and timer are checked separately
+}
+--]]
+
 local entryInfo =
 {
     [dsp.zone.SOUTHERN_SAN_DORIA] =
@@ -143,6 +161,14 @@ local entryInfo =
     },
 }
 
+--[[
+[zone] =
+{
+    entryPos = default entry coordinates (used for GMs warping to zone, for example)
+    ejectPos = coordinates outside, where players will be sent when running out of time or using Somnial Threshold
+}
+--]]
+
 local dynaInfo =
 {
     [dsp.zone.DYNAMIS_SAN_DORIA] =
@@ -178,7 +204,7 @@ local dynaInfo =
     [dsp.zone.DYNAMIS_VALKURM] =
     {
         entryPos = {100, -8, 131, 47},
-        ejectPos = {117, -9, 132, 162, 103},
+        ejectPos = {119, -9, 131, 52, 103},
     },
     [dsp.zone.DYNAMIS_BUBURIMU] =
     {
@@ -197,7 +223,9 @@ local dynaInfo =
     },
 }
 
-dynamis = {}
+-------------------------------------------------
+-- local functions
+-------------------------------------------------
 
 local function arg3(player, bit)
     local csVar = player:getVar("Dynamis_Status")
@@ -212,6 +240,10 @@ local function arg3(player, bit)
     end
 end
 
+-------------------------------------------------
+-- global functions
+-------------------------------------------------
+
 dynamis.entryNpcOnTrigger = function(player, npc)
     local zoneId = player:getZoneID()
     local info = entryInfo[zoneId]
@@ -222,7 +254,7 @@ dynamis.entryNpcOnTrigger = function(player, npc)
         player:startEvent(info.csSand)
 
     -- first visit cutscene
-    elseif info.csFirst and player:getMaskBit(player:getVar("Dynamis_Status"), info.csBit) then
+    elseif info.csFirst and not player:getMaskBit(player:getVar("Dynamis_Status"), info.csBit) then
         player:startEvent(info.csFirst)
 
     -- victory cutscene
@@ -325,6 +357,29 @@ dynamis.zoneOnEventFinish = function(player, csid, option)
 
     if csid == 100 then
         player:setPos(unpack(info.ejectPos))
+    end
+end
+
+dynamis.somnialThresholdOnTrigger = function(player, npc)
+    -- ability to unlock SJ message
+    local canUnlockSJ = player:hasStatusEffect(dsp.effect.SJ_RESTRICTION) and 1 or 0
+
+    -- bitmask controls options in the menu. 1 = Leave Dynamis.  2 = Unlock support jobs.  4 = Nothing (quit menu)
+    local menuBits = 5 + (canUnlockSJ * 2)
+
+    player:startEvent(101, 0x27, canUnlockSJ, menuBits)
+end
+
+dynamis.somnialThresholdOnEventFinish = function(player, csid, option)
+    local zoneId = player:getZoneID()
+    local info = dynaInfo[zoneId]
+
+    if csid == 101 then
+        if option == 1 then
+            player:setPos(unpack(info.ejectPos))
+        elseif option == 2 then
+            player:delStatusEffectSilent(dsp.effect.SJ_RESTRICTION)
+        end
     end
 end
 
