@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-Valkurm
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -23,12 +24,16 @@ zones[dsp.zone.DYNAMIS_VALKURM] =
     },
     mob =
     {
-        TE5_RANDOM =
+        TIME_EXTENSION =
         {
-            [1] = 16937500, -- Warchief_Tombstone
-            [2] = 16937525, -- Adamantking_Image
-            [3] = 16937550, -- Avatar_Idol
-            [4] = 16937575, -- Goblin_Statue
+            [16937214] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},                 -- ~80 Warchief Tombstone
+            [16937239] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},                   -- ~80 Adamantking Image
+            [16937264] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},                   -- ~80 Avatar Idol
+            [16937289] = {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME},               -- ~80 Goblin Statue
+            [16937500] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Warchief Tombstone
+            [16937525] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Adamantking Image
+            [16937550] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Avatar Idol
+            [16937575] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Goblin Statue
         },
     },
     npc =

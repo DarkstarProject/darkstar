@@ -9,12 +9,7 @@ require("scripts/globals/dynamis")
 -----------------------------------
 
 function onInitialize(zone)
-    for i, v in ipairs (ID.mob.TE5_RANDOM) do
-        DisallowRespawn(v, true)
-    end
-    local randomTE5 = ID.mob.TE5_RANDOM[math.random(#ID.mob.TE5_RANDOM)]
-    DisallowRespawn(randomTE5, false)
-    SpawnMob(randomTE5)
+    dynamis.zoneOnInitialize(zone)
 end
 
 function onConquestUpdate(zone, updatetype)

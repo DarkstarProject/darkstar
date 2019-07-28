@@ -227,6 +227,25 @@ local dynaInfo =
 -- local functions
 -------------------------------------------------
 
+local function getRandomTimeExtension(zoneId)
+    local TE = zones[zoneId].mob.TIME_EXTENSION
+    local returnVal = nil
+
+    if TE then
+        local group = {}
+        for k, v in pairs(TE) do
+            if v.random then
+                table.insert(group, k)
+            end
+        end
+        if #group > 0 then
+            returnVal = group[math.random(#group)]
+        end
+    end
+
+    return returnVal
+end
+
 local function arg3(player, bit)
     local csVar = player:getVar("Dynamis_Status")
     local timeKI = player:hasKeyItem(dsp.ki.RHAPSODY_IN_AZURE) and 65536 or 0
@@ -324,6 +343,18 @@ dynamis.entryNpcOnEventFinish = function(player, csid, option)
     end
 end
 
+dynamis.zoneOnInitialize = function(zone)
+    local zoneId = zone:getID()
+    local ID = zones[zoneId]
+
+    -- spawn one of grouped TEs
+    local teId = getRandomTimeExtension(zoneId)
+    if teId then
+        DisallowRespawn(teId, false)
+        SpawnMob(teId)
+    end
+end
+
 dynamis.zoneOnZoneIn = function(player, prevZone)
     local zoneId = player:getZoneID()
     local info = dynaInfo[zoneId]
@@ -380,6 +411,40 @@ dynamis.somnialThresholdOnEventFinish = function(player, csid, option)
         elseif option == 2 then
             player:delStatusEffectSilent(dsp.effect.SJ_RESTRICTION)
         end
+    end
+end
+
+dynamis.timeExtensionOnDeath = function(mob, player, isKiller)
+    local mobId = mob:getID()
+    local zoneId = mob:getZoneID()
+    local ID = zones[zoneId]
+    local te = nil
+
+    if ID.mob.TIME_EXTENSION then
+        te = ID.mob.TIME_EXTENSION[mobId]
+        if te then
+            -- award KI and extension to those who have not yet received it
+            local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
+            if effect and not player:hasKeyItem(te.ki) then
+                npcUtil.giveKeyItem(player, te.ki)
+                local old_duration = effect:getDuration()
+                effect:setDuration((old_duration + (te.minutes * 60)) * 1000)
+                player:setLocalVar("dynamis_lasttimeupdate", effect:getTimeRemaining() / 1000)
+                player:messageSpecial(ID.text.DYNAMIS_TIME_EXTEND, te.minutes)
+            end
+
+            -- if it's a grouped random TE, pick a new group member to spawn next
+            if isKiller and te.random then
+                DisallowRespawn(mobId, true)
+                local teId = getRandomTimeExtension(zoneId)
+                DisallowRespawn(teId, false)
+                GetMobByID(teId):setRespawnTime(85)
+            end
+        else
+            printf("[dynamis.timeExtensionOnDeath] called on mob %s whose ID does not exist in TIME_EXTENSION group in zone %i.", mob:getName(), zoneId)
+        end
+    else
+        printf("[dynamis.timeExtensionOnDeath] called on mob %s in zone %i that does not have a TIME_EXTENSION group in its IDs.", mob:getName(), zoneId)
     end
 end
 
@@ -1327,16 +1392,5 @@ function dynamis.procMonster(mob, player)
                 mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
             end
         end
-    end
-end
-
-function dynamis.addExtension(player, keyitem, duration)
-    if not player:hasKeyItem(keyitem) then
-        npcUtil.giveKeyItem(player, keyitem)
-        local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
-        local old_duration = effect:getDuration()
-        effect:setDuration((old_duration + (duration * 60)) * 1000)
-        player:setLocalVar("dynamis_lasttimeupdate", effect:getTimeRemaining() / 1000)
-        player:messageSpecial(zones[player:getZoneID()].text.DYNAMIS_TIME_EXTEND, duration)
     end
 end
