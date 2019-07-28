@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-Qufim
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 

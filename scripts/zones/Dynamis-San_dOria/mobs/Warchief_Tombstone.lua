@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis - Xarcabard
---  Mob: Statue Prototype
+-- Area: Dynamis - San d'Oria
+--  Mob: Warchief Tombstone
 -----------------------------------
 require("scripts/globals/dynamis")
 -----------------------------------

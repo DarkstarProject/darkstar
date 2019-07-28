@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-Xarcabard
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -40,6 +41,14 @@ zones[dsp.zone.DYNAMIS_XARCABARD] =
     },
     mob =
     {
+        TIME_EXTENSION =
+        {
+            [17330531] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},   -- Tombstone Prototype
+            [17330532] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},     -- Effigy Prototype
+            [17330533] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},     -- Icon Prototype
+            [17330534] = {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME}, -- Statue Prototype
+            [17330535] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME},  -- Prototype Eye
+        },
     },
     npc =
     {

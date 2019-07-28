@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-Windurst
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -24,6 +25,14 @@ zones[dsp.zone.DYNAMIS_WINDURST] =
     },
     mob =
     {
+        TIME_EXTENSION =
+        {
+            [17543258] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},   -- Avatar Idol
+            [17543259] = {minutes = 15, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME},  -- Avatar Idol
+            [17543342] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},     -- Avatar Idol
+            [17543372] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},     -- Avatar Idol
+            [17543446] = {minutes = 15, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME}, -- Avatar Idol
+        },
     },
     npc =
     {

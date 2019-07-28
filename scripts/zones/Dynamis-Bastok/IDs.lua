@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-Bastok
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -24,6 +25,14 @@ zones[dsp.zone.DYNAMIS_BASTOK] =
     },
     mob =
     {
+        TIME_EXTENSION =
+        {
+            [17539142] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},   -- Adamantking Image
+            [17539148] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},     -- Adamantking Image
+            [17539149] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},     -- Adamantking Image
+            [17539253] = {minutes = 15, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME}, -- Adamantking Image
+            [17539306] = {minutes = 15, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME},  -- Adamantking Image
+        },
     },
     npc =
     {

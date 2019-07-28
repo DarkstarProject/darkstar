@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis - Xarcabard
---  Mob: Statue Prototype
+--  Mob: Prototype Eye
 -----------------------------------
 require("scripts/globals/dynamis")
 -----------------------------------

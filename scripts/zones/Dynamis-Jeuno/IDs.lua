@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-Jeuno
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 

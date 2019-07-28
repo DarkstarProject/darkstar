@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis - Xarcabard
---  Mob: Statue Prototype
+-- Area: Dynamis - Beaucedine
+--  Mob: Avatar Idol
 -----------------------------------
 require("scripts/globals/dynamis")
 -----------------------------------

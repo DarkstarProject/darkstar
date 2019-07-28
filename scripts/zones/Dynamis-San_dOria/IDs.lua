@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-San_dOria
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -24,6 +25,14 @@ zones[dsp.zone.DYNAMIS_SAN_DORIA] =
     },
     mob =
     {
+        TIME_EXTENSION =
+        {
+            [17535026] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},   -- Warchief Tombstone
+            [17535057] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},     -- Warchief Tombstone
+            [17535128] = {minutes = 15, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME},  -- Warchief Tombstone
+            [17535131] = {minutes = 15, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME}, -- Warchief Tombstone
+            [17535139] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},     -- Warchief Tombstone
+        },
     },
     npc =
     {

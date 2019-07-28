@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis - Xarcabard
---  Mob: Statue Prototype
+-- Area: Dynamis - Bastok
+--  Mob: Adamantking Image
 -----------------------------------
 require("scripts/globals/dynamis")
 -----------------------------------

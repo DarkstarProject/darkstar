@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis-Buburimu
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/zone")
 -----------------------------------
 

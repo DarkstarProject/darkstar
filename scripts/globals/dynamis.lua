@@ -440,8 +440,6 @@ dynamis.timeExtensionOnDeath = function(mob, player, isKiller)
                 DisallowRespawn(teId, false)
                 GetMobByID(teId):setRespawnTime(85)
             end
-        else
-            printf("[dynamis.timeExtensionOnDeath] called on mob %s whose ID does not exist in TIME_EXTENSION group in zone %i.", mob:getName(), zoneId)
         end
     else
         printf("[dynamis.timeExtensionOnDeath] called on mob %s in zone %i that does not have a TIME_EXTENSION group in its IDs.", mob:getName(), zoneId)
