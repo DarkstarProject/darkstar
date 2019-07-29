@@ -24,6 +24,14 @@ zones[dsp.zone.DYNAMIS_JEUNO] =
     },
     mob =
     {
+        TIME_EXTENSION =
+        {
+            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = {17547301, 17547302, 17547303}},
+            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 17547389},
+            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17547390},
+            {minutes = 15, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17547420},
+            {minutes = 15, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17547467},
+        },
     },
     npc =
     {

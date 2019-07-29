@@ -27,11 +27,11 @@ zones[dsp.zone.DYNAMIS_TAVNAZIA] =
     {
         TIME_EXTENSION =
         {
-            [16949272] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},   -- Effigy Prototype
-            [16949292] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},     -- Tombstone Prototype
-            [16949306] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},     -- Icon Prototype
-            [16949325] = {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME}, -- Statue Prototype
-            [16949380] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME},  -- Prototype Eye
+            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = 16949272},
+            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 16949292},
+            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 16949306},
+            {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 16949325},
+            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 16949380},
         },
     },
     npc =

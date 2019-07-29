@@ -26,14 +26,11 @@ zones[dsp.zone.DYNAMIS_VALKURM] =
     {
         TIME_EXTENSION =
         {
-            [16937214] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},                 -- ~80 Warchief Tombstone
-            [16937239] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},                   -- ~80 Adamantking Image
-            [16937264] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},                   -- ~80 Avatar Idol
-            [16937289] = {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME},               -- ~80 Goblin Statue
-            [16937500] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Warchief Tombstone
-            [16937525] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Adamantking Image
-            [16937550] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Avatar Idol
-            [16937575] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME, random = true}, -- ~95 Goblin Statue
+            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = 16937214},
+            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 16937239},
+            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 16937264},
+            {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 16937289},
+            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = {16937500, 16937525, 16937550, 16937575}},
         },
     },
     npc =

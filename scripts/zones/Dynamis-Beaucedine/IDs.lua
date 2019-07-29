@@ -26,11 +26,11 @@ zones[dsp.zone.DYNAMIS_BEAUCEDINE] =
     {
         TIME_EXTENSION =
         {
-            [17326207] = {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME},   -- Adamantking Image
-            [17326279] = {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME},     -- Warchief Tombstone
-            [17326353] = {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME},     -- Avatar Idol
-            [17326468] = {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME}, -- Goblin Statue
-            [17326742] = {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME},  -- Rearguard Eye
+            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = 17326207},
+            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 17326279},
+            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17326353},
+            {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17326468},
+            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17326742},
         },
     },
     npc =
