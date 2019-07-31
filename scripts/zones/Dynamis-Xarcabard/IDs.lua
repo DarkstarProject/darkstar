@@ -49,6 +49,7 @@ zones[dsp.zone.DYNAMIS_XARCABARD] =
             {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17330534},
             {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17330535},
         },
+        YING = 17330183,
     },
     npc =
     {

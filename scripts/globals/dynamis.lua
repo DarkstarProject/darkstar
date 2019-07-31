@@ -173,51 +173,81 @@ local dynaInfo =
 {
     [dsp.zone.DYNAMIS_SAN_DORIA] =
     {
+        winVar = "DynaSandoria_Win",
+        winKI = dsp.ki.HYDRA_CORPS_COMMAND_SCEPTER,
+        winTitle = dsp.title.DYNAMIS_SAN_DORIA_INTERLOPER,
         entryPos = {161.838, -2.000, 161.673, 93},
         ejectPos = {161.000, -2.000, 161.000, 94, 230},
     },
     [dsp.zone.DYNAMIS_BASTOK] =
     {
+        winVar = "DynaBastok_Win",
+        winKI = dsp.ki.HYDRA_CORPS_EYEGLASS,
+        winTitle = dsp.title.DYNAMIS_BASTOK_INTERLOPER,
         entryPos = {116.482, 0.994, -72.121, 128},
         ejectPos = {112.000, 0.994, -72.000, 127, 234},
     },
     [dsp.zone.DYNAMIS_WINDURST] =
     {
+        winVar = "DynaWindurst_Win",
+        winKI = dsp.ki.HYDRA_CORPS_LANTERN,
+        winTitle = dsp.title.DYNAMIS_WINDURST_INTERLOPER,
         entryPos = {-221.988, 1.000, -120.184, 0},
         ejectPos = {-217.000, 1.000, -119.000, 94, 239},
     },
     [dsp.zone.DYNAMIS_JEUNO] =
     {
+        winVar = "DynaJeuno_Win",
+        winKI = dsp.ki.HYDRA_CORPS_TACTICAL_MAP,
+        winTitle = dsp.title.DYNAMIS_JEUNO_INTERLOPER,
         entryPos = {48.930, 10.002, -71.032, 195},
         ejectPos = {48.930, 10.002, -71.032, 195, 243},
     },
     [dsp.zone.DYNAMIS_BEAUCEDINE] =
     {
+        winVar = "DynaBeaucedine_Win",
+        winKI = dsp.ki.HYDRA_CORPS_INSIGNIA,
+        winTitle = dsp.title.DYNAMIS_BEAUCEDINE_INTERLOPER,
         entryPos = {-284.751, -39.923, -422.948, 235},
         ejectPos = {-284.751, -39.923, -422.948, 235, 111},
     },
     [dsp.zone.DYNAMIS_XARCABARD] =
     {
+        winVar = "DynaXarcabard_Win",
+        winKI = dsp.ki.HYDRA_CORPS_BATTLE_STANDARD,
+        winTitle = dsp.title.DYNAMIS_XARCABARD_INTERLOPER,
         entryPos = {569.312, -0.098, -270.158, 90},
         ejectPos = {569.312, -0.098, -270.158, 90, 112},
     },
     [dsp.zone.DYNAMIS_VALKURM] =
     {
+        winVar = "DynaValkurm_Win",
+        winKI = dsp.ki.DYNAMIS_VALKURM_SLIVER,
+        winTitle = dsp.title.DYNAMIS_VALKURM_INTERLOPER,
         entryPos = {100, -8, 131, 47},
         ejectPos = {119, -9, 131, 52, 103},
     },
     [dsp.zone.DYNAMIS_BUBURIMU] =
     {
+        winVar = "DynaBuburimu_Win",
+        winKI = dsp.ki.DYNAMIS_BUBURIMU_SLIVER,
+        winTitle = dsp.title.DYNAMIS_BUBURIMU_INTERLOPER,
         entryPos = {155, -1, -169, 170},
         ejectPos = {154, -1, -170, 190, 118},
     },
     [dsp.zone.DYNAMIS_QUFIM] =
     {
+        winVar = "DynaQufim_Win",
+        winKI = dsp.ki.DYNAMIS_QUFIM_SLIVER,
+        winTitle = dsp.title.DYNAMIS_QUFIM_INTERLOPER,
         entryPos = {-19, -17, 104, 253},
         ejectPos = {18, -19, 162, 240, 126},
     },
     [dsp.zone.DYNAMIS_TAVNAZIA] =
     {
+        winVar = "DynaTavnazia_Win",
+        winKI = dsp.ki.DYNAMIS_TAVNAZIA_SLIVER,
+        winTitle = dsp.title.DYNAMIS_TAVNAZIA_INTERLOPER,
         entryPos = {0.1, -7, -21, 190},
         ejectPos = {0, -7, -23, 195, 26},
     },
@@ -401,6 +431,18 @@ dynamis.somnialThresholdOnEventFinish = function(player, csid, option)
         elseif option == 2 then
             player:delStatusEffectSilent(dsp.effect.SJ_RESTRICTION)
         end
+    end
+end
+
+dynamis.megaBossOnDeath = function(mob, player, isKiller)
+    local zoneId = player:getZoneID()
+    local info = dynaInfo[zoneId]
+
+    player:addTitle(info.winTitle)
+
+    if not player:hasKeyItem(info.winKI) then
+        npcUtil.giveKeyItem(player, info.winKI)
+        player:setVar(info.winVar, 1)
     end
 end
 
@@ -1159,89 +1201,6 @@ function getDynaMob(player,mobjob,list)
     elseif (pZone == 42 and list == 2) then
         return GetMobIDByJob(16949349,16949375,mobjob); -- kindred
     end
-end;
-
---------------------------------------------------
--- alreadyReceived
--- I use this function for TE and Boss Trigger
---------------------------------------------------
-
-function alreadyReceived(player,number)
-
-    local dynaVar = 0;
-    local bit = {};
-    local pZone = player:getZoneID();
-
-    if (pZone == 185) then
-        dynaVar = GetServerVariable("[DynaSandoria]Already_Received");
-    elseif (pZone == 186) then
-        dynaVar = GetServerVariable("[DynaBastok]Already_Received");
-    elseif (pZone == 187) then
-        dynaVar = GetServerVariable("[DynaWindurst]Already_Received");
-    elseif (pZone == 188) then
-        dynaVar = GetServerVariable("[DynaJeuno]Already_Received");
-    elseif (pZone == 134) then
-        dynaVar = GetServerVariable("[DynaBeaucedine]Already_Received");
-    elseif (pZone == 135) then
-        dynaVar = GetServerVariable("[DynaXarcabard]Already_Received");
-    elseif (pZone == 39) then
-        dynaVar = GetServerVariable("[DynaValkurm]Already_Received");
-    elseif (pZone == 40) then
-        dynaVar = GetServerVariable("[DynaBuburimu]Already_Received");
-    elseif (pZone == 41) then
-        dynaVar = GetServerVariable("[DynaQufim]Already_Received");
-    elseif (pZone == 42) then
-        dynaVar = GetServerVariable("[DynaTavnazia]Already_Received");
-    end
-
-    for i = 12,0,-1 do
-        twop = 2^i;
-        if (dynaVar >= twop) then
-            bit[i+1] = 1;
-            dynaVar = dynaVar - twop;
-        else
-            bit[i+1] = 0;
-        end;
-    end;
-    -- printf("received %u",bit[number]);
-    if (bit[number] == 0) then
-        return false;
-    else
-        return true;
-    end
-end;
-
---------------------------------------------------
--- addDynamisList
--- Add this mob to already received list
---------------------------------------------------
-
-function addDynamisList(player,number)
-
-    local pZone = player:getZoneID();
-
-    if (pZone == 185) then
-        SetServerVariable("[DynaSandoria]Already_Received",GetServerVariable("[DynaSandoria]Already_Received") + number);
-    elseif (pZone == 186) then
-        SetServerVariable("[DynaBastok]Already_Received",GetServerVariable("[DynaBastok]Already_Received") + number);
-    elseif (pZone == 187) then
-        SetServerVariable("[DynaWindurst]Already_Received",GetServerVariable("[DynaWindurst]Already_Received") + number);
-    elseif (pZone == 188) then
-        SetServerVariable("[DynaJeuno]Already_Received",GetServerVariable("[DynaJeuno]Already_Received") + number);
-    elseif (pZone == 134) then
-        SetServerVariable("[DynaBeaucedine]Already_Received",GetServerVariable("[DynaBeaucedine]Already_Received") + number);
-    elseif (pZone == 135) then
-        SetServerVariable("[DynaXarcabard]Already_Received",GetServerVariable("[DynaXarcabard]Already_Received") + number);
-    elseif (pZone == 39) then
-        SetServerVariable("[DynaValkurm]Already_Received",GetServerVariable("[DynaValkurm]Already_Received") + number);
-    elseif (pZone == 40) then
-        SetServerVariable("[DynaBuburimu]Already_Received",GetServerVariable("[DynaBuburimu]Already_Received") + number);
-    elseif (pZone == 41) then
-        SetServerVariable("[DynaQufim]Already_Received",GetServerVariable("[DynaQufim]Already_Received") + number);
-    elseif (pZone == 42) then
-        SetServerVariable("[DynaTavnazia]Already_Received",GetServerVariable("[DynaTavnazia]Already_Received") + number);
-    end
-
 end;
 
 --------------------------------------------------
