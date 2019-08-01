@@ -21,6 +21,7 @@ zones[dsp.zone.DYNAMIS_QUFIM] =
         DYNAMIS_TIME_UPDATE_1   = 7316, -- ou will be expelled from Dynamis in <number> [second/minute] (Earth time).
         DYNAMIS_TIME_UPDATE_2   = 7317, -- ou will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
         DYNAMIS_TIME_EXPIRED    = 7319, -- The sands of the hourglass have emptied...
+        OMINOUS_PRESENCE        = 7330, -- You feel an ominous presence, as if something might happen if you possessed <item>.
     },
     mob =
     {
@@ -35,6 +36,21 @@ zones[dsp.zone.DYNAMIS_QUFIM] =
     },
     npc =
     {
+        QM =
+        {
+            [16945638] =
+            {
+                param = {3458, 3479, 3480, 3481, 3482},
+                trade =
+                {
+                    {item = 3458,                     mob = 16945153}, -- Antaeus
+                    {item = {3479, 3480, 3481, 3482}, mob = 16945403}, -- Arch Antaeus
+                }
+            },
+            [16945639] = {trade = {{item = 3468, mob = 16945421}}}, -- Lost Stringes
+            [16945640] = {trade = {{item = 3467, mob = 16945457}}}, -- Lost Scolopendra
+            [16945641] = {trade = {{item = 3469, mob = 16945470}}}, -- Lost Suttung
+        },
     },
 }
 

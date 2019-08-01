@@ -22,6 +22,7 @@ zones[dsp.zone.DYNAMIS_BASTOK] =
         DYNAMIS_TIME_UPDATE_1   = 7316, -- ou will be expelled from Dynamis in <number> [second/minute] (Earth time).
         DYNAMIS_TIME_UPDATE_2   = 7317, -- ou will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
         DYNAMIS_TIME_EXPIRED    = 7319, -- The sands of the hourglass have emptied...
+        OMINOUS_PRESENCE        = 7330, -- You feel an ominous presence, as if something might happen if you possessed <item>.
     },
     mob =
     {
@@ -36,6 +37,22 @@ zones[dsp.zone.DYNAMIS_BASTOK] =
     },
     npc =
     {
+        QM =
+        {
+            [17539322] =
+            {
+                param = {3354, 3409, 3410, 3411, 3412, 3413},
+                trade =
+                {
+                    {item = 3354,                           mob = 17539073}, -- Gu'Dha Effigy
+                    {item = {3409, 3410, 3411, 3412, 3413}, mob = 17539312}, -- Arch Gu'Dha Effigy
+                }
+            },
+            [17539323] = {trade = {{item = 3384, mob = 17539307}}}, -- Zo'Pha Forgesoul
+            [17539324] = {trade = {{item = 3385, mob = 17539308}}}, -- Ra'Gho Darkfount
+            [17539325] = {trade = {{item = 3386, mob = 17539310}}}, -- Va'Zhe Pummelsong
+            [17539326] = {trade = {{item = 3387, mob = 17539311}}}, -- Bu'Bho Truesteel
+        },
     },
 }
 

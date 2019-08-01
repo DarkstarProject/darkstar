@@ -22,6 +22,7 @@ zones[dsp.zone.DYNAMIS_TAVNAZIA] =
         DYNAMIS_TIME_UPDATE_2   = 7317, -- ou will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
         DYNAMIS_TIME_EXPIRED    = 7319, -- The sands of the hourglass have emptied...
         DIABOLOS                = 7328, -- You sense that something might happen if you possessed one of these...
+        OMINOUS_PRESENCE        = 7330, -- You feel an ominous presence, as if something might happen if you possessed <item>.
     },
     mob =
     {
@@ -36,6 +37,18 @@ zones[dsp.zone.DYNAMIS_TAVNAZIA] =
     },
     npc =
     {
+        QM =
+        {
+            [16949396] =
+            {
+                param = {3459, 3483, 3484, 3485, 3486},
+                trade =
+                {
+                    {item = 3459,                     mob = {16949249, 16949250, 16949251, 16949252}}, -- Diabolos Spade/Heart/Diamond/Club
+                    {item = {3483, 3484, 3485, 3486}, mob = {16949326, 16949327, 16949328, 16949329}}, -- Diabolos Somnus/Nox/Umbra/Letum
+                }
+            },
+        },
     },
 }
 

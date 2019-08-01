@@ -504,6 +504,61 @@ dynamis.timeExtensionOnDeath = function(mob, player, isKiller)
     end
 end
 
+dynamis.qmOnTrade = function(player, npc, trade)
+    local npcId = npc:getID()
+    local zoneId = npc:getZoneID()
+    local ID = zones[zoneId]
+    local QM = ID.npc.QM
+
+    if QM then
+        local info = QM[npcId]
+
+        if info then
+            for _, v in pairs(info.trade) do
+                if npcUtil.tradeHasExactly(trade, v.item) then
+                    local mobId
+                    if type(v.mob) == "table" then
+                        mobId = v.mob[math.random(#v.mob)]
+                    else
+                        mobId = v.mob
+                    end
+                    if mobId and npcUtil.popFromQM(player, npc, mobId, {hide = 0, radius = 2}) then
+                        player:confirmTrade()
+                    end
+                    break
+                end
+            end
+        else
+            printf("[dynamis.qmOnTrade] called on in zone %i on npc %i (%s) that does not appear in QM data.", zoneId, npcId, npc:getName())
+        end
+    else
+        printf("[dynamis.qmOnTrade] called on npc %i (%s) in zone %i that does not have a QM group in its IDs.", npcId, npc:getName(), zoneId)
+    end
+end
+
+dynamis.qmOnTrigger = function(player, npc)
+    local npcId = npc:getID()
+    local zoneId = npc:getZoneID()
+    local ID = zones[zoneId]
+    local QM = ID.npc.QM
+
+    if QM then
+        local info = QM[npcId]
+
+        if info then
+            if info.param then
+                player:startEvent(102, unpack(info.param))
+            elseif info.trade and #info.trade == 1 and info.trade[1].item and type(info.trade[1].item) == "number" and ID.text.OMINOUS_PRESENCE then
+                player:messageSpecial(ID.text.OMINOUS_PRESENCE, info.trade[1].item)
+            end
+        else
+            printf("[dynamis.qmOnTrigger] called on in zone %i on npc %i (%s) that does not appear in QM data.", zoneId, npcId, npc:getName())
+        end
+    else
+        printf("[dynamis.qmOnTrigger] called on npc %i (%s) in zone %i that does not have a QM group in its IDs.", npcId, npc:getName(), zoneId)
+    end
+end
+
 -----------------------------------
 -- Dynamis-Bastok
 -----------------------------------

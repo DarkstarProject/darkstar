@@ -22,6 +22,7 @@ zones[dsp.zone.DYNAMIS_SAN_DORIA] =
         DYNAMIS_TIME_UPDATE_1   = 7216, -- ou will be expelled from Dynamis in <number> [second/minute] (Earth time).
         DYNAMIS_TIME_UPDATE_2   = 7217, -- ou will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
         DYNAMIS_TIME_EXPIRED    = 7219, -- The sands of the hourglass have emptied...
+        OMINOUS_PRESENCE        = 7230, -- You feel an ominous presence, as if something might happen if you possessed <item>.
     },
     mob =
     {
@@ -36,6 +37,22 @@ zones[dsp.zone.DYNAMIS_SAN_DORIA] =
     },
     npc =
     {
+        QM =
+        {
+            [17535223] =
+            {
+                param = {3353, 3404, 3405, 3406, 3407, 3408},
+                trade =
+                {
+                    {item = 3353,                           mob = 17534977}, -- Overlord's Tombstone
+                    {item = {3404, 3405, 3406, 3407, 3408}, mob = 17535213}, -- Arch Overlord Tombstone
+                }
+            },
+            [17535224] = {trade = {{item = 3380, mob = 17535207}}}, -- Bladeburner Rokgevok
+            [17535225] = {trade = {{item = 3381, mob = 17535208}}}, -- Steelshank Kratzvatz
+            [17535226] = {trade = {{item = 3382, mob = 17535210}}}, -- Bloodfist Voshgrosh
+            [17535227] = {trade = {{item = 3383, mob = 17535211}}}, -- Spellspear Djokvukk
+        },
     },
 }
 
