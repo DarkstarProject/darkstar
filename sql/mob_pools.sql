@@ -6120,6 +6120,41 @@ INSERT INTO `mob_pools` VALUES (6077,'Deathwatch_Beetle','Deathwatch_Beetle',49,
 INSERT INTO `mob_pools` VALUES (6078,'Praetorian_Guard_CCXX','Praetorian_Guard_CCXX',25,0x0000F10400000000000000000000000000000000,1,1,5,265,100,0,1,1,1,2,7,0,1243,1155,0,0,0,1,0,25);
 INSERT INTO `mob_pools` VALUES (6079,'Praetorian_Guard_CXLVIII','Praetorian_Guard_CXLVIII',25,0x0000F80400000000000000000000000000000000,11,11,2,265,100,0,1,1,1,2,7,0,185,1155,0,0,0,1,0,25);
 INSERT INTO `mob_pools` VALUES (6080,'Praetorian_Guard_LXXIII','Praetorian_Guard_LXXIII',25,0x0000FE0400000000000000000000000000000000,4,4,12,265,100,0,1,1,1,2,7,0,291,1155,0,0,2,1,0,25);
+INSERT INTO `mob_pools` VALUES (6081,'Bladeburner_Rokgevok','Bladeburner_Rokgevok',334,0x0000170400000000000000000000000000000000,1,4,8,240,100,0,1,1,1,2,0,32,34,159,0,0,2,0,0,334);
+INSERT INTO `mob_pools` VALUES (6082,'Steelshank_Kratzvatz','Steelshank_Kratzvatz',334,0x0000180400000000000000000000000000000000,7,9,8,240,100,0,1,1,1,2,0,32,245,159,0,0,4,0,0,334);
+INSERT INTO `mob_pools` VALUES (6083,'Kratzvatzs_Hecteyes','Kratzvatzs_Hecteyes',139,0x0000800100000000000000000000000000000000,4,4,12,280,100,0,1,0,1,0,0,32,865,155,0,0,10,0,0,139);
+INSERT INTO `mob_pools` VALUES (6084,'Bloodfist_Voshgrosh','Bloodfist_Voshgrosh',334,0x0000160400000000000000000000000000000000,8,2,8,240,100,0,1,1,1,2,0,32,7,159,0,0,5,0,0,334);
+INSERT INTO `mob_pools` VALUES (6085,'Spellspear_Djokvukk','Spellspear_Djokvukk',334,0x0000180400000000000000000000000000000000,14,5,8,240,100,0,1,1,1,2,0,32,1195,159,0,0,3,0,0,334);
+INSERT INTO `mob_pools` VALUES (6086,'Djokvukks_Wyvern','Djokvukks_Wyvern',193,0x0000F90200000000000000000000000000000000,14,14,7,200,100,0,1,1,1,0,0,32,0,0,0,0,0,0,0,714);
+INSERT INTO `mob_pools` VALUES (6087,'Arch_Overlord_Tombstone','Arch_Overlord_Tombstone',93,0x0000210400000000000000000000000000000000,5,4,11,240,100,0,1,1,0,2,1023,0,6144,129,5,0,49,0,0,93);
+
+/*
+  `poolid` int(10) unsigned NOT NULL,
+  `name` varchar(24) DEFAULT NULL,
+  `packet_name` varchar(24) DEFAULT NULL,
+  `familyid` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `modelid` binary(20) NOT NULL,
+  `mJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `cmbSkill` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `cmbDelay` smallint(3) unsigned NOT NULL DEFAULT '240',
+  `cmbDmgMult` smallint(4) unsigned NOT NULL DEFAULT '100',
+  `behavior` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `aggro` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `true_detection` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `links` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `mobType` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `immunity` int(10) NOT NULL DEFAULT '0',
+  `name_prefix` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `flag` int(11) unsigned NOT NULL DEFAULT '0',
+  `entityFlags` int(11) unsigned NOT NULL DEFAULT '0',
+  `animationsub` tinyint(1) NOT NULL DEFAULT '0',
+  `hasSpellScript` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `spellList` smallint(4) NOT NULL DEFAULT '0',
+  `namevis` tinyint(4) NOT NULL DEFAULT '1',
+  `roamflag` smallint(3) unsigned NOT NULL DEFAULT '0',
+  `skill_list_id` smallint(5) unsigned NOT NULL DEFAULT '0',
+*/
 
 /*!40000 ALTER TABLE `mob_pools` ENABLE KEYS */;
 UNLOCK TABLES;

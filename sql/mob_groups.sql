@@ -10375,6 +10375,13 @@ INSERT INTO `mob_groups` VALUES (23,3340,185,'Reapertongue_Gadgquok',0,128,2937,
 INSERT INTO `mob_groups` VALUES (24,4289,185,'Warchief_Tombstone',0,128,0,1000,1000,78,80,0);
 INSERT INTO `mob_groups` VALUES (25,4387,185,'Wyrmgnasher_Bjakdek',0,128,4196,8000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (26,4243,185,'Voidstreaker_Butchnotch',0,128,4021,8000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (27,6081,185,'Bladeburner_Rokgevok',0,128,4805,0,0,90,90,0);
+INSERT INTO `mob_groups` VALUES (28,6082,185,'Steelshank_Kratzvatz',0,128,4806,0,0,90,90,0);
+INSERT INTO `mob_groups` VALUES (29,6083,185,'Kratzvatzs_Hecteyes',0,128,0,0,0,90,90,0);
+INSERT INTO `mob_groups` VALUES (30,6084,185,'Bloodfist_Voshgrosh',0,128,4807,0,0,90,90,0);
+INSERT INTO `mob_groups` VALUES (31,6085,185,'Spellspear_Djokvukk',0,128,4808,0,0,90,90,0);
+INSERT INTO `mob_groups` VALUES (32,6086,185,'Djokvukks_Wyvern',0,128,0,0,0,90,90,0);
+INSERT INTO `mob_groups` VALUES (33,6087,185,'Arch_Overlord_Tombstone',0,128,4809,0,0,90,90,0);
 INSERT INTO `mob_groups` VALUES (1,1855,186,'Gu_Dha_Effigy',0,128,4472,12500,12500,85,85,0);
 INSERT INTO `mob_groups` VALUES (2,4197,186,'Vanguard_Vindicator',0,128,3975,4000,0,77,79,0);
 INSERT INTO `mob_groups` VALUES (3,4163,186,'Vanguard_Militant',0,128,3835,4000,0,77,79,0);

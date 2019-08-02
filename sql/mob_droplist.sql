@@ -33066,6 +33066,17 @@ INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,889,200); -- (Starborer) beetle
 INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,894,92); -- (Starborer) beetle_jaw
 INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,3541,77); -- (Starborer) seasoning_stone
 INSERT INTO `mob_droplist` VALUES (4804,0,0,1000,3542,62); -- (Starborer) fossilized_bone
+INSERT INTO `mob_droplist` VALUES (4805,0,0,1000,11772,150); -- (Bladeburner_Rokgevok) oneiros_sash
+INSERT INTO `mob_droplist` VALUES (4805,0,0,1000,3405,1000); -- (Bladeburner_Rokgevok) fiendish_tome_chapter_2
+INSERT INTO `mob_droplist` VALUES (4806,0,0,1000,10972,150); -- (Steelshank_Kratzvatz) oneiros_cappa
+INSERT INTO `mob_droplist` VALUES (4806,0,0,1000,3406,1000); -- (Steelshank_Kratzvatz) fiendish_tome_chapter_3
+INSERT INTO `mob_droplist` VALUES (4807,0,0,1000,11773,150); -- (Bloodfist_Voshgrosh) oneiros_belt
+INSERT INTO `mob_droplist` VALUES (4807,0,0,1000,3407,1000); -- (Bloodfist_Voshgrosh) fiendish_tome_chapter_4
+INSERT INTO `mob_droplist` VALUES (4808,0,0,1000,10973,150); -- (Spellspear_Djokvukk) oneiros_cape
+INSERT INTO `mob_droplist` VALUES (4808,0,0,1000,3408,1000); -- (Spellspear_Djokvukk) fiendish_tome_chapter_5
+INSERT INTO `mob_droplist` VALUES (4809,0,0,1000,11774,200); -- (Arch_Overlord_Tombstone) oneiros_cest
+INSERT INTO `mob_droplist` VALUES (4809,0,0,1000,11816,50); -- (Arch_Overlord_Tombstone) oneiros_helm
+INSERT INTO `mob_droplist` VALUES (4809,0,0,1000,19790,100); -- (Arch_Overlord_Tombstone) oneiros_lance
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
