@@ -28,7 +28,7 @@ function onTrigger(player,npc)
             player:startEvent(104)
         elseif expertiseStat == 2 then
             local daysPassed = VanadielDayOfTheYear() - player:getVar("QuestExpertiseDayStarted_var")
-            local hoursLeft  = 24 - VanadielHour() + (Dayspassed * 24) + player:getVar("QuestExpertiseHourStarted_var")
+            local hoursLeft  = 24 - VanadielHour() - (daysPassed * 24) + player:getVar("QuestExpertiseHourStarted_var")
 
             if hoursLeft < 0 then -- done waiting
                 player:startEvent(105)
