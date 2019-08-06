@@ -1309,7 +1309,7 @@ INSERT INTO `mob_groups` VALUES (58,4176,39,'Vanguard_Priest',600,0,3896,4000,0,
 INSERT INTO `mob_groups` VALUES (59,4180,39,'Vanguard_Salvager',600,0,3916,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (60,4148,39,'Vanguard_Exemplar',600,0,3758,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (61,4175,39,'Vanguard_Prelate',600,0,3891,4000,0,75,77,0);
-INSERT INTO `mob_groups` VALUES (62,4157,39,'Vanguard_Inciter',600,0,3801,4000,0,75,77,0);
+-- zone 39 group 62: free
 INSERT INTO `mob_groups` VALUES (63,4171,39,'Vanguard_Persecutor',600,0,3871,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (64,4198,39,'Vanguard_Visionary',600,0,3976,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (65,4137,39,'Vanguard_Assassin',600,0,3707,4000,0,75,77,0);
@@ -1756,7 +1756,7 @@ INSERT INTO `mob_groups` VALUES (127,2871,41,'Nightmare_Tiger',600,0,2455,5000,0
 INSERT INTO `mob_groups` VALUES (128,4184,41,'Vanguard_Smithy',600,0,3938,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (129,4199,41,'Vanguard_Welldigger',600,0,3983,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (130,4192,41,'Vanguard_Tinkerer',600,0,3948,4000,0,93,95,0);
-INSERT INTO `mob_groups` VALUES (131,4170,41,'Vanguard_Pathfinder',600,0,3868,4000,0,93,95,0);
+-- zone 41 group 131: free
 INSERT INTO `mob_groups` VALUES (132,4147,41,'Vanguard_Enchanter',600,0,3755,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (133,4134,41,'Vanguard_Ambusher',600,0,3694,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (134,4155,41,'Vanguard_Hitman',600,0,3793,4000,0,93,95,0);
