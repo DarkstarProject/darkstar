@@ -51,7 +51,8 @@ function onUseAbility(player,target,ability)
             target:removeOldestManeuver()
         end
 
-        target:addStatusEffect(dsp.effect.LIGHT_MANEUVER, bonus, 0, 60)
+        local bonusDur = target:getPet():getDeployDuration()
+        target:addStatusEffect(dsp.effect.LIGHT_MANEUVER, bonus, 0, 60 + bonusDur)
     end
 
     return dsp.effect.LIGHT_MANEUVER

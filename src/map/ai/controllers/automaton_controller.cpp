@@ -42,6 +42,7 @@ CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetControl
     PAutomaton(PPet)
 {
     PPet->setInitialBurden();
+    PAutomaton->resetDeployDuration();
     setCooldowns();
     if (isRanged())
     {
@@ -186,6 +187,12 @@ void CAutomatonController::DoCombatTick(time_point tick)
     if (TryAction())
     {
         auto maneuvers = GetCurrentManeuvers();
+
+        //track deploy duration up to 4 minutes
+        if(PAutomaton->getDeployDuration() < 240) {
+        	//PAutomaton->updateDeployDuration(std::chrono::duration_cast<std::chrono::duration<float>>(m_actionCooldown - std::chrono::milliseconds(PAutomaton->getMod(Mod::AUTO_DECISION_DELAY) * 10)));
+        	PAutomaton->updateDeployDuration(3);
+		}
 
         if (TryShieldBash())
         {
@@ -449,7 +456,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
             haveHate = selfEnmity > masterEnmity ? true : false;
         }
     }
-    
+
     // Prioritize hate
     if (haveHate)
     {

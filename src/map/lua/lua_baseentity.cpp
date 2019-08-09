@@ -12277,6 +12277,23 @@ inline int32 CLuaBaseEntity::updateAttachments(lua_State* L)
 }
 
 /************************************************************************
+*  Function: getDeployDuration()
+*  Purpose : Return number of seconds that automaton has been deployed
+*  Example : pet:getDeployDuration()
+*  Notes   : Called when any maneuver is used to modify duration.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDeployDuration(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PET || static_cast<CPetEntity*>(m_PBaseEntity)->getPetType() != PETTYPE_AUTOMATON);
+
+	lua_pushinteger(L, (static_cast<CAutomatonEntity*>(m_PBaseEntity))->getDeployDuration());
+
+    return 1;
+}
+
+/************************************************************************
 *  Function: setMobLevel()
 *  Purpose : Updates the monsters level and recalculates stats
 *  Example : mob:setMobLevel(125)
@@ -14282,6 +14299,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateAttachments),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDeployDuration),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity, spawnTrust),
 

@@ -83,6 +83,10 @@ public:
     void setInitialBurden();
     uint8 addBurden(uint8 element, int8 burden);
 
+    uint8 getDeployDuration();
+    void updateDeployDuration(int dSec);
+    void resetDeployDuration();
+
     void PostTick() override;
 
     virtual void Spawn() override;
@@ -95,6 +99,7 @@ public:
 
 private:
     std::array<uint8, 8> m_Burden {};
+    float m_deployDuration;
 };
 
 #endif

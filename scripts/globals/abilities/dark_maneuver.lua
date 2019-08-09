@@ -42,7 +42,8 @@ function onUseAbility(player,target,ability)
             target:removeOldestManeuver()
         end
 
-        target:addStatusEffect(dsp.effect.DARK_MANEUVER, 0, 0, 60)
+        local bonusDur = target:getPet():getDeployDuration()
+        target:addStatusEffect(dsp.effect.DARK_MANEUVER, bonus, 0, 60 + bonusDur)
     end
 
     return dsp.effect.DARK_MANEUVER
