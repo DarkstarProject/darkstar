@@ -189,10 +189,10 @@ void CAutomatonController::DoCombatTick(time_point tick)
         auto maneuvers = GetCurrentManeuvers();
 
         //track deploy duration up to 4 minutes
-        if(PAutomaton->getDeployDuration() < 240) {
-        	//PAutomaton->updateDeployDuration(std::chrono::duration_cast<std::chrono::duration<float>>(m_actionCooldown - std::chrono::milliseconds(PAutomaton->getMod(Mod::AUTO_DECISION_DELAY) * 10)));
-        	PAutomaton->updateDeployDuration(3);
-		}
+        if(PAutomaton->getDeployDuration() < 240)
+        {
+            PAutomaton->updateDeployDuration(3);
+        }
 
         if (TryShieldBash())
         {
