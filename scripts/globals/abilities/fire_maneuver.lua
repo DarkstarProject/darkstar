@@ -51,7 +51,7 @@ function onUseAbility(player,target,ability)
             target:removeOldestManeuver()
         end
 	
-	local bonusDur = target:getPet():getDeployDuration()
+        local bonusDur = target:getPet():getDeployDuration()
         target:addStatusEffect(dsp.effect.FIRE_MANEUVER, bonus, 0, 60 + bonusDur)
     end
 
