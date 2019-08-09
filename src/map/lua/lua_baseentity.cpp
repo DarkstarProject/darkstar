@@ -12285,10 +12285,10 @@ inline int32 CLuaBaseEntity::updateAttachments(lua_State* L)
 
 inline int32 CLuaBaseEntity::getDeployDuration(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PET || static_cast<CPetEntity*>(m_PBaseEntity)->getPetType() != PETTYPE_AUTOMATON);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PET || static_cast<CPetEntity*>(m_PBaseEntity)->getPetType() != PETTYPE_AUTOMATON);
 
-	lua_pushinteger(L, (static_cast<CAutomatonEntity*>(m_PBaseEntity))->getDeployDuration());
+    lua_pushinteger(L, (static_cast<CAutomatonEntity*>(m_PBaseEntity))->getDeployDuration());
 
     return 1;
 }
