@@ -191,7 +191,7 @@ void CAutomatonController::DoCombatTick(time_point tick)
         //track deploy duration up to 4 minutes
         if(PAutomaton->getDeployDuration() < 240)
         {
-            PAutomaton->updateDeployDuration(3);
+            PAutomaton->updateDeployDuration(1);
         }
 
         if (TryShieldBash())
