@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins (194)
---  MOB: Balloon
+--  Mob: Balloon
 -- Note: PH for Bomb King, Doppelganger Dio, and Doppelganger Gog
 -----------------------------------
 local func = require("scripts/zones/Outer_Horutoto_Ruins/globals")

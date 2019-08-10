@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Drummer
+--  Mob: Yagudo Drummer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

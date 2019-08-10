@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

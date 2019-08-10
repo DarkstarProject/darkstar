@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - La Theine
---  MOB: Luison
+--  Mob: Luison
 -----------------------------------
 
 mixins = { require("scripts/mixins/families/gnole") }

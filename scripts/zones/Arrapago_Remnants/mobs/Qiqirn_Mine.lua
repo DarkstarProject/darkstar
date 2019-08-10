@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Qiqirn Mine
+--  Mob: Qiqirn Mine
 -- Note: Explosive mine from Qiqrin
 -----------------------------------
 local ID = require("scripts/zones/Arrapago_Remnants/IDs")

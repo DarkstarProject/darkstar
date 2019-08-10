@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Demonic Doll
+--  Mob: Demonic Doll
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

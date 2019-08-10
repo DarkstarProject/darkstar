@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Qufim
---  NPC: Adamantking_Effigy
+-- Area: Dynamis - Qufim
+--  Mob: Adamantking Effigy
 
 -----------------------------------
 require("scripts/globals/dynamis");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Viseclaw
+--  Mob: Viseclaw
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

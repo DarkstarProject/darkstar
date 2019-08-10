@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Stalking Sapling
+--  Mob: Stalking Sapling
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

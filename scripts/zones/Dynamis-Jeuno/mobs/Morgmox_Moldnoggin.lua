@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Morgmox_Moldnoggin
+-- Area: Dynamis - Jeuno
+--  Mob: Morgmox Moldnoggin
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Death Wasp
+--  Mob: Death Wasp
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

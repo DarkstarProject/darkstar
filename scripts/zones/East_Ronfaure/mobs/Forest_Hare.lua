@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Forest Hare
+--  Mob: Forest Hare
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

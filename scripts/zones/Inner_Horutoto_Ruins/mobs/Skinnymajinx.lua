@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Skinnymajinx
+--  Mob: Skinnymajinx
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

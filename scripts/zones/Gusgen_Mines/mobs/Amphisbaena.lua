@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Amphisbaena
+--  Mob: Amphisbaena
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

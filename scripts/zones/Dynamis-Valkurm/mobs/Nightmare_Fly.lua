@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Nightmare Fly
+-- Area: Dynamis - Valkurm
+--  Mob: Nightmare Fly
 -----------------------------------
 mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Noctonberry Ninja
+--  Mob: Noctonberry Ninja
 -----------------------------------
 mixins =
 {

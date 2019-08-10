@@ -1,7 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: The Boyahda Tree (153)
 --   NM: Beet Leafhopper
---   ID: 17404338
 -- Note: Popped by qm1
 -- Involved in Quest: Shoot First, Ask Questions Later
 -- !pos -18 -19.2 -176.4 153

@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE
---  NPC: Borametz
-
+--  Mob: Borametz
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

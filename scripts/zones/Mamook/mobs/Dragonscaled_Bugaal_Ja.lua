@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamook
---   NM: Devout Radol Ja
+--   NM: Dragonscaled Bugaal Ja
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

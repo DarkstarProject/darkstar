@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Orcish Brawler
+--  Mob: Orcish Brawler
 -- Note: PH for Poisonhand Gnadgad
 -----------------------------------
 local ID = require("scripts/zones/Davoi/IDs")

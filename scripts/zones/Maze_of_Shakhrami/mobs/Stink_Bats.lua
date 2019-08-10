@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Stink Bats
+--  Mob: Stink Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

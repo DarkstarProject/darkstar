@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Infernal Weapon
+--  Mob: Infernal Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

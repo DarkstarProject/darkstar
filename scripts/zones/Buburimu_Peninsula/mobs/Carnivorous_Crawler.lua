@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Carnivorous Crawler
+--  Mob: Carnivorous Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

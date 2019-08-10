@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Azer
+--  Mob: Azer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

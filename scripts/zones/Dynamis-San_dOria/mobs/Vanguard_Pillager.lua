@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Pillager
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Pillager
 -----------------------------------
 mixins =
 {

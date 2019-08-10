@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Young Opo-opo
+--  Mob: Young Opo-opo
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

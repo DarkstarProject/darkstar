@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Maa_Zaua_the_Wyrmkeeper
+-- Area: Dynamis - Beaucedine
+--  Mob: Maa Zaua the Wyrmkeeper
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Lurcher
+--  Mob: Goblin Lurcher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

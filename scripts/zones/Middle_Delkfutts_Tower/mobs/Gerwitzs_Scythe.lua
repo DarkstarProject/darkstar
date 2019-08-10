@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Middle Delfutt's Tower
+-- Area: Middle Delkfutt's Tower
 --   NM: Gerwitz's Scythe
 -- Involved In Quest: Blade of Evil
 -----------------------------------

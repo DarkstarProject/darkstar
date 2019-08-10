@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Spring Sahagin
+--  Mob: Spring Sahagin
 -- Note: PH for Wuur the Sandcomber
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

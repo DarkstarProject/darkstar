@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Buffrix_Eargone
+-- Area: Dynamis - Jeuno
+--  Mob: Buffrix Eargone
 -----------------------------------
 mixins =
 {

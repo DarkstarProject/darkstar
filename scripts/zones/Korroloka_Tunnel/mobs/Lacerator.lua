@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Lacerator
+--  Mob: Lacerator
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

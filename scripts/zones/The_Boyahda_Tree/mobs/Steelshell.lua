@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Steelshell
+--  Mob: Steelshell
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

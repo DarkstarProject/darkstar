@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Pathfinder
+--  Mob: Goblin Pathfinder
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

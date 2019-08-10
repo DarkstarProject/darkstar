@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Toraimorai Canal
+-- Area: Toraimarai Canal
 --  Mob: Mousse
 -- Note: PH for Konjac
 -----------------------------------

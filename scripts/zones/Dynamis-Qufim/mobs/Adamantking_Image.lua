@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis qufim
---  MOB: Adamantking_Image
+-- Area: Dynamis - Qufim
+--  Mob: Adamantking Image
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");

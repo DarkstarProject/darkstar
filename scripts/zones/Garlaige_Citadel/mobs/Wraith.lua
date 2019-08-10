@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Wraith
+--  Mob: Wraith
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

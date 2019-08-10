@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Goblin Mercenary
+--  Mob: Goblin Mercenary
 -- Note: Place Holder for Bloodthirster Madkix
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs")

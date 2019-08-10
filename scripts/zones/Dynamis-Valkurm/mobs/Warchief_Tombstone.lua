@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Warchief_Tombstone
+-- Area: Dynamis - Valkurm
+--  Mob: Warchief Tombstone
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
 require("scripts/globals/keyitems")

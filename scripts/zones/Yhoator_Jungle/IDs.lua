@@ -30,6 +30,7 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
         WATER_HOLE                  = 7681, -- There is an Opo-opo drinking well here. It seems they feast here, too.
         FAINT_CRY                   = 7682, -- You hear the cry of a famished Opo-opo!
         PAMAMAS                     = 7685, -- You might be able to draw an Opo-opo here if you had more pamamas.
+        SOMETHING_IS_BURIED_HERE    = 7727, -- It looks like something is buried here. If you had <item> you could dig it up.
         REGIME_REGISTERED           = 10002, -- New training regime registered!
     },
     mob =
@@ -50,7 +51,19 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     npc =
     {
-        OVERSEER_BASE = 17285649,
+        OVERSEER_BASE     = 17285649,
+        PEDDLESTOX        = 17285685,
+        BEASTMEN_TREASURE =
+        {
+            17285695, -- qm4
+            17285688, -- qm5
+            17285689, -- qm6
+            17285690, -- qm7
+            17285691, -- qm8
+            17285692, -- qm9
+            17285693, -- qm10
+            17285694, -- qm11
+        },
         HARVESTING =
         {
             17285680,

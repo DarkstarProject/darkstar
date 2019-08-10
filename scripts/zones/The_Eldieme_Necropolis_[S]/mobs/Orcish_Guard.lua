@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Orcish_Guard
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Orcish Guard
 -----------------------------------
 
 -- -----------------------------------

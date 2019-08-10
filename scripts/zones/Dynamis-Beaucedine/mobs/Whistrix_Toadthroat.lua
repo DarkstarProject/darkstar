@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Whistrix_Toadthroat
+-- Area: Dynamis - Beaucedine
+--  Mob: Whistrix Toadthroat
 -----------------------------------
 mixins =
 {

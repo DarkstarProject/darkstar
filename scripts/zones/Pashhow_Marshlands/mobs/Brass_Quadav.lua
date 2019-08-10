@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Brass Quadav
+--  Mob: Brass Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

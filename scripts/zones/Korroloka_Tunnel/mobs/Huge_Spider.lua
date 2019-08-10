@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
---  Mob: Huge_Spider
+--  Mob: Huge Spider
 -- Note: PH for Falcatus Aranei
 -----------------------------------
 local ID = require("scripts/zones/Korroloka_Tunnel/IDs")

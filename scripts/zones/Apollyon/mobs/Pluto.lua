@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
---  NPC: Pluto
-
+--  Mob: Pluto
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

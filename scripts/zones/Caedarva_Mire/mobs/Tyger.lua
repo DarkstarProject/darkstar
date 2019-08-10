@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---   NM: Tyger (Tier IV ZNM)
+--  ZNM: Tyger
 -- !pos -766 -12 632 79
 -- Spawn with Singed Buffalo: !additem 2593
 -----------------------------------

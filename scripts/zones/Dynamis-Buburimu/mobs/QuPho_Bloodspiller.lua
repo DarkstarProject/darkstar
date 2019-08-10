@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: QuPho_Bloodspiller
+-- Area: Dynamis - Buburimu
+--  Mob: QuPho Bloodspiller
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Ice Elemental
+--  Mob: Ice Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

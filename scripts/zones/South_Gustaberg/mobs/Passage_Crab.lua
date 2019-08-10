@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Passage Crab
+--  Mob: Passage Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

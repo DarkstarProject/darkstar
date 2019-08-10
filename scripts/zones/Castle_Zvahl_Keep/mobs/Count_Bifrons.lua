@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Count_Bifrons
+--  Mob: Count Bifrons
 -----------------------------------
 require("scripts/globals/titles");
 

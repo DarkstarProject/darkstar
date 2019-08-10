@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Mighty Rarab
+--  Mob: Mighty Rarab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

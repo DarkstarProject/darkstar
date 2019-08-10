@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  MOB: Ix'aern (drg)
+--  Mob: Ix'aern DRG
 -----------------------------------
 local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
 -----------------------------------

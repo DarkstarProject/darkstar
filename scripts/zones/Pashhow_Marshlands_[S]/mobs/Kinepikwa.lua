@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Passhow Marshlands [S]
+-- Area: Pashhow Marshlands [S]
 --   NM: Kinepikwa
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Alchemist
+--  Mob: Goblin Alchemist
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

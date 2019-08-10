@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Halvung
---  MOB: Wheel Wamoura
+--  Mob: Wheel Wamoura
+-- TODO: Damage resistances in streched and curled stances. Halting movement during stance change.
 -----------------------------------
 require("scripts/globals/status");
-----------------------------------
--- TODO: Damage resistances in streched and curled stances. Halting movement during stance change.
+-----------------------------------
 
 function onMobSpawn(mob)
     mob:setLocalVar("formTime", os.time() + math.random(43,47));

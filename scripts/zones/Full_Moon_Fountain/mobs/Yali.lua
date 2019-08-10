@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Full Moon Fountain
--- Mob: Yali
+--  Mob: Yali
 -- Windurst Mission 9-2
 -----------------------------------
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Wild Sheep
+--  Mob: Wild Sheep
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

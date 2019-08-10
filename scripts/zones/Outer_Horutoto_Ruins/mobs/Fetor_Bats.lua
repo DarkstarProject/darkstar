@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Fetor Bats
+-- Area: Outer Horutoto Ruins
+--  Mob: Fetor Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

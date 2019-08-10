@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Distilix_Stickytoes
+-- Area: Dynamis - Jeuno
+--  Mob: Distilix Stickytoes
 -----------------------------------
 mixins =
 {

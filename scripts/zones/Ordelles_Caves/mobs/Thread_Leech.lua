@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Thread Leech
+--  Mob: Thread Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

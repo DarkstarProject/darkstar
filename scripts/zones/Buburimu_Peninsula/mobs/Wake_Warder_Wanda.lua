@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Buburimi Peninsula
+-- Area: Buburimu Peninsula
 --   NM: Wake Warder Wanda
 -----------------------------------
 require("scripts/globals/status")

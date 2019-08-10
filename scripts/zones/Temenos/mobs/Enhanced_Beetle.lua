@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T
---  NPC: Enhanced_Beetle
-
+--  Mob: Enhanced Beetle
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

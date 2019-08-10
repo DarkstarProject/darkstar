@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Karugo-Narugo [S]
---  MOB: War Lynx
+--  Mob: War Lynx
 -- The Tigress Strikes Fight
 -----------------------------------
 local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs");

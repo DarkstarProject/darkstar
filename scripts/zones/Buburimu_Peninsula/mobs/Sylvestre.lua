@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Sylvestre
+--  Mob: Sylvestre
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

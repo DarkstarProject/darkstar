@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Goblin Furrier
+--  Mob: Goblin Furrier
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Fallen Knight
+--  Mob: Fallen Knight
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

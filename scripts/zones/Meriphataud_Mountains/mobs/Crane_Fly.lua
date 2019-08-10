@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Crane Fly
+--  Mob: Crane Fly
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

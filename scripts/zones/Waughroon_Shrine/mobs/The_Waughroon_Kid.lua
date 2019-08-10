@@ -1,13 +1,14 @@
 -----------------------------------
 -- Area: Waughroon Shrine
--- MOB: The Waughroon Kid
--- BCNM Fight: The Final Bout
+--  Mob: The Waughroon Kid
+-- BCNM: The Final Bout
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
-function onMobSpawn(mob)
-    mob:addStatusEffect(dsp.effect.REGAIN,100,1,0);
-end;
-
+function onMobInitialize(mob)
+    mob:setMod(dsp.mod.REGAIN, 100)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Shadow_Eye
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Shadow Eye
 -----------------------------------
 
 -- -----------------------------------

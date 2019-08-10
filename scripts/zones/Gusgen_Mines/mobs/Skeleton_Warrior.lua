@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Skeleton Warrior
+--  Mob: Skeleton Warrior
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

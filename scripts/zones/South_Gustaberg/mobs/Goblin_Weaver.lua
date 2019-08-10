@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Goblin Weaver
+--  Mob: Goblin Weaver
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

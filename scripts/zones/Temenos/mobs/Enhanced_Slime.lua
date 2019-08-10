@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T
---  NPC: Enhanced_Slime
-
+--  Mob: Enhanced Slime
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

@@ -11,10 +11,10 @@ require("scripts/globals/abyssea")
 require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
 end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     if ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30 then
         local HasStone = getTravStonesTotal(player)
         if
@@ -24,17 +24,17 @@ function onTrigger(player,npc)
         then
             player:startEvent(58)
         else
-            player:startEvent(204,0,1) -- No param = no entry.
+            player:startEvent(204, 0, 1) -- No param = no entry.
         end
     else
         player:messageSpecial(ID.text.NOTHING_HAPPENS)
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 58 then
         player:addQuest(ABYSSEA, dsp.quest.id.abyssea.A_MAN_EATING_MITE)
     elseif csid == 59 then

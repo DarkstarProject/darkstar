@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Karugo-Narugo [S]
---  MOB: Rafflesia
+--  Mob: Rafflesia
 -- Note: PH for Kirtimukha
 -----------------------------------
 local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs")

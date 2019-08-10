@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Hamfist_Gukhbuk
+-- Area: Dynamis - Buburimu
+--  Mob: Hamfist Gukhbuk
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

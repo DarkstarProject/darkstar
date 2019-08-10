@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  NPC: Nightmare_Hornet
+-- Area: Dynamis - Tavnazia
+--  Mob: Nightmare Hornet
 
 -----------------------------------
 require("scripts/globals/dynamis");

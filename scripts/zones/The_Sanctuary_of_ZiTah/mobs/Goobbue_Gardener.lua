@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Goobbue Gardener
+--  Mob: Goobbue Gardener
 -- Note: PH for Keeper of Halidom
 -----------------------------------
 local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs")

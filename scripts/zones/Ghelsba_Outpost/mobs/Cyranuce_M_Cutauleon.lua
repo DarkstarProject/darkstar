@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Hut Door
+--  Mob: Cyranuce M Cutauleon
 -- Involved in Quest: The Holy Crest
 -----------------------------------
 

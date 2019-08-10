@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Bilopdop
+--  Mob: Bilopdop
 -- Involved in Quest: The First Meeting
 -----------------------------------
 require("scripts/globals/keyitems");

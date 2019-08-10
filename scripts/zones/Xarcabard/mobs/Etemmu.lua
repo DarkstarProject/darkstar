@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Etemmu
+--  Mob: Etemmu
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

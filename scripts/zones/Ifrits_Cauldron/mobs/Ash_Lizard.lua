@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Ash Lizard
+--  Mob: Ash Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

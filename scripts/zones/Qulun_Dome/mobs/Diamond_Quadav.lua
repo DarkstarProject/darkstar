@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qulun_Dome
---   NM: Diamond_Quadav
+--   NM: Diamond Quadav
 -- Note: PH for Za Dha Adamantking PH
 -- TODO: messages should be zone-wide
 -----------------------------------

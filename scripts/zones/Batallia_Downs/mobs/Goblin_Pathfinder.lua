@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Pathfinder
+--  Mob: Goblin Pathfinder
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

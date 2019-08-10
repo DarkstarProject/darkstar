@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Strolling Sapling
+--  Mob: Strolling Sapling
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 81, 1, dsp.regime.type.FIELDS)
-end;
+end

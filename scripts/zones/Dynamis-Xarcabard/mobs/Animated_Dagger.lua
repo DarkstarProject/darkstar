@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Animated Dagger
+-- Area: Dynamis - Xarcabard
+--  Mob: Animated Dagger
 -----------------------------------
 require("scripts/globals/status");
 local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");

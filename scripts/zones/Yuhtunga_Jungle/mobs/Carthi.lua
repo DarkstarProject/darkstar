@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Carthi
+--  Mob: Carthi
 -----------------------------------
 local ID = require("scripts/zones/Yuhtunga_Jungle/IDs");
 

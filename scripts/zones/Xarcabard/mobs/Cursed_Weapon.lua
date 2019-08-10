@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Cursed Weapon
+--  Mob: Cursed Weapon
 -- Note: PH for Barbaric Weapon
 -----------------------------------
 local ID = require("scripts/zones/Xarcabard/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Morblox_Chubbychin
+-- Area: Dynamis - Beaucedine
+--  Mob: Morblox Chubbychin
 -----------------------------------
 mixins =
 {

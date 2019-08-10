@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Shadoweye_Gnat
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Shadoweye Gnat
 -----------------------------------
 
 -- -----------------------------------

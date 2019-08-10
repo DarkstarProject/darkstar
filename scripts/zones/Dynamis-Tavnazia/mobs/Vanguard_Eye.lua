@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis tavnazia
---  NPC: Vanguard_Eye
+-- Area: Dynamis - Tavnazia
+--  Mob: Vanguard Eye
 
 -----------------------------------
 require("scripts/globals/dynamis");

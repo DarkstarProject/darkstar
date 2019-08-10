@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Torama
+--  Mob: Torama
 -- Note: PH for Flauros
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")

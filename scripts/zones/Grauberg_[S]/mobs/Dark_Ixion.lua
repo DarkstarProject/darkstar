@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Crystal War Areas
---  MOB: Dark Ixion
+-- Area: Grauberg [S]
+--  Mob: Dark Ixion
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Ferreous_Coffin
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Ferreous Coffin
 -----------------------------------
 
 -- -----------------------------------

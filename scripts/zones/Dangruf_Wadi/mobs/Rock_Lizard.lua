@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Rock Lizard
+--  Mob: Rock Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

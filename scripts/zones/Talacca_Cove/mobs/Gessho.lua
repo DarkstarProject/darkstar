@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Talacca Cove
--- MOB: Gessho
+--  Mob: Gessho
 -----------------------------------
 local ID = require("scripts/zones/Talacca_Cove/IDs");
 

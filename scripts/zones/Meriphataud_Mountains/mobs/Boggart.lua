@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Boggart
+--  Mob: Boggart
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Fomor Samurai
+--  Mob: Fomor Samurai
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Brigand
+--  Mob: Goblin Brigand
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

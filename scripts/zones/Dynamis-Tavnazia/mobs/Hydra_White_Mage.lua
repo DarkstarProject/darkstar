@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  MOB: Hydra_White_Mage
+-- Area: Dynamis - Tavnazia
+--  Mob: Hydra White Mage
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

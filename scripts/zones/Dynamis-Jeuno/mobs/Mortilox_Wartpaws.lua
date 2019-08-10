@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Mortilox_Wartpaws
+-- Area: Dynamis - Jeuno
+--  Mob: Mortilox Wartpaws
 -----------------------------------
 mixins =
 {

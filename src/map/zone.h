@@ -338,10 +338,11 @@ enum ZONEID : uint16
     ZONE_DYNAMIS_SAN_DORIA_D            = 294,
     ZONE_DYNAMIS_BASTOK_D               = 295,
     ZONE_DYNAMIS_WINDURST_D             = 296,
-    ZONE_DYNAMIS_JEUNO_D                = 297
+    ZONE_DYNAMIS_JEUNO_D                = 297,
+    ZONE_WALK_OF_ECHOES_P               = 298
 };
 
-#define MAX_ZONEID 298
+#define MAX_ZONEID 299
 
 enum REGIONTYPE : uint8
 {

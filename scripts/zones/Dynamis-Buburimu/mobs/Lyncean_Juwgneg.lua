@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Lyncean_Juwgneg
+-- Area: Dynamis - Buburimu
+--  Mob: Lyncean Juwgneg
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

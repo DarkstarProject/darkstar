@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
---  NPC: Kaiser Behemoth
-
+--  Mob: Kronprinz Behemoth
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

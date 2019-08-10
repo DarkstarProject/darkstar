@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Caretaker
+--  Mob: Caretaker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

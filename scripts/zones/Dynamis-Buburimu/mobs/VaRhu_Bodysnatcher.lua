@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: VaRhu_Bodysnatcher
+-- Area: Dynamis - Buburimu
+--  Mob: VaRhu Bodysnatcher
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

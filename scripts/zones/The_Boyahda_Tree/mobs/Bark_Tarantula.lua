@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Bark Tarantula
+--  Mob: Bark Tarantula
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

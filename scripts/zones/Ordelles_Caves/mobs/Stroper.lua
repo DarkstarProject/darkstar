@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Stroper
+--  Mob: Stroper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -----------------------------------
 local ID = require("scripts/zones/Sauromugue_Champaign/IDs")
 require("scripts/globals/keyitems")

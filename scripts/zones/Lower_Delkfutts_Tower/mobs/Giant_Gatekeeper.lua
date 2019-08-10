@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Giant Gatekeeper
+--  Mob: Giant Gatekeeper
 -- Note: PH for Epialtes and Hippolytos
 -----------------------------------
 local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs")

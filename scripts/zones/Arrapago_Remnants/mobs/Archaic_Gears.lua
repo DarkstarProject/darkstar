@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Archaic Gears
---  MOB: Arrapago Remnants
+-- Area: Arrapago Remnants
+--  Mob: Archaic Gears
 -----------------------------------
 mixins = {require("scripts/mixins/families/gears")}
 

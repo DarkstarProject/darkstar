@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Periqia (Requiem)
---  MOB: DRACONIC_DRAUGAR
+--  Mob: Draconic Draugar
 -----------------------------------
 
 function onMobEngaged(mob,target)

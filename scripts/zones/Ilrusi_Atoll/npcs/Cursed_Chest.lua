@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll
---  NPC: Treasure Coffer
+--  NPC: Cursed Chest
 -----------------------------------
 local ID = require("scripts/zones/Ilrusi_Atoll/IDs")
 -----------------------------------
@@ -10,7 +10,7 @@ end
 
 function onTrigger(player,npc)
     player:messageSpecial(ID.text.CHEST)
-    
+
     local npcID = npc:getID()
     local instance = npc:getInstance()
     local figureheadChest = instance:getProgress()

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Labyrinth Leech
+--  Mob: Labyrinth Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

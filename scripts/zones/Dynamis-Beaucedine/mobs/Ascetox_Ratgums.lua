@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Ascetox_Ratgums
+-- Area: Dynamis - Beaucedine
+--  Mob: Ascetox Ratgums
 -----------------------------------
 mixins =
 {

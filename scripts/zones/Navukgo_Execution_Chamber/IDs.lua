@@ -26,6 +26,7 @@ zones[dsp.zone.NAVUKGO_EXECUTION_CHAMBER] =
     },
     mob =
     {
+        KARABABA_OFFSET = 17039401,
     },
     npc =
     {

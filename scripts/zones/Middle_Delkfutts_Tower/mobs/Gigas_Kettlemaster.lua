@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Kettlemaster
+--  Mob: Gigas Kettlemaster
 -- Note: PH for Ophion
 -----------------------------------
 local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs")

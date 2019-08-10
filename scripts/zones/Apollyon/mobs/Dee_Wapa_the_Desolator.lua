@@ -1,21 +1,13 @@
 -----------------------------------
 -- Area: Apollyon CS
---  MOB: Dee_Wapa_the_Desolator
-
+--  Mob: Dee Wapa the Desolator
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     local mobID = mob:getID();
@@ -27,16 +19,13 @@ function onMobEngaged(mob,target)
     SpawnMob(16933149):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
     SpawnMob(16933146):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local mobID = mob:getID();
     local X = mob:getXPos();
     local Y = mob:getYPos();
     local Z = mob:getZPos();
-    local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100); 
+    local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100);
     local instancetime = target:getBattlefieldTimeLeft(Central_Temenos_2nd_Floor);
 
     if (lifepourcent < 50 and GetNPCByID(16933247):getAnimation() == 8) then
@@ -47,20 +36,17 @@ function onMobFight(mob,target)
     end
 
     if (instancetime < 13) then
-        if (GetMobByID(16933129):isAlive()) then  
+        if (GetMobByID(16933129):isAlive()) then
             GetMobByID(16933129):updateEnmity(target);
-        elseif (GetMobByID(16933137):isAlive()) then 
+        elseif (GetMobByID(16933137):isAlive()) then
             GetMobByID(16933137):updateEnmity(target);
         end
     end
 
 end;
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if ( ( GetMobByID(16933129):isAlive() or GetMobByID(16933137):isAlive() ) and alreadyReceived(player,3,Central_Temenos_2nd_Floor) == false) then          
+    if ( ( GetMobByID(16933129):isAlive() or GetMobByID(16933137):isAlive() ) and alreadyReceived(player,3,Central_Temenos_2nd_Floor) == false) then
         player:addTimeToBattlefield(Central_Temenos_2nd_Floor,5);
         addLimbusList(player,3,Central_Temenos_2nd_Floor);
     end

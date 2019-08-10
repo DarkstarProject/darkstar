@@ -20,13 +20,13 @@ function onSpellCast(caster,target,spell)
         power = power + math.floor((sLvl+iLvl-85) / 18)
     end
 
-    if (power >= 15) then
-        power = 15
+    if (power >= 45) then
+        power = 45
     end
 
     local iBoost = caster:getMod(dsp.mod.MADRIGAL_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
     if (iBoost > 0) then
-        power = power + 1 + (iBoost-1)*3
+        power = power + iBoost*4.5
     end
 
     power =  power + caster:getMerit(dsp.merit.MADRIGAL_EFFECT)

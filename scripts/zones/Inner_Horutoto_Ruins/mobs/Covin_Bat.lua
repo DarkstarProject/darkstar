@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Covin Bat
+--  Mob: Covin Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

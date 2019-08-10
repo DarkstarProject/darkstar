@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Manifest_Idol
+-- Area: Dynamis - Buburimu
+--  Mob: Avatar Idol
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");

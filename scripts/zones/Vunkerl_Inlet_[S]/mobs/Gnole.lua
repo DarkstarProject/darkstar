@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Vunkerl Inlet (S)
---  MOB: Gnole
+-- Area: Vunkerl Inlet [S]
+--  Mob: Gnole
 -----------------------------------
 
 mixins = { require("scripts/mixins/families/gnole") }

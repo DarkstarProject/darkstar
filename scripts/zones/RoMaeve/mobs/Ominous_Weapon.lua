@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Ominous Weapon
+--  Mob: Ominous Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

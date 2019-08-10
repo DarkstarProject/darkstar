@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna Aqueducts
---  MOB: Stegotaur
+--  Mob: Stegotaur
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

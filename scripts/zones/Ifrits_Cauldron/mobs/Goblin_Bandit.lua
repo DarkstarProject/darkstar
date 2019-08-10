@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Bandit
+--  Mob: Goblin Bandit
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

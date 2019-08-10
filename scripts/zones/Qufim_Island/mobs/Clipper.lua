@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Clipper
+--  Mob: Clipper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

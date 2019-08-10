@@ -25,8 +25,8 @@ function onSpellCast(caster,target,spell)
     end
 
     local iBoost = caster:getMod(dsp.mod.PRELUDE_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
-    if iBoost > 0 then
-        power = power + 1 + (iBoost-1) * 3
+    if (iBoost > 0) then
+        power = power + iBoost*6
     end
 
 

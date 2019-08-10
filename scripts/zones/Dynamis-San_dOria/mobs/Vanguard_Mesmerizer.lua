@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Mesmerizer
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Mesmerizer
 -----------------------------------
 mixins =
 {

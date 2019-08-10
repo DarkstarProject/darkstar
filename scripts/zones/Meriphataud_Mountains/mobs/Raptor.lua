@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Raptor
+--  Mob: Raptor
 -- Note: PH for Daggerclaw Dracos
 -----------------------------------
 local ID = require("scripts/zones/Meriphataud_Mountains/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Goblin Tinkerer
+--  Mob: Goblin Tinkerer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

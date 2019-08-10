@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Goblin_Statue
+-- Area: Dynamis - Valkurm
+--  Mob: Goblin Statue
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
 require("scripts/globals/keyitems")

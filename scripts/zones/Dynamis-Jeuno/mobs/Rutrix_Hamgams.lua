@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Rutrix_Hamgams
+-- Area: Dynamis - Jeuno
+--  Mob: Rutrix Hamgams
 -----------------------------------
 mixins =
 {

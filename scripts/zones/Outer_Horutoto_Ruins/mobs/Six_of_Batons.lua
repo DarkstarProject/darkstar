@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Six of Batons
+-- Area: Outer Horutoto Ruins
+--  Mob: Six of Batons
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

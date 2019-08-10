@@ -381,6 +381,10 @@ dsp.zone =
     DYNAMIS_BASTOK_D                = 295,
     DYNAMIS_WINDURST_D              = 296,
     DYNAMIS_JEUNO_D                 = 297,
+    WALK_OF_ECHOES_P                = 298,
+
+    -- Increment this when adding new zones
+    MAX_ZONE                        = 299
 }
 
 -----------------------------------
@@ -388,7 +392,7 @@ dsp.zone =
 ----------------------------------
 
 function SetExplorerMoogles(moogle)
-    if EXPLORER_MOOGLE == 1 then
+    if EXPLORER_MOOGLE_LV ~= 0 then
         local npc = GetNPCByID(moogle)
         if npc == nil then
             printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", moogle)

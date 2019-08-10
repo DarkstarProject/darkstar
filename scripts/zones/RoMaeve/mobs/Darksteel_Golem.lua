@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Darksteel Golem
+--  Mob: Darksteel Golem
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

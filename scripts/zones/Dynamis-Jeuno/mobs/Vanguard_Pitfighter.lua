@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Vanguard_Pitfighter
+-- Area: Dynamis - Jeuno
+--  Mob: Vanguard Pitfighter
 -----------------------------------
 mixins =
 {

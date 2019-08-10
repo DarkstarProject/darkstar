@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Humnox_Drumbelly
+-- Area: Dynamis - Jeuno
+--  Mob: Humnox Drumbelly
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Poroggo Excavator
+-- Area: Toraimarai Canal
+--  Mob: Poroggo Excavator
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

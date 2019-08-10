@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Tainted Flesh
+--  Mob: Tainted Flesh
 -- Note: Place holder for Hellion
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Yrvaulair_S_Cousseraux
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Yrvaulair S Cousseraux
 -----------------------------------
 
 -- -----------------------------------

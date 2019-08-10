@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Qufim
---  MOB: Vanguard_Dollmaster
+-- Area: Dynamis - Qufim
+--  Mob: Vanguard Dollmaster
 -----------------------------------
 mixins =
 {

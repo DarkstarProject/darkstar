@@ -1,11 +1,12 @@
-----------------------------------
+-----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Reaper
+--  Mob: Goblin Reaper
 -- Note: Place holder Goblinsavior Heronox
 -----------------------------------
 local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 require("scripts/globals/regimes")
 require("scripts/globals/mobs");
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 764, 3, dsp.regime.type.GROUNDS)

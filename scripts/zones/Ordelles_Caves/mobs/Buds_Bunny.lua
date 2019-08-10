@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Buds Bunny
+--  Mob: Buds Bunny
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

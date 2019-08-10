@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Tanner
+--  Mob: Goblin Tanner
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

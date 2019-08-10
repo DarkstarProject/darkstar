@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Furrier
+--  Mob: Goblin Furrier
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

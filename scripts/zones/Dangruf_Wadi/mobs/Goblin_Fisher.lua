@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Fisher
+--  Mob: Goblin Fisher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

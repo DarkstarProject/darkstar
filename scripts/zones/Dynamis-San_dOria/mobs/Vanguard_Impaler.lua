@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Impaler
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Impaler
 -----------------------------------
 mixins =
 {

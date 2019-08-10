@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Trailblix_Goatmug
+-- Area: Dynamis - Jeuno
+--  Mob: Trailblix Goatmug
 -----------------------------------
 mixins =
 {

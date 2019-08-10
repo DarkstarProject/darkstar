@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Rock Golem
+--  Mob: Rock Golem
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

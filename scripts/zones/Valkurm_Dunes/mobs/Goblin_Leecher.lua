@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

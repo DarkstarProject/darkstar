@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Succusbus Bats
+--  Mob: Succubus Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

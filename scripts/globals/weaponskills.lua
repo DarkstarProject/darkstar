@@ -242,7 +242,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, wsParams, tp, action, pri
     calcParams.assassinApplicable = calcParams.trickApplicable and attacker:hasTrait(68)
     calcParams.guaranteedHit = calcParams.sneakApplicable or calcParams.trickApplicable
     calcParams.mightyStrikesApplicable = attacker:hasStatusEffect(dsp.effect.MIGHTY_STRIKES)
-    calcParams.forcedFirstCrit = calcParams.isSneakValid or calcParams.isAssassinValid
+    calcParams.forcedFirstCrit = calcParams.sneakApplicable or calcParams.assassinApplicable
     calcParams.extraOffhandHit = (calcParams.weaponDamage[2] ~= 0) and
                                  (calcParams.weaponDamage[2] > 0 or attack.weaponType == dsp.skill.HAND_TO_HAND)
     calcParams.hybridHit = wsParams.hybridWS
@@ -836,7 +836,7 @@ function fSTR(atk_str, def_vit, weapon_rank)
     if weapon_rank == 0 then
         lower_cap = -1
     end
-    fSTR = utils.clamp(weapon_rank, lower_cap, weapon_rank + 8)
+    fSTR = utils.clamp(fSTR, lower_cap, weapon_rank + 8)
     return fSTR
 end
 
@@ -869,7 +869,7 @@ function fSTR2(atk_str, def_vit, weapon_rank)
     elseif weapon_rank == 1 then
         lower_cap = -3
     end
-    fSTR2 = utils.clamp(weapon_rank, lower_cap, (weapon_rank + 8) * 2)
+    fSTR2 = utils.clamp(fSTR2, lower_cap, (weapon_rank + 8) * 2)
     return fSTR2
 end
 

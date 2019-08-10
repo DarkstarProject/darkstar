@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Hoarder Hare
+--  Mob: Hoarder Hare
 -- Note: PH for Teporingo
 -----------------------------------
 local ID = require("scripts/zones/Dangruf_Wadi/IDs");

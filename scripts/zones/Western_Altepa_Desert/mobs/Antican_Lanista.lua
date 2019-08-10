@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Lanista
+--  Mob: Antican Lanista
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Thread Leech
+--  Mob: Thread Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

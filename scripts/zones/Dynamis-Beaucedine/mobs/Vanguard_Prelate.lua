@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Vanguard_Prelate
+-- Area: Dynamis - Beaucedine
+--  Mob: Vanguard Prelate
 -----------------------------------
 mixins =
 {

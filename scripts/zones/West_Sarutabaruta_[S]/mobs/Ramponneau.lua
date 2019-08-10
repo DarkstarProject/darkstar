@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: West Sarutabaruta (S)
+-- Area: West Sarutabaruta [S]
 --   NM: Ramponneau
 -----------------------------------
 require("scripts/globals/mobs")

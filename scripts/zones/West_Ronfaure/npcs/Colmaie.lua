@@ -8,15 +8,15 @@ local ID = require("scripts/zones/West_Ronfaure/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    player:showText(npc, ID.text.COLMAIE_DIALOG);
-end;
+function onTrigger(player, npc)
+    player:showText(npc, ID.text.COLMAIE_DIALOG)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

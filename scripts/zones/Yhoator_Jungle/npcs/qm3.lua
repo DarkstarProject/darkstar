@@ -6,6 +6,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Yhoator_Jungle/IDs")
 require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 -----------------------------------
 
@@ -14,16 +15,12 @@ end
 
 function onTrigger(player,npc)
     if player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) then
-        if player:getVar("trueWillKilledNM") >= 1 then
-            if GetMobByID(ID.mob.KAPPA_AKUSO):isDead() and GetMobByID(ID.mob.KAPPA_BONZE):isDead() and GetMobByID(ID.mob.KAPPA_BIWA):isDead() then
-                player:addKeyItem(dsp.ki.OLD_TRICK_BOX)
-                player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_TRICK_BOX)
-                player:setVar("trueWillKilledNM",0)
-            end
+        if player:getVar("trueWillKilledNM") > 0 then
+            player:addKeyItem(dsp.ki.OLD_TRICK_BOX)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_TRICK_BOX)
+            player:setVar("trueWillKilledNM", 0)
         else
-            SpawnMob(ID.mob.KAPPA_AKUSO):updateClaim(player)
-            SpawnMob(ID.mob.KAPPA_BONZE):updateClaim(player)
-            SpawnMob(ID.mob.KAPPA_BIWA):updateClaim(player)
+            npcUtil.popFromQM(player, npc, {ID.mob.KAPPA_AKUSO, ID.mob.KAPPA_BONZE, ID.mob.KAPPA_BIWA})
         end
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

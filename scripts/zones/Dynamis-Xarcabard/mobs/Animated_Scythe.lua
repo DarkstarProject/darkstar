@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Animated Scythe
+-- Area: Dynamis - Xarcabard
+--  Mob: Animated Scythe
 -----------------------------------
 require("scripts/globals/status");
 local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");

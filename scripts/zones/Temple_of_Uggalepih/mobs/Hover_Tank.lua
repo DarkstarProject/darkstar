@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Hover Tank
+--  Mob: Hover Tank
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

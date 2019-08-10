@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Boneyard_Gully
--- Name: Shikaree Y
+--  Mob: Shikaree Y
 -----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/status");

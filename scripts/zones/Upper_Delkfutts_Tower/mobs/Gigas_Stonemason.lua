@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Stonemason
+--  Mob: Gigas Stonemason
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Greater Pugil
+--  Mob: Greater Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

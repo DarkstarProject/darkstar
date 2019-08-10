@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Orcish Fodder
+--  Mob: Orcish Fodder
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

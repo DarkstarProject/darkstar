@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Ryy_Qihi_the_Idolrobber
+-- Area: Dynamis - Beaucedine
+--  Mob: Ryy Qihi the Idolrobber
 -----------------------------------
 mixins =
 {

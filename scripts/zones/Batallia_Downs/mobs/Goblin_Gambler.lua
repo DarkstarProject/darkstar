@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Gambler
+--  Mob: Goblin Gambler
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

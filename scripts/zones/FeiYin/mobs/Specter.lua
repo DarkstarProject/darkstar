@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Specter
+--  Mob: Specter
 -- Note: PH for N/E/S/W Shadow NMs
 -----------------------------------
 require("scripts/globals/regimes")

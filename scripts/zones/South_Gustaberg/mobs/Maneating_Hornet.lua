@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Maneating Hornet
+--  Mob: Maneating Hornet
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

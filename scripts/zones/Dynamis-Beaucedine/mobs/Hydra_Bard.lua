@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Hydra_Bard
+-- Area: Dynamis - Beaucedine
+--  Mob: Hydra Bard
 -----------------------------------
 mixins =
 {

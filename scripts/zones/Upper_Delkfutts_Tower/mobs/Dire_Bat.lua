@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Dire Bat
+--  Mob: Dire Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

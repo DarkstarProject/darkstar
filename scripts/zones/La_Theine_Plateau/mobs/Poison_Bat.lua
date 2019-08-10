@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Poison Bat
+--  Mob: Poison Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Swypestix_Tigershins
+-- Area: Dynamis - Beaucedine
+--  Mob: Swypestix Tigershins
 -----------------------------------
 mixins =
 {

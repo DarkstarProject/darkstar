@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Water Elemental
+--  Mob: Water Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

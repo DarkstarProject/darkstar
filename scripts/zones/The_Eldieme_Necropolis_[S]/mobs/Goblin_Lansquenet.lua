@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Goblin_Lansquenet
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Goblin Lansquenet
 -----------------------------------
 
 -- -----------------------------------

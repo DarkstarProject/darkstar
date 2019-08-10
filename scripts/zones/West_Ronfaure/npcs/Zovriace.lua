@@ -5,7 +5,7 @@
 -- !pos -436.356 -15.851 -258.168 100
 -----------------------------------
 local ID = require("scripts/zones/West_Ronfaure/IDs")
-require("scripts/globals/pathfind");
+require("scripts/globals/pathfind")
 -----------------------------------
 
 local path =
@@ -297,7 +297,7 @@ local path =
     -147.891266, -59.982349, 259.164490,
     -147.077164, -59.987167, 259.886108,
     -145.559814, -59.996250, 261.249481,
-    -135.296967, -61.920395, 270.550049,-- report?
+    -135.296967, -61.920395, 270.550049, -- report?
     -136.090424, -61.731232, 269.830048,
     -136.884094, -61.542065, 269.110352,
     -150.086914, -59.899998, 257.147797,
@@ -1002,37 +1002,33 @@ local path =
     -426.533905, -19.798971, -84.273788,
     -424.118073, -20.060156, -83.055641,
     -423.148651, -19.991360, -82.567337
-};
+}
 
 function onSpawn(npc)
-    npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
-    onPath(npc);
-end;
+    npc:initNpcAi()
+    npc:setPos(dsp.path.first(path))
+    onPath(npc)
+end
 
 function onPath(npc)
-
-    if (npc:atPoint(dsp.path.get(path, 288))) then
-        local Colmaie = GetNPCByID(npc:getID() + 4);
-        Colmaie:showText(npc, ID.text.ZOVRIACE_REPORT);
+    if npc:atPoint(dsp.path.get(path, 288)) then
+        GetNPCByID(npc:getID() + 4):showText(npc, ID.text.ZOVRIACE_REPORT)
         -- small delay after path finish
-        npc:wait(8000);
+        npc:wait(8000)
     end
+    dsp.path.patrol(npc, path)
+end
 
-    dsp.path.patrol(npc, path);
+function onTrade(player, npc, trade)
+end
 
-end;
+function onTrigger(player, npc)
+    player:showText(npc, ID.text.ZOVRIACE_DIALOG)
+    npc:wait()
+end
 
-function onTrade(player,npc,trade)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onTrigger(player,npc)
-    player:showText(npc, ID.text.ZOVRIACE_DIALOG);
-    npc:wait();
-end;
-
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

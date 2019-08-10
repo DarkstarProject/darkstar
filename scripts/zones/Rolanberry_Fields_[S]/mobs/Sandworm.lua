@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Crystal War Areas
+-- Area: Rolanberry Fields [S]
 --   NM: Sandworm
 -- Note: Title Given if Sandworm does not Doomvoid
 -----------------------------------

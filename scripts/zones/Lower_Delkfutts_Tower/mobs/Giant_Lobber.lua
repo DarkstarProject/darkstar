@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Giant Lobber
+--  Mob: Giant Lobber
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

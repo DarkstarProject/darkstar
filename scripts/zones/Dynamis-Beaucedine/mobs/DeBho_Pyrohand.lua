@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: DeBho_Pyrohand
+-- Area: Dynamis - Beaucedine
+--  Mob: DeBho Pyrohand
 -----------------------------------
 mixins =
 {
