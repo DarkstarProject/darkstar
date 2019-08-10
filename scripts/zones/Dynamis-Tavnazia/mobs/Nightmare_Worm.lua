@@ -1,14 +1,13 @@
 -----------------------------------
--- Area: Dynamis - Buburimu
---  Mob: Adamantking Effigy
+-- Area: Dynamis - Tavnazia
+--  Mob: Nightmare Worm
 -----------------------------------
-require("scripts/globals/dynamis")
+mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------
 
 function onMobSpawn(mob)
-    dynamis.refillStatueOnSpawn(mob)
+    mob:setLocalVar("dynamis_currency", 1449)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dynamis.refillStatueOnDeath(mob, player, isKiller)
 end

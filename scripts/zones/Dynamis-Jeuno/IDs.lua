@@ -2,6 +2,7 @@
 -- Area: Dynamis-Jeuno
 -----------------------------------
 require("scripts/globals/keyitems")
+require("scripts/globals/dynamis")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -32,6 +33,29 @@ zones[dsp.zone.DYNAMIS_JEUNO] =
             {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17547390},
             {minutes = 15, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17547420},
             {minutes = 15, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17547467},
+        },
+        REFILL_STATUE =
+        {
+            {
+                {mob = 17547295, eye = dynamis.eye.RED  }, -- Goblin_Replica
+                {mob = 17547296, eye = dynamis.eye.BLUE },
+                {mob = 17547297, eye = dynamis.eye.GREEN},
+            },
+            {
+                {mob = 17547391, eye = dynamis.eye.RED  }, -- Goblin_Replica
+                {mob = 17547392, eye = dynamis.eye.BLUE },
+                {mob = 17547393, eye = dynamis.eye.GREEN},
+            },
+            {
+                {mob = 17547421, eye = dynamis.eye.RED  }, -- Goblin_Replica
+                {mob = 17547422, eye = dynamis.eye.BLUE },
+                {mob = 17547423, eye = dynamis.eye.GREEN},
+            },
+            {
+                {mob = 17547456, eye = dynamis.eye.RED  }, -- Goblin_Replica
+                {mob = 17547457, eye = dynamis.eye.BLUE },
+                {mob = 17547458, eye = dynamis.eye.GREEN},
+            },
         },
     },
     npc =

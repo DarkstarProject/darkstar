@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis - Buburimu
---  Mob: Adamantking Effigy
+-- Area: Dynamis - Valkurm
+--  Mob: Manifest Icon
 -----------------------------------
 require("scripts/globals/dynamis")
 -----------------------------------

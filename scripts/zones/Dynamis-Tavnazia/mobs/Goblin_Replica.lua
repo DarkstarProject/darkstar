@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis - Buburimu
---  Mob: Adamantking Effigy
+-- Area: Dynamis - Tavnazia
+--  Mob: Goblin Replica
 -----------------------------------
 require("scripts/globals/dynamis")
 -----------------------------------

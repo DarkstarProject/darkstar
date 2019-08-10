@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Dynamis - Buburimu
+-- Area: Dynamis - Xarcabard
 --  Mob: Adamantking Effigy
 -----------------------------------
 require("scripts/globals/dynamis")

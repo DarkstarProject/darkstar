@@ -2,6 +2,7 @@
 -- Area: Dynamis-Xarcabard
 -----------------------------------
 require("scripts/globals/keyitems")
+require("scripts/globals/dynamis")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -49,6 +50,41 @@ zones[dsp.zone.DYNAMIS_XARCABARD] =
             {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17330533},
             {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17330534},
             {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17330535},
+        },
+        REFILL_STATUE =
+        {
+            {
+                {mob = 17330230, eye = dynamis.eye.RED  }, -- Adamantking_Effigy
+                {mob = 17330231, eye = dynamis.eye.GREEN},
+            },
+            {
+                {mob = 17330240, eye = dynamis.eye.RED  }, -- Adamantking_Effigy
+                {mob = 17330241, eye = dynamis.eye.BLUE },
+            },
+            {
+                {mob = 17330248, eye = dynamis.eye.RED  }, -- Serjeant_Tombstone
+                {mob = 17330249, eye = dynamis.eye.GREEN},
+            },
+            {
+                {mob = 17330256, eye = dynamis.eye.RED  }, -- Serjeant_Tombstone
+                {mob = 17330257, eye = dynamis.eye.BLUE },
+            },
+            {
+                {mob = 17330273, eye = dynamis.eye.RED  }, -- Avatar_Icon
+                {mob = 17330274, eye = dynamis.eye.GREEN},
+            },
+            {
+                {mob = 17330285, eye = dynamis.eye.RED  }, -- Avatar_Icon
+                {mob = 17330286, eye = dynamis.eye.BLUE },
+            },
+            {
+                {mob = 17330471, eye = dynamis.eye.RED  }, -- Goblin_Replica
+                {mob = 17330472, eye = dynamis.eye.GREEN},
+            },
+            {
+                {mob = 17330483, eye = dynamis.eye.RED  }, -- Goblin_Replica
+                {mob = 17330484, eye = dynamis.eye.BLUE },
+            },
         },
         YING = 17330183,
     },
