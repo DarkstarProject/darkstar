@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Dynamis - Bastok
 --  Mob: Gu'Nhi Noondozer
--- Time Extender: 30min
 -----------------------------------
 mixins =
 {
