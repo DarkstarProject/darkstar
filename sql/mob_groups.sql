@@ -10919,7 +10919,8 @@ INSERT INTO `mob_groups` VALUES (22,3669,192,'Slendlix_Spindlethumb',0,32,2273,0
 INSERT INTO `mob_groups` VALUES (23,4345,192,'Will-o-the-Wisp',330,0,0,0,0,22,25,0);
 INSERT INTO `mob_groups` VALUES (24,483,192,'Boggart',300,0,319,0,0,22,25,0);
 INSERT INTO `mob_groups` VALUES (25,4567,192,'Nocuous_Weapon',0,32,1497,0,0,25,27,0);
-INSERT INTO `mob_groups` VALUES (26,4319,192,'Wendigo',300,0,2638,0,0,25,28,0);
+INSERT INTO `mob_groups` VALUES (26,4319,192,'Wendigo',300,0,2638,0,0,25,28,0); -- war
+INSERT INTO `mob_groups` VALUES (27,4320,192,'Wendigo',300,0,2640,0,0,25,28,0); -- blm
 INSERT INTO `mob_groups` VALUES (9579,32,192,'Ace_of_Cups',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (9580,33,192,'Ace_of_Swords',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (9581,75,192,'Ajido-Marujido',0,0,0,0,0,0,0,0);
@@ -10934,7 +10935,6 @@ INSERT INTO `mob_groups` VALUES (9600,2258,192,'King_of_Batons',0,0,0,0,0,0,0,0)
 INSERT INTO `mob_groups` VALUES (9603,2804,192,'Nanaa_Mihgo',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (9604,3584,192,'Shantotto',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (9606,3992,192,'Treasure_Chest',0,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (9608,4320,192,'Wendigo',300,0,2640,0,0,25,28,0);
 INSERT INTO `mob_groups` VALUES (1,3753,193,'Stag_Crab',0,128,93,0,0,15,17,0);
 INSERT INTO `mob_groups` VALUES (2,3901,193,'Thread_Leech',720,0,343,0,0,18,21,0);
 INSERT INTO `mob_groups` VALUES (3,5134,193,'Poison_Leech',720,0,79,0,0,25,27,0);
