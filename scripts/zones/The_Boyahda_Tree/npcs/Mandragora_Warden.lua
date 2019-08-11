@@ -21,8 +21,10 @@ end
 function onTrigger(player,npc)
     if player:getVar("MissionStatus") == 4 then
         local dialog = player:getVar("mandialog")
-
-        if dialog == 0 then
+        if player:hasItem(1181) then
+            player:startEvent(10)
+            player:PrintToPlayer("The warden appears to want something from you...")
+        elseif dialog == 0 then
             player:startEvent(10)
             player:setVar("mandialog", 1)
             player:PrintToPlayer("Seems like he wants something")
@@ -34,6 +36,8 @@ function onTrigger(player,npc)
             player:setVar("mandialog", 3)
             player:PrintToPlayer("Seems like he wants some Gobbu Hummus")
         end
+    else
+        player:startEvent(10)
     end
 end
 
