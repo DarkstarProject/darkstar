@@ -661,19 +661,6 @@ void SetupJob(CMobEntity* PMob)
                 PMob->defaultMobMod(MOBMOD_GIL_BONUS, 150);
             }
             break;
-        case JOB_DRG:
-            // drg can use 2 hour multiple times
-            PMob->setMobMod(MOBMOD_MULTI_2HOUR, 1);
-
-            // only drgs in 3rd expansion calls wyvern as non-NM
-            // include fomors
-            if ((!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT) || PMob->m_Family == 115)
-            {
-                // 20 min recast
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
-            }
-            break;
         case JOB_RNG:
             if ((PMob->m_Family >= 126 && PMob->m_Family <= 130) || PMob->m_Family == 328) // Gigas
             {
@@ -698,10 +685,12 @@ void SetupJob(CMobEntity* PMob)
             {
                 // aern
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+	            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
             else if (PMob->m_Family != 335) // exclude NIN Maat
             {
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
+	            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
@@ -800,19 +789,9 @@ void SetupDynamisMob(CMobEntity* PMob)
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 
-    // used for dynamis stat-spawned mobs
-    PMob->m_StatPoppedMobs = false;
-
-    // dynamis mobs have true sight
-    PMob->m_TrueDetection = true;
-
     // boost dynamis mobs weapon damage
     PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
     ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
-
-    // never despawn
-    PMob->SetDespawnTime(0s);
-    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 
     // job resist traits are much more powerful in dynamis
     // according to wiki
