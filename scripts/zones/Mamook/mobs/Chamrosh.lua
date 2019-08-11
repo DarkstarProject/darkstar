@@ -46,7 +46,7 @@ function onMobFight(mob, target)
             mob:setLocalVar("changeTime", mob:getBattleTime() + 150)
         else
             mob:AnimationSub(0)
-            mob:setSpellList(300)
+            mob:setSpellList(302)
             mob:setLocalVar("changeTime", mob:getBattleTime() + 150)
         end
     end
