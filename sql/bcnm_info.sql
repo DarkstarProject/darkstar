@@ -274,16 +274,6 @@ INSERT INTO `bcnm_info` VALUES (1154,67,'beast_within','nobody',0,600,600,90,1,0
 INSERT INTO `bcnm_info` VALUES (1155,67,'moment_of_truth','nobody',0,1800,1800,0,6,0,7,0);
 INSERT INTO `bcnm_info` VALUES (1156,67,'puppet_in_peril','nobody',0,1800,1800,99,6,0,5,0);
 INSERT INTO `bcnm_info` VALUES (1184,78,'rider_cometh','nobody',0,900,900,0,6,0,5,0);
-INSERT INTO `bcnm_info` VALUES (1280,186,'dynamis_bastok','nobody',0,3600,3600,0,64,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1281,185,'dynamis_sandoria','nobody',0,3600,3600,0,64,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1282,187,'dynamis_windurst','nobody',0,3600,3600,0,64,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1283,188,'dynamis_jeuno','nobody',0,3600,3600,0,64,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1284,134,'dynamis_beaucedine','nobody',0,3600,3600,0,64,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1285,135,'dynamis_xarcabard','nobody',0,3600,3600,0,64,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1286,39,'dynamis_valkurm','nobody',0,3600,3600,0,36,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1287,40,'dynamis_buburimu','nobody',0,3600,3600,0,36,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1288,41,'dynamis_qufim','nobody',0,3600,3600,0,36,0,7,0);
-INSERT INTO `bcnm_info` VALUES (1289,42,'dynamis_tavnazia','nobody',0,3600,3600,0,18,0,7,0);
 INSERT INTO `bcnm_info` VALUES (1290,38,'nw_apollyon','nobody',0,1800,1800,0,18,0,7,0);
 INSERT INTO `bcnm_info` VALUES (1291,38,'sw_apollyon','nobody',0,1800,1800,0,18,0,7,0);
 INSERT INTO `bcnm_info` VALUES (1292,38,'ne_apollyon','nobody',0,1800,1800,0,18,0,7,0);

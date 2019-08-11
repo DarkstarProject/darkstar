@@ -33,7 +33,7 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
         LOGGING_IS_POSSIBLE_HERE       = 7396, -- Logging is possible here if you have <item>.
         CONQUEST                       = 7412, -- You've earned conquest points!
         YOU_CANNOT_ENTER_DYNAMIS       = 7893, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
-        MYSTERIOUS_VOICE               = 7894, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
+        DYNA_NPC_DEFAULT_MESSAGE       = 7894, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7895, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         REGIME_REGISTERED              = 10291, -- New training regime registered!
     },

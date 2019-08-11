@@ -31,7 +31,7 @@ local titleInfo =
             dsp.title.BRONZE_QUADAV,
             dsp.title.YAGUDO_INITIATE,
             dsp.title.MOBLIN_KINSMAN,
-            dsp.title.DYNAMISBUBURIMU_INTERLOPER,
+            dsp.title.DYNAMIS_BUBURIMU_INTERLOPER,
         },
     },
     {

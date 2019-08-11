@@ -31,28 +31,28 @@ g_mixins.dynamis_dreamland = function(mob)
             [1452] = {8,16}
         }
     }
-    mob:addListener("MAGIC_TAKE", "DYNAMIS_MAGIC_PROC_CHECK", function(mob, caster, spell, action)
-        local currency = mob:getLocalVar("dynamis_currency")
+    mob:addListener("MAGIC_TAKE", "DYNAMIS_MAGIC_PROC_CHECK", function(target, caster, spell)
+        local currency = target:getLocalVar("dynamis_currency")
         local vana_hour = VanadielHour()
-        
+
         if vana_hour >= proctimes.Magic[currency][1] and vana_hour < proctimes.Magic[currency][2] and math.random(0,99) < 8 and mob:getLocalVar("dynamis_proc") == 0 then
-            dynamis.procMonster(mob,user)
+            dynamis.procMonster(target, caster)
         end
     end)
 
-    mob:addListener("WEAPONSKILL_TAKE", "DYNAMIS_WS_PROC_CHECK", function(mob, user, wsid)
-        local currency = mob:getLocalVar("dynamis_currency")
+    mob:addListener("WEAPONSKILL_TAKE", "DYNAMIS_WS_PROC_CHECK", function(target, user, wsid)
+        local currency = target:getLocalVar("dynamis_currency")
         local vana_hour = VanadielHour()
-        
+
         if vana_hour >= proctimes.WS[currency][1] and vana_hour < proctimes.WS[currency][2] and math.random(0,99) < 25 and mob:getLocalVar("dynamis_proc") == 0 then
-            dynamis.procMonster(mob,user)
+            dynamis.procMonster(target, user)
         end
     end)
 
     mob:addListener("ABILITY_TAKE", "DYNAMIS_ABILITY_PROC_CHECK", function(mob, user, ability, action)
         local currency = mob:getLocalVar("dynamis_currency")
         local vana_hour = VanadielHour()
-        
+
         if vana_hour >= proctimes.JA[currency][1] and vana_hour < proctimes.JA[currency][2] and math.random(0,99) < 20 and mob:getLocalVar("dynamis_proc") == 0 then
             dynamis.procMonster(mob,user)
         end

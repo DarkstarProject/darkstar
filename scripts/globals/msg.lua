@@ -257,6 +257,7 @@ dsp.msg.basic =
     ALL_ABILITIES_RECHARGED = 361,  -- All of ${target}'s abilities are recharged.
 
     -- Battlefield
+    UNABLE_TO_ACCESS_SJ     = 107, -- <player> is temporarily unable to access support job abilities
     TIME_LEFT               = 202,  -- Time left: (0:00:00)
 
     -- Dynamis
@@ -296,7 +297,7 @@ dsp.msg.basic =
     FOV_OBTAINS_GIL         = 565,  -- ${target} obtains ${gil}.
     FOV_OBTAINS_TABS        = 566,  -- ${target} obtains ${number} tab.${lb}(Total: ${number})
     FOV_REGIME_BEGINS_ANEW  = 643,  -- Your current training regime will begin anew!
-    
+
     -- Depoil Statuses
     DESPOIL_ATT_DOWN        = 593,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Attack Down.
     DESPOIL_DEF_DOWN        = 594,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Defense Down.
