@@ -1735,7 +1735,7 @@ INSERT INTO `mob_groups` VALUES (119,4138,41,'Vanguard_Backstabber',600,0,2546,4
 INSERT INTO `mob_groups` VALUES (120,4133,41,'Vanguard_Alchemist',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (121,4136,41,'Vanguard_Armorer',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (122,4170,41,'Vanguard_Pathfinder',600,0,2541,4000,0,93,95,0);
-INSERT INTO `mob_groups` VALUES (123,4189,41,'Vanguards_Slime',0,128,0,2400,0,98,95,0);
+INSERT INTO `mob_groups` VALUES (123,4189,41,'Vanguards_Slime',0,128,0,2400,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (124,4179,41,'Vanguard_Ronin',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (125,1707,41,'Goblin_Replica',0,128,1143,1000,1000,80,80,0);
 INSERT INTO `mob_groups` VALUES (126,1716,41,'Goblin_Statue',0,128,0,1000,1000,80,80,0);
