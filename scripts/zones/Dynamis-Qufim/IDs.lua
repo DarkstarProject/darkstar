@@ -67,11 +67,6 @@ zones[dsp.zone.DYNAMIS_QUFIM] =
                 {mob = 16945212, eye = dynamis.eye.GREEN},
             },
             {
-                {mob = 16945200, eye = dynamis.eye.RED  }, -- Adamantking_Effigy
-                {mob = 16945201, eye = dynamis.eye.BLUE },
-                {mob = 16945202, eye = dynamis.eye.GREEN},
-            },
-            {
                 {mob = 16945220, eye = dynamis.eye.RED  }, -- Manifest_Icon
                 {mob = 16945221, eye = dynamis.eye.BLUE },
                 {mob = 16945222, eye = dynamis.eye.GREEN},
