@@ -12529,7 +12529,7 @@ inline int32 CLuaBaseEntity::spawn(lua_State* L)
         }
         else
         {
-            ShowDebug(CL_CYAN"SpawnMob: <%s> is already spawned\n" CL_RESET, PMob->GetName());
+            ShowDebug(CL_CYAN"SpawnMob: %u <%s> is already spawned\n" CL_RESET, PMob->id, PMob->GetName());
         }
     }
     return 0;
