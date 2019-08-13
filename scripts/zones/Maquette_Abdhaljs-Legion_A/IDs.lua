@@ -1,12 +1,12 @@
 -----------------------------------
--- Area: Maquette_Abdhaljs-Legion
+-- Area: Maquette_Abdhaljs-Legion_A
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}
 
-zones[dsp.zone.MAQUETTE_ABDHALJS_LEGION] =
+zones[dsp.zone.MAQUETTE_ABDHALJS_LEGION_A] =
 {
     text =
     {
@@ -23,4 +23,4 @@ zones[dsp.zone.MAQUETTE_ABDHALJS_LEGION] =
     },
 }
 
-return zones[dsp.zone.MAQUETTE_ABDHALJS_LEGION]
+return zones[dsp.zone.MAQUETTE_ABDHALJS_LEGION_A]

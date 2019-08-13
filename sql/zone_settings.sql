@@ -228,7 +228,7 @@ INSERT INTO `zone_settings` VALUES (179,4,'127.0.0.1',54230,'Stellar_Fulcrum',0,
 INSERT INTO `zone_settings` VALUES (180,4,'127.0.0.1',54230,'LaLoff_Amphitheater',0,0,196,196,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (181,4,'127.0.0.1',54230,'The_Celestial_Nexus',0,0,198,198,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (182,4,'127.0.0.1',54230,'Walk_of_Echoes',0,0,215,215,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (183,6,'127.0.0.1',54230,'Maquette_Abdhaljs-Legion',0,0,143,143,0,0.00,154);
+INSERT INTO `zone_settings` VALUES (183,6,'127.0.0.1',54230,'Maquette_Abdhaljs-Legion_A',0,0,143,143,0,0.00,154);
 INSERT INTO `zone_settings` VALUES (184,3,'127.0.0.1',54230,'Lower_Delkfutts_Tower',0,0,115,102,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (185,5,'127.0.0.1',54230,'Dynamis-San_dOria',121,121,121,121,0,0.00,144);
 INSERT INTO `zone_settings` VALUES (186,5,'127.0.0.1',54230,'Dynamis-Bastok',121,121,121,121,0,0.00,144);
@@ -332,7 +332,7 @@ INSERT INTO `zone_settings` VALUES (283,0,'127.0.0.1',54230,'Silver_Knife',0,0,0
 INSERT INTO `zone_settings` VALUES (284,1,'127.0.0.1',54230,'Celennia_Memorial_Library',63,63,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (285,1,'127.0.0.1',54230,'Feretory',0,0,0,0,0,0.00,32);
 INSERT INTO `zone_settings` VALUES (286,0,'127.0.0.1',0,'286',0,0,0,0,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (287,0,'127.0.0.1',0,'287',0,0,0,0,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (287,6,'127.0.0.1',54230,'Maquette_Abdhaljs-Legion_B',0,0,143,143,0,0.00,154);
 INSERT INTO `zone_settings` VALUES (288,2,'127.0.0.1',54230,'Escha_ZiTah',80,80,80,80,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (289,2,'127.0.0.1',54230,'Escha_RuAun',80,80,80,80,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (290,0,'127.0.0.1',54230,'Desuetia_Empyreal_Paradox',0,0,0,0,0,0.00,128);

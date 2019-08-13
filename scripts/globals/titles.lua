@@ -1027,6 +1027,7 @@ dsp.title =
     EVERY_ILM_A_HEROINE                       = 1034,
     DREAD_PURGER                              = 1035,
     SIDHE_SMASHER                             = 1036,
+    ALEXANDER_ANNIHILATOR                     = 1037,
     VEGETABLE_HERO                            = 1044,
     CONTRIBUTER_FROM_THE_SHADOWS              = 1045,
     THE_DECIDER                               = 1046,
