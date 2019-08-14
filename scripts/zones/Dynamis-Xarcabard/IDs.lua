@@ -86,7 +86,22 @@ zones[dsp.zone.DYNAMIS_XARCABARD] =
                 {mob = 17330484, eye = dynamis.eye.BLUE },
             },
         },
-        YING = 17330183,
+        YING                 = 17330183,
+        COUNT_ZAEBOS_PH      = {[17330376] = 17330377}, -- Kindred_Warrior
+        DUKE_GOMORY_PH       = {[17330303] = 17330304}, -- Kindred_Monk
+        PRINCE_SEERE_PH      = {[17330331] = 17330332}, -- Kindred_White_Mage
+        MARQUIS_ORIAS_PH     = {[17330333] = 17330343}, -- Kindred_Black_Mage
+        DUKE_BERITH_PH       = {[17330352] = 17330353}, -- Kindred_Red_Mage
+        COUNT_RAUM_PH        = {[17330314] = 17330315}, -- Kindred_Thief
+        MARQUIS_SABNAK_PH    = {[17330359] = 17330360}, -- Kindred_Paladin
+        DUKE_SCOX_PH         = {[17330427] = 17330417}, -- Kindred_Dark_Knight
+        MARQUIS_ANDRAS_PH    = {[17330388] = 17330390}, -- Kindred_Beastmaster
+        MARQUIS_DECARABIA_PH = {[17330222] = 17330223}, -- Kindred_Bard
+        MARQUIS_CIMERIES_PH  = {[17330414] = 17330415}, -- Kindred_Ranger
+        COUNT_VINE_PH        = {[17330439] = 17330440}, -- Kindred_Samurai
+        MARQUIS_GAMYGYN_PH   = {[17330450] = 17330451}, -- Kindred_Ninja
+        KING_ZAGAN_PH        = {[17330418] = 17330430}, -- Kindred_Dragoon
+        MARQUIS_NEBIROS_PH   = {[17330479] = 17330481}, -- Kindred_Summoner
     },
     npc =
     {
