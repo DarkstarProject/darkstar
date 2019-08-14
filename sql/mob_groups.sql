@@ -953,7 +953,7 @@ INSERT INTO `mob_groups` VALUES (20,5327,33,'Om_aern_bst',960,0,1853,0,0,75,78,0
 INSERT INTO `mob_groups` VALUES (21,5329,33,'Om_aern_drg',960,0,1853,0,0,75,78,0);
 INSERT INTO `mob_groups` VALUES (22,5337,33,'Om_aern_smn',960,0,1853,0,5000,75,78,0);
 INSERT INTO `mob_groups` VALUES (23,2976,33,'Om_hpemde',960,0,1854,0,0,73,77,0);
-INSERT INTO `mob_groups` VALUES (24,2978,33,'Om_xzomit',960,0,1856,0,0,73,76,0);
+INSERT INTO `mob_groups` VALUES (24,2978,33,'Om_xzomit',960,0,1856,0,0,72,76,0);
 INSERT INTO `mob_groups` VALUES (25,2975,33,'Om_aern_Nin',960,0,1853,0,0,75,78,0);
 INSERT INTO `mob_groups` VALUES (26,5325,33,'Om_aern_pld',960,0,1853,0,5000,75,78,0);
 INSERT INTO `mob_groups` VALUES (27,5330,33,'Om_aern_drk',960,0,1853,0,5000,75,78,0);
@@ -966,8 +966,8 @@ INSERT INTO `mob_groups` VALUES (33,5326,33,'Om_aern_rng',960,0,1853,0,0,75,78,0
 INSERT INTO `mob_groups` VALUES (34,2977,33,'Om_phuabo',960,0,1855,0,0,79,81,0);
 INSERT INTO `mob_groups` VALUES (35,5336,33,'Om_aern_rdm',960,0,1853,0,5000,75,78,0);
 INSERT INTO `mob_groups` VALUES (36,5332,33,'Om_aern_thf',960,0,1853,0,5000,75,78,0);
-INSERT INTO `mob_groups` VALUES (37,2979,33,'Om_yovra',3600,0,1857,18000,0,85,85,0);
-INSERT INTO `mob_groups` VALUES (38,4089,33,'Ul_yovra',3600,0,2518,15000,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (37,2979,33,'Om_yovra',3600,0,1857,18000,0,84,85,0);
+INSERT INTO `mob_groups` VALUES (38,4089,33,'Ul_yovra',3600,0,2518,15000,0,80,82,0);
 INSERT INTO `mob_groups` VALUES (39,299,33,'Aw_euvhi',660,0,199,0,0,71,83,0);
 INSERT INTO `mob_groups` VALUES (40,5879,33,'Ruaern_WHM',0,128,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (41,5880,33,'Ruaern_WAR',0,128,0,0,0,75,75,0);
