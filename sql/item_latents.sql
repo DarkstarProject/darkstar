@@ -31,6 +31,8 @@ INSERT INTO `item_latents` VALUES(10293, 26, 50, 50, 31);   -- Rng. Acc.+50
 INSERT INTO `item_latents` VALUES(10293, 30, 50, 50, 31);   -- Mag. Acc.+50
 -- INSERT INTO `item_latents` VALUES(10293, ??, -1, 50, 31); -- Initiate and below: Likelihood of synthesis material loss -1%
 
+INSERT INTO `item_latents` VALUES(10670, 68, 10, 13, 58);  -- WAR AF2 +2 Body Reduces evasion penalty by 10 if Aggressor Active
+
 INSERT INTO `item_latents` VALUES(10679, 8, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10679, 9, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10679, 10, 10, 10, 0);
@@ -38,6 +40,7 @@ INSERT INTO `item_latents` VALUES(10679, 11, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10719, 12, 10, 11, 0);
 INSERT INTO `item_latents` VALUES(10719, 13, 10, 11, 0);
 INSERT INTO `item_latents` VALUES(10719, 14, 10, 11, 0);
+INSERT INTO `item_latents` VALUES(10730, 63, 10, 13, 56);  -- WAR AF2 +2 Feet Reduces defense penalty by 10% if Berserk Active
 
 -- -------------------------------------------------------
 -- Abyss Sollerets +2
@@ -1255,7 +1258,7 @@ INSERT INTO `item_latents` VALUES(14448, 10, 6, 1, 71);     -- VIT+6 when HP >71
 -- Unicorn Harness +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14449, 10, 7, 1, 71);     -- VIT+7 when HP >71%
-
+INSERT INTO `item_latents` VALUES(14500, 68, 10, 13, 58);  -- WAR AF2 +1 Body Reduces evasion penalty by 10 if Aggressor Active
 INSERT INTO `item_latents` VALUES(14509, 8, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(14509, 9, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(14509, 10, 8, 10, 0);
@@ -1416,6 +1419,8 @@ INSERT INTO `item_latents` VALUES(15069, 385, 200, 48, 0);  -- Augments "Shield 
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15084, 110, 10, 26, 1);   -- Nighttime: Parry +10
 
+INSERT INTO `item_latents` VALUES(15087, 68, 10, 13, 58);  -- WAR AF2 Body Reduces evasion penalty by 10 if Aggressor Active
+
 INSERT INTO `item_latents` VALUES(15096, 8, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 9, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 10, 8, 10, 0);
@@ -1442,6 +1447,8 @@ INSERT INTO `item_latents` VALUES(15126, 14, 8, 11, 0);
 -- Koga Hakama
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15129, 68, 10, 26, 1);    -- Nighttime: EVA +10
+
+INSERT INTO `item_latents` VALUES(15132, 63, 10, 13, 56);  -- WAR AF2 Feet Reduces defense penalty by 10% if Berserk Active
 
 -- -------------------------------------------------------
 -- Abyss Sollerets
@@ -1702,6 +1709,8 @@ INSERT INTO `item_latents` VALUES(15589, 14, 8, 11, 0);
 -- Koga Hakama +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15592, 68, 12, 26, 2);    -- Dusk - Dawn: EVA +12
+
+INSERT INTO `item_latents` VALUES(15665, 63, 10, 13, 56);  -- WAR AF2 +1 Feet Reduces defense penalty by 10% if Berserk Active
 
 -- -------------------------------------------------------
 -- Abyss Sollerets +1
@@ -3250,6 +3259,7 @@ INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 6);   -- Pedagogy Loafers+
 INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 7);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (LIGHT)
 INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 8);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (DARK)
 
+INSERT INTO `item_latents` VALUES(23532, 518, 15, 13, 57); -- WAR AF2 119 +3 Hands Defender Shield Rate +15
 -- -------------------------------------------------------
 -- Hachiya Kyahan +3
 -- -------------------------------------------------------
@@ -3283,3 +3293,5 @@ INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 7);   -- Pedagogy Loafers+
 INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 8);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (DARK)
 INSERT INTO `item_latents` VALUES(28235, 169, 25, 26, 2);   -- Hachiya Kyahan: Dusk to dawn: Movement speed +25%
 INSERT INTO `item_latents` VALUES(28256, 169, 25, 26, 2);   -- Hachiya Kyahan +1: Dusk to dawn: Movement speed +25%
+
+INSERT INTO `item_latents` VALUES(23917, 518, 10, 13, 57); -- WAR AF2 119 +2 Hands Defender Shield Rate +10

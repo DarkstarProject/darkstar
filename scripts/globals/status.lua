@@ -1535,12 +1535,15 @@ dsp.mod =
     SNEAK_DURATION                  = 946, -- Additional duration in seconds
     INVISIBLE_DURATION              = 947, -- Additional duration in seconds
     BERSERK_EFFECT                  = 948, -- Conqueror Berserk Effect
+    BERSERK_DURATION                = 954, -- Berserk Duration
+    AGGRESSOR_DURATION              = 955, -- Aggressor Duration
+    DEFENDER_DURATION               = 956, -- Defender Duration
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 954, -- stuff
-    -- SPARE = 955, -- stuff
-    -- SPARE = 956, -- stuff
+    -- SPARE = 957, -- stuff
+    -- SPARE = 958, -- stuff
+    -- SPARE = 959, -- stuff
 };
 
 dsp.latent =
