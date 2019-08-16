@@ -1159,7 +1159,7 @@ INSERT INTO `mob_groups` VALUES (104,6099,37,'Thalesek',0,128,0,0,0,105,105,0);
 INSERT INTO `mob_groups` VALUES (105,6100,37,'Pyrrha',0,128,0,0,0,108,108,0);
 INSERT INTO `mob_groups` VALUES (106,3869,37,'Temenos_Ghrah',0,128,0,0,0,105,106,0);
 INSERT INTO `mob_groups` VALUES (107,6101,37,'Arch-Ultima',0,128,0,0,0,109,109,0);
--- zone 38 group 1: free
+INSERT INTO `mob_groups` VALUES (1,1346,38,'Jidra',0,128,0,6000,0,80,85,0); -- leafless
 INSERT INTO `mob_groups` VALUES (2,2149,38,'Jidra',0,128,0,6000,0,80,85,0);
 INSERT INTO `mob_groups` VALUES (3,211,38,'Arboricole_Hornet',0,128,2860,6000,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (4,213,38,'Arboricole_Raven',0,128,2860,6000,500,75,80,0);
