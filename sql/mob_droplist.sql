@@ -16186,6 +16186,12 @@ INSERT INTO `mob_droplist` VALUES (3112,0,0,1000,3408,1000); -- (Spellspear_Djok
 INSERT INTO `mob_droplist` VALUES (3113,0,0,1000,11774,200); -- (Arch_Overlord_Tombstone) oneiros_cest
 INSERT INTO `mob_droplist` VALUES (3113,0,0,1000,11816,50); -- (Arch_Overlord_Tombstone) oneiros_helm
 INSERT INTO `mob_droplist` VALUES (3113,0,0,1000,19790,100); -- (Arch_Overlord_Tombstone) oneiros_lance
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,1875,1000); -- (Nergal, Bata, Aeshma) ancient_beastcoin x 4
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,1875,1000); -- (Nergal, Bata, Aeshma) ancient_beastcoin x 4
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,1875,1000); -- (Nergal, Bata, Aeshma) ancient_beastcoin x 4
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,1875,1000); -- (Nergal, Bata, Aeshma) ancient_beastcoin x 4
+INSERT INTO `mob_droplist` VALUES (3115,0,0,1000,1875,1000); -- (Apollyon Demon, Taurus, Ahriman) ancient_beastcoin x 1-2
+INSERT INTO `mob_droplist` VALUES (3115,0,0,1000,1875,500); -- (Apollyon Demon, Taurus, Ahriman) ancient_beastcoin x 1-2
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
