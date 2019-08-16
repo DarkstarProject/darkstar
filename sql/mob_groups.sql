@@ -1159,7 +1159,7 @@ INSERT INTO `mob_groups` VALUES (104,6099,37,'Thalesek',0,128,0,0,0,105,105,0);
 INSERT INTO `mob_groups` VALUES (105,6100,37,'Pyrrha',0,128,0,0,0,108,108,0);
 INSERT INTO `mob_groups` VALUES (106,3869,37,'Temenos_Ghrah',0,128,0,0,0,105,106,0);
 INSERT INTO `mob_groups` VALUES (107,6101,37,'Arch-Ultima',0,128,0,0,0,109,109,0);
-INSERT INTO `mob_groups` VALUES (1,1346,38,'Fir_Bholg',0,128,2856,4250,0,75,80,0);
+-- zone 38 group 1: free
 INSERT INTO `mob_groups` VALUES (2,2149,38,'Jidra',0,128,0,6000,0,80,85,0);
 INSERT INTO `mob_groups` VALUES (3,211,38,'Arboricole_Hornet',0,128,2860,6000,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (4,213,38,'Arboricole_Raven',0,128,2860,6000,500,75,80,0);
@@ -1251,6 +1251,11 @@ INSERT INTO `mob_groups` VALUES (89,6111,38,'Apollyon_Ahriman',0,128,3115,0,0,10
 INSERT INTO `mob_groups` VALUES (90,6112,38,'Ahrimans_Avatar',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (91,6113,38,'Ahrimans_Avatar',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (92,1849,38,'Gunpod',0,128,0,0,0,75,80,0);
+INSERT INTO `mob_groups` VALUES (93,6123,38,'Fir_Bholg',0,128,2856,0,0,75,80,0); -- THF elvaan
+INSERT INTO `mob_groups` VALUES (94,6124,38,'Fir_Bholg',0,128,2856,0,0,75,80,0); -- PLD galka
+INSERT INTO `mob_groups` VALUES (95,6125,38,'Fir_Bholg',0,128,2856,0,0,75,80,0); -- SAM hume
+INSERT INTO `mob_groups` VALUES (96,6126,38,'Fir_Bholg',0,128,2856,0,0,75,80,0); -- RDM mithra
+INSERT INTO `mob_groups` VALUES (97,6127,38,'Fir_Bholg',0,128,2856,0,0,75,80,0); -- BLM taru
 
 -- ------------------------------------------------------------
 -- Dynamis - Valkurm (Zone 39)
