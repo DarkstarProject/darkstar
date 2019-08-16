@@ -660,9 +660,9 @@ INSERT INTO `mob_groups` VALUES (16,2998,24,'Orcish_Brawler',330,0,283,0,0,35,38
 INSERT INTO `mob_groups` VALUES (17,2996,24,'Orcish_Beastrider',330,0,283,0,0,35,38,0);
 INSERT INTO `mob_groups` VALUES (18,3024,24,'Orcish_Nightraider',330,0,283,0,0,35,38,0);
 INSERT INTO `mob_groups` VALUES (19,3020,24,'Orcish_Impaler',330,0,283,0,0,35,38,0);
-INSERT INTO `mob_groups` VALUES (20,3083,24,'Padfoot',0,128,1972,0,0,45,46,0);
+INSERT INTO `mob_groups` VALUES (20,3083,24,'Padfoot',0,128,1972,0,0,38,38,0);
 INSERT INTO `mob_groups` VALUES (21,3034,24,'Orcish_Stonelauncher',330,0,1942,0,0,37,40,0);
-INSERT INTO `mob_groups` VALUES (22,71,24,'Air_Elemental',330,4,38,0,0,43,44,0);
+INSERT INTO `mob_groups` VALUES (22,71,24,'Air_Elemental',330,4,38,0,0,85,85,0);
 INSERT INTO `mob_groups` VALUES (23,839,24,'Crimson_Knight_Crab',330,0,536,0,0,33,36,0);
 INSERT INTO `mob_groups` VALUES (24,40,24,'Acrophies',330,0,17,0,0,33,36,0);
 INSERT INTO `mob_groups` VALUES (25,3912,24,'Thunder_Elemental',330,4,2410,0,0,43,44,0);
@@ -673,8 +673,8 @@ INSERT INTO `mob_groups` VALUES (29,4127,24,'Vampire_Bat',330,0,234,0,0,42,44,0)
 INSERT INTO `mob_groups` VALUES (30,4353,24,'Wingrats',330,0,80,0,0,41,44,0);
 INSERT INTO `mob_groups` VALUES (31,20,24,'Abraxas',330,0,2,0,0,85,86,0);
 INSERT INTO `mob_groups` VALUES (32,4689,24,'Flockbock',0,128,0,17000,0,82,82,0);
-INSERT INTO `mob_groups` VALUES (33,1386,24,'Fomor_Ninja',330,1,0,0,0,41,44,0);
-INSERT INTO `mob_groups` VALUES (34,1385,24,'Fomor_Monk',330,1,867,0,0,41,44,0);
+INSERT INTO `mob_groups` VALUES (33,1386,24,'Fomor_Ninja',330,1,0,0,0,77,79,0);
+INSERT INTO `mob_groups` VALUES (34,1385,24,'Fomor_Monk',330,1,867,0,0,77,79,0);
 INSERT INTO `mob_groups` VALUES (35,3853,24,'Tavnazian_Ram',330,0,2381,0,0,82,84,0);
 INSERT INTO `mob_groups` VALUES (36,1380,24,'Fomor_Bard',330,1,0,0,0,41,44,0);
 INSERT INTO `mob_groups` VALUES (37,1389,24,'Fomor_Red_Mage',330,1,0,0,0,41,44,0);
