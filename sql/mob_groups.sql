@@ -1083,19 +1083,19 @@ INSERT INTO `mob_groups` VALUES (28,1743,37,'Goblin_Warlord',0,128,2862,11000,10
 INSERT INTO `mob_groups` VALUES (29,1656,37,'Goblin_Fencer',0,128,2862,11000,1000,75,80,0);
 INSERT INTO `mob_groups` VALUES (30,1736,37,'Goblin_Theurgist',0,128,2862,11000,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (31,1341,37,'Fire_Elemental',0,128,2859,8000,3000,75,80,0);
-INSERT INTO `mob_groups` VALUES (32,4645,37,'Ifrit_Prime',0,128,0,5000,4000,75,80,0);
+INSERT INTO `mob_groups` VALUES (32,6115,37,'Mystic_Avatar',0,128,0,5000,4000,75,80,0); -- ifrit
 INSERT INTO `mob_groups` VALUES (33,2043,37,'Ice_Elemental',0,128,2859,8000,3000,75,80,0);
-INSERT INTO `mob_groups` VALUES (34,4642,37,'Shiva_Prime',0,128,0,5000,4000,75,80,0);
+INSERT INTO `mob_groups` VALUES (34,6116,37,'Mystic_Avatar',0,128,0,5000,4000,75,80,0); -- shiva
 INSERT INTO `mob_groups` VALUES (35,71,37,'Air_Elemental',0,128,2859,8000,3000,75,80,0);
-INSERT INTO `mob_groups` VALUES (36,4647,37,'Garuda_Prime',0,128,0,5000,4000,75,80,0);
+INSERT INTO `mob_groups` VALUES (36,6117,37,'Mystic_Avatar',0,128,0,5000,4000,75,80,0); -- garuda
 INSERT INTO `mob_groups` VALUES (37,1160,37,'Earth_Elemental',0,128,2859,8000,3000,75,80,0);
-INSERT INTO `mob_groups` VALUES (38,4644,37,'Titan_Prime',0,128,0,5000,4000,75,80,0);
+INSERT INTO `mob_groups` VALUES (38,6118,37,'Mystic_Avatar',0,128,0,5000,4000,75,80,0); -- titan
 INSERT INTO `mob_groups` VALUES (39,3912,37,'Thunder_Elemental',0,128,2859,8000,3000,75,80,0);
-INSERT INTO `mob_groups` VALUES (40,4643,37,'Ramuh_Prime',0,128,0,5000,4000,75,80,0);
+INSERT INTO `mob_groups` VALUES (40,6119,37,'Mystic_Avatar',0,128,0,5000,4000,75,80,0); -- ramuh
 INSERT INTO `mob_groups` VALUES (41,4309,37,'Water_Elemental',0,128,2859,8000,3000,75,80,0);
-INSERT INTO `mob_groups` VALUES (42,4646,37,'Leviathan_Prime',0,128,0,5000,4000,75,80,0);
+INSERT INTO `mob_groups` VALUES (42,6120,37,'Mystic_Avatar',0,128,0,5000,4000,75,80,0); -- leviathan
 INSERT INTO `mob_groups` VALUES (43,913,37,'Dark_Elemental',0,128,0,10000,3000,75,80,0);
-INSERT INTO `mob_groups` VALUES (44,4648,37,'Fenrir_Prime',0,128,0,5000,4000,75,80,0);
+INSERT INTO `mob_groups` VALUES (44,6121,37,'Mystic_Avatar',0,128,0,5000,4000,75,80,0); -- fenrir
 INSERT INTO `mob_groups` VALUES (45,1230,37,'Enhanced_Tiger',0,128,2858,10000,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (46,1225,37,'Enhanced_Mandragora',0,128,2858,10000,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (47,1218,37,'Enhanced_Beetle',0,128,2859,10000,1000,75,80,0);
@@ -1107,7 +1107,7 @@ INSERT INTO `mob_groups` VALUES (52,3209,37,'Proto-Ultima',0,128,0,26000,2000,80
 INSERT INTO `mob_groups` VALUES (53,2252,37,'Kingslayer_Doggvdegg',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (54,2152,37,'Ji_Gho_Ageless',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (55,2279,37,'Koo_Buzu_the_Theomanic',0,128,0,0,0,75,80,0);
-INSERT INTO `mob_groups` VALUES (56,636,37,'Carbuncle_Prime',0,128,0,15000,0,75,80,0);
+INSERT INTO `mob_groups` VALUES (56,6122,37,'Mystic_Avatar',0,128,0,15000,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (57,1222,37,'Enhanced_Koenigstiger',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (58,1227,37,'Enhanced_Pygmaioi',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (59,1221,37,'Enhanced_Kettenkaefer',0,128,0,0,0,75,80,0);
