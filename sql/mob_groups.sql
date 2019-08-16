@@ -1239,15 +1239,15 @@ INSERT INTO `mob_groups` VALUES (77,4429,38,'Yagudo_Kapellmeister',0,128,2863,10
 INSERT INTO `mob_groups` VALUES (78,6097,38,'Yagudo_Eradicator',0,128,2863,10000,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (79,6114,38,'Arch-Omega',0,128,0,0,0,105,105,0);
 INSERT INTO `mob_groups` VALUES (80,6102,38,'Armoury_Crate',0,128,0,0,0,75,80,0);
-INSERT INTO `mob_groups` VALUES (81,6103,38,'Nergal',0,128,3114,0,0,75,80,0);
-INSERT INTO `mob_groups` VALUES (82,6104,38,'Apollyon_Demon',0,128,3115,0,0,75,80,0); -- BLM
-INSERT INTO `mob_groups` VALUES (83,6105,38,'Apollyon_Demon',0,128,3115,0,0,75,80,0); -- PLD
-INSERT INTO `mob_groups` VALUES (84,6106,38,'Apollyon_Demon',0,128,3115,0,0,75,80,0); -- DRK
-INSERT INTO `mob_groups` VALUES (85,6107,38,'Apollyon_Demon',0,128,3115,0,0,75,80,0); -- RDM
-INSERT INTO `mob_groups` VALUES (86,6108,38,'Bata',0,128,3114,0,0,75,80,0);
-INSERT INTO `mob_groups` VALUES (87,6109,38,'Apollyon_Taurus',0,128,3115,0,0,75,80,0);
-INSERT INTO `mob_groups` VALUES (88,6110,38,'Aeshma',0,128,3114,0,0,75,80,0);
-INSERT INTO `mob_groups` VALUES (89,6111,38,'Apollyon_Ahriman',0,128,3115,0,0,75,80,0);
+INSERT INTO `mob_groups` VALUES (81,6103,38,'Nergal',0,128,3114,0,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (82,6104,38,'Apollyon_Demon',0,128,3115,0,0,101,102,0); -- BLM
+INSERT INTO `mob_groups` VALUES (83,6105,38,'Apollyon_Demon',0,128,3115,0,0,101,102,0); -- PLD
+INSERT INTO `mob_groups` VALUES (84,6106,38,'Apollyon_Demon',0,128,3115,0,0,101,102,0); -- DRK
+INSERT INTO `mob_groups` VALUES (85,6107,38,'Apollyon_Demon',0,128,3115,0,0,101,102,0); -- RDM
+INSERT INTO `mob_groups` VALUES (86,6108,38,'Bata',0,128,3114,0,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (87,6109,38,'Apollyon_Taurus',0,128,3115,0,0,101,102,0);
+INSERT INTO `mob_groups` VALUES (88,6110,38,'Aeshma',0,128,3114,0,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (89,6111,38,'Apollyon_Ahriman',0,128,3115,0,0,101,102,0);
 INSERT INTO `mob_groups` VALUES (90,6112,38,'Ahrimans_Avatar',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (91,6113,38,'Ahrimans_Avatar',0,128,0,0,0,75,80,0);
 INSERT INTO `mob_groups` VALUES (92,1849,38,'Gunpod',0,128,0,0,0,75,80,0);
