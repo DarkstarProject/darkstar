@@ -606,7 +606,6 @@ public:
     int32 removeOldestManeuver(lua_State*);
     int32 removeAllManeuvers(lua_State*);
     int32 updateAttachments(lua_State*);
-    int32 getDeployDuration(lua_State* L);	//Gets the length of time an automaton has spent deployed
 
     // Mob Entity-Specific
     int32 setMobLevel(lua_State*);

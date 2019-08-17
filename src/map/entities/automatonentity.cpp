@@ -151,26 +151,6 @@ uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
     return 0;
 }
 
-uint8 CAutomatonEntity::getDeployDuration()
-{
-    return static_cast<uint8>(m_deployDuration);
-}
-
-void CAutomatonEntity::updateDeployDuration(int dSec)
-{
-    m_deployDuration += dSec;
-    //cap maneuver duration after 4 minutes
-    if(m_deployDuration > 240)
-    {
-        m_deployDuration = 240;
-    }
-}
-
-void CAutomatonEntity::resetDeployDuration()
-{
-    m_deployDuration = 0;
-}
-
 void CAutomatonEntity::PostTick()
 {
     auto pre_mask = updatemask;

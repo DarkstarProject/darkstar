@@ -7,6 +7,7 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")
+require("scripts/globals/utils")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -51,8 +52,9 @@ function onUseAbility(player,target,ability)
             target:removeOldestManeuver()
         end
 
-        local bonusDur = target:getPet():getDeployDuration()
-        target:addStatusEffect(dsp.effect.THUNDER_MANEUVER, bonus, 0, 60 + bonusDur)
+        local dur = player:getPet():getLocalVar("MANEUVER_DURATION")
+        target:addStatusEffect(dsp.effect.THUNDER_MANEUVER, bonus, 0, utils.clamp(dur,60,300))
+
     end
 
     return dsp.effect.THUNDER_MANEUVER

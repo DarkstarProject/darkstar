@@ -42,7 +42,6 @@ CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetControl
     PAutomaton(PPet)
 {
     PPet->setInitialBurden();
-    PAutomaton->resetDeployDuration();
     setCooldowns();
     if (isRanged())
     {
@@ -183,16 +182,15 @@ void CAutomatonController::DoCombatTick(time_point tick)
         return;
     }
 
+    if (TryCombatTick())
+    {
+        PAutomaton->PAI->EventHandler.triggerListener("COMBAT_TICK", PAutomaton);
+    }
+
     // Automatons only attempt actions in 3 second intervals (Reduced by the Tactical Processor)
     if (TryAction())
     {
         auto maneuvers = GetCurrentManeuvers();
-
-        //track deploy duration up to 4 minutes
-        if(PAutomaton->getDeployDuration() < 240)
-        {
-            PAutomaton->updateDeployDuration(1);
-        }
 
         if (TryShieldBash())
         {
@@ -229,6 +227,16 @@ void CAutomatonController::Move()
         PAutomaton->m_Behaviour &= ~BEHAVIOUR_STANDBACK;
     }
     CPetController::Move();
+}
+
+bool CAutomatonController::TryCombatTick()
+{
+    if (m_Tick > m_LastTickTime + 3s)
+    {
+        m_LastTickTime = m_Tick;
+        return true;
+    }
+    return false;
 }
 
 bool CAutomatonController::TryAction()
