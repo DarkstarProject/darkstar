@@ -127,11 +127,11 @@ INSERT INTO `mob_droplist` VALUES (18,0,0,1000,924,170);
 INSERT INTO `mob_droplist` VALUES (18,0,0,1000,1125,20);
 INSERT INTO `mob_droplist` VALUES (19,0,0,1000,922,160);
 INSERT INTO `mob_droplist` VALUES (19,0,0,1000,924,100);
-INSERT INTO `mob_droplist` VALUES (20,0,0,1000,748,20);
-INSERT INTO `mob_droplist` VALUES (20,0,0,1000,749,60);
-INSERT INTO `mob_droplist` VALUES (20,0,0,1000,1456,20);
-INSERT INTO `mob_droplist` VALUES (20,0,0,1000,1470,50);
-INSERT INTO `mob_droplist` VALUES (20,0,0,1000,1474,130);
+INSERT INTO `mob_droplist` VALUES (20,0,0,1000,748,20);   -- (Adamantking_Effigy, bastok) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (20,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (20,0,0,1000,1455,20);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (20,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (20,0,0,1000,1474,100); -- infinity_core
 INSERT INTO `mob_droplist` VALUES (21,0,0,1000,646,1060);
 INSERT INTO `mob_droplist` VALUES (21,0,0,1000,646,530);
 INSERT INTO `mob_droplist` VALUES (21,0,0,1000,646,350);
@@ -1175,11 +1175,11 @@ INSERT INTO `mob_droplist` VALUES (194,0,0,1000,3189,310);
 INSERT INTO `mob_droplist` VALUES (194,0,0,1000,3189,150);
 INSERT INTO `mob_droplist` VALUES (194,0,0,1000,3189,100);
 INSERT INTO `mob_droplist` VALUES (194,0,0,1000,11648,260);
-INSERT INTO `mob_droplist` VALUES (195,0,0,1000,748,10);
-INSERT INTO `mob_droplist` VALUES (195,0,0,1000,749,10);
-INSERT INTO `mob_droplist` VALUES (195,0,0,1000,1450,20);
-INSERT INTO `mob_droplist` VALUES (195,0,0,1000,1470,80);
-INSERT INTO `mob_droplist` VALUES (195,0,0,1000,1474,80);
+INSERT INTO `mob_droplist` VALUES (195,0,0,1000,748,20);   -- (Avatar/Manifest Icon, windy) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (195,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (195,0,0,1000,1449,20);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (195,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (195,0,0,1000,1474,100); -- infinity_core
 INSERT INTO `mob_droplist` VALUES (196,0,0,1000,646,980);
 INSERT INTO `mob_droplist` VALUES (196,0,0,1000,748,100);
 INSERT INTO `mob_droplist` VALUES (196,0,0,1000,751,100);
@@ -3898,12 +3898,10 @@ INSERT INTO `mob_droplist` VALUES (743,0,0,1000,768,400);
 INSERT INTO `mob_droplist` VALUES (743,0,0,1000,3255,150);
 INSERT INTO `mob_droplist` VALUES (744,0,0,1000,4468,110);
 INSERT INTO `mob_droplist` VALUES (744,0,0,1000,14465,100);
-INSERT INTO `mob_droplist` VALUES (745,0,0,1000,748,40);
-INSERT INTO `mob_droplist` VALUES (745,0,0,1000,749,90);
-INSERT INTO `mob_droplist` VALUES (745,0,0,1000,1456,20);
-INSERT INTO `mob_droplist` VALUES (745,0,0,1000,1470,80);
-INSERT INTO `mob_droplist` VALUES (745,0,0,1000,1474,80);
-INSERT INTO `mob_droplist` VALUES (745,0,0,1000,4248,80);
+INSERT INTO `mob_droplist` VALUES (745,0,0,1000,748,20);   -- (Adamantking_Effigy, dreamworld) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (745,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (745,0,0,1000,1455,20);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (745,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
 INSERT INTO `mob_droplist` VALUES (746,0,0,1000,1623,80);
 INSERT INTO `mob_droplist` VALUES (746,0,0,1000,1741,20);
 INSERT INTO `mob_droplist` VALUES (746,2,0,1000,4362,0);
@@ -5943,21 +5941,19 @@ INSERT INTO `mob_droplist` VALUES (1142,0,0,1000,4876,10);
 INSERT INTO `mob_droplist` VALUES (1142,0,0,1000,4877,10);
 INSERT INTO `mob_droplist` VALUES (1142,0,0,1000,4878,10);
 INSERT INTO `mob_droplist` VALUES (1142,0,0,1000,12416,10);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,748,40);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,749,90);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1450,10);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1453,10);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1456,10);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1470,80);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1474,80);
-INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,4248,80);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,748,10);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,749,10);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1450,10);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1453,10);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1456,10);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1470,80);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1474,80);
+INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,748,20);   -- (Goblin Replica, dreamworld) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1449,10);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1452,10);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,1455,10);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,748,20);   -- (Goblin Replica, jeuno) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1449,10);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1452,10);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1455,10);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1474,100); -- infinity_core
 INSERT INTO `mob_droplist` VALUES (1145,0,0,1000,510,50);
 INSERT INTO `mob_droplist` VALUES (1145,0,0,1000,511,70);
 INSERT INTO `mob_droplist` VALUES (1145,2,0,1000,749,0);
@@ -8336,12 +8332,10 @@ INSERT INTO `mob_droplist` VALUES (1611,0,0,1000,4377,10);
 INSERT INTO `mob_droplist` VALUES (1611,0,0,1000,5152,10);
 INSERT INTO `mob_droplist` VALUES (1611,0,0,1000,11554,80);
 INSERT INTO `mob_droplist` VALUES (1611,0,0,1000,11638,290);
-INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,748,40);
-INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,749,90);
-INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,1450,10);
-INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,1470,80);
-INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,1474,80);
-INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,4248,80);
+INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,748,20);   -- (Avatar/Manifest Icon, dreamworld) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,1449,20);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (1612,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
 INSERT INTO `mob_droplist` VALUES (1613,4,0,1000,2518,0);
 INSERT INTO `mob_droplist` VALUES (1613,0,0,1000,2518,220);
 INSERT INTO `mob_droplist` VALUES (1613,0,0,1000,2975,160);
@@ -11610,11 +11604,11 @@ INSERT INTO `mob_droplist` VALUES (2200,0,0,1000,3198,100);
 INSERT INTO `mob_droplist` VALUES (2200,0,0,1000,3200,100);
 INSERT INTO `mob_droplist` VALUES (2200,0,0,1000,3209,100);
 INSERT INTO `mob_droplist` VALUES (2200,0,0,1000,17856,300);
-INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,748,40);
-INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,749,90);
-INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,1453,30);
-INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,1470,50);
-INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,1474,50);
+INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,748,20);   -- (Serjeant_Tombstone, sandy) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,1452,20);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (2201,0,0,1000,1474,100); -- infinity_core
 INSERT INTO `mob_droplist` VALUES (2202,0,0,1000,901,20);
 INSERT INTO `mob_droplist` VALUES (2202,0,0,1000,4173,420);
 INSERT INTO `mob_droplist` VALUES (2202,0,0,1000,4175,610);
@@ -14133,12 +14127,10 @@ INSERT INTO `mob_droplist` VALUES (2622,0,0,1000,3120,100);
 INSERT INTO `mob_droplist` VALUES (2622,0,0,1000,3129,100);
 INSERT INTO `mob_droplist` VALUES (2622,0,0,1000,3129,50);
 INSERT INTO `mob_droplist` VALUES (2622,0,0,1000,19289,100);
-INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,748,40);
-INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,749,90);
-INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,1450,20);
-INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,1470,80);
-INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,1474,80);
-INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,4248,80);
+INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,748,20);   -- (Serjeant_Tombstone, dreamworld) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,1452,20);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (2623,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
 INSERT INTO `mob_droplist` VALUES (2624,0,0,1000,852,30);
 INSERT INTO `mob_droplist` VALUES (2624,0,0,1000,852,20);
 INSERT INTO `mob_droplist` VALUES (2624,0,0,1000,926,180);
@@ -16186,6 +16178,54 @@ INSERT INTO `mob_droplist` VALUES (3112,0,0,1000,3408,1000); -- (Spellspear_Djok
 INSERT INTO `mob_droplist` VALUES (3113,0,0,1000,11774,200); -- (Arch_Overlord_Tombstone) oneiros_cest
 INSERT INTO `mob_droplist` VALUES (3113,0,0,1000,11816,50); -- (Arch_Overlord_Tombstone) oneiros_helm
 INSERT INTO `mob_droplist` VALUES (3113,0,0,1000,19790,100); -- (Arch_Overlord_Tombstone) oneiros_lance
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,748,20);   -- (Adamantking_Effigy, beaucedine) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,1455,20);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3114,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (3115,0,0,1000,748,20);   -- (Adamantking_Effigy, xarcabard) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3115,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3115,0,0,1000,1455,20);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (3115,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3115,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,748,20);   -- (Goblin Replica, beaucedine) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,1449,10);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,1452,10);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,1455,10);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3116,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (3117,0,0,1000,748,20);   -- (Goblin Replica, xarcabard) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3117,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3117,0,0,1000,1449,10);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (3117,0,0,1000,1452,10);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (3117,0,0,1000,1455,10);  -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (3117,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3117,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (3118,0,0,1000,748,20);   -- (Serjeant_Tombstone, beaucedine) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3118,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3118,0,0,1000,1452,20);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (3118,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (3118,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3118,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (3119,0,0,1000,748,20);   -- (Serjeant_Tombstone, xarcabard) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3119,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3119,0,0,1000,1452,20);  -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (3119,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3119,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (3120,0,0,1000,748,20);   -- (Avatar/Manifest Icon, beaucedine) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3120,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3120,0,0,1000,1449,20);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (3120,0,0,1000,1470,50);  -- sparkling_stone
+INSERT INTO `mob_droplist` VALUES (3120,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3120,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
+INSERT INTO `mob_droplist` VALUES (3121,0,0,1000,748,20);   -- (Avatar/Manifest Icon, xarcabard) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (3121,0,0,1000,749,50);   -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (3121,0,0,1000,1449,20);  -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (3121,0,0,1000,1474,100); -- infinity_core
+INSERT INTO `mob_droplist` VALUES (3121,0,0,1000,4248,50);  -- copy_of_ginuvas_battle_theory
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
