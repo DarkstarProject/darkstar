@@ -182,11 +182,6 @@ void CAutomatonController::DoCombatTick(time_point tick)
         return;
     }
 
-    if (TryCombatTick())
-    {
-        PAutomaton->PAI->EventHandler.triggerListener("COMBAT_TICK", PAutomaton);
-    }
-
     // Automatons only attempt actions in 3 second intervals (Reduced by the Tactical Processor)
     if (TryAction())
     {
@@ -227,16 +222,6 @@ void CAutomatonController::Move()
         PAutomaton->m_Behaviour &= ~BEHAVIOUR_STANDBACK;
     }
     CPetController::Move();
-}
-
-bool CAutomatonController::TryCombatTick()
-{
-    if (m_Tick > m_LastTickTime + 3s)
-    {
-        m_LastTickTime = m_Tick;
-        return true;
-    }
-    return false;
 }
 
 bool CAutomatonController::TryAction()

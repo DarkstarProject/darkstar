@@ -71,7 +71,6 @@ protected:
 
 private:
     bool TryAction();
-    bool TryCombatTick();
     bool TryShieldBash();
     bool TrySpellcast(const CurrentManeuvers& maneuvers);
     bool TryHeal(const CurrentManeuvers& maneuvers);
@@ -101,7 +100,6 @@ private:
     static constexpr int m_ShieldBashAbility{ 1944 };
 
     time_point m_LastActionTime;
-    time_point m_LastTickTime;
     time_point m_LastMagicTime;
     time_point m_LastEnfeebleTime;
     time_point m_LastElementalTime;
