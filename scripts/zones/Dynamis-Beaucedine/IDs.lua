@@ -32,7 +32,7 @@ zones[dsp.zone.DYNAMIS_BEAUCEDINE] =
             {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 17326279},
             {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17326353},
             {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17326468},
-            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17326742},
+            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = {17326742, 17326748, 17326754, 17326760, 17326765, 17326771}},
         },
         REFILL_STATUE =
         {
