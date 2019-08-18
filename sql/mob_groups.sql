@@ -1543,9 +1543,9 @@ INSERT INTO `mob_groups` VALUES (125,4182,40,'Vanguard_Shaman',600,0,2540,4000,0
 INSERT INTO `mob_groups` VALUES (126,4192,40,'Vanguard_Tinkerer',600,0,2540,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (127,4134,40,'Vanguard_Ambusher',600,0,2540,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (128,4155,40,'Vanguard_Hitman',600,0,2540,4000,0,93,95,0);
-INSERT INTO `mob_groups` VALUES (129,4649,40,'Vanguard_Dragontamer',600,0,2539,4000,0,93,95,0);
+INSERT INTO `mob_groups` VALUES (129,4649,40,'Vanguard_Dragontamer',600,0,2540,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (130,4190,40,'Vanguards_Wyvern',0,128,0,2400,1000,93,95,0);
-INSERT INTO `mob_groups` VALUES (131,4649,40,'Vanguard_Dragontamer',600,0,2539,4000,0,75,77,0);
+INSERT INTO `mob_groups` VALUES (131,4649,40,'Vanguard_Dragontamer',600,0,2540,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (132,4162,40,'Vanguard_Mesmerizer',600,0,2545,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (133,4195,40,'Vanguard_Vexer',600,0,2545,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (134,4172,40,'Vanguard_Pillager',600,0,2545,4000,0,93,95,0);
@@ -1674,7 +1674,7 @@ INSERT INTO `mob_groups` VALUES (57,4184,41,'Vanguard_Smithy',600,0,2541,4000,0,
 INSERT INTO `mob_groups` VALUES (58,4147,41,'Vanguard_Enchanter',600,0,2541,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (59,4134,41,'Vanguard_Ambusher',600,0,2541,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (60,4155,41,'Vanguard_Hitman',600,0,2541,4000,0,75,77,0);
-INSERT INTO `mob_groups` VALUES (61,4649,41,'Vanguard_Dragontamer',600,0,2539,4000,0,75,77,0);
+INSERT INTO `mob_groups` VALUES (61,4649,41,'Vanguard_Dragontamer',600,0,2541,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (62,1707,41,'Goblin_Replica',0,128,1143,1000,1000,70,70,0);
 INSERT INTO `mob_groups` VALUES (63,1716,41,'Goblin_Statue',0,128,0,1000,1000,70,70,0);
 INSERT INTO `mob_groups` VALUES (64,4173,41,'Vanguard_Pitfighter',600,0,2541,4000,0,75,77,0);
@@ -1747,7 +1747,7 @@ INSERT INTO `mob_groups` VALUES (130,4192,41,'Vanguard_Tinkerer',600,0,2541,4000
 INSERT INTO `mob_groups` VALUES (132,4147,41,'Vanguard_Enchanter',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (133,4134,41,'Vanguard_Ambusher',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (134,4155,41,'Vanguard_Hitman',600,0,2541,4000,0,93,95,0);
-INSERT INTO `mob_groups` VALUES (135,4649,41,'Vanguard_Dragontamer',600,0,2539,4000,0,93,95,0);
+INSERT INTO `mob_groups` VALUES (135,4649,41,'Vanguard_Dragontamer',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (136,4173,41,'Vanguard_Pitfighter',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (137,4182,41,'Vanguard_Shaman',600,0,2541,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (138,4160,41,'Vanguard_Maestro',600,0,2541,4000,0,93,95,0);
@@ -1831,9 +1831,9 @@ INSERT INTO `mob_groups` VALUES (33,2870,42,'Nightmare_Taurus',600,0,2854,10000,
 INSERT INTO `mob_groups` VALUES (34,2858,42,'Nightmare_Makara',600,0,1797,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (35,1707,42,'Goblin_Replica',0,128,1143,1000,1000,70,70,0);
 INSERT INTO `mob_groups` VALUES (36,3759,42,'Statue_Prototype',0,128,0,1000,1000,70,70,0);
-INSERT INTO `mob_groups` VALUES (37,6051,42,'Diabolos_Nox',0,128,2908,15000,0,105,105,0);
-INSERT INTO `mob_groups` VALUES (38,6050,42,'Diabolos_Letum',0,128,2908,15000,0,105,105,0);
-INSERT INTO `mob_groups` VALUES (39,4091,42,'Diabolos_Umbra',0,128,2908,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (37,6051,42,'Diabolos_Nox',0,128,0,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (38,6050,42,'Diabolos_Letum',0,128,0,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (39,4091,42,'Diabolos_Umbra',0,128,0,15000,0,105,105,0);
 INSERT INTO `mob_groups` VALUES (40,2845,42,'Nightmare_Cluster',600,0,1786,5000,0,95,97,0);
 INSERT INTO `mob_groups` VALUES (41,2857,42,'Nightmare_Leech',600,0,1796,5000,0,95,97,0);
 INSERT INTO `mob_groups` VALUES (42,2237,42,'Kindred_Monk',600,0,1441,5500,0,95,97,0);
@@ -1856,7 +1856,7 @@ INSERT INTO `mob_groups` VALUES (58,2236,42,'Kindred_Dragoon',600,0,1441,5500,0,
 INSERT INTO `mob_groups` VALUES (59,2247,42,'Kindreds_Wyvern',0,128,0,3300,1000,95,97,0);
 INSERT INTO `mob_groups` VALUES (60,4149,42,'Vanguard_Eye',0,128,2561,2000,2000,80,82,0);
 INSERT INTO `mob_groups` VALUES (61,5121,42,'Prototype_Eye',0,128,0,2000,2000,80,82,0);
-INSERT INTO `mob_groups` VALUES (62,6052,42,'Diabolos_Somnus',0,128,2908,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (62,6052,42,'Diabolos_Somnus',0,128,0,15000,0,105,105,0);
 
 INSERT INTO `mob_groups` VALUES (1443,1361,44,'Flammen-Brenner',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1444,3190,44,'Posten',0,128,0,0,0,0,0,0);
