@@ -8091,8 +8091,7 @@ INSERT INTO `mob_groups` VALUES (193,2033,134,'Hydras_Wyvern',0,128,0,3300,1000,
 INSERT INTO `mob_groups` VALUES (194,2028,134,'Hydra_Red_Mage',600,0,1343,5500,0,92,95,0);
 INSERT INTO `mob_groups` VALUES (195,2026,134,'Hydra_Paladin',600,0,1343,5500,0,92,95,0);
 INSERT INTO `mob_groups` VALUES (196,2029,134,'Hydra_Samurai',600,0,1343,5500,0,92,95,0);
-INSERT INTO `mob_groups` VALUES (197,6064,134,'Rearguard_Eye',600,0,0,8000,8000,82,82,0);
-INSERT INTO `mob_groups` VALUES (198,6064,134,'Rearguard_Eye',0,128,0,8000,8000,82,82,0);
+INSERT INTO `mob_groups` VALUES (197,6064,134,'Rearguard_Eye',0,128,0,8000,8000,82,82,0);
 
 -- ------------------------------------------------------------
 -- Dynamis - Xarcabard (Zone 135)
