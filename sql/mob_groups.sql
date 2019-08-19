@@ -7974,7 +7974,7 @@ INSERT INTO `mob_groups` VALUES (76,4154,134,'Vanguard_Hawker',600,0,2547,4000,0
 INSERT INTO `mob_groups` VALUES (77,4187,134,'Vanguards_Hecteyes',0,128,0,2400,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (78,4172,134,'Vanguard_Pillager',600,0,2547,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (79,2429,134,'Lockbuster_Zapdjipp',0,32,493,8000,0,80,81,0);
-INSERT INTO `mob_groups` VALUES (80,1909,134,'Heavymail_Djidzbad',0,32,493,0,0,80,81,0);
+INSERT INTO `mob_groups` VALUES (80,1909,134,'Heavymail_Djidzbad',0,32,493,8000,0,80,81,0);
 INSERT INTO `mob_groups` VALUES (81,4140,134,'Vanguard_Bugler',600,0,2547,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (82,1204,134,'Elvaanlopper_Grokdok',0,32,493,8000,0,80,81,0);
 INSERT INTO `mob_groups` VALUES (83,3650,134,'Skinmask_Ugghfogg',0,32,493,8000,0,80,81,0);
