@@ -1239,15 +1239,15 @@ INSERT INTO `mob_groups` VALUES (1,730,39,'Cirrate_Christelle',0,128,472,37000,0
 INSERT INTO `mob_groups` VALUES (2,2854,39,'Nightmare_Hippogryph',600,0,1794,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (3,2860,39,'Nightmare_Manticore',600,0,1799,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (4,2852,39,'Nightmare_Fly',600,0,1792,5000,0,78,80,0);
-INSERT INTO `mob_groups` VALUES (5,5108,39,'Nightmare_Treant',600,0,2795,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (5,5108,39,'Nightmare_Treant',600,0,1799,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (6,3760,39,'Stcemqestcint',1200,0,2909,20000,0,85,85,0);
-INSERT INTO `mob_groups` VALUES (7,5110,39,'Nightmare_Goobbue',600,0,2797,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (7,5110,39,'Nightmare_Goobbue',600,0,1799,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (8,2807,39,'Nantina',1200,0,2910,20000,0,85,85,0);
-INSERT INTO `mob_groups` VALUES (9,5107,39,'Nightmare_Funguar',600,0,2798,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (9,5107,39,'Nightmare_Funguar',600,0,1792,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (10,1281,39,'Fairy_Ring',1200,0,806,20000,0,85,85,0);
-INSERT INTO `mob_groups` VALUES (11,2865,39,'Nightmare_Sabotender',600,0,1801,5000,0,78,80,0);
-INSERT INTO `mob_groups` VALUES (12,5109,39,'Nightmare_Flytrap',600,0,2796,5000,0,78,80,0);
-INSERT INTO `mob_groups` VALUES (13,2867,39,'Nightmare_Sheep',600,0,1802,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (11,2865,39,'Nightmare_Sabotender',600,0,1794,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (12,5109,39,'Nightmare_Flytrap',600,0,1792,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (13,2867,39,'Nightmare_Sheep',600,0,1794,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (14,4157,39,'Vanguard_Inciter',600,0,2549,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (15,4172,39,'Vanguard_Pillager',600,0,2544,4000,0,75,77,0);
 INSERT INTO `mob_groups` VALUES (16,4174,39,'Vanguard_Predator',600,0,2544,4000,0,75,77,0);
@@ -1322,15 +1322,15 @@ INSERT INTO `mob_groups` VALUES (84,4170,39,'Vanguard_Pathfinder',600,0,2539,400
 INSERT INTO `mob_groups` VALUES (85,4189,39,'Vanguards_Slime',0,128,0,2400,1000,75,77,0);
 INSERT INTO `mob_groups` VALUES (86,1707,39,'Goblin_Replica',0,128,1143,1000,1000,70,70,0);
 INSERT INTO `mob_groups` VALUES (87,1716,39,'Goblin_Statue',0,128,0,1000,1000,70,70,0);
-INSERT INTO `mob_groups` VALUES (88,5110,39,'Nightmare_Goobbue',600,0,2797,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (89,2865,39,'Nightmare_Sabotender',600,0,1801,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (90,5109,39,'Nightmare_Flytrap',600,0,2796,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (91,2860,39,'Nightmare_Manticore',600,0,1799,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (92,2854,39,'Nightmare_Hippogryph',600,0,1794,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (93,5108,39,'Nightmare_Treant',600,0,2795,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (94,5107,39,'Nightmare_Funguar',600,0,2798,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (95,2867,39,'Nightmare_Sheep',600,0,1802,5000,0,95,97,0);
-INSERT INTO `mob_groups` VALUES (96,2852,39,'Nightmare_Fly',600,0,1792,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (88,5110,39,'Nightmare_Goobbue',600,0,3124,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (89,2865,39,'Nightmare_Sabotender',600,0,3123,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (90,5109,39,'Nightmare_Flytrap',600,0,3122,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (91,2860,39,'Nightmare_Manticore',600,0,3124,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (92,2854,39,'Nightmare_Hippogryph',600,0,3123,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (93,5108,39,'Nightmare_Treant',600,0,3124,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (94,5107,39,'Nightmare_Funguar',600,0,3122,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (95,2867,39,'Nightmare_Sheep',600,0,3123,5000,0,95,97,0);
+INSERT INTO `mob_groups` VALUES (96,2852,39,'Nightmare_Fly',600,0,3122,5000,0,95,97,0);
 INSERT INTO `mob_groups` VALUES (97,4150,39,'Vanguard_Footsoldier',600,0,2544,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (98,4172,39,'Vanguard_Pillager',600,0,2544,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (99,4165,39,'Vanguard_Neckchopper',600,0,2544,4000,0,93,95,0);
@@ -1406,10 +1406,10 @@ INSERT INTO `mob_groups` VALUES (168,1707,39,'Goblin_Replica',0,128,1143,1000,10
 INSERT INTO `mob_groups` VALUES (169,1716,39,'Goblin_Statue',0,128,0,1000,1000,80,80,0);
 INSERT INTO `mob_groups` VALUES (170,4649,39,'Vanguard_Dragontamer',600,0,2539,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (171,4150,39,'Vanguard_Footsoldier',600,0,2544,4000,0,75,77,0);
-INSERT INTO `mob_groups` VALUES (172,1105,39,'Lost_Fairy_Ring',0,128,0,0,0,100,100,0);
-INSERT INTO `mob_groups` VALUES (173,1104,39,'Lost_Stcemqestcint',0,128,0,0,0,100,100,0);
-INSERT INTO `mob_groups` VALUES (174,400,39,'Lost_Nantina',0,128,0,0,0,100,100,0);
-INSERT INTO `mob_groups` VALUES (175,354,39,'Arch_Christelle',0,128,0,0,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (172,1105,39,'Lost_Fairy_Ring',0,128,3125,0,0,100,100,0);
+INSERT INTO `mob_groups` VALUES (173,1104,39,'Lost_Stcemqestcint',0,128,3126,0,0,100,100,0);
+INSERT INTO `mob_groups` VALUES (174,400,39,'Lost_Nantina',0,128,3127,0,0,100,100,0);
+INSERT INTO `mob_groups` VALUES (175,354,39,'Arch_Christelle',0,128,3128,0,0,105,105,0);
 
 -- ------------------------------------------------------------
 -- Dynamis - Buburimu (Zone 40)
