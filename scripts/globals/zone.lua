@@ -388,6 +388,32 @@ dsp.zone =
     MAX_ZONE                        = 299
 }
 
+dsp.expansionRegion = dsp.expansionRegion or {}
+dsp.expansionRegion.ORIGINAL_ROTZ =
+{
+    [dsp.region.RONFAURE]        = true,
+    [dsp.region.ZULKHEIM]        = true,
+    [dsp.region.NORVALLEN]       = true,
+    [dsp.region.GUSTABERG]       = true,
+    [dsp.region.DERFLAND]        = true,
+    [dsp.region.SARUTABARUTA]    = true,
+    [dsp.region.KOLSHUSHU]       = true,
+    [dsp.region.ARAGONEU]        = true,
+    [dsp.region.FAUREGANDI]      = true,
+    [dsp.region.VALDEAUNIA]      = true,
+    [dsp.region.QUFIMISLAND]     = true,
+    [dsp.region.LITELOR]         = true,
+    [dsp.region.KUZOTZ]          = true,
+    [dsp.region.VOLLBOW]         = true,
+    [dsp.region.ELSHIMOLOWLANDS] = true,
+    [dsp.region.ELSHIMOUPLANDS]  = true,
+    [dsp.region.SANDORIA]        = true,
+    [dsp.region.BASTOK]          = true,
+    [dsp.region.WINDURST]        = true,
+    [dsp.region.JEUNO]           = true,
+    [dsp.region.DYNAMIS]         = true
+}
+
 -----------------------------------
 -- SetExplorerMoogles
 ----------------------------------
