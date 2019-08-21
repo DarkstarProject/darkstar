@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Korroloka_Tunnel (173)
+-- Zone: Korroloka Tunnel (173)
 --
 -----------------------------------
 local ID = require("scripts/zones/Korroloka_Tunnel/IDs")

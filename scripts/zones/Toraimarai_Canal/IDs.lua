@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Toraimarai_Canal
+-- Area: Toraimarai Canal (169)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -10,15 +10,16 @@ zones[dsp.zone.TORAIMARAI_CANAL] =
 {
     text =
     {
-        SEALED_SHUT             = 3, -- It's sealed shut with incredibly strong magic.
-        ITEM_CANNOT_BE_OBTAINED = 6428, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6434, -- Obtained: <item>.
-        GIL_OBTAINED            = 6435, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6437, -- Obtained key item: <keyitem>.
-        CONQUEST_BASE           = 7095, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7254, -- You can't fish here.
-        CHEST_UNLOCKED          = 7362, -- You unlock the chest!
-        REGIME_REGISTERED       = 9617, -- New training regime registered!
+        SEALED_SHUT             = 3,     -- It's sealed shut with incredibly strong magic.
+        ITEM_CANNOT_BE_OBTAINED = 6428,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6434,  -- Obtained: <item>.
+        GIL_OBTAINED            = 6435,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6437,  -- Obtained key item: <keyitem>.
+        GEOMAGNETRON_ATTUNED    = 7056,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
+        CONQUEST_BASE           = 7095,  -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET  = 7254,  -- You can't fish here.
+        CHEST_UNLOCKED          = 7362,  -- You unlock the chest!
+        REGIME_REGISTERED       = 9617,  -- New training regime registered!
         HOMEPOINT_SET           = 10693, -- Home point set!
     },
     mob =

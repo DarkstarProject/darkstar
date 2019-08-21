@@ -10,19 +10,20 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
 {
     text =
     {
-        ORB_ALREADY_PLACED             = 0, -- A dark Mana Orb is already placed here.
-        CONQUEST_BASE                  = 15, -- Tallying conquest results...
-        DEVICE_NOT_WORKING             = 188, -- The device is not working.
-        SYS_OVERLOAD                   = 197, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
-        YOU_LOST_THE                   = 202, -- You lost the <item>.
-        ITEM_CANNOT_BE_OBTAINED        = 6587, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED                  = 6593, -- Obtained: <item>.
-        GIL_OBTAINED                   = 6594, -- Obtained <number> gil.
-        KEYITEM_OBTAINED               = 6596, -- Obtained key item: <keyitem>.
-        DOOR_FIRMLY_SHUT               = 7254, -- The door is firmly shut.
-        ALL_G_ORBS_ENERGIZED           = 7257, -- The six Mana Orbs have been successfully energized with magic!
-        CHEST_UNLOCKED                 = 7280, -- You unlock the chest!
-        REGIME_REGISTERED              = 10343, -- New training regime registered!
+        ORB_ALREADY_PLACED      = 0,     -- A dark Mana Orb is already placed here.
+        CONQUEST_BASE           = 15,    -- Tallying conquest results...
+        DEVICE_NOT_WORKING      = 188,   -- The device is not working.
+        SYS_OVERLOAD            = 197,   -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
+        YOU_LOST_THE            = 202,   -- You lost the <item>.
+        ITEM_CANNOT_BE_OBTAINED = 6587,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6593,  -- Obtained: <item>.
+        GIL_OBTAINED            = 6594,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6596,  -- Obtained key item: <keyitem>.
+        GEOMAGNETRON_ATTUNED    = 7215,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
+        DOOR_FIRMLY_SHUT        = 7254,  -- The door is firmly shut.
+        ALL_G_ORBS_ENERGIZED    = 7257,  -- The six Mana Orbs have been successfully energized with magic!
+        CHEST_UNLOCKED          = 7280,  -- You unlock the chest!
+        REGIME_REGISTERED       = 10343, -- New training regime registered!
     },
     mob =
     {

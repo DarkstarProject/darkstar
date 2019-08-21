@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: King_Ranperres_Tomb (190)
+-- Zone: King Ranperres Tomb (190)
 --
 -----------------------------------
 local ID = require("scripts/zones/King_Ranperres_Tomb/IDs")

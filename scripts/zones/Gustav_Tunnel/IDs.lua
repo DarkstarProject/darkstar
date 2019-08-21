@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Gustav_Tunnel
+-- Area: Gustav Tunnel (212)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -15,6 +15,7 @@ zones[dsp.zone.GUSTAV_TUNNEL] =
         GIL_OBTAINED            = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
+        GEOMAGNETRON_ATTUNED    = 7010, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
         REGIME_REGISTERED       = 9578, -- New training regime registered!
