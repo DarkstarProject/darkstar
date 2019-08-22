@@ -8876,10 +8876,9 @@ INSERT INTO `mob_droplist` VALUES (1742,0,0,1000,856,150);
 INSERT INTO `mob_droplist` VALUES (1742,0,0,1000,1052,60);
 INSERT INTO `mob_droplist` VALUES (1742,0,0,1000,4358,220);
 INSERT INTO `mob_droplist` VALUES (1743,0,0,1000,897,560);
-INSERT INTO `mob_droplist` VALUES (1744,0,0,1000,642,10);
-INSERT INTO `mob_droplist` VALUES (1744,0,0,1000,1885,80);
-INSERT INTO `mob_droplist` VALUES (1744,0,0,1000,1885,80);
-INSERT INTO `mob_droplist` VALUES (1744,0,0,1000,14886,100);
+INSERT INTO `mob_droplist` VALUES (1744,0,0,1000,642,10);  -- (Mountain_Worm, non-NM) chunk_of_zinc_ore
+INSERT INTO `mob_droplist` VALUES (1744,0,0,1000,1885,80); -- chunk_of_zincite
+INSERT INTO `mob_droplist` VALUES (1744,0,0,1000,1885,80); -- chunk_of_zincite
 INSERT INTO `mob_droplist` VALUES (1745,0,0,1000,5382,100);
 INSERT INTO `mob_droplist` VALUES (1746,4,0,1000,834,0);
 INSERT INTO `mob_droplist` VALUES (1746,0,0,1000,1052,60);
@@ -9489,7 +9488,11 @@ INSERT INTO `mob_droplist` VALUES (1800,0,0,1000,2107,20);
 INSERT INTO `mob_droplist` VALUES (1800,0,0,1000,2067,20);
 INSERT INTO `mob_droplist` VALUES (1800,0,0,1000,2037,20);
 INSERT INTO `mob_droplist` VALUES (1800,0,0,1000,2102,20);
--- 1801 to 1802: free
+INSERT INTO `mob_droplist` VALUES (1801,0,0,1000,642,10);    -- (Mountain_Worm NM) chunk_of_zinc_ore
+INSERT INTO `mob_droplist` VALUES (1801,0,0,1000,1885,80);   -- chunk_of_zincite
+INSERT INTO `mob_droplist` VALUES (1801,0,0,1000,1885,80);   -- chunk_of_zincite
+INSERT INTO `mob_droplist` VALUES (1801,0,0,1000,14886,100); -- heavy_gauntlets
+-- 1802: free
 INSERT INTO `mob_droplist` VALUES (1803,2,0,1000,1452,0); -- (Nightmare_Snoll, Nightmare_Weapon, Qu)
 INSERT INTO `mob_droplist` VALUES (1803,0,0,1000,15875,20);
 INSERT INTO `mob_droplist` VALUES (1803,0,0,1000,15878,20);
@@ -16227,6 +16230,8 @@ INSERT INTO `mob_droplist` VALUES (3128,0,0,1000,3495,150); -- forgotten_touch
 INSERT INTO `mob_droplist` VALUES (3128,0,0,1000,10754,150); -- moepapa_ring
 INSERT INTO `mob_droplist` VALUES (3128,0,0,1000,10755,150); -- moepapa_annulet
 INSERT INTO `mob_droplist` VALUES (3128,0,0,1000,10940,150); -- moepapa_pendant
+INSERT INTO `mob_droplist` VALUES (3129,0,0,1000,2819,400); -- (Frost Flambeau) aptant_of_fyrst
+INSERT INTO `mob_droplist` VALUES (3129,0,0,1000,2820,200); -- (Frost Flambeau) aptant_of_geoc
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
