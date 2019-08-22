@@ -1514,23 +1514,23 @@ INSERT INTO `mob_groups` VALUES (90,1088,40,'Doo_Peku_the_Fleetfoot',0,32,689,80
 INSERT INTO `mob_groups` VALUES (91,317,40,'Baa_Dava_the_Bibliophage',0,32,209,8000,0,80,82,0);
 INSERT INTO `mob_groups` VALUES (92,318,40,'Baas_Avatar',0,128,0,4800,2000,73,75,0);
 INSERT INTO `mob_groups` VALUES (93,2847,40,'Nightmare_Crab',600,0,1787,5000,0,78,80,0);
-INSERT INTO `mob_groups` VALUES (94,2849,40,'Nightmare_Dhalmel',600,0,1789,5000,0,78,80,0);
-INSERT INTO `mob_groups` VALUES (95,2872,40,'Nightmare_Uragnite',600,0,1805,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (94,2849,40,'Nightmare_Dhalmel',600,0,1787,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (95,2872,40,'Nightmare_Uragnite',600,0,1788,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (96,2866,40,'Nightmare_Scorpion',600,0,1787,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (97,2844,40,'Nightmare_Bunny',600,0,1785,5000,0,78,80,0);
-INSERT INTO `mob_groups` VALUES (98,2859,40,'Nightmare_Mandragora',600,0,1798,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (98,2859,40,'Nightmare_Mandragora',600,0,1785,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (99,2848,40,'Nightmare_Crawler',600,0,1788,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (100,2863,40,'Nightmare_Raven',600,0,1788,5000,0,78,80,0);
-INSERT INTO `mob_groups` VALUES (101,2851,40,'Nightmare_Eft',600,0,1791,5000,0,78,80,0);
+INSERT INTO `mob_groups` VALUES (101,2851,40,'Nightmare_Eft',600,0,1785,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (102,3773,40,'Stihi',1200,0,2335,15000,0,82,83,0);
 INSERT INTO `mob_groups` VALUES (103,347,40,'Barong',1200,0,230,15000,0,82,83,0);
 INSERT INTO `mob_groups` VALUES (104,85,40,'Alklha',1200,0,48,15000,0,82,83,0);
 INSERT INTO `mob_groups` VALUES (105,73,40,'Aitvaras',1200,0,41,15000,0,82,83,0);
-INSERT INTO `mob_groups` VALUES (106,5116,40,'Lost_Aitvaras',0,128,0,0,0,100,100,0);
-INSERT INTO `mob_groups` VALUES (107,5112,40,'Arch_Apocalyptic_Beast',0,128,0,0,0,105,105,0);
-INSERT INTO `mob_groups` VALUES (108,5113,40,'Lost_Barong',0,128,0,0,0,100,100,0);
-INSERT INTO `mob_groups` VALUES (109,5114,40,'Lost_Stihi',0,128,0,0,0,100,100,0);
-INSERT INTO `mob_groups` VALUES (110,5115,40,'Lost_Alklha',0,128,0,0,0,100,100,0);
+INSERT INTO `mob_groups` VALUES (106,5116,40,'Lost_Aitvaras',0,128,1802,0,0,100,100,0);
+INSERT INTO `mob_groups` VALUES (107,5112,40,'Arch_Apocalyptic_Beast',0,128,2797,0,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (108,5113,40,'Lost_Barong',0,128,2795,0,0,100,100,0);
+INSERT INTO `mob_groups` VALUES (109,5114,40,'Lost_Stihi',0,128,2796,0,0,100,100,0);
+INSERT INTO `mob_groups` VALUES (110,5115,40,'Lost_Alklha',0,128,1805,0,0,100,100,0);
 INSERT INTO `mob_groups` VALUES (111,4173,40,'Vanguard_Pitfighter',600,0,2540,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (112,4147,40,'Vanguard_Enchanter',600,0,2540,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (113,4199,40,'Vanguard_Welldigger',600,0,2540,4000,0,93,95,0);
@@ -1606,15 +1606,15 @@ INSERT INTO `mob_groups` VALUES (182,4157,40,'Vanguard_Inciter',600,0,2550,4000,
 INSERT INTO `mob_groups` VALUES (183,4180,40,'Vanguard_Salvager',600,0,2550,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (184,4137,40,'Vanguard_Assassin',600,0,2550,4000,0,93,95,0);
 INSERT INTO `mob_groups` VALUES (185,4168,40,'Vanguard_Oracle',600,0,2550,4000,0,93,95,0);
-INSERT INTO `mob_groups` VALUES (186,2847,40,'Nightmare_Crab',600,0,1787,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (187,2849,40,'Nightmare_Dhalmel',600,0,1789,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (188,2872,40,'Nightmare_Uragnite',600,0,1805,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (189,2866,40,'Nightmare_Scorpion',600,0,1787,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (190,2844,40,'Nightmare_Bunny',600,0,1785,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (191,2859,40,'Nightmare_Mandragora',600,0,1798,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (192,2848,40,'Nightmare_Crawler',600,0,1788,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (193,2863,40,'Nightmare_Raven',600,0,1788,5000,0,94,96,0);
-INSERT INTO `mob_groups` VALUES (194,2851,40,'Nightmare_Eft',600,0,1791,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (186,2847,40,'Nightmare_Crab',600,0,1791,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (187,2849,40,'Nightmare_Dhalmel',600,0,1791,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (188,2872,40,'Nightmare_Uragnite',600,0,1798,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (189,2866,40,'Nightmare_Scorpion',600,0,1791,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (190,2844,40,'Nightmare_Bunny',600,0,1789,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (191,2859,40,'Nightmare_Mandragora',600,0,1789,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (192,2848,40,'Nightmare_Crawler',600,0,1798,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (193,2863,40,'Nightmare_Raven',600,0,1798,5000,0,94,96,0);
+INSERT INTO `mob_groups` VALUES (194,2851,40,'Nightmare_Eft',600,0,1789,5000,0,94,96,0);
 
 -- ------------------------------------------------------------
 -- Dynamis - Qufim (Zone 41)
