@@ -64,7 +64,7 @@ g_mixins.dynamis_beastmen = function(mob)
 
     mob:addListener("DEATH", "DYNAMIS_ITEM_DISTRIBUTION", function(mob, killer)
         if killer then
-            local th = thCurrency[math.min(mob:getDeathTH(), 4)]
+            local th = thCurrency[math.min(mob:getTHlevel(), 4)]
             local family = mob:getFamily()
             local currency = familyCurrency[family]
             if currency == nil then
