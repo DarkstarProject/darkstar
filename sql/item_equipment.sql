@@ -13571,7 +13571,7 @@ INSERT INTO `item_equipment` VALUES (28063,'councilors_cuffs',1,0,4194303,345,0,
 INSERT INTO `item_equipment` VALUES (28064,'thurandaut_gloves',99,100,2593826,343,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (28065,'karieyh_moufles',99,100,10689,342,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (28066,'geomancy_mitaines',99,109,1048576,308,0,0,64,0);
-INSERT INTO `item_equipment` VALUES (28067,'runeist_mitons',99,109,2097152,338,0,64,0);
+INSERT INTO `item_equipment` VALUES (28067,'runeist_mitons',99,109,2097152,338,0,0,64,0);
 INSERT INTO `item_equipment` VALUES (28068,'abatteur_subligar',99,0,2594082,168,0,0,128,0);
 INSERT INTO `item_equipment` VALUES (28069,'pungas_slops',99,0,16384,115,0,0,128,0);
 INSERT INTO `item_equipment` VALUES (28070,'briscard_cuisses',99,0,8641,139,0,0,128,0);
