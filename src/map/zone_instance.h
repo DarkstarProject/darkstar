@@ -41,6 +41,7 @@ public:
     virtual void	SpawnMOBs(CCharEntity* PChar) override;									// отображаем MOBs в зоне
     virtual void	SpawnPETs(CCharEntity* PChar) override;									// отображаем PETs в зоне
     virtual void	SpawnNPCs(CCharEntity* PChar) override;									// отображаем NPCs в зоне
+    virtual void	SpawnTRUSTs(CCharEntity* PChar) override;								
     virtual void	SpawnMoogle(CCharEntity* PChar) override;								// отображаем Moogle в MogHouse
     virtual void    SpawnTransport(CCharEntity* PChar) override;                            // отображаем транспорт
 
@@ -53,6 +54,8 @@ public:
     virtual void	InsertMOB(CBaseEntity* PMob) override;									// добавляем в зону mob
     virtual void	InsertPET(CBaseEntity* PPet) override;									// добавляем в зону pet
     virtual void	DeletePET(CBaseEntity* PPet) override;       	                        // derefs the pet's ID from this zone
+    virtual void	InsertTRUST(CBaseEntity* PTrust) override;								
+    virtual void	DeleteTRUST(CBaseEntity* PTrust) override;       	                    
 
     virtual void    FindPartyForMob(CBaseEntity* PEntity) override;                         // ищем группу для монстра
     virtual void    TransportDepart(uint16 boundary, uint16 zone) override;                 // транспотр отправляется, необходимо собрать пассажиров

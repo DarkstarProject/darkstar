@@ -30,6 +30,7 @@
 #include "spell.h"
 #include "blue_spell.h"
 #include "status_effect_container.h"
+#include "trust_spell_container.h"
 #include "utils/blueutils.h"
 #include "items/item_weapon.h"
 
@@ -141,7 +142,7 @@ bool CSpell::tookEffect()
 
 bool CSpell::hasMPCost()
 {
-    return m_spellGroup != SPELLGROUP_SONG && m_spellGroup != SPELLGROUP_NINJUTSU;
+    return m_spellGroup != SPELLGROUP_SONG && m_spellGroup != SPELLGROUP_NINJUTSU && m_spellGroup != SPELLGROUP_TRUST;
 }
 
 bool CSpell::isHeal()
@@ -158,6 +159,14 @@ bool CSpell::isCure()
 bool CSpell::isNa()
 {
     return (static_cast<uint16>(m_ID) >= 14 && static_cast<uint16>(m_ID) <= 20) || m_ID == SpellID::Erase;
+}
+
+bool CSpell::isDebuff()
+{
+    return ((getValidTarget() & TARGET_ENEMY) && getSkillType() == SKILL_ENFEEBLING_MAGIC) || m_ID == SpellID::Burn ||
+        m_ID == SpellID::Frost || m_ID == SpellID::Choke || m_ID == SpellID::Rasp || m_ID == SpellID::Shock ||
+        m_ID == SpellID::Drown || m_ID == SpellID::Stun || m_ID == SpellID::Curse || m_ID == SpellID::Bio ||
+        m_ID == SpellID::Bio_II || m_ID == SpellID::Bio_III || m_ID == SpellID::Bio_IV || m_ID == SpellID::Bio_V;
 }
 
 bool CSpell::canHitShadow()
@@ -717,5 +726,46 @@ namespace spell
         }
 
         return total;
+    }
+
+    uint32 GetEnfeebleEffect(CSpell* spell)
+    {
+        if (spell->getID() == SpellID::Slow || spell->getID() == SpellID::Slowga)
+        {
+            return EFFECT::EFFECT_SLOW;
+        }
+        if (spell->getID() == SpellID::Slow_II)
+        {
+            return EFFECT::EFFECT_SLOW_II;
+        }
+        if (spell->getID() == SpellID::Paralyze || spell->getID() == SpellID::Paralyga)
+        {
+            return EFFECT::EFFECT_PARALYSIS;
+        }
+        if (spell->getID() == SpellID::Paralyze_II)
+        {
+            return EFFECT::EFFECT_PARALYSIS_II;
+        }
+        if (spell->getID() == SpellID::Protect || spell->getID() == SpellID::Protectra ||
+            spell->getID() == SpellID::Protect_II || spell->getID() == SpellID::Protectra_II ||
+            spell->getID() == SpellID::Protect_III || spell->getID() == SpellID::Protectra_III ||
+            spell->getID() == SpellID::Protect_IV || spell->getID() == SpellID::Protectra_IV ||
+            spell->getID() == SpellID::Protect_V || spell->getID() == SpellID::Protectra_V)
+        {
+            return EFFECT::EFFECT_PROTECT;
+        }
+        if (spell->getID() == SpellID::Shell || spell->getID() == SpellID::Shellra ||
+            spell->getID() == SpellID::Shell_II || spell->getID() == SpellID::Shellra_II ||
+            spell->getID() == SpellID::Shell_III || spell->getID() == SpellID::Shellra_III ||
+            spell->getID() == SpellID::Shell_IV || spell->getID() == SpellID::Shellra_IV ||
+            spell->getID() == SpellID::Shell_V || spell->getID() == SpellID::Shellra_V)
+        {
+            return EFFECT::EFFECT_SHELL;
+        }
+        if (spell->getID() == SpellID::Blindna)
+        {
+            return EFFECT::EFFECT_BLINDNESS;
+        }
+        return 0;
     }
 };

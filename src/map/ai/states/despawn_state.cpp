@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "despawn_state.h"
 #include "../../entities/baseentity.h"
 #include "../../entities/mobentity.h"
+#include "../../entities/trustentity.h"
 #include "../../packets/entity_animation.h"
 #include "../ai_container.h"
 #include "../../zone.h"
@@ -46,7 +47,14 @@ bool CDespawnState::Update(time_point tick)
 {
     if (tick > GetEntryTime() + 3s && !IsCompleted() && !(static_cast<CMobEntity*>(m_PEntity)->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
     {
-        static_cast<CMobEntity*>(m_PEntity)->OnDespawn(*this);
+        if (m_PEntity->objtype == TYPE_TRUST)
+        {
+            static_cast<CTrustEntity*>(m_PEntity)->OnDespawn(*this);
+        }
+        else
+        {
+            static_cast<CMobEntity*>(m_PEntity)->OnDespawn(*this);
+        }
         Complete();
     }
     return IsCompleted();

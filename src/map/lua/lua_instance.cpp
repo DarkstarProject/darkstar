@@ -176,6 +176,27 @@ inline int32 CLuaInstance::getPets(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaInstance::getTrusts(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+
+    lua_createtable(L, (int)m_PLuaInstance->m_trustList.size(), 0);
+    int i = 1;
+    for (auto member : m_PLuaInstance->m_trustList)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)member.second);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    }
+
+    return 1;
+}
+
 inline int32 CLuaInstance::getTimeLimit(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
@@ -405,6 +426,7 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
     LUNAR_DECLARE_METHOD(CLuaInstance, getMobs),
     LUNAR_DECLARE_METHOD(CLuaInstance, getNpcs),
     LUNAR_DECLARE_METHOD(CLuaInstance, getPets),
+    LUNAR_DECLARE_METHOD(CLuaInstance, getTrusts),
     LUNAR_DECLARE_METHOD(CLuaInstance, getTimeLimit),
     LUNAR_DECLARE_METHOD(CLuaInstance, getEntryPos),
     LUNAR_DECLARE_METHOD(CLuaInstance, getLastTimeUpdate),

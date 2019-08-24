@@ -634,6 +634,7 @@ enum ABILITY
 };
 
 #define MAX_ABILITY_ID  752
+#define MAX_TRUST_ABILITY_ID  130
 
 struct Charge_t
 {
@@ -645,6 +646,15 @@ struct Charge_t
     uint16     merit;
 };
 
+struct Trust_ability
+{
+    uint32     trustID;          //recastId
+    uint16     abilityID;         //job
+    uint16     recastTime;       //level
+    uint16     recastId;       //level
+    uint16     minLevel;  //maximum number of stored charges
+    uint32     maxLevel;  //time required to restore one charge
+};
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -735,6 +745,7 @@ private:
 namespace ability
 {
     void    LoadAbilitiesList();
+    void    LoadTrustAbilityList();
 
     CAbility* GetAbility(uint16 AbilityID);
 
@@ -744,6 +755,9 @@ namespace ability
     uint32 GetAbsorbMessage(uint32 message);
 
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID);
+    std::vector<Trust_ability*> GetTrustAbilityLists(uint16 ListID);
+    Trust_ability* GetTrustAbility(uint16 ListID, uint16 abilityID);
+    std::vector<uint16>& GetTrustAbilityList(uint16 ListID);
 };
 
 #endif

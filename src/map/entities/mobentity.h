@@ -126,6 +126,7 @@ public:
     uint8     TPUseChance();                           // return % chance to use TP move
 
     bool      CanDeaggro();
+    bool      HasID(uint32 ID);                        //true if ID is in the container with non-zero enmity level
     time_point GetDespawnTime();
     void      SetDespawnTime(duration _duration);
     uint32    GetRandomGil();                          // returns a random amount of gil

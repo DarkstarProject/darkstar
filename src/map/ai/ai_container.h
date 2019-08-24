@@ -58,6 +58,8 @@ public:
     bool Disengage();
     bool WeaponSkill(uint16 targid, uint16 wsid);
     bool MobSkill(uint16 targid, uint16 wsid);
+    bool TrustSkill(uint16 targid, uint16 wsid);
+    bool TrustAbility(uint16 targid, uint16 abilityid);
     bool Ability(uint16 targid, uint16 abilityid);
     bool RangedAttack(uint16 targid);
     bool Trigger(uint16 targid);
@@ -71,6 +73,8 @@ public:
     bool Internal_Disengage();
     bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
     bool Internal_MobSkill(uint16 targid, uint16 wsid);
+    bool Internal_TrustSkill(uint16 targid, uint16 wsid);
+    bool Internal_TrustAbility(uint16 targetid, uint16 abilityid);
     bool Internal_Ability(uint16 targetid, uint16 abilityid);
     bool Internal_RangedAttack(uint16 targetid);
     bool Internal_Die(duration);

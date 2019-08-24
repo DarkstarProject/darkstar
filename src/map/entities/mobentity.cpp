@@ -317,6 +317,21 @@ bool CMobEntity::CanDeaggro()
     return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 
+bool CMobEntity::HasID(uint32 PPlayer)
+{
+    if (this != nullptr)
+    {
+        if (PEnmityContainer != nullptr)
+        {
+            if (PEnmityContainer->HasID(PPlayer))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 bool CMobEntity::IsFarFromHome()
 {
     return distance(loc.p, m_SpawnPoint) > m_maxRoamDistance;
@@ -837,7 +852,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
     if (validZone && charutils::GetRealExp(PChar->GetMLevel(), GetMLevel()) > 0)
     {
-        if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetRegionOwner(PChar->loc.zone->GetRegionID()) <= 2) ||
+        if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetRegionOwner(PChar->loc.zone->GetRegionID()) < 64) ||
             (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && PChar->loc.zone->GetRegionID() >= 28 && PChar->loc.zone->GetRegionID() <= 32) ||
             (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
             m_Element > 0 && dsprand::GetRandomNumber(100) < 20) // Need to move to CRYSTAL_CHANCE constant

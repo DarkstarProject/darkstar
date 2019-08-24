@@ -4691,7 +4691,7 @@ namespace charutils
 
     void ReloadParty(CCharEntity* PChar)
     {
-        int ret = Sql_Query(SqlHandle, "SELECT partyid, allianceid, partyflag & %d FROM accounts_sessions s JOIN accounts_parties p ON "
+        PChar->ReloadPartyDec();        int ret = Sql_Query(SqlHandle, "SELECT partyid, allianceid, partyflag & %d FROM accounts_sessions s JOIN accounts_parties p ON "
             "s.charid = p.charid WHERE p.charid = %u;", (PARTY_SECOND | PARTY_THIRD), PChar->id);
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
@@ -4805,7 +4805,6 @@ namespace charutils
             {
                 PChar->PParty->DelMember(PChar);
             }
-            PChar->ReloadPartyDec();
         }
     }
 

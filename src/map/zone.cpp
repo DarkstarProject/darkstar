@@ -443,6 +443,21 @@ void CZone::InsertPET(CBaseEntity* PPet)
 
 /************************************************************************
 *                                                                       *
+*  Добавляем в зону TRUST (свободные targid 0x800-0x8FF)                  *
+*                                                                       *
+************************************************************************/
+
+void CZone::InsertTRUST(CBaseEntity* PTrust)
+{
+    m_zoneEntities->InsertTRUST(PTrust);
+}
+
+void CZone::DeleteTRUST(CBaseEntity* PTrust)
+{
+    m_zoneEntities->DeleteTRUST(PTrust);
+}
+/************************************************************************
+*                                                                       *
 *  Добавляем в зону активную область                                    *
 *                                                                       *
 ************************************************************************/
@@ -654,6 +669,10 @@ void CZone::SpawnPETs(CCharEntity* PChar)
     m_zoneEntities->SpawnPETs(PChar);
 }
 
+void CZone::SpawnTRUSTs(CCharEntity* PChar)
+{
+    m_zoneEntities->SpawnTRUSTs(PChar);
+}
 /************************************************************************
 *                                                                       *
 *  Проверка видимости NPCs персонажем.                                  *
@@ -943,8 +962,6 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         PChar->PTreasurePool->DelMember(PChar);
     }
 
-    PChar->ClearTrusts(); // trusts don't survive zone lines
-
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);
 
@@ -963,6 +980,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     PChar->SpawnNPCList.clear();
     PChar->SpawnMOBList.clear();
     PChar->SpawnPETList.clear();
+    PChar->SpawnTRUSTList.clear();
 
     if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID == 0)
     {

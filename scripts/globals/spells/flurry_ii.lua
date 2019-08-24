@@ -15,7 +15,7 @@ function onSpellCast(caster, target, spell)
     duration = calculateDurationForLvl(duration, 96, target:getMainLvl())
     
     if target:addStatusEffect(dsp.effect.FLURRY_II, 30, 0, duration) then
-        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
     end

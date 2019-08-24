@@ -126,7 +126,10 @@ void CParty::DisbandParty(bool playerInitiated)
         for (uint8 i = 0; i < members.size(); ++i)
         {
             CCharEntity* PChar = (CCharEntity*)members.at(i);
-            PChar->ClearTrusts();
+           if (PChar->PParty->members.size() == 1 && PChar->PTrusts.size() > 0)
+            {
+                PChar->ClearTrusts();
+            }
 
             PChar->PParty = nullptr;
             PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
@@ -240,10 +243,11 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
     if (m_PLeader == PEntity)
     {
-        // Remove their trusts
+        RemovePartyLeader(PEntity);
+        
+// Remove their trusts
         CCharEntity* PChar = (CCharEntity*)PEntity;
         PChar->ClearTrusts();
-        RemovePartyLeader(PEntity);
     }
     else
     {
@@ -735,6 +739,7 @@ void CParty::ReloadParty()
     else
     {
         RefreshFlags(info);
+        CBattleEntity* PLeader = GetLeader();
         //regular party
         for (uint8 i = 0; i < members.size(); ++i)
         {
@@ -744,7 +749,14 @@ void CParty::ReloadParty()
             PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size());
             PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
             PChar->ReloadPartyDec();
-            PChar->pushPacket(new CPartyDefinePacket(this));
+            if (PChar->loc.zone->GetID() == PLeader->loc.zone->GetID())
+            {
+                PChar->pushPacket(new CPartyDefinePacket(this, true));
+            }
+            else
+            {
+                PChar->pushPacket(new CPartyDefinePacket(this));
+            }
             //auto effects = std::make_unique<CPartyEffectsPacket>();
             uint8 j = 0;
             for (auto&& memberinfo : info)
@@ -757,14 +769,16 @@ void CParty::ReloadParty()
                     //    effects->AddMemberEffects(PChar);
 
                     // Inject the party leader's trusts into the party list
-                    CBattleEntity* PLeader = GetLeader();
                     if (PLeader != nullptr)
                     {
-                        for (auto PTrust : ((CCharEntity*)PLeader)->PTrusts)
+                        if (PChar->loc.zone->GetID() == PLeader->loc.zone->GetID())
                         {
-                            j++;
-                            // trusts don't persist over zonelines, so we know their zone has be the same as the leader.
-                            PChar->pushPacket(new CPartyMemberUpdatePacket(PTrust, j));
+                            for (auto PTrust : ((CCharEntity*)PLeader)->PTrusts)
+                            {
+                                j++;
+                                // trusts don't persist over zonelines, so we know their zone has be the same as the leader.
+                                PChar->pushPacket(new CPartyMemberUpdatePacket(PTrust, j));
+                            }
                         }
                     }
                 }

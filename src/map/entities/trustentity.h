@@ -24,22 +24,71 @@
 #ifndef _CTRUSTENTITY_H
 #define _CTRUSTENTITY_H
 
+#include "battleentity.h"
+#include "charentity.h"
 #include "mobentity.h"
+#include "../trait.h"
 
+class CTrustSpellContainer;
+class CTrustSpellList;
+class CTrustWSList;
 class CCharEntity;
+class CTrustSkillState;
+class CTrustAbilityState;
+class CMeritPoints;
+
 class CTrustEntity : public CMobEntity
 {
 public:
-    CTrustEntity(CCharEntity*);
+    CTrustEntity();
 	~CTrustEntity();
-	uint8 m_Element;
-	uint32 m_PetID;
 
+	uint8       m_Element;
+	uint32      m_TrustID;
+
+    CTrustSpellList* m_TrustSpellListContainer;        // The spells list container for this mob
+    CTrustWSList*    m_TrustWSListContainer;        // The spells list container for this mob
+
+
+    CTrustSpellContainer* TrustSpellContainer;                // retrieves spells for the mob
+    uint8     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
+    uint16     m_SpellList;
+
+    uint8     TPUseChance();                           // return % chance to use TP move
+
+    void      setLastWs(uint32 value);
+    uint32    getLastWs();
+    void      setMobMod(uint16 type, int16 value);
+    int16     getMobMod(uint16 type);
+    void      addMobMod(uint16 type, int16 value);     // add
+    void      defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
+    bool	  Rest(float rate); // heal an amount of hp / mp
+
+    uint16    m_Behaviour;                // mob behaviour
+    uint16    m_MobSkillList;             // Mob skill list defined from mob_pools
+
+    uint8     m_name_prefix;
+    //uint32    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+    string_t  packetName;                              // Used for battle allies
+
+    virtual void OnEngage(CAttackState&) override;
     virtual void PostTick() override;
     virtual void FadeOut() override;
     virtual void Die() override;
     virtual void Spawn() override;
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
+    virtual void OnDisengage(CAttackState&) override;
+    virtual void OnDespawn(CDespawnState&) override;
+    virtual void OnDeathTimer() override;public:
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
+    virtual void OnAbility(CAbilityState& state, action_t& action) override;
+    virtual void OnTrustSkillFinished(CTrustSkillState&, action_t&);
+    virtual void addTrait(CTrait*);
+    virtual void delTrait(CTrait*);
+
+private:
+    std::unordered_map<int, int16>     m_mobModStat;
+    uint32 m_currentWS;
 };
 
 #endif

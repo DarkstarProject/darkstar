@@ -50,6 +50,7 @@ public:
     int32 getMobs(lua_State*);
     int32 getNpcs(lua_State*);
     int32 getPets(lua_State*);
+    int32 getTrusts(lua_State*);
     int32 getTimeLimit(lua_State*);
     int32 getEntryPos(lua_State*);
     int32 getLastTimeUpdate(lua_State*);

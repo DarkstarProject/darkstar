@@ -1029,73 +1029,6 @@ namespace petutils
         }
     }
 
-    void SpawnTrust(CCharEntity* PMaster, uint32 TrustID)
-    {
-        // TODO: You can only spawn trusts in battle areas, similar to pets. See MSGBASIC_TRUST_NOT_HERE
-
-        // TODO: There is an expandable limit of trusts you can summon, based on key items.
-        size_t maxTrusts = 5;
-
-        // TODO: These checks should be done at before spellcast time!!
-        // If you're in a party, you can only spawn trusts if:
-        //  * You're the party leader
-        //  * The party isn't full
-        //  * The party isn't part of an alliance
-        if (PMaster->PParty != nullptr)
-        {
-            CBattleEntity* PLeader = PMaster->PParty->GetLeader();
-            if (PLeader == nullptr || PLeader->id != PMaster->id)
-            {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustSoloOrLeader));
-                return;
-            }
-            if (PMaster->PParty->members.size() >= 6)
-            {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustLimit));
-                return;
-            }
-            if (PMaster->PParty->m_PAlliance != nullptr)
-            {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustSoloOrLeader));
-                return;
-            }
-
-            // Reduce the max number of summonable trusts
-            maxTrusts = 6 - PMaster->PParty->members.size();
-        }
-
-        if (PMaster->PTrusts.size() >= maxTrusts)
-        {
-            PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustLimit));
-            return;
-        }
-
-        // You can't spawn the same trust twice
-        // TODO: This includes otherwise distinct trusts, e.g. Shantotto and Shantotto II, only 1 can be called.
-        //       It'd probably be "good enough" to use the name as a heuristic, looking for "II" (this catches 99% of them).
-        for (auto PTrust : PMaster->PTrusts)
-        {
-            if (PTrust->m_PetID == TrustID)
-            {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustSame));
-                return;
-            }
-        }
-
-        // Make a new party if we weren't in one.
-        // TODO: It's actually not a real party: /sea shows your name as grey not yellow, but it shows as a party on the GUI.
-        if (PMaster->PParty == nullptr)
-        {
-            PMaster->PParty = new CParty(PMaster);
-        }
-
-        CTrustEntity* PTrust = LoadTrust(PMaster, TrustID);
-        PMaster->PTrusts.insert(PMaster->PTrusts.begin(), PTrust);
-        PMaster->StatusEffectContainer->CopyConfrontationEffect(PTrust);
-        PMaster->loc.zone->InsertPET(PTrust);
-        PMaster->PParty->ReloadParty();
-    }
-
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
     {
         // this is ONLY used for mob smn elementals / avatars
@@ -1720,53 +1653,6 @@ namespace petutils
         PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
 
         PMaster->PPet = PPet;
-    }
-
-    CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
-    {
-        DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
-        CTrustEntity* PTrust = new CTrustEntity(PMaster);
-        PTrust->loc = PMaster->loc;
-        PTrust->m_OwnerID.id = PMaster->id;
-        PTrust->m_OwnerID.targid = PMaster->targid;
-
-        // spawn me randomly around master
-        PTrust->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, (float)M_PI);
-        Pet_t* trust = g_PPetList.at(TrustID);
-        PTrust->look = trust->look;
-        PTrust->name = trust->name;
-        PTrust->m_name_prefix = trust->name_prefix;
-        PTrust->m_Family = trust->m_Family;
-        PTrust->m_MobSkillList = trust->m_MobSkillList;
-        PTrust->SetMJob(trust->mJob);
-        PTrust->SetSJob(trust->mJob); // TODO: This may not be true for some trusts
-        PTrust->m_Element = trust->m_Element;
-        PTrust->m_PetID = TrustID;
-        PTrust->status = STATUS_NORMAL;
-        PTrust->m_ModelSize = trust->size;
-        PTrust->m_EcoSystem = trust->EcoSystem;
-
-        // assume level matches master
-        PTrust->SetMLevel(PMaster->GetMLevel());
-        PTrust->SetSLevel(PMaster->GetSLevel());
-
-        // TODO: Proper stats per trust
-        PTrust->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PTrust->GetMLevel()));
-        PTrust->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PTrust->GetMLevel()));
-        PTrust->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, PTrust->GetMLevel())); // Throwing??
-        PTrust->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, PTrust->GetMLevel()));
-        //set C magic evasion
-        PTrust->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELEMENTAL_MAGIC, JOB_RDM, PTrust->GetMLevel()));
-        // HP/MP STR/DEX/etc..
-        LoadTrustStats(PTrust);
-
-        PTrust->health.tp = 0;
-        PTrust->UpdateHealth();
-        PTrust->health.hp = PTrust->GetMaxHP();
-        PTrust->health.mp = PTrust->GetMaxMP();
-
-        // TODO: Load stats from script
-        return PTrust;
     }
 
     void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize)

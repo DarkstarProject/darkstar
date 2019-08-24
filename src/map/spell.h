@@ -792,6 +792,7 @@ public:
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
     bool        hasMPCost(); // checks if spell costs mp to use
     bool        isHeal(); // is a heal spell
+    bool        isDebuff(); // is a debuff spell
     bool        isCure(); // is a Cure spell
     bool        isNa(); // is a -na spell
     bool        canHitShadow(); // check if spell ignores shadows
@@ -874,6 +875,7 @@ namespace spell
     bool    CanUseSpell(CBattleEntity* PCaster, CSpell* PSpell);
     bool    CanUseSpellWith(SpellID spellId, JOBTYPE job, uint8 level);
     float   GetSpellRadius(CSpell* spellId, CBattleEntity* PCaster);
+    uint32   GetEnfeebleEffect(CSpell* spellId);
 };
 
 #endif

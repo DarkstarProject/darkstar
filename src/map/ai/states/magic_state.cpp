@@ -33,6 +33,10 @@
 #include "../../utils/battleutils.h"
 #include "../../packets/action.h"
 #include "../../packets/message_basic.h"
+#include "../../packets/message_standard.h"
+#include "../../packets/char_sync.h"
+#include "../../packets/char_update.h"
+#include "../../packets/entity_update.h"
 #include "../../../common/utils.h"
 
 CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid, uint8 flags) :
@@ -50,9 +54,40 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
     m_PSpell = PSpell->clone();
 
     auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
+
     if (!PTarget || m_errorMsg)
     {
+        CBattleEntity* PTarget = (CBattleEntity*)m_PEntity->GetEntity(targid, TYPE_TRUST | TYPE_MOB | TYPE_PC | TYPE_PET);
+        if (PTarget->objtype == TYPE_TRUST)
+        {
+            switch (m_PSpell->getID())
+            {
+            case SpellID::Raise:
+            case SpellID::Raise_II:
+            case SpellID::Raise_III:
+                throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_PERFORM_ACTION));
+            default:
+                break;
+            }
+        }
         throw CStateInitException(std::move(m_errorMsg));
+    }
+
+    if (PTarget->objtype == TYPE_TRUST && m_PEntity->objtype == TYPE_PC)
+    {
+        if (PTarget->PMaster->id != m_PEntity->id)
+        {
+            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_CAST_ON));
+        }
+        switch (m_PSpell->getID())
+        {
+            case SpellID::Sneak:
+            case SpellID::Deodorize:
+            case SpellID::Invisible:
+                throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_PERFORM_ACTION));
+            default:
+                break;
+        }
     }
 
     if (!CanCastSpell(PTarget))
@@ -63,7 +98,16 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
     auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, PTarget, GetSpell());
     if (errorMsg)
     {
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, static_cast<uint16>(m_PSpell->getID()), 0, errorMsg == 1 ? MSGBASIC_CANNOT_CAST_SPELL : errorMsg));
+        if (m_PSpell->getSpellGroup() == SPELLGROUP_TRUST)
+        {
+            //throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, static_cast<uint16>(m_PSpell->getID()), 0, (MsgStd)errorMsg));
+            ((CCharEntity*)m_PEntity)->pushPacket(new CMessageStandardPacket((CCharEntity*)m_PEntity, 0, (MsgStd)errorMsg));
+            throw CStateInitException(std::move(m_errorMsg));
+        }
+        else
+        {
+            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, static_cast<uint16>(m_PSpell->getID()), 0, errorMsg == 1 ? MSGBASIC_CANNOT_CAST_SPELL : errorMsg));
+        }
     }
 
     m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, this));
@@ -83,7 +127,16 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
     actionTarget.speceffect = SPECEFFECT_NONE;
     actionTarget.animation = 0;
     actionTarget.param = static_cast<uint16>(m_PSpell->getID());
-    actionTarget.messageID = 327; // starts casting
+
+    if (m_PEntity->objtype == TYPE_TRUST && (m_PSpell->isBuff() || m_PSpell->isHeal() || m_PSpell->isCure()))
+    {
+        actionTarget.messageID = 3; // starts casting
+    }
+    else
+    {
+        actionTarget.messageID = 327; // starts casting
+    }
+
     m_PEntity->PAI->EventHandler.triggerListener("MAGIC_START", m_PEntity, m_PSpell.get(), &action); //TODO: weaponskill lua object
 
     m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
@@ -98,7 +151,7 @@ bool CMagicState::Update(time_point tick)
 
         action_t action;
 
-        if (!PTarget || m_errorMsg || (HasMoved() && (m_PEntity->objtype != TYPE_PET ||
+        if (!PTarget || m_errorMsg || (HasMoved() && (m_PEntity->objtype != TYPE_PET || m_PEntity->objtype != TYPE_TRUST ||
             static_cast<CPetEntity*>(m_PEntity)->getPetType() != PETTYPE_AUTOMATON)) || !CanCastSpell(PTarget))
         {
             m_interrupted = true;

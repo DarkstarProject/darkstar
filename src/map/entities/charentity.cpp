@@ -44,6 +44,7 @@
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/player_controller.h"
+#include "../ai/controllers/trust_controller.h"
 #include "../ai/helpers/targetfind.h"
 #include "../ai/states/ability_state.h"
 #include "../ai/states/attack_state.h"
@@ -63,6 +64,7 @@
 #include "../attack.h"
 #include "../utils/attackutils.h"
 #include "../utils/charutils.h"
+#include "../utils/trustutils.h"
 #include "../utils/battleutils.h"
 #include "../item_container.h"
 #include "../items/item_weapon.h"
@@ -195,6 +197,7 @@ CCharEntity::CCharEntity()
     m_PlayTime = 0;
     m_SaveTime = 0;
     m_reloadParty = 0;
+    m_lastWSused = 0;
 
     m_LastYell = 0;
     m_moghouseID = 0;
@@ -471,19 +474,47 @@ bool CCharEntity::ReloadParty()
 
 void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
 {
-    if (!PTrust->PAI->IsSpawned())
+    if (!PTrust)
         return;
 
-    auto trustIt = std::remove_if(PTrusts.begin(), PTrusts.end(), [PTrust](auto trust) { return PTrust == trust; });
-    if (trustIt != PTrusts.end())
+    for (size_t i = 0; i < PTrusts.size(); i++)
     {
-        PTrust->PAI->Despawn();
-        PTrusts.erase(trustIt);
+        if (PTrusts.at(i)->id == PTrust->id)
+        {
+            PTrust->PAI->ClearStateStack();
+            trustutils::DespawnTrust(this, PTrust);
+
+            PTrusts.erase(PTrusts.begin() + i);
+            PTrust->PMaster = nullptr;
+            break;
+        }
     }
+
     if (PParty != nullptr)
     {
-        PParty->ReloadParty();
+        if (PParty->members.size() == 1 && PTrusts.size() == 0)
+        {
+            SpawnTRUSTList.clear();
+            PParty->DisbandParty();
+            PParty = nullptr;
+        }
+        else
+        {
+            PParty->ReloadParty();
+        }
     }
+}
+
+uint8 CCharEntity::TrustPartyPosition(CTrustEntity* PTrust)
+{
+    for (uint8 i = 0; i < PTrusts.size(); i++)
+    {
+        if (PTrusts.at(i)->id == PTrust->id)
+        {
+            return i;
+        }
+    }
+    return 0;
 }
 
 void CCharEntity::ClearTrusts()
@@ -493,12 +524,17 @@ void CCharEntity::ClearTrusts()
         return;
     }
 
-    for (auto trust : PTrusts)
+    for (size_t i = 0; i < PTrusts.size(); i++)// auto trust : PTrusts)
     {
-        trust->PAI->Despawn();
+        auto trust = (PTrusts.at(i));
+        RemoveTrust(trust);
+        i--;
     }
+
     PTrusts.clear();
+    SpawnTRUSTList.clear();
 }
+
 
 void CCharEntity::Tick(time_point tick)
 {
@@ -675,6 +711,20 @@ bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
     auto ret = CBattleEntity::OnAttack(state, action);
 
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    if (ret && PTrusts.size() > 0)
+    {
+        for each (auto trust in PTrusts)
+        {
+            if (!trust->PAI->IsEngaged())
+            {
+                CTrustController* controller = (CTrustController*)trust->PAI->GetController();
+
+                controller->Engage(PTarget->targid);
+                controller->TTarget = PTarget;
+            }
+        }
+    }
 
     if (PTarget->isDead())
     {
@@ -897,6 +947,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 }
             }
         }
+        m_lastWSused = PWeaponSkill->getID();
     }
     else
     {
@@ -1619,7 +1670,7 @@ CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags
             // Interaction was blocked
             static_cast<CCharEntity*>(PTarget)->pushPacket(new CMessageSystemPacket(0, 0, 226));
         }
-        else if (static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
+        else if (PTarget->objtype == TYPE_TRUST || static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
         {
             return PTarget;
         }
@@ -1654,6 +1705,21 @@ void CCharEntity::Die()
     {
         float retainPercent = std::clamp(map_config.exp_retain + getMod(Mod::EXPERIENCE_RETAINED) / 100.0f, 0.0f, 1.0f);
         charutils::DelExperiencePoints(this, retainPercent, 0);
+    }
+    if (PTrusts.size() > 0)
+    {
+        ClearTrusts();
+        if (PParty != nullptr)
+        {
+            if (PParty->members.size() == 1 && PTrusts.size() == 0)
+            {
+                PParty->DisbandParty();
+            }
+            else
+            {
+                PParty->ReloadParty();
+            }
+        }
     }
 }
 

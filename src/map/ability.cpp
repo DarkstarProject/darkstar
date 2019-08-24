@@ -311,6 +311,8 @@ namespace ability
     CAbility* PAbilityList[MAX_ABILITY_ID];                     // Complete Abilities List
     std::vector<CAbility*> PAbilitiesList[MAX_JOBTYPE];			// Abilities List By Job Type
     std::vector<Charge_t*> PChargesList;                       // Abilities with charges
+    std::unordered_map<uint16, std::vector<uint16>>  g_PTrustAbilityLists;  // List of trust abilities defined from trust_ability_lists.sql
+    std::vector<Trust_ability*> TrustAbilityList[MAX_TRUST_ABILITY_ID];			// Abilities List
 
     /************************************************************************
     *                                                                       *
@@ -414,6 +416,30 @@ namespace ability
         }
     }
 
+    void LoadTrustAbilityList()
+    {
+        const char* fmtQuery = "SELECT ability_list_id, ability_id, recastTime, recastId, min_level, max_level \
+        FROM trust_ability_lists;";
+
+        int32 ret = Sql_Query(SqlHandle, fmtQuery);
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                Trust_ability* PAbility = new Trust_ability;
+                PAbility->trustID = Sql_GetUIntData(SqlHandle, 0);
+                PAbility->abilityID = Sql_GetUIntData(SqlHandle, 1);
+                PAbility->recastTime = Sql_GetUIntData(SqlHandle, 2);
+                PAbility->recastId = Sql_GetUIntData(SqlHandle, 3);
+                PAbility->minLevel = Sql_GetUIntData(SqlHandle, 4);
+                PAbility->maxLevel = Sql_GetUIntData(SqlHandle, 5);
+
+                TrustAbilityList[Sql_GetUIntData(SqlHandle, 0)].push_back(PAbility);
+            }
+        }
+    }
+
     /************************************************************************
     *                                                                       *
     *  Get Ability By ID                                                    *
@@ -491,6 +517,32 @@ namespace ability
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID)
     {
         return PAbilitiesList[JobID];
+    }
+
+    std::vector<Trust_ability*> GetTrustAbilityLists(uint16 ListID)
+    {
+
+        return TrustAbilityList[ListID];
+    }
+
+    Trust_ability* GetTrustAbility(uint16 ListID, uint16 abilityID)
+    {
+        Trust_ability* ability = nullptr;
+        for (std::vector<Trust_ability*>::iterator it = TrustAbilityList[ListID].begin(); it != TrustAbilityList[ListID].end(); ++it)
+        {
+            Trust_ability* PAbility = *it;
+            if (PAbility->abilityID == abilityID)
+            {
+                ability = PAbility;
+                break;
+            }
+        }
+        return ability;
+    }
+
+    std::vector<uint16>& GetTrustAbilityList(uint16 ListID)
+    {
+        return g_PTrustAbilityLists[ListID];
     }
 
     Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID)

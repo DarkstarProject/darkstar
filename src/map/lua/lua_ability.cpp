@@ -63,6 +63,13 @@ inline int32 CLuaAbility::getID(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaAbility::getRecastID(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+
+    lua_pushinteger(L, m_PLuaAbility->getRecastId());
+    return 1;
+}
 
 int32 CLuaAbility::getMsg(lua_State* L)
 {
@@ -75,8 +82,17 @@ int32 CLuaAbility::getMsg(lua_State* L)
 inline int32 CLuaAbility::getRecast(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    lua_pushinteger(L, m_PLuaAbility->getRecastTime());
+    if (!lua_isnil(L, -1) && lua_isnumber(L, -1))
+    {
+        CAbility* ability = ability::GetAbility((uint16)lua_tointeger(L, -1));
+        lua_pushinteger(L, ability->getRecastTime());
+    }
+    else
+    {
+        lua_pushinteger(L, m_PLuaAbility->getRecastTime());
+    }
     return 1;
 }
 
@@ -170,6 +186,7 @@ Lunar<CLuaAbility>::Register_t CLuaAbility::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaAbility,getID),
     LUNAR_DECLARE_METHOD(CLuaAbility,getRecast),
+    LUNAR_DECLARE_METHOD(CLuaAbility,getRecastID),
     LUNAR_DECLARE_METHOD(CLuaAbility,getRange),
     LUNAR_DECLARE_METHOD(CLuaAbility,getName),
     LUNAR_DECLARE_METHOD(CLuaAbility,getAnimation),

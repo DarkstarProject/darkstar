@@ -55,8 +55,10 @@
 #include "../trait.h"
 #include "../weapon_skill.h"
 #include "../mobskill.h"
+#include "../trust_weaponskill.h"
 #include "../entities/battleentity.h"
 #include "../entities/mobentity.h"
+#include "../entities/trustentity.h"
 #include "../entities/petentity.h"
 #include "../enmity_container.h"
 #include "../items.h"
@@ -85,9 +87,14 @@ std::array<std::array<uint16, MAX_SKILLCHAIN_COUNT + 1>, MAX_SKILLCHAIN_LEVEL + 
 
 std::array<CWeaponSkill*, MAX_WEAPONSKILL_ID> g_PWeaponSkillList;           // Holds all Weapon skills
 std::array<CMobSkill*, 4096> g_PMobSkillList;                   // List of mob skills
+std::array<CTrustWeaponSkill*, 4096> g_PTrustWeaponSkillList;
+std::array<CTrustWeaponSkill*, 4096> g_PTrustAbilityList;
 
 std::array<std::list<CWeaponSkill*>, MAX_SKILLTYPE> g_PWeaponSkillsList;
+
 std::unordered_map<uint16, std::vector<uint16>>  g_PMobSkillLists;  // List of mob skills defined from mob_skill_lists.sql
+std::unordered_map<uint16, std::vector<uint16>>  g_PTrustWeaponSkillLists;  // List of mob skills defined from mob_skill_lists.sql
+std::unordered_map<uint16, std::vector<uint16>>  g_PTrustAbilityLists;  // List of mob skills defined from mob_skill_lists.sql
 
 /************************************************************************
 *  battleutils                                                          *
@@ -242,6 +249,34 @@ namespace battleutils
         }
     }
 
+    void LoadTrustWeaponSkillsList()
+    {
+        const char* specialQuery = "SELECT weaponskillid, animation, name, aoe, \
+        `range`, animationTime, primary_sc, secondary_sc, tertiary_sc \
+        FROM weapon_skills;";
+
+        int32 ret = Sql_Query(SqlHandle, specialQuery);
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                CTrustWeaponSkill* PTrustWeaponSkill = new CTrustWeaponSkill(Sql_GetIntData(SqlHandle, 0));
+                PTrustWeaponSkill->setAnimationID(Sql_GetIntData(SqlHandle, 1));
+                PTrustWeaponSkill->setName(Sql_GetData(SqlHandle, 2));
+                PTrustWeaponSkill->setAoe(Sql_GetIntData(SqlHandle, 3));
+                PTrustWeaponSkill->setDistance(Sql_GetFloatData(SqlHandle, 4));
+                PTrustWeaponSkill->setAnimationTime(std::chrono::milliseconds(Sql_GetUIntData(SqlHandle, 5)));
+                PTrustWeaponSkill->setValidTargets(4);
+                PTrustWeaponSkill->setPrimarySkillchain(Sql_GetUIntData(SqlHandle, 6));
+                PTrustWeaponSkill->setSecondarySkillchain(Sql_GetUIntData(SqlHandle, 7));
+                PTrustWeaponSkill->setTertiarySkillchain(Sql_GetUIntData(SqlHandle, 8));
+                PTrustWeaponSkill->setMsg(185); //standard damage message. Scripters will change this.
+                g_PTrustWeaponSkillList[PTrustWeaponSkill->getID()] = PTrustWeaponSkill;
+            }
+        }
+    }
+
     void LoadSkillChainDamageModifiers()
     {
         const char* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
@@ -333,6 +368,22 @@ namespace battleutils
         return false;
     }
 
+    bool CanUseWeaponskill(CTrustEntity* PTrust, CWeaponSkill* PSkill)
+    {
+        if (PSkill->getSkillLevel() > 0)
+        {
+            if (PTrust->GetSkill(PSkill->getType()) >= PSkill->getSkillLevel())
+            {
+                if (PSkill->getJob(PTrust->GetMJob()) > 0 ||
+                   (PSkill->getJob(PTrust->GetSJob()) > 0 && !PSkill->mainOnly()))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Get Enmity Modifier                                                  *
@@ -402,6 +453,18 @@ namespace battleutils
         }
     }
 
+    CTrustWeaponSkill* GetTrustWeaponSkill(uint16 SkillID)
+    {
+        if (SkillID < g_PTrustWeaponSkillList.size())
+        {
+            return g_PTrustWeaponSkillList[SkillID];
+        }
+        else
+        {
+            return nullptr;
+        }
+    }
+
     /************************************************************************
     *                                                                       *
     *  Get Mob Skills by list id                                          *
@@ -411,6 +474,11 @@ namespace battleutils
     const std::vector<uint16>& GetMobSkillList(uint16 ListID)
     {
         return g_PMobSkillLists[ListID];
+    }
+
+    const std::vector<uint16>& GetTrustWeaponSkillList(uint16 ListID)
+    {
+        return g_PTrustWeaponSkillLists[ListID];
     }
 
     int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element) {
@@ -3156,6 +3224,11 @@ namespace battleutils
         {
             return (((CCharEntity*)PEntity)->getEquip(Slot));
         }
+        else if (PEntity->objtype == TYPE_NPC)
+        {
+            return nullptr;
+        }
+
         return nullptr;
     }
 
@@ -3633,6 +3706,9 @@ namespace battleutils
 
         return shotCount;
     }
+
+
+
 
     /************************************************************************
     *                                                                       *

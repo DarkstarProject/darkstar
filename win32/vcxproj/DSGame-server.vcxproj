@@ -23,30 +23,30 @@
     <ProjectGuid>{89A19910-84DB-454D-9C7F-0A47A293867B}</ProjectGuid>
     <RootNamespace>DSGameserver</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -259,12 +259,15 @@
     <ClInclude Include="..\..\src\map\ai\states\despawn_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\state.h" />
     <ClInclude Include="..\..\src\map\ai\states\trigger_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\trustability_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\trustweaponskill_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\weaponskill_state.h" />
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
     <ClInclude Include="..\..\src\map\char_recast_container.h" />
     <ClInclude Include="..\..\src\map\guild.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_trustskill.h" />
     <ClInclude Include="..\..\src\map\message.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
     <ClInclude Include="..\..\src\map\conquest_system.h" />
@@ -441,6 +444,10 @@
     <ClInclude Include="..\..\src\map\trait.h" />
     <ClInclude Include="..\..\src\map\transport.h" />
     <ClInclude Include="..\..\src\map\treasure_pool.h" />
+    <ClInclude Include="..\..\src\map\trust_spell_container.h" />
+    <ClInclude Include="..\..\src\map\trust_spell_list.h" />
+    <ClInclude Include="..\..\src\map\trust_weaponskill.h" />
+    <ClInclude Include="..\..\src\map\trust_weaponskill_list.h" />
     <ClInclude Include="..\..\src\map\universal_container.h" />
     <ClInclude Include="..\..\src\map\utils\battleutils.h" />
     <ClInclude Include="..\..\src\map\utils\attackutils.h" />
@@ -457,6 +464,7 @@
     <ClInclude Include="..\..\src\map\utils\petutils.h" />
     <ClInclude Include="..\..\src\map\utils\puppetutils.h" />
     <ClInclude Include="..\..\src\map\utils\synthutils.h" />
+    <ClInclude Include="..\..\src\map\utils\trustutils.h" />
     <ClInclude Include="..\..\src\map\utils\zoneutils.h" />
     <ClInclude Include="..\..\src\map\vana_time.h" />
     <ClInclude Include="..\..\src\map\weapon_skill.h" />
@@ -511,12 +519,15 @@
     <ClCompile Include="..\..\src\map\ai\states\despawn_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\trigger_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\trustability_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\trustweaponskill_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\weaponskill_state.cpp" />
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
     <ClCompile Include="..\..\src\map\char_recast_container.cpp" />
     <ClCompile Include="..\..\src\map\guild.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_trustskill.cpp" />
     <ClCompile Include="..\..\src\map\message.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />
     <ClCompile Include="..\..\src\map\conquest_system.cpp" />
@@ -691,6 +702,10 @@
     <ClCompile Include="..\..\src\map\trait.cpp" />
     <ClCompile Include="..\..\src\map\transport.cpp" />
     <ClCompile Include="..\..\src\map\treasure_pool.cpp" />
+    <ClCompile Include="..\..\src\map\trust_spell_container.cpp" />
+    <ClCompile Include="..\..\src\map\trust_spell_list.cpp" />
+    <ClCompile Include="..\..\src\map\trust_weaponskill.cpp" />
+    <ClCompile Include="..\..\src\map\trust_weaponskill_list.cpp" />
     <ClCompile Include="..\..\src\map\universal_container.cpp" />
     <ClCompile Include="..\..\src\map\utils\attackutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\battleutils.cpp" />
@@ -707,6 +722,7 @@
     <ClCompile Include="..\..\src\map\utils\petutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\puppetutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\synthutils.cpp" />
+    <ClCompile Include="..\..\src\map\utils\trustutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\zoneutils.cpp" />
     <ClCompile Include="..\..\src\map\vana_time.cpp" />
     <ClCompile Include="..\..\src\map\weapon_skill.cpp" />

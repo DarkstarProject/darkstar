@@ -104,6 +104,21 @@ void CZoneInstance::DeletePET(CBaseEntity* PPet)
     }
 }
 
+void CZoneInstance::InsertTRUST(CBaseEntity* PTrust)
+{
+    if (PTrust->PInstance)
+    {
+        PTrust->PInstance->InsertTRUST(PTrust);
+    }
+}
+
+void CZoneInstance::DeleteTRUST(CBaseEntity* PTrust)
+{
+    if (PTrust->PInstance)
+    {
+        PTrust->PInstance->DeleteTRUST(PTrust);
+    }
+}
 void CZoneInstance::InsertPET(CBaseEntity* PPet)
 {
     if (PPet->PInstance)
@@ -240,6 +255,14 @@ void CZoneInstance::SpawnPETs(CCharEntity* PChar)
     if (PChar->PInstance)
     {
         PChar->PInstance->SpawnPETs(PChar);
+    }
+}
+
+void CZoneInstance::SpawnTRUSTs(CCharEntity* PChar)
+{
+    if (PChar->PInstance)
+    {
+        PChar->PInstance->SpawnTRUSTs(PChar);
     }
 }
 

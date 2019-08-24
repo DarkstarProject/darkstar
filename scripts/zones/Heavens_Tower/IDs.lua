@@ -17,6 +17,7 @@ zones[dsp.zone.HEAVENS_TOWER] =
         ITEM_OBTAINED           = 7129, -- Obtained: <item>.
         GIL_OBTAINED            = 7130, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 7132, -- Obtained key item: <keyitem>.
+		KEYITEM_LOST            = 7133, -- Lost key item: <keyitem>.
         FISHING_MESSAGE_OFFSET  = 7366, -- You can't fish here.
     },
     mob =

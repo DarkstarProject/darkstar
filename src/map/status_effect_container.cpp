@@ -716,6 +716,27 @@ uint8 CStatusEffectContainer::EraseAllStatusEffect()
     return count;
 }
 
+
+bool CStatusEffectContainer::CanDispelStatusEffect(EFFECTFLAG flag)
+{
+    std::vector<uint16> dispelableList;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetFlag() & flag &&
+            m_StatusEffectList.at(i)->GetDuration() > 0 &&
+            !m_StatusEffectList.at(i)->deleted)
+        {
+            dispelableList.push_back(i);
+        }
+    }
+    if (!dispelableList.empty())
+    {
+        return true;
+    }
+    return false;
+}
+
+
 /************************************************************************
 *                                                                       *
 *  Удаляем первый добавленный положительный эффект с флагом dispel.     *

@@ -112,7 +112,7 @@ void CWeaponSkill::setName(int8* name)
 	m_name.insert(0, (const char*)name);
 }
 
-void CWeaponSkill::setAnimationId(int8 id)
+void CWeaponSkill::setAnimationId(uint16 id)
 {
 	m_AnimationId = id;
 }
@@ -167,7 +167,7 @@ bool CWeaponSkill::isElemental()
     return m_Element != 0;
 }
 
-uint8 CWeaponSkill::getAnimationId()
+uint16 CWeaponSkill::getAnimationId()
 {
 	return m_AnimationId;
 }

@@ -87,8 +87,16 @@ void CAbilityState::ApplyEnmity()
             CMobEntity* mob = (CMobEntity*)PTarget;
             if (!mob->CalledForHelp())
             {
-                mob->m_OwnerID.id = m_PEntity->id;
-                mob->m_OwnerID.targid = m_PEntity->targid;
+                if (m_PEntity->objtype == TYPE_TRUST)
+                {
+                    mob->m_OwnerID.id = m_PEntity->PMaster->id;
+                    mob->m_OwnerID.targid = m_PEntity->PMaster->targid;
+                }
+                else
+                {
+                    mob->m_OwnerID.id = m_PEntity->id;
+                    mob->m_OwnerID.targid = m_PEntity->targid;
+                }
             }
             mob->updatemask |= UPDATE_STATUS;
             mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE(), false, m_PAbility->getID() == ABILITY_CHARM);
@@ -111,7 +119,7 @@ bool CAbilityState::Update(time_point tick)
 {
     if (!IsCompleted() && tick > GetEntryTime() + m_castTime)
     {
-        if (CanUseAbility())
+        if (m_PEntity->objtype == TYPE_TRUST || CanUseAbility())
         {
             action_t action;
             m_PEntity->OnAbility(*this, action);

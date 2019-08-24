@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "ai_container.h"
 
+#include "states/trustability_state.h"
 #include "states/ability_state.h"
 #include "states/attack_state.h"
 #include "states/death_state.h"
@@ -31,6 +32,7 @@ This file is part of DarkStar-server source code.
 #include "states/inactive_state.h"
 #include "states/magic_state.h"
 #include "states/mobskill_state.h"
+#include "states/trustweaponskill_state.h"
 #include "states/raise_state.h"
 #include "states/trigger_state.h"
 #include "states/weaponskill_state.h"
@@ -38,10 +40,12 @@ This file is part of DarkStar-server source code.
 #include "states/respawn_state.h"
 #include "controllers/player_controller.h"
 #include "controllers/mob_controller.h"
+#include "controllers/trust_controller.h"
 #include "../entities/baseentity.h"
 #include "../entities/battleentity.h"
 #include "../entities/charentity.h"
 #include "../entities/mobentity.h"
+#include "../entities/trustentity.h"
 #include "../packets/entity_animation.h"
 
 CAIContainer::CAIContainer(CBaseEntity* _PEntity) :
@@ -112,6 +116,26 @@ bool CAIContainer::MobSkill(uint16 targid, uint16 wsid)
     if (AIController)
     {
         return AIController->MobSkill(targid, wsid);
+    }
+    return false;
+}
+
+bool CAIContainer::TrustSkill(uint16 targid, uint16 wsid)
+{
+    auto AIController = dynamic_cast<CTrustController*>(Controller.get());
+    if (AIController)
+    {
+        return AIController->TrustSkill(targid, wsid);
+    }
+    return false;
+}
+
+bool CAIContainer::TrustAbility(uint16 targid, uint16 abilityid)
+{
+    auto AIController = dynamic_cast<CTrustController*>(Controller.get());
+    if (AIController)
+    {
+        return AIController->Ability(targid, abilityid);
     }
     return false;
 }
@@ -239,6 +263,14 @@ bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
     return false;
 }
 
+bool CAIContainer::Internal_TrustSkill(uint16 targid, uint16 wsid)
+{
+    auto entity{ dynamic_cast<CTrustEntity*>(PEntity) };
+    if (entity)
+        return ChangeState<CTrustSkillState>(entity, targid, wsid);
+    return false;
+}
+
 bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 {
     auto entity {dynamic_cast<CMobEntity*>(PEntity)};
@@ -252,6 +284,14 @@ bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
         return ChangeState<CAbilityState>(entity, targetid, abilityid);
+    return false;
+}
+
+bool CAIContainer::Internal_TrustAbility(uint16 targetid, uint16 abilityid)
+{
+    auto entity{ dynamic_cast<CTrustEntity*>(PEntity) };
+    if (entity)
+        return ChangeState<CTrustAbilityState>(entity, targetid, abilityid);
     return false;
 }
 

@@ -66,7 +66,7 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then -- e.g. is a PC and not a monster (?)
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB or target:getObjType() == dsp.objType.TRUST)) then -- e.g. is a PC and not a monster (?)
         if (USE_OLD_CURE_FORMULA == true) then
             basecure = getBaseCureOld(power,divisor,constant)
         else
@@ -97,7 +97,7 @@ function onSpellCast(caster,target,spell)
         target:addHP(final)
 
         target:wakeUp()
-        caster:updateEnmityFromCure(target, 65535)
+        caster:updateEnmityFromCure(target,final)
     else
         if (target:isUndead()) then -- e.g. PCs healing skeles for damage (?)
             spell:setMsg(dsp.msg.basic.MAGIC_DMG)

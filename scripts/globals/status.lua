@@ -2077,11 +2077,12 @@ dsp.MAX_SLOTID  = 15
 
 dsp.objType =
 {
-    PC   = 0x01,
-    NPC  = 0x02,
-    MOB  = 0x04,
-    PET  = 0x08,
-    SHIP = 0x10,
+    PC     = 0x01,
+    NPC    = 0x02,
+    MOB    = 0x04,
+    PET    = 0x08,
+    SHIP   = 0x10,
+	TRUST  = 0x20,
 }
 
 ----------------------------------
@@ -2420,17 +2421,6 @@ dsp.craftRank =
 }
 
 ------------------------------------
--- Recast IDs
-------------------------------------
-
-dsp.recast =
-{
-    ITEM     = 0,
-    MAGIC    = 1,
-    ABILITY  = 2,
-}
-
-------------------------------------
 -- ACTION IDs
 ------------------------------------
 
@@ -2591,7 +2581,7 @@ dsp.animation =
     -- 63 through 72 are used with /sitchair
     -- 73 through 83 sitting on air (guessing future use for more chairs..)
     MOUNT                   = 85,
-    -- TRUST                = 90, -- This is the animation for a trust NPC spawning in.
+    TRUST                   = 90, -- This is the animation for a trust NPC spawning in.
 }
 dsp.anim = dsp.animation
 
@@ -2708,4 +2698,16 @@ dsp.emoteMode =
     ALL = 0,
     TEXT = 1,
     MOTION = 2
+}
+
+------------------------------------
+-- Skills
+------------------------------------
+
+dsp.recast =
+{
+    RECAST_ITEM     = 0,
+    RECAST_MAGIC    = 1,
+    RECAST_ABILITY  = 2,
+	RECAST_LOOT     = 3
 }
