@@ -12,7 +12,6 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(trust,target,ability)
-    --trust:messageBasic(dsp.msg.basic.READIES_WS, 0, 33)
     return 0
 end
 
