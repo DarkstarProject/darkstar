@@ -50,7 +50,6 @@ INSERT INTO `trust_list` VALUES (4,'Excenmille',899,5899,1,99,0,0);
 INSERT INTO `trust_list` VALUES (5,'Ayame',900,5900,1,99,0,0);
 INSERT INTO `trust_list` VALUES (6,'Nanaa_Mihgo',901,5901,1,99,0,0);
 INSERT INTO `trust_list` VALUES (7,'Curilla',902,5902,1,99,0,0);
-INSERT INTO `trust_list` VALUES (124,'Shantotto_II',1019,6019,1,99,0,0);
 INSERT INTO `trust_list` VALUES (8,'Volker',903,5903,1,99,0,0);
 INSERT INTO `trust_list` VALUES (9,'Ajido-Marujido',904,5904,1,99,0,0);
 INSERT INTO `trust_list` VALUES (10,'Trion',905,5905,1,99,0,0);
