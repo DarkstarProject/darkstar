@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Inner_Horutoto_Ruins (192)
+-- Zone: Inner Horutoto Ruins (192)
 --
 -----------------------------------
 local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")

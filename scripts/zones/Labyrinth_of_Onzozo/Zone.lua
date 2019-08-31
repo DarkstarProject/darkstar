@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Labyrinth_of_Onzozo (213)
+-- Zone: Labyrinth of Onzozo (213)
 --
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")

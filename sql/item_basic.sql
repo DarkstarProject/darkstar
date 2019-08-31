@@ -7114,7 +7114,7 @@ INSERT INTO `item_basic` VALUES (9548,0,'headshard_rdm','headshard_rdm',12,4100,
 INSERT INTO `item_basic` VALUES (9549,0,'headshard_thf','headshard_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9550,0,'headshard_pld','headshard_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9551,0,'headshard_drk','headshard_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9552,0,'headshard_bsm','headshard_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9552,0,'headshard_bst','headshard_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9553,0,'headshard_brd','headshard_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9554,0,'headshard_rng','headshard_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9555,0,'headshard_sam','headshard_sam',12,4100,65,0,0);
@@ -7136,7 +7136,7 @@ INSERT INTO `item_basic` VALUES (9570,0,'voidhead_rdm','voidhead_rdm',12,4100,65
 INSERT INTO `item_basic` VALUES (9571,0,'voidhead_thf','voidhead_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9572,0,'voidhead_pld','voidhead_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9573,0,'voidhead_drk','voidhead_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9574,0,'voidhead_bsm','voidhead_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9574,0,'voidhead_bst','voidhead_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9575,0,'voidhead_brd','voidhead_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9576,0,'voidhead_rng','voidhead_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9577,0,'voidhead_sam','voidhead_sam',12,4100,65,0,0);
@@ -7158,7 +7158,7 @@ INSERT INTO `item_basic` VALUES (9592,0,'torsoshard_rdm','torsoshard_rdm',12,410
 INSERT INTO `item_basic` VALUES (9593,0,'torsoshard_thf','torsoshard_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9594,0,'torsoshard_pld','torsoshard_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9595,0,'torsoshard_drk','torsoshard_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9596,0,'torsoshard_bsm','torsoshard_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9596,0,'torsoshard_bst','torsoshard_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9597,0,'torsoshard_brd','torsoshard_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9598,0,'torsoshard_rng','torsoshard_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9599,0,'torsoshard_sam','torsoshard_sam',12,4100,65,0,0);
@@ -7180,7 +7180,7 @@ INSERT INTO `item_basic` VALUES (9614,0,'voidtorso_rdm','voidtorso_rdm',12,4100,
 INSERT INTO `item_basic` VALUES (9615,0,'voidtorso_thf','voidtorso_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9616,0,'voidtorso_pld','voidtorso_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9617,0,'voidtorso_drk','voidtorso_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9618,0,'voidtorso_bsm','voidtorso_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9618,0,'voidtorso_bst','voidtorso_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9619,0,'voidtorso_brd','voidtorso_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9620,0,'voidtorso_rng','voidtorso_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9621,0,'voidtorso_sam','voidtorso_sam',12,4100,65,0,0);
@@ -7202,7 +7202,7 @@ INSERT INTO `item_basic` VALUES (9636,0,'handshard_rdm','handshard_rdm',12,4100,
 INSERT INTO `item_basic` VALUES (9637,0,'handshard_thf','handshard_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9638,0,'handshard_pld','handshard_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9639,0,'handshard_drk','handshard_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9640,0,'handshard_bsm','handshard_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9640,0,'handshard_bst','handshard_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9641,0,'handshard_brd','handshard_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9642,0,'handshard_rng','handshard_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9643,0,'handshard_sam','handshard_sam',12,4100,65,0,0);
@@ -7224,7 +7224,7 @@ INSERT INTO `item_basic` VALUES (9658,0,'pair_of_void_handwear_rdm','voidhand_rd
 INSERT INTO `item_basic` VALUES (9659,0,'pair_of_void_handwear_thf','voidhand_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9660,0,'pair_of_void_handwear_pld','voidhand_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9661,0,'pair_of_void_handwear_drk','voidhand_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9662,0,'pair_of_void_handwear_bsm','voidhand_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9662,0,'pair_of_void_handwear_bst','voidhand_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9663,0,'pair_of_void_handwear_brd','voidhand_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9664,0,'pair_of_void_handwear_rng','voidhand_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9665,0,'pair_of_void_handwear_sam','voidhand_sam',12,4100,65,0,0);
@@ -7246,7 +7246,7 @@ INSERT INTO `item_basic` VALUES (9680,0,'legshard_rdm','legshard_rdm',12,4100,65
 INSERT INTO `item_basic` VALUES (9681,0,'legshard_thf','legshard_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9682,0,'legshard_pld','legshard_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9683,0,'legshard_drk','legshard_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9684,0,'legshard_bsm','legshard_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9684,0,'legshard_bst','legshard_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9685,0,'legshard_brd','legshard_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9686,0,'legshard_rng','legshard_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9687,0,'legshard_sam','legshard_sam',12,4100,65,0,0);
@@ -7268,7 +7268,7 @@ INSERT INTO `item_basic` VALUES (9702,0,'voidleg_rdm','voidleg_rdm',12,4100,65,0
 INSERT INTO `item_basic` VALUES (9703,0,'voidleg_thf','voidleg_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9704,0,'voidleg_pld','voidleg_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9705,0,'voidleg_drk','voidleg_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9706,0,'voidleg_bsm','voidleg_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9706,0,'voidleg_bst','voidleg_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9707,0,'voidleg_brd','voidleg_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9708,0,'voidleg_rng','voidleg_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9709,0,'voidleg_sam','voidleg_sam',12,4100,65,0,0);
@@ -7290,7 +7290,7 @@ INSERT INTO `item_basic` VALUES (9724,0,'footshard_rdm','footshard_rdm',12,4100,
 INSERT INTO `item_basic` VALUES (9725,0,'footshard_thf','footshard_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9726,0,'footshard_pld','footshard_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9727,0,'footshard_drk','footshard_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9728,0,'footshard_bsm','footshard_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9728,0,'footshard_bst','footshard_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9729,0,'footshard_brd','footshard_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9730,0,'footshard_rng','footshard_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9731,0,'footshard_sam','footshard_sam',12,4100,65,0,0);
@@ -7312,7 +7312,7 @@ INSERT INTO `item_basic` VALUES (9746,0,'pair_of_void_footwear_rdm','voidfoot_rd
 INSERT INTO `item_basic` VALUES (9747,0,'pair_of_void_footwear_thf','voidfoot_thf',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9748,0,'pair_of_void_footwear_pld','voidfoot_pld',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9749,0,'pair_of_void_footwear_drk','voidfoot_drk',12,4100,65,0,0);
-INSERT INTO `item_basic` VALUES (9750,0,'pair_of_void_footwear_bsm','voidfoot_bsm',12,4100,65,0,0);
+INSERT INTO `item_basic` VALUES (9750,0,'pair_of_void_footwear_bst','voidfoot_bst',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9751,0,'pair_of_void_footwear_brd','voidfoot_brd',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9752,0,'pair_of_void_footwear_rng','voidfoot_rng',12,4100,65,0,0);
 INSERT INTO `item_basic` VALUES (9753,0,'pair_of_void_footwear_sam','voidfoot_sam',12,4100,65,0,0);
@@ -18322,6 +18322,7 @@ INSERT INTO `item_basic` VALUES (22063,0,'nirvana','nirvana',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (22064,0,'hvergelmir','hvergelmir',1,63552,0,0,0);
 INSERT INTO `item_basic` VALUES (22065,0,'aern_staff','aern_staff',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (22069,0,'hapy_staff','hapy_staff',1,64584,0,0,0);
+INSERT INTO `item_basic` VALUES (22070,0,'ranine_staff','ranine_staff',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (22072,0,'lamia_staff','lamia_staff',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (22074,0,'arasy_staff','arasy_staff',1,2084,12,0,0);
 INSERT INTO `item_basic` VALUES (22075,0,'arasy_staff_+1','arasy_staff_+1',1,2080,12,0,0);

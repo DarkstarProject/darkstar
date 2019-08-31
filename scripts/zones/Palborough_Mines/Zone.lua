@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Palborough_Mines (143)
+-- Zone: Palborough Mines (143)
 --
 -----------------------------------
 local ID = require("scripts/zones/Palborough_Mines/IDs")

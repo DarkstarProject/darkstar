@@ -271,7 +271,7 @@ dsp.zone =
     LALOFF_AMPHITHEATER             = 180,
     THE_CELESTIAL_NEXUS             = 181,
     WALK_OF_ECHOES                  = 182,
-    MAQUETTE_ABDHALJS_LEGION        = 183,
+    MAQUETTE_ABDHALJS_LEGION_A      = 183,
     LOWER_DELKFUTTS_TOWER           = 184,
     DYNAMIS_SAN_DORIA               = 185,
     DYNAMIS_BASTOK                  = 186,
@@ -371,6 +371,7 @@ dsp.zone =
     SILVER_KNIFE                    = 283,
     CELENNIA_MEMORIAL_LIBRARY       = 284,
     FERETORY                        = 285,
+    MAQUETTE_ABDHALJS_LEGION_B      = 287,
     ESCHA_ZITAH                     = 288,
     ESCHA_RUAUN                     = 289,
     DESUETIA_EMPYREAL_PARADOX       = 290,
@@ -385,6 +386,32 @@ dsp.zone =
 
     -- Increment this when adding new zones
     MAX_ZONE                        = 299
+}
+
+dsp.expansionRegion = dsp.expansionRegion or {}
+dsp.expansionRegion.ORIGINAL_ROTZ =
+{
+    [dsp.region.RONFAURE]        = true,
+    [dsp.region.ZULKHEIM]        = true,
+    [dsp.region.NORVALLEN]       = true,
+    [dsp.region.GUSTABERG]       = true,
+    [dsp.region.DERFLAND]        = true,
+    [dsp.region.SARUTABARUTA]    = true,
+    [dsp.region.KOLSHUSHU]       = true,
+    [dsp.region.ARAGONEU]        = true,
+    [dsp.region.FAUREGANDI]      = true,
+    [dsp.region.VALDEAUNIA]      = true,
+    [dsp.region.QUFIMISLAND]     = true,
+    [dsp.region.LITELOR]         = true,
+    [dsp.region.KUZOTZ]          = true,
+    [dsp.region.VOLLBOW]         = true,
+    [dsp.region.ELSHIMOLOWLANDS] = true,
+    [dsp.region.ELSHIMOUPLANDS]  = true,
+    [dsp.region.SANDORIA]        = true,
+    [dsp.region.BASTOK]          = true,
+    [dsp.region.WINDURST]        = true,
+    [dsp.region.JEUNO]           = true,
+    [dsp.region.DYNAMIS]         = true
 }
 
 -----------------------------------

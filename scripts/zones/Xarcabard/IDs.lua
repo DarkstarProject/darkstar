@@ -27,7 +27,7 @@ zones[dsp.zone.XARCABARD] =
         PERENNIAL_SNOW_WAIT            = 7721, -- The <keyitem> you buried is not yet purified.
         YOU_CANNOT_ENTER_DYNAMIS       = 7848, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7850, -- Players who have not reached level <number> are prohibited from entering Dynamis.
-        UNUSUAL_ARRANGEMENT_OF_PEBBLES = 7861, -- There is an unusual arrangement of pebbles here.
+        DYNA_NPC_DEFAULT_MESSAGE       = 7861, -- There is an unusual arrangement of pebbles here.
         REGIME_REGISTERED              = 10351, -- New training regime registered!
     },
     mob =

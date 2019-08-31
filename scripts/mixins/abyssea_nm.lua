@@ -15,31 +15,31 @@ g_mixins.abyssea_nm = function(mob)
         mob:setLocalVar("abyssea_red_proc_count", 0)
         mob:setLocalVar("abyssea_yellow_proc_count", 0)
     end)
-    mob:addListener("MAGIC_TAKE", "ABYSSEA_MAGIC_PROC_CHECK", function(mob, caster, spell, action)
-        if mob:canChangeState() then
-            if spell:getID() == mob:getLocalVar("abyssea_magic_weak") then
+    mob:addListener("MAGIC_TAKE", "ABYSSEA_MAGIC_PROC_CHECK", function(target, caster, spell)
+        if target:canChangeState() then
+            if spell:getID() == target:getLocalVar("abyssea_magic_weak") then
                 --TODO: weakness trigger message
-                mob:weaknessTrigger(1)
-                mob:addStatusEffect(dsp.effect.SILENCE,0,0,30)
-                mob:setLocalVar("abyssea_yellow_proc_count", mob:getLocalVar("abyssea_yellow_proc_count" + 1))
+                target:weaknessTrigger(1)
+                target:addStatusEffect(dsp.effect.SILENCE,0,0,30)
+                target:setLocalVar("abyssea_yellow_proc_count", target:getLocalVar("abyssea_yellow_proc_count" + 1))
             else
                 --discernment
             end
         end
     end)
 
-    mob:addListener("WEAPONSKILL_TAKE", "ABYSSEA_WS_PROC_CHECK", function(mob, user, wsid)
-        if mob:canChangeState() then
-            if wsid == mob:getLocalVar("abyssea_ele_ws_weak") then
+    mob:addListener("WEAPONSKILL_TAKE", "ABYSSEA_WS_PROC_CHECK", function(target, user, wsid)
+        if target:canChangeState() then
+            if wsid == target:getLocalVar("abyssea_ele_ws_weak") then
                 --TODO: weakness trigger message
-                mob:weaknessTrigger(2)
-                mob:addStatusEffect(dsp.effect.TERROR,0,0,30)
-                mob:setLocalVar("abyssea_red_proc_count", mob:getLocalVar("abyssea_red_proc_count" + 1))
-            elseif wsid == mob:getLocalVar("abyssea_phys_ws_weak") then
+                target:weaknessTrigger(2)
+                target:addStatusEffect(dsp.effect.TERROR,0,0,30)
+                target:setLocalVar("abyssea_red_proc_count", target:getLocalVar("abyssea_red_proc_count" + 1))
+            elseif wsid == target:getLocalVar("abyssea_phys_ws_weak") then
                 --TODO: weakness trigger message
-                mob:weaknessTrigger(0)
-                mob:addStatusEffect(dsp.effect.AMNESIA,0,0,30)
-                mob:setLocalVar("abyssea_blue_proc_count", mob:getLocalVar("abyssea_blue_proc_count" + 1))
+                target:weaknessTrigger(0)
+                target:addStatusEffect(dsp.effect.AMNESIA,0,0,30)
+                target:setLocalVar("abyssea_blue_proc_count", target:getLocalVar("abyssea_blue_proc_count" + 1))
             else
                 --discernment (figure out if ws is elemental...)
             end

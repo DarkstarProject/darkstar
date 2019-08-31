@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Ranguemont_Pass (166)
+-- Zone: Ranguemont Pass (166)
 --
 -----------------------------------
 local ID = require("scripts/zones/Ranguemont_Pass/IDs")

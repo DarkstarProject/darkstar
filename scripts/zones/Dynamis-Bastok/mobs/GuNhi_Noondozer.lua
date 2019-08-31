@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Dynamis - Bastok
 --  Mob: Gu'Nhi Noondozer
--- Time Extender: 30min
 -----------------------------------
 mixins =
 {
@@ -15,10 +14,4 @@ function onMobSpawn(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-
-    if not alreadyReceived(player,4) then
-        player:addTimeToDynamis(30)
-        addDynamisList(player,8)
-    end
-
 end

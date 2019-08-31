@@ -128,7 +128,7 @@ local titleInfo =
             dsp.title.HEIR_OF_THE_GREAT_ICE,
             dsp.title.MOGS_LOVING_MASTER,
             dsp.title.SAN_DORIAN_ROYAL_HEIR,
-            dsp.title.DYNAMISSAN_DORIA_INTERLOPER,
+            dsp.title.DYNAMIS_SAN_DORIA_INTERLOPER,
         },
     },
     {

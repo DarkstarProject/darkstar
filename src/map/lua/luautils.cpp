@@ -873,7 +873,7 @@ namespace luautils
                     }
                     else
                     {
-                        ShowDebug(CL_CYAN"SpawnMob: <%s> is already spawned\n" CL_RESET, PMob->GetName());
+                        ShowDebug(CL_CYAN"SpawnMob: %u <%s> is already spawned\n" CL_RESET, PMob->id, PMob->GetName());
                     }
                 }
                 lua_getglobal(L, CLuaBaseEntity::className);
@@ -2202,7 +2202,7 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
-        PTarget->PAI->EventHandler.triggerListener("MAGIC_TAKE", PCaster, PTarget, PSpell);
+        PTarget->PAI->EventHandler.triggerListener("MAGIC_TAKE", PTarget, PCaster, PSpell);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PTarget->loc.zone->GetName(), PTarget->GetName());
 
