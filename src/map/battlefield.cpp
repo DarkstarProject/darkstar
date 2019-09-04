@@ -463,9 +463,10 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
                 if (static_cast<CPetEntity*>(PEntity)->isAlive() && PEntity->PAI->IsSpawned())
                     static_cast<CPetEntity*>(PEntity)->Die();
 
-                m_AllyList.erase(std::remove_if(m_AllyList.begin(), m_AllyList.end(), check), m_AllyList.end());
-                GetZone()->DeletePET(PEntity);
-                delete PEntity;
+                if (m_AllyList.size() > 0)
+                {
+                    m_AllyList.erase(std::remove_if(m_AllyList.begin(), m_AllyList.end(), check), m_AllyList.end());
+                }
                 return found;
             }
             else
