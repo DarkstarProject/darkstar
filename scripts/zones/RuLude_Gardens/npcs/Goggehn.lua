@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         player:startEvent(38)
     elseif
         pNation == dsp.nation.BASTOK and player:getRank() == 4 and
-        currentMission == dsp.mission.id.BASTOK.NONE and
+        currentMission == dsp.mission.id.bastok.NONE and
         getMissionRankPoints(player, 13) == 1
     then
         if player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
