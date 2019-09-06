@@ -1196,3 +1196,16 @@ dsp.quest.id =
         BOOST_KAMIHR_DRIFTS             = 95,
     }
 }
+
+-- Additional optional uppercase references to the quest ID tables (assigned by reference)
+dsp.quest.id.SANDORIA    = dsp.quest.id.sandoria
+dsp.quest.id.BASTOK      = dsp.quest.id.bastok
+dsp.quest.id.WINDURST    = dsp.quest.id.windurst
+dsp.quest.id.JEUNO       = dsp.quest.id.jeuno
+dsp.quest.id.OTHER_AREAS = dsp.quest.id.otherAreas
+dsp.quest.id.OUTLANDS    = dsp.quest.id.outlands
+dsp.quest.id.AHT_URHGAN  = dsp.quest.id.ahtUrhgan
+dsp.quest.id.CRYSTAL_WAR = dsp.quest.id.crystalWar
+dsp.quest.id.ABYSSEA     = dsp.quest.id.abyssea
+dsp.quest.id.ADOULIN     = dsp.quest.id.adoulin
+dsp.quest.id.COALITION   = dsp.quest.id.coalition

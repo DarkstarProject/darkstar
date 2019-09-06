@@ -640,6 +640,20 @@ dsp.mission.id =
     [dsp.mission.area[dsp.mission.log_id.CAMPAIGN]] = {},
 }
 
+-- Additional optional uppercase references to the mission ID tables (assigned by reference)
+dsp.mission.id.SANDORIA = dsp.mission.id.sandoria
+dsp.mission.id.BASTOK   = dsp.mission.id.bastok
+dsp.mission.id.WINDURST = dsp.mission.id.windurst
+dsp.mission.id.ZILART   = dsp.mission.id.zilart
+dsp.mission.id.COP      = dsp.mission.id.cop
+dsp.mission.id.TOAU     = dsp.mission.id.toau
+dsp.mission.id.WOTG     = dsp.mission.id.wotg
+dsp.mission.id.ACP      = dsp.mission.id.acp
+dsp.mission.id.AMK      = dsp.mission.id.amk
+dsp.mission.id.ASA      = dsp.mission.id.asa
+dsp.mission.id.SOA      = dsp.mission.id.soa
+dsp.mission.id.ROV      = dsp.mission.id.rov
+
 -- Assault and Campaign IDs deliberately left out of mission table
 -- due to their nature not being the same as other missions,
 -- and to allow the content the freedom to develop systems
