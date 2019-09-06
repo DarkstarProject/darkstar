@@ -467,6 +467,7 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
                 {
                     m_AllyList.erase(std::remove_if(m_AllyList.begin(), m_AllyList.end(), check), m_AllyList.end());
                 }
+                PEntity->status = STATUS_DISAPPEAR;
                 return found;
             }
             else
