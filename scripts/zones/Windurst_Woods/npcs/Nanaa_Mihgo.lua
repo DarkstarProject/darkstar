@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         end
 
     -- LURE OF THE WILDCAT (WINDURST)
-    elseif player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,4) then
+    elseif player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,4) then
         player:startEvent(732)
 
     -- CRYING OVER ONIONS

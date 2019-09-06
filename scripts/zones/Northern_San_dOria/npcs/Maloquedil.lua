@@ -41,7 +41,7 @@ function onTrigger(player,npc)
     local warding = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.WARDING_VAMPIRES);
     local WildcatSandy = player:getVar("WildcatSandy");
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,7) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,7) == false) then
         player:startEvent(807);
     elseif (warding == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then --Quest available for fame superior or equal to 3
         player:startEvent(24);

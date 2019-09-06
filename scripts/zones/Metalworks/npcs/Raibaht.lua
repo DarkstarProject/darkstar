@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
         player:startEvent(933);
     elseif (darkLegacy == QUEST_AVAILABLE and mJob == dsp.job.DRK and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(751); -- Start Quest "Dark Legacy"

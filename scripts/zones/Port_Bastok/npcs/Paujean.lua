@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     local SilenceOfTheRams = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
         player:startEvent(355);
     elseif (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
         player:startEvent(195);

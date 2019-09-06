@@ -11,7 +11,7 @@ require("scripts/globals/shop")
 function onTrigger(player,npc)
     local WildcatBastok = player:getVar("WildcatBastok")
 
-    if player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and not player:getMaskBit(WildcatBastok,10) then
+    if player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(WildcatBastok,10) then
         player:startEvent(430)
     elseif player:getVar("comebackQueenCS") == 1 then
         player:startEvent(490)

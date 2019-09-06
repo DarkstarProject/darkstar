@@ -30,11 +30,11 @@ function onTrigger(player,npc)
         getMissionRankPoints(player, 13) == 1
     then
         player:startEvent(130) -- Start Mission 4-1 Magicite
-    elseif currentMission == dsp.mission.id.sandoria.MAGICITE_SAN_D_ORIA and missionStatus == 1 then
+    elseif currentMission == dsp.mission.id.sandoria.MAGICITE and missionStatus == 1 then
         player:startEvent(133)
-    elseif currentMission == dsp.mission.id.sandoria.MAGICITE_SAN_D_ORIA and missionStatus <= 5 then
+    elseif currentMission == dsp.mission.id.sandoria.MAGICITE and missionStatus <= 5 then
         player:startEvent(136)
-    elseif currentMission == dsp.mission.id.sandoria.MAGICITE_SAN_D_ORIA and missionStatus == 6 then
+    elseif currentMission == dsp.mission.id.sandoria.MAGICITE and missionStatus == 6 then
         player:startEvent(36)
     elseif player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA) then
         player:startEvent(56)
