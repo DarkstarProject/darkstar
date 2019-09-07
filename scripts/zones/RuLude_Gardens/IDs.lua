@@ -44,6 +44,8 @@ zones[dsp.zone.RULUDE_GARDENS] =
         YOUR_LEVEL_LIMIT_IS_NOW_90       = 12335, -- Your level limit is now 90!
         YOUR_LEVEL_LIMIT_IS_NOW_95       = 12436, -- Your level limit is now 95!
         WINDURST_EMBASSY                 = 12437, -- I have a letter for you here from none other than Atori-Tutori. It reads, ahem...
+        EMBASSY_DOOR_RESTRICTION         = 10094, -- It reads, “Restricted Area.”
+        EMBASSY_DOOR_NO_LETTER           = 10095, -- You have no letter of introduction.
         YOUR_LEVEL_LIMIT_IS_NOW_99       = 12516, -- Your level limit is now 99!
         TEAR_IN_FABRIC_OF_SPACE          = 15937, -- There appears to be a tear in the fabric of space...
     },
