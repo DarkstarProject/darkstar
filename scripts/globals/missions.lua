@@ -61,7 +61,7 @@ dsp.mission.id =
         INFILTRATE_DAVOI        = 10, -- ± --
         THE_CRYSTAL_SPRING      = 11, -- ± --
         APPOINTMENT_TO_JEUNO    = 12, -- ± --
-        MAGICITE_SAN_D_ORIA     = 13, -- ± --
+        MAGICITE                = 13, -- ± --
         THE_RUINS_OF_FEI_YIN    = 14, -- ± --
         THE_SHADOW_LORD         = 15, -- ± --
         LEAUTE_S_LAST_WISHES    = 16, -- ± --
@@ -92,8 +92,8 @@ dsp.mission.id =
         THE_EMISSARY_WINDURST2    = 9,  -- ± --
         THE_FOUR_MUSKETEERS       = 10, -- ± --
         TO_THE_FORSAKEN_MINES     = 11, -- ± --
-        JEUNO_MISSION             = 12, -- ± --
-        MAGICITE_BASTOK           = 13, -- ± --
+        JEUNO                     = 12, -- ± --
+        MAGICITE                  = 13, -- ± --
         DARKNESS_RISING           = 14, -- ± --
         XARCABARD_LAND_OF_TRUTHS  = 15, -- ± --
         RETURN_OF_THE_TALEKEEPER  = 16, -- ± --
@@ -256,7 +256,7 @@ dsp.mission.id =
         LOST_KINGDOM            = 12,
         THE_DOLPHIN_CREST       = 13,
         THE_BLACK_COFFIN        = 14,
-        GHOSTS_OF_THE_PAST_TOAU = 15,
+        GHOSTS_OF_THE_PAST      = 15,
         GUESTS_OF_THE_EMPIRE    = 16,
         PASSING_GLORY           = 17,
         SWEETS_FOR_THE_SOUL     = 18,
@@ -619,7 +619,7 @@ dsp.mission.id =
         NO_TIME_LIKE_THE_FUTURE         = 180,
         SIN                             = 184,
         PENANCE                         = 188,
-        VESSEL_OF_LIGHT_ROV             = 190,
+        VESSEL_OF_LIGHT                 = 190,
         THE_LIFESTREAM_OF_REISENJIMA    = 192,
         FROM_WEST_TO_EAST               = 194,
         GOOD_THINGS_COME_IN_THREES      = 196,
@@ -982,7 +982,7 @@ function getMissionMask(player)
                     -- 3-2 Repeatable & Skippable
                     repeat_mission = repeat_mission + 2048;
                 end
-                if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.JEUNO_MISSION) == false and getMissionRankPoints(player,12) == 1) then
+                if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.JEUNO) == false and getMissionRankPoints(player,12) == 1) then
                     -- 3-3
                     first_mission = first_mission + 4096;
                 end

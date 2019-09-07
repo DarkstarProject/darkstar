@@ -15,7 +15,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("WildcatSandy"), 13) then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("WildcatSandy"), 13) then
         player:startEvent(747)
     elseif player:getVar("thePickpocket") == 1 then
         player:showText(npc, ID.text.PICKPOCKET_PARCARIN)

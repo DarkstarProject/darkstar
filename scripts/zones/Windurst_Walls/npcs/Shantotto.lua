@@ -52,7 +52,7 @@ function onTrigger(player,npc)
         player:startEvent(wsQuestEvent)
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
         player:startEvent(397,0,0,0,282)
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
         player:startEvent(498)
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
         player:startEvent(409) -- she mentions that Sunny-Pabonny left for San d'Oria

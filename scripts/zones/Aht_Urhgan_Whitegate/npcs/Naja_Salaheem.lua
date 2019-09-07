@@ -52,7 +52,7 @@ function onTrigger(player,npc)
         player:startEvent(3072,0,0,0,0,0,0,0,0,0)
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN) then
         player:startEvent(3073,0,0,0,0,0,0,0,0,0)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.GHOSTS_OF_THE_PAST_TOAU) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.GHOSTS_OF_THE_PAST) then
         if (doRoyalPalaceArmorCheck(player) == true) then
             player:startEvent(3074,1,0,0,0,0,0,0,1,0)
         else
@@ -146,7 +146,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,dsp.mission.id.toau.THE_DOLPHIN_CREST)
         player:addMission(TOAU,dsp.mission.id.toau.THE_BLACK_COFFIN)
     elseif (csid == 3074) then
-        player:completeMission(TOAU,dsp.mission.id.toau.GHOSTS_OF_THE_PAST_TOAU)
+        player:completeMission(TOAU,dsp.mission.id.toau.GHOSTS_OF_THE_PAST)
         player:addMission(TOAU,dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE)
 
         if(option == 2) then

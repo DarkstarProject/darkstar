@@ -18,11 +18,11 @@ function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK)
     local missionStatus = player:getVar("MissionStatus")
 
-    if currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 1 then
+    if currentMission == dsp.mission.id.bastok.JEUNO and missionStatus == 1 then
         player:startEvent(41)
-    elseif currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 2 then
+    elseif currentMission == dsp.mission.id.bastok.JEUNO and missionStatus == 2 then
         player:startEvent(66)
-    elseif currentMission == dsp.mission.id.bastok.JEUNO_MISSION and missionStatus == 3 then
+    elseif currentMission == dsp.mission.id.bastok.JEUNO and missionStatus == 3 then
         player:startEvent(38)
     elseif
         pNation == dsp.nation.BASTOK and player:getRank() == 4 and
@@ -34,11 +34,11 @@ function onTrigger(player,npc)
         else
             player:startEvent(129) -- Start Mission 4-1 Magicite
         end
-    elseif currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus == 1 then
+    elseif currentMission == dsp.mission.id.bastok.MAGICITE and missionStatus == 1 then
         player:startEvent(132)
-    elseif currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus <= 5 then
+    elseif currentMission == dsp.mission.id.bastok.MAGICITE and missionStatus <= 5 then
         player:startEvent(135)
-    elseif currentMission == dsp.mission.id.bastok.MAGICITE_BASTOK and missionStatus == 6 then
+    elseif currentMission == dsp.mission.id.bastok.MAGICITE and missionStatus == 6 then
         player:startEvent(35)
     elseif player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK) then
         player:startEvent(55)

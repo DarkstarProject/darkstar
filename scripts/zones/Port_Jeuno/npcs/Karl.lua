@@ -22,7 +22,7 @@ function onTrigger(player,npc)
     local ChildsPlay = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHILD_S_PLAY);
     local WildcatJeuno = player:getVar("WildcatJeuno");
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,16) == false) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,16) == false) then
         player:startEvent(316);
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET) == QUEST_ACCEPTED and ChildsPlay == QUEST_AVAILABLE) then
         player:startEvent(0); -- Start quest
