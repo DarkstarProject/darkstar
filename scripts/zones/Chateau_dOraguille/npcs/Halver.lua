@@ -144,7 +144,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 503) then
         player:setVar("MissionStatus",9)
     elseif (csid == 508) then
-        player:setVar("MissionStatus",2)
+        player:setVar("MissionStatus",1)
     elseif (csid == 505) then
         player:setVar("MissionStatus",2)
         player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA)

@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     elseif (currentMission == dsp.mission.id.sandoria.THE_SHADOW_LORD and MissionStatus == 5) then
         player:startEvent(61);
     -- Mission San D'Oria 3-3 Appointment to Jeuno
-    elseif (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 1) then
         player:startEvent(537);
     else
         player:startEvent(514);
@@ -56,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 537) then
-        player:setVar("MissionStatus",3);
+        player:setVar("MissionStatus",2);
         player:addKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 61) then
