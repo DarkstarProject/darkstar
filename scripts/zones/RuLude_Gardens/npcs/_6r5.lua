@@ -17,7 +17,7 @@ function onTrigger(player,npc)
     currentMission = player:getCurrentMission(pNation);
     MissionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 4) then
+    if (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 5) then
         player:startEvent(39);
     elseif (player:getRank() == 4 and MissionStatus == 0 and player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.NONE and getMissionRankPoints(player,13) == 1) then
         if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)) then

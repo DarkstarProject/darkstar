@@ -17,7 +17,7 @@ function onTrigger(player,npc)
     local CurrentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (CurrentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 0) then
+    if (CurrentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and player:hasKeyItem(dsp.ki.STAR_CRESTED_SUMMONS) and MissionStatus == 0) then
         player:startEvent(153);
     elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
         player:startEvent(166);
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     elseif (CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus == 4) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,183);
-        else    
+        else
             player:startEvent(407);
         end
     else

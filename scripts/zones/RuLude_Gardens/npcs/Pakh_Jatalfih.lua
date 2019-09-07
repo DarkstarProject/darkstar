@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(43)
         elseif currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 2 then
             player:startEvent(68)
-        elseif currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 3 then
+        elseif currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus >= 3 then
             player:startEvent(141)
         elseif player:getRank() == 4 and currentMission == dsp.mission.id.windurst.NONE and getMissionRankPoints(player, 13) == 1 then
             player:startEvent(50)

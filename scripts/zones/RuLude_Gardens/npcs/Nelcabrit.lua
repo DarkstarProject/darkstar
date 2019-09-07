@@ -20,11 +20,11 @@ function onTrigger(player,npc)
         local currentMission = player:getCurrentMission(SANDORIA)
         local missionStatus = player:getVar("MissionStatus")
 
-        if currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus == 1 then
+        if currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus == 2 then
             player:startEvent(42)
-        elseif currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus == 2 then
-            player:startEvent(67)
         elseif currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus == 3 then
+            player:startEvent(67)
+        elseif currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and missionStatus >= 4 then
             player:startEvent(140)
         elseif player:getRank() == 4 and currentMission == dsp.mission.id.sandoria.NONE and getMissionRankPoints(player, 13) == 1 then
             player:startEvent(45)
@@ -53,10 +53,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 42 then
-        player:setVar("MissionStatus",2)
+        player:setVar("MissionStatus",3)
         player:delKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR)
     elseif csid == 140 then
-        player:setVar("MissionStatus", 4)
+        player:setVar("MissionStatus", 5)
     elseif csid == 36 then
         finishMissionTimeline(player, 3, csid, option)
     end

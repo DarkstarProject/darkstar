@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(41)
         elseif currentMission == dsp.mission.id.bastok.JEUNO and missionStatus == 2 then
             player:startEvent(66)
-        elseif currentMission == dsp.mission.id.bastok.JEUNO and missionStatus == 3 then
+        elseif currentMission == dsp.mission.id.bastok.JEUNO and missionStatus >= 3 then
             player:startEvent(139)
         elseif player:getRank() == 4 and currentMission == dsp.mission.id.bastok.NONE and getMissionRankPoints(player, 13) == 1 then
              player:startEvent(0)
