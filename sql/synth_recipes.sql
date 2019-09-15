@@ -4661,6 +4661,7 @@ INSERT INTO `synth_recipes` VALUES (4544,1,0,0,0,0,0,93,0,0,0,4100,4242,14616,0,
 INSERT INTO `synth_recipes` VALUES (4545,1,0,0,99,0,0,0,0,0,0,4100,4242,13467,0,0,0,0,0,0,0,903,903,903,903,1,1,1,1,'Dragon Talon'); -- Dragon Ring (desynth)
 INSERT INTO `synth_recipes` VALUES (4546,1,0,0,0,0,0,0,63,0,0,4100,4242,19017,0,0,0,0,0,0,0,1637,1637,1637,1637,1,1,1,1,'Bugard Leather'); -- Bugard Strap (desynth)
 INSERT INTO `synth_recipes` VALUES (4547,1,0,0,0,0,0,0,63,0,0,4100,4242,19018,0,0,0,0,0,0,0,1637,1637,1637,1637,1,1,1,1,'Bugard Leather'); -- Bugard Strap +1 (desynth)
+INSERT INTO `synth_recipes` VALUES (4548,0,0,0,0,0,0,0,0,24,0,4096,4238,651,712,0,0,0,0,0,0,21923,21924,21924,21924,1,1,1,1,'Debahocho'); -- Debahocho https://www.bg-wiki.com/bg/Debahocho
 
 -- INSERT INTO `synth_recipes` VALUES (ID,Desynth,KeyItem,AL,BO,CL,CK,GO,LE,SM,WD,Crystal,HQCrystal,I1,I2,I3,I4,I5,I6,I7,I8,R1,R2,R3,R4,Q1,Q2,Q3,Q4,ResultName); -- template
 -- crystals = fire(4096,4238) ice(4097,4239) wind(4098,4240) earth(4099,4241) lightning(4100,4242) water(4101,4243) light(4102,4244) dark(4103,4245)
