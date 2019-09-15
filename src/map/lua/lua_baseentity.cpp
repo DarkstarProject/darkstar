@@ -6043,15 +6043,15 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
     {
         uint8 complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
-        if (complete == 0)
+        if (!complete)
         {
             PChar->m_questLog[questLogID].current[questID / 8] &= ~(1 << (questID % 8));
             PChar->m_questLog[questLogID].complete[questID / 8] |= (1 << (questID % 8));
 
             PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURRENT));
             PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_COMPLETE));
+            charutils::SaveQuestsList(PChar);
         }
-        charutils::SaveQuestsList(PChar);
     }
     else
     {
