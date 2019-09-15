@@ -19,7 +19,11 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount()
 
     if wsQuestEvent ~= nil then
-        player:startEvent(wsQuestEvent)
+        if wsQuestEvent == 448 then
+            player:startEvent(wsQuestEvent, nil, nil, dsp.keyItem.ANNALS_OF_TRUTH)
+        else
+            player:startEvent(wsQuestEvent)
+        end
 
     -- Curses Foiled Again!
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1) == QUEST_ACCEPTED) then
