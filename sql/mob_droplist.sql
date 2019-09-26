@@ -2890,10 +2890,10 @@ INSERT INTO `mob_droplist` VALUES (517,0,0,1000,880,220);
 INSERT INTO `mob_droplist` VALUES (517,0,0,1000,1614,80);
 INSERT INTO `mob_droplist` VALUES (517,0,0,1000,1639,10);
 INSERT INTO `mob_droplist` VALUES (517,0,0,1000,1740,100);
-INSERT INTO `mob_droplist` VALUES (518,0,0,1000,886,50);
-INSERT INTO `mob_droplist` VALUES (518,0,0,1000,902,110);
-INSERT INTO `mob_droplist` VALUES (518,0,0,1000,4875,80);
-INSERT INTO `mob_droplist` VALUES (518,0,0,1000,16792,100);
+INSERT INTO `mob_droplist` VALUES (518,0,0,1000,886,167);   -- (Count_Bifrons) demon_skull
+INSERT INTO `mob_droplist` VALUES (518,0,0,1000,902,500);   -- demon_horn
+INSERT INTO `mob_droplist` VALUES (518,0,0,1000,4875,83);   -- scroll_of_absorb-dex
+INSERT INTO `mob_droplist` VALUES (518,0,0,1000,16792,250); -- goshishos_scythe
 INSERT INTO `mob_droplist` VALUES (519,0,0,1000,1449,40);
 INSERT INTO `mob_droplist` VALUES (519,0,0,1000,1455,30);
 INSERT INTO `mob_droplist` VALUES (519,0,0,1000,1456,10);
@@ -3741,10 +3741,11 @@ INSERT INTO `mob_droplist` VALUES (715,0,0,1000,1452,10);
 INSERT INTO `mob_droplist` VALUES (715,0,0,1000,3358,10);
 INSERT INTO `mob_droplist` VALUES (715,0,0,1000,4249,1000);
 INSERT INTO `mob_droplist` VALUES (715,0,0,1000,15073,110);
-INSERT INTO `mob_droplist` VALUES (716,0,0,1000,886,50);
-INSERT INTO `mob_droplist` VALUES (716,0,0,1000,902,110);
-INSERT INTO `mob_droplist` VALUES (716,0,0,1000,4875,80);
-INSERT INTO `mob_droplist` VALUES (716,0,0,1000,16786,100);
+INSERT INTO `mob_droplist` VALUES (716,0,0,1000,886,202);   -- (Duke_Haborym) demon_skull
+INSERT INTO `mob_droplist` VALUES (716,0,0,1000,902,327);   -- demon_horn
+INSERT INTO `mob_droplist` VALUES (716,0,0,1000,4111,10);   -- dark_cluster
+INSERT INTO `mob_droplist` VALUES (716,0,0,1000,4875,298);  -- scroll_of_absorb-dex
+INSERT INTO `mob_droplist` VALUES (716,0,0,1000,16786,317); -- barbarians_scythe
 INSERT INTO `mob_droplist` VALUES (717,0,0,1000,1455,90);
 INSERT INTO `mob_droplist` VALUES (717,0,0,1000,4249,1000);
 INSERT INTO `mob_droplist` VALUES (717,0,0,1000,15079,90);
@@ -3875,10 +3876,10 @@ INSERT INTO `mob_droplist` VALUES (741,0,0,1000,3213,100);
 INSERT INTO `mob_droplist` VALUES (741,0,0,1000,11513,1000);
 INSERT INTO `mob_droplist` VALUES (741,0,0,1000,12997,100);
 INSERT INTO `mob_droplist` VALUES (741,0,0,1000,14887,100);
-INSERT INTO `mob_droplist` VALUES (742,0,0,1000,886,50);
-INSERT INTO `mob_droplist` VALUES (742,0,0,1000,902,110);
-INSERT INTO `mob_droplist` VALUES (742,0,0,1000,2825,100);
-INSERT INTO `mob_droplist` VALUES (742,0,0,1000,4875,80);
+INSERT INTO `mob_droplist` VALUES (742,0,0,1000,886,31);    -- (Eclipse_Demon) demon_skull
+INSERT INTO `mob_droplist` VALUES (742,0,0,1000,902,75);    -- demon_horn
+INSERT INTO `mob_droplist` VALUES (742,0,0,1000,2825,100);  -- square_of_cambric
+INSERT INTO `mob_droplist` VALUES (742,0,0,1000,4875,12);   -- scroll_of_absorb-dex
 INSERT INTO `mob_droplist` VALUES (743,0,0,1000,642,70);
 INSERT INTO `mob_droplist` VALUES (743,0,0,1000,736,30);
 INSERT INTO `mob_droplist` VALUES (743,0,0,1000,768,400);
@@ -7320,9 +7321,9 @@ INSERT INTO `mob_droplist` VALUES (1414,0,0,1000,499,30);
 INSERT INTO `mob_droplist` VALUES (1414,0,0,1000,1434,190);
 INSERT INTO `mob_droplist` VALUES (1414,0,0,1000,2385,20);
 INSERT INTO `mob_droplist` VALUES (1414,0,0,1000,2386,70);
-INSERT INTO `mob_droplist` VALUES (1415,0,0,1000,886,50);
-INSERT INTO `mob_droplist` VALUES (1415,0,0,1000,902,110);
-INSERT INTO `mob_droplist` VALUES (1415,0,0,1000,4875,80);
+INSERT INTO `mob_droplist` VALUES (1415,0,0,1000,886,50);   -- (Judicator_Demon) demon_skull
+INSERT INTO `mob_droplist` VALUES (1415,0,0,1000,902,121);  -- demon_horn
+INSERT INTO `mob_droplist` VALUES (1415,0,0,1000,4875,50);  -- scroll_of_absorb-dex
 INSERT INTO `mob_droplist` VALUES (1416,0,0,1000,902,110);
 INSERT INTO `mob_droplist` VALUES (1416,0,0,1000,4878,10);
 INSERT INTO `mob_droplist` VALUES (1416,0,0,1000,17415,340);
@@ -7552,9 +7553,9 @@ INSERT INTO `mob_droplist` VALUES (1443,0,0,1000,902,110);
 INSERT INTO `mob_droplist` VALUES (1443,0,0,1000,4783,80);
 INSERT INTO `mob_droplist` VALUES (1444,0,0,1000,886,50);
 INSERT INTO `mob_droplist` VALUES (1444,0,0,1000,902,110);
-INSERT INTO `mob_droplist` VALUES (1445,0,0,1000,886,30);
-INSERT INTO `mob_droplist` VALUES (1445,0,0,1000,902,120);
-INSERT INTO `mob_droplist` VALUES (1445,0,0,1000,4903,30);
+INSERT INTO `mob_droplist` VALUES (1445,0,0,1000,886,30);   -- (Kindred_Summoner, Uleguerand) demon_skull
+INSERT INTO `mob_droplist` VALUES (1445,0,0,1000,902,34);   -- demon_horn
+INSERT INTO `mob_droplist` VALUES (1445,0,0,1000,4903,17);  -- dark_spirit_pact
 INSERT INTO `mob_droplist` VALUES (1446,0,0,1000,2524,30);
 INSERT INTO `mob_droplist` VALUES (1446,0,0,1000,16238,100);
 INSERT INTO `mob_droplist` VALUES (1447,0,0,1000,2149,330);
@@ -13843,9 +13844,9 @@ INSERT INTO `mob_droplist` VALUES (2579,0,0,1000,12816,10);
 INSERT INTO `mob_droplist` VALUES (2580,0,0,1000,1122,270);
 INSERT INTO `mob_droplist` VALUES (2581,0,0,1000,2523,70);
 INSERT INTO `mob_droplist` VALUES (2581,0,0,1000,2524,120);
-INSERT INTO `mob_droplist` VALUES (2582,0,0,1000,886,300);
-INSERT INTO `mob_droplist` VALUES (2582,0,0,1000,902,390);
-INSERT INTO `mob_droplist` VALUES (2582,0,0,1000,4903,100);
+INSERT INTO `mob_droplist` VALUES (2582,0,0,1000,886,300);  -- (Viscount_Morax) demon_skull
+INSERT INTO `mob_droplist` VALUES (2582,0,0,1000,902,300);  -- demon_horn
+INSERT INTO `mob_droplist` VALUES (2582,0,0,1000,4903,250); -- dark_spirit_pact
 INSERT INTO `mob_droplist` VALUES (2583,0,0,1000,14335,370);
 INSERT INTO `mob_droplist` VALUES (2583,0,0,1000,15368,100);
 INSERT INTO `mob_droplist` VALUES (2584,2,0,1000,1452,0);
