@@ -28,6 +28,8 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         SHINING_OBJECT_SLIPS_AWAY     = 7438,  -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7445,  -- You can reach the water from here.
         CONQUEST                      = 7481,  -- You've earned conquest points!
+        ITEMS_ITEMS_LA_LA             = 7833,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        GOBLIN_SLIPPED_AWAY           = 7839,  -- The Goblin slipped away when you were not looking...
         PLAYER_OBTAINS_ITEM           = 8064,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM         = 8065,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM      = 8066,  -- <name> obtains the temporary item: <item>!
@@ -70,8 +72,8 @@ zones[dsp.zone.NORTH_GUSTABERG] =
     },
     npc =
     {
-        CASKET_BASE   = 17212023,
-        OVERSEER_BASE = 17212060,
+        CASKET_BASE   = 17212022,
+        OVERSEER_BASE = 17212059,
     },
 }
 

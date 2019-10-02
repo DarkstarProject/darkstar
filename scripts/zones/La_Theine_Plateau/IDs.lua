@@ -32,6 +32,8 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         ALREADY_HAVE_ALL_FRAGS       = 7585,  -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
         FOUND_ALL_FRAGS              = 7586,  -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT              = 7587,  -- It is an ancient Zilart monument.
+        ITEMS_ITEMS_LA_LA            = 7732,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        GOBLIN_SLIPPED_AWAY          = 7738,  -- The Goblin slipped away when you were not looking...
         TELEPOINT_HAS_BEEN_SHATTERED = 7748,  -- The telepoint has been shattered into a thousand pieces...
         BROKEN_EGG                   = 7819,  -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
         CHOCOBO_TRACKS               = 7880,  -- There are chocobo tracks on the ground here.
@@ -66,9 +68,9 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
     },
     npc =
     {
-        FALLEN_EGG  = 17195583,
-        CASKET_BASE = 17195584,
-        RAINBOW     = 17195607,
+        FALLEN_EGG  = 17195582,
+        CASKET_BASE = 17195583,
+        RAINBOW     = 17195606,
     },
 }
 

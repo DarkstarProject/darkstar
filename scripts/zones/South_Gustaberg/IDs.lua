@@ -27,6 +27,8 @@ zones[dsp.zone.SOUTH_GUSTABERG] =
         FIRE_TAKE                = 7406, -- You take <item> out of the fire.
         FIRE_LONGER              = 7407, -- It may take a little while more to cook the <item>.
         MEAT_ALREADY_PUT         = 7408, -- The <item> is already in the fire.
+        ITEMS_ITEMS_LA_LA        = 7505,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        GOBLIN_SLIPPED_AWAY      = 7511,  -- The Goblin slipped away when you were not looking...
         PLAYER_OBTAINS_ITEM      = 7525, -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 7526, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7527, -- <name> obtains the temporary item: <item>!
@@ -57,7 +59,7 @@ zones[dsp.zone.SOUTH_GUSTABERG] =
     },
     npc =
     {
-        CASKET_BASE = 17216173,
+        CASKET_BASE = 17216172,
     },
 }
 
