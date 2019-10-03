@@ -1799,6 +1799,7 @@ INSERT INTO `item_mods` VALUES (10670,1,65);
 INSERT INTO `item_mods` VALUES (10670,2,42);
 INSERT INTO `item_mods` VALUES (10670,23,15);
 INSERT INTO `item_mods` VALUES (10670,25,15);
+INSERT INTO `item_mods` VALUES (10670,955,10);  -- WAR AF2+2 Body Aggressor Duration +10
 INSERT INTO `item_mods` VALUES (10671,1,57);
 INSERT INTO `item_mods` VALUES (10671,3,7);
 INSERT INTO `item_mods` VALUES (10671,10,8);
@@ -2141,6 +2142,7 @@ INSERT INTO `item_mods` VALUES (10730,1,25);
 INSERT INTO `item_mods` VALUES (10730,2,21);
 INSERT INTO `item_mods` VALUES (10730,9,8);
 INSERT INTO `item_mods` VALUES (10730,11,8);
+INSERT INTO `item_mods` VALUES (10730,954,10);  -- WAR AF2+2 Feet Berserk Duration +10
 INSERT INTO `item_mods` VALUES (10731,1,20);
 INSERT INTO `item_mods` VALUES (10731,3,5);
 INSERT INTO `item_mods` VALUES (10731,8,7);
@@ -4006,6 +4008,8 @@ INSERT INTO `item_mods` VALUES (11224,1,52);
 INSERT INTO `item_mods` VALUES (11224,23,10);
 INSERT INTO `item_mods` VALUES (11224,288,3);
 INSERT INTO `item_mods` VALUES (11224,384,600);
+INSERT INTO `item_mods` VALUES (11224,903,50);  -- AF3 +1: "Fencer"+1
+INSERT INTO `item_mods` VALUES (11224,904,1);   -- AF3 +1: "Fencer"+1
 INSERT INTO `item_mods` VALUES (11225,1,47);
 INSERT INTO `item_mods` VALUES (11225,23,7);
 INSERT INTO `item_mods` VALUES (11225,25,7);
@@ -25156,6 +25160,7 @@ INSERT INTO `item_mods` VALUES (20653,355,225); -- Chant du Cygne
 INSERT INTO `item_mods` VALUES (20654,9,20);    -- Almace 119 AG - DEX+20
 INSERT INTO `item_mods` VALUES (20654,256,44);  -- Aftermath
 INSERT INTO `item_mods` VALUES (20654,355,225); -- Chant du Cygne
+INSERT INTO `item_mods` VALUES (20678,954,15);  -- Firangi Berserk Duration + 15
 INSERT INTO `item_mods` VALUES (20685,23,60); -- Excalibur iLvL 119 AG - ATT +60
 INSERT INTO `item_mods` VALUES (20685,256,17); -- Aftermath
 INSERT INTO `item_mods` VALUES (20685,355,43); -- Knights of the Round
@@ -25386,8 +25391,11 @@ INSERT INTO `item_mods` VALUES (20839,355,92); -- Ukko's Fury
 INSERT INTO `item_mods` VALUES (20840,8,20);   -- Ukonvasara 119 AG - STR +20
 INSERT INTO `item_mods` VALUES (20840,256,44); -- Aftermath
 INSERT INTO `item_mods` VALUES (20840,355,92); -- Ukko's Fury
+INSERT INTO `item_mods` VALUES (20842,954,15);  -- Reikiono Berserk Duration + 15
 INSERT INTO `item_mods` VALUES (20843,73,10); -- Chango - STP +10
 INSERT INTO `item_mods` VALUES (20843,345,500); -- TP Bonus +500
+INSERT INTO `item_mods` VALUES (20845,954,20);  -- Instigator Berserk Duration + 20
+INSERT INTO `item_mods` VALUES (20845,955,20);  -- Instigator Aggressor Duration + 20
 INSERT INTO `item_mods` VALUES (20849,25,20); -- Blurred Cleaver - 20 Acc
 INSERT INTO `item_mods` VALUES (20850,25,25); -- Blurred Cleaver +1 - 25 Acc
 INSERT INTO `item_mods` VALUES (20851,23,20);     -- Aizkora (iLvl 119): Attack +20
@@ -27793,6 +27801,7 @@ INSERT INTO `item_mods` VALUES (23040,31,63);     -- Magic Evasion+63
 INSERT INTO `item_mods` VALUES (23040,68,46);     -- Evasion+46
 INSERT INTO `item_mods` VALUES (23040,161,-4);    -- Physical Damage Taken-4
 INSERT INTO `item_mods` VALUES (23040,384,800);   -- Haste +8%
+INSERT INTO `item_mods` VALUES (23040,955,16);  -- WAR AF1 119 +2 Head Aggressor Duration +16
 INSERT INTO `item_mods` VALUES (23041,1,110);     -- anch._crown_+2 DEF:110
 INSERT INTO `item_mods` VALUES (23041,2,72);      -- HP+72
 INSERT INTO `item_mods` VALUES (23041,8,28);      -- STR+28
@@ -28171,6 +28180,7 @@ INSERT INTO `item_mods` VALUES (23062,31,73);     -- Magic Evasion+73
 INSERT INTO `item_mods` VALUES (23062,68,54);     -- Evasion+54
 INSERT INTO `item_mods` VALUES (23062,170,12);    -- Fast Cast+12
 INSERT INTO `item_mods` VALUES (23062,384,800);   -- Haste +8%
+INSERT INTO `item_mods` VALUES (23063,483,30);  -- WAR AF2 119 +2 Head Warcry Duration +30
 INSERT INTO `item_mods` VALUES (23076,1,121);     -- Ptero. Armet +2 DEF: 121
 INSERT INTO `item_mods` VALUES (23076,2,70);      -- HP+70
 INSERT INTO `item_mods` VALUES (23076,5,33);      -- MP+33
@@ -28205,6 +28215,7 @@ INSERT INTO `item_mods` VALUES (23107,31,74);     -- Magic Evasion+74
 INSERT INTO `item_mods` VALUES (23107,68,54);     -- Evasion+54
 INSERT INTO `item_mods` VALUES (23107,384,400);   -- Haste +40
 INSERT INTO `item_mods` VALUES (23107,841,5);     -- Weapon Skill Damage+5%
+INSERT INTO `item_mods` VALUES (23107,954,16);  -- WAR AF1 119 +2 Body  Berserk Duration +16
 INSERT INTO `item_mods` VALUES (23108,1,140);     -- anch._cyclas_+2 DEF:140
 INSERT INTO `item_mods` VALUES (23108,2,118);     -- HP+118
 INSERT INTO `item_mods` VALUES (23108,8,34);      -- STR+34
@@ -28605,6 +28616,7 @@ INSERT INTO `item_mods` VALUES (23129,61,36);     -- Dark Resist+36
 INSERT INTO `item_mods` VALUES (23129,68,59);     -- Evasion+59
 INSERT INTO `item_mods` VALUES (23129,369,2);     -- Refresh+2
 INSERT INTO `item_mods` VALUES (23129,384,400);   -- Haste +40
+INSERT INTO `item_mods` VALUES (23130,955,25);  -- WAR AF2 119 +2 Body Aggressor Duration +25
 INSERT INTO `item_mods` VALUES (23174,1,111);     -- pumm._mufflers_+2 DEF:111
 INSERT INTO `item_mods` VALUES (23174,2,55);      -- HP+55
 INSERT INTO `item_mods` VALUES (23174,8,23);      -- STR+23
@@ -28997,6 +29009,7 @@ INSERT INTO `item_mods` VALUES (23196,68,34);     -- Evasion+34
 INSERT INTO `item_mods` VALUES (23196,113,17);    -- Enhancing Magic Skill+17
 INSERT INTO `item_mods` VALUES (23196,161,-2);    -- Physical Damage Taken-2
 INSERT INTO `item_mods` VALUES (23196,384,500);   -- Haste +5%
+INSERT INTO `item_mods` VALUES (23197,956,10);  -- WAR AF2 119 +2 Hands Defender Duration +10
 INSERT INTO `item_mods` VALUES (23241,1,135);     -- pumm._cuisses_+2 DEF:135
 INSERT INTO `item_mods` VALUES (23241,2,75);      -- HP+75
 INSERT INTO `item_mods` VALUES (23241,8,35);      -- STR+35
@@ -29773,6 +29786,7 @@ INSERT INTO `item_mods` VALUES (23330,29,5);      -- Magic Defense Bonus+5
 INSERT INTO `item_mods` VALUES (23330,31,89);     -- Magic Evasion+89
 INSERT INTO `item_mods` VALUES (23330,68,102);    -- Evasion+102
 INSERT INTO `item_mods` VALUES (23330,384,400);   -- Haste +40
+INSERT INTO `item_mods` VALUES (23331,954,25);  -- WAR AF2 119 +2 Feet Berserk Duration +25
 INSERT INTO `item_mods` VALUES (23375,1,133);     -- pummelers_mask_+3 DEF:133
 INSERT INTO `item_mods` VALUES (23375,2,67);      -- HP+67
 INSERT INTO `item_mods` VALUES (23375,8,31);      -- STR+31
@@ -29789,6 +29803,7 @@ INSERT INTO `item_mods` VALUES (23375,31,73);     -- Magic Evasion+73
 INSERT INTO `item_mods` VALUES (23375,68,56);     -- Evasion+56
 INSERT INTO `item_mods` VALUES (23375,161,-5);    -- Physical Damage Taken-5
 INSERT INTO `item_mods` VALUES (23375,384,800);   -- Haste +8%
+INSERT INTO `item_mods` VALUES (23375,955,18);  -- WAR AF1 119 +3 Head Aggressor Duration +18
 INSERT INTO `item_mods` VALUES (23376,1,120);     -- anchor._crown_+3 DEF:120
 INSERT INTO `item_mods` VALUES (23376,2,82);      -- HP+82
 INSERT INTO `item_mods` VALUES (23376,8,33);      -- STR+33
@@ -30168,6 +30183,7 @@ INSERT INTO `item_mods` VALUES (23397,31,83);     -- Magic Evasion+83
 INSERT INTO `item_mods` VALUES (23397,68,64);     -- Evasion+64
 INSERT INTO `item_mods` VALUES (23397,170,14);    -- Fast Cast+14
 INSERT INTO `item_mods` VALUES (23397,384,800);   -- Haste +8%
+INSERT INTO `item_mods` VALUES (23398,483,30);  -- WAR AF2 119 +3 Head Warcry Duration +30
 INSERT INTO `item_mods` VALUES (23411,1,131);     -- Ptero. Armet +3 DEF: 131
 INSERT INTO `item_mods` VALUES (23411,2,80);      -- HP +80
 INSERT INTO `item_mods` VALUES (23411,5,43);      -- MP +43
@@ -30202,6 +30218,7 @@ INSERT INTO `item_mods` VALUES (23442,31,84);     -- Magic Evasion+84
 INSERT INTO `item_mods` VALUES (23442,68,64);     -- Evasion+64
 INSERT INTO `item_mods` VALUES (23442,384,400);   -- Haste +40
 INSERT INTO `item_mods` VALUES (23442,841,10);    -- Weapon Skill Damage+10%
+INSERT INTO `item_mods` VALUES (23442,954,18);  -- WAR AF1 119 +3 Body Berserk Duration +18
 INSERT INTO `item_mods` VALUES (23443,1,150);     -- anch._cyclas_+3 DEF:150
 INSERT INTO `item_mods` VALUES (23443,2,128);     -- HP+128
 INSERT INTO `item_mods` VALUES (23443,8,39);      -- STR+39
@@ -30602,6 +30619,7 @@ INSERT INTO `item_mods` VALUES (23464,61,39);     -- Dark Resist+39
 INSERT INTO `item_mods` VALUES (23464,68,69);     -- Evasion+69
 INSERT INTO `item_mods` VALUES (23464,369,3);     -- Refresh+3
 INSERT INTO `item_mods` VALUES (23464,384,400);   -- Haste +40
+INSERT INTO `item_mods` VALUES (23465,955,30);  -- WAR AF2 119 +3 Body Aggressor Duration +30
 INSERT INTO `item_mods` VALUES (23509,1,121);     -- pumm._mufflers_+3 DEF:121
 INSERT INTO `item_mods` VALUES (23509,2,65);      -- HP+65
 INSERT INTO `item_mods` VALUES (23509,8,28);      -- STR+28
@@ -30994,6 +31012,9 @@ INSERT INTO `item_mods` VALUES (23531,68,44);     -- Evasion+44
 INSERT INTO `item_mods` VALUES (23531,113,19);    -- Enhancing Magic Skill+19
 INSERT INTO `item_mods` VALUES (23531,161,-3);    -- Physical Damage Taken-3
 INSERT INTO `item_mods` VALUES (23531,384,500);   -- Haste +5%
+INSERT INTO `item_mods` VALUES (23532,903,50);  -- WAR AF2 119 +3: "Fencer"+1
+INSERT INTO `item_mods` VALUES (23532,904,1);   -- WAR AF2 119 +3: "Fencer"+1
+INSERT INTO `item_mods` VALUES (23532,956,15);  -- WAR AF2 119 +3 Hands Defender Duration +15
 INSERT INTO `item_mods` VALUES (23576,1,145);     -- pumm._cuisses_+3 DEF:145
 INSERT INTO `item_mods` VALUES (23576,2,85);      -- HP+85
 INSERT INTO `item_mods` VALUES (23576,8,40);      -- STR+40
@@ -31785,7 +31806,7 @@ INSERT INTO `item_mods` VALUES (23666,30,36);     -- Agoge Calligae +3: Magic Ac
 INSERT INTO `item_mods` VALUES (23666,31,100);    -- Agoge Calligae +3: Magic Evasion+100
 INSERT INTO `item_mods` VALUES (23666,68,72);     -- Agoge Calligae +3: Evasion+72
 INSERT INTO `item_mods` VALUES (23666,384,400);   -- Agoge Calligae +3: Haste+4%
--- INSERT INTO `item_mods` VALUES (23666,,30);    -- Agoge Calligae +3: "Berserk" effect duration +30
+INSERT INTO `item_mods` VALUES (23666,954,30);  -- WAR AF2 119 +3 Feet Berserk Duration +30
 INSERT INTO `item_mods` VALUES (23667,1,81);      -- Hesychast's Gaiters +3: DEF:81
 INSERT INTO `item_mods` VALUES (23667,2,84);      -- Hesychast's Gaiters +3: HP+84
 INSERT INTO `item_mods` VALUES (23667,8,28);      -- Hesychast's Gaiters +3: STR+28
@@ -32604,13 +32625,16 @@ INSERT INTO `item_mods` VALUES (23730,1,1);       -- Karakul Cap: DEF:1
 INSERT INTO `item_mods` VALUES (23731,1,1);       -- Royal Chocobo Beret: DEF:1
 INSERT INTO `item_mods` VALUES (25417,23,15);     -- Warrior's Beads: Attack+15
 INSERT INTO `item_mods` VALUES (25417,25,15);     -- Warrior's Beads: Accuracy+15
-INSERT INTO `item_mods` VALUES (25417,903,1);     -- Warrior's Beads: "Fencer"+1
+INSERT INTO `item_mods` VALUES (25417,903,50);  -- Warrior's Beads: "Fencer"+1
+INSERT INTO `item_mods` VALUES (25417,904,1);   -- Warrior's Beads: "Fencer"+1
 INSERT INTO `item_mods` VALUES (25418,23,20);     -- War. Beads +1: Attack+20
 INSERT INTO `item_mods` VALUES (25418,25,20);     -- War. Beads +1: Accuracy+20
-INSERT INTO `item_mods` VALUES (25418,903,1);     -- War. Beads +1: "Fencer"+1
+INSERT INTO `item_mods` VALUES (25418,903,50);  -- War. Beads +1: "Fencer"+1
+INSERT INTO `item_mods` VALUES (25418,904,1);   -- War. Beads +1: "Fencer"+1
 INSERT INTO `item_mods` VALUES (25419,23,25);     -- War. Beads +2: Attack+25
 INSERT INTO `item_mods` VALUES (25419,25,25);     -- War. Beads +2: Accuracy+25
-INSERT INTO `item_mods` VALUES (25419,903,1);     -- War. Beads +2: "Fencer"+1
+INSERT INTO `item_mods` VALUES (25419,903,50);  -- War. Beads +2: "Fencer"+1
+INSERT INTO `item_mods` VALUES (25419,904,1);   -- War. Beads +2: "Fencer"+1
 INSERT INTO `item_mods` VALUES (25423,25,20);     -- Monk's Nodowa: Accuracy+20
 INSERT INTO `item_mods` VALUES (25423,292,10);    -- Monk's Nodowa: "Kick Attacks" attack +10
 INSERT INTO `item_mods` VALUES (25424,25,25);     -- Mnk. Nodowa +1: Accuracy+25
@@ -35080,6 +35104,7 @@ INSERT INTO `item_mods` VALUES (26202,169,18);    -- Shneddick Ring +1 Movement 
 INSERT INTO `item_mods` VALUES (26202,246,17);    -- Resist Petrify+17
 INSERT INTO `item_mods` VALUES (26202,247,17);    -- Resist Bind+17
 INSERT INTO `item_mods` VALUES (26202,249,17);    -- Resist Gravity+17
+INSERT INTO `item_mods` VALUES (26246,954,15);  -- Cichol's Mantle Berserk Duration + 15
 INSERT INTO `item_mods` VALUES (26248,1,15);      -- Alaunus's Cape: DEF 15
 INSERT INTO `item_mods` VALUES (26248,310,25);    -- Cursna effect +25%
 INSERT INTO `item_mods` VALUES (26258,1,16);	  -- Andartia's Mantle: DEF 16
@@ -36752,6 +36777,7 @@ INSERT INTO `item_mods` VALUES (26800,29,2);
 INSERT INTO `item_mods` VALUES (26800,31,43);
 INSERT INTO `item_mods` VALUES (26800,68,20);
 INSERT INTO `item_mods` VALUES (26800,384,400);
+INSERT INTO `item_mods` VALUES (26800,955,15);  -- WAR AF2 109 Body Aggressor Duration +15
 INSERT INTO `item_mods` VALUES (26801,1,145);
 INSERT INTO `item_mods` VALUES (26801,2,61);
 INSERT INTO `item_mods` VALUES (26801,8,26);
@@ -36767,6 +36793,7 @@ INSERT INTO `item_mods` VALUES (26801,29,5);
 INSERT INTO `item_mods` VALUES (26801,31,64);
 INSERT INTO `item_mods` VALUES (26801,68,44);
 INSERT INTO `item_mods` VALUES (26801,384,400);
+INSERT INTO `item_mods` VALUES (26801,955,20);  -- WAR AF2 119 Body Aggressor Duration +20
 INSERT INTO `item_mods` VALUES (26802,1,85);
 INSERT INTO `item_mods` VALUES (26802,2,79);
 INSERT INTO `item_mods` VALUES (26802,8,15);
@@ -41383,6 +41410,7 @@ INSERT INTO `item_mods` VALUES (27328,29,1);
 INSERT INTO `item_mods` VALUES (27328,31,54);
 INSERT INTO `item_mods` VALUES (27328,68,24);
 INSERT INTO `item_mods` VALUES (27328,384,400);
+INSERT INTO `item_mods` VALUES (27328,954,15);  -- WAR AF2 109 Feet Berserk Duration +15
 INSERT INTO `item_mods` VALUES (27329,1,81);
 INSERT INTO `item_mods` VALUES (27329,2,15);
 INSERT INTO `item_mods` VALUES (27329,8,17);
@@ -41396,6 +41424,7 @@ INSERT INTO `item_mods` VALUES (27329,29,3);
 INSERT INTO `item_mods` VALUES (27329,31,80);
 INSERT INTO `item_mods` VALUES (27329,68,52);
 INSERT INTO `item_mods` VALUES (27329,384,400);
+INSERT INTO `item_mods` VALUES (27329,954,20);  -- WAR AF2 119 Feet Berserk Duration +20
 INSERT INTO `item_mods` VALUES (27330,1,42);
 INSERT INTO `item_mods` VALUES (27330,2,48);
 INSERT INTO `item_mods` VALUES (27330,8,12);
@@ -43143,6 +43172,7 @@ INSERT INTO `item_mods` VALUES (27663,29,1);
 INSERT INTO `item_mods` VALUES (27663,31,36);
 INSERT INTO `item_mods` VALUES (27663,68,16);
 INSERT INTO `item_mods` VALUES (27663,384,700);
+INSERT INTO `item_mods` VALUES (27663,955,10);  -- WAR AF1 109 Head Aggressor Duration +10
 INSERT INTO `item_mods` VALUES (27664,1,72);
 INSERT INTO `item_mods` VALUES (27664,2,17);
 INSERT INTO `item_mods` VALUES (27664,8,17);
@@ -43492,6 +43522,7 @@ INSERT INTO `item_mods` VALUES (27684,29,2);
 INSERT INTO `item_mods` VALUES (27684,31,53);
 INSERT INTO `item_mods` VALUES (27684,68,36);
 INSERT INTO `item_mods` VALUES (27684,384,800);
+INSERT INTO `item_mods` VALUES (27684,955,14);  -- WAR AF1 119 Head Aggressor Duration +14
 INSERT INTO `item_mods` VALUES (27685,1,100);
 INSERT INTO `item_mods` VALUES (27685,2,36);
 INSERT INTO `item_mods` VALUES (27685,8,23);
@@ -44741,6 +44772,7 @@ INSERT INTO `item_mods` VALUES (27807,29,2);
 INSERT INTO `item_mods` VALUES (27807,31,43);
 INSERT INTO `item_mods` VALUES (27807,68,20);
 INSERT INTO `item_mods` VALUES (27807,384,400);
+INSERT INTO `item_mods` VALUES (27807,954,10);  -- WAR AF1 109 Body Berserk Duration +10
 INSERT INTO `item_mods` VALUES (27808,1,93);
 INSERT INTO `item_mods` VALUES (27808,2,28);
 INSERT INTO `item_mods` VALUES (27808,8,20);
@@ -45094,6 +45126,7 @@ INSERT INTO `item_mods` VALUES (27828,29,5);
 INSERT INTO `item_mods` VALUES (27828,31,64);
 INSERT INTO `item_mods` VALUES (27828,68,44);
 INSERT INTO `item_mods` VALUES (27828,384,400);
+INSERT INTO `item_mods` VALUES (27828,954,14);  -- WAR AF1 119 Body Berserk Duration +14
 INSERT INTO `item_mods` VALUES (27829,1,130);
 INSERT INTO `item_mods` VALUES (27829,2,59);
 INSERT INTO `item_mods` VALUES (27829,8,29);
