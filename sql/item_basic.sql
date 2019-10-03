@@ -2027,7 +2027,7 @@ INSERT INTO `item_basic` VALUES (2139,0,'fragrant_dhalmel_hide','fr._dhalmel_hid
 INSERT INTO `item_basic` VALUES (2140,0,'fragrant_ram_skin','fragrant_ram_skin',12,4,41,0,592);
 INSERT INTO `item_basic` VALUES (2141,0,'wailing_bone_chip','wail._bone_chip',12,4,42,0,16);
 INSERT INTO `item_basic` VALUES (2142,0,'wailing_ram_horn','wailing_ram_horn',12,4,42,0,444);
-INSERT INTO `item_basic` VALUES (2143,0,'mandrel','mandrel',12,4,39,0,241);
+INSERT INTO `item_basic` VALUES (2143,0,'mandrel','mandrel',12,4,39,0,24);
 INSERT INTO `item_basic` VALUES (2144,0,'workshop_anvil','workshop_anvil',12,4,38,0,19);
 INSERT INTO `item_basic` VALUES (2145,0,'spool_of_zephyr_thread','zephyr_thread',12,4,40,0,75);
 INSERT INTO `item_basic` VALUES (2146,0,'merrow_scale','merrow_scale',12,4,42,0,250);
