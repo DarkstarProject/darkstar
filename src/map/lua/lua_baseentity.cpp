@@ -13701,7 +13701,7 @@ inline int32 CLuaBaseEntity::itemStolen(lua_State *L)
 
 /************************************************************************
 *  Function: getTHlevel()
-*  Purpose : Returns the Monster's current Treasure Hunter Tier
+*  Purpose : Return mob's current Treasure Hunter tier if alive, or its last if dead.
 *  Example : local TH = target:getTHlevel()
 *  Notes   :
 ************************************************************************/
@@ -13712,7 +13712,7 @@ inline int32 CLuaBaseEntity::getTHlevel(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
-    lua_pushinteger(L, PMob->PEnmityContainer->GetHighestTH());
+    lua_pushinteger(L, PMob->isDead() ? PMob->m_THLvl : PMob->PEnmityContainer->GetHighestTH());
     return 1;
 }
 
