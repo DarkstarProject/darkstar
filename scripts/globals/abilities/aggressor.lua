@@ -15,5 +15,5 @@ end
 
 function onUseAbility(player,target,ability)
     local merits = player:getMerit(dsp.merit.AGGRESSIVE_AIM)
-    player:addStatusEffect(dsp.effect.AGGRESSOR,merits,0,180)
+    player:addStatusEffect(dsp.effect.AGGRESSOR,merits,0,180 + player:getMod(dsp.mod.AGGRESSOR_DURATION))
 end
