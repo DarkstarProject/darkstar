@@ -104,8 +104,8 @@ namespace conquest
 
         influences[nation] += lost;
 
-        Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %u, bastok_influence = %u, "
-            "windurst_influence = %u, beastmen_influence = %u WHERE region_id = %u;", influences[0], influences[1], influences[2], influences[3], static_cast<uint8>(region));
+        Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
+            "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %u;", influences[0], influences[1], influences[2], influences[3], static_cast<uint8>(region));
     }
 
     /************************************************************************
