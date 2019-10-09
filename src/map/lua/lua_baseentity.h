@@ -60,7 +60,7 @@ public:
     // Variables
     int32 getCharVar(lua_State*);           // Returns a character variable
     int32 setCharVar(lua_State*);           // Sets a character variable
-    int32 addVar(lua_State*);               // Increments/decriments/sets a character variable
+    int32 addCharVar(lua_State*);           // Increments/decriments/sets a character variable
     int32 getLocalVar(lua_State*);
     int32 setLocalVar(lua_State*);
     int32 resetLocalVars(lua_State*);
