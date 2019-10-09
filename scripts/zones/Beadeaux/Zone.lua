@@ -34,9 +34,9 @@ function onZoneIn(player,prevZone)
     end
 
     if prevZone == dsp.zone.PASHHOW_MARSHLANDS then
-        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 100 then
+        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getCharVar("ChaosbringerKills") >= 100 then
             cs = 121
-        elseif player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1 then
+        elseif player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and player:getCharVar("MissionStatus") == 1 then
             cs = 120
         elseif player:getMainJob() == dsp.job.DRK and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_AVAILABLE then
             cs = 122
@@ -54,7 +54,7 @@ function onRegionEnter(player,region)
     if region:GetRegionID() <= 6 then
         if not player:hasStatusEffect(dsp.effect.CURSE_I) and not player:hasStatusEffect(dsp.effect.SILENCE) then
             player:addStatusEffect(dsp.effect.CURSE_I, 50, 0, 300)
-            if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getVar("cCollectCurse") == 0 then
+            if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getCharVar("cCollectCurse") == 0 then
                 player:setVar("cCollectCurse", 1)
             end
         end

@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local groceries = player:getVar("Groceries")
+    local groceries = player:getCharVar("Groceries")
 
     -- GROCERIES
     if groceries == 1 then

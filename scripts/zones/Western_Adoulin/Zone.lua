@@ -19,7 +19,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-142, 4, -18, 4)
     end
 
-    if (player:getVar("Raptor_Rapture_Status") == 2) then
+    if (player:getCharVar("Raptor_Rapture_Status") == 2) then
         -- Resuming cutscene for Quest: 'Raptor Rapture', after Pagnelle warps you to Rala Waterways mid-CS, then back here.
         cs = 5056
     end

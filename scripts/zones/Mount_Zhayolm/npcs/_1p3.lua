@@ -67,7 +67,7 @@ end
 
 function onInstanceCreated(player, target, instance)
     if instance then
-        instance:setLevelCap(player:getVar("AssaultCap"))
+        instance:setLevelCap(player:getCharVar("AssaultCap"))
         player:setVar("AssaultCap", 0)
         player:setInstance(instance)
         player:instanceEntry(target, 4)

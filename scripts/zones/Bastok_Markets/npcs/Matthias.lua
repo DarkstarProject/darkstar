@@ -23,8 +23,8 @@ local goldBrocade = 1999;
 
 function onTrade(player,npc,trade)
 
-    if (player:getVar("dancerTailorCS") == 4) then
-        local playersAFChoice = player:getVar("dancerAFChoice");
+    if (player:getCharVar("dancerTailorCS") == 4) then
+        local playersAFChoice = player:getCharVar("dancerAFChoice");
 
         if (playersAFChoice == 1 and
             trade:hasItemQty(imperialSilk, 1) == true and
@@ -57,7 +57,7 @@ function onTrade(player,npc,trade)
 end;
 
 function rewardThePlayer(player)
-    local playersAFChoice = player:getVar("dancerAFChoice");
+    local playersAFChoice = player:getCharVar("dancerAFChoice");
     local currentVanaDay = VanadielDayOfTheYear();
     player:setVar("dancerTailorWorkDay", currentVanaDay);
     player:setVar("dancerTailorCS", 5);
@@ -72,14 +72,14 @@ local dancersToeshoes = 15747;
 
 function onTrigger(player,npc)
 
-    local playersAFChoice = player:getVar("dancerAFChoice");
-    local tailorStartedWorkDay = player:getVar("dancerTailorWorkDay");
+    local playersAFChoice = player:getCharVar("dancerAFChoice");
+    local tailorStartedWorkDay = player:getCharVar("dancerTailorWorkDay");
 
-    if (player:getVar("dancerTailorCS") == 2) then
+    if (player:getCharVar("dancerTailorCS") == 2) then
         player:startEvent(492);
-    elseif (player:getVar("dancerTailorCS") == 3) then
+    elseif (player:getCharVar("dancerTailorCS") == 3) then
 
-        local completedPieces = player:getVar("dancerCompletedAF");
+        local completedPieces = player:getCharVar("dancerCompletedAF");
 
         local playerCompletedTiara = 0;
         if (bit.band(completedPieces,1) > 0) then
@@ -104,11 +104,11 @@ function onTrigger(player,npc)
             player:startEvent(493, playerCompletedTiara, playerCompletedBangles, playerCompletedShoes);
         end;
 
-    elseif (player:getVar("dancerTailorCS") == 4) then
+    elseif (player:getCharVar("dancerTailorCS") == 4) then
 
         player:startEvent(494, playersAFChoice -1); -- event params indexed from 0
 
-    elseif (player:getVar("dancerTailorCS") == 5 )then
+    elseif (player:getCharVar("dancerTailorCS") == 5 )then
 
         local currentVanaDay = VanadielDayOfTheYear();
 
@@ -130,7 +130,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(496); -- not enough time has passed
         end;
-    elseif (player:getVar("dancerTailorCS") == 6) then
+    elseif (player:getCharVar("dancerTailorCS") == 6) then
         player:startEvent(498);
     else
         player:startEvent(499);
@@ -142,7 +142,7 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    local completedPieces = player:getVar("dancerCompletedAF");
+    local completedPieces = player:getCharVar("dancerCompletedAF");
 
     if (csid == 492) then
 
@@ -171,7 +171,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 497) then -- reward player the appropriate AF
 
         local dancerAFID = 1; -- variable used to convert player's choice into an Item ID.
-        local playersAFChoice = player:getVar("dancerAFChoice");
+        local playersAFChoice = player:getCharVar("dancerAFChoice");
 
         if (playersAFChoice == 1) then
             dancerAFID = dancersTiara;

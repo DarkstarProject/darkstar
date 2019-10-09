@@ -33,7 +33,7 @@ function onEventFinish(player, csid, option)
     if
         csid == 32001 and
         player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and
-        player:getVar("MissionStatus") == 2
+        player:getCharVar("MissionStatus") == 2
     then
         player:setVar("MissionStatus", 3)
     end

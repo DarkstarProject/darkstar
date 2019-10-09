@@ -22,25 +22,25 @@ function onZoneIn(player, prevZone)
         player:setPos(-93.268, 0, 170.749, 162) -- Floor 1 {R}
     end
 
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 2 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") == 2 then
         player:completeMission(COP, dsp.mission.id.cop.BELOW_THE_ARKS)
         player:addMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS)
         player:setVar("PromathiaStatus", 0)
     elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS then
         if player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) then
-            if player:getVar("cslastpromy") == 1 then
+            if player:getCharVar("cslastpromy") == 1 then
                 player:setVar("cslastpromy", 0)
                 cs = 52
             end
         elseif player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) then
-            if player:getVar("cs2ndpromy") == 1 then
+            if player:getCharVar("cs2ndpromy") == 1 then
                 player:setVar("cs2ndpromy", 0)
                 cs = 51
             end
         end
     end
 
-    if player:getVar("FirstPromyvionMea") == 1 then
+    if player:getCharVar("FirstPromyvionMea") == 1 then
         cs = 50
     end
 

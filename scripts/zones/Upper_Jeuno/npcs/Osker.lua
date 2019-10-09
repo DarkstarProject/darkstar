@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Upper_Jeuno/IDs");
 
 function onTrade(player,npc,trade)
 
-    local ANewDawnEvent = player:getVar("ANewDawn_Event");
+    local ANewDawnEvent = player:getCharVar("ANewDawn_Event");
 
     if (trade:hasItemQty(717,1) and trade:getItemCount() == 1 and ANewDawnEvent == 3) then
         player:tradeComplete();
@@ -23,10 +23,10 @@ end;
 function onTrigger(player,npc)
 
     local ANewDawn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN);
-    local ANewDawnEvent = player:getVar("ANewDawn_Event");
+    local ANewDawnEvent = player:getCharVar("ANewDawn_Event");
 
     local ChocobosWounds = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
-    local feed = player:getVar("ChocobosWounds_Event");
+    local feed = player:getCharVar("ChocobosWounds_Event");
 
     -- A New Dawn
     if (ANewDawn == QUEST_ACCEPTED) then
@@ -69,7 +69,7 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    local ANewDawnEvent = player:getVar("ANewDawn_Event");
+    local ANewDawnEvent = player:getCharVar("ANewDawn_Event");
 
     if (csid == 146) then
         if (ANewDawnEvent == 2) then

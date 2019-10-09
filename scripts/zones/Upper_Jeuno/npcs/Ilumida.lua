@@ -21,7 +21,7 @@ function onTrigger(player,npc)
 
     --this variable implicitly stores: JFame >= 7 and ACandlelightVigil == QUEST_COMPLETED and RubbishDay == QUEST_COMPLETED and
     --NeverToReturn == QUEST_COMPLETED and SearchingForTheRightWords == QUEST_AVAILABLE and prereq CS complete
-    local SearchingForWords_prereq = player:getVar("QuestSearchRightWords_prereq");
+    local SearchingForWords_prereq = player:getCharVar("QuestSearchRightWords_prereq");
 
 
     if (player:getFameLevel(JEUNO) >= 4 and aCandlelightVigil == QUEST_AVAILABLE) then
@@ -33,13 +33,13 @@ function onTrigger(player,npc)
             player:startEvent(191); --quest accepted dialog
         end
 
-    elseif (player:getVar("QuestACandlelightVigil_denied") == 1) then
+    elseif (player:getCharVar("QuestACandlelightVigil_denied") == 1) then
         player:startEvent(193); --quest denied dialog, asks again for A Candlelight Vigil
 
     elseif (SearchingForWords_prereq == 1) then --has player completed prerequisite cutscene with Kurou-Morou?
         player:startEvent(197); --SearchingForTheRightWords intro CS
 
-    elseif (player:getVar("QuestSearchRightWords_denied") == 1) then
+    elseif (player:getCharVar("QuestSearchRightWords_denied") == 1) then
         player:startEvent(201); --asks player again, SearchingForTheRightWords accept/deny
 
     elseif (SearchingForWords == QUEST_ACCEPTED) then
@@ -49,7 +49,7 @@ function onTrigger(player,npc)
             player:startEvent(199); -- SearchingForTheRightWords quest accepted dialog
         end
 
-    elseif (player:getVar("SearchingForRightWords_postcs") == -1) then
+    elseif (player:getCharVar("SearchingForRightWords_postcs") == -1) then
         player:startEvent(196);
 
     elseif (SearchingForWords == QUEST_COMPLETED) then

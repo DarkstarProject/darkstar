@@ -15,7 +15,7 @@ end;
 function onTrigger(player,npc)
 
     local RockRacketeer = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ROCK_RACKETEER);
-    local Quotas_Status = player:getVar("ChasingQuotas_Progress");
+    local Quotas_Status = player:getCharVar("ChasingQuotas_Progress");
 
     -- Rock Racketeer
     if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SHARP_GRAY_STONE)) then

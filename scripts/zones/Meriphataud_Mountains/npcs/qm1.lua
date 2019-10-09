@@ -9,7 +9,7 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if npcUtil.tradeHas(trade, 1159) and player:getVar("TheHolyCrest_Event") == 4 then
+    if npcUtil.tradeHas(trade, 1159) and player:getCharVar("TheHolyCrest_Event") == 4 then
         player:startEvent(56)
     end
 end

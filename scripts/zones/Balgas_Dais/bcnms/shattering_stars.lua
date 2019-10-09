@@ -39,7 +39,7 @@ function onEventFinish(player, csid, option)
         end
         local pjob = player:getMainJob()
         player:setVar("maatDefeated", pjob)
-        local maatsCap = player:getVar("maatsCap")
+        local maatsCap = player:getCharVar("maatsCap")
         if bit.band(maatsCap, bit.lshift(1, pjob - 1)) ~= 1 then
             player:setVar("maatsCap", bit.bor(maatsCap, bit.lshift(1, pjob - 1)))
         end

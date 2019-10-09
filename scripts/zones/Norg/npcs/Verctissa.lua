@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
         if (WaterFork) then
             player:startEvent(111); --Dialogue given to remind player to be prepared
-        elseif (WaterFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeWater_date")) then
+        elseif (WaterFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeWater_date")) then
             player:startEvent(203,0,1549,2,20); --Need another mini tuning fork
         end
     elseif (TrialSizeWater == QUEST_COMPLETED) then

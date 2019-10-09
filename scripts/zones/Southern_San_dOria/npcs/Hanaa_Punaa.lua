@@ -55,7 +55,7 @@ function onTrigger(player,npc)
     blackTigerSkins = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.BLACK_TIGER_SKINS);
 
     -- "The Seamstress" Quest Status
-    if (theSteamStress == QUEST_AVAILABLE and player:getVar("theSeamStress") == 1) then
+    if (theSteamStress == QUEST_AVAILABLE and player:getCharVar("theSeamStress") == 1) then
         player:startEvent(531);
     elseif (theSteamStress == QUEST_AVAILABLE) then
         player:startEvent(528);
@@ -66,7 +66,7 @@ function onTrigger(player,npc)
         player:startEvent(590);
 
     -- "Lizard Skins" Quest Dialogs
-    elseif (lizardSkins == QUEST_AVAILABLE and player:getVar("lzdSkins") == 1 and sanFame >= 2 and theSteamStress == QUEST_COMPLETED) then
+    elseif (lizardSkins == QUEST_AVAILABLE and player:getCharVar("lzdSkins") == 1 and sanFame >= 2 and theSteamStress == QUEST_COMPLETED) then
         player:startEvent(562);
     elseif (lizardSkins == QUEST_AVAILABLE and sanFame >= 2 and theSteamStress == QUEST_COMPLETED) then
         player:startEvent(559);
@@ -77,7 +77,7 @@ function onTrigger(player,npc)
         player:startEvent(591);
 
     -- "Black Tiger Skins" Quest Dialogs
-    elseif (blackTigerSkins == QUEST_AVAILABLE and player:getVar("blkTigerSkin") == 1 and sanFame >= 3 and theSteamStress == QUEST_COMPLETED and lizardSkins == QUEST_COMPLETED) then
+    elseif (blackTigerSkins == QUEST_AVAILABLE and player:getCharVar("blkTigerSkin") == 1 and sanFame >= 3 and theSteamStress == QUEST_COMPLETED and lizardSkins == QUEST_COMPLETED) then
         player:startEvent(579 );
     elseif (blackTigerSkins == QUEST_AVAILABLE and sanFame >= 3 and theSteamStress == QUEST_COMPLETED and lizardSkins == QUEST_COMPLETED) then
         player:startEvent(576);

@@ -30,14 +30,14 @@ function onTrigger(player,npc)
     local RubbishDay = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
     local NeverToReturn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
     local JFame = player:getFameLevel(JEUNO);
-    local SearchingForWords_prereq = player:getVar("QuestSearchRightWords_prereq");
+    local SearchingForWords_prereq = player:getCharVar("QuestSearchRightWords_prereq");
 
 
     if (JFame >= 2 and YourCrystalBall == QUEST_AVAILABLE) then
         player:startEvent(194); -- Start "Your Crystal Ball" quest
 
-    elseif (JFame >= 5 and YourCrystalBall == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN) == QUEST_AVAILABLE and player:getVar("QuestNeverToReturn_day") ~= VanadielDayOfTheYear()) then
-        prog = player:getVar("QuestNeverToReturn_prog");
+    elseif (JFame >= 5 and YourCrystalBall == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN) == QUEST_AVAILABLE and player:getCharVar("QuestNeverToReturn_day") ~= VanadielDayOfTheYear()) then
+        prog = player:getCharVar("QuestNeverToReturn_prog");
         if (prog <= 2) then
             fortune = math.random(1,99);
             player:startEvent(204,fortune); -- Required to get fortune read 3x on 3 diff game days before quest is kicked off
@@ -49,13 +49,13 @@ function onTrigger(player,npc)
     elseif (SearchingForWords_prereq == 1) then
         player:startEvent(38);
 
-    elseif (player:getVar("QuestSearchRightWords_denied") == 1) then
+    elseif (player:getCharVar("QuestSearchRightWords_denied") == 1) then
         player:startEvent(36);
 
     elseif (SearchingForTheRightWords == QUEST_ACCEPTED) then
         player:startEvent(39);
 
-    elseif (player:getVar("SearchingForRightWords_postcs") == -2) then
+    elseif (player:getCharVar("SearchingForRightWords_postcs") == -2) then
         player:startEvent(154);
 
     elseif (SearchingForTheRightWords == QUEST_COMPLETED) then --final state, after all quests complete

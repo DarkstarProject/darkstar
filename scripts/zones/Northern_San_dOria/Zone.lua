@@ -25,14 +25,14 @@ end
 function onZoneIn(player,prevZone)
 
     local currentMission = player:getCurrentMission(SANDORIA)
-    local MissionStatus = player:getVar("MissionStatus")
+    local MissionStatus = player:getCharVar("MissionStatus")
     local cs = -1
 
     -- SOA 1-1 Optional CS
     if 
         ENABLE_SOA and 
         player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
-        player:getVar("SOA_1_CS1") == 0 
+        player:getCharVar("SOA_1_CS1") == 0 
     then
         cs = 878
     end
@@ -48,22 +48,22 @@ function onZoneIn(player,prevZone)
     -- MOG HOUSE EXIT
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(130,-0.2,-3,160)
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004
         end
         player:setVar("PlayerMainJob",0)
     end
     -- RDM AF3 CS
-    if (player:getVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
+    if (player:getCharVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 49
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
         player:setVar("EMERALD_WATERS_Status",2)
         cs = 14
     elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
         cs = 1
     elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
         cs = 0
-    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getCharVar("Wait1DayM8-1_date")) then
         cs = 16
     end
     return cs

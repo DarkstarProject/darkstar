@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
+    if (player:getCharVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
         player:startEvent(473);
     else
         player:startEvent(411);

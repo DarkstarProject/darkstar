@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     local questStatus = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_OLD_LADY);
 
     if (questStatus == QUEST_ACCEPTED and trade:getItemCount() == 1) then
-        local VeraOldLadyVar = player:getVar("VeraOldLadyVar");
+        local VeraOldLadyVar = player:getCharVar("VeraOldLadyVar");
         if (VeraOldLadyVar == 1 and trade:hasItemQty(542,1)) then
             player:startEvent(135,541);
         elseif (VeraOldLadyVar == 2 and trade:hasItemQty(541,1)) then
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     elseif (questStatus == QUEST_COMPLETED) then
         player:startEvent(138);
     elseif (questStatus == QUEST_ACCEPTED) then
-        VeraOldLadyVar = player:getVar("VeraOldLadyVar");
+        VeraOldLadyVar = player:getCharVar("VeraOldLadyVar");
         if (VeraOldLadyVar == 1) then
             player:startEvent(132,542);
         elseif (VeraOldLadyVar == 2) then

@@ -31,9 +31,9 @@ function onTrigger(player,npc)
     pfame = player:getFameLevel(WINDURST);
     if (hatstatus == 0) then
         player:startEvent(48); -- Quest Offered
---    elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_count") == 0) then
+--    elseif ((hatstatus == 1 or player:getCharVar("QuestHatInHand_var2") == 1) and player:getCharVar("QuestHatInHand_count") == 0) then
 --        player:startEvent(51,80); -- Hat in Hand: During Quest - Objective Reminder
-    elseif (hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) then
+    elseif (hatstatus == 1 or player:getCharVar("QuestHatInHand_var2") == 1) then
         --     Variable to track quest progress
         --     1 = Machitata       !pos 163 0 -22
         --    2 = Honoi-Gomoi       !pos -195 -11 -120
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         --  32 = Tosuka-Porika    !pos -26 -6 103
         --  64 = Pechiru-Mashiru !pos 162 -2 159
         --  128 = Bondada        !pos -66 -3 -148
-        count = player:getVar("QuestHatInHand_count");
+        count = player:getCharVar("QuestHatInHand_count");
         if (count == 8) then                 -- 80 = HAT + FULL REWARD  =  8 NPCS - Option 5
             player:startEvent(52,80);
         elseif (count >= 6) then            -- 50 = HAT + GOOD REWARD  >= 6-7 NPCS - Option 4
@@ -55,9 +55,9 @@ function onTrigger(player,npc)
         else                                -- 0/nill = NO REWARD         >= 0-1 NPCS - Option 1
             player:startEvent(52);
         end
-    elseif (featherstatus == 1 or player:getVar("QuestFeatherInOnesCap_var") == 1) then
+    elseif (featherstatus == 1 or player:getCharVar("QuestFeatherInOnesCap_var") == 1) then
         player:startEvent(78,0,842); -- Quest Objective Reminder
-    elseif (hatstatus == 2 and featherstatus == 0 and pfame >= 3 and player:needToZone() == false and player:getVar("QuestHatInHand_var2") == 0) then
+    elseif (hatstatus == 2 and featherstatus == 0 and pfame >= 3 and player:needToZone() == false and player:getCharVar("QuestHatInHand_var2") == 0) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(75,0,842); -- Quest "Feather In One's Cap" offered

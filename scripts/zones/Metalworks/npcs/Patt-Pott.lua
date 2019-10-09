@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Metalworks/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK and player:getVar("MissionStatus") == 5) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK and player:getCharVar("MissionStatus") == 5) then
         if (trade:hasItemQty(599,1) and trade:getItemCount() == 1) then -- Trade Mythril Sand
             player:startEvent(255);
         end
@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
 
     currentMission = player:getCurrentMission(WINDURST);
-    MissionStatus = player:getVar("MissionStatus");
+    MissionStatus = player:getCharVar("MissionStatus");
 
     if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
         if (MissionStatus == 1) then

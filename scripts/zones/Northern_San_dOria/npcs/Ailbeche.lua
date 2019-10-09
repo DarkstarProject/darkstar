@@ -17,13 +17,13 @@ function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
     local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
 
-    if (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FATHER_AND_SON) == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") ~= 1) then
+    if (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FATHER_AND_SON) == QUEST_COMPLETED and player:getCharVar("returnedAilbecheRod") ~= 1) then
         if (trade:hasItemQty(17391,1) == true and trade:getItemCount() == 1) then
             player:startEvent(61); -- Finish Quest "Father and Son" (part2) (trading fishing rod)
         end
     end
 
-    if (player:getVar("aBoysDreamCS") >= 3) then
+    if (player:getCharVar("aBoysDreamCS") >= 3) then
         if (trade:hasItemQty(17001,1) == true and trade:getItemCount() == 1 and player:hasItem(4562) == false) then
             player:startEvent(15); -- During Quest "A Boy's Dream" (trading bug) madame ?
         elseif (trade:hasItemQty(4562,1) == true and trade:getItemCount() == 1) then
@@ -50,15 +50,15 @@ function onTrigger(player,npc)
     mJob = player:getMainJob();
     -- Check if they have key item "Ordelle whetStone"
     OrdelleWhetstone = player:hasKeyItem(dsp.ki.ORDELLE_WHETSTONE);
-    sharpeningTheSwordCS = player:getVar("sharpeningTheSwordCS");
-    aBoysDreamCS = player:getVar("aBoysDreamCS");
+    sharpeningTheSwordCS = player:getCharVar("sharpeningTheSwordCS");
+    aBoysDreamCS = player:getCharVar("aBoysDreamCS");
 
     -- "Father and Son" Event Dialogs
     if (fatherAndSon == QUEST_AVAILABLE) then
         player:startEvent(508); -- Start Quest "Father and Son"
-    elseif (fatherAndSon == QUEST_ACCEPTED and player:getVar("QuestfatherAndSonVar") == 1) then
+    elseif (fatherAndSon == QUEST_ACCEPTED and player:getCharVar("QuestfatherAndSonVar") == 1) then
         player:startEvent(509); -- Finish Quest "Father and Son" (part1)
-    elseif (sharpeningTheSword == QUEST_AVAILABLE and player:getVar("returnedAilbecheRod") == 1) then
+    elseif (sharpeningTheSword == QUEST_AVAILABLE and player:getCharVar("returnedAilbecheRod") == 1) then
         if (mJob == dsp.job.PLD and mLvl < 40 or mJob ~= dsp.job.PLD) then
             player:startEvent(12); -- Dialog after "Father and Son" (part2)
     -- "Sharpening the Sword" Quest Dialogs
@@ -88,9 +88,9 @@ function onTrigger(player,npc)
         player:startEvent(47); -- During Quest "A Boy's Dream" (after trading odontotyrannus)
     elseif (aBoysDreamCS >= 6) then
         player:startEvent(25); -- During Quest "A Boy's Dream" (after Zaldon CS)
-    elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
+    elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getCharVar("UnderOathCS") == 6) then
         player:startEvent(59); -- During Quest "Under Oath" (he's going fishing in Jugner)
-    elseif (player:getVar("UnderOathCS") == 8) then
+    elseif (player:getCharVar("UnderOathCS") == 8) then
         player:startEvent(13); -- During Quest "Under Oath" (After jugner CS)
     else
         player:startEvent(868); -- Standard dialog
@@ -144,11 +144,11 @@ function onEventFinish(player,csid,option)
         player:setVar("aBoysDreamCS",2);
     elseif (csid == 41 and option == 0) then
         player:setVar("aBoysDreamCS",1);
-    elseif (csid == 15 and player:getVar("aBoysDreamCS") == 3) then
+    elseif (csid == 15 and player:getCharVar("aBoysDreamCS") == 3) then
         player:setVar("aBoysDreamCS",4);
-    elseif (csid == 47 and player:getVar("aBoysDreamCS") == 4) then
+    elseif (csid == 47 and player:getCharVar("aBoysDreamCS") == 4) then
         player:setVar("aBoysDreamCS",5);
-    elseif (csid == 25 and player:getVar("aBoysDreamCS") == 6) then
+    elseif (csid == 25 and player:getCharVar("aBoysDreamCS") == 6) then
         player:setVar("aBoysDreamCS",7);
     elseif (csid == 59) then
         player:setVar("UnderOathCS", 7);

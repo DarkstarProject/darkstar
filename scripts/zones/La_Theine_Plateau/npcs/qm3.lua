@@ -13,14 +13,14 @@ require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(WINDURST, dsp.quest.id.windurst.I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(1125,1) and trade:getItemCount() == 1 and trade:getGil() == 0 and player:getVar("I_CAN_HEAR_A_RAINBOW") == 127) then
+        if (trade:hasItemQty(1125,1) and trade:getItemCount() == 1 and trade:getGil() == 0 and player:getCharVar("I_CAN_HEAR_A_RAINBOW") == 127) then
             player:startEvent(124);
         end
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Tenzen_s_Path") == 0) then
         player:startEvent(203);
     end
 end;

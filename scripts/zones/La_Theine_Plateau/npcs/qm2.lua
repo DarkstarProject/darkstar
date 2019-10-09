@@ -11,7 +11,7 @@ local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 
 function onTrade(player,npc,trade)
 
-    local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");
+    local hittingTheMarquisateNanaaCS = player:getCharVar("hittingTheMarquisateNanaaCS");
 
     if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade pickaxe
         if (hittingTheMarquisateNanaaCS == 1) then

@@ -7,9 +7,9 @@ local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");
 
 function onTrigger(player,npc)
-    local sturmtigerKilled = player:getVar("SturmtigerKilled");
+    local sturmtigerKilled = player:getCharVar("SturmtigerKilled");
     
-    if (player:getVar("ChasingQuotas_Progress") == 5 and sturmtigerKilled == 0) then
+    if (player:getCharVar("ChasingQuotas_Progress") == 5 and sturmtigerKilled == 0) then
         SpawnMob(ID.mob.STURMTIGER,300):updateClaim(player);
     elseif (sturmtigerKilled == 1) then
         player:addKeyItem(dsp.ki.RANCHURIOMES_LEGACY);

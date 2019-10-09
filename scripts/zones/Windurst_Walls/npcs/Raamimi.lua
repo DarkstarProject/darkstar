@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
     local ToBee = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
-    local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
+    local ToBeeOrNotStatus = player:getCharVar("ToBeeOrNot_var");
 
     if (ToBeeOrNotStatus == 10 and ToBee == QUEST_AVAILABLE) then
         player:startEvent(67); -- Quest Started - He gives you honey

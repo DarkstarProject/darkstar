@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(180);
     else
         player:startEvent(25);

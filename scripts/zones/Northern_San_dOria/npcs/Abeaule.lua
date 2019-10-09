@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     medicineWoman = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
 
     if (theTraderInTheForest == QUEST_AVAILABLE) then
-        if (player:getVar("theTraderInTheForestCS") == 1) then
+        if (player:getCharVar("theTraderInTheForestCS") == 1) then
             player:startEvent(592);
         else
             player:startEvent(524);
@@ -38,7 +38,7 @@ function onTrigger(player,npc)
     elseif (theTraderInTheForest == QUEST_ACCEPTED) then
         player:startEvent(593);
     elseif (theTraderInTheForest == QUEST_COMPLETED and medicineWoman == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
-        if (player:getVar("medicineWomanCS") == 1) then
+        if (player:getCharVar("medicineWomanCS") == 1) then
             player:startEvent(615);
         else
             player:startEvent(613);

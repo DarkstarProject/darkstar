@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     if (toauMission == dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         if (player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE)) then
             player:startEvent(5,1);
-        elseif (player:getVar("AhtUrganStatus") == 1) then
+        elseif (player:getCharVar("AhtUrganStatus") == 1) then
             player:startEvent(6,1);
         end;
 

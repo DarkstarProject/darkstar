@@ -46,10 +46,10 @@ function onTrigger(player,npc)
     local nyzulWeaponRanged = isBaseNyzulWeapon(player:getEquipID(dsp.slot.RANGED))
 
     if unlockingAMyth == QUEST_AVAILABLE then
-        if player:needToZone() and player:getVar("Upset_Zalsuhm") > 0 then
+        if player:needToZone() and player:getCharVar("Upset_Zalsuhm") > 0 then
             player:startEvent(10090)
         else
-            if player:getVar("Upset_Zalsuhm") > 0 then
+            if player:getCharVar("Upset_Zalsuhm") > 0 then
                 player:setVar("Upset_Zalsuhm", 0)
             end
 

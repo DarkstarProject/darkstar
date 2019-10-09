@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local WhisperOfGales = player:hasKeyItem(dsp.ki.WHISPER_OF_GALES);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
-    local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
+    local CarbuncleDebacleProgress = player:getCharVar("CarbuncleDebacleProgress");
 
     ---------------------------------------------------------------------
     -- Carbuncle Debacle
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         end;
     ---------------------------------------------------------------------
     -- Trial by Wind
-    elseif ((TrialByWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 5) or (TrialByWind == QUEST_COMPLETED and realday ~= player:getVar("TrialByWind_date"))) then
+    elseif ((TrialByWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 5) or (TrialByWind == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByWind_date"))) then
         player:startEvent(66,0,331); -- Start and restart quest "Trial by Wind"
     elseif (TrialByWind == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND) == false and WhisperOfGales == false) then
         player:startEvent(107,0,331); -- Defeat against Avatar : Need new Fork

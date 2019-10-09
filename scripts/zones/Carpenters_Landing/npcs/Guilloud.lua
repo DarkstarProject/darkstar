@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP)
-    local emeraldWaterStatus = player:getVar("EMERALD_WATERS_Status")
+    local emeraldWaterStatus = player:getCharVar("EMERALD_WATERS_Status")
     
     if cop == dsp.mission.id.cop.THE_ROAD_FORKS and emeraldWaterStatus == 4 and not GetMobByID(ID.mob.OVERGROWN_IVY):isSpawned() then
         SpawnMob(ID.mob.OVERGROWN_IVY):updateClaim(player)

@@ -16,7 +16,7 @@ function onTrade(player, npc, trade)
 
     if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED then
         if npcUtil.tradeHas(trade, 4372) then
-            if player:getVar("SGusta_Sausage_Timer") == 0 then
+            if player:getCharVar("SGusta_Sausage_Timer") == 0 then
                 -- player puts sheep meat on the fire
                 player:messageSpecial(ID.text.FIRE_PUT, 4372)
                 player:confirmTrade()
@@ -35,7 +35,7 @@ function onTrigger(player, npc)
         player:setVar("SGusta_Sausage_Timer", 0)
     end
 
-    local sausageTimer = player:getVar("SGusta_Sausage_Timer")
+    local sausageTimer = player:getCharVar("SGusta_Sausage_Timer")
 
     if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN) ~= QUEST_AVAILABLE then
         if sausageTimer == 0 then

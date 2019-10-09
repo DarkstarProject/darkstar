@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local currentday = tonumber(os.date("%j"))
-    local lastPermit = player:getVar("LAST_PERMIT")
+    local lastPermit = player:getCharVar("LAST_PERMIT")
     local diffday = currentday - lastPermit
     local a1 = player:getAssaultPoint(LEUJAOAM_ASSAULT_POINT)
     local a2 = player:getAssaultPoint(MAMOOL_ASSAULT_POINT)

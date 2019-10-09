@@ -16,7 +16,7 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == dsp.zone.ARRAPAGO_REEF and player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 3) then
+        if (prevZone == dsp.zone.ARRAPAGO_REEF and player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:getCharVar("AhtUrganStatus") == 3) then
             cs = 281;
             player:setPos(-13,2,-62,194);
         elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU) then

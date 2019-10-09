@@ -14,7 +14,7 @@ end
 
 function onZoneIn(player,prevZone)
     -- rng af2
-    if player:getVar("fireAndBrimstone") == 2 then
+    if player:getCharVar("fireAndBrimstone") == 2 then
         return 4
     end
 

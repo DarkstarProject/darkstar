@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
         if (count == 1 and trade:getGil() == 100) then  -- pay to replace package
-            local prog = player:getVar("TheBrugaireConsortium-Parcels");
+            local prog = player:getCharVar("TheBrugaireConsortium-Parcels");
             if (prog == 10 and player:hasItem(593) == false) then
                 player:startEvent(608);
                 player:setVar("TheBrugaireConsortium-Parcels",11)
@@ -36,7 +36,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 6) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_1") == 6) then
         if (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
         player:startEvent(509);
     elseif (TheBrugaireConsortium == QUEST_ACCEPTED) then
 
-        local prog = player:getVar("TheBrugaireConsortium-Parcels");
+        local prog = player:getCharVar("TheBrugaireConsortium-Parcels");
         if (prog == 11) then
             player:startEvent(511);
         elseif (prog == 21) then

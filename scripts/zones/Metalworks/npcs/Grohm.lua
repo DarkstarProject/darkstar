@@ -14,33 +14,33 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK) then
-        if (player:getVar("notReceivePickaxe") == 1) then
+        if (player:getCharVar("notReceivePickaxe") == 1) then
             player:startEvent(425);
-        elseif (player:getVar("MissionStatus") == 4) then
+        elseif (player:getCharVar("MissionStatus") == 4) then
             player:startEvent(423);
-        elseif (player:getVar("MissionStatus") == 5 and player:hasItem(599) == false) then
+        elseif (player:getCharVar("MissionStatus") == 5 and player:hasItem(599) == false) then
             player:startEvent(424);
         else
             player:startEvent(422);
         end
     elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2) then
-        if (player:getVar("MissionStatus") == 9) then
+        if (player:getCharVar("MissionStatus") == 9) then
             player:startEvent(426);
         else
             player:startEvent(427);
         end
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK) then
-        if (player:getVar("notReceivePickaxe") == 1) then
+        if (player:getCharVar("notReceivePickaxe") == 1) then
             player:startEvent(425,1);
-        elseif (player:getVar("MissionStatus") == 4) then
+        elseif (player:getCharVar("MissionStatus") == 4) then
             player:startEvent(423,1);
-        elseif (player:getVar("MissionStatus") == 5 and player:hasItem(599) == false) then
+        elseif (player:getCharVar("MissionStatus") == 5 and player:hasItem(599) == false) then
             player:startEvent(424,1);
         else
             player:startEvent(422);
         end
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) then
-        if (player:getVar("MissionStatus") == 9) then
+        if (player:getCharVar("MissionStatus") == 9) then
             player:startEvent(426,1);
         else
             player:startEvent(427,1);

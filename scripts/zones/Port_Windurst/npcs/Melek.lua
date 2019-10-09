@@ -20,7 +20,7 @@ function onTrigger(player,npc)
         currentMission = player:getCurrentMission(pNation);
 
         if (pNation == dsp.nation.BASTOK) then
-            missionStatus = player:getVar("MissionStatus");
+            missionStatus = player:getCharVar("MissionStatus");
             if (currentMission == dsp.mission.id.bastok.THE_EMISSARY) then
                 -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
                 if (missionStatus == 1) then

@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     local MoatCarp = trade:getItemQty(4401)
     local ForestCarp = trade:getItemQty(4289)
-    local fishCountVar = player:getVar("theCompetitionFishCountVar");
+    local fishCountVar = player:getCharVar("theCompetitionFishCountVar");
     local totalFish = MoatCarp + ForestCarp + fishCountVar;
 
     if (MoatCarp + ForestCarp > 0 and MoatCarp + ForestCarp == count) then
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_RIVALRY) == QUEST_ACCEPTED) then
         player:showText(npc, ID.text.JOULET_HELP_OTHER_BROTHER);
     elseif ((player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_COMPETITION)) == QUEST_ACCEPTED) then
-        player:showText(npc, ID.text.JOULET_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"));
+        player:showText(npc, ID.text.JOULET_CARP_STATUS, 0, player:getCharVar("theCompetitionFishCountVar"));
     end
 end;
 

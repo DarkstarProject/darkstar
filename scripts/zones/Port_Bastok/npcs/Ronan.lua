@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Port_Bastok/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL) == QUEST_ACCEPTED and player:getVar("OutOfOneShell") == 0) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL) == QUEST_ACCEPTED and player:getCharVar("OutOfOneShell") == 0) then
         if (trade:hasItemQty(17397,3) and trade:getItemCount() == 3) then
             player:startEvent(84);
         end
@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
     OutOfOneShell = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL);
 
-    if (OutOfOneShell == QUEST_ACCEPTED and player:getVar("OutOfOneShell") == 1) then
+    if (OutOfOneShell == QUEST_ACCEPTED and player:getCharVar("OutOfOneShell") == 1) then
         if (player:needToZone()) then
             player:startEvent(85);
         else

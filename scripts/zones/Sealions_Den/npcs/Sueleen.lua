@@ -14,7 +14,7 @@ end;
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH) then
         player:startEvent(12);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and player:getCharVar("PromathiaStatus") == 1) then
         player:startEvent(16);
     elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE)) then
         player:startEvent(17);

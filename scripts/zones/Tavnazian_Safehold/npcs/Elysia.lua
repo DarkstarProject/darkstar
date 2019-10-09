@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
     if unforgiven == QUEST_AVAILABLE then
         player:startEvent(200) -- start quest
-    elseif unforgiven == QUEST_ACCEPTED and player:getVar("UnforgivenVar") == 1 then
+    elseif unforgiven == QUEST_ACCEPTED and player:getCharVar("UnforgivenVar") == 1 then
         player:startEvent(203) -- player hasn't talked to Pradiulot (2nd stage of Quest)
     elseif unforgiven == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) then
         player:startEvent(201) -- player doesn't have keyitem

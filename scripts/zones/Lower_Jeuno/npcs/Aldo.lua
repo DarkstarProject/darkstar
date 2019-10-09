@@ -15,11 +15,11 @@ end;
 function onTrigger(player,npc)
 
     local ZilartMission = player:getCurrentMission(ZILART);
-    local ZilartStatus = player:getVar("ZilartStatus");
+    local ZilartStatus = player:getCharVar("ZilartStatus");
 
     if (player:hasKeyItem(dsp.ki.LETTERS_TO_ALDO)) then
         player:startEvent(152);
-    elseif (player:getCurrentMission(player:getNation()) == 13 and player:getVar("MissionStatus") == 3) then
+    elseif (player:getCurrentMission(player:getNation()) == 13 and player:getCharVar("MissionStatus") == 3) then
         player:startEvent(183);
     elseif (ZilartMission == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and ZilartStatus == 0) then
         player:startEvent(104);

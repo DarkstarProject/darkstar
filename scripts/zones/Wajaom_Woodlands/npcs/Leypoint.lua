@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 2) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getCharVar("NavigatingtheUnfriendlySeas") == 2) then
         if (trade:hasItemQty(2341,1) and trade:getItemCount() == 1) then -- Trade Hydrogauge
             player:messageSpecial(ID.text.PLACE_HYDROGAUGE,2341); -- You set the <item> in the trench.
             player:tradeComplete(); --Trade Complete
@@ -33,8 +33,8 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 3) then
-        if (player:getVar("Leypoint_waitJTime") <= os.time()) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getCharVar("NavigatingtheUnfriendlySeas") == 3) then
+        if (player:getCharVar("Leypoint_waitJTime") <= os.time()) then
             player:startEvent(508);
             player:setVar("NavigatingtheUnfriendlySeas",4);   -- play cs for having waited enough time
         else

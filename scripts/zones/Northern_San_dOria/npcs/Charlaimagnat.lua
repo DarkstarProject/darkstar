@@ -29,9 +29,9 @@ function onTrigger(player,npc)
 
     if (TheMissingPiece == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC) and player:hasKeyItem(dsp.ki.LETTER_FROM_ALFESAR)) then
         player:startEvent(703); -- Continuing the Quest
-    elseif (TheMissingPiece == QUEST_ACCEPTED and realday < player:getVar("TheMissingPiece_date")) then
+    elseif (TheMissingPiece == QUEST_ACCEPTED and realday < player:getCharVar("TheMissingPiece_date")) then
         player:startEvent(704); -- didn't wait a day yet
-    elseif (TheMissingPiece == QUEST_ACCEPTED and realday >= player:getVar("TheMissingPiece_date")) then
+    elseif (TheMissingPiece == QUEST_ACCEPTED and realday >= player:getCharVar("TheMissingPiece_date")) then
         player:startEvent(705); -- Quest Completed
     else
         player:startEvent(702); -- standard dialogue

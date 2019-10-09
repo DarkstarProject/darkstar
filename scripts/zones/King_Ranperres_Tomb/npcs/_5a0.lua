@@ -12,7 +12,7 @@ end
 
 function onTrigger(player, npc)
     local currentMission = player:getCurrentMission(SANDORIA)
-    local MissionStatus = player:getVar("MissionStatus")
+    local MissionStatus = player:getCharVar("MissionStatus")
 
     if
         currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and
@@ -21,7 +21,7 @@ function onTrigger(player, npc)
         not GetMobByID(ID.mob.CORRUPTED_SOFFEIL):isSpawned() and
         not GetMobByID(ID.mob.CORRUPTED_ULBRIG):isSpawned()
     then
-        if player:getVar("Mission6-2MobKilled") == 1 then
+        if player:getCharVar("Mission6-2MobKilled") == 1 then
             player:setVar("Mission6-2MobKilled", 0)
             player:setVar("MissionStatus", 2)
         else

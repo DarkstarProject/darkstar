@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 5) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE) == QUEST_ACCEPTED and player:getCharVar("ratraceCS") == 5) then
         if (trade:hasItemQty(5595,1) and trade:getItemCount() == 1) then
             player:startEvent(311);
         end
@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ratRaceProg = player:getVar("ratraceCS");
+    local ratRaceProg = player:getCharVar("ratraceCS");
 
     if (ratRaceProg == 5) then
         player:startEvent(263);

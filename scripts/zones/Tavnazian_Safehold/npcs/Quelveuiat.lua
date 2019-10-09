@@ -30,9 +30,9 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT) == QUEST_AVAILABLE) then
         player:startEvent(119);
-    elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and player:getVar("SPLINTERSPINE_GRUKJUK") <= 1) then
+    elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and player:getCharVar("SPLINTERSPINE_GRUKJUK") <= 1) then
         player:startEvent(120);
-    elseif (player:getVar("SPLINTERSPINE_GRUKJUK") == 2 and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
+    elseif (player:getCharVar("SPLINTERSPINE_GRUKJUK") == 2 and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
         player:startEvent(121);
     else
         player:startEvent(122);

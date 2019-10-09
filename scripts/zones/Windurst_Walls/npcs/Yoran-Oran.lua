@@ -33,9 +33,9 @@ end
 function onTrigger(player,npc)
     local MandragoraMad = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD)
     local blastFromPast = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST)
-    local MEMORIES_OF_A_MAIDEN = player:getVar("MEMORIES_OF_A_MAIDEN_Status")
-    local LouverancePath = player:getVar("COP_Louverance_s_Path")
-    local MissionStatus = player:getVar("MissionStatus")
+    local MEMORIES_OF_A_MAIDEN = player:getCharVar("MEMORIES_OF_A_MAIDEN_Status")
+    local LouverancePath = player:getCharVar("COP_Louverance_s_Path")
+    local MissionStatus = player:getCharVar("MissionStatus")
 
     --optional windy 9-1
     if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and MissionStatus == 4 then
@@ -50,10 +50,10 @@ function onTrigger(player,npc)
         player:startEvent(472)
     elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and LouverancePath == 3 then
         player:startEvent(481)
-    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 4 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Ulmia_s_Path") == 4 then
         player:startEvent(473)
     elseif blastFromPast == QUEST_ACCEPTED then
-        local blastPastProg = player:getVar("BlastFromThePast_Prog")
+        local blastPastProg = player:getCharVar("BlastFromThePast_Prog")
         if (blastPastProg == 1) then
             player:startEvent(221)
             player:setVar("BlastFromThePast_Prog",2)

@@ -47,18 +47,18 @@ function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
     local foiledAgain = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1)
     local CFA2 = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2)
-    local CFAtimer = player:getVar("CursesFoiledAgain")
+    local CFAtimer = player:getCharVar("CursesFoiledAgain")
     local FoiledAGolem = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM)
-    local golemdelivery = player:getVar("foiledagolemdeliverycomplete")
-    local WildcatWindurst = player:getVar("WildcatWindurst")
+    local golemdelivery = player:getCharVar("foiledagolemdeliverycomplete")
+    local WildcatWindurst = player:getCharVar("WildcatWindurst")
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getCharVar("MissionStatus") == 7) then
         player:startEvent(397,0,0,0,282)
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
         player:startEvent(498)
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getCharVar("ClassReunionProgress") == 3) then
         player:startEvent(409) -- she mentions that Sunny-Pabonny left for San d'Oria
 
     -- AMK
@@ -74,8 +74,8 @@ function onTrigger(player,npc)
     elseif (foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and CFAtimer == 0) then
         local cDay = VanadielDayOfTheYear()
         local cYear = VanadielYear()
-        local dFinished = player:getVar("CursesFoiledAgainDay")
-        local yFinished = player:getVar("CursesFoiledAgainYear")
+        local dFinished = player:getCharVar("CursesFoiledAgainDay")
+        local yFinished = player:getCharVar("CursesFoiledAgainYear")
 
         -- player:PrintToPlayer("Vana Day and year:  "..cDay..", "..cYear)
         -- player:PrintToPlayer("Database Day and year:  "..dFinished..", "..yFinished)
@@ -111,7 +111,7 @@ function onTrigger(player,npc)
 
     elseif (CFA2 == QUEST_COMPLETED) then
         player:startEvent(184)     -- New standard dialog after CFA2
-    elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
+    elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) and player:getCharVar("ShantottoCS") == 1) then
         player:startEvent(399,0,0,282)
     else
         player:startEvent(164)
@@ -181,7 +181,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 409) then
         player:setVar("ClassReunionProgress",4)
     elseif (csid == 498) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true)
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",6,true)
     elseif (csid == 397) then
         player:addKeyItem(dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)

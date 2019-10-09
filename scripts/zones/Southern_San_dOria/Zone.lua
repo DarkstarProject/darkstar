@@ -30,7 +30,7 @@ function onZoneIn(player,prevZone)
     -- MOG HOUSE EXIT
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(161,-2,161,94);
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
@@ -44,7 +44,7 @@ end;
 
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
-    if (regionID==1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("COP_louverance_story")== 2) then
+    if (regionID==1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("COP_louverance_story")== 2) then
         player:startEvent(758);
     end
 end;

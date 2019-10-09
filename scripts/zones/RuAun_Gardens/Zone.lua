@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(333.017,-44.896,-458.35,164);
     end
-    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_GATE_OF_THE_GODS and player:getVar("ZilartStatus") == 1) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_GATE_OF_THE_GODS and player:getCharVar("ZilartStatus") == 1) then
         cs = 51;
     end
 
@@ -42,7 +42,7 @@ function onRegionEnter(player,region)
     local p = ID.npc.PORTALS[region:GetRegionID()];
 
     if (p["green"] ~= nil) then -- green portal
-        if (player:getVar("skyShortcut") == 1) then
+        if (player:getCharVar("skyShortcut") == 1) then
             player:startEvent(42);
         else
             title = player:getTitle();

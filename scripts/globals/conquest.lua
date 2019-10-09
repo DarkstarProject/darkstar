@@ -133,7 +133,7 @@ end
 local function suppliesAvailableBitmask(player, nation)
     local mask = 2130706463
 
-    if player:getVar("supplyQuest_started") == vanaDay() then
+    if player:getCharVar("supplyQuest_started") == vanaDay() then
         mask = 4294967295 -- Need to wait 1 vanadiel day
     end
 
@@ -156,8 +156,8 @@ local function suppliesAvailableBitmask(player, nation)
 end
 
 local function areSuppliesRotten(player, npc, guardType)
-    local fresh   = player:getVar("supplyQuest_fresh")
-    local region  = player:getVar("supplyQuest_region")
+    local fresh   = player:getCharVar("supplyQuest_fresh")
+    local region  = player:getCharVar("supplyQuest_region")
     local rotten  = false
     local text    = zones[player:getZoneID()].text
 
@@ -186,7 +186,7 @@ end
 local function canDeliverSupplies(player, guardNation, guardEvent, guardRegion)
     local delivered = false
 
-    local region = player:getVar("supplyQuest_region")
+    local region = player:getCharVar("supplyQuest_region")
     if region == guardRegion and player:hasKeyItem(outposts[region].ki) then
         delivered = true
         player:startEvent(guardEvent, 16, 0, 0, 0, 1, 0, 0, 255) -- "you have brought us supplies!"
@@ -828,7 +828,7 @@ local function canBuyExpRing(player, item)
     end
 
     -- one exp ring per conquest tally
-    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_RECHARGE") > os.time() then
+    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getCharVar("CONQUEST_RING_RECHARGE") > os.time() then
         player:messageSpecial(text.CONQUEST + 60, 0, 0, item)
         return false
     end
@@ -960,7 +960,7 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
 
         -- RECHARGE EXP RING
         if not tradeConfirmed and expRings[item] and npcUtil.tradeHas(trade, item) then
-            if BYPASS_EXP_RING_ONE_PER_WEEK == 1 or player:getVar("CONQUEST_RING_RECHARGE") < os.time() then
+            if BYPASS_EXP_RING_ONE_PER_WEEK == 1 or player:getCharVar("CONQUEST_RING_RECHARGE") < os.time() then
                 local ring = expRings[item]
 
                 if player:getCP() >= ring.cp then
@@ -1063,7 +1063,7 @@ end
 dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation, guardType, guardRegion)
     local pNation  = player:getNation()
     local pRank    = player:getRank()
-    local sRegion  = player:getVar("supplyQuest_region")
+    local sRegion  = player:getCharVar("supplyQuest_region")
     local sOutpost = outposts[sRegion]
     local mOffset  = zones[player:getZoneID()].text.CONQUEST
 

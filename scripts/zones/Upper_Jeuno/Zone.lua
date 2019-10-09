@@ -25,12 +25,12 @@ function onZoneIn(player,prevZone)
     end
 
     -- COP mission 1-1
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_RITES_OF_LIFE and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_RITES_OF_LIFE and player:getCharVar("PromathiaStatus") == 0) then
         cs = 2;
     -- MOG HOUSE EXIT
     elseif (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(46.2,-5,-78,172);
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
         player:setVar("PlayerMainJob",0);

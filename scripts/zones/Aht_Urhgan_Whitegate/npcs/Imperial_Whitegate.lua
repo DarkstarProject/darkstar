@@ -17,7 +17,7 @@ end
 
 function onTrigger(player,npc)
     if player:getEquipID(dsp.slot.MAIN) == 0 and player:getEquipID(dsp.slot.SUB) == 0 then
-        if player:getCurrentMission(TOAU) == dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE and player:getVar("AhtUrganStatus") == 1 and
+        if player:getCurrentMission(TOAU) == dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE and player:getCharVar("AhtUrganStatus") == 1 and
                 doRoyalPalaceArmorCheck(player) == true then
             player:startEvent(3078,0,1,0,0,0,0,0,1,0)
         elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.SEAL_OF_THE_SERPENT then
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
             player:startEvent(3140,dsp.besieged.getMercenaryRank(player),player:getTitle(),0,0,0,0,0,0,0)
         elseif player:getCurrentMission(TOAU) >= dsp.mission.id.toau.IMPERIAL_CORONATION and
                 doRoyalPalaceArmorCheck(player) == true then
-            local ring = player:getVar("TOAU_RINGTIME")
+            local ring = player:getCharVar("TOAU_RINGTIME")
             local standard = player:hasItem(129)
 
             local ringParam = 0
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 3111 then
         player:completeMission(TOAU,dsp.mission.id.toau.SEAL_OF_THE_SERPENT)
         player:addMission(TOAU,dsp.mission.id.toau.MISPLACED_NOBILITY)
-    elseif csid == 3140 and player:getVar("TOAU_RINGRECV") == 1 then
+    elseif csid == 3140 and player:getCharVar("TOAU_RINGRECV") == 1 then
         player:completeMission(TOAU,dsp.mission.id.toau.IMPERIAL_CORONATION)
         player:addMission(TOAU,dsp.mission.id.toau.THE_EMPRESS_CROWNED)
         player:setVar("TOAU_RINGRECV", 0)

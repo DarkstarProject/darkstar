@@ -14,20 +14,20 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_RESCUE_DRILL) then
-        local MissionStatus = player:getVar("MissionStatus");
+        local MissionStatus = player:getCharVar("MissionStatus");
 
         if (MissionStatus == 3) then
             player:startEvent(102);
         elseif (MissionStatus == 4) then
             player:showText(npc, ID.text.RESCUE_DRILL + 4);
         elseif (MissionStatus == 8) then
-            if (player:getVar("theRescueDrillRandomNPC") == 3) then
+            if (player:getCharVar("theRescueDrillRandomNPC") == 3) then
                 player:startEvent(113);
             else
                 player:showText(npc, ID.text.RESCUE_DRILL + 21);
             end
         elseif (MissionStatus == 9) then
-            if (player:getVar("theRescueDrillRandomNPC") == 3) then
+            if (player:getCharVar("theRescueDrillRandomNPC") == 3) then
                 player:showText(npc, ID.text.RESCUE_DRILL + 25);
             else
                 player:showText(npc, ID.text.RESCUE_DRILL + 26);

@@ -14,10 +14,10 @@ end
 function onTrigger(player,npc)
     if
         player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and
-        player:getVar("MissionStatus") == 2 and
+        player:getCharVar("MissionStatus") == 2 and
         not GetMobByID(ID.mob.SABOTENDER_ENAMORADO):isSpawned()
     then
-        if player:getVar("Mission6-1MobKilled") == 1 then
+        if player:getCharVar("Mission6-1MobKilled") == 1 then
             player:addKeyItem(dsp.ki.DREAMROSE)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DREAMROSE)
             player:setVar("Mission6-1MobKilled", 0)

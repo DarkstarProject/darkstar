@@ -11,7 +11,7 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local missionStatus = player:getVar("MissionStatus")
+    local missionStatus = player:getCharVar("MissionStatus")
 
     if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and (missionStatus == 4 or missionStatus == 5) and npcUtil.tradeHas(trade, 1181) then
         player:startEvent(13)
@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("MissionStatus") == 4  or player:getVar("MissionStatus") == 5 then
+    if player:getCharVar("MissionStatus") == 4  or player:getCharVar("MissionStatus") == 5 then
         player:messageText(npc, ID.text.WARDEN_SPEECH)
         player:messageSpecial(ID.text.WARDEN_TRANSLATION)
     else

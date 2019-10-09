@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local IAS = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.IN_A_STEW)
-    local IASvar = player:getVar("IASvar")
+    local IASvar = player:getCharVar("IASvar")
     local CB = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CHOCOBILIOUS)
 
     -- IN A STEW

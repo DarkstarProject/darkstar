@@ -28,16 +28,16 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ffr = player:getVar("FFR");
+    local ffr = player:getCharVar("FFR");
 
     -- FLYERS FOR REGINE
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
         player:startEvent(601);
     elseif (ffr == 1) then
         player:startEvent(510,2);
-    elseif (player:getVar("FFR") == 2) then
+    elseif (player:getCharVar("FFR") == 2) then
         player:startEvent(603);
-    elseif (player:getVar("FFR") > 2 and not player:hasItem(532)) then
+    elseif (player:getCharVar("FFR") > 2 and not player:hasItem(532)) then
         player:startEvent(510,3);
         
     -- DEFAULT MENU

@@ -10,7 +10,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getVar("BorghertzHandsFirstTime") == 2) then
+    if (player:getCharVar("BorghertzHandsFirstTime") == 2) then
         player:startEvent(220);
     else
         player:startEvent(209);

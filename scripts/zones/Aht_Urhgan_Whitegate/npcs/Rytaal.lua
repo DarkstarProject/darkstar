@@ -17,18 +17,18 @@ end
 function onTrigger(player,npc)
 
     local currentday = tonumber(os.date("%j"))
-    local lastIDtag = player:getVar("LAST_IMPERIAL_TAG")
+    local lastIDtag = player:getCharVar("LAST_IMPERIAL_TAG")
     local tagCount = player:getCurrency("id_tags")
     local diffday = currentday - lastIDtag
     local currentAssault = player:getCurrentAssault()
     local haveimperialIDtag
 
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 0 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") == 0 then
         player:startEvent(269,0,0,0,0,0,0,0,0,0)
     elseif player:getCurrentMission(TOAU) <= dsp.mission.id.toau.IMMORTAL_SENTRIES or player:getMainLvl() <= 49 then
         player:startEvent(270)
     elseif currentAssault ~= 0 and dsp.besieged.hasAssaultOrders(player) == 0 then
-        if player:getVar("AssaultComplete") == 1 then
+        if player:getCharVar("AssaultComplete") == 1 then
             player:messageText(player,ID.text.RYTAAL_MISSION_COMPLETE)
             player:completeAssault(currentAssault)
         else
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
             player:addAssault(0)
         end
         player:setVar("AssaultComplete",0)
-    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.PRESIDENT_SALAHEEM or (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") >= 1) then
+    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.PRESIDENT_SALAHEEM or (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") >= 1) then
         if lastIDtag == 0 then -- first time you get the tag
             tagCount = 1
             player:setCurrency("id_tags", tagCount)

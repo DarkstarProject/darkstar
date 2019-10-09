@@ -20,14 +20,14 @@ function onTrade(player,npc,trade)
         player:startEvent(108)
     elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and
            not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and
-           player:getVar("PXPassGetGems") == 1 and
+           player:getCharVar("PXPassGetGems") == 1 and
            (npcUtil.tradeHas(trade, 1692) or npcUtil.tradeHas(trade, 1694) or npcUtil.tradeHas(trade, 1693)) then
         player:startEvent(52, 500 * GIL_RATE)
     end
 end
 
 function onTrigger(player,npc)
-    local GetGems = player:getVar("PXPassGetGems");
+    local GetGems = player:getCharVar("PXPassGetGems");
 
     if player:getFameLevel(JEUNO) >= 2 and player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP) == QUEST_AVAILABLE then
         -- Start Quest: Tenshodo Membership

@@ -17,11 +17,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    --print(player:getVar("MissionStatus"))
+    --print(player:getCharVar("MissionStatus"))
     local pNation = player:getNation()
     local currentMission = player:getCurrentMission(pNation)
-    local WildcatSandy = player:getVar("WildcatSandy")
-    local MissionStatus = player:getVar("MissionStatus")
+    local WildcatSandy = player:getCharVar("WildcatSandy")
+    local MissionStatus = player:getCharVar("MissionStatus")
 
     -- Lure of the Wildcat San d'Oria
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         player:setVar("BlackMailQuest",1)
         player:delKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE)
     -- San D'Oria Flag check
-    elseif (player:getVar("Flagsando") == 1) then
+    elseif (player:getCharVar("Flagsando") == 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,181)
         else
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         end
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.CONFESSIONS_OF_ROYALTY and player:hasKeyItem(dsp.ki.RAILLEFALS_LETTER)) then
         player:startEvent(564)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getCharVar("AhtUrganStatus") == 0) then
         player:startEvent(565)
     elseif (pNation == dsp.nation.SANDORIA) then
         -- Mission San D'Oria 9-2 The Heir to the Light
@@ -152,7 +152,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 502) then
         player:setVar("MissionStatus",4)
     elseif (csid == 558) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",16,true)
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",16,true)
     elseif (csid == 504) then
         player:setVar("MissionStatus",9)
     elseif (csid == 546) then

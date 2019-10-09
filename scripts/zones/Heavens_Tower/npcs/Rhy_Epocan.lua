@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(WINDURST);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     if (currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
         player:startEvent(107);

@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Heavens_Tower/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 8) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_4") == 8) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 
     local pNation = player:getNation();
     local currentMission = player:getCurrentMission(pNation);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     if (pNation == dsp.nation.SANDORIA) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
@@ -97,7 +97,7 @@ function onTrigger(player,npc)
             player:startEvent(104);
         elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
             player:startEvent(326);
-        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS) and player:getCharVar("OwesPortalCharm") == 1) then
             player:startEvent(293); -- Kupipi repays your favor
         elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 3) then
             player:startEvent(400); -- Kupipi in disbelief over player becoming Rank 10

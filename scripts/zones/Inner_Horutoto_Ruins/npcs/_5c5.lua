@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(42);
     else
         player:showText(npc,ID.text.DOOR_FIRMLY_CLOSED);

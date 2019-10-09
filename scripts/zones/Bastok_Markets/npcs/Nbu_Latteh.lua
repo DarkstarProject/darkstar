@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
     local pFame = player:getFameLevel(BASTOK);
     local momTheAdventurer = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MOM_THE_ADVENTURER);
-    local questStatus = player:getVar("MomTheAdventurer_Event");
+    local questStatus = player:getCharVar("MomTheAdventurer_Event");
 
     if (player:needToZone()) then
         player:startEvent(127); -- chat about my work

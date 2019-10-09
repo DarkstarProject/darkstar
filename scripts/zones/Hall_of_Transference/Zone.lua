@@ -29,7 +29,7 @@ function onZoneIn(player,prevZone)
         player:setPos(274,-82,-62 ,180);
 
     elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
-        if (player:getVar("cspromy3") == 1) then
+        if (player:getCharVar("cspromy3") == 1) then
             if (prevZone == dsp.zone.LA_THEINE_PLATEAU) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
                     cs = 155;
@@ -71,9 +71,9 @@ function onRegionEnter(player,region)
             player:startEvent(103);
         end,
         [5] = function (x)
-            if (player:getVar("MeaChipRegistration") == 1) then
+            if (player:getCharVar("MeaChipRegistration") == 1) then
                 local Rand = math.random(1,100);
-                if (Rand <= 95 or player:getVar("LastSkyWarpMea") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
+                if (Rand <= 95 or player:getCharVar("LastSkyWarpMea") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
                     player:startEvent(161); -- To Sky
                 else
                     player:startEvent(169); -- Chip Breaks!
@@ -83,9 +83,9 @@ function onRegionEnter(player,region)
             end
         end,
         [6] = function (x)
-            if (player:getVar("HollaChipRegistration") == 1) then
+            if (player:getCharVar("HollaChipRegistration") == 1) then
                 local Rand = math.random(1,100);
-                if (Rand <= 95 or player:getVar("LastSkyWarpHolla") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
+                if (Rand <= 95 or player:getCharVar("LastSkyWarpHolla") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
                     player:startEvent(161); -- To Sky
                 else
                     player:startEvent(170); -- Chip Breaks!
@@ -95,9 +95,9 @@ function onRegionEnter(player,region)
             end
         end,
         [7] = function (x)
-            if (player:getVar("DemChipRegistration") == 1) then
+            if (player:getCharVar("DemChipRegistration") == 1) then
                 local Rand = math.random(1,100);
-                if (Rand <= 95 or player:getVar("LastSkyWarpDem") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
+                if (Rand <= 95 or player:getCharVar("LastSkyWarpDem") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
                     player:startEvent(161); -- To Sky
                 else
                     player:startEvent(171); -- Chip Breaks!

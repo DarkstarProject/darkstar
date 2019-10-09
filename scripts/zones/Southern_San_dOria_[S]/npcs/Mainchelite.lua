@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         player:startEvent(9);
     elseif (SteamedRams == QUEST_AVAILABLE and RedLetter == true) then
         player:startEvent(7);
-    elseif (SteamedRams == QUEST_AVAILABLE and player:getVar("RED_R_LETTER_USED") == 1) then
+    elseif (SteamedRams == QUEST_AVAILABLE and player:getCharVar("RED_R_LETTER_USED") == 1) then
         player:startEvent(8);
     elseif (SteamedRams == QUEST_ACCEPTED and CharredPropeller == true and OxidizedPlate == true and ShatteredLumber == true) then
         player:startEvent(12);
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.STEAMED_RAMS);
     elseif (csid == 12 and option == 0) then
         -- Is first join, so add Sprinter's Shoes and bronze medal
-        if (player:getVar("Campaign_Nation") == 0) then
+        if (player:getCharVar("Campaign_Nation") == 0) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(1);
                 player:setVar("RED_R_LETTER_USED",0);

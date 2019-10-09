@@ -68,12 +68,12 @@ end
 
 
 function onTrade(player,npc,trade)
-    local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-    local attachments = player:getVar("PUP_Attachments")
-    local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
-    local attachmentTime = player:getVar("PUP_AttachmentReady")
+    local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+    local attachments = player:getCharVar("PUP_Attachments")
+    local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
+    local attachmentTime = player:getCharVar("PUP_AttachmentReady")
     local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time())
-    local attachmentWait = player:getVar("PUP_AttachmentWait")
+    local attachmentWait = player:getCharVar("PUP_AttachmentWait")
 
     local payment_received =
            attachments == 0 and trade:getItemQty(IMPERIAL_SILVER_PIECE) == 3
@@ -193,18 +193,18 @@ function onTrigger(player,npc)
     --cs 905 - head complete
 
     local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED)
-    local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress")
+    local NoStringsAttachedProgress = player:getCharVar("NoStringsAttachedProgress")
     local Automaton = player:hasKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     local automatonName = player:getAutomatonName()
-    local CreationStarted_Day = player:getVar("CreationStarted_Day")
+    local CreationStarted_Day = player:getCharVar("CreationStarted_Day")
     local currentDay = VanadielDayOfTheYear()
-    local CreationReady = ((CreationStarted_Day < currentDay) or (player:getVar("CreationStarted_Year") < VanadielYear()))
-    local attachments = player:getVar("PUP_Attachments")
-    local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-    local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
-    local attachmentTime = player:getVar("PUP_AttachmentReady")
+    local CreationReady = ((CreationStarted_Day < currentDay) or (player:getCharVar("CreationStarted_Year") < VanadielYear()))
+    local attachments = player:getCharVar("PUP_Attachments")
+    local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+    local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
+    local attachmentTime = player:getCharVar("PUP_AttachmentReady")
     local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time())
-    local attachmentWait = player:getVar("PUP_AttachmentWait")
+    local attachmentWait = player:getCharVar("PUP_AttachmentWait")
     local playerLvl = player:getMainLvl()
 
     --[[
@@ -329,9 +329,9 @@ function onEventFinish(player,csid,option)
     elseif csid == 620 or csid == 621 then
         player:setVar("PUP_AttachmentStatus", option+1)
     elseif csid == 627 then
-        local attachments = player:getVar("PUP_Attachments")
-        local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-        local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
+        local attachments = player:getCharVar("PUP_Attachments")
+        local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+        local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
         if attachmentStatus == 8 then
             player:unlockAttachment(8225)
             player:unlockAttachment(8194)
@@ -362,9 +362,9 @@ function onEventFinish(player,csid,option)
     elseif csid == 901 then
         player:setVar("PUP_AttachmentStatus", 14)
     elseif csid == 905 then
-        local attachments = player:getVar("PUP_Attachments")
-        local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-        local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
+        local attachments = player:getCharVar("PUP_Attachments")
+        local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+        local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
         if attachmentStatus == 12 then
             player:unlockAttachment(8197)
             player:setVar("PUP_AttachmentStatus", 0)

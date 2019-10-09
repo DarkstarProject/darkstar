@@ -67,7 +67,7 @@ end;
 
 function onEventFinish(player,csid,option)
     local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
-    local payout = player:getVar("ANTIQUE_PAYOUT");
+    local payout = player:getCharVar("ANTIQUE_PAYOUT");
 
     if (csid == 101) then
         player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);

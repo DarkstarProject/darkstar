@@ -11,7 +11,7 @@ cmdprops =
 
 function onTrigger(player, cmd)
     -- Obtain the players hide status..
-    local isHidden = player:getVar("GMHidden");
+    local isHidden = player:getCharVar("GMHidden");
     if (cmd ~= nil) then
         if (cmd == "status") then
             player:PrintToPlayer(string.format('Current hide status: %s', tostring(isHidden)));

@@ -14,7 +14,7 @@ require("scripts/globals/status")
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 7) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_2") == 7) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
 
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
     if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
         player:startEvent(933);
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
         player:startEvent(751); -- Start Quest "Dark Legacy"
     elseif (player:hasKeyItem(dsp.ki.DARKSTEEL_FORMULA)) then
         player:startEvent(755); -- Finish Quest "Dark Legacy"
-    elseif (player:hasKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION) and player:getVar("TheUsual_Event") ~= 1) then
+    elseif (player:hasKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION) and player:getCharVar("TheUsual_Event") ~= 1) then
         player:startEvent(510);
     else
         player:startEvent(501);
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(BASTOK,dsp.quest.id.bastok.DARK_LEGACY);
         end
     elseif (csid == 933) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",5,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",5,true);
     end
 
 end;

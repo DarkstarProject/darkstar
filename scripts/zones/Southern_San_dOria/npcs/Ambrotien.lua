@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     local OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS);
     local BatHuntCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BAT_HUNT);
     local TheCSpringCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_CRYSTAL_SPRING);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
     local Count = trade:getItemCount();
 
     if (CurrentMission ~= dsp.mission.id.sandoria.NONE) then
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(2011); -- for Non-San d'Orians
     else
         local CurrentMission = player:getCurrentMission(SANDORIA);
-        local MissionStatus = player:getVar("MissionStatus");
+        local MissionStatus = player:getCharVar("MissionStatus");
         local pRank = player:getRank();
         local cs, p, offset = getMissionOffset(player,2,CurrentMission,MissionStatus);
 
@@ -62,17 +62,17 @@ function onTrigger(player,npc)
             player:startEvent(2000); -- Start First Mission "Smash the Orcish scouts"
         elseif (player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK)) then
             player:startEvent(1036);
-        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then -- Not ready yet
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getCharVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getCharVar("Wait1DayForRanperre_date")) then -- Not ready yet
             player:startEvent(1038);
-        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 4 and tonumber(os.date("%j")) ~= player:getVar("Wait1DayForRanperre_date")) then -- Ready now.
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getCharVar("MissionStatus") == 4 and tonumber(os.date("%j")) ~= player:getCharVar("Wait1DayForRanperre_date")) then -- Ready now.
             player:startEvent(1040);
-        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 6) then
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getCharVar("MissionStatus") == 6) then
             player:startEvent(1040);
-        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getCharVar("MissionStatus") == 9) then
             player:startEvent(1034);
-        elseif (CurrentMission ~= dsp.mission.id.sandoria.THE_SECRET_WEAPON and pRank == 7 and PresOfPapsqueCompleted == true and getMissionRankPoints(player,19) == 1 and player:getVar("SecretWeaponStatus") == 0) then
+        elseif (CurrentMission ~= dsp.mission.id.sandoria.THE_SECRET_WEAPON and pRank == 7 and PresOfPapsqueCompleted == true and getMissionRankPoints(player,19) == 1 and player:getCharVar("SecretWeaponStatus") == 0) then
             player:startEvent(62);
-        elseif (CurrentMission == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 3) then
+        elseif (CurrentMission == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getCharVar("SecretWeaponStatus") == 3) then
             player:startEvent(1044);
         elseif (CurrentMission ~= dsp.mission.id.sandoria.NONE) then
             player:startEvent(2001); -- Have mission already activated

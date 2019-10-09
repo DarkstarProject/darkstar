@@ -53,7 +53,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") == 1) then
         player:startEvent(113);
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_AVAILABLE and player:getCurrentMission(COP) >= dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES);
@@ -72,7 +72,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 110 or csid == 109) then
-        local objecttrade = player:getVar("harithreward");
+        local objecttrade = player:getCharVar("harithreward");
 
         player:tradeComplete();
         player:addItem(objecttrade);

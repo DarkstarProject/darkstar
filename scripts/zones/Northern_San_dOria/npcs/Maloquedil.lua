@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 4) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_1") == 4) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
@@ -39,7 +39,7 @@ end;
 function onTrigger(player,npc)
 
     local warding = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.WARDING_VAMPIRES);
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local WildcatSandy = player:getCharVar("WildcatSandy");
 
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,7) == false) then
         player:startEvent(807);
@@ -74,6 +74,6 @@ function onEventFinish(player,csid,option)
             player:addFame(SANDORIA,5);
         end
     elseif (csid == 807) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",7,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",7,true);
     end
 end;

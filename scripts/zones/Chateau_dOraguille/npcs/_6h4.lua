@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
 
     local currentMission = player:getCurrentMission(SANDORIA);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     -- Mission San D'Oria 9-2 The Heir to the Light
     if (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then

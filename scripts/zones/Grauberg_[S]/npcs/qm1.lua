@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     local tuw = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ);
-    local tuwStatus = player:getVar("QuestStatus_DNC_AF1");
+    local tuwStatus = player:getCharVar("QuestStatus_DNC_AF1");
     
     if (tuw == QUEST_ACCEPTED and tuwStatus == 2) then
         player:startEvent(12);

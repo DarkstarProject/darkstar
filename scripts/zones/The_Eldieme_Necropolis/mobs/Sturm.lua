@@ -8,7 +8,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN) == QUEST_ACCEPTED and player:getVar("ANewDawn_Event") == 4) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN) == QUEST_ACCEPTED and player:getCharVar("ANewDawn_Event") == 4) then
         player:setVar("ANewDawn_Event",5);
     end
 

@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local WhisperOfStorms = player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
-    local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
+    local CarbuncleDebacleProgress = player:getCharVar("CarbuncleDebacleProgress");
 
     ---------------------------------------------------------------------
     -- Carbunlce Debacle
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         player:startEvent(10023,0,1172,0,0,0,0,0,0); -- "lost the pendulum?"
     ---------------------------------------------------------------------
     -- Trial by Lightning
-    elseif ((TrialByLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 6) or (TrialByLightning == QUEST_COMPLETED and realday ~= player:getVar("TrialByLightning_date"))) then
+    elseif ((TrialByLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 6) or (TrialByLightning == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByLightning_date"))) then
         player:startEvent(10016,0,dsp.ki.TUNING_FORK_OF_LIGHTNING); -- Start and restart quest "Trial by Lightning"
     elseif (TrialByLightning == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING) == false and WhisperOfStorms == false) then
         player:startEvent(10024,0,dsp.ki.TUNING_FORK_OF_LIGHTNING); -- Defeat against Ramuh : Need new Fork

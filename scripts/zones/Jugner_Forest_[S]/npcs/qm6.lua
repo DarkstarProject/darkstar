@@ -13,11 +13,11 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local cotgStat = player:getVar("ClawsOfGriffonProg")
+    local cotgStat = player:getCharVar("ClawsOfGriffonProg")
 
     if cotgStat == 1 then
         player:startEvent(201)
-    elseif player:getVar("FingerfilcherKilled") == 1 then
+    elseif player:getCharVar("FingerfilcherKilled") == 1 then
         player:startEvent(203)
     elseif cotgStat == 2 and not GetMobByID(ID.mob.FINGERFILCHER_DRADZAD):isSpawned() then
         player:startEvent(202)

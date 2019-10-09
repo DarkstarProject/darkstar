@@ -50,7 +50,7 @@ end;
 
 function onTrigger(player,npc)
     local LureJeuno = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT);
-    local WildcatJeuno = player:getVar("WildcatJeuno");
+    local WildcatJeuno = player:getCharVar("WildcatJeuno");
     if (LureJeuno ~= 2 and ENABLE_TOAU == 1) then
         if (LureJeuno == 0) then
             player:startEvent(10088);

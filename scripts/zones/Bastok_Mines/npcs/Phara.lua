@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         player:startEvent(151); -- Start Quests "The doorman"
     elseif (player:hasKeyItem(dsp.ki.SWORD_GRIP_MATERIAL)) then
         player:startEvent(152); -- Need to wait 1 vanadiel day
-    elseif (player:getVar("theDoormanCS") == 2 and VanadielDayOfTheYear() ~= player:getVar("theDoorman_time")) then
+    elseif (player:getCharVar("theDoormanCS") == 2 and VanadielDayOfTheYear() ~= player:getCharVar("theDoorman_time")) then
         player:startEvent(153); -- The doorman notification, go to naji
     elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE) then
         player:startEvent(154); -- New standard dialog

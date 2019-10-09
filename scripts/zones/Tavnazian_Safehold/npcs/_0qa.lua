@@ -13,13 +13,13 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_ETERNAL_MELODY and player:getCharVar("PromathiaStatus") == 0) then
         player:startEvent(104);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getCharVar("PromathiaStatus") == 0) then
         player:startEvent(111);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getVar("PromathiaStatus")==4) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getCharVar("PromathiaStatus")==4) then
         player:startEvent(115);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus")==5) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus")==5) then
         player:startEvent(543);
     end
     return 1;

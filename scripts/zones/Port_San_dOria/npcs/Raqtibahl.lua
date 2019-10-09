@@ -10,7 +10,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local letterRed = player:getVar("LeleroonsLetterRed");
+    local letterRed = player:getCharVar("LeleroonsLetterRed");
 
     -- magicmart flyer
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local letterRed = player:getVar("LeleroonsLetterRed");
+    local letterRed = player:getCharVar("LeleroonsLetterRed");
     if (player:hasKeyItem(dsp.ki.LELEROONS_LETTER_RED)) then
         player:startEvent(753); -- accept letter, now bring me four items
     elseif (letterRed == 2) then
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     elseif (letterRed == 3) then
         player:startEvent(761); -- i'm waiting for imperial gold piece
     elseif (letterRed == 4) then
-        if (vanaDay() > player:getVar("corAfSubmitDay")) then
+        if (vanaDay() > player:getCharVar("corAfSubmitDay")) then
             player:startEvent(756); -- here's your cor frac
         else
             player:startEvent(757); -- patience. need to wait for vana'diel day

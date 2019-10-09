@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     WhisperOfFlames = player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES);
     realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 
-    if ((TrialByFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) or (TrialByFire == QUEST_COMPLETED and realday ~= player:getVar("TrialByFire_date"))) then
+    if ((TrialByFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) or (TrialByFire == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByFire_date"))) then
         player:startEvent(270,0,dsp.ki.TUNING_FORK_OF_FIRE); -- Start and restart quest "Trial by Fire"
     elseif (TrialByFire == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_FIRE) == false and WhisperOfFlames == false) then
         player:startEvent(285,0,dsp.ki.TUNING_FORK_OF_FIRE); -- Defeat against Ifrit : Need new Fork

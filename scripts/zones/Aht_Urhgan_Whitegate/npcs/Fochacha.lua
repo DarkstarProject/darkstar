@@ -16,8 +16,8 @@ end
 
 function onTrigger(player,npc)
     local vanishingact = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.VANISHING_ACT)
-    local deliveryGoodsProg = player:getVar("deliveringTheGoodsCS")
-    local vanishActProg = player:getVar("vanishingactCS")
+    local deliveryGoodsProg = player:getCharVar("deliveringTheGoodsCS")
+    local vanishActProg = player:getCharVar("vanishingactCS")
     if player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.DELIVERING_THE_GOODS) == QUEST_AVAILABLE then
         player:startEvent(39)
     elseif deliveryGoodsProg == 1 then

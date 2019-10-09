@@ -14,10 +14,10 @@ end
 
 function onTrigger(player,npc)
 
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:hasKeyItem(dsp.ki.NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:hasKeyItem(dsp.ki.NYZUL_ISLE_ROUTE) and player:getCharVar("AhtUrganStatus") == 1 then
         player:setLocalVar("PathOfDarkness",1)
         player:startEvent(405, 58, -6, 0, 99, 5, 0)
-    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1 then
+    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) and player:getCharVar("AhtUrganStatus") == 1 then
         player:setLocalVar("NashmeirasPlea",1)
         player:startEvent(405, 59, -10, 0, 99, 5, 0)
     elseif player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) then
@@ -161,7 +161,7 @@ function onInstanceCreated(player,target,instance)
             player:setLocalVar("NashmeirasPlea", 0)
             player:delKeyItem(dsp.ki.MYTHRIL_MIRROR)
         else
-            instance:setLevelCap(player:getVar("AssaultCap"))
+            instance:setLevelCap(player:getCharVar("AssaultCap"))
             player:setVar("AssaultCap", 0)
             player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)
             player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)

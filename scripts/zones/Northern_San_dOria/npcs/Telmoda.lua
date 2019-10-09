@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    Telmoda_Madaline = player:getVar("Telmoda_Madaline_Event");
+    Telmoda_Madaline = player:getCharVar("Telmoda_Madaline_Event");
 
     if (Telmoda_Madaline ~= 1) then
         player:setVar(player,"Telmoda_Madaline_Event",1);

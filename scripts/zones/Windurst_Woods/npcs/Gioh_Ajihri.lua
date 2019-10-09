@@ -11,7 +11,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getVar("GiohAijhriSpokenTo") == 1 and not player:needToZone() and npcUtil.tradeHas(trade, 13360) then
+    if player:getCharVar("GiohAijhriSpokenTo") == 1 and not player:needToZone() and npcUtil.tradeHas(trade, 13360) then
         player:startEvent(490)
     end
 end

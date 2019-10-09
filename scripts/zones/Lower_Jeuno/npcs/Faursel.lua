@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Lower_Jeuno/IDs");
 function onTrade(player,npc,trade)
 
     local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_ROAD_TO_AHT_URHGAN);
-    local questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
+    local questStatusVar = player:getCharVar("THE_ROAD_TO_AHT_URHGAN");
 
     if (questStatus == QUEST_ACCEPTED and questStatusVar == 1) then
 
@@ -39,12 +39,12 @@ end;
 
 function onTrigger(player,npc)
 
-    local passDay = player:getVar("THE_ROAD_TO_AHT_URHGAN_Day");
-    local passYear = player:getVar("THE_ROAD_TO_AHT_URHGAN_Year");
+    local passDay = player:getCharVar("THE_ROAD_TO_AHT_URHGAN_Day");
+    local passYear = player:getCharVar("THE_ROAD_TO_AHT_URHGAN_Year");
     local currentDay = VanadielDayOfTheYear();
     local passReady = ((passDay < currentDay) or (passDay > currentDay and passYear < VanadielYear()));
     local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_ROAD_TO_AHT_URHGAN);
-    local questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
+    local questStatusVar = player:getCharVar("THE_ROAD_TO_AHT_URHGAN");
 
     if (questStatus == QUEST_AVAILABLE and ENABLE_TOAU == 1) then
         player:startEvent(10062); -- Offer Quest, First Dialog.

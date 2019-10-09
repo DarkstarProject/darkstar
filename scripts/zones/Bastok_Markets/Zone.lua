@@ -21,7 +21,7 @@ function onZoneIn(player,prevZone)
     if 
         ENABLE_SOA and 
         player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
-        player:getVar("SOA_1_CS2") == 0 
+        player:getCharVar("SOA_1_CS2") == 0 
     then
         cs = 22
     end
@@ -39,7 +39,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         position = math.random(1,5) - 33
         player:setPos(-177,-8,position,127)
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004
         end
         player:setVar("PlayerMainJob",0)

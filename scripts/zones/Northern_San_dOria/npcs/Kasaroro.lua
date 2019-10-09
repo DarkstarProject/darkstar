@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     pNation = player:getNation();
     if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
-        MissionStatus = player:getVar("MissionStatus");
+        MissionStatus = player:getCharVar("MissionStatus");
 
         if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
             if (MissionStatus == 2) then

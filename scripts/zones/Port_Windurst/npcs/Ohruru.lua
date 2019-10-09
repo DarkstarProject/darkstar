@@ -19,7 +19,7 @@ end;
 function onTrigger(player,npc)
 --    player:delQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
 -- ======== FOR TESTING ONLY ==========-----
---    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
+--    if (player:getCharVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
 --        rand = math.random(1,3);
 --        if (rand == 1) then
 --            player:addStatusEffect(dsp.effect.MUTE,0,0,100);
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     if (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(258,0,17053);
     elseif (Catch == 0) then
-        prog = player:getVar("QuestCatchItIfYouCan_var");
+        prog = player:getCharVar("QuestCatchItIfYouCan_var");
         if (prog == 0) then
             player:startEvent(230); -- CATCH IT IF YOU CAN: Before Quest 1
             player:setVar("QuestCatchItIfYouCan_var",1);

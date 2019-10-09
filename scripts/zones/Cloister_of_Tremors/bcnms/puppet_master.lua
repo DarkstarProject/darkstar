@@ -29,7 +29,7 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    if csid == 32001 and player:getVar("ThePuppetMasterProgress") == 2 then
+    if csid == 32001 and player:getCharVar("ThePuppetMasterProgress") == 2 then
         player:setVar("ThePuppetMasterProgress", 3)
     end
 end

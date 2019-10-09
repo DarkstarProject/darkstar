@@ -16,11 +16,11 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST and player:getVar("MissionStatus") == 3) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST and player:getCharVar("MissionStatus") == 3) then
         cs = 42;
-    elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_WINDURST and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_WINDURST and player:getCharVar("MissionStatus") == 2) then
         cs = 42;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and player:getCharVar("MissionStatus") == 1) then
         cs = 335;
     end
 

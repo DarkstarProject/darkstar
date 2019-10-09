@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 
     if (AyameAndKaede == QUEST_ACCEPTED) then
 
-        questStatus = player:getVar("AyameAndKaede_Event")
+        questStatus = player:getCharVar("AyameAndKaede_Event")
 
         if ((questStatus == 1 or questStatus == 2) and player:hasKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL) == false) then
             player:startEvent(242);
@@ -37,13 +37,13 @@ function onTrigger(player,npc)
         end
     elseif (AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
         player:startEvent(247);
-    elseif (player:getVar("twentyInPirateYearsCS") == 2) then
+    elseif (player:getCharVar("twentyInPirateYearsCS") == 2) then
         player:startEvent(262);
-    elseif (player:getVar("twentyInPirateYearsCS") == 4) then
+    elseif (player:getCharVar("twentyInPirateYearsCS") == 4) then
         player:startEvent(263);
-    elseif (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 0) then
+    elseif (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getCharVar("illTakeTheBigBoxCS") == 0) then
         player:startEvent(264);
-    elseif (player:getVar("illTakeTheBigBoxCS") == 1) then
+    elseif (player:getCharVar("illTakeTheBigBoxCS") == 1) then
         player:startEvent(265);
     else
         player:startEvent(27);

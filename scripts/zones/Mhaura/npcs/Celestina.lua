@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_3") == 5) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_3") == 5) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getVar("theSandCharmVar") == 3) then
+    if (player:getCharVar("theSandCharmVar") == 3) then
         player:startEvent(126,13095); -- During quest "The Sand Charm" - 3rd dialog
     elseif (player:sendGuild(528,8,23,4)) then
         player:showText(npc,ID.text.GOLDSMITHING_GUILD);

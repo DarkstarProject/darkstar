@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     local currentMission = player:getCurrentMission(WINDURST);
     local nextMissionFinished = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_NEW_JOURNEY);
 
-    if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 3) then
+    if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and player:getCharVar("MissionStatus") == 3) then
         if (trade:hasItemQty(16447,3) and trade:getItemCount() == 3) then -- Trade Rusty Dagger
             player:tradeComplete();
             player:startEvent(151);
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(WINDURST);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
     local nextMissionFinished = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_NEW_JOURNEY);
 
     if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and nextMissionFinished == false) then

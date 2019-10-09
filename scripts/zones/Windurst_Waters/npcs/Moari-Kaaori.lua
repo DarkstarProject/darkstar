@@ -10,7 +10,7 @@ require("scripts/globals/titles")
 
 function onTrade(player, npc, trade)
     local SayFlowers = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS)
-    local FlowerProgress = player:getVar("FLOWER_PROGRESS")
+    local FlowerProgress = player:getCharVar("FLOWER_PROGRESS")
     local offer = trade:getItemId()
 
     if FlowerProgress == 3 then
@@ -28,7 +28,7 @@ end
 
 function onTrigger(player, npc)
     local SayFlowers = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS)
-    local FlowerProgress = player:getVar("FLOWER_PROGRESS")
+    local FlowerProgress = player:getCharVar("FLOWER_PROGRESS")
     local NeedToZone = player:needToZone()
 
     if SayFlowers == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2 then

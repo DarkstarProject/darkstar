@@ -8,7 +8,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local tradeStatus = player:getVar('TateeyaTradeStatus')
+    local tradeStatus = player:getCharVar('TateeyaTradeStatus')
     local automatonName = player:getAutomatonName()
     if tradeStatus == 1 then
         for i=0,7 do
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local tradeStatus = player:getVar('TateeyaTradeStatus')
+    local tradeStatus = player:getCharVar('TateeyaTradeStatus')
     local automatonName = player:getAutomatonName()
     if tradeStatus == 0 then
         if player:getMainJob() == dsp.job.PUP then
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     if csid == 650 then --unlocking attachments explanation
         player:setVar('TateeyaTradeStatus', 1)
     elseif csid == 651 then
-        local subid = player:getVar('TateeyaUnlock')
+        local subid = player:getCharVar('TateeyaUnlock')
         player:messageSpecial(ID.text.AUTOMATON_ATTACHMENT_UNLOCK, subid)
         player:setVar('TateeyaUnlock',0)
     end

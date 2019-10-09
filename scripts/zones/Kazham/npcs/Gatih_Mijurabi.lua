@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if player:getVar("BathedInScent") == 1 then
+    if player:getCharVar("BathedInScent") == 1 then
         if (player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.PERSONAL_HYGIENE) == QUEST_AVAILABLE) then
             player:startEvent(191);
         elseif (player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.PERSONAL_HYGIENE) == QUEST_ACCEPTED) then
@@ -22,7 +22,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(195);
         end
-    elseif (player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.PERSONAL_HYGIENE) == QUEST_ACCEPTED and player:getVar("BathedInScent") == 0) then
+    elseif (player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.PERSONAL_HYGIENE) == QUEST_ACCEPTED and player:getCharVar("BathedInScent") == 0) then
         player:startEvent(193);
     else
         player:startEvent(196);

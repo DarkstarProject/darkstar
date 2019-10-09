@@ -26,9 +26,9 @@ end;
 function onTrigger(player,npc)
     local Guardian = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
 
-    if (Guardian == QUEST_ACCEPTED and player:getVar("PamamaVar") == 1 or player:getVar("PamamaVar") == 2) then
+    if (Guardian == QUEST_ACCEPTED and player:getCharVar("PamamaVar") == 1 or player:getCharVar("PamamaVar") == 2) then
         player:messageSpecial(ID.text.ALTAR_COMPLETED);
-    elseif (Guardian == QUEST_ACCEPTED and player:getVar("PamamaVar") == 0) then
+    elseif (Guardian == QUEST_ACCEPTED and player:getCharVar("PamamaVar") == 0) then
         player:messageSpecial(ID.text.ALTAR_INSPECT);
     else
         player:messageSpecial(ID.text.ALTAR_STANDARD);

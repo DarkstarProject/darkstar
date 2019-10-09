@@ -11,11 +11,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 2
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getCharVar("MissionStatus") == 2
         and not GetMobByID(ID.mob.VALOR):isSpawned() and not GetMobByID(ID.mob.HONOR):isSpawned()) then
         SpawnMob(ID.mob.VALOR);
         SpawnMob(ID.mob.HONOR);
-    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 3
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getCharVar("MissionStatus") == 3
         and not GetMobByID(ID.mob.VALOR):isSpawned() and not GetMobByID(ID.mob.HONOR):isSpawned()) then
         player:addKeyItem(dsp.ki.DROPS_OF_AMNIO);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DROPS_OF_AMNIO);

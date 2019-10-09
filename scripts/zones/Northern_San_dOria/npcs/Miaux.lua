@@ -17,10 +17,10 @@ end;
 function onTrigger(player,npc)
 
     local aCraftsmansWork = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
-    local Quotas_Status = player:getVar("ChasingQuotas_Progress");
+    local Quotas_Status = player:getCharVar("ChasingQuotas_Progress");
 
     if (player:getMainJob() == dsp.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
-        if (player:getVar("has_seen_drgaf1_quest_already") == 0) then
+        if (player:getCharVar("has_seen_drgaf1_quest_already") == 0) then
             player:startEvent(73);
         else -- If player has seen the big cut scene, give them a smaller one.
             player:startEvent(71);

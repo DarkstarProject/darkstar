@@ -33,7 +33,7 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    if csid == 32001 and player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3 then
+    if csid == 32001 and player:getCurrentMission(player:getNation()) == 15 and player:getCharVar("MissionStatus") == 3 then
         if player:getCurrentMission(ZILART) ~= dsp.mission.id.zilart.THE_NEW_FRONTIER and not player:hasCompletedMission(ZILART, dsp.mission.id.zilart.THE_NEW_FRONTIER) then
             -- Don't add missions we already completed. Players who change nation will hit this.
             player:addMission(ZILART, dsp.mission.id.zilart.THE_NEW_FRONTIER)

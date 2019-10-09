@@ -28,7 +28,7 @@ function onTrigger(player,npc)
                 -- wait 1 second delay goes here
                 trapDoor:openDoor(6)
             end
-            if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 3 then
+            if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and player:getCharVar("MissionStatus") == 3 then
                 player:startEvent(43)
             end
         end

@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_WINDURST) then
         if (player:hasKeyItem(dsp.ki.DULL_SWORD)) then
             player:startEvent(40);
-        elseif (player:getVar("MissionStatus") == 5) then
+        elseif (player:getCharVar("MissionStatus") == 5) then
             player:startEvent(43);
         else
             player:startEvent(44);

@@ -27,14 +27,14 @@ end
 function onTrigger(player, npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest, player)
     local chocoboOnTheLoose = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
-    local chocoboOnTheLooseStat = player:getVar("ChocoboOnTheLoose")
+    local chocoboOnTheLooseStat = player:getCharVar("ChocoboOnTheLoose")
     local chocobosWounds = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS)
-    local chocobosWoundsStat = player:getVar("ChocobosWounds_Event")
+    local chocobosWoundsStat = player:getCharVar("ChocobosWounds_Event")
     local saveMySon = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON)
     local pathOfTheBeastmaster = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
     local wingsOfGold = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
     local scatteredIntoShadow = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW)
-    local scatteredIntoShadowStat = player:getVar("scatIntoShadowCS")
+    local scatteredIntoShadowStat = player:getCharVar("scatIntoShadowCS")
 
     local mLvl = player:getMainLvl()
     local mJob = player:getMainJob()
@@ -54,7 +54,7 @@ function onTrigger(player, npc)
         player:startEvent(10099)
     elseif chocoboOnTheLoose == QUEST_ACCEPTED and (chocoboOnTheLooseStat == 5 or chocoboOnTheLooseStat == 6) then
         player:startEvent(10100)
-    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 7 and not player:needToZone() and (player:getVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getVar("ChocoboOnTheLooseYear") < VanadielYear()) then
+    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 7 and not player:needToZone() and (player:getCharVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getCharVar("ChocoboOnTheLooseYear") < VanadielYear()) then
         player:startEvent(10109)
 
     -- CHOCOBO'S WOUNDS
@@ -71,7 +71,7 @@ function onTrigger(player, npc)
 
     -- WINGS OF GOLD
     elseif pathOfTheBeastmaster == QUEST_COMPLETED and wingsOfGold == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF1_QUEST_LEVEL then
-        if player:getVar("wingsOfGold_shortCS") == 1 then
+        if player:getCharVar("wingsOfGold_shortCS") == 1 then
             player:startEvent(137) -- Start Quest "Wings of gold" (Short dialog)
         else
             player:setVar("wingsOfGold_shortCS", 1)
@@ -86,7 +86,7 @@ function onTrigger(player, npc)
 
     -- SCATTERED INTO SHADOW
     elseif wingsOfGold == QUEST_COMPLETED and scatteredIntoShadow == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF2_QUEST_LEVEL then
-        if player:getVar("scatIntoShadow_shortCS") == 1 then
+        if player:getCharVar("scatIntoShadow_shortCS") == 1 then
             player:startEvent(143)
         else
             player:setVar("scatIntoShadow_shortCS", 1)

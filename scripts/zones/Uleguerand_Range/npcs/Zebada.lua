@@ -18,7 +18,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local ZephyrFanCD = player:getVar("[ENM]ZephyrFan");
+    local ZephyrFanCD = player:getCharVar("[ENM]ZephyrFan");
 
     if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
         player:startEvent(12);

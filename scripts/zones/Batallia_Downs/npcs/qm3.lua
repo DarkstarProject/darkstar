@@ -9,9 +9,9 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getVar("MissionStatus") == 3
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 3
         and not GetMobByID(ID.mob.SUPARNA):isSpawned() and not GetMobByID(ID.mob.SUPARNA_FLEDGLING):isSpawned()) then
-        if (player:getVar("Mission9-1Kills") > 0) then
+        if (player:getCharVar("Mission9-1Kills") > 0) then
             player:startEvent(904);
         else
             SpawnMob(ID.mob.SUPARNA);

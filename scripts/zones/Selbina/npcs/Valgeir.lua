@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local expertiseStat = player:getVar("QUEST_EXPERTISE_STATE_var")
+    local expertiseStat = player:getCharVar("QUEST_EXPERTISE_STATE_var")
 
     -- HIS NAME IS VALGEIR
     if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.HIS_NAME_IS_VALGEIR) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA) then
@@ -27,8 +27,8 @@ function onTrigger(player,npc)
         if expertiseStat == 1 then
             player:startEvent(104)
         elseif expertiseStat == 2 then
-            local daysPassed = VanadielDayOfTheYear() - player:getVar("QuestExpertiseDayStarted_var")
-            local hoursLeft  = 24 - VanadielHour() - (daysPassed * 24) + player:getVar("QuestExpertiseHourStarted_var")
+            local daysPassed = VanadielDayOfTheYear() - player:getCharVar("QuestExpertiseDayStarted_var")
+            local hoursLeft  = 24 - VanadielHour() - (daysPassed * 24) + player:getCharVar("QuestExpertiseHourStarted_var")
 
             if hoursLeft < 0 then -- done waiting
                 player:startEvent(105)
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
     -- THE BASICS
     elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_BASICS) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MHAURAN_COUSCOUS) then
         player:startEvent(106)
-    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_BASICS) == QUEST_COMPLETED and player:getVar("QuestTheBacisCommentary_var") == 1 then
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_BASICS) == QUEST_COMPLETED and player:getCharVar("QuestTheBacisCommentary_var") == 1 then
         player:startEvent(107)
 
     -- STANDARD DIALOG

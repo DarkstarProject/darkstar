@@ -48,7 +48,7 @@ function afterZoneIn(player)
 end;
 
 function onRegionEnter(player,region)
-    if (player:getVar("Hu-Xzoi-TP") == 0 and player:getAnimation() == dsp.anim.NONE) then -- prevent 2cs at same time
+    if (player:getCharVar("Hu-Xzoi-TP") == 0 and player:getAnimation() == dsp.anim.NONE) then -- prevent 2cs at same time
         player:startEvent(149 + region:GetRegionID());
     end
 end;

@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
 
-    local chocoboOnTheLoose = player:getVar("ChocoboOnTheLoose");
+    local chocoboOnTheLoose = player:getCharVar("ChocoboOnTheLoose");
 
     if (chocoboOnTheLoose == 3 or chocoboOnTheLoose == 4) then
         player:startEvent(821);

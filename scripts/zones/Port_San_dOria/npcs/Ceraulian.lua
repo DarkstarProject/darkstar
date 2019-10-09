@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS) == QUEST_ACCEPTED and player:getVar("ChasingQuotas_Progress") == 0 and
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS) == QUEST_ACCEPTED and player:getCharVar("ChasingQuotas_Progress") == 0 and
         trade:getItemCount() == 1 and trade:hasItemQty(12494,1) and trade:getGil() == 0) then -- Trading gold hairpin only
             player:tradeComplete();
             player:startEvent(17);
@@ -21,10 +21,10 @@ end;
 
 function onTrigger(player,npc)
     local Quotas_Status = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
-    local Quotas_Progress = player:getVar("ChasingQuotas_Progress");
-    local Quotas_No = player:getVar("ChasingQuotas_No");
+    local Quotas_Progress = player:getCharVar("ChasingQuotas_Progress");
+    local Quotas_No = player:getCharVar("ChasingQuotas_No");
     local Stalker_Status = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
-    local Stalker_Progress = player:getVar("KnightStalker_Progress");
+    local Stalker_Progress = player:getCharVar("KnightStalker_Progress");
 
     if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_HOLY_CREST) == QUEST_AVAILABLE) then
         player:startEvent(24);
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
     elseif (Quotas_Status == QUEST_ACCEPTED and Quotas_Progress == 0) then
         players:startEvent(13); -- Reminder to bring Gold Hairpin
     elseif (Quotas_Progress == 1) then
-        if (player:getVar("ChasingQuotas_date") > os.time()) then
+        if (player:getCharVar("ChasingQuotas_date") > os.time()) then
             player:startEvent(3); -- Fluff cutscene because you haven't waited a day
         else
             player:startEvent(7); -- Boss got mugged
@@ -63,7 +63,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(20); -- Response if you try to turn in the challenge to Ceraulian
         end
-    elseif (player:getVar("KnightStalker_Option1") == 1) then
+    elseif (player:getCharVar("KnightStalker_Option1") == 1) then
         player:startEvent(22);
     elseif (Stalker_Status == QUEST_COMPLETED) then
         player:startEvent(21);

@@ -15,7 +15,7 @@ local ID = require("scripts/zones/Northern_San_dOria/IDs");
 function onTrade(player,npc,trade)
 
     local Black = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.BLACKMAIL);
-    local questState = player:getVar("BlackMailQuest");
+    local questState = player:getCharVar("BlackMailQuest");
 
     if (Black == QUEST_ACCEPTED and questState == 2 or Black == QUEST_COMPLETED) then
         local count = trade:getItemCount();
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     local envelope = player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
     local sanFame = player:getFameLevel(SANDORIA);
     local homeRank = player:getRank(player:getNation());
-    local questState = player:getVar("BlackMailQuest");
+    local questState = player:getCharVar("BlackMailQuest");
 
 
     if (blackMail == QUEST_AVAILABLE and sanFame >= 3 and homeRank >= 3) then

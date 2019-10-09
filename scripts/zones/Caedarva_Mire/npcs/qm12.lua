@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local notMeantToBeProg = player:getVar("notmeanttobeCS")
+    local notMeantToBeProg = player:getCharVar("notmeanttobeCS")
     
     if notMeantToBeProg == 1 then
         player:startEvent(16)
@@ -23,7 +23,7 @@ function onTrigger(player,npc)
         not GetMobByID(ID.mob.MOSHDAHN):isSpawned()
     then
         player:startEvent(17)
-    elseif player:getVar("notmeanttobeMoshdahnKilled") == 1 and player:getVar("notmeanttobeLamia27Killed") == 1 then
+    elseif player:getCharVar("notmeanttobeMoshdahnKilled") == 1 and player:getCharVar("notmeanttobeLamia27Killed") == 1 then
         player:startEvent(18)
     else
         player:messageSpecial(ID.text.NOTHING_HAPPENS)

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
     local cnt = trade:getItemCount();
     local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
     if (lufetSalt and cnt == 1 and beansAhoy == QUEST_ACCEPTED) then
-        if (player:getVar("BeansAhoy") == 0 == true) then
+        if (player:getCharVar("BeansAhoy") == 0 == true) then
 
             player:startEvent(337); -- Traded the Correct Item Dialogue (NOTE: You have to trade the Salts one at according to wiki)
 
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     elseif (beansAhoy == QUEST_ACCEPTED) then
         player:startEvent(335); -- Quest Active, NPC Repeats what he says but as normal 'text' instead of cutscene.
 
-    elseif (beansAhoy == QUEST_COMPLETED and getConquestTally() ~= player:getVar("BeansAhoy_ConquestWeek")) then
+    elseif (beansAhoy == QUEST_COMPLETED and getConquestTally() ~= player:getCharVar("BeansAhoy_ConquestWeek")) then
         player:startEvent(342);
     elseif (beansAhoy == QUEST_COMPLETED) then
         player:startEvent(341);

@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local WhisperOfFrost = player:hasKeyItem(dsp.ki.WHISPER_OF_FROST);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
-    local ClassReunionProgress = player:getVar("ClassReunionProgress");
+    local ClassReunionProgress = player:getCharVar("ClassReunionProgress");
 
     ------------------------------------------------------------
     -- Class Reunion
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     elseif (ClassReunion == 1 and ClassReunionProgress == 5 and player:hasItem(1171) == false) then
         player:startEvent(712,0,1171,0,0,0,0,0,0); -- lost the ice pendulum need another one
     ------------------------------------------------------------
-    elseif ((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then
+    elseif ((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByIce_date"))) then
         player:startEvent(706,0,dsp.ki.TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
     elseif (TrialByIce == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_ICE) == false and WhisperOfFrost == false) then
         player:startEvent(718,0,dsp.ki.TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork

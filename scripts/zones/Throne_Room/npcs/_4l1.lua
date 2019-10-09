@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(player:getNation()) == 15 and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(6);
     elseif (EventTriggerBCNM(player,npc)) then
         return 1;

@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     elseif (player:getGil() < 9800) then
         player:showText(npc,ID.text.FOUIVA_DIALOG + 9); -- You don't 'av enough gil.  Come back when you do.
     else
-        player:startEvent(130,0,0,0,0,0,0,player:getVar("ChangedWyvernName"));
+        player:startEvent(130,0,0,0,0,0,0,player:getCharVar("ChangedWyvernName"));
     end
 end;
 

@@ -19,8 +19,8 @@ function onTrigger(player,npc)
     local C2000 = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_ALL_NEW_C_2000) -- previous quest in line
     local AGreetingCardian = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.A_GREETING_CARDIAN)
     local LPB = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LEGENDARY_PLAN_B)
-    local AGCcs = player:getVar("AGreetingCardian_Event")
-    local AGCtime = player:getVar("AGreetingCardian_timer")
+    local AGCcs = player:getCharVar("AGreetingCardian_Event")
+    local AGCtime = player:getCharVar("AGreetingCardian_timer")
 
     -- A Greeting Cardian
     if C2000 == QUEST_COMPLETED and AGreetingCardian == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 3 then

@@ -9,7 +9,7 @@ require("scripts/globals/settings");
 
 function onTrade(player,npc,trade)
 
-TokakaSpokenTo = player:getVar("TokakaSpokenTo");
+TokakaSpokenTo = player:getCharVar("TokakaSpokenTo");
 NeedToZone     = player:needToZone();
 
     if (TokakaSpokenTo == 1 and NeedToZone == false) then
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
 
 SomethingFishy = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
-    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getCharVar("BlastFromThePast_Prog") == 0) then
         player:startEvent(318);
         player:setVar("BlastFromThePast_Prog",1);
     elseif (SomethingFishy >= QUEST_ACCEPTED) then
@@ -37,7 +37,7 @@ SomethingFishy = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SOMETHING_
         end
     elseif (SomethingFishy == QUEST_AVAILABLE) then
         player:startEvent(208,0,4360);
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getCharVar("BlastFromThePast_Prog") == 0) then
         player:startEvent(318);
         player:setVar("BlastFromThePast_Prog",1);
     else

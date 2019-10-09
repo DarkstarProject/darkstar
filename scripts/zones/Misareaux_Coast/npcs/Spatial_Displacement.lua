@@ -13,7 +13,7 @@ function onTrigger(player,npc)
 
     if (player:hasCompletedMission(COP,dsp.mission.id.cop.SHELTERING_DOUBT)) then
         player:startEvent(551); -- Access to Sites A & B
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_VOWS and player:getVar("PromathiaStatus") == 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_VOWS and player:getCharVar("PromathiaStatus") == 1) then
         player:startEvent(8);
     else
         player:startEvent(550); -- Access to Site A Only

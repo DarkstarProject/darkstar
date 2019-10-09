@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local visitant = 0
-    local prevtime = player:getVar("Abyssea_Time")
+    local prevtime = player:getCharVar("Abyssea_Time")
     local STONES = getTravStonesTotal(player)
     local SOJOURN = getAbyssiteTotal(player,SOJOURN)
 
@@ -30,7 +30,7 @@ end
 function onEventFinish(player,csid,option)
     local SOJOURN = getAbyssiteTotal(player,"SOJOURN")
     local duration = 0
-    local prevtime = player:getVar("Abyssea_Time") -- Gets reduced by Visitants "on tic".
+    local prevtime = player:getCharVar("Abyssea_Time") -- Gets reduced by Visitants "on tic".
 
     if prevtime > 7200 then
         prevtime = 7200

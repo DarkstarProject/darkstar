@@ -16,7 +16,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SISTER) == QUEST_ACCEPTED and player:getVar("saveMySisterFireLantern") < 4 then
+    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SISTER) == QUEST_ACCEPTED and player:getCharVar("saveMySisterFireLantern") < 4 then
         player:setVar("saveMySisterLanternID", npc:getID())
         player:startEvent(44)
     else
@@ -29,8 +29,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 44 and option == 0 then
-        local lanternOrder = player:getVar("saveMySisterFireLantern")
-        local offset = player:getVar("saveMySisterLanternID") - ID.npc.BRAZIER_OFFSET
+        local lanternOrder = player:getCharVar("saveMySisterFireLantern")
+        local offset = player:getCharVar("saveMySisterLanternID") - ID.npc.BRAZIER_OFFSET
         player:setVar("saveMySisterLanternID", 0)
 
         if lanternOrder == 0 then

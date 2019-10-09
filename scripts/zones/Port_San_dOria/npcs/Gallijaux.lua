@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     local MoatCarp = trade:getItemQty(4401)
     local ForestCarp = trade:getItemQty(4289)
-    local fishCountVar = player:getVar("theCompetitionFishCountVar");
+    local fishCountVar = player:getCharVar("theCompetitionFishCountVar");
     local totalFish = MoatCarp + ForestCarp + fishCountVar;
 
     if (MoatCarp + ForestCarp > 0 and MoatCarp + ForestCarp == count) then
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
         player:startEvent(300, 4401, 4289); -- 4401 = Moat Carp, 4289 = Forest Carp
     elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_RIVALRY) == QUEST_ACCEPTED) then
-        player:showText(npc, ID.text.GALLIJAUX_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"));
+        player:showText(npc, ID.text.GALLIJAUX_CARP_STATUS, 0, player:getCharVar("theCompetitionFishCountVar"));
     elseif ((player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_COMPETITION)) == QUEST_ACCEPTED) then
         player:showText(npc, ID.text.GALLIJAUX_HELP_OTHER_BROTHER);
     end

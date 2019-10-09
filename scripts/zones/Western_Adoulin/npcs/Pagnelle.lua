@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
     local Raptor_Rapture = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
-    local Raptor_Rapture_Status = player:getVar("Raptor_Rapture_Status");
+    local Raptor_Rapture_Status = player:getCharVar("Raptor_Rapture_Status");
 
     if (Raptor_Rapture == QUEST_AVAILABLE) then
         if (Raptor_Rapture_Status < 3) then

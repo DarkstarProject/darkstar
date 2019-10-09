@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("IsonadeKilled") == 1 then
+    if player:getCharVar("IsonadeKilled") == 1 then
         player:setVar("IsonadeKilled", 0)
         npcUtil.giveKeyItem(player, dsp.ki.HANDFUL_OF_CRYSTAL_SCALES)
     else

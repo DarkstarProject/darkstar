@@ -14,11 +14,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    TrosKilled = player:getVar("TrosKilled");
+    TrosKilled = player:getCharVar("TrosKilled");
 
     if (player:hasKeyItem(dsp.ki.MERTAIRES_BRACELET) and
         not GetMobByID(ID.mob.TROS):isSpawned() and
-        (TrosKilled == 0 or (os.time() - player:getVar("Tros_Timer")) > 60)
+        (TrosKilled == 0 or (os.time() - player:getCharVar("Tros_Timer")) > 60)
     ) then
         player:messageSpecial(ID.text.SENSE_OF_FOREBODING);
         SpawnMob(ID.mob.TROS):updateClaim(player);

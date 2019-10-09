@@ -13,7 +13,7 @@ require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
     local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
-    local KenapaFood = player:getVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
+    local KenapaFood = player:getCharVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
 
     if (FoodForThought == QUEST_ACCEPTED) then
         count = trade:getItemCount();
@@ -39,17 +39,17 @@ function onTrigger(player,npc)
     local OvernightDelivery = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
     local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
     local SayFlowers = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS);
-    local FlowerProgress = player:getVar("FLOWER_PROGRESS"); -- Variable to track progress of Say It with Flowers.
+    local FlowerProgress = player:getCharVar("FLOWER_PROGRESS"); -- Variable to track progress of Say It with Flowers.
     local hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
-    local KenapaFood = player:getVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
-    local KenapaOvernight = player:getVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
-    local KenapaOvernightDay = player:getVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
-    local KenapaOvernightHour = player:getVar("Kenapa_Overnight_Hour_var"); -- Variable to track the hour the quest is started.
+    local KenapaFood = player:getCharVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
+    local KenapaOvernight = player:getCharVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
+    local KenapaOvernightDay = player:getCharVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
+    local KenapaOvernightHour = player:getCharVar("Kenapa_Overnight_Hour_var"); -- Variable to track the hour the quest is started.
     local needToZone = player:needToZone();
     local pFame = player:getFameLevel(WINDURST);
     local HourOfTheDay = VanadielHour();
 
-    if ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),4) == false) then
+    if ((hatstatus == 1 or player:getCharVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getCharVar("QuestHatInHand_var")),4) == false) then
         player:startEvent(56); -- Show Off Hat
     elseif ((SayFlowers == QUEST_ACCEPTED or SayFlowers == QUEST_COMPLETED) and FlowerProgress == 2) then
         player:startEvent(519);
@@ -142,7 +142,7 @@ function onEventFinish(player,csid,option)
     if (csid == 327 or csid == 330 or csid == 331) then
         player:tradeComplete();
         player:addGil(GIL_RATE*120);
-        if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
+        if (player:getCharVar("Kerutoto_Food_var") == 2 and player:getCharVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
             player:completeQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);

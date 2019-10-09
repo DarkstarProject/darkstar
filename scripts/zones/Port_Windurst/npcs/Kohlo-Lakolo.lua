@@ -58,7 +58,7 @@ Fame       = player:getFameLevel(WINDURST);
         InvisibleManSticker = player:hasKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
 
         if (InvisibleManSticker == true) then
-            ThePromiseCS_Seen = player:getVar("ThePromiseCS_Seen");
+            ThePromiseCS_Seen = player:getCharVar("ThePromiseCS_Seen");
 
             if (ThePromiseCS_Seen == 1) then
                 FreeSlots = player:getFreeSlotsCount();
@@ -83,7 +83,7 @@ Fame       = player:getFameLevel(WINDURST);
     elseif (WildCard == QUEST_COMPLETED) then
         player:startEvent(513,0,dsp.ki.INVISIBLE_MAN_STICKER);
     elseif (WildCard == QUEST_ACCEPTED) then
-        WildCardVar = player:getVar("WildCard");
+        WildCardVar = player:getCharVar("WildCard");
 
         if (WildCardVar == 0) then
             player:setVar("WildCard",1);
@@ -93,7 +93,7 @@ Fame       = player:getFameLevel(WINDURST);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
         player:startEvent(505);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
-        CryingOverOnionsVar = player:getVar("CryingOverOnions");
+        CryingOverOnionsVar = player:getCharVar("CryingOverOnions");
 
         if (CryingOverOnionsVar == 3) then
             player:startEvent(512);
@@ -112,7 +112,7 @@ Fame       = player:getFameLevel(WINDURST);
         OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
 
         if (OldRing == true) then
-            OnionRingsTime = player:getVar("OnionRingsTime");
+            OnionRingsTime = player:getCharVar("OnionRingsTime");
             CurrentTime    = os.time();
 
             if (CurrentTime >= OnionRingsTime) then
@@ -126,7 +126,7 @@ Fame       = player:getFameLevel(WINDURST);
             OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
 
             if (OldRing == true) then
-                OnionRingsVar = player:getVar("OnionRings");
+                OnionRingsVar = player:getCharVar("OnionRings");
 
                 if (OnionRingsVar == 1) then
                     player:startEvent(430,0,dsp.ki.OLD_RING);
@@ -154,8 +154,8 @@ Fame       = player:getFameLevel(WINDURST);
             player:startEvent(401);
         end
     elseif (KnowOnesOnions == QUEST_ACCEPTED) then
-        KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
-        KnowOnesOnionsTime = player:getVar("KnowOnesOnionsTime");
+        KnowOnesOnionsVar  = player:getCharVar("KnowOnesOnions");
+        KnowOnesOnionsTime = player:getCharVar("KnowOnesOnionsTime");
         CurrentTime = os.time();
 
         if (KnowOnesOnionsVar == 2) then
@@ -264,8 +264,8 @@ function onEventFinish(player,csid,option)
         player:setVar("OnionRingsTime",0);
         player:needToZone(true);
     elseif (csid == 440) then
-        OnionRingsVar    = player:getVar("OnionRings");
-        NeedToZone = player:getVar("NeedToZone");
+        OnionRingsVar    = player:getCharVar("OnionRings");
+        NeedToZone = player:getCharVar("NeedToZone");
 
         if (OnionRingsVar == 2 and NeedToZone == 0) then
             FreeSlots = player:getFreeSlotsCount();

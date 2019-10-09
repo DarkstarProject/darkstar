@@ -16,7 +16,7 @@ function onTrigger(player,npc)
         player:startEvent(105) -- for other nation
     else
         local CurrentMission = player:getCurrentMission(WINDURST)
-        local MissionStatus = player:getVar("MissionStatus")
+        local MissionStatus = player:getCharVar("MissionStatus")
         local pRank = player:getRank()
         local cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus)
 

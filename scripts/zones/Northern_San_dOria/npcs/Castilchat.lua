@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 
         if (IceFork) then
             player:startEvent(708); --Dialogue given to remind player to be prepared
-        elseif (IceFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeIce_date")) then
+        elseif (IceFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeIce_date")) then
             player:startEvent(737,0,1545,4,20); -- Need another mini tuning fork
         else
             player:startEvent(758); -- Standard dialog when you loose, and you don't wait 1 real day

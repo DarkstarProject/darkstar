@@ -14,7 +14,7 @@ end
 
 function onTrigger(player, npc)
     local fangedOne = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_FANGED_ONE)
-    local fangedOneCS = player:getVar("TheFangedOneCS")
+    local fangedOneCS = player:getCharVar("TheFangedOneCS")
 
     -- THE FANGED ONE
     if fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID(ID.mob.OLD_SABERTOOTH):isSpawned() then

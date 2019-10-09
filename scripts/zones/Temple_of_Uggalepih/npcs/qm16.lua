@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getVar("MissionStatus") >= 1 then
+    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") >= 1 then
         player:startEvent(68)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

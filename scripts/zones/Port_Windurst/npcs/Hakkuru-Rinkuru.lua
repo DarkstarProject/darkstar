@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
             player:startEvent(275,0,937);
         end
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS) == QUEST_ACCEPTED) then
-        SecondReward = player:getVar("SecondRewardVar");
+        SecondReward = player:getCharVar("SecondRewardVar");
         if (trade:hasItemQty(17091,1) and trade:hasItemQty(17061,1) and trade:hasItemQty(17053,1) and trade:getItemCount() == 3) then --Check that all 3 items have been traded, one each
             SecondReward = player:setVar("SecondRewardVar",1);
             player:startEvent(265,0,17091,17061,17053); --Completion of quest cutscene for Wondering Wands
@@ -44,13 +44,13 @@ function onTrigger(player,npc)
     pFame = player:getFameLevel(WINDURST);
 
         -- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(456,0,248);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and player:getCharVar("MissionStatus") == 3) then
         player:startEvent(457);
     -- Check if we are on Windurst Mission 1-1
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) then
-        MissionStatus = player:getVar("MissionStatus");
+        MissionStatus = player:getCharVar("MissionStatus");
         if (MissionStatus == 0) then
             player:startEvent(90);
         elseif (MissionStatus == 1) then
@@ -58,7 +58,7 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 3) then
             player:startEvent(94,0,dsp.ki.CRACKED_MANA_ORBS); -- Finish Mission 1-1
         end
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(147);
 -- Begin Making Amends Section
     elseif (MakingAmends == QUEST_AVAILABLE and pFame >= 2) then
@@ -73,7 +73,7 @@ function onTrigger(player,npc)
     elseif (WonderWands == QUEST_ACCEPTED) then
             player:startEvent(260); --Reminder for Wonder Wands
     elseif (WonderWands == QUEST_COMPLETED) then
-        if (player:getVar("SecondRewardVar") == 1) then
+        if (player:getCharVar("SecondRewardVar") == 1) then
             player:startEvent(267); --Initiates second reward ifWonder Wands has been completed.
         else
             player:startEvent(224); --Plays default conversation once all quests in the series have been completed.

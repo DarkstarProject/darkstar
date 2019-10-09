@@ -5,7 +5,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getVar("TOO_MANY_CHEFS") == 3) then
+    if (player:getCharVar("TOO_MANY_CHEFS") == 3) then
         if trade:hasItemQty(2527,1) then -- Trade Red Oven Mitt
             player:tradeComplete();
             player:startEvent(950);
@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("TOO_MANY_CHEFS") == 1) then
+    if (player:getCharVar("TOO_MANY_CHEFS") == 1) then
         player:startEvent(948); -- part 2 Too Many Chefs
     else
         player:startEvent(945); -- standard

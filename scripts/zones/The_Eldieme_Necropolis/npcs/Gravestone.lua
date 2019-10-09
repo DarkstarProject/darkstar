@@ -9,7 +9,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("fireAndBrimstone") == 3 then
+    if player:getCharVar("fireAndBrimstone") == 3 then
         player:startEvent(5)
     end
 end

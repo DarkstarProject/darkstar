@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
 
     if (MakingHeadlines == 1) then
-        prog = player:getVar("QuestMakingHeadlines_var");
+        prog = player:getCharVar("QuestMakingHeadlines_var");
         if (testflag(tonumber(prog),16) == false and testflag(tonumber(prog),8) == true) then
             player:messageSpecial(7208,1,dsp.ki.WINDURST_WOODS_SCOOP); -- Confirm Story
             player:setVar("QuestMakingHeadlines_var",prog+16);

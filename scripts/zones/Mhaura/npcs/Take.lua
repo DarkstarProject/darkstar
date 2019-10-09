@@ -27,9 +27,9 @@ function onTrigger(player,npc)
 
 
 if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then -- if available and allready talked to mayor assistant
-    if (player:getVar("QuestRychardetheChef_var") == 1) then
+    if (player:getCharVar("QuestRychardetheChef_var") == 1) then
         player:startEvent(60); -- tell to look for ricarde
-    elseif (player:getVar("QuestRychardetheChef_var") == 2) then
+    elseif (player:getCharVar("QuestRychardetheChef_var") == 2) then
         player:startEvent(68); -- not talked to rycharde yet
     else
         player:startEvent(59); -- talk abaout something else

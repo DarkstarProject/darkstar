@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 
     if (BeautyAndTheGalka == QUEST_COMPLETED) then
         player:startEvent(90);
-    elseif (BeautyAndTheGalka == QUEST_ACCEPTED or player:getVar("BeautyAndTheGalkaDenied") >= 1) then
+    elseif (BeautyAndTheGalka == QUEST_ACCEPTED or player:getCharVar("BeautyAndTheGalkaDenied") >= 1) then
         player:startEvent(4);
     else
         player:startEvent(2);

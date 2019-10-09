@@ -50,7 +50,7 @@ local clammingItems = {
 local function giveClammedItems(player)
 
     for item = 1, #clammingItems do
-        local clammedItemQty = player:getVar("ClammedItem_" ..  clammingItems[item]);
+        local clammedItemQty = player:getCharVar("ClammedItem_" ..  clammingItems[item]);
 
         if (clammedItemQty > 0) then
             if (player:addItem(clammingItems[item],clammedItemQty)) then
@@ -68,7 +68,7 @@ end;
 local function owePlayerClammedItems(player)
 
     for item = 1, #clammingItems do
-        if (player:getVar("ClammedItem_" ..  clammingItems[item]) > 0) then
+        if (player:getCharVar("ClammedItem_" ..  clammingItems[item]) > 0) then
             return true;
         end
     end
@@ -83,7 +83,7 @@ function onTrigger(player,npc)
 
     if ( player:hasKeyItem(dsp.ki.CLAMMING_KIT)) then -- Player has clamming kit
 
-        if (player:getVar("ClammingKitBroken") == 1) then -- Broken bucket
+        if (player:getCharVar("ClammingKitBroken") == 1) then -- Broken bucket
             player:startEvent(30, 0, 0, 0, 0, 0, 0, 0, 0);
         else --Bucket not broken
             player:startEvent(29, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -108,9 +108,9 @@ function onEventUpdate(player,csid,option)
 
         player:updateEvent(dsp.ki.CLAMMING_KIT, enoughMoney, 0, 0, 0, 500, 0, 0);
     elseif  (csid == 29) then
-        local clammingKitSize = player:getVar("ClammingKitSize");
+        local clammingKitSize = player:getCharVar("ClammingKitSize");
 
-        player:updateEvent( player:getVar("ClammingKitWeight"), clammingKitSize, clammingKitSize, clammingKitSize + 50, 0, 0, 0, 0);
+        player:updateEvent( player:getCharVar("ClammingKitWeight"), clammingKitSize, clammingKitSize, clammingKitSize + 50, 0, 0, 0, 0);
     end
 end;
 
@@ -134,7 +134,7 @@ function onEventFinish(player,csid,option)
             giveClammedItems(player);
 
         elseif (option == 3) then -- Get bigger kit
-            local clammingKitSize = player:getVar("ClammingKitSize") + 50;
+            local clammingKitSize = player:getCharVar("ClammingKitSize") + 50;
 
             player:setVar("ClammingKitSize", clammingKitSize);
             player:messageSpecial(ID.text.YOUR_CLAMMING_CAPACITY, 0, 0, clammingKitSize);

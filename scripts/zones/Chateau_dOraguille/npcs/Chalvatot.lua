@@ -25,11 +25,11 @@ end;
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
     local circleOfTime = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
-    local circleProgress = player:getVar("circleTime");
+    local circleProgress = player:getCharVar("circleTime");
     local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local WildcatSandy = player:getCharVar("WildcatSandy");
     local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
 
     -- LURE OF THE WILDCAT
     elseif (csid == 561) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",19,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",19,true);
 
     -- HER MAJESTY'S GARDEN
     elseif (csid == 84 and option == 1) then

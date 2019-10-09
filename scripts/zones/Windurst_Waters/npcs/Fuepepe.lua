@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE) == QUEST_ACCEPTED and player:getVar("QuestMakingTheGrade_prog") == 0) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE) == QUEST_ACCEPTED and player:getCharVar("QuestMakingTheGrade_prog") == 0) then
         if (trade:hasItemQty(544,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
             player:startEvent(455); -- Quest Progress: Test Papers Shown and told to deliver them to principal
         end
@@ -21,7 +21,7 @@ end;
 function onTrigger(player,npc)
 
     local gradestatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE);
-    local prog = player:getVar("QuestMakingTheGrade_prog");
+    local prog = player:getCharVar("QuestMakingTheGrade_prog");
         -- 1 = answers found
         -- 2 = gave test answers to principle
         -- 3 = spoke to chomoro
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         player:startEvent(459); -- After Quest
     -------------------------------------------------------
     -- Class Reunion
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") >= 3 and player:getVar("ClassReunion_TalkedToFupepe") ~= 1) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getCharVar("ClassReunionProgress") >= 3 and player:getCharVar("ClassReunion_TalkedToFupepe") ~= 1) then
         player:startEvent(817); -- he tells you about Uran-Mafran
     -------------------------------------------------------
     else

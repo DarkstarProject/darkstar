@@ -48,7 +48,7 @@ function onEventUpdate(player,csid,option,target)
 
     local party = player:getParty()
 
-    if player:getVar("ShadesOfVengeance") == 1 then
+    if player:getCharVar("ShadesOfVengeance") == 1 then
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if v:getCurrentMission(TOAU) < dsp.mission.id.toau.SHADES_OF_VENGEANCE then
@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option,target)
 end
 
 function onInstanceCreated(player,target,instance)
-    if instance and player:getVar("ShadesOfVengeance") == 1 then
+    if instance and player:getCharVar("ShadesOfVengeance") == 1 then
         player:setInstance(instance)
         player:instanceEntry(target,4)
 
@@ -109,7 +109,7 @@ function onInstanceCreated(player,target,instance)
             end
         end
     elseif (instance) then
-        instance:setLevelCap(player:getVar("AssaultCap"))
+        instance:setLevelCap(player:getCharVar("AssaultCap"))
         player:setVar("AssaultCap", 0)
         player:setInstance(instance)
         player:instanceEntry(target,4)

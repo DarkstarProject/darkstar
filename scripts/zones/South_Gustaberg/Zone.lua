@@ -24,11 +24,11 @@ function onZoneIn(player, prevZone)
         player:setPos(-601.433, 35.204, -520.031, 1)
     end
 
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getVar("VowsDone") == 1 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getCharVar("VowsDone") == 1 then
         cs = 906
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 901
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 37
     end
 

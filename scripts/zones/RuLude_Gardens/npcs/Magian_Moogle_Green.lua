@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     local TrialLog = player:hasKeyItem(dsp.ki.MAGIAN_TRIAL_LOG);
     if (player:getMainLvl() < 30) then
         player:startEvent(10151);
-    elseif (player:getVar("MetGreenMagianMog") == 0 and LearnerLog == false) then
+    elseif (player:getCharVar("MetGreenMagianMog") == 0 and LearnerLog == false) then
         if (TrialLog == false) then
             player:startEvent(10160, 0);
         else

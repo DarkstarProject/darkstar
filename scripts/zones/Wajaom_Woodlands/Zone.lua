@@ -32,7 +32,7 @@ function onZoneIn(player,prevZone)
         else
             player:setPos(610.542,-28.547,356.247,122);
         end
-    elseif (player:getVar("threemenandaclosetCS") == 2 and prevZone == dsp.zone.AHT_URHGAN_WHITEGATE) then
+    elseif (player:getCharVar("threemenandaclosetCS") == 2 and prevZone == dsp.zone.AHT_URHGAN_WHITEGATE) then
         cs = 510;
     end
     return cs;

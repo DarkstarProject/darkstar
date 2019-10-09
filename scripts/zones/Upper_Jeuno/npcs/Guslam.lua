@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getMainLvl() >= 50 and player:getVar("BorghertzAlreadyActiveWithJob") == 0) then
+    if (player:getMainLvl() >= 50 and player:getCharVar("BorghertzAlreadyActiveWithJob") == 0) then
         if (player:getMainJob() == dsp.job.WAR and
            player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH) ~= QUEST_AVAILABLE and
            player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS) == QUEST_AVAILABLE) then
@@ -97,7 +97,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(154); -- Standard dialog
         end
-    elseif (player:getVar("BorghertzAlreadyActiveWithJob") >= 1 and player:hasKeyItem(dsp.ki.OLD_GAUNTLETS) == false) then
+    elseif (player:getCharVar("BorghertzAlreadyActiveWithJob") >= 1 and player:hasKeyItem(dsp.ki.OLD_GAUNTLETS) == false) then
         player:startEvent(43); -- During Quest before KI obtained
     elseif (player:hasKeyItem(dsp.ki.OLD_GAUNTLETS) == true) then
         player:startEvent(26); -- Dialog with Old Gauntlets KI

@@ -123,7 +123,7 @@ dsp.manaclipper.onZoneIn = function(player)
 
     -- zoning into bibiki bay. play the eventId stored in [manaclipper]arrivalEventId.
     elseif zoneId == dsp.zone.BIBIKI_BAY then
-        local eventId = player:getVar("[manaclipper]arrivalEventId")
+        local eventId = player:getCharVar("[manaclipper]arrivalEventId")
         player:setVar("[manaclipper]arrivalEventId", 0)
 
         if eventId > 0 then
@@ -137,7 +137,7 @@ end
 
 dsp.manaclipper.onTransportEvent = function(player, transport)
     local ID = zones[player:getZoneID()]
-    local aboard = player:getVar("[manaclipper]aboard")
+    local aboard = player:getCharVar("[manaclipper]aboard")
 
     -- leaving Sunset Docks. must be standing in region 1. must have a ticket.
     if aboard == 1 then
@@ -145,7 +145,7 @@ dsp.manaclipper.onTransportEvent = function(player, transport)
             player:delKeyItem(dsp.ki.MANACLIPPER_TICKET)
             player:startEvent(14)
         elseif player:hasKeyItem(dsp.ki.MANACLIPPER_MULTITICKET) then
-            local uses = player:getVar("Manaclipper_Ticket")
+            local uses = player:getCharVar("Manaclipper_Ticket")
 
             if uses == 1 then
                 player:messageSpecial(ID.text.END_BILLET, 0, dsp.ki.MANACLIPPER_MULTITICKET)

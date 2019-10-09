@@ -17,10 +17,10 @@ end;
 
 function onTrigger(player,npc)
     posestatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_POSE_BY_ANY_OTHER_NAME);
-    if (posestatus == QUEST_AVAILABLE and player:getVar("QuestAPoseByOtherName_prog") == 0 and player:needToZone() == false) then
+    if (posestatus == QUEST_AVAILABLE and player:getCharVar("QuestAPoseByOtherName_prog") == 0 and player:needToZone() == false) then
         player:startEvent(87);                                                     -- A POSE BY ANY dsp.nation.OTHER NAME: Before Quest
         player:setVar("QuestAPoseByOtherName_prog",1);
-    elseif (posestatus == QUEST_AVAILABLE and player:getVar("QuestAPoseByOtherName_prog") == 1) then
+    elseif (posestatus == QUEST_AVAILABLE and player:getCharVar("QuestAPoseByOtherName_prog") == 1) then
         player:setVar("QuestAPoseByOtherName_prog",2);
         mjob = player:getMainJob();
         if (mjob == dsp.job.WAR or mjob == dsp.job.PLD or mjob == dsp.job.DRK or mjob == dsp.job.DRG or mjob == dsp.job.COR) then      -- Quest Start: Bronze Harness (War/Pld/Drk/Drg/Crs)
@@ -40,12 +40,12 @@ function onTrigger(player,npc)
             player:setVar("QuestAPoseByOtherName_equip",12584);
         end
     elseif (posestatus == QUEST_ACCEPTED) then
-        starttime = player:getVar("QuestAPoseByOtherName_time");
+        starttime = player:getCharVar("QuestAPoseByOtherName_time");
         if ((starttime + 600) >= os.time()) then
-            if (player:getEquipID(dsp.slot.BODY) == player:getVar("QuestAPoseByOtherName_equip")) then
+            if (player:getEquipID(dsp.slot.BODY) == player:getCharVar("QuestAPoseByOtherName_equip")) then
                 player:startEvent(96);     ------------------------------------------  QUEST FINISH
             else
-                player:startEvent(93,0,0,0,player:getVar("QuestAPoseByOtherName_equip"));-- QUEST REMINDER
+                player:startEvent(93,0,0,0,player:getCharVar("QuestAPoseByOtherName_equip"));-- QUEST REMINDER
             end
         else
             player:startEvent(102);     ------------------------------------------  QUEST FAILURE

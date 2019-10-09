@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local ZilartProgress = player:getCurrentMission(ZILART);
-    local ZVar = player:getVar("ZilartStatus");
+    local ZVar = player:getCharVar("ZilartStatus");
 
     if (player:getZPos() < 200) then
         if (ZilartProgress == dsp.mission.id.zilart.THE_GATE_OF_THE_GODS and ZVar == 0) then

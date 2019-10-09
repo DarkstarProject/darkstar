@@ -98,7 +98,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 32004) then
-        local mobid = player:getVar("mobid");
+        local mobid = player:getCharVar("mobid");
         DespawnMob(mobid);
         player:setVar("mobid",0);
 

@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Port_Bastok/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 4) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_2") == 4) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
 
     local ayameKaede = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE);
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
     if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,0) == false) then
         player:startEvent(352);
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
             player:addQuest(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE);
         end
     elseif (csid == 352) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",0,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",0,true);
     end
 
 end;

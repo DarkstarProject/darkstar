@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
     local circleOfTime = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
     local theAntiqueCollector = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_ANTIQUE_COLLECTOR);
-    local circleProgress = player:getVar("circleTime");
+    local circleProgress = player:getCharVar("circleTime");
 
     -- CIRCLE OF TIME
     if (circleOfTime == QUEST_ACCEPTED) then

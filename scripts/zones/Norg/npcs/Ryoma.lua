@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     if (wsQuestEvent ~= nil) then
         player:startEvent(wsQuestEvent)
     elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
-        if (player:getVar("AyameAndKaede_Event") == 3) then
+        if (player:getCharVar("AyameAndKaede_Event") == 3) then
             player:startEvent(95) -- During Quest "Ayame and Kaede"
         else
             player:startEvent(94)
@@ -48,9 +48,9 @@ function onTrigger(player,npc)
         player:startEvent(135) -- Start Quest "I'll Take the Big Box"
     elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE) then
         player:startEvent(136) -- Start Quest "True Will"
-    elseif (player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) and player:getVar("trueWillCS") == 0) then
+    elseif (player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) and player:getCharVar("trueWillCS") == 0) then
         player:startEvent(137)
-    elseif (player:getVar("trueWillCS") == 1) then
+    elseif (player:getCharVar("trueWillCS") == 1) then
         player:startEvent(138)
     else
         player:startEvent(94)

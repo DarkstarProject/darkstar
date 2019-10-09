@@ -14,7 +14,7 @@ require("scripts/globals/status")
 function onTrade(player,npc,trade)
     if
         player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) 
-        and player:getVar("sayItWithAHandbagCS") == 2
+        and player:getCharVar("sayItWithAHandbagCS") == 2
         and npcUtil.tradeHasExactly(trade, {2012, 850, 816})
     then
         player:startEvent(910)
@@ -22,13 +22,13 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
+    local sayItWithAHandbagCS = player:getCharVar("sayItWithAHandbagCS")
     local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT)
     local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT)
 
     if
         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG) == QUEST_COMPLETED
-        and player:getVar("sayItWithAHandbagBonusCS") == 1
+        and player:getCharVar("sayItWithAHandbagBonusCS") == 1
     then
         player:startEvent(914)
     elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then

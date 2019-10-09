@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
     wonderingstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL);
     if (wonderingstatus == QUEST_ACCEPTED) then
-        prog = player:getVar("QuestWonderingMin_var")
+        prog = player:getCharVar("QuestWonderingMin_var")
         if (prog == 0) then                 -- WONDERING_MINSTREL + Rosewood Lumber: During Quest / Progression
             player:startEvent(10009,0,718);
             player:setVar("QuestWonderingMin_var",1);

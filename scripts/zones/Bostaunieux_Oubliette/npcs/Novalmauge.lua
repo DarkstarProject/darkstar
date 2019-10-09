@@ -39,7 +39,7 @@ end
 function onTrade(player, npc, trade)
     local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest, player, trade)
 
-    if player:getVar("troubleAtTheSluiceVar") == 2 and npcUtil.tradeHas(trade, 959) then -- Dahlia
+    if player:getCharVar("troubleAtTheSluiceVar") == 2 and npcUtil.tradeHas(trade, 959) then -- Dahlia
         player:startEvent(17)
         npc:wait()
     elseif player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 930) then -- Beastman Blood
@@ -54,8 +54,8 @@ end
 function onTrigger(player, npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest, player)
     local troubleAtTheSluice = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE)
-    local troubleAtTheSluiceStat = player:getVar("troubleAtTheSluiceVar")
-    local theHolyCrestStat = player:getVar("TheHolyCrest_Event")
+    local troubleAtTheSluiceStat = player:getCharVar("troubleAtTheSluiceVar")
+    local theHolyCrestStat = player:getCharVar("TheHolyCrest_Event")
     local theRumor = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR)
 
     npc:wait()
@@ -66,7 +66,7 @@ function onTrigger(player, npc)
     -- THE HOLY CREST
     elseif theHolyCrestStat == 1 then
         player:startEvent(6)
-    elseif theHolyCrestStat == 2 and player:getVar("theHolyCrestCheck") == 0 then
+    elseif theHolyCrestStat == 2 and player:getCharVar("theHolyCrestCheck") == 0 then
         player:startEvent(7)
 
     -- TROUBLE AT THE SLUICE

@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local status = player:getVar("PromathiaStatus")
+    local status = player:getCharVar("PromathiaStatus")
     local mission = player:getCurrentMission(COP)
 
     if (mission == dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG and status == 1) then
@@ -39,8 +39,8 @@ function onTrigger(player,npc)
 
         if not (hasRing) then
             local currentDay = tonumber(os.date("%j"))
-            local ringsTaken = player:getVar("COP-ringsTakenbr")
-            local dateObtained = player:getVar("COP-lastRingday")
+            local ringsTaken = player:getCharVar("COP-ringsTakenbr")
+            local dateObtained = player:getCharVar("COP-lastRingday")
 
             if (ringsTaken == 0) then
                 player:startEvent(84, ring[1], ring[2], ring[3])
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
     elseif ((csid == 84 or csid == 204) and option >= 5 and option <= 7) then
         if (player:getFreeSlotsCount() ~= 0) then
             local currentDay = tonumber(os.date("%j"))
-            local ringsTaken = player:getVar("COP-ringsTakenbr")
+            local ringsTaken = player:getCharVar("COP-ringsTakenbr")
             player:addItem(ring[option - 4])
             player:messageSpecial(ID.text.ITEM_OBTAINED, ring[option - 4])
             player:setVar("COP-ringsTakenbr", ringsTaken + 1)

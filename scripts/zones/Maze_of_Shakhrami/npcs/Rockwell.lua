@@ -17,7 +17,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and player:getVar("QuestYourCrystalBall_prog") == 1 then
+    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and player:getCharVar("QuestYourCrystalBall_prog") == 1 then
         player:startEvent(52)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

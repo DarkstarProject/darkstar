@@ -15,7 +15,7 @@ end
 
 function onTrigger(player,npc)
     local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
-    local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
+    local sayItWithAHandbagCS = player:getCharVar("sayItWithAHandbagCS")
 
     if sayItWithAHandbag == QUEST_COMPLETED then
         player:startEvent(175)

@@ -15,8 +15,8 @@ end;
 
 function onTrigger(player,npc)
     realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    starttime = player:getVar("MissionaryMan_date");
-    MissionaryManVar = player:getVar("MissionaryManVar");
+    starttime = player:getCharVar("MissionaryMan_date");
+    MissionaryManVar = player:getCharVar("MissionaryManVar");
 
     if (MissionaryManVar == 2) then
         player:startEvent(698,0,1146); -- Start statue creation

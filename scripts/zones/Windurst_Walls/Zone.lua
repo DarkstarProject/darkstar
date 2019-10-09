@@ -22,14 +22,14 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         position = math.random(1,5) - 123;
         player:setPos(-257.5,-5.05,position,0);
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == dsp.mission.id.asa.A_SHANTOTTO_ASCENSION
         and (prevZone == dsp.zone.WINDURST_WATERS or prevZone == dsp.zone.WINDURST_WOODS) and player:getMainLvl()>=10) then
         cs = 510;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getVar("MissionStatus") == 4) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") == 4) then
         cs = 443;
     end
 

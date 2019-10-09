@@ -14,7 +14,7 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(dsp.ki.MAGICKED_ASTROLABE) == false) then
         local cost = 10000;
-        if (player:getVar("Astrolabe") == 0) then
+        if (player:getCharVar("Astrolabe") == 0) then
             player:startEvent(1080, cost);
         else
             player:startEvent(1081, cost);

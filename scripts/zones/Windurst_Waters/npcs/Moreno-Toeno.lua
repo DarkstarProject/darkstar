@@ -22,16 +22,16 @@ function onTrigger(player,npc)
 
     local teacherstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TEACHER_S_PET);
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(752,0,dsp.ki.STAR_SEEKER);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") >= 1) then
-        if (player:getVar("MissionStatus") < 4) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") >= 1) then
+        if (player:getCharVar("MissionStatus") < 4) then
             player:startEvent(753);
-        elseif (player:getVar("MissionStatus") == 4) then
+        elseif (player:getCharVar("MissionStatus") == 4) then
             player:startEvent(758);
         end
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.A_TESTING_TIME) then
-        local MissionStatus = player:getVar("MissionStatus");
+        local MissionStatus = player:getCharVar("MissionStatus");
         local alreadyCompleted = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_TESTING_TIME);
         if (MissionStatus == 0) then
             if (alreadyCompleted == false) then
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
                 player:startEvent(687); -- Repeat at buburimu
             end
         elseif (MissionStatus == 1) then
-            start_time = player:getVar("testingTime_start_time");
+            start_time = player:getCharVar("testingTime_start_time");
             seconds_passed = os.time() - start_time;
 
             -- one Vana'diel Day is 3456 seconds (2 day for repeat)
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
                 player:startEvent(202);
             -- are we in the last game hour of the Vana'diel Day?
             elseif (alreadyCompleted == false and seconds_passed >= 3312) then
-                killcount = player:getVar("testingTime_crea_count");
+                killcount = player:getCharVar("testingTime_crea_count");
                 if (killcount >= 35) then
                     event = 201;
                 elseif (killcount >= 30) then
@@ -61,7 +61,7 @@ function onTrigger(player,npc)
                 player:startEvent(event,0,VanadielHour(),1,killcount);
             -- are we in the last game hour of the Vana'diel Day? REPEAT
             elseif (alreadyCompleted and seconds_passed >= 6768) then
-                killcount = player:getVar("testingTime_crea_count");
+                killcount = player:getCharVar("testingTime_crea_count");
                 if (killcount >= 35) then
                     event = 206;
                 elseif (killcount >= 30) then
@@ -71,8 +71,8 @@ function onTrigger(player,npc)
                 end;
                 player:startEvent(event,0,VanadielHour(),1,killcount);
             else
-                start_day = player:getVar("testingTime_start_day");
-                start_hour = player:getVar("testingTime_start_hour");
+                start_day = player:getCharVar("testingTime_start_day");
+                start_hour = player:getCharVar("testingTime_start_hour");
                 if (VanadielDayOfTheYear() == start_day) then
                     hours_passed = VanadielHour() - start_hour;
                 elseif (VanadielDayOfTheYear() == start_day + 1) then
@@ -90,7 +90,7 @@ function onTrigger(player,npc)
             end;
         end
     elseif (teacherstatus == QUEST_AVAILABLE) then
-        prog = player:getVar("QuestTeachersPet_prog")
+        prog = player:getCharVar("QuestTeachersPet_prog")
         if (prog == 0) then
             player:startEvent(437); -- Before Quest
             player:setVar("QuestTeachersPet_prog",1);

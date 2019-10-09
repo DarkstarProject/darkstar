@@ -22,11 +22,11 @@ function onTrigger(player,npc)
     theCrimsonTrial = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
     envelopedInDarkness = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS);
     peaceForTheSpirit = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT);
-    peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
+    peaceForTheSpiritCS = player:getCharVar("peaceForTheSpiritCS");
     OrcishDriedFood = player:hasKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
 
     if (player:getMainJob() == dsp.job.RDM and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
-        if (player:getVar("has_seen_rdmaf1_quest_already") == 0) then
+        if (player:getCharVar("has_seen_rdmaf1_quest_already") == 0) then
             player:startEvent(70);
         else
             player:startEvent(71);

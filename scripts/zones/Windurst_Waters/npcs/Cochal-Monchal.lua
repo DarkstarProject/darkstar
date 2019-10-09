@@ -13,9 +13,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getVar("darkLegacyCS") == 2) then
+    if (player:getCharVar("darkLegacyCS") == 2) then
         player:startEvent(697,0,dsp.ki.DARKSTEEL_FORMULA);
-    elseif (player:getVar("darkLegacyCS") == 3) then
+    elseif (player:getCharVar("darkLegacyCS") == 3) then
         player:startEvent(698,0,dsp.ki.DARKSTEEL_FORMULA);
     elseif (player:hasKeyItem(dsp.ki.DARKSTEEL_FORMULA)) then
         player:startEvent(699,0,dsp.ki.DARKSTEEL_FORMULA);

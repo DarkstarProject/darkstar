@@ -13,15 +13,15 @@ local ID = require("scripts/zones/Bastok_Mines/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getVar("theTalekeeperTruthCS") == 3) then
+    if (player:getCharVar("theTalekeeperTruthCS") == 3) then
         if (trade:hasItemQty(1101,1) and trade:getItemCount() == 1) then -- Trade Mottled Quadav Egg
             player:startEvent(162);
         end
-    elseif (player:getVar("theTalekeeperTruthCS") == 4) then
+    elseif (player:getCharVar("theTalekeeperTruthCS") == 4) then
         if (trade:hasItemQty(1099,1) and trade:getItemCount() == 1) then -- Trade Parasite Skin
             player:startEvent(164);
         end
-    elseif (player:getVar("theTalekeeperGiftCS") == 2) then
+    elseif (player:getCharVar("theTalekeeperGiftCS") == 2) then
         if (trade:hasItemQty(4394,1) and trade:getItemCount() == 1) then -- Trade Ginger Cookie
             player:startEvent(172);
         end
@@ -33,10 +33,10 @@ function onTrigger(player,npc)
 
     local theDoorman = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_DOORMAN);
     local theTalekeeperTruth = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
-    local theTalekeeperTruthCS = player:getVar("theTalekeeperTruthCS");
-    local Wait1DayForAF3 = player:getVar("DeidoggWait1DayForAF3");
-    local theTalekeeperGiftCS = player:getVar("theTalekeeperGiftCS");
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local theTalekeeperTruthCS = player:getCharVar("theTalekeeperTruthCS");
+    local Wait1DayForAF3 = player:getCharVar("DeidoggWait1DayForAF3");
+    local theTalekeeperGiftCS = player:getCharVar("theTalekeeperGiftCS");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
     if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
         player:startEvent(504);
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
         end
     elseif (theTalekeeperTruthCS == 4) then
         player:startEvent(163); -- During Quest "The Talekeeper's Truth"
-    elseif (theTalekeeperTruthCS == 5 and VanadielDayOfTheYear() ~= player:getVar("theTalekeeperTruth_timer")) then
+    elseif (theTalekeeperTruthCS == 5 and VanadielDayOfTheYear() ~= player:getCharVar("theTalekeeperTruth_timer")) then
         player:startEvent(165); -- Finish Quest "The Talekeeper's Truth"
     elseif (theTalekeeperTruthCS == 5 or (theTalekeeperTruth == QUEST_COMPLETED and (player:needToZone() or VanadielDayOfTheYear() == Wait1DayForAF3))) then
         player:startEvent(166); -- New standard dialog after "The Talekeeper's Truth"
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_GIFT);
         player:setVar("theTalekeeperGiftCS",3);
     elseif (csid == 504) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",18,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",18,true);
     end
 
 end;

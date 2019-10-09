@@ -17,7 +17,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.COMING_OF_AGE and player:getCharVar("MissionStatus") == 2) then
         player:setVar("MissionStatus",3);
     end
 end;

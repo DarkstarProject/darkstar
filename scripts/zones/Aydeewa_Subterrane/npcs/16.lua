@@ -10,7 +10,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.TEAHOUSE_TUMULT and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.TEAHOUSE_TUMULT and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(11);
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.MISPLACED_NOBILITY) then
         player:startEvent(12);

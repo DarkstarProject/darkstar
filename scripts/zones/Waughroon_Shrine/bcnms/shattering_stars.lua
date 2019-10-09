@@ -34,7 +34,7 @@ end
 function onEventFinish(player, csid, option)
     if csid == 32001 then
         local pjob = player:getMainJob()
-        local maatsCap = player:getVar("maatsCap")
+        local maatsCap = player:getCharVar("maatsCap")
 
         if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SHATTERING_STARS) == QUEST_ACCEPTED then
             npcUtil.giveItem(player, 4181)

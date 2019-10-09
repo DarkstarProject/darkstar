@@ -9,7 +9,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("underTheSeaVar") == 2 then
+    if player:getCharVar("underTheSeaVar") == 2 then
         player:startEvent(33) -- During quest "Under the sea" - 2nd dialog
     else
         player:startEvent(152) -- Standard dialog

@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local groceries = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.GROCERIES);
-    local groceriesProgress = player:getVar("Groceries");
+    local groceriesProgress = player:getCharVar("Groceries");
 
     -- GROCERIES (trade meat jerky)
     if (groceries == QUEST_ACCEPTED and groceriesProgress == 3 and trade:getItemCount() == 1 and trade:hasItemQty(4376,1)) then
@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
     local groceries = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.GROCERIES);
-    local groceriesProgress = player:getVar("Groceries");
+    local groceriesProgress = player:getCharVar("Groceries");
 
     -- GROCERIES
     if (groceries == QUEST_AVAILABLE or (groceries == QUEST_ACCEPTED and groceriesProgress == 0)) then

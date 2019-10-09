@@ -30,7 +30,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-252.715,-7.666,-30.64,128)
     end
 
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHADES_OF_VENGEANCE and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHADES_OF_VENGEANCE and player:getCharVar("AhtUrganStatus") == 1) then
         cs = 21
     end
 

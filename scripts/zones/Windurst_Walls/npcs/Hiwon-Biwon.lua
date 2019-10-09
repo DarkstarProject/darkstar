@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
     -- Making Headlines
     elseif (MakingHeadlines == 1) then
-        prog = player:getVar("QuestMakingHeadlines_var");
+        prog = player:getCharVar("QuestMakingHeadlines_var");
         --  Variable to track if player has talked to 4 NPCs and a door
         --  1 = Kyume
         -- 2 = Yujuju
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 
     -- Making Headlines
     if (csid == 281 or csid == 283 or csid == 284) then
-        prog = player:getVar("QuestMakingHeadlines_var");
+        prog = player:getCharVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WALLS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+4);

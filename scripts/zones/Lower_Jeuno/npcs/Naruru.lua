@@ -19,12 +19,12 @@ function onTrigger(player,npc)
     local TheWonderMagicSet = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
     local CooksPride = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE);
     local TheKindCardian = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN);
-    local WildcatJeuno = player:getVar("WildcatJeuno");
+    local WildcatJeuno = player:getCharVar("WildcatJeuno");
 
     if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,13) == false) then
         player:startEvent(10053);
     elseif (TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then
-        if (player:getVar("CooksPrideVar") == 0) then
+        if (player:getCharVar("CooksPrideVar") == 0) then
             player:startEvent(189); -- Start quest "Cook's pride" Long CS
         else
             player:startEvent(188); -- Start quest "Cook's pride" Short CS
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     elseif (player:hasKeyItem(dsp.ki.SUPER_SOUP_POT) == true) then
         player:startEvent(187); -- Finish quest "Cook's pride"
     elseif (CooksPride == QUEST_COMPLETED and TheKindCardian == QUEST_AVAILABLE) then
-        if (player:getVar("theLostCardianVar") == 0) then
+        if (player:getCharVar("theLostCardianVar") == 0) then
             player:startEvent(31); -- During quests "The lost cardian"
         else
             player:startEvent(71); -- During quests "The lost cardian"
@@ -71,6 +71,6 @@ function onEventFinish(player,csid,option)
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE);
         end
     elseif (csid == 10053) then
-        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",13,true);
+        player:setMaskBit(player:getCharVar("WildcatJeuno"),"WildcatJeuno",13,true);
     end
 end;

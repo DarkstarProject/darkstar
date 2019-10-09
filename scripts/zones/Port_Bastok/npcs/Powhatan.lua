@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     local GuestofHauteur = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GUEST_OF_HAUTEUR);
 
     if (WelcometoBastok ~= QUEST_COMPLETED) then
-        local wtbStatus = player:getVar("WelcometoBastok_Event");
+        local wtbStatus = player:getCharVar("WelcometoBastok_Event");
 
         if (WelcometoBastok == QUEST_AVAILABLE) then
             player:startEvent(50);
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             end
         end
     elseif (GuestofHauteur ~= QUEST_COMPLETED and WelcometoBastok == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 3 and player:getMainLvl() >= 31) then
-        local gohStatus = player:getVar("GuestofHauteur_Event");
+        local gohStatus = player:getCharVar("GuestofHauteur_Event");
 
         if (GuestofHauteur == QUEST_AVAILABLE) then
             player:startEvent(55);

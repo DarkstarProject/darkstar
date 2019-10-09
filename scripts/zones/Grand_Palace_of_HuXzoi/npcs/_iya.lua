@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 3) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY and player:getCharVar("PromathiaStatus") == 3) then
         player:startEvent(1);
     else
         player:startEvent(52);

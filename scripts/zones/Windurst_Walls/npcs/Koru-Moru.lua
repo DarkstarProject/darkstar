@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(544,1) and count == 1 and trade:getGil() == 0) then
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-            if (player:getVar("QuestMakingTheGrade_prog") == 1) then
+            if (player:getCharVar("QuestMakingTheGrade_prog") == 1) then
                 player:startEvent(285); -- MAKING THE GRADE: Turn in Test Answer & Told to go back to Fuepepe & Chomoro
             else
                 player:startEvent(287); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
     elseif (qStarStruck == QUEST_ACCEPTED and trade:hasItemQty(582,1) and count == 1 and trade:getGil() == 0) then
         player:startEvent(211);
     elseif (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_4") == 4) then
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
@@ -48,7 +48,7 @@ function onTrade(player,npc,trade)
             player:setVar("rootProblem",2);
         end
     elseif (trade:hasItemQty(17299,4) and count == 4 and trade:getGil() == 0) then -- trade:getItemCount() is apparently checking total of all 8 slots combined. Could have sworn that wasn't how it worked before.
-        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 2) then
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getCharVar("ClassReunionProgress") == 2) then
             player:startEvent(407); -- now Koru remembers something that you need to inquire his former students.
         end;
     end;
@@ -57,16 +57,16 @@ end;
 function onTrigger(player,npc)
     local qStarStruck = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.STAR_STRUCK);
     local blastFromPast = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST);
-    local blastProg = player:getVar("BlastFromThePast_Prog");
+    local blastProg = player:getCharVar("BlastFromThePast_Prog");
     local rootProblem = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_ROOT_OF_THE_PROBLEM);
     local ThePuppetMaster = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER);
-    local ThePuppetMasterProgress = player:getVar("ThePuppetMasterProgress");
+    local ThePuppetMasterProgress = player:getCharVar("ThePuppetMasterProgress");
     local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
-    local ClassReunionProgress = player:getVar("ClassReunionProgress");
-    local talk1 = player:getVar("ClassReunion_TalkedToFupepe");
-    local talk2 = player:getVar("ClassReunion_TalkedToFurakku");
+    local ClassReunionProgress = player:getCharVar("ClassReunionProgress");
+    local talk1 = player:getCharVar("ClassReunion_TalkedToFupepe");
+    local talk2 = player:getCharVar("ClassReunion_TalkedToFurakku");
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
-    local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
+    local CarbuncleDebacleProgress = player:getCharVar("CarbuncleDebacleProgress");
 
     if (blastFromPast == QUEST_AVAILABLE and qStarStruck == QUEST_COMPLETED and player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) ~= QUEST_ACCEPTED and player:getFameLevel(WINDURST) >= 3 and player:needToZone() == false) then
         player:startEvent(214);
@@ -75,7 +75,7 @@ function onTrigger(player,npc)
     elseif (blastFromPast == QUEST_ACCEPTED) then
         player:startEvent(216);
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-        local makingGradeProg = player:getVar("QuestMakingTheGrade_prog");
+        local makingGradeProg = player:getCharVar("QuestMakingTheGrade_prog");
         if (makingGradeProg == 0 and player:hasItem(544)) then
             player:startEvent(287); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
         elseif (makingGradeProg == 1) then
@@ -120,7 +120,7 @@ function onTrigger(player,npc)
     elseif (ThePuppetMaster == QUEST_COMPLETED and ClassReunion ~= 2) then
         player:startEvent(405); -- new cs after completed AF1
     ----------------------------------------------------------
-    elseif (rootProblem == QUEST_ACCEPTED and player:getVar("rootProblem") == 1) then
+    elseif (rootProblem == QUEST_ACCEPTED and player:getCharVar("rootProblem") == 1) then
         player:startEvent(348,0,829);
     else
         if (qStarStruck == QUEST_COMPLETED) then

@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local pantsQuestProgress = player:getVar("AF_SCH_PANTS");
+    local pantsQuestProgress = player:getCharVar("AF_SCH_PANTS");
 
     player:delStatusEffect(dsp.effect.SNEAK);
 

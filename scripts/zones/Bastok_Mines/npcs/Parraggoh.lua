@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
 
 BeautyAndTheGalka       = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BEAUTY_AND_THE_GALKA);
-BeautyAndTheGalkaDenied = player:getVar("BeautyAndTheGalkaDenied");
+BeautyAndTheGalkaDenied = player:getCharVar("BeautyAndTheGalkaDenied");
 PalboroughMinesLogs     = player:hasKeyItem(dsp.ki.PALBOROUGH_MINES_LOGS);
 
     if (PalboroughMinesLogs == true) then

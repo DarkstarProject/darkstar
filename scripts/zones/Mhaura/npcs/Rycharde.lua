@@ -60,8 +60,8 @@ function onTrade(player,npc,trade)
 
         if (DhalmelMeat  == true and BeehiveChip  == true and count == 2) then
 
-            local Dayspassed=VanadielDayOfTheYear()-player:getVar("QuestRychardeTCDayStarted_var");
-            local TotalHourLeft=72-(VanadielHour()+Dayspassed*24)+player:getVar("QuestWayotcHourStarted_var");
+            local Dayspassed=VanadielDayOfTheYear()-player:getCharVar("QuestRychardeTCDayStarted_var");
+            local TotalHourLeft=72-(VanadielHour()+Dayspassed*24)+player:getCharVar("QuestWayotcHourStarted_var");
 
             if (TotalHourLeft>0) then
                 player:startEvent(80); -- second quest completed
@@ -99,7 +99,7 @@ function onTrigger(player,npc)
 
 ------------------------------------ QUEST RYCHARDE_THE_CHEF-----------------------------------------
 if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then
-    QuestStatus = player:getVar("QuestRychardetheChef_var");
+    QuestStatus = player:getCharVar("QuestRychardetheChef_var");
     if (QuestStatus == 2 ) then  -- seconnd stage one quest
         player:startEvent(70,4359); -- ask if player would do quest
     elseif (QuestStatus == 3 ) then
@@ -111,14 +111,14 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.RYCHARDE_T
     player:startEvent(72); -- not done yet huh?
 --------------------------------------------- quest WAY_OF_THE_COOK
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.WAY_OF_THE_COOK)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>2) then    -- quest WAY_OF_THE_COOK
-    if (player:getVar("QuestRychardeTCCompDay_var")+ 7 < VanadielDayOfTheYear() or player:getVar("QuestRychardeTCCompYear_var") < VanadielYear()) then  --8 days or so after the completition of the last quest ... and required fame
+    if (player:getCharVar("QuestRychardeTCCompDay_var")+ 7 < VanadielDayOfTheYear() or player:getCharVar("QuestRychardeTCCompYear_var") < VanadielYear()) then  --8 days or so after the completition of the last quest ... and required fame
         player:startEvent(76,4359,912);-- second quest WAY_OF_THE_COOK
     else
         player:startEvent(75); -- nothing to do
     end
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.WAY_OF_THE_COOK)==QUEST_ACCEPTED) then
-    Dayspassed=VanadielDayOfTheYear()-player:getVar("QuestRychardeTCDayStarted_var");
-    TotalHourLeft=72-(VanadielHour()+Dayspassed*24)+player:getVar("QuestWayotcHourStarted_var");
+    Dayspassed=VanadielDayOfTheYear()-player:getCharVar("QuestRychardeTCDayStarted_var");
+    TotalHourLeft=72-(VanadielHour()+Dayspassed*24)+player:getCharVar("QuestWayotcHourStarted_var");
     if (TotalHourLeft>0) then
         player:startEvent(78,TotalHourLeft); -- you have x hours left
     else
@@ -126,8 +126,8 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.WAY_OF_THE
     end
 ---------------------------QUEST UNENDING_CHASE--------------------------------------------------
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNENDING_CHASE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST) > 2) then
-    if (player:getVar("QuestWayofTCCompDay_var")+7 < VanadielDayOfTheYear() or player:getVar("QuestWayofTCCompYear_var") < VanadielYear()) then  -- days between quest
-        if (player:getVar("QuestUnendingCAskedAlready_var")==2) then
+    if (player:getCharVar("QuestWayofTCCompDay_var")+7 < VanadielDayOfTheYear() or player:getCharVar("QuestWayofTCCompYear_var") < VanadielYear()) then  -- days between quest
+        if (player:getCharVar("QuestUnendingCAskedAlready_var")==2) then
             player:startEvent(84,4448);-- third quest  said no, ask again
         else
             player:startEvent(82,4448);-- third quest UNENDING_CHASE    4448 - puffball
@@ -139,7 +139,7 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNENDING_C
     player:startEvent(85);-- third quest  comment no hurry
 -------------------------QUEST HIS_NAME_IS_VALGEIR--------------------------------------------------
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.HIS_NAME_IS_VALGEIR)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>2) then
-    if (player:getVar("QuestUnendingCCompDay_var")+2< VanadielDayOfTheYear() or player:getVar("QuestUnendingCCompYear_var")< VanadielYear()) then
+    if (player:getCharVar("QuestUnendingCCompDay_var")+2< VanadielDayOfTheYear() or player:getCharVar("QuestUnendingCCompYear_var")< VanadielYear()) then
         player:startEvent(86);-- forth quest   His Name is Valgeir
     else
         player:startEvent(75); -- nothing to do
@@ -153,8 +153,8 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.HIS_NAME_I
 ---------------------------QUEST THE CLUE--------------------------------------------------------
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>4) then
     if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE)==QUEST_COMPLETED) then
-        if (player:getVar("QuestExpertiseCompDay_var")+7 < VanadielDayOfTheYear() or player:getVar("QuestExpertiseCompYear_var") < VanadielYear()) then
-            if (player:getVar("QuestTheClueStatus_var")==1) then
+        if (player:getCharVar("QuestExpertiseCompDay_var")+7 < VanadielDayOfTheYear() or player:getCharVar("QuestExpertiseCompYear_var") < VanadielYear()) then
+            if (player:getCharVar("QuestTheClueStatus_var")==1) then
                 player:startEvent(91,4357);-- fifth quest The Clue asked again 4357 - crawler_egg
             else
                 player:startEvent(90,4357);-- fifth quest The Clue 4357 - crawler_egg
@@ -169,7 +169,7 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE)=
     player:startEvent(85);-- third quest  comment no hurry
 ---------------------------QUEST THE Basics--------------------------------------------------------
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_BASICS)==QUEST_AVAILABLE and player:getFameLevel(WINDURST) > 4) then
-    if (player:getVar("QuestTheClueCompDay_var")+7 < VanadielDayOfTheYear() or player:getVar("QuestTheClueCompYear_var") < VanadielYear()) then
+    if (player:getCharVar("QuestTheClueCompDay_var")+7 < VanadielDayOfTheYear() or player:getCharVar("QuestTheClueCompYear_var") < VanadielYear()) then
         player:startEvent(94);-- sixth quest The Basics
     else
         player:startEvent(75); -- nothing to do standar dialog
@@ -177,7 +177,7 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_BASICS
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_BASICS)==QUEST_ACCEPTED) then
     player:startEvent(95);-- sixth quest not done yet
 else
-    if (player:getVar("QuestTheBasicsComentary_var")==1) then
+    if (player:getCharVar("QuestTheBasicsComentary_var")==1) then
         player:startEvent(97);-- sixth quest completed commentary
     else
         player:startEvent(98);-- sixth quest completed commentary 2

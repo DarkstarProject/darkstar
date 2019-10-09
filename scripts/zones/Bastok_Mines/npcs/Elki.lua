@@ -17,9 +17,9 @@ function onTrigger(player,npc)
 
 Fame = player:getFameLevel(BASTOK);
 Hearts = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.HEARTS_OF_MYTHRIL);
-HeartsVar = player:getVar("HeartsOfMythril");
+HeartsVar = player:getCharVar("HeartsOfMythril");
 Elevenths = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR);
-EleventhsVar = player:getVar("EleventhsHour");
+EleventhsVar = player:getCharVar("EleventhsHour");
 HasToolbox = player:hasKeyItem(dsp.ki.OLD_TOOLBOX);
 
     if (Hearts == QUEST_AVAILABLE) then

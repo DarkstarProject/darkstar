@@ -91,7 +91,7 @@ function moogleTrigger(player,npc)
         local theMooglePicnic = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
         local moogleInTheWild = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
 
-        if player:getVar("MoghouseExplication") == 1 then
+        if player:getCharVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
 
         -- A Moogle Kupo d'Etat
@@ -99,27 +99,27 @@ function moogleTrigger(player,npc)
             player:startEvent(30023)
 
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
-               player:getVar("[MS1]BedPlaced") == 1 then
+               player:getCharVar("[MS1]BedPlaced") == 1 then
             player:startEvent(30005,0,0,0,5,0,17161,13457)
-        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
+        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 1 then
             player:startEvent(30006,0,0,0,0,0,17161,13457)
-        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
+        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 2 then
             player:startEvent(30008)
 
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_AVAILABLE and homeNationFameLevel >= 5 and
-                giveMoogleABreak == QUEST_COMPLETED and player:getVar("[MS2]BedPlaced") == 1 then
+                giveMoogleABreak == QUEST_COMPLETED and player:getCharVar("[MS2]BedPlaced") == 1 then
             player:startEvent(30009,0,0,0,4,0,17402,615)
-        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
+        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 1 then
             player:startEvent(30010,0,0,0,0,0,17402,615)
-        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
+        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 2 then
             player:startEvent(30012)
 
         elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_AVAILABLE and homeNationFameLevel >= 7 and
-                theMooglePicnic == QUEST_COMPLETED and player:getVar("[MS3]BedPlaced") == 1 then
+                theMooglePicnic == QUEST_COMPLETED and player:getCharVar("[MS3]BedPlaced") == 1 then
             player:startEvent(30013,0,0,0,6,0,13593,12474)
-        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
+        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 1 then
             player:startEvent(30014,0,0,0,0,0,13593,12474)
-        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
+        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 2 then
             player:startEvent(30016)
 
         else
@@ -227,7 +227,7 @@ end
 
 -- Gets the mog locker access type (all area or alzahbi only). Returns the new access type.
 function getMogLockerAccessType(player)
-    return player:getVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
+    return player:getCharVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
 end
 
 -- Adds time to your mog locker, given the number of bronze coins.
@@ -262,7 +262,7 @@ end
 
 -- Gets the expiry time for your locker. A return value of -1 is expired. A return value of nil means mog locker hasn't been unlocked.
 function getMogLockerExpiryTimestamp(player)
-    local expiryTime = player:getVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP)
+    local expiryTime = player:getCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP)
 
     if (expiryTime == 0) then
         return nil

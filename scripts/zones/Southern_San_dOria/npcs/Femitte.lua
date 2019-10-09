@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local DistantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
+    local DistantLoyaltiesProgress = player:getCharVar("DistantLoyaltiesProgress");
     local DistantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local WildcatSandy = player:getCharVar("WildcatSandy");
 
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
         player:startEvent(807);
@@ -45,7 +45,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 807) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",3,true);
     elseif (csid == 663 and option == 0) then
         player:addKeyItem(dsp.ki.GOLDSMITHING_ORDER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);

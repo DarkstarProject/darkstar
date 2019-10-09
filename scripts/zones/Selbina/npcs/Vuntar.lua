@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.CARGO) ~= QUEST_AVAILABLE then
-        if tonumber(os.date("%j")) ~= player:getVar("VuntarCanBuyItem_date") then
+        if tonumber(os.date("%j")) ~= player:getCharVar("VuntarCanBuyItem_date") then
             if npcUtil.tradeHas(trade, 4529) then
                 player:startEvent(52,1) -- Can Buy rolanberry (881 ce)
             elseif npcUtil.tradeHas(trade, 4530) then

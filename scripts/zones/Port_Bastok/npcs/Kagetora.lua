@@ -15,7 +15,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
 
-        AyameAndKaede = player:getVar("AyameAndKaede_Event");
+        AyameAndKaede = player:getCharVar("AyameAndKaede_Event");
 
         if (AyameAndKaede == 0) then
             player:startEvent(241);
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(23);
         end
-    elseif (player:getVar("twentyInPirateYearsCS") == 1) then
+    elseif (player:getCharVar("twentyInPirateYearsCS") == 1) then
         player:startEvent(261);
     else
         player:startEvent(23);

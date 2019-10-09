@@ -17,7 +17,7 @@ end
 function onTrigger(player,npc)
     if
         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG) == QUEST_ACCEPTED
-        and player:getVar("sayItWithAHandbagCS") == 0
+        and player:getCharVar("sayItWithAHandbagCS") == 0
     then
         player:startEvent(171)
     end

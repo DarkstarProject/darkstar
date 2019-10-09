@@ -13,9 +13,9 @@ end
 
 function onTrigger(player,npc)
 
-    local decurioKilled = player:getVar("Decurio_I_IIIKilled")
+    local decurioKilled = player:getCharVar("Decurio_I_IIIKilled")
 
-    if player:getVar("aCraftsmanWork") == 1 and decurioKilled == 0 and not GetMobByID(ID.mob.DECURIO_I_III):isSpawned() then
+    if player:getCharVar("aCraftsmanWork") == 1 and decurioKilled == 0 and not GetMobByID(ID.mob.DECURIO_I_III):isSpawned() then
         SpawnMob(ID.mob.DECURIO_I_III, 300):updateClaim(player)
     elseif decurioKilled == 1 then
         player:addKeyItem(dsp.ki.ALTEPA_POLISHING_STONE)

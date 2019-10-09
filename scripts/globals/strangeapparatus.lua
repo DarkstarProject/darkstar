@@ -246,7 +246,7 @@ end
 
 local function hasDoctorStatus(player)
     local data = strAppData[player:getZoneID()]
-    local docStatusExpires = player:getVar("StrangeApparatusDoctorStatus" .. data.suffix)
+    local docStatusExpires = player:getCharVar("StrangeApparatusDoctorStatus" .. data.suffix)
 
     if docStatusExpires ~= 0 then
         if os.time() <= docStatusExpires then

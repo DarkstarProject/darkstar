@@ -45,7 +45,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.A_JOURNEY_BEGINS) == QUEST_ACCEPTED) then
         player:startEvent(325);
-    elseif (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 1) then
+    elseif (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getCharVar("1stTimeAbyssea") == 1) then
         player:startEvent(327,0,0,MaxKI); -- cs for "The Truth Beckons" completion
     elseif (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) ~= QUEST_COMPLETED) then
         player:startEvent(326); -- Pre "The Truth Beckons" Menu

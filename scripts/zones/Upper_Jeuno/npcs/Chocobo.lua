@@ -24,8 +24,8 @@ function onTrade(player,npc,trade)
             player:startEvent(76);
         elseif (trade:hasItemQty(534,1) and gil == 0 and count == 1) then
             --Check feeding status.
-            local feed = player:getVar("ChocobosWounds_Event");
-            local feedMin = player:getVar("ChocobosWounds_Min");
+            local feed = player:getCharVar("ChocobosWounds_Event");
+            local feedMin = player:getCharVar("ChocobosWounds_Min");
             local feedReady = (feedMin <= os.time())
 
             if (feed == 1) then
@@ -66,7 +66,7 @@ function onTrigger(player,npc)
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(62);
     elseif (ChocobosWounds == QUEST_ACCEPTED) then
-        local feed = player:getVar("ChocobosWounds_Event");
+        local feed = player:getCharVar("ChocobosWounds_Event");
 
         if (feed == 1) then
             player:startEvent(103);

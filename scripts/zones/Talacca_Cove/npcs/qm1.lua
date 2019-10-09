@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    LuckOfTheDraw = player:getVar("LuckOfTheDraw");
+    LuckOfTheDraw = player:getCharVar("LuckOfTheDraw");
 
     if (LuckOfTheDraw ==3) then
         player:startEvent(2);

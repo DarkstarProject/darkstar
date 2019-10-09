@@ -17,12 +17,12 @@ function onTrigger(player,npc)
     -- reach the Gizmo Door and have the cutscene
     local magical_gizmo_no = 6; -- of the 6
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getCharVar("MissionStatus") == 2) then
         -- Check if we found the correct Magical Gizmo or not
-        if (player:getVar("MissionStatus_rv") == magical_gizmo_no) then
+        if (player:getCharVar("MissionStatus_rv") == magical_gizmo_no) then
             player:startEvent(58);
         else
-            if (player:getVar("MissionStatus_op6") == 2) then
+            if (player:getCharVar("MissionStatus_op6") == 2) then
                 -- We've already examined this
                 player:messageSpecial(ID.text.EXAMINED_RECEPTACLE);
             else

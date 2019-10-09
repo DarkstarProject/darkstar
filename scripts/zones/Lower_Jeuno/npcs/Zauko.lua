@@ -17,10 +17,10 @@ function onTrade(player,npc,trade)
 
     ----- Save The Clock Tower Quest -----
     if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
-        a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
+        a = player:getCharVar("saveTheClockTowerNPCz2"); -- NPC Zone2
         if (a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and
            a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then
-            player:startEvent(50,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+            player:startEvent(50,10 - player:getCharVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
 
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     local hour = VanadielHour();
     local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
     local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
-    local currCommService = player:getVar("currCommService");
+    local currCommService = player:getCharVar("currCommService");
     local hasMembershipCard = player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
 
     local allLampsLit = true;

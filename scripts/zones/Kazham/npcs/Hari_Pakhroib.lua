@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     Guardian = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
-    Pamamas = player:getVar("PamamaVar");
+    Pamamas = player:getCharVar("PamamaVar");
     pfame = player:getFameLevel(KAZHAM)
     needToZone = player:needToZone();
 

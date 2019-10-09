@@ -19,10 +19,10 @@ function onTrigger(player,npc)
             -- We have the offerings
             player:startEvent(45);
         else
-            if (player:getVar("laa_talk") == 1) then
+            if (player:getCharVar("laa_talk") == 1) then
                 -- npc: You want your offering back?
                 player:startEvent(46);
-            elseif (player:getVar("laa_talk") == 2) then
+            elseif (player:getCharVar("laa_talk") == 2) then
                 -- npc: You'll have to crawl back to treasure chamber, etc
                 player:startEvent(47);
             else

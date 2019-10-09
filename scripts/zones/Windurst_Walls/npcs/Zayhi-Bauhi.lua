@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4370,1) and trade:getItemCount() == 1) then
-            local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
+            local ToBeeOrNotStatus = player:getCharVar("ToBeeOrNot_var");
             if (ToBeeOrNotStatus == 10) then
                 player:startEvent(69); -- After Honey#1: Clearing throat
             elseif (ToBeeOrNotStatus == 1) then
@@ -31,7 +31,7 @@ end;
 function onTrigger(player,npc)
     local ToBee = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
     local PostmanKOsTwice = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_POSTMAN_ALWAYS_KO_S_TWICE);
-    local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
+    local ToBeeOrNotStatus = player:getCharVar("ToBeeOrNot_var");
 
     if ((player:getFameLevel(WINDURST) >= 2 and PostmanKOsTwice == QUEST_COMPLETED and ToBee == QUEST_AVAILABLE) or (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus == 10)) then
         player:startEvent(64);   -- Just Before Quest Start "Too Bee or Not Too Be" (Speech given with lots of coughing)

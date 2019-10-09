@@ -30,9 +30,9 @@ function onTrigger(player,npc)
         player:startEvent(77) --Offer the quest if the player has the broken rod
     elseif player:hasKeyItem(dsp.ki.SERPENT_RUMORS) == true and (Indomitable == QUEST_AVAILABLE or Indomitable == QUEST_COMPLETED) then
         player:startEvent(131) --Begins Indomitable Spirit
-    elseif (Indomitable == QUEST_ACCEPTED or Indomitable == QUEST_COMPLETED) and realday == player:getVar("IndomitableSpiritVar") then
+    elseif (Indomitable == QUEST_ACCEPTED or Indomitable == QUEST_COMPLETED) and realday == player:getCharVar("IndomitableSpiritVar") then
         player:startEvent(133) --Asks the player to wait
-    elseif (Indomitable == QUEST_ACCEPTED or Indomitable == QUEST_COMPLETED) and realday ~= player:getVar("IndomitableSpiritVar") then
+    elseif (Indomitable == QUEST_ACCEPTED or Indomitable == QUEST_COMPLETED) and realday ~= player:getCharVar("IndomitableSpiritVar") then
         player:startEvent(134) --Ends the Quest
     elseif Indomitable == QUEST_COMPLETED then
         player:startEvent(135) --Dialogue for those who have completed Indomitable Spirit

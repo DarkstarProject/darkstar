@@ -17,10 +17,10 @@ end;
 function onTrigger(player,npc)
 
     local ANewDawn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN);
-    local ANewDawnEvent = player:getVar("ANewDawn_Event");
+    local ANewDawnEvent = player:getCharVar("ANewDawn_Event");
     local ScatteredIntoShadow = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW);
 
-    local SaveMySon = player:getVar("SaveMySon_Event");
+    local SaveMySon = player:getCharVar("SaveMySon_Event");
 
     local ChocobosWounds = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
 
@@ -62,7 +62,7 @@ function onTrigger(player,npc)
     -- Chocobos Wounds
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(64);
-    elseif (player:getVar("ChocobosWounds_Event") > 3) then
+    elseif (player:getCharVar("ChocobosWounds_Event") > 3) then
         player:startEvent(63);
 
     -- Standard Dialogue?, Probably Wrong

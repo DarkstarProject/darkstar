@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Davoi/IDs");
 function onTrade(player,npc,trade)
 
     local CurrentMission = player:getCurrentMission(WINDURST);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     if (trade:hasItemQty(17437,1)) then
         if (CurrentMission == dsp.mission.id.windurst.VAIN and MissionStatus == 3 and player:hasKeyItem(dsp.ki.MAGIC_DRAINED_STAR_SEEKER) == true) then
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
 
     local CurrentMission = player:getCurrentMission(WINDURST);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(122,0,276);
     elseif (CurrentMission == dsp.mission.id.windurst.VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
         if (player:hasKeyItem(dsp.ki.STAR_SEEKER) == true) then
@@ -39,8 +39,8 @@ function onTrigger(player,npc)
 
     elseif (player:hasKeyItem(dsp.ki.CRIMSON_ORB) == false) then
 
-        local miniQuestForORB_CS = player:getVar("miniQuestForORB_CS");
-        local countRedPoolForORB = player:getVar("countRedPoolForORB");
+        local miniQuestForORB_CS = player:getCharVar("miniQuestForORB_CS");
+        local countRedPoolForORB = player:getCharVar("countRedPoolForORB");
 
         if (miniQuestForORB_CS == 0) then
             player:startEvent(24); --

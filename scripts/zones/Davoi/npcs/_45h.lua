@@ -21,9 +21,9 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    if (csid == 51 and player:getVar("miniQuestForORB_CS") == 1) then
+    if (csid == 51 and player:getCharVar("miniQuestForORB_CS") == 1) then
 
-        local c = player:getVar("countRedPoolForORB");
+        local c = player:getCharVar("countRedPoolForORB");
 
         if (c == 0) then
             player:setVar("countRedPoolForORB", c + 1);

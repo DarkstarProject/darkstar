@@ -478,8 +478,8 @@ end
 
 local function giveReward(player, csid)
     if csid == 166 or csid == 167 then
-        local fishId  = player:getVar("insideBellyFishId")
-        local itemIdx = player:getVar("insideBellyItemIdx")
+        local fishId  = player:getCharVar("insideBellyFishId")
+        local itemIdx = player:getCharVar("insideBellyItemIdx")
         local reward  = fishRewards[fishId]
         local traded  = true
                 
@@ -525,7 +525,7 @@ function onTrade(player,npc,trade)
         end
         
     -- A BOY'S DREAM
-    elseif player:getVar("aBoysDreamCS") == 5 and npcUtil.tradeHas(trade, 4562) then
+    elseif player:getCharVar("aBoysDreamCS") == 5 and npcUtil.tradeHas(trade, 4562) then
         player:startEvent(85)
 
     -- INSIDE THE BELLY
@@ -547,7 +547,7 @@ function onTrigger(player,npc)
     local mLvl           = player:getMainLvl()
 
     -- UNDER THE SEA
-    if player:getVar("underTheSeaVar") == 3 then
+    if player:getCharVar("underTheSeaVar") == 3 then
         player:startEvent(34, 4501) -- During quest "Under the sea" - 3rd dialog
         
     -- INSIDE THE BELLY

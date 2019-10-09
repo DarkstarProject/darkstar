@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local SinHunting = player:getVar("sinHunting");    -- RNG AF1
+    local SinHunting = player:getCharVar("sinHunting");    -- RNG AF1
 
     if (player:hasKeyItem(dsp.ki.WEAPONS_ORDER) == true) then
         player:startEvent(5);

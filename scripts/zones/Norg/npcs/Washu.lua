@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     -- YOMI OKURI (SAM AF2)
     if (
         player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.YOMI_OKURI) == QUEST_ACCEPTED and
-        player:getVar("yomiOkuriKilledNM") == 0 and
+        player:getCharVar("yomiOkuriKilledNM") == 0 and
         not player:hasKeyItem(dsp.ki.WASHUS_TASTY_WURST) and
         not player:hasKeyItem(dsp.ki.YOMOTSU_FEATHER) and
         npcUtil.tradeHas(trade, {939, 4360, 4372, 4382}) -- Hecteyes Eye, Bastore Sardine, Giant Sheep Meat, Frost Turnip
@@ -29,11 +29,11 @@ function onTrigger(player,npc)
 
     -- YOMI OKURI (SAM AF2)
     if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.YOMI_OKURI) == QUEST_ACCEPTED) then
-        if (player:getVar("yomiOkuriCS") == 1) then
+        if (player:getCharVar("yomiOkuriCS") == 1) then
             player:startEvent(148); -- start quest
         elseif (player:hasKeyItem(dsp.ki.WASHUS_TASTY_WURST)) then
             player:startEvent(151); -- remind objective
-        elseif (player:getVar("yomiOkuriKilledNM") == 0 and not player:hasKeyItem(dsp.ki.WASHUS_TASTY_WURST)) then
+        elseif (player:getCharVar("yomiOkuriKilledNM") == 0 and not player:hasKeyItem(dsp.ki.WASHUS_TASTY_WURST)) then
             player:startEvent(149); -- remind ingredients
         end
 

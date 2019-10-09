@@ -51,7 +51,7 @@ end;
 
 function onTrigger(player,npc)
     local LureBastok = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT);
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
     if (LureBastok ~= 2 and ENABLE_TOAU == 1) then
         if (LureBastok == 0) then
             player:startEvent(357);

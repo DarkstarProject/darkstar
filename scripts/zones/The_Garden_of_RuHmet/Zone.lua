@@ -123,7 +123,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-351.136,-2.25,-380,253);
     end
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getCharVar("PromathiaStatus") == 0) then
         cs = 201 ;
     end
     player:setVar("Ru-Hmet-TP",0);
@@ -131,7 +131,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onRegionEnter(player,region)
-    if (player:getVar("Ru-Hmet-TP") == 0 and player:getAnimation() == 0) then
+    if (player:getCharVar("Ru-Hmet-TP") == 0 and player:getAnimation() == 0) then
         switch (region:GetRegionID()): caseof
         {
             [1] = function (x)

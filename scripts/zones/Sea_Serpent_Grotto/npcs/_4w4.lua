@@ -9,7 +9,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if npcUtil.tradeHas(trade, 748) then
-        if player:getVar("SSG_GoldDoor") == 7 then
+        if player:getCharVar("SSG_GoldDoor") == 7 then
             npc:openDoor(5) -- Open the door if a gold beastcoin has been traded after checking the door the required number of times
         end
     end
@@ -18,7 +18,7 @@ end
 function onTrigger(player, npc)
     local X = player:getXPos()
     local Z = player:getZPos()
-    local GoldDoorCheck = player:getVar("SSG_GoldDoor")
+    local GoldDoorCheck = player:getCharVar("SSG_GoldDoor")
 
     if X >= 55 and Z >= -80 then
         if GoldDoorCheck == 0 then -- Door has never been checked

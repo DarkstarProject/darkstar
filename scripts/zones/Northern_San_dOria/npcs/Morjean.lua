@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local TheHolyCrest = player:getVar("TheHolyCrest_Event");
+    local TheHolyCrest = player:getCharVar("TheHolyCrest_Event");
 
     if (TheHolyCrest == 2) then
         player:startEvent(65);

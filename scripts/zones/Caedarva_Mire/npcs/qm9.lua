@@ -12,10 +12,10 @@ end;
 
 function onTrigger(player,npc)
     local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THE_WAYWARD_AUTOMATION);
-    local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
+    local TheWaywardAutomationProgress = player:getCharVar("TheWaywardAutomationProgress");
 
     if (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 2) then
-        if (player:getVar("TheWaywardAutomationNM") >= 1) then
+        if (player:getCharVar("TheWaywardAutomationNM") >= 1) then
             player:startEvent(14);-- Event ID 14 for CS after toad
         elseif (not GetMobByID(ID.mob.CAEDARVA_TOAD):isSpawned()) then
             SpawnMob(ID.mob.CAEDARVA_TOAD):updateClaim(player); --Caedarva toad

@@ -532,7 +532,7 @@ inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
 /************************************************************************
 *  Function: getVar()
 *  Purpose : Returns a var value assigned to a PC (in char_vars.sql)
-*  Example : local status = player:getVar("[ZM]Status")
+*  Example : local status = player:getCharVar("[ZM]Status")
 *  Notes   :
 ************************************************************************/
 
@@ -669,7 +669,7 @@ inline int32 CLuaBaseEntity::resetLocalVars(lua_State* L)
 /************************************************************************
 *  Function: getMaskBit()
 *  Purpose : Returns a single bit from a masked player variable
-*  Example : player:getMaskBit(player:getVar("CleanSignPost"),1)) then
+*  Example : player:getMaskBit(player:getCharVar("CleanSignPost"),1)) then
 *  Notes   :
 ************************************************************************/
 
@@ -730,7 +730,7 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
 /************************************************************************
 *  Function: countMaskBits()
 *  Purpose : Counts the number of true bits in a bit-masked variable
-*  Example : Unused, but ex: player:countMaskBits(player:getVar("Ex"))
+*  Example : Unused, but ex: player:countMaskBits(player:getCharVar("Ex"))
 *  Notes   : Useful for quests such as Flyers for Regine
 ************************************************************************/
 

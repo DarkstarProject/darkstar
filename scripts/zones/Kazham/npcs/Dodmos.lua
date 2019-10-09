@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
         if (FireFork == true) then
             player:startEvent(272); --Dialogue given to remind player to be prepared
-        elseif (FireFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeFire_date")) then
+        elseif (FireFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeFire_date")) then
             player:startEvent(290,0,1544,0,20); --Need another mini tuning fork
         end
     elseif (TrialSizeFire == QUEST_COMPLETED) then

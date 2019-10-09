@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
     -- Check for Missions first (priority?)
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.LOST_FOR_WORDS and player:getVar("MissionStatus") == 5) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.LOST_FOR_WORDS and player:getCharVar("MissionStatus") == 5) then
         player:startEvent(337);
     else
         ----------------------------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         -- The Puppet Master (AF weapon)
         elseif (player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == dsp.job.SMN and ThePuppetMaster == QUEST_AVAILABLE and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
             player:startEvent(402); -- Carby asks for your help, visit Juroro
-        elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER) == QUEST_ACCEPTED and player:getVar("ThePuppetMasterProgress") == 1) then
+        elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER) == QUEST_ACCEPTED and player:getCharVar("ThePuppetMasterProgress") == 1) then
             player:startEvent(403); -- reminder to visit Juroro
         ----------------------------------------------------
         -- Class Reunion (AF pants)
@@ -47,11 +47,11 @@ function onTrigger(player,npc)
         ----------------------------------------------------
         elseif (player:hasKeyItem(dsp.ki.JOKER_CARD)) then
             player:startEvent(387,0,dsp.ki.JOKER_CARD);
-        elseif (player:getVar("WildCard") == 1) then
+        elseif (player:getCharVar("WildCard") == 1) then
             player:startEvent(386);
-        elseif (player:getVar("OnionRings") == 1) then
+        elseif (player:getCharVar("OnionRings") == 1) then
             player:startEvent(289);
-        elseif (player:getVar("KnowOnesOnions") == 1) then
+        elseif (player:getCharVar("KnowOnesOnions") == 1) then
             player:startEvent(288,0,4387);
         else
             player:messageSpecial(ID.text.DOORS_SEALED_SHUT); -- "The doors are firmly sealed shut."

@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local WhisperOfTides = player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 
-    if ((TrialByWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4) or (TrialByWater == QUEST_COMPLETED and realday ~= player:getVar("TrialByWater_date"))) then
+    if ((TrialByWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4) or (TrialByWater == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByWater_date"))) then
         player:startEvent(109,0,dsp.ki.TUNING_FORK_OF_WATER); -- Start and restart quest "Trial by Water"
     elseif (TrialByWater == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WATER) == false and WhisperOfTides == false) then
         player:startEvent(190,0,dsp.ki.TUNING_FORK_OF_WATER); -- Defeat against Avatar : Need new Fork

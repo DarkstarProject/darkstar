@@ -13,11 +13,11 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 3) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DISTANT_BELIEFS and player:getCharVar("PromathiaStatus") == 3) then
         player:startEvent(113);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 2) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.SHELTERING_DOUBT and player:getCharVar("PromathiaStatus") == 2) then
         player:startEvent(109);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SAVAGE and player:getVar("PromathiaStatus") == 2) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SAVAGE and player:getCharVar("PromathiaStatus") == 2) then
         player:startEvent(110);
     else
         player:startEvent(123);

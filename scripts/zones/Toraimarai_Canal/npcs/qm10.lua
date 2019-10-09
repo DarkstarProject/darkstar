@@ -11,8 +11,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("rootProblem") == 2 then
-        if player:getVar("rootProblemQ2") <= 1 then
+    if player:getCharVar("rootProblem") == 2 then
+        if player:getCharVar("rootProblemQ2") <= 1 then
             if player:hasStatusEffect(dsp.effect.MANAFONT) then
                 player:startEvent(47)
             else

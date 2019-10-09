@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     medicineWoman = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
     toCureaCough = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
 
-    if (toCureaCough == QUEST_AVAILABLE and player:getVar("toCureaCough") == 0 and medicineWoman == QUEST_COMPLETED) then
+    if (toCureaCough == QUEST_AVAILABLE and player:getCharVar("toCureaCough") == 0 and medicineWoman == QUEST_COMPLETED) then
         player:startEvent(538);
     elseif (player:hasKeyItem(dsp.ki.COUGH_MEDICINE) == true) then
         player:startEvent(647);

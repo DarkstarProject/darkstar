@@ -27,15 +27,15 @@ function onTrigger(player,npc)
     local ACP           = player:getCurrentMission(ACP)
     local currentDay    = tonumber(os.date("%j"))
     local needToZone    = player:needToZone()
-    local progressMask  = player:getVar("SEED_AFTERGLOW_MASK")
-    local intensity     = player:getVar("SEED_AFTERGLOW_INTENSITY")
+    local progressMask  = player:getCharVar("SEED_AFTERGLOW_MASK")
+    local intensity     = player:getCharVar("SEED_AFTERGLOW_INTENSITY")
 
     if (
         player:hasKeyItem(dsp.ki.MARK_OF_SEED) or
         player:hasKeyItem(dsp.ki.AZURE_KEY) or
         player:hasKeyItem(dsp.ki.IVORY_KEY) or
-        CurrentDay == player:getVar("LastAzureKey") or
-        CurrentDay == player:getVar("LastIvoryKey") or
+        CurrentDay == player:getCharVar("LastAzureKey") or
+        CurrentDay == player:getCharVar("LastIvoryKey") or
         ACP < dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II
     ) then
         player:messageSpecial(ID.text.SOFTLY_SHIMMERING_LIGHT)

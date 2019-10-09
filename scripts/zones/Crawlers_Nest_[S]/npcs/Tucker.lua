@@ -9,8 +9,8 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
 
     local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
-    local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
-    local SheetsofVellumProgress = player:getVar("SheetsofVellum");
+    local ALittleKnowledgeProgress = player:getCharVar("ALittleKnowledge");
+    local SheetsofVellumProgress = player:getCharVar("SheetsofVellum");
 
     if (ALittleKnowledge == QUEST_ACCEPTED and ALittleKnowledgeProgress == 1 and SheetsofVellumProgress > 0 and SheetsofVellumProgress < 4) then
         if (trade:hasItemQty(4365, 48) and trade:getGil() == 0 and trade:getItemCount() == 48) then
@@ -29,8 +29,8 @@ end;
 function onTrigger(player,npc)
 
     local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
-    local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
-    local SheetsofVellumProgress = player:getVar("SheetsofVellum");
+    local ALittleKnowledgeProgress = player:getCharVar("ALittleKnowledge");
+    local SheetsofVellumProgress = player:getCharVar("SheetsofVellum");
 
     if (ALittleKnowledge == QUEST_ACCEPTED and ALittleKnowledgeProgress == 1) then
         if (SheetsofVellumProgress == 1) then

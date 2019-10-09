@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     local Scaredycats = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.SCAREDYCATS);
-    local Scaredycats_Status = player:getVar("Scaredycats_Status");
+    local Scaredycats_Status = player:getCharVar("Scaredycats_Status");
     if ((Scaredycats_Status < 1) and (Scaredycats == QUEST_AVAILABLE)) then
         -- Dialogue before seeing the initial walk-in CS with Bilp, Eamonn, and Lhe.
         player:startEvent(5031);

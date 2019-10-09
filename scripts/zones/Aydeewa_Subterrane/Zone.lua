@@ -23,7 +23,7 @@ function onZoneIn(player,prevZone)
         player:setPos(356.503,-0.364,-179.607,122)
     end
 
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.TEAHOUSE_TUMULT and player:getVar("AhtUrganStatus") == 0 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.TEAHOUSE_TUMULT and player:getCharVar("AhtUrganStatus") == 0 then
         cs = 10
     end
 
@@ -32,8 +32,8 @@ end
 
 function onRegionEnter(player,region)
     if region:GetRegionID() == 1 then
-        local StoneID = player:getVar("EmptyVesselStone")
-        if player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL) == QUEST_ACCEPTED and player:getVar("AnEmptyVesselProgress") == 4 and player:hasItem(StoneID) then
+        local StoneID = player:getCharVar("EmptyVesselStone")
+        if player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL) == QUEST_ACCEPTED and player:getCharVar("AnEmptyVesselProgress") == 4 and player:hasItem(StoneID) then
             player:startEvent(3,StoneID)
         end
     end

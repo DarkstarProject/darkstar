@@ -16,15 +16,15 @@ end
 
 function onTrigger(player,npc)
     local gotitall = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.GOT_IT_ALL)
-    local gotItAllProg = player:getVar("gotitallCS")
-    local threeMenProg = player:getVar("threemenandaclosetCS")
+    local gotItAllProg = player:getCharVar("gotitallCS")
+    local threeMenProg = player:getCharVar("threemenandaclosetCS")
     if gotitall == QUEST_AVAILABLE then
         player:startEvent(520)
     elseif gotItAllProg == 4 then
         player:startEvent(525)
     elseif gotItAllProg == 6 then
         player:startEvent(527)
-    elseif gotItAllProg >= 7 and player:getVar("Wait1DayForgotitallCS_date") < os.time() and player:needToZone() == false then
+    elseif gotItAllProg >= 7 and player:getCharVar("Wait1DayForgotitallCS_date") < os.time() and player:needToZone() == false then
         player:startEvent(528)
     elseif gotItAllProg >= 7 then
         player:startEvent(539)

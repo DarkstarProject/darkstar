@@ -9,13 +9,13 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 4569) and player:getVar("theTenshodoShowdownCS") == 3 then -- Quadav Stew
+    if npcUtil.tradeHas(trade, 4569) and player:getCharVar("theTenshodoShowdownCS") == 3 then -- Quadav Stew
         player:startEvent(10004, 0, dsp.ki.TENSHODO_ENVELOPE, 4569)
     end
 end
 
 function onTrigger(player,npc)
-    local theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS")
+    local theTenshodoShowdownCS = player:getCharVar("theTenshodoShowdownCS")
 
     if theTenshodoShowdownCS == 2 then
         player:startEvent(10002, 0, dsp.ki.TENSHODO_ENVELOPE, 4569) -- During Quest "The Tenshodo Showdown"

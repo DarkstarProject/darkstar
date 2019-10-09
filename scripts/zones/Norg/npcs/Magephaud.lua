@@ -21,9 +21,9 @@ end;
 function onTrigger(player,npc)
 
     nFame = player:getFameLevel(NORG);
-    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.EVERYONES_GRUDGE) == QUEST_AVAILABLE and player:getVar("EVERYONES_GRUDGE_KILLS") >= 1 and nFame >= 2) then
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.EVERYONES_GRUDGE) == QUEST_AVAILABLE and player:getCharVar("EVERYONES_GRUDGE_KILLS") >= 1 and nFame >= 2) then
         player:startEvent(116,748);  -- Quest start - you have tonberry kills?! I got yo back ^.-
-    elseif (player:getVar("EveryonesGrudgeStarted")  == 1) then
+    elseif (player:getCharVar("EveryonesGrudgeStarted")  == 1) then
         player:startEvent(117,748);
     elseif (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.EVERYONES_GRUDGE) == QUEST_COMPLETED) then
         player:startEvent(119);  -- After completion cs

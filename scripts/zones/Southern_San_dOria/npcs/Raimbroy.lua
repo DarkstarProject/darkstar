@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 
     -- "The Sweetest Things" Quest Dialogs
     if (player:getFameLevel(SANDORIA) >= 2 and theSweetestThings == QUEST_AVAILABLE) then
-        theSweetestThingsVar = player:getVar("theSweetestThings");
+        theSweetestThingsVar = player:getCharVar("theSweetestThings");
         if (theSweetestThingsVar == 1) then
             player:startEvent(533);
         elseif (theSweetestThingsVar == 2) then

@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ZilartStatus = player:getVar("ZilartStatus");
+    local ZilartStatus = player:getCharVar("ZilartStatus");
 
     if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES) then
         if (player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT)) then

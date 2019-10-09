@@ -14,9 +14,9 @@ end;
 
 function onTrigger(player,npc)
     local OvernightDelivery = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
-    local KenapaOvernight = player:getVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
-    local KenapaOvernightDay = player:getVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
-    local KenapaOvernightHour = player:getVar("Kenapa_Overnight_Hour_var"); -- Variable to track the hour the quest is started.
+    local KenapaOvernight = player:getCharVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
+    local KenapaOvernightDay = player:getCharVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
+    local KenapaOvernightHour = player:getCharVar("Kenapa_Overnight_Hour_var"); -- Variable to track the hour the quest is started.
     local HourOfTheDay = VanadielHour();
 
     if (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_BAG) == false and (KenapaOvernight >= 4 and KenapaOvernight <= 7) and (HourOfTheDay < 6 or HourOfTheDay >= 18)) then

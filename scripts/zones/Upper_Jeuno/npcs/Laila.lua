@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     local lakesideMin = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LAKESIDE_MINUET);
-    local lakeProg = player:getVar("Lakeside_Minuet_Progress");
+    local lakeProg = player:getCharVar("Lakeside_Minuet_Progress");
     if (lakesideMin == QUEST_AVAILABLE and player:getMainLvl() >= ADVANCED_JOB_LEVEL and ENABLE_WOTG == 1) then
         player:startEvent(10111); -- Start quest csid, asks for Key Item Stardust Pebble
     elseif (lakesideMin == QUEST_COMPLETED and player:needToZone()) then
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
         and player:getMainJob() == dsp.job.DNC and player:getMainLvl()>=40) then
 
         player:startEvent(10129);
-    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE) and player:getMainJob() == dsp.job.DNC) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getCharVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE) and player:getMainJob() == dsp.job.DNC) then
         player:startEvent(10133);
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED) then
         player:startEvent(10134);
@@ -50,11 +50,11 @@ function onTrigger(player,npc)
         and player:getMainJob() == dsp.job.DNC) then
 
         player:startEvent(10136); -- CSID 10136
-    elseif (player:getVar("roadToDivadomCS") == 1) then
+    elseif (player:getCharVar("roadToDivadomCS") == 1) then
         player:startEvent(10137); --  quest chat line after the quest has been accepted
-    elseif (player:getVar("roadToDivadomCS") == 4) then
+    elseif (player:getCharVar("roadToDivadomCS") == 4) then
         player:startEvent(10139); --CSID 10139
-    elseif (player:getVar("roadToDivadomCS") == 5) then
+    elseif (player:getCharVar("roadToDivadomCS") == 5) then
         player:startEvent(10170); --CSID 10170. This should only occur if the player's inventory was full during the chain of events that start in the elseif above.
 
     -- Dancer AF: Comeback Queen
@@ -63,18 +63,18 @@ function onTrigger(player,npc)
         and player:getMainJob() == dsp.job.DNC) then
 
         player:startEvent(10143);
-    elseif (player:getVar("comebackQueenCS") == 1) then
+    elseif (player:getCharVar("comebackQueenCS") == 1) then
         player:startEvent(10144); -- quest chat line after quest accepted Rhea and Olgald have a line as well.
-    elseif (player:getVar("comebackQueenCS") == 2) then
+    elseif (player:getCharVar("comebackQueenCS") == 2) then
         player:startEvent(10147);
-    elseif (player:getVar("comebackQueenCS") == 3 or player:getVar("comebackQueenCS") == 6) then
+    elseif (player:getCharVar("comebackQueenCS") == 3 or player:getCharVar("comebackQueenCS") == 6) then
         local currentVanaDay = VanadielDayOfTheYear();
-        if (player:getVar("comebackQueenDanceOffTimer") < currentVanaDay) then
+        if (player:getCharVar("comebackQueenDanceOffTimer") < currentVanaDay) then
             player:startEvent(10151);  -- play laila cs 10152->10154  olgald: 1053 if they lose the minigame
         else
             player:startEvent(10140);
         end
-    elseif (player:getVar("comebackQueenCS") == 4 or player:getVar("comebackQueenCS") == 5) then
+    elseif (player:getCharVar("comebackQueenCS") == 4 or player:getCharVar("comebackQueenCS") == 5) then
         player:startEvent(10154); -- This occurs if the player's inventory was full during the final chain of events or if the player speaks with laila afterwards.
     else
         player:startEvent(10120); -- Default
@@ -182,7 +182,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(JEUNO, dsp.quest.id.jeuno.COMEBACK_QUEEN);
         end
     elseif (csid == 10154) then
-        if (player:getVar("comebackQueenCS") == 4) then -- player's inventory was full at the end of the final cutscene
+        if (player:getCharVar("comebackQueenCS") == 4) then -- player's inventory was full at the end of the final cutscene
             if (player:getFreeSlotsCount() == 0) then
                 -- do nothing. player doesn't have room to receive the reward item.
                 player:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same

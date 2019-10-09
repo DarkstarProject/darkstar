@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         player:startEvent(10124)
     elseif rumorsFromTheWest then
         player:startEvent(10117, 0, turnOffDungeonInfo + turnOffAskingForWork)
-    elseif theGeomagnetron and player:getVar("SOA") == 1 then
+    elseif theGeomagnetron and player:getCharVar("SOA") == 1 then
         player:startEvent(10118)
     elseif theGeomagnetron then
         player:startEvent(10117, 1, turnOffAskingForWork)

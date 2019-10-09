@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local notmeanttobe = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NOT_MEANT_TO_BE);
-    local notMeantToBeProg = player:getVar("notmeanttobeCS");
+    local notMeantToBeProg = player:getCharVar("notmeanttobeCS");
     if (notmeanttobe == QUEST_AVAILABLE) then
         player:startEvent(293);
     elseif (notMeantToBeProg == 1) then

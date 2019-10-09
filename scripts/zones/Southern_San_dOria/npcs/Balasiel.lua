@@ -37,13 +37,13 @@ function onTrigger(player,npc)
 
     if (wsQuestEvent ~= nil) then
         player:startEvent(wsQuestEvent)
-    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 2) then
+    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getCharVar("KnightStalker_Progress") == 2) then
         player:startEvent(63) -- DRG AF3 cutscene, doesn't appear to have a follow up.
     elseif (lvl < 7) then
         player:startEvent(668)
     elseif (lvl >= 7 and aSquiresTest ~= QUEST_COMPLETED) then
         if (aSquiresTest == 0) then
-            if (player:getVar("SquiresTest") == 1) then
+            if (player:getCharVar("SquiresTest") == 1) then
                 player:startEvent(631)
             else
                 player:startEvent(616)
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
         player:startEvent(670)
     elseif (lvl >= 30 and aKnightsTest ~= QUEST_COMPLETED) then
         if (aKnightsTest == 0) then
-            if (player:getVar("KnightsTest_Event") == 1) then
+            if (player:getCharVar("KnightsTest_Event") == 1) then
                 player:startEvent(635)
             else
                 player:startEvent(627)

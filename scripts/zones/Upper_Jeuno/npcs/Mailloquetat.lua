@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getFameLevel(JEUNO) >= 4 and player:getVar("saveMySisterVar") == 1) then
+    if (player:getFameLevel(JEUNO) >= 4 and player:getCharVar("saveMySisterVar") == 1) then
         player:startEvent(159); -- For "Save my Sister" quest
     else
         player:startEvent(25); -- Standard dialog

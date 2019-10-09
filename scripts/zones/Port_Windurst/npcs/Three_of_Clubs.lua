@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local WildcatWindurst = player:getVar("WildcatWindurst");
+    local WildcatWindurst = player:getCharVar("WildcatWindurst");
 
     if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,18) == false) then
         player:startEvent(625);
@@ -27,7 +27,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 625) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",18,true);
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",18,true);
     end
 
 end;

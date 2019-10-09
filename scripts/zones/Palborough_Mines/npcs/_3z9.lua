@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local refiner_output = player:getVar("refiner_output")
+    local refiner_output = player:getCharVar("refiner_output")
 
     if refiner_output > 0 and player:getFreeSlotsCount() >= 1 then
         player:setVar("refiner_output", refiner_output - 1)

@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         player:startEvent(108)
     elseif lostInTranslocation == QUEST_ACCEPTED and leftMapPiece and middleMapPiece and rightMapPiece then
         player:startEvent(107)
-    elseif player:getVar("lostInTranslocationCS") == 1 then
+    elseif player:getCharVar("lostInTranslocationCS") == 1 then
         player:startEvent(106)
     elseif lostInTranslocation == QUEST_ACCEPTED and anyMapPiece then
         player:startEvent(105)

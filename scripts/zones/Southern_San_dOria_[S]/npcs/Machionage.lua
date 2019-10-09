@@ -7,8 +7,8 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 2) then
-        local mask = player:getVar("GiftsOfGriffonPlumes");
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getCharVar("GiftsOfGriffonProg") == 2) then
+        local mask = player:getCharVar("GiftsOfGriffonPlumes");
         if (trade:hasItemQty(2528,1) and trade:getItemCount() == 1 and not player:getMaskBit(mask,0)) then
             player:startEvent(28) -- Gifts of Griffon Trade
         end
@@ -25,7 +25,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 28) then
         player:tradeComplete()
-        local mask = player:getVar("GiftsOfGriffonPlumes");
+        local mask = player:getCharVar("GiftsOfGriffonPlumes");
         player:setMaskBit(mask,"GiftsOfGriffonPlumes",0,true);
     end
 end;

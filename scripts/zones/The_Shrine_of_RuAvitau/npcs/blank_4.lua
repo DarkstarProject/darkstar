@@ -15,12 +15,12 @@ end;
 
 function onTrigger(player,npc)
     local CurrentZM = player:getCurrentMission(ZILART);
-    local ZMProgress = player:getVar("ZilartStatus");
+    local ZMProgress = player:getCharVar("ZilartStatus");
     local DMStatus = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT);
     local DMRepeat = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT);
     local AAKeyitems = 0;
     local DMEarrings = 0;
-    local DivineStatus = player:getVar("DivineMight");
+    local DivineStatus = player:getCharVar("DivineMight");
     local MoonOre = player:hasKeyItem(dsp.ki.MOONLIGHT_ORE);
 
     -- Count keyitems
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
     elseif (DMStatus == QUEST_ACCEPTED and DivineStatus >= 2) then -- CS when player has completed Divine might, award earring
         player:startEvent(55,14739,14740,14741,14742,14743);
     elseif (DMStatus == QUEST_COMPLETED and DMEarrings < NUMBER_OF_DM_EARRINGS and DMRepeat ~= QUEST_ACCEPTED) then -- You threw away old Earring, start the repeat quest
-        player:startEvent(57,player:getVar("DM_Earring"));
+        player:startEvent(57,player:getCharVar("DM_Earring"));
     elseif (DMRepeat == QUEST_ACCEPTED and DivineStatus < 2) then
         if (MoonOre == false) then
             player:startEvent(58); -- Reminder for Moonlight Ore

@@ -12,11 +12,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ttsStat = player:getVar("TigressStrikesProg");
+    local ttsStat = player:getCharVar("TigressStrikesProg");
     
     if (ttsStat == 1) then
         player:startEvent(102);
-    elseif (player:getVar("WarLynxKilled") == 1) then
+    elseif (player:getCharVar("WarLynxKilled") == 1) then
         player:startEvent(103);
     elseif (ttsStat == 2 and not GetMobByID(ID.mob.TIGRESS_STRIKES_WAR_LYNX):isSpawned()) then
         SpawnMob(ID.mob.TIGRESS_STRIKES_WAR_LYNX):updateClaim(player);

@@ -28,7 +28,7 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    if csid == 32001 and player:getVar("ClassReunionProgress") == 5 then
+    if csid == 32001 and player:getCharVar("ClassReunionProgress") == 5 then
         player:setVar("ClassReunionProgress", 6)
     end
 end

@@ -17,13 +17,13 @@ function onTrigger(player,npc)
     local CurrentMission = player:getCurrentMission(SANDORIA);
     local infiltrateDavoi = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.INFILTRATE_DAVOI);
 
-    if (CurrentMission == dsp.mission.id.sandoria.THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
+    if (CurrentMission == dsp.mission.id.sandoria.THE_DAVOI_REPORT and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(100);
     elseif (CurrentMission == dsp.mission.id.sandoria.THE_DAVOI_REPORT and player:hasKeyItem(dsp.ki.LOST_DOCUMENT)) then
         player:startEvent(104);
-    elseif (CurrentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and infiltrateDavoi and player:getVar("MissionStatus") == 0) then
+    elseif (CurrentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and infiltrateDavoi and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(102);
-    elseif (CurrentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and player:getVar("MissionStatus") == 9) then
+    elseif (CurrentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and player:getCharVar("MissionStatus") == 9) then
         player:startEvent(105);
     else
         player:startEvent(101);

@@ -38,7 +38,7 @@ function onEventFinish(player, csid, option)
             npcUtil.giveItem(player, 4181) -- scroll_of_instant_warp
         end
 
-        local maatsCap = player:getVar("maatsCap")
+        local maatsCap = player:getCharVar("maatsCap")
         local pjob = player:getMainJob()
         player:setVar("maatDefeated", pjob)
         if bit.band(maatsCap, bit.lshift(1, pjob - 1)) ~= 1 then

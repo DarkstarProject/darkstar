@@ -15,7 +15,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
         currentMission = player:getCurrentMission(BASTOK);
-        missionStatus = player:getVar("MissionStatus");
+        missionStatus = player:getCharVar("MissionStatus");
 
         if (player:hasKeyItem(dsp.ki.SWORD_OFFERING)) then
             player:startEvent(53);

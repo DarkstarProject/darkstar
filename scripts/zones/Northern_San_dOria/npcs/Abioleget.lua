@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     if (sermonQuest == QUEST_AVAILABLE) then
         player:startEvent(589);
     elseif (sermonQuest == QUEST_ACCEPTED) then
-        if (player:getVar("sermonQuestVar") == 1) then
+        if (player:getCharVar("sermonQuestVar") == 1) then
             player:tradeComplete();
             player:startEvent(600);
         else

@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 function onTrade(player,npc,trade)
     local npcID = npc:getID();
     if (npcID == ID.npc.LELEROON_GREEN_DOOR) then
-        local letterGreen = player:getVar("LeleroonsLetterGreen");
+        local letterGreen = player:getCharVar("LeleroonsLetterGreen");
 
         -- gold thread, karakul leather, red grass cloth, wamoura silk
         if (letterGreen == 2 and trade:getItemCount() == 4 and trade:hasItemQty(823,1) and trade:hasItemQty(879,1) and trade:hasItemQty(1829,1) and trade:hasItemQty(2304,1)) then
@@ -28,7 +28,7 @@ end;
 function onTrigger(player,npc)
     local npcID = npc:getID();
     if (npcID == ID.npc.LELEROON_GREEN_DOOR) then
-        local letterGreen = player:getVar("LeleroonsLetterGreen");
+        local letterGreen = player:getCharVar("LeleroonsLetterGreen");
         if (player:hasKeyItem(dsp.ki.LELEROONS_LETTER_GREEN)) then
             player:startEvent(941); -- accept letter, now bring me four items
         elseif (letterGreen == 2) then
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         elseif (letterGreen == 3) then
             player:startEvent(954); -- i'm waiting for 4 imperial mythril pieces
         elseif (letterGreen == 4) then
-            if (vanaDay() > player:getVar("corAfSubmitDay")) then
+            if (vanaDay() > player:getCharVar("corAfSubmitDay")) then
                 player:startEvent(944); -- here's your cor gants
             else
                 player:startEvent(945); -- patience. need to wait for vana'diel day

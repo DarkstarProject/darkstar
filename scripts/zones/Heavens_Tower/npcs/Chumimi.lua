@@ -18,11 +18,11 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1104,1) and trade:getItemCount() == 1) then -- Trade Glowstone
             player:startEvent(269); -- Finish Quest "The Three Magi"
         end
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.RECOLLECTIONS) == QUEST_ACCEPTED and player:getVar("recollectionsQuest") < 2) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.RECOLLECTIONS) == QUEST_ACCEPTED and player:getCharVar("recollectionsQuest") < 2) then
         if (trade:hasItemQty(1105,1) and trade:getItemCount() == 1) then
             player:startEvent(271);
         end
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_ROOT_OF_THE_PROBLEM) == QUEST_ACCEPTED and player:getVar("rootProblem") == 1) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_ROOT_OF_THE_PROBLEM) == QUEST_ACCEPTED and player:getCharVar("rootProblem") == 1) then
         if (trade:hasItemQty(829,1) and trade:getItemCount() == 1) then
             player:startEvent(278);
         end
@@ -52,11 +52,11 @@ function onTrigger(player,npc)
     elseif (recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == dsp.job.BLM and mLvl >= 50 and player:needToZone() == false) then
             player:startEvent(276,0,829); -- Start Quest "The Root of The problem"
     elseif (rootProblem == QUEST_ACCEPTED) then
-        if (player:getVar("rootProblem") == 1) then
+        if (player:getCharVar("rootProblem") == 1) then
             player:startEvent(277,0,829);
-        elseif (player:getVar("rootProblem") == 2) then
+        elseif (player:getCharVar("rootProblem") == 2) then
             player:startEvent(279);
-        elseif ( player:getVar("rootProblem") == 3) then
+        elseif ( player:getCharVar("rootProblem") == 3) then
             player:startEvent(281);
         end
     else
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
         else
-            choosetitle = player:getVar("theThreeMagiSupport");
+            choosetitle = player:getCharVar("theThreeMagiSupport");
 
             if (choosetitle == 3) then
                 player:addTitle(dsp.title.PROFESSOR_KORUMORU_SUPPORTER);

@@ -19,9 +19,9 @@ function onTrigger(player,npc)
 
     if luckOfTheDraw == QUEST_AVAILABLE and player:getMainLvl() >= ADVANCED_JOB_LEVEL then
         player:startEvent(547)
-    elseif luckOfTheDraw == QUEST_COMPLETED and player:getVar("LuckOfTheDraw") == 5 then
+    elseif luckOfTheDraw == QUEST_COMPLETED and player:getCharVar("LuckOfTheDraw") == 5 then
         player:startEvent(552)
-    elseif player:getVar("EquippedforAllOccasions") == 4 and player:getVar("LuckOfTheDraw") == 6 then
+    elseif player:getCharVar("EquippedforAllOccasions") == 4 and player:getCharVar("LuckOfTheDraw") == 6 then
         player:startEvent(772)
     elseif againstAllOdds == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LIFE_FLOAT) then
         player:startEvent(604)

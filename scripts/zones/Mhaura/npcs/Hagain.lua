@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
+    local hittingTheMarquisateHagainCS = player:getCharVar("hittingTheMarquisateHagainCS");
 
     if (hittingTheMarquisateHagainCS == 1) then -- start first part of miniquest thf af3
         player:startEvent(10003,0,dsp.ki.BOMB_INCENSE);

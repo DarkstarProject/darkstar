@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.WISH_UPON_A_STAR) == QUEST_ACCEPTED and player:getVar("WishUponAStar_Status") == 1) then -- Quest: Wish Upon a Star
+    if (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.WISH_UPON_A_STAR) == QUEST_ACCEPTED and player:getCharVar("WishUponAStar_Status") == 1) then -- Quest: Wish Upon a Star
         player:startEvent(330);
     else -- Quest: The Cold Light of Day
         player:startEvent(102);

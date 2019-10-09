@@ -164,7 +164,7 @@ end
 
 local function getAssignedDigSite(player)
     -- Returns the player's assigned digsite for the zone they're currently in
-    return player:getVar(zoneData[player:getZoneID()].dsvar)
+    return player:getCharVar(zoneData[player:getZoneID()].dsvar)
 end
 
 local function startMapMarkerEvent(eventid,player,digsiteids)
@@ -196,7 +196,7 @@ end
 
 dsp.beastmentreasure.handleNpcOnTrigger = function(player,digsiteids)
     local zd = zoneData[player:getZoneID()]
-    local status = player:getVar(zd.statusvar)
+    local status = player:getCharVar(zd.statusvar)
 
     if not player:hasKeyItem(zd.mapid) then
         player:startEvent(102) -- Peddlestox lectures you for not having a map
@@ -214,7 +214,7 @@ end
 dsp.beastmentreasure.handleNpcOnTrade = function(player,trade,digsiteids)
     local zd = zoneData[player:getZoneID()]
 
-    if player:getVar(zd.statusvar) == QUEST_ACCEPTED and npcUtil.tradeHasExactly(trade, zd.fetchitems) then
+    if player:getCharVar(zd.statusvar) == QUEST_ACCEPTED and npcUtil.tradeHasExactly(trade, zd.fetchitems) then
         -- Assign a random dig site to the player
         player:setVar(zd.dsvar, math.random(1,8))
 
@@ -274,7 +274,7 @@ dsp.beastmentreasure.handleQmOnTrade = function(player,npc,trade,digsiteids)
     local digsite = getAssignedDigSite(player)
 
     if npcUtil.tradeHasExactly(trade, 605)
-        and player:getVar(zoneData[zoneid].statusvar) == QUEST_COMPLETED
+        and player:getCharVar(zoneData[zoneid].statusvar) == QUEST_COMPLETED
         and npc:getID() == digsiteids[digsite] then
             --[[ Event 105 needs args to spawn and animate a treasure chest
                  Example args from retail capture: 105 123 450762 1745 201805 7 723 490292 4095

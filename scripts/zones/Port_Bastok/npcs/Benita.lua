@@ -15,7 +15,7 @@ BombAsh = trade:hasItemQty(928,1);
 
     if (count == 1 and BombAsh == true) then
         TheWisdom = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS);
-        TheWisdomVar = player:getVar("TheWisdomVar");
+        TheWisdomVar = player:getCharVar("TheWisdomVar");
         if (TheWisdom == 1 and TheWisdomVar == 2) then
             player:tradeComplete();
             player:startEvent(176);

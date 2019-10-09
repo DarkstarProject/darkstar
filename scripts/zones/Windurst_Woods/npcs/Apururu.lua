@@ -24,9 +24,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local missionStatus = player:getVar("MissionStatus")
+    local missionStatus = player:getCharVar("MissionStatus")
     local kindCardian = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_KIND_CARDIAN)
-    local kindCardianCS = player:getVar("theKindCardianVar")
+    local kindCardianCS = player:getCharVar("theKindCardianVar")
     local allNewC3000 = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_3000)
     local canCardiansCry = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CAN_CARDIANS_CRY)
 

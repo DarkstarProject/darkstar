@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
     local currentCoP = player:getCurrentMission(COP);
-    local PromathiaStatus = player:getVar("PromathiaStatus");
+    local PromathiaStatus = player:getCharVar("PromathiaStatus");
 
     if (currentCoP == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and PromathiaStatus == 1) then
         player:startEvent(9);

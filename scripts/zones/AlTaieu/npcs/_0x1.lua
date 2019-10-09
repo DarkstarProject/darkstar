@@ -14,9 +14,9 @@ function onTrigger(player,npc)
 
     if (
             player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY
-        and player:getVar("PromathiaStatus") == 2
-        and player:getVar("[SEA][AlTieu]SouthTower") == 0
-        and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0
+        and player:getCharVar("PromathiaStatus") == 2
+        and player:getCharVar("[SEA][AlTieu]SouthTower") == 0
+        and player:getCharVar("[SEA][AlTieu]SouthTowerCS") == 0
         and not GetMobByID(ID.mob.AERNS_TOWER_SOUTH+0):isSpawned()
         and not GetMobByID(ID.mob.AERNS_TOWER_SOUTH+1):isSpawned()
         and not GetMobByID(ID.mob.AERNS_TOWER_SOUTH+2):isSpawned()
@@ -28,9 +28,9 @@ function onTrigger(player,npc)
 
     elseif (
             player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY
-        and player:getVar("PromathiaStatus") == 2
-        and player:getVar("[SEA][AlTieu]SouthTower") == 1
-        and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0
+        and player:getCharVar("PromathiaStatus") == 2
+        and player:getCharVar("[SEA][AlTieu]SouthTower") == 1
+        and player:getCharVar("[SEA][AlTieu]SouthTowerCS") == 0
     ) then
         player:startEvent(161);
 

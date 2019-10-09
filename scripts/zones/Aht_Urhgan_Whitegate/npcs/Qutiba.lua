@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local vanishProg = player:getVar("vanishingactCS")
-    if player:getVar("deliveringTheGoodsCS") == 1 then
+    local vanishProg = player:getCharVar("vanishingactCS")
+    if player:getCharVar("deliveringTheGoodsCS") == 1 then
         player:startEvent(40)
     elseif player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.DELIVERING_THE_GOODS) == QUEST_COMPLETED and vanishProg == 1 then
         player:startEvent(42)

@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local unbridledPassionCS = player:getVar("unbridledPassion")
+    local unbridledPassionCS = player:getCharVar("unbridledPassion")
 
     if unbridledPassionCS == 5 then
         player:startEvent(6, 0, 13360)

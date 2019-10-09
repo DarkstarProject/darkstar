@@ -47,9 +47,9 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:getVar("AhtUrganStatus") == 2 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:getCharVar("AhtUrganStatus") == 2 then
         cs = 7
-    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:getVar("AhtUrganStatus") == 2 then
+    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:getCharVar("AhtUrganStatus") == 2 then
         cs = 10
     end
 

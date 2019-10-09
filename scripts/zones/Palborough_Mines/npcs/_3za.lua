@@ -9,7 +9,7 @@ require("scripts/globals/settings")
 
 function onTrade(player, npc, trade)
     local gravelQty = trade:getItemQty(597) -- Mine Gravel
-    local already_in = player:getVar("refiner_input")
+    local already_in = player:getCharVar("refiner_input")
 
     if already_in + gravelQty > 10 then
         player:startEvent(20)

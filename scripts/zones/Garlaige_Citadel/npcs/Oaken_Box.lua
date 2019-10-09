@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("peaceForTheSpiritCS") == 4 and not player:hasItem(1094) and not GetMobByID(ID.mob.GUARDIAN_STATUE):isSpawned()) then -- Nail Puller
+    if (player:getCharVar("peaceForTheSpiritCS") == 4 and not player:hasItem(1094) and not GetMobByID(ID.mob.GUARDIAN_STATUE):isSpawned()) then -- Nail Puller
         player:messageSpecial(ID.text.SENSE_OF_FOREBODING);
         SpawnMob(ID.mob.GUARDIAN_STATUE):updateClaim(player);
     else

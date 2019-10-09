@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK);
-    local missionStatus = player:getVar("MissionStatus");
+    local missionStatus = player:getCharVar("MissionStatus");
 
     if (currentMission == dsp.mission.id.bastok.THE_EMISSARY) then
         -- Bastok Mission 2-3 Part I - San d'Oria > Windurst
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         end
     -- Bastok Mission 2-3 Part II - Windurst > San d'Oria
     elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2) then
-        missionStatus = player:getVar("MissionStatus");
+        missionStatus = player:getCharVar("MissionStatus");
         if (missionStatus == 7) then
             player:startEvent(537);
         elseif (missionStatus == 9) then

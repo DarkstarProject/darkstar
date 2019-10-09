@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     if npcUtil.tradeHas(trade, {{"gil", 10000}}) and player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED) == QUEST_COMPLETED and not player:hasItem(17859) then
         player:confirmTrade()
         npcUtil.giveItem(player, 17859)
-    elseif npcUtil.tradeHas(trade, {4161, 5570}) and player:getVar("OperationTeatimeProgress") == 1 then -- Chai, Sleeping Potion
+    elseif npcUtil.tradeHas(trade, {4161, 5570}) and player:getCharVar("OperationTeatimeProgress") == 1 then -- Chai, Sleeping Potion
         player:startEvent(780)
     end
 end
@@ -27,11 +27,11 @@ end
 function onTrigger(player,npc)
 
     local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED)
-    local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress")
+    local NoStringsAttachedProgress = player:getCharVar("NoStringsAttachedProgress")
     local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THE_WAYWARD_AUTOMATION)
-    local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress")
+    local TheWaywardAutomationProgress = player:getCharVar("TheWaywardAutomationProgress")
     local OperationTeatime = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.OPERATION_TEATIME)
-    local OperationTeatimeProgress = player:getVar("OperationTeatimeProgress")
+    local OperationTeatimeProgress = player:getCharVar("OperationTeatimeProgress")
     local LvL = player:getMainLvl()
     local Job = player:getMainJob()
 

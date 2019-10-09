@@ -14,7 +14,7 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
     local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
-    local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
+    local ALittleKnowledgeProgress = player:getCharVar("ALittleKnowledge");
 
     if (ALittleKnowledge == QUEST_ACCEPTED and ALittleKnowledgeProgress == 1) then
         if (trade:hasItemQty(2550, 12) and trade:getGil() == 0 and trade:getItemCount() == 12) then
@@ -33,11 +33,11 @@ end;
 function onTrigger(player,npc)
 
     local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_LITTLE_KNOWLEDGE);
-    local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
+    local ALittleKnowledgeProgress = player:getCharVar("ALittleKnowledge");
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
     local onSabbatical = player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.ON_SABBATICAL);
-    local onSabbaticalProgress = player:getVar("OnSabbatical");
+    local onSabbaticalProgress = player:getCharVar("OnSabbatical");
     local downwardHelix = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX);
 
     if (ALittleKnowledge == QUEST_AVAILABLE) then
@@ -67,14 +67,14 @@ function onTrigger(player,npc)
         else
             player:startEvent(20);
         end
-    elseif (onSabbatical == QUEST_COMPLETED and player:getVar("Erlene_Sabbatical_Timer")~=VanadielDayOfTheYear() and mJob == dsp.job.SCH and mLvl >= AF2_QUEST_LEVEL and downwardHelix == QUEST_AVAILABLE) then
+    elseif (onSabbatical == QUEST_COMPLETED and player:getCharVar("Erlene_Sabbatical_Timer")~=VanadielDayOfTheYear() and mJob == dsp.job.SCH and mLvl >= AF2_QUEST_LEVEL and downwardHelix == QUEST_AVAILABLE) then
         player:startEvent(23);
     elseif (downwardHelix == QUEST_ACCEPTED) then
-        if (player:getVar("DownwardHelix") == 0) then
+        if (player:getCharVar("DownwardHelix") == 0) then
             player:startEvent(24);
-        elseif (player:getVar("DownwardHelix") == 1) then
+        elseif (player:getCharVar("DownwardHelix") == 1) then
             player:startEvent(25);
-        elseif (player:getVar("DownwardHelix") < 4) then
+        elseif (player:getCharVar("DownwardHelix") < 4) then
             player:startEvent(26);
         else
             player:startEvent(27);

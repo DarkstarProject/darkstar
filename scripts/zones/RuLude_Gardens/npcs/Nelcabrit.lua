@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
     if pNation == dsp.nation.SANDORIA then
         local currentMission = player:getCurrentMission(pNation)
-        local MissionStatus = player:getVar("MissionStatus")
+        local MissionStatus = player:getCharVar("MissionStatus")
 
         if currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 3 then
             player:startEvent(42)
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4)
         player:delKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR)
     elseif csid == 140 then
-        player:setVar("MissionStatus",6)
+        player:setCharVar("MissionStatus",6)
     elseif csid == 36 then
         finishMissionTimeline(player,3,csid,option)
     end

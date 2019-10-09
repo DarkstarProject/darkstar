@@ -7,14 +7,14 @@ local ID = require("scripts/zones/Hall_of_Transference/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getVar("DemChipRegistration") == 0 and player:getVar("skyShortcut") == 1 and trade:hasItemQty(478,1) and trade:getItemCount() == 1) then
+    if (player:getCharVar("DemChipRegistration") == 0 and player:getCharVar("skyShortcut") == 1 and trade:hasItemQty(478,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
         player:startEvent(168);
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("DemChipRegistration") == 1) then
+    if (player:getCharVar("DemChipRegistration") == 1) then
         player:messageSpecial(ID.text.NO_RESPONSE_OFFSET+6); -- Device seems to be functioning correctly.
     else
         player:startEvent(167); -- Hexagonal Cones

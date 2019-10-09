@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
     if pNation == dsp.nation.WINDURST then
         local currentMission = player:getCurrentMission(pNation)
-        local MissionStatus = player:getVar("MissionStatus")
+        local MissionStatus = player:getCharVar("MissionStatus")
 
         if currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 1 then
             player:startEvent(43)

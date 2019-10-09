@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local threeMenProg = player:getVar("threemenandaclosetCS")
+    local threeMenProg = player:getCharVar("threemenandaclosetCS")
     local threeMenQuest = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THREE_MEN_AND_A_CLOSET)
     if player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.GOT_IT_ALL) == QUEST_COMPLETED and threeMenQuest == QUEST_AVAILABLE then
         player:startEvent(836)

@@ -20,13 +20,13 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 0) then
+if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH and player:getCharVar("BASTOK91") == 0) then
 player:startEvent(773);
-elseif (player:getVar("BASTOK91") == 1) then
+elseif (player:getCharVar("BASTOK91") == 1) then
 player:startEvent(774);
-elseif (player:getVar("BASTOK91") == 3) then
+elseif (player:getCharVar("BASTOK91") == 3) then
 player:startEvent(775);
-elseif (player:getVar("BASTOK91") == 4) then
+elseif (player:getCharVar("BASTOK91") == 4) then
 player:startEvent(776);
 else
 player:startEvent(370);

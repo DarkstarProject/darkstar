@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             if IsMoonNew() or not correctTime then
                 player:messageSpecial(ID.text.CANNOT_SEE_MOON)
 
-            elseif player:getVar("Searching_AgasKilled") == 1 then
+            elseif player:getCharVar("Searching_AgasKilled") == 1 then
                 player:startEvent(14)
 
             else

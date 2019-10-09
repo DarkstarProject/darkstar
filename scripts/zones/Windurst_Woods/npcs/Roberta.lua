@@ -13,7 +13,7 @@ end
 function onTrigger(player,npc)
     local BlueRibbonBlues = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES)
     if BlueRibbonBlues == QUEST_ACCEPTED then
-        local blueRibbonProg = player:getVar("BlueRibbonBluesProg")
+        local blueRibbonProg = player:getCharVar("BlueRibbonBluesProg")
 
         if blueRibbonProg >= 2 and player:hasItem(13569) then
             player:startEvent(380)
@@ -39,7 +39,7 @@ end
 function onEventFinish(player,csid,option)
     if (csid == 376 or csid == 377) and option == 1 then
         if player:getFreeSlotsCount() >= 1 then
-            local blueRibbonProg = player:getVar("BlueRibbonBluesProg")
+            local blueRibbonProg = player:getCharVar("BlueRibbonBluesProg")
             if blueRibbonProg < 1 then
                 player:setVar("BlueRibbonBluesProg",1)
             elseif blueRibbonProg == 3 then

@@ -8,7 +8,7 @@ local ID = require("scripts/zones/Al_Zahbi/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local walahraCoinCount = player:getVar("walahraCoinCount")
+    local walahraCoinCount = player:getCharVar("walahraCoinCount")
     local TradeCount = trade:getItemQty(2184)
 
     if TradeCount > 0 and TradeCount == trade:getItemCount() then

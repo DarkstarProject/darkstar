@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 
     -- PAINFUL MEMORY (Bard AF1)
     elseif painfulMemory == QUEST_AVAILABLE and job == dsp.job.BRD and level >= AF1_QUEST_LEVEL then
-        if player:getVar("PainfulMemoryCS") == 0 then
+        if player:getCharVar("PainfulMemoryCS") == 0 then
             player:startEvent(138) -- Long dialog for "Painful Memory"
         else
             player:startEvent(137) -- Short dialog for "Painful Memory"

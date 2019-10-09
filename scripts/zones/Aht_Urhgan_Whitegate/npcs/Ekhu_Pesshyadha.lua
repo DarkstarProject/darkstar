@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local gotItAllProg = player:getVar("gotitallCS")
+    local gotItAllProg = player:getCharVar("gotitallCS")
     if gotItAllProg == 1 then
         player:startEvent(537)
     elseif gotItAllProg == 2 then

@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK)
-    local MissionStatus = player:getVar("MissionStatus")
+    local MissionStatus = player:getCharVar("MissionStatus")
 
     -- Enter the Talekeeper 8-2
     if currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 4 then

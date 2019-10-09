@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
         player:startEvent(wsQuestEvent)
 
     -- FIRE AND BRIMSTONE
-    elseif player:getVar("fireAndBrimstone") == 5 and npcUtil.tradeHas(trade, 1113) then -- old earring
+    elseif player:getCharVar("fireAndBrimstone") == 5 and npcUtil.tradeHas(trade, 1113) then -- old earring
         player:startEvent(537,0,13360)
     end
 end
@@ -33,13 +33,13 @@ end
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
     local theFangedOne = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_FANGED_ONE) -- RNG flag quest
-    local theFangedOneCS = player:getVar("TheFangedOne_Event")
+    local theFangedOneCS = player:getCharVar("TheFangedOne_Event")
     local sinHunting = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SIN_HUNTING)-- RNG AF1
-    local sinHuntingCS = player:getVar("sinHunting")
+    local sinHuntingCS = player:getCharVar("sinHunting")
     local fireAndBrimstone = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FIRE_AND_BRIMSTONE)-- RNG AF2
-    local fireAndBrimstoneCS = player:getVar("fireAndBrimstone")
+    local fireAndBrimstoneCS = player:getCharVar("fireAndBrimstone")
     local unbridledPassion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.UNBRIDLED_PASSION)-- RNG AF3
-    local unbridledPassionCS = player:getVar("unbridledPassion")
+    local unbridledPassionCS = player:getCharVar("unbridledPassion")
     local lvl = player:getMainLvl()
     local job = player:getMainJob()
 
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(wsQuestEvent)
 
     -- THREE PATHS
-    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 1 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Louverance_s_Path") == 1 then
         player:startEvent(686)
 
     -- THE FANGED ONE

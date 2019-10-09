@@ -12,7 +12,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
 
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
+    local thickAsThievesGamblingCS = player:getCharVar("thickAsThievesGamblingCS")
 
     if npcUtil.tradeHas(trade, 534) then -- Trade 1x gaussbit wildgrass
         if thickAsThievesGamblingCS == 3 then

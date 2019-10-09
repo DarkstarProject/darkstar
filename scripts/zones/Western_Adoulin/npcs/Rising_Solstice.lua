@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         if (ACSP == QUEST_ACCEPTED) then
             -- Finishing Quest: 'A Certain Substitute Patrolman'
-            if (player:getVar("ACSP_NPCs_Visited") >= 8) then
+            if (player:getCharVar("ACSP_NPCs_Visited") >= 8) then
                 player:startEvent(2552);
             -- During Quest: 'A Certain Substitute Patrolman'
             else

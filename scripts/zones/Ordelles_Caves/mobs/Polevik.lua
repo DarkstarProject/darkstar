@@ -12,7 +12,7 @@ function onMobInitialize(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if player:getVar("sharpeningTheSwordCS") == 3 then
+    if player:getCharVar("sharpeningTheSwordCS") == 3 then
         player:setVar("PolevikKilled", 1)
     end
 end

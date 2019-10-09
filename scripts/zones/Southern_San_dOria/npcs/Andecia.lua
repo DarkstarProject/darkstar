@@ -13,7 +13,7 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getVar("OfferingWaterOK") == 1) then
+        if (trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getCharVar("OfferingWaterOK") == 1) then
             player:startEvent(624);
         end
     end
@@ -39,9 +39,9 @@ function onTrigger(player,npc)
 
     if (Tomb == QUEST_AVAILABLE) then
         player:startEvent(541);
-    elseif (Tomb == QUEST_ACCEPTED and WellWater == false and player:getVar("OfferingWaterOK") == 0) then
+    elseif (Tomb == QUEST_ACCEPTED and WellWater == false and player:getCharVar("OfferingWaterOK") == 0) then
         player:startEvent(622);
-    elseif (Tomb == QUEST_ACCEPTED and Waterskin == true and player:getVar("OfferingWaterOK") == 0) then
+    elseif (Tomb == QUEST_ACCEPTED and Waterskin == true and player:getCharVar("OfferingWaterOK") == 0) then
         player:startEvent(623);
     elseif (Tomb == QUEST_COMPLETED) then
         player:startEvent(558);

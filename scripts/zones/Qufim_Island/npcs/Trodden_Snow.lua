@@ -16,7 +16,7 @@ function onTrade(player, npc, trade)
     -- Trade Enfeebling Kit
     if player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD then
         local item = 0
-        local asaStatus = player:getVar("ASA_Status")
+        local asaStatus = player:getCharVar("ASA_Status")
 
         -- TODO: Other Enfeebling Kits
         if asaStatus == 0 then
@@ -76,7 +76,7 @@ function onEventFinish(player, csid, option)
 
         player:confirmTrade()
     elseif csid == 45 then
-        local completedSeals = player:getVar("ASA_Status")
+        local completedSeals = player:getCharVar("ASA_Status")
 
         -- Calculate Reward
         if completedSeals == 3 then

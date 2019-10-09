@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
         if (LightningFork == true) then
             player:startEvent(10018); --Dialogue given to remind player to be prepared
-        elseif (LightningFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeLightning_date")) then
+        elseif (LightningFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeLightning_date")) then
             player:startEvent(10029,0,1548,5,20); --Need another mini tuning fork
         end
     elseif (TrialSizeLightning == QUEST_COMPLETED) then

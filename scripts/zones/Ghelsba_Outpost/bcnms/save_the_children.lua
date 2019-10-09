@@ -38,7 +38,7 @@ function onEventFinish(player, csid, option)
         csid == 32001 and
         option == 0 and
         player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and
-        player:getVar("MissionStatus") == 2
+        player:getCharVar("MissionStatus") == 2
     then
         npcUtil.giveKeyItem(player, dsp.ki.ORCISH_HUT_KEY)
         player:setTitle(dsp.title.FODDERCHIEF_FLAYER)

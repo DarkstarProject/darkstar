@@ -12,14 +12,14 @@ local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getVar("MissionaryManVar") == 1 and trade:hasItemQty(1146,1) == true and trade:getItemCount() == 1) then
+    if (player:getCharVar("MissionaryManVar") == 1 and trade:hasItemQty(1146,1) == true and trade:getItemCount() == 1) then
         player:startEvent(139); -- Trading elshimo marble
     end
 end;
 
 function onTrigger(player,npc)
     MissionaryMan = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.MISSIONARY_MAN);
-    MissionaryManVar = player:getVar("MissionaryManVar");
+    MissionaryManVar = player:getCharVar("MissionaryManVar");
 
     if (MissionaryMan == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 3) then
         player:startEvent(137,0,1146); -- Start quest "Missionary Man"

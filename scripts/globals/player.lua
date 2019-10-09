@@ -156,7 +156,7 @@ function onGameIn(player, firstLogin, zoning)
     checkForGearSet(player)
 
     -- god mode
-    if player:getVar("GodMode") == 1 then
+    if player:getCharVar("GodMode") == 1 then
         player:addStatusEffect(dsp.effect.MAX_HP_BOOST,1000,0,0)
         player:addStatusEffect(dsp.effect.MAX_MP_BOOST,1000,0,0)
         player:addStatusEffect(dsp.effect.MIGHTY_STRIKES,1,0,0)
@@ -183,7 +183,7 @@ function onGameIn(player, firstLogin, zoning)
     end
 
     -- !hide
-    if player:getVar("GMHidden") == 1 then
+    if player:getCharVar("GMHidden") == 1 then
         player:setGMHidden(true)
     end
 

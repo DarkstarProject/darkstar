@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
             player:startEvent(355,900);
         end
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
-        local OhbiruFood = player:getVar("Ohbiru_Food_var");
+        local OhbiruFood = player:getCharVar("Ohbiru_Food_var");
 
         if (trade:hasItemQty(4493,1) == true and trade:hasItemQty(4408,1) == true and trade:hasItemQty(624,1) == true and count == 3) then
             if (OhbiruFood < 2) then -- Traded all 3 items & Didn't ask for order
@@ -56,17 +56,17 @@ function onTrigger(player,npc)
     local turmoil = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
     local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
     local needToZone = player:needToZone();
-    local OhbiruFood = player:getVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
+    local OhbiruFood = player:getCharVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
     local waterWayToGo = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WATER_WAY_TO_GO);
     local overnightDelivery = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
     local SayFlowers = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS);
-    local FlowerProgress = player:getVar("FLOWER_PROGRESS");
+    local FlowerProgress = player:getCharVar("FLOWER_PROGRESS");
     local blueRibbonBlues = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES)
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status")==2) then
         player:startEvent(872);
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE) then
-        if (player:getVar("ohbiru_dohbiru_talk") == 1) then
+        if (player:getCharVar("ohbiru_dohbiru_talk") == 1) then
             player:startEvent(143);
         else
             player:startEvent(144);
@@ -74,7 +74,7 @@ function onTrigger(player,npc)
     elseif ((SayFlowers == QUEST_ACCEPTED or SayFlowers == QUEST_COMPLETED) and FlowerProgress == 1) then
         if (needToZone) then
             player:startEvent(518);
-        elseif (player:getVar("FLOWER_PROGRESS") == 2) then
+        elseif (player:getCharVar("FLOWER_PROGRESS") == 2) then
             player:startEvent(517,0,0,0,0,950);
         else
             player:startEvent(516,0,0,0,0,950);
@@ -144,7 +144,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 322 or csid == 325 or csid == 326) then
         player:tradeComplete();
         player:addGil(GIL_RATE*440);
-        if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Kenapa_Food_var") == 4) then -- If this is the last NPC to be fed
+        if (player:getCharVar("Kerutoto_Food_var") == 2 and player:getCharVar("Kenapa_Food_var") == 4) then -- If this is the last NPC to be fed
             player:completeQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
             player:addFame(WINDURST,100);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);

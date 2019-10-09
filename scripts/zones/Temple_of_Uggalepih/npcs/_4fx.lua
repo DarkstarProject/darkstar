@@ -11,7 +11,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if npcUtil.tradeHas(trade, 1143) and player:getZPos() < 332 then -- Cursed Key
-        if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 4 then
+        if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 4 then
             player:confirmTrade()
             player:startEvent(23)
         else

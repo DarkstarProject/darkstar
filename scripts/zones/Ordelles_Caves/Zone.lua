@@ -21,7 +21,7 @@ function onZoneIn(player, prevZone)
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         player:setPos(-76.839, -1.696, 659.969, 122)
     end
-    if prevZone == dsp.zone.LA_THEINE_PLATEAU and player:getVar("darkPuppetCS") == 1 then
+    if prevZone == dsp.zone.LA_THEINE_PLATEAU and player:getCharVar("darkPuppetCS") == 1 then
         cs = 10
     end
     return cs

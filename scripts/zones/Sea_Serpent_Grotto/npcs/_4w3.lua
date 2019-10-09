@@ -9,7 +9,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if npcUtil.tradeHas(trade, 749) then
-        if player:getVar("SSG_MythrilDoor") == 7 then
+        if player:getCharVar("SSG_MythrilDoor") == 7 then
             npc:openDoor(5) -- Open the door if a mythril beastcoin has been traded after checking the door the required number of times
         end
     end
@@ -18,7 +18,7 @@ end
 function onTrigger(player, npc)
     local X = player:getXPos()
     local Z = player:getZPos()
-    local MythrilDoorCheck = player:getVar("SSG_MythrilDoor")
+    local MythrilDoorCheck = player:getCharVar("SSG_MythrilDoor")
 
     if X >= 40  and Z >= 15 then
         if MythrilDoorCheck == 0 then -- Door has never been checked

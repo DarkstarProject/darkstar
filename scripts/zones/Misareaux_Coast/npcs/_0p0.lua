@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP);
-    local copStat = player:getVar("PromathiaStatus");
+    local copStat = player:getCharVar("PromathiaStatus");
     
     -- AN ETERNAL MEMORY (PM2-4)
     if (cop == dsp.mission.id.cop.AN_ETERNAL_MELODY and copStat == 1) then
@@ -25,9 +25,9 @@ function onTrigger(player,npc)
     -- A PLACE TO RETURN (PM6-2)
     elseif (
         cop == dsp.mission.id.cop.A_PLACE_TO_RETURN and copStat == 1 and
-        player:getVar("Warder_Aglaia_KILL") == 1 and
-        player:getVar("Warder_Euphrosyne_KILL") == 1 and
-        player:getVar("Warder_Thalia_KILL") == 1
+        player:getCharVar("Warder_Aglaia_KILL") == 1 and
+        player:getCharVar("Warder_Euphrosyne_KILL") == 1 and
+        player:getCharVar("Warder_Thalia_KILL") == 1
     ) then
         player:startEvent(10);
     elseif (

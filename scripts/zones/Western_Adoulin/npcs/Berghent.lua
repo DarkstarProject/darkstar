@@ -25,7 +25,7 @@ function onTrigger(player,npc)
             player:startEvent(82);
         end
     elseif (FOOL == QUEST_AVAILABLE) then
-        if (player:getVar("FOOL_Refused_Once") == 1) then
+        if (player:getCharVar("FOOL_Refused_Once") == 1) then
             -- Starts Quest: 'Flavors of Our Lives' after player refused once
             player:startEvent(81);
         else

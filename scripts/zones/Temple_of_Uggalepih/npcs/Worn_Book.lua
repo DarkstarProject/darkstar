@@ -24,7 +24,7 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    local book = player:getVar("paintbrushOfSouls_book")
+    local book = player:getCharVar("paintbrushOfSouls_book")
 
     if csid == 61 and option == 1 and (book == 0 or book == 2 or book == 4 or book == 6) then
         player:setVar("paintbrushOfSouls_book", book + 1)
@@ -34,7 +34,7 @@ function onEventFinish(player, csid, option)
         player:setVar("paintbrushOfSouls_book", book + 4)
     end
 
-    if player:getVar("paintbrushOfSouls_book") == 7 then
+    if player:getCharVar("paintbrushOfSouls_book") == 7 then
         player:messageSpecial(ID.text.FALLS_FROM_THE_BOOK, dsp.ki.OLD_RUSTY_KEY)
         player:addKeyItem(dsp.ki.OLD_RUSTY_KEY)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.OLD_RUSTY_KEY)

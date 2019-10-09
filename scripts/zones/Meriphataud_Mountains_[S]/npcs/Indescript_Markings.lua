@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local loafersQuestProgress = player:getVar("AF_SCH_BOOTS")
+    local loafersQuestProgress = player:getCharVar("AF_SCH_BOOTS")
 
     player:delStatusEffect(dsp.effect.SNEAK)
 

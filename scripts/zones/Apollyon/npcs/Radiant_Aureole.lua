@@ -46,7 +46,7 @@ printf("currentlimbus: %u",currentlimbus);
 
    if (player:hasKeyItem(dsp.ki.COSMOCLEANSE)) then
        if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
-         local LimbusTradeItem = player:getVar("Limbus_Trade_Item");
+         local LimbusTradeItem = player:getCharVar("Limbus_Trade_Item");
            for nt = 1,#instancelist,2 do
                  --   printf("list d'instance: %u",instancelist[nt]);
                if (instancelist[nt+1][1]==true and player:hasKeyItem(dsp.ki.WHITE_CARD)) then
@@ -134,7 +134,7 @@ function onEventUpdate(player,csid,option)
             player:setVar("LimbusID",status:getPower());
              player:setVar("characterLimbusKey",GetLimbusKeyFromInstance(status:getPower()));
        end
-     player:updateEvent(2,player:getVar("limbusbitmap"),0,1,1,0);
+     player:updateEvent(2,player:getCharVar("limbusbitmap"),0,1,1,0);
      player:setVar("limbusbitmap",0);
 
 

@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.A_THIEF_IN_NORG) == QUEST_ACCEPTED) then
-        aThiefinNorgCS = player:getVar("aThiefinNorgCS");
+        aThiefinNorgCS = player:getCharVar("aThiefinNorgCS");
         if (aThiefinNorgCS == 1) then
             player:startEvent(304);
         elseif (aThiefinNorgCS == 2) then

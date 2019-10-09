@@ -924,7 +924,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
                 -- 8-1
                 first_mission = first_mission + 1048576;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
+            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getCharVar("Mission8-1Completed") == 1) then
                 -- 8-2
                 first_mission = first_mission + 2097152;
             end
@@ -933,7 +933,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
                 -- 9-1
                 first_mission = first_mission + 4194304;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
+            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getCharVar("Cutscenes_8-2") == 2) then
                 -- 9-2
                 first_mission = first_mission + 8388608;
 
@@ -1039,7 +1039,7 @@ function getMissionMask(player)
         end
     end
 
-    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
+    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getCharVar("MissionStatus") == 8) then
         mission_mask = 2147483647 - 16384;
     else
         mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..

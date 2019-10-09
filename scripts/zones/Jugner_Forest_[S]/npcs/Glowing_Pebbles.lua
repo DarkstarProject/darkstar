@@ -7,15 +7,15 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if npcUtil.tradeHas(trade, 2558) and player:getVar("roadToDivadomCS") == 3 then
+    if npcUtil.tradeHas(trade, 2558) and player:getCharVar("roadToDivadomCS") == 3 then
         player:startEvent(107)
     end
 end
 
 function onTrigger(player, npc)
-    if player:getVar("Lakeside_Minuet_Progress") == 3 and not player:hasKeyItem(dsp.ki.STARDUST_PEBBLE) then
+    if player:getCharVar("Lakeside_Minuet_Progress") == 3 and not player:hasKeyItem(dsp.ki.STARDUST_PEBBLE) then
         player:startEvent(100)
-    elseif player:getVar("roadToDivadomCS") == 2 then
+    elseif player:getCharVar("roadToDivadomCS") == 2 then
         player:startEvent(106)
     end
 end

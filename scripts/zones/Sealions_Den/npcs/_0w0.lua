@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 1 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.SLANDEROUS_UTTERINGS and player:getCharVar("PromathiaStatus") == 1 then
         player:startEvent(13)
     elseif EventTriggerBCNM(player, npc) then
         return

@@ -15,9 +15,9 @@ end
 function onTrigger(player, npc)
     local offset                = npc:getID() - ID.npc.INDESCRIPT_MARKINGS_OFFSET
     local onSabbatical          = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.ON_SABBATICAL)
-    local onSabbaticalProgress  = player:getVar("OnSabbatical")
-    local pantsQuestProgress    = player:getVar("AF_SCH_PANTS")
-    local gownQuestProgress     = player:getVar("AF_SCH_BODY")
+    local onSabbaticalProgress  = player:getCharVar("OnSabbatical")
+    local pantsQuestProgress    = player:getCharVar("AF_SCH_PANTS")
+    local gownQuestProgress     = player:getCharVar("AF_SCH_BODY")
 
     -- ON SABBATICAL
     if offset == 0 and onSabbatical == QUEST_ACCEPTED and onSabbaticalProgress == 2 then

@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local basty = player:getCurrentMission(BASTOK);
-    local soteStat = player:getVar("BASTOK91");
+    local soteStat = player:getCharVar("BASTOK91");
     
     local anyPlasmsAlive = false;
     for i = ID.mob.GIGAPLASM, ID.mob.GIGAPLASM + 14 do

@@ -12,7 +12,7 @@ require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
 
-    thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+    thickAsThievesGamblingCS = player:getCharVar("thickAsThievesGamblingCS");
 
     if (trade:hasItemQty(1092,1) and trade:getItemCount() == 1 and thickAsThievesGamblingCS == 7) then -- Trade Regal die
         rand1 = math.random(1,700);
@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-    thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+    thickAsThievesGamblingCS = player:getCharVar("thickAsThievesGamblingCS");
 
     if (thickAsThievesGamblingCS == 1) then
         rand1 = math.random(1,999);

@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     theGift      = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_GIFT)
     theRealGift  = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_REAL_GIFT)
 
-    if player:getVar("underTheSeaVar") == 1 then
+    if player:getCharVar("underTheSeaVar") == 1 then
         player:startEvent(32) -- During quest "Under the sea" - 1st dialog
     elseif player:hasKeyItem(dsp.ki.ETCHED_RING) then
         player:startEvent(37) -- Finish quest "Under the sea"

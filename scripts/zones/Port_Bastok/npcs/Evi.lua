@@ -18,7 +18,7 @@ function onTrigger(player,npc)
 
     if (PastPerfect == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TATTERED_MISSION_ORDERS)) then
         player:startEvent(131);
-    elseif (player:getFameLevel(BASTOK) >= 2 and player:getVar("PastPerfectVar") == 2) then
+    elseif (player:getFameLevel(BASTOK) >= 2 and player:getCharVar("PastPerfectVar") == 2) then
         player:startEvent(130);
     elseif (PastPerfect == QUEST_AVAILABLE) then
         player:startEvent(104);
@@ -35,7 +35,7 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    if (csid == 104 and player:getVar("PastPerfectVar") == 0) then
+    if (csid == 104 and player:getCharVar("PastPerfectVar") == 0) then
         player:setVar("PastPerfectVar",1);
     elseif (csid == 130) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.PAST_PERFECT);

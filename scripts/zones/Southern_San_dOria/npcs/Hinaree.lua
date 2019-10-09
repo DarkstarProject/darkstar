@@ -14,11 +14,11 @@ end;
 
 function onTrigger(player,npc)
     local currentday = tonumber(os.date("%j"));
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")==6 ) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("EMERALD_WATERS_Status")==6 ) then
         player:startEvent(23);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path")== 0 ) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Ulmia_s_Path")== 0 ) then
         player:startEvent(22);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_louverance_story")== 0 ) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus")==3 and player:getCharVar("Promathia_kill_day") ~= currentday and player:getCharVar("COP_louverance_story")== 0 ) then
         player:startEvent(757);
     else
         player:startEvent(580);

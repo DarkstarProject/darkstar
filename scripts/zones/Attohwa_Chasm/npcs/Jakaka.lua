@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local MiasmaFilterCD = player:getVar("[ENM]MiasmaFilter");
+    local MiasmaFilterCD = player:getCharVar("[ENM]MiasmaFilter");
 
     if (player:hasKeyItem(dsp.ki.MIASMA_FILTER)) then
         player:startEvent(11);

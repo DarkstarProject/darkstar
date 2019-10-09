@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     local questStatus = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ELDER_MEMORIES)
 
     if questStatus == QUEST_ACCEPTED then
-        local IsacioElderMemVar = player:getVar("IsacioElderMemVar")
+        local IsacioElderMemVar = player:getCharVar("IsacioElderMemVar")
 
         if IsacioElderMemVar == 1 and npcUtil.tradeHas(trade, 538) then
             player:startEvent(115, 537)
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     elseif questStatus == QUEST_COMPLETED then
         player:startEvent(118)
     elseif questStatus == QUEST_ACCEPTED then
-        IsacioElderMemVar = player:getVar("IsacioElderMemVar")
+        IsacioElderMemVar = player:getCharVar("IsacioElderMemVar")
 
         if IsacioElderMemVar == 1 then
             player:startEvent(114, 538)

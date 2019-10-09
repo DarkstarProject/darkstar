@@ -12,7 +12,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getVar("CryingOverOnions") == 1 and npcUtil.tradeHas(trade, 1149) then
+    if player:getCharVar("CryingOverOnions") == 1 and npcUtil.tradeHas(trade, 1149) then
         player:startEvent(775,0,1149)
     end
 end
@@ -26,14 +26,14 @@ function onTrigger(player,npc)
     local wildCard          = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WILD_CARD)
     local hatInHand         = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND)
 
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status") == 5 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 5 then
         player:startEvent(874) -- COP event
-    elseif (hatInHand == QUEST_ACCEPTED or player:getVar("QuestHatInHand_var2") == 1) and not testflag(player:getVar("QuestHatInHand_var"), 2) then
+    elseif (hatInHand == QUEST_ACCEPTED or player:getCharVar("QuestHatInHand_var2") == 1) and not testflag(player:getCharVar("QuestHatInHand_var"), 2) then
         player:startEvent(59) -- Show Off Hat
     elseif wildCard == QUEST_COMPLETED then
         player:startEvent(783)
     elseif wildCard == QUEST_ACCEPTED then
-        if player:getVar("WildCard") == 3 and not player:hasKeyItem(dsp.ki.JOKER_CARD) then
+        if player:getCharVar("WildCard") == 3 and not player:hasKeyItem(dsp.ki.JOKER_CARD) then
             player:startEvent(782)
         else
             player:startEvent(781)
@@ -45,7 +45,7 @@ function onTrigger(player,npc)
             player:startEvent(779)
         end
     elseif cryingOverOnions == QUEST_ACCEPTED then
-        local cryingOverOnionsVar = player:getVar("CryingOverOnions")
+        local cryingOverOnionsVar = player:getCharVar("CryingOverOnions")
         if cryingOverOnionsVar == 3 then
             player:startEvent(776)
         elseif cryingOverOnionsVar == 2 then

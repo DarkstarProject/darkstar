@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local ratrace = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE);
-    local ratRaceProg = player:getVar("ratraceCS");
+    local ratRaceProg = player:getCharVar("ratraceCS");
     if (ratrace == QUEST_AVAILABLE) then
         player:startEvent(308);
     elseif (ratRaceProg == 6) then

@@ -60,7 +60,7 @@ end;
 function onTrigger(player,npc)
 
     local LureSandy = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local WildcatSandy = player:getCharVar("WildcatSandy");
 
     if (LureSandy ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
         if (LureSandy == QUEST_AVAILABLE) then

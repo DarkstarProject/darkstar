@@ -14,9 +14,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(WOTG) == dsp.mission.id.wotg.THE_QUEEN_OF_THE_DANCE) then
-        if (player:getVar("QueenOfTheDance") == 0) then
+        if (player:getCharVar("QueenOfTheDance") == 0) then
             player:startEvent(68);
-        elseif (player:getVar("QueenOfTheDance") == 2) then
+        elseif (player:getCharVar("QueenOfTheDance") == 2) then
             player:startEvent(70);
         end
     end

@@ -39,7 +39,7 @@ function onEventFinish(player, csid, option)
                 player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2 or
                 player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2
             ) and
-            player:getVar("MissionStatus") == 10
+            player:getCharVar("MissionStatus") == 10
         then
             npcUtil.giveKeyItem(player, dsp.ki.KINDRED_CREST)
             player:setVar("MissionStatus", 11)

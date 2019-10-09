@@ -13,38 +13,38 @@ require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 2163) and player:getVar("PromotionPFC") == 1) then -- Rank to PFC
+    if (npcUtil.tradeHas(trade, 2163) and player:getCharVar("PromotionPFC") == 1) then -- Rank to PFC
         player:startEvent(5002,0,0,0,0,0,0,0,0,0)
     end
 end
 
 function onTrigger(player,npc)
 
-    local TOAUM3_DAY = player:getVar("TOAUM3_STARTDAY")
+    local TOAUM3_DAY = player:getCharVar("TOAUM3_STARTDAY")
     local realday = tonumber(os.date("%j")) -- %M for next minute, %j for next day
     local needToZone = player:needToZone()
 
-    if (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false and player:getVar("PromotionPFC") == 0) then
+    if (player:getCharVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false and player:getCharVar("PromotionPFC") == 0) then
         player:startEvent(5000,0,0,0,0,0,0,0,0,0) -- PFC rank is available
-    elseif (player:getVar("PromotionSP") == 1 and player:hasKeyItem(dsp.ki.DARK_RIDER_HOOFPRINT) == true) then
+    elseif (player:getCharVar("PromotionSP") == 1 and player:hasKeyItem(dsp.ki.DARK_RIDER_HOOFPRINT) == true) then
         player:startEvent(5022,0,0,0,0,0,0,0,0,0) -- Superior Private rank complete
-    elseif (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.SP_WILDCAT_BADGE) == false and player:getVar("PromotionSP") == 0) then
+    elseif (player:getCharVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.SP_WILDCAT_BADGE) == false and player:getCharVar("PromotionSP") == 0) then
         player:startEvent(5020,0,0,0,0,0,0,0,0,0) -- Superior Private rank is available
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMMORTAL_SENTRIES and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(3002,0,0,0,0,0,0,0,0,0)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 1) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(73,0,0,0,0,0,0,0,0,0)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 2 and TOAUM3_DAY ~= realday and needToZone == false) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") == 2 and TOAUM3_DAY ~= realday and needToZone == false) then
         player:startEvent(3020,0,0,0,0,0,0,0,0,0)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 0) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getCharVar("AhtUrganStatus") == 0) then
         player:startEvent(3021,0,0,0,0,0,0,0,0,0)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.WESTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.WESTERLY_WINDS and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(3028,0,0,0,0,0,0,0,0,0)
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.UNDERSEA_SCOUTING) then
         player:startEvent(3051,0,0,0,0,0,0,0,0,0)
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ASTRAL_WAVES) then
         player:startEvent(3052,0,0,0,0,0,0,0,0,0)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMPERIAL_SCHEMES and player:getVar("TOAUM11_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMPERIAL_SCHEMES and player:getCharVar("TOAUM11_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
         player:startEvent(3070,0,0,0,0,0,0,0,0,0)
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ROYAL_PUPPETEER) then
         player:startEvent(3071,0,0,0,0,0,0,0,0,0)
@@ -60,24 +60,24 @@ function onTrigger(player,npc)
         end
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE) then
         if (doRoyalPalaceArmorCheck(player) == true) then
-            if (player:getVar("AhtUrganStatus") == 0) then
+            if (player:getCharVar("AhtUrganStatus") == 0) then
                 player:startEvent(3076,1,0,0,0,0,0,0,1,0)
             else
                 player:startEvent(3077,1,0,0,0,0,0,0,1,0)
             end
         else
-            if (player:getVar("AhtUrganStatus") == 0) then
+            if (player:getCharVar("AhtUrganStatus") == 0) then
                 player:startEvent(3076,0,0,0,0,0,0,0,0,0)
             else
                 player:startEvent(3077,0,0,0,0,0,0,0,0,0)
             end
         end
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PASSING_GLORY and player:getVar("TOAUM18_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PASSING_GLORY and player:getCharVar("TOAUM18_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
         player:startEvent(3090,0,0,0,0,0,0,0,0,0)
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.IN_THE_BLOOD) then
         player:startEvent(3113,0,0,0,0,0,0,0,0,0)
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SENTINELS_HONOR) then
-        if(player:getVar("TOAUM18_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
+        if(player:getCharVar("TOAUM18_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
             player:startEvent(3130,0,0,0,0,0,0,0,0,0)
         else
             player:startEvent(3120,0,0,0,0,0,0,0,0,0)

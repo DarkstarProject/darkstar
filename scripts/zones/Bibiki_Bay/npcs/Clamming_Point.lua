@@ -74,7 +74,7 @@ function onTrigger(player,npc)
         if (GetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse") == 1) then
             player:messageSpecial(ID.text.IT_LOOKS_LIKE_SOMEONE);
         else
-            if (player:getVar("ClammingKitBroken") > 0) then -- Broken bucket
+            if (player:getCharVar("ClammingKitBroken") > 0) then -- Broken bucket
                 player:messageSpecial(ID.text.YOU_CANNOT_COLLECT);
             else
                 local delay = GetServerVariable("ClammingPoint_" .. npc:getID() .. "_Delay");
@@ -97,7 +97,7 @@ end;
 function onEventUpdate(player,csid,option)
 
     if (csid == 20) then
-        if (player:getVar("ClammingKitSize") == 200 and math.random() <= giveReducedIncidents(player)) then
+        if (player:getCharVar("ClammingKitSize") == 200 and math.random() <= giveReducedIncidents(player)) then
             player:setLocalVar("SomethingJumpedInBucket", 1);
         else
             local dropRate = math.random();
@@ -110,7 +110,7 @@ function onEventUpdate(player,csid,option)
                     player:addVar("ClammedItem_" .. clammingItems[itemDrop - 2], 1);
                     player:addVar("ClammingKitWeight", clammingItems[itemDrop - 1]);
 
-                    if (player:getVar("ClammingKitWeight") > player:getVar("ClammingKitSize")) then -- Broken bucket
+                    if (player:getCharVar("ClammingKitWeight") > player:getCharVar("ClammingKitSize")) then -- Broken bucket
                         player:setVar("ClammingKitBroken", 1);
                     end
 
@@ -138,7 +138,7 @@ function onEventFinish(player,csid,option)
             local clammedItem = player:getLocalVar("ClammedItem");
 
             if (clammedItem > 0) then
-                if (player:getVar("ClammingKitBroken") > 0) then --Broken bucket
+                if (player:getCharVar("ClammingKitBroken") > 0) then --Broken bucket
                     player:messageSpecial(ID.text.THE_WEIGHT_IS_TOO_MUCH, clammedItem);
 
                     for item = 1, #clammingItems, 4 do -- Remove items from bucket

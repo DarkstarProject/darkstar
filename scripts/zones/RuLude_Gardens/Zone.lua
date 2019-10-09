@@ -19,13 +19,13 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         position = math.random(1,5) + 45;
         player:setPos(position,10,-73,192);
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     end
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getCharVar("PromathiaStatus") == 2) then
         cs = 10047;
     end
 
@@ -42,24 +42,24 @@ function onRegionEnter(player,region)
     -- printf("regionID: %u",regionID);
 
     if (regionID == 1) then
-        if (player:getCurrentMission(COP) == dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus") == 1) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN and player:getCharVar("PromathiaStatus") == 1) then
             player:startEvent(65,player:getNation());
-        elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.A_PLACE_TO_RETURN and player:getVar("PromathiaStatus") == 0) then
+        elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.A_PLACE_TO_RETURN and player:getCharVar("PromathiaStatus") == 0) then
             player:startEvent(10048);
-        elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 2) then
+        elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and player:getCharVar("PromathiaStatus") == 2) then
             player:startEvent(10051);
-        elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
+        elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getCharVar("AhtUrganStatus") == 1) then
             player:startEvent(10094);
         elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ALLIED_RUMBLINGS) then
             player:startEvent(10097);
         elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN) then
-            if (player:getVar("COP_3-taru_story") == 2 and player:getVar("COP_shikarees_story") == 1 and player:getVar("COP_louverance_story") == 3
-            and player:getVar("COP_tenzen_story") == 1 and player:getVar("COP_jabbos_story") == 1) then
+            if (player:getCharVar("COP_3-taru_story") == 2 and player:getCharVar("COP_shikarees_story") == 1 and player:getCharVar("COP_louverance_story") == 3
+            and player:getCharVar("COP_tenzen_story") == 1 and player:getCharVar("COP_jabbos_story") == 1) then
                 player:startEvent(122);
-            elseif (player:getVar("PromathiaStatus") == 7) then
+            elseif (player:getCharVar("PromathiaStatus") == 7) then
                 if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_AVAILABLE) then
                     player:startEvent(142);
-                elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 3) then
+                elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getCharVar('StormsOfFate') == 3) then
                     player:startEvent(143);
                 end
             end

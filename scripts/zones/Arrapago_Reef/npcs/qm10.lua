@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("NoStringsAttachedProgress") == 3 then
+    if player:getCharVar("NoStringsAttachedProgress") == 3 then
         player:startEvent(214)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

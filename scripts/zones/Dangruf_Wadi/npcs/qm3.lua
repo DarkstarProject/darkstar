@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
 
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
+    local thickAsThievesGamblingCS = player:getCharVar("thickAsThievesGamblingCS")
 
     if npcUtil.tradeHas(trade, 936) then -- Trade 1x rock slat
         if thickAsThievesGamblingCS == 2 then

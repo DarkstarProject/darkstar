@@ -24,7 +24,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 103 and option == 1 then
-        local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
+        local shihuDanhuEncounters = player:getCharVar("ShihuDanhu_Encounters")
         -- If you use TP, you need to wait 1 real day for using Kaduru TP
         player:setVar("ShihuDanhu_TP_date", os.date("%j"))
         -- Update total number of Shihu-Danhu encounters.

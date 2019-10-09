@@ -15,8 +15,8 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 
 function onTrade(player,npc,trade)
     local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
-    local anEmptyVesselProgress = player:getVar("AnEmptyVesselProgress")
-    local StoneID = player:getVar("EmptyVesselStone")
+    local anEmptyVesselProgress = player:getCharVar("AnEmptyVesselProgress")
+    local StoneID = player:getCharVar("EmptyVesselStone")
 
     -- AN EMPTY VESSEL (dangruf stone, valkurm sunsand, or siren's tear)
     if anEmptyVessel == QUEST_ACCEPTED and anEmptyVesselProgress == 3 and trade:hasItemQty(StoneID,1) and trade:getItemCount() == 1 then
@@ -26,8 +26,8 @@ end
 
 function onTrigger(player,npc)
     local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
-    local anEmptyVesselProgress = player:getVar("AnEmptyVesselProgress")
-    local divinationReady = vanaDay() > player:getVar("LastDivinationDay")
+    local anEmptyVesselProgress = player:getCharVar("AnEmptyVesselProgress")
+    local divinationReady = vanaDay() > player:getCharVar("LastDivinationDay")
     local beginnings = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS)
 
     -- AN EMPTY VESSEL
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(66) -- reminds you about the item he wants
     elseif anEmptyVesselProgress == 4 then
         player:startEvent(68) -- reminds you to bring the item to Aydeewa
-    elseif anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getVar("BluAFBeginnings_Waoud") == 0 then
+    elseif anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getCharVar("BluAFBeginnings_Waoud") == 0 then
         player:startEvent(69) -- closing cutscene
 
     -- BEGINNINGS
@@ -82,7 +82,7 @@ end
 function onEventUpdate(player,csid,option)
     -- AN EMPTY VESSEL
     if csid == 60 then
-        local success = player:getVar("SuccessfullyAnswered")
+        local success = player:getCharVar("SuccessfullyAnswered")
 
         -- record correct answers
         if option < 40 then

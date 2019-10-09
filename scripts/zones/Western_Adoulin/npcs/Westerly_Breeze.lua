@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         local AH_Category = item:getAHCat();
         if (AH_Category >= 52) and (AH_Category <= 57) then
             -- We traded him a food item
-            if ((player:getVar("ATWTTB_Can_Trade_Gruel") == 1) and ((item_ID == 4489) or (item_ID == 4534))) then
+            if ((player:getCharVar("ATWTTB_Can_Trade_Gruel") == 1) and ((item_ID == 4489) or (item_ID == 4534))) then
                 if (item_ID == 4489) then
                     -- Trading him Vegetable Gruel after completing Quest: 'All The Way To The Bank'
                     player:startEvent(5068);
@@ -83,7 +83,7 @@ function onTrigger(player,npc)
             -- Reminder for Quest: 'Hunger Strikes'
             player:startEvent(2531);
         end
-    elseif ((player:getFame(ADOULIN) >= 2) and (not player:needToZone()) and (vanaDay() > player:getVar("Westerly_Breeze_Wait"))) then
+    elseif ((player:getFame(ADOULIN) >= 2) and (not player:needToZone()) and (vanaDay() > player:getCharVar("Westerly_Breeze_Wait"))) then
         if (TS ~= QUEST_COMPLETED) then
             if (TS == QUEST_AVAILABLE) then
                 -- Starts Quest: 'The Starving'

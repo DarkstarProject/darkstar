@@ -23,12 +23,12 @@ function onTrigger(player,npc)
     if (toauMission == dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         if (player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE)) then
             player:startEvent(5);
-        elseif (player:getVar("AhtUrganStatus") == 1) then
+        elseif (player:getCharVar("AhtUrganStatus") == 1) then
             player:startEvent(6);
         end;
 
     -- SHADES OF VENGEANCE
-    elseif (toauMission == dsp.mission.id.toau.SHADES_OF_VENGEANCE and player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT) == false and vanaDay() > player:getVar("TOAUM31_PERMITDAY")) then
+    elseif (toauMission == dsp.mission.id.toau.SHADES_OF_VENGEANCE and player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT) == false and vanaDay() > player:getCharVar("TOAUM31_PERMITDAY")) then
         player:startEvent(22);
 
     -- BEGINNINGS

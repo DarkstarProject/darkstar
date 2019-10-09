@@ -38,8 +38,8 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 0 and
-            player:getVar("TOAUM38_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.STIRRINGS_OF_WAR and player:getCharVar("AhtUrganStatus") == 0 and
+            player:getCharVar("TOAUM38_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
         cs = 3220;
     end
 
@@ -54,12 +54,12 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Cutscene for Got It All quest.
-            if (player:getVar("gotitallCS") == 5) then
+            if (player:getCharVar("gotitallCS") == 5) then
                 player:startEvent(526);
             end
         end,
         [2] = function (x) -- CS for Vanishing Act Quest
-            if (player:getVar("vanishingactCS") == 3) then
+            if (player:getCharVar("vanishingactCS") == 3) then
                 player:startEvent(44);
             end
         end,
@@ -74,29 +74,29 @@ function onRegionEnter(player,region)
                 player:startEvent(3093);
             elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SOCIAL_GRACES) then
                 player:startEvent(3095)
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.FOILED_AMBITION and player:getVar("TOAUM23_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.FOILED_AMBITION and player:getCharVar("TOAUM23_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
                 player:startEvent(3097,0,0,0,0,0,0,0,0,0)
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PLAYING_THE_PART and player:getVar("TOAUM24_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PLAYING_THE_PART and player:getCharVar("TOAUM24_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
                 player:startEvent(3110);
             elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_BLOOD) then
                 player:startEvent(3131,1,1,1,1,1,1,1,1);
             end
         end,
         [4] = function (x) -- AH mission
-            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 2) then
+            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getCharVar("AhtUrganStatus") == 2) then
                 player:startEvent(3024,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU)== dsp.mission.id.toau.BASTION_OF_KNOWLEDGE) then
                 player:startEvent(3112);
             end
         end,
         [5] = function (x) -- AH mission
-            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 3) then
+            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getCharVar("AhtUrganStatus") == 3) then
                 player:startEvent(3026,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.WESTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
+            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.WESTERLY_WINDS and player:getCharVar("AhtUrganStatus") == 0) then
                 player:startEvent(3027,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SWEETS_FOR_THE_SOUL) then
                 player:startEvent(3092);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 1) then
+            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.STIRRINGS_OF_WAR and player:getCharVar("AhtUrganStatus") == 1) then
                 player:startEvent(3136,0,0,0,0,0,0,0,0,0);
             elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_AVAILABLE and player:getMainJob() == dsp.job.COR and player:getMainLvl() >= AF3_QUEST_LEVEL) then
                 player:startEvent(797);

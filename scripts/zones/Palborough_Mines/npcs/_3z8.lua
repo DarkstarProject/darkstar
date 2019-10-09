@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local refinerInput = player:getVar("refiner_input")
+    local refinerInput = player:getCharVar("refiner_input")
 
     if refinerInput > 0 then
         player:startEvent(17, 1, 1, 1, 1, 1, 1, 1, 1) -- machine is working, you hear the sound of metal hitting metal down below.

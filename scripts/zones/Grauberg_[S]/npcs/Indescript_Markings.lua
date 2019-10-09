@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local gownQuestProgress = player:getVar("AF_SCH_BODY");
+    local gownQuestProgress = player:getCharVar("AF_SCH_BODY");
 
     player:delStatusEffect(dsp.effect.SNEAK);
 

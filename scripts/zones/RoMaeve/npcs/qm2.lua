@@ -14,8 +14,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1 then
-        if player:getVar("Mission7-1MobKilled") == 1 then
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getCharVar("MissionStatus") == 1 then
+        if player:getCharVar("Mission7-1MobKilled") == 1 then
             npcUtil.giveKeyItem(player, dsp.ki.REINFORCED_CERMET)
             player:setVar("Mission7-1MobKilled", 0)
             player:setVar("MissionStatus", 2)

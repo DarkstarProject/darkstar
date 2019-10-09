@@ -257,7 +257,7 @@ local COSMO_READY = 2147483649 -- BITMASK for the purchase
 
 local function getCosmoCleanseTime(player)
     local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 60 * 60
-    local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME")
+    local lastCosmoTime = player:getCharVar("Cosmo_Cleanse_TIME")
 
     if lastCosmoTime ~= 0 then
         lastCosmoTime = lastCosmoTime + cosmoWaitTime
@@ -272,7 +272,7 @@ end
 
 function onTrade(player,npc,trade)
     local count = trade:getItemCount()
-    local afUpgrade = player:getVar("AFupgrade")
+    local afUpgrade = player:getCharVar("AFupgrade")
 
     -- store ancient beastcoins
     if trade:hasItemQty(1875, count) then
@@ -327,7 +327,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local wildcatJeuno = player:getVar("WildcatJeuno")
+    local wildcatJeuno = player:getCharVar("WildcatJeuno")
 
     -- LURE OF THE WILDCAT
     if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
@@ -338,7 +338,7 @@ function onTrigger(player,npc)
         -- event parameters
         local arg3 = 0
         local arg4 = 0
-        local afUpgrade = player:getVar("AFupgrade")
+        local afUpgrade = player:getCharVar("AFupgrade")
         local gil = player:getGil()
         local hasCosmoCleanse = 0
         local storedABCs = player:getCurrency("ancient_beastcoin")
@@ -346,7 +346,7 @@ function onTrigger(player,npc)
         -- if player is waiting for an upgraded af or relic
         if afUpgrade > 0 then
             arg3 = afUpgrade
-            if player:getVar("AFupgradeDay") > os.time() then
+            if player:getCharVar("AFupgradeDay") > os.time() then
                 arg4 = afUpgrade
             end
         end
@@ -382,7 +382,7 @@ end
 function onEventFinish(player,csid,option)
     -- LURE OF THE WILDCAT
     if csid == 313 then
-        player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true)
+        player:setMaskBit(player:getCharVar("WildcatJeuno"), "WildcatJeuno", 19, true)
 
     -- purchase cosmocleanse
     elseif csid == 310 and option == 3 then
@@ -402,7 +402,7 @@ function onEventFinish(player,csid,option)
 
     -- get upgrade
     elseif csid == 310 and option == 100 then
-        local afUpgrade = player:getVar("AFupgrade")
+        local afUpgrade = player:getCharVar("AFupgrade")
         local info = afArmorPlusOne[afUpgrade]
         if info == nil then
             info = relicArmorPlusOne[afUpgrade]

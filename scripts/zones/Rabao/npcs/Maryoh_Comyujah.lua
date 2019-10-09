@@ -15,11 +15,11 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
-        if (player:getVar("ZilartStatus") == 0) then
+        if (player:getCharVar("ZilartStatus") == 0) then
             player:startEvent(81); -- Start
         elseif (player:hasKeyItem(dsp.ki.SCRAP_OF_PAPYRUS)) then
             player:startEvent(83); -- Finish
-        elseif (player:getVar("ZilartStatus") == 2) then
+        elseif (player:getCharVar("ZilartStatus") == 2) then
             player:startEvent(84); -- Go to hall of the gods
         else
             player:startEvent(82);

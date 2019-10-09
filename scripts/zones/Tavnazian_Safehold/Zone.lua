@@ -26,12 +26,12 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_INVITATION_WEST) then
-        if (player:getVar("PromathiaStatus") == 1) then
+        if (player:getCharVar("PromathiaStatus") == 1) then
             cs = 101;
         end
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.SHELTERING_DOUBT and player:getCharVar("PromathiaStatus") == 0) then
         cs = 107;
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getCharVar("PromathiaStatus") == 1) then
         cs = 114;
     end
 
@@ -43,12 +43,12 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)
-            if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 2) then
+            if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_ETERNAL_MELODY and player:getCharVar("PromathiaStatus") == 2) then
                 player:startEvent(105);
             end
         end,
         [2] = function (x)
-            if (player:getCurrentMission(COP) == dsp.mission.id.cop.SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 0) then
+            if (player:getCurrentMission(COP) == dsp.mission.id.cop.SLANDEROUS_UTTERINGS and player:getCharVar("PromathiaStatus") == 0) then
                 player:startEvent(112);
             end
         end,

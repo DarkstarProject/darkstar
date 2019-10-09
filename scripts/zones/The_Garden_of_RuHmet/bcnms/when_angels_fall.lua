@@ -19,7 +19,7 @@ end
 function onBattlefieldLeave(player, battlefield, leavecode)
     if leavecode == dsp.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
-        local arg8 = (player:getCurrentMission(COP) ~= dsp.mission.id.cop.WHEN_ANGELS_FALL or player:getVar("PromathiaStatus") ~= 4) and 1 or 0
+        local arg8 = (player:getCurrentMission(COP) ~= dsp.mission.id.cop.WHEN_ANGELS_FALL or player:getCharVar("PromathiaStatus") ~= 4) and 1 or 0
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), arg8)
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002)
@@ -31,7 +31,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid== 32001 then
-        if player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus") == 4 then
+        if player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getCharVar("PromathiaStatus") == 4 then
             player:setVar("PromathiaStatus", 5)
         end
         player:setPos(420, 0, 445, 192)

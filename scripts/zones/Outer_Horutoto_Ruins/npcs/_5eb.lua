@@ -14,7 +14,7 @@ end
 
 function onTrigger(player, npc)
     local currentMission = player:getCurrentMission(WINDURST)
-    local missionStatus = player:getVar("MissionStatus")
+    local missionStatus = player:getCharVar("MissionStatus")
 
     if
         currentMission == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and

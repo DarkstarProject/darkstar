@@ -23,17 +23,17 @@ function onTrigger(player,npc)
 
     if jamInJeuno then
         player:startEvent(10178)
-    elseif myDecrepitDomicile and hasMetalStrip and player:getVar("AMK") == 1 then
+    elseif myDecrepitDomicile and hasMetalStrip and player:getCharVar("AMK") == 1 then
         player:startEvent(10179) -- Metal Strip handed in
-    elseif myDecrepitDomicile and player:getVar("AMK") == 1 then
+    elseif myDecrepitDomicile and player:getCharVar("AMK") == 1 then
         player:startEvent(10186) -- Metal Strip reminder
-    elseif myDecrepitDomicile and hasTreeBark and player:getVar("AMK") == 2 then
+    elseif myDecrepitDomicile and hasTreeBark and player:getCharVar("AMK") == 2 then
         player:startEvent(10180) -- Tree Bark handed in
-    elseif myDecrepitDomicile and player:getVar("AMK") == 2 then
+    elseif myDecrepitDomicile and player:getCharVar("AMK") == 2 then
         player:startEvent(10187) -- Tree Bark reminder
-    elseif myDecrepitDomicile and hasLambRoast and player:getVar("AMK") == 3 then
+    elseif myDecrepitDomicile and hasLambRoast and player:getCharVar("AMK") == 3 then
         player:startEvent(10181) -- Lamb Roast handed in
-    elseif myDecrepitDomicile and player:getVar("AMK") == 3 then
+    elseif myDecrepitDomicile and player:getCharVar("AMK") == 3 then
         player:startEvent(10188) -- Lamb Roast reminder
     end
 end

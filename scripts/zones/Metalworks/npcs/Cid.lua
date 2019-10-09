@@ -18,7 +18,7 @@ local ID = require("scripts/zones/Metalworks/IDs")
 local wsQuest = dsp.wsquest.detonator
 
 local function checkThreePaths(player)
-    if player:getVar("COP_Tenzen_s_Path") == 11 and player:getVar("COP_Ulmia_s_Path") == 8 and player:getVar("COP_Louverance_s_Path") == 10 then
+    if player:getCharVar("COP_Tenzen_s_Path") == 11 and player:getCharVar("COP_Ulmia_s_Path") == 8 and player:getCharVar("COP_Louverance_s_Path") == 10 then
         player:completeMission(COP, dsp.mission.id.cop.THREE_PATHS)
         player:addMission(COP, dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG)
         player:setVar("PromathiaStatus", 0)
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_CRYSTAL_LINE and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_CRYSTAL_LINE and player:getCharVar("MissionStatus") == 1) then
         if (trade:getItemQty(613,1) and trade:getItemCount() == 1) then
             player:startEvent(506)
         end
@@ -45,22 +45,22 @@ function onTrigger(player,npc)
     local LetterKeyItem = player:hasKeyItem(dsp.ki.UNFINISHED_LETTER)
     local currentMission = player:getCurrentMission(BASTOK)
     local currentCOPMission = player:getCurrentMission(COP)
-    local UlmiaPath = player:getVar("COP_Ulmia_s_Path")
-    local TenzenPath = player:getVar("COP_Tenzen_s_Path")
-    local LouverancePath = player:getVar("COP_Louverance_s_Path")
+    local UlmiaPath = player:getCharVar("COP_Ulmia_s_Path")
+    local TenzenPath = player:getCharVar("COP_Tenzen_s_Path")
+    local LouverancePath = player:getCharVar("COP_Louverance_s_Path")
     local TreePathAv = 0
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (currentCOPMission == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day")~=currentday and player:getVar("COP_tenzen_story")== 0 ) then
+    elseif (currentCOPMission == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus")==3 and player:getCharVar("Promathia_kill_day")~=currentday and player:getCharVar("COP_tenzen_story")== 0 ) then
         player:startEvent(897) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getVar("COP_Dalham_KILL") == 2 and player:getVar("COP_Boggelmann_KILL") == 2 and player:getVar("Cryptonberry_Executor_KILL")==2) then
+    elseif (currentCOPMission == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getCharVar("COP_Dalham_KILL") == 2 and player:getCharVar("COP_Boggelmann_KILL") == 2 and player:getCharVar("Cryptonberry_Executor_KILL")==2) then
         player:startEvent(892) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=VanadielDayOfTheYear()) then
+    elseif (currentCOPMission == dsp.mission.id.cop.FIRE_IN_THE_EYES_OF_MEN and player:getCharVar("PromathiaStatus")==2 and player:getCharVar("Promathia_CID_timer")~=VanadielDayOfTheYear()) then
         player:startEvent(890) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==1) then
+    elseif (currentCOPMission == dsp.mission.id.cop.FIRE_IN_THE_EYES_OF_MEN and player:getCharVar("PromathiaStatus")==1) then
         player:startEvent(857) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.ONE_TO_BE_FEARED and player:getVar("PromathiaStatus") == 0) then
+    elseif (currentCOPMission == dsp.mission.id.cop.ONE_TO_BE_FEARED and player:getCharVar("PromathiaStatus") == 0) then
         player:startEvent(856) -- COP event
     elseif (currentCOPMission == dsp.mission.id.cop.THREE_PATHS and LouverancePath == 6 ) then
         player:startEvent(852) -- COP event
@@ -97,13 +97,13 @@ function onTrigger(player,npc)
             TreePathAv=0
         end
         player:startEvent(855,TreePathAv) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") > 8) then
+    elseif (currentCOPMission == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus") > 8) then
         player:startEvent(850) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==1) then
+    elseif (currentCOPMission == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("PromathiaStatus")==1) then
         player:startEvent(849) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==1) then
+    elseif (currentCOPMission == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getCharVar("PromathiaStatus")==1) then
         player:startEvent(845) -- COP event
-    elseif (currentCOPMission == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12) then --two paths are finished ?
+    elseif (currentCOPMission == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("EMERALD_WATERS_Status")== 7 and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status")== 12) then --two paths are finished ?
         player:startEvent(847) -- COP event 3.3
     elseif (player:getMainJob() == dsp.job.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_PUPPET) == QUEST_AVAILABLE) then
         player:startEvent(760) -- Start Quest "Dark Puppet"
@@ -119,14 +119,14 @@ function onTrigger(player,npc)
         else
             player:startEvent(505)
         end
-    elseif (currentMission == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getVar("MissionStatus") == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(763) -- Bastok Mission 7-1
-    elseif (currentMission == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getVar("MissionStatus") == 2) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(764) -- Bastok Mission 7-1 (with Ki)
     --Begin Cid's Secret
     elseif (player:getFameLevel(BASTOK) >= 4 and CidsSecret == QUEST_AVAILABLE) then
         player:startEvent(507)
-    elseif (CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false and player:getVar("CidsSecret_Event") == 1) then
+    elseif (CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false and player:getCharVar("CidsSecret_Event") == 1) then
         player:startEvent(508) --After talking to Hilda, Cid gives information on the item she needs
     elseif (CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false) then
         player:startEvent(502) --Reminder dialogue from Cid if you have not spoken to Hilda
@@ -166,7 +166,7 @@ function onEventFinish(player,csid,option)
         checkThreePaths(player)
     elseif (csid == 853) then
         player:setVar("COP_Louverance_s_Path",10)
-        if player:getVar("COP_Tenzen_s_Path") == 11 and player:getVar("COP_Ulmia_s_Path") == 8 then
+        if player:getCharVar("COP_Tenzen_s_Path") == 11 and player:getCharVar("COP_Ulmia_s_Path") == 8 then
             player:addTitle(dsp.title.TRUE_COMPANION_OF_LOUVERANCE)
         else
             player:addTitle(dsp.title.COMPANION_OF_LOUVERANCE)
@@ -205,7 +205,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 504 or csid == 764) then
         finishMissionTimeline(player,1,csid,option)
     elseif (csid == 505 and option == 0) then
-        if (player:getVar("MissionStatus") == 0) then
+        if (player:getCharVar("MissionStatus") == 0) then
             if (player:getFreeSlotsCount(0) >= 1) then
                 crystal = math.random(4096,4103)
                 player:addItem(crystal)
