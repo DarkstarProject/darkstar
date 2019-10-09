@@ -32,7 +32,7 @@ end
 function onEventFinish(player, csid, option)
     if csid == 32001 then
         if player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Ulmia_s_Path") == 6 then
-            player:setVar("COP_Ulmia_s_Path", 7)
+            player:setCharVar("COP_Ulmia_s_Path", 7)
         end
         player:addExp(1000)
     end

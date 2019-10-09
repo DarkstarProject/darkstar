@@ -68,6 +68,6 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(dsp.ki.REMNANTS_PERMIT)
         end
         player:setLocalVar("SalvageValid",0)
-        player:setVar("LAST_PERMIT",currentday)
+        player:setCharVar("LAST_PERMIT",currentday)
     end
 end

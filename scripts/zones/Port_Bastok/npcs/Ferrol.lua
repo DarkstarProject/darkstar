@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork
         else
-            player:setVar("TrialSizeEarth_date",0)
+            player:setCharVar("TrialSizeEarth_date",0)
             player:addQuest(BASTOK,dsp.quest.id.bastok.TRIAL_SIZE_TRIAL_BY_EARTH);
             player:addItem(1547);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1547);

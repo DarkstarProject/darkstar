@@ -68,17 +68,17 @@ function onEventFinish(player,csid,option)
     if (csid == 101) then
         player:completeMission(COP,dsp.mission.id.cop.AN_INVITATION_WEST);
         player:addMission(COP,dsp.mission.id.cop.THE_LOST_CITY);
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
     elseif (csid == 105) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.AN_ETERNAL_MELODY);
         player:addMission(COP,dsp.mission.id.cop.ANCIENT_VOWS);
     elseif (csid == 107) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 112) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 114) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
     end
 
 end;

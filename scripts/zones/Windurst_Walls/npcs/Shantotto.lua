@@ -124,8 +124,8 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17081)
         else
             player:tradeComplete()
-            player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear())
-            player:setVar("CursesFoiledAgainYear",VanadielYear())
+            player:setCharVar("CursesFoiledAgainDay",VanadielDayOfTheYear())
+            player:setCharVar("CursesFoiledAgainYear",VanadielYear())
             player:addFame(WINDURST,80)
             player:addItem(17081)
             player:messageSpecial(ID.text.ITEM_OBTAINED,17081)
@@ -135,15 +135,15 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1)
 
     elseif (csid == 179) then
-        player:setVar("CursesFoiledAgainDayFinished",0)
-        player:setVar("CursesFoiledAgainYearFinished",0)
-        player:setVar("CursesFoiledAgainDay",0)
-        player:setVar("CursesFoiledAgainYear",0)
-        player:setVar("CursesFoiledAgain",1) -- Used to acknowledge that the two days have passed, Use this to initiate next quest
+        player:setCharVar("CursesFoiledAgainDayFinished",0)
+        player:setCharVar("CursesFoiledAgainYearFinished",0)
+        player:setCharVar("CursesFoiledAgainDay",0)
+        player:setCharVar("CursesFoiledAgainYear",0)
+        player:setCharVar("CursesFoiledAgain",1) -- Used to acknowledge that the two days have passed, Use this to initiate next quest
         player:needToZone(true)
 
     elseif (csid == 180 and option == 3) then
-        player:setVar("CursesFoiledAgain",0)
+        player:setCharVar("CursesFoiledAgain",0)
         player:addQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2)
         player:setTitle(dsp.title.TARUTARU_MURDER_SUSPECT)
 
@@ -172,22 +172,22 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4870)
         else
             player:completeQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM)
-            player:setVar("foiledagolemdeliverycomplete",0)
+            player:setCharVar("foiledagolemdeliverycomplete",0)
             player:addItem(4870)
             player:messageSpecial(ID.text.ITEM_OBTAINED,4870)
             player:setTitle(dsp.title.DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH)
             player:addFame(WINDURST,120)
         end
     elseif (csid == 409) then
-        player:setVar("ClassReunionProgress",4)
+        player:setCharVar("ClassReunionProgress",4)
     elseif (csid == 498) then
         player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",6,true)
     elseif (csid == 397) then
         player:addKeyItem(dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
-        player:setVar("MissionStatus",8)
+        player:setCharVar("MissionStatus",8)
     elseif (csid == 399) then
-        player:setVar("ShantottoCS",0)
+        player:setCharVar("ShantottoCS",0)
 
     elseif csid == 506 then
         player:completeMission(AMK,dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX)

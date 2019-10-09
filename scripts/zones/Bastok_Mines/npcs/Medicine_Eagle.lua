@@ -31,6 +31,6 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 180) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     end
 end;

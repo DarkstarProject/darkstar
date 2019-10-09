@@ -18,7 +18,7 @@ function onTrigger(player,npc)
 
     if (hittingTheMarquisateHagainCS == 2) then
         player:messageSpecial(ID.text.PRESENCE_FROM_CEILING);
-        player:setVar("hittingTheMarquisateHagainCS",3);
+        player:setCharVar("hittingTheMarquisateHagainCS",3);
     end
 
 end;

@@ -803,9 +803,9 @@ local digInfo =
 
 local function updatePlayerDigCount(player, increment)
     if increment == 0 then
-        player:setVar('[DIG]DigCount', 0)
+        player:setCharVar('[DIG]DigCount', 0)
     else
-        player:setVar('[DIG]DigCount', player:getCharVar('[DIG]DigCount') + increment)
+        player:setCharVar('[DIG]DigCount', player:getCharVar('[DIG]DigCount') + increment)
     end
 
     player:setLocalVar('[DIG]LastDigTime', os.time())

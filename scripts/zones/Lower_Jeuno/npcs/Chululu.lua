@@ -92,13 +92,13 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.COLLECT_TARUT_CARDS);
     elseif (csid == 199 and option == 0) then
         player:addVar("RubbishDay_prog", 1);
-        player:setVar("RubbishDay_day", VanadielDayOfTheYear()); -- new vanadiel day
+        player:setCharVar("RubbishDay_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 198 and option == 0) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
         player:addKeyItem(dsp.ki.MAGIC_TRASH);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGIC_TRASH);
-        player:setVar("RubbishDay_prog",0);
-        player:setVar("RubbishDay_day",0);
+        player:setCharVar("RubbishDay_prog",0);
+        player:setCharVar("RubbishDay_day",0);
     elseif (csid == 197) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13083);
@@ -107,7 +107,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*6000);
             player:addItem(13083);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13083);
-            player:setVar("RubbishDayVar",0);
+            player:setCharVar("RubbishDayVar",0);
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
         end

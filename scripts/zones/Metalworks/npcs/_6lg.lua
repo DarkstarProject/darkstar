@@ -27,7 +27,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 622) then
-        player:setVar("[B7-2]Cornelia", 1);
+        player:setCharVar("[B7-2]Cornelia", 1);
     end
 
 end;

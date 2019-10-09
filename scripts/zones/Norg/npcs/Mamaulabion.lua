@@ -166,7 +166,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 195) then
         player:tradeComplete();
-        player:setVar("MamaMia_date", os.date("%j")); -- %M for next minute, %j for next day
+        player:setCharVar("MamaMia_date", os.date("%j")); -- %M for next minute, %j for next day
 
     elseif (csid == 197) then
         if (player:getFreeSlotsCount() == 0) then
@@ -176,7 +176,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,14625); -- Evokers Ring
             player:addFame(NORG,30); --idk how much fame the quest adds, just left at 30 which the levi quest gave.
             player:completeQuest(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA);
-            player:setVar("tradesMamaMia",0)
+            player:setCharVar("tradesMamaMia",0)
         end
 
     elseif (csid == 243) then

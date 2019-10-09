@@ -29,6 +29,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 5034) then
         -- Progresses Quest: 'Raptor Rapture', spoke to Ilney.
-        player:setVar("Raptor_Rapture_Status", 5);
+        player:setCharVar("Raptor_Rapture_Status", 5);
     end
 end;

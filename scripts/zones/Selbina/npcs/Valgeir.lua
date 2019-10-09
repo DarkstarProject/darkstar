@@ -61,23 +61,23 @@ function onEventFinish(player,csid,option)
 
     -- EXPERTISE
     elseif csid == 102 then
-        player:setVar("QUEST_EXPERTISE_STATE_var", 1)
+        player:setCharVar("QUEST_EXPERTISE_STATE_var", 1)
     elseif csid == 103 then -- now must wait 24 hours
-        player:setVar("QUEST_EXPERTISE_STATE_var", 2)
-        player:setVar("QuestExpertiseHourStarted_var", VanadielHour())
-        player:setVar("QuestExpertiseDayStarted_var", VanadielDayOfTheYear())
+        player:setCharVar("QUEST_EXPERTISE_STATE_var", 2)
+        player:setCharVar("QuestExpertiseHourStarted_var", VanadielHour())
+        player:setCharVar("QuestExpertiseDayStarted_var", VanadielDayOfTheYear())
         player:confirmTrade()
     elseif csid == 105 then -- done with the cooking
         npcUtil.giveKeyItem(player, dsp.ki.LAND_CRAB_BISQUE)
-        player:setVar("QUEST_EXPERTISE_STATE_var", 3)
-        player:setVar("QuestExpertiseHourStarted_var", 0)
-        player:setVar("QuestExpertiseDayStarted_var", 0)
+        player:setCharVar("QUEST_EXPERTISE_STATE_var", 3)
+        player:setCharVar("QuestExpertiseHourStarted_var", 0)
+        player:setCharVar("QuestExpertiseDayStarted_var", 0)
 
     -- THE BASICS
     elseif csid == 106 and npcUtil.giveItem(player, 4436) then
-        player:setVar("QuestTheBacisCommentary_var", 1)
+        player:setCharVar("QuestTheBacisCommentary_var", 1)
         player:delKeyItem(dsp.ki.MHAURAN_COUSCOUS)
     elseif csid == 107 then
-        player:setVar("QuestTheBacisCommentary_var", 0)
+        player:setCharVar("QuestTheBacisCommentary_var", 0)
     end
 end

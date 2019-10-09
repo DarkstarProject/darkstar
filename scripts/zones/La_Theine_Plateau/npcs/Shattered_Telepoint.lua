@@ -34,8 +34,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 201) then
-        player:setVar("cspromy2",0);
-        player:setVar("cs2ndpromy",1);
+        player:setCharVar("cspromy2",0);
+        player:setCharVar("cs2ndpromy",1);
         player:setPos(-266.76, -0.635, 280.058, 0, 14); -- To Hall of Transference {R}
     elseif (csid == 202 and option == 0) then
         player:setPos(-266.76, -0.635, 280.058, 0, 14); -- To Hall of Transference {R}

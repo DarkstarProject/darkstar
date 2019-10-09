@@ -50,17 +50,17 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 941) then
-        player:setVar("LeleroonsLetterGreen", 2);
+        player:setCharVar("LeleroonsLetterGreen", 2);
         player:delKeyItem(dsp.ki.LELEROONS_LETTER_GREEN);
     elseif (csid == 943) then
         player:tradeComplete();
-        player:setVar("LeleroonsletterGreen", 3);
+        player:setCharVar("LeleroonsletterGreen", 3);
     elseif (csid == 946) then
         player:tradeComplete();
-        player:setVar("LeleroonsletterGreen", 4);
-        player:setVar("corAfSubmitDay", vanaDay());
+        player:setCharVar("LeleroonsletterGreen", 4);
+        player:setCharVar("corAfSubmitDay", vanaDay());
     elseif (csid == 944) then
-        player:setVar("LeleroonsletterGreen", 5);
+        player:setCharVar("LeleroonsletterGreen", 5);
         player:addItem(14929); -- corsair's gants
         player:messageSpecial(ID.text.ITEM_OBTAINED,14929);
     end;

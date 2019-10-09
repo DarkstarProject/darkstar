@@ -20,7 +20,7 @@ function onTrigger(player, npc)
     if loafersQuestProgress > 0 and loafersQuestProgress < 3 and not player:hasKeyItem(dsp.ki.DROGAROGAN_BONEMEAL) then
         player:addKeyItem(dsp.ki.DROGAROGAN_BONEMEAL)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DROGAROGAN_BONEMEAL)
-        player:setVar("AF_SCH_BOOTS", loafersQuestProgress + 1)
+        player:setCharVar("AF_SCH_BOOTS", loafersQuestProgress + 1)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end

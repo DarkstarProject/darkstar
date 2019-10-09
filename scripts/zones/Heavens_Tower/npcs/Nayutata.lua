@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 395) then
-        player:setVar("TimeOfPiece",0);
+        player:setCharVar("TimeOfPiece",0);
     end
 end;

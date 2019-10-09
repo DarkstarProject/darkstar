@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
             player:delQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
         end
         player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
-        player:setVar("TrialByLightning_date", 0);
+        player:setCharVar("TrialByLightning_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10024) then
@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(dsp.ki.WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
-            player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(MHAURA,30);
             player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
         end
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1172);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1172);
-            player:setVar("CarbuncleDebacleProgress",3);
+            player:setCharVar("CarbuncleDebacleProgress",3);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1172);
         end;

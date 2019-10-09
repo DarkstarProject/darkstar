@@ -31,7 +31,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 14) then
-        player:setVar("TheWaywardAutomationProgress",3);
-        player:setVar("TheWaywardAutomationNM",0);
+        player:setCharVar("TheWaywardAutomationProgress",3);
+        player:setCharVar("TheWaywardAutomationNM",0);
     end
 end;

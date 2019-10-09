@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
         player:getCharVar("ridingOnTheClouds_3") == 1 and
         npcUtil.tradeHas(trade, 1127)
     then
-        player:setVar("ridingOnTheClouds_3", 0)
+        player:setCharVar("ridingOnTheClouds_3", 0)
         npcUtil.giveKeyItem(player, dsp.ki.SOMBER_STONE)
         player:confirmTrade()
     end
@@ -36,7 +36,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10005 then
-        player:setVar("PromathiaStatus", 0)
+        player:setCharVar("PromathiaStatus", 0)
         player:completeMission(COP, dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS)
         player:addMission(COP, dsp.mission.id.cop.ONE_TO_BE_FEARED)
     end

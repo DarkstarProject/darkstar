@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_2") == 5) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_2",0);
+            player:setCharVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.CID_S_SECRET) == QUEST_ACCEPTED) then
             player:startEvent(132);
             if (player:getCharVar("CidsSecret_Event") ~= 1) then
-                player:setVar("CidsSecret_Event",1);
+                player:setCharVar("CidsSecret_Event",1);
             end
         elseif (player:getFameLevel(BASTOK) >= 5 and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.CID_S_SECRET) == QUEST_COMPLETED) then
             if (player:getCharVar("TheUsual_Event") == 1) then
@@ -88,14 +88,14 @@ function onEventFinish(player,csid,option)
         else
             player:addTitle(dsp.title.STEAMING_SHEEP_REGULAR);
             player:delKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION);
-            player:setVar("TheUsual_Event",0);
+            player:setCharVar("TheUsual_Event",0);
             player:addItem(17170);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17170); -- Speed Bow
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_USUAL);
         end
     elseif (csid == 255) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 356) then
         player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",3,true);
     end

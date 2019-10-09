@@ -21,7 +21,7 @@ end
 
 function onTrigger(player,npc)
     if player:getCharVar("IsonadeKilled") == 1 then
-        player:setVar("IsonadeKilled", 0)
+        player:setCharVar("IsonadeKilled", 0)
         npcUtil.giveKeyItem(player, dsp.ki.HANDFUL_OF_CRYSTAL_SCALES)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

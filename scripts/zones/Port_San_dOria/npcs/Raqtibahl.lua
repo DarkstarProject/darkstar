@@ -53,17 +53,17 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 753) then
-        player:setVar("LeleroonsLetterRed", 2);
+        player:setCharVar("LeleroonsLetterRed", 2);
         player:delKeyItem(dsp.ki.LELEROONS_LETTER_RED);
     elseif (csid == 755) then
         player:tradeComplete();
-        player:setVar("LeleroonsLetterRed", 3);
+        player:setCharVar("LeleroonsLetterRed", 3);
     elseif (csid == 760) then
         player:tradeComplete();
-        player:setVar("LeleroonsLetterRed", 4);
-        player:setVar("corAfSubmitDay", vanaDay());
+        player:setCharVar("LeleroonsLetterRed", 4);
+        player:setCharVar("corAfSubmitDay", vanaDay());
     elseif (csid == 756) then
-        player:setVar("LeleroonsLetterRed", 5);
+        player:setCharVar("LeleroonsLetterRed", 5);
         player:addItem(14522); -- corsair's frac
         player:messageSpecial(ID.text.ITEM_OBTAINED,14522);
     end;

@@ -38,14 +38,14 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 116) then
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.EVERYONES_GRUDGE);
-        player:setVar("EveryonesGrudgeStarted",1);
+        player:setCharVar("EveryonesGrudgeStarted",1);
     elseif (csid == 118) then
         player:completeQuest(OUTLANDS,dsp.quest.id.outlands.EVERYONES_GRUDGE);
         player:tradeComplete();
         player:addFame(NORG,80);
         player:addKeyItem(dsp.ki.TONBERRY_PRIEST_KEY);    -- Permanent Tonberry key
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TONBERRY_PRIEST_KEY);
-        player:setVar("EveryonesGrudgeStarted",0);
+        player:setCharVar("EveryonesGrudgeStarted",0);
         player:addTitle(dsp.title.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
     end
 end;

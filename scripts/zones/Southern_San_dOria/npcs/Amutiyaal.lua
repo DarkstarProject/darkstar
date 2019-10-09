@@ -87,13 +87,13 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 812) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
-        player:setVar("WildcatSandy",0);
+        player:setCharVar("WildcatSandy",0);
         player:addKeyItem(dsp.ki.RED_SENTINEL_BADGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
     elseif (csid == 815) then
         player:completeQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
         player:addFame(SANDORIA,150);
-        player:setVar("WildcatSandy",0);
+        player:setCharVar("WildcatSandy",0);
         player:delKeyItem(dsp.ki.RED_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.RED_INVITATION_CARD);
         player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.RED_SENTINEL_BADGE);

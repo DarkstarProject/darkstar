@@ -43,9 +43,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 137 and option == 1) then
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.MISSIONARY_MAN);
-        player:setVar("MissionaryManVar",1);
+        player:setCharVar("MissionaryManVar",1);
     elseif (csid == 139) then
-        player:setVar("MissionaryManVar",2);
+        player:setCharVar("MissionaryManVar",2);
         player:addKeyItem(dsp.ki.RAUTEINOTS_PARCEL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RAUTEINOTS_PARCEL);
         player:tradeComplete();
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4728);
         else
-            player:setVar("MissionaryManVar",0);
+            player:setCharVar("MissionaryManVar",0);
             player:delKeyItem(dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
             player:addItem(4728);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4728);

@@ -43,7 +43,7 @@ function onTrigger(player,npc)
     elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == dsp.job.WAR and player:getMainLvl() >= 50) then
         if (theTalekeeperTruthCS == 1) then
             player:startEvent(160);
-            player:setVar("theTalekeeperTruthCS",2);
+            player:setCharVar("theTalekeeperTruthCS",2);
         elseif (theTalekeeperTruthCS == 2) then
             player:startEvent(161); -- Start Quest "The Talekeeper's Truth"
         else
@@ -57,8 +57,8 @@ function onTrigger(player,npc)
         player:startEvent(166); -- New standard dialog after "The Talekeeper's Truth"
     elseif (player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == dsp.job.WAR) then
         player:startEvent(170);
-        player:setVar("theTalekeeperGiftCS",1);
-        player:setVar("DeidoggWait1DayForAF3",0);
+        player:setCharVar("theTalekeeperGiftCS",1);
+        player:setCharVar("DeidoggWait1DayForAF3",0);
     else
         player:startEvent(32); -- Standard dialog
     end
@@ -72,23 +72,23 @@ function onEventFinish(player,csid,option)
 
     if (csid == 161) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
-        player:setVar("theTalekeeperTruthCS",3);
+        player:setCharVar("theTalekeeperTruthCS",3);
     elseif (csid == 162) then
         player:tradeComplete();
-        player:setVar("theTalekeeperTruthCS",4);
+        player:setCharVar("theTalekeeperTruthCS",4);
     elseif (csid == 164) then
         player:tradeComplete();
-        player:setVar("theTalekeeperTruthCS",5);
-        player:setVar("theTalekeeperTruth_timer",VanadielDayOfTheYear());
+        player:setCharVar("theTalekeeperTruthCS",5);
+        player:setCharVar("theTalekeeperTruth_timer",VanadielDayOfTheYear());
     elseif (csid == 165) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14089); -- Fighter's Calligae
         else
             player:addItem(14089);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 14089); -- Fighter's Calligae
-            player:setVar("theTalekeeperTruthCS",0);
-            player:setVar("theTalekeeperTruth_timer",0);
-            player:setVar("DeidoggWait1DayForAF3",VanadielDayOfTheYear());
+            player:setCharVar("theTalekeeperTruthCS",0);
+            player:setCharVar("theTalekeeperTruth_timer",0);
+            player:setCharVar("DeidoggWait1DayForAF3",VanadielDayOfTheYear());
             player:needToZone(true);
             player:addFame(BASTOK,40);
             player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 172) then
         player:tradeComplete();
         player:addQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_GIFT);
-        player:setVar("theTalekeeperGiftCS",3);
+        player:setCharVar("theTalekeeperGiftCS",3);
     elseif (csid == 504) then
         player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",18,true);
     end

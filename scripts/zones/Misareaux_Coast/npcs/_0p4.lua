@@ -29,7 +29,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 13) then
-        player:setVar("COP_Boggelmann_KILL",2);
+        player:setCharVar("COP_Boggelmann_KILL",2);
         npcUtil.giveKeyItem(player, dsp.ki.VESSEL_OF_LIGHT_KI);
     end
 end;

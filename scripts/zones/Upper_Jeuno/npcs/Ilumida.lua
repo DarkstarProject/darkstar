@@ -66,10 +66,10 @@ end;
 function onEventFinish(player,csid,option)
     if ((csid == 192 and option == 1) or (csid == 193 and option == 1)) then --just start quest
         player:addQuest(JEUNO,dsp.quest.id.jeuno.A_CANDLELIGHT_VIGIL);
-        player:setVar("QuestACandlelightVigil_denied", 0);
+        player:setCharVar("QuestACandlelightVigil_denied", 0);
 
     elseif (csid == 192 and option == 0) then --quest denied, special eventIDs available
-        player:setVar("QuestACandlelightVigil_denied", 1);
+        player:setCharVar("QuestACandlelightVigil_denied", 1);
 
     elseif (csid == 194) then --finish quest
         if (player:getFreeSlotsCount() == 0) then
@@ -85,12 +85,12 @@ function onEventFinish(player,csid,option)
         end
 
     elseif (csid == 197 and option == 0) then --quest denied, special eventIDs available
-        player:setVar("QuestSearchRightWords_prereq", 0); --remove charVar from memory
-        player:setVar("QuestSearchRightWords_denied", 1);
+        player:setCharVar("QuestSearchRightWords_prereq", 0); --remove charVar from memory
+        player:setCharVar("QuestSearchRightWords_denied", 1);
 
     elseif ((csid == 197 and option == 1) or (csid == 201 and option == 1)) then
-        player:setVar("QuestSearchRightWords_prereq", 0); --remove charVar from memory
-        player:setVar("QuestSearchRightWords_denied", 0);
+        player:setCharVar("QuestSearchRightWords_prereq", 0); --remove charVar from memory
+        player:setCharVar("QuestSearchRightWords_denied", 0);
         player:addQuest(JEUNO,dsp.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS);
 
     elseif (csid == 198) then --finish quest, note: no title granted
@@ -103,9 +103,9 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,4882);
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS);
-            player:setVar("SearchingForRightWords_postcs", -2);
+            player:setCharVar("SearchingForRightWords_postcs", -2);
         end
     elseif (csid == 196) then
-        player:setVar("SearchingForRightWords_postcs", 0);
+        player:setCharVar("SearchingForRightWords_postcs", 0);
     end
 end;

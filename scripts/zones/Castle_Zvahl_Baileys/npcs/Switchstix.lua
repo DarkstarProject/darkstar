@@ -151,7 +151,7 @@ function onTrade(player,npc,trade)
 
         -- Trade is valid, so set vars, complete trade, and give a CS
         if tradeOK == true then
-            player:setVar("RELIC_IN_PROGRESS",itemid);
+            player:setCharVar("RELIC_IN_PROGRESS",itemid);
             player:tradeComplete();
             player:startEvent(11, itemid, eventParams[1], eventParams[2], eventParams[3], eventParams[5], eventParams[6], 0, eventParams[8]);
         end
@@ -189,15 +189,15 @@ function onTrade(player,npc,trade)
 
             -- Stage 1->2, wait until next game day
             if (eventParams[7] == 1) then
-                player:setVar("RELIC_DUE_AT",getMidnight());
+                player:setCharVar("RELIC_DUE_AT",getMidnight());
 
             -- Stage 2->3, wait RELIC_2ND_UPGRADE_WAIT_TIME (7200s / 2 hours default)
             elseif (eventParams[7] == 2) then
-                player:setVar("RELIC_DUE_AT",os.time() + RELIC_2ND_UPGRADE_WAIT_TIME);
+                player:setCharVar("RELIC_DUE_AT",os.time() + RELIC_2ND_UPGRADE_WAIT_TIME);
 
             -- Stage 3->4, wait RELIC_3RD_UPGRADE_WAIT_TIME (3600s / 1 hour default)
             elseif (eventParams[7] == 3) then
-                player:setVar("RELIC_DUE_AT",os.time() + RELIC_3RD_UPGRADE_WAIT_TIME);
+                player:setCharVar("RELIC_DUE_AT",os.time() + RELIC_3RD_UPGRADE_WAIT_TIME);
             end
 
             player:tradeComplete();
@@ -314,14 +314,14 @@ function onEventFinish(player,csid,option)
 
     -- User is cancelling a relic.  Null everything out, it never happened.
     if (csid == 87 and option == 666) then
-        player:setVar("RELIC_IN_PROGRESS",0);
-        player:setVar("RELIC_DUE_AT",0);
-        player:setVar("RELIC_MAKE_ANOTHER",0);
-        player:setVar("RELIC_CONQUEST_WAIT",0);
+        player:setCharVar("RELIC_IN_PROGRESS",0);
+        player:setCharVar("RELIC_DUE_AT",0);
+        player:setCharVar("RELIC_MAKE_ANOTHER",0);
+        player:setCharVar("RELIC_CONQUEST_WAIT",0);
 
     -- User is okay with making a relic they cannot possibly accept
     elseif (csid == 20 and option == 1) then
-        player:setVar("RELIC_MAKE_ANOTHER",1);
+        player:setCharVar("RELIC_MAKE_ANOTHER",1);
 
     -- Picking up a finished relic stage 1>2 and 2>3.
     elseif ((csid == 16 or csid == 19) and reward ~= 0) then
@@ -330,10 +330,10 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(reward+1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,reward+1);
-            player:setVar("RELIC_IN_PROGRESS",0);
-            player:setVar("RELIC_DUE_AT",0);
-            player:setVar("RELIC_MAKE_ANOTHER",0);
-            player:setVar("RELIC_CONQUEST_WAIT",getConquestTally());
+            player:setCharVar("RELIC_IN_PROGRESS",0);
+            player:setCharVar("RELIC_DUE_AT",0);
+            player:setCharVar("RELIC_MAKE_ANOTHER",0);
+            player:setCharVar("RELIC_CONQUEST_WAIT",getConquestTally());
         end
     -- Picking up a finished relic stage 3>4.
     elseif (csid == 52 and reward ~= 0) then
@@ -342,33 +342,33 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(reward+1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,reward+1);
-            player:setVar("RELIC_IN_PROGRESS",0);
-            player:setVar("RELIC_DUE_AT",0);
-            player:setVar("RELIC_MAKE_ANOTHER",0);
-            player:setVar("RELIC_CONQUEST_WAIT",0);
+            player:setCharVar("RELIC_IN_PROGRESS",0);
+            player:setCharVar("RELIC_DUE_AT",0);
+            player:setCharVar("RELIC_MAKE_ANOTHER",0);
+            player:setCharVar("RELIC_CONQUEST_WAIT",0);
         end
 
     -- Stage 4 cutscenes
     elseif ((csid >= 68 and csid <= 82) or csid == 86) then
-        player:setVar("RELIC_CONQUEST_WAIT",0);
+        player:setCharVar("RELIC_CONQUEST_WAIT",0);
         switch (csid): caseof
         {
-            [68] = function (x) player:setVar("RELIC_IN_PROGRESS",18263); end, -- Spharai
-            [69] = function (x) player:setVar("RELIC_IN_PROGRESS",18269); end, -- Mandau
-            [70] = function (x) player:setVar("RELIC_IN_PROGRESS",18275); end, -- Excalibur
-            [71] = function (x) player:setVar("RELIC_IN_PROGRESS",18281); end, -- Ragnarok
-            [72] = function (x) player:setVar("RELIC_IN_PROGRESS",18287); end, -- Guttler
-            [73] = function (x) player:setVar("RELIC_IN_PROGRESS",18293); end, -- Bravura
-            [75] = function (x) player:setVar("RELIC_IN_PROGRESS",18299); end, -- Gungnir
-            [74] = function (x) player:setVar("RELIC_IN_PROGRESS",18305); end, -- Apocalypse
-            [76] = function (x) player:setVar("RELIC_IN_PROGRESS",18311); end, -- Kikoku
-            [77] = function (x) player:setVar("RELIC_IN_PROGRESS",18317); end, -- Amanomurakumo
-            [78] = function (x) player:setVar("RELIC_IN_PROGRESS",18323); end, -- Mjollnir
-            [79] = function (x) player:setVar("RELIC_IN_PROGRESS",18329); end, -- Claustrum
-            [81] = function (x) player:setVar("RELIC_IN_PROGRESS",18335); end, -- Annihilator
-            [82] = function (x) player:setVar("RELIC_IN_PROGRESS",18341); end, -- Gjallarhorn
-            [80] = function (x) player:setVar("RELIC_IN_PROGRESS",18347); end, -- Yoichinoyumi
-            [86] = function (x) player:setVar("RELIC_IN_PROGRESS",15069); end, -- Aegis
+            [68] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18263); end, -- Spharai
+            [69] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18269); end, -- Mandau
+            [70] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18275); end, -- Excalibur
+            [71] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18281); end, -- Ragnarok
+            [72] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18287); end, -- Guttler
+            [73] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18293); end, -- Bravura
+            [75] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18299); end, -- Gungnir
+            [74] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18305); end, -- Apocalypse
+            [76] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18311); end, -- Kikoku
+            [77] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18317); end, -- Amanomurakumo
+            [78] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18323); end, -- Mjollnir
+            [79] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18329); end, -- Claustrum
+            [81] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18335); end, -- Annihilator
+            [82] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18341); end, -- Gjallarhorn
+            [80] = function (x) player:setCharVar("RELIC_IN_PROGRESS",18347); end, -- Yoichinoyumi
+            [86] = function (x) player:setCharVar("RELIC_IN_PROGRESS",15069); end, -- Aegis
         }
     end
 end;

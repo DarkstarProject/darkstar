@@ -34,6 +34,6 @@ function onEventFinish(player, csid, option)
         player:confirmTrade()
         player:setPos(-116, -119, -620, 253, 13)
     elseif csid == 34 then
-        player:setVar("COP_Louverance_s_Path", 8)
+        player:setCharVar("COP_Louverance_s_Path", 8)
     end
 end

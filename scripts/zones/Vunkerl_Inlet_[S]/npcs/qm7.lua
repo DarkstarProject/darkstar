@@ -43,6 +43,6 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 109) then
         player:delKeyItem(dsp.ki.VUNKERL_HERB);
-        player:setVar("BoyAndTheBeast",2);
+        player:setCharVar("BoyAndTheBeast",2);
     end
 end;

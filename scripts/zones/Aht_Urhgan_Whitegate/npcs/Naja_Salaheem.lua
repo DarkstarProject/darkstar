@@ -107,10 +107,10 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 73) then
-        player:setVar("AhtUrganStatus", 2)
-        player:setVar("TOAUM3_DAY", os.date("%j")) -- %M for next minute, %j for next day
+        player:setCharVar("AhtUrganStatus", 2)
+        player:setCharVar("TOAUM3_DAY", os.date("%j")) -- %M for next minute, %j for next day
     elseif (csid == 3002) then
-        player:setVar("AhtUrganStatus",0);
+        player:setCharVar("AhtUrganStatus",0);
         player:completeMission(TOAU,dsp.mission.id.toau.IMMORTAL_SENTRIES);
         player:addMission(TOAU,dsp.mission.id.toau.PRESIDENT_SALAHEEM);
         player:addCurrency("imperial_standing", 150);
@@ -118,16 +118,16 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.PSC_WILDCAT_BADGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PSC_WILDCAT_BADGE);
     elseif (csid == 3020) then
-        player:setVar("AhtUrganStatus",0)
+        player:setCharVar("AhtUrganStatus",0)
         player:completeMission(TOAU,dsp.mission.id.toau.PRESIDENT_SALAHEEM)
         player:addMission(TOAU,dsp.mission.id.toau.KNIGHT_OF_GOLD)
-        player:setVar("TOAUM3_DAY", 0)
+        player:setCharVar("TOAUM3_DAY", 0)
     elseif (csid == 3028) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:addItem(2185,2);
-            player:setVar("AhtUrganStatus",0);
+            player:setCharVar("AhtUrganStatus",0);
             player:completeMission(TOAU,dsp.mission.id.toau.WESTERLY_WINDS);
             player:addMission(TOAU,dsp.mission.id.toau.A_MERCENARY_LIFE);
             player:messageSpecial(ID.text.ITEM_OBTAINED,2185);
@@ -136,11 +136,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3052) then
         player:completeMission(TOAU,dsp.mission.id.toau.ASTRAL_WAVES)
         player:needToZone(true)
-        player:setVar("TOAUM11_STARTDAY", VanadielDayOfTheYear())
+        player:setCharVar("TOAUM11_STARTDAY", VanadielDayOfTheYear())
         player:addMission(TOAU,dsp.mission.id.toau.IMPERIAL_SCHEMES)
     elseif (csid == 3070) then
         player:completeMission(TOAU,dsp.mission.id.toau.IMPERIAL_SCHEMES)
-        player:setVar("TOAUM11_STARTDAY", 0)
+        player:setCharVar("TOAUM11_STARTDAY", 0)
         player:addMission(TOAU,dsp.mission.id.toau.ROYAL_PUPPETEER)
     elseif (csid == 3072) then
         player:completeMission(TOAU,dsp.mission.id.toau.THE_DOLPHIN_CREST)
@@ -150,22 +150,22 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE)
 
         if(option == 2) then
-            player:setVar("AhtUrganStatus", 1)
+            player:setCharVar("AhtUrganStatus", 1)
         end
     elseif (csid == 3090) then
         player:completeMission(TOAU,dsp.mission.id.toau.PASSING_GLORY)
-        player:setVar("TOAUM18_STARTDAY", 0)
+        player:setCharVar("TOAUM18_STARTDAY", 0)
         player:addMission(TOAU,dsp.mission.id.toau.SWEETS_FOR_THE_SOUL)
     elseif (csid == 3113) then
         player:completeMission(TOAU,dsp.mission.id.toau.IN_THE_BLOOD);
-        player:setVar("TOAUM33_STARTDAY", VanadielDayOfTheYear());
+        player:setCharVar("TOAUM33_STARTDAY", VanadielDayOfTheYear());
         player:needToZone(true);
         player:addItem(2187);
         player:messageSpecial(ID.text.ITEM_OBTAINED,2187);
         player:addMission(TOAU,dsp.mission.id.toau.SENTINELS_HONOR);
     elseif (csid == 3130) then
         player:completeMission(TOAU,dsp.mission.id.toau.SENTINELS_HONOR)
-        player:setVar("TOAUM33_STARTDAY", 0)
+        player:setCharVar("TOAUM33_STARTDAY", 0)
         player:addMission(TOAU,dsp.mission.id.toau.TESTING_THE_WATERS)
     elseif (csid == 3138) then
         player:completeMission(TOAU,dsp.mission.id.toau.FANGS_OF_THE_LION);
@@ -185,21 +185,21 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MYTHRIL_MIRROR);
         player:addKeyItem(dsp.ki.MYTHRIL_MIRROR);
     elseif (csid == 3076 and option == 0) then
-        player:setVar("AhtUrganStatus", 1)
+        player:setCharVar("AhtUrganStatus", 1)
     elseif csid == 5000 then
-        player:setVar("PromotionPFC", 1)
+        player:setCharVar("PromotionPFC", 1)
     elseif csid == 5002 then
         player:confirmTrade()
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE)
         player:addKeyItem(dsp.ki.PFC_WILDCAT_BADGE)
-        player:setVar("PromotionPFC", 0)
-        player:setVar("AssaultPromotion", 0)
+        player:setCharVar("PromotionPFC", 0)
+        player:setCharVar("AssaultPromotion", 0)
     elseif csid == 5020 then
-        player:setVar("PromotionSP", 1)
+        player:setCharVar("PromotionSP", 1)
     elseif csid == 5022 then
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SP_WILDCAT_BADGE)
         player:addKeyItem(dsp.ki.SP_WILDCAT_BADGE)
-        player:setVar("PromotionSP", 0)
-        player:setVar("AssaultPromotion", 0)
+        player:setCharVar("PromotionSP", 0)
+        player:setCharVar("AssaultPromotion", 0)
     end
 end

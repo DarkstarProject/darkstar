@@ -18,8 +18,8 @@ function onTrigger(player,npc)
     -- killed Dark Spark and clicked same torch used to spawn
     if player:getCharVar("BorghertzSparkKilled") == 1 and GetMobByID(ID.mob.DARK_SPARK):getLocalVar("fromTorch") == offset then
         npcUtil.giveKeyItem(player, dsp.ki.SHADOW_FLAMES)
-        player:setVar("BorghertzSparkKilled", 0)
-        player:setVar("BorghertzCS", 0)
+        player:setCharVar("BorghertzSparkKilled", 0)
+        player:setCharVar("BorghertzCS", 0)
 
     -- attempt to spawn Dark Spark from torch
     elseif
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     then
         player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
         GetMobByID(ID.mob.DARK_SPARK):setLocalVar("fromTorch", offset)
-        player:setVar("BorghertzSparkKilled", 0)
+        player:setCharVar("BorghertzSparkKilled", 0)
 
     -- default dialog
     else

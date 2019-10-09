@@ -35,9 +35,9 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 3 then
-        player:setVar("star_ringburied", os.time() + 60) -- wait 1 minute
+        player:setCharVar("star_ringburied", os.time() + 60) -- wait 1 minute
     elseif csid == 2 then
-        player:setVar("star_ringburied", 0)
-        player:setVar("circleTime", 4)
+        player:setCharVar("star_ringburied", 0)
+        player:setCharVar("circleTime", 4)
     end
 end

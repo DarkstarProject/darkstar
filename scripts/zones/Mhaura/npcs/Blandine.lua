@@ -36,10 +36,10 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 125) then
         player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_SAND_CHARM);
-        player:setVar("theSandCharmVar",1);
+        player:setCharVar("theSandCharmVar",1);
     elseif (csid == 124) then
-        player:setVar("theSandCharmVar",3);
+        player:setCharVar("theSandCharmVar",3);
     elseif (csid == 128) then
-        player:setVar("SmallDialogByBlandine",0);
+        player:setCharVar("SmallDialogByBlandine",0);
     end
 end;

@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 
         if (reward > 7000) then
             if (player:getFreeSlotsCount() >= 1) then
-                player:setVar("harithreward",reward);
+                player:setCharVar("harithreward",reward);
                 player:startEvent(110);
             else
                 player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,reward);
@@ -43,7 +43,7 @@ function onTrade(player,npc,trade)
             elseif (trade:getGil() ~= 2000) then
                 player:startEvent(108,2000);
             else
-                player:setVar("harithreward",anima);
+                player:setCharVar("harithreward",anima);
                 player:startEvent(109);
             end
         end
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addItem(objecttrade);
         player:messageSpecial(ID.text.ITEM_OBTAINED,objecttrade);
-        player:setVar("harithreward", 0);
+        player:setCharVar("harithreward", 0);
         if (player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_ACCEPTED) then
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO, dsp.quest.id.jeuno.EMPTY_MEMORIES)

@@ -15,7 +15,7 @@ function onTrade(player, npc, trade)
             player:confirmTrade()
         elseif npcUtil.tradeHas(trade, 1198) and player:getCharVar("ForgeYourDestiny_killed") == 1 and npcUtil.giveItem(player, 1153) then
             player:confirmTrade()
-            player:setVar("ForgeYourDestiny_killed", 0)
+            player:setCharVar("ForgeYourDestiny_killed", 0)
         end
     end
 end

@@ -52,16 +52,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 555) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 509) then
-        player:setVar("MissionStatus",9);
+        player:setCharVar("MissionStatus",9);
         player:delKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA);
     elseif (csid == 0) then
-        player:setVar("SecretWeaponStatus",2)
+        player:setCharVar("SecretWeaponStatus",2)
     elseif (csid == 10) then
-        player:setVar("MissionStatus",2)
+        player:setCharVar("MissionStatus",2)
     elseif (csid == 116) then
-        player:setVar("MissionStatus",1)
+        player:setCharVar("MissionStatus",1)
     end
 
 end;

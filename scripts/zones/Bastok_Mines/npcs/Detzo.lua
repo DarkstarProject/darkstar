@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 
     if (player:getCharVar("theTalekeeperGiftCS") == 1) then
         player:startEvent(171);
-        player:setVar("theTalekeeperGiftCS",2);
+        player:setCharVar("theTalekeeperGiftCS",2);
     elseif (Rivals == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
         player:startEvent(93);
     elseif (Rivals == QUEST_ACCEPTED) then

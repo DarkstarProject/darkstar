@@ -62,11 +62,11 @@ function onEventFinish(player,csid,option)
     -- IMMORTAL SENTRIES
     if (csid == 5 and option == 1) then
         player:delKeyItem(dsp.ki.SUPPLIES_PACKAGE);
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
 
     -- SHADES OF VENGEANCE
     elseif (csid == 22) then
-        player:setVar("TOAUM31_PERMITDAY",vanaDay());
+        player:setCharVar("TOAUM31_PERMITDAY",vanaDay());
         player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
 

@@ -63,13 +63,13 @@ function onEventFinish(player,csid,option)
     if (csid == 121) then
         player:addKeyItem(dsp.ki.CHARM_OF_LIGHT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHARM_OF_LIGHT);
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 149 or csid == 257) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 135 or csid == 151) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 387) then
-        player:setVar("WindurstSecured",0);
+        player:setCharVar("WindurstSecured",0);
     end
 
 end;

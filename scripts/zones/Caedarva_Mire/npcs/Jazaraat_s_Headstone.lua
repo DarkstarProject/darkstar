@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         elseif (player:getCharVar("AhtUrganStatus") == 2) then
             player:startEvent(9);
         elseif (player:getCharVar("AhtUrganStatus") == 3) then
-            player:setVar("AhtUrganStatus", 0);
+            player:setCharVar("AhtUrganStatus", 0);
             player:addKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
             player:completeMission(TOAU,dsp.mission.id.toau.LOST_KINGDOM);
             player:addMission(TOAU,dsp.mission.id.toau.THE_DOLPHIN_CREST);
@@ -43,8 +43,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 8) then
-        player:setVar("AhtUrganStatus", 1);
+        player:setCharVar("AhtUrganStatus", 1);
     elseif (csid == 9) then
-        player:setVar("AhtUrganStatus", 3);
+        player:setCharVar("AhtUrganStatus", 3);
     end
 end;

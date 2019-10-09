@@ -13,7 +13,7 @@ function onMobDeath(mob, player, isKiller)
         local missionStatus = player:getCharVar("MissionStatus");
 
         if (missionStatus > 1 and missionStatus < 22) then
-            player:setVar("MissionStatus", missionStatus + 1)
+            player:setCharVar("MissionStatus", missionStatus + 1)
         end
     end
 end;

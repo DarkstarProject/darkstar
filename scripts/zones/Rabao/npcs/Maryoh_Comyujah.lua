@@ -38,9 +38,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 81 and option == 1) then
-        player:setVar("ZilartStatus",1);
+        player:setCharVar("ZilartStatus",1);
     elseif (csid == 83) then
-        player:setVar("ZilartStatus",2);
+        player:setCharVar("ZilartStatus",2);
         player:delKeyItem(dsp.ki.SCRAP_OF_PAPYRUS);
         player:addKeyItem(dsp.ki.CERULEAN_CRYSTAL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CERULEAN_CRYSTAL);

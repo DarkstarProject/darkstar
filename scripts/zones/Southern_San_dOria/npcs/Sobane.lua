@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 
     -- RIDING ON THE CLOUDS
     elseif npcUtil.tradeHas(trade, 1127) and player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_1") == 2 then
-        player:setVar("ridingOnTheClouds_1", 0)
+        player:setCharVar("ridingOnTheClouds_1", 0)
         npcUtil.giveKeyItem(player, dsp.ki.SCOWLING_STONE)
         player:confirmTrade()
     end
@@ -55,13 +55,13 @@ end
 function onEventFinish(player,csid,option)
     -- SHARPENING THE SWORD
     if csid == 52 then
-        player:setVar("sharpeningTheSwordCS", 3)
+        player:setCharVar("sharpeningTheSwordCS", 3)
 
     -- SIGNED IN BLOOD
     elseif csid == 732 and option == 1 then
         player:addQuest(SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
     elseif csid == 734 then
-        player:setVar("SIGNED_IN_BLOOD_Prog", 1)
+        player:setCharVar("SIGNED_IN_BLOOD_Prog", 1)
     elseif csid == 736 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD, {item = 14760, gil = 3500, var = "SIGNED_IN_BLOOD_Prog"}) then
         player:delKeyItem(dsp.ki.TORN_OUT_PAGES)
         player:confirmTrade()

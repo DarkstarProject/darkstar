@@ -36,8 +36,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 46) then
-        player:setVar("OnSabbatical", 2);
+        player:setCharVar("OnSabbatical", 2);
     elseif (csid == 160) then
-        player:setVar("FiresOfDiscProg",6);
+        player:setCharVar("FiresOfDiscProg",6);
     end
 end;

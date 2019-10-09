@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
             player:delQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         end
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
-        player:setVar("TrialByIce_date", 0);
+        player:setCharVar("TrialByIce_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_ICE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
     elseif (csid == 718) then
@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_ICE);
             player:delKeyItem(dsp.ki.WHISPER_OF_FROST); --Whisper of Frost, as a trade for the above rewards
-            player:setVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         end
@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1171);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1171);
-            player:setVar("ClassReunionProgress",5);
+            player:setCharVar("ClassReunionProgress",5);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1171);
         end;

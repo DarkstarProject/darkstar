@@ -51,9 +51,9 @@ function onEventFinish(player,csid,option)
         prog = player:getCharVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.PORT_WINDURST_SCOOP);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PORT_WINDURST_SCOOP);
-        player:setVar("QuestMakingHeadlines_var",prog+2);
+        player:setCharVar("QuestMakingHeadlines_var",prog+2);
     elseif (csid == 592)    then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",10);
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",10);
     elseif (csid == 621) then
         player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",19,true);
     end

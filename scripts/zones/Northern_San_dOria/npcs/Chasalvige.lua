@@ -30,10 +30,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 38) then
-        player:setVar("EMERALD_WATERS_Status",4);
+        player:setCharVar("EMERALD_WATERS_Status",4);
     elseif (csid == 761) then
-        player:setVar("COP_optional_CS_chasalvigne",1);
+        player:setCharVar("COP_optional_CS_chasalvigne",1);
     elseif (csid == 762) then
-        player:setVar("COP_Ulmia_s_Path",3);
+        player:setCharVar("COP_Ulmia_s_Path",3);
     end
 end;

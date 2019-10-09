@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(ID.text.BONCORT_DIALOG)
             player:messageSpecial(ID.text.FLYER_ACCEPTED)
             player:addVar("FFR", -1)
-            player:setVar("tradeBoncort", 1)
+            player:setCharVar("tradeBoncort", 1)
         else
             player:messageSpecial(ID.text.FLYER_ALREADY)
         end

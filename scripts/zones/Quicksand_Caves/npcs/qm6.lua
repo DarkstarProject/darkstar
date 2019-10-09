@@ -40,6 +40,6 @@ function onEventFinish(player,csid,option)
 
     -- THE CHAINS THAT BIND US
     if (csid == 11) then
-        player:setVar("MissionStatus", 2);
+        player:setCharVar("MissionStatus", 2);
     end
 end;

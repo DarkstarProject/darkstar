@@ -31,7 +31,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 342 then
-        player:setVar("BeatAroundTheBushin",4)
+        player:setCharVar("BeatAroundTheBushin",4)
     elseif csid == 256 then
         player:addQuest(BASTOK,dsp.quest.id.bastok.THE_BARE_BONES)
     elseif csid == 258 then

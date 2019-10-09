@@ -30,6 +30,6 @@ function onEventFinish(player,csid,option)
     if (csid == 53 and option == 1) then
         player:addKeyItem(39,dsp.ki.OFF_OFFERING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OFF_OFFERING);
-        player:setVar("QuestCrisisMaking_var",2);
+        player:setCharVar("QuestCrisisMaking_var",2);
     end
 end;

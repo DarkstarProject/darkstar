@@ -229,8 +229,8 @@ dsp.homepoint.onTrigger = function(player, csid, hpIndex)
 
             -- update mask with new location and save to database
             mask = bit.bor(mask, bit.lshift(1, homepoints[hpIndex][2] - 1))
-            player:setVar("HpTeleportMask"..group.."a", bit.rshift(mask, 16))
-            player:setVar("HpTeleportMask"..group.."b", bit.rshift(bit.lshift(mask, 16), 16))
+            player:setCharVar("HpTeleportMask"..group.."a", bit.rshift(mask, 16))
+            player:setCharVar("HpTeleportMask"..group.."b", bit.rshift(bit.lshift(mask, 16), 16))
         end
 
         -- set localvar (will be used onEventFinish) and start homepoint menu event

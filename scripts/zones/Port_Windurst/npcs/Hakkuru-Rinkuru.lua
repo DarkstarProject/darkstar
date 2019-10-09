@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS) == QUEST_ACCEPTED) then
         SecondReward = player:getCharVar("SecondRewardVar");
         if (trade:hasItemQty(17091,1) and trade:hasItemQty(17061,1) and trade:hasItemQty(17053,1) and trade:getItemCount() == 3) then --Check that all 3 items have been traded, one each
-            SecondReward = player:setVar("SecondRewardVar",1);
+            SecondReward = player:setCharVar("SecondRewardVar",1);
             player:startEvent(265,0,17091,17061,17053); --Completion of quest cutscene for Wondering Wands
         else
             player:startEvent(260,0,17091,17061,17053); --Remind player which items are needed ifquest is accepted and items are not traded
@@ -90,19 +90,19 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 90) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 147) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 94) then
 
         -- Delete the variable(s) that was created for this mission
-        player:setVar("Mission_started_from",0);
-        player:setVar("MissionStatus_op1",0);
-        player:setVar("MissionStatus_op2",0);
-        player:setVar("MissionStatus_op3",0);
-        player:setVar("MissionStatus_op4",0);
-        player:setVar("MissionStatus_op5",0);
-        player:setVar("MissionStatus_op6",0);
+        player:setCharVar("Mission_started_from",0);
+        player:setCharVar("MissionStatus_op1",0);
+        player:setCharVar("MissionStatus_op2",0);
+        player:setCharVar("MissionStatus_op3",0);
+        player:setCharVar("MissionStatus_op4",0);
+        player:setCharVar("MissionStatus_op5",0);
+        player:setCharVar("MissionStatus_op6",0);
 
         finishMissionTimeline(player,1,csid,option);
 
@@ -130,7 +130,7 @@ function onEventFinish(player,csid,option)
                 player:addItem(17061,1); --Returns the Oak Staff and the Mythril Rod
                 player:messageSpecial(ID.text.ITEM_OBTAINED,17091);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,17061);
-                player:setVar("SecondRewardVar",0);
+                player:setCharVar("SecondRewardVar",0);
             end
         elseif (rand == 2) then
             if (player:getFreeSlotsCount() == 1) then
@@ -143,7 +143,7 @@ function onEventFinish(player,csid,option)
                 player:addItem(17053,1); --Returns the Oak Staff and the Rose Wand
                 player:messageSpecial(ID.text.ITEM_OBTAINED,17091);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,17053);
-                player:setVar("SecondRewardVar",0);
+                player:setCharVar("SecondRewardVar",0);
             end
         elseif (rand == 3) then
             if (player:getFreeSlotsCount() == 1) then
@@ -156,7 +156,7 @@ function onEventFinish(player,csid,option)
                 player:addItem(17053,1); --Returns the Rose Wand and the Mythril Rod
                 player:messageSpecial(ID.text.ITEM_OBTAINED,17061);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,17053);
-                player:setVar("SecondRewardVar",0);
+                player:setCharVar("SecondRewardVar",0);
             end
         end
     elseif (csid == 265) then
@@ -174,7 +174,7 @@ function onEventFinish(player,csid,option)
         end
         -- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
     elseif (csid == 456) then
-            player:setVar("MissionStatus",1);
+            player:setCharVar("MissionStatus",1);
             player:addKeyItem(dsp.ki.SOUTHWESTERN_STAR_CHARM);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOUTHWESTERN_STAR_CHARM);
     end

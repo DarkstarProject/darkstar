@@ -39,11 +39,11 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10003) then
-        player:setVar("hittingTheMarquisateHagainCS",2);
+        player:setCharVar("hittingTheMarquisateHagainCS",2);
         player:addKeyItem(dsp.ki.BOMB_INCENSE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOMB_INCENSE);
     elseif (csid == 10005) then
-        player:setVar("hittingTheMarquisateHagainCS",9);
+        player:setCharVar("hittingTheMarquisateHagainCS",9);
         player:delKeyItem(dsp.ki.BOMB_INCENSE);
         player:tradeComplete();
     end

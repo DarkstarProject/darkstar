@@ -55,15 +55,15 @@ function onEventFinish(player,csid,option)
     if (csid == 139 or csid == 136 or csid == 142 or csid == 145) and option == 2 then -- player gives up
         player:confirmTrade()
         player:messageSpecial(ID.text.YOU_GAVE_UP)
-        player:setVar("thickAsThievesGamblingCS",-1)
+        player:setCharVar("thickAsThievesGamblingCS",-1)
     elseif (csid == 139 or csid == 145) and option == 1 then -- player looses dice game
         player:confirmTrade()
         player:messageSpecial(ID.text.GOBLIN_BEAT_YOU)
-        player:setVar("thickAsThievesGamblingCS",-1)
+        player:setCharVar("thickAsThievesGamblingCS",-1)
     elseif (csid == 136 or csid == 142) and option == 0 then -- player wins dice game
         player:confirmTrade()
         player:messageSpecial(ID.text.YOU_BEAT_GOBLIN)
-        player:setVar("thickAsThievesGamblingCS",3)
+        player:setCharVar("thickAsThievesGamblingCS",3)
     end
 
 end

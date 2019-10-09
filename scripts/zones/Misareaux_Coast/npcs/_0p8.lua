@@ -30,7 +30,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 9 and option == 1) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
         player:setPos(-220.075,-15.999,79.634,62,28); -- To Sacrarium {R}
     elseif (csid == 502 and option == 1) then
         player:setPos(-220.075,-15.999,79.634,62,28); -- To Sacrarium {R}

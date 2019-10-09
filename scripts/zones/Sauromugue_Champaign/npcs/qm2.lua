@@ -59,7 +59,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 2 then
-        player:setVar("thickAsThievesGrapplingCS", 8)
+        player:setCharVar("thickAsThievesGrapplingCS", 8)
         player:delKeyItem(dsp.ki.FIRST_FORGED_ENVELOPE)
         npcUtil.giveKeyItem(player, dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE)
         player:confirmTrade()

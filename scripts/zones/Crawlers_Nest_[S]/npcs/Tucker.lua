@@ -52,13 +52,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 6) then
-        player:setVar("SheetsofVellum", 1);
+        player:setCharVar("SheetsofVellum", 1);
     elseif (csid == 8) then
         if (player:getFreeSlotsCount() > 0) then
             player:tradeComplete();
             player:addItem(2550, 4);
             player:messageSpecial(ID.text.ITEM_OBTAINED + 9, 2550, 4);
-            player:setVar("SheetsofVellum", 2);
+            player:setCharVar("SheetsofVellum", 2);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2550);
         end
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(2550, 4);
             player:messageSpecial(ID.text.ITEM_OBTAINED + 9, 2550, 4);
-            player:setVar("SheetsofVellum", 3);
+            player:setCharVar("SheetsofVellum", 3);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2550);
         end
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(2550, 4);
             player:messageSpecial(ID.text.ITEM_OBTAINED + 9, 2550, 4);
-            player:setVar("SheetsofVellum", 4);
+            player:setCharVar("SheetsofVellum", 4);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2550);
         end

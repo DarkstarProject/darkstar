@@ -60,14 +60,14 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,dsp.quest.id.jeuno.CREST_OF_DAVOI);
     elseif (csid == 171) then
         player:tradeComplete();
-        player:setVar("saveMySisterVar",1);
+        player:setCharVar("saveMySisterVar",1);
         player:addKeyItem(dsp.ki.CREST_OF_DAVOI_KI);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CREST_OF_DAVOI_KI);
         player:addFame(JEUNO, 30);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.CREST_OF_DAVOI);
 
     elseif (csid == 105) then
-        player:setVar("saveMySisterVar",3);
+        player:setCharVar("saveMySisterVar",3);
     elseif (csid == 107) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17041);

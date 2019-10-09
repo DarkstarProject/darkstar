@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.PERCIPIENT_EYE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERCIPIENT_EYE);
         player:setTitle(dsp.title.TREASURE_TROVE_TENDER);
-        player:setVar("AhtUrganStatus", 0);
+        player:setCharVar("AhtUrganStatus", 0);
         player:addMission(TOAU,dsp.mission.id.toau.LEGACY_OF_THE_LOST);
     end
 end;

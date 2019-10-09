@@ -74,22 +74,22 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
         else
-            player:setVar("KnightStalker_Declined",1);
+            player:setCharVar("KnightStalker_Declined",1);
         end
     elseif (csid == 120 and option == 1) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
-        player:setVar("KnightStalker_Declined",0);
+        player:setCharVar("KnightStalker_Declined",0);
     elseif (csid == 78) then
-        player:setVar("KnightStalker_Progress",2);
+        player:setCharVar("KnightStalker_Progress",2);
     elseif (csid == 110) then
-        player:setVar("KnightStalker_Progress",4);
+        player:setCharVar("KnightStalker_Progress",4);
     elseif (csid == 118) then
-        player:setVar("KnightStalker_Option2",0);
+        player:setCharVar("KnightStalker_Option2",0);
     elseif (csid == 106) then
         if (player:hasKeyItem(dsp.ki.CRYSTAL_DOWSER)) then
             player:delKeyItem(dsp.ki.CRYSTAL_DOWSER); -- To prevent them getting a message about already having the keyitem
         else
-            player:setVar("MissionStatus",2);
+            player:setCharVar("MissionStatus",2);
             player:addKeyItem(dsp.ki.CRYSTAL_DOWSER);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
         end

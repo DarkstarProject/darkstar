@@ -24,7 +24,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 10003) then
-        player:setVar("recollectionsQuest",1);
+        player:setCharVar("recollectionsQuest",1);
     end
 
 end;

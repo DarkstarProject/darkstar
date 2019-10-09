@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE);
             player:addItem(751);
             player:messageSpecial(ID.text.ITEM_OBTAINED,751); --Platinum Beastcoin
-            player:setVar("KnotQuiteThere",0);
+            player:setCharVar("KnotQuiteThere",0);
         end
     end
 end;

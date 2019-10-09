@@ -41,12 +41,12 @@ function onEventFinish(player,csid,option)
     if (csid == 372 or csid == 373) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 773) then
-    player:setVar("BASTOK91",1);
+    player:setCharVar("BASTOK91",1);
     elseif (csid == 776) then
-    player:setVar("BASTOK91",0);
+    player:setCharVar("BASTOK91",0);
     player:completeMission(BASTOK,dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH);
     player:addRankPoints(1500);
-    player:setVar("OptionalcsCornelia",1);
+    player:setCharVar("OptionalcsCornelia",1);
     end
 
 end;

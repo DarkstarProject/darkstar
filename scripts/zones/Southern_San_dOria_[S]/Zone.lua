@@ -35,7 +35,7 @@ function onZoneIn(player,prevZone)
         if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
-        player:setVar("PlayerMainJob",0);
+        player:setCharVar("PlayerMainJob",0);
     end
     return cs;
 end;
@@ -48,9 +48,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 62) then
-        player:setVar("KnotQuiteThere",3);
+        player:setCharVar("KnotQuiteThere",3);
     elseif (csid == 65) then
-        player:setVar("DownwardHelix",1);
+        player:setCharVar("DownwardHelix",1);
     elseif (csid == 67) then
         player:completeMission(WOTG, dsp.mission.id.wotg.CAIT_SITH);
         player:addMission(WOTG, dsp.mission.id.wotg.THE_QUEEN_OF_THE_DANCE);

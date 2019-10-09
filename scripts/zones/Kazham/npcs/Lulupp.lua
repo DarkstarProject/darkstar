@@ -117,15 +117,15 @@ function onEventFinish(player,csid,option,npc)
     elseif (csid == 219) then
         if (player:getCharVar("OPO_OPO_PROGRESS") == 0) then
             player:tradeComplete();
-            player:setVar("OPO_OPO_PROGRESS",1);
+            player:setCharVar("OPO_OPO_PROGRESS",1);
         else
-            player:setVar("OPO_OPO_FAILED",2);
+            player:setCharVar("OPO_OPO_FAILED",2);
         end
     elseif (csid == 229) then                                -- Traded wrong item, saving current progress to not take item up to this point
-        player:setVar("OPO_OPO_RETRY",1);
+        player:setCharVar("OPO_OPO_RETRY",1);
     elseif (csid == 239 and option == 1) then                -- Traded wrong to another NPC, give a clue
-        player:setVar("OPO_OPO_RETRY",0);
-        player:setVar("OPO_OPO_FAILED",1);
+        player:setCharVar("OPO_OPO_RETRY",0);
+        player:setCharVar("OPO_OPO_FAILED",1);
     else
         npc:wait(0);
     end

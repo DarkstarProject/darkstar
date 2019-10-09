@@ -25,16 +25,16 @@ function onZoneIn(player, prevZone)
     if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") == 2 then
         player:completeMission(COP, dsp.mission.id.cop.BELOW_THE_ARKS)
         player:addMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS)
-        player:setVar("PromathiaStatus", 0)
+        player:setCharVar("PromathiaStatus", 0)
     elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS then
         if player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) then
             if player:getCharVar("cslastpromy") == 1 then
-                player:setVar("cslastpromy", 0)
+                player:setCharVar("cslastpromy", 0)
                 cs = 52
             end
         elseif player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) then
             if player:getCharVar("cs2ndpromy") == 1 then
-                player:setVar("cs2ndpromy", 0)
+                player:setCharVar("cs2ndpromy", 0)
                 cs = 51
             end
         end
@@ -67,6 +67,6 @@ function onEventFinish(player, csid, option)
     if csid == 46 and option == 1 then
         player:setPos(-226.193, -46.459, -280.046, 127, 14) -- To Hall of Transference {R}
     elseif csid == 50 then
-        player:setVar("FirstPromyvionDem", 0)
+        player:setCharVar("FirstPromyvionDem", 0)
     end
 end

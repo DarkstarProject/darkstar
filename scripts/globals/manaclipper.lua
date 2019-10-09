@@ -96,7 +96,7 @@ dsp.manaclipper.timekeeperOnTrigger = function(player, location, eventId)
 end
 
 dsp.manaclipper.aboard = function(player, regionId, isAboard)
-    player:setVar("[manaclipper]aboard", isAboard and regionId or 0)
+    player:setCharVar("[manaclipper]aboard", isAboard and regionId or 0)
 end
 
 dsp.manaclipper.onZoneIn = function(player)
@@ -116,15 +116,15 @@ dsp.manaclipper.onZoneIn = function(player)
         end
 
         if nextEvent.route == dest.PURGONORGO_ISLE then
-            player:setVar("[manaclipper]arrivalEventId", 13) -- Bibiki event 13 sets pos then chains to 11: arrive at Purgonorgo Isle
+            player:setCharVar("[manaclipper]arrivalEventId", 13) -- Bibiki event 13 sets pos then chains to 11: arrive at Purgonorgo Isle
         else
-            player:setVar("[manaclipper]arrivalEventId", 12) -- Bibiki event 12 sets pos then chains to 10: arrive at Sunset Docks
+            player:setCharVar("[manaclipper]arrivalEventId", 12) -- Bibiki event 12 sets pos then chains to 10: arrive at Sunset Docks
         end
 
     -- zoning into bibiki bay. play the eventId stored in [manaclipper]arrivalEventId.
     elseif zoneId == dsp.zone.BIBIKI_BAY then
         local eventId = player:getCharVar("[manaclipper]arrivalEventId")
-        player:setVar("[manaclipper]arrivalEventId", 0)
+        player:setCharVar("[manaclipper]arrivalEventId", 0)
 
         if eventId > 0 then
             return eventId
@@ -153,7 +153,7 @@ dsp.manaclipper.onTransportEvent = function(player, transport)
             else
                 player:messageSpecial(ID.text.LEFT_BILLET, 0, dsp.ki.MANACLIPPER_MULTITICKET, uses - 1)
             end
-            player:setVar("Manaclipper_Ticket", uses - 1)
+            player:setCharVar("Manaclipper_Ticket", uses - 1)
             player:startEvent(14)
         else
             player:messageSpecial(ID.text.NO_BILLET, dsp.ki.MANACLIPPER_TICKET)

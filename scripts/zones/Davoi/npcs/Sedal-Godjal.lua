@@ -63,27 +63,27 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 22 and option == 1) then
-        player:setVar("miniQuestForORB_CS",1);
+        player:setCharVar("miniQuestForORB_CS",1);
         player:addKeyItem(dsp.ki.WHITE_ORB);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.WHITE_ORB);
     elseif (csid == 25) then
-        player:setVar("miniQuestForORB_CS",0);
-        player:setVar("countRedPoolForORB",0);
+        player:setCharVar("miniQuestForORB_CS",0);
+        player:setCharVar("countRedPoolForORB",0);
         player:delKeyItem(dsp.ki.CURSED_ORB);
         player:addKeyItem(dsp.ki.CRIMSON_ORB);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CRIMSON_ORB);
     elseif (csid == 118) then
         player:delKeyItem(dsp.ki.STAR_SEEKER);
         player:addKeyItem(dsp.ki.MAGIC_DRAINED_STAR_SEEKER);
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 120) then
         player:tradeComplete();
-        player:setVar("MissionStatus",4);
+        player:setCharVar("MissionStatus",4);
     elseif (csid == 122) then
         player:addKeyItem(dsp.ki.AURASTERY_RING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AURASTERY_RING);
         if (player:hasKeyItem(dsp.ki.OPTISTERY_RING) and player:hasKeyItem(dsp.ki.RHINOSTERY_RING)) then
-            player:setVar("MissionStatus",2)
+            player:setCharVar("MissionStatus",2)
         end
     end
 

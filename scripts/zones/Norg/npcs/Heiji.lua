@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
         elseif (ShiningSubligar == QUEST_ACCEPTED and TurnedInVar <= 9) then -- turning in less than the amount needed to finish the quest
             TotalSubligar = Subligar + TurnedInVar
             player:tradeComplete();
-            player:setVar("shiningSubligar_nb",TotalSubligar);
+            player:setCharVar("shiningSubligar_nb",TotalSubligar);
             player:startEvent(124,TotalSubligar); -- Update player on number of subligar turned in
         end
     else
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.LOOKS_SUBLIME_IN_A_SUBLIGAR);
         player:addItem(4955); -- Scroll of Kurayami: Ichi
         player:messageSpecial(ID.text.ITEM_OBTAINED, 4955); -- Scroll of Kurayami: Ichi
-        player:setVar("shiningSubligar_nb",0);
+        player:setCharVar("shiningSubligar_nb",0);
         player:addFame(NORG,100);
         player:completeQuest(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_SUBLIGAR);
     end

@@ -53,7 +53,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 42 then
-        player:setVar("MissionStatus",4)
+        player:setCharVar("MissionStatus",4)
         player:delKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR)
     elseif csid == 140 then
         player:setCharVar("MissionStatus",6)

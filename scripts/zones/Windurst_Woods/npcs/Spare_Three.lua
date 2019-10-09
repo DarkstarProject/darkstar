@@ -26,6 +26,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 295 then
-        player:setVar("AGreetingCardian_Event", 3)
+        player:setCharVar("AGreetingCardian_Event", 3)
     end
 end

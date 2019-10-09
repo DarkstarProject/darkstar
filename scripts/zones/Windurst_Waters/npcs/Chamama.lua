@@ -121,7 +121,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.FAKE_MOUSTACHE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FAKE_MOUSTACHE);
     elseif (csid == 797) then
-        player:setVar("ThePromise",1);
+        player:setCharVar("ThePromise",1);
     elseif (csid == 799) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
@@ -138,12 +138,12 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*200);
         player:addFame(WINDURST,75);
     elseif (csid == 661 and option == 1) then
-        player:setVar("QuestInAPickle_var",1)
+        player:setCharVar("QuestInAPickle_var",1)
     elseif (csid == 662) then  -- IN A PICKLE + 200 GIL: Repeatable Quest Turn In
         player:tradeComplete(trade);
         player:needToZone(true);
         player:addGil(GIL_RATE*200);
         player:addFame(WINDURST,8);
-        player:setVar("QuestInAPickle_var",0)
+        player:setCharVar("QuestInAPickle_var",0)
     end
 end;

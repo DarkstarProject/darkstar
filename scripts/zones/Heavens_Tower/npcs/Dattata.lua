@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 392) then
-        player:setVar("NoFear",0);
+        player:setCharVar("NoFear",0);
     end
 end;

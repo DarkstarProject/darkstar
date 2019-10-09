@@ -44,7 +44,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 162) then
-        player:setVar("[SEA][AlTieu]WestTowerCS", 1);
-        player:setVar("[SEA][AlTieu]WestTower", 0);
+        player:setCharVar("[SEA][AlTieu]WestTowerCS", 1);
+        player:setCharVar("[SEA][AlTieu]WestTower", 0);
     end
 end;

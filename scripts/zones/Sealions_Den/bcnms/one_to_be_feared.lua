@@ -34,7 +34,7 @@ function onEventFinish(player, csid, option)
         if player:getCurrentMission(COP) == dsp.mission.id.cop.ONE_TO_BE_FEARED and player:getCharVar("PromathiaStatus") == 2 then
             player:completeMission(COP, dsp.mission.id.cop.ONE_TO_BE_FEARED)
             player:addMission(COP, dsp.mission.id.cop.CHAINS_AND_BONDS)
-            player:setVar("PromathiaStatus", 0)
+            player:setCharVar("PromathiaStatus", 0)
         end
         player:addExp(1500)
         player:setPos(438, 0, -18, 11, 24) -- Lufaise

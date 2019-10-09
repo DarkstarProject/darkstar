@@ -80,6 +80,6 @@ function onEventFinish(player,csid,option)
             player:setPos(8, -1, 5, 62, 249) -- Something went wrong, dump them on the dock for safety.
         end
     elseif csid == 322 then
-        player:setVar("COP_shikarees_story",1)
+        player:setCharVar("COP_shikarees_story",1)
     end
 end

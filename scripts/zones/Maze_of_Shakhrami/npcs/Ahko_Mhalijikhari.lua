@@ -33,7 +33,7 @@ function onEventFinish(player, csid, option)
     if csid == 62 and option == 1 then
         player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 20, 0, 0)
     elseif csid == 65 then
-        player:setVar("ECOR_WAR_WIN-NMs_killed", 0)
+        player:setCharVar("ECOR_WAR_WIN-NMs_killed", 0)
         player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION)
     elseif csid == 64 then
         player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION)

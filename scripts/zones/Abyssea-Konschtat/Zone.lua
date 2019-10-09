@@ -24,7 +24,7 @@ function onZoneIn(player,prevZone)
     end
 
     if player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getCharVar("1stTimeAbyssea") == 0 then
-        player:setVar("1stTimeAbyssea",1)
+        player:setCharVar("1stTimeAbyssea",1)
     end
 
     return cs

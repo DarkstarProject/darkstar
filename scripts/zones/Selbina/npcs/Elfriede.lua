@@ -19,7 +19,7 @@ function onTrigger(player,npc)
 
     if theTenshodoShowdownCS == 2 then
         player:startEvent(10002, 0, dsp.ki.TENSHODO_ENVELOPE, 4569) -- During Quest "The Tenshodo Showdown"
-        player:setVar("theTenshodoShowdownCS", 3)
+        player:setCharVar("theTenshodoShowdownCS", 3)
     elseif theTenshodoShowdownCS == 3 then
         player:startEvent(10003, 0, 0, 4569)
     else
@@ -32,7 +32,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10004 then
-        player:setVar("theTenshodoShowdownCS", 4)
+        player:setCharVar("theTenshodoShowdownCS", 4)
         player:delKeyItem(dsp.ki.TENSHODO_ENVELOPE)
         npcUtil.giveKeyItem(player, dsp.ki.SIGNED_ENVELOPE)
         player:confirmTrade()

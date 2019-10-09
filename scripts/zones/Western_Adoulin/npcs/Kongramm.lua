@@ -45,12 +45,12 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 148) then
         -- Gave hint for SOA Mission: 'A Curse From the Past'
-        player:setVar("SOA_ACFTP_Kongramm", 1);
+        player:setCharVar("SOA_ACFTP_Kongramm", 1);
     elseif (csid == 2592) then
         -- Progresses Quest: 'Transporting'
-        player:setVar("Transporting_Status", 1);
+        player:setCharVar("Transporting_Status", 1);
     elseif (csid == 2555) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
-        player:setVar("ACSP_NPCs_Visited", 4);
+        player:setCharVar("ACSP_NPCs_Visited", 4);
     end
 end;

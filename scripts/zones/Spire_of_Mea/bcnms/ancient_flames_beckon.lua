@@ -47,8 +47,8 @@ function onEventFinish(player, csid, option)
         if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS then
             player:completeMission(COP, dsp.mission.id.cop.BELOW_THE_ARKS)
             player:addMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS)
-            player:setVar("cspromy2", 1)
-            player:setVar("PromathiaStatus", 0)
+            player:setCharVar("cspromy2", 1)
+            player:setCharVar("PromathiaStatus", 0)
             player:addKeyItem(ki)
             player:messageSpecial(ID.text.CANT_REMEMBER, ki)
 
@@ -56,14 +56,14 @@ function onEventFinish(player, csid, option)
 
             -- second promyvion completed
             if otherLights(player) < 2 then
-                player:setVar("cspromy3", 1)
+                player:setCharVar("cspromy3", 1)
                 player:addKeyItem(ki)
                 player:messageSpecial(ID.text.CANT_REMEMBER, ki)
 
             -- final promyvion completed
             else
                 player:completeMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS)
-                player:setVar("PromathiaStatus", 0)
+                player:setCharVar("PromathiaStatus", 0)
                 player:addMission(COP, dsp.mission.id.cop.AN_INVITATION_WEST)
                 player:addKeyItem(ki)
                 player:messageSpecial(ID.text.CANT_REMEMBER, ki)

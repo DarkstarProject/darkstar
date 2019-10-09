@@ -37,7 +37,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 3) then
-        player:setVar("ZilartStatus",1);
+        player:setCharVar("ZilartStatus",1);
     end
 
 end;

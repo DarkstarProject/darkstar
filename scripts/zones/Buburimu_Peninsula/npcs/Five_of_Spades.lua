@@ -26,6 +26,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:setVar("AGreetingCardian_Event",5);
+        player:setCharVar("AGreetingCardian_Event",5);
     end
 end;

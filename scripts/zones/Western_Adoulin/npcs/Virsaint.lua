@@ -28,6 +28,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2556) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
-        player:setVar("ACSP_NPCs_Visited", 5);
+        player:setCharVar("ACSP_NPCs_Visited", 5);
     end
 end;

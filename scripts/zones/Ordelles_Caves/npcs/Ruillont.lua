@@ -42,10 +42,10 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 1 then
-        player:setVar("theRescueDrillRandomNPC", math.random(1, 3))
-        player:setVar("MissionStatus", 8)
+        player:setCharVar("theRescueDrillRandomNPC", math.random(1, 3))
+        player:setCharVar("MissionStatus", 8)
     elseif csid == 2 then
-        player:setVar("MissionStatus", 10)
+        player:setCharVar("MissionStatus", 10)
         player:confirmTrade()
     end
 end

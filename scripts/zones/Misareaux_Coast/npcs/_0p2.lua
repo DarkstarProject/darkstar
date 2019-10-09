@@ -32,11 +32,11 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 6 or csid == 12) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 559) then
-        player:setVar('StormsOfFate',1);
+        player:setCharVar('StormsOfFate',1);
     elseif (csid == 8 and option == 1) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
         player:setPos(729,-20,410,88,29); -- Go to Riverne #B01
     end
 end;

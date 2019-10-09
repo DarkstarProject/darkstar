@@ -41,7 +41,7 @@ function onEventFinish(player, csid, option)
             player:getCharVar("MissionStatus") == 9
         then
             npcUtil.giveKeyItem(player, dsp.ki.KINDRED_CREST)
-            player:setVar("MissionStatus", 10)
+            player:setCharVar("MissionStatus", 10)
         end
     end
 end

@@ -20,8 +20,8 @@ function onTrigger(player,npc)
         if player:getCharVar("Mission6-1MobKilled") == 1 then
             player:addKeyItem(dsp.ki.DREAMROSE)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DREAMROSE)
-            player:setVar("Mission6-1MobKilled", 0)
-            player:setVar("MissionStatus", 3)
+            player:setCharVar("Mission6-1MobKilled", 0)
+            player:setCharVar("MissionStatus", 3)
         else
             SpawnMob(ID.mob.SABOTENDER_ENAMORADO):updateClaim(player)
         end

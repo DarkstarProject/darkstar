@@ -58,10 +58,10 @@ function onEventFinish(player,csid,option)
 
     if (csid == 70 or csid == 71) then
         if (csid == 70 and option == 0) then
-            player:setVar("has_seen_rdmaf1_quest_already",1);
+            player:setCharVar("has_seen_rdmaf1_quest_already",1);
         elseif (option == 1) then
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
-            player:setVar("has_seen_rdmaf1_quest_already",0);
+            player:setCharVar("has_seen_rdmaf1_quest_already",0);
         end
     elseif (csid == 75) then
         if (player:getFreeSlotsCount() == 0) then
@@ -74,9 +74,9 @@ function onEventFinish(player,csid,option)
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
         end
     elseif (csid == 64) then
-        player:setVar("peaceForTheSpiritCS",1);
+        player:setCharVar("peaceForTheSpiritCS",1);
     elseif (csid == 66) then
-        player:setVar("peaceForTheSpiritCS",3);
+        player:setCharVar("peaceForTheSpiritCS",3);
     end
 
 end;

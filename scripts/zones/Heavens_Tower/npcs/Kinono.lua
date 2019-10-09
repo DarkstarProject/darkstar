@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 398) then
-        player:setVar("SenseEnergy",0);
+        player:setCharVar("SenseEnergy",0);
     end
 end;

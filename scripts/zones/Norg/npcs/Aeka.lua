@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1151);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 1151); -- Oriental Steel
-            player:setVar("ForgeYourDestiny_Event",questItem + 0x01);
+            player:setCharVar("ForgeYourDestiny_Event",questItem + 0x01);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end

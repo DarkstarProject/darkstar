@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.LETTER_FROM_ZEID)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZEID)
     elseif (csid == 177) then
-        player:setVar("[B7-2]Werei", 1)
+        player:setCharVar("[B7-2]Werei", 1)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.GROUND_STRIKE_LEARNED)
     end

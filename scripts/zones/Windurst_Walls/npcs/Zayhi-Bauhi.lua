@@ -68,22 +68,22 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 64) then
-        player:setVar("ToBeeOrNot_var",10);
+        player:setCharVar("ToBeeOrNot_var",10);
     elseif (csid == 69) then -- After Honey#1: Clearing throat
         player:tradeComplete();
-        player:setVar("ToBeeOrNot_var",1);
+        player:setCharVar("ToBeeOrNot_var",1);
     elseif (csid == 70) then -- After Honey#2: Tries to speak again... coughs
         player:tradeComplete();
-        player:setVar("ToBeeOrNot_var",2);
+        player:setCharVar("ToBeeOrNot_var",2);
     elseif (csid == 73) then -- After Honey#3: Tries to speak again... coughs..asked for more Honey
         player:tradeComplete();
-        player:setVar("ToBeeOrNot_var",3);
+        player:setCharVar("ToBeeOrNot_var",3);
     elseif (csid == 74) then -- After Honey#4: Feels like its getting a lot better but there is still iritaion
         player:tradeComplete();
-        player:setVar("ToBeeOrNot_var",4);
+        player:setCharVar("ToBeeOrNot_var",4);
     elseif (csid == 75) then -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
         player:tradeComplete();
-        player:setVar("ToBeeOrNot_var",5);
+        player:setCharVar("ToBeeOrNot_var",5);
         player:addFame(WINDURST,30);
         player:completeQuest(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
         player:needToZone(true);

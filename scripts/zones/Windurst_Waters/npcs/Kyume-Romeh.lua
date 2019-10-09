@@ -59,12 +59,12 @@ function onEventFinish(player,csid,option)
         prog = player:getCharVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WATERS_SCOOP);
-        player:setVar("QuestMakingHeadlines_var",prog+1);
+        player:setCharVar("QuestMakingHeadlines_var",prog+1);
     elseif (csid == 60) then  -- Show Off Hat
         player:addVar("QuestHatInHand_var", 16);
         player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 873) then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",5);
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",5);
     elseif (csid == 939) then
         player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",14,true);
     end

@@ -33,6 +33,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 523 then
-        player:setVar("gotitallCS",3)
+        player:setCharVar("gotitallCS",3)
     end
 end

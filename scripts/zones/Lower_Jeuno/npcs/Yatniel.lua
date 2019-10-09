@@ -38,9 +38,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 10029) then
-        player:setVar("hittingTheMarquisateYatnielCS",2);
+        player:setCharVar("hittingTheMarquisateYatnielCS",2);
     elseif (csid == 10031) then
-        player:setVar("hittingTheMarquisateYatnielCS",3);
+        player:setCharVar("hittingTheMarquisateYatnielCS",3);
         player:tradeComplete();
     end
 

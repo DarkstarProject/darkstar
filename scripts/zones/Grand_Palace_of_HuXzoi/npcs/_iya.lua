@@ -31,7 +31,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14672);
         else
             if (player:addItem(14672)) then
-                player:setVar("PromathiaStatus",0);
+                player:setCharVar("PromathiaStatus",0);
                 player:completeMission(COP, dsp.mission.id.cop.GARDEN_OF_ANTIQUITY);
                 player:addMission(COP, dsp.mission.id.cop.A_FATE_DECIDED);
                 player:messageSpecial(ID.text.ITEM_OBTAINED, 14672);

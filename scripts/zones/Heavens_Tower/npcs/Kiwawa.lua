@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 389) then
-        player:setVar("GloriousSpectacle",0);
+        player:setCharVar("GloriousSpectacle",0);
     end
 end;

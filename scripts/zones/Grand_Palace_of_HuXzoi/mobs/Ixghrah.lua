@@ -24,6 +24,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(COP) == dsp.mission.id.cop.A_FATE_DECIDED  and player:getCharVar("PromathiaStatus")==1) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
     end
 end;

@@ -56,7 +56,7 @@ function onTrigger(player,npc)
         local blastPastProg = player:getCharVar("BlastFromThePast_Prog")
         if (blastPastProg == 1) then
             player:startEvent(221)
-            player:setVar("BlastFromThePast_Prog",2)
+            player:setCharVar("BlastFromThePast_Prog",2)
         elseif (blastPastProg == 2) then
             player:startEvent(222)
         end
@@ -78,23 +78,23 @@ function onEventFinish(player,csid,option)
     if csid == 249 then
         player:addQuest(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD)
     elseif csid == 469 then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",4)
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",4)
     elseif csid == 470 then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",7)
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",7)
         player:delKeyItem(dsp.ki.CRACKED_MIMEO_MIRROR)
     elseif csid == 471 then
         player:delKeyItem(dsp.ki.MIMEO_FEATHER)
         player:delKeyItem(dsp.ki.SECOND_MIMEO_FEATHER)
         player:delKeyItem(dsp.ki.THIRD_MIMEO_FEATHER)
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",9)
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",9)
     elseif csid == 472 then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",12)    --end 3-3B: Windurst Route: "Memories of a Maiden"
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",12)    --end 3-3B: Windurst Route: "Memories of a Maiden"
     elseif csid == 481 then
-        player:setVar("COP_Louverance_s_Path",4)
+        player:setCharVar("COP_Louverance_s_Path",4)
     elseif csid == 473 then
-        player:setVar("COP_Ulmia_s_Path",5)
+        player:setCharVar("COP_Ulmia_s_Path",5)
     elseif csid == 439 then
-        player:setVar("MissionStatus",5)
+        player:setCharVar("MissionStatus",5)
     elseif csid == 251 then
         npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.MANDRAGORA_MAD, { fame = 10 })
         player:addGil(GIL_RATE*200)

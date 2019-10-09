@@ -65,10 +65,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 774 then
-        player:setVar("CryingOverOnions", 1)
+        player:setCharVar("CryingOverOnions", 1)
     elseif csid == 775 and npcUtil.giveItem(player, 13136) then
         player:confirmTrade()
-        player:setVar("CryingOverOnions", 2)
+        player:setCharVar("CryingOverOnions", 2)
     elseif csid == 776 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.CRYING_OVER_ONIONS, {fame=120, var="CryingOverOnions"}) then
         player:needToZone(true)
     elseif csid == 780 then
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
         player:addVar("QuestHatInHand_var", 2)
         player:addVar("QuestHatInHand_count", 1)
     elseif csid == 874 then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status", 6)
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status", 6)
         npcUtil.giveKeyItem(player, dsp.ki.CRACKED_MIMEO_MIRROR)
     end
 end

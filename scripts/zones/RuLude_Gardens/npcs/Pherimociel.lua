@@ -55,13 +55,13 @@ function onEventFinish(player,csid,option)
     if (csid == 10098) then
         player:setPos(0,0,0,0,51);
     elseif (csid == 24) then
-        player:setVar("PromathiaStatus",1); -- first cs mission 1.2 has been seen YOU CAN NOW ENTER TO PROMYVION
-        player:setVar("FirstPromyvionHolla",1);
-        player:setVar("FirstPromyvionMea",1);
-        player:setVar("FirstPromyvionDem",1);
+        player:setCharVar("PromathiaStatus",1); -- first cs mission 1.2 has been seen YOU CAN NOW ENTER TO PROMYVION
+        player:setCharVar("FirstPromyvionHolla",1);
+        player:setCharVar("FirstPromyvionMea",1);
+        player:setCharVar("FirstPromyvionDem",1);
     elseif (csid == 58) then
-        player:setVar("COP_Tenzen_s_Path",4);
+        player:setCharVar("COP_Tenzen_s_Path",4);
     elseif (csid == 10046 or 10049) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     end
 end;

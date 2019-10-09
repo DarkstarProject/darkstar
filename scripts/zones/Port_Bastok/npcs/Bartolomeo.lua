@@ -31,7 +31,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 52 and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.WELCOME_TO_BASTOK) == QUEST_ACCEPTED) then
-        player:setVar("WelcometoBastok_Event",1)
+        player:setCharVar("WelcometoBastok_Event",1)
     end
 
 end;

@@ -37,9 +37,9 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.LETTERS_TO_ALDO);
         player:addKeyItem(dsp.ki.SILVER_BELL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SILVER_BELL);
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 104) then
-        player:setVar("ZilartStatus",1);
+        player:setCharVar("ZilartStatus",1);
     end
 
 end;

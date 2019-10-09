@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 6) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

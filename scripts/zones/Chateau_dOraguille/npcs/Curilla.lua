@@ -90,9 +90,9 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_POCKET_WATCH)
     elseif (csid == 109 and option == 1) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT)
-        player:setVar("needs_crawler_blood",0)
+        player:setCharVar("needs_crawler_blood",0)
     elseif (csid == 101) then
-        player:setVar("needs_crawler_blood",1)
+        player:setCharVar("needs_crawler_blood",1)
     elseif (csid == 562) then
         player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",15,true)
     else

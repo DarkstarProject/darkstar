@@ -40,6 +40,6 @@ end
 function onEventFinish(player,csid,option)
     -- IN A STEW
     if csid == 233 then
-        player:setVar("IASvar", 2)
+        player:setCharVar("IASvar", 2)
     end
 end

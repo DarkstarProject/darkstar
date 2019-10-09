@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 402 then
-        player:setVar("CHASING_TALES_TRACK_BOOK", 1)
+        player:setCharVar("CHASING_TALES_TRACK_BOOK", 1)
     end
 end

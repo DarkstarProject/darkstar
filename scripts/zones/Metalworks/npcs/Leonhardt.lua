@@ -26,8 +26,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 948) then
-        player:setVar("TOO_MANY_CHEFS",2);
+        player:setCharVar("TOO_MANY_CHEFS",2);
     elseif (csid == 950) then
-        player:setVar("TOO_MANY_CHEFS",4);
+        player:setCharVar("TOO_MANY_CHEFS",4);
     end
 end;

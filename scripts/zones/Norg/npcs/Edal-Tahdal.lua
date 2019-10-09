@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
             player:delQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WATER);
         end
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WATER);
-        player:setVar("TrialByWater_date", 0);
+        player:setCharVar("TrialByWater_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_WATER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_WATER);
     elseif (csid == 190) then
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_WATER);
             player:delKeyItem(dsp.ki.WHISPER_OF_TIDES); --Whisper of Tides, as a trade for the above rewards
-            player:setVar("TrialByWater_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("TrialByWater_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(NORG,30);
             player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WATER);
         end

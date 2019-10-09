@@ -55,7 +55,7 @@ function onRegionEnter(player,region)
         if not player:hasStatusEffect(dsp.effect.CURSE_I) and not player:hasStatusEffect(dsp.effect.SILENCE) then
             player:addStatusEffect(dsp.effect.CURSE_I, 50, 0, 300)
             if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getCharVar("cCollectCurse") == 0 then
-                player:setVar("cCollectCurse", 1)
+                player:setCharVar("cCollectCurse", 1)
             end
         end
     end
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
         player:unlockJob(dsp.job.DRK)
         player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_DARK_KNIGHT)
     elseif csid == 120 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
         player:setPos(-297, 1, 96, 1)
     elseif csid == 122 then
         player:addQuest(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL)

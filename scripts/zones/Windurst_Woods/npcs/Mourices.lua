@@ -61,19 +61,19 @@ end
 function onEventFinish(player,csid,option)
     if csid == 448 then
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_WINDURST)
-        player:setVar("MissionStatus",3)
+        player:setCharVar("MissionStatus",3)
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA)
     elseif csid == 457 then
-        player:setVar("MissionStatus",7)
+        player:setCharVar("MissionStatus",7)
         player:confirmTrade()
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD)
     elseif csid == 462 then
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2)
-        player:setVar("MissionStatus",7)
+        player:setCharVar("MissionStatus",7)
     elseif csid == 467 then
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD)
         player:delKeyItem(dsp.ki.KINDRED_CREST)
-        player:setVar("MissionStatus",11)
+        player:setCharVar("MissionStatus",11)
         npcUtil.giveKeyItem(player, dsp.ki.KINDRED_REPORT)
     end
 end

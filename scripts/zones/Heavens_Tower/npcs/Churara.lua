@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 390) then
-        player:setVar("SatisfactoryNote",0);
+        player:setCharVar("SatisfactoryNote",0);
     end
 end;

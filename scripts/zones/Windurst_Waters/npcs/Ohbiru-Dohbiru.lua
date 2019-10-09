@@ -93,12 +93,12 @@ function onTrigger(player,npc)
 
     elseif (FoodForThought == QUEST_AVAILABLE and OhbiruFood == 0) then
         player:startEvent(308); -- Hungry; mentions the experiment. First step in quest for this NPC.
-        player:setVar("Ohbiru_Food_var",1);
+        player:setCharVar("Ohbiru_Food_var",1);
     elseif (FoodForThought == QUEST_AVAILABLE and OhbiruFood == 1) then
         player:startEvent(309); -- Hungry. The NPC complains of being hungry before the quest is active.
     elseif (FoodForThought == QUEST_ACCEPTED and OhbiruFood < 2) then
         player:startEvent(316,0,4493,624,4408); -- Gives Order
-        player:setVar("Ohbiru_Food_var",2);
+        player:setCharVar("Ohbiru_Food_var",2);
     elseif (FoodForThought == QUEST_ACCEPTED and OhbiruFood == 2) then
         player:startEvent(317,0,4493,624,4408); -- Repeats Order
     elseif (FoodForThought == QUEST_ACCEPTED and OhbiruFood == 3) then
@@ -140,7 +140,7 @@ function onEventFinish(player,csid,option)
     -- Check Missions first (priority?)
     local turmoil = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
     if (csid == 143) then
-        player:setVar("ohbiru_dohbiru_talk",2);
+        player:setCharVar("ohbiru_dohbiru_talk",2);
     elseif (csid == 322 or csid == 325 or csid == 326) then
         player:tradeComplete();
         player:addGil(GIL_RATE*440);
@@ -149,11 +149,11 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,100);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:needToZone(true);
-            player:setVar("Kerutoto_Food_var",0);          -- ------------------------------------------
-            player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
-            player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
+            player:setCharVar("Kerutoto_Food_var",0);          -- ------------------------------------------
+            player:setCharVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
+            player:setCharVar("Ohbiru_Food_var",0);            -- ------------------------------------------
         else -- If this is NOT the last NPC given food, flag this NPC as completed.
-            player:setVar("Ohbiru_Food_var",3);
+            player:setCharVar("Ohbiru_Food_var",3);
         end
     elseif (csid == 785 and option == 1) then -- Adds Toraimarai turmoil
         player:addQuest(WINDURST,dsp.quest.id.windurst.TORAIMARAI_TURMOIL);
@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:needToZone(true);
     elseif (csid == 872) then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",3);
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",3);
     elseif (csid == 516) then
         if (option < 7) then
             local choice = tabre[option];
@@ -205,7 +205,7 @@ function onEventFinish(player,csid,option)
                 player:messageSpecial(ID.text.NOT_HAVE_ENOUGH_GIL);
             end
         elseif (option == 7) then
-            player:setVar("FLOWER_PROGRESS",2);
+            player:setCharVar("FLOWER_PROGRESS",2);
         end
     end
 end;

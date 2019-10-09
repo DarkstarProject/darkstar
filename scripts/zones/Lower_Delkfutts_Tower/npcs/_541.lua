@@ -38,7 +38,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 0 then
-        player:setVar("MissionStatus", 5)
+        player:setCharVar("MissionStatus", 5)
 
         if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
             npcUtil.giveKeyItem(player, dsp.ki.DELKFUTT_KEY)

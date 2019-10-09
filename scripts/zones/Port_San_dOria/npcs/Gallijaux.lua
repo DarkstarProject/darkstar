@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:addFame(SANDORIA,30);
             player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
-            player:setVar("theCompetitionFishCountVar",totalFish);
+            player:setCharVar("theCompetitionFishCountVar",totalFish);
             player:startEvent(301);
             player:messageSpecial(ID.text.GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
         else
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.CARP_DIEM);
             player:addKeyItem(dsp.ki.TESTIMONIAL);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TESTIMONIAL);
-            player:setVar("theCompetitionFishCountVar",0);
+            player:setCharVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_RIVALRY);
         end
     elseif (csid == 300 and option == 700) then

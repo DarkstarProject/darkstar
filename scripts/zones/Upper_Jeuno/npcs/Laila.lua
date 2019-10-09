@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
     if (csid == 10111 and option == 1) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.LAKESIDE_MINUET);
     elseif (csid == 10118) then
-        player:setVar("Lakeside_Minuet_Progress",0);
+        player:setCharVar("Lakeside_Minuet_Progress",0);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.LAKESIDE_MINUET);
         player:addTitle(dsp.title.TROUPE_BRILIOTH_DANCER);
         player:unlockJob(dsp.job.DNC);
@@ -102,13 +102,13 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE);
         end
         player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ)
-        player:setVar("QuestStatus_DNC_AF1", 1);
+        player:setCharVar("QuestStatus_DNC_AF1", 1);
 
     elseif (csid== 10133) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,19203);
         else
-            player:setVar("QuestStatus_DNC_AF1", 0);
+            player:setCharVar("QuestStatus_DNC_AF1", 0);
             player:addItem(19203); -- war hoop
             player:messageSpecial(ID.text.ITEM_OBTAINED,19203);
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ);
@@ -116,14 +116,14 @@ function onEventFinish(player,csid,option)
 
     -- Dancer AF: The Road to Divadom
     elseif (csid == 10136) then -- Road To Divadom pt 1
-        player:setVar("roadToDivadomCS", 1);
+        player:setCharVar("roadToDivadomCS", 1);
         player:addQuest(JEUNO, dsp.quest.id.jeuno.THE_ROAD_TO_DIVADOM);
     elseif (csid == 10139) then -- string of events
         player:startEvent(10214);
     elseif (csid == 10214) then
         player:startEvent(10215);
     elseif (csid == 10215) then
-        player:setVar("roadToDivadomCS", 5);
+        player:setCharVar("roadToDivadomCS", 5);
         player:startEvent(10170);
     elseif (csid == 10170) then
         if (player:getFreeSlotsCount() == 0) then
@@ -131,8 +131,8 @@ function onEventFinish(player,csid,option)
             player:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, 15660); -- the names of the gender specific items are the same
         else
             player:completeQuest(JEUNO, dsp.quest.id.jeuno.THE_ROAD_TO_DIVADOM)
-            player:setVar("roadToDivadomCS", 0);
-            player:setVar("dancerTailorCS", 1); -- allows player to start dancer version of Coffer AF. check Olgald and Matthias(@Bastok Markets) for the rest of the quest line
+            player:setCharVar("roadToDivadomCS", 0);
+            player:setCharVar("dancerTailorCS", 1); -- allows player to start dancer version of Coffer AF. check Olgald and Matthias(@Bastok Markets) for the rest of the quest line
             -- determine what gender the player is so we can give the correct item
             local playerGender = player:getGender();
             local dancersTights = 15660 - playerGender;
@@ -143,28 +143,28 @@ function onEventFinish(player,csid,option)
             end
     -- Dancer AF: Comeback Queen
     elseif (csid == 10143) then
-        player:setVar("comebackQueenCS", 1);
+        player:setCharVar("comebackQueenCS", 1);
         player:addQuest(JEUNO, dsp.quest.id.jeuno.COMEBACK_QUEEN);
         player:addKeyItem(dsp.ki.WYATTS_PROPOSAL);
         player:messageSpecial( ID.text.KEYITEM_OBTAINED, dsp.ki.WYATTS_PROPOSAL);
     elseif (csid == 10147) then
-        player:setVar("comebackQueenCS", 3);
+        player:setCharVar("comebackQueenCS", 3);
         local danceOffTimer = VanadielDayOfTheYear();
-        player:setVar("comebackQueenDanceOffTimer", danceOffTimer);
+        player:setCharVar("comebackQueenDanceOffTimer", danceOffTimer);
     elseif (csid == 10151) then --the dance off minigame
         if (option > 0) then -- player won the minigame
             player:startEvent(10208);  -- starts exhausting string of events
         else
-            player:setVar("comebackQueenCS", 6); -- have surrounding npcs use losing state CS
+            player:setCharVar("comebackQueenCS", 6); -- have surrounding npcs use losing state CS
             local danceOffTimer = VanadielDayOfTheYear();
-            player:setVar("comebackQueenDanceOffTimer", danceOffTimer);
+            player:setCharVar("comebackQueenDanceOffTimer", danceOffTimer);
         end
     elseif (csid == 10208) then
         player:startEvent(10209);
     elseif (csid == 10209) then
         player:startEvent(10210);
     elseif (csid == 10210) then
-        player:setVar("comebackQueenCS", 4);
+        player:setCharVar("comebackQueenCS", 4);
         player:startEvent(10211);
     elseif (csid == 10211) then -- finally reward the player
         if (player:getFreeSlotsCount() == 0) then
@@ -172,7 +172,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same
         else
             player:completeQuest(JEUNO, dsp.quest.id.jeuno.COMEBACK_QUEEN);
-            player:setVar("comebackQueenCS", 5); -- final state for all of the surrounding NPCs
+            player:setCharVar("comebackQueenCS", 5); -- final state for all of the surrounding NPCs
             -- determine what gender the player is so we can give the correct item
             local playerGender = player:getGender();
             local dancersCasaque = 14579 - playerGender;
@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option)
                 player:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same
             else
                 player:completeQuest(JEUNO, dsp.quest.id.jeuno.COMEBACK_QUEEN);
-                player:setVar("comebackQueenCS", 5) -- final state for all of the surrounding NPCs
+                player:setCharVar("comebackQueenCS", 5) -- final state for all of the surrounding NPCs
                 -- determine what gender the player is so we can give the correct item
                 local playerGender = player:getGender();
                 local dancersCasaque = 14579 - playerGender;

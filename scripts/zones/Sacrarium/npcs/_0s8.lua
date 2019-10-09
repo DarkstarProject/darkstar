@@ -33,9 +33,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 6) then
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
     elseif (csid == 5) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP);
         player:addMission(COP,dsp.mission.id.cop.SLANDEROUS_UTTERINGS);
     end

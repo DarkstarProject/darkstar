@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 8) then
         player:tradeComplete();
-        player:setVar("recollectionsQuest",3);
+        player:setCharVar("recollectionsQuest",3);
         player:addKeyItem(dsp.ki.FOE_FINDER_MK_I);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FOE_FINDER_MK_I);
     end

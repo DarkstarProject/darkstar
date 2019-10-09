@@ -1134,7 +1134,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- missionid, {Guard1CS,option}, {Guard2CS,option}, {NPC1 CS,option}, {NPC2 CS,option}, {{function,value},...},
     --  1: player:addMission(nation,mission);
     --  2: player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-    --  3: player:setVar(variablename,value);
+    --  3: player:setCharVar(variablename,value);
     --  4: player:tradeComplete();
     --  5: player:addRankPoints(number);
     --  6: player:setRankPoints(0);
@@ -1145,7 +1145,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- 11: player:setRank(number);
     -- 12: player:completeMission(nation,mission);
     -- 13: player:addTitle(number);
-    -- 14: player:setVar("MissionStatus",value);
+    -- 14: player:setCharVar("MissionStatus",value);
 
     if (nation == dsp.nation.SANDORIA) then
         if ((csid == 1009 or csid == 2009) and option ~= 1073741824 and option ~= 31) then
@@ -1273,7 +1273,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 switch (messList[1]) : caseof {
                     [1] = function (x) if (messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
                     [2] = function (x) player:messageSpecial(zones[player:getZoneID()].text.YOU_ACCEPT_THE_MISSION); end,
-                    [3] = function (x) player:setVar(messList[2],messList[3]); end,
+                    [3] = function (x) player:setCharVar(messList[2],messList[3]); end,
                     [4] = function (x) player:tradeComplete(); end,
                     [5] = function (x) if ((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,
                     [6] = function (x) player:setRankPoints(0); end,
@@ -1284,7 +1284,7 @@ function finishMissionTimeline(player,guard,csid,option)
                     [11] = function (x) player:setRank(messList[2]); end,
                     [12] = function (x) player:completeMission(nation,timeline[cs]); end,
                     [13] = function (x) player:addTitle(messList[2]); end,
-                    [14] = function (x) player:setVar("MissionStatus",messList[2]); end,
+                    [14] = function (x) player:setCharVar("MissionStatus",messList[2]); end,
                 }
             end
         end

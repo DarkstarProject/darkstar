@@ -29,8 +29,8 @@ end;
 
 function onEventFinish(player,csid,option)
 if (csid == 102) then
-player:setVar("BASTOK91",2);
+player:setCharVar("BASTOK91",2);
 elseif (csid == 104) then
-player:setVar("BASTOK91",4);
+player:setCharVar("BASTOK91",4);
 end
 end;

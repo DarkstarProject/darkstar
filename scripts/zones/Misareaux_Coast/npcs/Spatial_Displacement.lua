@@ -27,7 +27,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 8) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
         player:setPos(732.55,-32.5,-506.544,90,30); -- Go to Riverne #A01 {R}
     elseif ((csid == 551 or csid == 550) and option == 1) then
         player:setPos(732.55,-32.5,-506.544,90,30); -- Go to Riverne #A01 {R}

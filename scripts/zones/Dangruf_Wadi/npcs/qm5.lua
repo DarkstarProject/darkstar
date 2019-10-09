@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 138 and option == 0 then -- player wins dice game
         player:confirmTrade()
         player:messageSpecial(ID.text.YOU_BEAT_GOBLIN)
-        player:setVar("thickAsThievesGamblingCS",5)
+        player:setCharVar("thickAsThievesGamblingCS",5)
     end
 
 end

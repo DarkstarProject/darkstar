@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL);
         player:addKeyItem(dsp.ki.CERULEAN_COUNTERSEAL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CERULEAN_COUNTERSEAL);
-        player:setVar("ASA4_Cerulean","2");
+        player:setCharVar("ASA4_Cerulean","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

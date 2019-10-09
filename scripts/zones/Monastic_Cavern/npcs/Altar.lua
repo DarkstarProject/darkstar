@@ -33,7 +33,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 3 then
-        player:setVar("circleTime", 9)
+        player:setCharVar("circleTime", 9)
         player:delKeyItem(dsp.ki.MOON_RING)
         player:delKeyItem(dsp.ki.STAR_RING1)
     end

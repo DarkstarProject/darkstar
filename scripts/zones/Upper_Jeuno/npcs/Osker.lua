@@ -73,12 +73,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 146) then
         if (ANewDawnEvent == 2) then
-            player:setVar("ANewDawn_Event",3);
+            player:setCharVar("ANewDawn_Event",3);
         end
     elseif (csid == 148) then
         player:addKeyItem(dsp.ki.TAMERS_WHISTLE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TAMERS_WHISTLE);
-        player:setVar("ANewDawn_Event",4);
+        player:setCharVar("ANewDawn_Event",4);
     end
 
 end;

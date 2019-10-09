@@ -32,7 +32,7 @@ function onEventFinish(player,csid,option)
     if (csid == 904) then
         player:addKeyItem(dsp.ki.FIGURE_OF_LEVIATHAN);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FIGURE_OF_LEVIATHAN);
-        player:setVar("MissionStatus",4);
-        player:setVar("Mission9-1Kills",0);
+        player:setCharVar("MissionStatus",4);
+        player:setCharVar("Mission9-1Kills",0);
     end
 end;

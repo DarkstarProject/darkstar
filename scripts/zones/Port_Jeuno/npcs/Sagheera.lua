@@ -319,8 +319,8 @@ function onTrade(player,npc,trade)
             local time = os.date("*t")
 
             player:confirmTrade()
-            player:setVar("AFupgrade", tradedCombo)
-            player:setVar("AFupgradeDay", os.time() + (3600 - time.min * 60)) -- Current time + Remaining minutes in the hour in seconds (Day Change)
+            player:setCharVar("AFupgrade", tradedCombo)
+            player:setCharVar("AFupgradeDay", os.time() + (3600 - time.min * 60)) -- Current time + Remaining minutes in the hour in seconds (Day Change)
             player:startEvent(312)
         end
     end
@@ -389,7 +389,7 @@ function onEventFinish(player,csid,option)
         local cosmoTime = getCosmoCleanseTime(player)
         if cosmoTime == COSMO_READY and player:delGil(15000) then
             npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
-            player:setVar("Cosmo_Cleanse_TIME", os.time())
+            player:setCharVar("Cosmo_Cleanse_TIME", os.time())
         end
 
     -- purchase item using ancient beastcoins
@@ -410,8 +410,8 @@ function onEventFinish(player,csid,option)
 
         -- found a valid reward
         if info and npcUtil.giveItem(player, info.reward) then
-            player:setVar("AFupgrade", 0)
-            player:setVar("AFupgradeDay", 0)
+            player:setCharVar("AFupgrade", 0)
+            player:setCharVar("AFupgradeDay", 0)
         end
     end
 end

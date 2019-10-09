@@ -35,7 +35,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 460) then
-        player:setVar("QuestMakingTheGrade_prog",3);
+        player:setCharVar("QuestMakingTheGrade_prog",3);
         player:delKeyItem(dsp.ki.TATTERED_TEST_SHEET);
     end
 end;

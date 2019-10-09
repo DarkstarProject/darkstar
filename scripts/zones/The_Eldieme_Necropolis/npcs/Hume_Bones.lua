@@ -25,7 +25,7 @@ end
 function onTrigger(player,npc)
     if player:getCharVar("Lich_C_Magnus_Died") == 1 and not player:hasItem(12521) then
         if npcUtil.giveItem(player, 12521) then
-            player:setVar("Lich_C_Magnus_Died", 0)
+            player:setCharVar("Lich_C_Magnus_Died", 0)
         end
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

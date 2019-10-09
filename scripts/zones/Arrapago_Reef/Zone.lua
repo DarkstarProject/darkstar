@@ -61,21 +61,21 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 8) then
-        player:setVar("AhtUrganStatus",1)
+        player:setCharVar("AhtUrganStatus",1)
         player:startEvent(34,1,1,1,1,1,1,1,1)
     elseif (csid == 9) then
-        player:setVar("AhtUrganStatus",3)
+        player:setCharVar("AhtUrganStatus",3)
         player:setPos(0,0,0,0,53)
     elseif (csid == 13) then
-        player:setVar("AhtUrganStatus",1)
+        player:setCharVar("AhtUrganStatus",1)
     elseif (csid == 14) then
         player:completeMission(TOAU,dsp.mission.id.toau.PREVALENCE_OF_PIRATES)
-        player:setVar("AhtUrganStatus",0)
+        player:setCharVar("AhtUrganStatus",0)
         player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
         player:addMission(TOAU,dsp.mission.id.toau.SHADES_OF_VENGEANCE)
     elseif (csid == 15) then
-        player:setVar("AhtUrganStatus",1)
+        player:setCharVar("AhtUrganStatus",1)
         player:setPos(0,0,0,0,57)
     elseif (csid == 34 and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(35)
@@ -88,6 +88,6 @@ function onEventFinish(player,csid,option)
     elseif csid == 238 then
         npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS, { item=15266, var="AgainstAllOdds"})
     elseif (csid == 240) then
-        player:setVar("AgainstAllOdds",2)
+        player:setCharVar("AgainstAllOdds",2)
     end
 end

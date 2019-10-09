@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player, npc, trade)
     if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 557) then
-        player:setVar("QuestYourCrystalBall_prog", 1)
+        player:setCharVar("QuestYourCrystalBall_prog", 1)
         player:confirmTrade(trade)
     end
 end
@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 52 and npcUtil.giveItem(player, 556) then
-        player:setVar("QuestYourCrystalBall_prog", 0)
+        player:setCharVar("QuestYourCrystalBall_prog", 0)
     end
 end

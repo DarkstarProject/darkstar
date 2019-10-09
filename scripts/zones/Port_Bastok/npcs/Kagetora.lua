@@ -38,9 +38,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 241) then
-        player:setVar("AyameAndKaede_Event",1);
+        player:setCharVar("AyameAndKaede_Event",1);
     elseif (csid == 261) then
-        player:setVar("twentyInPirateYearsCS",2);
+        player:setCharVar("twentyInPirateYearsCS",2);
     end
 
 end;

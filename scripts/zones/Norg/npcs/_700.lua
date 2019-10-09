@@ -53,16 +53,16 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,dsp.mission.id.zilart.WELCOME_TNORG);
         player:addMission(ZILART,dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS);
     elseif (csid == 3 and option == 0) then
-        player:setVar("ZilartStatus",0);
+        player:setCharVar("ZilartStatus",0);
         player:completeMission(ZILART,dsp.mission.id.zilart.ROMAEVE);
         player:addMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_DESOLATION);
     elseif (csid == 169 and option == 0) then
         player:completeMission(ZILART,dsp.mission.id.zilart.THE_HALL_OF_THE_GODS);
         player:addMission(ZILART,dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL);
     elseif (csid == 98) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 172 and bit.band(option, 0x40000000) == 0) then
-        player:setVar("ZilartStatus",1);
+        player:setCharVar("ZilartStatus",1);
     end
 
 end;

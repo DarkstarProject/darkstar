@@ -49,7 +49,7 @@ function onTrigger(player,npc)
             player:startEvent(2863);
         end
 
-        player:setVar("Flapano_Odd_Even", 1);
+        player:setCharVar("Flapano_Odd_Even", 1);
 
     -- SHOP
     else
@@ -67,7 +67,7 @@ function onTrigger(player,npc)
         dsp.shop.general(player, stock);
 
         if (exoticDelicacies ~= QUEST_COMPLETED) then
-            player:setVar("Flapano_Odd_Even", 0);
+            player:setCharVar("Flapano_Odd_Even", 0);
         end
     end
 end;
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 2861) then
         if (npcUtil.completeQuest(player, ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES, {bayld=500, item=5975, xp=1000})) then
             player:confirmTrade();
-            player:setVar("Flapano_Odd_Even", 0);
+            player:setCharVar("Flapano_Odd_Even", 0);
         end
     end
 end;

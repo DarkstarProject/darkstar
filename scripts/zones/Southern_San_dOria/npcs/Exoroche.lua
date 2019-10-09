@@ -55,13 +55,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 542) then
-        player:setVar("QuestfatherAndSonVar",1);
+        player:setCharVar("QuestfatherAndSonVar",1);
     elseif (csid == 50) then
-        player:setVar("aBoysDreamCS",3);
+        player:setCharVar("aBoysDreamCS",3);
     elseif (csid == 32 and player:getCharVar("aBoysDreamCS") == 7) then
-        player:setVar("aBoysDreamCS",8);
+        player:setCharVar("aBoysDreamCS",8);
     elseif (csid == 77) then
-        player:setVar("UnderOathCS",5)
+        player:setCharVar("UnderOathCS",5)
     end
 end;
 ------- used in expansions

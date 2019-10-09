@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getCharVar("NavigatingtheUnfriendlySeas") <= 2) then
         if (trade:hasItemQty(2341,1) and trade:getItemCount() == 1) then -- Trade Hydrogauage
             player:startEvent(283);
-            player:setVar("NavigatingtheUnfriendlySeas",2);
+            player:setCharVar("NavigatingtheUnfriendlySeas",2);
         end
     end
 end;
@@ -54,15 +54,15 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_GREEN);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_GREEN)
-            player:setVar("LeleroonsLetterGreen",1);
+            player:setCharVar("LeleroonsLetterGreen",1);
         elseif (option == 2) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_BLUE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_BLUE)
-            player:setVar("LeleroonsLetterBlue",1);
+            player:setCharVar("LeleroonsLetterBlue",1);
         elseif (option == 3) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_RED);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_RED)
-            player:setVar("LeleroonsLetterRed",1);
+            player:setCharVar("LeleroonsLetterRed",1);
         end;
     end;
 end;

@@ -26,7 +26,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 4) then
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

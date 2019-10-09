@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 402) then
-        player:setVar("HighEsteem",0);
+        player:setCharVar("HighEsteem",0);
     end
 end;

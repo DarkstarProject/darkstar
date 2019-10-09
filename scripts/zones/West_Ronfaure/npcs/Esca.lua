@@ -46,12 +46,12 @@ end
 function onEventFinish(player, csid, option)
     -- THE PICKPOCKET
     if csid == 121 and npcUtil.giveItem(player, 579) then
-        player:setVar("thePickpocket", 2)
+        player:setCharVar("thePickpocket", 2)
         player:confirmTrade()
 
     -- CHASING QUOTAS
     elseif csid == 137 then
-        player:setVar("ChasingQuotas_Progress", 5)
+        player:setCharVar("ChasingQuotas_Progress", 5)
         player:delKeyItem(dsp.ki.SHINY_EARRING)
     end
 end

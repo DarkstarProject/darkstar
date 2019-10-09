@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getCharVar("tradeVilion") == 0) then
             player:messageSpecial(ID.text.VILLION_DIALOG);
             player:addVar("FFR", -1);
-            player:setVar("tradeVilion",1);
+            player:setCharVar("tradeVilion",1);
             player:messageSpecial(ID.text.FLYER_ACCEPTED);
             player:tradeComplete();
         elseif (player:getCharVar("tradeVilion") ==1) then

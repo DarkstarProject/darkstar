@@ -38,9 +38,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 395) then
-        player:setVar("EARLY_BIRD_TRACK_BOOK",1);
+        player:setCharVar("EARLY_BIRD_TRACK_BOOK",1);
     elseif (csid == 398) then
-        player:setVar("EARLY_BIRD_TRACK_BOOK",3);
+        player:setCharVar("EARLY_BIRD_TRACK_BOOK",3);
     end
 
 end;

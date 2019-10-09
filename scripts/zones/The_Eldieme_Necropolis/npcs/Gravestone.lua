@@ -19,6 +19,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 5 then
-        player:setVar("fireAndBrimstone", 4)
+        player:setCharVar("fireAndBrimstone", 4)
     end
 end

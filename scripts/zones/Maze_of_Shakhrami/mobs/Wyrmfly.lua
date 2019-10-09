@@ -26,7 +26,7 @@ function onMobDeath(mob, player, isKiller)
             end
         end
         if allFliesDead then
-            player:setVar("ECOR_WAR_WIN-NMs_killed", 1)
+            player:setCharVar("ECOR_WAR_WIN-NMs_killed", 1)
         end
     end
 end

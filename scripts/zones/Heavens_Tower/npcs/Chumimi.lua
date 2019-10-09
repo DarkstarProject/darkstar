@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
     if (csid == 260) then
         -- option 3: Koru-Moru -- option 2: Shantotto -- option 1: Yoran-Oran
         player:addQuest(WINDURST,dsp.quest.id.windurst.THE_THREE_MAGI);
-        player:setVar("theThreeMagiSupport",option);
+        player:setCharVar("theThreeMagiSupport",option);
     elseif (csid == 269) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17423);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 17423); -- Casting Wand
             player:needToZone(true);
-            player:setVar("theThreeMagiSupport",0);
+            player:setCharVar("theThreeMagiSupport",0);
             player:addFame(WINDURST,20);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_THREE_MAGI);
         end
@@ -100,12 +100,12 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,dsp.quest.id.windurst.RECOLLECTIONS);
     elseif (csid == 271) then
         player:tradeComplete();
-        player:setVar("recollectionsQuest",2);
+        player:setCharVar("recollectionsQuest",2);
     elseif (csid == 275) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
         else
-            player:setVar("recollectionsQuest",0);
+            player:setCharVar("recollectionsQuest",0);
             player:delKeyItem(dsp.ki.FOE_FINDER_MK_I);
             player:addItem(14092);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14092); -- wizards sabots
@@ -114,7 +114,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 276) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.THE_ROOT_OF_THE_PROBLEM);
-        player:setVar("rootProblem",1);
+        player:setCharVar("rootProblem",1);
     elseif (csid == 279) then
         player:addKeyItem(dsp.ki.SLUICE_SURVEYOR_MK_I);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SLUICE_SURVEYOR_MK_I);

@@ -84,7 +84,7 @@ function onEventUpdate(player,csid,option)
             -- nobody is currently on the quest
             SetServerVariable("[JEUNO]CommService",player:getID());
             player:addQuest(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE);
-            player:setVar("currCommService",1);
+            player:setCharVar("currCommService",1);
             player:updateEvent(1,doneCommService);
         else
             -- either another player or vasha have been assigned the quest
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 119) then
         -- player fails quest
-        player:setVar("currCommService",0);
+        player:setCharVar("currCommService",0);
 
     end
 end;

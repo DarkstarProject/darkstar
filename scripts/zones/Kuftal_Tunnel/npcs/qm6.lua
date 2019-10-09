@@ -46,7 +46,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 13 then
-        player:setVar("MissionStatus", 4)
+        player:setCharVar("MissionStatus", 4)
         npcUtil.giveKeyItem(player, dsp.ki.OLD_PIECE_OF_WOOD)
     end
 end

@@ -58,13 +58,13 @@ function onTrigger(player,npc)
     elseif (FoodForThought == QUEST_ACCEPTED) then
         if (KenapaFood == 0) then
             player:startEvent(318); -- Stammer 1/3
-            player:setVar("Kenapa_Food_var",1);
+            player:setCharVar("Kenapa_Food_var",1);
         elseif (KenapaFood == 1) then
             player:startEvent(319); -- Stammer 2/3
-            player:setVar("Kenapa_Food_var",2);
+            player:setCharVar("Kenapa_Food_var",2);
         elseif (KenapaFood == 2) then
             player:startEvent(320,0,4409); -- Gives Order
-            player:setVar("Kenapa_Food_var",3);
+            player:setCharVar("Kenapa_Food_var",3);
         elseif (FoodForThought == QUEST_ACCEPTED and KenapaFood == 3) then
             rand = math.random(1,3);
             if (rand == 1) then
@@ -147,41 +147,41 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);
             player:needToZone(true);
-            player:setVar("Kerutoto_Food_var",0);          -- ------------------------------------------
-            player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
-            player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
+            player:setCharVar("Kerutoto_Food_var",0);          -- ------------------------------------------
+            player:setCharVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
+            player:setCharVar("Ohbiru_Food_var",0);            -- ------------------------------------------
         else -- If this is NOT the last NPC given food, flag this NPC as completed.
-            player:setVar("Kenapa_Food_var",4);
+            player:setCharVar("Kenapa_Food_var",4);
         end
     elseif  (csid == 56) then  -- Show Off Hat
         player:addVar("QuestHatInHand_var", 4);
         player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 336) then
-        player:setVar("Kenapa_Overnight_var",1);
+        player:setCharVar("Kenapa_Overnight_var",1);
     elseif (csid == 337) then
-        player:setVar("Kenapa_Overnight_var",2);
+        player:setCharVar("Kenapa_Overnight_var",2);
     elseif (csid == 338) then
-        player:setVar("Kenapa_Overnight_var",3);
+        player:setCharVar("Kenapa_Overnight_var",3);
     elseif (csid == 339) then
         if (option == 0) then
             player:addQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
-            player:setVar("Kenapa_Overnight_var",4);
+            player:setCharVar("Kenapa_Overnight_var",4);
         else
-            player:setVar("Kenapa_Overnight_var",0);
+            player:setCharVar("Kenapa_Overnight_var",0);
         end
     elseif (csid == 340) then
-        player:setVar("Kenapa_Overnight_var",5);
+        player:setCharVar("Kenapa_Overnight_var",5);
     elseif (csid == 341) then
-        player:setVar("Kenapa_Overnight_var",6);
+        player:setCharVar("Kenapa_Overnight_var",6);
     elseif (csid == 342) then
-        player:setVar("Kenapa_Overnight_var",7);
+        player:setCharVar("Kenapa_Overnight_var",7);
     elseif (csid == 343) then
-        player:setVar("Kenapa_Overnight_var",4); -- Begin reminder sequence
+        player:setCharVar("Kenapa_Overnight_var",4); -- Begin reminder sequence
     elseif (csid == 346) then
         player:delQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
         player:delKeyItem(dsp.ki.SMALL_BAG);
-        player:setVar("Kenapa_Overnight_Hour_var",0);
-        player:setVar("Kenapa_Overnight_var",256);
+        player:setCharVar("Kenapa_Overnight_Hour_var",0);
+        player:setCharVar("Kenapa_Overnight_var",256);
     elseif (csid == 348) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(12590);
@@ -190,12 +190,12 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
             player:addFame(WINDURST,100);
             player:needToZone(true);
-            player:setVar("Kenapa_Overnight_var",0);
-            player:setVar("Kenapa_Overnight_Hour_var",0);
+            player:setCharVar("Kenapa_Overnight_var",0);
+            player:setCharVar("Kenapa_Overnight_Hour_var",0);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12590);
         end
     elseif (csid == 519) then
-        player:setVar("FLOWER_PROGRESS",3);
+        player:setCharVar("FLOWER_PROGRESS",3);
     end
 end;

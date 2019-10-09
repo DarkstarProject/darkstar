@@ -29,11 +29,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 204 then
-        player:setVar("UnforgivenVar", 2)
+        player:setCharVar("UnforgivenVar", 2)
         player:addKeyItem(dsp.ki.MAP_OF_TAVNAZIA)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MAP_OF_TAVNAZIA) -- Map of Tavnazia
         player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNFORGIVEN)
     elseif csid == 206 then
-        player:setVar("UnforgivenVar", 0)
+        player:setCharVar("UnforgivenVar", 0)
     end
 end

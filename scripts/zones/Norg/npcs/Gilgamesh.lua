@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 99) then
         player:tradeComplete();
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     end
 
 end;

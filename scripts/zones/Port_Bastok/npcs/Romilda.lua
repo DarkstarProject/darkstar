@@ -15,13 +15,13 @@ function onTrade(player,npc,trade)
         if (player:getCharVar("ForevertoHold_Event") == 2) then
             player:tradeComplete();
             player:startEvent(125);
-            player:setVar("ForevertoHold_Event",3);
+            player:setCharVar("ForevertoHold_Event",3);
         end
     elseif (trade:hasItemQty(12721,1) and trade:getItemCount() == 1) then -- Trade Cotton Gloves
         if (player:getCharVar("ForevertoHold_Event") == 3) then
             player:tradeComplete();
             player:startEvent(129);
-            player:setVar("ForevertoHold_Event",4);
+            player:setCharVar("ForevertoHold_Event",4);
         end
     end
 

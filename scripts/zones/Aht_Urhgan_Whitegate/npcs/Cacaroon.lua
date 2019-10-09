@@ -40,12 +40,12 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 3035 and option == 1 then
-        player:setVar("AhtUrganStatus", 1)
+        player:setCharVar("AhtUrganStatus", 1)
     elseif csid == 3022 then
         player:confirmTrade()
-        player:setVar("AhtUrganStatus", 2)
+        player:setCharVar("AhtUrganStatus", 2)
     elseif csid == 850 then
         player:confirmTrade()
-        player:setVar("ratraceCS", 3)
+        player:setCharVar("ratraceCS", 3)
     end
 end

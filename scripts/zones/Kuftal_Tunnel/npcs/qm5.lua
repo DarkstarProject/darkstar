@@ -23,7 +23,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 12 and option == 0 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
         player:messageSpecial(ID.text.FELL)
     end
 end

@@ -51,11 +51,11 @@ function onEventFinish(player,csid,option)
     if csid == 130 or csid == 131 then
         if player:getFreeSlotsCount() > 0 then
             player:addItem(16607)
-            player:setVar("ChaosbringerKills", 0)
+            player:setCharVar("ChaosbringerKills", 0)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16607)
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16607)
         end
-        player:setVar("ZeruhnMines_Zeid_CS", 1)
+        player:setCharVar("ZeruhnMines_Zeid_CS", 1)
     end
 end

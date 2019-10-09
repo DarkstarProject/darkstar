@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
     if (csid == 119 and option == 3) then
         player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT);
     elseif (csid == 121) then
-        player:setVar("SPLINTERSPINE_GRUKJUK",0);
+        player:setCharVar("SPLINTERSPINE_GRUKJUK",0);
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);

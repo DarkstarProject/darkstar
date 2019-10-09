@@ -56,9 +56,9 @@ end
 function onEventFinish(player,csid,option)
     -- CHOCOBILIOUS
     if csid == 227 then
-        player:setVar("ChocobiliousQuest",1)
+        player:setCharVar("ChocobiliousQuest",1)
     elseif csid == 229 then
-        player:setVar("ChocobiliousQuest",2)
+        player:setCharVar("ChocobiliousQuest",2)
 
     -- PAYING LIP SERVICE
     elseif csid == 477 and option == 1 then

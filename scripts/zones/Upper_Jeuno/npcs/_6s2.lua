@@ -42,12 +42,12 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 119 and option == 1) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE);
-        player:setVar("aClockMostdelicateVar",0);
+        player:setCharVar("aClockMostdelicateVar",0);
     elseif (csid == 119 and option == 0) then
-        player:setVar("aClockMostdelicateVar",2);
+        player:setCharVar("aClockMostdelicateVar",2);
     elseif (csid == 118 and option == 1) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE);
-        player:setVar("aClockMostdelicateVar",0);
+        player:setCharVar("aClockMostdelicateVar",0);
     elseif (csid == 202) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12727);

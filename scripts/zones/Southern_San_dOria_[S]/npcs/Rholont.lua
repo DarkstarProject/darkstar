@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2528);
         else
-            player:setVar("GiftsOfGriffonProg",2);
+            player:setCharVar("GiftsOfGriffonProg",2);
             player:addItem(2528,7); -- Plume d'or
             player:messageSpecial(ID.text.ITEM_OBTAINED,2528);
         end
@@ -61,17 +61,17 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(812,1)
             player:messageSpecial(ID.text.ITEM_OBTAINED,812);
-            player:setVar("GiftsOfGriffonProg",0);
-            player:setVar("GiftsOfGriffonPlumes",0);
+            player:setCharVar("GiftsOfGriffonProg",0);
+            player:setCharVar("GiftsOfGriffonPlumes",0);
             player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.GIFTS_OF_THE_GRIFFON);
         end
     elseif (csid == 56) then
-        player:setVar("BoyAndTheBeast",2);
+        player:setCharVar("BoyAndTheBeast",2);
     elseif (csid == 59) then
         player:addQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.WRATH_OF_THE_GRIFFON);
     elseif (csid == 60) then
         player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.WRATH_OF_THE_GRIFFON);
-        player:setVar("WrathOfTheGriffon",0);
+        player:setCharVar("WrathOfTheGriffon",0);
         player:addKeyItem(dsp.ki.MILITARY_SCRIP);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MILITARY_SCRIP);
     end

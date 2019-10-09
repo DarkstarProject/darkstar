@@ -80,7 +80,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 736 then
         player:addQuest(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT)
-        player:setVar("WildcatWindurst", 0)
+        player:setCharVar("WildcatWindurst", 0)
         npcUtil.giveKeyItem(player, dsp.ki.GREEN_SENTINEL_BADGE)
     elseif csid == 739 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT, {fame=150, keyItem=dsp.ki.GREEN_INVITATION_CARD, var="WildcatWindurst"}) then
         player:delKeyItem(dsp.ki.GREEN_SENTINEL_BADGE)

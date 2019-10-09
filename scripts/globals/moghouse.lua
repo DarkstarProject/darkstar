@@ -140,7 +140,7 @@ end
 function moogleEventFinish(player,csid,option)
     if player:isInMogHouse() then
         if csid == 30000 then
-            player:setVar("MoghouseExplication", 0)
+            player:setCharVar("MoghouseExplication", 0)
 
         elseif csid == 30023 then
             player:completeMission(AMK,dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT)
@@ -152,56 +152,56 @@ function moogleEventFinish(player,csid,option)
         elseif csid == 30005 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS1]BedPlaced", 0)
-            player:setVar("MogSafeProgress", 1)
+            player:setCharVar("[MS1]BedPlaced", 0)
+            player:setCharVar("MogSafeProgress", 1)
         elseif csid == 30005 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30006 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30007 then
             player:tradeComplete()
-            player:setVar("MogSafeProgress", 2)
+            player:setCharVar("MogSafeProgress", 2)
         elseif csid == 30008 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
             player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_KIND_MASTER)
-            player:setVar("MogSafeProgress", 0)
+            player:setCharVar("MogSafeProgress", 0)
 
         elseif csid == 30009 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS2]BedPlaced", 0)
-            player:setVar("MogSafeProgress", 1)
+            player:setCharVar("[MS2]BedPlaced", 0)
+            player:setCharVar("MogSafeProgress", 1)
         elseif csid == 30009 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30010 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30011 then
             player:tradeComplete()
-            player:setVar("MogSafeProgress", 2)
+            player:setCharVar("MogSafeProgress", 2)
         elseif csid == 30012 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
             player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_EXCEPTIONALLY_KIND_MASTER)
-            player:setVar("MogSafeProgress", 0)
+            player:setCharVar("MogSafeProgress", 0)
 
         elseif csid == 30013 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS3]BedPlaced", 0)
-            player:setVar("MogSafeProgress", 1)
+            player:setCharVar("[MS3]BedPlaced", 0)
+            player:setCharVar("MogSafeProgress", 1)
         elseif csid == 30013 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30014 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30015 then
             player:tradeComplete()
-            player:setVar("MogSafeProgress", 2)
+            player:setCharVar("MogSafeProgress", 2)
         elseif csid == 30016 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
             player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_LOVING_MASTER)
-            player:setVar("MogSafeProgress", 0)
+            player:setCharVar("MogSafeProgress", 0)
         end
 
         return true
@@ -211,7 +211,7 @@ end
 
 -- Unlocks a mog locker for a player. Returns the 'expired' timestamp (-1)
 function unlockMogLocker(player)
-    player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
+    player:setCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
     local currentSize = player:getContainerSize(dsp.inv.MOGLOCKER)
     if currentSize == 0 then -- we do this check in case some servers auto-set 80 slots for mog locker items
         player:changeContainerSize(dsp.inv.MOGLOCKER, 30)
@@ -221,7 +221,7 @@ end
 
 -- Sets the mog locker access type (all area or alzahbi only). Returns the new access type.
 function setMogLockerAccessType(player, accessType)
-    player:setVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE, accessType)
+    player:setCharVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE, accessType)
     return accessType
 end
 
@@ -254,7 +254,7 @@ function addMogLockerExpiryTime(player, numBronze)
     local timeIncrease = 60 * 60 * 24 * numDaysPerBronze * numBronze
     local newTs = currentTs + timeIncrease
 
-    player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, newTs)
+    player:setCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, newTs)
     -- send an invent size packet to enable the items if they weren't
     player:changeContainerSize(dsp.inv.MOGLOCKER, 0)
     return true
@@ -270,7 +270,7 @@ function getMogLockerExpiryTimestamp(player)
 
     local now = os.time() - MOGLOCKER_START_TS
     if now > expiryTime then
-        player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
+        player:setCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
         return -1
     end
 

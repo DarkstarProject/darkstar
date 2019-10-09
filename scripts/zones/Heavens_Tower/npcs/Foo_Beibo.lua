@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 403) then
-        player:setVar("TerribleEvents",0);
+        player:setCharVar("TerribleEvents",0);
     end
 end;

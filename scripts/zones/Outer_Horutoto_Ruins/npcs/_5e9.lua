@@ -31,7 +31,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 44 then
-        player:setVar("MissionStatus", 4)
+        player:setCharVar("MissionStatus", 4)
         player:messageSpecial(ID.text.ALL_G_ORBS_ENERGIZED)
         player:delKeyItem(dsp.ki.SOUTHEASTERN_STAR_CHARM)
     end

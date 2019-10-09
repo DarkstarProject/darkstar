@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
     if csid == 113 then
         player:confirmTrade()
         npcUtil.giveKeyItem(player, dsp.ki.KNIGHTS_CONFESSION)
-        player:setVar("UnderOathCS", 6)
+        player:setCharVar("UnderOathCS", 6)
         player:delKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)
     end
 end

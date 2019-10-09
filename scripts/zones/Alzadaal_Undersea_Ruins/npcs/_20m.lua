@@ -73,7 +73,7 @@ function onEventUpdate(player,csid,option,target)
         cap = 50
     end
 
-    player:setVar("AssaultCap", cap)
+    player:setCharVar("AssaultCap", cap)
 
     local pathOfDarkness = player:getLocalVar("PathOfDarkness")
     local nashmeirasPlea = player:getLocalVar("NashmeirasPlea")
@@ -162,7 +162,7 @@ function onInstanceCreated(player,target,instance)
             player:delKeyItem(dsp.ki.MYTHRIL_MIRROR)
         else
             instance:setLevelCap(player:getCharVar("AssaultCap"))
-            player:setVar("AssaultCap", 0)
+            player:setCharVar("AssaultCap", 0)
             player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)
             player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)
         end

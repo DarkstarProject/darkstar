@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     if (pantsQuestProgress > 0 and pantsQuestProgress < 3 and player:hasKeyItem(dsp.ki.DJINN_EMBER) == false) then
         player:addKeyItem(dsp.ki.DJINN_EMBER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DJINN_EMBER);
-        player:setVar("AF_SCH_PANTS", pantsQuestProgress + 1);
+        player:setCharVar("AF_SCH_PANTS", pantsQuestProgress + 1);
         npc:hideNPC(60);
 
     else

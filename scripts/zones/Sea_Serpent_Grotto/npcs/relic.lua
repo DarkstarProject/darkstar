@@ -23,6 +23,6 @@ end
 function onEventFinish(player, csid, option)
     if csid == 11 and npcUtil.giveItem(player, {18312, {1456, 30}}) then
         player:confirmTrade()
-        player:setVar("RELIC_IN_PROGRESS", 0)
+        player:setCharVar("RELIC_IN_PROGRESS", 0)
     end
 end

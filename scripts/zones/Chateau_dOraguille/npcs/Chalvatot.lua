@@ -78,9 +78,9 @@ function onEventFinish(player,csid,option)
 
     -- CIRCLE OF TIME
     elseif (csid == 99 and option == 0) then
-        player:setVar("circleTime",6);
+        player:setCharVar("circleTime",6);
     elseif ((csid == 98 or csid == 99) and option == 1) then
-        player:setVar("circleTime",7);
+        player:setCharVar("circleTime",7);
         player:addKeyItem(dsp.ki.MOON_RING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_RING);
     elseif (csid == 96) then
@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,12647)
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
             player:addTitle(dsp.title.PARAGON_OF_BARD_EXCELLENCE);
-            player:setVar("circleTime",0);
+            player:setCharVar("circleTime",0);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         end;

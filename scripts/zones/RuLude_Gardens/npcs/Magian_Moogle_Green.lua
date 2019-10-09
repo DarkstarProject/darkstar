@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGIAN_LEARNERS_LOG);
             player:addKeyItem(dsp.ki.MAGIAN_LEARNERS_LOG);
         end
-        player:setVar("MetGreenMagianMog",1);
+        player:setCharVar("MetGreenMagianMog",1);
     --elseif
         --
     end

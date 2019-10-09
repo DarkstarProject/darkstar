@@ -33,6 +33,6 @@ function onEventFinish(player, csid, option)
     if csid == 32001 and player:getCurrentMission(TOAU) == dsp.mission.id.toau.PUPPET_IN_PERIL then
         player:completeMission(TOAU, dsp.mission.id.toau.PUPPET_IN_PERIL)
         player:addMission(TOAU, dsp.mission.id.toau.PREVALENCE_OF_PIRATES)
-        player:setVar("AhtUrganStatus", 0)
+        player:setCharVar("AhtUrganStatus", 0)
     end
 end

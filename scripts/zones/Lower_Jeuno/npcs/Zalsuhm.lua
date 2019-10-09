@@ -50,7 +50,7 @@ function onTrigger(player,npc)
             player:startEvent(10090)
         else
             if player:getCharVar("Upset_Zalsuhm") > 0 then
-                player:setVar("Upset_Zalsuhm", 0)
+                player:setCharVar("Upset_Zalsuhm", 0)
             end
 
             if nyzulWeaponMain or nyzulWeaponRanged then
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
     local questId = getQuestId(option)
     if csid == 10086 then
         if option == 53 then
-            player:setVar("Upset_Zalsuhm", 1)
+            player:setCharVar("Upset_Zalsuhm", 1)
             player:needToZone(true)
         elseif option <= dsp.job.SCH then
             player:addQuest(JEUNO, questId)

@@ -23,6 +23,6 @@ end
 function onEventFinish(player,csid,option)
 
     if (csid == 3) then
-        player:setVar("BetterPartOfValProg",2);
+        player:setCharVar("BetterPartOfValProg",2);
     end
 end;

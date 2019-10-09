@@ -59,19 +59,19 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 90) then
-        player:setVar("illTakeTheBigBoxCS",2);
+        player:setCharVar("illTakeTheBigBoxCS",2);
     elseif (csid == 92) then
         player:tradeComplete();
-        player:setVar("illTakeTheBigBox_Timer",VanadielDayOfTheYear());
-        player:setVar("illTakeTheBigBoxCS",3);
+        player:setCharVar("illTakeTheBigBox_Timer",VanadielDayOfTheYear());
+        player:setCharVar("illTakeTheBigBoxCS",3);
     elseif (csid == 94) then
-        player:setVar("illTakeTheBigBox_Timer",0);
-        player:setVar("illTakeTheBigBoxCS",4);
+        player:setCharVar("illTakeTheBigBox_Timer",0);
+        player:setCharVar("illTakeTheBigBoxCS",4);
         player:addKeyItem(dsp.ki.SEANCE_STAFF);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SEANCE_STAFF);
     elseif (csid == 97) then
         player:delKeyItem(dsp.ki.OLD_TRICK_BOX);
-        player:setVar("trueWillCS",2);
+        player:setCharVar("trueWillCS",2);
     elseif (csid == 99) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13782);
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.LARGE_TRICK_BOX);
             player:addItem(13782);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13782); -- Ninja Chainmail
-            player:setVar("trueWillCS",0);
+            player:setCharVar("trueWillCS",0);
             player:addFame(NORG,30);
             player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL);
         end

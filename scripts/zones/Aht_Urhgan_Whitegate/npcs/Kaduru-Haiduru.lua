@@ -29,8 +29,8 @@ function onTrigger(player, npc)
         player:startEvent(151, 0, 0, timesUsed, 0, 0, 0, 0, 0, 0)
     else
         if caughtUsingShihuDanhuDate == 0 then
-            player:setVar("Kaduru_ShihuDanhu_date", os.date("%j"))
-            player:setVar("Kaduru_TimesUsed", 0)
+            player:setCharVar("Kaduru_ShihuDanhu_date", os.date("%j"))
+            player:setCharVar("Kaduru_TimesUsed", 0)
         end
         player:startEvent(153, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     end
@@ -45,22 +45,22 @@ function onTrade(player, npc, trade)
         if trade:getItemCount() == 1 then
             if trade:hasItemQty(2185, 1) then
                 player:startEvent(154, 0, player:getNation(), 0, 0, 0, 0, 0, 0, 0)
-                player:setVar("ShihuDanhu_TP_date", 0)
-                player:setVar("Kaduru_ShihuDanhu_date", 0)
+                player:setCharVar("ShihuDanhu_TP_date", 0)
+                player:setCharVar("Kaduru_ShihuDanhu_date", 0)
             end
         end
     elseif canUse_KaduruHaiduru_Service(player) and timesUsed < 3 then
         if trade:getItemCount() == 1 then
             if trade:hasItemQty(2185, 1) then
                 player:startEvent(152, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-                player:setVar("ShihuDanhu_TP_date", 0)
-                player:setVar("Kaduru_ShihuDanhu_date", 0)
+                player:setCharVar("ShihuDanhu_TP_date", 0)
+                player:setCharVar("Kaduru_ShihuDanhu_date", 0)
             end
         end
     else
         if caughtUsingShihuDanhuDate == 0 then
-            player:setVar("Kaduru_ShihuDanhu_date", os.date("%j"))
-            player:setVar("Kaduru_TimesUsed", 0)
+            player:setCharVar("Kaduru_ShihuDanhu_date", os.date("%j"))
+            player:setCharVar("Kaduru_TimesUsed", 0)
         end
         player:startEvent(155, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     end
@@ -88,7 +88,7 @@ function onEventFinish(player, csid, option)
         -- We have either not used Kaduru-Haiduru enough, or we were reset after using Shihu-Danhu.
         player:setPos(0, 3, -6, 190, 243)
         if timesUsed < 3 then
-            player:setVar("Kaduru_TimesUsed", (timesUsed + 1))
+            player:setCharVar("Kaduru_TimesUsed", (timesUsed + 1))
         end
         player:tradeComplete()
     end

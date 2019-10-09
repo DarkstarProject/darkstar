@@ -66,13 +66,13 @@ function onEventUpdate( player, csid, option)
             end
         end
     elseif (csid == 71) then
-        player:setVar("ASA_Status",option);
+        player:setCharVar("ASA_Status",option);
     end
 end;
 
 function onEventFinish( player, csid, option)
     if (csid == 48) then
-        player:setVar( "MissionStatus",6);
+        player:setCharVar( "MissionStatus",6);
         -- Remove the glowing orb key items
         player:delKeyItem(dsp.ki.FIRST_GLOWING_MANA_ORB);
         player:delKeyItem(dsp.ki.SECOND_GLOWING_MANA_ORB);

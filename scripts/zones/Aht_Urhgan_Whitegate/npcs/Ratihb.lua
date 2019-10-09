@@ -36,9 +36,9 @@ end
 function onEventFinish(player,csid,option)
     if csid == 547 then
         player:addQuest(AHT_URHGAN, dsp.quest.id.ahtUrhgan.LUCK_OF_THE_DRAW)
-        player:setVar("LuckOfTheDraw", 1)
+        player:setCharVar("LuckOfTheDraw", 1)
     elseif csid == 552 then
-        player:setVar("LuckOfTheDraw", 6)
+        player:setCharVar("LuckOfTheDraw", 6)
     elseif csid == 772 then
         npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.EQUIPPED_FOR_ALL_OCCASIONS, {item = 18702, var = {"EquippedforAllOccasions", "LuckOfTheDraw"}})
     elseif csid == 604 then

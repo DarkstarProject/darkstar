@@ -31,7 +31,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 201 then
-        player:setVar("ClawsOfGriffonProg", 2)
+        player:setCharVar("ClawsOfGriffonProg", 2)
     elseif csid == 202 then
         SpawnMob(ID.mob.FINGERFILCHER_DRADZAD):updateClaim(player)
     elseif csid == 203 then

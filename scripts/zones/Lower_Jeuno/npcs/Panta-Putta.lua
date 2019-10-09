@@ -67,14 +67,14 @@ function onEventFinish(player,csid,option)
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
         end
     elseif (csid == 30) then
-        player:setVar("theLostCardianVar",2);
+        player:setCharVar("theLostCardianVar",2);
     elseif (csid == 35) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13596);
         else
             player:addTitle(dsp.title.BRINGER_OF_BLISS);
             player:delKeyItem(dsp.ki.TWO_OF_SWORDS);
-            player:setVar("theKindCardianVar",0);
+            player:setCharVar("theKindCardianVar",0);
             player:addItem(13596);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13596); -- Green Cape
             player:addFame(JEUNO, 30);

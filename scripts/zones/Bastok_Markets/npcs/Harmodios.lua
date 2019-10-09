@@ -46,6 +46,6 @@ function onEventFinish(player,csid,option)
     elseif csid == 490 then
         player:startEvent(491)
     elseif csid == 491 then
-        player:setVar("comebackQueenCS", 2)
+        player:setCharVar("comebackQueenCS", 2)
     end
 end

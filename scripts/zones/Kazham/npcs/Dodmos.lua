@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
         else
-            player:setVar("TrialSizeFire_date", 0);
+            player:setCharVar("TrialSizeFire_date", 0);
             player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_FIRE);
             player:addItem(1544);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1544);

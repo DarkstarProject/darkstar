@@ -51,11 +51,11 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120)
         player:addGil(GIL_RATE*2160)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2160)
-        player:setVar("QuestAPotterPrefeRepeat_var",0)
-        player:setVar("QuestAPotterPrefeCompDay_var",VanadielDayOfTheYear())
-        player:setVar("QuestAPotterPrefeCompYear_var",VanadielYear())
+        player:setCharVar("QuestAPotterPrefeRepeat_var",0)
+        player:setCharVar("QuestAPotterPrefeCompDay_var",VanadielDayOfTheYear())
+        player:setCharVar("QuestAPotterPrefeCompYear_var",VanadielYear())
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_POTTER_S_PREFERENCE)
     elseif csid == 112 then --repeat quest
-        player:setVar("QuestAPotterPrefeRepeat_var",1)
+        player:setCharVar("QuestAPotterPrefeRepeat_var",1)
     end
 end

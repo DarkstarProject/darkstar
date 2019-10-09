@@ -64,17 +64,17 @@ function onEventFinish(player,csid,option)
 
     -- "The Sweetest Things" ACCEPTED
     if (csid == 532) then
-        player:setVar("theSweetestThings", 1);
+        player:setCharVar("theSweetestThings", 1);
     elseif (csid == 533) then
         if (option == 0) then
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
-            player:setVar("theSweetestThings", 0);
+            player:setCharVar("theSweetestThings", 0);
         else
-            player:setVar("theSweetestThings", 2);
+            player:setCharVar("theSweetestThings", 2);
         end
     elseif (csid == 534 and option == 0) then
         player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
-        player:setVar("theSweetestThings", 0);
+        player:setCharVar("theSweetestThings", 0);
     elseif (csid == 535) then
         player:tradeComplete();
         player:addTitle(dsp.title.APIARIST);

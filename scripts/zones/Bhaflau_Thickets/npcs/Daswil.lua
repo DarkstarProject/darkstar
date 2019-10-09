@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     -- IMMORTAL SENTRIES
     if (csid == 5 and option == 1) then
         player:delKeyItem(dsp.ki.SUPPLIES_PACKAGE);
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
 
     -- BEGINNINGS
     elseif (csid == 8) then

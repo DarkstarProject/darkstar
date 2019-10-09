@@ -126,7 +126,7 @@ function onZoneIn(player,prevZone)
     if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getCharVar("PromathiaStatus") == 0) then
         cs = 201 ;
     end
-    player:setVar("Ru-Hmet-TP",0);
+    player:setCharVar("Ru-Hmet-TP",0);
     return cs;
 end;
 
@@ -198,7 +198,7 @@ end;
 function onEventUpdate(player,csid,option)
 
     if ((csid >149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
-        player:setVar("Ru-Hmet-TP",1);
+        player:setCharVar("Ru-Hmet-TP",1);
     end
 end;
 
@@ -206,11 +206,11 @@ function onEventFinish(player,csid,option)
 
     if (csid == 101 and option == 1) then
         player:setPos(540,-1,-499.900,62,36);
-        player:setVar("Ru-Hmet-TP",0);
+        player:setCharVar("Ru-Hmet-TP",0);
     elseif ((csid > 149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
-        player:setVar("Ru-Hmet-TP",0);
+        player:setCharVar("Ru-Hmet-TP",0);
     elseif (csid == 201) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 32000 and option==1) then
         player:setPos(420,0,398,68);
     end

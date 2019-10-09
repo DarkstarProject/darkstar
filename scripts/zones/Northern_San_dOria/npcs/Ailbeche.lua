@@ -112,21 +112,21 @@ function onEventFinish(player,csid,option)
             player:addItem(17391);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 17391); -- Willow Fishing Rod
             player:addTitle(dsp.title.LOST_CHILD_OFFICER);
-            player:setVar("QuestfatherAndSonVar",0);
+            player:setCharVar("QuestfatherAndSonVar",0);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.FATHER_AND_SON);
         end
     elseif (csid == 61) then
-        player:setVar("returnedAilbecheRod",1);
+        player:setCharVar("returnedAilbecheRod",1);
         player:addTitle(dsp.title.FAMILY_COUNSELOR);
         player:tradeComplete();
     -- "Sharpening the Sword"
     elseif ((csid == 45 or csid == 43) and option == 1) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.SHARPENING_THE_SWORD);
-        player:setVar("sharpeningTheSwordCS",2);
-        player:setVar("returnedAilbecheRod",0);
+        player:setCharVar("sharpeningTheSwordCS",2);
+        player:setCharVar("returnedAilbecheRod",0);
     elseif (csid == 45 and option == 0) then
-        player:setVar("sharpeningTheSwordCS",1);
+        player:setCharVar("sharpeningTheSwordCS",1);
     elseif (csid == 44) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17643);
@@ -134,23 +134,23 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.ORDELLE_WHETSTONE);
             player:addItem(17643);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 17643); -- Honor Sword
-            player:setVar("sharpeningTheSwordCS",0);
+            player:setCharVar("sharpeningTheSwordCS",0);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.SHARPENING_THE_SWORD);
         end
     -- "A Boy's Dream"
     elseif ((csid == 41 or csid == 40) and option == 1) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_BOY_S_DREAM);
-        player:setVar("aBoysDreamCS",2);
+        player:setCharVar("aBoysDreamCS",2);
     elseif (csid == 41 and option == 0) then
-        player:setVar("aBoysDreamCS",1);
+        player:setCharVar("aBoysDreamCS",1);
     elseif (csid == 15 and player:getCharVar("aBoysDreamCS") == 3) then
-        player:setVar("aBoysDreamCS",4);
+        player:setCharVar("aBoysDreamCS",4);
     elseif (csid == 47 and player:getCharVar("aBoysDreamCS") == 4) then
-        player:setVar("aBoysDreamCS",5);
+        player:setCharVar("aBoysDreamCS",5);
     elseif (csid == 25 and player:getCharVar("aBoysDreamCS") == 6) then
-        player:setVar("aBoysDreamCS",7);
+        player:setCharVar("aBoysDreamCS",7);
     elseif (csid == 59) then
-        player:setVar("UnderOathCS", 7);
+        player:setCharVar("UnderOathCS", 7);
     end
 end;

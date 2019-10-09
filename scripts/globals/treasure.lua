@@ -568,7 +568,7 @@ local treasureInfo =
                         test = function(player) return player:getCharVar("needs_crawler_blood") == 1 end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.CRAWLER_BLOOD)
-                            player:setVar("needs_crawler_blood",0)
+                            player:setCharVar("needs_crawler_blood",0)
                         end,
                     },
                 },
@@ -985,7 +985,7 @@ local treasureInfo =
                         test = function(player) return player:getCharVar("WildCard") == 2 end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.JOKER_CARD)
-                            player:setVar("WildCard",3)
+                            player:setCharVar("WildCard",3)
                         end,
                     },
                 },

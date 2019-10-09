@@ -68,7 +68,7 @@ function onTrade(player,npc,trade)
     elseif (nameOfScience == QUEST_ACCEPTED or nameOfScience == QUEST_COMPLETED) and itemInProgress == 0 then
         for k, v in pairs(nosTrades) do
             if npcUtil.tradeHas(trade, v.base) then
-                player:setVar("NAME_OF_SCIENCE_target", k)
+                player:setCharVar("NAME_OF_SCIENCE_target", k)
                 player:startEvent(526, unpack(v.base))
                 break
             end

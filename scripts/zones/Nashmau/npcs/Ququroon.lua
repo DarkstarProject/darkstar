@@ -37,7 +37,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 309) then
-        player:setVar("ratraceCS",4);
+        player:setCharVar("ratraceCS",4);
     elseif (csid == 310) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,5595);
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(5595);
             player:messageSpecial(ID.text.ITEM_OBTAINED,5595);
-            player:setVar("ratraceCS",5);
+            player:setCharVar("ratraceCS",5);
         end
     end
 end;

@@ -42,7 +42,7 @@ function onEventFinish(player, csid, option)
             player:addMission(ACP, dsp.mission.id.acp.REMEMBER_ME_IN_YOUR_DREAMS)
         end
         if not player:hasKeyItem(dsp.ki.IVORY_KEY) and player:getCurrentMission(ACP) >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III then
-            player:setVar("LastIvoryKey", os.date("%j"))
+            player:setCharVar("LastIvoryKey", os.date("%j"))
             player:addKeyItem(dsp.ki.IVORY_KEY)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.IVORY_KEY)
         end

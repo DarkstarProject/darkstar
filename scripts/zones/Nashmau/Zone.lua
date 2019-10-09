@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0,-2,0,0,59);
     elseif (csid == 281) then
         player:completeMission(TOAU,dsp.mission.id.toau.THE_BLACK_COFFIN);
-        player:setVar("AhtUrganStatus", 0)
+        player:setCharVar("AhtUrganStatus", 0)
         player:addMission(TOAU,dsp.mission.id.toau.GHOSTS_OF_THE_PAST);
     end
 end;

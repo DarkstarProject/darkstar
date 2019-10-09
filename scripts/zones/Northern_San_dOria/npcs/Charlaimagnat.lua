@@ -45,7 +45,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 703) then
-        player:setVar("TheMissingPiece_date", tostring(os.date("%Y")) .. os.date("%m") .. os.date("%d") + 1);
+        player:setCharVar("TheMissingPiece_date", tostring(os.date("%Y")) .. os.date("%m") .. os.date("%d") + 1);
         player:addTitle(dsp.title.ACQUIRER_OF_ANCIENT_ARCANUM);
         player:delKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC);
         player:delKeyItem(dsp.ki.LETTER_FROM_ALFESAR);

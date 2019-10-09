@@ -38,9 +38,9 @@ function onEventFinish(player,csid,option)
 
     if (csid == 355) then
         if (player:getCharVar("MissionStatus") == 3) then
-            player:setVar("MissionStatus",4);
+            player:setCharVar("MissionStatus",4);
         else
-            player:setVar("MissionStatus",9);
+            player:setCharVar("MissionStatus",9);
         end
     end
 

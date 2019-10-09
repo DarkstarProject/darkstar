@@ -103,9 +103,9 @@ function onTrigger(player,npc)
         player:startEvent(26); -- Dialog with Old Gauntlets KI
 
         if (nbHandsQuestsCompleted(player) == 1) then
-            player:setVar("BorghertzHandsFirstTime",1);
+            player:setCharVar("BorghertzHandsFirstTime",1);
         else
-            player:setVar("BorghertzCS",1);
+            player:setCharVar("BorghertzCS",1);
         end
     else
         player:startEvent(154); -- Standard dialog
@@ -126,7 +126,7 @@ function onEventFinish(player,csid,option)
     if (csid == 155) then
         local NumQuest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS + player:getMainJob() - 1;
         player:addQuest(JEUNO,NumQuest);
-        player:setVar("BorghertzAlreadyActiveWithJob",player:getMainJob());
+        player:setCharVar("BorghertzAlreadyActiveWithJob",player:getMainJob());
     end
 
 end;

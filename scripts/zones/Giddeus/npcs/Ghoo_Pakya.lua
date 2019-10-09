@@ -43,13 +43,13 @@ function onEventFinish(player,csid,option)
 
     if (csid == 49) then
         player:delKeyItem(dsp.ki.DRINK_OFFERINGS);
-        player:setVar("ghoo_talk",1);
+        player:setCharVar("ghoo_talk",1);
 
         if (player:hasKeyItem(dsp.ki.FOOD_OFFERINGS) == false) then
-            player:setVar("MissionStatus",2);
+            player:setCharVar("MissionStatus",2);
         end
     elseif (csid == 50) then
-        player:setVar("ghoo_talk",2);
+        player:setCharVar("ghoo_talk",2);
     end
 
 end;

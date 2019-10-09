@@ -39,7 +39,7 @@ function onTrigger(player,npc)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,182)
         else
-            player:setVar("Flagbastok",0)
+            player:setCharVar("Flagbastok",0)
             player:addItem(182)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
@@ -64,29 +64,29 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 715 and option == 0) then
-        player:setVar("MissionStatus",1)
+        player:setCharVar("MissionStatus",1)
     elseif (csid == 780) then
-        player:setVar("BASTOK92", 1)
+        player:setCharVar("BASTOK92", 1)
     elseif (csid == 767 and option == 0) then
-        player:setVar("MissionStatus", 1)
+        player:setCharVar("MissionStatus", 1)
     elseif (csid == 768) then
         finishMissionTimeline(player, 1, csid, option)
     elseif (csid == 782) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,182)
-            player:setVar("Flagbastok",1)
+            player:setCharVar("Flagbastok",1)
         else
             player:addItem(182)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
-        player:setVar("BASTOK92",0)
+        player:setCharVar("BASTOK92",0)
         player:completeMission(BASTOK,dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000)
         player:setTitle(dsp.title.HERO_AMONG_HEROES)
     elseif (csid == 956) then
-        player:setVar("FiresOfDiscProg",2)
+        player:setCharVar("FiresOfDiscProg",2)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.STEEL_CYCLONE_LEARNED)
     end

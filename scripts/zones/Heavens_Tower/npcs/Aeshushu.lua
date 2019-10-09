@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 391) then
-        player:setVar("StressedOut",0);
+        player:setCharVar("StressedOut",0);
     end
 end;

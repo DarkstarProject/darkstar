@@ -62,7 +62,7 @@ function onEventFinish(player, csid, option)
             player:completeMission(COP, dsp.mission.id.cop.A_TRANSIENT_DREAM)
             player:addMission(COP, dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING)
         end
-        player:setVar("VowsDone", 0)
+        player:setCharVar("VowsDone", 0)
     elseif csid == 901 then
         lightCutsceneFinish(player) -- Quest: I Can Hear A Rainbow
     end

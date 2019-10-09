@@ -45,7 +45,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 505) then
-        player:setVar("Fired", 1)
+        player:setCharVar("Fired", 1)
     end
 end;
 

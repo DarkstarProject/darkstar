@@ -41,8 +41,8 @@ function onEventFinish(player,csid,option)
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR) == QUEST_AVAILABLE) then
             player:addQuest(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR);
         end
-        player:setVar("ECO_WARRIOR_ACTIVE",player:getZoneID());
-        player:setVar("ECO-WAR_ConquestWeek",0);
+        player:setCharVar("ECO_WARRIOR_ACTIVE",player:getZoneID());
+        player:setCharVar("ECO-WAR_ConquestWeek",0);
     elseif (csid == 822) then
         if (player:getFreeSlotsCount() >= 1) then
             player:completeQuest(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR);
@@ -53,8 +53,8 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,4198);
             player:addTitle(dsp.title.EMERALD_EXTERMINATOR);
             player:addFame(WINDURST, 80);
-            player:setVar("ECO-WAR_ConquestWeek",getConquestTally())
-            player:setVar("ECO_WARRIOR_ACTIVE",0);
+            player:setCharVar("ECO-WAR_ConquestWeek",getConquestTally())
+            player:setCharVar("ECO_WARRIOR_ACTIVE",0);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4198);
         end

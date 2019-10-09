@@ -48,13 +48,13 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10007) then
         player:startEvent(10032);
-        player:setVar("fireAndBrimstone",2);
+        player:setCharVar("fireAndBrimstone",2);
     elseif (csid == 10009) then
-        player:setVar("unbridledPassion",2);
+        player:setCharVar("unbridledPassion",2);
     elseif (csid == 10011) then
         player:addKeyItem(dsp.ki.KOHS_LETTER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KOHS_LETTER);
         player:tradeComplete();
-        player:setVar("unbridledPassion",3);
+        player:setCharVar("unbridledPassion",3);
     end
 end;

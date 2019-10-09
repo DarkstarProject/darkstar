@@ -124,7 +124,7 @@ function onEventFinish(player,csid,option)
         player:addCurrency('bayld', 500 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 500 * BAYLD_RATE);
         player:addFame(ADOULIN);
-        player:setVar("Westerly_Breeze_Wait", vanaDay());
+        player:setCharVar("Westerly_Breeze_Wait", vanaDay());
         player:needToZone(true);
 
         if (csid == 2532) then
@@ -146,7 +146,7 @@ function onEventFinish(player,csid,option)
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);
         player:addFame(ADOULIN);
-        player:setVar("Westerly_Breeze_Wait", 0);
+        player:setCharVar("Westerly_Breeze_Wait", 0);
     elseif ((csid == 2533) or (csid == 3008) or (csid == 3014)) then
         -- Consuming wrong food item given to him during his quests
         player:tradeComplete();
@@ -161,6 +161,6 @@ function onEventFinish(player,csid,option)
         end
         player:addGil(gil_obtained);
         player:messageSpecial(ID.text.GIL_OBTAINED, gil_obtained);
-        player:setVar("ATWTTB_Can_Trade_Gruel", 0);
+        player:setCharVar("ATWTTB_Can_Trade_Gruel", 0);
     end
 end;

@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS, dsp.quest.id.outlands.INDOMITABLE_SPIRIT)
     elseif csid == 132 then
         player:confirmTrade()
-        player:setVar("IndomitableSpiritVar", os.date("%j")) -- %M for next minute, %j for next day
+        player:setCharVar("IndomitableSpiritVar", os.date("%j")) -- %M for next minute, %j for next day
     elseif csid == 134 then
         npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.INDOMITABLE_SPIRIT, {item=17011, fameArea=RABAO, fame=100, title=dsp.title.INDOMITABLE_FISHER})
     end

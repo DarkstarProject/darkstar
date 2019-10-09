@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
         -- If you visit Windurst first you will encounter Lion in Heaven's Tower instead
         if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY
         and player:getCharVar("MissionStatus") < 2) then
-            player:setVar("MissionStatus",2);
+            player:setCharVar("MissionStatus",2);
             player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
         end
     end

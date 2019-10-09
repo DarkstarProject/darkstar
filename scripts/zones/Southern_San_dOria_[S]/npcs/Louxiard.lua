@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.GIFTS_OF_THE_GRIFFON); -- Gifts of Griffon Quest Start
 
     elseif (csid == 22) then
-        player:setVar("GiftsOfGriffonProg",1); -- Gifts of Griffon Stage 2
+        player:setCharVar("GiftsOfGriffonProg",1); -- Gifts of Griffon Stage 2
 
     elseif (csid == 26) then
         player:tradeComplete();

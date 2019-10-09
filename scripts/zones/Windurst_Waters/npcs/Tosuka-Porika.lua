@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
         player:addVar("QuestHatInHand_var", 32);
         player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 160) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 168) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 387 and option == 0) then -- Early Bird Catches the Bookworm
@@ -97,18 +97,18 @@ function onEventFinish(player,csid,option)
     elseif (csid == 403 and option == 0) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
     elseif (csid ==875) then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",11);
     elseif (csid == 715) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 724) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 801) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         if (player:hasKeyItem(dsp.ki.AURASTERY_RING) and player:hasKeyItem(dsp.ki.RHINOSTERY_RING)) then
-            player:setVar("MissionStatus",2)
+            player:setCharVar("MissionStatus",2)
         end
     end
 end;

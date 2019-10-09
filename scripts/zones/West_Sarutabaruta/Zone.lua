@@ -56,7 +56,7 @@ function onEventUpdate( player, csid, option)
     if csid == 48 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 62 or csid == 63 then
-        player:setVar("ASA_Status", option)
+        player:setCharVar("ASA_Status", option)
     elseif csid == 50 then
         if player:getZPos() > 470 then
             player:updateEvent(0,0,0,0,0,2)

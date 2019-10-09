@@ -9,7 +9,7 @@ require("scripts/globals/keyitems");
 function onMobDeath(mob, player, isKiller)
 
     if (player:hasKeyItem(dsp.ki.SEANCE_STAFF) and player:getCharVar("Enagakure_Killed") == 0) then
-        player:setVar("Enagakure_Killed",1);
+        player:setCharVar("Enagakure_Killed",1);
     end
 
 end;

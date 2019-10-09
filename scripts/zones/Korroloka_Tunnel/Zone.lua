@@ -59,7 +59,7 @@ function onRegionLeave(player, region)
         if pooltime >= 300 then
             player:messageSpecial(ID.text.LEFT_SPRING_CLEAN)
             player:setLocalVar("POOL_TIME", 0)
-            player:setVar("BathedInScent", 0)
+            player:setCharVar("BathedInScent", 0)
         else
             player:messageSpecial(ID.text.LEFT_SPRING_EARLY)
             player:setLocalVar("POOL_TIME", 0)

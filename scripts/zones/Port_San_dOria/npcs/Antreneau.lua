@@ -65,11 +65,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA, dsp.quest.id.sandoria.OVER_THE_HILLS_AND_FAR_AWAY)
     else
         if csid == 527 then
-            player:setVar("aTasteForMeat", 1)
+            player:setCharVar("aTasteForMeat", 1)
         elseif csid == 530 then
             player:addItem(4371,1)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 4371)
-            player:setVar("aTasteForMeat", 0)
+            player:setCharVar("aTasteForMeat", 0)
         end
     end
 

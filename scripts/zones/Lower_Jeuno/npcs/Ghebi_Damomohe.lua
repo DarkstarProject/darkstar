@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
         player:addGil(500 * GIL_RATE)
         player:addKeyItem(dsp.ki.PSOXJA_PASS)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.PSOXJA_PASS)
-        player:setVar("PXPassGetGems",0)
+        player:setCharVar("PXPassGetGems",0)
     elseif csid == 54 then
-        player:setVar("PXPassGetGems",1)
+        player:setCharVar("PXPassGetGems",1)
     end
 end

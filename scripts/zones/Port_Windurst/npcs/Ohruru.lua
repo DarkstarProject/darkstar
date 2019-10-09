@@ -39,10 +39,10 @@ function onTrigger(player,npc)
         prog = player:getCharVar("QuestCatchItIfYouCan_var");
         if (prog == 0) then
             player:startEvent(230); -- CATCH IT IF YOU CAN: Before Quest 1
-            player:setVar("QuestCatchItIfYouCan_var",1);
+            player:setCharVar("QuestCatchItIfYouCan_var",1);
         elseif (prog == 1) then
             player:startEvent(253); -- CATCH IT IF YOU CAN: Before Start
-            player:setVar("QuestCatchItIfYouCan_var",2);
+            player:setCharVar("QuestCatchItIfYouCan_var",2);
         elseif (prog == 2) then
             player:startEvent(231); -- CATCH IT IF YOU CAN: Before Quest 2
         end
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         end
 
-        player:setVar("QuestCatchItIfYouCan_var",0);
+        player:setCharVar("QuestCatchItIfYouCan_var",0);
 
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);

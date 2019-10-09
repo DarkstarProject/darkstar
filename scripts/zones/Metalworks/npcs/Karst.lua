@@ -33,9 +33,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 602) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 765) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 766 or csid == 603) then
         finishMissionTimeline(player, 1, csid, option);
     end

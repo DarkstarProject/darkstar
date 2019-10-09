@@ -98,14 +98,14 @@ function onEventFinish(player,csid,option,npc)
     if (csid == 221) then    -- correct trade, onto next opo
         if player:getCharVar("OPO_OPO_PROGRESS") == 2 then
             player:tradeComplete();
-            player:setVar("OPO_OPO_PROGRESS",3);
-            player:setVar("OPO_OPO_FAILED",0);
+            player:setCharVar("OPO_OPO_PROGRESS",3);
+            player:setCharVar("OPO_OPO_FAILED",0);
         else
-            player:setVar("OPO_OPO_FAILED",4);
+            player:setCharVar("OPO_OPO_FAILED",4);
         end
     elseif (csid == 231) then              -- wrong trade, restart at first opo
-        player:setVar("OPO_OPO_FAILED",1);
-        player:setVar("OPO_OPO_RETRY",3);
+        player:setCharVar("OPO_OPO_FAILED",1);
+        player:setCharVar("OPO_OPO_RETRY",3);
     else
         npc:wait(0);
     end

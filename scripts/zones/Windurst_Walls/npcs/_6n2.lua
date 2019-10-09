@@ -69,40 +69,40 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 288) then
-        player:setVar("KnowOnesOnions",2);
+        player:setCharVar("KnowOnesOnions",2);
     elseif (csid == 289) then
         player:completeQuest(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
         player:addFame(WINDURST,100);
         player:addTitle(dsp.title.STAR_ONION_BRIGADIER);
         player:delKeyItem(dsp.ki.OLD_RING);
-        player:setVar("OnionRingsTime",0);
-        player:setVar("OnionRings",2);
+        player:setCharVar("OnionRingsTime",0);
+        player:setCharVar("OnionRings",2);
     elseif (csid == 384) then
         player:addQuest(WINDURST, dsp.quest.id.windurst.I_CAN_HEAR_A_RAINBOW);
     elseif (csid == 386) then
-        player:setVar("WildCard",2);
+        player:setCharVar("WildCard",2);
     elseif (csid == 387) then
         player:delKeyItem(dsp.ki.JOKER_CARD);
         player:addGil(GIL_RATE*8000);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*8000);
     elseif (csid == 337) then
         -- Mark the progress
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 402) then
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER) == QUEST_COMPLETED) then
             player:delQuest(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER);
             player:addQuest(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER); -- this needs only if you repeat this quest
         end;
-        player:setVar("ThePuppetMasterProgress",1);
+        player:setCharVar("ThePuppetMasterProgress",1);
         player:addQuest(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER);
     elseif (csid == 413) then
-        player:setVar("ClassReunionProgress",1);
+        player:setCharVar("ClassReunionProgress",1);
         player:addQuest(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
         player:addKeyItem(dsp.ki.CARBUNCLES_TEAR);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CARBUNCLES_TEAR);
     elseif (csid == 415) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
-        player:setVar("CarbuncleDebacleProgress",1);
+        player:setCharVar("CarbuncleDebacleProgress",1);
     end;
 
 end;

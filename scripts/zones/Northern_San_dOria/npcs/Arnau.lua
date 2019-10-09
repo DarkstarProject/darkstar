@@ -28,10 +28,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 51) then
-        player:setVar("EMERALD_WATERS_Status",3);
+        player:setCharVar("EMERALD_WATERS_Status",3);
     elseif (csid == 693) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 694) then
-        player:setVar("OptionalCSforSTC",0);
+        player:setCharVar("OptionalCSforSTC",0);
     end
 end;

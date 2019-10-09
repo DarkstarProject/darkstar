@@ -13,6 +13,6 @@ end
 
 function onMobDeath(mob, player, isKiller)
     if player:getCharVar("sharpeningTheSwordCS") == 3 then
-        player:setVar("PolevikKilled", 1)
+        player:setCharVar("PolevikKilled", 1)
     end
 end

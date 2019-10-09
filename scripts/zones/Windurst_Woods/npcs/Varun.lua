@@ -33,9 +33,9 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 100 then
-        player:setVar("rockracketeer_sold", 4)
+        player:setCharVar("rockracketeer_sold", 4)
     elseif csid == 101 then
-        player:setVar("rockracketeer_sold", 5)
+        player:setCharVar("rockracketeer_sold", 5)
     elseif csid == 102 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.ROCK_RACKETEER, {gil=2100, var="rockracketeer_sold"}) then
         player:confirmTrade()
     end

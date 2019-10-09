@@ -31,7 +31,7 @@ end
 function onEventFinish(player,csid,option)
 
     if csid == 57 then
-        player:setVar("GuestofHauteur_Event",1)
+        player:setCharVar("GuestofHauteur_Event",1)
         player:addKeyItem(dsp.ki.LETTERS_FROM_DOMIEN)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTERS_FROM_DOMIEN)
     end

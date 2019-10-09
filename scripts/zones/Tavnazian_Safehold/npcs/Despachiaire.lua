@@ -61,11 +61,11 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 102 or csid == 108) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
     elseif (csid == 117) then
-        player:setVar("COP_optional_CS_Despachaire",1);
+        player:setCharVar("COP_optional_CS_Despachaire",1);
     elseif (csid == 118) then
-        player:setVar("COP_Louverance_s_Path",1);
+        player:setCharVar("COP_Louverance_s_Path",1);
     end
 
 end;

@@ -76,13 +76,13 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10088) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT);
-        player:setVar("WildcatJeuno",0);
+        player:setCharVar("WildcatJeuno",0);
         player:addKeyItem(dsp.ki.WHITE_SENTINEL_BADGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHITE_SENTINEL_BADGE);
     elseif (csid == 10091) then
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT);
         player:addFame(JEUNO, 150);
-        player:setVar("WildcatJeuno",0);
+        player:setCharVar("WildcatJeuno",0);
         player:delKeyItem(dsp.ki.WHITE_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.WHITE_INVITATION_CARD);
         player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.WHITE_SENTINEL_BADGE);

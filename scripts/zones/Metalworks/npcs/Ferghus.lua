@@ -29,8 +29,8 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 946 and option == 0) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.TOO_MANY_CHEFS);
-        player:setVar("TOO_MANY_CHEFS",1);
+        player:setCharVar("TOO_MANY_CHEFS",1);
     elseif (csid == 947) then
-        player:setVar("TOO_MANY_CHEFS",5);
+        player:setCharVar("TOO_MANY_CHEFS",5);
     end
 end;

@@ -24,6 +24,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 53 then
-        player:setVar("PromathiaStatus", 7)
+        player:setCharVar("PromathiaStatus", 7)
     end
 end

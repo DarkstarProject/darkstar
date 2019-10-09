@@ -95,18 +95,18 @@ function onEventFinish(player,csid,option)
 
     finishMissionTimeline(player,2,csid,option);
     if (csid == 1036) then
-        player:setVar("MissionStatus",4);
+        player:setCharVar("MissionStatus",4);
         player:delKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK);
-        player:setVar("Wait1DayForRanperre_date", os.date("%j"));
+        player:setCharVar("Wait1DayForRanperre_date", os.date("%j"));
     elseif (csid == 1038) then
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 1040) then
-        player:setVar("MissionStatus",7);
-        player:setVar("Wait1DayForRanperre_date",0);
+        player:setCharVar("MissionStatus",7);
+        player:setCharVar("Wait1DayForRanperre_date",0);
     elseif (csid == 1034) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 62) then
-        player:setVar("SecretWeaponStatus",1);
+        player:setCharVar("SecretWeaponStatus",1);
     elseif (csid == 1044) then
         finishMissionTimeline(player,1,csid,option);
     end

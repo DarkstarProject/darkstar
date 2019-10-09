@@ -56,7 +56,7 @@ local function giveClammedItems(player)
             if (player:addItem(clammingItems[item],clammedItemQty)) then
 
                 player:messageSpecial(ID.text.YOU_OBTAIN, clammingItems[item], clammedItemQty);
-                player:setVar("ClammedItem_" ..  clammingItems[item], 0);
+                player:setCharVar("ClammedItem_" ..  clammingItems[item], 0);
             else
                 player:messageSpecial(ID.text.WHOA_HOLD_ON_NOW);
                 break;
@@ -118,7 +118,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 28) then
         if (option == 1) then -- Give 50pz clamming kit
-            player:setVar("ClammingKitSize", 50);
+            player:setCharVar("ClammingKitSize", 50);
             player:addKeyItem(dsp.ki.CLAMMING_KIT);
             player:delGil(500);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CLAMMING_KIT);
@@ -126,8 +126,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 29) then
         if (option == 2) then -- Give player clammed items
 
-            player:setVar("ClammingKitSize", 0);
-            player:setVar("ClammingKitWeight", 0);
+            player:setCharVar("ClammingKitSize", 0);
+            player:setCharVar("ClammingKitWeight", 0);
             player:delKeyItem(dsp.ki.CLAMMING_KIT);
             player:messageSpecial(ID.text.YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
 
@@ -136,13 +136,13 @@ function onEventFinish(player,csid,option)
         elseif (option == 3) then -- Get bigger kit
             local clammingKitSize = player:getCharVar("ClammingKitSize") + 50;
 
-            player:setVar("ClammingKitSize", clammingKitSize);
+            player:setCharVar("ClammingKitSize", clammingKitSize);
             player:messageSpecial(ID.text.YOUR_CLAMMING_CAPACITY, 0, 0, clammingKitSize);
         end
     elseif ( csid == 30) then -- Broken bucket
-        player:setVar("ClammingKitSize", 0);
-        player:setVar("ClammingKitBroken", 0);
-        player:setVar("ClammingKitWeight", 0);
+        player:setCharVar("ClammingKitSize", 0);
+        player:setCharVar("ClammingKitBroken", 0);
+        player:setCharVar("ClammingKitWeight", 0);
         player:delKeyItem(dsp.ki.CLAMMING_KIT);
         player:messageSpecial(ID.text.YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
     end

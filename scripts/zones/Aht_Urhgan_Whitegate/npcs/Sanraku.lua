@@ -234,7 +234,7 @@ function onEventFinish(player,csid,option)
     -- printf("finishRESULT: %u",option)
     --[[
     if csid == 908 then
-        player:setVar("ZeniStatus",1)
+        player:setCharVar("ZeniStatus",1)
         player:addCurrency("zeni_point", 2000)
     end
     ]]

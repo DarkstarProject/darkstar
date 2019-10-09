@@ -20,7 +20,7 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-    player:setVar("characterLimbusKey",GetServerVariable("[Temenos_W_Tower]UniqueID"));
+    player:setCharVar("characterLimbusKey",GetServerVariable("[Temenos_W_Tower]UniqueID"));
     player:delKeyItem(dsp.ki.COSMOCLEANSE);
     player:delKeyItem(dsp.ki.WHITE_CARD);
 end;

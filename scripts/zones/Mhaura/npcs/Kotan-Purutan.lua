@@ -38,8 +38,8 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 141) then
         player:addKeyItem(dsp.ki.SMALL_BAG);
-        player:setVar("Kenapa_Overnight_Day_var",VanadielDayOfTheYear());
-        player:setVar("Kenapa_Overnight_Hour_var",VanadielHour());
+        player:setCharVar("Kenapa_Overnight_Day_var",VanadielDayOfTheYear());
+        player:setCharVar("Kenapa_Overnight_Hour_var",VanadielHour());
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMALL_BAG);
     end
 end;

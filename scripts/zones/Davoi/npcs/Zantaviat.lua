@@ -37,16 +37,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 100) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 104) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
         player:delKeyItem(dsp.ki.LOST_DOCUMENT);
         player:addKeyItem(dsp.ki.TEMPLE_KNIGHTS_DAVOI_REPORT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TEMPLE_KNIGHTS_DAVOI_REPORT);
     elseif (csid == 102) then
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 105) then
-        player:setVar("MissionStatus",10);
+        player:setCharVar("MissionStatus",10);
         player:delKeyItem(dsp.ki.EAST_BLOCK_CODE);
         player:delKeyItem(dsp.ki.SOUTH_BLOCK_CODE);
         player:delKeyItem(dsp.ki.NORTH_BLOCK_CODE);

@@ -23,7 +23,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getCharVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
-        player:setVar("PromathiaStatus",4);
+        player:setCharVar("PromathiaStatus",4);
     end
 end;
 

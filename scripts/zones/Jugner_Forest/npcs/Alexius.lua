@@ -33,6 +33,6 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.WEAPONS_RECEIPT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WEAPONS_RECEIPT);
     elseif (csid == 10) then
-        player:setVar("sinHunting",4);
+        player:setCharVar("sinHunting",4);
     end
 end;

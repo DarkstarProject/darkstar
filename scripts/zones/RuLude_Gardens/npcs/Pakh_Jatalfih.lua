@@ -53,10 +53,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 43 then
-        player:setVar("MissionStatus",2)
+        player:setCharVar("MissionStatus",2)
         player:delKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR)
     elseif csid == 141 then
-        player:setVar("MissionStatus",4)
+        player:setCharVar("MissionStatus",4)
     elseif csid == 37 then
         finishMissionTimeline(player,1,csid,option)
     end

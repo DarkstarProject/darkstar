@@ -35,13 +35,13 @@ function onEventFinish(player,csid,option)
     if (csid == 12 and option == 1) then
         dsp.teleport.to(player, dsp.teleport.id.SEA);
     elseif (csid == 16) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
     elseif (csid == 17) then
         player:completeMission(COP,dsp.mission.id.cop.CALM_BEFORE_THE_STORM);
         player:addMission(COP,dsp.mission.id.cop.THE_WARRIOR_S_PATH);
-        player:setVar("PromathiaStatus",0);
-        player:setVar("COP_Dalham_KILL",0);
-        player:setVar("COP_Boggelmann_KILL",0);
-        player:setVar("Cryptonberry_Executor_KILL",0);
+        player:setCharVar("PromathiaStatus",0);
+        player:setCharVar("COP_Dalham_KILL",0);
+        player:setCharVar("COP_Boggelmann_KILL",0);
+        player:setCharVar("Cryptonberry_Executor_KILL",0);
     end
 end;

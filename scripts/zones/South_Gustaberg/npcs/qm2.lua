@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player, npc, trade)
     if not player:needToZone() then
-        player:setVar("SGusta_Sausage_Timer", 0)
+        player:setCharVar("SGusta_Sausage_Timer", 0)
     end
 
     if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED then
@@ -20,7 +20,7 @@ function onTrade(player, npc, trade)
                 -- player puts sheep meat on the fire
                 player:messageSpecial(ID.text.FIRE_PUT, 4372)
                 player:confirmTrade()
-                player:setVar("SGusta_Sausage_Timer", os.time() + 3456) -- 57 minutes 36 seconds, 1 Vana'diel Day
+                player:setCharVar("SGusta_Sausage_Timer", os.time() + 3456) -- 57 minutes 36 seconds, 1 Vana'diel Day
                 player:needToZone(true)
             else
                 -- message given if sheep meat is already on the fire
@@ -32,7 +32,7 @@ end
 
 function onTrigger(player, npc)
     if not player:needToZone() then
-        player:setVar("SGusta_Sausage_Timer", 0)
+        player:setCharVar("SGusta_Sausage_Timer", 0)
     end
 
     local sausageTimer = player:getCharVar("SGusta_Sausage_Timer")
@@ -45,7 +45,7 @@ function onTrigger(player, npc)
         elseif player:getFreeSlotsCount() < 1 then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 4395)
         else
-            player:setVar("SGusta_Sausage_Timer", 0)
+            player:setCharVar("SGusta_Sausage_Timer", 0)
             player:messageSpecial(ID.text.FIRE_TAKE, 4395)
             player:addItem(4395)
         end

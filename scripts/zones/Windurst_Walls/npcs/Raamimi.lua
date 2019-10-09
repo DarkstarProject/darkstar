@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
         else
-            player:setVar("ToBeeOrNot_var",0);
+            player:setCharVar("ToBeeOrNot_var",0);
             player:addItem(4156,3); -- Mulsum x3
             player:messageSpecial(ID.text.ITEMS_OBTAINED, 4156,3);
             player:needToZone(true);

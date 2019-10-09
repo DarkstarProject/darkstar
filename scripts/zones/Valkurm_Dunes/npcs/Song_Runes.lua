@@ -35,7 +35,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.WANDERING_MINSTREL);
         player:unlockJob(dsp.job.BRD); -- Bard
         player:messageSpecial(ID.text.UNLOCK_BARD);  --You can now become a bard!
-        player:setVar("PathOfTheBard_Event",0);
+        player:setCharVar("PathOfTheBard_Event",0);
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.PATH_OF_THE_BARD);
     end

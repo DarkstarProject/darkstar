@@ -38,7 +38,7 @@ function onTrade(player,npc,trade)
         if (ENABLE_ACP == 1 and sLux and sLuna and sAstrum and count == 3 and ACPm >= dsp.mission.id.acp.GATHERER_OF_LIGHT_I and CrimsonKey == false and now ~= LastCrimson) then -- and timer stuff here) then
             player:tradeComplete();
             player:addKeyItem(dsp.ki.CRIMSON_KEY);
-            player:setVar("LastCrimsonKey", os.date("%j"));
+            player:setCharVar("LastCrimsonKey", os.date("%j"));
             player:messageSpecial(ID.text.DRYEYES_2);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRIMSON_KEY);
         elseif (sLux and sLuna and sAstrum and count == 3 and (now == LastCrimson or CrimsonKey == true)) then
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
                 player:delKeyItem(dsp.ki.BOWL_OF_BLAND_GOBLIN_SALAD);
                 player:delKeyItem(dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE);
                 player:delKeyItem(dsp.ki.CHUNK_OF_SMOKED_GOBLIN_GRUB);
-                player:setVar("LastViridianKey", os.date("%j"));
+                player:setCharVar("LastViridianKey", os.date("%j"));
                 player:showText(player,ID.text.DRYEYES_2);
                 player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIRIDIAN_KEY);
             elseif (now == LastViridian or ViridianKey == true) then

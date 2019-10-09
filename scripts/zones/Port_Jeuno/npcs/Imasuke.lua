@@ -75,12 +75,12 @@ function onEventFinish(player,csid,option)
 
     -- CIRCLE OF TIME
     elseif (csid == 29 and option == 1) then
-        player:setVar("circleTime",3);
+        player:setCharVar("circleTime",3);
     elseif (csid == 30 and option == 1) then
-        player:setVar("circleTime",3);
+        player:setCharVar("circleTime",3);
     elseif (csid == 30 and option == 0) then
-        player:setVar("circleTime",2);
+        player:setCharVar("circleTime",2);
     elseif (csid == 33) then
-        player:setVar("circleTime",5);
+        player:setCharVar("circleTime",5);
     end;
 end;

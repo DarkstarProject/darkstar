@@ -14,11 +14,11 @@ function onTrade(player,npc,trade)
 
     if (Guardian == QUEST_ACCEPTED and trade:hasItemQty(4596,1)) then
         player:messageSpecial(ID.text.ALTAR_OFFERING,0,4596);
-        player:setVar("PamamaVar",1); --Set variable to reflect first completion of quest
+        player:setCharVar("PamamaVar",1); --Set variable to reflect first completion of quest
         player:tradeComplete();
     elseif (Guardian == QUEST_COMPLETED and trade:hasItemQty(4596,1)) then
         player:messageSpecial(ID.text.ALTAR_OFFERING,0,4596);
-        player:setVar("PamamaVar",2); --Set variable to reflect repeat of quest, not first time
+        player:setCharVar("PamamaVar",2); --Set variable to reflect repeat of quest, not first time
         player:tradeComplete();
     end
 end;

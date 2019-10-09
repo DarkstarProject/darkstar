@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
         elseif (ShiningLeggings == QUEST_ACCEPTED and TurnedInVar <= 9) then -- turning in less than the amount needed to finish the quest
             TotalLeggings = Legging + TurnedInVar
             player:tradeComplete();
-            player:setVar("shiningLeggings_nb",TotalLeggings);
+            player:setCharVar("shiningLeggings_nb",TotalLeggings);
             player:startEvent(128,TotalLeggings); -- Update player on number of leggings turned in
         end
     else
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
         player:addFame(NORG,100);
         player:addTitle(dsp.title.LOOKS_GOOD_IN_LEGGINGS);
-        player:setVar("shiningLeggings_nb",0);
+        player:setCharVar("shiningLeggings_nb",0);
         player:completeQuest(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
     end
 

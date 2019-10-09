@@ -78,7 +78,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 8004 then
-        player:setVar("LegionStatus", 1)
+        player:setCharVar("LegionStatus", 1)
     elseif csid == 8005 then
         local ware = wares[option]
 

@@ -42,6 +42,6 @@ function onEventFinish(player, csid, option)
     then
         npcUtil.giveKeyItem(player, dsp.ki.ORCISH_HUT_KEY)
         player:setTitle(dsp.title.FODDERCHIEF_FLAYER)
-        player:setVar("MissionStatus", 3)
+        player:setCharVar("MissionStatus", 3)
     end
 end

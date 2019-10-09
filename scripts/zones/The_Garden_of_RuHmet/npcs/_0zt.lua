@@ -26,6 +26,6 @@ function onEventFinish(player,csid,option)
     if (csid==204) then
         player:completeMission(COP,dsp.mission.id.cop.WHEN_ANGELS_FALL);
         player:addMission(COP,dsp.mission.id.cop.DAWN);
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
     end
 end;

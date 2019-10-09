@@ -40,12 +40,12 @@ end
 function onEventFinish(player,csid,option)
     if csid == 5056 then
         -- Successfully finished introduction CS event chain for Quest: 'Raptor Rapture'.
-        player:setVar("Raptor_Rapture_Status", 3)
+        player:setCharVar("Raptor_Rapture_Status", 3)
 
         if (option == 1) then
             -- Starts Quest: 'Raptor Rapture'
             player:addQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE)
-            player:setVar("Raptor_Rapture_Status", 4)
+            player:setCharVar("Raptor_Rapture_Status", 4)
         end
     elseif csid == 2 then
         player:completeMission(SOA,dsp.mission.id.soa.HEARTWINGS_AND_THE_KINDHEARTED)

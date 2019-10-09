@@ -26,6 +26,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 55) then
-        player:setVar("BoyAndTheBeast",1);
+        player:setCharVar("BoyAndTheBeast",1);
     end
 end;

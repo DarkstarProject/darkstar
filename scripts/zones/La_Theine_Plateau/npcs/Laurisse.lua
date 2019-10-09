@@ -39,7 +39,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 106) then
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     end
 
 end;

@@ -39,7 +39,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 17) then
-        player:setVar("COP_louverance_story",2);
+        player:setCharVar("COP_louverance_story",2);
     end
 end;
 

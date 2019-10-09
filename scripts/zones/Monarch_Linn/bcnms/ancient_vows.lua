@@ -37,8 +37,8 @@ function onEventFinish(player, csid, option)
         if player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_VOWS and player:getCharVar("PromathiaStatus") == 2 then
             player:completeMission(COP, dsp.mission.id.cop.ANCIENT_VOWS)
             player:addMission(COP, dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING)
-            player:setVar("VowsDone", 1)
-            player:setVar("PromathiaStatus", 0)
+            player:setCharVar("VowsDone", 1)
+            player:setCharVar("PromathiaStatus", 0)
             player:setPos(694, -5.5, -619, 74, 107) -- South Gustaberg
         end
     end

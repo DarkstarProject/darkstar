@@ -31,13 +31,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 113) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.DISTANT_BELIEFS);
         player:addMission(COP,dsp.mission.id.cop.AN_ETERNAL_MELODY);
     elseif (csid == 109) then
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
     elseif (csid == 110) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.THE_SAVAGE);
         player:addMission(COP,dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP);
         player:addTitle(dsp.title.NAGMOLADAS_UNDERLING);

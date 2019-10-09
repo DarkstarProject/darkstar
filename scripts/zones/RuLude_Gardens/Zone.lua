@@ -22,7 +22,7 @@ function onZoneIn(player,prevZone)
         if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
-        player:setVar("PlayerMainJob",0);
+        player:setCharVar("PlayerMainJob",0);
     end
 
     if (player:getCurrentMission(COP) == dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getCharVar("PromathiaStatus") == 2) then
@@ -75,31 +75,31 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 65) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN);
         player:addMission(COP,dsp.mission.id.cop.THE_ROAD_FORKS); -- THE_ROAD_FORKS -- global mission 3.3
         -- We can't have more than 1 current mission at the time, so we keep The road forks as current mission
         -- progress are recorded in the following two variables
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",1); -- MEMORIES_OF_A_MAIDEN--3-3B: Windurst Road
-        player:setVar("EMERALD_WATERS_Status",1); -- EMERALD_WATERS-- 3-3A: San d'Oria Road
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",1); -- MEMORIES_OF_A_MAIDEN--3-3B: Windurst Road
+        player:setCharVar("EMERALD_WATERS_Status",1); -- EMERALD_WATERS-- 3-3A: San d'Oria Road
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 10047) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG);
         player:addMission(COP,dsp.mission.id.cop.A_PLACE_TO_RETURN);
     elseif (csid == 10048) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 10051) then
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
     elseif (csid == 122) then
-        player:setVar("PromathiaStatus",4);
-        player:setVar("COP_3-taru_story",0);
-        player:setVar("COP_shikarees_story",0);
-        player:setVar("COP_louverance_story",0);
-        player:setVar("COP_tenzen_story",0);
-        player:setVar("COP_jabbos_story",0);
+        player:setCharVar("PromathiaStatus",4);
+        player:setCharVar("COP_3-taru_story",0);
+        player:setCharVar("COP_shikarees_story",0);
+        player:setCharVar("COP_louverance_story",0);
+        player:setCharVar("COP_tenzen_story",0);
+        player:setCharVar("COP_jabbos_story",0);
     elseif (csid == 10094) then
         if (option == 1) then
             if (player:getFreeSlotsCount() == 0) then
@@ -107,24 +107,24 @@ function onEventFinish(player,csid,option)
             else
                 player:completeMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS);
                 player:addMission(TOAU,dsp.mission.id.toau.WESTERLY_WINDS);
-                player:setVar("AhtUrganStatus", 0);
+                player:setCharVar("AhtUrganStatus", 0);
                 player:addItem(2184,10);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,2184);
             end
         else
             player:completeMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS);
             player:addMission(TOAU,dsp.mission.id.toau.WESTERLY_WINDS);
-            player:setVar("AhtUrganStatus", 0);
+            player:setCharVar("AhtUrganStatus", 0);
         end
     elseif (csid == 10097) then
         player:completeMission(TOAU,dsp.mission.id.toau.ALLIED_RUMBLINGS);
         player:needToZone(true);
-        player:setVar("TOAUM40_STARTDAY", VanadielDayOfTheYear());
+        player:setCharVar("TOAUM40_STARTDAY", VanadielDayOfTheYear());
         player:addMission(TOAU,dsp.mission.id.toau.UNRAVELING_REASON);
     elseif (csid == 142) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE);
     elseif (csid == 143) then
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE);
-        player:setVar('StormsOfFate',0);
+        player:setCharVar('StormsOfFate',0);
     end
 end;

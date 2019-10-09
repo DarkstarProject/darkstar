@@ -36,7 +36,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 104 and player:getCharVar("PastPerfectVar") == 0) then
-        player:setVar("PastPerfectVar",1);
+        player:setCharVar("PastPerfectVar",1);
     elseif (csid == 130) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.PAST_PERFECT);
     elseif (csid == 131) then
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
         else
             if (player:addItem(12560)) then
                 player:delKeyItem(dsp.ki.TATTERED_MISSION_ORDERS);
-                player:setVar("PastPerfectVar",0);
+                player:setCharVar("PastPerfectVar",0);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,12560);
                 player:addFame(BASTOK,110);
                 player:completeQuest(BASTOK,dsp.quest.id.bastok.PAST_PERFECT);

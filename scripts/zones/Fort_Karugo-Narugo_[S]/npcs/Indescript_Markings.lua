@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
         player:addKeyItem(dsp.ki.RAFFLESIA_DREAMSPIT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.RAFFLESIA_DREAMSPIT);
-        player:setVar("AF_SCH_BOOTS", loafersQuestProgress + 1);
+        player:setCharVar("AF_SCH_BOOTS", loafersQuestProgress + 1);
 
         -- Move the markings around
         local positions = {

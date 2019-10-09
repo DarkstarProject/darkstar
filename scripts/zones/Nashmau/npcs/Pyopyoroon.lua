@@ -33,9 +33,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 277) then
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
     elseif (csid == 279 and player:getCharVar("AhtUrganStatus") == 1) then
-        player:setVar("AhtUrganStatus",0);
+        player:setCharVar("AhtUrganStatus",0);
         player:tradeComplete();
         player:addKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIAL_OF_SPECTRAL_SCENT);

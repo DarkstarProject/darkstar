@@ -31,13 +31,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 104 or csid == 111) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 115) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.CHAINS_AND_BONDS);
         player:addMission(COP,dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS);
     elseif (csid == 543) then
-        player:setVar("PromathiaStatus",6);
+        player:setCharVar("PromathiaStatus",6);
     end
 
 end;

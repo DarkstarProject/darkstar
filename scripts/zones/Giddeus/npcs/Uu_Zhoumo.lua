@@ -39,13 +39,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 40) then
-        player:setVar("MissionStatus",5);
+        player:setCharVar("MissionStatus",5);
         player:delKeyItem(dsp.ki.DULL_SWORD);
     elseif (csid == 41) then
         player:tradeComplete();
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 42) then
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
         player:delKeyItem(dsp.ki.SHIELD_OFFERING);
     end
 end;

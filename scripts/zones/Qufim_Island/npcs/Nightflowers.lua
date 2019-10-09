@@ -30,6 +30,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 0 then
-        player:setVar("SaveMySon_Event", 1)
+        player:setCharVar("SaveMySon_Event", 1)
     end
 end

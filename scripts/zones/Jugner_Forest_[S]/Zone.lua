@@ -39,8 +39,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 200 then
-        player:setVar("ClawsOfGriffonProg", 1)
+        player:setCharVar("ClawsOfGriffonProg", 1)
     elseif csid == 105 then
-        player:setVar("roadToDivadomCS", 2)
+        player:setCharVar("roadToDivadomCS", 2)
     end
 end

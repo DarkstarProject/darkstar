@@ -19,7 +19,7 @@ function onTrigger(player,npc)
             player:delKeyItem(dsp.ki.YOMOTSU_HIRASAKA);
             player:addKeyItem(dsp.ki.FADED_YOMOTSU_HIRASAKA);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FADED_YOMOTSU_HIRASAKA);
-            player:setVar("OkuriNMKilled",0);
+            player:setCharVar("OkuriNMKilled",0);
         else
             player:startEvent(10);
         end
@@ -35,7 +35,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10 and option == 1) then
         player:needToZone(true); -- If you zone, you will need to repeat the fight.
-        player:setVar("OkuriNMKilled",0);
+        player:setCharVar("OkuriNMKilled",0);
         SpawnMob(ID.mob.DOMAN):updateClaim(player);
         SpawnMob(ID.mob.ONRYO):updateClaim(player);
     end

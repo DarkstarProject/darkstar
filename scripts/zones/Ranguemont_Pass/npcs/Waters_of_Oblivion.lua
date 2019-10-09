@@ -36,8 +36,8 @@ function onEventFinish(player,csid,option)
     if (csid == 8) then
         if (npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.PAINFUL_MEMORY, {item=16766})) then
             player:delKeyItem(dsp.ki.MERTAIRES_BRACELET);
-            player:setVar("TrosKilled",0);
-            player:setVar("Tros_Timer",0);
+            player:setCharVar("TrosKilled",0);
+            player:setCharVar("Tros_Timer",0);
         end
     end
 end;

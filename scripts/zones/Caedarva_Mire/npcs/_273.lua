@@ -14,7 +14,7 @@ end
 
 function onTrigger(player,npc)
     if player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT) then
-        player:setVar("ShadesOfVengeance",1)
+        player:setCharVar("ShadesOfVengeance",1)
         player:startEvent(143,79,-6,0,99,3,0)
     elseif player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS) then
         local assaultid = player:getCurrentAssault()
@@ -44,7 +44,7 @@ function onEventUpdate(player,csid,option,target)
         cap = 50
     end
 
-    player:setVar("AssaultCap", cap)
+    player:setCharVar("AssaultCap", cap)
 
     local party = player:getParty()
 
@@ -95,7 +95,7 @@ function onInstanceCreated(player,target,instance)
         player:setInstance(instance)
         player:instanceEntry(target,4)
 
-        player:setVar("ShadesOfVengeance", 0)
+        player:setCharVar("ShadesOfVengeance", 0)
         player:delKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
 
         local party = player:getParty()
@@ -110,7 +110,7 @@ function onInstanceCreated(player,target,instance)
         end
     elseif (instance) then
         instance:setLevelCap(player:getCharVar("AssaultCap"))
-        player:setVar("AssaultCap", 0)
+        player:setCharVar("AssaultCap", 0)
         player:setInstance(instance)
         player:instanceEntry(target,4)
         player:delKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS)

@@ -43,11 +43,11 @@ function onEventFinish(player,csid,option)
 
     if (csid == 62) then
         player:tradeComplete();
-        player:setVar("darkLegacyCS",4);
+        player:setCharVar("darkLegacyCS",4);
 
     elseif (csid == 58) then
         player:tradeComplete();
-        player:setVar("EARLY_BIRD_TRACK_BOOK",2);
+        player:setCharVar("EARLY_BIRD_TRACK_BOOK",2);
         player:addKeyItem(dsp.ki.ART_FOR_EVERYONE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ART_FOR_EVERYONE);
     end

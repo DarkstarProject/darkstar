@@ -30,6 +30,6 @@ end
 function onEventFinish(player, csid, option)
     if csid == 66 then
         npcUtil.giveKeyItem(player, dsp.ki.WHEEL_LOCK_TRIGGER)
-        player:setVar("EquippedforAllOccasions", 3)
+        player:setCharVar("EquippedforAllOccasions", 3)
     end
 end

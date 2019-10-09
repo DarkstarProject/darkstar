@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 SomethingFishy = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
     if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getCharVar("BlastFromThePast_Prog") == 0) then
         player:startEvent(318);
-        player:setVar("BlastFromThePast_Prog",1);
+        player:setCharVar("BlastFromThePast_Prog",1);
     elseif (SomethingFishy >= QUEST_ACCEPTED) then
         if (player:needToZone()) then
             player:startEvent(211);
@@ -39,7 +39,7 @@ SomethingFishy = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SOMETHING_
         player:startEvent(208,0,4360);
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getCharVar("BlastFromThePast_Prog") == 0) then
         player:startEvent(318);
-        player:setVar("BlastFromThePast_Prog",1);
+        player:setCharVar("BlastFromThePast_Prog",1);
     else
         player:startEvent(207);
     end
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 208) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
-        player:setVar("TokakaSpokenTo",1);
+        player:setCharVar("TokakaSpokenTo",1);
     elseif (csid == 210) then
         SomethingFishy = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
 
@@ -69,9 +69,9 @@ function onEventFinish(player,csid,option)
 
         player:tradeComplete();
         player:addGil(GIL_RATE*70);
-        player:setVar("TokakaSpokenTo",0);
+        player:setCharVar("TokakaSpokenTo",0);
         player:needToZone(true);
     elseif (csid == 209) then
-        player:setVar("TokakaSpokenTo",1);
+        player:setCharVar("TokakaSpokenTo",1);
     end
 end;

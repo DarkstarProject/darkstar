@@ -39,6 +39,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 10 then
-        player:setVar("darkPuppetCS", 2)
+        player:setCharVar("darkPuppetCS", 2)
     end
 end

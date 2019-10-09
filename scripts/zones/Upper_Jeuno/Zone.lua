@@ -33,7 +33,7 @@ function onZoneIn(player,prevZone)
         if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
-        player:setVar("PlayerMainJob",0);
+        player:setCharVar("PlayerMainJob",0);
     end
 
     return cs;
@@ -54,6 +54,6 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 2) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     end
 end;

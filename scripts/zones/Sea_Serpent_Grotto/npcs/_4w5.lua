@@ -23,25 +23,25 @@ function onTrigger(player, npc)
     if X <= 280 and Z >= -104 then
         if SilverDoorCheck == 0 then -- Door has never been checked
             player:messageSpecial(ID.text.FIRST_CHECK)
-            player:setVar("SSG_SilverDoor", 1)
+            player:setCharVar("SSG_SilverDoor", 1)
         elseif SilverDoorCheck == 1 then -- Door has been checked once
             player:messageSpecial(ID.text.SECOND_CHECK)
-            player:setVar("SSG_SilverDoor", 2)
+            player:setCharVar("SSG_SilverDoor", 2)
         elseif SilverDoorCheck == 2 then -- Door has been checked twice
             player:messageSpecial(ID.text.THIRD_CHECK)
-            player:setVar("SSG_SilverDoor", 3)
+            player:setCharVar("SSG_SilverDoor", 3)
         elseif SilverDoorCheck == 3 then -- Door has been checked three times
             player:messageSpecial(ID.text.FOURTH_CHECK)
-            player:setVar("SSG_SilverDoor", 4)
+            player:setCharVar("SSG_SilverDoor", 4)
         elseif SilverDoorCheck == 4 then -- Door has been checked four times
             player:messageSpecial(ID.text.FIFTH_CHECK)
-            player:setVar("SSG_SilverDoor", 5)
+            player:setCharVar("SSG_SilverDoor", 5)
         elseif SilverDoorCheck == 5 then -- Door has been checked five times
             player:messageSpecial(ID.text.SILVER_CHECK)
-            player:setVar("SSG_SilverDoor", 6)
+            player:setCharVar("SSG_SilverDoor", 6)
         elseif SilverDoorCheck == 6 or SilverDoorCheck == 7 then -- Door has been checked six or more times
             player:messageSpecial(ID.text.COMPLETED_CHECK, 750)
-            player:setVar("SSG_SilverDoor", 7)
+            player:setCharVar("SSG_SilverDoor", 7)
         end
 
         return 1 -- Keep the door closed

@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(ID.text.MELT_BARE_HANDS)
             if npcUtil.giveItem(player, 546) then
                 player:confirmTrade()
-                player:setVar("QuestCatchAFallingStar_prog", 1)
+                player:setCharVar("QuestCatchAFallingStar_prog", 1)
             end
         end
     end

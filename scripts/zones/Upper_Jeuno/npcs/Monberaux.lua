@@ -78,13 +78,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 6) then
-        player:setVar("COP_Tenzen_s_Path",5);
+        player:setCharVar("COP_Tenzen_s_Path",5);
     elseif (csid == 74) then
-        player:setVar("COP_Tenzen_s_Path",3);
+        player:setCharVar("COP_Tenzen_s_Path",3);
         player:addKeyItem(dsp.ki.ENVELOPE_FROM_MONBERAUX);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ENVELOPE_FROM_MONBERAUX);
     elseif (csid == 10) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:addKeyItem(dsp.ki.MYSTERIOUS_AMULET);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MYSTERIOUS_AMULET);
         player:completeMission(COP,dsp.mission.id.cop.THE_RITES_OF_LIFE);
@@ -93,9 +93,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 206) then
         player:startEvent(207);  --207
     elseif (csid == 82) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 75) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.DARKNESS_NAMED);
         player:addMission(COP,dsp.mission.id.cop.SHELTERING_DOUBT);
     elseif (csid == 91) then
@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
         player:addVar("saveTheClockTowerNPCz1", 4);
     elseif (csid == 33 and option == 0 or csid == 34 and option == 0) then
         player:addTitle(dsp.title.TWOS_COMPANY);
-        player:setVar("theLostCardianVar",0);
+        player:setCharVar("theLostCardianVar",0);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
         player:addKeyItem(dsp.ki.TWO_OF_SWORDS);
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_LOST_CARDIAN);
         player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"
     elseif (csid == 33 and option == 1) then
-        player:setVar("theLostCardianVar",3);
+        player:setCharVar("theLostCardianVar",3);
     end
 
 end;

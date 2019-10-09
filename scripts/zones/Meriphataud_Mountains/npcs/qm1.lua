@@ -23,7 +23,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 56 then
-        player:setVar("TheHolyCrest_Event", 5)
+        player:setCharVar("TheHolyCrest_Event", 5)
         player:confirmTrade()
         player:startEvent(33)
     end

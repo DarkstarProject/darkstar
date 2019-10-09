@@ -36,7 +36,7 @@ function onEventFinish(player, csid, option)
     if csid == 32001 then
         if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ON_MY_WAY and player:getCharVar("MissionStatus") == 2 then
             npcUtil.giveKeyItem(player, dsp.ki.LETTER_FROM_WEREI)
-            player:setVar("MissionStatus", 3)
+            player:setCharVar("MissionStatus", 3)
         end
     end
 end

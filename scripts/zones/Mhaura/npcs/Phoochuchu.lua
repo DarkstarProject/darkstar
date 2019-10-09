@@ -33,7 +33,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 301) then
-        player:setVar("aThiefinNorgCS",3);
+        player:setCharVar("aThiefinNorgCS",3);
     end
 
 end;

@@ -84,11 +84,11 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL);
     elseif (csid == 204 and option == 0) then
         player:addVar("QuestNeverToReturn_prog", 1);  -- Keep track of how many times the players fortune has been read
-        player:setVar("QuestNeverToReturn_day", VanadielDayOfTheYear()); -- new vanadiel day
+        player:setCharVar("QuestNeverToReturn_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 202 and option == 0) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
-        player:setVar("QuestNeverToReturn_prog", 0);
-        player:setVar("QuestNeverToReturn_day", 0);
+        player:setCharVar("QuestNeverToReturn_prog", 0);
+        player:setCharVar("QuestNeverToReturn_day", 0);
     elseif (csid == 203) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13477);
@@ -102,8 +102,8 @@ function onEventFinish(player,csid,option)
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
         end
     elseif (csid == 17) then
-        player:setVar("QuestSearchRightWords_prereq", 1);
+        player:setCharVar("QuestSearchRightWords_prereq", 1);
     elseif (csid == 154) then
-        player:setVar("SearchingForRightWords_postcs", -1);
+        player:setCharVar("SearchingForRightWords_postcs", -1);
     end
 end;

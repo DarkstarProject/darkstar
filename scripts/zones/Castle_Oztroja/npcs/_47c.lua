@@ -43,6 +43,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 43 then
-        player:setVar("MissionStatus", 4)
+        player:setCharVar("MissionStatus", 4)
     end
 end

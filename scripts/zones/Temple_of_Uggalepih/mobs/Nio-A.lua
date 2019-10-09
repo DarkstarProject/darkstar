@@ -26,6 +26,6 @@ function onMobDeath(mob, player, isKiller)
         player:getCharVar("MissionStatus") == 5 and
         GetMobByID(ID.mob.NIO_HUM):isDead()
     then
-        player:setVar("Mission8-2Kills", 1)
+        player:setCharVar("Mission8-2Kills", 1)
     end
 end

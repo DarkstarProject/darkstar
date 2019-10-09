@@ -51,7 +51,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 68 then
-        player:setVar("MissionStatus", 3)
+        player:setCharVar("MissionStatus", 3)
         player:delKeyItem(dsp.ki.SOUTHWESTERN_STAR_CHARM)
     end
 end

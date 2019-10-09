@@ -32,7 +32,7 @@ end
 function onEventFinish(player, csid, option)
     if csid == 66 and option == 1 then
         if player:delGil(250 * (player:getCharVar("EVERYONES_GRUDGE_KILLS") / 20 + 1)) then
-            player:setVar("EVERYONES_GRUDGE_KILLS", 0)
+            player:setCharVar("EVERYONES_GRUDGE_KILLS", 0)
             player:messageSpecial(ID.text.HATE_RESET)
 
             --[[

@@ -55,19 +55,19 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x) -- Holla
-            player:setVar("option",1);
+            player:setCharVar("option",1);
             player:startEvent(103);
         end,
         [2] = function (x) -- Mea
-            player:setVar("option",1);
+            player:setCharVar("option",1);
             player:startEvent(104);
         end,
         [3] = function (x) -- Dem
-            player:setVar("option",1);
+            player:setCharVar("option",1);
             player:startEvent(105);
         end,
         [4] = function (x)
-            player:setVar("option",2);
+            player:setCharVar("option",2);
             player:startEvent(103);
         end,
         [5] = function (x)
@@ -124,8 +124,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 105 and option == 1) then
         player:setPos(139.974, 19.103, 219.989, 128, 108);     -- To Konschtat Highlands {R}
     elseif (csid == 155) then
-        player:setVar("cspromy3",0)
-        player:setVar("cslastpromy",1)
+        player:setCharVar("cspromy3",0)
+        player:setCharVar("cslastpromy",1)
         if (not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
             -- print("shouldbezonedtodem")
             player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
@@ -137,21 +137,21 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 161 and option == 1) then
         if (player:getPreviousZone() == dsp.zone.LA_THEINE_PLATEAU) then -- Holla
-            player:setVar("LastSkyWarpHolla", tonumber(os.date("%j")));
+            player:setCharVar("LastSkyWarpHolla", tonumber(os.date("%j")));
         elseif (player:getPreviousZone() == dsp.zone.KONSCHTAT_HIGHLANDS) then -- Dem
-            player:setVar("LastSkyWarpDem", tonumber(os.date("%j")));
+            player:setCharVar("LastSkyWarpDem", tonumber(os.date("%j")));
         elseif (player:getPreviousZone() == dsp.zone.TAHRONGI_CANYON) then -- Mea
-            player:setVar("LastSkyWarpMea", tonumber(os.date("%j")));
+            player:setCharVar("LastSkyWarpMea", tonumber(os.date("%j")));
         end
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 169 and option == 1) then
-        player:setVar("MeaChipRegistration",0);
+        player:setCharVar("MeaChipRegistration",0);
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 170 and option == 1) then
-        player:setVar("HollaChipRegistration",0);
+        player:setCharVar("HollaChipRegistration",0);
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 171 and option == 1) then
-        player:setVar("DemChipRegistration",0);
+        player:setCharVar("DemChipRegistration",0);
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     end
 end;

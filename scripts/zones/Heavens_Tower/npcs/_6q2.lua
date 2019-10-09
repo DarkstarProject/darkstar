@@ -61,7 +61,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 153) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
         player:delKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
         player:addKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
@@ -70,15 +70,15 @@ function onEventFinish(player,csid,option)
             player:addMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL);
             player:addKeyItem(dsp.ki.NEW_FEIYIN_SEAL);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
-            player:setVar("MissionStatus",10);
+            player:setCharVar("MissionStatus",10);
         end
         player:delKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST);
     elseif (csid == 214) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
         player:delKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
         player:addTitle(dsp.title.STARORDAINED_WARRIOR);
     elseif (csid == 310) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
         player:addTitle(dsp.title.HERO_ON_BEHALF_OF_WINDURST);
         player:addKeyItem(dsp.ki.HOLY_ONES_INVITATION);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.HOLY_ONES_INVITATION);
@@ -87,13 +87,13 @@ function onEventFinish(player,csid,option)
     elseif (csid == 192 or csid == 216) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 362) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 384) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 385) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 386) then
-        player:setVar("MissionStatus",4);
+        player:setCharVar("MissionStatus",4);
     elseif (csid == 407) then
         player:setPos(0,-16.750,130,64,239);
     end

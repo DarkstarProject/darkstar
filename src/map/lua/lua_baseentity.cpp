@@ -552,7 +552,7 @@ inline int32 CLuaBaseEntity::getVar(lua_State *L)
 /************************************************************************
 *  Function: setVar()
 *  Purpose : Updates PC's variable to an explicit value
-*  Example : player:setVar("[ZM]Status", 4)
+*  Example : player:setCharVar("[ZM]Status", 4)
 *  Notes   : Passing a '0' value will delete the variable
 ************************************************************************/
 

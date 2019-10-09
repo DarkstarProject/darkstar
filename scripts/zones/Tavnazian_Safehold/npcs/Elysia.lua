@@ -34,6 +34,6 @@ function onEventFinish(player,csid,option)
     if csid == 200 then
         player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNFORGIVEN)
     elseif csid == 202 then
-        player:setVar("UnforgivenVar", 1)
+        player:setCharVar("UnforgivenVar", 1)
     end
 end

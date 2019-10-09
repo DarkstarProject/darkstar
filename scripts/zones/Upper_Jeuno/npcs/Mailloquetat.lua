@@ -25,6 +25,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 159) then
-        player:setVar("saveMySisterVar", 2);
+        player:setCharVar("saveMySisterVar", 2);
     end
 end;

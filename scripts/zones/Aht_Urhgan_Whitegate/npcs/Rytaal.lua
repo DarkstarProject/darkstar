@@ -35,19 +35,19 @@ function onTrigger(player,npc)
             player:messageText(player,ID.text.RYTAAL_MISSION_FAILED)
             player:addAssault(0)
         end
-        player:setVar("AssaultComplete",0)
+        player:setCharVar("AssaultComplete",0)
     elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.PRESIDENT_SALAHEEM or (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") >= 1) then
         if lastIDtag == 0 then -- first time you get the tag
             tagCount = 1
             player:setCurrency("id_tags", tagCount)
-            player:setVar("LAST_IMPERIAL_TAG",currentday)
+            player:setCharVar("LAST_IMPERIAL_TAG",currentday)
         elseif diffday > 0 then
             tagCount = tagCount + diffday
             if tagCount > 3 then -- store 3 TAG max
                 tagCount = 3
             end
             player:setCurrency("id_tags", tagCount)
-            player:setVar("LAST_IMPERIAL_TAG",currentday)
+            player:setCharVar("LAST_IMPERIAL_TAG",currentday)
         end
 
         if player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) then
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
     local currentAssault = player:getCurrentAssault()
 
     if csid == 269 then
-        player:setVar("AhtUrganStatus",1)
+        player:setCharVar("AhtUrganStatus",1)
     elseif csid == 268 and option == 1 and player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0 then
         npcUtil.giveKeyItem(player, dsp.ki.IMPERIAL_ARMY_ID_TAG)
         player:setCurrency("id_tags", tagCount - 1)

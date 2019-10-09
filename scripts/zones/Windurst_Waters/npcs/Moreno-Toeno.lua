@@ -93,7 +93,7 @@ function onTrigger(player,npc)
         prog = player:getCharVar("QuestTeachersPet_prog")
         if (prog == 0) then
             player:startEvent(437); -- Before Quest
-            player:setVar("QuestTeachersPet_prog",1);
+            player:setCharVar("QuestTeachersPet_prog",1);
         elseif (prog == 1) then
             player:startEvent(438,0,847,4368); -- Quest Start
         end
@@ -120,10 +120,10 @@ function onEventFinish(player,csid,option)
     if (csid == 438 and option == 0) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.TEACHER_S_PET);
     elseif (csid == 438 and option == 1) then
-        player:setVar("QuestTeachersPet_prog",0);
+        player:setCharVar("QuestTeachersPet_prog",0);
     elseif (csid == 440) then
         player:addGil(GIL_RATE*250);
-        player:setVar("QuestTeachersPet_prog",0);
+        player:setCharVar("QuestTeachersPet_prog",0);
         player:tradeComplete(trade);
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TEACHER_S_PET) == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,dsp.quest.id.windurst.TEACHER_S_PET);
@@ -134,35 +134,35 @@ function onEventFinish(player,csid,option)
     elseif (csid == 182 or csid == 687) and option ~= 1 then -- start
         player:addKeyItem(dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
-        player:setVar("MissionStatus",1);
-        player:setVar("testingTime_start_day",VanadielDayOfTheYear());
-        player:setVar("testingTime_start_hour",VanadielHour());
-        player:setVar("testingTime_start_time",os.time());
+        player:setCharVar("MissionStatus",1);
+        player:setCharVar("testingTime_start_day",VanadielDayOfTheYear());
+        player:setCharVar("testingTime_start_hour",VanadielHour());
+        player:setCharVar("testingTime_start_time",os.time());
     elseif (csid == 198 or csid == 199 or csid == 202 or csid == 208) then -- failed testing time
         player:delKeyItem(dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED + 1,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
-        player:setVar("MissionStatus",0);
-        player:setVar("testingTime_crea_count",0);
-        player:setVar("testingTime_start_day",0);
-        player:setVar("testingTime_start_hour",0);
-        player:setVar("testingTime_start_time",0);
+        player:setCharVar("MissionStatus",0);
+        player:setCharVar("testingTime_crea_count",0);
+        player:setCharVar("testingTime_start_day",0);
+        player:setCharVar("testingTime_start_hour",0);
+        player:setCharVar("testingTime_start_time",0);
         player:delMission(WINDURST,dsp.mission.id.windurst.A_TESTING_TIME);
     elseif (csid == 200 or csid == 201) then -- first time win
         finishMissionTimeline(player,1,csid,option);
 
-        player:setVar("testingTime_crea_count",0);
-        player:setVar("testingTime_start_day",0);
-        player:setVar("testingTime_start_hour",0);
-        player:setVar("testingTime_start_time",0);
+        player:setCharVar("testingTime_crea_count",0);
+        player:setCharVar("testingTime_start_day",0);
+        player:setCharVar("testingTime_start_hour",0);
+        player:setCharVar("testingTime_start_time",0);
     elseif (csid == 209 or csid == 206) then -- succesfull repeat attempt (Buburimu).
         finishMissionTimeline(player,1,csid,option);
 
-        player:setVar("testingTime_crea_count",0);
-        player:setVar("testingTime_start_day",0);
-        player:setVar("testingTime_start_hour",0);
-        player:setVar("testingTime_start_time",0);
+        player:setCharVar("testingTime_crea_count",0);
+        player:setCharVar("testingTime_start_day",0);
+        player:setCharVar("testingTime_start_hour",0);
+        player:setCharVar("testingTime_start_time",0);
     elseif (csid == 752) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
         player:addKeyItem(dsp.ki.STAR_SEEKER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_SEEKER);
         player:addTitle(dsp.title.FUGITIVE_MINISTER_BOUNTY_HUNTER);

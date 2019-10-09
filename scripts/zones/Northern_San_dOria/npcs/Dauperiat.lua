@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUSPICIOUS_ENVELOPE);
     elseif (csid == 646 and option == 1) then
-        player:setVar("BlackMailQuest",2);
+        player:setCharVar("BlackMailQuest",2);
     elseif (csid == 648) then
         player:tradeComplete();
         player:addGil(GIL_RATE*900);

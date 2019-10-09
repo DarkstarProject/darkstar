@@ -14,8 +14,8 @@ function onTrigger(player,npc)
     elseif (sturmtigerKilled == 1) then
         player:addKeyItem(dsp.ki.RANCHURIOMES_LEGACY);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RANCHURIOMES_LEGACY);
-        player:setVar("ChasingQuotas_Progress",6);
-        player:setVar("SturmtigerKilled",0);
+        player:setCharVar("ChasingQuotas_Progress",6);
+        player:setCharVar("SturmtigerKilled",0);
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end

@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
         local fame = player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.A_FLASH_IN_THE_PAN) and 8 or 75;
         if (npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.A_FLASH_IN_THE_PAN, {gil=100, fame=fame})) then
             player:confirmTrade();
-            player:setVar("FlashInThePan",os.time() + 900);
+            player:setCharVar("FlashInThePan",os.time() + 900);
         end
     end
 end;

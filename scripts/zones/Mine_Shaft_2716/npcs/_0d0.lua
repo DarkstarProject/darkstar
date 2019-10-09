@@ -30,10 +30,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if csid == 3 then
-        player:setVar("COP_Louverance_s_Path",9);
+        player:setCharVar("COP_Louverance_s_Path",9);
         player:tradeComplete();
     elseif csid == 4 then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     else
         EventFinishBCNM(player,csid,option);
     end

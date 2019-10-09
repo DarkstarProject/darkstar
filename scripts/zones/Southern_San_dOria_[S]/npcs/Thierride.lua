@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 337) then
         player:tradeComplete();
-        player:setVar("BeansAhoy",1);
+        player:setCharVar("BeansAhoy",1);
         player:needsToZone(true);
 
     elseif (csid == 340 or csid == 342) then
@@ -70,10 +70,10 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(5704,1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,5704);
-            player:setVar("BeansAhoy_ConquestWeek",getConquestTally());
+            player:setCharVar("BeansAhoy_ConquestWeek",getConquestTally());
             if (csid == 340) then
                 player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
-                player:setVar("BeansAhoy",0);
+                player:setCharVar("BeansAhoy",0);
                 player:tradeComplete();
             end
 

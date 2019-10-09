@@ -38,11 +38,11 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
         player:addKeyItem(dsp.ki.LIGHT_OF_ALTAIEU);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_ALTAIEU);
         player:addTitle(dsp.title.SEEKER_OF_THE_LIGHT);
     elseif (csid == 167) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     end
 end;

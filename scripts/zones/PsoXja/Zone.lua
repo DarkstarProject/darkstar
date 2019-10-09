@@ -82,9 +82,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
     elseif (csid == 4) then
-        player:setVar("COP_Tenzen_s_Path",9);
+        player:setCharVar("COP_Tenzen_s_Path",9);
     elseif (csid == 20 and option == 1) then
         player:setPos(-20,-60.250,-60,63,111);
     elseif (csid == 21 and option == 1) then

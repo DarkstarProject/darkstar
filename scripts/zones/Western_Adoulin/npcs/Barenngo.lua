@@ -31,6 +31,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 5015) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
-        player:setVar("DELM_Barenngo_Branch", 1);
+        player:setCharVar("DELM_Barenngo_Branch", 1);
     end
 end;

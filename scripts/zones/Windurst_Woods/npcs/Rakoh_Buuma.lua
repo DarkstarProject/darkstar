@@ -57,6 +57,6 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS)
     elseif csid == 632 then
-        player:setVar("WWoodsRTenText", 1)
+        player:setCharVar("WWoodsRTenText", 1)
     end
 end

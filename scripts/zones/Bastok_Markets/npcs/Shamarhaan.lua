@@ -31,7 +31,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 434) then
-        player:setVar("NoStringsAttachedProgress",1);
+        player:setCharVar("NoStringsAttachedProgress",1);
         player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED);
     end;
 end;

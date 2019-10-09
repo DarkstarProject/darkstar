@@ -41,12 +41,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 7) then
-        player:setVar("UnderOathCS", 1)
+        player:setCharVar("UnderOathCS", 1)
     elseif (csid == 5) then
-        player:setVar("UnderOathCS", 4)
+        player:setCharVar("UnderOathCS", 4)
         player:delKeyItem(dsp.ki.MIQUES_PAINTBRUSH);
     elseif (csid == 2) then
-        player:setVar("UnderOathCS", 0)
+        player:setCharVar("UnderOathCS", 0)
         player:delKeyItem(dsp.ki.KNIGHTS_CONFESSION);
     end
 

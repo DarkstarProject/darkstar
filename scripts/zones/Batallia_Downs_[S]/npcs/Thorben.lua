@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.MIDDLE_MAP_PIECE)
         player:delKeyItem(dsp.ki.RIGHT_MAP_PIECE)
     elseif csid == 105 then
-        player:setVar("lostInTranslocationCS", 1)
+        player:setCharVar("lostInTranslocationCS", 1)
     elseif csid == 103 then
         player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.LOST_IN_TRANSLOCATION)
     end

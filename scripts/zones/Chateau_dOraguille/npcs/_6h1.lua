@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 552) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.PIEUJE_S_DECISION);
     elseif (csid == 74) then
-        player:setVar("Cutscenes_8-2",2);
+        player:setCharVar("Cutscenes_8-2",2);
     end
 
 end;

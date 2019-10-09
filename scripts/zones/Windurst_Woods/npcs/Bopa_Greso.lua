@@ -19,12 +19,12 @@ function onTrigger(player,npc)
     if thickAsThieves == QUEST_ACCEPTED then
         player:startEvent(506)
         if thickAsThievesCS == 1 then
-            player:setVar("thickAsThievesCS", 2)
+            player:setCharVar("thickAsThievesCS", 2)
         elseif thickAsThievesCS == 3 then
-            player:setVar("thickAsThievesCS", 4)
+            player:setCharVar("thickAsThievesCS", 4)
             local rand1 = math.random(2, 7)
-            player:setVar("thickAsThievesGrapplingCS", rand1)
-            player:setVar("thickAsThievesGamblingCS", 1)
+            player:setCharVar("thickAsThievesGrapplingCS", rand1)
+            player:setCharVar("thickAsThievesGamblingCS", 1)
         end
     else
         player:startEvent(77) -- standard cs

@@ -77,13 +77,13 @@ end
 function onEventFinish(player,csid,option)
     if (csid == 357) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT);
-        player:setVar("WildcatBastok",0);
+        player:setCharVar("WildcatBastok",0);
         player:addKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BLUE_SENTINEL_BADGE);
     elseif (csid == 360) then
         player:completeQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT);
         player:addFame(BASTOK,150);
-        player:setVar("WildcatBastok",0);
+        player:setCharVar("WildcatBastok",0);
         player:delKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.BLUE_INVITATION_CARD);
         player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.BLUE_SENTINEL_BADGE);

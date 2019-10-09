@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     ) then
         player:messageSpecial(ID.text.SURVEY_THE_SURROUNDINGS);
         player:messageSpecial(ID.text.MURDEROUS_PRESENCE);
-        player:setVar("SPLINTERSPINE_GRUKJUK",1);
+        player:setCharVar("SPLINTERSPINE_GRUKJUK",1);
         SpawnMob(ID.mob.SPLINTERSPINE_GRUKJUK):updateClaim(player);
     else
         player:messageSpecial(ID.text.YOU_CAN_SEE_FOR_MALMS);

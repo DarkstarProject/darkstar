@@ -34,6 +34,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 1 then
-        player:setVar('StormsOfFate',2)
+        player:setCharVar('StormsOfFate',2)
     end
 end

@@ -37,7 +37,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.DOMINAS_AZURE_SEAL);
         player:addKeyItem(dsp.ki.AZURE_COUNTERSEAL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AZURE_COUNTERSEAL);
-        player:setVar("ASA4_Azure","2");
+        player:setCharVar("ASA4_Azure","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

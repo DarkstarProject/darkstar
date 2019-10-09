@@ -61,13 +61,13 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,567); -- Well Water
         else
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS);
-            player:setVar("graveConcernsVar",0);
+            player:setCharVar("graveConcernsVar",0);
             player:addItem(567);
             player:messageSpecial(ID.text.ITEM_OBTAINED,567); -- Well Water
         end
     elseif (csid == 624) then
         player:tradeComplete();
-        player:setVar("OfferingWaterOK",0);
+        player:setCharVar("OfferingWaterOK",0);
         player:addTitle(dsp.title.ROYAL_GRAVE_KEEPER);
         player:addGil(GIL_RATE*560);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*560)

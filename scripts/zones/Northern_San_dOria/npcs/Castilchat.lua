@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1545);
         else
-            player:setVar("TrialSizeIce_date", 0);
+            player:setCharVar("TrialSizeIce_date", 0);
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
             player:addItem(1545);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1545);

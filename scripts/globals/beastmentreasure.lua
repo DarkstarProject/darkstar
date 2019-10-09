@@ -216,7 +216,7 @@ dsp.beastmentreasure.handleNpcOnTrade = function(player,trade,digsiteids)
 
     if player:getCharVar(zd.statusvar) == QUEST_ACCEPTED and npcUtil.tradeHasExactly(trade, zd.fetchitems) then
         -- Assign a random dig site to the player
-        player:setVar(zd.dsvar, math.random(1,8))
+        player:setCharVar(zd.dsvar, math.random(1,8))
 
         startMapMarkerEvent(101,player,digsiteids) -- Peddlestox shows you where to dig
     end
@@ -229,7 +229,7 @@ dsp.beastmentreasure.handleNpcOnEventFinish = function(player,csid)
         player:addVar(zd.statusvar, QUEST_ACCEPTED)
     elseif csid == 101 then
         player:confirmTrade()
-        player:setVar(zd.statusvar, QUEST_COMPLETED)
+        player:setCharVar(zd.statusvar, QUEST_COMPLETED)
     end
 end
 
@@ -309,8 +309,8 @@ dsp.beastmentreasure.handleQmOnEventFinish = function(player,csid)
         player:addTreasure(item3)
         player:addTreasure(item4)
         -- Reset player vars
-        player:setVar(zoneData[zoneid].statusvar, QUEST_AVAILABLE)
-        player:setVar(zoneData[zoneid].dsvar, 0)
+        player:setCharVar(zoneData[zoneid].statusvar, QUEST_AVAILABLE)
+        player:setCharVar(zoneData[zoneid].dsvar, 0)
     end
 end
 

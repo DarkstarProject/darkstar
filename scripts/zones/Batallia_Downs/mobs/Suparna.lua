@@ -20,6 +20,6 @@ function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 3
         and GetMobByID(ID.mob.SUPARNA):isDead() and GetMobByID(ID.mob.SUPARNA_FLEDGLING):isDead()
     ) then
-        player:setVar("Mission9-1Kills", 1);
+        player:setCharVar("Mission9-1Kills", 1);
     end
 end

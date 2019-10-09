@@ -23,25 +23,25 @@ function onTrigger(player, npc)
     if X >= 40  and Z >= 15 then
         if MythrilDoorCheck == 0 then -- Door has never been checked
             player:messageSpecial(ID.text.FIRST_CHECK)
-            player:setVar("SSG_MythrilDoor", 1)
+            player:setCharVar("SSG_MythrilDoor", 1)
         elseif MythrilDoorCheck == 1 then -- Door has been checked once
             player:messageSpecial(ID.text.SECOND_CHECK)
-            player:setVar("SSG_MythrilDoor", 2)
+            player:setCharVar("SSG_MythrilDoor", 2)
         elseif MythrilDoorCheck == 2 then -- Door has been checked twice
             player:messageSpecial(ID.text.THIRD_CHECK)
-            player:setVar("SSG_MythrilDoor", 3)
+            player:setCharVar("SSG_MythrilDoor", 3)
         elseif MythrilDoorCheck == 3 then -- Door has been checked three times
             player:messageSpecial(ID.text.FOURTH_CHECK)
-            player:setVar("SSG_MythrilDoor", 4)
+            player:setCharVar("SSG_MythrilDoor", 4)
         elseif MythrilDoorCheck == 4 then -- Door has been checked four times
             player:messageSpecial(ID.text.FIFTH_CHECK)
-            player:setVar("SSG_MythrilDoor", 5)
+            player:setCharVar("SSG_MythrilDoor", 5)
         elseif MythrilDoorCheck == 5 then -- Door has been checked five times
             player:messageSpecial(ID.text.MYTHRIL_CHECK)
-            player:setVar("SSG_MythrilDoor", 6)
+            player:setCharVar("SSG_MythrilDoor", 6)
         elseif MythrilDoorCheck == 6 or MythrilDoorCheck == 7 then -- Door has been checked six or more times
             player:messageSpecial(ID.text.COMPLETED_CHECK, 749)
-            player:setVar("SSG_MythrilDoor", 7)
+            player:setCharVar("SSG_MythrilDoor", 7)
         end
 
         return 1 -- Keep the door closed

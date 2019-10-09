@@ -62,17 +62,17 @@ function onEventFinish(player,csid,option)
 
     if (csid == 131 and option == 40) then
         player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_OLD_LADY);
-        player:setVar("VeraOldLadyVar", 1);
+        player:setCharVar("VeraOldLadyVar", 1);
     elseif (csid == 135) then
         player:tradeComplete();
-        player:setVar("VeraOldLadyVar", 2);
+        player:setCharVar("VeraOldLadyVar", 2);
     elseif (csid == 136) then
         player:tradeComplete();
-        player:setVar("VeraOldLadyVar", 3);
+        player:setCharVar("VeraOldLadyVar", 3);
     elseif (csid == 137) then
         player:tradeComplete();
         player:unlockJob(0);
-        player:setVar("VeraOldLadyVar", 0);
+        player:setCharVar("VeraOldLadyVar", 0);
         player:messageSpecial(ID.text.SUBJOB_UNLOCKED);
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_OLD_LADY);
     end

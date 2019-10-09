@@ -23,7 +23,7 @@ function onTrigger(player, npc)
     elseif fangedOne == QUEST_ACCEPTED and fangedOneCS == 2 and not player:hasKeyItem(dsp.ki.OLD_TIGERS_FANG) then
         player:addKeyItem(dsp.ki.OLD_TIGERS_FANG)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.OLD_TIGERS_FANG)
-        player:setVar("TheFangedOneCS", 0)
+        player:setCharVar("TheFangedOneCS", 0)
 
     -- DEFAULT DIALOG
     else

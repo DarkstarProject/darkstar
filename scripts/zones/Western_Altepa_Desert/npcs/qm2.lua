@@ -22,8 +22,8 @@ function onTrigger(player,npc)
             if player:getCharVar("Mission6-1MobKilled") > 0 then
                 player:addKeyItem(dsp.ki.ALTEPA_MOONPEBBLE)
                 player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ALTEPA_MOONPEBBLE)
-                player:setVar("Mission6-1MobKilled", 0)
-                player:setVar("MissionStatus", 3)
+                player:setCharVar("Mission6-1MobKilled", 0)
+                player:setCharVar("MissionStatus", 3)
             else
                 SpawnMob(ID.mob.EASTERN_SPHINX)
                 SpawnMob(ID.mob.WESTERN_SPHINX)

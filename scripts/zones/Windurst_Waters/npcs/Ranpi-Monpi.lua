@@ -80,19 +80,19 @@ function onEventFinish(player,csid,option)
     -- A Crisis in the Making
     if (csid == 258 and option == 1) then  -- A Crisis in the Making + ITEM: Quest Offer - ACCEPTED
         player:addQuest(WINDURST,dsp.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
-        player:setVar("QuestCrisisMaking_var",1);
+        player:setCharVar("QuestCrisisMaking_var",1);
         player:needToZone(true);
     elseif (csid == 258 and option == 2) then  -- A Crisis in the Making + ITEM: Quest Offer - REFUSED
         player:needToZone(true);
     elseif (csid == 259 and option == 1) then  -- A Crisis in the Making + ITEM: Repeatable Quest Offer - ACCEPTED
-        player:setVar("QuestCrisisMaking_var",1);
+        player:setCharVar("QuestCrisisMaking_var",1);
         player:needToZone(true);
     elseif (csid == 259 and option == 2) then  -- A Crisis in the Making + ITEM: Repeatable Quest Offer - REFUSED
         player:needToZone(true);
     elseif (csid == 267) then -- A Crisis in the Making: Quest Finish
         player:addGil(GIL_RATE*400);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*400);
-        player:setVar("QuestCrisisMaking_var",0);
+        player:setCharVar("QuestCrisisMaking_var",0);
         player:delKeyItem(dsp.ki.OFF_OFFERING);
         player:addFame(WINDURST,75);
         player:completeQuest(WINDURST,dsp.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
@@ -100,17 +100,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 268) then -- A Crisis in the Making: Repeatable Quest Finish
         player:addGil(GIL_RATE*400);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*400);
-        player:setVar("QuestCrisisMaking_var",0);
+        player:setCharVar("QuestCrisisMaking_var",0);
         player:delKeyItem(dsp.ki.OFF_OFFERING);
         player:addFame(WINDURST,8);
         player:needToZone(true);
 
     -- In a Stew
     elseif (csid == 554) then        -- start fetch portion
-        player:setVar("IASvar",3);
+        player:setCharVar("IASvar",3);
     elseif (csid == 556) then
         player:tradeComplete();
-        player:setVar("IASvar",4);
+        player:setCharVar("IASvar",4);
         player:addKeyItem(dsp.ki.RANPIMONPIS_SPECIAL_STEW);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RANPIMONPIS_SPECIAL_STEW);
 

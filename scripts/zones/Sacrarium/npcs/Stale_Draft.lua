@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 
         if (races[race] and not nm:isSpawned() and hate >= 50) then
             player:tradeComplete();
-            player:setVar("FOMOR_HATE",0);
+            player:setCharVar("FOMOR_HATE",0);
             SpawnMob(nmId):updateClaim(player);
         else
             player:messageSpecial(ID.text.NOTHING_HAPPENS);

@@ -42,7 +42,7 @@ function onEventFinish(player, csid, option)
     elseif csid == 7 then
         player:addKeyItem(dsp.ki.SHADOW_FRAGMENT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SHADOW_FRAGMENT)
-        player:setVar("MissionStatus", 4)
+        player:setCharVar("MissionStatus", 4)
         player:setPos(378, -12, -20, 125, 161)
     end
 end

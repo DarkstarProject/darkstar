@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 396) then
-        player:setVar("TinyException",0);
+        player:setCharVar("TinyException",0);
     end
 end;

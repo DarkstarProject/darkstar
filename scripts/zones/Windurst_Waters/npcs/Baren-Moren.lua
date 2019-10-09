@@ -102,7 +102,7 @@ printf("RESULT: %u",option);
         player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
     elseif (csid == 49 and option == 1) then
-        player:setVar("QuestHatInHand_var2",1);
+        player:setCharVar("QuestHatInHand_var2",1);
         player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
     elseif (csid == 52 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
@@ -136,18 +136,18 @@ printf("RESULT: %u",option);
             player:addFame(WINDURST,8);
         end
         player:completeQuest(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
-        player:setVar("QuestHatInHand_count",0);
-        player:setVar("QuestHatInHand_var",0);
+        player:setCharVar("QuestHatInHand_count",0);
+        player:setCharVar("QuestHatInHand_var",0);
         player:needToZone(true);
         player:delKeyItem(dsp.ki.NEW_MODEL_HAT);
-        player:setVar("QuestHatInHand_var2",0);
+        player:setCharVar("QuestHatInHand_var2",0);
 
 
     elseif (csid == 75 and option == 1) then
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_AVAILABLE) then
             player:addQuest(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
         elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_COMPLETED) then
-            player:setVar("QuestFeatherInOnesCap_var",1);
+            player:setCharVar("QuestFeatherInOnesCap_var",1);
         end
     elseif (csid == 79) then
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_ACCEPTED) then
@@ -155,7 +155,7 @@ printf("RESULT: %u",option);
             player:addFame(WINDURST,75);
         else
             player:addFame(WINDURST,8);
-            player:setVar("QuestFeatherInOnesCap_var",0);
+            player:setCharVar("QuestFeatherInOnesCap_var",0);
         end
         player:addGil(GIL_RATE*1500);
         player:tradeComplete(trade);

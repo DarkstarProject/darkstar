@@ -34,6 +34,6 @@ function onEventFinish(player, csid, option)
     if csid == 71 then
         player:addKeyItem(dsp.ki.ORASTERY_RING)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ORASTERY_RING)
-        player:setVar("MissionStatus", 6)
+        player:setCharVar("MissionStatus", 6)
     end
 end

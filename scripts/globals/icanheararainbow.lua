@@ -63,43 +63,43 @@ function triggerLightCutscene( player)
                 if (colorsAvailable[zone][RED]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",0,true);
-                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                    player:setCharVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             elseif (player:getMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),1) == false and (weather == dsp.weather.NONE or weather == dsp.weather.SUNSHINE)) then
                 if (colorsAvailable[zone][ORANGE]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",1,true);
-                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                    player:setCharVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             elseif (player:getMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),2) == false and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM)) then
                 if (colorsAvailable[zone][YELLOW]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",2,true);
-                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                    player:setCharVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             elseif (player:getMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),3)  == false and (weather == dsp.weather.WIND or weather == dsp.weather.GALES)) then
                 if (colorsAvailable[zone][GREEN]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",3,true);
-                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                    player:setCharVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             elseif (player:getMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),4)   == false and (weather == dsp.weather.RAIN or weather == dsp.weather.SQUALL)) then
                 if (colorsAvailable[zone][BLUE]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",4,true);
-                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                    player:setCharVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             elseif (player:getMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),5) == false and (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS)) then
                 if (colorsAvailable[zone][INDIGO]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",5,true);
-                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                    player:setCharVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             elseif (player:getMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),6) == false and (weather == dsp.weather.THUNDER or weather == dsp.weather.THUNDERSTORMS)) then
                 if (colorsAvailable[zone][VIOLET]) then
                     cutsceneTriggered = true;
                     player:setMaskBit(player:getCharVar("I_CAN_HEAR_A_RAINBOW"),"I_CAN_HEAR_A_RAINBOW",6,true);
-                    player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
+                    player:setCharVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             end
         end
@@ -131,5 +131,5 @@ end;
 -----------------------------------
 
 function lightCutsceneFinish( player)
-    player:setVar("I_CAN_HEAR_A_RAINBOW_Weather", 0);
+    player:setCharVar("I_CAN_HEAR_A_RAINBOW_Weather", 0);
 end;

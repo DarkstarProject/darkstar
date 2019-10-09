@@ -96,8 +96,8 @@ function onEventFinish(player,csid,option)
     local reward = 0
 
     if (csid == 140) then
-        player:setVar("MissionStatus",1);
-        player:setVar("ohbiru_dohbiru_talk",0);
+        player:setCharVar("MissionStatus",1);
+        player:setCharVar("ohbiru_dohbiru_talk",0);
         player:addKeyItem(dsp.ki.FOOD_OFFERINGS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FOOD_OFFERINGS);
         player:addKeyItem(dsp.ki.DRINK_OFFERINGS);
@@ -142,7 +142,7 @@ function onEventFinish(player,csid,option)
         if (reward ~= nil) then
             player:addTitle(dsp.title.HEIR_OF_THE_NEW_MOON);
             player:delKeyItem(dsp.ki.WHISPER_OF_THE_MOON);
-            player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH);
         end
@@ -179,7 +179,7 @@ function onEventFinish(player,csid,option)
         if (reward ~= nil) then
             player:addTitle(dsp.title.HEIR_OF_THE_NEW_MOON);
             player:delKeyItem(dsp.ki.WHISPER_OF_THE_MOON);
-            player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
         end
 
@@ -198,7 +198,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MOON_BAUBLE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_BAUBLE);
     elseif (csid == 734) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 742) then
         finishMissionTimeline(player,3,csid,option);
     end

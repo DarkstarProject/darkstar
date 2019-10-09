@@ -318,8 +318,8 @@ function LimbusEntrance(player, entrance)
 end
 
 function ResetPlayerLimbusVariable(player)
-    player:setVar("characterLimbusKey", 0)
-    player:setVar("LimbusID", 0)
+    player:setCharVar("characterLimbusKey", 0)
+    player:setCharVar("LimbusID", 0)
 end
 
 function GenerateLimbusKey()

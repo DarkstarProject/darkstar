@@ -26,6 +26,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 41) then
-        player:setVar("COP_Dalham_KILL",2);
+        player:setCharVar("COP_Dalham_KILL",2);
     end
 end;

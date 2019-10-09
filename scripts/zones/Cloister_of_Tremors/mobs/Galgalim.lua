@@ -8,7 +8,7 @@ require("scripts/globals/settings");
 
 function onMobDeath(mob, player, isKiller)
 
-    player:setVar("BCNM_Killed",1);
+    player:setCharVar("BCNM_Killed",1);
     record = 300;
     partyMembers = 6;
     pZone = player:getZoneID();

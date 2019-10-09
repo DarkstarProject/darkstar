@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1198);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 1198); -- Sacred Sprig
-            player:setVar("ForgeYourDestiny_Event",questItem + 0x02);
+            player:setCharVar("ForgeYourDestiny_Event",questItem + 0x02);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end

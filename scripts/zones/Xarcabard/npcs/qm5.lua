@@ -16,7 +16,7 @@ function onTrigger(player, npc)
     if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 2 then
         player:addKeyItem(dsp.ki.FIGURE_OF_GARUDA)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.FIGURE_OF_GARUDA)
-        player:setVar("MissionStatus", 3)
+        player:setCharVar("MissionStatus", 3)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end

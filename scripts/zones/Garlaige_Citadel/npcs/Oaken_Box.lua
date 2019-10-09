@@ -29,6 +29,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 14) then
         player:confirmTrade();
-        player:setVar("peaceForTheSpiritCS", 5);
+        player:setCharVar("peaceForTheSpiritCS", 5);
     end
 end;

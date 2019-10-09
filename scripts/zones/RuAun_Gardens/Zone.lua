@@ -75,9 +75,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 41 and option ~= 0) then
-        player:setVar("skyShortcut",1);
+        player:setCharVar("skyShortcut",1);
     elseif (csid == 51) then
-        player:setVar("ZilartStatus",0);
+        player:setCharVar("ZilartStatus",0);
         player:completeMission(ZILART,dsp.mission.id.zilart.THE_GATE_OF_THE_GODS);
         player:addMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS);
     end

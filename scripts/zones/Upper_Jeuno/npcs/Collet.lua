@@ -36,7 +36,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 112) then
-        player:setVar("aClockMostdelicateVar", 1);
+        player:setCharVar("aClockMostdelicateVar", 1);
     elseif (csid == 115) then
         player:addVar("saveTheClockTowerVar", 1);
         player:addVar("saveTheClockTowerNPCz1", 2);

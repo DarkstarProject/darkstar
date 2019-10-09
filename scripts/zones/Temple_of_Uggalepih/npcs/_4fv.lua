@@ -36,7 +36,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 65 then
-        player:setVar("Mission8-2Kills", 0)
-        player:setVar("MissionStatus", 6)
+        player:setCharVar("Mission8-2Kills", 0)
+        player:setCharVar("MissionStatus", 6)
     end
 end

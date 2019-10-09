@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,131);
         elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
             player:addFame(WINDURST,8);
-            player:setVar("QuestReapSow_var",0);
+            player:setCharVar("QuestReapSow_var",0);
         end
     elseif (csid == 477) then                                -- REAP WHAT YOU SOW + GIL + Stationary Set: Quest Turn In: Deathball turned in
         player:addGil(GIL_RATE*700);
@@ -98,10 +98,10 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,131);
         elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
             player:addFame(WINDURST,8);
-            player:setVar("QuestReapSow_var",0);
+            player:setCharVar("QuestReapSow_var",0);
         end
     elseif (csid == 479 and option == 3) then                 -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START - ACCEPTED
-        player:setVar("QuestReapSow_var",1);
+        player:setCharVar("QuestReapSow_var",1);
         player:addItem(572);
         player:messageSpecial(ID.text.ITEM_OBTAINED,572);
     end

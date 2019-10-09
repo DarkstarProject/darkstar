@@ -27,9 +27,9 @@ function onEventFinish(player, csid, option)
     if csid == 100 then
         npcUtil.giveKeyItem(player, dsp.ki.STARDUST_PEBBLE)
     elseif csid == 106 then
-        player:setVar("roadToDivadomCS", 3)
+        player:setCharVar("roadToDivadomCS", 3)
     elseif csid == 107 then
         player:confirmTrade()
-        player:setVar("roadToDivadomCS", 4)
+        player:setCharVar("roadToDivadomCS", 4)
     end
 end

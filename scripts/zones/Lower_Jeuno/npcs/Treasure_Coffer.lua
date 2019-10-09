@@ -525,7 +525,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 10099 then
         if option == 16777216 and player:getCharVar("receivedNexusCape") == 0 and npcUtil.giveItem(player, 11538) then
-            player:setVar("receivedNexusCape", 1)
+            player:setCharVar("receivedNexusCape", 1)
         elseif option == 33554432 or (option == 16777216 and player:getCharVar("receivedNexusCape") == 0) then
             player:addUsedItem(11538)
         elseif option >= 1 and option <= 20 then

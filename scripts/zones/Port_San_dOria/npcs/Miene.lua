@@ -19,7 +19,7 @@ function onTrade(player, npc, trade)
             player:messageSpecial(ID.text.FLYER_ACCEPTED)
             player:messageSpecial(ID.text.FLYERS_HANDED, 17 - player:getCharVar("FFR"))
             player:addVar("FFR", -1)
-            player:setVar("tradeMiene", 1)
+            player:setCharVar("tradeMiene", 1)
             player:confirmTrade()
         elseif player:getCharVar("tradeMiene") == 1 then
             player:messageSpecial(ID.text.FLYER_ALREADY)
@@ -38,7 +38,7 @@ function onTrigger(player, npc)
         player:startEvent(554)
     elseif thePickpocket == QUEST_ACCEPTED and player:getCharVar("thePickpocketEagleButton") == 0 then
         player:startEvent(549)
-        player:setVar("thePickpocketEagleButton", 1)
+        player:setCharVar("thePickpocketEagleButton", 1)
     elseif thePickpocket == QUEST_ACCEPTED and player:getCharVar("thePickpocketEagleButton") == 1 and not player:hasItem(578) then
         player:startEvent(611)
 
@@ -54,7 +54,7 @@ end
 function onEventFinish(player, csid, option)
     -- THE PICKPOCKET
     if csid == 502 then
-        player:setVar("thePickpocket", 1)
+        player:setCharVar("thePickpocket", 1)
     elseif csid == 549 or csid == 611 then
         if not npcUtil.giveItem(player, 578) then
             player:startEvent(552)

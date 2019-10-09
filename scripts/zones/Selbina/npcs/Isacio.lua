@@ -59,17 +59,17 @@ end
 function onEventFinish(player,csid,option)
     if csid == 111 and option == 40 then
         player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ELDER_MEMORIES)
-        player:setVar("IsacioElderMemVar", 1)
+        player:setCharVar("IsacioElderMemVar", 1)
     elseif csid == 115 then
         player:confirmTrade()
-        player:setVar("IsacioElderMemVar", 2)
+        player:setCharVar("IsacioElderMemVar", 2)
     elseif csid == 116 then
         player:confirmTrade()
-        player:setVar("IsacioElderMemVar", 3)
+        player:setCharVar("IsacioElderMemVar", 3)
     elseif csid == 117 then
         player:confirmTrade()
         player:unlockJob(0)
-        player:setVar("IsacioElderMemVar", 0)
+        player:setCharVar("IsacioElderMemVar", 0)
         player:messageSpecial(ID.text.SUBJOB_UNLOCKED)
         player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ELDER_MEMORIES)
     end

@@ -62,11 +62,11 @@ function onEventFinish(player,csid,option)
     if (csid == 110) then
         player:messageSpecial(ID.text.KI_STOLEN,0,dsp.ki.MYSTERIOUS_AMULET);
         player:delKeyItem(dsp.ki.MYSTERIOUS_AMULET);
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 111 and npcUtil.giveItem(player, 14657)) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 116) then
-        player:setVar("PromathiaStatus",7);
+        player:setCharVar("PromathiaStatus",7);
         player:addTitle(dsp.title.BANISHER_OF_EMPTINESS);
     end
 end;

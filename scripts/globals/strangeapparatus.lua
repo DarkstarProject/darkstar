@@ -236,12 +236,12 @@ local strAppData =
 
 local function addDoctorStatus(player)
     local data = strAppData[player:getZoneID()]
-    player:setVar("StrangeApparatusDoctorStatus" .. data.suffix, os.time() + 172800) -- 2 days
+    player:setCharVar("StrangeApparatusDoctorStatus" .. data.suffix, os.time() + 172800) -- 2 days
 end
 
 local function delDoctorStatus(player)
     local data = strAppData[player:getZoneID()]
-    player:setVar("StrangeApparatusDoctorStatus" .. data.suffix, 0)
+    player:setCharVar("StrangeApparatusDoctorStatus" .. data.suffix, 0)
 end
 
 local function hasDoctorStatus(player)
@@ -252,7 +252,7 @@ local function hasDoctorStatus(player)
         if os.time() <= docStatusExpires then
             return true
         else
-            player:setVar("StrangeApparatusDoctorStatus" .. data.suffix, 0)
+            player:setCharVar("StrangeApparatusDoctorStatus" .. data.suffix, 0)
         end
     end
 

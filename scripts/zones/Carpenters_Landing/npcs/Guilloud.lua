@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 0 then
-        player:setVar("EMERALD_WATERS_Status", 6)
+        player:setCharVar("EMERALD_WATERS_Status", 6)
     end
 end

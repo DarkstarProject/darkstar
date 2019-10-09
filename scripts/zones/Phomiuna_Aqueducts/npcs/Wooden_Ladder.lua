@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         player:startEvent(27);
     elseif ((X <= -153.3 and X >= -168.3) and (Y >= -2 and Y <= 0) and (Z >= 54 and Z <= 66)) then
         if (player:getCurrentMission(COP) == dsp.mission.id.cop.DISTANT_BELIEFS and player:getCharVar("PromathiaStatus") == 1) then
-            player:setVar("PromathiaStatus",2);
+            player:setCharVar("PromathiaStatus",2);
             player:startEvent(35);
         else
             player:startEvent(28);

@@ -24,7 +24,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 11) then
         player:completeMission(TOAU,dsp.mission.id.toau.TEAHOUSE_TUMULT);
-        player:setVar("AhtUrganStatus",0);
+        player:setCharVar("AhtUrganStatus",0);
         player:addMission(TOAU,dsp.mission.id.toau.FINDERS_KEEPERS);
     elseif (csid == 12) then
         player:completeMission(TOAU,dsp.mission.id.toau.MISPLACED_NOBILITY);

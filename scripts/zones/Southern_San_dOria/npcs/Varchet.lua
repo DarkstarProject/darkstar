@@ -54,7 +54,7 @@ function onEventFinish(player, csid, option)
             player:messageSpecial(ID.text.GIL_OBTAINED, gilPayout)
 
             if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.EXIT_THE_GAMBLER) == QUEST_ACCEPTED then
-                player:setVar("exitTheGamblerStat", 1)
+                player:setCharVar("exitTheGamblerStat", 1)
                 player:showText(player:getEventTarget(), ID.text.VARCHET_KEEP_PROMISE)
             end
         elseif option == GAME_TIE then

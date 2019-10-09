@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     if (csid == 442 and option == 1) then -- Quest Start
         player:addQuest(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE);
     elseif (csid == 455) then -- Quest Progress: Test Papers Shown and told to deliver them to principal
-        player:setVar("QuestMakingTheGrade_prog",1);
+        player:setCharVar("QuestMakingTheGrade_prog",1);
     elseif (csid == 458) then -- Quest Finish
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4855);
@@ -66,10 +66,10 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,75);
             player:addItem(4855);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4855);
-            player:setVar("QuestMakingTheGrade_prog",0);
+            player:setCharVar("QuestMakingTheGrade_prog",0);
             player:needToZone(true);
         end
     elseif (csid == 817) then
-        player:setVar("ClassReunion_TalkedToFupepe",1);
+        player:setCharVar("ClassReunion_TalkedToFupepe",1);
     end
 end;

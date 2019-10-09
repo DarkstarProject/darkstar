@@ -38,6 +38,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 311) then
         player:tradeComplete();
-        player:setVar("ratraceCS",6);
+        player:setCharVar("ratraceCS",6);
     end
 end;

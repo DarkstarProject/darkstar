@@ -30,8 +30,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 821) then
-        player:setVar("ChocoboOnTheLoose", 5);
+        player:setCharVar("ChocoboOnTheLoose", 5);
     elseif (csid == 822) then
-        player:setVar("ChocoboOnTheLoose", 6);
+        player:setCharVar("ChocoboOnTheLoose", 6);
     end
 end;

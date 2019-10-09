@@ -47,24 +47,24 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 86 ) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
         player:startEvent(9);
     elseif (csid == 22 ) then
         player:completeMission(COP,dsp.mission.id.cop.TENDING_AGED_WOUNDS);
         player:addMission(COP,dsp.mission.id.cop.DARKNESS_NAMED);
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:startEvent(10);
     elseif (csid == 155) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
-        player:setVar("BeatAroundTheBushin",2);
+        player:setCharVar("BeatAroundTheBushin",2);
     elseif (csid == 156) then
-        player:setVar("BeatAroundTheBushin",3);
+        player:setCharVar("BeatAroundTheBushin",3);
         player:tradeComplete();
     elseif (csid == 157) then
-        player:setVar("BeatAroundTheBushin",5);
+        player:setCharVar("BeatAroundTheBushin",5);
         player:tradeComplete();
     elseif (csid == 158) then
-        player:setVar("BeatAroundTheBushin",7);
+        player:setCharVar("BeatAroundTheBushin",7);
         player:tradeComplete();
     elseif (csid == 159) then
         if (player:getFreeSlotsCount() == 0) then
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.BLACK_BELT);
             player:addItem(13186);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13186);
-            player:setVar("BeatAroundTheBushin",0);
+            player:setCharVar("BeatAroundTheBushin",0);
             player:addFame(NORG,125);
             player:tradeComplete();
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);

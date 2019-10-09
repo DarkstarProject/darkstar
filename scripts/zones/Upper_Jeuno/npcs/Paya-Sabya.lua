@@ -26,7 +26,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 80) then
-        player:setVar("YagudoTorchCS",1);
+        player:setCharVar("YagudoTorchCS",1);
     end
 
 end;

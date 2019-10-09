@@ -32,6 +32,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 3) then
-        player:setVar("DownwardHelix",3);
+        player:setCharVar("DownwardHelix",3);
     end
 end;

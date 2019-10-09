@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
             player:delQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
         end
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
-        player:setVar("TrialByWind_date", 0);
+        player:setCharVar("TrialByWind_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_WIND);
     elseif (csid == 107) then
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_WIND);
             player:delKeyItem(dsp.ki.WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
-            player:setVar("TrialByWind_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("TrialByWind_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(RABAO,30);
             player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
         end
@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1174);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1174);
-            player:setVar("CarbuncleDebacleProgress",6);
+            player:setCharVar("CarbuncleDebacleProgress",6);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1174);
         end;

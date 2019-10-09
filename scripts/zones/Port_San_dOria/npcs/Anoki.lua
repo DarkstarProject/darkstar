@@ -22,8 +22,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 724) then
-        player:setVar("COP_optional_CS_Anoki",1);
+        player:setCharVar("COP_optional_CS_Anoki",1);
     elseif (csid == 728) then
-        player:setVar("COP_optional_CS_Anoki",2);
+        player:setCharVar("COP_optional_CS_Anoki",2);
     end
 end;

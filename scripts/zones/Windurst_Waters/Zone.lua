@@ -37,11 +37,11 @@ function onZoneIn(player,prevZone)
         if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
-        player:setVar("PlayerMainJob",0);
+        player:setCharVar("PlayerMainJob",0);
     end
 
     if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 1) then -- COP MEMORIES_OF_A_MAIDEN--3-3B: Windurst Route
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",2);
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",2);
         cs = 871;
     end
 
@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 146) then -- Returned from Giddeus, Windurst 1-3
-        player:setVar("MissionStatus", 3);
-        player:setVar("ghoo_talk", 0);
-        player:setVar("laa_talk", 0);
+        player:setCharVar("MissionStatus", 3);
+        player:setCharVar("ghoo_talk", 0);
+        player:setCharVar("laa_talk", 0);
     end
 end;

@@ -40,12 +40,12 @@ function onEventFinish(player,csid,option)
     if (csid == 261 and option ~= 1) then
         player:delKeyItem(dsp.ki.SHARP_GRAY_STONE);
         player:addGil(GIL_RATE*10);
-        player:setVar("rockracketeer_sold",1);
+        player:setCharVar("rockracketeer_sold",1);
     elseif (csid == 261 and option ~= 2) then
-        player:setVar("rockracketeer_sold",2);
+        player:setCharVar("rockracketeer_sold",2);
 
     elseif (csid == 264) then
-        player:setVar("ChasingQuotas_Progress",4);
+        player:setCharVar("ChasingQuotas_Progress",4);
     end
 
 end;

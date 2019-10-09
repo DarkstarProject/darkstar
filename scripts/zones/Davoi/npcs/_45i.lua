@@ -26,22 +26,22 @@ function onEventFinish(player,csid,option)
         local c = player:getCharVar("countRedPoolForORB");
 
         if (c == 0) then
-            player:setVar("countRedPoolForORB", c + 2);
+            player:setCharVar("countRedPoolForORB", c + 2);
             player:delKeyItem(dsp.ki.WHITE_ORB);
             player:addKeyItem(dsp.ki.PINK_ORB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.PINK_ORB);
         elseif (c == 1 or c == 4 or c == 8) then
-            player:setVar("countRedPoolForORB", c + 2);
+            player:setCharVar("countRedPoolForORB", c + 2);
             player:delKeyItem(dsp.ki.PINK_ORB);
             player:addKeyItem(dsp.ki.RED_ORB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.RED_ORB);
         elseif (c == 5 or c == 9 or c == 12) then
-            player:setVar("countRedPoolForORB", c + 2);
+            player:setCharVar("countRedPoolForORB", c + 2);
             player:delKeyItem(dsp.ki.RED_ORB);
             player:addKeyItem(dsp.ki.BLOOD_ORB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BLOOD_ORB);
         elseif (c == 13) then
-            player:setVar("countRedPoolForORB", c + 2);
+            player:setCharVar("countRedPoolForORB", c + 2);
             player:delKeyItem(dsp.ki.BLOOD_ORB);
             player:addKeyItem(dsp.ki.CURSED_ORB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CURSED_ORB);

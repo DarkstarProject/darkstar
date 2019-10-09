@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 849 then
-        player:setVar("ratraceCS",2)
+        player:setCharVar("ratraceCS",2)
     end
 end

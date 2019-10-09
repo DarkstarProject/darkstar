@@ -38,7 +38,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 0 then
-        player:setVar("TheOldMonument_Event",3)
+        player:setCharVar("TheOldMonument_Event",3)
     elseif csid == 2 then
         player:tradeComplete()
         player:messageSpecial(ID.text.SONG_RUNES_WRITING,917)

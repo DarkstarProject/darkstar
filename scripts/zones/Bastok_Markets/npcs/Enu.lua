@@ -40,11 +40,11 @@ function onEventFinish(player,csid,option)
     -- printf ("CSID: %u",csid);
     -- printf ("RESULT: %u",option);
     if (csid == 332) then -- Quest: Wish Upon a Star
-        player:setVar("WishUponAStar_Status",3);
+        player:setCharVar("WishUponAStar_Status",3);
     elseif (csid == 334) then -- Quest: Wish Upon a Star - Traded Fallen Star
         player:tradeComplete( );
         player:completeQuest(BASTOK,dsp.quest.id.bastok.WISH_UPON_A_STAR);
-        player:setVar("WishUponAStar_Status",0);
+        player:setCharVar("WishUponAStar_Status",0);
         player:addFame(BASTOK,50);
         player:addItem(1236,4); -- Reward for quest completion: Cactus Stems x 4
         player:messageSpecial(ID.text.ITEM_OBTAINED,1236);

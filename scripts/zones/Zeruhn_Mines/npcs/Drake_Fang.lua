@@ -37,11 +37,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 200 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
     elseif csid == 202 then
-        player:setVar("Missionstatus", 1)
+        player:setCharVar("Missionstatus", 1)
     elseif csid == 204 then
-        player:setVar("Missionstatus", 5)
+        player:setCharVar("Missionstatus", 5)
         player:delKeyItem(dsp.ki.OLD_PIECE_OF_WOOD)
         player:setPos(23, 0, 4)
     end

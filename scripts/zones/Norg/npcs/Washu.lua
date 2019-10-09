@@ -59,11 +59,11 @@ end;
 function onEventFinish(player,csid,option)
     -- YOMI OKURI (SAM AF2)
     if (csid == 148) then
-        player:setVar("yomiOkuriCS",2);
+        player:setCharVar("yomiOkuriCS",2);
     elseif (csid == 150) then
         player:confirmTrade();
         npcUtil.giveKeyItem(player, dsp.ki.WASHUS_TASTY_WURST);
-        player:setVar("yomiOkuriCS",3);
+        player:setCharVar("yomiOkuriCS",3);
         
     -- STOP YOUR WHINING
     elseif (csid == 21 and option == 1) then

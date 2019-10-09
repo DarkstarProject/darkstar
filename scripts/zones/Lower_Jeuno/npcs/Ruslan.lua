@@ -19,7 +19,7 @@ function onTrigger(player,npc)
         prog = player:getCharVar("QuestWonderingMin_var")
         if (prog == 0) then                 -- WONDERING_MINSTREL + Rosewood Lumber: During Quest / Progression
             player:startEvent(10009,0,718);
-            player:setVar("QuestWonderingMin_var",1);
+            player:setCharVar("QuestWonderingMin_var",1);
         elseif (prog == 1) then             -- WONDERING_MINSTREL + Rosewood Lumber: Quest Objective Reminder
             player:startEvent(10010,0,718);
         end

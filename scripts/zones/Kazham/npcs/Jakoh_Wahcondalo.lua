@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS)
         player:addMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH)
     elseif (csid == 265) then
-        player:setVar("MissionStatus",3)
+        player:setCharVar("MissionStatus",3)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.EVISCERATION_LEARNED)
     end

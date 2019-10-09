@@ -37,9 +37,9 @@ function onZoneIn(player,prevZone)
         if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
-        player:setVar("PlayerMainJob",0);
+        player:setCharVar("PlayerMainJob",0);
     elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.TENDING_AGED_WOUNDS and player:getCharVar("PromathiaStatus") == 0) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
         cs = 70;
     elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == dsp.mission.id.acp.A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
         cs = 10094;

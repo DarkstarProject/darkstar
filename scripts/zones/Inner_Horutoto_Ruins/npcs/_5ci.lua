@@ -30,7 +30,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 41) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
         player:delKeyItem(dsp.ki.CHARM_OF_LIGHT);
     end
 

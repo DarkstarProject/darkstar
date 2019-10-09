@@ -50,6 +50,6 @@ function onEventFinish(player,csid,option)
     if csid == 14 then
         player:addKeyItem(dsp.ki.MOONDROP)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MOONDROP)
-        player:setVar("Searching_AgasKilled", 0)
+        player:setCharVar("Searching_AgasKilled", 0)
     end
 end

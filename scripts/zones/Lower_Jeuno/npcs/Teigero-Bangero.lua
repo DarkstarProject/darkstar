@@ -53,6 +53,6 @@ function onEventFinish(player,csid,option)
         player:addVar("saveTheClockTowerVar", 1);
         player:addVar("saveTheClockTowerNPCz2", 128);
     elseif (csid == 29) then
-        player:setVar("theLostCardianVar",1);
+        player:setCharVar("theLostCardianVar",1);
     end
 end;

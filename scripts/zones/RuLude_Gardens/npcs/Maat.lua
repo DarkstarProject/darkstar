@@ -66,8 +66,8 @@ function onTrigger(player,npc)
     elseif (ridingOnTheClouds == QUEST_AVAILABLE and LvL >= 61 and player:levelCap() == 65 and MAX_LEVEL >= 70) then
         rand1 = math.random(0,7); rand2 = math.random(0,7);
         rand3 = math.random(0,7); rand4 = math.random(0,7);
-        player:setVar("ridingOnTheClouds_1",rand1 + 1); player:setVar("ridingOnTheClouds_2",rand2 + 1);
-        player:setVar("ridingOnTheClouds_3",rand3 + 1); player:setVar("ridingOnTheClouds_4",rand4 + 1);
+        player:setCharVar("ridingOnTheClouds_1",rand1 + 1); player:setCharVar("ridingOnTheClouds_2",rand2 + 1);
+        player:setCharVar("ridingOnTheClouds_3",rand3 + 1); player:setCharVar("ridingOnTheClouds_4",rand4 + 1);
 
         player:startEvent(88,rand1,rand2,rand4,rand3,180); -- Start Quest "Riding on the Clouds"
     elseif (ridingOnTheClouds == QUEST_ACCEPTED) then
@@ -104,7 +104,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 117) then
-        player:setVar("BeatAroundTheBushin",6);
+        player:setCharVar("BeatAroundTheBushin",6);
     -- Genkai 1
     elseif (csid == 79 and option == 1) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE);
@@ -142,10 +142,10 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:addQuest(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS);
         else
-            player:setVar("ridingOnTheClouds_1",0);
-            player:setVar("ridingOnTheClouds_2",0);
-            player:setVar("ridingOnTheClouds_3",0);
-            player:setVar("ridingOnTheClouds_4",0);
+            player:setCharVar("ridingOnTheClouds_1",0);
+            player:setCharVar("ridingOnTheClouds_2",0);
+            player:setCharVar("ridingOnTheClouds_3",0);
+            player:setCharVar("ridingOnTheClouds_4",0);
         end
     elseif (csid == 90) then
         player:addTitle(dsp.title.CLOUD_BREAKER);
@@ -169,7 +169,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 93) then
         player:addTitle(dsp.title.STAR_BREAKER);
         player:levelCap(75);
-        player:setVar("maatDefeated",0);
+        player:setCharVar("maatDefeated",0);
         player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_75);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.SHATTERING_STARS);
         player:addFame(JEUNO, 80);
@@ -177,7 +177,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 0) then
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.BEYOND_THE_SUN);
             player:addTitle(dsp.title.ULTIMATE_CHAMPION_OF_THE_WORLD);
-            player:setVar("maatsCap",0);
+            player:setCharVar("maatsCap",0);
             player:addItem(15194);
             player:messageSpecial(ID.text.ITEM_OBTAINED,15194);
         end

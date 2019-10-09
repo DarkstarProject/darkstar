@@ -66,10 +66,10 @@ function onEventFinish(player,csid,option)
     -- IN A STEW
     elseif csid == 235 then
         player:addQuest(WINDURST, dsp.quest.id.windurst.IN_A_STEW)
-        player:setVar("IASvar", 1)
+        player:setCharVar("IASvar", 1)
     elseif csid == 239 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.IN_A_STEW, {fame=50, gil=900, var="IASvar"}) then
         player:delKeyItem(dsp.ki.RANPIMONPIS_SPECIAL_STEW)
     elseif csid == 234 and option == 1 then -- start repeat
-        player:setVar("IASvar", 3)
+        player:setCharVar("IASvar", 3)
     end
 end

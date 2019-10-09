@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 397) then
-        player:setVar("PainJoy",0);
+        player:setCharVar("PainJoy",0);
     end
 end;

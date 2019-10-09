@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     -- printf("Finish CSID: %u",csid);
     -- printf("Finish RESULT: %u",option);
     if (csid == 510) then
-        player:setVar("threemenandaclosetCS",3);
+        player:setCharVar("threemenandaclosetCS",3);
     elseif (csid == 11) then
         player:startEvent(21);
     elseif (csid == 21) then
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 22) then
         player:completeMission(TOAU,dsp.mission.id.toau.UNRAVELING_REASON);
         player:setTitle(dsp.title.ENDYMION_PARATROOPER);
-        player:setVar("TOAUM40_STARTDAY", 0);
+        player:setCharVar("TOAUM40_STARTDAY", 0);
         player:addMission(TOAU,dsp.mission.id.toau.LIGHT_OF_JUDGMENT);
     end
 end;

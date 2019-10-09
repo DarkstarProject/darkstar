@@ -41,11 +41,11 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 289) then
-        player:setVar("TheWaywardAutomationProgress",2);
+        player:setCharVar("TheWaywardAutomationProgress",2);
     elseif (csid == 290 and option == 0) then
-        player:setVar("OTT_DayWait", VanadielDayOfTheYear());
+        player:setCharVar("OTT_DayWait", VanadielDayOfTheYear());
     elseif (csid == 290 and option == 1) then
-        player:setVar("OperationTeatimeProgress",3)
-        player:setVar("OTT_DayWait",0)
+        player:setCharVar("OperationTeatimeProgress",3)
+        player:setCharVar("OTT_DayWait",0)
     end
 end;

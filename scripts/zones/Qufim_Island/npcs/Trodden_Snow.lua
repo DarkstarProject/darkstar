@@ -43,7 +43,7 @@ function onTrigger(player, npc)
             (player:hasKeyItem(dsp.ki.VIOLET_COUNTERSEAL)   and 1 or 0)
 
         if completedSeals >= 3 then
-            player:setVar("ASA_Status", completedSeals)
+            player:setCharVar("ASA_Status", completedSeals)
             player:startEvent(45)
         end
     end
@@ -66,13 +66,13 @@ function onEventFinish(player, csid, option)
         player:completeMission(ASA, dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD)
         player:addMission(ASA, dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE)
 
-        player:setVar("ASA_Status", 0)
-        player:setVar("ASA4_Amber", "0")
-        player:setVar("ASA4_Azure", "0")
-        player:setVar("ASA4_Cerulean", "0")
-        player:setVar("ASA4_Emerald", "0")
-        player:setVar("ASA4_Scarlet", "0")
-        player:setVar("ASA4_Violet", "0")
+        player:setCharVar("ASA_Status", 0)
+        player:setCharVar("ASA4_Amber", "0")
+        player:setCharVar("ASA4_Azure", "0")
+        player:setCharVar("ASA4_Cerulean", "0")
+        player:setCharVar("ASA4_Emerald", "0")
+        player:setCharVar("ASA4_Scarlet", "0")
+        player:setCharVar("ASA4_Violet", "0")
 
         player:confirmTrade()
     elseif csid == 45 then
@@ -107,6 +107,6 @@ function onEventFinish(player, csid, option)
         -- Advance Mission
         player:completeMission(ASA, dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE)
         player:addMission(ASA, dsp.mission.id.asa.ENEMY_OF_THE_EMPIRE_I)
-        player:setVar("ASA_Status", 0)
+        player:setCharVar("ASA_Status", 0)
     end
 end

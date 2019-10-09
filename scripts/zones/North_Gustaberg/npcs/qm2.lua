@@ -26,6 +26,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 200 and npcUtil.giveItem(player, 1092) then
-        player:setVar("thickAsThievesGamblingCS", 7)
+        player:setCharVar("thickAsThievesGamblingCS", 7)
     end
 end

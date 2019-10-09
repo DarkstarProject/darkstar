@@ -70,7 +70,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 53) then -- Got the required cutscene for AA
-        player:setVar("ZilartStatus",1);
+        player:setCharVar("ZilartStatus",1);
 
     elseif ((csid == 54 or csid == 56) and player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT) == QUEST_AVAILABLE) then -- Flag Divine Might
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT);
@@ -102,8 +102,8 @@ function onEventFinish(player,csid,option)
                     player:completeQuest(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT);
                     player:delKeyItem(dsp.ki.MOONLIGHT_ORE);
                 end
-                player:setVar("DivineMight",0);
-                player:setVar("DM_Earring",reward);
+                player:setCharVar("DivineMight",0);
+                player:setCharVar("DM_Earring",reward);
             else
                 player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,reward);
             end

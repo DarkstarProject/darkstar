@@ -58,21 +58,21 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 242) then
-        player:setVar("AyameAndKaede_Event", 2);
+        player:setCharVar("AyameAndKaede_Event", 2);
     elseif (csid == 245) then
-        player:setVar("AyameAndKaede_Event", 3);
+        player:setCharVar("AyameAndKaede_Event", 3);
     elseif (csid == 246) then
         player:delKeyItem(dsp.ki.SEALED_DAGGER);
         player:addTitle(dsp.title.SHADOW_WALKER);
         player:unlockJob(dsp.job.NIN);
         player:messageSpecial(ID.text.UNLOCK_NINJA);
-        player:setVar("AyameAndKaede_Event", 0);
+        player:setCharVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);
         player:completeQuest(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE);
     elseif (csid == 262) then
-        player:setVar("twentyInPirateYearsCS",3);
+        player:setCharVar("twentyInPirateYearsCS",3);
     elseif (csid == 264) then
-        player:setVar("illTakeTheBigBoxCS",1);
+        player:setCharVar("illTakeTheBigBoxCS",1);
     end
 
 end;

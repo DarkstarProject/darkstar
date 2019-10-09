@@ -24,10 +24,10 @@ function onTrigger(player, npc)
                 if player:getCharVar("KorrolokaLeeches_Killed") > 0 then
                     player:addKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL)
                     player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.STRANGELY_SHAPED_CORAL)
-                    player:setVar("KorrolokaLeeches_Killed", 0)
+                    player:setCharVar("KorrolokaLeeches_Killed", 0)
 
                     if player:getCharVar("KorrolokaLeeches_SpawningPC") > 0 then
-                        player:setVar("KorrolokaLeeches_SpawningPC", 0)
+                        player:setCharVar("KorrolokaLeeches_SpawningPC", 0)
                         npc:hideNPC(FORCE_SPAWN_QM_RESET_TIME)
                     end
                 else
@@ -35,7 +35,7 @@ function onTrigger(player, npc)
                     SpawnMob(ID.mob.KORROLOKA_LEECH_I)
                     SpawnMob(ID.mob.KORROLOKA_LEECH_II)
                     SpawnMob(ID.mob.KORROLOKA_LEECH_III)
-                    player:setVar("KorrolokaLeeches_SpawningPC", 1)
+                    player:setCharVar("KorrolokaLeeches_SpawningPC", 1)
                 end
             else
                 player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

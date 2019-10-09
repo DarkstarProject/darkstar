@@ -166,12 +166,12 @@ function onEventFinish(player,csid,option)
     elseif csid == 7 then
         player:completeMission(TOAU,dsp.mission.id.toau.PATH_OF_DARKNESS)
         player:setTitle(dsp.title.NAJAS_COMRADEINARMS)
-        player:setVar("AhtUrganStatus",0)
+        player:setCharVar("AhtUrganStatus",0)
         player:addMission(TOAU,dsp.mission.id.toau.FANGS_OF_THE_LION)
     elseif csid == 10 then
         player:completeMission(TOAU,dsp.mission.id.toau.NASHMEIRAS_PLEA)
         player:setTitle(dsp.title.PREVENTER_OF_RAGNAROK)
-        player:setVar("AhtUrganStatus",0)
+        player:setCharVar("AhtUrganStatus",0)
         player:addMission(TOAU,dsp.mission.id.toau.RAGNAROK)
     elseif csid == 116 and player:getLocalVar("SalvageArrapago") == 1 then -- enter Salvage Silver Sea zone
         player:setPos(0,0,0,0,74)

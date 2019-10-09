@@ -44,7 +44,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 4 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
     elseif
         csid == 2 and
         player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED and
@@ -55,9 +55,9 @@ function onEventFinish(player, csid, option)
         -- no further action needed
     elseif csid == 3 and npcUtil.giveItem(player, 547) then
         player:confirmTrade()
-        player:setVar("OfferingWaterOK", 1)
+        player:setCharVar("OfferingWaterOK", 1)
     elseif csid == 8 then
-        player:setVar("MissionStatus", 3)
+        player:setCharVar("MissionStatus", 3)
         npcUtil.giveKeyItem(player, dsp.ki.ANCIENT_SANDORIAN_BOOK)
     end
 end

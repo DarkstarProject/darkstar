@@ -193,7 +193,7 @@ function onEventFinish(player,csid,option)
 
 
     if (csid == 70 or csid == 71) then  --accept quest 1
-        player:setVar("QuestRychardetheChef_var",3); --
+        player:setCharVar("QuestRychardetheChef_var",3); --
         if (option == 71 or option == 72) then    --70 = answer no  71 answer yes!
             player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.RYCHARDE_THE_CHEF);
         end
@@ -203,14 +203,14 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
-        player:setVar("QuestRychardetheChef_var",0);
-        player:setVar("QuestRychardeTCCompDay_var",VanadielDayOfTheYear());
-        player:setVar("QuestRychardeTCCompYear_var",VanadielYear());
+        player:setCharVar("QuestRychardetheChef_var",0);
+        player:setCharVar("QuestRychardeTCCompDay_var",VanadielDayOfTheYear());
+        player:setCharVar("QuestRychardeTCCompYear_var",VanadielYear());
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.RYCHARDE_THE_CHEF);
     elseif (csid == 76) then  -- accept quest 2
         if (option == 74 ) then -- answer yes!
-            player:setVar("QuestWayotcHourStarted_var",VanadielHour());
-            player:setVar("QuestRychardeTCDayStarted_var",VanadielDayOfTheYear());
+            player:setCharVar("QuestWayotcHourStarted_var",VanadielHour());
+            player:setCharVar("QuestRychardeTCDayStarted_var",VanadielDayOfTheYear());
             player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.WAY_OF_THE_COOK);
         end
     elseif (csid == 80) then  --end quest 2 WAY_OF_THE_COOK
@@ -219,12 +219,12 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.ONESTAR_PURVEYOR);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
-        player:setVar("QuestWayotcHourStarted_var",0);
-        player:setVar("QuestRychardeTCDayStarted_var",0);
-        player:setVar("QuestRychardeTCCompDay_var",0);
-        player:setVar("QuestRychardeTCCompYear_var",0);
-        player:setVar("QuestWayofTCCompDay_var",VanadielDayOfTheYear()); -- completition day of WAY_OF_THE_COOK
-        player:setVar("QuestWayofTCCompYear_var",VanadielYear());
+        player:setCharVar("QuestWayotcHourStarted_var",0);
+        player:setCharVar("QuestRychardeTCDayStarted_var",0);
+        player:setCharVar("QuestRychardeTCCompDay_var",0);
+        player:setCharVar("QuestRychardeTCCompYear_var",0);
+        player:setCharVar("QuestWayofTCCompDay_var",VanadielDayOfTheYear()); -- completition day of WAY_OF_THE_COOK
+        player:setCharVar("QuestWayofTCCompYear_var",VanadielYear());
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.WAY_OF_THE_COOK);
     elseif (csid == 81) then  --end quest 2 WAY_OF_THE_COOK
         player:tradeComplete();
@@ -232,15 +232,15 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1000);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1000);
-        player:setVar("QuestWayotcHourStarted_var",0);
-        player:setVar("QuestRychardeTCDayStarted_var",0);
-        player:setVar("QuestRychardeTCCompDay_var",0);
-        player:setVar("QuestRychardeTCCompYear_var",0);
-        player:setVar("QuestWayofTCCompDay_var",VanadielDayOfTheYear()); -- completition day of WAY_OF_THE_COOK
-        player:setVar("QuestWayofTCCompYear_var",VanadielYear());
+        player:setCharVar("QuestWayotcHourStarted_var",0);
+        player:setCharVar("QuestRychardeTCDayStarted_var",0);
+        player:setCharVar("QuestRychardeTCCompDay_var",0);
+        player:setCharVar("QuestRychardeTCCompYear_var",0);
+        player:setCharVar("QuestWayofTCCompDay_var",VanadielDayOfTheYear()); -- completition day of WAY_OF_THE_COOK
+        player:setCharVar("QuestWayofTCCompYear_var",VanadielYear());
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.WAY_OF_THE_COOK);
     elseif (csid == 82) then  -- accept quest 3 UNENDING_CHASE
-        player:setVar("QuestUnendingCAskedAlready_var",2);
+        player:setCharVar("QuestUnendingCAskedAlready_var",2);
         if (option == 77 ) then -- answer yes!
             player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNENDING_CHASE);
         end
@@ -254,11 +254,11 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.TWOSTAR_PURVEYOR);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
-        player:setVar("QuestUnendingCAskedAlready_var",0);
-        player:setVar("QuestWayofTCCompDay_var",0); -- completition day of WAY_OF_THE_COOK delete variable
-        player:setVar("QuestWayofTCCompYear_var",0);
-        player:setVar("QuestUnendingCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
-        player:setVar("QuestUnendingCCompYear_var",VanadielYear());
+        player:setCharVar("QuestUnendingCAskedAlready_var",0);
+        player:setCharVar("QuestWayofTCCompDay_var",0); -- completition day of WAY_OF_THE_COOK delete variable
+        player:setCharVar("QuestWayofTCCompYear_var",0);
+        player:setCharVar("QuestUnendingCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
+        player:setCharVar("QuestUnendingCCompYear_var",VanadielYear());
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNENDING_CHASE);
     elseif (csid == 86) then  -- accept quest 4 HIS_NAME_IS_VALGEIR
         if (option == 80 ) then -- answer yes!
@@ -271,13 +271,13 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120);
         player:addKeyItem(dsp.ki.MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_TORAIMARAI_CANAL);
-        player:setVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
-        player:setVar("QuestUnendingCCompYear_var",0);
-        player:setVar("QuestHNIVCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
-        player:setVar("QuestHNIVCCompYear_var",VanadielYear());
+        player:setCharVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
+        player:setCharVar("QuestUnendingCCompYear_var",0);
+        player:setCharVar("QuestHNIVCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
+        player:setCharVar("QuestHNIVCCompYear_var",VanadielYear());
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.HIS_NAME_IS_VALGEIR);
     elseif (csid == 90 or csid == 91) then  --accept quest the clue
-        player:setVar("QuestTheClueStatus_var",1);
+        player:setCharVar("QuestTheClueStatus_var",1);
         if (option == 83 ) then
             player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE);
         end
@@ -287,11 +287,11 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.FOURSTAR_PURVEYOR);
         player:addGil(GIL_RATE*3000);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
-        player:setVar("QuestTheClueStatus_var",0);
-        player:setVar("QuestExpertiseCompDay_var",0); -- completition day of expertice quest
-        player:setVar("QuestExpertiseCompYear_var",0);
-        player:setVar("QuestTheClueCompDay_var",VanadielDayOfTheYear()); -- completition day of THE CLUE
-        player:setVar("QuestTheClueCompYear_var",VanadielYear());
+        player:setCharVar("QuestTheClueStatus_var",0);
+        player:setCharVar("QuestExpertiseCompDay_var",0); -- completition day of expertice quest
+        player:setCharVar("QuestExpertiseCompYear_var",0);
+        player:setCharVar("QuestTheClueCompDay_var",VanadielDayOfTheYear()); -- completition day of THE CLUE
+        player:setCharVar("QuestTheClueCompYear_var",VanadielYear());
         player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE);
     elseif (csid == 94) then  --accept quest the basics
         if (option == 85 ) then
@@ -309,12 +309,12 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(133);
             player.messageSpecial(ID.text.ITEM_OBTAINED,133);
-            player:setVar("QuestTheClueCompDay_var",0); -- completition day of THE CLUE
-            player:setVar("QuestTheClueCompYear_var",0);
-            player:setVar("QuestTheBasicsComentary_var",1);
+            player:setCharVar("QuestTheClueCompDay_var",0); -- completition day of THE CLUE
+            player:setCharVar("QuestTheClueCompYear_var",0);
+            player:setCharVar("QuestTheBasicsComentary_var",1);
             player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_BASICS);
         end
     elseif (csid == 97) then  --end commentary quest the basics
-        player:setVar("QuestTheBasicsComentary_var",0);
+        player:setCharVar("QuestTheBasicsComentary_var",0);
     end
 end;

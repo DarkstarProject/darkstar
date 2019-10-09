@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 327) then
         player:completeQuest(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS);
         player:addQuest(ABYSSEA, dsp.quest.id.abyssea.DAWN_OF_DEATH);
-        player:setVar("1stTimeAbyssea",0);
+        player:setCharVar("1stTimeAbyssea",0);
     elseif (csid == 328 and option == 6) then
         local StonesKI = getTravStonesTotal(player);
         if (StonesKI == 5) then

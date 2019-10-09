@@ -21,6 +21,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 33 then
-        player:setVar("underTheSeaVar", 3)
+        player:setCharVar("underTheSeaVar", 3)
     end
 end

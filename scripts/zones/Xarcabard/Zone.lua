@@ -28,7 +28,7 @@ function onZoneIn(player, prevZone)
     end
 
     if not player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and player:getRank() >= 6 and player:getMainLvl() >= 65 and player:getCharVar("Dynamis_Status") == 0 then
-        player:setVar("Dynamis_Status", 1)
+        player:setCharVar("Dynamis_Status", 1)
         cs = 13
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 9
@@ -64,6 +64,6 @@ function onEventFinish(player, csid, option)
     if csid == 9 then
         lightCutsceneFinish(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 4 then
-        player:setVar("unbridledPassion", 4)
+        player:setCharVar("unbridledPassion", 4)
     end
 end

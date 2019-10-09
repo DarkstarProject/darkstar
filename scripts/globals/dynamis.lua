@@ -335,15 +335,15 @@ dynamis.entryNpcOnEventFinish = function(player, csid, option)
 
     -- victory cutscene
     elseif csid == info.csWin then
-        player:setVar(info.winVar, 0)
+        player:setCharVar(info.winVar, 0)
 
     -- dynamis entry
     elseif csid == info.csDyna then
         player:setMaskBit("Dynamis_Status", info.csBit, true)
 
         if option == 0 or option == 1 then
-            player:setVar("Dynamis_subjob", option)
-            player:setVar("Dynamis_Entry", 1)
+            player:setCharVar("Dynamis_subjob", option)
+            player:setCharVar("Dynamis_Entry", 1)
 
             local realDay = os.time()
             if DYNA_MIDNIGHT_RESET then
@@ -355,7 +355,7 @@ dynamis.entryNpcOnEventFinish = function(player, csid, option)
                 (dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME * 60 * 60) < realDay and
                 not player:hasKeyItem(dsp.ki.RHAPSODY_IN_AZURE)
             then
-                player:setVar("dynaWaitxDay", realDay)
+                player:setCharVar("dynaWaitxDay", realDay)
             end
 
             player:setPos(unpack(info.enterPos))
@@ -412,8 +412,8 @@ dynamis.zoneOnZoneIn = function(player, prevZone)
         end
         player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 3, 3600)
         player:timer(5500, function(player) player:messageSpecial(ID.text.DYNAMIS_TIME_BEGIN, 60, dsp.ki.PRISMATIC_HOURGLASS) end)
-        player:setVar("Dynamis_Entry", 0)
-        player:setVar("Dynamis_subjob", 0)
+        player:setCharVar("Dynamis_Entry", 0)
+        player:setCharVar("Dynamis_subjob", 0)
     end
 
     if not player:hasStatusEffect(dsp.effect.DYNAMIS) then
@@ -465,7 +465,7 @@ dynamis.megaBossOnDeath = function(mob, player, isKiller)
 
     if not player:hasKeyItem(info.winKI) then
         npcUtil.giveKeyItem(player, info.winKI)
-        player:setVar(info.winVar, 1)
+        player:setCharVar(info.winVar, 1)
     end
 end
 

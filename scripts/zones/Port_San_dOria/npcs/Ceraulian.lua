@@ -80,24 +80,24 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 24) then
-        player:setVar("TheHolyCrest_Event",1);
+        player:setCharVar("TheHolyCrest_Event",1);
 
     -- Chasing Quotas (DRG AF2)
     elseif (csid == 18) then
         if option == 0 then
-            player:setVar("ChasingQuotas_No",1);
+            player:setCharVar("ChasingQuotas_No",1);
         else
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
         end
     elseif (csid == 14 and option == 1) then
-        player:setVar("ChasingQuotas_No",0);
+        player:setCharVar("ChasingQuotas_No",0);
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
     elseif (csid == 17) then
-        player:setVar("ChasingQuotas_Progress",1);
-        player:setVar("ChasingQuotas_date", getMidnight());
+        player:setCharVar("ChasingQuotas_Progress",1);
+        player:setCharVar("ChasingQuotas_date", getMidnight());
     elseif (csid == 7) then
-        player:setVar("ChasingQuotas_Progress",2);
-        player:setVar("ChasingQuotas_date",0);
+        player:setCharVar("ChasingQuotas_Progress",2);
+        player:setCharVar("ChasingQuotas_date",0);
     elseif (csid == 15) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14227);
@@ -107,13 +107,13 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,14227); -- Drachen Brais
             player:addFame(SANDORIA,40);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
-            player:setVar("ChasingQuotas_Progress",0);
+            player:setCharVar("ChasingQuotas_Progress",0);
         end
 
         -- Knight Stalker (DRG AF3)
     elseif (csid == 19) then
-        player:setVar("KnightStalker_Progress",1);
+        player:setCharVar("KnightStalker_Progress",1);
     elseif (csid == 22) then
-        player:setVar("KnightStalker_Option1",0);
+        player:setCharVar("KnightStalker_Option1",0);
     end
 end;

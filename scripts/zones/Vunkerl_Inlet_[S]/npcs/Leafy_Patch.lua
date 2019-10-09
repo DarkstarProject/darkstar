@@ -33,11 +33,11 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:addKeyItem(dsp.ki.VUNKERL_HERB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
-            player:setVar("BoyAndTheBeast",3);
+            player:setCharVar("BoyAndTheBeast",3);
         else
             player:addKeyItem(dsp.ki.VUNKERL_HERB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
-            player:setVar("BoyAndTheBeast",4);
+            player:setCharVar("BoyAndTheBeast",4);
         end
     end
 end;

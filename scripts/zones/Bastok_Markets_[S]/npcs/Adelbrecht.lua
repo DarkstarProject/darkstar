@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.BATTLE_RATIONS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BATTLE_RATIONS);
         player:addQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH);
-        player:setVar("BLUE_R_LETTER_USED",1);
+        player:setCharVar("BLUE_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
     elseif (csid == 140 and option == 1) then
         player:delKeyItem(dsp.ki.BATTLE_RATIONS);
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
         if (player:getCharVar("Campaign_Nation") == 0) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(2);
-                player:setVar("BLUE_R_LETTER_USED",0);
+                player:setCharVar("BLUE_R_LETTER_USED",0);
                 player:addTitle(dsp.title.FOURTH_DIVISION_SOLDIER);
                 player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
             end
         else
             player:setCampaignAllegiance(2);
-            player:setVar("BLUE_R_LETTER_USED",0);
+            player:setCharVar("BLUE_R_LETTER_USED",0);
             player:addTitle(dsp.title.FOURTH_DIVISION_SOLDIER);
             player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH);
         end

@@ -24,7 +24,7 @@ function onTrade(player, npc, trade)
     then
         player:confirmTrade()
         player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
-        player:setVar("TheRequiemAlreadyPoped", 1)
+        player:setCharVar("TheRequiemAlreadyPoped", 1)
     else
         player:messageSpecial(ID.text.NOTHING_HAPPENED)
     end
@@ -65,15 +65,15 @@ end
 function onEventFinish(player,csid,option)
     -- THE REQUIEM
     if csid == 46 then
-        player:setVar("TheRequiemCS", 0)
-        player:setVar("TheRequiemYumKilled", 0)
-        player:setVar("TheRequiemRandom", 0)
-        player:setVar("TheRequiemAlreadyPoped", 0)
+        player:setCharVar("TheRequiemCS", 0)
+        player:setCharVar("TheRequiemYumKilled", 0)
+        player:setCharVar("TheRequiemRandom", 0)
+        player:setCharVar("TheRequiemAlreadyPoped", 0)
         npcUtil.giveKeyItem(player, dsp.ki.STAR_RING1)
 
     -- A NEW DAWN
     elseif csid == 45 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN, {item = 14222, title = dsp.title.PARAGON_OF_BEASTMASTER_EXCELLENCE}) then
-        player:setVar("ANewDawn_Event", 6)
+        player:setCharVar("ANewDawn_Event", 6)
         player:delKeyItem(dsp.ki.TAMERS_WHISTLE)
     end
 end

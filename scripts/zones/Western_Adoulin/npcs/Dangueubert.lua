@@ -35,7 +35,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2558) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
-        player:setVar("ACSP_NPCs_Visited", 7);
+        player:setCharVar("ACSP_NPCs_Visited", 7);
     elseif (csid == 546) then
         if (option == 1) then
             -- Warps player to Mog Garden

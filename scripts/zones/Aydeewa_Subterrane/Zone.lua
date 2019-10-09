@@ -54,11 +54,11 @@ function onEventFinish(player,csid,option)
         player:unlockJob(dsp.job.BLU)
         player:setPos(148,-2,0,130,50)
     elseif csid == 3 and option ~= 13 then -- Make a mistake and get reset
-        player:setVar("AnEmptyVesselProgress", 0)
-        player:setVar("EmptyVesselStone", 0)
+        player:setCharVar("AnEmptyVesselProgress", 0)
+        player:setCharVar("EmptyVesselStone", 0)
         player:delQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
         player:setPos(148,-2,0,130,50)
     elseif csid == 10 then
-        player:setVar("AhtUrganStatus", 1)
+        player:setCharVar("AhtUrganStatus", 1)
     end
 end

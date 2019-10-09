@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
             if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
                 cs = 30004;
             end
-            player:setVar("PlayerMainJob",0);
+            player:setCharVar("PlayerMainJob",0);
         end
     end
 
@@ -78,11 +78,11 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 305) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 306) then
-        player:setVar("COP_optional_CS_chasalvigne",0);
-        player:setVar("COP_optional_CS_Anoki",0);
-        player:setVar("COP_optional_CS_Despachaire",0);
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("COP_optional_CS_chasalvigne",0);
+        player:setCharVar("COP_optional_CS_Anoki",0);
+        player:setCharVar("COP_optional_CS_Despachaire",0);
+        player:setCharVar("PromathiaStatus",1);
     end
 end;

@@ -50,12 +50,12 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL);
     elseif (csid == 84) then
         player:needToZone(true);
-        player:setVar("OutOfOneShell",1);
+        player:setCharVar("OutOfOneShell",1);
         player:tradeComplete();
     elseif (csid == 86) then
         if (player:getFreeSlotsCount() >= 1) then
             player:addTitle(dsp.title.SHELL_OUTER);
-            player:setVar("OutOfOneShell",0);
+            player:setCharVar("OutOfOneShell",0);
             player:addItem(12501);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12501);
             player:addFame(BASTOK,120);

@@ -65,31 +65,31 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(555);
             player:messageSpecial(ID.text.ITEM_OBTAINED,555);
-            player:setVar("saveTheClockTowerVar",1);
-            player:setVar("saveTheClockTowerNPCz1",0);
-            player:setVar("saveTheClockTowerNPCz2",0);
+            player:setCharVar("saveTheClockTowerVar",1);
+            player:setCharVar("saveTheClockTowerNPCz1",0);
+            player:setCharVar("saveTheClockTowerNPCz2",0);
         end
     elseif (csid == 230 and option == 30) then
         if (player:hasItem(555) == true) then
             player:messageSpecial(ID.text.ITEM_OBTAINED,555);
-            player:setVar("saveTheClockTowerVar",1);
-            player:setVar("saveTheClockTowerNPCz1",0);
-            player:setVar("saveTheClockTowerNPCz2",0);
+            player:setCharVar("saveTheClockTowerVar",1);
+            player:setCharVar("saveTheClockTowerNPCz1",0);
+            player:setCharVar("saveTheClockTowerNPCz2",0);
         else
             if (player:getFreeSlotsCount() == 0) then
                 player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,555);
             else
                 player:addItem(555);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,555);
-                player:setVar("saveTheClockTowerVar",1);
-                player:setVar("saveTheClockTowerNPCz1",0);
-                player:setVar("saveTheClockTowerNPCz2",0);
+                player:setCharVar("saveTheClockTowerVar",1);
+                player:setCharVar("saveTheClockTowerNPCz1",0);
+                player:setCharVar("saveTheClockTowerNPCz2",0);
             end
         end
     elseif (csid == 231) then
-        player:setVar("saveTheClockTowerVar",0);
-        player:setVar("saveTheClockTowerNPCz1",0);
-        player:setVar("saveTheClockTowerNPCz2",0);
+        player:setCharVar("saveTheClockTowerVar",0);
+        player:setCharVar("saveTheClockTowerNPCz1",0);
+        player:setCharVar("saveTheClockTowerNPCz2",0);
         player:addTitle(dsp.title.CLOCK_TOWER_PRESERVATIONIST);
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);

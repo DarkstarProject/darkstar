@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_2") == 7) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_2",0);
+            player:setCharVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
@@ -53,10 +53,10 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 510 and option == 0) then
-        player:setVar("TheUsual_Event",1);
+        player:setCharVar("TheUsual_Event",1);
     elseif (csid == 751) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.DARK_LEGACY);
-        player:setVar("darkLegacyCS",1);
+        player:setCharVar("darkLegacyCS",1);
     elseif (csid == 755) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16798); -- Raven Scythe
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.DARKSTEEL_FORMULA);
             player:addItem(16798);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16798); -- Raven Scythe
-            player:setVar("darkLegacyCS",0);
+            player:setCharVar("darkLegacyCS",0);
             player:addFame(BASTOK,20);
             player:completeQuest(BASTOK,dsp.quest.id.bastok.DARK_LEGACY);
         end

@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.DOMINAS_AMBER_SEAL);
         player:addKeyItem(dsp.ki.AMBER_COUNTERSEAL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AMBER_COUNTERSEAL);
-        player:setVar("ASA4_Amber","2");
+        player:setCharVar("ASA4_Amber","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

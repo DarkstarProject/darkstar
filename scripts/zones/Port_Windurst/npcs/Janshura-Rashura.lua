@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
     if (csid == 567) then
-        player:setVar("WWatersRTenText",1);
+        player:setCharVar("WWatersRTenText",1);
     end
 
 end;

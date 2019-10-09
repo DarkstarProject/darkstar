@@ -13,7 +13,7 @@ end
 
 function onTrigger(player, npc)
     if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getCharVar("MissionStatus") == 2 then
-        player:setVar("MissionStatus", 3)
+        player:setCharVar("MissionStatus", 3)
         player:addKeyItem(dsp.ki.PIECE_OF_A_BROKEN_KEY1)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.PIECE_OF_A_BROKEN_KEY1)
     else

@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 401) then
-        player:setVar("FixatedYagudo",0);
+        player:setCharVar("FixatedYagudo",0);
     end
 end;

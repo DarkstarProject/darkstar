@@ -28,6 +28,6 @@ function onEventFinish(player,csid,option)
     if (csid == 166) then
         player:messageSpecial(ID.text.NO_RESPONSE_OFFSET+4,478); -- You fit..
         player:messageSpecial(ID.text.NO_RESPONSE_OFFSET+5);     -- Device has been repaired
-        player:setVar("HollaChipRegistration",1);
+        player:setCharVar("HollaChipRegistration",1);
     end
 end;

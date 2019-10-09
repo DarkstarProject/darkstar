@@ -32,7 +32,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 13 then
-        player:setVar("MissionStatus", 6)
+        player:setCharVar("MissionStatus", 6)
         npcUtil.giveKeyItem(player, dsp.ki.LETTER_FROM_ZONPAZIPPA)
     end
 end

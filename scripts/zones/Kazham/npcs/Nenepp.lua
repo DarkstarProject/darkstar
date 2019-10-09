@@ -92,16 +92,16 @@ function onEventFinish(player,csid,option,npc)
             player:messageSpecial(ID.text.ITEM_OBTAINED,13870);
             player:addItem(4468,3);  -- 3 pamamas
             player:messageSpecial(ID.text.ITEM_OBTAINED,4468,3);
-            player:setVar("OPO_OPO_PROGRESS",0);
-            player:setVar("OPO_OPO_FAILED", 0);
-            player:setVar("OPO_OPO_RETRY", 0);
+            player:setCharVar("OPO_OPO_PROGRESS",0);
+            player:setCharVar("OPO_OPO_FAILED", 0);
+            player:setCharVar("OPO_OPO_RETRY", 0);
             player:setTitle(dsp.title.KING_OF_THE_OPOOPOS);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         end
     elseif (csid == 238) then              -- wrong trade, restart at first opo
-        player:setVar("OPO_OPO_FAILED",1);
-        player:setVar("OPO_OPO_RETRY",10);
+        player:setCharVar("OPO_OPO_FAILED",1);
+        player:setCharVar("OPO_OPO_RETRY",10);
     else
         npc:wait(0);
     end

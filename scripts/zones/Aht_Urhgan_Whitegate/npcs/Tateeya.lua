@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
             local subid = trade:getItemSubId(i)
             if subid >= 0x2000 and subid < 0x2800 then
                 if player:unlockAttachment(subid) then
-                    player:setVar('TateeyaUnlock', subid)
+                    player:setCharVar('TateeyaUnlock', subid)
                     player:startEventString(651, automatonName, automatonName, automatonName, automatonName, subid) --unlock attachment event
                     if trade:confirmSlot(i) then
                         player:confirmTrade()
@@ -48,10 +48,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 650 then --unlocking attachments explanation
-        player:setVar('TateeyaTradeStatus', 1)
+        player:setCharVar('TateeyaTradeStatus', 1)
     elseif csid == 651 then
         local subid = player:getCharVar('TateeyaUnlock')
         player:messageSpecial(ID.text.AUTOMATON_ATTACHMENT_UNLOCK, subid)
-        player:setVar('TateeyaUnlock',0)
+        player:setCharVar('TateeyaUnlock',0)
     end
 end

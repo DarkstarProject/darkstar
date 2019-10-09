@@ -32,6 +32,6 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 1) then
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
     end
 end;

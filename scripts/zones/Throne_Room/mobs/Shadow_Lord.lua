@@ -72,7 +72,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     if (mob:getID() < ID.mob.SHADOW_LORD_STAGE_2_OFFSET) then
         player:startEvent(32004);
-        player:setVar("mobid",mob:getID());
+        player:setCharVar("mobid",mob:getID());
     else
         player:addTitle(dsp.title.SHADOW_BANISHER);
     end
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32004) then
         local mobid = player:getCharVar("mobid");
         DespawnMob(mobid);
-        player:setVar("mobid",0);
+        player:setCharVar("mobid",0);
 
         --first phase dies, spawn second phase ID, make him engage, and disable
         --  magic, auto attack, and abilities (all he does is case Implode by script)

@@ -33,7 +33,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 304) then
-        player:setVar("aThiefinNorgCS",2);
+        player:setCharVar("aThiefinNorgCS",2);
     end
 
 end;

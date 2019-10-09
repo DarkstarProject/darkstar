@@ -21,7 +21,7 @@ function onEventFinish(player,csid,option)
 PastPerfectVar = player:getCharVar("PastPerfectVar");
 
     if (csid == 22 and PastPerfectVar == 1) then
-        player:setVar("PastPerfectVar",2);
+        player:setCharVar("PastPerfectVar",2);
     end
 
 end;

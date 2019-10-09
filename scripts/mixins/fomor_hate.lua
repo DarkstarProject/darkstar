@@ -8,7 +8,7 @@ g_mixins.fomor_hate = function(mob)
         local hate = player:getCharVar("FOMOR_HATE");
         local adj = mob:getLocalVar("fomorHateAdj");
         if (adj == 0) then adj = 2 end; -- most fomor add 2 hate
-        player:setVar("FOMOR_HATE", utils.clamp(hate + adj, 0, 60));
+        player:setCharVar("FOMOR_HATE", utils.clamp(hate + adj, 0, 60));
     end)
 end
 

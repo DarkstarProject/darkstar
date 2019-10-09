@@ -33,7 +33,7 @@ end;
 function onEventFinish(player,csid,option)
     -- Retail packet captures have been marked {R}. Please don't change them.
     if (csid == 2 and option == 1 ) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR);
         player:addMission(COP,dsp.mission.id.cop.DESIRES_OF_EMPTINESS);
         player:addKeyItem(dsp.ki.LIGHT_OF_VAHZL);

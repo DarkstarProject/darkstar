@@ -17,7 +17,7 @@ function onTrigger(player,npc)
     local CurrentMission = player:getCurrentMission(SANDORIA)
 
     if (CurrentMission == dsp.mission.id.sandoria.THE_DAVOI_REPORT and player:getCharVar("MissionStatus") == 1) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
         player:addKeyItem(dsp.ki.LOST_DOCUMENT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LOST_DOCUMENT);
     elseif (CurrentMission == dsp.mission.id.sandoria.INFILTRATE_DAVOI and player:getCharVar("MissionStatus") >= 6 and player:getCharVar("MissionStatus") <= 9) then

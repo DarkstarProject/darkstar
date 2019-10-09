@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
             var = "sayItWithAHandbagCS"
         }) then
             player:delKeyItem(dsp.ki.REPAIRED_HANDBAG)
-            player:setVar("sayItWithAHandbagBonusCS", 1)
+            player:setCharVar("sayItWithAHandbagBonusCS", 1)
         end
     elseif csid == 172 then
         npcUtil.giveKeyItem(player, dsp.ki.TORN_PATCHES_OF_LEATHER)

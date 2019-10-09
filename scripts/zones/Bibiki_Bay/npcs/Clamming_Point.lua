@@ -111,7 +111,7 @@ function onEventUpdate(player,csid,option)
                     player:addVar("ClammingKitWeight", clammingItems[itemDrop - 1]);
 
                     if (player:getCharVar("ClammingKitWeight") > player:getCharVar("ClammingKitSize")) then -- Broken bucket
-                        player:setVar("ClammingKitBroken", 1);
+                        player:setCharVar("ClammingKitBroken", 1);
                     end
 
                     break;
@@ -129,10 +129,10 @@ function onEventFinish(player,csid,option)
 
             player:messageSpecial(ID.text.SOMETHING_JUMPS_INTO);
 
-            player:setVar("ClammingKitBroken", 1);
+            player:setCharVar("ClammingKitBroken", 1);
 
             for item = 1, #clammingItems, 4 do -- Remove items from bucket
-                player:setVar("ClammedItem_" ..  clammingItems[item], 0);
+                player:setCharVar("ClammedItem_" ..  clammingItems[item], 0);
             end
         else
             local clammedItem = player:getLocalVar("ClammedItem");
@@ -142,7 +142,7 @@ function onEventFinish(player,csid,option)
                     player:messageSpecial(ID.text.THE_WEIGHT_IS_TOO_MUCH, clammedItem);
 
                     for item = 1, #clammingItems, 4 do -- Remove items from bucket
-                        player:setVar("ClammedItem_" ..  clammingItems[item], 0);
+                        player:setCharVar("ClammedItem_" ..  clammingItems[item], 0);
                     end
                 else
                     player:messageSpecial(ID.text.YOU_FIND_ITEM, clammedItem);

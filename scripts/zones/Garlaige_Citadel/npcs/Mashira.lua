@@ -34,7 +34,7 @@ RubbishDay = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
 MakingAmens = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_AMENS);
     if (csid == 11 and option == 1 and RubbishDay == QUEST_ACCEPTED) then
         player:delKeyItem(dsp.ki.MAGIC_TRASH);
-        player:setVar("RubbishDayVar",1);
+        player:setCharVar("RubbishDayVar",1);
     elseif (csid == 11 and option == 0 and MakingAmens == QUEST_ACCEPTED) then
         player:addKeyItem(dsp.ki.BROKEN_WAND); --Broken Wand
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BROKEN_WAND);

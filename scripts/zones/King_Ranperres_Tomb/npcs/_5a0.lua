@@ -22,8 +22,8 @@ function onTrigger(player, npc)
         not GetMobByID(ID.mob.CORRUPTED_ULBRIG):isSpawned()
     then
         if player:getCharVar("Mission6-2MobKilled") == 1 then
-            player:setVar("Mission6-2MobKilled", 0)
-            player:setVar("MissionStatus", 2)
+            player:setCharVar("Mission6-2MobKilled", 0)
+            player:setCharVar("MissionStatus", 2)
         else
             SpawnMob(ID.mob.CORRUPTED_YORGOS)
             SpawnMob(ID.mob.CORRUPTED_SOFFEIL)
@@ -47,9 +47,9 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 5 then
-        player:setVar("MissionStatus", 9)
+        player:setCharVar("MissionStatus", 9)
     elseif csid == 14 then
-        player:setVar("MissionStatus", 7)
+        player:setCharVar("MissionStatus", 7)
         -- at this point 3 optional cs are available and open until watched (add 3 var to char?)
     end
 end

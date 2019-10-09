@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 388) then
-        player:setVar("SimplePrayer",0);
+        player:setCharVar("SimplePrayer",0);
     end
 end;

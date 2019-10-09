@@ -40,9 +40,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 5013) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
-        player:setVar("DELM_Dewalt_Branch", 1);
+        player:setCharVar("DELM_Dewalt_Branch", 1);
     elseif (csid == 85) then
         -- Progresses Quest: 'Flavors of Our Lives'
-        player:setVar("FOOL_Status", 3);
+        player:setCharVar("FOOL_Status", 3);
     end
 end;

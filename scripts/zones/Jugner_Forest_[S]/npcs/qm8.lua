@@ -31,11 +31,11 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 204 then
-        player:setVar("WrathOfTheGriffon", 1)
+        player:setCharVar("WrathOfTheGriffon", 1)
     elseif csid == 205 then
         SpawnMob(ID.mob.COBRACLAW_BUCHZVOTCH):updateClaim(player)
     elseif csid == 206 then
-        player:setVar("CobraClawKilled", 0)
-        player:setVar("WrathOfTheGriffon", 2)
+        player:setCharVar("CobraClawKilled", 0)
+        player:setCharVar("WrathOfTheGriffon", 2)
     end
 end

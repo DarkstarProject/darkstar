@@ -44,12 +44,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 108) then
-        player:setVar("MissionStatus",5);
+        player:setCharVar("MissionStatus",5);
     elseif (csid == 115) then
         player:addKeyItem(dsp.ki.RESCUE_TRAINING_CERTIFICATE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RESCUE_TRAINING_CERTIFICATE);
-        player:setVar("theRescueDrillRandomNPC",0);
-        player:setVar("MissionStatus",11);
+        player:setCharVar("theRescueDrillRandomNPC",0);
+        player:setCharVar("MissionStatus",11);
     end
 
 end;

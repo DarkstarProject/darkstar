@@ -37,7 +37,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 2) then
-        player:setVar("aThiefinNorgCS",5);
+        player:setCharVar("aThiefinNorgCS",5);
     end
 
 end;

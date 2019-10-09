@@ -39,9 +39,9 @@ function onEventFinish(player, csid, option)
         if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SHATTERING_STARS) == QUEST_ACCEPTED then
             npcUtil.giveItem(player, 4181)
         end
-        player:setVar("maatDefeated", pjob)
+        player:setCharVar("maatDefeated", pjob)
         if bit.band(maatsCap, bit.lshift(1, pjob - 1)) ~= 1 then
-            player:setVar("maatsCap", bit.bor(maatsCap, bit.lshift(1, pjob - 1)))
+            player:setCharVar("maatsCap", bit.bor(maatsCap, bit.lshift(1, pjob - 1)))
         end
         player:addTitle(dsp.title.MAAT_MASHER)
     end

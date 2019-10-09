@@ -52,7 +52,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 32 then
-        player:setVar("underTheSeaVar", 2)
+        player:setCharVar("underTheSeaVar", 2)
     elseif csid == 37 and npcUtil.completeQuest(player, OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNDER_THE_SEA, {item = 13335, fame_area = SELBINA, title = dsp.title.LIL_CUPID, var = "underTheSeaVar"}) then
         player:delKeyItem(dsp.ki.ETCHED_RING)
     elseif csid == 70 and option == 50 then

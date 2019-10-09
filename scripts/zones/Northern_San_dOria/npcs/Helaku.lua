@@ -59,16 +59,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 536) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 543) then
         player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY);
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 537 and option == 0) then
         player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2);
-        player:setVar("MissionStatus",8);
+        player:setCharVar("MissionStatus",8);
     elseif (csid == 545) then
         player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY);
-        player:setVar("MissionStatus",11);
+        player:setCharVar("MissionStatus",11);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
         player:delKeyItem(dsp.ki.KINDRED_CREST);

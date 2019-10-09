@@ -30,8 +30,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 102) then
-        player:setVar("TigressStrikesProg", 2);
+        player:setCharVar("TigressStrikesProg", 2);
     elseif (csid == 103) then
-        player:setVar("TigressStrikesProg", 3);
+        player:setCharVar("TigressStrikesProg", 3);
     end
 end;

@@ -31,9 +31,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 105) then
-        player:setVar("KnotQuiteThere",1);
+        player:setCharVar("KnotQuiteThere",1);
     elseif (csid == 106) then
         player:tradeComplete();
-        player:setVar("KnotQuiteThere",2);
+        player:setCharVar("KnotQuiteThere",2);
     end
 end;

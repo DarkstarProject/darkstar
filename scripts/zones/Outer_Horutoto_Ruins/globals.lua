@@ -135,7 +135,7 @@ OUTER_HORUTOTO_RUINS = {
                 if orbVal == 1 then
                     local ki = darkOrbKI[gizmoNum]
 
-                    player:setVar("MissionStatus_orb" .. gizmoNum, 2)
+                    player:setCharVar("MissionStatus_orb" .. gizmoNum, 2)
                     player:messageSpecial(msgBase + 1, 0, 0, ki) -- "The <ki> has been placed into the receptacle."
                     player:delKeyItem(ki)
 
@@ -149,7 +149,7 @@ OUTER_HORUTOTO_RUINS = {
                         player:getCharVar("MissionStatus_orb6") == 2
                     then
                         player:messageSpecial(msgBase + 5) -- "You have set all of the Dark Mana Orbs in place."
-                        player:setVar("MissionStatus", 3)
+                        player:setCharVar("MissionStatus", 3)
                     end
                 end
 
@@ -158,7 +158,7 @@ OUTER_HORUTOTO_RUINS = {
                 if orbVal == 2 then
                     local ki = glowingOrbKI[gizmoNum]
 
-                    player:setVar("MissionStatus_orb" .. gizmoNum, 3)
+                    player:setCharVar("MissionStatus_orb" .. gizmoNum, 3)
                     player:addKeyItem(ki)
                     player:messageSpecial(ID.text.KEYITEM_OBTAINED, ki)
 
@@ -171,7 +171,7 @@ OUTER_HORUTOTO_RUINS = {
                         player:getCharVar("MissionStatus_orb6") == 3
                     then
                         player:messageSpecial(msgBase + 4)
-                        player:setVar("MissionStatus", 5)
+                        player:setCharVar("MissionStatus", 5)
                     end
                 end
             end

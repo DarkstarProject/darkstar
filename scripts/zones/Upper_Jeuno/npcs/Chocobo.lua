@@ -94,30 +94,30 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 57) then
-        player:setVar("ChocobosWounds_Event", 2);
-        player:setVar("ChocobosWounds_Min",os.time() + 60);
+        player:setCharVar("ChocobosWounds_Event", 2);
+        player:setCharVar("ChocobosWounds_Min",os.time() + 60);
     elseif (csid == 58) then
-        player:setVar("ChocobosWounds_Event", 3);
-        player:setVar("ChocobosWounds_Min",os.time() + 60);
+        player:setCharVar("ChocobosWounds_Event", 3);
+        player:setCharVar("ChocobosWounds_Min",os.time() + 60);
     elseif (csid == 59) then
-        player:setVar("ChocobosWounds_Event", 4);
-        player:setVar("ChocobosWounds_Min",os.time() + 60);
+        player:setCharVar("ChocobosWounds_Event", 4);
+        player:setCharVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
         player:startEvent(99);
     elseif (csid == 60) then
-        player:setVar("ChocobosWounds_Event", 5);
-        player:setVar("ChocobosWounds_Min",os.time() + 60);
+        player:setCharVar("ChocobosWounds_Event", 5);
+        player:setCharVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
     elseif (csid == 63) then
-        player:setVar("ChocobosWounds_Event", 6);
-        player:setVar("ChocobosWounds_Min",os.time() + 60);
+        player:setCharVar("ChocobosWounds_Event", 6);
+        player:setCharVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
     elseif (csid == 64) then
         player:addKeyItem(dsp.ki.CHOCOBO_LICENSE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CHOCOBO_LICENSE);
         player:addTitle(dsp.title.CHOCOBO_TRAINER);
-        player:setVar("ChocobosWounds_Event", 0);
-        player:setVar("ChocobosWounds_Min", 0);
+        player:setCharVar("ChocobosWounds_Event", 0);
+        player:setCharVar("ChocobosWounds_Min", 0);
         player:addFame(JEUNO,30);
         player:tradeComplete();
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);

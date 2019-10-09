@@ -453,8 +453,8 @@ local fishRewards =
 }
 
 local function tradeFish(player, fishId)
-    player:setVar("insideBellyFishId", fishId)
-    player:setVar("insideBellyItemIdx", 0)
+    player:setCharVar("insideBellyFishId", fishId)
+    player:setCharVar("insideBellyItemIdx", 0)
     
     local rewards = fishRewards[fishId].items
     local roll = math.random(1000) / 10
@@ -465,7 +465,7 @@ local function tradeFish(player, fishId)
         sum = sum + rewards[i].chance
         if roll <= sum then
             found = true
-            player:setVar("insideBellyItemIdx", i)
+            player:setCharVar("insideBellyItemIdx", i)
             player:startEvent(166, 0, rewards[i].itemId)
             break
         end
@@ -500,8 +500,8 @@ local function giveReward(player, csid)
             player:confirmTrade()
             player:addGil(GIL_RATE * reward.gil)
             player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE * reward.gil)
-            player:setVar("insideBellyFishId", 0)
-            player:setVar("insideBellyItemIdx", 0)
+            player:setCharVar("insideBellyFishId", 0)
+            player:setCharVar("insideBellyItemIdx", 0)
             if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.INSIDE_THE_BELLY) == QUEST_ACCEPTED then
                 player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.INSIDE_THE_BELLY)
             end
@@ -574,7 +574,7 @@ end
 function onEventFinish(player,csid,option)
     -- UNDER THE SEA
     if csid == 34 then
-        player:setVar("underTheSeaVar", 4)
+        player:setCharVar("underTheSeaVar", 4)
     elseif csid == 35 then
         npcUtil.giveKeyItem(player, dsp.ki.ETCHED_RING)
         player:confirmTrade()
@@ -584,7 +584,7 @@ function onEventFinish(player,csid,option)
     -- A BOY'S DREAM
     elseif csid == 85 then
         npcUtil.giveKeyItem(player, dsp.ki.KNIGHTS_BOOTS)
-        player:setVar("aBoysDreamCS", 6)
+        player:setCharVar("aBoysDreamCS", 6)
         player:confirmTrade()
 
     -- INSIDE THE BELLY

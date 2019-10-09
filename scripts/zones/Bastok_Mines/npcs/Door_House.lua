@@ -43,16 +43,16 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 519 then
-        player:setVar("LeleroonsletterBlue", 2)
+        player:setCharVar("LeleroonsletterBlue", 2)
         player:delKeyItem(dsp.ki.LELEROONS_LETTER_BLUE)
     elseif csid == 521 then
         player:confirmTrade()
-        player:setVar("LeleroonsletterBlue", 3)
+        player:setCharVar("LeleroonsletterBlue", 3)
     elseif csid == 524 then
         player:confirmTrade()
-        player:setVar("LeleroonsletterBlue", 4)
-        player:setVar("corAfSubmitDay", vanaDay())
+        player:setCharVar("LeleroonsletterBlue", 4)
+        player:setCharVar("corAfSubmitDay", vanaDay())
     elseif csid == 522 and npcUtil.giveItem(player, 15685) then
-        player:setVar("LeleroonsletterBlue", 5)
+        player:setCharVar("LeleroonsletterBlue", 5)
     end
 end

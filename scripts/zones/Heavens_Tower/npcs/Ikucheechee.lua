@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 394) then
-        player:setVar("SporadicScuffles",0);
+        player:setCharVar("SporadicScuffles",0);
     end
 end;

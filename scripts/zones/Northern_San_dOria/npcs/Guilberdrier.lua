@@ -17,7 +17,7 @@ function onTrade(player, npc, trade)
             player:messageSpecial(ID.text.FLYER_ACCEPTED)
             player:messageSpecial(ID.text.FLYERS_HANDED, 17 - player:getCharVar("FFR"))
             player:addVar("FFR", -1);
-            player:setVar("tradeGuilberdrier", 1)
+            player:setCharVar("tradeGuilberdrier", 1)
             player:confirmTrade()
         elseif player:getCharVar("tradeGuilberdrier") == 1 then
             player:messageSpecial(ID.text.FLYER_ALREADY)

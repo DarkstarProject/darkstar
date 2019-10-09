@@ -41,6 +41,6 @@ function onEventFinish(player, csid, option)
         player:delKeyItem(dsp.ki.BLANK_BOOK_OF_THE_GODS)
         player:addKeyItem(dsp.ki.BOOK_OF_THE_GODS)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BOOK_OF_THE_GODS)
-        player:setVar("MissionStatus", 5)
+        player:setCharVar("MissionStatus", 5)
     end
 end

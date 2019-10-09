@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
         player:getCharVar("ridingOnTheClouds_3") == 4 and
         npcUtil.tradeHas(trade, 1127)
     then
-        player:setVar("ridingOnTheClouds_3", 0)
+        player:setCharVar("ridingOnTheClouds_3", 0)
         npcUtil.giveKeyItem(player, dsp.ki.SOMBER_STONE)
         player:confirmTrade()
     end

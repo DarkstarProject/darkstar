@@ -15,7 +15,7 @@ function onTrade(player, npc, trade)
         player:startEvent(20)
     elseif trade:getItemCount() == gravelQty then
         player:tradeComplete()
-        player:setVar("refiner_input", already_in + gravelQty)
+        player:setCharVar("refiner_input", already_in + gravelQty)
         player:startEvent(19, 597, gravelQty)
     else
         player:startEvent(21)

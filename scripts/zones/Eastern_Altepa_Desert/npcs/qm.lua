@@ -20,8 +20,8 @@ function onTrigger(player,npc)
     elseif decurioKilled == 1 then
         player:addKeyItem(dsp.ki.ALTEPA_POLISHING_STONE)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ALTEPA_POLISHING_STONE)
-        player:setVar("aCraftsmanWork", 2)
-        player:setVar("Decurio_I_IIIKilled", 0)
+        player:setCharVar("aCraftsmanWork", 2)
+        player:setCharVar("Decurio_I_IIIKilled", 0)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end

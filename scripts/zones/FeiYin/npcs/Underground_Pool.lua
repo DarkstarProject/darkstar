@@ -40,7 +40,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 18 then
         player:delKeyItem(dsp.ki.AQUAFLORA3)
-        player:setVar("DabotzKilled", 0)
+        player:setCharVar("DabotzKilled", 0)
     elseif csid == 21 then
         player:delKeyItem(dsp.ki.AQUAFLORA1)
     elseif csid == 20 then

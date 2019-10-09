@@ -22,6 +22,6 @@ function onMobDeath(mob, player, isKiller)
         player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and
         player:getCharVar("MissionStatus") == 2
     then
-        player:setVar("Mission6-1MobKilled", 1)
+        player:setCharVar("Mission6-1MobKilled", 1)
     end
 end

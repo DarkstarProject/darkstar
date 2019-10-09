@@ -22,8 +22,8 @@ function onTrigger(player,npc)
     elseif twentyInPirateYearsCS == 3 and tsuchigumoKilled >= 2 then
         player:addKeyItem(dsp.ki.TRICK_BOX)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TRICK_BOX)
-        player:setVar("twentyInPirateYearsCS", 4)
-        player:setVar("TsuchigumoKilled", 0)
+        player:setCharVar("twentyInPirateYearsCS", 4)
+        player:setCharVar("TsuchigumoKilled", 0)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end

@@ -62,9 +62,9 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X);
     elseif (csid == 79) then
         player:addKeyItem(dsp.ki.WAYPOINT_RECALIBRATION_KIT);
-        player:setVar("WW_Need_Shipilolo", 0);
+        player:setCharVar("WW_Need_Shipilolo", 0);
     elseif (csid == 2557) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
-        player:setVar("ACSP_NPCs_Visited", 6);
+        player:setCharVar("ACSP_NPCs_Visited", 6);
     end
 end;

@@ -45,15 +45,15 @@ function onEventFinish(player,csid,option)
 
     if (csid == 204) then
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_BASTOK);
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA);
     elseif (csid == 205) then
         player:tradeComplete();
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD);
     elseif (csid == 206) then
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2);
-        player:setVar("MissionStatus",8);
+        player:setCharVar("MissionStatus",8);
     elseif (csid == 207) then
         player:addMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD);
         player:delKeyItem(dsp.ki.KINDRED_CREST);

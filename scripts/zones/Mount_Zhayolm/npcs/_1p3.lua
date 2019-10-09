@@ -38,7 +38,7 @@ function onEventUpdate(player, csid, option, target)
         cap = 50
     end
 
-    player:setVar("AssaultCap", cap)
+    player:setCharVar("AssaultCap", cap)
 
     local party = player:getParty()
 
@@ -68,7 +68,7 @@ end
 function onInstanceCreated(player, target, instance)
     if instance then
         instance:setLevelCap(player:getCharVar("AssaultCap"))
-        player:setVar("AssaultCap", 0)
+        player:setCharVar("AssaultCap", 0)
         player:setInstance(instance)
         player:instanceEntry(target, 4)
         player:delKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS)

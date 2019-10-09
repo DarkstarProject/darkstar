@@ -59,14 +59,14 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:setVar("MissionStatus",11);
+        player:setCharVar("MissionStatus",11);
     elseif (csid == 16) then
         player:addKeyItem(dsp.ki.LETTER_FROM_DALZAKK);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_DALZAKK);
     elseif (csid == 19) then
-        player:setVar("pieujesDecisionCS",1);
+        player:setCharVar("pieujesDecisionCS",1);
     elseif (csid == 23) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 29) then
         player:completeMission(ACP,dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_I);
         player:addMission(ACP,dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II);

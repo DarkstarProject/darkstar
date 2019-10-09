@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         local prog = player:getCharVar("QuestMakingHeadlines_var")
         player:addKeyItem(dsp.ki.WINDURST_WOODS_SCOOP)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WOODS_SCOOP)
-        player:setVar("QuestMakingHeadlines_var",prog+8)
+        player:setCharVar("QuestMakingHeadlines_var",prog+8)
     elseif csid == 731 then
         player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",3,true)
     end

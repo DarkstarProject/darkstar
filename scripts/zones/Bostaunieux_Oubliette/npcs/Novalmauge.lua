@@ -89,21 +89,21 @@ end
 
 function onEventFinish(player, csid, option, npc)
     if csid == 6 then
-        player:setVar("TheHolyCrest_Event", 2)
+        player:setCharVar("TheHolyCrest_Event", 2)
     elseif csid == 7 then
-        player:setVar("theHolyCrestCheck", 1)
+        player:setCharVar("theHolyCrestCheck", 1)
     elseif csid == 12 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.THE_RUMOR, {item = 4853}) then
         player:confirmTrade()
     elseif csid == 13 and option == 1 then
         player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR)
     elseif csid == 14 then
-        player:setVar("theHolyCrestCheck", 0)
+        player:setCharVar("theHolyCrestCheck", 0)
     elseif csid == 15 then
-        player:setVar("troubleAtTheSluiceVar", 2)
+        player:setCharVar("troubleAtTheSluiceVar", 2)
     elseif csid == 17 then
         npcUtil.giveKeyItem(player, dsp.ki.NEUTRALIZER)
-        player:setVar("troubleAtTheSluiceVar", 0)
-        player:setVar("theHolyCrestCheck", 0)
+        player:setCharVar("troubleAtTheSluiceVar", 0)
+        player:setCharVar("theHolyCrestCheck", 0)
         player:confirmTrade()
     else
         dsp.wsquest.handleEventFinish(wsQuest, player, csid, option, ID.text.SPIRAL_HELL_LEARNED)

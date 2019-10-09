@@ -61,9 +61,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 553) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 547) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 554) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 88) then
@@ -76,31 +76,31 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.KNIGHTS_BOOTS);
             player:addItem(14095);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14095); -- Gallant Leggings
-            player:setVar("aBoysDreamCS",0);
+            player:setCharVar("aBoysDreamCS",0);
             player:addFame(SANDORIA,40);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.A_BOY_S_DREAM);
         end
     elseif (csid == 90 and option ==1) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH);
-        player:setVar("UnderOathCS",0);
+        player:setCharVar("UnderOathCS",0);
     elseif (csid == 89) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12644);
         else
             player:addItem(12644);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12644); -- Gallant Surcoat
-            player:setVar("UnderOathCS",9);
+            player:setCharVar("UnderOathCS",9);
             player:addFame(SANDORIA,60);
             player:setTitle(dsp.title.PARAGON_OF_PALADIN_EXCELLENCE);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH);
         end
     elseif (csid == 81) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 21) then
-        player:setVar("Wait1DayForRanperre_date",0);
-        player:setVar("MissionStatus",8);
+        player:setCharVar("Wait1DayForRanperre_date",0);
+        player:setCharVar("MissionStatus",8);
     elseif (csid == 63) then
-        player:setVar("Cutscenes_8-2",1)
+        player:setCharVar("Cutscenes_8-2",1)
     end
 
 end;

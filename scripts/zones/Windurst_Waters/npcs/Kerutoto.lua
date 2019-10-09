@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
         end
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED) then
         if (player:getCharVar("ridingOnTheClouds_4") == 3 and trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_4",0);
+            player:setCharVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
@@ -143,12 +143,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 876) then
-        player:setVar("COP_Ulmia_s_Path",4);
+        player:setCharVar("COP_Ulmia_s_Path",4);
     elseif ((csid == 313 and option == 0) or (csid == 314 and option == 0)) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
-        player:setVar("Kerutoto_Food_var",1);
+        player:setCharVar("Kerutoto_Food_var",1);
     elseif (csid == 313 and option == 1) then
-        player:setVar("Kerutoto_Food_var",256);
+        player:setCharVar("Kerutoto_Food_var",256);
     elseif (csid == 332) then
         player:tradeComplete();
         player:addGil(GIL_RATE*440);
@@ -157,30 +157,30 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,100);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:needToZone(true);
-            player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
-            player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
-            player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
+            player:setCharVar("Kerutoto_Food_var",0);        -- ------------------------------------------
+            player:setCharVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
+            player:setCharVar("Ohbiru_Food_var",0);            -- ------------------------------------------
         else -- If this is NOT the last NPC given food, flag this NPC as completed.
-            player:setVar("Kerutoto_Food_var",2);
+            player:setCharVar("Kerutoto_Food_var",2);
         end
     elseif (csid == 357) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES);
     elseif (csid == 358 or csid == 365) then
         player:tradeComplete();
-        player:setVar("BlueRibbonBluesProg",2);
-        player:setVar("BlueRibbonBluesTimer_Hour",VanadielHour());
-        player:setVar("BlueRibbonBluesTimer_Year",VanadielYear());
-        player:setVar("BlueRibbonBluesTimer_Day",VanadielDayOfTheYear());
+        player:setCharVar("BlueRibbonBluesProg",2);
+        player:setCharVar("BlueRibbonBluesTimer_Hour",VanadielHour());
+        player:setCharVar("BlueRibbonBluesTimer_Year",VanadielYear());
+        player:setCharVar("BlueRibbonBluesTimer_Day",VanadielDayOfTheYear());
         player:needToZone(true);
         if (csid == 358) then
             player:addGil(GIL_RATE*3600);
         end
     elseif (csid == 360) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:setVar("BlueRibbonBluesProg",3);
-            player:setVar("BlueRibbonBluesTimer_Hour",0);
-            player:setVar("BlueRibbonBluesTimer_Year",0);
-            player:setVar("BlueRibbonBluesTimer_Day",0);
+            player:setCharVar("BlueRibbonBluesProg",3);
+            player:setCharVar("BlueRibbonBluesTimer_Hour",0);
+            player:setCharVar("BlueRibbonBluesTimer_Year",0);
+            player:setCharVar("BlueRibbonBluesTimer_Day",0);
             player:addItem(13569);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13569);
         else
@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 362) then
         player:completeQuest(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES);
-        player:setVar("BlueRibbonBluesProg",0);
+        player:setCharVar("BlueRibbonBluesProg",0);
         player:addFame(WINDURST,140);
         player:addTitle(dsp.title.GHOSTIE_BUSTER);
         player:needToZone(true);
@@ -211,7 +211,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*15000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*15000); -- Gil
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-            player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
 
         elseif (option == 6 and player:hasSpell(304)==false) then
@@ -221,11 +221,11 @@ function onEventFinish(player,csid,option)
         end
         if (addspell==1) then
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-            player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
         elseif (item > 0 and player:getFreeSlotsCount()~=0) then
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-            player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
             player:addItem(item);
             player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
@@ -233,7 +233,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         end
     elseif (csid == 736) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
 
     end
 

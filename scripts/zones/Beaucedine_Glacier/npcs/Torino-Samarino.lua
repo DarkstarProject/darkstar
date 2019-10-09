@@ -51,14 +51,14 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
     elseif (csid == 108) then                                       -- start wait for new scroll
         player:delKeyItem(dsp.ki.SHANTOTTOS_EXSPELL);
-        player:setVar("golemday",VanadielDayOfTheYear());
-        player:setVar("golemyear",VanadielYear());
-        player:setVar("golemwait",1);
+        player:setCharVar("golemday",VanadielDayOfTheYear());
+        player:setCharVar("golemyear",VanadielYear());
+        player:setCharVar("golemwait",1);
     elseif (csid == 109) then
         player:addKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
-        player:setVar("golemday",0);
-        player:setVar("golemyear",0);
-        player:setVar("golemwait",0);
+        player:setCharVar("golemday",0);
+        player:setCharVar("golemyear",0);
+        player:setCharVar("golemwait",0);
     end
 end;

@@ -37,9 +37,9 @@ function onEventFinish(player,csid,option)
         player:addSpell(296);
         player:messageSpecial(ID.text.UNLOCK_SUMMONER);
         player:messageSpecial(ID.text.UNLOCK_CARBUNCLE);
-        player:setVar("ICanHearARainbow",0);
+        player:setCharVar("ICanHearARainbow",0);
         SetServerVariable("I_Can_Hear_a_Rainbow", 1);
     elseif (csid == 203) then
-        player:setVar("COP_Tenzen_s_Path",1);
+        player:setCharVar("COP_Tenzen_s_Path",1);
     end
 end;

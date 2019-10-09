@@ -26,7 +26,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 3) then
-        player:setVar("PromathiaStatus", 0);
+        player:setCharVar("PromathiaStatus", 0);
         player:completeMission(COP, dsp.mission.id.cop.A_FATE_DECIDED);
         player:addMission(COP, dsp.mission.id.cop.WHEN_ANGELS_FALL);
     end

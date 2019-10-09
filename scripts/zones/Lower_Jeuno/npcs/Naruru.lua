@@ -55,14 +55,14 @@ function onEventFinish(player,csid,option)
     if ((csid == 189 or csid == 188) and option == 0) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE);
     elseif (csid == 189 and option == 1) then
-        player:setVar("CooksPrideVar",1);
+        player:setCharVar("CooksPrideVar",1);
     elseif (csid == 187) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13446);
         else
             player:addTitle(dsp.title.MERCY_ERRAND_RUNNER);
             player:delKeyItem(dsp.ki.SUPER_SOUP_POT);
-            player:setVar("CooksPrideVar",0);
+            player:setCharVar("CooksPrideVar",0);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
             player:addItem(13446);

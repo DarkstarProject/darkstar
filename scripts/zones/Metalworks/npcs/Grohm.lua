@@ -59,15 +59,15 @@ function onEventFinish(player,csid,option)
     if (csid == 423 or csid == 425) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,605); -- Pickaxes
-            player:setVar("notReceivePickaxe",1);
+            player:setCharVar("notReceivePickaxe",1);
         else
             player:addItem(605,5);
             player:messageSpecial(ID.text.ITEM_OBTAINED,605); -- Pickaxes
-            player:setVar("MissionStatus",5);
-            player:setVar("notReceivePickaxe",0);
+            player:setCharVar("MissionStatus",5);
+            player:setCharVar("notReceivePickaxe",0);
         end
     elseif (csid == 426) then
-        player:setVar("MissionStatus",10);
+        player:setCharVar("MissionStatus",10);
     end
 
 end;

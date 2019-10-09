@@ -15,5 +15,5 @@ function onAdditionalEffect(mob, target, damage)
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:setVar("circleTime", 8) -- Set flag so that final CS will show when you interact with alter again
+    player:setCharVar("circleTime", 8) -- Set flag so that final CS will show when you interact with alter again
 end

@@ -41,9 +41,9 @@ function onEventFinish(player,csid,option)
         if player:getFreeSlotsCount() >= 1 then
             local blueRibbonProg = player:getCharVar("BlueRibbonBluesProg")
             if blueRibbonProg < 1 then
-                player:setVar("BlueRibbonBluesProg",1)
+                player:setCharVar("BlueRibbonBluesProg",1)
             elseif blueRibbonProg == 3 then
-                player:setVar("BlueRibbonBluesProg",4)
+                player:setCharVar("BlueRibbonBluesProg",4)
             end
             player:addItem(13569)
             player:messageSpecial(ID.text.ITEM_OBTAINED,13569)

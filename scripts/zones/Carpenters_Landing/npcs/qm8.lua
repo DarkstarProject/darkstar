@@ -43,9 +43,9 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 37 then
-        player:setVar("Cryptonberry_Executor_KILL", 2)
-        player:setVar("Cryptonberry_Assassins-1_KILL", 0)
-        player:setVar("Cryptonberry_Assassins-2_KILL", 0)
-        player:setVar("Cryptonberry_Assassins-3_KILL", 0)
+        player:setCharVar("Cryptonberry_Executor_KILL", 2)
+        player:setCharVar("Cryptonberry_Assassins-1_KILL", 0)
+        player:setCharVar("Cryptonberry_Assassins-2_KILL", 0)
+        player:setCharVar("Cryptonberry_Assassins-3_KILL", 0)
     end
 end

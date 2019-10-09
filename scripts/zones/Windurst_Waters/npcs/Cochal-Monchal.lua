@@ -31,7 +31,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 697) then
-        player:setVar("darkLegacyCS",3);
+        player:setCharVar("darkLegacyCS",3);
         player:delKeyItem(dsp.ki.LETTER_FROM_THE_DARKSTEEL_FORGE);
     end
 

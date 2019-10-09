@@ -26,6 +26,6 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 13) then
-        player:setVar("sinHunting",5);
+        player:setCharVar("sinHunting",5);
     end
 end;

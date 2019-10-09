@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
         prog = player:getCharVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WALLS_SCOOP);
-        player:setVar("QuestMakingHeadlines_var",prog+4);
+        player:setCharVar("QuestMakingHeadlines_var",prog+4);
 
     -- Curses,Foiled...Again!?
     elseif (csid == 182) then

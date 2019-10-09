@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
     if (csid == 12 and option == 1) then
         toPalaceEntrance(player)
     elseif (csid == 13) then
-        player:setVar("PromathiaStatus",0)
+        player:setCharVar("PromathiaStatus",0)
         player:completeMission(COP, dsp.mission.id.cop.SLANDEROUS_UTTERINGS)
         player:addMission(COP, dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR)
         player:addTitle(dsp.title.THE_LOST_ONE)

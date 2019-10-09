@@ -7,7 +7,7 @@ g_mixins.families.tonberry = function(mob)
     mob:addListener("DEATH", "TONBERRY_DEATH", function(mob, player, isKiller)
         local kills = player:getCharVar("EVERYONES_GRUDGE_KILLS");
         if (kills < 480) then
-            player:setVar("EVERYONES_GRUDGE_KILLS", kills + 1);
+            player:setCharVar("EVERYONES_GRUDGE_KILLS", kills + 1);
         end
     end)
 end

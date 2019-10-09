@@ -59,8 +59,8 @@ end;
 function rewardThePlayer(player)
     local playersAFChoice = player:getCharVar("dancerAFChoice");
     local currentVanaDay = VanadielDayOfTheYear();
-    player:setVar("dancerTailorWorkDay", currentVanaDay);
-    player:setVar("dancerTailorCS", 5);
+    player:setCharVar("dancerTailorWorkDay", currentVanaDay);
+    player:setCharVar("dancerTailorCS", 5);
     player:tradeComplete();
     player:startEvent(495, playersAFChoice-1);
 end;
@@ -98,7 +98,7 @@ function onTrigger(player,npc)
 
         local completedPieces = playerCompletedShoes + playerCompletedBangles + playerCompletedTiara;
         if (completedPieces == 3) then
-            player:setVar("dancerTailorCS", 6);
+            player:setCharVar("dancerTailorCS", 6);
             player:startEvent(498);
         else
             player:startEvent(493, playerCompletedTiara, playerCompletedBangles, playerCompletedShoes);
@@ -147,10 +147,10 @@ function onEventFinish(player,csid,option)
     if (csid == 492) then
 
         if (option > 0) then -- option 1 - tiara 2 - bangles 3 - shoes
-            player:setVar("dancerAFChoice", option);
-            player:setVar("dancerTailorCS", 4);
+            player:setCharVar("dancerAFChoice", option);
+            player:setCharVar("dancerTailorCS", 4);
         else
-            player:setVar("dancerTailorCS", 3);
+            player:setCharVar("dancerTailorCS", 3);
         end;
 
     elseif (csid == 493) then
@@ -163,8 +163,8 @@ function onEventFinish(player,csid,option)
                 player:startEvent(498);
 
             else
-                player:setVar("dancerAFChoice", option);
-                player:setVar("dancerTailorCS", 4);
+                player:setCharVar("dancerAFChoice", option);
+                player:setCharVar("dancerTailorCS", 4);
             end;
         end;
 
@@ -190,12 +190,12 @@ function onEventFinish(player,csid,option)
 
             local allPiecesCompleted = 7;
             if (bit.band(completedPieces, allPiecesCompleted) == allPiecesCompleted) then
-                player:setVar("dancerTailorCS",6); -- final cs flag
+                player:setCharVar("dancerTailorCS",6); -- final cs flag
             else
                 local playersReward = bit.lshift(1, playersAFChoice - 1)
                 completedPieces = bit.bor(completedPieces, playersReward);
-                player:setVar("dancerCompletedAF", completedPieces);
-                player:setVar("dancerTailorCS", 3);
+                player:setCharVar("dancerCompletedAF", completedPieces);
+                player:setCharVar("dancerTailorCS", 3);
             end;
         end;
     else

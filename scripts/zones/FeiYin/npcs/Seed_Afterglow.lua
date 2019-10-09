@@ -48,13 +48,13 @@ function onTrigger(player,npc)
         if (intensity == 9) then
             player:startEvent(28)
         elseif (not needToZone and not player:hasStatusEffect(dsp.effect.MARK_OF_SEED)) then
-            player:setVar("SEED_AFTERGLOW_INTENSITY", intensity)
+            player:setCharVar("SEED_AFTERGLOW_INTENSITY", intensity)
             player:messageSpecial(ID.text.YOU_REACH_OUT_TO_THE_LIGHT, 0)
             player:addStatusEffectEx(dsp.effect.MARK_OF_SEED, 0, 0, 30, 1800)
             player:needToZone(true)
             player:messageSpecial(ID.text.THE_LIGHT_DWINDLES, 0)
         else
-            player:setVar("SEED_AFTERGLOW_INTENSITY", intensity)
+            player:setCharVar("SEED_AFTERGLOW_INTENSITY", intensity)
             player:messageSpecial(ID.text.EVEN_GREATER_INTENSITY, offset)
         end
 

@@ -32,19 +32,19 @@ function onTrigger(player, npc)
             player:startEvent(32)
         elseif missionACP == dsp.mission.id.acp.GATHERER_OF_LIGHT_II and player:getCharVar("SEED_MANDY") == 0 then
             -- Spawn Seed mandragora's
-            player:setVar("SEED_MANDY", 1) -- This will need moved into Seed mandies onDeath script later.
+            player:setCharVar("SEED_MANDY", 1) -- This will need moved into Seed mandies onDeath script later.
             player:PrintToPlayer( "Confrontation Battles are not working yet." )
             -- dsp.effect.CONFRONTATION for 30 min
         elseif missionACP == dsp.mission.id.acp.GATHERER_OF_LIGHT_II and player:getCharVar("SEED_MANDY") == 1 then -- change SEED_MANDY var number later when battle actually works (intended purpose is to track number of slain mandies).
-            player:setVar("SEED_MANDY", 0)
+            player:setCharVar("SEED_MANDY", 0)
             player:startEvent(34)
         -- elseif missionACP >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_I and not amberKey and now ~= lastAmber and now ~= lastViridian and SR and SC and SV and player:getCharVar("SEED_MANDY") == 0) then
             -- This is for repeats to get amber keys.
             -- Spawn Seed mandragora's with dsp.effect.CONFRONTATION for 30 min
         -- elseif SR and SC and SV and missionACP >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_I and player:getCharVar("SEED_MANDY") == 1 then
             -- npcUtil.giveKeyItem(player, dsp.ki.AMBER_KEY)
-            -- player:setVar("LastAmberKey", os.date("%j"))
-            -- player:setVar("SEED_MANDY", 0)
+            -- player:setCharVar("LastAmberKey", os.date("%j"))
+            -- player:setCharVar("SEED_MANDY", 0)
             -- player:delKeyItem(dsp.ki.SEEDSPALL_ROSEUM)
             -- player:delKeyItem(dsp.ki.SEEDSPALL_CAERULUM)
             -- player:delKeyItem(dsp.ki.SEEDSPALL_VIRIDIS)

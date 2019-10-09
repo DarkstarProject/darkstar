@@ -175,9 +175,9 @@ local function areSuppliesRotten(player, npc, guardType)
 
         player:delKeyItem(ki)
         player:messageSpecial(text.KEYITEM_LOST, ki)
-        player:setVar("supplyQuest_started", 0)
-        player:setVar("supplyQuest_region", 0)
-        player:setVar("supplyQuest_fresh", 0)
+        player:setCharVar("supplyQuest_started", 0)
+        player:setCharVar("supplyQuest_region", 0)
+        player:setCharVar("supplyQuest_fresh", 0)
     end
 
     return rotten
@@ -967,7 +967,7 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
                     player:delCP(ring.cp)
                     player:confirmTrade()
                     player:addItem(item)
-                    player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
+                    player:setCharVar("CONQUEST_RING_RECHARGE", getConquestTally())
                     player:showText(npc, mOffset + 58, item, ring.cp, ring.charges) -- "Your ring is now fully recharged."
                 else
                     player:showText(npc, mOffset + 55, item, ring.cp) -- "You do not have the required conquest points to recharge."
@@ -1080,9 +1080,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local outpost = outposts[region]
         if outpost ~= nil then
             npcUtil.giveKeyItem(player, outpost.ki)
-            player:setVar("supplyQuest_started", vanaDay())
-            player:setVar("supplyQuest_region", region)
-            player:setVar("supplyQuest_fresh", getConquestTally())
+            player:setCharVar("supplyQuest_started", vanaDay())
+            player:setCharVar("supplyQuest_region", region)
+            player:setCharVar("supplyQuest_fresh", getConquestTally())
         end
 
     -- FINISH SUPPLY RUN
@@ -1097,9 +1097,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
         player:messageSpecial(mOffset) -- "You've earned conquest points!"
-        player:setVar("supplyQuest_started", 0)
-        player:setVar("supplyQuest_region", 0)
-        player:setVar("supplyQuest_fresh", 0)
+        player:setCharVar("supplyQuest_started", 0)
+        player:setCharVar("supplyQuest_region", 0)
+        player:setCharVar("supplyQuest_fresh", 0)
 
         if not hasOutpost(player, sRegion) then
             player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
@@ -1159,7 +1159,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         if npcUtil.giveItem(player, stock.item) then
             player:delCP(price)
             if option >= 32933 and option <= 32935 then
-                player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
+                player:setCharVar("CONQUEST_RING_RECHARGE", getConquestTally())
             end
         end
     end

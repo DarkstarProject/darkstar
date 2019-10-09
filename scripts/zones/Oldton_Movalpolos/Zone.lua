@@ -46,8 +46,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 1 then
-        player:setVar("COP_Louverance_s_Path", 5)
+        player:setCharVar("COP_Louverance_s_Path", 5)
     elseif csid == 57 then
-        player:setVar("COP_jabbos_story", 1)
+        player:setCharVar("COP_jabbos_story", 1)
     end
 end

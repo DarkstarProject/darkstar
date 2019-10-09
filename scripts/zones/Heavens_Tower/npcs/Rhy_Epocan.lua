@@ -36,11 +36,11 @@ function onEventFinish(player,csid,option)
 printf("RESULT: %u",option);
 
     if (csid == 107) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 114) then
         finishMissionTimeline(player,2,csid,option);
     elseif (csid == 405) then
-        player:setVar("MilitaryStrength",0);
+        player:setCharVar("MilitaryStrength",0);
     end
 
 end;
