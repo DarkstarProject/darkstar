@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Ka
+--  Mob: Ka
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

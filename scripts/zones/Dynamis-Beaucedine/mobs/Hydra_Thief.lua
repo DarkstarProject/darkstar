@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Hydra_Thief
+-- Area: Dynamis - Beaucedine
+--  Mob: Hydra Thief
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

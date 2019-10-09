@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos E T
---  NPC: Dark_Elemental
-
+--  Mob: Dark Elemental
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

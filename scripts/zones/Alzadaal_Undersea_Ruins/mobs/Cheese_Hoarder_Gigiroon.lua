@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 --  ZNM: Cheese Hoarder Gigiroon
+-- TODO: Running around mechanic and dropping bombs
 -----------------------------------
 mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/status")
-----------------------------------
--- TODO: Running around mechanic and dropping bombs
+-----------------------------------
+
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
 end

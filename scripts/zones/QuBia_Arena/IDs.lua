@@ -31,7 +31,8 @@ zones[dsp.zone.QUBIA_ARENA] =
     },
     mob =
     {
-        HEIR_TO_THE_LIGHT_OFFSET = 17621014,
+        HEIR_TO_THE_LIGHT_OFFSET   = 17621014,
+        GLADIATORIAL_WEAPON_OFFSET = 17621065,
     },
     npc =
     {

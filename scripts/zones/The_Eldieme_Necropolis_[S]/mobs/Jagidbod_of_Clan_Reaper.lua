@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Jagidbod_of_Clan_Reaper
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Jagidbod of Clan Reaper
 -----------------------------------
 
 -- -----------------------------------

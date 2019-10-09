@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Volcano Wasp
+--  Mob: Volcano Wasp
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

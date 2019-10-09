@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Palborough_Mines
+-- Area: Palborough Mines (143)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -16,6 +16,7 @@ zones[dsp.zone.PALBOROUGH_MINES] =
         KEYITEM_OBTAINED                   = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY            = 6402, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING                = 6403, -- You are suddenly overcome with a sense of foreboding...
+        GEOMAGNETRON_ATTUNED               = 7010, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CONQUEST_BASE                      = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET             = 7208, -- You can't fish here.
         THE_MACHINE_SEEMS_TO_BE_WORKING    = 7368, -- The machine seems to be working, but you cannot discern its purpose.

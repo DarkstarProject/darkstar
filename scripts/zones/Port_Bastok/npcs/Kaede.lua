@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     local ayameKaede = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE);
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,0) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,0) == false) then
         player:startEvent(352);
     elseif (ayameKaede == QUEST_AVAILABLE and player:getMainLvl() >= 30) then
         player:startEvent(240);

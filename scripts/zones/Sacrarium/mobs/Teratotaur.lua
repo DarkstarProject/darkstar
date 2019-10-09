@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Teratotaur
+--  Mob: Teratotaur
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

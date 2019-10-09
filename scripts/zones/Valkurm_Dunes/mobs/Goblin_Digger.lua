@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Digger
+--  Mob: Goblin Digger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

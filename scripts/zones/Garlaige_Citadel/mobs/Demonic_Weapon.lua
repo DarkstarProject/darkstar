@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Demonic Weapon
+--  Mob: Demonic Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

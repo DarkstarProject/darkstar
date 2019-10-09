@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Goblin Bouncer
+--  Mob: Goblin Bouncer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

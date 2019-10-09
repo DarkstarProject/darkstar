@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Merrow Icedancer
+--  Mob: Merrow Icedancer
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------

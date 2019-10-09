@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Ketos
+--  Mob: Ketos
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,19 +1,13 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  NPC: Nightmare_Cluster
-
+-- Area: Dynamis - Tavnazia
+--  Mob: Nightmare Cluster
 -----------------------------------
-require("scripts/globals/dynamis");
+mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-end;
-
-function onMobEngaged(mob,target)
-    dynamis.spawnGroup(mob, TavnaziaCloneList);
-end;
+    mob:setLocalVar("dynamis_currency", 1452)
+end
 
 function onMobDeath(mob, player, isKiller)
-
-end;
+end

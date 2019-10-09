@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus");
     local circleOfTime = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
     local circleProgress = player:getVar("circleTime");
-    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
     local WildcatSandy = player:getVar("WildcatSandy");
     local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 

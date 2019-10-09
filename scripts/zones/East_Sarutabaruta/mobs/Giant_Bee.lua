@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Giant Bee
+--  Mob: Giant Bee
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

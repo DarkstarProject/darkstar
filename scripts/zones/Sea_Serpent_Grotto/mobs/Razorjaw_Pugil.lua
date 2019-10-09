@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Razorjaw Pugil
+--  Mob: Razorjaw Pugil
 -- Note: PH for Sea Hog
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

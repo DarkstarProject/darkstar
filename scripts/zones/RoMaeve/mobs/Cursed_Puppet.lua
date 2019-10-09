@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Cursed Puppet
+--  Mob: Cursed Puppet
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

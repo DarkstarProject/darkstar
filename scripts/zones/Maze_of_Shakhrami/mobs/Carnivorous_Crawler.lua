@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Carnivorous Crawler
+--  Mob: Carnivorous Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

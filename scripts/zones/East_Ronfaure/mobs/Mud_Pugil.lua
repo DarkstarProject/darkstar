@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Mud Pugil
+--  Mob: Mud Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

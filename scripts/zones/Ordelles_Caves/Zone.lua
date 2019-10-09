@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Ordelles_Caves (193)
+-- Zone: Ordelles Caves (193)
 --
 -----------------------------------
 local ID = require("scripts/zones/Ordelles_Caves/IDs")

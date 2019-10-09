@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Volker
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Volker
 -----------------------------------
 
 -- -----------------------------------

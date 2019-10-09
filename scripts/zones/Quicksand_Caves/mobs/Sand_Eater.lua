@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sand Eater
+--  Mob: Sand Eater
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

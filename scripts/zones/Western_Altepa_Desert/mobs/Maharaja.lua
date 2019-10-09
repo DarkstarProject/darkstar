@@ -1,6 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Western Altepa Desert (125)
---  MOB: Maharaja
+--  Mob: Maharaja
 -- Note: Popped by qm1
 -- Involved in Quest: Inheritance
 -- !pos -652.3 0.2 -341.5 125

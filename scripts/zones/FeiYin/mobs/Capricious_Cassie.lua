@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---   NM: Capricious_Cassie
+--   NM: Capricious Cassie
 -----------------------------------
 mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/status")

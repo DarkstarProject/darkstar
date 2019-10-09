@@ -10,6 +10,7 @@
 -- 100%TP    200%TP    300%TP
 -- 0.50      0.75      1.00
 -----------------------------------
+require("scripts/globals/magic")
 require("scripts/globals/status")
 require("scripts/globals/settings")
 require("scripts/globals/weaponskills")
@@ -26,6 +27,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
     params.atk100 = 1; params.atk200 = 1; params.atk300 = 1;
     params.hybridWS = true
+    params.ele = dsp.magic.ele.FIRE
+    params.skill = dsp.skill.MARKSMANSHIP
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.ftp200 = 1.55 params.ftp300 = 2.1

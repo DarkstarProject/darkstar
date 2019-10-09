@@ -988,6 +988,11 @@ namespace petutils
 
             PPet->PMaster = PMaster;
 
+            if (PMaster->PBattlefield)
+            {
+                PPet->PBattlefield = PMaster->PBattlefield;
+            }
+
             if (PMaster->PInstance)
             {
                 PPet->PInstance = PMaster->PInstance;

@@ -71,7 +71,7 @@ namespace conquest
 
         std::string Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system WHERE region_id = %d;";
 
-        int ret = Sql_Query(SqlHandle, Query.c_str(), region);
+        int ret = Sql_Query(SqlHandle, Query.c_str(), static_cast<uint8>(region));
 
         if (ret == SQL_ERROR || Sql_NextRow(SqlHandle) != SQL_SUCCESS)
         {
@@ -105,7 +105,7 @@ namespace conquest
         influences[nation] += lost;
 
         Sql_Query(SqlHandle, "UPDATE conquest_system SET sandoria_influence = %d, bastok_influence = %d, "
-            "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %d;", influences[0], influences[1], influences[2], influences[3], region);
+            "windurst_influence = %d, beastmen_influence = %d WHERE region_id = %u;", influences[0], influences[1], influences[2], influences[3], static_cast<uint8>(region));
     }
 
     /************************************************************************
@@ -244,7 +244,7 @@ namespace conquest
         const char* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
                              FROM conquest_system WHERE region_id = %d;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, regionid);
+        int32 ret = Sql_Query(SqlHandle, Query, static_cast<uint8>(regionid));
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
@@ -555,7 +555,7 @@ namespace conquest
     {
         const char* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
-        int32 ret = Sql_Query(SqlHandle, Query, RegionID);
+        int32 ret = Sql_Query(SqlHandle, Query, static_cast<uint8>(RegionID));
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {

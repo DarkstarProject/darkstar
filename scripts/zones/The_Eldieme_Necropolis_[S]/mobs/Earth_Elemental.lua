@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Earth_Elemental
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Earth Elemental
 -----------------------------------
 
 -- -----------------------------------

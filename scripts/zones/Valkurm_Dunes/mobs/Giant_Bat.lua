@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes (103)
---  Mob: Giant_Bat
+--  Mob: Giant Bat
 --  PH for Golden Bat
 -----------------------------------
 local ID = require("scripts/zones/Valkurm_Dunes/IDs");

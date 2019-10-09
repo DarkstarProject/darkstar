@@ -50,7 +50,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(881);
     end
@@ -59,7 +59,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local LureSandy = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+    local LureSandy = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
     local WildcatSandy = player:getVar("WildcatSandy");
 
     if (LureSandy ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
@@ -86,12 +86,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 812) then
-        player:addQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
         player:setVar("WildcatSandy",0);
         player:addKeyItem(dsp.ki.RED_SENTINEL_BADGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
     elseif (csid == 815) then
-        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
         player:addFame(SANDORIA,150);
         player:setVar("WildcatSandy",0);
         player:delKeyItem(dsp.ki.RED_SENTINEL_BADGE);

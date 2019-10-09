@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealions Den
---  MOB: Omega
+--  Mob: Omega
 -----------------------------------
 local ID = require("scripts/zones/Sealions_Den/IDs")
 require("scripts/globals/titles")

@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Vanguard_Backstabber
+-- Area: Dynamis - Buburimu
+--  Mob: Vanguard Backstabber
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

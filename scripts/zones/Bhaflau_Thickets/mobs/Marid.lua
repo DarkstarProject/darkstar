@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  MOB: Marid
+--  Mob: Marid
 -- Note: Place holder Mahishasura
 -----------------------------------
 local ID = require("scripts/zones/Bhaflau_Thickets/IDs");

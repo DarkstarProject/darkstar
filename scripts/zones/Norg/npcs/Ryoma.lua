@@ -46,7 +46,7 @@ function onTrigger(player,npc)
         player:startEvent(134) -- Finish Quest "20 in Pirate Years"
     elseif (twentyInPirateYears == QUEST_COMPLETED and illTakeTheBigBox == QUEST_AVAILABLE and mJob == dsp.job.NIN and mLvl >= 50 and player:needToZone() == false) then
         player:startEvent(135) -- Start Quest "I'll Take the Big Box"
-    elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE and mJob == dsp.job.NIN) then
+    elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE) then
         player:startEvent(136) -- Start Quest "True Will"
     elseif (player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) and player:getVar("trueWillCS") == 0) then
         player:startEvent(137)

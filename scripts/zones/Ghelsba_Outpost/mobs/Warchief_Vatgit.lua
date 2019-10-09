@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Warchief Vatgit
+--  Mob: Warchief Vatgit
 -- Involved in Mission 2-3
 -----------------------------------
 require("scripts/globals/settings");

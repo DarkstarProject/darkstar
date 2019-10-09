@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire (79)
---   NM: Experimental Lamia (Tier III ZNM)
+--  ZNM: Experimental Lamia
 -- !pos -773.369 -11.824 322.298 79
 -----------------------------------
 local ID = require("scripts/zones/Caedarva_Mire/IDs")
@@ -26,7 +26,7 @@ function onMobFight(mob, target)
     if mob:getHPP() < 75 and mob:getLocalVar("spawnedMinions") == 0 then
         spawnMinions(mob, target)
     end
-    
+
     -- make sure minions have a target
     for i = ID.mob.EXPERIMENTAL_LAMIA + 1, ID.mob.EXPERIMENTAL_LAMIA + 3 do
         local minion = GetMobByID(i)

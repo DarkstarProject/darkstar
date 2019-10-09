@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Thug
+--  Mob: Goblin Thug
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

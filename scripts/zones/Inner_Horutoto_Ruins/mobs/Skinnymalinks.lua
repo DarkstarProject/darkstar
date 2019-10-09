@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Skinnymalinks
+--  Mob: Skinnymalinks
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

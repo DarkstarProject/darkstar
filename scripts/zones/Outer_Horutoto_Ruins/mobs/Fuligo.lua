@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Fuligo
+-- Area: Outer Horutoto Ruins
+--  Mob: Fuligo
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

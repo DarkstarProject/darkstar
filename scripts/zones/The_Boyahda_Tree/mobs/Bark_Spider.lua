@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Bark Spider
+--  Mob: Bark Spider
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -16,7 +16,7 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getQuestStatus(WINDURST, dsp.quest.id.windurst.ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and
+        player:getQuestStatus(WINDURST, dsp.quest.id.windurst.ECO_WARRIOR) ~= QUEST_AVAILABLE and
         player:getVar("ECO_WARRIOR_ACTIVE") == 238 and
         player:hasStatusEffect(dsp.effect.LEVEL_RESTRICTION) and
         not player:hasKeyItem(dsp.ki.INDIGESTED_MEAT)

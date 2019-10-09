@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Ruffbix_Jumbolobes
+-- Area: Dynamis - Beaucedine
+--  Mob: Ruffbix Jumbolobes
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

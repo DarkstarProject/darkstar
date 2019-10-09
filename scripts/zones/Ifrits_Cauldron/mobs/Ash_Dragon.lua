@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Ash Dragon
+--  Mob: Ash Dragon
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

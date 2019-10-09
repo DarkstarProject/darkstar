@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tremors
---  MOB: Titan Prime
+--  Mob: Titan Prime
 -- Involved in Quest: Trial by Earth
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------

@@ -1,5 +1,6 @@
 -----------------------------------
 -- Area: Full Moon Fountain
+--  Mob: Ace of Coins
 -- Windurst Mission 9-2
 -----------------------------------
 local ID = require("scripts/zones/Full_Moon_Fountain/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields [S]
---  MOB: Chigoe
+--  Mob: Chigoe
 -----------------------------------
 mixins = {require("scripts/mixins/families/chigoe")}
 -----------------------------------

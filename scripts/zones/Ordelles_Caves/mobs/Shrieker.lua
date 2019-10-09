@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Shrieker
+--  Mob: Shrieker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

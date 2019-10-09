@@ -1,29 +1,10 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Icon Prototype
+-- Area: Dynamis - Xarcabard
+--  Mob: Icon Prototype
 -----------------------------------
-require("scripts/globals/dynamis");
-require("scripts/globals/msg");
-
-function onMobInitialize(mob,target)
-end;
+require("scripts/globals/dynamis")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
-    local mobID = mob:getID();
-
-    -- Time Bonus: 043
-    if (mobID == 17330814 and mob:isInBattlefieldList() == false) then
-        player:addTimeToDynamis(30);
-        mob:addInBattlefieldList();
-    -- HP Bonus: 052
-    elseif (mobID == 17330533) then
-        player:restoreHP(2000);
-        player:messageBasic(dsp.msg.basic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
-    -- HP Bonus: 073
-    elseif (mobID == 17330843) then
-        player:restoreMP(2000);
-        player:messageBasic(dsp.msg.basic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
-    end
-
-end;
+    dynamis.timeExtensionOnDeath(mob, player, isKiller)
+end

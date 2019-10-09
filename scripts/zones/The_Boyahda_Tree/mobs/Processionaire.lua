@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Processionaire
+--  Mob: Processionaire
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

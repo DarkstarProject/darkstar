@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---   NM: Tribunus_IV-XIV
+--   NM: Triarius IV-XIV
 -- Pops in Bastok mission 8-1 "The Chains that Bind Us"
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

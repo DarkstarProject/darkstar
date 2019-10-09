@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Auxiliarius
+--  Mob: Antican Auxiliarius
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

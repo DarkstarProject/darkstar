@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Doom Mage
+--  Mob: Doom Mage
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

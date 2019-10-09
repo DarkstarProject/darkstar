@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Shadowhand_Cuirassier
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Shadowhand Cuirassier
 -----------------------------------
 
 -- -----------------------------------

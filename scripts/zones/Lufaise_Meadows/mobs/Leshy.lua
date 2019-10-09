@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
---  MOB: Leshy
+--  Mob: Leshy
 -----------------------------------
 local ID = require("scripts/zones/Lufaise_Meadows/IDs");
 -----------------------------------

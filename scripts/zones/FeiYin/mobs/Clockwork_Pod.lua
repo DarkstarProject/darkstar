@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Clockwork Pod
+--  Mob: Clockwork Pod
 -- Note: PH for Mind Hoarder
 -----------------------------------
 local ID = require("scripts/zones/FeiYin/IDs")
@@ -17,5 +17,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    dsp.mob.phOnDespawn(mob, ID.mob.DONNERGUGI_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.MIND_HOARDER_PH, 10, math.random(5400, 32400)) -- 1.5 to 9 hours
 end

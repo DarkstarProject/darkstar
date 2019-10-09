@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus")
 
     -- Lure of the Wildcat San d'Oria
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
         player:startEvent(558)
     -- Blackmail quest
     elseif (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE)) then

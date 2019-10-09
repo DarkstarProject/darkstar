@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Six of Cups
+-- Area: Outer Horutoto Ruins
+--  Mob: Seven of Cups
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

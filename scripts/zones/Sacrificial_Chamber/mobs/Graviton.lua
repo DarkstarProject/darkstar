@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Grav'Iton
+--  Mob: Grav'iton
 -- Zilart Mission 4 BCNM Fight
 -----------------------------------
 mixins =

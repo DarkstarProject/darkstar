@@ -1,16 +1,8 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC: Goblin_Fencer
-
+--  Mob: Goblin Fencer
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -19,10 +11,6 @@ GetMobByID(16928833):updateEnmity(target);
 GetMobByID(16928835):updateEnmity(target);
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
  if (IsMobDead(16928831)==true and IsMobDead(16928832)==true and IsMobDead(16928833)==true and IsMobDead(16928834)==true and IsMobDead(16928835)==true ) then

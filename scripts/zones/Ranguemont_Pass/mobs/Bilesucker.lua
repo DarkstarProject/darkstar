@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Bilesucker
+--  Mob: Bilesucker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

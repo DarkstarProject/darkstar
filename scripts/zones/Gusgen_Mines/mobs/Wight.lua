@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Wight
+--  Mob: Wight
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

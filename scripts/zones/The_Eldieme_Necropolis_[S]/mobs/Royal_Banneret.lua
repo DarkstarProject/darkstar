@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Royal_Banneret
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Royal Banneret
 -----------------------------------
 
 -- -----------------------------------

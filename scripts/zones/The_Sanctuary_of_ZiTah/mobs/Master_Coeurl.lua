@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Master Coeurl
+--  Mob: Master Coeurl
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

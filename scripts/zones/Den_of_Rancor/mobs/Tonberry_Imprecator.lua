@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Imprecator
+--  Mob: Tonberry Imprecator
 -- Note: PH for Carmine-tailed Janberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}

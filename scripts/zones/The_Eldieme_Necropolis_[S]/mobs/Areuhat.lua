@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Areuhat
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Areuhat
 -----------------------------------
 
 -- -----------------------------------

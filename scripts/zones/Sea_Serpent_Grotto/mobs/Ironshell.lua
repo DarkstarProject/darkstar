@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Ironshell
+--  Mob: Ironshell
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

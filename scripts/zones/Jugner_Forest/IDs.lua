@@ -36,6 +36,10 @@ zones[dsp.zone.JUGNER_FOREST] =
         {
             [17203437] = 17203475,
         },
+        FRADUBIO_PH =
+        {
+            [17203447] = 17203448,
+        },
         KING_ARTHRO = 17203216,
         FRAELISSA   = 17203447,
     },

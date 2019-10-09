@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Goblin Butcher
+--  Mob: Goblin Butcher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

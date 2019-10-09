@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
---  NPC: Temenos_Aern
+--  Mob: Temenos Aern
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------
@@ -40,7 +40,7 @@ local AernList = {16929053,16929054,16929055,16929057,16929058,16929060,16929061
                   16929077,16929078,16929079,16929082,16929083,16929084,16929085,16929086,16929087};
 
     for n=1,27,1 do
-      if ( IsMobDead(AernList[n]) == false) then
+      if ( GetMobByID(AernList[n]):isAlive() ) then
         leftAern=leftAern+1;
       end
     end

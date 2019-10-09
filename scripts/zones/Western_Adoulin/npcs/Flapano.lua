@@ -39,7 +39,7 @@ function onTrigger(player,npc)
     -- THE WEATHERSPOON WAR
     if (theWeatherspoonWar == QUEST_ACCEPTED and player:getVar("Weatherspoon_War_Status") == 6) then
         player:startEvent(191);
-    
+
     -- EXOTIC DELICACIES
     -- Flapano offers his quest every other time the player talks to him
     elseif (exoticDelacacies ~= QUEST_COMPLETED and player:getVar("Flapano_Odd_Even") == 0) then
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
         end
 
         player:setVar("Flapano_Odd_Even", 1);
-    
+
     -- SHOP
     else
         player:showText(npc, ID.text.FLAPANO_SHOP_TEXT);
@@ -62,7 +62,7 @@ function onTrigger(player,npc)
             5145, 5600,  -- Fish and Chips
             4423, 300,   -- Apple Juice
             4405, 160,   -- Rice Ball
-            5676, 76475, -- Mushroom Sautee
+            5676, 76475, -- Mushroom Saute
         }
         dsp.shop.general(player, stock);
 

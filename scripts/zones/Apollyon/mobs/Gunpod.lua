@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon Central
---  NPC: Gunpod
-
+--  Mob: Gunpod
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

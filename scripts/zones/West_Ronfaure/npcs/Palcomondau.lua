@@ -5,7 +5,7 @@
 -- !pos -349.796 -45.345 344.733 100
 -----------------------------------
 local ID = require("scripts/zones/West_Ronfaure/IDs")
-require("scripts/globals/pathfind");
+require("scripts/globals/pathfind")
 -----------------------------------
 
 local path =
@@ -54,7 +54,7 @@ local path =
     -254.834976, -55.888081, 378.032623,
     -224.857941, -56.603645, 379.721832,
     -194.892044, -59.911034, 381.416382,
-    -178.437729, -61.500011, 382.347656,-- report?
+    -178.437729, -61.500011, 382.347656, -- report?
     -179.524124, -61.500011, 382.285919,
     -209.530518, -58.837189, 380.588806,
     -239.543137, -56.145073, 378.891602,
@@ -300,37 +300,34 @@ local path =
     -463.410126, -45.832458, 338.774506,
     -433.375122, -45.735828, 339.226624,
     -403.243805, -46.015915, 339.704468,
-};
+}
 
 function onSpawn(npc)
-    npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
-    onPath(npc);
-end;
+    npc:initNpcAi()
+    npc:setPos(dsp.path.first(path))
+    onPath(npc)
+end
 
 function onPath(npc)
-
-    if (npc:atPoint(dsp.path.get(path, 45))) then
-        local Gachemage = GetNPCByID(npc:getID() + 3);
-        Gachemage:showText(npc, ID.text.PALCOMONDAU_REPORT);
+    if npc:atPoint(dsp.path.get(path, 45)) then
+        GetNPCByID(npc:getID() + 3):showText(npc, ID.text.PALCOMONDAU_REPORT)
         -- small delay after path finish
-        npc:wait(8000);
+        npc:wait(8000)
     end
 
-    dsp.path.patrol(npc, path);
+    dsp.path.patrol(npc, path)
+end
 
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrade(player,npc,trade)
-end;
+function onTrigger(player, npc)
+    player:showText(npc, ID.text.PALCOMONDAU_DIALOG)
+    --npc:wait(1500)
+end
 
-function onTrigger(player,npc)
-    player:showText(npc, ID.text.PALCOMONDAU_DIALOG);
-    --npc:wait(1500);
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

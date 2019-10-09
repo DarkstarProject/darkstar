@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Ellylldan
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Ellylldan
 -----------------------------------
 
 -- -----------------------------------

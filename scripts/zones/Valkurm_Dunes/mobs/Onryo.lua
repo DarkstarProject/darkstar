@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Onryo
+--  Mob: Onryo
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
 require("scripts/globals/keyitems");

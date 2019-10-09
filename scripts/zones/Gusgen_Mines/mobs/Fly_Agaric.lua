@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Fly Agaric
+--  Mob: Fly Agaric
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

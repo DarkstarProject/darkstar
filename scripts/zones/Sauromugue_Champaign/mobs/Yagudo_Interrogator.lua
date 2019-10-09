@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Interrogator
+--  Mob: Yagudo Interrogator
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

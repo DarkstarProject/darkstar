@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Goblin Mercenary
+--  Mob: Goblin Mercenary
 -- Note: Place holder Soulstealer Skullnix
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Ancient Bat
+--  Mob: Ancient Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: QuBia_Arena
---  MOB: Death Clan Destroyer
+--  Mob: Death Clan Destroyer
 -----------------------------------
 local ID = require("scripts/zones/QuBia_Arena/IDs");
 require("scripts/globals/status");

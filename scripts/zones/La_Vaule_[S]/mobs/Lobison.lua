@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: La Vaule (S)
+-- Area: La Vaule [S]
 --  Mob: Lobison
 -----------------------------------
 mixins = {require("scripts/mixins/families/gnole")}

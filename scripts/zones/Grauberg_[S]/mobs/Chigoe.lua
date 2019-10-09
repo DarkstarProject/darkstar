@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grauberg [S]
---  MOB: Chigoe
+--  Mob: Chigoe
 -----------------------------------
 mixins = {require("scripts/mixins/families/chigoe")};
 -----------------------------------

@@ -1,7 +1,8 @@
-----------------------------------
+-----------------------------------
 -- Area: Jugner_Forest
 --   NM: Sappy Sycamore
 -----------------------------------
+require("scripts/globals/status")
 require("scripts/globals/mobs")
 -----------------------------------
 

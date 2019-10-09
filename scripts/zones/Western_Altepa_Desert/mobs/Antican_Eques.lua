@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Eques
+--  Mob: Antican Eques
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

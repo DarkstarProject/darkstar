@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Evil Weapon
+--  Mob: Evil Weapon
 -- Note: PH for Eldritch Edge
 -----------------------------------
 local ID = require("scripts/zones/Rolanberry_Fields/IDs")

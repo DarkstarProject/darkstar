@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Brook Sahagin
+--  Mob: Brook Sahagin
 -- Note: PH for Qull the Shellbuster
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

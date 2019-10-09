@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Labyrinth_of_Onzozo
+-- Area: Labyrinth of Onzozo (213)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -15,6 +15,7 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
         GIL_OBTAINED            = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
+        GEOMAGNETRON_ATTUNED    = 7010, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
         CHEST_UNLOCKED          = 7316, -- You unlock the chest!

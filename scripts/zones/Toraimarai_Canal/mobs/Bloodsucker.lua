@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Bloodsucker
+-- Area: Toraimarai Canal
+--  Mob: Bloodsucker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

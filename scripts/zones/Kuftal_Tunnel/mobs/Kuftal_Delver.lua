@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Kuftal Delver
+--  Mob: Kuftal Delver
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Boulder Eater
+--  Mob: Boulder Eater
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

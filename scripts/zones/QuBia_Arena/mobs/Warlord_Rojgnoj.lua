@@ -1,5 +1,6 @@
 -----------------------------------
 -- Area: QuBia_Arena
+--  Mob: Warlord Rojgnoj
 -- Mission 9-2 SANDO
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

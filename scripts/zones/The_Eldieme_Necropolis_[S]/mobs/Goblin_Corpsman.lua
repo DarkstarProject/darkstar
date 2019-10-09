@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Goblin_Corpsman
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Goblin Corpsman
 -----------------------------------
 
 -- -----------------------------------

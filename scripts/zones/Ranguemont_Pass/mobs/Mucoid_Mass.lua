@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Mucoid Mass
+--  Mob: Mucoid Mass
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

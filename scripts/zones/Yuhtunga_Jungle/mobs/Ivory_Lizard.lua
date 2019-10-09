@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Ivory Lizard
+--  Mob: Ivory Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

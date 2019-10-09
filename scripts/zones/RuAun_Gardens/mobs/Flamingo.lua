@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Flamingo
+--  Mob: Flamingo
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

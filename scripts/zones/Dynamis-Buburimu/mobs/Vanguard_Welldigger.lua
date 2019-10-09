@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Vanguard_Welldigger
+-- Area: Dynamis - Buburimu
+--  Mob: Vanguard Welldigger
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

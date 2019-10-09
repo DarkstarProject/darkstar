@@ -1,19 +1,11 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Goblin Golem
+-- Area: Dynamis - Jeuno
+--  Mob: Goblin Golem
+-- Note: Mega Boss
 -----------------------------------
-require("scripts/globals/titles");
-require("scripts/globals/dynamis");
+require("scripts/globals/dynamis")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
-    player:addTitle(dsp.title.DYNAMISJEUNO_INTERLOPER); -- Add title
-
-    local npc = GetNPCByID(17547510); -- Spawn ???
-    npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
-    npc:setStatus(0);
-
-    player:launchDynamisSecondPart(); -- Spawn dynamis second part
-
-end;
+    dynamis.megaBossOnDeath(mob, player, isKiller)
+end

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Makara
+-- Area: Toraimarai Canal
+--  Mob: Makara
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

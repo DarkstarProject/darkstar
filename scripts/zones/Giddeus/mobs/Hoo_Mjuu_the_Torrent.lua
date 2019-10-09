@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus (145)
---   NM: Hoo_Mjuu_the_Torrent
+--   NM: Hoo Mjuu the Torrent
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 -----------------------------------

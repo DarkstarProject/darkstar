@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Tomb Warrior
+--  Mob: Tomb Warrior
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

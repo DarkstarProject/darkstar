@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Inner_Horutoto_Ruins
+-- Area: Inner Horutoto Ruins (192)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -10,13 +10,14 @@ zones[dsp.zone.INNER_HORUTOTO_RUINS] =
 {
     text =
     {
-        PORTAL_SEALED_BY_3_MAGIC  = 8, -- The Sealed Portal is sealed by three kinds of magic.
-        PORTAL_NOT_OPEN_THAT_SIDE = 9, -- The Sealed Portal cannot be opened from this side.
-        CONQUEST_BASE             = 10, -- Tallying conquest results...
+        PORTAL_SEALED_BY_3_MAGIC  = 8,    -- The Sealed Portal is sealed by three kinds of magic.
+        PORTAL_NOT_OPEN_THAT_SIDE = 9,    -- The Sealed Portal cannot be opened from this side.
+        CONQUEST_BASE             = 10,   -- Tallying conquest results...
         ITEM_CANNOT_BE_OBTAINED   = 6551, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED             = 6557, -- Obtained: <item>.
         GIL_OBTAINED              = 6558, -- Obtained <number> gil.
         KEYITEM_OBTAINED          = 6560, -- Obtained key item: <keyitem>.
+        GEOMAGNETRON_ATTUNED      = 7179, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         NOT_BROKEN_ORB            = 7234, -- The Mana Orb in this receptacle is not broken.
         EXAMINED_RECEPTACLE       = 7235, -- You have already examined this receptacle.
         DOOR_FIRMLY_CLOSED        = 7262, -- The door is firmly closed.

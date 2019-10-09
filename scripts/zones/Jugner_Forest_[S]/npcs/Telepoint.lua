@@ -8,10 +8,10 @@ require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
 end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     if not player:hasKeyItem(dsp.ki.JUGNER_GATE_CRYSTAL) then
         npcUtil.giveKeyItem(player, dsp.ki.JUGNER_GATE_CRYSTAL)
     else
@@ -19,8 +19,8 @@ function onTrigger(player,npc)
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
 end

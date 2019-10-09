@@ -10,7 +10,7 @@ require("scripts/globals/bcnm");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PUPPET_IN_PERIL and player:getVar("AhtUrganStatus") == 0) then
@@ -20,10 +20,8 @@ function onTrigger(player,npc)
     end
 end;
 
-function onEventUpdate(player,csid,option)
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 function onEventFinish(player,csid,option)

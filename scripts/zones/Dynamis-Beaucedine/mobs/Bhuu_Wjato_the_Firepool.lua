@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Bhuu_Wjato_the_Firepool
+-- Area: Dynamis - Beaucedine
+--  Mob: Bhuu Wjato the Firepool
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

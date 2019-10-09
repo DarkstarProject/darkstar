@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Jugner Funguar
+--  Mob: Jugner Funguar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

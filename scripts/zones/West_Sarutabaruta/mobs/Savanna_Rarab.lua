@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Savanna Rarab
+--  Mob: Savanna Rarab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

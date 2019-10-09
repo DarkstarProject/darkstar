@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
+-- Area: Castle Oztroja [S]
 --   NM: Marquis Forneus
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

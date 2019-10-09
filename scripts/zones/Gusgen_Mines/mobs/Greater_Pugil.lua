@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Greater Pugil
+--  Mob: Greater Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

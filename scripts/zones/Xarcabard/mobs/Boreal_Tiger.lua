@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  NM:  Boreal Tiger
+--   NM: Boreal Tiger
 -- Involved in Quests: Atop the Highest Mountains
 -- !pos 341 -29 370 112
 -----------------------------------
@@ -22,7 +22,7 @@ function onMobDeath(mob, player, isKiller)
         -- show ??? for desired duration
         -- notify people on the quest who need the KI
         GetNPCByID(ID.npc.BOREAL_TIGER_QM):showNPC(FrigiciteDuration)
-        if player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.ROUND_FRIGICITE) then
+        if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.ROUND_FRIGICITE) then
             player:messageSpecial(ID.text.BLOCKS_OF_ICE)
         end
     end

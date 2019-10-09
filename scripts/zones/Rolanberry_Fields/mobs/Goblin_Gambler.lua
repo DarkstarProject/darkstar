@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Goblin Gambler
+--  Mob: Goblin Gambler
 -----------------------------------
 local ID = require("scripts/zones/Rolanberry_Fields/IDs")
 require("scripts/globals/keyitems")

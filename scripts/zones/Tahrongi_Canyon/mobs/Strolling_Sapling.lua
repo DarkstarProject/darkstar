@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Strolling Sapling
+--  Mob: Strolling Sapling
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

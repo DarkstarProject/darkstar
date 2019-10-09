@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bibiki Bay
---  MOB: Shen
+--  Mob: Shen
 -----------------------------------
 
 function onMobFight(mob,target)

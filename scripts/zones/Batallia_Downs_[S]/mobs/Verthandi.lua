@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
---  MOB: Verthandi
+--  Mob: Verthandi
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

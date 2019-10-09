@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Lamia Fatedealer
+--  Mob: Lamia Fatedealer
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------

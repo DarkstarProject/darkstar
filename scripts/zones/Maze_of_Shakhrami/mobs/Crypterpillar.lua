@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Crypterpillar
+--  Mob: Crypterpillar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

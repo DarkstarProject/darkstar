@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Alchemist
+--  Mob: Goblin Alchemist
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Tonberry Dismayer
+--  Mob: Tonberry Dismayer
 -- Note: PH for Tonberry Kinq
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")

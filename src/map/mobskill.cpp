@@ -26,16 +26,16 @@
 
 CMobSkill::CMobSkill(uint16 id)
 {
-	m_ID = id;
-	m_AnimID = 0;
-	m_Aoe = 0;
+    m_ID = id;
+    m_AnimID = 0;
+    m_Aoe = 0;
     m_Distance = 0;
-	m_TotalTargets = 1;
-	m_Flag = 0;
+    m_TotalTargets = 1;
+    m_Flag = 0;
     m_ValidTarget = 0;
     m_AnimationTime = 0;
     m_ActivationTime = 0;
-	m_Message = 0;
+    m_Message = 0;
     m_Param = 0;
     m_primarySkillchain = 0;
     m_secondarySkillchain = 0;
@@ -84,12 +84,12 @@ bool CMobSkill::isSpecial() const
 
 void CMobSkill::setID(uint16 id)
 {
-	m_ID = id;
+    m_ID = id;
 }
 
 void CMobSkill::setMsg(uint16 msg)
 {
-	m_Message = msg;
+    m_Message = msg;
 }
 
 void CMobSkill::setTotalTargets(uint16 targets)
@@ -99,40 +99,41 @@ void CMobSkill::setTotalTargets(uint16 targets)
 
 void CMobSkill::setAnimationID(uint16 animID)
 {
-	m_AnimID = animID;
+    m_AnimID = animID;
 }
 
 const int8* CMobSkill::getName() const
 {
-	return (const int8*)m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
 void CMobSkill::setName(int8* name)
 {
-	m_name.clear();
-	m_name.insert(0, (const char*)name);
+    m_name.clear();
+    m_name.insert(0, (const char*)name);
 }
 
 void CMobSkill::setAoe(uint8 aoe)
 {
-	m_Aoe = aoe;
+    m_Aoe = aoe;
 }
 
 void CMobSkill::setDistance(float distance)
 {
-	m_Distance = distance;
+    m_Distance = distance;
 }
 
 void CMobSkill::setFlag(uint8 flag)
 {
-	m_Flag = flag;
+    m_Flag = flag;
 }
 
 void CMobSkill::setTP(int16 tp)
 {
-	m_TP = tp;
+    m_TP = tp;
 }
 
+// Stores the Monsters HP% as it was at the start of mobskill
 void CMobSkill::setHPP(uint8 hpp)
 {
     m_HPP = hpp;
@@ -153,15 +154,14 @@ void CMobSkill::setValidTargets(uint16 targ)
     m_ValidTarget = targ;
 }
 
-
 uint16 CMobSkill::getID() const
 {
-	return m_ID;
+    return m_ID;
 }
 
 uint16 CMobSkill::getAnimationID() const
 {
-	return m_AnimID;
+    return m_AnimID;
 }
 
 uint16 CMobSkill::getPetAnimationID() const
@@ -221,6 +221,7 @@ int16 CMobSkill::getTP() const
     return m_TP;
 }
 
+// Retrieves the Monsters HP% as it was at the start of mobskill
 uint8 CMobSkill::getHPP() const
 {
     return m_HPP;
@@ -286,17 +287,17 @@ uint16 CMobSkill::getAoEMsg() const
 
 uint8 CMobSkill::getFlag() const
 {
-	return m_Flag;
+    return m_Flag;
 }
 
 uint8 CMobSkill::getAoe() const
 {
-	return m_Aoe;
+    return m_Aoe;
 }
 
 float CMobSkill::getDistance() const
 {
-	return m_Distance;
+    return m_Distance;
 }
 
 float CMobSkill::getRadius() const
@@ -337,7 +338,7 @@ void CMobSkill::setKnockback(uint8 knockback)
 
 uint16 CMobSkill::getValidTargets() const
 {
-	return m_ValidTarget;
+    return m_ValidTarget;
 }
 
 uint16 CMobSkill::getAnimationTime() const

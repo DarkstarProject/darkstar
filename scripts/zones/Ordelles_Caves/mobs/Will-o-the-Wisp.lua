@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Will-o-the-Wisp
+--  Mob: Will-o-the-Wisp
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Leujaoam Sanctum (Leujaoam Cleansing)
---  MOB: Leujaoam Worm
+--  Mob: Leujaoam Worm
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

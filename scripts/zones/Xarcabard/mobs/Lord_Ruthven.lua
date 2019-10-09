@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Lord Ruthven
+--  Mob: Lord Ruthven
 -----------------------------------
 require("scripts/globals/titles")
 -----------------------------------

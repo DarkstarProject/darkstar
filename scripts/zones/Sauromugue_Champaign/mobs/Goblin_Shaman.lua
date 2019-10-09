@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Goblin Shaman
+--  Mob: Goblin Shaman
 -----------------------------------
 local ID = require("scripts/zones/Sauromugue_Champaign/IDs")
 require("scripts/globals/keyitems")

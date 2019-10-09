@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters Landing
---  MOB: Tonberry's Avatar
+--  Mob: Tonberry's Avatar
 -----------------------------------
 mixins = {require("scripts/mixins/families/avatar")}
 

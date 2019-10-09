@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Madfly
+--  Mob: Madfly
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

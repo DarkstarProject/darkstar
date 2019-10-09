@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 1) then
         player:startEvent(255);
-    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,3) == false) then
+    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,3) == false) then
         player:startEvent(356);
     elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_USUAL) ~= QUEST_COMPLETED) then
         if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.CID_S_SECRET) == QUEST_ACCEPTED) then

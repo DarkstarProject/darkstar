@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Water Elemental
+--  Mob: Water Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

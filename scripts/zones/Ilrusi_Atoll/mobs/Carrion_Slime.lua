@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll (Extermination)
---  MOB: Carrion Slime
+--  Mob: Carrion Slime
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

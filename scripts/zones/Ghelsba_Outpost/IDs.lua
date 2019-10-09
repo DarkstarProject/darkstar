@@ -22,7 +22,7 @@ zones[dsp.zone.GHELSBA_OUTPOST] =
     },
     mob =
     {
-        THOUSANDARM_DESHGLESH_PH = 
+        THOUSANDARM_DESHGLESH_PH =
         {
             [17350825] = 17350826, -- 123.357 -0.102 332.706
             [17350818] = 17350826, -- 94.576 -1.274 333.168
@@ -33,6 +33,7 @@ zones[dsp.zone.GHELSBA_OUTPOST] =
             [17350806] = 17350826, -- 75.988 -0.084 382.437
             [17350824] = 17350826, -- 82.000 -0.500 366.000
         },
+        COLO_COLO_OFFSET = 17350929,
     },
     npc =
     {

@@ -42,14 +42,14 @@ Port Jeuno (West to East)
 ]]--
 
 function onTrade(player,npc,trade)
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(10177);
     end
 end;
 
 function onTrigger(player,npc)
-    local LureJeuno = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO);
+    local LureJeuno = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT);
     local WildcatJeuno = player:getVar("WildcatJeuno");
     if (LureJeuno ~= 2 and ENABLE_TOAU == 1) then
         if (LureJeuno == 0) then
@@ -75,12 +75,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10088) then
-        player:addQuest(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT);
         player:setVar("WildcatJeuno",0);
         player:addKeyItem(dsp.ki.WHITE_SENTINEL_BADGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHITE_SENTINEL_BADGE);
     elseif (csid == 10091) then
-        player:completeQuest(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT);
         player:addFame(JEUNO, 150);
         player:setVar("WildcatJeuno",0);
         player:delKeyItem(dsp.ki.WHITE_SENTINEL_BADGE);

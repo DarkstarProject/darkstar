@@ -4,25 +4,25 @@
 -- Continues Quests: Past Perfect
 -- !pos -201 16 80 108
 -----------------------------------
-local ID = require("scripts/zones/Konschtat_Highlands/IDs");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.PAST_PERFECT) == QUEST_ACCEPTED) then
-        player:addKeyItem(dsp.ki.TATTERED_MISSION_ORDERS);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TATTERED_MISSION_ORDERS);
+function onTrigger(player, npc)
+    if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.PAST_PERFECT) == QUEST_ACCEPTED then
+        player:addKeyItem(dsp.ki.TATTERED_MISSION_ORDERS)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TATTERED_MISSION_ORDERS)
     else
-        player:messageSpecial(ID.text.FIND_NOTHING);
+        player:messageSpecial(ID.text.FIND_NOTHING)
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

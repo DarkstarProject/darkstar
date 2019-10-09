@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Weeping Willow
+--  Mob: Weeping Willow
 -----------------------------------
 
 function onMobFight(mob,target)
@@ -21,6 +21,4 @@ function onMobDespawn(mob)
     -- Retail behavior is for it to walk back to where willow died if unclaimed *unless* willow was pulled down the cliff
     -- In that case, it will walk back near where Willow was spawned at.
     GetMobByID(mob:getID() + 6):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos())
-
-    mob:setRespawnTime(math.random(75600, 86400)) -- 21 to 24 hours
 end

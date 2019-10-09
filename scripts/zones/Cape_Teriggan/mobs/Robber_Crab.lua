@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Robber Crab
+--  Mob: Robber Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

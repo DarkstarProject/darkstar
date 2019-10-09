@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Ku'Jhu Graniteskin
+--  Mob: Ku'Jhu Graniteskin
 -- BCNM mob in Bastok mission 7-2.
 -----------------------------------
 

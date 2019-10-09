@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Trailblix_Goatmug
+-- Area: Dynamis - Jeuno
+--  Mob: Trailblix Goatmug
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

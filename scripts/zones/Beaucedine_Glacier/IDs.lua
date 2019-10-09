@@ -24,7 +24,7 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
         CONQUEST                        = 7483, -- You've earned conquest points!
         YOU_CANNOT_ENTER_DYNAMIS        = 7868, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL  = 7870, -- Players who have not reached level <number> are prohibited from entering Dynamis.
-        UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7880, -- There is an unusual arrangement of branches here.
+        DYNA_NPC_DEFAULT_MESSAGE        = 7880, -- There is an unusual arrangement of branches here.
         REGIME_REGISTERED               = 10749, -- New training regime registered!
     },
     mob =

@@ -38,7 +38,7 @@ function onTrigger(player,npc)
     local theTalekeeperGiftCS = player:getVar("theTalekeeperGiftCS");
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
         player:startEvent(504);
     elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == dsp.job.WAR and player:getMainLvl() >= 50) then
         if (theTalekeeperTruthCS == 1) then
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
             player:setVar("theTalekeeperTruth_timer",0);
             player:setVar("DeidoggWait1DayForAF3",VanadielDayOfTheYear());
             player:needToZone(true);
-            player:addFame(BASTOK,AF2_FAME);
+            player:addFame(BASTOK,40);
             player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
         end
     elseif (csid == 172) then

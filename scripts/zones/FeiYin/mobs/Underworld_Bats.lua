@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Underworld Bats
+--  Mob: Underworld Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

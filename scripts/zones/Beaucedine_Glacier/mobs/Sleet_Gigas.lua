@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Sleet Gigas
+--  Mob: Sleet Gigas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

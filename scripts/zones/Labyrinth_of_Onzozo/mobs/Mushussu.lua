@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Labyrinth of Onzozo
---  MOB: Mushussu
+-- Area: Labyrinth of Onzozo
+--  Mob: Mushussu
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

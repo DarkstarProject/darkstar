@@ -828,7 +828,7 @@ local function canBuyExpRing(player, item)
     end
 
     -- one exp ring per conquest tally
-    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_TIMER") > os.time() then
+    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_RECHARGE") > os.time() then
         player:messageSpecial(text.CONQUEST + 60, 0, 0, item)
         return false
     end
@@ -1092,16 +1092,18 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         sRegion == guardRegion and
         sOutpost ~= nil and
         player:hasKeyItem(sOutpost.ki) and
-        guardNation == pNation and
-        not hasOutpost(player, sRegion)
+        guardNation == pNation
     then
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
         player:messageSpecial(mOffset) -- "You've earned conquest points!"
-        player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
         player:setVar("supplyQuest_fresh", 0)
+
+        if not hasOutpost(player, sRegion) then
+            player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
+        end
 
     -- SET HOMEPOINT
     elseif option == 4 then
@@ -1157,7 +1159,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         if npcUtil.giveItem(player, stock.item) then
             player:delCP(price)
             if option >= 32933 and option <= 32935 then
-                player:setVar("CONQUEST_RING_TIMER", getConquestTally())
+                player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
             end
         end
     end

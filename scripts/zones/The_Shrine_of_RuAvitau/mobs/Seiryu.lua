@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
---  MOB: Seiryu (Pet version)
+--  Mob: Seiryu (Pet version)
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

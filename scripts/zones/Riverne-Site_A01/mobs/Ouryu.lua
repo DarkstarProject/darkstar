@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Riverne-Site_A01
---  MOB: Ouryu
+-- Area: Riverne - Site A01
+--  Mob: Ouryu
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

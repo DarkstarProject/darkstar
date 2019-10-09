@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Snipper
+--  Mob: Snipper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

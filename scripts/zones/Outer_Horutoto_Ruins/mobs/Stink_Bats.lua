@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
---  MOB: Stink Bats
+--  Mob: Stink Bats
 -- Note: PH for Desmodont
 -----------------------------------
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs")

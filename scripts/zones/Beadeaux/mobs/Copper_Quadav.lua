@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beadeaux
---  MOB: Copper Quadav
+--  Mob: Copper Quadav
 -- Note: PH for Da'Dha Hundredmask
 -- Involved in Mission 3-1 (Bastok)
 -----------------------------------

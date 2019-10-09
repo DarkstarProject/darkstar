@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Forest Leech
+--  Mob: Forest Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

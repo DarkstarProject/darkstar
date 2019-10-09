@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Aedilis
+--  Mob: Antican Aedilis
 -- Note: PH for Antican Tribunus
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

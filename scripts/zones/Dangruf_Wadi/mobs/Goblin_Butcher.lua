@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Butcher
+--  Mob: Goblin Butcher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

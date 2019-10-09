@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Crawler Nest (S)
---  MOB: Witch Hazel
+-- Area: Crawler's Nest [S]
+--  Mob: Witch Hazel
 -- Note: PH for Morille Mortelle
 -----------------------------------
 local ID = require("scripts/zones/Crawlers_Nest_[S]/IDs");

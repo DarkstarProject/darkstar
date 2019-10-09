@@ -19,21 +19,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("MissionStatus") == 4 then
-        local dialog = player:getVar("mandialog")
-
-        if dialog == 0 then
-            player:startEvent(10)
-            player:setVar("mandialog", 1)
-            player:PrintToPlayer("Seems like he wants something")
-        elseif dialog == 1 then
-            player:startEvent(11)
-            player:setVar("mandialog", 2)
-        elseif dialog == 2 then
-            player:startEvent(12)
-            player:setVar("mandialog", 3)
-            player:PrintToPlayer("Seems like he wants some Gobbu Hummus")
-        end
+    if player:getVar("MissionStatus") == 4  or player:getVar("MissionStatus") == 5 then
+        player:messageText(npc, ID.text.WARDEN_SPEECH)
+        player:messageSpecial(ID.text.WARDEN_TRANSLATION)
+    else
+        player:startEvent(10)
     end
 end
 

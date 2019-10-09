@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Gigas Catapulter
+--  Mob: Gigas Catapulter
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

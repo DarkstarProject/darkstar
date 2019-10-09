@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Quarrier
+--  Mob: Gigas Quarrier
 -- Note: PH for Rhoikos
 -----------------------------------
 local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs")

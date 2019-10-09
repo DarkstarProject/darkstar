@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Damselfly
+--  Mob: Damselfly
 -- Note: Place holder Valkurm Emperor
 -----------------------------------
 local ID = require("scripts/zones/Valkurm_Dunes/IDs");

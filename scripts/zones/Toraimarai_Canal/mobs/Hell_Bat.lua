@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Hell Bat
+-- Area: Toraimarai Canal
+--  Mob: Hell Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

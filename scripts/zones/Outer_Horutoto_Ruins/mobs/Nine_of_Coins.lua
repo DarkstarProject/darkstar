@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Nine of Coins
+-- Area: Outer Horutoto Ruins
+--  Mob: Nine of Coins
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

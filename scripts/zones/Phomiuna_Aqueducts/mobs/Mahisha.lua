@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---   NM: Fomor Mahisha
+--   NM: Mahisha
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 -----------------------------------

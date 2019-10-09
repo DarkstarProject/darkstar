@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  NM:  Taisaijin
+--   NM: Taisaijin
 -----------------------------------
 local ID = require("scripts/zones/Ranguemont_Pass/IDs");
 require("scripts/globals/titles");

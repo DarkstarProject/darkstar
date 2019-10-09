@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Bushwhacker
+--  Mob: Goblin Bushwhacker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

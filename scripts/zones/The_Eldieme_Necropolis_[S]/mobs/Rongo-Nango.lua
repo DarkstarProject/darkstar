@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Rongo-Nango
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Rongo-Nango
 -----------------------------------
 
 -- -----------------------------------

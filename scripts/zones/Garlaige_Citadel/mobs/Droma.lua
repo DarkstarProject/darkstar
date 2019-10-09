@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Droma
+--  Mob: Droma
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

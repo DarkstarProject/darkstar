@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sand Tarantula
+--  Mob: Sand Tarantula
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

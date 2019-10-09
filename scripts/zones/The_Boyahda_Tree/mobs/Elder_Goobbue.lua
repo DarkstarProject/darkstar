@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Elder Goobbue
+--  Mob: Elder Goobbue
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---   Mob: Bravo
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Bravo
 -----------------------------------
 
 -- -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Orcish Gladiator
+--  Mob: Orcish Gladiator
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

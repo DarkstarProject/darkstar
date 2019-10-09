@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Ancient Vessel
+--  Mob: Ancient Vessel
 -- Mithra and the Crystal (Zilart 12) Fight
 -----------------------------------
 require("scripts/globals/missions");

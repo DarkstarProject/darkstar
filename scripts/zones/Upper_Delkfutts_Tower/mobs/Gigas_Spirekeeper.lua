@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Spirekeeper
+--  Mob: Gigas Spirekeeper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

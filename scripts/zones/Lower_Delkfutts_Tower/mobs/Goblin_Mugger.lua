@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Goblin Mugger
+--  Mob: Goblin Mugger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

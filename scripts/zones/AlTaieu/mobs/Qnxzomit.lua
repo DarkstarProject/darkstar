@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Qn'xzomit
+--  Mob: Qn'xzomit
 -- Note: Pet for JOL and JOJ
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Aura Weapon
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Aura Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

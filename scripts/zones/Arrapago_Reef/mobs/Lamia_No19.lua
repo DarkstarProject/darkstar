@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Lamia No.19
+--  Mob: Lamia No.19
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 

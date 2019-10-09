@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ru'phuabo
+--  Mob: Ru'phuabo
 -- Jailor of Love Pet version
 -----------------------------------
 

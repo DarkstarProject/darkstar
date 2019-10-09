@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local StalkerProgress = player:getVar("KnightStalker_Progress");
     local WildcatSandy = player:getVar("WildcatSandy");
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,17) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,17) == false) then
         player:startEvent(559);
     -- Need to speak with Rahal to get Dragon Curse Remedy
     elseif (CrestProgress == 5 and RemedyKI == false) then

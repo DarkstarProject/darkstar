@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Yagudo Initiate
+--  Mob: Yagudo Initiate
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

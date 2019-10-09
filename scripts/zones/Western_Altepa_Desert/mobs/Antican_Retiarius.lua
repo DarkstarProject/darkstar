@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Retiarius
+--  Mob: Antican Retiarius
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

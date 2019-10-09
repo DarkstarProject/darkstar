@@ -1,25 +1,36 @@
 -----------------------------------
--- Area: Chamber of Oracles
--- Name: Legion XI Comitatensis
--- BCNM60
+-- Legion XI Comitatensis
+-- Chamber of Oracles BCNM60, Moon Orb
+-- !additem 1130
+-----------------------------------
+require("scripts/globals/battlefield")
 -----------------------------------
 
-function onBcnmRegister(player,instance)
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
 end
 
-function onBcnmEnter(player,instance)
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
-function onBcnmLeave(player,instance,leavecode)
-    if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0)
-    elseif leavecode == 4 then
+function onBattlefieldRegister(player, battlefield)
+end
+
+function onBattlefieldEnter(player, battlefield)
+end
+
+function onBattlefieldLeave(player, battlefield, leavecode)
+    if leavecode == dsp.battlefield.leaveCode.WON then
+        local name, clearTime, partySize = battlefield:getRecord()
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002)
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
-    
-function onEventFinish(player,csid,option)
+
+function onEventFinish(player, csid, option)
 end

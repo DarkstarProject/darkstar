@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Death Jacket
+--  Mob: Death Jacket
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

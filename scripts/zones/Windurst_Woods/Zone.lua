@@ -18,6 +18,16 @@ end
 
 function onZoneIn(player,prevZone)
     local cs = -1
+
+    -- SOA 1-1 Optional CS
+    if 
+        ENABLE_SOA and 
+        player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
+        player:getVar("SOA_1_CS3") == 0 
+    then
+        cs = 839
+    end
+
     -- FIRST LOGIN (START CS)
     if player:getPlaytime(false) == 0 then
         if OPENING_CUTSCENE_ENABLE == 1 then
@@ -26,6 +36,7 @@ function onZoneIn(player,prevZone)
         player:setPos(0,0,-50,0)
         player:setHomePoint()
     end
+
     -- MOG HOUSE EXIT
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         position = math.random(1,5) + 37
@@ -35,6 +46,7 @@ function onZoneIn(player,prevZone)
         end
         player:setVar("PlayerMainJob",0)
     end
+
     return cs
 end
 
@@ -54,5 +66,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
+    elseif csid == 839 then
+        player:setVar("SOA_1_CS3", 1)
     end
 end

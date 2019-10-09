@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Tonberry Stabber
+--  Mob: Tonberry Stabber
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
 require("scripts/globals/regimes")

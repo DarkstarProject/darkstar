@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Uleguaerand Range
+-- Area: Uleguerand Range
 --  HNM: Jormungand
 -----------------------------------
 

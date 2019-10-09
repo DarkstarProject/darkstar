@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Berry Grub
+--  Mob: Berry Grub
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

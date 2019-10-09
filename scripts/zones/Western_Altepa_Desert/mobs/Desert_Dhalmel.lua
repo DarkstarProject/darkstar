@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Desert Dhalmel
+--  Mob: Desert Dhalmel
 -- Note: Place holder for Celphie
 -----------------------------------
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
