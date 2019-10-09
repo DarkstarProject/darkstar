@@ -4952,7 +4952,7 @@ namespace charutils
         return false;
     }
 
-    int32 GetVar(CCharEntity* PChar, const char* var)
+    int32 GetCharVar(CCharEntity* PChar, const char* var)
     {
         const char* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
 

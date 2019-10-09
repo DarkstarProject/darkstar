@@ -530,13 +530,13 @@ inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
 }
 
 /************************************************************************
-*  Function: getVar()
+*  Function: getCharVar()
 *  Purpose : Returns a var value assigned to a PC (in char_vars.sql)
 *  Example : local status = player:getCharVar("[ZM]Status")
 *  Notes   :
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::getVar(lua_State *L)
+inline int32 CLuaBaseEntity::getCharVar(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -545,18 +545,18 @@ inline int32 CLuaBaseEntity::getVar(lua_State *L)
 
     const char* varname = lua_tostring(L, 1);
 
-    lua_pushinteger(L, charutils::GetVar((CCharEntity*)m_PBaseEntity, varname));
+    lua_pushinteger(L, charutils::GetCharVar((CCharEntity*)m_PBaseEntity, varname));
     return 1;
 }
 
 /************************************************************************
-*  Function: setVar()
+*  Function: setCharVar()
 *  Purpose : Updates PC's variable to an explicit value
 *  Example : player:setCharVar("[ZM]Status", 4)
 *  Notes   : Passing a '0' value will delete the variable
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::setVar(lua_State *L)
+inline int32 CLuaBaseEntity::setCharVar(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -13735,8 +13735,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
 
     // Variables
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCharVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLocalVar),

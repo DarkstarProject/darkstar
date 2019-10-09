@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
         for i,v in pairs(chars) do
             v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,points);
             v:addAssaultPoint(MAMOOL_ASSAULT_POINT,points);
-            v:setVar("AssaultComplete",1);
+            v:setCharVar("AssaultComplete",1);
             if (v:hasCompletedAssault(v:getCurrentAssault())) then
                 v:addVar("AssaultPromotion", 1);
             else

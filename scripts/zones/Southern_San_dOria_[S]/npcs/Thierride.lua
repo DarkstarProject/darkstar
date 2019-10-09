@@ -8,7 +8,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 -- Item 1019 = Lufet Salt
--- Had to use setVar because you have to trade Salts one at a time according to the wiki.
+-- Had to use setCharVar because you have to trade Salts one at a time according to the wiki.
 -- Lufet Salt can be obtained by killing Crabs in normal West Ronfaure.
 
 function onTrade(player,npc,trade)

@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     if target:getID() > 100000 then
         realDmg = 50 * math.random(50, 100)
     else
-        realDmg = 50 * target:getVar("EVERYONES_GRUDGE_KILLS")
+        realDmg = 50 * target:getCharVar("EVERYONES_GRUDGE_KILLS")
     end
 
     target:takeDamage(realDmg, mob, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL)
