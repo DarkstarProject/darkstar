@@ -10,7 +10,7 @@ require("scripts/globals/quests");
 function onMobDeath(mob, player, isKiller)
 
     if (player:getCharVar("theDoormanMyMob") == 1) then
-        player:addVar("theDoormanKilledNM", 1)
+        player:addCharVar("theDoormanKilledNM", 1)
     end
 
 end;

@@ -309,7 +309,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -345,7 +345,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -368,7 +368,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LEPHEMERE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LEPHEMERE)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -692,7 +692,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LANCIENNE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LANCIENNE)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },

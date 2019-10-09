@@ -96,8 +96,8 @@ end;
 function onEventFinish(player,csid,option)
     -- SAVE THE CLOCKTOWER
     if (csid == 50) then
-        player:addVar("saveTheClockTowerVar", 1);
-        player:addVar("saveTheClockTowerNPCz2", 256);
+        player:addCharVar("saveTheClockTowerVar", 1);
+        player:addCharVar("saveTheClockTowerNPCz2", 256);
 
     -- COMMUNITY SERVICE
     elseif (csid == 117) then

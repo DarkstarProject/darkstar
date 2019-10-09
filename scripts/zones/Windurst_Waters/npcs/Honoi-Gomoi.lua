@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
     elseif csid == 782 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.WILD_CARD, {title=dsp.title.DREAM_DWELLER, fame=135, var="WildCard"}) then
         player:needToZone(true)
     elseif csid == 59 then -- Show Off Hat
-        player:addVar("QuestHatInHand_var", 2)
-        player:addVar("QuestHatInHand_count", 1)
+        player:addCharVar("QuestHatInHand_var", 2)
+        player:addCharVar("QuestHatInHand_count", 1)
     elseif csid == 874 then
         player:setCharVar("MEMORIES_OF_A_MAIDEN_Status", 6)
         npcUtil.giveKeyItem(player, dsp.ki.CRACKED_MIMEO_MIRROR)

@@ -584,7 +584,7 @@ inline int32 CLuaBaseEntity::setCharVar(lua_State *L)
 /************************************************************************
 *  Function: addVar()
 *  Purpose : Increments PC's variable by an explicit amount
-*  Example : player:addVar("[ZM]Status", 1) -- if 4, becomes 5
+*  Example : player:addCharVar("[ZM]Status", 1) -- if 4, becomes 5
 *  Notes   : Can use values greater than 1 to increment more
 ************************************************************************/
 

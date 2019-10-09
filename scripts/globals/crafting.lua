@@ -101,7 +101,7 @@ end;
 -----------------------------------
 
 function signupGuild(player, nbr)
-    player:addVar("Guild_Member", nbr)
+    player:addCharVar("Guild_Member", nbr)
 end;
 
 -----------------------------------

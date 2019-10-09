@@ -6,6 +6,6 @@
 
 function onMobDeath(mob, player, isKiller)
     if player:getCharVar("twentyInPirateYearsCS") == 3 then
-        player:addVar("TsuchigumoKilled", 1)
+        player:addCharVar("TsuchigumoKilled", 1)
     end
 end

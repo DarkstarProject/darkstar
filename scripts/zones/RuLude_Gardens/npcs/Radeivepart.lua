@@ -46,8 +46,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 160) then
-        player:addVar("saveTheClockTowerVar", 1);
-        player:addVar("saveTheClockTowerNPCz1", 1);
+        player:addCharVar("saveTheClockTowerVar", 1);
+        player:addCharVar("saveTheClockTowerNPCz1", 1);
     elseif (csid == 159 and option == 1) then
         player:addQuest(JEUNO, dsp.quest.id.jeuno.NORTHWARD);
     elseif (csid == 61) then

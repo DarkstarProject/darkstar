@@ -27,7 +27,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 64) then
-        player:addVar("saveTheClockTowerVar", 1);
-        player:addVar("saveTheClockTowerNPCz2", 512);
+        player:addCharVar("saveTheClockTowerVar", 1);
+        player:addCharVar("saveTheClockTowerNPCz2", 512);
     end
 end;

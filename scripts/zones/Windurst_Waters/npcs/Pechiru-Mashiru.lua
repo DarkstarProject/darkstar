@@ -29,7 +29,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 54) then  -- Show Off Hat
-        player:addVar("QuestHatInHand_var", 64);
-        player:addVar("QuestHatInHand_count", 1);
+        player:addCharVar("QuestHatInHand_var", 64);
+        player:addCharVar("QuestHatInHand_count", 1);
     end
 end;

@@ -61,8 +61,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WATERS_SCOOP);
         player:setCharVar("QuestMakingHeadlines_var",prog+1);
     elseif (csid == 60) then  -- Show Off Hat
-        player:addVar("QuestHatInHand_var", 16);
-        player:addVar("QuestHatInHand_count", 1);
+        player:addCharVar("QuestHatInHand_var", 16);
+        player:addCharVar("QuestHatInHand_count", 1);
     elseif (csid == 873) then
         player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",5);
     elseif (csid == 939) then

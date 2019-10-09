@@ -99,8 +99,8 @@ function onEventFinish(player,csid,option)
         player:completeMission(COP,dsp.mission.id.cop.DARKNESS_NAMED);
         player:addMission(COP,dsp.mission.id.cop.SHELTERING_DOUBT);
     elseif (csid == 91) then
-        player:addVar("saveTheClockTowerVar", 1);
-        player:addVar("saveTheClockTowerNPCz1", 4);
+        player:addCharVar("saveTheClockTowerVar", 1);
+        player:addCharVar("saveTheClockTowerNPCz1", 4);
     elseif (csid == 33 and option == 0 or csid == 34 and option == 0) then
         player:addTitle(dsp.title.TWOS_COMPANY);
         player:setCharVar("theLostCardianVar",0);

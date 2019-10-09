@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,dsp.mission.id.zilart.THE_NEW_FRONTIER);
         player:addMission(ZILART,dsp.mission.id.zilart.WELCOME_TNORG);
     elseif (csid == 176) then
-        player:addVar("ZilartStatus", 1);
+        player:addCharVar("ZilartStatus", 1);
     end
 
 end;

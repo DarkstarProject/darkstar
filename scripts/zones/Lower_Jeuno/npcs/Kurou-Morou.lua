@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL);
     elseif (csid == 204 and option == 0) then
-        player:addVar("QuestNeverToReturn_prog", 1);  -- Keep track of how many times the players fortune has been read
+        player:addCharVar("QuestNeverToReturn_prog", 1);  -- Keep track of how many times the players fortune has been read
         player:setCharVar("QuestNeverToReturn_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 202 and option == 0) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
