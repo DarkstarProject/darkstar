@@ -45,7 +45,11 @@ thisQuest.rewards =
 thisQuest.temporary =
 {
     items = {},
-    key_items = {dsp.ki.BROKEN_HARPOON, dsp.ki.EXTRAVAGANT_HARPOON}
+    key_items = {dsp.ki.BROKEN_HARPOON, dsp.ki.EXTRAVAGANT_HARPOON},
+    --seen_events =
+    --{
+        --{dsp.zone.WESTERN_ADOULIN, 2541}
+    --}
 }
 
 -----------------------------------

@@ -60,13 +60,19 @@ function onTrigger(player,logId,questId,target)
         targ:delQuest(logId, questId) -- Delete quest status
         targ:setVar(quest.vars.stage, 0) -- Reset stage var
         if quest.vars.additional then -- Purge any additional quest vars
-            for name, var in pairs(quest.vars.additional) do 
-                handleQuestVar(targ, quest, name, 0, "resetquest: ", nil)
+            for name, var in pairs(quest.vars.additional) do
+                quest.setVar(targ, name, 0, "resetquest: ")
             end
         end
         if quest.temporary and quest.temporary.key_items then -- Delete any temporary key items
             for _, ki in pairs(quest.temporary.key_items) do
                 player:delKeyItem(ki)
+            end
+        end
+        -- Clear all char_vars from having seen dsp.quest.eventType.ONCE type events
+        if quest.temporary and quest.temporary.seen_events then
+            for _, seen_event in pairs(quest.temporary.seen_events) do
+                player:setVar('[QE][Z'.. seen_event[1] ..']'.. seen_event[2], 0)
             end
         end
 
