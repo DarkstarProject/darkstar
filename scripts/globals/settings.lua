@@ -145,7 +145,6 @@ DIG_GRANT_BURROW = 0; -- Set to 1 to grant burrow ability
 DIG_GRANT_BORE = 0; -- Set to 1 to grant bore ability
 ENM_COOLDOWN = 120;  -- Number of hours before a player can obtain same KI for ENMs (default: 5 days)
 FORCE_SPAWN_QM_RESET_TIME = 300; -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
-CHEAPER_SURVIVAL_GUIDE_TELEPORT = 0; -- Determines if the survival guide teleport cost is like if you had a Rhapsody in White key item. Does not affect UI! (Default: 0)
 
 -- LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 20; -- Hours before player can re-enter Limbus. Default is 20 hrs.

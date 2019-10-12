@@ -1,12 +1,13 @@
 require("scripts/globals/survival_guide")
 
-local eventId = 8500
-local guideIndex = 52
-
 function onTrigger(player, targetNpc)
-    dsp.survival_guide.onTrigger(player, eventId, guideIndex)
+    dsp.survivalGuide.onTrigger(player)
+end
+
+function onEventUpdate(player, csid, option)
+    dsp.survivalGuide.onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option, targetNpc)
-    dsp.survival_guide.onEventFinish(player, csid, eventId, option)
+    dsp.survivalGuide.onEventFinish(player, csid, option)
 end
