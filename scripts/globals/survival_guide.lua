@@ -2,7 +2,26 @@ require("scripts/globals/settings")
 require("scripts/globals/survival_guide_map")
 
 dsp = dsp or {}
-dsp.survival_guide = dsp.survival_guide or {}
+dsp.survivalGuide = dsp.survivalGuide or {}
+
+-- Determines if the survival guide teleport cost is like if you had a Rhapsody in White key item. Does not affect UI! (Default: 0)
+local SURVIVAL_GUIDE_TELEPORT_COST_GIL = 1000
+local SURVIVAL_GUIDE_TELEPORT_COST_TABS = 50
+
+-- This is used for the NationTeleport save/get
+local SURVIVALGUIDE = 9
+local cutsceneID = 8500
+local tempMenuLayoutVar = "SgMenuLayout"
+
+local optionMap = {
+    TELEPORT = 1,
+    UNKNOWN = 2,
+    SET_MENU_LAYOUT = 3,
+    ADD_FAVORITE = 4,
+    REMOVE_FAVORITE = 5,
+    REPLACE_FAVORITE = 6,
+    TELEPORT_MENU = 7
+}
 
 -- Determines if the survival guide teleport cost is like if you had a Rhapsody in White key item. Does not affect UI! (Default: 0)
 local SURVIVAL_GUIDE_TELEPORT_COST_GIL = 1000
@@ -36,8 +55,7 @@ local optionMap =
 -- 2048 = Seekers of Auldoin
 local function getEnabledExpansions()
     -- Original areas and zilart are always available.
-
-    local returnValue = 1 + 2
+    local returnValue = 3
 
     if (ENABLE_COP == 1) then returnValue = returnValue + 4 end
 
@@ -52,7 +70,6 @@ end
 
 local function checkForRegisteredSurvivalGuide(player, guide, masks)
     local group = guide.group
-    local currentZoneId = player:getZoneID()
     local mask = nil
     local variableSuffix = ''
     local hasRegisteredGuide = false
