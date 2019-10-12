@@ -57,13 +57,13 @@ local function getEnabledExpansions()
     -- Original areas and zilart are always available.
     local returnValue = 3
 
-    if (ENABLE_COP == 1) then returnValue = returnValue + 4 end
+    if ENABLE_COP == 1 then returnValue = returnValue + 4 end
 
-    if (ENABLE_TOAU == 1) then returnValue = returnValue + 8 end
+    if ENABLE_TOAU == 1 then returnValue = returnValue + 8 end
 
-    if (ENABLE_WOTG == 1) then returnValue = returnValue + 16 end
+    if ENABLE_WOTG == 1 then returnValue = returnValue + 16 end
 
-    if (ENABLE_SOA == 1) then returnValue = returnValue + 2048 end
+    if ENABLE_SOA == 1 then returnValue = returnValue + 2048 end
 
     return returnValue
 end
@@ -74,7 +74,7 @@ local function checkForRegisteredSurvivalGuide(player, guide, masks)
     local variableSuffix = ''
     local hasRegisteredGuide = false
 
-    if (guide.groupIndex == 32) then
+    if guide.groupIndex == 32 then
         mask = masks[group + 4]
         variableSuffix = 'a'
 
@@ -91,7 +91,6 @@ local function checkForRegisteredSurvivalGuide(player, guide, masks)
         local updatedValue = mask + guide.groupMask
 
         if variableSuffix == 'a' then
-
             updatedValue = guide.groupMask
             masks[group + 4] = updatedValue
         else
