@@ -62,9 +62,11 @@ local function checkForRegisteredSurvivalGuide(player, guide, masks)
         end
 
         player:setVar("SgTeleportMask" .. group .. variableSuffix, updatedValue)
+
+        return false
     end
 
-    return masks
+    return true
 end
 
 -------------------------------------------------
@@ -89,20 +91,22 @@ dsp.survival_guide.onTrigger = function(player, csid, index)
             [7] = player:getVar("SgTeleportMask3a")
         }
         -- If this survival guide hasn't been registered yet (saved to database) do that now.
-        masks = checkForRegisteredSurvivalGuide(player, guide, masks)
+        local foundRegisteredGuide = checkForRegisteredSurvivalGuide(player, guide, masks)
 
-        -- param 1 = Favorites, this is broken yet, not sure how to fix this, don't really care right now either, the rest of it works (except for tabs).
-        -- param 2 = current area - this is the zone index passed in, this means that the area won't show in the list of areas to teleport too.
-        -- param 3 = gil, NOTE: The startEvent method probably needs to be updated to allow for a table so gil and valor_point (tabs) can be passed in too.
-        -- param 4 = zones unlocked (group 1), set to -1 to enable all zones in the group.
-        -- param 5 = Zones unlocked (group 2), set to -1 to enable all zones in the group.
-        -- param 6 = Zones unlocked (group 3), set to -1 to enable all zones in the group.
-        -- param 7 = zones unlocked (Zehrun mines and Eastern Adoulin), set to -1 to enable all zones in the group.
-        -- param 8 = expansions available.
-        -- NOTE: To allow teleportation to all zones, set all of the mask values to -1.
-        player:startEvent(csid, -1, index, player:getGil(), masks[1] + masks[5],
-                          masks[2] + masks[6], masks[3] + masks[7], masks[4],
-                          expansions)
+        if (foundRegisteredGuide) then
+            -- param 1 = Favorites, this is broken yet, not sure how to fix this, don't really care right now either, the rest of it works (except for tabs).
+            -- param 2 = current area - this is the zone index passed in, this means that the area won't show in the list of areas to teleport too.
+            -- param 3 = gil, NOTE: The startEvent method probably needs to be updated to allow for a table so gil and valor_point (tabs) can be passed in too.
+            -- param 4 = zones unlocked (group 1), set to -1 to enable all zones in the group.
+            -- param 5 = Zones unlocked (group 2), set to -1 to enable all zones in the group.
+            -- param 6 = Zones unlocked (group 3), set to -1 to enable all zones in the group.
+            -- param 7 = zones unlocked (Zehrun mines and Eastern Adoulin), set to -1 to enable all zones in the group.
+            -- param 8 = expansions available.
+            -- NOTE: To allow teleportation to all zones, set all of the mask values to -1.
+            player:startEvent(csid, -1, index, player:getGil(), masks[1] + masks[5],
+                            masks[2] + masks[6], masks[3] + masks[7], masks[4],
+                            expansions)
+        end
     else
         player:PrintToPlayer('Survival guides are not enabled!')
     end
