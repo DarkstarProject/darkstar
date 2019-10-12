@@ -37,13 +37,13 @@ local function getEnabledExpansions()
     -- Original areas and zilart are always available.
     local returnValue = 3
 
-    if (ENABLE_COP == 1) then returnValue = returnValue + 4 end
+    if ENABLE_COP == 1 then returnValue = returnValue + 4 end
 
-    if (ENABLE_TOAU == 1) then returnValue = returnValue + 8 end
+    if ENABLE_TOAU == 1 then returnValue = returnValue + 8 end
 
-    if (ENABLE_WOTG == 1) then returnValue = returnValue + 16 end
+    if ENABLE_WOTG == 1 then returnValue = returnValue + 16 end
 
-    if (ENABLE_SOA == 1) then returnValue = returnValue + 2048 end
+    if ENABLE_SOA == 1 then returnValue = returnValue + 2048 end
 
     return returnValue
 end
@@ -54,7 +54,7 @@ local function checkForRegisteredSurvivalGuide(player, guide, masks)
     local variableSuffix = ''
     local hasRegisteredGuide = false
 
-    if (guide.groupIndex == 32) then
+    if guide.groupIndex == 32 then
         mask = masks[group + 4]
         variableSuffix = 'a'
 
@@ -65,14 +65,14 @@ local function checkForRegisteredSurvivalGuide(player, guide, masks)
         hasRegisteredGuide = (bit.band(mask, guide.groupMask) ~= 0)
     end
 
-    if (not hasRegisteredGuide) then
+    if not hasRegisteredGuide then
         player:PrintToPlayer(
             'This guide hasn\'t been registered yet, registering this Survival Guide.',
             13)
 
         local updatedValue = mask + guide.groupMask
 
-        if (variableSuffix == 'a') then
+        if variableSuffix == 'a' then
             updatedValue = guide.groupMask
             masks[group + 4] = updatedValue
         else
@@ -140,8 +140,7 @@ dsp.survivalGuide.onTrigger = function(player)
     local tableIndex = zoneIdToMenuID[currentZoneId]
     local guide = survivalGuides[tableIndex]
 
-    if (guide) then
-
+    if guide then
         -- Contains the zone to include, this is a bit-wise value.
         local expansions = getEnabledExpansions()
 
@@ -160,7 +159,7 @@ dsp.survivalGuide.onTrigger = function(player)
                                                                      guide,
                                                                      masks)
 
-        if (foundRegisteredGuide) then
+        if foundRegisteredGuide then
             local param = bit.bor(tableIndex, bit.lshift(
                                       player:getCurrency("valor_point"), 16))
 
@@ -188,14 +187,14 @@ dsp.survivalGuide.onEventUpdate = function(player, csid, option)
 end
 
 dsp.survivalGuide.onEventFinish = function(player, eventId, option)
-    if (cutsceneID == eventId and option >= 1 and not (option == 7) and
-        not (option == 65539)) then
+    if cutsceneID == eventId and option >= 1 and not (option == 7) and
+        not (option == 65539) then
         local selectedMenuId = bit.rshift(option, 16)
 
-        if (selectedMenuId <= 97) then
+        if selectedMenuId <= 97 then
             local guide = survivalGuides[selectedMenuId]
 
-            if (guide) then
+            if guide then
                 local teleportCostGil = SURVIVAL_GUIDE_TELEPORT_COST_GIL
                 local teleportCostTabs = SURVIVAL_GUIDE_TELEPORT_COST_TABS
 
