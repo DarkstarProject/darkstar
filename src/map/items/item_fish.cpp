@@ -40,8 +40,28 @@ CItemFish::CItemFish(const CItem &PItem) : CItem(PItem)
     m_rodflag   = 0;
 }
 
+CItemFish::CItemFish(const CItem& PItem, uint8 min, uint8 max) : CItem(PItem)
+{
+    m_min = min;
+    m_max = max;
+    m_watertype = 0;
+    m_size = 0;
+    m_stamina = 0;
+    m_rodflag = 0;
+}
+
 CItemFish::~CItemFish()
 {
+}
+
+uint8 CItemFish::GetMin()
+{
+    return m_min;
+}
+
+uint8 CItemFish::GetMax()
+{
+    return m_max;
 }
 
 uint16 CItemFish::GetLength()

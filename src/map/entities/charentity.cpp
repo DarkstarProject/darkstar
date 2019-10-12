@@ -202,6 +202,8 @@ CCharEntity::CCharEntity()
 
     PAI = std::make_unique<CAIContainer>(this, nullptr, std::make_unique<CPlayerController>(this),
         std::make_unique<CTargetFind>(this));
+
+    fishingCatches = 0;
 }
 
 CCharEntity::~CCharEntity()

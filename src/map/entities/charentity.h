@@ -304,6 +304,8 @@ public:
     bool              m_EffectsChanged;
     time_point        m_LastSynthTime;
 
+    uint8             fishingCatches;               // number of catches done over a real day period. reseted at server midnight. only affected if limit (set in map config file) != 0
+
     int16 addTP(int16 tp) override;
     int32 addHP(int32 hp) override;
     int32 addMP(int32 mp) override;

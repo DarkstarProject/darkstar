@@ -39,6 +39,8 @@ class CItemFish : public CItem
 public:
 
 	CItemFish(const CItem &PItem);
+
+	CItemFish(const CItem& PItem, uint8 min, uint8 max);
     
     uint8   GetMin();
     uint8   GetMax();
