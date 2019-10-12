@@ -2,7 +2,7 @@ require("scripts/globals/settings")
 require("scripts/globals/survival_guide_map")
 
 dsp = dsp or {}
-dsp.survivalGuide = dsp.survivalGuide or {}
+dsp.survival_guide = dsp.survival_guide or {}
 
 -- Determines if the survival guide teleport cost is like if you had a Rhapsody in White key item. Does not affect UI! (Default: 0)
 local SURVIVAL_GUIDE_TELEPORT_COST_GIL = 1000
@@ -36,26 +36,28 @@ local optionMap =
 -- 2048 = Seekers of Auldoin
 local function getEnabledExpansions()
     -- Original areas and zilart are always available.
-    local returnValue = 3
 
-    if ENABLE_COP == 1 then returnValue = returnValue + 4 end
+    local returnValue = 1 + 2
 
-    if ENABLE_TOAU == 1 then returnValue = returnValue + 8 end
+    if (ENABLE_COP == 1) then returnValue = returnValue + 4 end
 
-    if ENABLE_WOTG == 1 then returnValue = returnValue + 16 end
+    if (ENABLE_TOAU == 1) then returnValue = returnValue + 8 end
 
-    if ENABLE_SOA == 1 then returnValue = returnValue + 2048 end
+    if (ENABLE_WOTG == 1) then returnValue = returnValue + 16 end
+
+    if (ENABLE_SOA == 1) then returnValue = returnValue + 2048 end
 
     return returnValue
 end
 
 local function checkForRegisteredSurvivalGuide(player, guide, masks)
     local group = guide.group
+    local currentZoneId = player:getZoneID()
     local mask = nil
     local variableSuffix = ''
     local hasRegisteredGuide = false
 
-    if guide.groupIndex == 32 then
+    if (guide.groupIndex == 32) then
         mask = masks[group + 4]
         variableSuffix = 'a'
 
@@ -72,6 +74,7 @@ local function checkForRegisteredSurvivalGuide(player, guide, masks)
         local updatedValue = mask + guide.groupMask
 
         if variableSuffix == 'a' then
+
             updatedValue = guide.groupMask
             masks[group + 4] = updatedValue
         else
