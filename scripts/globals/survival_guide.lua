@@ -209,7 +209,7 @@ dsp.survivalGuide.onEventFinish = function(player, eventId, option)
                     -- Paying with tabs
                     player:delCurrency('valor_point', teleportCostTabs)
                 else
-                    player.delGil(teleportCostGil)
+                    player:delGil(teleportCostGil)
                 end
 
                 player:setPos(guide.posX, guide.posY, guide.posZ, guide.posRot,
