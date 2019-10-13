@@ -24,6 +24,7 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
         NOTHING_FOUND           = 7488, -- You find nothing.
         CONQUEST                = 7900, -- You've earned conquest points!
         REGIME_REGISTERED       = 10590, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 12619  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

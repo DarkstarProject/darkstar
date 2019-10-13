@@ -31,6 +31,7 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
         SENSE_OMINOUS_PRESENCE     = 7395, -- You sense an ominous presence...
         SOMETHING_IS_BURIED_HERE   = 7413, -- It looks like something is buried here. If you had <item> you could dig it up.
         REGIME_REGISTERED          = 9812, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL      = 11801 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

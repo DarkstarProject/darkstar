@@ -29,6 +29,7 @@ zones[dsp.zone.QUFIM_ISLAND] =
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7853, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         HOMEPOINT_SET                  = 12697, -- Home point set!
         REGIME_REGISTERED              = 10333, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL          = 12655  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

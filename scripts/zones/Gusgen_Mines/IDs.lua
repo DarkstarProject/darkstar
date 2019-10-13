@@ -28,6 +28,7 @@ zones[dsp.zone.GUSGEN_MINES] =
         FOUND_LOCATION_SEAL     = 7383,  -- You have found the location of the seal. You place <item> on it.
         IS_ON_THIS_SEAL         = 7384,  -- <item> is on this seal.
         REGIME_REGISTERED       = 10383, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 11465  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

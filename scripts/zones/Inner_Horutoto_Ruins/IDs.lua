@@ -23,6 +23,7 @@ zones[dsp.zone.INNER_HORUTOTO_RUINS] =
         DOOR_FIRMLY_CLOSED        = 7262, -- The door is firmly closed.
         CHEST_UNLOCKED            = 7338, -- You unlock the chest!
         REGIME_REGISTERED         = 9487, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL     = 10535 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

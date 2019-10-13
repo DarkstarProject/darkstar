@@ -20,6 +20,7 @@ zones[dsp.zone.MISAREAUX_COAST] =
         DOOR_CLOSED              = 7347, -- The door is locked tight.
         LOGGING_IS_POSSIBLE_HERE = 7601, -- Logging is possible here if you have <item>.
         HOMEPOINT_SET            = 8858, -- Home point set!
+        COMMON_SENSE_SURVIVAL    = 8635  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

@@ -24,6 +24,7 @@ zones[dsp.zone.PASHHOW_MARSHLANDS] =
         FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
         CONQUEST                = 7919, -- You've earned conquest points!
         REGIME_REGISTERED       = 10711, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 12822  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

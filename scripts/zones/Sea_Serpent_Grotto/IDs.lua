@@ -34,6 +34,7 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
         COMPLETED_CHECK            = 7348, -- It is a door you can open using <item>!
         SENSE_OMINOUS_PRESENCE     = 7362, -- You sense an ominous presence...
         REGIME_REGISTERED          = 9682, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL      = 10742 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

@@ -21,6 +21,7 @@ zones[dsp.zone.VALLEY_OF_SORROWS] =
         CONQUEST_BASE              = 7049, -- Tallying conquest results...
         SOMETHING_BURRIED          = 7308, -- It looks like something was buried here.
         REGIME_REGISTERED          = 9684, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL      = 10803 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

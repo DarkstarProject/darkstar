@@ -24,6 +24,7 @@ zones[dsp.zone.BEHEMOTHS_DOMINION] =
         FOUND_ALL_FRAGS         = 7321, -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT         = 7322, -- It is an ancient Zilart monument.
         REGIME_REGISTERED       = 9529, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 11524 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

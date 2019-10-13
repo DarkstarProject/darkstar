@@ -28,6 +28,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         REACH_WATER_FROM_HERE         = 7445, -- You can reach the water from here.
         CONQUEST                      = 7481, -- You've earned conquest points!
         REGIME_REGISTERED             = 10398, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL         = 12471  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

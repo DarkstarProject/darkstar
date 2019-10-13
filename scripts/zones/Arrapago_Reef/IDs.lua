@@ -34,6 +34,7 @@ zones[dsp.zone.ARRAPAGO_REEF] =
         GLITTERING_FRAGMENTS        = 8906, -- Minute glittering fragments are scattered all over...
         SLIMY_TOUCH                 = 8907, -- The ground here is slimy to the touch...
         DRAWS_NEAR                  = 8909, -- Something draws near!
+        COMMON_SENSE_SURVIVAL       = 9780  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
