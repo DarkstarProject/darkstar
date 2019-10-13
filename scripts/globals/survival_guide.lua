@@ -13,7 +13,8 @@ local SURVIVALGUIDE = 9
 local cutsceneID = 8500
 local tempMenuLayoutVar = "SgMenuLayout"
 
-local optionMap = {
+local optionMap =
+{
     TELEPORT = 1,
     UNKNOWN = 2,
     SET_MENU_LAYOUT = 3,
