@@ -32,6 +32,7 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
         PAMAMAS                     = 7685, -- You might be able to draw an Opo-opo here if you had more pamamas.
         SOMETHING_IS_BURIED_HERE    = 7727, -- It looks like something is buried here. If you had <item> you could dig it up.
         REGIME_REGISTERED           = 10002, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL       = 11121  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

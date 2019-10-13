@@ -35,6 +35,7 @@ zones[dsp.zone.DANGRUF_WADI] =
         CHEST_UNLOCKED          = 7434,  -- You unlock the chest!
         SMALL_HOLE              = 7488,  -- There is a small hole here.
         REGIME_REGISTERED       = 10451, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 11522  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

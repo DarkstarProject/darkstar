@@ -25,6 +25,7 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
         FIND_NOTHING            = 7565, -- You dig and you dig, but find nothing.
         ALREADY_OBTAINED_TELE   = 7659, -- You already possess the gate crystal for this telepoint.
         REGIME_REGISTERED       = 9950, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 11086 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

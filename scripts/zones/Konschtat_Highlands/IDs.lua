@@ -27,6 +27,7 @@ zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
         SOMETHING_BURIED_HERE        = 7387, -- Something has been buried here.
         TELEPOINT_HAS_BEEN_SHATTERED = 7481, -- The telepoint has been shattered into a thousand pieces...
         REGIME_REGISTERED            = 9785, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL        = 11908 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

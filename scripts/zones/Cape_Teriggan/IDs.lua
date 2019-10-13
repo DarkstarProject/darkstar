@@ -30,7 +30,8 @@ zones[dsp.zone.CAPE_TERIGGAN] =
         ZILART_MONUMENT            = 7669, -- It is an ancient Zilart monument.
         SENSE_OMINOUS_PRESENCE     = 7686, -- You sense an ominous presence...
         REGIME_REGISTERED          = 10106, -- New training regime registered!
-        HOMEPOINT_SET              = 11253, -- Home point set!
+        COMMON_SENSE_SURVIVAL      = 11225, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        HOMEPOINT_SET              = 11253  -- Home point set!
     },
     mob =
     {

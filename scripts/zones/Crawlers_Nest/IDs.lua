@@ -27,6 +27,7 @@ zones[dsp.zone.CRAWLERS_NEST] =
         NOTHING_WILL_HAPPEN_YET       = 7266, -- It seems that nothing will happen yet.
         NOTHING_SEEMS_TO_HAPPEN       = 7267, -- Nothing seems to happen.
         REGIME_REGISTERED             = 9428, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL         = 11377 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

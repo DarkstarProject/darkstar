@@ -36,6 +36,7 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         BROKEN_EGG                   = 7824, -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
         CHOCOBO_TRACKS               = 7885, -- There are chocobo tracks on the ground here.
         REGIME_REGISTERED            = 10123, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL        = 12328  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

@@ -29,6 +29,7 @@ zones[dsp.zone.WINDURST_WATERS_S] =
         LUTETE_DIALOG              = 12463, -- <Yaaawn>... Mastering these Near Eastern magics can be quite taxing. If I had a choice, I'd rather be back in bed, relaxing...
         ALLIED_SIGIL               = 12907, -- You have received the Allied Sigil!
         RETRIEVE_DIALOG_ID         = 14974, -- You retrieve <item> from the porter moogle's care.
+        COMMON_SENSE_SURVIVAL      = 15035  -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

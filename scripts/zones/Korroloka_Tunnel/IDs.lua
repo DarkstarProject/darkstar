@@ -25,6 +25,7 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
         LEFT_SPRING_CLEAN       = 7326, -- Your whole body is piping hot, and the smell of the Rafflesia pollen is gone!
         MORION_WORM_1           = 7329, -- It appears to be a hole made by some kind of animal. Fragments of iron ore are scattered around the area...
         REGIME_REGISTERED       = 9457, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 10541 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

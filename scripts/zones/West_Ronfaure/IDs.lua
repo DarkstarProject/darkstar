@@ -32,6 +32,7 @@ zones[dsp.zone.WEST_RONFAURE] =
         DISMAYED_CUSTOMER       = 7408, -- You find some worthless scraps of paper.
         CONQUEST                = 7530, -- You've earned conquest points!
         REGIME_REGISTERED       = 10426, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL   = 12427  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

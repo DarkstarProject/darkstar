@@ -36,6 +36,7 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         HARVESTING_IS_POSSIBLE_HERE = 7704, -- Harvesting is possible here if you have <item>.
         SOMETHING_IS_BURIED_HERE    = 7752, -- It looks like something is buried here. If you had <item> you could dig it up.
         REGIME_REGISTERED           = 10051, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL       = 12045  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
