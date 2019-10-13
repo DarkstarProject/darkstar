@@ -10,22 +10,41 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
-        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
-        FISHING_MESSAGE_OFFSET  = 7049, -- You can't fish here.
-        CHEST_UNLOCKED          = 7157, -- You unlock the chest!
-        CAN_SEE_SKY             = 7170, -- You can see the sky from here.
-        SOMETHING_NOT_RIGHT     = 7171, -- Something is not right!
-        CANNOT_SEE_MOON         = 7172, -- You cannot see the moon right now.
-        CONQUEST_BASE           = 7173, -- Tallying conquest results...
-        WARDEN_SPEECH           = 7332, -- Pi...!
-        WARDEN_TRANSLATION      = 7333, -- The warden appears to want something from you...
-        SENSE_OMINOUS_PRESENCE  = 7393, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 10336, -- New training regime registered!
-        HOMEPOINT_SET           = 11434, -- Home point set!
+        ITEM_CANNOT_BE_OBTAINED  = 6382,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED            = 6388,  -- Obtained: <item>.
+        GIL_OBTAINED             = 6389,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED         = 6391,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
+        FISHING_MESSAGE_OFFSET   = 7049,  -- You can't fish here.
+        CHEST_UNLOCKED           = 7157,  -- You unlock the chest!
+        CAN_SEE_SKY              = 7170,  -- You can see the sky from here.
+        SOMETHING_NOT_RIGHT      = 7171,  -- Something is not right!
+        CANNOT_SEE_MOON          = 7172,  -- You cannot see the moon right now.
+        CONQUEST_BASE            = 7173,  -- Tallying conquest results...
+        WARDEN_SPEECH            = 7332,  -- Pi...!
+        WARDEN_TRANSLATION       = 7333,  -- The warden appears to want something from you...
+        SENSE_OMINOUS_PRESENCE   = 7393,  -- You sense an ominous presence...
+        REGIME_REGISTERED        = 10336, -- New training regime registered!
+        PLAYER_OBTAINS_ITEM      = 11388, -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 11389, -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 11390, -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP     = 11391, -- You already possess that temporary item.
+        NO_COMBINATION           = 11396, -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS       = 11397, -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK      = 11398, -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS       = 11399, -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK              = 11400, -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD    = 11401, -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD     = 11402, -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS = 11403, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN    = 11404, -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN = 11405, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS     = 11406, -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS          = 11407, -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS           = 11408, -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT       = 11409, -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST  = 11411, -- The monster was concealing a treasure chest!
+        HOMEPOINT_SET            = 11434, -- Home point set!
     },
     mob =
     {
@@ -79,6 +98,7 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
     npc =
     {
         TREASURE_COFFER = 17404394,
+        CASKET_BASE     = 17404357,
     },
 }
 

@@ -10,28 +10,47 @@ zones[dsp.zone.VALKURM_DUNES] =
 {
     text =
     {
-        NOTHING_HAPPENS                = 141, -- Nothing happens...
-        ITEM_CANNOT_BE_OBTAINED        = 6404, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED                  = 6410, -- Obtained: <item>.
-        GIL_OBTAINED                   = 6411, -- Obtained <number> gil.
-        KEYITEM_OBTAINED               = 6413, -- Obtained key item: <keyitem>.
-        KEYITEM_LOST                   = 6414, -- Lost key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY        = 6424, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE                  = 7071, -- Tallying conquest results...
-        BEASTMEN_BANNER                = 7152, -- There is a beastmen's banner.
-        FISHING_MESSAGE_OFFSET         = 7230, -- You can't fish here.
-        DIG_THROW_AWAY                 = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
-        FIND_NOTHING                   = 7245, -- You dig and you dig, but find nothing.
-        SONG_RUNES_DEFAULT             = 7330, -- Lyrics on the old monument sing the story of lovers torn apart.
-        UNLOCK_BARD                    = 7351, -- You can now become a bard!
-        SIGNPOST2                      = 7359, -- Northeast: La Theine Plateau Southeast: Konschtat Highlands West: Selbina
-        SIGNPOST1                      = 7360, -- Northeast: La Theine Plateau Southeast: Konschtat Highlands Southwest: Selbina
-        CONQUEST                       = 7370, -- You've earned conquest points!
-        AN_EMPTY_LIGHT_SWIRLS          = 7753, -- An empty light swirls about the cave, eating away at the surroundings...
-        MONSTERS_KILLED_ADVENTURERS    = 7829, -- Long ago, monsters killed many adventurers and merchants just off the coast here. If you find any vestige of the victims and return it to the sea, perhaps it would appease the spirits of the dead.
-        DYNA_NPC_DEFAULT_MESSAGE       = 7855, -- You hear a mysterious, floating voice: Bring forth the <item>...
-        YOU_CANNOT_ENTER_DYNAMIS       = 7867, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
-        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7869, -- Players who have not reached level <number> are prohibited from entering Dynamis.
+        NOTHING_HAPPENS                = 141,   -- Nothing happens...
+        ITEM_CANNOT_BE_OBTAINED        = 6404,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                  = 6410,  -- Obtained: <item>.
+        GIL_OBTAINED                   = 6411,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED               = 6413,  -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6414,  -- Lost key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY        = 6424,  -- There is nothing out of the ordinary here.
+        CONQUEST_BASE                  = 7071,  -- Tallying conquest results...
+        BEASTMEN_BANNER                = 7152,  -- There is a beastmen's banner.
+        FISHING_MESSAGE_OFFSET         = 7230,  -- You can't fish here.
+        DIG_THROW_AWAY                 = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
+        FIND_NOTHING                   = 7245,  -- You dig and you dig, but find nothing.
+        SONG_RUNES_DEFAULT             = 7330,  -- Lyrics on the old monument sing the story of lovers torn apart.
+        UNLOCK_BARD                    = 7351,  -- You can now become a bard!
+        SIGNPOST2                      = 7359,  -- Northeast: La Theine Plateau Southeast: Konschtat Highlands West: Selbina
+        SIGNPOST1                      = 7360,  -- Northeast: La Theine Plateau Southeast: Konschtat Highlands Southwest: Selbina
+        CONQUEST                       = 7370,  -- You've earned conquest points!
+        AN_EMPTY_LIGHT_SWIRLS          = 7753,  -- An empty light swirls about the cave, eating away at the surroundings...
+        MONSTERS_KILLED_ADVENTURERS    = 7829,  -- Long ago, monsters killed many adventurers and merchants just off the coast here. If you find any vestige of the victims and return it to the sea, perhaps it would appease the spirits of the dead.
+        DYNA_NPC_DEFAULT_MESSAGE       = 7855,  -- You hear a mysterious, floating voice: Bring forth the <item>...
+        YOU_CANNOT_ENTER_DYNAMIS       = 7867,  -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
+        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7869,  -- Players who have not reached level <number> are prohibited from entering Dynamis.
+        PLAYER_OBTAINS_ITEM            = 8079,  -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM          = 8080,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM       = 8081,  -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP           = 8082,  -- You already possess that temporary item.
+        NO_COMBINATION                 = 8087,  -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS             = 8088,  -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK            = 8089,  -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS             = 8090,  -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK                    = 8091,  -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD          = 8092,  -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD           = 8093,  -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS       = 8094,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN          = 8095,  -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN       = 8096,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS           = 8097,  -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS                = 8098,  -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS                 = 8099,  -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT             = 8100,  -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST        = 8102,  -- The monster was concealing a treasure chest!
         REGIME_REGISTERED              = 10265, -- New training regime registered!
         COMMON_SENSE_SURVIVAL          = 12319  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
@@ -58,6 +77,7 @@ zones[dsp.zone.VALKURM_DUNES] =
     },
     npc =
     {
+        CASKET_BASE   = 17199671,
         SUNSAND_QM    = 17199698,
         OVERSEER_BASE = 17199708,
     },

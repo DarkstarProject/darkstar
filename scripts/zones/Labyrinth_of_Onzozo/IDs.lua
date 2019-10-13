@@ -10,18 +10,36 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
-        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
-        GEOMAGNETRON_ATTUNED    = 7010, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
-        CONQUEST_BASE           = 7049, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
-        CHEST_UNLOCKED          = 7316, -- You unlock the chest!
-        SENSE_OMINOUS_PRESENCE  = 7332, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 9388, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 10472 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        ITEM_CANNOT_BE_OBTAINED  = 6382,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED            = 6388,  -- Obtained: <item>.
+        GIL_OBTAINED             = 6389,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED         = 6391,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
+        GEOMAGNETRON_ATTUNED     = 7010,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
+        CONQUEST_BASE            = 7049,  -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
+        CHEST_UNLOCKED           = 7316,  -- You unlock the chest!
+        SENSE_OMINOUS_PRESENCE   = 7332,  -- You sense an ominous presence...
+        REGIME_REGISTERED        = 9388,  -- New training regime registered!
+        PLAYER_OBTAINS_ITEM      = 10440, -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 10441, -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 10442, -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP     = 10443, -- You already possess that temporary item.
+        NO_COMBINATION           = 10448, -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS       = 10449, -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK      = 10450, -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS       = 10451, -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK              = 10452, -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD    = 10453, -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD     = 10454, -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS = 10455, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN    = 10456, -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN = 10457, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS     = 10458, -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS          = 10459, -- You have a hunch that the second digit is ≺NUMBER BEFORE REAL NUMBER≻, ≺REAL NUMBER≻, or ≺NUMBER AFTER REAL NUMBER≻.
+        FIRST_DIGIT_IS           = 10460, -- You have a hunch that the first digit is ≺NUMBER BEFORE REAL NUMBER≻, ≺REAL NUMBER≻, or ≺NUMBER AFTER REAL NUMBER≻.
+        UNABLE_TO_GET_HINT       = 10461, -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST  = 10463, -- The monster was concealing a treasure chest!
     },
     mob =
     {
@@ -81,6 +99,7 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
     npc =
     {
         TREASURE_CHEST = 17649900,
+        CASKET_BASE    = 17649867,
     },
 }
 

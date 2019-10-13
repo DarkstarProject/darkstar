@@ -10,29 +10,48 @@ zones[dsp.zone.WEST_RONFAURE] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6404, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6410, -- Obtained: <item>.
-        GIL_OBTAINED            = 6411, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6413, -- Obtained key item: <keyitem>.
-        KEYITEM_LOST            = 6414, -- Lost key item: <keyitem>.
-        CONQUEST_BASE           = 7071, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7230, -- You can't fish here.
-        DIG_THROW_AWAY          = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
-        FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
-        GACHEMAGE_DIALOG        = 7331, -- Orcish scouts lurk in the shadows. Consider yourself warned!
-        COLMAIE_DIALOG          = 7331, -- Orcish scouts lurk in the shadows. Consider yourself warned!
-        ADALEFONT_DIALOG        = 7332, -- If you sense danger, just flee into the city. I'll not endanger myself on your account!
-        LAILLERA_DIALOG         = 7333, -- I mustn't chat while on duty. Sorry.
-        PICKPOCKET_GACHEMAGE    = 7334, -- A pickpocket? Now that you mention it, I did see a woman flee the city. She ran west.
-        PICKPOCKET_ADALEFONT    = 7335, -- What, someone picked your pocket? And you call yourself an adventurer!
-        PALCOMONDAU_REPORT      = 7377, -- Scout reporting! All is quiet on the road to Ghelsba!
-        PALCOMONDAU_DIALOG      = 7378, -- Let me be! I must patrol the road to Ghelsba.
-        ZOVRIACE_REPORT         = 7380, -- Scout reporting! All is quiet on the roads to La Theine!
-        ZOVRIACE_DIALOG         = 7382, -- Let me be! I return to Southgate with word on La Theine.
-        DISMAYED_CUSTOMER       = 7408, -- You find some worthless scraps of paper.
-        CONQUEST                = 7530, -- You've earned conquest points!
-        REGIME_REGISTERED       = 10426, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 12427  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        ITEM_CANNOT_BE_OBTAINED  = 6404,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED            = 6410,  -- Obtained: <item>.
+        GIL_OBTAINED             = 6411,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED         = 6413,  -- Obtained key item: <keyitem>.
+        KEYITEM_LOST             = 6414,  -- Lost key item: <keyitem>.
+        CONQUEST_BASE            = 7071,  -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET   = 7230,  -- You can't fish here.
+        DIG_THROW_AWAY           = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
+        FIND_NOTHING             = 7245,  -- You dig and you dig, but find nothing.
+        GACHEMAGE_DIALOG         = 7331,  -- Orcish scouts lurk in the shadows. Consider yourself warned!
+        COLMAIE_DIALOG           = 7331,  -- Orcish scouts lurk in the shadows. Consider yourself warned!
+        ADALEFONT_DIALOG         = 7332,  -- If you sense danger, just flee into the city. I'll not endanger myself on your account!
+        LAILLERA_DIALOG          = 7333,  -- I mustn't chat while on duty. Sorry.
+        PICKPOCKET_GACHEMAGE     = 7334,  -- A pickpocket? Now that you mention it, I did see a woman flee the city. She ran west.
+        PICKPOCKET_ADALEFONT     = 7335,  -- What, someone picked your pocket? And you call yourself an adventurer!
+        PALCOMONDAU_REPORT       = 7377,  -- Scout reporting! All is quiet on the road to Ghelsba!
+        PALCOMONDAU_DIALOG       = 7378,  -- Let me be! I must patrol the road to Ghelsba.
+        ZOVRIACE_REPORT          = 7380,  -- Scout reporting! All is quiet on the roads to La Theine!
+        ZOVRIACE_DIALOG          = 7382,  -- Let me be! I return to Southgate with word on La Theine.
+        DISMAYED_CUSTOMER        = 7408,  -- You find some worthless scraps of paper.
+        CONQUEST                 = 7530,  -- You've earned conquest points!
+        PLAYER_OBTAINS_ITEM      = 8053,  -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 8054,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 8055,  -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP     = 8056,  -- You already possess that temporary item.
+        NO_COMBINATION           = 8061,  -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS       = 8062,  -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK      = 8063,  -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS       = 8064,  -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK              = 8065,  -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD    = 8066,  -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD     = 8067,  -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS = 8068,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN    = 8069,  -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN = 8070,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS     = 8071,  -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS          = 8072,  -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS           = 8073,  -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT       = 8074,  -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST  = 8076,  -- The monster was concealing a treasure chest!
+        REGIME_REGISTERED        = 10426, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL    = 12427  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -58,6 +77,7 @@ zones[dsp.zone.WEST_RONFAURE] =
     {
         SIGNPOST_OFFSET = 17187537,
         OVERSEER_BASE   = 17187557,
+        CASKET_BASE     = 17191481,
     },
 }
 

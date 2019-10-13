@@ -10,26 +10,45 @@ zones[dsp.zone.FEIYIN] =
 {
     text =
     {
-        CONQUEST_BASE                      = 3, -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED            = 6561, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED                      = 6567, -- Obtained: <item>.
-        GIL_OBTAINED                       = 6568, -- Obtained <number> gil.
-        KEYITEM_OBTAINED                   = 6570, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY            = 6581, -- There is nothing out of the ordinary here.
-        SENSE_OF_FOREBODING                = 6582, -- You are suddenly overcome with a sense of foreboding...
-        FISHING_MESSAGE_OFFSET             = 7228, -- You can't fish here.
-        CHEST_UNLOCKED                     = 7359, -- You unlock the chest!
-        SOFTLY_SHIMMERING_LIGHT            = 7485, -- You see a softly shimmering light...
-        YOU_REACH_OUT_TO_THE_LIGHT         = 7486, -- You reach out to the light, and one facet of a curious seed-shaped emblem materializes on the back of your hand. It emanates an otherworldly [red/orange/yellow/green/cerulean/blue/golden/silver/white] radiance.
-        THE_LIGHT_DWINDLES                 = 7487, -- However, the light dwindles and grows dim almost at once...
-        EVEN_GREATER_INTENSITY             = 7488, -- The emblem on your hand glows with even greater intensity!
-        YOU_REACH_FOR_THE_LIGHT            = 7489, -- You reach for the light, but there is no discernable effect...
-        SCINTILLATING_BURST_OF_LIGHT       = 7490, -- As you extend your hand, there is a scintillating burst of light! Now complete, the Mark of Seed glows with near-blinding intensity!
-        MARK_OF_SEED_FLICKERS              = 7499, -- The glow of the Mark of Seed flickers and dims ever so slightly...
-        MARK_OF_SEED_GROWS_FAINTER         = 7500, -- The Mark of Seed grows fainter still. Before long, it will fade away entirely...
-        MARK_OF_SEED_IS_ABOUT_TO_DISSIPATE = 7501, -- The Mark of Seed is about to dissipate entirely! Only a faint outline remains...
-        MARK_OF_SEED_HAS_VANISHED          = 7502, -- The Mark of Seed has vanished without a trace...
-        REGIME_REGISTERED                  = 9593, -- New training regime registered!
+        CONQUEST_BASE                      = 3,     -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED            = 6561,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                      = 6567,  -- Obtained: <item>.
+        GIL_OBTAINED                       = 6568,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED                   = 6570,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY            = 6581,  -- There is nothing out of the ordinary here.
+        SENSE_OF_FOREBODING                = 6582,  -- You are suddenly overcome with a sense of foreboding...
+        FISHING_MESSAGE_OFFSET             = 7228,  -- You can't fish here.
+        CHEST_UNLOCKED                     = 7359,  -- You unlock the chest!
+        SOFTLY_SHIMMERING_LIGHT            = 7485,  -- You see a softly shimmering light...
+        YOU_REACH_OUT_TO_THE_LIGHT         = 7486,  -- You reach out to the light, and one facet of a curious seed-shaped emblem materializes on the back of your hand. It emanates an otherworldly [red/orange/yellow/green/cerulean/blue/golden/silver/white] radiance.
+        THE_LIGHT_DWINDLES                 = 7487,  -- However, the light dwindles and grows dim almost at once...
+        EVEN_GREATER_INTENSITY             = 7488,  -- The emblem on your hand glows with even greater intensity!
+        YOU_REACH_FOR_THE_LIGHT            = 7489,  -- You reach for the light, but there is no discernable effect...
+        SCINTILLATING_BURST_OF_LIGHT       = 7490,  -- As you extend your hand, there is a scintillating burst of light! Now complete, the Mark of Seed glows with near-blinding intensity!
+        MARK_OF_SEED_FLICKERS              = 7499,  -- The glow of the Mark of Seed flickers and dims ever so slightly...
+        MARK_OF_SEED_GROWS_FAINTER         = 7500,  -- The Mark of Seed grows fainter still. Before long, it will fade away entirely...
+        MARK_OF_SEED_IS_ABOUT_TO_DISSIPATE = 7501,  -- The Mark of Seed is about to dissipate entirely! Only a faint outline remains...
+        MARK_OF_SEED_HAS_VANISHED          = 7502,  -- The Mark of Seed has vanished without a trace...
+        PLAYER_OBTAINS_ITEM                = 7507,  -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM              = 7508,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM           = 7509,  -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP               = 7510,  -- You already possess that temporary item.
+        NO_COMBINATION                     = 7515,  -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS                 = 7516,  -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK                = 7517,  -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS                 = 7518,  -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK                        = 7519,  -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD              = 7520,  -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD               = 7521,  -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS           = 7522,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN              = 7523,  -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN           = 7524,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS               = 7525,  -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS                    = 7526,  -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS                     = 7527,  -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT                 = 7528,  -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST            = 7530,  -- The monster was concealing a treasure chest!
+        REGIME_REGISTERED                  = 9593,  -- New training regime registered!
         HOMEPOINT_SET                      = 10689, -- Home point set!
     },
     mob =
@@ -69,6 +88,7 @@ zones[dsp.zone.FEIYIN] =
     {
         AFTERGRLOW_OFFSET       = 17613148,
         TREASURE_CHEST          = 17613242,
+        CASKET_BASE             = 17613157,
         UNDERGROUND_POOL_OFFSET = 17613247,
     },
 }

@@ -10,19 +10,38 @@ zones[dsp.zone.RUAUN_GARDENS] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED    = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        FULL_INVENTORY_AFTER_TRADE = 6386, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
-        ITEM_OBTAINED              = 6388, -- Obtained: <item>.
-        GIL_OBTAINED               = 6389, -- Obtained <number> gil.
-        KEYITEM_OBTAINED           = 6391, -- Obtained key item: <keyitem>.
-        ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
-        NOTHING_OUT_OF_ORDINARY    = 6402, -- There is nothing out of the ordinary here.
-        FISHING_MESSAGE_OFFSET     = 7049, -- You can't fish here.
-        CONQUEST_BASE              = 7149, -- Tallying conquest results...
-        IT_IS_ALREADY_FUNCTIONING  = 7309, -- It is already functioning.
-        CHEST_UNLOCKED             = 7343, -- You unlock the chest!
-        SKY_GOD_OFFSET             = 7360, -- A strange insignia pointing north is carved into the wall.
-        REGIME_REGISTERED          = 9726, -- New training regime registered!
+        ITEM_CANNOT_BE_OBTAINED    = 6382,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE = 6386,  -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+        ITEM_OBTAINED              = 6388,  -- Obtained: <item>.
+        GIL_OBTAINED               = 6389,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED           = 6391,  -- Obtained key item: <keyitem>.
+        ITEMS_OBTAINED             = 6397,  -- You obtain <number> <item>!
+        NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
+        FISHING_MESSAGE_OFFSET     = 7049,  -- You can't fish here.
+        CONQUEST_BASE              = 7149,  -- Tallying conquest results...
+        IT_IS_ALREADY_FUNCTIONING  = 7309,  -- It is already functioning.
+        CHEST_UNLOCKED             = 7343,  -- You unlock the chest!
+        SKY_GOD_OFFSET             = 7360,  -- A strange insignia pointing north is carved into the wall.
+        PLAYER_OBTAINS_ITEM        = 7562,  -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM      = 7563,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM   = 7564,  -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP       = 7565,  -- You already possess that temporary item.
+        NO_COMBINATION             = 7570,  -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS         = 7571,  -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK        = 7572,  -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS         = 7573,  -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK                = 7574,  -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD      = 7575,  -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD       = 7576,  -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS   = 7577,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN      = 7578,  -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN   = 7579,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS       = 7580,  -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS            = 7581,  -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS             = 7582,  -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT         = 7583,  -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST    = 7585,  -- The monster was concealing a treasure chest!
+        REGIME_REGISTERED          = 9726,  -- New training regime registered!
         HOMEPOINT_SET              = 11647, -- Home point set!
         COMMON_SENSE_SURVIVAL      = 11667  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
@@ -111,6 +130,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
         },
         TREASURE_COFFER = 17310019,
         OVERSEER_BASE   = 17310080,
+        CASKET_BASE     = 17310003,
     },
 }
 

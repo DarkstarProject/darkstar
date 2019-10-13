@@ -10,20 +10,39 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
-        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE           = 7049, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
-        CHEST_UNLOCKED          = 7316, -- You unlock the chest!
-        FELL                    = 7334, -- The piece of wood fell off the cliff!
-        EVIL                    = 7335, -- You sense an evil presence...
-        FISHBONES               = 7349, -- Fish bones lie scattered about the area...
-        SENSE_OMINOUS_PRESENCE  = 7351, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 10335, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 11419  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        ITEM_CANNOT_BE_OBTAINED  = 6382,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED            = 6388,  -- Obtained: <item>.
+        GIL_OBTAINED             = 6389,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED         = 6391,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
+        CONQUEST_BASE            = 7049,  -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
+        CHEST_UNLOCKED           = 7316,  -- You unlock the chest!
+        FELL                     = 7334,  -- The piece of wood fell off the cliff!
+        EVIL                     = 7335,  -- You sense an evil presence...
+        FISHBONES                = 7349,  -- Fish bones lie scattered about the area...
+        SENSE_OMINOUS_PRESENCE   = 7351,  -- You sense an ominous presence...
+        REGIME_REGISTERED        = 10335, -- New training regime registered!
+        PLAYER_OBTAINS_ITEM      = 11387, -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 11388, -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 11389, -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP     = 11390, -- You already possess that temporary item.
+        NO_COMBINATION           = 11395, -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS       = 11396, -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK      = 11397, -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS       = 11398, -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK              = 11399, -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD    = 11400, -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD     = 11401, -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS = 11402, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN    = 11403, -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN = 11404, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS     = 11405, -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS          = 11406, -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS           = 11407, -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT       = 11408, -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST  = 11410, -- The monster was concealing a treasure chest!
+        COMMON_SENSE_SURVIVAL    = 11419  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -102,6 +121,7 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
         PHANTOM_WORM_QM = 17490253,
         DOOR_ROCK       = 17490280,
         TREASURE_COFFER = 17490304,
+        CASKET_BASE     = 17490257,
     },
 }
 

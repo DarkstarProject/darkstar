@@ -27,6 +27,25 @@ zones[dsp.zone.ORDELLES_CAVES] =
         A_SQUIRE_S_TEST_II_DIALOG_II  = 7359,  -- The dew from the stalactite slips through your fingers.
         A_SQUIRE_S_TEST_II_DIALOG_III = 7360,  -- You have already obtained the dew.
         CHEST_UNLOCKED                = 7392,  -- You unlock the chest!
+        PLAYER_OBTAINS_ITEM           = 8377,  -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM         = 8378,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM      = 8379,  -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP          = 8380,  -- You already possess that temporary item.
+        NO_COMBINATION                = 8385,  -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS            = 8386,  -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK           = 8387,  -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS            = 8388,  -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK                   = 8389,  -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD         = 8390,  -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD          = 8391,  -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS      = 8392,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN         = 8393,  -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN      = 8394,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS          = 8395,  -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS               = 8396,  -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS                = 8397,  -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT            = 8398,  -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST       = 8400,  -- The monster was concealing a treasure chest!
         GERWITZS_AXE_DIALOG           = 7414,  -- Mine axe shall rend thy throat!
         GERWITZS_SWORD_DIALOG         = 7415,  -- Mine sword shall pierce thy tongue!
         GERWITZS_SOUL_DIALOG          = 7416,  -- Long have I waited. I will tell all...
@@ -54,6 +73,7 @@ zones[dsp.zone.ORDELLES_CAVES] =
     npc =
     {
         TREASURE_CHEST = 17568192,
+        CASKET_BASE    = 17568148,
     },
 }
 

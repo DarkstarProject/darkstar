@@ -33,6 +33,25 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
         GOLD_CHECK                 = 7347, -- You see something gold glittering around the indentation.
         COMPLETED_CHECK            = 7348, -- It is a door you can open using <item>!
         SENSE_OMINOUS_PRESENCE     = 7362, -- You sense an ominous presence...
+        PLAYER_OBTAINS_ITEM        = 7596, -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM      = 7597, -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM   = 7598, -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP       = 7599, -- You already possess that temporary item.
+        NO_COMBINATION             = 7604, -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS         = 7605, -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK        = 7606, -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS         = 7607, -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK                = 7608, -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD      = 7609, -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD       = 7610, -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS   = 7611, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN      = 7612, -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN   = 7613, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS       = 7614, -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS            = 7615, -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS             = 7616, -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT         = 7617, -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST    = 7619, -- The monster was concealing a treasure chest!
         REGIME_REGISTERED          = 9682, -- New training regime registered!
         COMMON_SENSE_SURVIVAL      = 10742 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
@@ -114,6 +133,7 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
     {
         TREASURE_CHEST  = 17498625,
         TREASURE_COFFER = 17498626,
+        CASKET_BASE     = 17498579,
     },
 }
 

@@ -10,31 +10,50 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
 {
     text =
     {
-        NOTHING_HAPPENS            = 119, -- Nothing happens...
-        ITEM_CANNOT_BE_OBTAINED    = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED              = 6388, -- Obtained: <item>.
-        GIL_OBTAINED               = 6389, -- Obtained <number> gil.
-        KEYITEM_OBTAINED           = 6391, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY    = 6402, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE              = 7049, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET     = 7208, -- You can't fish here.
-        CHEST_UNLOCKED             = 7316, -- You unlock the chest!
-        NO_REASON_TO_INVESTIGATE   = 7324, -- There is no reason to investigate further.
-        THE_BOX_IS_LOCKED          = 7325, -- The box is locked.
-        PAINTBRUSH_OFFSET          = 7328, -- When the <keyitem> projects the deepest, darkest corner of your soul onto the blank canvas...only then will the doors to rancor open.
-        FALLS_FROM_THE_BOOK        = 7338, -- <item> falls from the book!
-        THE_DOOR_IS_LOCKED         = 7352, -- The door is locked. You might be able to open it with <item>.
-        PROTECTED_BY_UNKNOWN_FORCE = 7353, -- The door is protected by some unknown force.
-        YOUR_KEY_BREAKS            = 7355, -- Your <item> breaks!
-        DOOR_LOCKED                = 7373, -- The door is locked.
-        HATE_RESET                 = 7426, -- The built-up hate has been cleansed...!
-        DOOR_SHUT                  = 7428, -- The door is firmly shut.
-        NO_HATE                    = 7429, -- You have no built-up hate to cleanse.
-        SOME_SORT_OF_CEREMONY      = 7445, -- Some sort of ceremony was performed here...
-        NM_OFFSET                  = 7495, -- It looks like some sort of device. A thin thread leads down to the floor...
-        IT_IS_A_BEEHIVE            = 7499, -- It is a beehive...
-        BITS_OF_VEGETABLE          = 7500, -- Bits of vegetable matter are strewn around. They appear to have been gnawed on by insects...
-        SENSE_OMINOUS_PRESENCE     = 7502, -- You sense an ominous presence...
+        NOTHING_HAPPENS            = 119,   -- Nothing happens...
+        ITEM_CANNOT_BE_OBTAINED    = 6382,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED              = 6388,  -- Obtained: <item>.
+        GIL_OBTAINED               = 6389,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED           = 6391,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
+        CONQUEST_BASE              = 7049,  -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET     = 7208,  -- You can't fish here.
+        CHEST_UNLOCKED             = 7316,  -- You unlock the chest!
+        NO_REASON_TO_INVESTIGATE   = 7324,  -- There is no reason to investigate further.
+        THE_BOX_IS_LOCKED          = 7325,  -- The box is locked.
+        PAINTBRUSH_OFFSET          = 7328,  -- When the <keyitem> projects the deepest, darkest corner of your soul onto the blank canvas...only then will the doors to rancor open.
+        FALLS_FROM_THE_BOOK        = 7338,  -- <item> falls from the book!
+        THE_DOOR_IS_LOCKED         = 7352,  -- The door is locked. You might be able to open it with <item>.
+        PROTECTED_BY_UNKNOWN_FORCE = 7353,  -- The door is protected by some unknown force.
+        YOUR_KEY_BREAKS            = 7355,  -- Your <item> breaks!
+        DOOR_LOCKED                = 7373,  -- The door is locked.
+        HATE_RESET                 = 7426,  -- The built-up hate has been cleansed...!
+        DOOR_SHUT                  = 7428,  -- The door is firmly shut.
+        NO_HATE                    = 7429,  -- You have no built-up hate to cleanse.
+        SOME_SORT_OF_CEREMONY      = 7445,  -- Some sort of ceremony was performed here...
+        NM_OFFSET                  = 7495,  -- It looks like some sort of device. A thin thread leads down to the floor...
+        IT_IS_A_BEEHIVE            = 7499,  -- It is a beehive...
+        BITS_OF_VEGETABLE          = 7500,  -- Bits of vegetable matter are strewn around. They appear to have been gnawed on by insects...
+        SENSE_OMINOUS_PRESENCE     = 7502,  -- You sense an ominous presence...
+        PLAYER_OBTAINS_ITEM        = 8437,  -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM      = 8438,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM   = 8439,  -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP       = 8440,  -- You already possess that temporary item.
+        NO_COMBINATION             = 8445,  -- You were unable to enter a combination.
+        HUNCH_GREATER_LESS         = 8446,  -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
+        UNABLE_TO_OPEN_LOCK        = 8447,  -- Player failed to open the lock.
+        CORRECT_NUMBER_WAS         = 8448,  -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
+        OPENED_LOCK                = 8449,  -- Player succeeded in opening the lock!
+        HUNCH_SECOND_EVEN_ODD      = 8450,  -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        HUNCH_FIRST_EVEN_ODD       = 8451,  -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
+        COMBINATION_GREATER_LESS   = 8452,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_LESS_THAN      = 8453,  -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
+        COMBINATION_GREATER_THAN   = 8454,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
+        ONE_OF_TWO_DIGITS_IS       = 8455,  -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
+        SECOND_DIGIT_IS            = 8456,  -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        FIRST_DIGIT_IS             = 8457,  -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
+        UNABLE_TO_GET_HINT         = 8458,  -- You were unable to glean anything from your examination of the lock.
+        MONSTER_CONCEALED_CHEST    = 8460,  -- The monster was concealing a treasure chest!
         REGIME_REGISTERED          = 10523, -- New training regime registered!
         COMMON_SENSE_SURVIVAL      = 11583  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
@@ -78,6 +97,7 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         TEMPLE_GUARDIAN_DOOR = 17428978,
         DOOR_TO_RANCOR       = 17428989,
         TREASURE_COFFER      = 17429007,
+        CASKET_BASE          = 17428875,
     },
 }
 
