@@ -71,9 +71,9 @@ zones[dsp.zone.ROMAEVE] =
              [9] = { -105.000, -3.000,  -36.000}, -- E-9
             [10] = { -160.000, -6.000, -107.000}  -- D-10
         },
+        CASKET_BASE     = 17277171,
         MOONGATE_OFFSET = 17277195,
         BASTOK_7_1_QM   = 17277207,
-        CASKET_BASE     = 17277171,
     },
 }
 

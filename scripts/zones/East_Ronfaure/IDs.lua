@@ -10,7 +10,7 @@ zones[dsp.zone.EAST_RONFAURE] =
 {
     text =
     {
-        NOTHING_HAPPENS          = 141, -- Nothing happens...
+        NOTHING_HAPPENS          = 141,  -- Nothing happens...
         ITEM_CANNOT_BE_OBTAINED  = 6404, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED            = 6410, -- Obtained: <item>.
         GIL_OBTAINED             = 6411, -- Obtained <number> gil.

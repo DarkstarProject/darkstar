@@ -80,8 +80,8 @@ zones[dsp.zone.MIDDLE_DELKFUTTS_TOWER] =
     },
     npc =
     {
-        TREASURE_CHEST = 17420676,
         CASKET_BASE    = 17420640,
+        TREASURE_CHEST = 17420676,
     },
 }
 

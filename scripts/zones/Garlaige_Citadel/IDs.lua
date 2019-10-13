@@ -72,11 +72,11 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
     },
     npc =
     {
+        CASKET_BASE           = 17596738,
         BANISHING_GATE_OFFSET = 17596761,
         TREASURE_CHEST        = 17596812,
         TREASURE_COFFER       = 17596813,
         CHANDELIER_QM         = 17596830,
-        CASKET_BASE           = 17596738,
     },
 }
 

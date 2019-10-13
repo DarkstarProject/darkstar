@@ -61,8 +61,8 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
     },
     npc =
     {
-        TREASURE_CHEST = 17555955,
         CASKET_BASE    = 17555907,
+        TREASURE_CHEST = 17555955,
     },
 }
 

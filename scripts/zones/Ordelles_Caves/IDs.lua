@@ -72,8 +72,8 @@ zones[dsp.zone.ORDELLES_CAVES] =
     },
     npc =
     {
-        TREASURE_CHEST = 17568192,
         CASKET_BASE    = 17568148,
+        TREASURE_CHEST = 17568192,
     },
 }
 

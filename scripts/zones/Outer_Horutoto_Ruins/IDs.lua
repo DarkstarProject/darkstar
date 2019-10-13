@@ -68,9 +68,9 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
     },
     npc =
     {
+        CASKET_BASE        = 17572223,
         GATE_MAGICAL_GIZMO = 17572248,
         TREASURE_CHEST     = 17572290,
-        CASKET_BASE        = 17572223,
     },
 }
 

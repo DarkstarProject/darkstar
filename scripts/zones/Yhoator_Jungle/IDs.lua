@@ -71,9 +71,9 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     npc =
     {
+        CASKET_BASE       = 17285618,
         OVERSEER_BASE     = 17285649,
         PEDDLESTOX        = 17285685,
-        CASKET_BASE       = 17285618,
         BEASTMEN_TREASURE =
         {
             17285695, -- qm4

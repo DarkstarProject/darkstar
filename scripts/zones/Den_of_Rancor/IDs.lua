@@ -82,10 +82,10 @@ zones[dsp.zone.DEN_OF_RANCOR] =
     },
     npc =
     {
+        CASKET_BASE     = 17433024,
         LANTERN_OFFSET  = 17433047,
         DROP_GATE       = 17433051,
         TREASURE_COFFER = 17433077,
-        CASKET_BASE     = 17433024,
     },
 }
 

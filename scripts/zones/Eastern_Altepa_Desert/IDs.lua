@@ -65,8 +65,8 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
     },
     npc =
     {
-        OVERSEER_BASE = 17244626,
         CASKET_BASE   = 17244595,
+        OVERSEER_BASE = 17244626,
     },
 }
 

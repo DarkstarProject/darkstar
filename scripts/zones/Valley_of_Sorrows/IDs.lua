@@ -49,8 +49,8 @@ zones[dsp.zone.VALLEY_OF_SORROWS] =
     },
     npc =
     {
-        ADAMANTOISE_QM = 17301567,
         CASKET_BASE    = 17301544,
+        ADAMANTOISE_QM = 17301567,
     },
 }
 

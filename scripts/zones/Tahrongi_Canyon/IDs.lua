@@ -73,8 +73,8 @@ zones[dsp.zone.TAHRONGI_CANYON] =
     },
     npc =
     {
-        SIGNPOST_OFFSET = 17257032,
         CASKET_BASE     = 17257007,
+        SIGNPOST_OFFSET = 17257032,
         EXCAVATION =
         {
             17257054,

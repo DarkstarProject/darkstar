@@ -64,8 +64,8 @@ zones[dsp.zone.PASHHOW_MARSHLANDS] =
     },
     npc =
     {
-        OVERSEER_BASE = 17224325,
         CASKET_BASE   = 17224274,
+        OVERSEER_BASE = 17224325,
     },
 }
 

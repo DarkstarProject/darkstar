@@ -68,10 +68,10 @@ zones[dsp.zone.DANGRUF_WADI] =
     },
     npc =
     {
+        CASKET_BASE        = 17559877,
         GEYSER_OFFSET      = 17559899,
         AN_EMPTY_VESSEL_QM = 17559911,
         TREASURE_CHEST     = 17559924,
-        CASKET_BASE        = 17559877,
     },
 }
 

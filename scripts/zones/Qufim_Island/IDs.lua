@@ -68,8 +68,8 @@ zones[dsp.zone.QUFIM_ISLAND] =
     },
     npc =
     {
-        OVERSEER_BASE = 17293715,
         CASKET_BASE   = 17293677,
+        OVERSEER_BASE = 17293715,
     },
 }
 

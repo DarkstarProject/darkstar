@@ -67,9 +67,9 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
     },
     npc =
     {
+        CASKET_BASE     = 17232174,
         MIRROR_POND_J8  = 17232197,
         OVERSEER_BASE   = 17232208,
-        CASKET_BASE     = 17232174,
     },
 }
 

@@ -97,8 +97,8 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
     },
     npc =
     {
-        TREASURE_COFFER = 17404394,
         CASKET_BASE     = 17404357,
+        TREASURE_COFFER = 17404394,
     },
 }
 

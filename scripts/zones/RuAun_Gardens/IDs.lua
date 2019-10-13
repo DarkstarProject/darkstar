@@ -74,6 +74,8 @@ zones[dsp.zone.RUAUN_GARDENS] =
     },
     npc =
     {
+        CASKET_BASE     = 17310003,
+        TREASURE_COFFER = 17310019,
         PINCERSTONES =
         {
             [17310031] = 17310054, -- Main to Seriyu
@@ -128,9 +130,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
             {coords={-145, -41, -156, -142, -39, -153}, green = true},
             {coords={ 142, -41, -156,  145, -39, -153}, green = true},
         },
-        TREASURE_COFFER = 17310019,
         OVERSEER_BASE   = 17310080,
-        CASKET_BASE     = 17310003,
     },
 }
 

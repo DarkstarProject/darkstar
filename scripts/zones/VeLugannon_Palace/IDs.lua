@@ -45,12 +45,12 @@ zones[dsp.zone.VELUGANNON_PALACE] =
     },
     npc =
     {
+        CASKET_BASE     = 17502585,
         Y_DOOR_OFFSET   = 17502608,
         B_DOOR_OFFSET   = 17502616,
         Y_LITH_OFFSET   = 17502624,
         B_LITH_OFFSET   = 17502634,
         TREASURE_COFFER = 17502699,
-        CASKET_BASE     = 17502585,
     },
 }
 

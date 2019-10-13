@@ -67,9 +67,9 @@ zones[dsp.zone.CAPE_TERIGGAN] =
     },
     npc =
     {
+        CASKET_BASE      = 17240445,
         OVERSEER_BASE    = 17240472,
         CERMET_HEADSTONE = 17240497,
-        CASKET_BASE      = 17240445,
     },
 }
 

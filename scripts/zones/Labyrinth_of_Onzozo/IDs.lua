@@ -98,8 +98,8 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
     },
     npc =
     {
-        TREASURE_CHEST = 17649900,
         CASKET_BASE    = 17649867,
+        TREASURE_CHEST = 17649900,
     },
 }
 

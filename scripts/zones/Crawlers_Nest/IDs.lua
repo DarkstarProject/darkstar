@@ -65,9 +65,9 @@ zones[dsp.zone.CRAWLERS_NEST] =
     },
     npc =
     {
+        CASKET_BASE     = 17584433,
         TREASURE_CHEST  = 17584475,
         TREASURE_COFFER = 17584476,
-        CASKET_BASE     = 17584433,
     },
 }
 

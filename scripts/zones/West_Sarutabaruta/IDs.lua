@@ -85,9 +85,9 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
     },
     npc =
     {
+        CASKET_BASE     = 17248797,
         SIGNPOST_OFFSET = 17248824,
         OVERSEER_BASE   = 17248857,
-        CASKET_BASE     = 17248797,
         HARVESTING =
         {
             17248873,

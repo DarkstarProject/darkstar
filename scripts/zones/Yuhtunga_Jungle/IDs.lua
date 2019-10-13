@@ -71,9 +71,9 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
     },
     npc =
     {
+        CASKET_BASE           = 17281558,
         BLUE_RAFFLESIA_OFFSET = 17281585,
         OVERSEER_BASE         = 17281599,
-        CASKET_BASE           = 17281558,
         CERMET_HEADSTONE      = 17281624,
         PEDDLESTOX            = 17281639,
         BEASTMEN_TREASURE     =
