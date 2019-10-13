@@ -69,7 +69,7 @@ local function getEnabledExpansions()
     return returnValue
 end
 
-local function checkForRegisteredSurvivalGuide(player, guide, masks, currentZoneId)
+local function checkForRegisteredSurvivalGuide(player, guide, masks)
     local group = guide.group
     local mask = nil
     local variableSuffix = ''
@@ -177,8 +177,7 @@ dsp.survivalGuide.onTrigger = function(player)
         -- If this survival guide hasn't been registered yet (saved to database) do that now.
         local foundRegisteredGuide = checkForRegisteredSurvivalGuide(player,
                                                                      guide,
-                                                                     masks,
-                                                                     currentZoneId)
+                                                                     masks)
 
         if foundRegisteredGuide then
             local param = bit.bor(tableIndex, bit.lshift(
