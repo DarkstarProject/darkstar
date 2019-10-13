@@ -13,7 +13,8 @@ local SURVIVALGUIDE = 9
 local cutsceneID = 8500
 local tempMenuLayoutVar = "SgMenuLayout"
 
-local optionMap = {
+local optionMap =
+{
     TELEPORT = 1,
     UNKNOWN = 2,
     SET_MENU_LAYOUT = 3,
@@ -144,7 +145,8 @@ dsp.survivalGuide.onTrigger = function(player)
         -- Contains the zone to include, this is a bit-wise value.
         local expansions = getEnabledExpansions()
 
-        local masks = {
+        local masks =
+        {
             [1] = player:getVar("SgTeleportMask1"),
             [2] = player:getVar("SgTeleportMask2"),
             [3] = player:getVar("SgTeleportMask3"),

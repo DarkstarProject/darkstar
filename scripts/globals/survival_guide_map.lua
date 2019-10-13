@@ -1,7 +1,9 @@
 require("scripts/globals/zone")
 
-survivalGuides = {
-    [6] = {
+survivalGuides =
+{
+    [6] =
+    {
         zoneId = dsp.zone.WEST_RONFAURE,
         group = 1,
         groupMask = 2^0,
@@ -12,7 +14,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [11] = {
+    [11] =
+    {
         zoneId = dsp.zone.VALKURM_DUNES,
         group = 1,
         groupMask = 2^1,
@@ -23,7 +26,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [16] = {
+    [16] =
+    {
         zoneId = dsp.zone.JUGNER_FOREST,
         group = 1,
         groupMask = 2^2,
@@ -34,7 +38,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [20] = {
+    [20] =
+    {
         zoneId = dsp.zone.NORTH_GUSTABERG,
         group = 1,
         groupMask = 2^3,
@@ -45,7 +50,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [24] = {
+    [24] =
+    {
         zoneId = dsp.zone.PASHHOW_MARSHLANDS,
         group = 1,
         groupMask = 2^4,
@@ -56,7 +62,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [28] = {
+    [28] =
+    {
         zoneId = dsp.zone.WEST_SARUTABARUTA,
         group = 1,
         groupMask = 2^5,
@@ -67,7 +74,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [33] = {
+    [33] =
+    {
         zoneId = dsp.zone.BUBURIMU_PENINSULA,
         group = 1,
         groupMask = 2^6,
@@ -78,7 +86,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [40] = {
+    [40] =
+    {
         zoneId = dsp.zone.BEAUCEDINE_GLACIER,
         group = 1,
         groupMask = 2^7,
@@ -89,7 +98,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [42] = {
+    [42] =
+    {
         zoneId = dsp.zone.XARCABARD,
         group = 1,
         groupMask = 2^8,
@@ -100,7 +110,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [44] = {
+    [44] =
+    {
         zoneId = dsp.zone.QUFIM_ISLAND,
         group = 1,
         groupMask = 2^9,
@@ -111,7 +122,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [36] = {
+    [36] =
+    {
         zoneId = dsp.zone.MERIPHATAUD_MOUNTAINS,
         group = 1,
         groupMask = 2^10,
@@ -122,7 +134,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [47] = {
+    [47] =
+    {
         zoneId = dsp.zone.THE_SANCTUARY_OF_ZITAH,
         group = 1,
         groupMask = 2^11,
@@ -133,7 +146,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [50] = {
+    [50] =
+    {
         zoneId = dsp.zone.EASTERN_ALTEPA_DESERT,
         group = 1,
         groupMask = 2^12,
@@ -144,7 +158,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [53] = {
+    [53] =
+    {
         zoneId = dsp.zone.CAPE_TERIGGAN,
         group = 1,
         groupMask = 2^13,
@@ -155,7 +170,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [57] = {
+    [57] =
+    {
         zoneId = dsp.zone.YUHTUNGA_JUNGLE,
         group = 1,
         groupMask = 2^14,
@@ -166,7 +182,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [61] = {
+    [61] =
+    {
         zoneId = dsp.zone.YHOATOR_JUNGLE,
         group = 1,
         groupMask = 2^15,
@@ -177,7 +194,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [66] = {
+    [66] =
+    {
         zoneId = dsp.zone.LUFAISE_MEADOWS,
         group = 1,
         groupMask = 2^16,
@@ -188,7 +206,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [64] = {
+    [64] =
+    {
         zoneId = dsp.zone.RUAUN_GARDENS,
         group = 1,
         groupMask = 2^17,
@@ -199,7 +218,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [65] = {
+    [65] =
+    {
         zoneId = dsp.zone.OLDTON_MOVALPOLOS,
         group = 1,
         groupMask = 2^18,
@@ -210,7 +230,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [8] = {
+    [8] =
+    {
         zoneId = dsp.zone.BOSTAUNIEUX_OUBLIETTE,
         group = 1,
         groupMask = 2^19,
@@ -221,7 +242,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [29] = {
+    [29] =
+    {
         zoneId = dsp.zone.TORAIMARAI_CANAL,
         group = 1,
         groupMask = 2^20,
@@ -232,7 +254,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [19] = {
+    [19] =
+    {
         zoneId = dsp.zone.THE_ELDIEME_NECROPOLIS,
         group = 1,
         groupMask = 2^21,
@@ -243,7 +266,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [27] = {
+    [27] =
+    {
         zoneId = dsp.zone.CRAWLERS_NEST,
         group = 1,
         groupMask = 2^22,
@@ -254,7 +278,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [39] = {
+    [39] =
+    {
         zoneId = dsp.zone.GARLAIGE_CITADEL,
         group = 1,
         groupMask = 2^23,
@@ -265,7 +290,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [0] = {
+    [0] =
+    {
         zoneId = dsp.zone.NORTHERN_SAN_DORIA,
         group = 1,
         groupMask = 2^24,
@@ -276,7 +302,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [1] = {
+    [1] =
+    {
         zoneId = dsp.zone.BASTOK_MINES,
         group = 1,
         groupMask = 2^25,
@@ -287,7 +314,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [2] = {
+    [2] =
+    {
         zoneId = dsp.zone.PORT_WINDURST,
         group = 1,
         groupMask = 2^26,
@@ -298,7 +326,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [3] = {
+    [3] =
+    {
         zoneId = dsp.zone.RULUDE_GARDENS,
         group = 1,
         groupMask = 2^27,
@@ -309,7 +338,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [10] = {
+    [10] =
+    {
         zoneId = dsp.zone.LA_THEINE_PLATEAU,
         group = 1,
         groupMask = 2^28,
@@ -320,7 +350,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [17] = {
+    [17] =
+    {
         zoneId = dsp.zone.BATALLIA_DOWNS,
         group = 1,
         groupMask = 2^29,
@@ -331,7 +362,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [12] = {
+    [12] =
+    {
         zoneId = dsp.zone.KONSCHTAT_HIGHLANDS,
         group = 1,
         groupMask = 2^30,
@@ -342,7 +374,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [25] = {
+    [25] =
+    {
         zoneId = dsp.zone.ROLANBERRY_FIELDS,
         group = 1,
         groupMask = 2^31,
@@ -353,7 +386,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [32] = {
+    [32] =
+    {
         zoneId = dsp.zone.TAHRONGI_CANYON,
         group = 2,
         groupMask = 2^0,
@@ -364,7 +398,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [37] = {
+    [37] =
+    {
         zoneId = dsp.zone.SAUROMUGUE_CHAMPAIGN,
         group = 2,
         groupMask = 2^1,
@@ -375,7 +410,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [7] = {
+    [7] =
+    {
         zoneId = dsp.zone.FORT_GHELSBA,
         group = 2,
         groupMask = 2^2,
@@ -386,7 +422,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [26] = {
+    [26] =
+    {
         zoneId = dsp.zone.BEADEAUX,
         group = 2,
         groupMask = 2^3,
@@ -397,7 +434,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [18] = {
+    [18] =
+    {
         zoneId = dsp.zone.DAVOI,
         group = 2,
         groupMask = 2^4,
@@ -408,7 +446,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [38] = {
+    [38] =
+    {
         zoneId = dsp.zone.CASTLE_OZTROJA,
         group = 2,
         groupMask = 2^5,
@@ -419,7 +458,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [43] = {
+    [43] =
+    {
         zoneId = dsp.zone.CASTLE_ZVAHL_BAILEYS,
         group = 2,
         groupMask = 2^6,
@@ -430,7 +470,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [41] = {
+    [41] =
+    {
         zoneId = dsp.zone.RANGUEMONT_PASS,
         group = 2,
         groupMask = 2^7,
@@ -441,7 +482,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [46] = {
+    [46] =
+    {
         zoneId = dsp.zone.LOWER_DELKFUTTS_TOWER,
         group = 2,
         groupMask = 2^8,
@@ -452,7 +494,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [9] = {
+    [9] =
+    {
         zoneId = dsp.zone.KING_RANPERRES_TOMB,
         group = 2,
         groupMask = 2^9,
@@ -463,7 +506,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [23] = {
+    [23] =
+    {
         zoneId = dsp.zone.DANGRUF_WADI,
         group = 2,
         groupMask = 2^10,
@@ -474,7 +518,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [30] = {
+    [30] =
+    {
         zoneId = dsp.zone.INNER_HORUTOTO_RUINS,
         group = 2,
         groupMask = 2^11,
@@ -485,7 +530,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [13] = {
+    [13] =
+    {
         zoneId = dsp.zone.ORDELLES_CAVES,
         group = 2,
         groupMask = 2^12,
@@ -496,7 +542,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [14] = {
+    [14] =
+    {
         zoneId = dsp.zone.GUSGEN_MINES,
         group = 2,
         groupMask = 2^13,
@@ -507,7 +554,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [34] = {
+    [34] =
+    {
         zoneId = dsp.zone.MAZE_OF_SHAKHRAMI,
         group = 2,
         groupMask = 2^14,
@@ -518,7 +566,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [48] = {
+    [48] =
+    {
         zoneId = dsp.zone.ROMAEVE,
         group = 2,
         groupMask = 2^15,
@@ -529,7 +578,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [51] = {
+    [51] =
+    {
         zoneId = dsp.zone.WESTERN_ALTEPA_DESERT,
         group = 2,
         groupMask = 2^16,
@@ -540,7 +590,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [62] = {
+    [62] =
+    {
         zoneId = dsp.zone.TEMPLE_OF_UGGALEPIH,
         group = 2,
         groupMask = 2^17,
@@ -551,7 +602,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [22] = {
+    [22] =
+    {
         zoneId = dsp.zone.KORROLOKA_TUNNEL,
         group = 2,
         groupMask = 2^18,
@@ -562,7 +614,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [55] = {
+    [55] =
+    {
         zoneId = dsp.zone.KUFTAL_TUNNEL,
         group = 2,
         groupMask = 2^19,
@@ -573,7 +626,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [58] = {
+    [58] =
+    {
         zoneId = dsp.zone.SEA_SERPENT_GROTTO,
         group = 2,
         groupMask = 2^20,
@@ -584,7 +638,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [56] = {
+    [56] =
+    {
         zoneId = dsp.zone.GUSTAV_TUNNEL,
         group = 2,
         groupMask = 2^21,
@@ -595,7 +650,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [35] = {
+    [35] =
+    {
         zoneId = dsp.zone.LABYRINTH_OF_ONZOZO,
         group = 2,
         groupMask = 2^22,
@@ -606,7 +662,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [15] = {
+    [15] =
+    {
         zoneId = dsp.zone.CARPENTERS_LANDING,
         group = 2,
         groupMask = 2^23,
@@ -617,7 +674,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [31] = {
+    [31] =
+    {
         zoneId = dsp.zone.BIBIKI_BAY,
         group = 2,
         groupMask = 2^24,
@@ -628,7 +686,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [67] = {
+    [67] =
+    {
         zoneId = dsp.zone.MISAREAUX_COAST,
         group = 2,
         groupMask = 2^25,
@@ -639,7 +698,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [68] = {
+    [68] =
+    {
         zoneId = dsp.zone.PHOMIUNA_AQUEDUCTS,
         group = 2,
         groupMask = 2^26,
@@ -650,7 +710,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [69] = {
+    [69] =
+    {
         zoneId = dsp.zone.SACRARIUM,
         group = 2,
         groupMask = 2^27,
@@ -661,7 +722,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [70] = {
+    [70] =
+    {
         zoneId = dsp.zone.WAJAOM_WOODLANDS,
         group = 2,
         groupMask = 2^28,
@@ -672,7 +734,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [71] = {
+    [71] =
+    {
         zoneId = dsp.zone.MAMOOK,
         group = 2,
         groupMask = 2^29,
@@ -683,7 +746,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [72] = {
+    [72] =
+    {
         zoneId = dsp.zone.AYDEEWA_SUBTERRANE,
         group = 2,
         groupMask = 2^30,
@@ -694,7 +758,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [78] = {
+    [78] =
+    {
         zoneId = dsp.zone.EAST_RONFAURE_S,
         group = 2,
         groupMask = 2^31,
@@ -705,7 +770,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [79] = {
+    [79] =
+    {
         zoneId = dsp.zone.JUGNER_FOREST_S,
         group = 3,
         groupMask = 2^0,
@@ -716,7 +782,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [85] = {
+    [85] =
+    {
         zoneId = dsp.zone.VUNKERL_INLET_S,
         group = 3,
         groupMask = 2^1,
@@ -727,7 +794,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [80] = {
+    [80] =
+    {
         zoneId = dsp.zone.BATALLIA_DOWNS_S,
         group = 3,
         groupMask = 2^2,
@@ -738,7 +806,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [83] = {
+    [83] =
+    {
         zoneId = dsp.zone.NORTH_GUSTABERG_S,
         group = 3,
         groupMask = 2^3,
@@ -749,7 +818,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [84] = {
+    [84] =
+    {
         zoneId = dsp.zone.GRAUBERG_S,
         group = 3,
         groupMask = 2^4,
@@ -760,7 +830,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [86] = {
+    [86] =
+    {
         zoneId = dsp.zone.PASHHOW_MARSHLANDS_S,
         group = 3,
         groupMask = 2^5,
@@ -771,7 +842,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [87] = {
+    [87] =
+    {
         zoneId = dsp.zone.ROLANBERRY_FIELDS_S,
         group = 3,
         groupMask = 2^6,
@@ -782,7 +854,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [90] = {
+    [90] =
+    {
         zoneId = dsp.zone.WEST_SARUTABARUTA_S,
         group = 3,
         groupMask = 2^7,
@@ -793,7 +866,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [91] = {
+    [91] =
+    {
         zoneId = dsp.zone.FORT_KARUGO_NARUGO_S,
         group = 3,
         groupMask = 2^8,
@@ -804,7 +878,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [92] = {
+    [92] =
+    {
         zoneId = dsp.zone.MERIPHATAUD_MOUNTAINS_S,
         group = 3,
         groupMask = 2^9,
@@ -815,7 +890,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [93] = {
+    [93] =
+    {
         zoneId = dsp.zone.SAUROMUGUE_CHAMPAIGN_S,
         group = 3,
         groupMask = 2^10,
@@ -826,7 +902,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [95] = {
+    [95] =
+    {
         zoneId = dsp.zone.BEAUCEDINE_GLACIER_S,
         group = 3,
         groupMask = 2^11,
@@ -837,7 +914,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [96] = {
+    [96] =
+    {
         zoneId = dsp.zone.CASTLE_ZVAHL_BAILEYS_S,
         group = 3,
         groupMask = 2^12,
@@ -848,7 +926,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [94] = {
+    [94] =
+    {
         zoneId = dsp.zone.GARLAIGE_CITADEL_S,
         group = 3,
         groupMask = 2^13,
@@ -859,7 +938,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [88] = {
+    [88] =
+    {
         zoneId = dsp.zone.CRAWLERS_NEST_S,
         group = 3,
         groupMask = 2^14,
@@ -870,7 +950,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [81] = {
+    [81] =
+    {
         zoneId = dsp.zone.THE_ELDIEME_NECROPOLIS_S,
         group = 3,
         groupMask = 2^15,
@@ -881,7 +962,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [59] = {
+    [59] =
+    {
         zoneId = dsp.zone.KAZHAM,
         group = 3,
         groupMask = 2^16,
@@ -892,7 +974,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [60] = {
+    [60] =
+    {
         zoneId = dsp.zone.NORG,
         group = 3,
         groupMask = 2^17,
@@ -903,7 +986,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [52] = {
+    [52] =
+    {
         zoneId = dsp.zone.RABAO,
         group = 3,
         groupMask = 2^18,
@@ -914,7 +998,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [4] = {
+    [4] =
+    {
         zoneId = dsp.zone.TAVNAZIAN_SAFEHOLD,
         group = 3,
         groupMask = 2^19,
@@ -925,7 +1010,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [5] = {
+    [5] =
+    {
         zoneId = dsp.zone.AHT_URHGAN_WHITEGATE,
         group = 3,
         groupMask = 2^20,
@@ -936,7 +1022,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [74] = {
+    [74] =
+    {
         zoneId = dsp.zone.NASHMAU,
         group = 3,
         groupMask = 2^21,
@@ -947,7 +1034,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [77] = {
+    [77] =
+    {
         zoneId = dsp.zone.SOUTHERN_SAN_DORIA_S,
         group = 3,
         groupMask = 2^22,
@@ -958,7 +1046,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [82] = {
+    [82] =
+    {
         zoneId = dsp.zone.BASTOK_MARKETS_S,
         group = 3,
         groupMask = 2^23,
@@ -969,7 +1058,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [89] = {
+    [89] =
+    {
         zoneId = dsp.zone.WINDURST_WATERS_S,
         group = 3,
         groupMask = 2^24,
@@ -980,7 +1070,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [76] = {
+    [76] =
+    {
         zoneId = dsp.zone.CAEDARVA_MIRE,
         group = 3,
         groupMask = 2^25,
@@ -991,7 +1082,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [75] = {
+    [75] =
+    {
         zoneId = dsp.zone.ARRAPAGO_REEF,
         group = 3,
         groupMask = 2^26,
@@ -1002,7 +1094,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [73] = {
+    [73] =
+    {
         zoneId = dsp.zone.HALVUNG,
         group = 3,
         groupMask = 2^27,
@@ -1013,7 +1106,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [45] = {
+    [45] =
+    {
         zoneId = dsp.zone.BEHEMOTHS_DOMINION,
         group = 3,
         groupMask = 2^28,
@@ -1024,7 +1118,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [49] = {
+    [49] =
+    {
         zoneId = dsp.zone.DRAGONS_AERY,
         group = 3,
         groupMask = 2^29,
@@ -1035,7 +1130,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [54] = {
+    [54] =
+    {
         zoneId = dsp.zone.VALLEY_OF_SORROWS,
         group = 3,
         groupMask = 2^30,
@@ -1046,7 +1142,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [63] = {
+    [63] =
+    {
         zoneId = dsp.zone.IFRITS_CAULDRON,
         group = 3,
         groupMask = 2^31,
@@ -1057,7 +1154,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [21] = {
+    [21] =
+    {
         zoneId = dsp.zone.ZERUHN_MINES,
         group = 4,
         groupMask = 2^0,
@@ -1068,7 +1166,8 @@ survivalGuides = {
         posRot = 64,
         messageId = 12341
     },
-    [97] = {
+    [97] =
+    {
         zoneId = dsp.zone.EASTERN_ADOULIN,
         group = 4,
         groupMask = 2^1,
@@ -1081,7 +1180,8 @@ survivalGuides = {
     }
 }
 
-zoneIdToMenuID = {
+zoneIdToMenuID =
+{
     [231] = 0,
     [234] = 1,
     [240] = 2,
