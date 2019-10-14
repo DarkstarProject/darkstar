@@ -34,6 +34,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.YAGUDO_TORCH);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.YAGUDO_TORCH);
         player:setVar("YagudoTorchCS",0);
+        player:setVar("FickblixCS",1);
     end
 
 end;
