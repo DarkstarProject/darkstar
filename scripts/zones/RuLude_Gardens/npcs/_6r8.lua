@@ -14,22 +14,27 @@ end
 
 function onTrigger(player,npc)
     local pNation = player:getNation()
-    local currentMission = player:getCurrentMission(pNation)
-    local MissionStatus = player:getVar("MissionStatus")
 
-    if currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 4 then
-        player:startEvent(40)
-    elseif pNation == dsp.nation.WINDURST and player:getRank() == 4 and
-        currentMission == dsp.mission.id.windurst.NONE and
-        getMissionRankPoints(player,13) == 1
-    then
-        if player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
-            player:startEvent(131,1)
+    if pNation == dsp.nation.WINDURST then
+        local currentMission = player:getCurrentMission(pNation)
+        local MissionStatus = player:getVar("MissionStatus")
+
+        if currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 4 then
+            player:startEvent(40)
+        elseif player:getRank() == 4 and
+            currentMission == dsp.mission.id.windurst.NONE and
+            getMissionRankPoints(player,13) == 1
+        then
+            if player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
+                player:startEvent(131,1)
+            else
+                player:startEvent(131)
+            end
+        elseif player:getRank() >= 4 then
+            player:messageSpecial(ID.text.RESTRICTED)
         else
-            player:startEvent(131)
+            player:messageSpecial(ID.text.RESTRICTED+1) -- you have no letter of introduction
         end
-    elseif player:getRank() >= 4 then
-        player:messageSpecial(ID.text.RESTRICTED) -- restricted area
     else
         player:messageSpecial(ID.text.RESTRICTED+1) -- you have no letter of introduction
     end
