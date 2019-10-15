@@ -21,6 +21,7 @@ zones[dsp.zone.RULUDE_GARDENS] =
         NOTHING_OUT_OF_ORDINARY          = 6542, -- There is nothing out of the ordinary here.
         YOUR_MAXIMUM_LEVEL               = 6584, -- Your maximum level has been raised to [50/55/60/65/70/75/80/85/90/95/99]!
         MOG_LOCKER_OFFSET                = 6692, -- Your Mog Locker lease is valid until <timestamp>, kupo.
+        RESTRICTED                       = 10094, -- It reads, "Restricted Area."
         SOVEREIGN_WITHOUT_AN_APPOINTMENT = 10167, -- Nobody sees the sovereign without an appointment!
         ITEM_DELIVERY_DIALOG             = 10258, -- Now offering quick and easy delivery of packages to homes everywhere!
         HOMEPOINT_SET                    = 10271, -- Home point set!
