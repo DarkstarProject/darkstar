@@ -9,7 +9,7 @@ require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
     local pNation = player:getNation()
@@ -46,10 +46,10 @@ function onTrigger(player,npc)
     elseif pNation == dsp.nation.BASTOK then
         player:startEvent(46)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
     if csid == 42 then
@@ -60,4 +60,4 @@ function onEventFinish(player,csid,option)
     elseif csid == 36 then
         finishMissionTimeline(player,3,csid,option)
     end
-end;
+end

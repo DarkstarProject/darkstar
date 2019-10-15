@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Monastic_Cavern/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
     if player:getCurrentMission(player:getNation()) == 13 and not player:hasKeyItem(dsp.ki.MAGICITE_OPTISTONE) then
@@ -21,10 +21,10 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(ID.text.THE_MAGICITE_GLOWS_OMINOUSLY)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
     if csid == 0 then
@@ -37,4 +37,4 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MAGICITE_OPTISTONE)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MAGICITE_OPTISTONE)
     end
-end;
+end

@@ -4,27 +4,27 @@
 -- Involved in Mission: Magicite
 -- !pos 11 25 -81 148
 -----------------------------------
-require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Qulun_Dome/IDs");
+require("scripts/globals/keyitems")
+local ID = require("scripts/zones/Qulun_Dome/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
     if player:getCurrentMission(player:getNation()) == 13 and not player:hasKeyItem(dsp.ki.MAGICITE_AURASTONE) then
         if player:getVar("Magicite") == 2 then
-            player:startEvent(0,1); -- play Lion part of the CS (this is last magicite)
+            player:startEvent(0,1) -- play Lion part of the CS (this is last magicite)
         else
-            player:startEvent(0); -- don't play Lion part of the CS
+            player:startEvent(0) -- don't play Lion part of the CS
         end
     else
-        player:messageSpecial(ID.text.THE_MAGICITE_GLOWS_OMINOUSLY);
+        player:messageSpecial(ID.text.THE_MAGICITE_GLOWS_OMINOUSLY)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
     if csid == 0 then
@@ -33,8 +33,8 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("Magicite",player:getVar("Magicite")+1)
         end
-        player:setVar("MissionStatus",4);
-        player:addKeyItem(dsp.ki.MAGICITE_AURASTONE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICITE_AURASTONE);
+        player:setVar("MissionStatus",4)
+        player:addKeyItem(dsp.ki.MAGICITE_AURASTONE)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICITE_AURASTONE)
     end
-end;
+end
