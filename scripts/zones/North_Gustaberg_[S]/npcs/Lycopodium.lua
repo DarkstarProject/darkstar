@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getMaskBit(player:getVar("LycopodiumTeleport_Mask"),2) then
+    if player:getMaskBit(player:getCharVar("LycopodiumTeleport_Mask"),2) then
         player:messageSpecial(ID.text.LYCOPODIUM_ENTRANCED)
     else
         player:messageSpecial(ID.text.LYCOPODIUM_ENTRANCED)
@@ -24,6 +24,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 113 then
-        player:setMaskBit(player:getVar("LycopodiumTeleport_Mask"), "LycopodiumTeleport_Mask", 2, true)
+        player:setMaskBit(player:getCharVar("LycopodiumTeleport_Mask"), "LycopodiumTeleport_Mask", 2, true)
     end
 end

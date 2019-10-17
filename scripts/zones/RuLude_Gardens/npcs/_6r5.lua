@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
     if pNation == dsp.nation.SANDORIA then
         local currentMission = player:getCurrentMission(pNation)
-        local MissionStatus = player:getVar("MissionStatus")
+        local MissionStatus = player:getCharVar("MissionStatus")
 
         if currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 6 then
             player:startEvent(39)
@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
     if csid == 39 then
         finishMissionTimeline(player,1,csid,option)
     elseif csid == 130 and option == 1 then
-        player:setVar("MissionStatus",1)
+        player:setCharVar("MissionStatus",1)
         if not player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
             player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)
