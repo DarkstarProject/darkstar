@@ -13,9 +13,9 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 2) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_4") == 2) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_4",0);
+            player:setCharVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     if (MakingHeadlines == 0) then
         player:startEvent(665); -- Quest Start
     elseif (MakingHeadlines == 1) then
-        prog = player:getVar("QuestMakingHeadlines_var");
+        prog = player:getCharVar("QuestMakingHeadlines_var");
         --     Variable to track if player has talked to 4 NPCs and a door
         --     1 = Kyume
         --    2 = Yujuju
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
         player:delKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);
         player:delKeyItem(dsp.ki.PORT_WINDURST_SCOOP);
-        player:setVar("QuestMakingHeadlines_var",0);
+        player:setCharVar("QuestMakingHeadlines_var",0);
         player:addFame(WINDURST,30);
         player:completeQuest(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
     end

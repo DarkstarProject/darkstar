@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
     local CurrentMission = player:getCurrentMission(WINDURST);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     if (CurrentMission == dsp.mission.id.windurst.VAIN and MissionStatus >= 1) then
         player:startEvent(2);
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MOONLIGHT_ORE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOONLIGHT_ORE);
     elseif (csid == 2 and player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 4 and player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING) then
         player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_ROMAEVE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ROMAEVE);

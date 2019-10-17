@@ -14,7 +14,7 @@ end
 
 function onTrigger(player, npc)
     local currentMission = player:getCurrentMission(WINDURST)
-    local missionStatus = player:getVar("MissionStatus")
+    local missionStatus = player:getCharVar("MissionStatus")
 
     if
         currentMission == dsp.mission.id.windurst.FULL_MOON_FOUNTAIN and
@@ -51,7 +51,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 68 then
-        player:setVar("MissionStatus", 3)
+        player:setCharVar("MissionStatus", 3)
         player:delKeyItem(dsp.ki.SOUTHWESTERN_STAR_CHARM)
     end
 end

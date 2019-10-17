@@ -8,7 +8,7 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getVar("TheRequiemCS") == 3) then
-        player:setVar("TheRequiemYumKilled",1);
+    if (player:getCharVar("TheRequiemCS") == 3) then
+        player:setCharVar("TheRequiemYumKilled",1);
     end
 end;

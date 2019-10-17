@@ -227,7 +227,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getCharVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
                         code = function(player) npcUtil.giveItem(player, 13121) end,
                     },
                 },
@@ -309,7 +309,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -345,7 +345,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -368,7 +368,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LEPHEMERE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LEPHEMERE)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -460,7 +460,7 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(dsp.ki.TORN_OUT_PAGES)
+                            return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getCharVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(dsp.ki.TORN_OUT_PAGES)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.TORN_OUT_PAGES) end,
                     },
@@ -565,10 +565,10 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getVar("needs_crawler_blood") == 1 end,
+                        test = function(player) return player:getCharVar("needs_crawler_blood") == 1 end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.CRAWLER_BLOOD)
-                            player:setVar("needs_crawler_blood",0)
+                            player:setCharVar("needs_crawler_blood",0)
                         end,
                     },
                 },
@@ -692,7 +692,7 @@ local treasureInfo =
                         test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LANCIENNE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LANCIENNE)
-                            player:addVar("ATestOfTrueLoveProgress", 1)
+                            player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -952,7 +952,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getVar("UnderOathCS") == 3 end,
+                        test = function(player) return player:getCharVar("UnderOathCS") == 3 end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MIQUES_PAINTBRUSH) end,
                     },
                 },
@@ -982,10 +982,10 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getVar("WildCard") == 2 end,
+                        test = function(player) return player:getCharVar("WildCard") == 2 end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.JOKER_CARD)
-                            player:setVar("WildCard",3)
+                            player:setCharVar("WildCard",3)
                         end,
                     },
                 },
@@ -1021,11 +1021,11 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and not player:hasKeyItem(dsp.ki.LARGE_TRICK_BOX) end,
+                        test = function(player) return player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and player:getCharVar("trueWillCS") == 2 and not player:hasKeyItem(dsp.ki.LARGE_TRICK_BOX) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.LARGE_TRICK_BOX) end,
                     },
                     {
-                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1 end,
+                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getCharVar("KnightStalker_Progress") == 1 end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) end,
                     },
                 },
@@ -1324,7 +1324,7 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
     local info = treasureInfo[chestType].zone[zoneId]
     local mJob = player:getMainJob()
     local mLvl = player:getMainLvl()
-    local activeHands = player:getVar("BorghertzAlreadyActiveWithJob")
+    local activeHands = player:getCharVar("BorghertzAlreadyActiveWithJob")
     local illusionCooldown  = npc:getLocalVar("illusionCooldown")
 
     -- determine type of key traded

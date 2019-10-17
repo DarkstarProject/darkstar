@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED then
         if offset == 0 and player:hasKeyItem(dsp.ki.AQUAFLORA2) then
             player:startEvent(20)
-        elseif offset == 1 and player:getVar("DabotzKilled") == 1 then
+        elseif offset == 1 and player:getCharVar("DabotzKilled") == 1 then
             player:startEvent(18)
         elseif offset == 1 and player:hasKeyItem(dsp.ki.AQUAFLORA3) and not GetMobByID(ID.mob.DABOTZS_GHOST):isSpawned() then
             SpawnMob(ID.mob.DABOTZS_GHOST):updateClaim(player)
@@ -40,7 +40,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 18 then
         player:delKeyItem(dsp.ki.AQUAFLORA3)
-        player:setVar("DabotzKilled", 0)
+        player:setCharVar("DabotzKilled", 0)
     elseif csid == 21 then
         player:delKeyItem(dsp.ki.AQUAFLORA1)
     elseif csid == 20 then

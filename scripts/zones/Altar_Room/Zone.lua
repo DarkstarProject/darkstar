@@ -12,7 +12,7 @@ end
 
 function onZoneIn(player,prevZone)
     local cs = -1
-    if player:getVar("FickblixCS") == 1 then
+    if player:getCharVar("FickblixCS") == 1 then
         cs = 10000
     end
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
@@ -33,6 +33,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10000 then
-        player:setVar("FickblixCS",0)
+        player:setCharVar("FickblixCS",0)
     end
 end

@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
     local ATFTA = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_THIRST_FOR_THE_AGES);
-    local ATFTA_Need_KI = ((player:getVar("ATFTA_Status") < 2) and (not player:hasKeyItem(dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT)));
+    local ATFTA_Need_KI = ((player:getCharVar("ATFTA_Status") < 2) and (not player:hasKeyItem(dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT)));
 
     local SOA_Mission = player:getCurrentMission(SOA);
 

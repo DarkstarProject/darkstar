@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:getVar("aThiefinNorgCS") == 3) then
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:getCharVar("aThiefinNorgCS") == 3) then
         player:startEvent(186);
         return -1;
     end
@@ -23,6 +23,6 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 186) then
-        player:setVar("aThiefinNorgCS",4);
+        player:setCharVar("aThiefinNorgCS",4);
     end
 end;

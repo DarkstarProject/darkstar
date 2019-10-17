@@ -35,7 +35,7 @@ function onEventFinish(player, csid, option)
     if csid == 32001 then
         if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_SECRET_WEAPON then
             npcUtil.giveKeyItem(player, dsp.ki.CRYSTAL_DOWSER)
-            player:setVar("SecretWeaponStatus", 3)
+            player:setCharVar("SecretWeaponStatus", 3)
         end
     end
 end

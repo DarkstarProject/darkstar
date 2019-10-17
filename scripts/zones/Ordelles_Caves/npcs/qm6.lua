@@ -11,7 +11,7 @@ require("scripts/globals/npc_util")
 function onTrade(player, npc, trade)
     -- pop Gerwitz's Soul
     if
-        player:getVar("darkPuppetCS") >= 4 and
+        player:getCharVar("darkPuppetCS") >= 4 and
         npcUtil.tradeHas(trade, 16940) and
         npcUtil.popFromQM(player, npc, ID.mob.DARK_PUPPET_OFFSET + 2, {hide = 0})
     then

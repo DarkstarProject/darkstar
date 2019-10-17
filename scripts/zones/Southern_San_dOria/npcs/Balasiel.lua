@@ -37,13 +37,13 @@ function onTrigger(player,npc)
 
     if (wsQuestEvent ~= nil) then
         player:startEvent(wsQuestEvent)
-    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 2) then
+    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getCharVar("KnightStalker_Progress") == 2) then
         player:startEvent(63) -- DRG AF3 cutscene, doesn't appear to have a follow up.
     elseif (lvl < 7) then
         player:startEvent(668)
     elseif (lvl >= 7 and aSquiresTest ~= QUEST_COMPLETED) then
         if (aSquiresTest == 0) then
-            if (player:getVar("SquiresTest") == 1) then
+            if (player:getCharVar("SquiresTest") == 1) then
                 player:startEvent(631)
             else
                 player:startEvent(616)
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
         player:startEvent(670)
     elseif (lvl >= 30 and aKnightsTest ~= QUEST_COMPLETED) then
         if (aKnightsTest == 0) then
-            if (player:getVar("KnightsTest_Event") == 1) then
+            if (player:getCharVar("KnightsTest_Event") == 1) then
                 player:startEvent(635)
             else
                 player:startEvent(627)
@@ -89,11 +89,11 @@ function onEventFinish(player,csid,option)
         if (option == 0) then
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_SQUIRE_S_TEST)
         else
-            player:setVar("SquiresTest_Event",1)
+            player:setCharVar("SquiresTest_Event",1)
         end
     elseif (csid == 631 and option == 0) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_SQUIRE_S_TEST)
-        player:setVar("SquiresTest_Event",0)
+        player:setCharVar("SquiresTest_Event",0)
     elseif (csid == 617) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete()
@@ -121,13 +121,13 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(dsp.ki.BOOK_OF_TASKS)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BOOK_OF_TASKS)
         else
-            player:setVar("KnightsTest_Event",1)
+            player:setCharVar("KnightsTest_Event",1)
         end
     elseif (csid == 635 and option == 0) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_KNIGHT_S_TEST)
         player:addKeyItem(dsp.ki.BOOK_OF_TASKS)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BOOK_OF_TASKS)
-        player:setVar("KnightsTest_Event",0)
+        player:setCharVar("KnightsTest_Event",0)
     elseif (csid == 628) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addTitle(dsp.title.TRIED_AND_TESTED_KNIGHT)
@@ -145,7 +145,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 12306) -- Kite Shield
         end
     elseif (csid == 63) then
-        player:setVar("KnightStalker_Progress",3)
+        player:setCharVar("KnightStalker_Progress",3)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.IMPULSE_DRIVE_LEARNED)
     end

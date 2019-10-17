@@ -8,7 +8,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 -- Item 1019 = Lufet Salt
--- Had to use setVar because you have to trade Salts one at a time according to the wiki.
+-- Had to use setCharVar because you have to trade Salts one at a time according to the wiki.
 -- Lufet Salt can be obtained by killing Crabs in normal West Ronfaure.
 
 function onTrade(player,npc,trade)
@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
     local cnt = trade:getItemCount();
     local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
     if (lufetSalt and cnt == 1 and beansAhoy == QUEST_ACCEPTED) then
-        if (player:getVar("BeansAhoy") == 0 == true) then
+        if (player:getCharVar("BeansAhoy") == 0 == true) then
 
             player:startEvent(337); -- Traded the Correct Item Dialogue (NOTE: You have to trade the Salts one at according to wiki)
 
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     elseif (beansAhoy == QUEST_ACCEPTED) then
         player:startEvent(335); -- Quest Active, NPC Repeats what he says but as normal 'text' instead of cutscene.
 
-    elseif (beansAhoy == QUEST_COMPLETED and getConquestTally() ~= player:getVar("BeansAhoy_ConquestWeek")) then
+    elseif (beansAhoy == QUEST_COMPLETED and getConquestTally() ~= player:getCharVar("BeansAhoy_ConquestWeek")) then
         player:startEvent(342);
     elseif (beansAhoy == QUEST_COMPLETED) then
         player:startEvent(341);
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 337) then
         player:tradeComplete();
-        player:setVar("BeansAhoy",1);
+        player:setCharVar("BeansAhoy",1);
         player:needsToZone(true);
 
     elseif (csid == 340 or csid == 342) then
@@ -70,10 +70,10 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(5704,1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,5704);
-            player:setVar("BeansAhoy_ConquestWeek",getConquestTally());
+            player:setCharVar("BeansAhoy_ConquestWeek",getConquestTally());
             if (csid == 340) then
                 player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.BEANS_AHOY);
-                player:setVar("BeansAhoy",0);
+                player:setCharVar("BeansAhoy",0);
                 player:tradeComplete();
             end
 

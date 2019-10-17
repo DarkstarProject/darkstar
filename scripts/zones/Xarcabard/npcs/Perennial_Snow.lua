@@ -15,10 +15,10 @@ function onTrigger(player, npc)
     local circleOfTime = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME)
 
     -- CIRCLE OF TIME (Bard AF3)
-    if circleOfTime == QUEST_ACCEPTED and player:getVar("circleTime") == 3 then
-        if player:getVar("star_ringburied") == 0 then
+    if circleOfTime == QUEST_ACCEPTED and player:getCharVar("circleTime") == 3 then
+        if player:getCharVar("star_ringburied") == 0 then
             player:startEvent(3)
-        elseif os.time() > player:getVar("star_ringburied") then
+        elseif os.time() > player:getCharVar("star_ringburied") then
             player:startEvent(2)
         else
             player:messageSpecial(ID.text.PERENNIAL_SNOW_WAIT, 225)
@@ -35,9 +35,9 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 3 then
-        player:setVar("star_ringburied", os.time() + 60) -- wait 1 minute
+        player:setCharVar("star_ringburied", os.time() + 60) -- wait 1 minute
     elseif csid == 2 then
-        player:setVar("star_ringburied", 0)
-        player:setVar("circleTime", 4)
+        player:setCharVar("star_ringburied", 0)
+        player:setCharVar("circleTime", 4)
     end
 end

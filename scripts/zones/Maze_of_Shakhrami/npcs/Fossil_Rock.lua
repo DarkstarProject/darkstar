@@ -17,21 +17,21 @@ end
 function onTrigger(player, npc)
     local offset = npc:getID() - ID.npc.FOSSIL_ROCK_OFFSET
     local windyMiss = player:getCurrentMission(WINDURST)
-    local windyStat = player:getVar("MissionStatus")
-    local randfoss = player:getVar("MissionStatus_randfoss")
+    local windyStat = player:getCharVar("MissionStatus")
+    local randfoss = player:getCharVar("MissionStatus_randfoss")
 
     -- LOST FOR WORDS
     if offset <= 6 and windyMiss == dsp.mission.id.windurst.LOST_FOR_WORDS and (windyStat == 2 or windyStat == 3) then
         if randfoss == 0 or randfoss > 6 then -- account for values higher than 6 from defunct code
             randfoss = math.random(1, 6)
-            player:setVar("MissionStatus_randfoss", randfoss)
+            player:setCharVar("MissionStatus_randfoss", randfoss)
         end
 
         if (offset == 0 and randfoss == 1) or (offset > 1 and offset == randfoss) then -- clicked target stone
             if player:hasKeyItem(dsp.ki.LAPIS_CORAL) then
                 player:messageSpecial(ID.text.FOSSIL_EXTRACTED)
             else
-                player:setVar("MissionStatus", 3)
+                player:setCharVar("MissionStatus", 3)
                 npcUtil.giveKeyItem(player, dsp.ki.LAPIS_CORAL)
             end
         else

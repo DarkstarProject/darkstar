@@ -12,7 +12,7 @@ require("scripts/globals/npc_util")
 function onTrade(player, npc, trade)
     if
         player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_RESCUE_DRILL and
-        player:getVar("MissionStatus") == 9 and
+        player:getCharVar("MissionStatus") == 9 and
         npcUtil.tradeHas(trade, 16535) -- bronze sword
     then
         player:startEvent(2)
@@ -21,7 +21,7 @@ end
 
 function onTrigger(player, npc)
     if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_RESCUE_DRILL then
-        local missionStatus = player:getVar("MissionStatus")
+        local missionStatus = player:getCharVar("MissionStatus")
 
         if missionStatus >= 2 and missionStatus <= 7 then
             player:startEvent(1)
@@ -42,10 +42,10 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 1 then
-        player:setVar("theRescueDrillRandomNPC", math.random(1, 3))
-        player:setVar("MissionStatus", 8)
+        player:setCharVar("theRescueDrillRandomNPC", math.random(1, 3))
+        player:setCharVar("MissionStatus", 8)
     elseif csid == 2 then
-        player:setVar("MissionStatus", 10)
+        player:setCharVar("MissionStatus", 10)
         player:confirmTrade()
     end
 end

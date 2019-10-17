@@ -33,8 +33,8 @@ function onEventFinish(player, csid, option)
     if
         csid == 32001 and
         player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and
-        player:getVar("MissionStatus") == 3
+        player:getCharVar("MissionStatus") == 3
     then
-        player:setVar("MissionStatus", 4)
+        player:setCharVar("MissionStatus", 4)
     end
 end

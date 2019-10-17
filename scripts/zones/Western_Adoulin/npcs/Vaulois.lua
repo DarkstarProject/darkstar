@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local Transporting = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.TRANSPORTING);
-    if ((Transporting == QUEST_ACCEPTED) and (player:getVar("Transporting_Status") >= 2)) then
+    if ((Transporting == QUEST_ACCEPTED) and (player:getCharVar("Transporting_Status") >= 2)) then
         -- Finishing Quest: 'Transporting'
         player:startEvent(2591);
     elseif ((Transporting == QUEST_AVAILABLE) and (player:getFameLevel(ADOULIN) >= 2)) then

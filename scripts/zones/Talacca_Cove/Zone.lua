@@ -16,7 +16,7 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.TESTING_THE_WATERS and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.TESTING_THE_WATERS and player:getCharVar("AhtUrganStatus") == 1) then
         player:setPos(-88.879,-7.318,-109.233,173);
         cs = 106;
     elseif (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.PERCIPIENT_EYE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERCIPIENT_EYE);
         player:setTitle(dsp.title.TREASURE_TROVE_TENDER);
-        player:setVar("AhtUrganStatus", 0);
+        player:setCharVar("AhtUrganStatus", 0);
         player:addMission(TOAU,dsp.mission.id.toau.LEGACY_OF_THE_LOST);
     end
 end;

@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
     if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,12) == false) then
         player:startEvent(428);
@@ -37,6 +37,6 @@ function onEventFinish(player,csid,option)
             player:confirmTrade();
         end
     elseif (csid == 428) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",12,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",12,true);
     end
 end;

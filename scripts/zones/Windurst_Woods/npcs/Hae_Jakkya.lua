@@ -15,7 +15,7 @@ function onTrigger(player,npc)
 
     if player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) then
         player:startEvent(406)
-    elseif player:getVar("CHASING_TALES_TRACK_BOOK") == 1 then
+    elseif player:getCharVar("CHASING_TALES_TRACK_BOOK") == 1 then
         player:startEvent(403)
     elseif player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION) then
         player:startEvent(402) -- Neeed CS here
@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 402 then
-        player:setVar("CHASING_TALES_TRACK_BOOK", 1)
+        player:setCharVar("CHASING_TALES_TRACK_BOOK", 1)
     end
 end

@@ -11,7 +11,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getVar("GiohAijhriSpokenTo") == 1 and not player:needToZone() and npcUtil.tradeHas(trade, 13360) then
+    if player:getCharVar("GiohAijhriSpokenTo") == 1 and not player:needToZone() and npcUtil.tradeHas(trade, 13360) then
         player:startEvent(490)
     end
 end
@@ -40,11 +40,11 @@ end
 function onEventFinish(player,csid,option)
     if csid == 487 then
         player:addQuest(WINDURST,dsp.quest.id.windurst.TWINSTONE_BONDING)
-        player:setVar("GiohAijhriSpokenTo", 1)
+        player:setCharVar("GiohAijhriSpokenTo", 1)
     elseif csid == 490 then
         player:confirmTrade()
         player:needToZone(true)
-        player:setVar("GiohAijhriSpokenTo", 0)
+        player:setCharVar("GiohAijhriSpokenTo", 0)
 
         if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TWINSTONE_BONDING) == QUEST_ACCEPTED then
             npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.TWINSTONE_BONDING, {item=17154, fame=80, title=dsp.title.BOND_FIXER})
@@ -54,6 +54,6 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*900)
         end
     elseif csid == 488 then
-        player:setVar("GiohAijhriSpokenTo", 1)
+        player:setCharVar("GiohAijhriSpokenTo", 1)
     end
 end

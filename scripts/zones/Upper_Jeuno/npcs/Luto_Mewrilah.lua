@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local WildcatJeuno = player:getVar("WildcatJeuno");
+    local WildcatJeuno = player:getCharVar("WildcatJeuno");
     if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,7) == false) then
         player:startEvent(10085);
     else
@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10085) then
-        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",7,true);
+        player:setMaskBit(player:getCharVar("WildcatJeuno"),"WildcatJeuno",7,true);
     end
 end;

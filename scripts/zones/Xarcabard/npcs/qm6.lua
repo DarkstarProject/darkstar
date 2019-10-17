@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local unbridledPassionCS = player:getVar("unbridledPassion")
+    local unbridledPassionCS = player:getCharVar("unbridledPassion")
 
     if unbridledPassionCS == 5 then
         player:startEvent(6, 0, 13360)
@@ -26,8 +26,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 6 then
-        player:setVar("unbridledPassion", 6)
+        player:setCharVar("unbridledPassion", 6)
     elseif csid == 7 and npcUtil.giveItem(player, 17323) then
-        player:setVar("unbridledPassion", 7)
+        player:setCharVar("unbridledPassion", 7)
     end
 end

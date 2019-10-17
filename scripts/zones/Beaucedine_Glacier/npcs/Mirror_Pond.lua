@@ -24,7 +24,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 100) then
-        player:setVar("LoveAndIceProgress",1);
+        player:setCharVar("LoveAndIceProgress",1);
         player:delKeyItem(dsp.ki.CARMELOS_SONG_SHEET);
     end
 end;

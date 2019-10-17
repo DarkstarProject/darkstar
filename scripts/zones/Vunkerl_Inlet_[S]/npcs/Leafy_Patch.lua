@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.BOY_AND_THE_BEAST) == QUEST_ACCEPTED and player:getVar("BoyAndTheBeast") == 2) then
+    if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.BOY_AND_THE_BEAST) == QUEST_ACCEPTED and player:getCharVar("BoyAndTheBeast") == 2) then
         if (VanadielHour() < 8) then
             player:startEvent(107);
         elseif (VanadielHour() < 16) then
@@ -33,11 +33,11 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:addKeyItem(dsp.ki.VUNKERL_HERB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
-            player:setVar("BoyAndTheBeast",3);
+            player:setCharVar("BoyAndTheBeast",3);
         else
             player:addKeyItem(dsp.ki.VUNKERL_HERB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
-            player:setVar("BoyAndTheBeast",4);
+            player:setCharVar("BoyAndTheBeast",4);
         end
     end
 end;

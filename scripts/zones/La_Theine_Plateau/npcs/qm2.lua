@@ -11,7 +11,7 @@ local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 
 function onTrade(player,npc,trade)
 
-    local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");
+    local hittingTheMarquisateNanaaCS = player:getCharVar("hittingTheMarquisateNanaaCS");
 
     if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade pickaxe
         if (hittingTheMarquisateNanaaCS == 1) then
@@ -37,7 +37,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:completeQuest(WINDURST, dsp.quest.id.windurst.HITTING_THE_MARQUISATE);
         player:addTitle(dsp.title.PARAGON_OF_THIEF_EXCELLENCE);
-        player:setVar("hittingTheMarquisateNanaaCS",0);
+        player:setCharVar("hittingTheMarquisateNanaaCS",0);
         player:delKeyItem(dsp.ki.CAT_BURGLARS_NOTE);
         end
     end

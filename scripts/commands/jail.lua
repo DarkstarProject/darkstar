@@ -48,6 +48,6 @@ function onTrigger(player, target, cellId, reason)
 
     -- Send the target to jail..
     local dest = jailCells[ cellId ];
-    targ:setVar( "inJail", cellId );
+    targ:setCharVar( "inJail", cellId );
     targ:setPos( dest[1], dest[2], dest[3], dest[4], 131 );
 end

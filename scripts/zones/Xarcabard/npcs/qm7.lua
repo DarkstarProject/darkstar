@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getVar("unbridledPassion") == 4 and not GetMobByID(ID.mob.KOENIGSTIGER):isSpawned() then
+    if player:getCharVar("unbridledPassion") == 4 and not GetMobByID(ID.mob.KOENIGSTIGER):isSpawned() then
         player:startEvent(8)
     end
 end

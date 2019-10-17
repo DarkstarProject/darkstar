@@ -31,8 +31,8 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    if csid == 32001 and player:getVar("aThiefinNorgCS") == 6 then
+    if csid == 32001 and player:getCharVar("aThiefinNorgCS") == 6 then
         npcUtil.giveKeyItem(player, dsp.ki.CHARRED_HELM)
-        player:setVar("aThiefinNorgCS", 7)
+        player:setCharVar("aThiefinNorgCS", 7)
     end
 end

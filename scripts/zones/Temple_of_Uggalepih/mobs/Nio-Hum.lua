@@ -23,9 +23,9 @@ end
 function onMobDeath(mob, player, isKiller)
     if
         player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and
-        player:getVar("MissionStatus") == 5 and
+        player:getCharVar("MissionStatus") == 5 and
         GetMobByID(ID.mob.NIO_A):isDead()
     then
-        player:setVar("Mission8-2Kills", 1)
+        player:setCharVar("Mission8-2Kills", 1)
     end
 end

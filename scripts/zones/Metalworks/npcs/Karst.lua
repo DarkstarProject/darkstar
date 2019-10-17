@@ -15,13 +15,13 @@ end;
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK);
 
-    if (currentMission == dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
+    if (currentMission == dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(602);
     elseif (currentMission == dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(603);
-    elseif (currentMission == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.ON_MY_WAY) and (player:getCharVar("MissionStatus") == 0) then
         player:startEvent(765);
-    elseif (currentMission == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 3) then
+    elseif (currentMission == dsp.mission.id.bastok.ON_MY_WAY) and (player:getCharVar("MissionStatus") == 3) then
         player:startEvent(766);
     else
         player:startEvent(601);
@@ -33,9 +33,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 602) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 765) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 766 or csid == 603) then
         finishMissionTimeline(player, 1, csid, option);
     end

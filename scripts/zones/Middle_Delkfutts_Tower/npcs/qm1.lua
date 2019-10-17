@@ -12,7 +12,7 @@ require("scripts/globals/quests")
 function onTrade(player, npc, trade)
     if
         player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_ACCEPTED and
-        player:getVar("bladeOfEvilCS") == 0 and
+        player:getCharVar("bladeOfEvilCS") == 0 and
         npcUtil.tradeHas(trade, 1114) and
         not GetMobByID(ID.mob.BLADE_OF_EVIL_MOB_OFFSET + 0):isSpawned() and
         not GetMobByID(ID.mob.BLADE_OF_EVIL_MOB_OFFSET + 1):isSpawned() and

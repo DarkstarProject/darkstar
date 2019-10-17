@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(1192, 1) and trade:getItemCount() == 1) then -- Quest: Wish Upon a Star - Trade Fallen Star
-        if (player:getVar("WishUponAStar_Status") == 3) then
+        if (player:getCharVar("WishUponAStar_Status") == 3) then
             if (player:getWeather() == dsp.weather.NONE and  (VanadielTOTD() == dsp.time.NIGHT or VanadielTOTD() == dsp.time.MIDNIGHT)) then
                 player:startEvent(334); -- Trade accepeted
             else
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     if (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.WISH_UPON_A_STAR) == QUEST_COMPLETED) then -- Quest: Wish Upon a Star - Quest has been completed.
         player:startEvent(335);
-    elseif (player:getVar("WishUponAStar_Status") == 2) then -- Quest: Wish Upon a Star - Player has spoken with Malene
+    elseif (player:getCharVar("WishUponAStar_Status") == 2) then -- Quest: Wish Upon a Star - Player has spoken with Malene
         player:startEvent(332);
-    elseif (player:getVar("WishUponAStar_Status") == 3) then -- Quest: Wish Upon a Star - Enu has asked player to give her a fallen star
+    elseif (player:getCharVar("WishUponAStar_Status") == 3) then -- Quest: Wish Upon a Star - Enu has asked player to give her a fallen star
         player:startEvent(333);
     else -- Standard dialog
         player:startEvent(327);
@@ -40,11 +40,11 @@ function onEventFinish(player,csid,option)
     -- printf ("CSID: %u",csid);
     -- printf ("RESULT: %u",option);
     if (csid == 332) then -- Quest: Wish Upon a Star
-        player:setVar("WishUponAStar_Status",3);
+        player:setCharVar("WishUponAStar_Status",3);
     elseif (csid == 334) then -- Quest: Wish Upon a Star - Traded Fallen Star
         player:tradeComplete( );
         player:completeQuest(BASTOK,dsp.quest.id.bastok.WISH_UPON_A_STAR);
-        player:setVar("WishUponAStar_Status",0);
+        player:setCharVar("WishUponAStar_Status",0);
         player:addFame(BASTOK,50);
         player:addItem(1236,4); -- Reward for quest completion: Cactus Stems x 4
         player:messageSpecial(ID.text.ITEM_OBTAINED,1236);

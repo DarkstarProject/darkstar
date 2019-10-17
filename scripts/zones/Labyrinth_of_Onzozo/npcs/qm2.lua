@@ -14,7 +14,7 @@ end
 function onTrigger(player, npc)
     if player:hasKeyItem(dsp.ki.WASHUS_TASTY_WURST) and not GetMobByID(ID.mob.UBUME):isSpawned() then
         player:startEvent(0)
-    elseif player:getVar("yomiOkuriKilledNM") == 1 and not player:hasKeyItem(dsp.ki.YOMOTSU_FEATHER) then
+    elseif player:getCharVar("yomiOkuriKilledNM") == 1 and not player:hasKeyItem(dsp.ki.YOMOTSU_FEATHER) then
         player:startEvent(1)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

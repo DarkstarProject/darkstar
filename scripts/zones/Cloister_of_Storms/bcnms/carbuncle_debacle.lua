@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 32001 then
-        player:setVar("CarbuncleDebacleProgress", 4)
+        player:setCharVar("CarbuncleDebacleProgress", 4)
     end
 end

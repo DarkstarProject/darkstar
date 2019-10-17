@@ -8,5 +8,5 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:setVar("BorghertzSparkKilled",1);
+    player:setCharVar("BorghertzSparkKilled",1);
 end;

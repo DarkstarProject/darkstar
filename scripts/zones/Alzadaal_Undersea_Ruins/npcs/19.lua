@@ -9,9 +9,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:getCharVar("AhtUrganStatus") == 0) then
         player:startEvent(6);
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:getVar("AhtUrganStatus") == 0) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:getCharVar("AhtUrganStatus") == 0) then
         player:startEvent(8);
     else
         player:messageSpecial(ID.text.DEVICE_MALFUNCTIONING);
@@ -24,8 +24,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 6) then
-        player:setVar("AhtUrganStatus", 1);
+        player:setCharVar("AhtUrganStatus", 1);
     elseif (csid == 8) then
-        player:setVar("AhtUrganStatus", 1);
+        player:setCharVar("AhtUrganStatus", 1);
     end
 end;

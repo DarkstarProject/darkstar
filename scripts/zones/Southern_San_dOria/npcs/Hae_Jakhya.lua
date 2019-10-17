@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 
     chasingStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
 
-    if (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == false) then
+    if (player:getCharVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == false) then
         player:startEvent(611); -- Neeed CS here
     elseif (player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == true) then
         player:startEvent(612,0,dsp.ki.A_SONG_OF_LOVE);

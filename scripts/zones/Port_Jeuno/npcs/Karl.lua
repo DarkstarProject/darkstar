@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
     local ChildsPlay = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHILD_S_PLAY);
-    local WildcatJeuno = player:getVar("WildcatJeuno");
+    local WildcatJeuno = player:getCharVar("WildcatJeuno");
 
     if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,16) == false) then
         player:startEvent(316);
@@ -48,6 +48,6 @@ function onEventFinish(player,csid,option)
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.CHILD_S_PLAY);
     elseif (csid == 316) then
-        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",16,true);
+        player:setMaskBit(player:getCharVar("WildcatJeuno"),"WildcatJeuno",16,true);
     end
 end;

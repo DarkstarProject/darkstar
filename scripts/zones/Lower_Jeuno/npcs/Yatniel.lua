@@ -9,7 +9,7 @@
 
 function onTrade(player,npc,trade)
 
-    hittingTheMarquisateYatnielCS = player:getVar("hittingTheMarquisateYatnielCS");
+    hittingTheMarquisateYatnielCS = player:getCharVar("hittingTheMarquisateYatnielCS");
 
     if (trade:hasItemQty(17314,4) and trade:getItemCount() == 4) then -- Trade quake grenades X4
         player:startEvent(10031);
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
 
-    hittingTheMarquisateYatnielCS = player:getVar("hittingTheMarquisateYatnielCS");
+    hittingTheMarquisateYatnielCS = player:getCharVar("hittingTheMarquisateYatnielCS");
 
     if (hittingTheMarquisateYatnielCS == 1) then
         player:startEvent(10029,0,17314);
@@ -38,9 +38,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 10029) then
-        player:setVar("hittingTheMarquisateYatnielCS",2);
+        player:setCharVar("hittingTheMarquisateYatnielCS",2);
     elseif (csid == 10031) then
-        player:setVar("hittingTheMarquisateYatnielCS",3);
+        player:setCharVar("hittingTheMarquisateYatnielCS",3);
         player:tradeComplete();
     end
 

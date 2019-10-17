@@ -17,9 +17,9 @@ end;
 function onTrigger(player,npc)
 
     CurrentMission = player:getCurrentMission(player:getNation());
-    if ( player:getCurrentMission(COP) ==dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==1) then
+    if ( player:getCurrentMission(COP) ==dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS and player:getCharVar("PromathiaStatus")==1) then
         player:startEvent(10050);
-    elseif (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) and CurrentMission == 255 and player:getVar("MissionStatus") == 1) then
+    elseif (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) and CurrentMission == 255 and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(128);
     elseif (player:hasKeyItem(dsp.ki.MAGICITE_OPTISTONE) and player:hasKeyItem(dsp.ki.MAGICITE_AURASTONE) and player:hasKeyItem(dsp.ki.MAGICITE_ORASTONE)) then
         if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS)) then
@@ -41,7 +41,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 128) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
         player:addMission(player:getNation(),13);
         player:addKeyItem(dsp.ki.LETTERS_TO_ALDO);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTERS_TO_ALDO);
@@ -58,9 +58,9 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AIRSHIP_PASS);
             player:addTitle(dsp.title.HAVE_WINGS_WILL_FLY);
         end
-        player:setVar("MissionStatus",6); -- all that's left is to go back to the embassy
+        player:setCharVar("MissionStatus",6); -- all that's left is to go back to the embassy
     elseif (csid == 10050) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
     end
 
 end;

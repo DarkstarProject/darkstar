@@ -7,7 +7,7 @@ local ID = require("scripts/zones/Sacrarium/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    local hate = player:getVar("FOMOR_HATE");
+    local hate = player:getCharVar("FOMOR_HATE");
 
     if (hate < 8) then --hate lvl 1
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
@@ -28,11 +28,11 @@ function onTrade(player,npc,trade)
         local races = ID.mob.SWIFT_BELT_NMS[draftOffset + 1][2];
         local nm = GetMobByID(nmId);
         local race = player:getRace();
-        local hate = player:getVar("FOMOR_HATE");
+        local hate = player:getCharVar("FOMOR_HATE");
 
         if (races[race] and not nm:isSpawned() and hate >= 50) then
             player:tradeComplete();
-            player:setVar("FOMOR_HATE",0);
+            player:setCharVar("FOMOR_HATE",0);
             SpawnMob(nmId):updateClaim(player);
         else
             player:messageSpecial(ID.text.NOTHING_HAPPENS);

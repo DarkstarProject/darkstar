@@ -25,14 +25,14 @@ end
 function onZoneIn(player,prevZone)
 
     local currentMission = player:getCurrentMission(SANDORIA)
-    local MissionStatus = player:getVar("MissionStatus")
+    local MissionStatus = player:getCharVar("MissionStatus")
     local cs = -1
 
     -- SOA 1-1 Optional CS
     if 
         ENABLE_SOA and 
         player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
-        player:getVar("SOA_1_CS1") == 0 
+        player:getCharVar("SOA_1_CS1") == 0 
     then
         cs = 878
     end
@@ -48,22 +48,22 @@ function onZoneIn(player,prevZone)
     -- MOG HOUSE EXIT
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(130,-0.2,-3,160)
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004
         end
-        player:setVar("PlayerMainJob",0)
+        player:setCharVar("PlayerMainJob",0)
     end
     -- RDM AF3 CS
-    if (player:getVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
+    if (player:getCharVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 49
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
-        player:setVar("EMERALD_WATERS_Status",2)
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
+        player:setCharVar("EMERALD_WATERS_Status",2)
         cs = 14
     elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
         cs = 1
     elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
         cs = 0
-    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getCharVar("Wait1DayM8-1_date")) then
         cs = 16
     end
     return cs
@@ -98,20 +98,20 @@ function onEventFinish(player,csid,option)
     if (csid == 535) then
         player:messageSpecial(ID.text.ITEM_OBTAINED,536) -- adventurer coupon
     elseif (csid == 1) then
-        player:setVar("MissionStatus",1)
+        player:setCharVar("MissionStatus",1)
     elseif (csid == 0) then
-        player:setVar("MissionStatus",5)
+        player:setCharVar("MissionStatus",5)
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
     elseif (csid == 569) then
         player:setPos(0,0,-13,192,233)
     elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT, {item = 12513, fame = 60, title = dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
-        player:setVar("peaceForTheSpiritCS",0)
+        player:setCharVar("peaceForTheSpiritCS",0)
     elseif (csid == 16) then
-        player:setVar("Wait1DayM8-1_date",0)
-        player:setVar("Mission8-1Completed",1)
+        player:setCharVar("Wait1DayM8-1_date",0)
+        player:setCharVar("Mission8-1Completed",1)
     elseif csid == 878 then
-        player:setVar("SOA_1_CS1", 1)
+        player:setCharVar("SOA_1_CS1", 1)
     end
 end

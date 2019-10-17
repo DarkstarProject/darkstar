@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         if (ACSP == QUEST_ACCEPTED) then
             -- Finishing Quest: 'A Certain Substitute Patrolman'
-            if (player:getVar("ACSP_NPCs_Visited") >= 8) then
+            if (player:getCharVar("ACSP_NPCs_Visited") >= 8) then
                 player:startEvent(2552);
             -- During Quest: 'A Certain Substitute Patrolman'
             else
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
         player:addKeyItem(dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
-        player:setVar("ACSP_NPCs_Visited", 1);
+        player:setCharVar("ACSP_NPCs_Visited", 1);
     elseif (csid == 2552) then
         -- Finishing Quest: 'A Certain Substitute Patrolman'
         player:completeQuest(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
@@ -63,6 +63,6 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 500 * BAYLD_RATE);
         player:delKeyItem(dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
         player:addFame(ADOULIN);
-        player:setVar("ACSP_NPCs_Visited", 0);
+        player:setCharVar("ACSP_NPCs_Visited", 0);
     end
 end;

@@ -14,7 +14,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
-        local missionStatus = player:getVar("MissionStatus");
+        local missionStatus = player:getCharVar("MissionStatus");
         if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY) then
             if (missionStatus == 1) then
                 player:startEvent(581);
@@ -46,8 +46,8 @@ function onEventFinish(player,csid,option)
         -- This cs should only play if you visit San d'Oria first
         -- If you visit Windurst first you will encounter Lion in Heaven's Tower instead
         if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY
-        and player:getVar("MissionStatus") < 2) then
-            player:setVar("MissionStatus",2);
+        and player:getCharVar("MissionStatus") < 2) then
+            player:setCharVar("MissionStatus",2);
             player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
         end
     end

@@ -22,8 +22,8 @@ function onMobDeath(mob, player, isKiller)
         GetMobByID(ID.mob.KORROLOKA_LEECH_II):isDead() and
         GetMobByID(ID.mob.KORROLOKA_LEECH_III):isDead() and
         player:getQuestStatus(BASTOK, dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED and
-        player:getVar("AyameAndKaede_Event") == 2
+        player:getCharVar("AyameAndKaede_Event") == 2
     then
-        player:setVar("KorrolokaLeeches_Killed", 1)
+        player:setCharVar("KorrolokaLeeches_Killed", 1)
     end
 end

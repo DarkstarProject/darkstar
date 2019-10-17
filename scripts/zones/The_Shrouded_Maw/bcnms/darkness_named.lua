@@ -38,9 +38,9 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 32001 then
-        if player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and player:getVar("PromathiaStatus") == 2 then
+        if player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and player:getCharVar("PromathiaStatus") == 2 then
             player:addTitle(dsp.title.TRANSIENT_DREAMER)
-            player:setVar("PromathiaStatus", 3)
+            player:setCharVar("PromathiaStatus", 3)
         end
         player:addExp(1000)
     end

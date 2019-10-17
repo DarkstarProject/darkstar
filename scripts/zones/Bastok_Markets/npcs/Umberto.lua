@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
+    if (player:getCharVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
         player:startEvent(473);
     else
         player:startEvent(411);
@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
             player:addItem(5674);
             player:messageSpecial(ID.text.ITEM_OBTAINED,5674);
             player:addFame(BASTOK,30);
-            player:setVar("TOO_MANY_CHEFS",0);
+            player:setCharVar("TOO_MANY_CHEFS",0);
             player:completeQuest(BASTOK,dsp.quest.id.bastok.TOO_MANY_CHEFS);
         end
     end

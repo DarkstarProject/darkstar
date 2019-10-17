@@ -11,7 +11,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 0) then
-        player:setVar("PromathiaStatus",1);
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DISTANT_BELIEFS and player:getCharVar("PromathiaStatus") == 0) then
+        player:setCharVar("PromathiaStatus",1);
     end
 end;

@@ -12,6 +12,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
-        player:setVar("SPLINTERSPINE_GRUKJUK",2);
+        player:setCharVar("SPLINTERSPINE_GRUKJUK",2);
     end
 end;

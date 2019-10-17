@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.A_THIEF_IN_NORG) == QUEST_ACCEPTED) then
-        local aThiefinNorgCS = player:getVar("aThiefinNorgCS");
+        local aThiefinNorgCS = player:getCharVar("aThiefinNorgCS");
         if (aThiefinNorgCS == 2) then
             player:startEvent(301);
         elseif (aThiefinNorgCS == 3) then
@@ -33,7 +33,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 301) then
-        player:setVar("aThiefinNorgCS",3);
+        player:setCharVar("aThiefinNorgCS",3);
     end
 
 end;

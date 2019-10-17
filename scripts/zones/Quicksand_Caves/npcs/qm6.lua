@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
     -- THE CHAINS THAT BIND US
-    if (player:getCurrentMission(player:getNation()) == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(player:getNation()) == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US and player:getCharVar("MissionStatus") == 1) then
         if (os.time() >= npc:getLocalVar("cooldown")) then
             if (GetMobByID(ID.mob.CENTURIO_IV_VII):isSpawned() or GetMobByID(ID.mob.TRIARIUS_IV_XIV):isSpawned() or GetMobByID(ID.mob.PRINCEPS_IV_XLV):isSpawned()) then
                 player:messageSpecial(ID.text.NOW_IS_NOT_THE_TIME);
@@ -40,6 +40,6 @@ function onEventFinish(player,csid,option)
 
     -- THE CHAINS THAT BIND US
     if (csid == 11) then
-        player:setVar("MissionStatus", 2);
+        player:setCharVar("MissionStatus", 2);
     end
 end;

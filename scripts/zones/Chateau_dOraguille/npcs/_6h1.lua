@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         elseif (preludeOfBandW == QUEST_COMPLETED and pieujesDecision == QUEST_AVAILABLE) then
             player:startEvent(552); -- Start Quest "Pieuje's Decision"
         end
-    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 1) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) and player:getRank() == 9 and player:getCharVar("Cutscenes_8-2") == 1) then
         player:startEvent(74);
     else
         player:startEvent(523);
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 552) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.PIEUJE_S_DECISION);
     elseif (csid == 74) then
-        player:setVar("Cutscenes_8-2",2);
+        player:setCharVar("Cutscenes_8-2",2);
     end
 
 end;

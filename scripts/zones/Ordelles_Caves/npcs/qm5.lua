@@ -11,7 +11,7 @@ require("scripts/globals/npc_util")
 function onTrade(player, npc, trade)
     -- pop Gerwitz's Sword
     if
-        player:getVar("darkPuppetCS") >= 3 and
+        player:getCharVar("darkPuppetCS") >= 3 and
         not player:hasItem(16940) and
         npcUtil.tradeHas(trade, 16681) and
         npcUtil.popFromQM(player, npc, ID.mob.DARK_PUPPET_OFFSET + 1, {hide = 0})

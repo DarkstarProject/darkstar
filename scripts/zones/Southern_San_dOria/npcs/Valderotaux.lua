@@ -21,10 +21,10 @@ end;
 
 function onTrigger(player,npc)
     local lakesideMin = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LAKESIDE_MINUET);
-    local lakeProg = player:getVar("Lakeside_Minuet_Progress");
+    local lakeProg = player:getCharVar("Lakeside_Minuet_Progress");
     if (lakeProg == 1) then
         player:startEvent(888); -- Dance for the drunks!
-        player:setVar("Lakeside_Minuet_Progress",2);
+        player:setCharVar("Lakeside_Minuet_Progress",2);
     elseif (lakeProg >= 2) then
         player:startEvent(889); -- Immediate regret of failure!
     else

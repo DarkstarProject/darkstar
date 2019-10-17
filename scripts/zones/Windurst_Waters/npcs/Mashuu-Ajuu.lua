@@ -43,14 +43,14 @@ function onTrigger(player,npc)
         end
     elseif (reapstatus == QUEST_COMPLETED and player:needToZone()) then
         player:startEvent(478);                              -- REAP WHAT YOU SOW: After Quest
-    elseif (reapstatus == QUEST_COMPLETED and player:needToZone() == false and player:getVar("QuestReapSow_var") == 0) then
+    elseif (reapstatus == QUEST_COMPLETED and player:needToZone() == false and player:getCharVar("QuestReapSow_var") == 0) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(479,0,4565,572);                -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START
         else
             player:startEvent(429);                          -- Standard Conversation
         end
-    elseif (reapstatus == QUEST_COMPLETED and player:getVar("QuestReapSow_var") == 1) then
+    elseif (reapstatus == QUEST_COMPLETED and player:getCharVar("QuestReapSow_var") == 1) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(464,0,4565,572);                  -- REAP WHAT YOU SOW + HERB SEEDS: OBJECTIVE REMINDER
@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,131);
         elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
             player:addFame(WINDURST,8);
-            player:setVar("QuestReapSow_var",0);
+            player:setCharVar("QuestReapSow_var",0);
         end
     elseif (csid == 477) then                                -- REAP WHAT YOU SOW + GIL + Stationary Set: Quest Turn In: Deathball turned in
         player:addGil(GIL_RATE*700);
@@ -98,10 +98,10 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,131);
         elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
             player:addFame(WINDURST,8);
-            player:setVar("QuestReapSow_var",0);
+            player:setCharVar("QuestReapSow_var",0);
         end
     elseif (csid == 479 and option == 3) then                 -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START - ACCEPTED
-        player:setVar("QuestReapSow_var",1);
+        player:setCharVar("QuestReapSow_var",1);
         player:addItem(572);
         player:messageSpecial(ID.text.ITEM_OBTAINED,572);
     end

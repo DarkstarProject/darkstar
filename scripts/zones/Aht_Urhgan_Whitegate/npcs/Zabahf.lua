@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local gotItAllProg = player:getVar("gotitallCS")
+    local gotItAllProg = player:getCharVar("gotitallCS")
     if gotItAllProg == 1 or gotItAllProg == 3 then
         player:startEvent(533)
     elseif gotItAllProg == 2 then
@@ -33,6 +33,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 523 then
-        player:setVar("gotitallCS",3)
+        player:setCharVar("gotitallCS",3)
     end
 end

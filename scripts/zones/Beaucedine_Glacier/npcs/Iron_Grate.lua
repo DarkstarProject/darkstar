@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
         end
 
         if (ENABLE_COP_ZONE_CAP == 1 ) then
-            player:setVar("PSOXJA_RESTRICTION_LVL",LVLcap);
+            player:setCharVar("PSOXJA_RESTRICTION_LVL",LVLcap);
         end
     end
 end;

@@ -20,7 +20,7 @@ function onZoneIn(player,prevZone)
     if prevZone == dsp.zone.PALBOROUGH_MINES then
         cs = 150
         if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED then
-            if player:getVar("ZeruhnMines_Zeid_CS") == 0 then
+            if player:getCharVar("ZeruhnMines_Zeid_CS") == 0 then
                 cs = 130
             elseif not player:hasItem(16607) then
                 cs = 131
@@ -51,11 +51,11 @@ function onEventFinish(player,csid,option)
     if csid == 130 or csid == 131 then
         if player:getFreeSlotsCount() > 0 then
             player:addItem(16607)
-            player:setVar("ChaosbringerKills", 0)
+            player:setCharVar("ChaosbringerKills", 0)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16607)
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16607)
         end
-        player:setVar("ZeruhnMines_Zeid_CS", 1)
+        player:setCharVar("ZeruhnMines_Zeid_CS", 1)
     end
 end

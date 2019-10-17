@@ -23,7 +23,7 @@ function onZoneIn(player,prevZone)
     if 
         ENABLE_SOA and 
         player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
-        player:getVar("SOA_1_CS3") == 0 
+        player:getCharVar("SOA_1_CS3") == 0 
     then
         cs = 839
     end
@@ -41,10 +41,10 @@ function onZoneIn(player,prevZone)
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         position = math.random(1,5) + 37
         player:setPos(-138,-10,position,0)
-        if player:getMainJob() ~= player:getVar("PlayerMainJob") then
+        if player:getMainJob() ~= player:getCharVar("PlayerMainJob") then
             cs = 30004
         end
-        player:setVar("PlayerMainJob",0)
+        player:setCharVar("PlayerMainJob",0)
     end
 
     return cs
@@ -67,6 +67,6 @@ function onEventFinish(player,csid,option)
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
     elseif csid == 839 then
-        player:setVar("SOA_1_CS3", 1)
+        player:setCharVar("SOA_1_CS3", 1)
     end
 end

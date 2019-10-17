@@ -47,8 +47,8 @@ function onInstanceComplete(instance)
     local chars = instance:getChars()
 
     for i,v in pairs(chars) do
-        if v:getVar("AgainstAllOdds") == 2 then
-            v:setVar("AgainstAllOdds",3)
+        if v:getCharVar("AgainstAllOdds") == 2 then
+            v:setCharVar("AgainstAllOdds",3)
         end
         v:startEvent(101)
     end

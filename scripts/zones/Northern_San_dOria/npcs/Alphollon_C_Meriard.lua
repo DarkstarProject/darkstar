@@ -52,7 +52,7 @@ function onTrade(player,npc,trade)
         if (reward ~= 0) then
             --Trade pair for a nice reward.
             player:startEvent(720,item,reward);
-            player:setVar("reward",reward);
+            player:setCharVar("reward",reward);
         end
     end
 end;
@@ -66,11 +66,11 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 720) then
-        local reward = player:getVar("reward");
+        local reward = player:getCharVar("reward");
         if (reward ~= 0) then
             player:tradeComplete();
             player:addItem(reward);
-            player:setVar("reward",0);
+            player:setCharVar("reward",0);
             player:messageSpecial(ID.text.ITEM_OBTAINED,reward);
         end
     end

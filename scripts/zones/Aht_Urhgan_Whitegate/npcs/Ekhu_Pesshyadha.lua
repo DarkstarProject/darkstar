@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local gotItAllProg = player:getVar("gotitallCS")
+    local gotItAllProg = player:getCharVar("gotitallCS")
     if gotItAllProg == 1 then
         player:startEvent(537)
     elseif gotItAllProg == 2 then
@@ -33,10 +33,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 537 then
-        player:setVar("gotitallCS",2)
+        player:setCharVar("gotitallCS",2)
     elseif csid == 524 then
         player:addKeyItem(dsp.ki.VIAL_OF_LUMINOUS_WATER)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIAL_OF_LUMINOUS_WATER)
-        player:setVar("gotitallCS",4)
+        player:setCharVar("gotitallCS",4)
     end
 end

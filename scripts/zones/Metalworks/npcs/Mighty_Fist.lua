@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getVar("darkLegacyCS") == 1) then
+    if (player:getCharVar("darkLegacyCS") == 1) then
         player:startEvent(752);
     elseif (player:hasKeyItem(dsp.ki.DARKSTEEL_FORMULA)) then
         player:startEvent(754);
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,5);
         end
     elseif (csid == 752) then
-        player:setVar("darkLegacyCS",2);
+        player:setCharVar("darkLegacyCS",2);
         player:addKeyItem(dsp.ki.LETTER_FROM_THE_DARKSTEEL_FORGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_THE_DARKSTEEL_FORGE);
     end

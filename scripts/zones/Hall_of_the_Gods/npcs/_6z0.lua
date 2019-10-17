@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_DESOLATION);
         player:addMission(ZILART,dsp.mission.id.zilart.THE_HALL_OF_THE_GODS);
     elseif (csid == 4) then
-        player:setVar("ZilartStatus",0);
+        player:setCharVar("ZilartStatus",0);
         player:completeMission(ZILART,dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL);
         player:addMission(ZILART,dsp.mission.id.zilart.THE_GATE_OF_THE_GODS);
     end

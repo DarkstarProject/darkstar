@@ -13,15 +13,15 @@ end
 
 function onTrigger(player,npc)
 
-    local decurioKilled = player:getVar("Decurio_I_IIIKilled")
+    local decurioKilled = player:getCharVar("Decurio_I_IIIKilled")
 
-    if player:getVar("aCraftsmanWork") == 1 and decurioKilled == 0 and not GetMobByID(ID.mob.DECURIO_I_III):isSpawned() then
+    if player:getCharVar("aCraftsmanWork") == 1 and decurioKilled == 0 and not GetMobByID(ID.mob.DECURIO_I_III):isSpawned() then
         SpawnMob(ID.mob.DECURIO_I_III, 300):updateClaim(player)
     elseif decurioKilled == 1 then
         player:addKeyItem(dsp.ki.ALTEPA_POLISHING_STONE)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ALTEPA_POLISHING_STONE)
-        player:setVar("aCraftsmanWork", 2)
-        player:setVar("Decurio_I_IIIKilled", 0)
+        player:setCharVar("aCraftsmanWork", 2)
+        player:setCharVar("Decurio_I_IIIKilled", 0)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end

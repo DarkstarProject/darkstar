@@ -23,7 +23,7 @@ function onZoneIn(player,prevZone)
 
     local cs = -1;
 
-    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 2) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getCharVar("ZilartStatus") == 2) then
         cs = 0;
     end
 
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     if (csid == 8 and option == 1) then
         player:setPos(-370, -178, -40, 243, 158);
     elseif (csid == 0) then
-        player:setVar("ZilartStatus",3);
+        player:setCharVar("ZilartStatus",3);
     end
 
 end;

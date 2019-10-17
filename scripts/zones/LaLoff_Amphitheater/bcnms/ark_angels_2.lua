@@ -33,7 +33,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 32001 then
-        if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.ARK_ANGELS and player:getVar("ZilartStatus") == 1 then
+        if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.ARK_ANGELS and player:getCharVar("ZilartStatus") == 1 then
             player:addKeyItem(dsp.ki.SHARD_OF_COWARDICE)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SHARD_OF_COWARDICE)
             if
@@ -45,7 +45,7 @@ function onEventFinish(player, csid, option)
             then
                 player:completeMission(ZILART, dsp.mission.id.zilart.ARK_ANGELS)
                 player:addMission(ZILART, dsp.mission.id.zilart.THE_SEALED_SHRINE)
-                player:setVar("ZilartStatus", 0)
+                player:setCharVar("ZilartStatus", 0)
             end
         end
     end

@@ -10,17 +10,17 @@ require("scripts/globals/quests")
 
 function onTrigger(player,npc)
     local snakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
-    local maskBit1 = player:getMaskBit(player:getVar("SEALED_DOORS"), 0)
-    local maskBit2 = player:getMaskBit(player:getVar("SEALED_DOORS"), 1)
-    local maskBit3 = player:getMaskBit(player:getVar("SEALED_DOORS"), 2)
+    local maskBit1 = player:getMaskBit(player:getCharVar("SEALED_DOORS"), 0)
+    local maskBit2 = player:getMaskBit(player:getCharVar("SEALED_DOORS"), 1)
+    local maskBit3 = player:getMaskBit(player:getCharVar("SEALED_DOORS"), 2)
 
     if snakeOnThePlains == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY) then
         if not maskBit2 then
             if not maskBit1 or not maskBit3 then
-                player:setMaskBit(player:getVar("SEALED_DOORS"), "SEALED_DOORS", 1, true)
+                player:setMaskBit(player:getCharVar("SEALED_DOORS"), "SEALED_DOORS", 1, true)
                 player:messageSpecial(ID.text.DOOR_OFFSET + 1, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
             else
-                player:setMaskBit(player:getVar("SEALED_DOORS"), "SEALED_DOORS", 1, true)
+                player:setMaskBit(player:getCharVar("SEALED_DOORS"), "SEALED_DOORS", 1, true)
                 player:messageSpecial(ID.text.DOOR_OFFSET + 4, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
                 player:delKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
             end

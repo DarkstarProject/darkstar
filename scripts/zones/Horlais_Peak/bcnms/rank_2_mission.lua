@@ -38,10 +38,10 @@ function onEventFinish(player, csid, option)
                 player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2 or
                 player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2
             ) and
-            player:getVar("MissionStatus") == 9
+            player:getCharVar("MissionStatus") == 9
         then
             npcUtil.giveKeyItem(player, dsp.ki.KINDRED_CREST)
-            player:setVar("MissionStatus", 10)
+            player:setCharVar("MissionStatus", 10)
         end
     end
 end

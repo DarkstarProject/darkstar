@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Windurst_Waters/IDs");
 function onTrigger(player,npc)
     local moonlitPath = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH)
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     -- Check if we are on Windurst Mission 1-3 and haven't already delivered both offerings.
     if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE and MissionStatus < 3) then
@@ -23,13 +23,13 @@ function onTrigger(player,npc)
             player:startEvent(142); -- Keep displaying the instructions
         end
     -- Check if we are on Windurst Mission 7-2
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(734);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(735);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(739);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(dsp.ki.BOOK_OF_THE_GODS)) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 5 and player:hasKeyItem(dsp.ki.BOOK_OF_THE_GODS)) then
         player:startEvent(742);
     ---------------------------
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
@@ -79,7 +79,7 @@ function onTrigger(player,npc)
                 player:hasKeyItem(dsp.ki.FENRIR_WHISTLE) then availRewards = availRewards + 128; end -- Mount Pact
 
             player:startEvent(850,0,13399,1208,1125,availRewards,18165,13572);
-        elseif (realday ~= player:getVar("MoonlitPath_date")) then --24 hours have passed, flag a new fight
+        elseif (realday ~= player:getCharVar("MoonlitPath_date")) then --24 hours have passed, flag a new fight
             player:startEvent(848,0,1125,334);
         else
             player:startEvent(847,0,1125); -- Yes, this will indefinitely replace his standard dialogue!
@@ -96,8 +96,8 @@ function onEventFinish(player,csid,option)
     local reward = 0
 
     if (csid == 140) then
-        player:setVar("MissionStatus",1);
-        player:setVar("ohbiru_dohbiru_talk",0);
+        player:setCharVar("MissionStatus",1);
+        player:setCharVar("ohbiru_dohbiru_talk",0);
         player:addKeyItem(dsp.ki.FOOD_OFFERINGS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FOOD_OFFERINGS);
         player:addKeyItem(dsp.ki.DRINK_OFFERINGS);
@@ -142,7 +142,7 @@ function onEventFinish(player,csid,option)
         if (reward ~= nil) then
             player:addTitle(dsp.title.HEIR_OF_THE_NEW_MOON);
             player:delKeyItem(dsp.ki.WHISPER_OF_THE_MOON);
-            player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH);
         end
@@ -179,7 +179,7 @@ function onEventFinish(player,csid,option)
         if (reward ~= nil) then
             player:addTitle(dsp.title.HEIR_OF_THE_NEW_MOON);
             player:delKeyItem(dsp.ki.WHISPER_OF_THE_MOON);
-            player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
         end
 
@@ -198,7 +198,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MOON_BAUBLE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_BAUBLE);
     elseif (csid == 734) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 742) then
         finishMissionTimeline(player,3,csid,option);
     end

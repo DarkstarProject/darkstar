@@ -93,11 +93,11 @@ OUTER_HORUTOTO_RUINS = {
         local msgBase = ID.text.ORB_ALREADY_PLACED
 
         if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER then
-            local missionStatus = player:getVar("MissionStatus")
+            local missionStatus = player:getCharVar("MissionStatus")
 
             -- placing dark mana orbs
             if missionStatus == 2 then
-                if player:getVar("MissionStatus_orb" .. gizmoNum) == 1 then
+                if player:getCharVar("MissionStatus_orb" .. gizmoNum) == 1 then
                     player:startEvent(57 + gizmoNum)
                 else
                     player:messageSpecial(msgBase)
@@ -105,7 +105,7 @@ OUTER_HORUTOTO_RUINS = {
 
             -- collecting energized mana orbs
             elseif missionStatus == 4 then
-                if player:getVar("MissionStatus_orb" .. gizmoNum) == 2 then
+                if player:getCharVar("MissionStatus_orb" .. gizmoNum) == 2 then
                     player:startEvent(45 + gizmoNum)
                 else
                     player:messageSpecial(msgBase + 3)
@@ -128,28 +128,28 @@ OUTER_HORUTOTO_RUINS = {
         if npc then
             local gizmoNum = npc:getID() - ID.npc.GATE_MAGICAL_GIZMO
             local msgBase = ID.text.ORB_ALREADY_PLACED
-            local orbVal = player:getVar("MissionStatus_orb" .. gizmoNum)
+            local orbVal = player:getCharVar("MissionStatus_orb" .. gizmoNum)
 
             -- placing dark mana orbs
             if csid == (57 + gizmoNum) then
                 if orbVal == 1 then
                     local ki = darkOrbKI[gizmoNum]
 
-                    player:setVar("MissionStatus_orb" .. gizmoNum, 2)
+                    player:setCharVar("MissionStatus_orb" .. gizmoNum, 2)
                     player:messageSpecial(msgBase + 1, 0, 0, ki) -- "The <ki> has been placed into the receptacle."
                     player:delKeyItem(ki)
 
                     -- Check if all orbs have been placed or not
                     if
-                        player:getVar("MissionStatus_orb1") == 2 and
-                        player:getVar("MissionStatus_orb2") == 2 and
-                        player:getVar("MissionStatus_orb3") == 2 and
-                        player:getVar("MissionStatus_orb4") == 2 and
-                        player:getVar("MissionStatus_orb5") == 2 and
-                        player:getVar("MissionStatus_orb6") == 2
+                        player:getCharVar("MissionStatus_orb1") == 2 and
+                        player:getCharVar("MissionStatus_orb2") == 2 and
+                        player:getCharVar("MissionStatus_orb3") == 2 and
+                        player:getCharVar("MissionStatus_orb4") == 2 and
+                        player:getCharVar("MissionStatus_orb5") == 2 and
+                        player:getCharVar("MissionStatus_orb6") == 2
                     then
                         player:messageSpecial(msgBase + 5) -- "You have set all of the Dark Mana Orbs in place."
-                        player:setVar("MissionStatus", 3)
+                        player:setCharVar("MissionStatus", 3)
                     end
                 end
 
@@ -158,20 +158,20 @@ OUTER_HORUTOTO_RUINS = {
                 if orbVal == 2 then
                     local ki = glowingOrbKI[gizmoNum]
 
-                    player:setVar("MissionStatus_orb" .. gizmoNum, 3)
+                    player:setCharVar("MissionStatus_orb" .. gizmoNum, 3)
                     player:addKeyItem(ki)
                     player:messageSpecial(ID.text.KEYITEM_OBTAINED, ki)
 
                     if
-                        player:getVar("MissionStatus_orb1") == 3 and
-                        player:getVar("MissionStatus_orb2") == 3 and
-                        player:getVar("MissionStatus_orb3") == 3 and
-                        player:getVar("MissionStatus_orb4") == 3 and
-                        player:getVar("MissionStatus_orb5") == 3 and
-                        player:getVar("MissionStatus_orb6") == 3
+                        player:getCharVar("MissionStatus_orb1") == 3 and
+                        player:getCharVar("MissionStatus_orb2") == 3 and
+                        player:getCharVar("MissionStatus_orb3") == 3 and
+                        player:getCharVar("MissionStatus_orb4") == 3 and
+                        player:getCharVar("MissionStatus_orb5") == 3 and
+                        player:getCharVar("MissionStatus_orb6") == 3
                     then
                         player:messageSpecial(msgBase + 4)
-                        player:setVar("MissionStatus", 5)
+                        player:setCharVar("MissionStatus", 5)
                     end
                 end
             end

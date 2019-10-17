@@ -13,9 +13,9 @@ local ID = require("scripts/zones/Heavens_Tower/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 8) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_4") == 8) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_4",0);
+            player:setCharVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 
     local pNation = player:getNation();
     local currentMission = player:getCurrentMission(pNation);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     if (pNation == dsp.nation.SANDORIA) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
@@ -97,7 +97,7 @@ function onTrigger(player,npc)
             player:startEvent(104);
         elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
             player:startEvent(326);
-        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS) and player:getCharVar("OwesPortalCharm") == 1) then
             player:startEvent(293); -- Kupipi repays your favor
         elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 3) then
             player:startEvent(400); -- Kupipi in disbelief over player becoming Rank 10
@@ -120,26 +120,26 @@ function onEventFinish(player,csid,option)
 
     if (csid == 238) then
         if (player:getNation() == dsp.nation.BASTOK) then
-            player:setVar("MissionStatus",4);
+            player:setCharVar("MissionStatus",4);
             player:addKeyItem(dsp.ki.SWORD_OFFERING);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SWORD_OFFERING);
         else
-            player:setVar("MissionStatus",5);
+            player:setCharVar("MissionStatus",5);
             player:addKeyItem(dsp.ki.SHIELD_OFFERING);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHIELD_OFFERING);
         end
     elseif (csid == 244 or csid == 246) then
-        player:setVar("MissionStatus",10);
+        player:setCharVar("MissionStatus",10);
     elseif (csid == 242) then
         player:addKeyItem(dsp.ki.DARK_KEY);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DARK_KEY);
-        player:setVar("MissionStatus",8);
+        player:setCharVar("MissionStatus",8);
     elseif (csid == 95) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
         player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
     elseif (csid == 103) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
         player:addKeyItem(dsp.ki.STARWAY_STAIRWAY_BAUBLE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STARWAY_STAIRWAY_BAUBLE);
     elseif (csid == 101) then
@@ -150,17 +150,17 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PORTAL_CHARM);
     elseif (csid == 292) then -- Traded rolanberry, but not all conditions met
         player:tradeComplete();
-        player:setVar("OwesPortalCharm",1);
+        player:setCharVar("OwesPortalCharm",1);
     elseif (csid == 293) then -- Traded rolanberry before, and all conditions are now met
-        player:setVar("OwesPortalCharm",0);
+        player:setCharVar("OwesPortalCharm",0);
         player:addKeyItem(dsp.ki.PORTAL_CHARM);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PORTAL_CHARM);
     elseif (csid == 326) then
-        player:setVar("MissionStatus",4);
+        player:setCharVar("MissionStatus",4);
     elseif (csid == 400) then
-        player:setVar("KupipiDisbelief",0);
+        player:setCharVar("KupipiDisbelief",0);
     elseif (csid == 408) then
-        player:setVar("KupipiRankTenText",1);
+        player:setCharVar("KupipiRankTenText",1);
     end
 
 end;

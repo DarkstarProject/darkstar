@@ -14,9 +14,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL and player:getVar("ZilartStatus") == 1 and not player:hasKeyItem(dsp.ki.SCRAP_OF_PAPYRUS)) then
-        if (player:needToZone() and player:getVar("AncientVesselKilled") == 1) then
-            player:setVar("AncientVesselKilled",0);
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL and player:getCharVar("ZilartStatus") == 1 and not player:hasKeyItem(dsp.ki.SCRAP_OF_PAPYRUS)) then
+        if (player:needToZone() and player:getCharVar("AncientVesselKilled") == 1) then
+            player:setCharVar("AncientVesselKilled",0);
             player:addKeyItem(dsp.ki.SCRAP_OF_PAPYRUS);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCRAP_OF_PAPYRUS);
         else

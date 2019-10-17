@@ -133,7 +133,7 @@ end
 local function suppliesAvailableBitmask(player, nation)
     local mask = 2130706463
 
-    if player:getVar("supplyQuest_started") == vanaDay() then
+    if player:getCharVar("supplyQuest_started") == vanaDay() then
         mask = 4294967295 -- Need to wait 1 vanadiel day
     end
 
@@ -156,8 +156,8 @@ local function suppliesAvailableBitmask(player, nation)
 end
 
 local function areSuppliesRotten(player, npc, guardType)
-    local fresh   = player:getVar("supplyQuest_fresh")
-    local region  = player:getVar("supplyQuest_region")
+    local fresh   = player:getCharVar("supplyQuest_fresh")
+    local region  = player:getCharVar("supplyQuest_region")
     local rotten  = false
     local text    = zones[player:getZoneID()].text
 
@@ -175,9 +175,9 @@ local function areSuppliesRotten(player, npc, guardType)
 
         player:delKeyItem(ki)
         player:messageSpecial(text.KEYITEM_LOST, ki)
-        player:setVar("supplyQuest_started", 0)
-        player:setVar("supplyQuest_region", 0)
-        player:setVar("supplyQuest_fresh", 0)
+        player:setCharVar("supplyQuest_started", 0)
+        player:setCharVar("supplyQuest_region", 0)
+        player:setCharVar("supplyQuest_fresh", 0)
     end
 
     return rotten
@@ -186,7 +186,7 @@ end
 local function canDeliverSupplies(player, guardNation, guardEvent, guardRegion)
     local delivered = false
 
-    local region = player:getVar("supplyQuest_region")
+    local region = player:getCharVar("supplyQuest_region")
     if region == guardRegion and player:hasKeyItem(outposts[region].ki) then
         delivered = true
         player:startEvent(guardEvent, 16, 0, 0, 0, 1, 0, 0, 255) -- "you have brought us supplies!"
@@ -828,7 +828,7 @@ local function canBuyExpRing(player, item)
     end
 
     -- one exp ring per conquest tally
-    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_RECHARGE") > os.time() then
+    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getCharVar("CONQUEST_RING_RECHARGE") > os.time() then
         player:messageSpecial(text.CONQUEST + 60, 0, 0, item)
         return false
     end
@@ -960,14 +960,14 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
 
         -- RECHARGE EXP RING
         if not tradeConfirmed and expRings[item] and npcUtil.tradeHas(trade, item) then
-            if BYPASS_EXP_RING_ONE_PER_WEEK == 1 or player:getVar("CONQUEST_RING_RECHARGE") < os.time() then
+            if BYPASS_EXP_RING_ONE_PER_WEEK == 1 or player:getCharVar("CONQUEST_RING_RECHARGE") < os.time() then
                 local ring = expRings[item]
 
                 if player:getCP() >= ring.cp then
                     player:delCP(ring.cp)
                     player:confirmTrade()
                     player:addItem(item)
-                    player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
+                    player:setCharVar("CONQUEST_RING_RECHARGE", getConquestTally())
                     player:showText(npc, mOffset + 58, item, ring.cp, ring.charges) -- "Your ring is now fully recharged."
                 else
                     player:showText(npc, mOffset + 55, item, ring.cp) -- "You do not have the required conquest points to recharge."
@@ -1063,7 +1063,7 @@ end
 dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation, guardType, guardRegion)
     local pNation  = player:getNation()
     local pRank    = player:getRank()
-    local sRegion  = player:getVar("supplyQuest_region")
+    local sRegion  = player:getCharVar("supplyQuest_region")
     local sOutpost = outposts[sRegion]
     local mOffset  = zones[player:getZoneID()].text.CONQUEST
 
@@ -1080,9 +1080,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local outpost = outposts[region]
         if outpost ~= nil then
             npcUtil.giveKeyItem(player, outpost.ki)
-            player:setVar("supplyQuest_started", vanaDay())
-            player:setVar("supplyQuest_region", region)
-            player:setVar("supplyQuest_fresh", getConquestTally())
+            player:setCharVar("supplyQuest_started", vanaDay())
+            player:setCharVar("supplyQuest_region", region)
+            player:setCharVar("supplyQuest_fresh", getConquestTally())
         end
 
     -- FINISH SUPPLY RUN
@@ -1097,9 +1097,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
         player:messageSpecial(mOffset) -- "You've earned conquest points!"
-        player:setVar("supplyQuest_started", 0)
-        player:setVar("supplyQuest_region", 0)
-        player:setVar("supplyQuest_fresh", 0)
+        player:setCharVar("supplyQuest_started", 0)
+        player:setCharVar("supplyQuest_region", 0)
+        player:setCharVar("supplyQuest_fresh", 0)
 
         if not hasOutpost(player, sRegion) then
             player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
@@ -1159,7 +1159,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         if npcUtil.giveItem(player, stock.item) then
             player:delCP(price)
             if option >= 32933 and option <= 32935 then
-                player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
+                player:setCharVar("CONQUEST_RING_RECHARGE", getConquestTally())
             end
         end
     end

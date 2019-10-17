@@ -18,12 +18,12 @@ function onTrigger(player,npc)
     local magical_gizmo_no = 1; -- of the 6
 
     -- Check if we are on Windurst Mission 1-1
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and player:getCharVar("MissionStatus") == 2) then
         -- Check if we found the correct Magical Gizmo or not
-        if (player:getVar("MissionStatus_rv") == magical_gizmo_no) then
+        if (player:getCharVar("MissionStatus_rv") == magical_gizmo_no) then
             player:startEvent(48);
         else
-            if (player:getVar("MissionStatus_op1") == 2) then
+            if (player:getCharVar("MissionStatus_op1") == 2) then
                 -- We've already examined this
                 player:messageSpecial(ID.text.EXAMINED_RECEPTACLE);
             else
@@ -45,13 +45,13 @@ function onEventFinish(player,csid,option)
     -- If we just finished the cutscene for Windurst Mission 1-1
     -- The cutscene that we opened the correct Magical Gizmo
     if (csid == 48) then
-        player:setVar("MissionStatus",3);
-        player:setVar("MissionStatus_rv", 0);
+        player:setCharVar("MissionStatus",3);
+        player:setCharVar("MissionStatus_rv", 0);
         player:addKeyItem(dsp.ki.CRACKED_MANA_ORBS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRACKED_MANA_ORBS);
     elseif (csid == 49) then
         -- Opened the wrong one
-        player:setVar("MissionStatus_op1", 2);
+        player:setCharVar("MissionStatus_op1", 2);
         -- Give the message that thsi orb is not broken
         player:messageSpecial(ID.text.NOT_BROKEN_ORB);
     end

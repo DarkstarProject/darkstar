@@ -29,20 +29,20 @@ function onTrigger(player,npc)
     medicineWoman = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
 
     if (theTraderInTheForest == QUEST_AVAILABLE) then
-        if (player:getVar("theTraderInTheForestCS") == 1) then
+        if (player:getCharVar("theTraderInTheForestCS") == 1) then
             player:startEvent(592);
         else
             player:startEvent(524);
-            player:setVar("theTraderInTheForestCS",1);
+            player:setCharVar("theTraderInTheForestCS",1);
         end
     elseif (theTraderInTheForest == QUEST_ACCEPTED) then
         player:startEvent(593);
     elseif (theTraderInTheForest == QUEST_COMPLETED and medicineWoman == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
-        if (player:getVar("medicineWomanCS") == 1) then
+        if (player:getCharVar("medicineWomanCS") == 1) then
             player:startEvent(615);
         else
             player:startEvent(613);
-            player:setVar("medicineWomanCS",1);
+            player:setCharVar("medicineWomanCS",1);
         end
     elseif (player:hasKeyItem(dsp.ki.COLD_MEDICINE)) then
         player:startEvent(614);
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,592);
         else
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_TRADER_IN_THE_FOREST);
-            player:setVar("theTraderInTheForestCS",0);
+            player:setCharVar("theTraderInTheForestCS",0);
             player:addItem(592);
             player:messageSpecial(ID.text.ITEM_OBTAINED,592); -- Supplies Order
         end

@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Quicksand_Caves/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    local missionStatus = player:getVar("MissionStatus");
+    local missionStatus = player:getCharVar("MissionStatus");
     if (player:getCurrentMission(player:getNation()) == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
         player:startEvent(10)
     else
@@ -25,6 +25,6 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 10) then
-        player:setVar("MissionStatus", 3);
+        player:setCharVar("MissionStatus", 3);
     end
 end;

@@ -530,13 +530,13 @@ inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
 }
 
 /************************************************************************
-*  Function: getVar()
+*  Function: getCharVar()
 *  Purpose : Returns a var value assigned to a PC (in char_vars.sql)
-*  Example : local status = player:getVar("[ZM]Status")
+*  Example : local status = player:getCharVar("[ZM]Status")
 *  Notes   :
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::getVar(lua_State *L)
+inline int32 CLuaBaseEntity::getCharVar(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -545,18 +545,18 @@ inline int32 CLuaBaseEntity::getVar(lua_State *L)
 
     const char* varname = lua_tostring(L, 1);
 
-    lua_pushinteger(L, charutils::GetVar((CCharEntity*)m_PBaseEntity, varname));
+    lua_pushinteger(L, charutils::GetCharVar((CCharEntity*)m_PBaseEntity, varname));
     return 1;
 }
 
 /************************************************************************
-*  Function: setVar()
+*  Function: setCharVar()
 *  Purpose : Updates PC's variable to an explicit value
-*  Example : player:setVar("[ZM]Status", 4)
+*  Example : player:setCharVar("[ZM]Status", 4)
 *  Notes   : Passing a '0' value will delete the variable
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::setVar(lua_State *L)
+inline int32 CLuaBaseEntity::setCharVar(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -582,13 +582,13 @@ inline int32 CLuaBaseEntity::setVar(lua_State *L)
 }
 
 /************************************************************************
-*  Function: addVar()
+*  Function: addCharVar()
 *  Purpose : Increments PC's variable by an explicit amount
-*  Example : player:addVar("[ZM]Status", 1) -- if 4, becomes 5
+*  Example : player:addCharVar("[ZM]Status", 1) -- if 4, becomes 5
 *  Notes   : Can use values greater than 1 to increment more
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::addVar(lua_State *L)
+inline int32 CLuaBaseEntity::addCharVar(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -669,7 +669,7 @@ inline int32 CLuaBaseEntity::resetLocalVars(lua_State* L)
 /************************************************************************
 *  Function: getMaskBit()
 *  Purpose : Returns a single bit from a masked player variable
-*  Example : player:getMaskBit(player:getVar("CleanSignPost"),1)) then
+*  Example : player:getMaskBit(player:getCharVar("CleanSignPost"),1)) then
 *  Notes   :
 ************************************************************************/
 
@@ -730,7 +730,7 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
 /************************************************************************
 *  Function: countMaskBits()
 *  Purpose : Counts the number of true bits in a bit-masked variable
-*  Example : Unused, but ex: player:countMaskBits(player:getVar("Ex"))
+*  Example : Unused, but ex: player:countMaskBits(player:getCharVar("Ex"))
 *  Notes   : Useful for quests such as Flyers for Regine
 ************************************************************************/
 
@@ -13735,9 +13735,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
 
     // Variables
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCharVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCharVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetLocalVars),

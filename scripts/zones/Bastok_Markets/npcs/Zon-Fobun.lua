@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     if cCollector == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >=4 then
         player:startEvent(251) -- Quest Start Dialogue
-    elseif cCollector == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CURSEPAPER) and player:getVar("cCollectSilence") == 1 and player:getVar("cCollectCurse") == 1 then
+    elseif cCollector == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CURSEPAPER) and player:getCharVar("cCollectSilence") == 1 and player:getCharVar("cCollectCurse") == 1 then
         player:startEvent(252) -- Quest Completion Dialogue
     else
         player:startEvent(250)

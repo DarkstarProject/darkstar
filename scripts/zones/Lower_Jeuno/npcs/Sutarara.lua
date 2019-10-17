@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local TenshodoMembership = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP);
-    local WildcatJeuno = player:getVar("WildcatJeuno");
+    local WildcatJeuno = player:getCharVar("WildcatJeuno");
 
     if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,10) == false) then
         player:startEvent(10055);
@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10055) then
-        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",10,true);
+        player:setMaskBit(player:getCharVar("WildcatJeuno"),"WildcatJeuno",10,true);
     end
 end;

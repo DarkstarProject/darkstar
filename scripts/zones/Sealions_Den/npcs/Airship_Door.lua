@@ -14,7 +14,7 @@ function onTrigger(player, npc)
 end
 
 function onEventUpdate(player, csid, option)
-    local inst = player:getVar("bcnm_instanceid")
+    local inst = player:getCharVar("bcnm_instanceid")
 
     -- spawn omega for given instance
     if csid == 1 and option == 0 then

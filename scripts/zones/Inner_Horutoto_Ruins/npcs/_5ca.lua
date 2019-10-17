@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
     local CurrentMission = player:getCurrentMission(WINDURST)
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     -- Check for Missions first (priority?)
     -- We should allow both missions and quests to activate
@@ -28,10 +28,10 @@ function onTrigger(player,npc)
             return (set % (2*flag) >= flag)
         end
 
-        local prog = player:getVar("QuestMakingHeadlines_var");
+        local prog = player:getCharVar("QuestMakingHeadlines_var");
         if (testflag(tonumber(prog),16) == false and testflag(tonumber(prog),8) == true) then
             player:messageSpecial(7208,1,dsp.ki.WINDURST_WOODS_SCOOP); -- Confirm Story
-            player:setVar("QuestMakingHeadlines_var",prog+16);
+            player:setCharVar("QuestMakingHeadlines_var",prog+16);
         else
             player:startEvent(44); -- "The door is firmly shut"
         end
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 46) then
         -- Mark the progress
-        player:setVar("MissionStatus",5);
+        player:setCharVar("MissionStatus",5);
     end
 
 end;

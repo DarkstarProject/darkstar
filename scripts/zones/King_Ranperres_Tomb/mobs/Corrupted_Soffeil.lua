@@ -22,8 +22,8 @@ function onMobDeath(mob, player, isKiller)
         GetMobByID(ID.mob.CORRUPTED_YORGOS):isDead() and
         GetMobByID(ID.mob.CORRUPTED_ULBRIG):isDead() and
         player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and
-        player:getVar("MissionStatus") == 1
+        player:getCharVar("MissionStatus") == 1
     then
-        player:setVar("Mission6-2MobKilled", 1)
+        player:setCharVar("Mission6-2MobKilled", 1)
     end
 end

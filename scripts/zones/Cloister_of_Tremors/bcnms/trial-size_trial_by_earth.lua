@@ -23,7 +23,7 @@ function onBattlefieldLeave(player, battlefield, leavecode)
         local arg8 = (player:getQuestStatus(BASTOK, dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_EARTH) == QUEST_COMPLETED) and 1 or 0
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), arg8)
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
-        player:setVar("TrialSizeEarth_date", tonumber(os.date("%j"))) -- If you lose, you need to wait 1 real day
+        player:setCharVar("TrialSizeEarth_date", tonumber(os.date("%j"))) -- If you lose, you need to wait 1 real day
         player:startEvent(32002)
     end
 end
@@ -41,7 +41,7 @@ function onEventFinish(player, csid, option)
             player:addItem(4181) -- Scroll of instant warp
             player:messageSpecial(ID.text.ITEM_OBTAINED, 4181)
         end
-        player:setVar("TrialSizeEarth_date", 0)
+        player:setCharVar("TrialSizeEarth_date", 0)
         player:addFame(BASTOK, 30)
         player:completeQuest(BASTOK, dsp.quest.id.bastok.TRIAL_SIZE_TRIAL_BY_EARTH)
     end

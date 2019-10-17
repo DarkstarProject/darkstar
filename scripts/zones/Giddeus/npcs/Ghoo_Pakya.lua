@@ -19,10 +19,10 @@ function onTrigger(player,npc)
             -- We have the offerings
             player:startEvent(49);
         else
-            if (player:getVar("ghoo_talk") == 1) then
+            if (player:getCharVar("ghoo_talk") == 1) then
                 -- npc: You want your offering back?
                 player:startEvent(50);
-            elseif (player:getVar("ghoo_talk") == 2) then
+            elseif (player:getCharVar("ghoo_talk") == 2) then
                 -- npc: You'll have to crawl back to treasure chamber, etc
                 player:startEvent(51);
             else
@@ -43,13 +43,13 @@ function onEventFinish(player,csid,option)
 
     if (csid == 49) then
         player:delKeyItem(dsp.ki.DRINK_OFFERINGS);
-        player:setVar("ghoo_talk",1);
+        player:setCharVar("ghoo_talk",1);
 
         if (player:hasKeyItem(dsp.ki.FOOD_OFFERINGS) == false) then
-            player:setVar("MissionStatus",2);
+            player:setCharVar("MissionStatus",2);
         end
     elseif (csid == 50) then
-        player:setVar("ghoo_talk",2);
+        player:setCharVar("ghoo_talk",2);
     end
 
 end;

@@ -16,7 +16,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-660.185,-12.079,-199.532,192);
     end
 
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY and player:getCharVar("AhtUrganStatus") == 0) then
         cs = 1;
     end
 
@@ -32,6 +32,6 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 1) then
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
     end
 end;

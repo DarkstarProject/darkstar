@@ -50,13 +50,13 @@ local clammingItems = {
 local function giveClammedItems(player)
 
     for item = 1, #clammingItems do
-        local clammedItemQty = player:getVar("ClammedItem_" ..  clammingItems[item]);
+        local clammedItemQty = player:getCharVar("ClammedItem_" ..  clammingItems[item]);
 
         if (clammedItemQty > 0) then
             if (player:addItem(clammingItems[item],clammedItemQty)) then
 
                 player:messageSpecial(ID.text.YOU_OBTAIN, clammingItems[item], clammedItemQty);
-                player:setVar("ClammedItem_" ..  clammingItems[item], 0);
+                player:setCharVar("ClammedItem_" ..  clammingItems[item], 0);
             else
                 player:messageSpecial(ID.text.WHOA_HOLD_ON_NOW);
                 break;
@@ -68,7 +68,7 @@ end;
 local function owePlayerClammedItems(player)
 
     for item = 1, #clammingItems do
-        if (player:getVar("ClammedItem_" ..  clammingItems[item]) > 0) then
+        if (player:getCharVar("ClammedItem_" ..  clammingItems[item]) > 0) then
             return true;
         end
     end
@@ -83,7 +83,7 @@ function onTrigger(player,npc)
 
     if ( player:hasKeyItem(dsp.ki.CLAMMING_KIT)) then -- Player has clamming kit
 
-        if (player:getVar("ClammingKitBroken") == 1) then -- Broken bucket
+        if (player:getCharVar("ClammingKitBroken") == 1) then -- Broken bucket
             player:startEvent(30, 0, 0, 0, 0, 0, 0, 0, 0);
         else --Bucket not broken
             player:startEvent(29, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -108,9 +108,9 @@ function onEventUpdate(player,csid,option)
 
         player:updateEvent(dsp.ki.CLAMMING_KIT, enoughMoney, 0, 0, 0, 500, 0, 0);
     elseif  (csid == 29) then
-        local clammingKitSize = player:getVar("ClammingKitSize");
+        local clammingKitSize = player:getCharVar("ClammingKitSize");
 
-        player:updateEvent( player:getVar("ClammingKitWeight"), clammingKitSize, clammingKitSize, clammingKitSize + 50, 0, 0, 0, 0);
+        player:updateEvent( player:getCharVar("ClammingKitWeight"), clammingKitSize, clammingKitSize, clammingKitSize + 50, 0, 0, 0, 0);
     end
 end;
 
@@ -118,7 +118,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 28) then
         if (option == 1) then -- Give 50pz clamming kit
-            player:setVar("ClammingKitSize", 50);
+            player:setCharVar("ClammingKitSize", 50);
             player:addKeyItem(dsp.ki.CLAMMING_KIT);
             player:delGil(500);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CLAMMING_KIT);
@@ -126,23 +126,23 @@ function onEventFinish(player,csid,option)
     elseif (csid == 29) then
         if (option == 2) then -- Give player clammed items
 
-            player:setVar("ClammingKitSize", 0);
-            player:setVar("ClammingKitWeight", 0);
+            player:setCharVar("ClammingKitSize", 0);
+            player:setCharVar("ClammingKitWeight", 0);
             player:delKeyItem(dsp.ki.CLAMMING_KIT);
             player:messageSpecial(ID.text.YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
 
             giveClammedItems(player);
 
         elseif (option == 3) then -- Get bigger kit
-            local clammingKitSize = player:getVar("ClammingKitSize") + 50;
+            local clammingKitSize = player:getCharVar("ClammingKitSize") + 50;
 
-            player:setVar("ClammingKitSize", clammingKitSize);
+            player:setCharVar("ClammingKitSize", clammingKitSize);
             player:messageSpecial(ID.text.YOUR_CLAMMING_CAPACITY, 0, 0, clammingKitSize);
         end
     elseif ( csid == 30) then -- Broken bucket
-        player:setVar("ClammingKitSize", 0);
-        player:setVar("ClammingKitBroken", 0);
-        player:setVar("ClammingKitWeight", 0);
+        player:setCharVar("ClammingKitSize", 0);
+        player:setCharVar("ClammingKitBroken", 0);
+        player:setCharVar("ClammingKitWeight", 0);
         player:delKeyItem(dsp.ki.CLAMMING_KIT);
         player:messageSpecial(ID.text.YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
     end
