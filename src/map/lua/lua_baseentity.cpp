@@ -12258,7 +12258,7 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
 }
 
 /************************************************************************
-*  Function: updateAttachmentsPerformance()
+*  Function: updateAttachments()
 *  Purpose : Updates all of the attachments
 *  Example : master:updateAttachments()
 *  Notes   : Called when Optic Fiber has changed.
@@ -12267,7 +12267,7 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
 inline int32 CLuaBaseEntity::updateAttachments(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PEntity = (CCharEntity*)m_PBaseEntity;
 
