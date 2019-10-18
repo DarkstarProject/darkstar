@@ -244,6 +244,10 @@ dsp.homepoint.onTrigger = function(player, csid, hpIndex)
     end
 end
 
+dsp.homepoint.onEventUpdate = function(player, csid, option)
+    -- To do: add logic for favorites and menu layout
+end
+
 dsp.homepoint.onEventFinish = function(player, csid, option, eventId)
     if csid == eventId then
         if option == 1 then
