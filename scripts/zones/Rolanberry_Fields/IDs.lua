@@ -24,7 +24,7 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
         REGIME_REGISTERED       = 9772, -- New training regime registered!
         AWAIT_YOUR_CHALLENGE    = 12170, -- We await your challenge, traveler.
         LACK_LEGION_POINTS      = 12207, -- It would seem that you lack the necessary amount of Legion points.
-        COMMON_SENSE_SURVIVAL   = 12261  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 12261, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

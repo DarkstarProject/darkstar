@@ -26,7 +26,7 @@ zones[dsp.zone.SAUROMUGUE_CHAMPAIGN] =
         THF_AF_MOB               = 7415, -- Something has come down from the tower!
         THF_AF_WALL_OFFSET       = 7434, -- It is impossible to climb this wall with your bare hands.
         REGIME_REGISTERED        = 9811, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 12496 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL    = 12496, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

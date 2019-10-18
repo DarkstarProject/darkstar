@@ -30,7 +30,7 @@ zones[dsp.zone.TAVNAZIAN_SAFEHOLD] =
         DYNA_NPC_DEFAULT_MESSAGE       = 11829, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 11830, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         RETRIEVE_DIALOG_ID             = 12253, -- You retrieve <item> from the porter moogle's care.
-        COMMON_SENSE_SURVIVAL          = 13327  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL          = 13327, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

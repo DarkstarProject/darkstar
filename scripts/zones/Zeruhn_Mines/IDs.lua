@@ -20,7 +20,7 @@ zones[dsp.zone.ZERUHN_MINES] =
         ZELMAN_CANT_RUN_AROUND  = 7340, -- I can't run around doing everything she tells me to--I have my dignity to uphold!
         MINING_IS_POSSIBLE_HERE = 7347, -- Mining is possible here if you have <item>.
         REGIME_REGISTERED       = 9490, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 10538 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 10538, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

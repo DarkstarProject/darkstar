@@ -24,7 +24,7 @@ zones[dsp.zone.JUGNER_FOREST] =
         LOGGING_IS_POSSIBLE_HERE = 7897, -- Logging is possible here if you have <item>.
         CONQUEST                 = 8048, -- You've earned conquest points!
         REGIME_REGISTERED        = 10857, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 13086  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL    = 13086, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

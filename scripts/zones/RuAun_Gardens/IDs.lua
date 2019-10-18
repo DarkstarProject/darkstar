@@ -24,7 +24,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
         SKY_GOD_OFFSET             = 7360, -- A strange insignia pointing north is carved into the wall.
         REGIME_REGISTERED          = 9726, -- New training regime registered!
         HOMEPOINT_SET              = 11647, -- Home point set!
-        COMMON_SENSE_SURVIVAL      = 11667  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL      = 11667, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

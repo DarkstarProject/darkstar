@@ -21,7 +21,7 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
         CHEST_UNLOCKED          = 7316, -- You unlock the chest!
         SENSE_OMINOUS_PRESENCE  = 7332, -- You sense an ominous presence...
         REGIME_REGISTERED       = 9388, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 10472 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 10472, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

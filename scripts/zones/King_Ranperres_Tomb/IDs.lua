@@ -19,7 +19,7 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
         CHEST_UNLOCKED          = 7279,  -- You unlock the chest!
         HEAVY_DOOR              = 7307,  -- It is a solid stone door.
         REGIME_REGISTERED       = 10331, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 11418  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 11418, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

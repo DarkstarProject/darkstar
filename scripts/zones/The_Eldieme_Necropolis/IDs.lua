@@ -34,7 +34,7 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7412, -- The <item> emits a putrid odor and burns up. Your attempt this time has failed...
         SARCOPHAGUS_CANNOT_BE_OPENED     = 7429, -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
         REGIME_REGISTERED                = 9674, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL            = 11625 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL            = 11625, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

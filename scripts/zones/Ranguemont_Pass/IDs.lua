@@ -20,7 +20,7 @@ zones[dsp.zone.RANGUEMONT_PASS] =
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
         REGIME_REGISTERED       = 9518, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 10669  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 10669, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

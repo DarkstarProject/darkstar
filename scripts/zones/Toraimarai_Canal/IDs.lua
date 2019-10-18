@@ -21,7 +21,7 @@ zones[dsp.zone.TORAIMARAI_CANAL] =
         CHEST_UNLOCKED          = 7362,  -- You unlock the chest!
         REGIME_REGISTERED       = 9617,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL   = 10665, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
-        HOMEPOINT_SET           = 10693  -- Home point set!
+        HOMEPOINT_SET           = 10693, -- Home point set!
     },
     mob =
     {
