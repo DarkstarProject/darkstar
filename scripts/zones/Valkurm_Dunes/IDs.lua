@@ -33,7 +33,7 @@ zones[dsp.zone.VALKURM_DUNES] =
         YOU_CANNOT_ENTER_DYNAMIS       = 7867, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7869, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         REGIME_REGISTERED              = 10265, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL          = 12319  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL          = 12319, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

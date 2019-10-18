@@ -36,7 +36,7 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
         DYNA_NPC_DEFAULT_MESSAGE       = 7894, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7895, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         REGIME_REGISTERED              = 10291, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL          = 12312  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL          = 12312, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

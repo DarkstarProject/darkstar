@@ -33,7 +33,7 @@ zones[dsp.zone.THE_SANCTUARY_OF_ZITAH] =
         STURDY_BRANCH              = 7763, -- It is a beautiful, sturdy branch.
         SENSE_OMINOUS_PRESENCE     = 7848, -- You sense an ominous presence...
         REGIME_REGISTERED          = 10268, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL      = 12257  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL      = 12257, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

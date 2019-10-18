@@ -28,7 +28,7 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         SENSE_OMINOUS_PRESENCE     = 7270, -- You sense an ominous presence...
         REGIME_REGISTERED          = 10422, -- New training regime registered!
         HOMEPOINT_SET              = 11508, -- Home point set!
-        COMMON_SENSE_SURVIVAL      = 11588  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL      = 11588, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

@@ -36,7 +36,7 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         BITS_OF_VEGETABLE          = 7500, -- Bits of vegetable matter are strewn around. They appear to have been gnawed on by insects...
         SENSE_OMINOUS_PRESENCE     = 7502, -- You sense an ominous presence...
         REGIME_REGISTERED          = 10523, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL      = 11583  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL      = 11583, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

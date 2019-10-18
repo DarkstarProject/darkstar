@@ -22,7 +22,7 @@ zones[dsp.zone.BATALLIA_DOWNS] =
         FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
         SPARKLING_LIGHT         = 7339, -- The ground is sparkling with a strange light.
         REGIME_REGISTERED       = 9981, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 12834 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 12834, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

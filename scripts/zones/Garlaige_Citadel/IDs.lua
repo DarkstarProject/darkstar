@@ -31,7 +31,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         HEAT_FROM_CEILING       = 7296, -- You feel a terrible heat from the ceiling.
         CHEST_UNLOCKED          = 7326, -- You unlock the chest!
         REGIME_REGISTERED       = 9605, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 11553 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 11553, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

@@ -19,7 +19,7 @@ zones[dsp.zone.LOWER_DELKFUTTS_TOWER] =
         KEYITEM_OBTAINED                 = 6580, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET           = 7238, -- You can't fish here.
         REGIME_REGISTERED                = 10707, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL            = 11761  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL            = 11761, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

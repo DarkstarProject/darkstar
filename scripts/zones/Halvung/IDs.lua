@@ -17,7 +17,7 @@ zones[dsp.zone.HALVUNG] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         MINING_IS_POSSIBLE_HERE = 7923, -- Mining is possible here if you have <item>.
         BLUE_FLAMES             = 7962, -- You can see blue flames flickering from a hole in the ground here...
-        COMMON_SENSE_SURVIVAL   = 8101  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 8101, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

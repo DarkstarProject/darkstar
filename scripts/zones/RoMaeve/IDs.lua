@@ -19,7 +19,7 @@ zones[dsp.zone.ROMAEVE] =
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
         SENSE_OMINOUS_PRESENCE  = 7394, -- You sense an ominous presence...
         REGIME_REGISTERED       = 9612, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL   = 11622 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 11622, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
