@@ -39,6 +39,7 @@ zones[dsp.zone.TAHRONGI_CANYON] =
         UNABLE_TO_OBTAIN_ITEM        = 7564,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM     = 7565,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP         = 7566,  -- You already possess that temporary item.
+		NO_COMBINATION               = 7571,  -- You were unable to enter a combination.
         REGIME_REGISTERED            = 9823,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL        = 11937, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },

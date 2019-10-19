@@ -25,6 +25,7 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
         UNABLE_TO_OBTAIN_ITEM    = 7587,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7588,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 7589,  -- You already possess that temporary item.
+		NO_COMBINATION           = 7594,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9772,  -- New training regime registered!
         AWAIT_YOUR_CHALLENGE     = 12170, -- We await your challenge, traveler.
         LACK_LEGION_POINTS       = 12207, -- It would seem that you lack the necessary amount of Legion points.

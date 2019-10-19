@@ -24,7 +24,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         FISHING_MESSAGE_OFFSET        = 7230,  -- You can't fish here.
         DIG_THROW_AWAY                = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                  = 7245,  -- You dig and you dig, but find nothing.
-        SPARKLING_LIGHT               = 7374, -- The ground is sparkling with a strange light.
+        SPARKLING_LIGHT               = 7374,  -- The ground is sparkling with a strange light.
         SHINING_OBJECT_SLIPS_AWAY     = 7438,  -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7445,  -- You can reach the water from here.
         CONQUEST                      = 7481,  -- You've earned conquest points!
@@ -32,6 +32,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         UNABLE_TO_OBTAIN_ITEM         = 8070,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM      = 8071,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP          = 8072,  -- You already possess that temporary item.
+		NO_COMBINATION                = 8077,  -- You were unable to enter a combination.
         REGIME_REGISTERED             = 10398, -- New training regime registered!
         COMMON_SENSE_SURVIVAL         = 12471, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },

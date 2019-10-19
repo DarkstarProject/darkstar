@@ -33,6 +33,7 @@ zones[dsp.zone.CAPE_TERIGGAN] =
         UNABLE_TO_OBTAIN_ITEM      = 7921,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM   = 7922,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP       = 7923,  -- You already possess that temporary item.
+		NO_COMBINATION             = 7928,  -- You were unable to enter a combination.
         REGIME_REGISTERED          = 10106, -- New training regime registered!
         COMMON_SENSE_SURVIVAL      = 11225, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
         HOMEPOINT_SET              = 11253, -- Home point set!

@@ -42,6 +42,7 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
         UNABLE_TO_OBTAIN_ITEM       = 7861,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM    = 7862,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP        = 7863,  -- You already possess that temporary item.
+		NO_COMBINATION              = 7868,  -- You were unable to enter a combination.
         REGIME_REGISTERED           = 10188, -- New training regime registered!
         DONT_SWAP_JOBS              = 10189, -- hanging your job will result in the cancellation of your current training regime.
         REGIME_CANCELED             = 10190, -- Training regime canceled.

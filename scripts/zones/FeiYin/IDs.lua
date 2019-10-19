@@ -33,6 +33,7 @@ zones[dsp.zone.FEIYIN] =
         UNABLE_TO_OBTAIN_ITEM              = 7508,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM           = 7509,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP               = 7510,  -- You already possess that temporary item.
+		NO_COMBINATION                     = 7515,  -- You were unable to enter a combination.
         REGIME_REGISTERED                  = 9593,  -- New training regime registered!
         HOMEPOINT_SET                      = 10689, -- Home point set!
     },

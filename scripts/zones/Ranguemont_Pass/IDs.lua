@@ -25,6 +25,7 @@ zones[dsp.zone.RANGUEMONT_PASS] =
         UNABLE_TO_OBTAIN_ITEM    = 10571, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10572, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 10573, -- You already possess that temporary item.
+		NO_COMBINATION           = 10578, -- You were unable to enter a combination.
     },
     mob =
     {

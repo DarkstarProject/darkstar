@@ -27,6 +27,7 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
         UNABLE_TO_OBTAIN_ITEM    = 8258,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 8259,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 8260,  -- You already possess that temporary item.
+		NO_COMBINATION           = 8265,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 10343, -- New training regime registered!
     },
     mob =

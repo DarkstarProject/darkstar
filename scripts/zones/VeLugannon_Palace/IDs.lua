@@ -22,6 +22,7 @@ zones[dsp.zone.VELUGANNON_PALACE] =
         UNABLE_TO_OBTAIN_ITEM    = 11212, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 11213, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 11214, -- You already possess that temporary item.
+		NO_COMBINATION           = 11219, -- You were unable to enter a combination.
     },
     mob =
     {

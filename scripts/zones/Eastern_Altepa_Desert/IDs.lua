@@ -28,6 +28,7 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
         UNABLE_TO_OBTAIN_ITEM    = 7765,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7766,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 7767,  -- You already possess that temporary item.
+		NO_COMBINATION           = 7772,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9950,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL    = 11086, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },

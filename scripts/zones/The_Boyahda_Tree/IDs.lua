@@ -29,6 +29,7 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
         UNABLE_TO_OBTAIN_ITEM    = 11389, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 11390, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 11391, -- You already possess that temporary item.
+		NO_COMBINATION           = 11396, -- You were unable to enter a combination.
         HOMEPOINT_SET            = 11434, -- Home point set!
     },
     mob =

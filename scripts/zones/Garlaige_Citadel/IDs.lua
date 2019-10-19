@@ -34,8 +34,9 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         UNABLE_TO_OBTAIN_ITEM       = 7520,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM    = 7521,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP        = 7522,  -- You already possess that temporary item.
+		NO_COMBINATION              = 7527,  -- You were unable to enter a combination.
         REGIME_REGISTERED           = 9605,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL       = 11553 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL       = 11553, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

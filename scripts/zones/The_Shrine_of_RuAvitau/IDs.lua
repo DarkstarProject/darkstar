@@ -24,6 +24,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
         UNABLE_TO_OBTAIN_ITEM    = 11392, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 11393, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 11394, -- You already possess that temporary item.
+		NO_COMBINATION           = 11399, -- You were unable to enter a combination.
         HOMEPOINT_SET            = 11425, -- Home point set!
     },
     mob =
