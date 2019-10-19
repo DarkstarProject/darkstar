@@ -23,21 +23,6 @@ zones[dsp.zone.GUSTAV_TUNNEL] =
         UNABLE_TO_OBTAIN_ITEM    = 10631, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10632, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 10633, -- You already possess that temporary item.
-        NO_COMBINATION           = 10638, -- You were unable to enter a combination.
-        HUNCH_GREATER_LESS       = 10639, -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
-        UNABLE_TO_OPEN_LOCK      = 10640, -- Player failed to open the lock.
-        CORRECT_NUMBER_WAS       = 10641, -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
-        OPENED_LOCK              = 10642, -- Player succeeded in opening the lock!
-        HUNCH_SECOND_EVEN_ODD    = 10643, -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        HUNCH_FIRST_EVEN_ODD     = 10644, -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        COMBINATION_GREATER_LESS = 10645, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_LESS_THAN    = 10646, -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_GREATER_THAN = 10647, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
-        ONE_OF_TWO_DIGITS_IS     = 10648, -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
-        SECOND_DIGIT_IS          = 10649, -- You have a hunch that the second digit is ≺NUMBER BEFORE REAL NUMBER≻, ≺REAL NUMBER≻, or ≺NUMBER AFTER REAL NUMBER≻.
-        FIRST_DIGIT_IS           = 10650, -- You have a hunch that the first digit is ≺NUMBER BEFORE REAL NUMBER≻, ≺REAL NUMBER≻, or ≺NUMBER AFTER REAL NUMBER≻.
-        UNABLE_TO_GET_HINT       = 10651, -- You were unable to glean anything from your examination of the lock.
-        MONSTER_CONCEALED_CHEST  = 10653, -- The monster was concealing a treasure chest!
     },
     mob =
     {

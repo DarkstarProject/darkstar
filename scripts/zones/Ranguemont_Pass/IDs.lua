@@ -25,21 +25,6 @@ zones[dsp.zone.RANGUEMONT_PASS] =
         UNABLE_TO_OBTAIN_ITEM    = 10571, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10572, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 10573, -- You already possess that temporary item.
-        NO_COMBINATION           = 10578, -- You were unable to enter a combination.
-        HUNCH_GREATER_LESS       = 10579, -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
-        UNABLE_TO_OPEN_LOCK      = 10580, -- Player failed to open the lock.
-        CORRECT_NUMBER_WAS       = 10581, -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
-        OPENED_LOCK              = 10582, -- Player succeeded in opening the lock!
-        HUNCH_SECOND_EVEN_ODD    = 10583, -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        HUNCH_FIRST_EVEN_ODD     = 10584, -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        COMBINATION_GREATER_LESS = 10585, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_LESS_THAN    = 10586, -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_GREATER_THAN = 10587, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
-        ONE_OF_TWO_DIGITS_IS     = 10588, -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
-        SECOND_DIGIT_IS          = 10589, -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
-        FIRST_DIGIT_IS           = 10590, -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
-        UNABLE_TO_GET_HINT       = 10591, -- You were unable to glean anything from your examination of the lock.
-        MONSTER_CONCEALED_CHEST  = 10593, -- The monster was concealing a treasure chest!
     },
     mob =
     {

@@ -10,46 +10,31 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
 {
     text =
     {
-        CONQUEST_BASE               = 0,    -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED     = 6541, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED               = 6547, -- Obtained: <item>.
-        GIL_OBTAINED                = 6548, -- Obtained <number> gil.
-        KEYITEM_OBTAINED            = 6550, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY     = 6561, -- There is nothing out of the ordinary here.
-        SENSE_OF_FOREBODING         = 6562, -- You are suddenly overcome with a sense of foreboding...
-        GEOMAGNETRON_ATTUNED        = 7169, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
-        DEVICE_NOT_WORKING          = 7233, -- The device is not working.
-        SYS_OVERLOAD                = 7242, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
-        YOU_LOST_THE                = 7247, -- You lost the <item>.
-        A_GATE_OF_STURDY_STEEL      = 7271, -- A gate of sturdy steel.
-        OPEN_WITH_THE_RIGHT_KEY     = 7277, -- You might be able to open it with the right key.
-        BANISHING_GATES             = 7286, -- The first banishing gate begins to open...
-        BANISHING_GATES_CLOSING     = 7289, -- The first banishing gate starts to close.
-        YOU_FIND_NOTHING            = 7293, -- You find nothing special.
-        PRESENCE_FROM_CEILING       = 7295, -- You sense a presence from in the ceiling.
-        HEAT_FROM_CEILING           = 7296, -- You feel a terrible heat from the ceiling.
-        CHEST_UNLOCKED              = 7326, -- You unlock the chest!
-        PLAYER_OBTAINS_ITEM         = 7519, -- Player obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM       = 7520, -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM    = 7521, -- Player obtains the temporary item: <temp item>!
-        ALREADY_POSSESS_TEMP        = 7522, -- You already possess that temporary item.
-        NO_COMBINATION              = 7527, -- You were unable to enter a combination.
-        HUNCH_GREATER_LESS          = 7528, -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
-        UNABLE_TO_OPEN_LOCK         = 7529, -- Player failed to open the lock.
-        CORRECT_NUMBER_WAS          = 7530, -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
-        OPENED_LOCK                 = 7531, -- Player succeeded in opening the lock!
-        HUNCH_SECOND_EVEN_ODD       = 7532, -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        HUNCH_FIRST_EVEN_ODD        = 7533, -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        COMBINATION_GREATER_LESS    = 7534, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_LESS_THAN       = 7535, -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_GREATER_THAN    = 7536, -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
-        ONE_OF_TWO_DIGITS_IS        = 7537, -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
-        SECOND_DIGIT_IS             = 7538, -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
-        FIRST_DIGIT_IS              = 7539, -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
-        UNABLE_TO_GET_HINT          = 7540, -- You were unable to glean anything from your examination of the lock.
-        MONSTER_CONCEALED_CHEST     = 7542, -- The monster was concealing a treasure chest!
-        REGIME_REGISTERED           = 9605, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL       = 11553 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        CONQUEST_BASE               = 0,     -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED     = 6541,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED               = 6547,  -- Obtained: <item>.
+        GIL_OBTAINED                = 6548,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED            = 6550,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY     = 6561,  -- There is nothing out of the ordinary here.
+        SENSE_OF_FOREBODING         = 6562,  -- You are suddenly overcome with a sense of foreboding...
+        GEOMAGNETRON_ATTUNED        = 7169,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
+        DEVICE_NOT_WORKING          = 7233,  -- The device is not working.
+        SYS_OVERLOAD                = 7242,  -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
+        YOU_LOST_THE                = 7247,  -- You lost the <item>.
+        A_GATE_OF_STURDY_STEEL      = 7271,  -- A gate of sturdy steel.
+        OPEN_WITH_THE_RIGHT_KEY     = 7277,  -- You might be able to open it with the right key.
+        BANISHING_GATES             = 7286,  -- The first banishing gate begins to open...
+        BANISHING_GATES_CLOSING     = 7289,  -- The first banishing gate starts to close.
+        YOU_FIND_NOTHING            = 7293,  -- You find nothing special.
+        PRESENCE_FROM_CEILING       = 7295,  -- You sense a presence from in the ceiling.
+        HEAT_FROM_CEILING           = 7296,  -- You feel a terrible heat from the ceiling.
+        CHEST_UNLOCKED              = 7326,  -- You unlock the chest!
+        PLAYER_OBTAINS_ITEM         = 7519,  -- Player obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM       = 7520,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM    = 7521,  -- Player obtains the temporary item: <temp item>!
+        ALREADY_POSSESS_TEMP        = 7522,  -- You already possess that temporary item.
+        REGIME_REGISTERED           = 9605,  -- New training regime registered!
+        COMMON_SENSE_SURVIVAL       = 11553, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

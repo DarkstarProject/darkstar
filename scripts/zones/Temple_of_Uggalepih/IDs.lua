@@ -39,23 +39,8 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         UNABLE_TO_OBTAIN_ITEM      = 8438,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM   = 8439,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP       = 8440,  -- You already possess that temporary item.
-        NO_COMBINATION             = 8445,  -- You were unable to enter a combination.
-        HUNCH_GREATER_LESS         = 8446,  -- You have a hunch that the lock's combination is ≺0 = GREATER, 1 = LESS≻[greater/less] than ≺INPUT NUMBER≻.
-        UNABLE_TO_OPEN_LOCK        = 8447,  -- Player failed to open the lock.
-        CORRECT_NUMBER_WAS         = 8448,  -- It appears that the correct combination was ≺RANDOM LOCK NUMBER≻.
-        OPENED_LOCK                = 8449,  -- Player succeeded in opening the lock!
-        HUNCH_SECOND_EVEN_ODD      = 8450,  -- You have a hunch that the second digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        HUNCH_FIRST_EVEN_ODD       = 8451,  -- You have a hunch that the first digit is ≺0 = EVEN, 1 = ODD≻[even/odd].
-        COMBINATION_GREATER_LESS   = 8452,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻ and less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_LESS_THAN      = 8453,  -- You have a hunch that the combination is less than ≺RANDOM LOCK NUMBER≻.
-        COMBINATION_GREATER_THAN   = 8454,  -- You have a hunch that the combination is greater than ≺RANDOM LOCK NUMBER≻.
-        ONE_OF_TWO_DIGITS_IS       = 8455,  -- You have a hunch that one of the two digits is ≺PICKED ONE OF THE TWO NUMBERS OF LOCK≻.
-        SECOND_DIGIT_IS            = 8456,  -- You have a hunch that the second digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
-        FIRST_DIGIT_IS             = 8457,  -- You have a hunch that the first digit is ≺NUMBER≻, ≺NUMBER≻, or ≺NUMBER≻.
-        UNABLE_TO_GET_HINT         = 8458,  -- You were unable to glean anything from your examination of the lock.
-        MONSTER_CONCEALED_CHEST    = 8460,  -- The monster was concealing a treasure chest!
         REGIME_REGISTERED          = 10523, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL      = 11583  -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL      = 11583, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
