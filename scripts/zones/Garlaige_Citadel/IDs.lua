@@ -21,7 +21,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         DEVICE_NOT_WORKING          = 7233,  -- The device is not working.
         SYS_OVERLOAD                = 7242,  -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
         YOU_LOST_THE                = 7247,  -- You lost the <item>.
-        SPARKLING_LIGHT         = 7259, -- The ground is sparkling with a strange light.
+        SPARKLING_LIGHT             = 7259,  -- The ground is sparkling with a strange light.
         A_GATE_OF_STURDY_STEEL      = 7271,  -- A gate of sturdy steel.
         OPEN_WITH_THE_RIGHT_KEY     = 7277,  -- You might be able to open it with the right key.
         BANISHING_GATES             = 7286,  -- The first banishing gate begins to open...
@@ -35,7 +35,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         PLAYER_OBTAINS_TEMP_ITEM    = 7521,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP        = 7522,  -- You already possess that temporary item.
         REGIME_REGISTERED           = 9605,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL       = 11553, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL       = 11553 -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
