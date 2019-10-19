@@ -39,7 +39,7 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
         UNABLE_TO_OBTAIN_ITEM          = 8106,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM       = 8107,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP           = 8108,  -- You already possess that temporary item.
-		NO_COMBINATION                 = 8113,  -- You were unable to enter a combination.
+        NO_COMBINATION                 = 8113,  -- You were unable to enter a combination.
         REGIME_REGISTERED              = 10291, -- New training regime registered!
         COMMON_SENSE_SURVIVAL          = 12312, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },

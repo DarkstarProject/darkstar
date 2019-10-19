@@ -26,7 +26,7 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
         UNABLE_TO_OBTAIN_ITEM    = 10441, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10442, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 10443, -- You already possess that temporary item.
-		NO_COMBINATION           = 10448, -- You were unable to enter a combination.
+        NO_COMBINATION           = 10448, -- You were unable to enter a combination.
     },
     mob =
     {

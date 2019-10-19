@@ -30,7 +30,7 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
         UNABLE_TO_OBTAIN_ITEM    = 10510, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10511, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 10512, -- You already possess that temporary item.
-		NO_COMBINATION           = 10517, -- You were unable to enter a combination.
+        NO_COMBINATION           = 10517, -- You were unable to enter a combination.
     },
     mob =
     {

@@ -31,7 +31,7 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         UNABLE_TO_OBTAIN_ITEM      = 11475, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM   = 11476, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP       = 11477, -- You already possess that temporary item.
-		NO_COMBINATION             = 11482, -- You were unable to enter a combination.
+        NO_COMBINATION             = 11482, -- You were unable to enter a combination.
         HOMEPOINT_SET              = 11508, -- Home point set!
         COMMON_SENSE_SURVIVAL      = 11588, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },

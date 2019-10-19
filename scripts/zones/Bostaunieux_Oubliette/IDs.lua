@@ -27,7 +27,7 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
         UNABLE_TO_OBTAIN_ITEM    = 10585, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10586, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 10587, -- You already possess that temporary item.
-		NO_COMBINATION           = 10592, -- You were unable to enter a combination.
+        NO_COMBINATION           = 10592, -- You were unable to enter a combination.
     },
     mob =
     {

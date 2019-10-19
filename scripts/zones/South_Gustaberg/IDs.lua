@@ -31,7 +31,7 @@ zones[dsp.zone.SOUTH_GUSTABERG] =
         UNABLE_TO_OBTAIN_ITEM    = 7531, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7532, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 7533, -- You already possess that temporary item.
-		NO_COMBINATION           = 7538, -- You were unable to enter a combination.
+        NO_COMBINATION           = 7538, -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9898, -- New training regime registered!
     },
     mob =

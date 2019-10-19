@@ -23,7 +23,7 @@ zones[dsp.zone.MIDDLE_DELKFUTTS_TOWER] =
         UNABLE_TO_OBTAIN_ITEM    = 7369, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7370, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 7371, -- You already possess that temporary item.
-		NO_COMBINATION           = 7376, -- You were unable to enter a combination.
+        NO_COMBINATION           = 7376, -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9454, -- New training regime registered!
     },
     mob =

@@ -29,7 +29,7 @@ zones[dsp.zone.EAST_RONFAURE] =
         UNABLE_TO_OBTAIN_ITEM    = 7498, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7499, -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 7500, -- You already possess that temporary item.
-		NO_COMBINATION           = 7505, -- You were unable to enter a combination.
+        NO_COMBINATION           = 7505, -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9870, -- New training regime registered!
     },
     mob =

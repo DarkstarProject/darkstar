@@ -22,7 +22,7 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
         UNABLE_TO_OBTAIN_ITEM    = 7375,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7376,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 7377,  -- You already possess that temporary item.
-		NO_COMBINATION           = 7382,  -- You were unable to enter a combination.
+        NO_COMBINATION           = 7382,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9460,  -- New training regime registered!
         HOMEPOINT_SET            = 10516, -- Home point set!
     },

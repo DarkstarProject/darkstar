@@ -25,7 +25,7 @@ zones[dsp.zone.BATALLIA_DOWNS] =
         UNABLE_TO_OBTAIN_ITEM    = 7696,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 7697,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 7698,  -- You already possess that temporary item.
-		NO_COMBINATION           = 7703,  -- You were unable to enter a combination.
+        NO_COMBINATION           = 7703,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9981,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL    = 12834, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
