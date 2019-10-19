@@ -184,7 +184,7 @@ namespace charutils
     void    HomePoint(CCharEntity* PChar);
     bool    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 
-    int32   GetVar(CCharEntity* PChar, const char* var);
+    int32   GetCharVar(CCharEntity* PChar, const char* var);
 };
 
 #endif

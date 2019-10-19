@@ -4,36 +4,33 @@
 -- Involved in Mission: Magicite
 -- !pos -26.824 3.601 -137.082 245
 -----------------------------------
-require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Lower_Jeuno/IDs");
+require("scripts/globals/keyitems")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (player:hasKeyItem(dsp.ki.SILVER_BELL) and player:hasKeyItem(dsp.ki.YAGUDO_TORCH) == false) then
-        if (player:getVar("YagudoTorchCS") == 1) then
-            player:startEvent(184);
+    if player:hasKeyItem(dsp.ki.SILVER_BELL) and not player:hasKeyItem(dsp.ki.YAGUDO_TORCH) then
+        if player:getCharVar("YagudoTorchCS") == 1 then
+            player:startEvent(184)
         else
-            player:startEvent(80);
+            player:startEvent(80)
         end
     else
-        player:startEvent(15);
+        player:startEvent(15)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-
-    if (csid == 184) then
-        player:addKeyItem(dsp.ki.YAGUDO_TORCH);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.YAGUDO_TORCH);
-        player:setVar("YagudoTorchCS",0);
+    if csid == 184 then
+        player:addKeyItem(dsp.ki.YAGUDO_TORCH)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.YAGUDO_TORCH)
+        player:setCharVar("YagudoTorchCS",0)
+        player:setCharVar("FickblixCS",1)
     end
-
-end;
+end

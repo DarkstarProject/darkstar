@@ -14,7 +14,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getVar("thePickpocket") == 1 then
+    if player:getCharVar("thePickpocket") == 1 then
         player:showText(npc, ID.text.PICKPOCKET_MEUXTAJEAN)
     else
         player:startEvent(582)

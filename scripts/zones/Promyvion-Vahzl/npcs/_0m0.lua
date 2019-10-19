@@ -10,9 +10,9 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") == 5 and not GetMobByID(ID.mob.PONDERER):isSpawned() then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus") == 5 and not GetMobByID(ID.mob.PONDERER):isSpawned() then
         SpawnMob(ID.mob.PONDERER):updateClaim(player)
-    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") == 6 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus") == 6 then
         player:startEvent(53)
     else
         player:messageSpecial(ID.text.OVERFLOWING_MEMORIES)
@@ -24,6 +24,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 53 then
-        player:setVar("PromathiaStatus", 7)
+        player:setCharVar("PromathiaStatus", 7)
     end
 end

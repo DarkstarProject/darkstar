@@ -29,11 +29,11 @@ function onZoneIn( player, prevZone)
     end
 
     -- Check if we are on Windurst Mission 1-2
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER and player:getVar( "MissionStatus") == 5 and prevZone == dsp.zone.OUTER_HORUTOTO_RUINS) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER and player:getCharVar( "MissionStatus") == 5 and prevZone == dsp.zone.OUTER_HORUTOTO_RUINS) then
         cs = 48;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 50;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
         cs = 52; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
     elseif (player:getCurrentMission(ASA) == dsp.mission.id.asa.BURGEONING_DREAD and prevZone == dsp.zone.WINDURST_WOODS and
         player:hasStatusEffect(dsp.effect.MOUNTED) == false ) then
@@ -66,13 +66,13 @@ function onEventUpdate( player, csid, option)
             end
         end
     elseif (csid == 71) then
-        player:setVar("ASA_Status",option);
+        player:setCharVar("ASA_Status",option);
     end
 end;
 
 function onEventFinish( player, csid, option)
     if (csid == 48) then
-        player:setVar( "MissionStatus",6);
+        player:setCharVar( "MissionStatus",6);
         -- Remove the glowing orb key items
         player:delKeyItem(dsp.ki.FIRST_GLOWING_MANA_ORB);
         player:delKeyItem(dsp.ki.SECOND_GLOWING_MANA_ORB);

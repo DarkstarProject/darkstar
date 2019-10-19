@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     local tuw = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_UNFINISHED_WALTZ);
-    local tuwStatus = player:getVar("QuestStatus_DNC_AF1");
+    local tuwStatus = player:getCharVar("QuestStatus_DNC_AF1");
     
     if (tuw == QUEST_ACCEPTED and tuwStatus == 2) then
         player:startEvent(12);
@@ -29,10 +29,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid==12) then
-        player:setVar("QuestStatus_DNC_AF1", 3);
+        player:setCharVar("QuestStatus_DNC_AF1", 3);
     elseif (csid==13) then
         player:addKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.THE_ESSENCE_OF_DANCE);
-        player:setVar("QuestStatus_DNC_AF1", 5);
+        player:setCharVar("QuestStatus_DNC_AF1", 5);
     end
 end;

@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         player:startEvent(114)
     elseif (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
         player:startEvent(115)
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(265)
     else
         player:startEvent(113)
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS)
         player:addMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH)
     elseif (csid == 265) then
-        player:setVar("MissionStatus",3)
+        player:setCharVar("MissionStatus",3)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.EVISCERATION_LEARNED)
     end

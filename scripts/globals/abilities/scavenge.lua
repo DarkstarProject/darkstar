@@ -16,7 +16,7 @@ end
 function onUseAbility(player, target, ability, action)
 
     -- RNG AF2 quest check
-    local FireAndBrimstoneCS = player:getVar("fireAndBrimstone")
+    local FireAndBrimstoneCS = player:getCharVar("fireAndBrimstone")
     local oldEarring = 1113
 
     if (player:getZoneID() == 151 and FireAndBrimstoneCS == 5 and-- zone + quest match

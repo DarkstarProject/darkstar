@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local IAS = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.IN_A_STEW)
-    local IASvar = player:getVar("IASvar")
+    local IASvar = player:getCharVar("IASvar")
     local CB = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CHOCOBILIOUS)
 
     -- IN A STEW
@@ -40,6 +40,6 @@ end
 function onEventFinish(player,csid,option)
     -- IN A STEW
     if csid == 233 then
-        player:setVar("IASvar", 2)
+        player:setCharVar("IASvar", 2)
     end
 end

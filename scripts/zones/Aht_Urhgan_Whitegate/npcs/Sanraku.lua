@@ -68,7 +68,7 @@ end
 
 function onTrigger(player,npc)
     --[[
-    if player:getVar("ZeniStatus") == 0 then
+    if player:getCharVar("ZeniStatus") == 0 then
         player:startEvent(908)
     else
         local param = 2140136440 -- Defaut bitmask, Tier 1 ZNM Menu + don't ask option
@@ -234,7 +234,7 @@ function onEventFinish(player,csid,option)
     -- printf("finishRESULT: %u",option)
     --[[
     if csid == 908 then
-        player:setVar("ZeniStatus",1)
+        player:setCharVar("ZeniStatus",1)
         player:addCurrency("zeni_point", 2000)
     end
     ]]

@@ -33,7 +33,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 10021) then
-        player:setVar("theTenshodoShowdownCS",2);
+        player:setCharVar("theTenshodoShowdownCS",2);
         player:delKeyItem(dsp.ki.LETTER_FROM_THE_TENSHODO);
         player:addKeyItem(dsp.ki.TENSHODO_ENVELOPE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TENSHODO_ENVELOPE);
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.SIGNED_ENVELOPE);
             player:addItem(16764);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16764); -- Marauder's Knife
-            player:setVar("theTenshodoShowdownCS",0);
+            player:setCharVar("theTenshodoShowdownCS",0);
             player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_TENSHODO_SHOWDOWN);
         end

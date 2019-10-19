@@ -13,12 +13,12 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local sharpeningTheSwordStat = player:getVar("sharpeningTheSwordCS")
+    local sharpeningTheSwordStat = player:getCharVar("sharpeningTheSwordCS")
 
-    if sharpeningTheSwordStat == 3 and player:getVar("PolevikKilled") == 1 then
+    if sharpeningTheSwordStat == 3 and player:getCharVar("PolevikKilled") == 1 then
         npcUtil.giveKeyItem(player, dsp.ki.ORDELLE_WHETSTONE)
-        player:setVar("PolevikKilled", 0)
-        player:setVar("sharpeningTheSwordCS", 4)
+        player:setCharVar("PolevikKilled", 0)
+        player:setCharVar("sharpeningTheSwordCS", 4)
     elseif sharpeningTheSwordStat == 3 and npcUtil.popFromQM(player, npc, ID.mob.POLEVIK, {hide = 0}) then
         -- do nothing else
     else

@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     pNation = player:getNation();
     if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
-        MissionStatus = player:getVar("MissionStatus");
+        MissionStatus = player:getCharVar("MissionStatus");
 
         if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
             if (MissionStatus == 2) then
@@ -70,19 +70,19 @@ function onEventFinish(player,csid,option)
     if (csid == 546) then
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 550) then
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS);
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 547) then
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2);
-        player:setVar("MissionStatus",8);
+        player:setCharVar("MissionStatus",8);
     elseif (csid == 551) then
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
-        player:setVar("MissionStatus",11);
+        player:setCharVar("MissionStatus",11);
     end
 
 end;

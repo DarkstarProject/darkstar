@@ -318,8 +318,8 @@ function LimbusEntrance(player, entrance)
 end
 
 function ResetPlayerLimbusVariable(player)
-    player:setVar("characterLimbusKey", 0)
-    player:setVar("LimbusID", 0)
+    player:setCharVar("characterLimbusKey", 0)
+    player:setCharVar("LimbusID", 0)
 end
 
 function GenerateLimbusKey()
@@ -840,8 +840,8 @@ function GetInstanceRegion(instanceID)
 end
 
 function RegisterLimbusInstance(player, instanceID)
-    local playerLimbusKeyID  = player:getVar("characterLimbusKey")
-    local playerLimbusID  = player:getVar("LimbusID")
+    local playerLimbusKeyID  = player:getCharVar("characterLimbusKey")
+    local playerLimbusID  = player:getCharVar("LimbusID")
     local inst = 0
 
     ResetKeyForEmptyLimbus(player, instanceID)  --  instancekey will be reset if this instance is empty
@@ -874,8 +874,8 @@ end
 
 function TryTobackOnCurrentLimbus(player)
     local currentlimbus = 0
-    local playerLimbusID = player:getVar("LimbusID")
-    local playerLimbusKeyID = player:getVar("characterLimbusKey")
+    local playerLimbusID = player:getCharVar("LimbusID")
+    local playerLimbusKeyID = player:getCharVar("characterLimbusKey")
     --  print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID)
     if (GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID
     and player:isSpecialBattlefieldEmpty(GetInstanceRegion(playerLimbusID)) == 1) then   --  player deco and back

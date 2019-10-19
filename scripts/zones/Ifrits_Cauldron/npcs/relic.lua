@@ -8,7 +8,7 @@ require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getVar("RELIC_IN_PROGRESS") == 18329 and npcUtil.tradeHas(trade, {1451, 1582, 1589, 18329})) then -- currency, shard, necropsyche, stage 4
+    if (player:getCharVar("RELIC_IN_PROGRESS") == 18329 and npcUtil.tradeHas(trade, {1451, 1582, 1589, 18329})) then -- currency, shard, necropsyche, stage 4
         player:startEvent(32, 18330);
     end
 end;
@@ -23,6 +23,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 32 and npcUtil.giveItem(player, {18330, {1450, 30}})) then
         player:confirmTrade();
-        player:setVar("RELIC_IN_PROGRESS", 0);
+        player:setCharVar("RELIC_IN_PROGRESS", 0);
     end
 end;

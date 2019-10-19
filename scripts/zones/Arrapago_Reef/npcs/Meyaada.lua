@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     if (toauMission == dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         if (player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE)) then
             player:startEvent(5);
-        elseif (player:getVar("AhtUrganStatus") == 1) then
+        elseif (player:getCharVar("AhtUrganStatus") == 1) then
             player:startEvent(6);
         end;
 
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     -- IMMORTAL SENTRIES
     if (csid == 5 and option == 1) then
         player:delKeyItem(dsp.ki.SUPPLIES_PACKAGE);
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
 
     -- BEGINNINGS
     elseif (csid == 10) then

@@ -977,15 +977,15 @@ local function getFinishOpts(regimeType)
 end
 
 local function clearPlayerVars(player)
-    player:setVar("[regime]type", 0)
-    player:setVar("[regime]zone", 0)
-    player:setVar("[regime]id", 0)
-    player:setVar("[regime]repeat", 0)
-    player:setVar("[regime]lastReward", 0)
+    player:setCharVar("[regime]type", 0)
+    player:setCharVar("[regime]zone", 0)
+    player:setCharVar("[regime]id", 0)
+    player:setCharVar("[regime]repeat", 0)
+    player:setCharVar("[regime]lastReward", 0)
 
     for i = 1, 4 do
-        player:setVar("[regime]needed" .. i, 0)
-        player:setVar("[regime]killed" .. i, 0)
+        player:setCharVar("[regime]needed" .. i, 0)
+        player:setCharVar("[regime]killed" .. i, 0)
     end
 end
 
@@ -1003,14 +1003,14 @@ dsp.regime.bookOnTrigger = function(player, regimeType)
             end
         end
 
-        player:startEvent(info.event, 0, arg2, 0, 0, 0, 0, player:getCurrency("valor_point"), player:getVar("[regime]id"))
+        player:startEvent(info.event, 0, arg2, 0, 0, 0, 0, player:getCurrency("valor_point"), player:getCharVar("[regime]id"))
     else
         player:PrintToPlayer("Disabled.")
     end
 end
 
 dsp.regime.bookOnEventUpdate = function(player, option, regimeType)
-    local page = getPageByRegimeId(player:getVar("[regime]type"), player:getVar("[regime]zone"), player:getVar("[regime]id"))
+    local page = getPageByRegimeId(player:getCharVar("[regime]type"), player:getCharVar("[regime]zone"), player:getCharVar("[regime]id"))
 
     -- check valid option
     local opts = getUpdateOpts(regimeType)
@@ -1022,10 +1022,10 @@ dsp.regime.bookOnEventUpdate = function(player, option, regimeType)
 
     -- review current training regime: progress on mobs
     if opt.review and page then
-        local n1 = (page[1] ~= 0) and player:getVar("[regime]killed1") or 0
-        local n2 = (page[2] ~= 0) and player:getVar("[regime]killed2") or 0
-        local n3 = (page[3] ~= 0) and player:getVar("[regime]killed3") or 0
-        local n4 = (page[4] ~= 0) and player:getVar("[regime]killed4") or 0
+        local n1 = (page[1] ~= 0) and player:getCharVar("[regime]killed1") or 0
+        local n2 = (page[2] ~= 0) and player:getCharVar("[regime]killed2") or 0
+        local n3 = (page[3] ~= 0) and player:getCharVar("[regime]killed3") or 0
+        local n4 = (page[4] ~= 0) and player:getCharVar("[regime]killed4") or 0
         player:updateEvent(page[1], page[2], page[3], page[4], n1, n2, n3, n4)
 
     -- review current training regime: level range and training area
@@ -1183,14 +1183,14 @@ dsp.regime.bookOnEventFinish = function(player, option, regimeType)
                 regimeRepeat = 1
             end
 
-            player:setVar("[regime]type", regimeType)
-            player:setVar("[regime]zone", zoneId)
-            player:setVar("[regime]id", page[8])
-            player:setVar("[regime]repeat", regimeRepeat)
+            player:setCharVar("[regime]type", regimeType)
+            player:setCharVar("[regime]zone", zoneId)
+            player:setCharVar("[regime]id", page[8])
+            player:setCharVar("[regime]repeat", regimeRepeat)
 
             for i = 1, 4 do
-                player:setVar("[regime]killed" .. i, 0)
-                player:setVar("[regime]needed" .. i, page[i])
+                player:setCharVar("[regime]killed" .. i, 0)
+                player:setCharVar("[regime]needed" .. i, page[i])
             end
 
             player:showText(player, msgOffset)
@@ -1202,7 +1202,7 @@ end
 dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
 
     -- dead players, or players not on this training regime, get no credit
-    if not player or player:getHP() == 0 or player:getVar("[regime]id") ~= regimeId then
+    if not player or player:getHP() == 0 or player:getCharVar("[regime]id") ~= regimeId then
         return
     end
 
@@ -1217,8 +1217,8 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
     end
 
     -- get number of this mob needed, and killed so far
-    local needed = player:getVar("[regime]needed" .. index)
-    local killed = player:getVar("[regime]killed" .. index)
+    local needed = player:getCharVar("[regime]needed" .. index)
+    local killed = player:getCharVar("[regime]killed" .. index)
 
     -- already finished with this mob
     if killed == needed then
@@ -1228,7 +1228,7 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
     -- increment number killed
     killed = killed + 1
     player:messageBasic(dsp.msg.basic.FOV_DEFEATED_TARGET, killed, needed)
-    player:setVar("[regime]killed" .. index, killed)
+    player:setCharVar("[regime]killed" .. index, killed)
 
     -- this mob is not yet finished
     if needed > killed then
@@ -1236,14 +1236,14 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
     end
 
     -- get page information
-    local page = getPageByRegimeId(player:getVar("[regime]type"), player:getVar("[regime]zone"), player:getVar("[regime]id"))
+    local page = getPageByRegimeId(player:getCharVar("[regime]type"), player:getCharVar("[regime]zone"), player:getCharVar("[regime]id"))
     if not page then
         return
     end
 
     -- this page is not yet finished
     for i = 1, 4 do
-        if player:getVar("[regime]killed" .. i) < page[i] then
+        if player:getCharVar("[regime]killed" .. i) < page[i] then
             return
         end
     end
@@ -1331,7 +1331,7 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
 
     -- award gil and tabs once per day, or at every page completion if REGIME_WAIT is 0 in settings.lua
     local vanadielEpoch = vanaDay()
-    if REGIME_WAIT == 0 or player:getVar("[regime]lastReward") < vanadielEpoch then
+    if REGIME_WAIT == 0 or player:getCharVar("[regime]lastReward") < vanadielEpoch then
         -- gil
         player:addGil(reward)
         player:messageBasic(dsp.msg.basic.FOV_OBTAINS_GIL, reward)
@@ -1342,16 +1342,16 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
         player:addCurrency("valor_point", tabs)
         player:messageBasic(dsp.msg.basic.FOV_OBTAINS_TABS, tabs, player:getCurrency("valor_point"))
 
-        player:setVar("[regime]lastReward", vanadielEpoch)
+        player:setCharVar("[regime]lastReward", vanadielEpoch)
     end
 
     -- award XP every page completion
     player:addExp(reward)
 
     -- repeating regimes
-    if player:getVar("[regime]repeat") == 1 then
+    if player:getCharVar("[regime]repeat") == 1 then
         for i = 1, 4 do
-            player:setVar("[regime]killed" .. i, 0)
+            player:setCharVar("[regime]killed" .. i, 0)
         end
 
         player:messageBasic(dsp.msg.basic.FOV_REGIME_BEGINS_ANEW)

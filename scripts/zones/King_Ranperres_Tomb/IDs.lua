@@ -23,7 +23,7 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
         PLAYER_OBTAINS_TEMP_ITEM = 8247,  -- Player obtains the temporary item: <temp item>!
         ALREADY_POSSESS_TEMP     = 8248,  -- You already possess that temporary item.
         REGIME_REGISTERED        = 10331, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 11418, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL   = 11418, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

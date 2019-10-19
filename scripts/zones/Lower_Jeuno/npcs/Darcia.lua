@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         player:startEvent(10124)
     elseif rumorsFromTheWest then
         player:startEvent(10117, 0, turnOffDungeonInfo + turnOffAskingForWork)
-    elseif theGeomagnetron and player:getVar("SOA") == 1 then
+    elseif theGeomagnetron and player:getCharVar("SOA") == 1 then
         player:startEvent(10118)
     elseif theGeomagnetron then
         player:startEvent(10117, 1, turnOffAskingForWork)
@@ -48,9 +48,9 @@ end
 function onEventFinish(player,csid,option)
     if csid == 10117 and option == 1 then -- accepted geomagnetron
         -- Clear option CS flags
-        player:setVar("SOA_1_CS1", 0)
-        player:setVar("SOA_1_CS2", 0)
-        player:setVar("SOA_1_CS3", 0)
+        player:setCharVar("SOA_1_CS1", 0)
+        player:setCharVar("SOA_1_CS2", 0)
+        player:setCharVar("SOA_1_CS3", 0)
 
         npcUtil.giveKeyItem(player, dsp.ki.GEOMAGNETRON)
 
@@ -61,9 +61,9 @@ function onEventFinish(player,csid,option)
         csid == 10118  -- quest complete
     then
         -- Clear option CS flags
-        player:setVar("SOA_1_CS1", 0)
-        player:setVar("SOA_1_CS2", 0)
-        player:setVar("SOA_1_CS3", 0)
+        player:setCharVar("SOA_1_CS1", 0)
+        player:setCharVar("SOA_1_CS2", 0)
+        player:setCharVar("SOA_1_CS3", 0)
         
         if option == 2 then player:delGil(1000000) end
 
@@ -74,6 +74,6 @@ function onEventFinish(player,csid,option)
         player:completeMission(SOA,dsp.mission.id.soa.THE_GEOMAGNETRON)
         player:addMission(SOA,dsp.mission.id.soa.ONWARD_TO_ADOULIN)
 
-        player:setVar("SOA", 0)
+        player:setCharVar("SOA", 0)
     end
 end

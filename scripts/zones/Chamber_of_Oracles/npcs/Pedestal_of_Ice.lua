@@ -14,12 +14,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ZilartStatus = player:getVar("ZilartStatus");
+    local ZilartStatus = player:getCharVar("ZilartStatus");
 
     if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES) then
         if (player:hasKeyItem(dsp.ki.ICE_FRAGMENT)) then
             player:delKeyItem(dsp.ki.ICE_FRAGMENT);
-            player:setVar("ZilartStatus",ZilartStatus + 8);
+            player:setCharVar("ZilartStatus",ZilartStatus + 8);
             player:messageSpecial(ID.text.YOU_PLACE_THE,dsp.ki.ICE_FRAGMENT);
 
             if (ZilartStatus == 255) then
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 1) then
         player:addTitle(dsp.title.LIGHTWEAVER);
-        player:setVar("ZilartStatus",0);
+        player:setCharVar("ZilartStatus",0);
         player:addKeyItem(dsp.ki.PRISMATIC_FRAGMENT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PRISMATIC_FRAGMENT);
         player:completeMission(ZILART,dsp.mission.id.zilart.THE_CHAMBER_OF_ORACLES);

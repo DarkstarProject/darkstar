@@ -34,14 +34,14 @@ CMapMarkerPacket::CMapMarkerPacket(CCharEntity* PChar)
     ref<uint8>(0x04) = 0x06;
 
     // Homepoint teleport masks
-    ref<uint16>(0x08) = charutils::GetVar(PChar, "HpTeleportMask1b");
-    ref<uint16>(0x0A) = charutils::GetVar(PChar, "HpTeleportMask1a");
-    ref<uint16>(0x0C) = charutils::GetVar(PChar, "HpTeleportMask2b");
-    ref<uint16>(0x0E) = charutils::GetVar(PChar, "HpTeleportMask2a");
-    ref<uint16>(0x10) = charutils::GetVar(PChar, "HpTeleportMask3b");
-    ref<uint16>(0x12) = charutils::GetVar(PChar, "HpTeleportMask3a");
-    ref<uint16>(0x14) = charutils::GetVar(PChar, "HpTeleportMask4b");
-    ref<uint16>(0x16) = charutils::GetVar(PChar, "HpTeleportMask4a");
+    ref<uint16>(0x08) = charutils::GetCharVar(PChar, "HpTeleportMask1b");
+    ref<uint16>(0x0A) = charutils::GetCharVar(PChar, "HpTeleportMask1a");
+    ref<uint16>(0x0C) = charutils::GetCharVar(PChar, "HpTeleportMask2b");
+    ref<uint16>(0x0E) = charutils::GetCharVar(PChar, "HpTeleportMask2a");
+    ref<uint16>(0x10) = charutils::GetCharVar(PChar, "HpTeleportMask3b");
+    ref<uint16>(0x12) = charutils::GetCharVar(PChar, "HpTeleportMask3a");
+    ref<uint16>(0x14) = charutils::GetCharVar(PChar, "HpTeleportMask4b");
+    ref<uint16>(0x16) = charutils::GetCharVar(PChar, "HpTeleportMask4a");
 
     // TODO: Cavernous Maws, Abyssea Maws, Survival Guides
 }

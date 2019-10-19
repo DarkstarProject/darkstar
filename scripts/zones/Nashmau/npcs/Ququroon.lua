@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Nashmau/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 4) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE) == QUEST_ACCEPTED and player:getCharVar("ratraceCS") == 4) then
         if (trade:hasItemQty(5455,1) and trade:hasItemQty(5453,1) and trade:hasItemQty(5136,1) and trade:hasItemQty(5456,1) and trade:hasItemQty(5454,1) and trade:getItemCount() == 5) then
             player:startEvent(310);
         end
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ratRaceProg = player:getVar("ratraceCS");
+    local ratRaceProg = player:getCharVar("ratraceCS");
     if (ratRaceProg == 3) then
         player:startEvent(309);
     elseif (ratRaceProg == 4) then
@@ -37,7 +37,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 309) then
-        player:setVar("ratraceCS",4);
+        player:setCharVar("ratraceCS",4);
     elseif (csid == 310) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,5595);
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(5595);
             player:messageSpecial(ID.text.ITEM_OBTAINED,5595);
-            player:setVar("ratraceCS",5);
+            player:setCharVar("ratraceCS",5);
         end
     end
 end;

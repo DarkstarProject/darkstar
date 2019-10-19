@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BETTER_PART_OF_VALOR) == QUEST_ACCEPTED and player:getVar("BetterPartOfValProg") == 1) then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BETTER_PART_OF_VALOR) == QUEST_ACCEPTED and player:getCharVar("BetterPartOfValProg") == 1) then
         player:startEvent(3);
     end
 end;
@@ -23,6 +23,6 @@ end
 function onEventFinish(player,csid,option)
 
     if (csid == 3) then
-        player:setVar("BetterPartOfValProg",2);
+        player:setCharVar("BetterPartOfValProg",2);
     end
 end;

@@ -41,7 +41,7 @@ function onEventFinish(player, csid, option)
         if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION then
             player:addTitle(dsp.title.VICTOR_OF_THE_BALGA_CONTEST)
             npcUtil.giveKeyItem(player, dsp.ki.BALGA_CHAMPION_CERTIFICATE)
-            player:setVar("MissionStatus", 2)
+            player:setCharVar("MissionStatus", 2)
         end
     end
 end

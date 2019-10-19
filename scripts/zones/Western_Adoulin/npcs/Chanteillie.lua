@@ -16,11 +16,11 @@ function onTrade(player,npc,trade)
     local VVC = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.VEGETABLE_VEGETABLE_CRISIS);
 
     -- DO NOT GO INTO THE LIGHT (Urunday Lumber, Damascus Ingot, Fire Crystal)
-    if (DNGITL == QUEST_ACCEPTED and player:getVar("DNGITL_Status") == 3 and npcUtil.tradeHas(trade, {3927, 658, 4096})) then
+    if (DNGITL == QUEST_ACCEPTED and player:getCharVar("DNGITL_Status") == 3 and npcUtil.tradeHas(trade, {3927, 658, 4096})) then
         player:startEvent(5076);
 
     -- VEGETABLE VEGETABLE CRISIS (Urunday Lumber, Midrium Ingot, Raaz Leather)
-    elseif (VVC == QUEST_ACCEPTED and player:getVar("VVC_Status") == 1 and npcUtil.tradeHas(trade, {3927, 3919, 8708})) then
+    elseif (VVC == QUEST_ACCEPTED and player:getCharVar("VVC_Status") == 1 and npcUtil.tradeHas(trade, {3927, 3919, 8708})) then
         player:startEvent(5089);
     end
 end;
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         player:startEvent(5077);
 
     -- VEGETABLE VEGETABLE CRISIS
-    elseif (VVC == QUEST_ACCEPTED and player:getVar("VVC_Status") == 1) then
+    elseif (VVC == QUEST_ACCEPTED and player:getCharVar("VVC_Status") == 1) then
         player:startEvent(5088);
 
     -- STANDARD DIALOGS
@@ -53,12 +53,12 @@ function onEventFinish(player,csid,option)
     if (csid == 5076) then
         player:confirmTrade();
         npcUtil.giveKeyItem(player, dsp.ki.INVENTORS_COALITION_PICKAXE);
-        player:setVar("DNGITL_Status", 0);
+        player:setCharVar("DNGITL_Status", 0);
 
     -- VEGETABLE VEGETABLE CRISIS
     elseif (csid == 5089) then
         player:confirmTrade();
-        player:setVar("VVC_Status", 2);
-        player:setVar("VVC_Gameday_Wait", vanaDay());
+        player:setCharVar("VVC_Status", 2);
+        player:setCharVar("VVC_Gameday_Wait", vanaDay());
     end
 end;

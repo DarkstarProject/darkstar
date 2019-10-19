@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
     -- printf("fCSID: %u",csid)
     -- printf("fRESULT: %u",option)
     if csid == 600 and option == 3 then
-        local accessType = player:getVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
+        local accessType = player:getCharVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
         if accessType == MOGLOCKER_ACCESS_TYPE_ALLAREAS then
             -- they want to restrict their access to alzahbi only
             setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALZAHBI)

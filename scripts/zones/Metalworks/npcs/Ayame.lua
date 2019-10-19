@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
 
     local trueStrength = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.TRUE_STRENGTH);
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
     if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,9) == false) then
         player:startEvent(935);
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(BASTOK,dsp.quest.id.bastok.TRUE_STRENGTH);
         end
     elseif (csid == 935) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",9,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",9,true);
     end
 
 end;

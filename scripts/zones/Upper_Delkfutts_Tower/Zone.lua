@@ -31,11 +31,11 @@ function onRegionEnter(player, region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)
-            --player:setVar("porter_lock",1)
+            --player:setCharVar("porter_lock",1)
             player:startEvent(0)
         end,
         [2] = function (x)
-            --player:setVar("porter_lock",1)
+            --player:setCharVar("porter_lock",1)
             player:startEvent(1)
         end,
     }

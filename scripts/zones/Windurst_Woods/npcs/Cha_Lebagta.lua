@@ -12,18 +12,18 @@ end
 function onTrigger(player,npc)
     local MihgosAmigo = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.MIHGO_S_AMIGO)
     local thickAsThieves = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
-    local thickAsThievesCS = player:getVar("thickAsThievesCS")
+    local thickAsThievesCS = player:getCharVar("thickAsThievesCS")
 
     -- As Thick As Thieves (THF AF)
     if thickAsThieves == QUEST_ACCEPTED then
         player:startEvent(507, 0, 17474)
         if thickAsThievesCS == 1 then
-            player:setVar("thickAsThievesCS", 3)
+            player:setCharVar("thickAsThievesCS", 3)
         elseif thickAsThievesCS == 2 then
-            player:setVar("thickAsThievesCS", 4)
+            player:setCharVar("thickAsThievesCS", 4)
             local rand1 = math.random(2, 7)
-            player:setVar("thickAsThievesGrapplingCS", rand1)
-            player:setVar("thickAsThievesGamblingCS", 1)
+            player:setCharVar("thickAsThievesGrapplingCS", rand1)
+            player:setCharVar("thickAsThievesGamblingCS", 1)
         end
 
     -- Mihgo's Amigo

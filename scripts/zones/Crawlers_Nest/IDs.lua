@@ -26,6 +26,7 @@ zones[dsp.zone.CRAWLERS_NEST] =
         YOU_BURY_THE                  = 7263,  -- You bury the <item> and <item>.
         NOTHING_WILL_HAPPEN_YET       = 7266,  -- It seems that nothing will happen yet.
         NOTHING_SEEMS_TO_HAPPEN       = 7267,  -- Nothing seems to happen.
+        REGIME_REGISTERED             = 9428,  -- New training regime registered!
         PLAYER_OBTAINS_ITEM           = 7342,  -- Player obtains <item>!
         UNABLE_TO_OBTAIN_ITEM         = 7343,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM      = 7344,  -- Player obtains the temporary item: <temp item>!

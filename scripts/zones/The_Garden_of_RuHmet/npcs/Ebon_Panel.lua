@@ -20,9 +20,9 @@ function onTrigger(player,npc)
     local Race = player:getRace();
     local xPos = npc:getXPos();
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 1) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getCharVar("PromathiaStatus") == 1) then
         player:startEvent(202);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 2) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL  and player:getCharVar("PromathiaStatus") == 2) then
         if (xPos > 99 and xPos < 101) then -- Mithra Tower
             if ( Race==dsp.race.MITHRA ) then
                 player:startEvent(124);
@@ -58,25 +58,25 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 202) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
     elseif (124 and option ~=0) then -- Mithra
         player:addTitle(dsp.title.WARRIOR_OF_THE_CRYSTAL);
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
         player:addKeyItem(dsp.ki.LIGHT_OF_DEM);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_DEM);
     elseif (121 and option ~=0) then -- Elvaan
         player:addTitle(dsp.title.WARRIOR_OF_THE_CRYSTAL);
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
         player:addKeyItem(dsp.ki.LIGHT_OF_MEA);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_MEA);
     elseif (123 and option ~=0) then -- Tarutaru
         player:addTitle(dsp.title.WARRIOR_OF_THE_CRYSTAL);
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
         player:addKeyItem(dsp.ki.LIGHT_OF_HOLLA);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_HOLLA);
     elseif (122 and option ~=0) then -- Galka
         player:addTitle(dsp.title.WARRIOR_OF_THE_CRYSTAL);
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
         player:addKeyItem(dsp.ki.LIGHT_OF_ALTAIEU);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_ALTAIEU);
     end

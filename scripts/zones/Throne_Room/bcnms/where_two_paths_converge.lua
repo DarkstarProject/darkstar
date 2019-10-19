@@ -31,5 +31,5 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    player:setVar("BASTOK92", 2) -- This should be MissionStatus..But all battlefields of same var need updated.
+    player:setCharVar("BASTOK92", 2) -- This should be MissionStatus..But all battlefields of same var need updated.
 end

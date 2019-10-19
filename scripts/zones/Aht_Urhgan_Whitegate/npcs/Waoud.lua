@@ -15,8 +15,8 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 
 function onTrade(player,npc,trade)
     local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
-    local anEmptyVesselProgress = player:getVar("AnEmptyVesselProgress")
-    local StoneID = player:getVar("EmptyVesselStone")
+    local anEmptyVesselProgress = player:getCharVar("AnEmptyVesselProgress")
+    local StoneID = player:getCharVar("EmptyVesselStone")
 
     -- AN EMPTY VESSEL (dangruf stone, valkurm sunsand, or siren's tear)
     if anEmptyVessel == QUEST_ACCEPTED and anEmptyVesselProgress == 3 and trade:hasItemQty(StoneID,1) and trade:getItemCount() == 1 then
@@ -26,14 +26,14 @@ end
 
 function onTrigger(player,npc)
     local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
-    local anEmptyVesselProgress = player:getVar("AnEmptyVesselProgress")
-    local divinationReady = vanaDay() > player:getVar("LastDivinationDay")
+    local anEmptyVesselProgress = player:getCharVar("AnEmptyVesselProgress")
+    local divinationReady = vanaDay() > player:getCharVar("LastDivinationDay")
     local beginnings = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS)
 
     -- AN EMPTY VESSEL
     if ENABLE_TOAU == 1 and anEmptyVessel == QUEST_AVAILABLE and anEmptyVesselProgress <= 1 and player:getMainLvl() >= ADVANCED_JOB_LEVEL then
         if divinationReady then
-            player:setVar("SuccessfullyAnswered",0)
+            player:setCharVar("SuccessfullyAnswered",0)
             player:startEvent(60,player:getGil()) -- you must answer these 10 questions
         else
             player:startEvent(63) -- you failed, and must wait a gameday to try again
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(66) -- reminds you about the item he wants
     elseif anEmptyVesselProgress == 4 then
         player:startEvent(68) -- reminds you to bring the item to Aydeewa
-    elseif anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getVar("BluAFBeginnings_Waoud") == 0 then
+    elseif anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getCharVar("BluAFBeginnings_Waoud") == 0 then
         player:startEvent(69) -- closing cutscene
 
     -- BEGINNINGS
@@ -82,14 +82,14 @@ end
 function onEventUpdate(player,csid,option)
     -- AN EMPTY VESSEL
     if csid == 60 then
-        local success = player:getVar("SuccessfullyAnswered")
+        local success = player:getCharVar("SuccessfullyAnswered")
 
         -- record correct answers
         if option < 40 then
             local correctAnswers = {2,6,9,12,13,18,21,24,26,30}
             for k,v in pairs(correctAnswers) do
                 if (v == option) then
-                    player:setVar("SuccessfullyAnswered", success + 1)
+                    player:setCharVar("SuccessfullyAnswered", success + 1)
                     break
                 end
             end
@@ -104,16 +104,16 @@ function onEventUpdate(player,csid,option)
             else
                 local rand = math.random(1,3)
                 switch (rand): caseof {
-                    [1] = function (x) player:setVar("EmptyVesselStone",576) end, -- (576) Siren's Tear (576)
-                    [2] = function (x) player:setVar("EmptyVesselStone",503) end, -- (502) Valkurm Sunsand (502)
-                    [3] = function (x) player:setVar("EmptyVesselStone",553) end  -- (553) Dangruf Stone (553)
+                    [1] = function (x) player:setCharVar("EmptyVesselStone",576) end, -- (576) Siren's Tear (576)
+                    [2] = function (x) player:setCharVar("EmptyVesselStone",503) end, -- (502) Valkurm Sunsand (502)
+                    [3] = function (x) player:setCharVar("EmptyVesselStone",553) end  -- (553) Dangruf Stone (553)
                 }
-                player:setVar("SuccessfullyAnswered", 0)
+                player:setCharVar("SuccessfullyAnswered", 0)
                 player:updateEvent(player:getGil(),0,0,0,0,0,rand,70) -- all 5 serpents / success!
             end
         end
     elseif csid == 65 and option == 2 then
-        player:setVar("AnEmptyVesselProgress",3)
+        player:setCharVar("AnEmptyVesselProgress",3)
 
     -- BEGINNINGS
     elseif csid == 78 and option == 40 then
@@ -127,28 +127,28 @@ function onEventFinish(player,csid,option)
     -- AN EMPTY VESSEL
     if csid == 60 then
         if option == 0 then
-            player:setVar("AnEmptyVesselProgress", 1)
+            player:setCharVar("AnEmptyVesselProgress", 1)
         elseif option == 50 then
             player:needToZone(true)
-            player:setVar("LastDivinationDay",vanaDay())
-            player:setVar("AnEmptyVesselProgress",2)
+            player:setCharVar("LastDivinationDay",vanaDay())
+            player:setCharVar("AnEmptyVesselProgress",2)
             player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
         else
-            player:setVar("LastDivinationDay",vanaDay())
-            player:setVar("AnEmptyVesselProgress",1)
+            player:setCharVar("LastDivinationDay",vanaDay())
+            player:setCharVar("AnEmptyVesselProgress",1)
             player:delGil(1000)
             player:messageSpecial(ID.text.PAY_DIVINATION) -- You pay 1000 gil for the divination.
         end
     elseif csid == 67 then -- Turn in stone, go to Aydeewa
-        player:setVar("AnEmptyVesselProgress",4)
+        player:setCharVar("AnEmptyVesselProgress",4)
     elseif csid == 69 and option == 1 then
         player:needToZone(true)
-        player:setVar("LastDivinationDay",vanaDay())
-        player:setVar("BluAFBeginnings_Waoud",1)
+        player:setCharVar("LastDivinationDay",vanaDay())
+        player:setCharVar("BluAFBeginnings_Waoud",1)
 
     -- BEGINNINGS
     elseif csid == 78 and option == 1 then
-        player:setVar("LastDivinationDay",vanaDay())
+        player:setCharVar("LastDivinationDay",vanaDay())
         player:delGil(1000)
         player:messageSpecial(ID.text.PAY_DIVINATION) -- You pay 1000 gil for the divination.
     elseif csid == 705 and option == 1 then

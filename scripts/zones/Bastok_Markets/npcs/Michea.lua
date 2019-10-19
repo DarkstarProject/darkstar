@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
         player:startEvent(216);
 
     -- DISTANT LOYALTIES
-    elseif (distantLoyalties == QUEST_ACCEPTED and player:getVar("DistantLoyaltiesProgress") == 2 and npcUtil.tradeHas(trade, 653)) then
+    elseif (distantLoyalties == QUEST_ACCEPTED and player:getCharVar("DistantLoyaltiesProgress") == 2 and npcUtil.tradeHas(trade, 653)) then
         player:startEvent(317);
         
     -- FATHER FIGURE
@@ -32,7 +32,7 @@ end;
 function onTrigger(player,npc)
     local theElvaanGoldsmith = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
     local distantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
-    local distantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
+    local distantLoyaltiesProgress = player:getCharVar("DistantLoyaltiesProgress");
     local fatherFigure = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FATHER_FIGURE);
     
     -- THE ELVAAN GOLDSMITH
@@ -78,13 +78,13 @@ function onEventFinish(player,csid,option)
     -- DISTANT LOYALTIES
     elseif (csid == 315) then
         player:delKeyItem(dsp.ki.GOLDSMITHING_ORDER);
-        player:setVar("DistantLoyaltiesProgress",2);
+        player:setCharVar("DistantLoyaltiesProgress",2);
     elseif (csid == 317) then
         player:confirmTrade();
-        player:setVar("DistantLoyaltiesProgress",3);
+        player:setCharVar("DistantLoyaltiesProgress",3);
         player:needToZone(true);
     elseif (csid == 318) then
-        player:setVar("DistantLoyaltiesProgress",4);
+        player:setCharVar("DistantLoyaltiesProgress",4);
         npcUtil.giveKeyItem(player, dsp.ki.MYTHRIL_HEARTS);
         
     -- FATHER FIGURE

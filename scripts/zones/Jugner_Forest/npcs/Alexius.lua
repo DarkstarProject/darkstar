@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local SinHunting = player:getVar("sinHunting");    -- RNG AF1
+    local SinHunting = player:getCharVar("sinHunting");    -- RNG AF1
 
     if (player:hasKeyItem(dsp.ki.WEAPONS_ORDER) == true) then
         player:startEvent(5);
@@ -33,6 +33,6 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.WEAPONS_RECEIPT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WEAPONS_RECEIPT);
     elseif (csid == 10) then
-        player:setVar("sinHunting",4);
+        player:setCharVar("sinHunting",4);
     end
 end;

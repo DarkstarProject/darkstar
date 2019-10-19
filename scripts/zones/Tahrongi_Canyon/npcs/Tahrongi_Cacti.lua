@@ -9,7 +9,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS) > QUEST_AVAILABLE and player:getVar("FLOWER_PROGRESS") == 3 then
+    if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS) > QUEST_AVAILABLE and player:getCharVar("FLOWER_PROGRESS") == 3 then
         if player:getFreeSlotsCount() > 0 and not player:hasItem(950) then
             player:addItem(950) -- Tahrongi Cactus
             player:messageSpecial(ID.text.BUD_BREAKS_OFF, 0, 950)

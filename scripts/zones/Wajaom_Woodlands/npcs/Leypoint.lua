@@ -19,12 +19,12 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 2) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getCharVar("NavigatingtheUnfriendlySeas") == 2) then
         if (trade:hasItemQty(2341,1) and trade:getItemCount() == 1) then -- Trade Hydrogauge
             player:messageSpecial(ID.text.PLACE_HYDROGAUGE,2341); -- You set the <item> in the trench.
             player:tradeComplete(); --Trade Complete
-            player:setVar("NavigatingtheUnfriendlySeas",3)
-            player:setVar("Leypoint_waitJTime",getMidnight()); -- Time Set for 1 day real life time.
+            player:setCharVar("NavigatingtheUnfriendlySeas",3)
+            player:setCharVar("Leypoint_waitJTime",getMidnight()); -- Time Set for 1 day real life time.
             -- printf("Midnight: %u",getMidnight());
             -- printf("Os: %u",os.time());
         end
@@ -33,10 +33,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 3) then
-        if (player:getVar("Leypoint_waitJTime") <= os.time()) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getCharVar("NavigatingtheUnfriendlySeas") == 3) then
+        if (player:getCharVar("Leypoint_waitJTime") <= os.time()) then
             player:startEvent(508);
-            player:setVar("NavigatingtheUnfriendlySeas",4);   -- play cs for having waited enough time
+            player:setCharVar("NavigatingtheUnfriendlySeas",4);   -- play cs for having waited enough time
         else
             player:messageSpecial(ID.text.ENIGMATIC_LIGHT,2341);    -- play cs for not waiting long enough
         end

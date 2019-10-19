@@ -22,6 +22,7 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
         SPIRAL_HELL_LEARNED      = 7417,  -- You have learned the weapon skill Spiral Hell!
         SENSE_OMINOUS_PRESENCE   = 7418,  -- You sense an ominous presence...
         REGIME_REGISTERED        = 9532,  -- New training regime registered!
+        COMMON_SENSE_SURVIVAL    = 10622, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
         PLAYER_OBTAINS_ITEM      = 10584, -- Player obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 10585, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10586, -- Player obtains the temporary item: <temp item>!

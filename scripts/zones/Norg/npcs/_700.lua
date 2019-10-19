@@ -14,7 +14,7 @@ function onTrigger(player,npc)
 
     local ZilartMission = player:getCurrentMission(ZILART);
     local currentMission = player:getCurrentMission(BASTOK);
-    local ZilartStatus = player:getVar("ZilartStatus");
+    local ZilartStatus = player:getCharVar("ZilartStatus");
 
     -- Checked here to be fair to new players
     local DMEarrings = 0;
@@ -26,11 +26,11 @@ function onTrigger(player,npc)
 
     if (ZilartMission == dsp.mission.id.zilart.WELCOME_TNORG) then
         player:startEvent(2); -- Zilart Missions 2
-    elseif (ZilartMission == dsp.mission.id.zilart.ROMAEVE and player:getVar("ZilartStatus") <= 1) then
+    elseif (ZilartMission == dsp.mission.id.zilart.ROMAEVE and player:getCharVar("ZilartStatus") <= 1) then
         player:startEvent(3); -- Zilart Missions 9
     elseif (ZilartMission == dsp.mission.id.zilart.THE_HALL_OF_THE_GODS) then
         player:startEvent(169); -- Zilart Missions 11
-    elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 1) then
+    elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(98); -- Bastok Mission 6-2
     elseif (ZilartMission == dsp.mission.id.zilart.THE_SEALED_SHRINE and ZilartStatus == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then
         player:startEvent(172);
@@ -53,16 +53,16 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,dsp.mission.id.zilart.WELCOME_TNORG);
         player:addMission(ZILART,dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS);
     elseif (csid == 3 and option == 0) then
-        player:setVar("ZilartStatus",0);
+        player:setCharVar("ZilartStatus",0);
         player:completeMission(ZILART,dsp.mission.id.zilart.ROMAEVE);
         player:addMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_DESOLATION);
     elseif (csid == 169 and option == 0) then
         player:completeMission(ZILART,dsp.mission.id.zilart.THE_HALL_OF_THE_GODS);
         player:addMission(ZILART,dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL);
     elseif (csid == 98) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     elseif (csid == 172 and bit.band(option, 0x40000000) == 0) then
-        player:setVar("ZilartStatus",1);
+        player:setCharVar("ZilartStatus",1);
     end
 
 end;

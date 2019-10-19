@@ -143,11 +143,11 @@ function onHalloweenTrade(player,trade,npc)
                 local harvestFestTreats;
                 if (itemInList < 32) then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
 
-                    harvestFestTreats = player:getVar(varName);
+                    harvestFestTreats = player:getCharVar(varName);
                 else
 
                     varName = "harvestFestTreats2";
-                    harvestFestTreats = player:getVar(varName); --  this is the second list
+                    harvestFestTreats = player:getCharVar(varName); --  this is the second list
                     itemInList = itemInList - 32;
                 end
 

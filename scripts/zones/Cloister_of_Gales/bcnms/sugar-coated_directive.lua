@@ -32,6 +32,6 @@ end
 function onEventFinish(player, csid, option)
     if csid == 32001 then
         player:addExp(400)
-        player:setVar("ASA4_Emerald", "1")
+        player:setCharVar("ASA4_Emerald", "1")
     end
 end

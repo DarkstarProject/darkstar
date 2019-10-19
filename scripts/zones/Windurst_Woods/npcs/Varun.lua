@@ -9,14 +9,14 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getVar("rockracketeer_sold") == 5 and npcUtil.tradeHas(trade, 598) then -- Sharp Stone
+    if player:getCharVar("rockracketeer_sold") == 5 and npcUtil.tradeHas(trade, 598) then -- Sharp Stone
         player:startEvent(102, 2100)
     end
 end
 
 function onTrigger(player,npc)
     local rockRacketeer = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ROCK_RACKETEER)
-    local rockRacketeerCS = player:getVar("rockracketeer_sold")
+    local rockRacketeerCS = player:getCharVar("rockracketeer_sold")
 
     if rockRacketeer == QUEST_ACCEPTED and rockRacketeerCS == 3 then
         player:startEvent(100) -- talk about lost stone
@@ -33,9 +33,9 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 100 then
-        player:setVar("rockracketeer_sold", 4)
+        player:setCharVar("rockracketeer_sold", 4)
     elseif csid == 101 then
-        player:setVar("rockracketeer_sold", 5)
+        player:setCharVar("rockracketeer_sold", 5)
     elseif csid == 102 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.ROCK_RACKETEER, {gil=2100, var="rockracketeer_sold"}) then
         player:confirmTrade()
     end

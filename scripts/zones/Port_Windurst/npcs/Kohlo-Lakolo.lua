@@ -58,7 +58,7 @@ Fame       = player:getFameLevel(WINDURST);
         InvisibleManSticker = player:hasKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
 
         if (InvisibleManSticker == true) then
-            ThePromiseCS_Seen = player:getVar("ThePromiseCS_Seen");
+            ThePromiseCS_Seen = player:getCharVar("ThePromiseCS_Seen");
 
             if (ThePromiseCS_Seen == 1) then
                 FreeSlots = player:getFreeSlotsCount();
@@ -69,8 +69,8 @@ Fame       = player:getFameLevel(WINDURST);
                     player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
                     player:addItem(13135);
                     player:messageSpecial(ID.text.ITEM_OBTAINED,13135);
-                    player:setVar("ThePromise",0);
-                    player:setVar("ThePromiseCS_Seen",0);
+                    player:setCharVar("ThePromise",0);
+                    player:setCharVar("ThePromiseCS_Seen",0);
                 else
                     player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13135);
                 end
@@ -83,17 +83,17 @@ Fame       = player:getFameLevel(WINDURST);
     elseif (WildCard == QUEST_COMPLETED) then
         player:startEvent(513,0,dsp.ki.INVISIBLE_MAN_STICKER);
     elseif (WildCard == QUEST_ACCEPTED) then
-        WildCardVar = player:getVar("WildCard");
+        WildCardVar = player:getCharVar("WildCard");
 
         if (WildCardVar == 0) then
-            player:setVar("WildCard",1);
+            player:setCharVar("WildCard",1);
         end
 
         player:showText(npc,ID.text.KOHLO_LAKOLO_DIALOG_A);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
         player:startEvent(505);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
-        CryingOverOnionsVar = player:getVar("CryingOverOnions");
+        CryingOverOnionsVar = player:getCharVar("CryingOverOnions");
 
         if (CryingOverOnionsVar == 3) then
             player:startEvent(512);
@@ -112,7 +112,7 @@ Fame       = player:getFameLevel(WINDURST);
         OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
 
         if (OldRing == true) then
-            OnionRingsTime = player:getVar("OnionRingsTime");
+            OnionRingsTime = player:getCharVar("OnionRingsTime");
             CurrentTime    = os.time();
 
             if (CurrentTime >= OnionRingsTime) then
@@ -126,7 +126,7 @@ Fame       = player:getFameLevel(WINDURST);
             OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
 
             if (OldRing == true) then
-                OnionRingsVar = player:getVar("OnionRings");
+                OnionRingsVar = player:getCharVar("OnionRings");
 
                 if (OnionRingsVar == 1) then
                     player:startEvent(430,0,dsp.ki.OLD_RING);
@@ -154,8 +154,8 @@ Fame       = player:getFameLevel(WINDURST);
             player:startEvent(401);
         end
     elseif (KnowOnesOnions == QUEST_ACCEPTED) then
-        KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
-        KnowOnesOnionsTime = player:getVar("KnowOnesOnionsTime");
+        KnowOnesOnionsVar  = player:getCharVar("KnowOnesOnions");
+        KnowOnesOnionsTime = player:getCharVar("KnowOnesOnionsTime");
         CurrentTime = os.time();
 
         if (KnowOnesOnionsVar == 2) then
@@ -218,8 +218,8 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(4857);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4857);
-            player:setVar("KnowOnesOnions",1);
-            player:setVar("KnowOnesOnionsTime", TradeTime + 86400);
+            player:setCharVar("KnowOnesOnions",1);
+            player:setCharVar("KnowOnesOnionsTime", TradeTime + 86400);
         else
             player:messageSpecial(ID.text.FULL_INVENTORY_AFTER_TRADE,4857);
         end
@@ -227,8 +227,8 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
         player:addFame(WINDURST,80);
         player:addTitle(dsp.title.SOB_SUPER_HERO);
-        player:setVar("KnowOnesOnions",0);
-        player:setVar("KnowOnesOnionsTime",0);
+        player:setCharVar("KnowOnesOnions",0);
+        player:setCharVar("KnowOnesOnionsTime",0);
         player:needToZone(true);
     elseif (csid == 413 and option == 0) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
@@ -246,7 +246,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13204);
         end
     elseif (csid == 429) then
-        player:setVar("OnionRings",1);
+        player:setCharVar("OnionRings",1);
     elseif (csid == 430) then
         OnionRings = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
 
@@ -254,24 +254,24 @@ function onEventFinish(player,csid,option)
             CurrentTime = os.time();
 
             player:addQuest(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
-            player:setVar("OnionRingsTime", CurrentTime + 86400);
+            player:setCharVar("OnionRingsTime", CurrentTime + 86400);
         end
     elseif (csid == 432 or csid == 433) then
         player:completeQuest(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
         player:addFame(WINDURST,100);
         player:addTitle(dsp.title.STAR_ONION_BRIGADIER);
         player:delKeyItem(dsp.ki.OLD_RING);
-        player:setVar("OnionRingsTime",0);
+        player:setCharVar("OnionRingsTime",0);
         player:needToZone(true);
     elseif (csid == 440) then
-        OnionRingsVar    = player:getVar("OnionRings");
-        NeedToZone = player:getVar("NeedToZone");
+        OnionRingsVar    = player:getCharVar("OnionRings");
+        NeedToZone = player:getCharVar("NeedToZone");
 
         if (OnionRingsVar == 2 and NeedToZone == 0) then
             FreeSlots = player:getFreeSlotsCount();
 
             if (FreeSlots >= 1) then
-                player:setVar("OnionRings",0);
+                player:setCharVar("OnionRings",0);
                 player:addItem(17029);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,17029);
             else
@@ -281,7 +281,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 496) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS);
     elseif (csid == 497) then
-        player:setVar("CryingOverOnions",3);
+        player:setCharVar("CryingOverOnions",3);
     elseif (csid == 513) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
     elseif (csid == 522) then
@@ -293,10 +293,10 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
             player:addItem(13135);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13135);
-            player:setVar("ThePromise",0);
+            player:setCharVar("ThePromise",0);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13135);
-            player:setVar("ThePromiseCS_Seen",1);
+            player:setCharVar("ThePromiseCS_Seen",1);
         end
     end
 end;

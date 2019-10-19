@@ -35,7 +35,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 3 or csid == 55) then
         player:delKeyItem(dsp.ki.ORCISH_HUT_KEY);
-        player:setVar("MissionStatus",4);
+        player:setCharVar("MissionStatus",4);
     else
         if (EventFinishBCNM(player,csid,option)) then
             return;

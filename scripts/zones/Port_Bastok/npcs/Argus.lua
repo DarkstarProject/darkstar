@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         player:startEvent(1003); -- For non-Bastokian
     else
         local CurrentMission = player:getCurrentMission(BASTOK);
-        local cs, p, offset = getMissionOffset(player,1,CurrentMission,player:getVar("MissionStatus"));
+        local cs, p, offset = getMissionOffset(player,1,CurrentMission,player:getCharVar("MissionStatus"));
 
         if (cs ~= 0 or offset ~= 0 or ((CurrentMission == dsp.mission.id.bastok.THE_ZERUHN_REPORT or
                                         CurrentMission == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER) and offset == 0)) then

@@ -37,8 +37,8 @@ local ZoneID =
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 570) then
-        local tablets = player:getVar("anExplorer-ClayTablets")
-        local currtab = player:getVar("anExplorer-CurrentTablet")
+        local tablets = player:getCharVar("anExplorer-ClayTablets")
+        local currtab = player:getCharVar("anExplorer-CurrentTablet")
 
         if currtab ~= 0 and (tablets % (2 * currtab)) < currtab then -- new tablet
             for zone = 1, #ZoneID, 2 do
@@ -54,7 +54,7 @@ function onTrade(player,npc,trade)
                         player:startEvent(46) -- not the one he asked for
                     end
 
-                    player:setVar("anExplorer-ClayTablets", tablets + currtab)
+                    player:setCharVar("anExplorer-ClayTablets", tablets + currtab)
                     break
                 end
             end
@@ -65,7 +65,7 @@ end
 function onTrigger(player,npc)
     local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
     local signedInBlood = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
-    local signedInBloodStat = player:getVar("SIGNED_IN_BLOOD_Prog")
+    local signedInBloodStat = player:getCharVar("SIGNED_IN_BLOOD_Prog")
 
     -- SIGNED IN BLOOD (will only activate if An Explorer's Footsteps is not active, or if it is completed)
     if signedInBlood == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TORN_OUT_PAGES) and anExplorersFootsteps ~= QUEST_ACCEPTED and signedInBloodStat == 2 then
@@ -82,14 +82,14 @@ function onTrigger(player,npc)
         player:startEvent(40)
     elseif anExplorersFootsteps == QUEST_ACCEPTED then
         if not player:hasItem(570) and not player:hasItem(571) then
-            if player:getVar("anExplorer-CurrentTablet") == -1 then
+            if player:getCharVar("anExplorer-CurrentTablet") == -1 then
                 player:startEvent(42)
             else
                 player:startEvent(44)
-                player:setVar("anExplorer-CurrentTablet", 0)
+                player:setCharVar("anExplorer-CurrentTablet", 0)
             end
         else
-            local tablets = player:getVar("anExplorer-ClayTablets")
+            local tablets = player:getCharVar("anExplorer-ClayTablets")
 
             for zone = 1, #ZoneID, 2 do
                 if tablets % (2*ZoneID[zone]) < ZoneID[zone] then
@@ -112,41 +112,41 @@ end
 function onEventFinish(player,csid,option)
     -- SIGNED IN BLOOD
     if csid == 1104 then
-        player:setVar("SIGNED_IN_BLOOD_Prog", 2)
+        player:setCharVar("SIGNED_IN_BLOOD_Prog", 2)
     elseif csid == 1106 then
-        player:setVar("SIGNED_IN_BLOOD_Prog", 3)
+        player:setCharVar("SIGNED_IN_BLOOD_Prog", 3)
 
     -- AN EXPLORER'S FOOTSTEPS
     elseif csid == 40 and option ~= 0 and npcUtil.giveItem(player, 571) then
         player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
-        player:setVar("anExplorer-ClayTablets", 0)
+        player:setCharVar("anExplorer-ClayTablets", 0)
     elseif csid == 42 and option == 100 and npcUtil.giveItem(player, 571) then
-        player:setVar("anExplorer-CurrentTablet", 0)
+        player:setCharVar("anExplorer-CurrentTablet", 0)
     elseif csid == 44 then
         npcUtil.giveItem(player, 571)
     elseif csid == 41 or csid == 46 or csid == 47 then
-        local currtab = player:getVar("anExplorer-CurrentTablet")
-        local tablets = player:getVar("anExplorer-ClayTablets")
+        local currtab = player:getCharVar("anExplorer-CurrentTablet")
+        local tablets = player:getCharVar("anExplorer-ClayTablets")
 
         for zone = 1, #ZoneID, 2 do
             if ZoneID[zone] == currtab then
                 player:confirmTrade()
                 player:addGil(GIL_RATE * ZoneID[zone+1])
                 player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE * ZoneID[zone+1])
-                player:setVar("anExplorer-CurrentTablet", 0)
+                player:setCharVar("anExplorer-CurrentTablet", 0)
                 break
             end
         end
 
         if csid == 47 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
-            player:setVar("anExplorer-ClayTablets", 0)
+            player:setCharVar("anExplorer-ClayTablets", 0)
         end
 
         if option == 100 then
             npcUtil.giveItem(player, 571)
         elseif option == 110 then
-            player:setVar("anExplorer-CurrentTablet", -1)
+            player:setCharVar("anExplorer-CurrentTablet", -1)
         end
 
         if (tablets % (2 * 0x7fff)) >= 0x7fff then

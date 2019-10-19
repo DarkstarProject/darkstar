@@ -151,7 +151,7 @@ local freeHpTeleGroups =
 
 local function hasHP (player, hpIndex)
     local hpVar = homepoints[hpIndex][1]
-    local mask = bit.bor(bit.lshift(player:getVar("HpTeleportMask"..hpVar.."a"), 16), player:getVar("HpTeleportMask"..hpVar.."b"))
+    local mask = bit.bor(bit.lshift(player:getCharVar("HpTeleportMask"..hpVar.."a"), 16), player:getCharVar("HpTeleportMask"..hpVar.."b"))
     return (bit.rshift(bit.lshift(mask, 32 - homepoints[hpIndex][2]), 31) ~= 0)
 end
 
@@ -213,10 +213,10 @@ dsp.homepoint.onTrigger = function(player, csid, hpIndex)
         -- get homepoint bitmasks from player vars
         local masks =
         {
-            [1] = bit.bor(bit.lshift(player:getVar("HpTeleportMask1a"), 16), player:getVar("HpTeleportMask1b")),
-            [2] = bit.bor(bit.lshift(player:getVar("HpTeleportMask2a"), 16), player:getVar("HpTeleportMask2b")),
-            [3] = bit.bor(bit.lshift(player:getVar("HpTeleportMask3a"), 16), player:getVar("HpTeleportMask3b")),
-            [4] = bit.bor(bit.lshift(player:getVar("HpTeleportMask4a"), 16), player:getVar("HpTeleportMask4b")),
+            [1] = bit.bor(bit.lshift(player:getCharVar("HpTeleportMask1a"), 16), player:getCharVar("HpTeleportMask1b")),
+            [2] = bit.bor(bit.lshift(player:getCharVar("HpTeleportMask2a"), 16), player:getCharVar("HpTeleportMask2b")),
+            [3] = bit.bor(bit.lshift(player:getCharVar("HpTeleportMask3a"), 16), player:getCharVar("HpTeleportMask3b")),
+            [4] = bit.bor(bit.lshift(player:getCharVar("HpTeleportMask4a"), 16), player:getCharVar("HpTeleportMask4b")),
         }
 
         -- check for registration of new homepoint
@@ -229,8 +229,8 @@ dsp.homepoint.onTrigger = function(player, csid, hpIndex)
 
             -- update mask with new location and save to database
             mask = bit.bor(mask, bit.lshift(1, homepoints[hpIndex][2] - 1))
-            player:setVar("HpTeleportMask"..group.."a", bit.rshift(mask, 16))
-            player:setVar("HpTeleportMask"..group.."b", bit.rshift(bit.lshift(mask, 16), 16))
+            player:setCharVar("HpTeleportMask"..group.."a", bit.rshift(mask, 16))
+            player:setCharVar("HpTeleportMask"..group.."b", bit.rshift(bit.lshift(mask, 16), 16))
         end
 
         -- set localvar (will be used onEventFinish) and start homepoint menu event
@@ -242,6 +242,10 @@ dsp.homepoint.onTrigger = function(player, csid, hpIndex)
         player:PrintToPlayer("Home point teleports are currently disabled on this server.")
         player:startEvent(csid, 0, 0, 0, 0, 0, player:getGil(), 4095, hpIndex)
     end
+end
+
+dsp.homepoint.onEventUpdate = function(player, csid, option)
+    -- To do: add logic for favorites and menu layout
 end
 
 dsp.homepoint.onEventFinish = function(player, csid, option, eventId)

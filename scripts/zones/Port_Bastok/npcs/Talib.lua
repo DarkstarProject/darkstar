@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 
     if (BeautyAndTheGalka == QUEST_COMPLETED) then
         player:startEvent(90);
-    elseif (BeautyAndTheGalka == QUEST_ACCEPTED or player:getVar("BeautyAndTheGalkaDenied") >= 1) then
+    elseif (BeautyAndTheGalka == QUEST_ACCEPTED or player:getCharVar("BeautyAndTheGalkaDenied") >= 1) then
         player:startEvent(4);
     else
         player:startEvent(2);
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     if (csid == 2 and option == 0) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.BEAUTY_AND_THE_GALKA);
     elseif (csid == 2 and option == 1) then
-        player:setVar("BeautyAndTheGalkaDenied",1);
+        player:setCharVar("BeautyAndTheGalkaDenied",1);
     elseif (csid == 3) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.PALBOROUGH_MINES_LOGS);

@@ -11,7 +11,7 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 1) then
+    if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getCharVar("KnotQuiteThere") == 1) then
         if (trade:hasItemQty(2562,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
             player:startEvent(106);
         end
@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_ACCEPTED) then
-        if (player:getVar("KnotQuiteThere") == 0) then
+        if (player:getCharVar("KnotQuiteThere") == 0) then
             player:startEvent(105);
         end
     end
@@ -31,9 +31,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 105) then
-        player:setVar("KnotQuiteThere",1);
+        player:setCharVar("KnotQuiteThere",1);
     elseif (csid == 106) then
         player:tradeComplete();
-        player:setVar("KnotQuiteThere",2);
+        player:setCharVar("KnotQuiteThere",2);
     end
 end;

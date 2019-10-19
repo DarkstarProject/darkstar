@@ -37,15 +37,15 @@ function onTrigger(player,npc)
 
     if (TheFightingFourth == QUEST_AVAILABLE and BlueLetter == true) then
         player:startEvent(139);
-    elseif (TheFightingFourth == QUEST_AVAILABLE and player:getVar("BLUE_R_LETTER_USED") == 1) then
+    elseif (TheFightingFourth == QUEST_AVAILABLE and player:getCharVar("BLUE_R_LETTER_USED") == 1) then
         player:startEvent(139);
     elseif (TheFightingFourth == QUEST_ACCEPTED and BattleRations == true) then
         player:startEvent(140);
-    elseif (TheFightingFourth == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 1) then
+    elseif (TheFightingFourth == QUEST_ACCEPTED and player:getCharVar("THE_FIGHTING_FOURTH") == 1) then
         player:startEvent(141);
-    elseif (TheFightingFourth == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 2) then
+    elseif (TheFightingFourth == QUEST_ACCEPTED and player:getCharVar("THE_FIGHTING_FOURTH") == 2) then
         player:startEvent(142);
-    elseif (TheFightingFourth == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 3) then
+    elseif (TheFightingFourth == QUEST_ACCEPTED and player:getCharVar("THE_FIGHTING_FOURTH") == 3) then
         player:startEvent(143);
     elseif (TheFightingFourth == QUEST_COMPLETED and Allegiance == 1) then
         player:startEvent(162);
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.BATTLE_RATIONS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BATTLE_RATIONS);
         player:addQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH);
-        player:setVar("BLUE_R_LETTER_USED",1);
+        player:setCharVar("BLUE_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
     elseif (csid == 140 and option == 1) then
         player:delKeyItem(dsp.ki.BATTLE_RATIONS);
@@ -69,10 +69,10 @@ function onEventFinish(player,csid,option)
         player:delQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH);
     elseif (csid == 143) then
         -- Is first join, so add Sprinter's Shoes and bronze medal
-        if (player:getVar("Campaign_Nation") == 0) then
+        if (player:getCharVar("Campaign_Nation") == 0) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(2);
-                player:setVar("BLUE_R_LETTER_USED",0);
+                player:setCharVar("BLUE_R_LETTER_USED",0);
                 player:addTitle(dsp.title.FOURTH_DIVISION_SOLDIER);
                 player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
             end
         else
             player:setCampaignAllegiance(2);
-            player:setVar("BLUE_R_LETTER_USED",0);
+            player:setCharVar("BLUE_R_LETTER_USED",0);
             player:addTitle(dsp.title.FOURTH_DIVISION_SOLDIER);
             player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH);
         end

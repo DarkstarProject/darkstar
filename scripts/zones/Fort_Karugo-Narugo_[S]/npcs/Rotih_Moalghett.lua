@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
-        if (player:getVar("TigressStrikesProg") == 1) then
+        if (player:getCharVar("TigressStrikesProg") == 1) then
             player:startEvent(101);
         else
             player:startEvent(104);
@@ -25,6 +25,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 104) then
-        player:setVar("TigressStrikesProg", 1);
+        player:setCharVar("TigressStrikesProg", 1);
     end
 end;

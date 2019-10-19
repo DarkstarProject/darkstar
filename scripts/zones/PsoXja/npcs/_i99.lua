@@ -11,13 +11,13 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==4) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("PromathiaStatus")==4) then
         player:startEvent(2);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==3) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus")==3) then
         player:startEvent(106); -- Start Floor 1, 3
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==5) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus")==5) then
         player:startEvent(109); -- Start Floor 1, 3 or 4
-    elseif (player:hasCompletedMission(COP,dsp.mission.id.cop.DESIRES_OF_EMPTINESS) or (player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==7)) then
+    elseif (player:hasCompletedMission(COP,dsp.mission.id.cop.DESIRES_OF_EMPTINESS) or (player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus")==7)) then
         player:startEvent(112); -- Start Floor 1, 3, 4, or 5
     elseif (player:hasCompletedMission(COP,dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR)or player:hasCompletedMission(COP,dsp.mission.id.cop.THE_LAST_VERSE)) then
         player:startEvent(50); -- Start Floor 1
@@ -33,7 +33,7 @@ end;
 function onEventFinish(player,csid,option)
     -- Retail packet captures have been marked {R}. Please don't change them.
     if (csid == 2 and option == 1 ) then
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
         player:completeMission(COP,dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR);
         player:addMission(COP,dsp.mission.id.cop.DESIRES_OF_EMPTINESS);
         player:addKeyItem(dsp.ki.LIGHT_OF_VAHZL);

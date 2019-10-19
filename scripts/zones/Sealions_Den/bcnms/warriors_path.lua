@@ -35,7 +35,7 @@ function onEventFinish(player, csid, option)
         if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_WARRIOR_S_PATH then
             player:completeMission(COP, dsp.mission.id.cop.THE_WARRIOR_S_PATH)
             player:addMission(COP, dsp.mission.id.cop.GARDEN_OF_ANTIQUITY)
-            player:setVar("PromathiaStatus", 0)
+            player:setCharVar("PromathiaStatus", 0)
         end
         player:addExp(1000)
         player:addTitle(dsp.title.THE_CHEBUKKIS_WORST_NIGHTMARE)

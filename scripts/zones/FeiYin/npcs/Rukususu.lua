@@ -34,7 +34,7 @@ function onEventFinish(player,csid,option)
 
     -- Curses, Foiled A_Golem!?
     if (csid == 14) then
-        player:setVar("foiledagolemdeliverycomplete",1);
+        player:setCharVar("foiledagolemdeliverycomplete",1);
         player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL); -- remove key item
     end
 end;

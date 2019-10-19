@@ -15,16 +15,16 @@ local POETIC_PARCHMENT = 634
 
 function onTrade(player,npc,trade)
     -- THE OLD MONUMENT (parchment)
-    if player:getVar("TheOldMonument_Event") == 3 and trade:hasItemQty(PARCHMENT,1) and trade:getItemCount() == 1 then
+    if player:getCharVar("TheOldMonument_Event") == 3 and trade:hasItemQty(PARCHMENT,1) and trade:getItemCount() == 1 then
         player:startEvent(2)
     end
 end
 
 function onTrigger(player,npc)
     -- THE OLD MONUMENT
-    if player:getVar("TheOldMonument_Event") == 2 then
+    if player:getCharVar("TheOldMonument_Event") == 2 then
         player:startEvent(0)
-    elseif player:getVar("TheOldMonument_Event") == 3 then
+    elseif player:getCharVar("TheOldMonument_Event") == 3 then
         player:messageSpecial(ID.text.SONG_RUNES_REQUIRE,917)
 
     -- DEFAULT DIALOG
@@ -38,7 +38,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 0 then
-        player:setVar("TheOldMonument_Event",3)
+        player:setCharVar("TheOldMonument_Event",3)
     elseif csid == 2 then
         player:tradeComplete()
         player:messageSpecial(ID.text.SONG_RUNES_WRITING,917)

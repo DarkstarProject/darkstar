@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local SinHunting = player:getVar("sinHunting");-- RNG AF1
+    local SinHunting = player:getCharVar("sinHunting");-- RNG AF1
 
     if (SinHunting == 4) then
         player:startEvent(13, 0, 1107);
@@ -26,6 +26,6 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 13) then
-        player:setVar("sinHunting",5);
+        player:setCharVar("sinHunting",5);
     end
 end;

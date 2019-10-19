@@ -36,9 +36,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-475.825,-20.461,281.149,11);
     end
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_INVITATION_WEST and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_INVITATION_WEST and player:getCharVar("PromathiaStatus") == 0) then
         cs = 110;
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getCharVar("PromathiaStatus") == 0) then
         cs = 111;
     end
 
@@ -47,7 +47,7 @@ end;
 
 function onRegionEnter(player,region)
     local regionID = region:GetRegionID();
-    if (regionID == 1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus") == 6) then
+    if (regionID == 1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus") == 6) then
         player:startEvent(116);
     end
 end;
@@ -62,11 +62,11 @@ function onEventFinish(player,csid,option)
     if (csid == 110) then
         player:messageSpecial(ID.text.KI_STOLEN,0,dsp.ki.MYSTERIOUS_AMULET);
         player:delKeyItem(dsp.ki.MYSTERIOUS_AMULET);
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 111 and npcUtil.giveItem(player, 14657)) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 116) then
-        player:setVar("PromathiaStatus",7);
+        player:setCharVar("PromathiaStatus",7);
         player:addTitle(dsp.title.BANISHER_OF_EMPTINESS);
     end
 end;

@@ -14,13 +14,13 @@ function onTrigger(player,npc)
 
     bookwormStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
 
-    if (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 3) then
+    if (bookwormStatus == QUEST_ACCEPTED and player:getCharVar("EARLY_BIRD_TRACK_BOOK") == 3) then
         player:startEvent(399);
 
-    elseif (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 2) then
+    elseif (bookwormStatus == QUEST_ACCEPTED and player:getCharVar("EARLY_BIRD_TRACK_BOOK") == 2) then
         player:startEvent(398);
 
-    elseif (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 1) then
+    elseif (bookwormStatus == QUEST_ACCEPTED and player:getCharVar("EARLY_BIRD_TRACK_BOOK") == 1) then
         player:startEvent(396);
 
     elseif (bookwormStatus == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS) == true) then
@@ -38,9 +38,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 395) then
-        player:setVar("EARLY_BIRD_TRACK_BOOK",1);
+        player:setCharVar("EARLY_BIRD_TRACK_BOOK",1);
     elseif (csid == 398) then
-        player:setVar("EARLY_BIRD_TRACK_BOOK",3);
+        player:setCharVar("EARLY_BIRD_TRACK_BOOK",3);
     end
 
 end;

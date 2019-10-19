@@ -30,10 +30,10 @@ function onZoneIn(player,prevZone)
         else
             position = math.random(1,5) + 195;
             player:setPos(position,-15.56,258,65);
-            if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+            if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
                 cs = 30004;
             end
-            player:setVar("PlayerMainJob",0);
+            player:setCharVar("PlayerMainJob",0);
         end
     end
     return cs;

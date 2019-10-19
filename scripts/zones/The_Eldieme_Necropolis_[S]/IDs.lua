@@ -20,7 +20,7 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS_S] =
         YOU_CAN_NOW_BECOME_A_SCHOLAR  = 7712, -- You can now become a scholar!
         YOU_LEARN_EMBRAVA_AND_KAUSTRA = 7896, -- <name> learns Embrava and Kaustra!
         ITEM_DELIVERY_DIALOG          = 7902, -- Have something to send?
-        COMMON_SENSE_SURVIVAL         = 8929  -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL         = 8929, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

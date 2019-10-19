@@ -13,7 +13,7 @@ function onTrigger(player,npc)
 
     if (player:hasCompletedMission(COP,dsp.mission.id.cop.SHELTERING_DOUBT)) then
         player:startEvent(551); -- Access to Sites A & B
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_VOWS and player:getVar("PromathiaStatus") == 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_VOWS and player:getCharVar("PromathiaStatus") == 1) then
         player:startEvent(8);
     else
         player:startEvent(550); -- Access to Site A Only
@@ -27,7 +27,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 8) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
         player:setPos(732.55,-32.5,-506.544,90,30); -- Go to Riverne #A01 {R}
     elseif ((csid == 551 or csid == 550) and option == 1) then
         player:setPos(732.55,-32.5,-506.544,90,30); -- Go to Riverne #A01 {R}

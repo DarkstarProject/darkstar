@@ -13,7 +13,7 @@ end;
 function onTrigger(player, npc)
     local nm = GetMobByID(ID.mob.CHANDELIER);
     if (
-        player:getVar("hittingTheMarquisateHagainCS") == 8 and
+        player:getCharVar("hittingTheMarquisateHagainCS") == 8 and
         os.time() > GetNPCByID(ID.npc.CHANDELIER_QM):getLocalVar("pop") and
         not nm:isSpawned()
     ) then

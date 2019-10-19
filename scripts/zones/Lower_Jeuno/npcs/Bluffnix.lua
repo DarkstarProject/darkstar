@@ -57,7 +57,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local WildcatJeuno = player:getVar("WildcatJeuno");
+    local WildcatJeuno = player:getCharVar("WildcatJeuno");
 
     if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,12) == false) then
         player:startEvent(10056);
@@ -103,6 +103,6 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,TheGobbieBag[1]);
         player:messageSpecial(ID.text.INVENTORY_INCREASED);
     elseif (csid == 10056) then
-        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true);
+        player:setMaskBit(player:getCharVar("WildcatJeuno"),"WildcatJeuno",12,true);
     end
 end;

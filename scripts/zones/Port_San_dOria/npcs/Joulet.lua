@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     local MoatCarp = trade:getItemQty(4401)
     local ForestCarp = trade:getItemQty(4289)
-    local fishCountVar = player:getVar("theCompetitionFishCountVar");
+    local fishCountVar = player:getCharVar("theCompetitionFishCountVar");
     local totalFish = MoatCarp + ForestCarp + fishCountVar;
 
     if (MoatCarp + ForestCarp > 0 and MoatCarp + ForestCarp == count) then
@@ -35,7 +35,7 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:addFame(SANDORIA,30);
             player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
-            player:setVar("theCompetitionFishCountVar",totalFish);
+            player:setCharVar("theCompetitionFishCountVar",totalFish);
             player:startEvent(305);
             player:messageSpecial(ID.text.GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
         else
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_RIVALRY) == QUEST_ACCEPTED) then
         player:showText(npc, ID.text.JOULET_HELP_OTHER_BROTHER);
     elseif ((player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_COMPETITION)) == QUEST_ACCEPTED) then
-        player:showText(npc, ID.text.JOULET_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"));
+        player:showText(npc, ID.text.JOULET_CARP_STATUS, 0, player:getCharVar("theCompetitionFishCountVar"));
     end
 end;
 
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.CARP_DIEM);
             player:addKeyItem(dsp.ki.TESTIMONIAL);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TESTIMONIAL);
-            player:setVar("theCompetitionFishCountVar",0);
+            player:setCharVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_COMPETITION);
         end
     elseif (csid == 304 and option == 700) then

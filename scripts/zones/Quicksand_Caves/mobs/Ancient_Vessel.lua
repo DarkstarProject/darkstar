@@ -8,9 +8,9 @@ require("scripts/globals/missions");
 
 function onMobDeath(mob, player, isKiller)
 
-    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL and player:getVar("ZilartStatus") == 1) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL and player:getCharVar("ZilartStatus") == 1) then
         player:needToZone(true);
-        player:setVar("AncientVesselKilled",1);
+        player:setCharVar("AncientVesselKilled",1);
     end
 
 end;

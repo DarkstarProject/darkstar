@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(12521,1) and count == 1) then
             player:startEvent(362);
         elseif (trade:hasItemQty(13569,1) and count == 1) then
-            if (player:getVar("BlueRibbonBluesProg") == 4) then
+            if (player:getCharVar("BlueRibbonBluesProg") == 4) then
                 player:startEvent(365); -- Lost, ribbon but it came back
             else
                 player:startEvent(358,3600);
@@ -27,13 +27,13 @@ function onTrade(player,npc,trade)
         end
 
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
-        local KerutotoFood = player:getVar("Kerutoto_Food_var");
+        local KerutotoFood = player:getCharVar("Kerutoto_Food_var");
         if (trade:hasItemQty(4371,1) and count == 1 and KerutotoFood == 1) then
             player:startEvent(332,440);
         end
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED) then
-        if (player:getVar("ridingOnTheClouds_4") == 3 and trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_4",0);
+        if (player:getCharVar("ridingOnTheClouds_4") == 3 and trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
+            player:setCharVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
@@ -43,28 +43,28 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local KerutotoFood = player:getVar("Kerutoto_Food_var"); -- Variable to track progress of Kerutoto in Food for Thought
+    local KerutotoFood = player:getCharVar("Kerutoto_Food_var"); -- Variable to track progress of Kerutoto in Food for Thought
     local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
-    local OhbiruFood = player:getVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
+    local OhbiruFood = player:getCharVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
     local BlueRibbonBlues = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES);
     local needZone = player:needToZone();
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local waking_dreams = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS)
 
     -- Awakening of the Gods --
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(737);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(736);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(738);
 
     -- Three Paths --
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 3) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Ulmia_s_Path") == 3) then
         player:startEvent(876);
 
     -- Waking Dreams --
-    elseif (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,dsp.mission.id.cop.DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date")))) then
+    elseif (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,dsp.mission.id.cop.DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getCharVar("Darkness_Named_date")))) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
         player:startEvent(918);--918
 
@@ -83,16 +83,16 @@ function onTrigger(player,npc)
     elseif (BlueRibbonBlues == QUEST_COMPLETED and needZone) then
         player:startEvent(363);--363
     elseif (BlueRibbonBlues == QUEST_ACCEPTED) then
-        local blueRibbonProg = player:getVar("BlueRibbonBluesProg");
+        local blueRibbonProg = player:getCharVar("BlueRibbonBluesProg");
         if (player:hasItem(12521)) then
             player:startEvent(362);--362
         elseif (blueRibbonProg == 2 and needZone == false) then
-            local timerDay = player:getVar("BlueRibbonBluesTimer_Day");
+            local timerDay = player:getCharVar("BlueRibbonBluesTimer_Day");
             local currentDay = VanadielDayOfTheYear();
 
-            if (player:getVar("BlueRibbonBluesTimer_Year") < VanadielYear()) then
+            if (player:getCharVar("BlueRibbonBluesTimer_Year") < VanadielYear()) then
                 player:startEvent(360); --  go to the grave  360
-            elseif (timerDay + 1 == VanadielDayOfTheYear() and player:getVar("BlueRibbonBluesTimer_Hour") <= VanadielHour()) then
+            elseif (timerDay + 1 == VanadielDayOfTheYear() and player:getCharVar("BlueRibbonBluesTimer_Hour") <= VanadielHour()) then
                 player:startEvent(360); --  go to the grave  360
             elseif (timerDay + 2 <=  VanadielDayOfTheYear()) then
                 player:startEvent(360); --  go to the grave  360
@@ -143,44 +143,44 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 876) then
-        player:setVar("COP_Ulmia_s_Path",4);
+        player:setCharVar("COP_Ulmia_s_Path",4);
     elseif ((csid == 313 and option == 0) or (csid == 314 and option == 0)) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
-        player:setVar("Kerutoto_Food_var",1);
+        player:setCharVar("Kerutoto_Food_var",1);
     elseif (csid == 313 and option == 1) then
-        player:setVar("Kerutoto_Food_var",256);
+        player:setCharVar("Kerutoto_Food_var",256);
     elseif (csid == 332) then
         player:tradeComplete();
         player:addGil(GIL_RATE*440);
-        if (player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
+        if (player:getCharVar("Kenapa_Food_var") == 4 and player:getCharVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
             player:completeQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
             player:addFame(WINDURST,100);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:needToZone(true);
-            player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
-            player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
-            player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
+            player:setCharVar("Kerutoto_Food_var",0);        -- ------------------------------------------
+            player:setCharVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
+            player:setCharVar("Ohbiru_Food_var",0);            -- ------------------------------------------
         else -- If this is NOT the last NPC given food, flag this NPC as completed.
-            player:setVar("Kerutoto_Food_var",2);
+            player:setCharVar("Kerutoto_Food_var",2);
         end
     elseif (csid == 357) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES);
     elseif (csid == 358 or csid == 365) then
         player:tradeComplete();
-        player:setVar("BlueRibbonBluesProg",2);
-        player:setVar("BlueRibbonBluesTimer_Hour",VanadielHour());
-        player:setVar("BlueRibbonBluesTimer_Year",VanadielYear());
-        player:setVar("BlueRibbonBluesTimer_Day",VanadielDayOfTheYear());
+        player:setCharVar("BlueRibbonBluesProg",2);
+        player:setCharVar("BlueRibbonBluesTimer_Hour",VanadielHour());
+        player:setCharVar("BlueRibbonBluesTimer_Year",VanadielYear());
+        player:setCharVar("BlueRibbonBluesTimer_Day",VanadielDayOfTheYear());
         player:needToZone(true);
         if (csid == 358) then
             player:addGil(GIL_RATE*3600);
         end
     elseif (csid == 360) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:setVar("BlueRibbonBluesProg",3);
-            player:setVar("BlueRibbonBluesTimer_Hour",0);
-            player:setVar("BlueRibbonBluesTimer_Year",0);
-            player:setVar("BlueRibbonBluesTimer_Day",0);
+            player:setCharVar("BlueRibbonBluesProg",3);
+            player:setCharVar("BlueRibbonBluesTimer_Hour",0);
+            player:setCharVar("BlueRibbonBluesTimer_Year",0);
+            player:setCharVar("BlueRibbonBluesTimer_Day",0);
             player:addItem(13569);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13569);
         else
@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 362) then
         player:completeQuest(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES);
-        player:setVar("BlueRibbonBluesProg",0);
+        player:setCharVar("BlueRibbonBluesProg",0);
         player:addFame(WINDURST,140);
         player:addTitle(dsp.title.GHOSTIE_BUSTER);
         player:needToZone(true);
@@ -211,7 +211,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*15000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*15000); -- Gil
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-            player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
 
         elseif (option == 6 and player:hasSpell(304)==false) then
@@ -221,11 +221,11 @@ function onEventFinish(player,csid,option)
         end
         if (addspell==1) then
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-            player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
         elseif (item > 0 and player:getFreeSlotsCount()~=0) then
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-            player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,dsp.quest.id.windurst.WAKING_DREAMS);
             player:addItem(item);
             player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
@@ -233,7 +233,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         end
     elseif (csid == 736) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
 
     end
 

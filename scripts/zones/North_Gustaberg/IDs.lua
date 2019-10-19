@@ -24,6 +24,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         FISHING_MESSAGE_OFFSET        = 7230,  -- You can't fish here.
         DIG_THROW_AWAY                = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                  = 7245,  -- You dig and you dig, but find nothing.
+        SPARKLING_LIGHT               = 7374, -- The ground is sparkling with a strange light.
         SHINING_OBJECT_SLIPS_AWAY     = 7438,  -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7445,  -- You can reach the water from here.
         CONQUEST                      = 7481,  -- You've earned conquest points!

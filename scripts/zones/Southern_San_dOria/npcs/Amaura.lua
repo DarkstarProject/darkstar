@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(642);
         end
-    elseif (player:getVar("DiaryPage") == 3 or toCureaCough == QUEST_ACCEPTED) then
+    elseif (player:getCharVar("DiaryPage") == 3 or toCureaCough == QUEST_ACCEPTED) then
         if (player:hasKeyItem(dsp.ki.THYME_MOSS) == false and player:hasKeyItem(dsp.ki.COUGH_MEDICINE) == false) then
             player:startEvent(645); -- need thyme moss for cough med
         elseif (player:hasKeyItem(dsp.ki.THYME_MOSS) == true) then

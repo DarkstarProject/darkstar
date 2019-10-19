@@ -26,6 +26,6 @@ function onEventFinish(player,csid,option)
 
     if (csid == 102) then
             player:delKeyItem(dsp.ki.BATTLE_RATIONS);
-            player:setVar("THE_FIGHTING_FOURTH",1);
+            player:setCharVar("THE_FIGHTING_FOURTH",1);
     end
 end;

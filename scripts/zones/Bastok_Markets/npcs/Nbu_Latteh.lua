@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
     local pFame = player:getFameLevel(BASTOK);
     local momTheAdventurer = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MOM_THE_ADVENTURER);
-    local questStatus = player:getVar("MomTheAdventurer_Event");
+    local questStatus = player:getCharVar("MomTheAdventurer_Event");
 
     if (player:needToZone()) then
         player:startEvent(127); -- chat about my work
@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 230 and option == 0) then
         if (player:getFreeSlotsCount(0) > 0) then
-            player:setVar("MomTheAdventurer_Event",1);
+            player:setCharVar("MomTheAdventurer_Event",1);
             player:addItem(4096);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4096); -- Fire Crystal
             if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MOM_THE_ADVENTURER) == QUEST_AVAILABLE) then
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.RINGBEARER);
         player:addGil(GIL_RATE*gilReward);
         player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*gilReward);
-        player:setVar("MomTheAdventurer_Event",0);
+        player:setCharVar("MomTheAdventurer_Event",0);
 
         if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MOM_THE_ADVENTURER) == QUEST_ACCEPTED) then
             player:addFame(BASTOK,20);
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 235 and option == 0) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.THE_SIGNPOST_MARKS_THE_SPOT);
-        player:setVar("MomTheAdventurer_Event",0);
+        player:setCharVar("MomTheAdventurer_Event",0);
     end
 
 end;

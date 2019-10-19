@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 2) then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getCharVar("THE_FIGHTING_FOURTH") == 2) then
         player:startEvent(106)
     end
 end;
@@ -22,6 +22,6 @@ end
 function onEventFinish(player,csid,option)
 
     if (csid == 106) then
-        player:setVar("THE_FIGHTING_FOURTH",3);
+        player:setCharVar("THE_FIGHTING_FOURTH",3);
     end
 end;
