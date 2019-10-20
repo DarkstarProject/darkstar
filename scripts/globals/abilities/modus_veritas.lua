@@ -31,11 +31,13 @@ function onUseAbility(player,target,ability)
             mvPower = mvPower +1
             local helixPower = helix:getPower() * 2
             local duration = helix:getDuration()
-            local remaining = helix:getTimeRemaining()
+            local remaining = math.floor(helix:getTimeRemaining()/1000) -- from milliseconds
+			--print(string.format("helix original stats ... dot: %i, duration: %i, remaining: %i",helixPower/2,duration,remaining))
             duration = (duration-remaining) + math.floor(remaining * durationMultiplier)
+			--print(string.format("helix new stats ... dot: %i, remaining: %i",helixPower,duration))
             helix:setSubPower(mvPower)
             helix:setPower(helixPower)
-            helix:setDuration(duration)
+            helix:setDuration(duration*1000) -- back to milliseconds
         end
     else
         ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2) -- No effect
