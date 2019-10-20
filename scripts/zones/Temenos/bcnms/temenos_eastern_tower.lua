@@ -8,13 +8,6 @@ require("scripts/globals/keyitems")
 
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
-    if GetMobByID(16928844):isSpawned() then DespawnMob(16928844) end
-    if GetMobByID(16928853):isSpawned() then DespawnMob(16928853) end
-    if GetMobByID(16928862):isSpawned() then DespawnMob(16928862) end
-    if GetMobByID(16928871):isSpawned() then DespawnMob(16928871) end
-    if GetMobByID(16928880):isSpawned() then DespawnMob(16928880) end
-    if GetMobByID(16928889):isSpawned() then DespawnMob(16928889) end
-    if GetMobByID(16928894):isSpawned() then DespawnMob(16928894) end
     HideArmouryCrates(Temenos_Eastern_Tower, TEMENOS)
     HideTemenosDoor(Temenos_Eastern_Tower)
 end

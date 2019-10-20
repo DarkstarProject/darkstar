@@ -10,12 +10,6 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     HideArmouryCrates(Central_Temenos_4th_Floor, TEMENOS)
     HideTemenosDoor(Central_Temenos_4th_Floor)
-    for n = 16928986, 16928988, 1 do
-        if GetMobByID(n):isSpawned() then DespawnMob(n) end
-    end
-    for n = 16928991, 16929003, 1 do
-        if GetMobByID(n):isSpawned() then DespawnMob(n) end
-    end
     SpawnCofferTemenosCFloor4()
 end
 

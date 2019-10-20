@@ -10,7 +10,6 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     HideTemenosDoor(Central_Temenos_Basement)
     HideArmouryCrates(Central_Temenos_Basement, TEMENOS)
-    if GetMobByID(16929088):isSpawned() then DespawnMob(16929088) end
 end
 
 function onBattlefieldTick(battlefield, tick)
