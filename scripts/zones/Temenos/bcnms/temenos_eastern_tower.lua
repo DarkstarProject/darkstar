@@ -2,44 +2,40 @@
 -- Area: Temenos
 -- Name: Temenos Eastern Tower
 -----------------------------------
-require("scripts/globals/limbus");
+require("scripts/globals/limbus")
 require("scripts/globals/battlefield")
-require("scripts/globals/keyitems");
+require("scripts/globals/keyitems")
 
--- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+    if GetMobByID(16928844):isSpawned() then DespawnMob(16928844) end
+    if GetMobByID(16928853):isSpawned() then DespawnMob(16928853) end
+    if GetMobByID(16928862):isSpawned() then DespawnMob(16928862) end
+    if GetMobByID(16928871):isSpawned() then DespawnMob(16928871) end
+    if GetMobByID(16928880):isSpawned() then DespawnMob(16928880) end
+    if GetMobByID(16928889):isSpawned() then DespawnMob(16928889) end
+    if GetMobByID(16928894):isSpawned() then DespawnMob(16928894) end
+    HideArmouryCrates(Temenos_Eastern_Tower, TEMENOS)
+    HideTemenosDoor(Temenos_Eastern_Tower)
+end
+
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
+function onBattlefieldRegister(player, battlefield)
+end
 
-function onBattlefieldRegister(player,battlefield)
-    if (GetMobByID(16928844):isSpawned()) then DespawnMob(16928844); end
-    if (GetMobByID(16928853):isSpawned()) then DespawnMob(16928853); end
-    if (GetMobByID(16928862):isSpawned()) then DespawnMob(16928862); end
-    if (GetMobByID(16928871):isSpawned()) then DespawnMob(16928871); end
-    if (GetMobByID(16928880):isSpawned()) then DespawnMob(16928880); end
-    if (GetMobByID(16928889):isSpawned()) then DespawnMob(16928889); end
-    if (GetMobByID(16928894):isSpawned()) then DespawnMob(16928894); end
-    SetServerVariable("[Temenos_E_Tower]UniqueID",os.time());
-    HideArmouryCrates(Temenos_Eastern_Tower,TEMENOS);        
-    HideTemenosDoor(Temenos_Eastern_Tower);
-end;
+function onBattlefieldEnter(player, battlefield)
+    player:delKeyItem(dsp.ki.COSMOCLEANSE)
+    player:delKeyItem(dsp.ki.WHITE_CARD)
+end
 
--- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBattlefieldEnter(player,battlefield)
-    player:setCharVar("characterLimbusKey",GetServerVariable("[Temenos_E_Tower]UniqueID"));
-    player:delKeyItem(dsp.ki.COSMOCLEANSE);
-    player:delKeyItem(dsp.ki.WHITE_CARD);
-end;
-
--- Leaving the Dynamis by every mean possible, given by the LeaveCode
--- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
--- 4=Finish he dynamis
-
-function onBattlefieldLeave(player,battlefield,leavecode)
-    --print("leave code "..leavecode);
-    if leavecode == dsp.battlefield.leaveCode.LOST then
-        SetServerVariable("[Temenos_E_Tower]UniqueID",0);
-        player:setPos(580,-1.5,4.452,192);
+function onBattlefieldLeave(player, battlefield, leavecode)
+    if leavecode == dsp.battlefield.leaveCode.WON then
+        local name, clearTime, partySize = battlefield:getRecord()
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002)
     end
-end;
+end

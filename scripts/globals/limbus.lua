@@ -6,6 +6,7 @@ require("scripts/globals/status")
 APOLLYON_SE_NE = 1 -- out 557 -1 441 128
 APOLLYON_NW_SW = 2 -- out -561 0 443 242
 TEMENOS = 3
+GATE_OFFSET = 16929221
 -- dsp.ki.WHITE_CARD = 349
 -- dsp.ki.RED_CARD = 350
 -- dsp.ki.BLACK_CARD = 351
@@ -350,39 +351,39 @@ end
 
 function HideTemenosDoor(Region)
     if (Region == Temenos_Northern_Tower) then
-        GetNPCByID((450)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((451)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((452)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((453)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((454)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((455)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((456)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+1):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+2):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+3):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+4):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+5):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+6):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Temenos_Eastern_Tower) then
-        GetNPCByID((457)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((458)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((459)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((460)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((461)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((462)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((463)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+7):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+8):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+9):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+10):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+11):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+12):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+13):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Temenos_Western_Tower) then
-        GetNPCByID((464)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((465)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((466)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((467)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((468)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((469)+16928770):setStatus(dsp.status.DISAPPEAR)
-        GetNPCByID((470)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+14):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+15):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+16):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+17):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+18):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+18):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+20):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_1st_Floor) then
-        GetNPCByID((471)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+21):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_2nd_Floor) then
-        GetNPCByID((472)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+22):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_3rd_Floor) then
-        GetNPCByID((473)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+23):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_4th_Floor) then
-        GetNPCByID((474)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+24):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_Basement) then
-        GetNPCByID((475)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(GATE_OFFSET+25):setStatus(dsp.status.DISAPPEAR)
     end
 end
 

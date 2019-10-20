@@ -739,7 +739,7 @@ function findBattlefields(player, npc, itemId)
         return 0
     end
     for k, v in pairs(zbfs) do
-        if v[3] == itemId and checkReqs(player, npc, v[2], true) then
+        if v[3] == itemId and checkReqs(player, npc, v[2], true) and not player:battlefieldAtCapacity(v[2]) then
             mask = bit.bor(mask,math.pow(2,v[1]))
         end
     end
@@ -900,7 +900,17 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local clearTime = 1
         local name = "Meme"
         local partySize = 1
-
+        switch (battlefieldId): caseof 
+        {
+            [1298] = function() area = 3 end,
+            [1299] = function() area = 1 end,
+            [1300] = function() area = 2 end,
+            [1301] = function() area = 8 end,
+            [1303] = function() area = 7 end,
+            [1304] = function() area = 6 end,
+            [1305] = function() area = 5 end,
+            [1306] = function() area = 4 end,
+        }
         local result = dsp.battlefield.returnCode.REQS_NOT_MET
         result = player:registerBattlefield(id, area)
         local status = dsp.battlefield.status.OPEN

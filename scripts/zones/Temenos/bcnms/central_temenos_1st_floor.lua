@@ -2,37 +2,33 @@
 -- Area: Temenos
 -- Name: Central Temenos 1st Floor
 -----------------------------------
-require("scripts/globals/limbus");
+require("scripts/globals/limbus")
 require("scripts/globals/battlefield")
-require("scripts/globals/keyitems");
+require("scripts/globals/keyitems")
 
--- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+    HideTemenosDoor(Central_Temenos_1st_Floor)
+    HideArmouryCrates(Central_Temenos_1st_Floor, TEMENOS)
+end
+
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
+function onBattlefieldRegister(player, battlefield)
+end
 
-function onBattlefieldRegister(player,battlefield)        
-    SetServerVariable("[C_Temenos_1st]UniqueID",os.time());
-    HideArmouryCrates(Central_Temenos_1st_Floor,TEMENOS);        
-    HideTemenosDoor(Central_Temenos_1st_Floor);
-end;
+function onBattlefieldEnter(player, battlefield)
+    player:delKeyItem(dsp.ki.COSMOCLEANSE)
+    player:delKeyItem(dsp.ki.WHITE_CARD)
+end
 
--- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBattlefieldEnter(player,battlefield)
-    player:setCharVar("characterLimbusKey",GetServerVariable("[C_Temenos_1st]UniqueID"));
-    player:delKeyItem(dsp.ki.COSMOCLEANSE);
-    player:delKeyItem(dsp.ki.WHITE_CARD);
-end;
-
--- Leaving by every mean possible, given by the LeaveCode
--- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
--- 4=Finish he dynamis
-
-function onBattlefieldLeave(player,battlefield,leavecode)
-    --print("leave code "..leavecode);
-    if leavecode == dsp.battlefield.leaveCode.LOST then
-        SetServerVariable("[C_Temenos_1st]UniqueID",0);
-        player:setPos(580,-1.5,4.452,192);
+function onBattlefieldLeave(player, battlefield, leavecode)
+    if leavecode == dsp.battlefield.leaveCode.WON then
+        local name, clearTime, partySize = battlefield:getRecord()
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002)
     end
-end;
+end

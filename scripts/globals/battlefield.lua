@@ -229,7 +229,7 @@ function dsp.battlefield.ExtendTimeLimit(battlefield, minutes, message, param, p
     if message then
         players = players or battlefield:getPlayers()
         for _, player in pairs(players) do
-            player:messageBasic(message, param or minutes)
+            player:messageSpecial(message, param or minutes)
         end
     end
 end
@@ -242,7 +242,7 @@ function dsp.battlefield.HealPlayers(battlefield, players)
         player:addHP(recoverHP)
         player:addMP(recoverMP)
         player:resetRecasts()
-        player:messageBasic(msgBasic.RECOVERS_HP_AND_MP, recoverHP, recoverMP)
-        player:messageBasic(msgBasic.ALL_ABILITIES_RECHARGED)
+        player:messageBasic(dsp.msg.basic.RECOVERS_HP_AND_MP, recoverHP, recoverMP)
+        player:messageBasic(dsp.msg.basic.ALL_ABILITIES_RECHARGED)
     end
 end

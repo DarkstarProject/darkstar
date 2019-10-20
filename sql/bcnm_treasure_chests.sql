@@ -421,3 +421,16 @@ INSERT INTO bcnm_treasure_chests VALUES (1152,3,17051654);
 INSERT INTO bcnm_treasure_chests VALUES (1153,1,17051660); -- shadows_of_the_mind
 INSERT INTO bcnm_treasure_chests VALUES (1153,2,17051666);
 INSERT INTO bcnm_treasure_chests VALUES (1153,3,17051672);
+
+-- ----------------------------
+-- Temenos
+-- ----------------------------
+INSERT INTO bcnm_treasure_chests VALUES (1298,3,16928785); -- Temenos - Western Tower
+INSERT INTO bcnm_treasure_chests VALUES (1299,1,16928807); -- Temenos - Northern Tower
+INSERT INTO bcnm_treasure_chests VALUES (1300,2,16928838); -- Temenos - Eastern Tower
+INSERT INTO bcnm_treasure_chests VALUES (1301,8,16929245); -- Central Temenos - Basement 1 placeholder
+INSERT INTO bcnm_treasure_chests VALUES (1303,7,16928839); -- Central Temenos - 1st Floor
+INSERT INTO bcnm_treasure_chests VALUES (1304,6,16928845); -- Central Temenos - 2nd Floor
+INSERT INTO bcnm_treasure_chests VALUES (1305,5,16928846); -- Central Temenos - 3rd Floor
+INSERT INTO bcnm_treasure_chests VALUES (1306,4,16928847); -- Central Temenos - 4th Floor
+
