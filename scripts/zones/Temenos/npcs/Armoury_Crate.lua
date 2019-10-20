@@ -854,7 +854,7 @@ local loot =
             {itemid = 1875, droprate = 100},
         },
     },
-    -- central temenos floor 5
+    -- central temenos floor 5 ?
     [155] =
     {
         {
@@ -987,7 +987,7 @@ function onTrigger(player, npc)
             end
         end
         if lootID == 136 or lootID == 143 or lootID == 150 or lootID == 151 or
-            lootID == 152 or lootID == 153 or lootID == 154 or lootID == 155
+            lootID == 152 or lootID == 153 or lootID == 154
         then
             battlefield:setLocalVar("cutsceneTimer", 10)
             battlefield:setLocalVar("lootSeen", 1)
