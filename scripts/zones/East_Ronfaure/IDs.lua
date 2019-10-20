@@ -53,7 +53,7 @@ zones[dsp.zone.EAST_RONFAURE] =
     },
     npc =
     {
-        CASKET_BASE = 17187499,
+        CASKET_BASE = 17191481,
         LOGGING =
         {
             17191529,
