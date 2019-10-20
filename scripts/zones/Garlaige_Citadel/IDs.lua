@@ -30,11 +30,11 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         PRESENCE_FROM_CEILING       = 7295,  -- You sense a presence from in the ceiling.
         HEAT_FROM_CEILING           = 7296,  -- You feel a terrible heat from the ceiling.
         CHEST_UNLOCKED              = 7326,  -- You unlock the chest!
-        PLAYER_OBTAINS_ITEM         = 7519,  -- Player obtains <item>!
+        PLAYER_OBTAINS_ITEM         = 7519,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM       = 7520,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM    = 7521,  -- Player obtains the temporary item: <temp item>!
+        PLAYER_OBTAINS_TEMP_ITEM    = 7521,  -- <name> obtains the temporary item: <item>!
         ALREADY_POSSESS_TEMP        = 7522,  -- You already possess that temporary item.
-		NO_COMBINATION              = 7527,  -- You were unable to enter a combination.
+        NO_COMBINATION              = 7527,  -- You were unable to enter a combination.
         REGIME_REGISTERED           = 9605,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL       = 11553, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },

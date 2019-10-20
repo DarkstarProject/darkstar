@@ -20,9 +20,9 @@ zones[dsp.zone.GUSTAV_TUNNEL] =
         FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
         REGIME_REGISTERED        = 9578,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL    = 10662, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
-        PLAYER_OBTAINS_ITEM      = 10630, -- Player obtains <item>!
+        PLAYER_OBTAINS_ITEM      = 10630, -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 10631, -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 10632, -- Player obtains the temporary item: <temp item>!
+        PLAYER_OBTAINS_TEMP_ITEM = 10632, -- <name> obtains the temporary item: <item>!
         ALREADY_POSSESS_TEMP     = 10633, -- You already possess that temporary item.
         NO_COMBINATION           = 10638, -- You were unable to enter a combination.
     },
