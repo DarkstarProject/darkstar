@@ -26,9 +26,9 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
         MORION_WORM_1            = 7329,  -- It appears to be a hole made by some kind of animal. Fragments of iron ore are scattered around the area...
         REGIME_REGISTERED        = 9457,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL    = 10541, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
-        PLAYER_OBTAINS_ITEM      = 10509, -- Player obtains <item>!
+        PLAYER_OBTAINS_ITEM      = 10509, -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 10510, -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 10511, -- Player obtains the temporary item: <temp item>!
+        PLAYER_OBTAINS_TEMP_ITEM = 10511, -- <name> obtains the temporary item: <item>!
         ALREADY_POSSESS_TEMP     = 10512, -- You already possess that temporary item.
         NO_COMBINATION           = 10517, -- You were unable to enter a combination.
     },

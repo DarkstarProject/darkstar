@@ -34,11 +34,11 @@ zones[dsp.zone.DANGRUF_WADI] =
         BEAT_EGGBLIX             = 7374,  -- (...Lucky, ya are! Don't forget to say hi to our sister at Drachenfall!)
         CHEST_UNLOCKED           = 7434,  -- You unlock the chest!
         SMALL_HOLE               = 7488,  -- There is a small hole here.
-        PLAYER_OBTAINS_ITEM      = 8363,  -- Player obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM    = 8364,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 8365,  -- Player obtains the temporary item: <temp item>!
-        ALREADY_POSSESS_TEMP     = 8366,  -- You already possess that temporary item.
-        NO_COMBINATION           = 8371,  -- You were unable to enter a combination.
+        PLAYER_OBTAINS_ITEM      = 8365,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 8366,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 8367,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP     = 8368,  -- You already possess that temporary item.
+        NO_COMBINATION           = 8373,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 10451, -- New training regime registered!
         COMMON_SENSE_SURVIVAL    = 11522, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },

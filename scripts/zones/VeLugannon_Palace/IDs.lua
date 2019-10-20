@@ -18,9 +18,9 @@ zones[dsp.zone.VELUGANNON_PALACE] =
         CONQUEST_BASE            = 7049,  -- Tallying conquest results...
         CHEST_UNLOCKED           = 7216,  -- You unlock the chest!
         REGIME_REGISTERED        = 10159, -- New training regime registered!
-        PLAYER_OBTAINS_ITEM      = 11211, -- Player obtains <item>!
+        PLAYER_OBTAINS_ITEM      = 11211, -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 11212, -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 11213, -- Player obtains the temporary item: <temp item>!
+        PLAYER_OBTAINS_TEMP_ITEM = 11213, -- <name> obtains the temporary item: <item>!
         ALREADY_POSSESS_TEMP     = 11214, -- You already possess that temporary item.
         NO_COMBINATION           = 11219, -- You were unable to enter a combination.
     },

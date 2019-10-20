@@ -23,9 +23,9 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
         SENSE_OMINOUS_PRESENCE   = 7418,  -- You sense an ominous presence...
         REGIME_REGISTERED        = 9532,  -- New training regime registered!
         COMMON_SENSE_SURVIVAL    = 10622, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
-        PLAYER_OBTAINS_ITEM      = 10584, -- Player obtains <item>!
+        PLAYER_OBTAINS_ITEM      = 10584, -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 10585, -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 10586, -- Player obtains the temporary item: <temp item>!
+        PLAYER_OBTAINS_TEMP_ITEM = 10586, -- <name> obtains the temporary item: <item>!
         ALREADY_POSSESS_TEMP     = 10587, -- You already possess that temporary item.
         NO_COMBINATION           = 10592, -- You were unable to enter a combination.
     },
