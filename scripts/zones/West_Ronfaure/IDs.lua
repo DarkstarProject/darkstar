@@ -63,7 +63,7 @@ zones[dsp.zone.WEST_RONFAURE] =
     {
         SIGNPOST_OFFSET = 17187537,
         OVERSEER_BASE   = 17187557,
-        CASKET_BASE     = 17191481,
+        CASKET_BASE     = 17187499,
     },
 }
 
