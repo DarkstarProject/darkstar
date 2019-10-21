@@ -21,9 +21,21 @@ zones[dsp.zone.TEMENOS] =
     },
     mob =
     {
+        TEMENOS_E_MOB = 
+        {
+            16928840,
+            16928849,
+            16928858,
+            16928867,
+            16928876,
+            16928885,
+            16928892,
+        },
     },
     npc =
     {
+        GATE_OFFSET = 16929221,
+        COFFER_OFFSET = 16928768,
     },
 }
 

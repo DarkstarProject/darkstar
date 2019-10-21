@@ -8,8 +8,8 @@ require("scripts/globals/keyitems")
 
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
-    HideTemenosDoor(Temenos_Northern_Tower)
-    HideArmouryCrates(Temenos_Northern_Tower, TEMENOS)
+    limbus.hideTemenosDoors(Temenos_Northern_Tower)
+    limbus.hideArmouryCrates(Temenos_Northern_Tower, TEMENOS)
 end
 
 function onBattlefieldTick(battlefield, tick)

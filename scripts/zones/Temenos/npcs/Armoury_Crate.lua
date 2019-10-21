@@ -5,8 +5,8 @@
 require("scripts/globals/titles")
 require("scripts/globals/quests")
 require("scripts/globals/limbus")
-local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
+local ID = require("scripts/zones/Temenos/IDs")
 
 local loot =
 {
@@ -893,98 +893,60 @@ function onTrigger(player, npc)
     if not battlefield then
         return
     end
-    local  CofferID = npc:getID()
-    local  CofferType=0
-    local  lootID=0
-    local  InstanceRegion=0
-    local  addtime=0
-    local  DespawnOtherCoffer=false
-    local  MimicID=0
+    local ID = zones[37]
+    local cofferID = npc:getID()
     local X = npc:getXPos()
     local Y = npc:getYPos()
     local Z = npc:getZPos()
+    local cofferType = 0
+    local instanceRegion = 0
+    local addtime = 0
+    local despawnOtherCoffer = false
+    local mimicID = 0
+    local lootID = 0
 
-    for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
-        if (ARMOURY_CRATES_LIST_TEMENOS[coffer] == CofferID-16928768) then
-            CofferType=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][1]
-            InstanceRegion=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][2]
-            addtime=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][3]
-            DespawnOtherCoffer=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][4]
-            MimicID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5]
-            lootID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][6]
+    for coffer = 1, #ARMOURY_CRATE_TEMENOS, 2 do
+        if ARMOURY_CRATE_TEMENOS[coffer] == cofferID-ID.npc.COFFER_OFFSET then
+            cofferType = ARMOURY_CRATE_TEMENOS[coffer+1][1]
+            instanceRegion = ARMOURY_CRATE_TEMENOS[coffer+1][2]
+            addtime = ARMOURY_CRATE_TEMENOS[coffer+1][3]
+            despawnOtherCoffer = ARMOURY_CRATE_TEMENOS[coffer+1][4]
+            mimicID = ARMOURY_CRATE_TEMENOS[coffer+1][5]
+            lootID = ARMOURY_CRATE_TEMENOS[coffer+1][6]
         end
     end
-    local coffer = CofferID-16928768
+    local coffer = cofferID-ID.npc.COFFER_OFFSET
 
-    if CofferType == cTIME then
+    if cofferType == cTIME then
         dsp.battlefield.ExtendTimeLimit(battlefield, addtime, ID.text.TIME_EXTENDED)
-    elseif CofferType == cITEM then
-        if InstanceRegion == Central_Temenos_4th_Floor and coffer ~= 79 then
+    elseif cofferType == cITEM then
+        if instanceRegion == Central_Temenos_4th_Floor and coffer ~= 79 then
             local randmimic = math.random(1, 24)
             if randmimic < 19 then
-                local MimicList={16928986,16928987,16928988,16928989,16928990,16928991,16928992,16928993,16928994,16928995,16928996,16928997,16928998,16928999,16929000,16929001,16929002,16929003}
+                local MimicList =
+                {
+                    16928986, 16928987, 16928988, 16928989, 16928990, 16928991,
+                    16928992, 16928993, 16928994, 16928995, 16928996, 16928997,
+                    16928998, 16928999, 16929000, 16929001, 16929002, 16929003,
+                }
                 GetMobByID(MimicList[randmimic]):setSpawn(X, Y, Z)
                 SpawnMob(MimicList[randmimic]):setPos(X, Y, Z)
                 GetMobByID(MimicList[randmimic]):updateClaim(player)
             else
                 battlefield:setLocalVar("loot", 1)
                 battlefield:spawnLoot(npc)
-                players = battlefield:getPlayers()
-                if npc then
-                    npc:setAnimation(90)
-                end
-                for i = 1, #loot[lootID], 1 do
-                    local lootGroup = loot[lootID][i]
-                    if lootGroup then
-                        local max = 0
-                        for _, entry in pairs(lootGroup) do
-                            max = max + entry.droprate
-                        end
-                        local roll = math.random(max)
-                        for _, entry in pairs(lootGroup) do
-                            max = max - entry.droprate
-                            if roll > max then
-                                if entry.itemid ~= 0 then
-                                    players[1]:addTreasure(entry.itemid, npc)
-                                end
-                                break
-                            end
-                        end
-                    end
-                end
+                limbus.handleLootRolls(battlefield, loot[lootID], nil, npc)
             end
             -- despawn les coffer du meme groupe
-            for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
-                if ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID then
-                    GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(dsp.status.DISAPPEAR)
+            for coffer = 1, #ARMOURY_CRATE_TEMENOS, 2 do
+                if ARMOURY_CRATE_TEMENOS[coffer+1][5] == mimicID then
+                    GetNPCByID(ARMOURY_CRATE_TEMENOS[coffer]+ID.npc.COFFER_OFFSET):setStatus(dsp.status.DISAPPEAR)
                 end
             end
         else
             battlefield:setLocalVar("loot", 1)
             battlefield:spawnLoot(npc)
-            players = battlefield:getPlayers()
-            if npc then
-                npc:setAnimation(90)
-            end
-            for i = 1, #loot[lootID], 1 do
-                local lootGroup = loot[lootID][i]
-                if lootGroup then
-                    local max = 0
-                    for _, entry in pairs(lootGroup) do
-                        max = max + entry.droprate
-                    end
-                    local roll = math.random(max)
-                    for _, entry in pairs(lootGroup) do
-                        max = max - entry.droprate
-                        if roll > max then
-                            if entry.itemid ~= 0 then
-                                players[1]:addTreasure(entry.itemid, npc)
-                            end
-                            break
-                       end
-                    end
-                end
-            end
+            limbus.handleLootRolls(battlefield, loot[lootID], nil, npc)
         end
         if lootID == 136 or lootID == 143 or lootID == 150 or lootID == 151 or
             lootID == 152 or lootID == 153 or lootID == 154
@@ -992,89 +954,98 @@ function onTrigger(player, npc)
             battlefield:setLocalVar("cutsceneTimer", 10)
             battlefield:setLocalVar("lootSeen", 1)
         end
-    elseif CofferType == cRESTORE then
+    elseif cofferType == cRESTORE then
         dsp.battlefield.HealPlayers(battlefield)
-    elseif CofferType == cMIMIC then
+    elseif cofferType == cMIMIC then
         if coffer == 284 then
-            GetMobByID(16928844):setSpawn(X, Y, Z)
-            SpawnMob(16928844):setPos(X, Y, Z)
-            GetMobByID(16928844):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[1]+4):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[1]+4):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[1]+4):updateClaim(player)
         elseif coffer == 321 then
-            GetMobByID(16928853):setSpawn(X, Y, Z)
-            SpawnMob(16928853):setPos(X, Y, Z)
-            GetMobByID(16928853):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[2]+4):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[2]+4):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[2]+4):updateClaim(player)
         elseif coffer == 348 then
-            GetMobByID(16928862):setSpawn(X, Y, Z)
-            SpawnMob(16928862):setPos(X, Y, Z)
-            GetMobByID(16928862):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[3]+4):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[3]+4):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[3]+4):updateClaim(player)
         elseif coffer == 360 then
-            GetMobByID(16928871):setSpawn(X, Y, Z)
-            SpawnMob(16928871):setPos(X, Y, Z)
-            GetMobByID(16928871):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[4]+4):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[4]+4):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[4]+4):updateClaim(player)
         elseif coffer == 393 then
-            GetMobByID(16928880):setSpawn(X, Y, Z)
-            SpawnMob(16928880):setPos(X, Y, Z)
-            GetMobByID(16928880):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[5]+4):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[5]+4):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[5]+4):updateClaim(player)
         elseif coffer == 127 then
-            GetMobByID(16928889):setSpawn(X, Y, Z)
-            SpawnMob(16928889):setPos(X, Y, Z)
-            GetMobByID(16928889):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[6]+4):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[6]+4):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[6]+4):updateClaim(player)
         elseif coffer == 123 then
-            GetMobByID(16928894):setSpawn(X, Y, Z)
-            SpawnMob(16928894):setPos(X, Y, Z)
-            GetMobByID(16928894):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[7]+4):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[7]+4):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[7]+4):updateClaim(player)
         end
     end
-    if DespawnOtherCoffer then
-        HideArmouryCrates(InstanceRegion, TEMENOS)
-        if InstanceRegion == Temenos_Eastern_Tower then --despawn mob of the current floor
+    if despawnOtherCoffer then
+        limbus.hideArmouryCrates(instanceRegion, TEMENOS)
+        if instanceRegion == Temenos_Eastern_Tower then --despawn mob of the current floor
             if coffer == 173 or coffer == 215 or coffer == 284 or coffer == 40 then
                 --floor 1
-                if GetMobByID(16928840):isSpawned() then DespawnMob(16928840) end
-                if GetMobByID(16928841):isSpawned() then DespawnMob(16928841) end
-                if GetMobByID(16928842):isSpawned() then DespawnMob(16928842) end
-                if GetMobByID(16928843):isSpawned() then DespawnMob(16928843) end
-                GetNPCByID(16929228):setStatus(dsp.status.NORMAL)
+                for i = 0, 3 do
+                    if GetMobByID(ID.mob.TEMENOS_E_MOB[1]+i):isSpawned() then
+                        DespawnMob(ID.mob.TEMENOS_E_MOB[1]+i)
+                    end
+                end
+                GetNPCByID(ID.npc.GATE_OFFSET+7):setStatus(dsp.status.NORMAL)
             elseif coffer == 174 or coffer == 216 or coffer == 321 or coffer == 45 then
                 --floor 2
-                if GetMobByID(16928849):isSpawned() then DespawnMob(16928849) end
-                if GetMobByID(16928850):isSpawned() then DespawnMob(16928850) end
-                if GetMobByID(16928851):isSpawned() then DespawnMob(16928851) end
-                if GetMobByID(16928852):isSpawned() then DespawnMob(16928843) end
-                GetNPCByID(16929229):setStatus(dsp.status.NORMAL)
+                for i = 0, 3 do
+                    if GetMobByID(ID.mob.TEMENOS_E_MOB[2]+i):isSpawned() then
+                        DespawnMob(ID.mob.TEMENOS_E_MOB[2]+i)
+                    end
+                end
+                GetNPCByID(ID.npc.GATE_OFFSET+8):setStatus(dsp.status.NORMAL)
             elseif coffer == 181 or coffer == 217 or coffer == 348 or coffer == 46 then
                 --floor 3
-                if GetMobByID(16928858):isSpawned() then DespawnMob(16928858) end
-                if GetMobByID(16928859):isSpawned() then DespawnMob(16928859) end
-                if GetMobByID(16928860):isSpawned() then DespawnMob(16928860) end
-                if GetMobByID(16928861):isSpawned() then DespawnMob(16928861) end
-                GetNPCByID(16929230):setStatus(dsp.status.NORMAL)
+                for i = 0, 3 do
+                    if GetMobByID(ID.mob.TEMENOS_E_MOB[3]+i):isSpawned() then
+                        DespawnMob(ID.mob.TEMENOS_E_MOB[3]+i)
+                    end
+                end
+                GetNPCByID(ID.npc.GATE_OFFSET+9):setStatus(dsp.status.NORMAL)
             elseif coffer == 182 or coffer == 236 or coffer == 360 or coffer == 47 then
                 --floor 4
-                if GetMobByID(16928867):isSpawned() then DespawnMob(16928867) end
-                if GetMobByID(16928868):isSpawned() then DespawnMob(16928868) end
-                if GetMobByID(16928869):isSpawned() then DespawnMob(16928869) end
-                if GetMobByID(16928870):isSpawned() then DespawnMob(16928870) end
-                GetNPCByID(16929231):setStatus(dsp.status.NORMAL)
+                for i = 0, 3 do
+                    if GetMobByID(ID.mob.TEMENOS_E_MOB[4]+i):isSpawned() then
+                        DespawnMob(ID.mob.TEMENOS_E_MOB[4]+i)
+                    end
+                end
+                GetNPCByID(ID.npc.GATE_OFFSET+10):setStatus(dsp.status.NORMAL)
             elseif coffer == 183 or coffer == 261 or coffer == 393 or coffer == 68 then
                 --floor 5
-                if GetMobByID(16928876):isSpawned() then DespawnMob(16928876) end
-                if GetMobByID(16928877):isSpawned() then DespawnMob(16928877) end
-                if GetMobByID(16928878):isSpawned() then DespawnMob(16928878) end
-                if GetMobByID(16928879):isSpawned() then DespawnMob(16928879) end
-                GetNPCByID(16929232):setStatus(dsp.status.NORMAL)
+                for i = 0, 3 do
+                    if GetMobByID(ID.mob.TEMENOS_E_MOB[5]+i):isSpawned() then
+                        DespawnMob(ID.mob.TEMENOS_E_MOB[5]+i)
+                    end
+                end
+                GetNPCByID(ID.npc.GATE_OFFSET+11):setStatus(dsp.status.NORMAL)
             elseif coffer == 277 or coffer == 190 or coffer ==  127 or coffer == 69 then
                 --floor 6
-                if GetMobByID(16928885):isSpawned() then DespawnMob(16928885) end
-                if GetMobByID(16928886):isSpawned() then DespawnMob(16928886) end
-                if GetMobByID(16928887):isSpawned() then DespawnMob(16928887) end
-                if GetMobByID(16928888):isSpawned() then DespawnMob(16928888) end
-                GetNPCByID(16929233):setStatus(dsp.status.NORMAL)
+                for i = 0, 3 do
+                    if GetMobByID(ID.mob.TEMENOS_E_MOB[6]+i):isSpawned() then
+                        DespawnMob(ID.mob.TEMENOS_E_MOB[6]+i)
+                    end
+                end
+                GetNPCByID(ID.npc.GATE_OFFSET+12):setStatus(dsp.status.NORMAL)
             elseif coffer == 70 or coffer == 123 then
                 --floor 7
-                if GetMobByID(16928892):isSpawned() then DespawnMob(16928892) end
-                if GetMobByID(16928893):isSpawned() then DespawnMob(16928893) end
-                GetNPCByID(16929234):setStatus(dsp.status.NORMAL)
+                for i = 0, 1 do
+                    if GetMobByID(ID.mob.TEMENOS_E_MOB[7]+i):isSpawned() then
+                        DespawnMob(ID.mob.TEMENOS_E_MOB[7]+i)
+                    end
+                end
+                GetNPCByID(ID.npc.GATE_OFFSET+13):setStatus(dsp.status.NORMAL)
             end
         end
     end

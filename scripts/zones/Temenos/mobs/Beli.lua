@@ -11,7 +11,7 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if IsMobDead(16928781) and IsMobDead(16928782) then
+    if limbus.isMobDead(16928781) and limbus.isMobDead(16928782) then
         GetNPCByID(16928768+19):setPos(200, -82, 495)
         GetNPCByID(16928768+19):setStatus(dsp.status.NORMAL)
         GetNPCByID(16928768+153):setPos(206, -82, 495)

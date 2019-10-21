@@ -33,7 +33,7 @@ function onMobDeath(mob, player, isKiller)
            GetNPCByID(16928768+68):setStatus(dsp.status.NORMAL);
         end    ,
         [16929037] = function (x)
-           if (IsMobDead(16929038)==false) then
+           if (limbus.isMobDead(16929038)==false) then
              DespawnMob(16929038);
              SpawnMob(16929044);
            end
