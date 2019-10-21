@@ -12,7 +12,7 @@ require("scripts/globals/zone")
 
 --[[
     [zoneId] = {
-        {bit, battlefieldIdInDatabase, requiredItemToTrade}
+        {bit, battlefieldIdInDatabase, requiredItemToTrade, entrance}
     },
 --]]
 
@@ -133,10 +133,10 @@ local battlefields = {
     },
 
     [38] = {                -- APOLLYON
-        { 0, 1291,    0},   -- SW Apollyon
-        { 1, 1290,    0},   -- NW Apollyon
-        { 2, 1293,    0},   -- SE Apollyon
-        { 3, 1292,    0},   -- NE Apollyon
+        { 0, 1291,    0, 1},   -- SW Apollyon
+        { 1, 1290,    0, 1},   -- NW Apollyon
+        { 2, 1293,    0, 2},   -- SE Apollyon
+        { 3, 1292,    0, 2},   -- NE Apollyon
         { 4, 1296,   -2},   -- Central Apollyon (multiple items needed: 1909 1910 1987 1988)
         { 5, 1294, 2127},   -- CS Apollyon
      -- { 6, 1295,    0},   -- CS Apollyon II
@@ -326,11 +326,11 @@ local battlefields = {
     },
 
     [180] = {               -- LALOFF AMPHITHEATER
-        { 0,  288,    0},   -- Ark Angels 1 (ZM14)
-        { 1,  289,    0},   -- Ark Angels 2 (ZM14)
-        { 2,  290,    0},   -- Ark Angels 3 (ZM14)
-        { 3,  291,    0},   -- Ark Angels 4 (ZM14)
-        { 4,  292,    0},   -- Ark Angels 5 (ZM14)
+        { 0,  288,    0, 1},   -- Ark Angels 1 (ZM14)
+        { 1,  289,    0, 2},   -- Ark Angels 2 (ZM14)
+        { 2,  290,    0, 3},   -- Ark Angels 3 (ZM14)
+        { 3,  291,    0, 4},   -- Ark Angels 4 (ZM14)
+        { 4,  292,    0, 5},   -- Ark Angels 5 (ZM14)
         { 5,  293, 1550},   -- Divine Might (ZM14)
      -- { 6,    ?,    0},   -- *Ark Angels 1 (HTMBF)
      -- { 7,    ?,    0},   -- *Ark Angels 2 (HTMBF)
@@ -732,7 +732,7 @@ end
 -- which battlefields are valid for registrant?
 -----------------------------------------------
 
-function findBattlefields(player, npc, itemId)
+function findBattlefields(player, npc, itemId, entrance)
     local mask = 0
     local zbfs = battlefields[player:getZoneID()]
     if zbfs == nil then
@@ -740,7 +740,9 @@ function findBattlefields(player, npc, itemId)
     end
     for k, v in pairs(zbfs) do
         if v[3] == itemId and checkReqs(player, npc, v[2], true) and not player:battlefieldAtCapacity(v[2]) then
-            mask = bit.bor(mask,math.pow(2,v[1]))
+            if v[4] == entrance then
+                mask = bit.bor(mask,math.pow(2,v[1]))
+            end
         end
     end
     return mask
@@ -841,7 +843,7 @@ end
 -- onTrigger Action
 -----------------------------------------------
 
-function EventTriggerBCNM(player, npc)
+function EventTriggerBCNM(player, npc, entrance)
 
     -- player is in battlefield and clicks to leave
     if player:getBattlefield() then
@@ -850,7 +852,8 @@ function EventTriggerBCNM(player, npc)
 
     -- player wants to register a new battlefield
     elseif not player:hasStatusEffect(dsp.effect.BATTLEFIELD) then
-        local mask = findBattlefields(player, npc, 0)
+        local mask = findBattlefields(player, npc, 0, entrance)
+
         -- mask = 268435455 -- uncomment to open menu with all possible battlefields
         local battlefieldId = getBattlefieldIdByBit(player, mask)
         if mask ~= 0 and not player:battlefieldAtCapacity(battlefieldId) then

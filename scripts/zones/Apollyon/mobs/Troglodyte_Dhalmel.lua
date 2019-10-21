@@ -15,14 +15,14 @@ function onMobDespawn(mob)
     local mobZ = mob:getZPos();
 
 
-  if (IsMobDead(16933115)==true and
-     IsMobDead(16933116)==true and
-     IsMobDead(16933117)==true and
-     IsMobDead(16933118)==true and
-     IsMobDead(16933119)==true and
-     IsMobDead(16933120)==true and
-     IsMobDead(16933121)==true and
-     IsMobDead(16933122)==true
+  if (limbus.isMobDead(16933115)==true and
+     limbus.isMobDead(16933116)==true and
+     limbus.isMobDead(16933117)==true and
+     limbus.isMobDead(16933118)==true and
+     limbus.isMobDead(16933119)==true and
+     limbus.isMobDead(16933120)==true and
+     limbus.isMobDead(16933121)==true and
+     limbus.isMobDead(16933122)==true
     ) then
      -- item
        GetNPCByID(16932864+178):setPos(mobX,mobY,mobZ);

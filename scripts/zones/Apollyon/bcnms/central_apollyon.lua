@@ -14,7 +14,7 @@ end
 
 function onBattlefieldRegister(player,battlefield)        
     SetServerVariable("[Central_Apollyon]UniqueID",os.time());
-    HideArmouryCrates(Central_Apollyon,APOLLYON_SE_NE);    
+    limbus.hideArmouryCrates(Central_Apollyon,APOLLYON_SE_NE);    
     GetNPCByID(16933248):setAnimation(8);
     if (GetMobByID():isSpawned(16933125)) then DespawnMob(16933125);end        
 end;

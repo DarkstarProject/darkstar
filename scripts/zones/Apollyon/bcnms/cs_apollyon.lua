@@ -15,12 +15,12 @@ end
 
 function onBattlefieldRegister(player,battlefield)
     SetServerVariable("[CS_Apollyon]UniqueID",os.time());
-    HideArmouryCrates(CS_Apollyon,APOLLYON_SE_NE);    
+    limbus.hideArmouryCrates(CS_Apollyon,APOLLYON_SE_NE);    
     SetServerVariable("[CS_Apollyon]Already_Received",0);
     GetNPCByID(16933245):setAnimation(8);
     GetNPCByID(16933246):setAnimation(8);
     GetNPCByID(16933247):setAnimation(8);
-    despawnLimbusCS();
+    limbus.despawnCS();
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

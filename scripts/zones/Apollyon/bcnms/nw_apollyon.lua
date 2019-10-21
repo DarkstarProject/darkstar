@@ -14,7 +14,7 @@ end
 
 function onBattlefieldRegister(player,battlefield)        
     SetServerVariable("[NW_Apollyon]UniqueID",os.time());
-    HideArmouryCrates(NW_Apollyon,APOLLYON_NW_SW);
+    limbus.hideArmouryCrates(NW_Apollyon,APOLLYON_NW_SW);
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

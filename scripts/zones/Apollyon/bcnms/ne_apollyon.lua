@@ -14,7 +14,7 @@ end
 
 function onBattlefieldRegister(player,battlefield)    
     SetServerVariable("[NE_Apollyon]UniqueID",os.time());
-    HideArmouryCrates(NE_Apollyon,APOLLYON_SE_NE);
+    limbus.hideArmouryCrates(NE_Apollyon,APOLLYON_SE_NE);
     SpawnCofferNEfloor1();
 end;
 

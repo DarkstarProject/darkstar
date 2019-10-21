@@ -41,13 +41,13 @@ function onMobDespawn(mob)
 
 
  if (
-IsMobDead(16932882)==true and
-IsMobDead(16932883)==true and
-IsMobDead(16932884)==true and
-IsMobDead(16932885)==true and
-IsMobDead(16932886)==true and
-IsMobDead(16932887)==true and
-IsMobDead(16932888)==true
+limbus.isMobDead(16932882)==true and
+limbus.isMobDead(16932883)==true and
+limbus.isMobDead(16932884)==true and
+limbus.isMobDead(16932885)==true and
+limbus.isMobDead(16932886)==true and
+limbus.isMobDead(16932887)==true and
+limbus.isMobDead(16932888)==true
 
  ) then
 

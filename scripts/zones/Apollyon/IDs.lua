@@ -16,6 +16,7 @@ zones[dsp.zone.APOLLYON] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         CONDITION_FOR_LIMBUS    = 7055, -- You have clearance to enter Limbus, but cannot enter while you or a party member is engaged in battle.
         CHIP_TRADE              = 7361, -- The light in the <item> has grown dim.
+        TIME_EXTENDED           = 7363, -- Your time in Limbus has been extended...
         CONQUEST_BASE           = 7366, -- Tallying conquest results...
     },
     mob =
@@ -23,6 +24,8 @@ zones[dsp.zone.APOLLYON] =
     },
     npc =
     {
+        WEST_ENTRANCE = 16933242,
+        COFFER_OFFSET = 16932864,
     },
 }
 
