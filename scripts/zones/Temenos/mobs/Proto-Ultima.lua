@@ -11,6 +11,10 @@ function onMobSpawn(mob)
     mob:SetMagicCastingEnabled(false)
 end
 
+function onMobEngaged(mob, target)
+    limbus.hideArmouryCrates(Central_Temenos_4th_Floor, TEMENOS)
+end
+
 function onMobFight(mob, target)
     local phase = mob:getLocalVar("battlePhase")
     if mob:actionQueueEmpty() then
