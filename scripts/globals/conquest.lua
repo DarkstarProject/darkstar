@@ -77,14 +77,12 @@ local outposts =
     [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
     [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
     [dsp.region.TULIA]           = {zone = 130,                                             cp = 0,  lvl = 70, fee = 500},
+    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250},
     [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
-    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250}
 }
 
 local function hasOutpost(player, region)
-    local regionBit = math.pow(2, region + 5)
-    local supplyQuests = player:getNationTeleport(player:getNation())
-    return bit.band(supplyQuests, regionBit) == regionBit
+    return player:hasTeleport(player:getNation(), region + 5)
 end
 
 local function setHomepointFee(player, guardNation)
@@ -1005,7 +1003,7 @@ dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, g
         local a2 = getExForceAvailable(player, guardNation)
         local a3 = conquestRanking()
         local a4 = suppliesAvailableBitmask(player, guardNation)
-        local a5 = player:getNationTeleport(guardNation)
+        local a5 = player:getTeleport(guardNation)
         local a6 = getArg6(player)
         local a7 = player:getCP()
         local a8 = getExForceReward(player, guardNation)
@@ -1102,7 +1100,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         player:setCharVar("supplyQuest_fresh", 0)
 
         if not hasOutpost(player, sRegion) then
-            player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
+            player:addTeleport(guardNation, sRegion + 5)
         end
 
     -- SET HOMEPOINT
@@ -1214,11 +1212,8 @@ dsp.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporter
         local bastokRegions = getRegionsMask(dsp.nation.BASTOK)
         local windyRegions = getRegionsMask(dsp.nation.WINDURST)
         local beastmenRegions = getRegionsMask(dsp.nation.BEASTMEN)
-
         local allowedTeleports = getAllowedTeleports(player, teleporterNation)
-
         local teleporterRegion = dsp.region.SANDORIA + teleporterNation
-
         player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, bit.lshift(1, teleporterRegion), 0, player:getMainLvl(), allowedTeleports)
     else
         local a6 =

@@ -116,7 +116,7 @@ namespace charutils
     int32   delTitle(CCharEntity* PChar, uint16 Title);
     void   setTitle(CCharEntity* PChar, uint16 Title); // set title if not, save and update player
 
-    int32	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	        //same as Ability but for pet commands (e.g. Healing Ruby)
+    int32	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	    //same as Ability but for pet commands (e.g. Healing Ruby)
     int32	addPetAbility(CCharEntity* PChar, uint16 AbilityID);
     int32	delPetAbility(CCharEntity* PChar, uint16 AbilityID);
 
@@ -139,19 +139,19 @@ namespace charutils
     void	SaveZonesVisited(CCharEntity* PChar);				        // сохраняем посещенные зоны
     void	SaveKeyItems(CCharEntity* PChar);					        // сохраняем ключевые предметы
     void	SaveCharInventoryCapacity(CCharEntity* PChar);              // Save Character inventory capacity
-    void	SaveSpell(CCharEntity* PChar, uint16 spellID);						        // сохраняем выученные заклинания
+    void	SaveSpell(CCharEntity* PChar, uint16 spellID);				// сохраняем выученные заклинания
     void	DeleteSpell(CCharEntity* PChar, uint16 spellID);
     void	SaveLearnedAbilities(CCharEntity* PChar);					// saved learned abilities (corsair rolls)
     void    SaveTitles(CCharEntity* PChar);						        // сохраняем заслуженные звания
     void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
     void    SaveCharGMLevel(CCharEntity* PChar);                        // saves the char's gm level and nameflags
     void    SaveMentorFlag(CCharEntity* PChar);                         // saves the char's mentor flag
-    void    SaveMenuConfigFlags(CCharEntity* PChar);                       // saves the char's unnamed flags
+    void    SaveMenuConfigFlags(CCharEntity* PChar);                    // saves the char's unnamed flags
     void	SaveCharNation(CCharEntity* PChar);							// Save the character's nation of allegiance.
     void    SaveCampaignAllegiance(CCharEntity* PChar);                 // Save the character's campaign allegiance.
     void	SaveCharMoghancement(CCharEntity* PChar);                   // Save the character's current moghancement
     void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
-    void    SaveCharUnlocks(CCharEntity* PChar);                        // Nation teleports, etc
+    void    SaveTeleport(CCharEntity* PChar, uint8 type);               // Homepoints, outposts, etc
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
     void	SavePlayTime(CCharEntity* PChar);							// Saves this characters total play time.
     bool	hasMogLockerAccess(CCharEntity* PChar);						// true if have access, false otherwise.

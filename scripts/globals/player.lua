@@ -2,6 +2,7 @@ require("scripts/globals/gear_sets")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
 require("scripts/globals/status")
+require("scripts/globals/teleports")
 require("scripts/globals/titles")
 require("scripts/globals/zone")
 -----------------------------------
@@ -108,15 +109,22 @@ local function CharCreate(player)
     end
 
     if UNLOCK_OUTPOST_WARPS >= 1 then
-        player:addNationTeleport(dsp.nation.SANDORIA, 2097120)
-        player:addNationTeleport(dsp.nation.BASTOK,   2097120)
-        player:addNationTeleport(dsp.nation.WINDURST, 2097120)
-
-        if UNLOCK_OUTPOST_WARPS == 2 then -- Tu'Lia and Tavnazia
-            player:addNationTeleport(dsp.nation.SANDORIA, 10485760)
-            player:addNationTeleport(dsp.nation.BASTOK,   10485760)
-            player:addNationTeleport(dsp.nation.WINDURST, 10485760)
+        local b, e, v = 0,0,0
+        if UNLOCK_OUTPOST_WARPS == 1 then
+            v, b, e = 0x1FFFE0, 20, 2^20
+        elseif UNLOCK_OUTPOST_WARPS == 2 then
+            v, b, e = 0xBFFFE0, 23, 2^23
         end
+        repeat
+            if e <= v then
+                player:addTeleport(dsp.teleport.type.OUTPOST_SANDY,  b)
+                player:addTeleport(dsp.teleport.type.OUTPOST_BASTOK, b)
+                player:addTeleport(dsp.teleport.type.OUTPOST_WINDY,  b)
+                v = v - e
+            end
+            b = b - 1
+            e = 2^b
+        until v == 0
     end
 
     --[[
