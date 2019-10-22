@@ -3,12 +3,13 @@
 --  Mob: Telchines Dragoon
 -----------------------------------
 require("scripts/globals/limbus")
+local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
 
 function onMobEngaged(mob, target)
-    GetMobByID(16928791):updateEnmity(target)
+    GetMobByID(ID.mob.TEMENOS_N_MOB[3]+3):updateEnmity(target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    GetNPCByID(GATE_OFFSET+2):setStatus(dsp.status.NORMAL)
+    GetNPCByID(ID.npc.GATE_OFFSET+2):setStatus(dsp.status.NORMAL)
 end

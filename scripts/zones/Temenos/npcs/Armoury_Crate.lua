@@ -922,12 +922,17 @@ function onTrigger(player, npc)
     elseif cofferType == cITEM then
         if instanceRegion == Central_Temenos_4th_Floor and coffer ~= 79 then
             local randmimic = math.random(1, 24)
-            if randmimic < 19 then
+            if randmimic < 17 then
                 local MimicList =
                 {
-                    16928986, 16928987, 16928988, 16928989, 16928990, 16928991,
-                    16928992, 16928993, 16928994, 16928995, 16928996, 16928997,
-                    16928998, 16928999, 16929000, 16929001, 16929002, 16929003,
+                    ID.mob.TEMENOS_C_MOB[4]+20, ID.mob.TEMENOS_C_MOB[4]+21,
+                    ID.mob.TEMENOS_C_MOB[4]+22, ID.mob.TEMENOS_C_MOB[4]+25,
+                    ID.mob.TEMENOS_C_MOB[4]+26, ID.mob.TEMENOS_C_MOB[4]+27,
+                    ID.mob.TEMENOS_C_MOB[4]+28, ID.mob.TEMENOS_C_MOB[4]+29,
+                    ID.mob.TEMENOS_C_MOB[4]+30, ID.mob.TEMENOS_C_MOB[4]+31,
+                    ID.mob.TEMENOS_C_MOB[4]+32, ID.mob.TEMENOS_C_MOB[4]+33,
+                    ID.mob.TEMENOS_C_MOB[4]+34, ID.mob.TEMENOS_C_MOB[4]+35,
+                    ID.mob.TEMENOS_C_MOB[4]+36, ID.mob.TEMENOS_C_MOB[4]+37,
                 }
                 GetMobByID(MimicList[randmimic]):setSpawn(X, Y, Z)
                 SpawnMob(MimicList[randmimic]):setPos(X, Y, Z)
@@ -982,9 +987,9 @@ function onTrigger(player, npc)
             SpawnMob(ID.mob.TEMENOS_E_MOB[6]+4):setPos(X, Y, Z)
             GetMobByID(ID.mob.TEMENOS_E_MOB[6]+4):updateClaim(player)
         elseif coffer == 123 then
-            GetMobByID(ID.mob.TEMENOS_E_MOB[7]+4):setSpawn(X, Y, Z)
-            SpawnMob(ID.mob.TEMENOS_E_MOB[7]+4):setPos(X, Y, Z)
-            GetMobByID(ID.mob.TEMENOS_E_MOB[7]+4):updateClaim(player)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[7]+2):setSpawn(X, Y, Z)
+            SpawnMob(ID.mob.TEMENOS_E_MOB[7]+2):setPos(X, Y, Z)
+            GetMobByID(ID.mob.TEMENOS_E_MOB[7]+2):updateClaim(player)
         end
     end
     if despawnOtherCoffer then
@@ -997,7 +1002,9 @@ function onTrigger(player, npc)
                         DespawnMob(ID.mob.TEMENOS_E_MOB[1]+i)
                     end
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+7):setStatus(dsp.status.NORMAL)
+                if coffer ~= 284 then
+                    GetNPCByID(ID.npc.GATE_OFFSET+7):setStatus(dsp.status.NORMAL)
+                end
             elseif coffer == 174 or coffer == 216 or coffer == 321 or coffer == 45 then
                 --floor 2
                 for i = 0, 3 do
@@ -1005,7 +1012,9 @@ function onTrigger(player, npc)
                         DespawnMob(ID.mob.TEMENOS_E_MOB[2]+i)
                     end
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+8):setStatus(dsp.status.NORMAL)
+                if coffer ~= 321 then
+                    GetNPCByID(ID.npc.GATE_OFFSET+8):setStatus(dsp.status.NORMAL)
+                end
             elseif coffer == 181 or coffer == 217 or coffer == 348 or coffer == 46 then
                 --floor 3
                 for i = 0, 3 do
@@ -1013,7 +1022,9 @@ function onTrigger(player, npc)
                         DespawnMob(ID.mob.TEMENOS_E_MOB[3]+i)
                     end
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+9):setStatus(dsp.status.NORMAL)
+                if coffer ~= 348 then
+                    GetNPCByID(ID.npc.GATE_OFFSET+9):setStatus(dsp.status.NORMAL)
+                end
             elseif coffer == 182 or coffer == 236 or coffer == 360 or coffer == 47 then
                 --floor 4
                 for i = 0, 3 do
@@ -1021,7 +1032,9 @@ function onTrigger(player, npc)
                         DespawnMob(ID.mob.TEMENOS_E_MOB[4]+i)
                     end
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+10):setStatus(dsp.status.NORMAL)
+                if coffer ~= 360 then
+                    GetNPCByID(ID.npc.GATE_OFFSET+10):setStatus(dsp.status.NORMAL)
+                end
             elseif coffer == 183 or coffer == 261 or coffer == 393 or coffer == 68 then
                 --floor 5
                 for i = 0, 3 do
@@ -1029,7 +1042,9 @@ function onTrigger(player, npc)
                         DespawnMob(ID.mob.TEMENOS_E_MOB[5]+i)
                     end
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+11):setStatus(dsp.status.NORMAL)
+                if coffer ~= 393 then
+                    GetNPCByID(ID.npc.GATE_OFFSET+11):setStatus(dsp.status.NORMAL)
+                end
             elseif coffer == 277 or coffer == 190 or coffer ==  127 or coffer == 69 then
                 --floor 6
                 for i = 0, 3 do
@@ -1037,7 +1052,9 @@ function onTrigger(player, npc)
                         DespawnMob(ID.mob.TEMENOS_E_MOB[6]+i)
                     end
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+12):setStatus(dsp.status.NORMAL)
+                if coffer ~= 127 then
+                    GetNPCByID(ID.npc.GATE_OFFSET+12):setStatus(dsp.status.NORMAL)
+                end
             elseif coffer == 70 or coffer == 123 then
                 --floor 7
                 for i = 0, 1 do
@@ -1045,7 +1062,9 @@ function onTrigger(player, npc)
                         DespawnMob(ID.mob.TEMENOS_E_MOB[7]+i)
                     end
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+13):setStatus(dsp.status.NORMAL)
+                if coffer ~= 123 then
+                    GetNPCByID(ID.npc.GATE_OFFSET+13):setStatus(dsp.status.NORMAL)
+                end
             end
         end
     end

@@ -3,18 +3,19 @@
 --  Mob: Telchines Bard
 -----------------------------------
 require("scripts/globals/limbus")
+local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
 
 function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if limbus.isMobDead(16928789) then
-        GetNPCByID(16928768+26):setPos(19, 80, 430)
-        GetNPCByID(16928768+26):setStatus(dsp.status.NORMAL)
-        GetNPCByID(16928768+160):setPos(16, 80, 430)
-        GetNPCByID(16928768+160):setStatus(dsp.status.NORMAL)
-        GetNPCByID(16928768+211):setPos(22, 80, 430)
-        GetNPCByID(16928768+211):setStatus(dsp.status.NORMAL)
+    if limbus.isMobDead(ID.mob.TEMENOS_N_MOB[3]+1) then
+        GetNPCByID(ID.npc.COFFER_OFFSET+26):setPos(19, 80, 430)
+        GetNPCByID(ID.npc.COFFER_OFFSET+26):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.COFFER_OFFSET+160):setPos(16, 80, 430)
+        GetNPCByID(ID.npc.COFFER_OFFSET+160):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.COFFER_OFFSET+211):setPos(22, 80, 430)
+        GetNPCByID(ID.npc.COFFER_OFFSET+211):setStatus(dsp.status.NORMAL)
     end
 end

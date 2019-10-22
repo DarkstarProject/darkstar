@@ -3,11 +3,12 @@
 --  Mob: Kindred Black Mage
 -----------------------------------
 require("scripts/globals/limbus")
+local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
 
 function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    GetNPCByID(GATE_OFFSET+3):setStatus(dsp.status.NORMAL)
+    GetNPCByID(ID.npc.GATE_OFFSET+3):setStatus(dsp.status.NORMAL)
 end

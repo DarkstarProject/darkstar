@@ -7,7 +7,6 @@ require("scripts/globals/battlefield")
 require("scripts/globals/keyitems")
 
 function onBattlefieldInitialise(battlefield)
-    battlefield:setLocalVar("loot", 1)
     limbus.hideTemenosDoors(Central_Temenos_Basement)
     limbus.hideArmouryCrates(Central_Temenos_Basement, TEMENOS)
 end

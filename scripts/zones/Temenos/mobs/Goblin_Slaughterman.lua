@@ -3,6 +3,7 @@
 --  Mob: Goblin Slaughterman
 -----------------------------------
 require("scripts/globals/limbus")
+local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -11,14 +12,14 @@ function onMobDeath(mob, player, isKiller)
     local mobY = mob:getYPos()
     local mobZ = mob:getZPos()
 
-    if mobID == 16928773 then
-        GetNPCByID(16928768+18):setPos(330, 70, 468)
-        GetNPCByID(16928768+18):setStatus(dsp.status.NORMAL)
-        GetNPCByID(16928768+152):setPos(328, 70, 464)
-        GetNPCByID(16928768+152):setStatus(dsp.status.NORMAL)
-        GetNPCByID(16928768+209):setPos(332, 70, 470)
-        GetNPCByID(16928768+209):setStatus(dsp.status.NORMAL)
-    elseif mobID ==16928772 then
-        GetNPCByID(GATE_OFFSET):setStatus(dsp.status.NORMAL)
+    if mobID == ID.mob.TEMENOS_N_MOB[1]+1 then
+        GetNPCByID(ID.npc.COFFER_OFFSET+18):setPos(330, 70, 468)
+        GetNPCByID(ID.npc.COFFER_OFFSET+18):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.COFFER_OFFSET+152):setPos(328, 70, 464)
+        GetNPCByID(ID.npc.COFFER_OFFSET+152):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.COFFER_OFFSET+209):setPos(332, 70, 470)
+        GetNPCByID(ID.npc.COFFER_OFFSET+209):setStatus(dsp.status.NORMAL)
+    elseif mobID == ID.mob.TEMENOS_N_MOB[1] then
+        GetNPCByID(ID.npc.GATE_OFFSET):setStatus(dsp.status.NORMAL)
     end
 end

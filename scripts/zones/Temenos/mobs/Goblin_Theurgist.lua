@@ -3,18 +3,22 @@
 --  Mob: Goblin Theurgist
 -----------------------------------
 require("scripts/globals/limbus")
+local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
 
 function onMobEngaged(mob, target)
-    GetMobByID(16928831):updateEnmity(target)
-    GetMobByID(16928832):updateEnmity(target)
-    GetMobByID(16928834):updateEnmity(target)
+    GetMobByID(ID.mob.TEMENOS_N_MOB[7]):updateEnmity(target)
+    GetMobByID(ID.mob.TEMENOS_N_MOB[7]+1):updateEnmity(target)
+    GetMobByID(ID.mob.TEMENOS_N_MOB[7]+3):updateEnmity(target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if limbus.isMobDead(16928831) and limbus.isMobDead(16928832) and limbus.isMobDead(16928833) and limbus.isMobDead(16928834) and limbus.isMobDead(16928835) then
-        GetNPCByID(16928768+39):setPos(-599, 85, 438)
-        GetNPCByID(16928768+39):setStatus(dsp.status.NORMAL)
-        GetNPCByID(GATE_OFFSET+6):setStatus(dsp.status.NORMAL)
+    if limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]) and limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+1) and
+        limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+2) and limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+3) and
+        limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+4)
+    then
+        GetNPCByID(ID.npc.COFFER_OFFSET+39):setPos(-599, 85, 438)
+        GetNPCByID(ID.npc.COFFER_OFFSET+39):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.GATE_OFFSET+6):setStatus(dsp.status.NORMAL)
     end
 end
