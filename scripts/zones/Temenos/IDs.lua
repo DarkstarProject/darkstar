@@ -16,6 +16,7 @@ zones[dsp.zone.TEMENOS] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         CHIP_TRADE_T            = 7028, -- What do you wish to do? Show me the cutscene again. Skip the cutscene and continue.
         CONDITION_FOR_LIMBUS_T  = 7055, -- You have clearance to enter Limbus, but cannot enter while you or a party member is engaged in battle.
+        HUM                     = 7071, -- You hear a faint hum.
         TIME_EXTENDED           = 7372, -- Your time in Limbus has been extended...
         CONQUEST_BASE           = 7375, -- Tallying conquest results...
     },

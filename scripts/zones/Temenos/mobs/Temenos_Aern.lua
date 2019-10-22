@@ -54,6 +54,8 @@ function onMobDeath(mob, player, isKiller)
     end
  --print("leftAern" ..leftAern);
     if leftAern == 0 and isKiller then
+        local battlefield = player:getBattlefield()
+        battlefield:setLocalVar("dontKick", 1)
         GetMobByID(ID.mob.TEMENOS_C_MOB[5]+35):setSpawn(mobX, mobY, mobZ)
         GetMobByID(ID.mob.TEMENOS_C_MOB[5]+35):setPos(mobX, mobY, mobZ)
         SpawnMob(ID.mob.TEMENOS_C_MOB[5]+35):updateEnmity(player)

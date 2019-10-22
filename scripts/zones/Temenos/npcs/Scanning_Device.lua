@@ -3,45 +3,53 @@
 -- NPC:  Scanning_Device
 -- !pos 586 0 66 37
 -----------------------------------
-require("scripts/globals/limbus");
+require("scripts/globals/limbus")
 
------------------------------------
--- onTrade Action
------------------------------------
+function onTrade(player, npc, trade)
+end
 
-function onTrade(player,npc,trade)
-end;
+function onTrigger(player, npc)
+    if not player:battlefieldAtCapacity(1299) then
+        SetServerVariable("[1299]Time", 0)
+    end
+    if not player:battlefieldAtCapacity(1300) then
+        SetServerVariable("[1300]Time", 0)
+    end
+    if not player:battlefieldAtCapacity(1298) then
+        SetServerVariable("[1298]Time", 0)
+    end
+    if not player:battlefieldAtCapacity(1306) then
+        SetServerVariable("[1306]Time", 0)
+    end
+    if not player:battlefieldAtCapacity(1305) then
+        SetServerVariable("[1305]Time", 0)
+    end
+    if not player:battlefieldAtCapacity(1304) then
+        SetServerVariable("[1304]Time", 0)
+    end
+    if not player:battlefieldAtCapacity(1303) then
+        SetServerVariable("[1303]Time", 0)
+    end
+    if not player:battlefieldAtCapacity(1301) then
+        SetServerVariable("[1301]Time", 0)
+    end
+    player:startEvent(121, 511)
+end
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-    player:startEvent(121, 511);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    local time = 0;
+function onEventUpdate(player, csid, option)
+    local time = 0
     switch (option): caseof {
-        [1] = function (x) time = player:getBattlefieldTimeLeft(1); end, -- Northern Tower
-        [2] = function (x) time = player:getBattlefieldTimeLeft(2); end, -- Eastern Tower
-        [3] = function (x) time = player:getBattlefieldTimeLeft(3); end, -- Western Tower
-        [4] = function (x) time = player:getBattlefieldTimeLeft(4); end, -- Central 4th
-        [5] = function (x) time = player:getBattlefieldTimeLeft(5); end, -- Central 3rd
-        [6] = function (x) time = player:getBattlefieldTimeLeft(6); end, -- Central 2nd
-        [7] = function (x) time = player:getBattlefieldTimeLeft(7); end, -- Central 1st
-        [8] = function (x) time = player:getBattlefieldTimeLeft(8); end, -- Central Basement
+        [1] = function() time = GetServerVariable("[1299]Time") end, -- Northern Tower
+        [2] = function() time = GetServerVariable("[1300]Time") end, -- Eastern Tower
+        [3] = function() time = GetServerVariable("[1298]Time") end, -- Western Tower
+        [4] = function() time = GetServerVariable("[1306]Time") end, -- Central 4th
+        [5] = function() time = GetServerVariable("[1305]Time") end, -- Central 3rd
+        [6] = function() time = GetServerVariable("[1304]Time") end, -- Central 2nd
+        [7] = function() time = GetServerVariable("[1303]Time") end, -- Central 1st
+        [8] = function() time = GetServerVariable("[1301]Time") end, -- Central Basement
     }
-    player:updateEvent(0,time,0,0,0,0,0,0);
-end;
+    player:updateEvent(0, time, 0, 0, 0, 0, 0, 0)
+end
 
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end
