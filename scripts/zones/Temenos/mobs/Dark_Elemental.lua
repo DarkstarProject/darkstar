@@ -14,15 +14,26 @@ function onMobDeath(mob, player, isKiller)
     local mobX = mob:getXPos()
     local mobY = mob:getYPos()
     local mobZ = mob:getZPos()
+    local posRand = math.random(1, 2)
+    local cofferPos = {{-603, 5, 160, 64}, {-597, 5, 160, 64}}
+    
     switch (mobID): caseof {
     -- 100 a 106 inclut (Temenos -Northern Tower )
         [ID.mob.TEMENOS_E_MOB[7]] = function ()
-            GetNPCByID(ID.npc.COFFER_OFFSET+70):setPos(mobX, mobY, mobZ)
-            GetNPCByID(ID.npc.COFFER_OFFSET+70):setStatus(dsp.status.NORMAL)
+            if limbus.isMobDead(ID.mob.TEMENOS_E_MOB[7]+1) then
+                GetNPCByID(ID.npc.COFFER_OFFSET+70):setPos(cofferPos[posRand])
+                GetNPCByID(ID.npc.COFFER_OFFSET+70):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.COFFER_OFFSET+123):setPos(cofferPos[3-posRand])
+                GetNPCByID(ID.npc.COFFER_OFFSET+123):setStatus(dsp.status.NORMAL)
+            end
         end,
         [ID.mob.TEMENOS_E_MOB[7]+1] = function ()
-            GetNPCByID(ID.npc.COFFER_OFFSET+123):setPos(mobX, mobY, mobZ)
-            GetNPCByID(ID.npc.COFFER_OFFSET+123):setStatus(dsp.status.NORMAL)
+            if limbus.isMobDead(ID.mob.TEMENOS_E_MOB[7]) then
+                GetNPCByID(ID.npc.COFFER_OFFSET+70):setPos(cofferPos[posRand])
+                GetNPCByID(ID.npc.COFFER_OFFSET+70):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.COFFER_OFFSET+123):setPos(cofferPos[3-posRand])
+                GetNPCByID(ID.npc.COFFER_OFFSET+123):setStatus(dsp.status.NORMAL)
+            end
         end,
     }
 end

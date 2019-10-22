@@ -77,7 +77,6 @@ function onMobDeath(mob, player, isKiller)
         GetNPCByID(ID.npc.COFFER_OFFSET+69):setPos(mobX, mobY, mobZ)
         GetNPCByID(ID.npc.COFFER_OFFSET+69):setStatus(dsp.status.NORMAL)
     elseif mobID == ID.mob.TEMENOS_E_MOB[7]+2 then --Fenrir
-        GetNPCByID(ID.npc.COFFER_OFFSET+70):setPos(mobX, mobY, mobZ)
         GetNPCByID(ID.npc.COFFER_OFFSET+70):setStatus(dsp.status.NORMAL)
     elseif mobID == ID.mob.TEMENOS_C_MOB[2] then --Carbuncle (Central Temenos 2nd Floor)
         if limbus.isMobDead(ID.mob.TEMENOS_C_MOB[2]+1) and limbus.isMobDead(ID.mob.TEMENOS_C_MOB[2]+2) then

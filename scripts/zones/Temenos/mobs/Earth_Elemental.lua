@@ -20,15 +20,15 @@ function onMobDeath(mob, player, isKiller)
             GetNPCByID(ID.npc.COFFER_OFFSET+182):setPos(mobX, mobY, mobZ)
             GetNPCByID(ID.npc.COFFER_OFFSET+182):setStatus(dsp.status.NORMAL)
         end,
-        [ID.mob.TEMENOS_E_MOB[3]+1] = function ()
+        [ID.mob.TEMENOS_E_MOB[4]+1] = function ()
             GetNPCByID(ID.npc.COFFER_OFFSET+236):setPos(mobX, mobY, mobZ)
             GetNPCByID(ID.npc.COFFER_OFFSET+236):setStatus(dsp.status.NORMAL)
         end,
-        [ID.mob.TEMENOS_E_MOB[3]+2] = function ()
+        [ID.mob.TEMENOS_E_MOB[4]+2] = function ()
             GetNPCByID(ID.npc.COFFER_OFFSET+360):setPos(mobX, mobY, mobZ)
             GetNPCByID(ID.npc.COFFER_OFFSET+360):setStatus(dsp.status.NORMAL)
         end,
-        [ID.mob.TEMENOS_E_MOB[3]+3] = function ()
+        [ID.mob.TEMENOS_E_MOB[4]+3] = function ()
             GetNPCByID(ID.npc.COFFER_OFFSET+47):setPos(mobX, mobY, mobZ)
             GetNPCByID(ID.npc.COFFER_OFFSET+47):setStatus(dsp.status.NORMAL)
         end,
