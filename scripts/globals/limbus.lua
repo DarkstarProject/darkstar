@@ -226,7 +226,6 @@ ARMOURY_CRATE_TEMENOS =
     69,  {cITEM,    Temenos_Eastern_Tower,  0, true, 0, 149},
     70,  {cITEM,    Temenos_Eastern_Tower,  0, true, 0, 150}, -- Boss chest
     123, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
-    127, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
     173, {cTIME,    Temenos_Eastern_Tower, 15, true, 0,   0},
     174, {cTIME,    Temenos_Eastern_Tower, 15, true, 0,   0},
     181, {cTIME,    Temenos_Eastern_Tower, 15, true, 0,   0},
@@ -238,12 +237,13 @@ ARMOURY_CRATE_TEMENOS =
     217, {cRESTORE, Temenos_Eastern_Tower,  0, true, 0,   0},
     236, {cRESTORE, Temenos_Eastern_Tower,  0, true, 0,   0},
     261, {cRESTORE, Temenos_Eastern_Tower,  0, true, 0,   0},
-    277, {cRESTORE, Temenos_Eastern_Tower,  0, true, 0,   0},
+    202, {cRESTORE, Temenos_Eastern_Tower,  0, true, 0,   0},
     284, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
     321, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
     348, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
     360, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
     393, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
+    277, {cMIMIC,   Temenos_Eastern_Tower,  0, true, 0,   0},
 
     -----------------------------------------------
     -- Central_Temenos_1st_Floor
@@ -290,7 +290,7 @@ ARMOURY_CRATE_TEMENOS =
     199, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
     200, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
     201, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
-    202, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
+    127, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
 }
 
 function limbus.enter(player, entrance)

@@ -982,7 +982,7 @@ function onTrigger(player, npc)
             GetMobByID(ID.mob.TEMENOS_E_MOB[5]+4):setSpawn(X, Y, Z)
             SpawnMob(ID.mob.TEMENOS_E_MOB[5]+4):setPos(X, Y, Z)
             GetMobByID(ID.mob.TEMENOS_E_MOB[5]+4):updateClaim(player)
-        elseif coffer == 127 then
+        elseif coffer == 277 then
             GetMobByID(ID.mob.TEMENOS_E_MOB[6]+4):setSpawn(X, Y, Z)
             SpawnMob(ID.mob.TEMENOS_E_MOB[6]+4):setPos(X, Y, Z)
             GetMobByID(ID.mob.TEMENOS_E_MOB[6]+4):updateClaim(player)
@@ -1045,14 +1045,14 @@ function onTrigger(player, npc)
                 if coffer ~= 393 then
                     GetNPCByID(ID.npc.GATE_OFFSET+11):setStatus(dsp.status.NORMAL)
                 end
-            elseif coffer == 277 or coffer == 190 or coffer ==  127 or coffer == 69 then
+            elseif coffer == 202 or coffer == 190 or coffer ==  277 or coffer == 69 then
                 --floor 6
                 for i = 0, 3 do
                     if GetMobByID(ID.mob.TEMENOS_E_MOB[6]+i):isSpawned() then
                         DespawnMob(ID.mob.TEMENOS_E_MOB[6]+i)
                     end
                 end
-                if coffer ~= 127 then
+                if coffer ~= 277 then
                     GetNPCByID(ID.npc.GATE_OFFSET+12):setStatus(dsp.status.NORMAL)
                 end
             elseif coffer == 70 or coffer == 123 then

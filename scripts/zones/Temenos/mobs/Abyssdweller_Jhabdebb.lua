@@ -31,6 +31,6 @@ function onMobDeath(mob, player, isKiller)
     then
         GetNPCByID(ID.npc.COFFER_OFFSET+78):setPos(-280, -161, -440)
         GetNPCByID(ID.npc.COFFER_OFFSET+78):setStatus(dsp.status.NORMAL)
-        GetNPCByID(ID.npc.COFFER_OFFSET+473):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.GATE_OFFSET+20):setStatus(dsp.status.NORMAL)
     end
 end
