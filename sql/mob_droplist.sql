@@ -6882,9 +6882,9 @@ INSERT INTO `mob_droplist` VALUES (1341,0,0,1000,1100,1000);
 INSERT INTO `mob_droplist` VALUES (1342,2,0,1000,1449,0); -- (Hydra Vanguard, Ta)
 INSERT INTO `mob_droplist` VALUES (1342,2,0,1000,1452,0);
 INSERT INTO `mob_droplist` VALUES (1342,2,0,1000,1455,0);
-INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,3459,50);
-INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,3493,20);
-INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,3494,20);
+INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,3459,25); -- heralds_juju
+INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,3493,10); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,3494,10); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,11292,10);
 INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,11295,10);
 INSERT INTO `mob_droplist` VALUES (1342,0,0,1000,11298,10);
@@ -7504,9 +7504,9 @@ INSERT INTO `mob_droplist` VALUES (1440,0,0,1000,4386,70);
 INSERT INTO `mob_droplist` VALUES (1441,2,0,1000,1449,0); -- (Kindred Vanguard, Ta)
 INSERT INTO `mob_droplist` VALUES (1441,2,0,1000,1452,0);
 INSERT INTO `mob_droplist` VALUES (1441,2,0,1000,1455,0);
-INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,3484,70);
-INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,3493,100);
-INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,3494,100);
+INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,3484,40); -- fiendish_tome_ii_chapter_15
+INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,3493,70); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,3494,70); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,11305,10);
 INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,11465,10);
 INSERT INTO `mob_droplist` VALUES (1441,0,0,1000,11468,10);
@@ -9088,10 +9088,10 @@ INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,2668,10);
 INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,2673,10);
 INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,2719,10);
 INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,2724,10);
-INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3419,40);
-INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3420,40);
-INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3493,110);
-INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3494,90);
+INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3419,20); -- fiendish_tome_chapter_16
+INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3420,20); -- fiendish_tome_chapter_17
+INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3493,70); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (1786,0,0,1000,3494,70); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (1787,2,0,1000,1449,0); -- (Nightmare_Crab Nightmare_Scorpion Nightmare_Dhalmel, Bu Lo)
 INSERT INTO `mob_droplist` VALUES (1787,0,0,1000,2035,10);
 INSERT INTO `mob_droplist` VALUES (1787,0,0,1000,2040,10);
@@ -9332,9 +9332,9 @@ INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,2670,10);
 INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,2675,10);
 INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,2721,10);
 INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,2726,10);
-INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,3459,50);
-INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,3493,20);
-INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,3494,20);
+INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,3459,25); -- heralds_juju
+INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,3493,10); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (1795,0,0,1000,3494,10); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (1796,2,0,1000,1449,0); -- (Nightmare_Leech, Ta)
 INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,2034,10);
 INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,2039,10);
@@ -9356,10 +9356,10 @@ INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,2668,10);
 INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,2673,10);
 INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,2719,10);
 INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,2724,10);
-INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3419,40);
-INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3420,40);
-INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3493,110);
-INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3494,90);
+INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3419,20); -- fiendish_tome_chapter_16
+INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3420,20); -- fiendish_tome_chapter_17
+INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3493,70); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (1796,0,0,1000,3494,70); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (1797,2,0,1000,1452,0); -- (Nightmare_Makara, Ta)
 INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,2036,10);
 INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,2041,10);
@@ -9381,9 +9381,9 @@ INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,2670,10);
 INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,2675,10);
 INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,2721,10);
 INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,2726,10);
-INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,3459,50);
-INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,3493,20);
-INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,3494,20);
+INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,3459,35); -- heralds_juju
+INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,3493,10); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (1797,0,0,1000,3494,10); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (1798,2,0,1000,1455,0); -- (Nightmare_Crawler Nightmare_Raven Nightmare_Uragnite, Bu Hi)
 INSERT INTO `mob_droplist` VALUES (1798,0,0,1000,2035,10);
 INSERT INTO `mob_droplist` VALUES (1798,0,0,1000,2040,10);
@@ -9614,9 +9614,9 @@ INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,2670,10);
 INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,2675,10);
 INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,2721,10);
 INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,2726,10);
-INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,3459,50);
-INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,3493,20);
-INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,3494,20);
+INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,3459,25); -- heralds_juju
+INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,3493,10); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (1807,0,0,1000,3494,10); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (1808,0,0,1000,3116,100);
 INSERT INTO `mob_droplist` VALUES (1808,0,0,1000,3116,50);
 INSERT INTO `mob_droplist` VALUES (1808,0,0,1000,3116,30);
@@ -13723,12 +13723,12 @@ INSERT INTO `mob_droplist` VALUES (2560,0,0,1000,18344,20);
 INSERT INTO `mob_droplist` VALUES (2560,0,0,1000,18338,20);
 INSERT INTO `mob_droplist` VALUES (2560,0,0,1000,15066,20);
 INSERT INTO `mob_droplist` VALUES (2560,0,0,1000,18326,20);
-INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1450,10); -- (Vanguard_Eye, Ta Be Xa)
-INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1453,10);
-INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1456,10);
-INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1470,80);
-INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1474,80);
-INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,4248,80);
+INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,748,20); -- (Vanguard_Eye, Ta Be Xa) gold_beastcoin
+INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,749,40); -- mythril_beastcoin
+INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1449,10); -- tukuku_whiteshell
+INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1452,10); -- ordelle_bronzepiece
+INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,1455,10); -- one_byne_bill
+INSERT INTO `mob_droplist` VALUES (2561,0,0,1000,4248,100); -- copy_of_ginuvas_battle_theory
 INSERT INTO `mob_droplist` VALUES (2562,2,0,1000,1452,0);
 INSERT INTO `mob_droplist` VALUES (2562,0,0,1000,18308,20);
 INSERT INTO `mob_droplist` VALUES (2562,0,0,1000,18290,20);
@@ -15436,7 +15436,8 @@ INSERT INTO `mob_droplist` VALUES (2853,0,0,1000,894,370);
 INSERT INTO `mob_droplist` VALUES (2854,2,0,1000,1449,0); -- (Nightmare_Taurus, Ta)
 INSERT INTO `mob_droplist` VALUES (2854,2,0,1000,1452,0);
 INSERT INTO `mob_droplist` VALUES (2854,2,0,1000,1455,0);
-INSERT INTO `mob_droplist` VALUES (2854,0,0,1000,3493,20);
+INSERT INTO `mob_droplist` VALUES (2854,0,0,1000,3493,10); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (2854,0,0,1000,3494,10); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (2854,0,0,1000,14515,20);
 INSERT INTO `mob_droplist` VALUES (2854,0,0,1000,14516,20);
 INSERT INTO `mob_droplist` VALUES (2854,0,0,1000,14517,20);
