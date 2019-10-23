@@ -15641,12 +15641,12 @@ INSERT INTO `mob_droplist` VALUES (2907,0,0,1000,18314,20);
 INSERT INTO `mob_droplist` VALUES (2907,0,0,1000,18284,20);
 INSERT INTO `mob_droplist` VALUES (2907,0,0,1000,18278,20);
 INSERT INTO `mob_droplist` VALUES (2907,0,0,1000,18302,20);
-INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,1450,60); -- (Diabolos Club/Diamond/Heart/Spade, Ta)
-INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,1450,60);
-INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,1453,60);
-INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,1456,60);
-INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,3483,980);
-INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,3493,20);
+INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,1450,20); -- (Diabolos Club/Diamond/Heart/Spade, Ta)
+INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,1453,20);
+INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,1456,20);
+INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,3483,1000); -- fiendish_tome_ii_chapter_14
+INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,3493,20); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (2908,0,0,1000,3494,20); -- forgotten_hope
 INSERT INTO `mob_droplist` VALUES (2909,2,0,1000,1449,0); -- (Stcemqestcint, Va)
 INSERT INTO `mob_droplist` VALUES (2909,2,0,1000,1452,0);
 INSERT INTO `mob_droplist` VALUES (2909,2,0,1000,1455,0);
@@ -16521,6 +16521,15 @@ INSERT INTO `mob_droplist` VALUES (3136,0,0,1000,2727,10);
 INSERT INTO `mob_droplist` VALUES (3136,0,0,1000,3482,1000);
 INSERT INTO `mob_droplist` VALUES (3136,0,0,1000,3496,150);
 INSERT INTO `mob_droplist` VALUES (3136,0,0,1000,19738,300);
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,1450,20); -- (Diabolos Letum/Nox/Somnus/Umbra, Ta)
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,1453,20);
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,1456,20);
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,3493,100); -- forgotten_thought
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,3494,100); -- forgotten_hope
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,10761,150); -- portus_annulet
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,10760,125); -- portus_ring
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,10944,300); -- portus_collar
+INSERT INTO `mob_droplist` VALUES (3137,0,0,1000,11924,300); -- alucinor_mitts
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

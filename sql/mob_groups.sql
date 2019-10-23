@@ -1837,9 +1837,9 @@ INSERT INTO `mob_groups` VALUES (33,2870,42,'Nightmare_Taurus',600,0,2854,10000,
 INSERT INTO `mob_groups` VALUES (34,2858,42,'Nightmare_Makara',600,0,1797,5000,0,78,80,0);
 INSERT INTO `mob_groups` VALUES (35,1707,42,'Goblin_Replica',0,128,1143,1000,1000,70,70,0);
 INSERT INTO `mob_groups` VALUES (36,3759,42,'Statue_Prototype',0,128,0,1000,1000,70,70,0);
-INSERT INTO `mob_groups` VALUES (37,6051,42,'Diabolos_Nox',0,128,0,15000,0,105,105,0);
-INSERT INTO `mob_groups` VALUES (38,6050,42,'Diabolos_Letum',0,128,0,15000,0,105,105,0);
-INSERT INTO `mob_groups` VALUES (39,4091,42,'Diabolos_Umbra',0,128,0,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (37,6051,42,'Diabolos_Nox',0,128,3137,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (38,6050,42,'Diabolos_Letum',0,128,3137,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (39,4091,42,'Diabolos_Umbra',0,128,3137,15000,0,105,105,0);
 INSERT INTO `mob_groups` VALUES (40,2845,42,'Nightmare_Cluster',600,0,1786,5000,0,95,97,0);
 INSERT INTO `mob_groups` VALUES (41,2857,42,'Nightmare_Leech',600,0,1796,5000,0,95,97,0);
 INSERT INTO `mob_groups` VALUES (42,2237,42,'Kindred_Monk',600,0,1441,5500,0,95,97,0);
@@ -1862,7 +1862,7 @@ INSERT INTO `mob_groups` VALUES (58,2236,42,'Kindred_Dragoon',600,0,1441,5500,0,
 INSERT INTO `mob_groups` VALUES (59,2247,42,'Kindreds_Wyvern',0,128,0,3300,1000,95,97,0);
 INSERT INTO `mob_groups` VALUES (60,4149,42,'Vanguard_Eye',0,128,2561,2000,2000,80,82,0);
 INSERT INTO `mob_groups` VALUES (61,5121,42,'Prototype_Eye',0,128,0,2000,2000,80,82,0);
-INSERT INTO `mob_groups` VALUES (62,6052,42,'Diabolos_Somnus',0,128,0,15000,0,105,105,0);
+INSERT INTO `mob_groups` VALUES (62,6052,42,'Diabolos_Somnus',0,128,3137,15000,0,105,105,0);
 
 INSERT INTO `mob_groups` VALUES (1443,1361,44,'Flammen-Brenner',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1444,3190,44,'Posten',0,128,0,0,0,0,0,0);
