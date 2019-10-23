@@ -11,7 +11,11 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    EventTriggerBCNM(player, npc)
+    if player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD) then
+        EventTriggerBCNM(player, npc)
+    else
+        player:messageSpecial(ID.text.NO_KEY)
+    end
 end
 
 function onEventUpdate(player, csid, option, extras)

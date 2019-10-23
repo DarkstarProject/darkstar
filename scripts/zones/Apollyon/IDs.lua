@@ -24,8 +24,8 @@ zones[dsp.zone.APOLLYON] =
     },
     npc =
     {
-        WEST_ENTRANCE = 16933242,
-        COFFER_OFFSET = 16932864,
+        RADIANT_OFFSET = 16933242,
+        COFFER_OFFSET  = 16932864,
     },
 }
 

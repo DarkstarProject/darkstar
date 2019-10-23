@@ -3,24 +3,18 @@
 -- NPC:  Radiant_Aureole
 -- !pos
 -----------------------------------
-require("scripts/globals/limbus");
-require("scripts/globals/keyitems");
-
-local ID = require("scripts/zones/Apollyon/IDs");
-
-
-
 require("scripts/globals/bcnm")
+local ID = require("scripts/zones/Apollyon/IDs")
 
 function onTrade(player, npc, trade)
     TradeBCNM(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-   if npc:getID() == ID.npc.WEST_ENTRANCE then
-      EventTriggerBCNM(player, npc, 1)
+   if npc:getID() == ID.npc.RADIANT_OFFSET then
+      EventTriggerBCNM(player, npc)
    else
-      EventTriggerBCNM(player, npc, 2)
+      EventTriggerBCNM(player, npc)
    end
 end
 

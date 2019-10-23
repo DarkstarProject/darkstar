@@ -12,7 +12,7 @@ require("scripts/globals/zone")
 
 --[[
     [zoneId] = {
-        {bit, battlefieldIdInDatabase, requiredItemToTrade, entrance}
+        {bit, battlefieldIdInDatabase, requiredItemToTrade}
     },
 --]]
 
@@ -133,10 +133,10 @@ local battlefields = {
     },
 
     [38] = {                -- APOLLYON
-        { 0, 1291,    0, 1},   -- SW Apollyon
-        { 1, 1290,    0, 1},   -- NW Apollyon
-        { 2, 1293,    0, 2},   -- SE Apollyon
-        { 3, 1292,    0, 2},   -- NE Apollyon
+        { 0, 1291,    0},   -- SW Apollyon
+        { 1, 1290,    0},   -- NW Apollyon
+        { 2, 1293,    0},   -- SE Apollyon
+        { 3, 1292,    0},   -- NE Apollyon
         { 4, 1296,   -2},   -- Central Apollyon (multiple items needed: 1909 1910 1987 1988)
         { 5, 1294, 2127},   -- CS Apollyon
      -- { 6, 1295,    0},   -- CS Apollyon II
@@ -326,11 +326,11 @@ local battlefields = {
     },
 
     [180] = {               -- LALOFF AMPHITHEATER
-        { 0,  288,    0, 1},   -- Ark Angels 1 (ZM14)
-        { 1,  289,    0, 2},   -- Ark Angels 2 (ZM14)
-        { 2,  290,    0, 3},   -- Ark Angels 3 (ZM14)
-        { 3,  291,    0, 4},   -- Ark Angels 4 (ZM14)
-        { 4,  292,    0, 5},   -- Ark Angels 5 (ZM14)
+        { 0,  288,    0},   -- Ark Angels 1 (ZM14)
+        { 1,  289,    0},   -- Ark Angels 2 (ZM14)
+        { 2,  290,    0},   -- Ark Angels 3 (ZM14)
+        { 3,  291,    0},   -- Ark Angels 4 (ZM14)
+        { 4,  292,    0},   -- Ark Angels 5 (ZM14)
         { 5,  293, 1550},   -- Divine Might (ZM14)
      -- { 6,    ?,    0},   -- *Ark Angels 1 (HTMBF)
      -- { 7,    ?,    0},   -- *Ark Angels 2 (HTMBF)
@@ -459,6 +459,7 @@ function checkReqs(player, npc, bfid, registrant)
     local stc = player:hasCompletedMission(SANDORIA, mi.sandoria.SAVE_THE_CHILDREN)
     local dm1 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT)
     local dm2 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT)
+    local radiantOffset = zones[dsp.zone.APOLLYON].npc.RADIANT_OFFSET
 
     local function getZM14Offset(offset)
         return zones[dsp.zone.LALOFF_AMPHITHEATER].npc.SHIMMERING_CIRCLE_OFFSET + offset
@@ -577,12 +578,12 @@ function checkReqs(player, npc, bfid, registrant)
         [1124] = function() return ( toau == mi.toau.SHIELD_OF_DIPLOMACY and toauStat == 2                                                                                  ) end, -- TOAU22: Shield of Diplomacy
         [1154] = function() return ( mjob == dsp.job.BLU and mlvl >= 66                                                                                                     ) end, -- Quest: The Beast Within (BLU LB5)
         [1156] = function() return ( toau == mi.toau.PUPPET_IN_PERIL and toauStat == 1                                                                                      ) end, -- TOAU29: Puppet in Peril
-        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                          ) end, -- NW Apollyon
-        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                                                          ) end, -- SW Apollyon
-        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                                                        ) end, -- NE Apollyon
-        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                                                        ) end, -- SE Apollyon
-        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                                 ) end, -- CS Apollyon
-        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                                                 ) end, -- Central Apollyon
+        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == radiantOffset + 0                           ) end, -- NW Apollyon
+        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == radiantOffset + 0                           ) end, -- SW Apollyon
+        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == radiantOffset + 1                         ) end, -- NE Apollyon
+        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == radiantOffset + 1                         ) end, -- SE Apollyon
+        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and (player:hasKeyItem(dsp.ki.BLACK_CARD) or player:hasKeyItem(dsp.ki.RED_CARD))                ) end, -- CS Apollyon
+        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and (player:hasKeyItem(dsp.ki.BLACK_CARD) or player:hasKeyItem(dsp.ki.RED_CARD))                ) end, -- Central Apollyon
         [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Western Tower
         [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Northern Tower
         [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Eastern Tower
@@ -596,22 +597,22 @@ function checkReqs(player, npc, bfid, registrant)
     -- requirements to enter a battlefield already registered by a party member
     local enterReqs =
     {
-        [ 897] = function() return ( player:hasKeyItem(dsp.ki.WHISPER_OF_THE_WYRMKING)                                                      ) end, -- Quest: The Wyrmking Descends
-        [ 928] = function() return ( player:hasCompletedMission(COP, mi.cop.ANCIENT_VOWS) or (cop == mi.cop.ANCIENT_VOWS and copStat >= 2)  ) end, -- Quest: Ouryu Cometh
-        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                          ) end, -- NW Apollyon
-        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD)                          ) end, -- SW Apollyon
-        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD)                        ) end, -- NE Apollyon
-        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                 ) end, -- SE Apollyon
-        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                 ) end, -- CS Apollyon
-        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE)                                                                 ) end, -- Central Apollyon
-        [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Temenos Western Tower
-        [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Temenos Northern Tower
-        [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Temenos Eastern Tower
-        [1301] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos Basement
-        [1303] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 1st Floor
-        [1304] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 2nd Floor
-        [1305] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 3rd Floor
-        [1306] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                        ) end, -- Central Temenos 4th Floor
+        [ 897] = function() return ( player:hasKeyItem(dsp.ki.WHISPER_OF_THE_WYRMKING)                                                                      ) end, -- Quest: The Wyrmking Descends
+        [ 928] = function() return ( player:hasCompletedMission(COP, mi.cop.ANCIENT_VOWS) or (cop == mi.cop.ANCIENT_VOWS and copStat >= 2)                  ) end, -- Quest: Ouryu Cometh
+        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == radiantOffset + 0           ) end, -- NW Apollyon
+        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == radiantOffset + 0           ) end, -- SW Apollyon
+        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == radiantOffset + 1         ) end, -- NE Apollyon
+        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == radiantOffset + 1         ) end, -- SE Apollyon
+        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and (player:hasKeyItem(dsp.ki.BLACK_CARD) or player:hasKeyItem(dsp.ki.RED_CARD))) end, -- CS Apollyon
+        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and (player:hasKeyItem(dsp.ki.BLACK_CARD) or player:hasKeyItem(dsp.ki.RED_CARD))) end, -- Central Apollyon
+        [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Temenos Western Tower
+        [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Temenos Northern Tower
+        [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Temenos Eastern Tower
+        [1301] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Central Temenos Basement
+        [1303] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Central Temenos 1st Floor
+        [1304] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Central Temenos 2nd Floor
+        [1305] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Central Temenos 3rd Floor
+        [1306] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Central Temenos 4th Floor
     }
 
     -- determine whether player meets battlefield requirements
@@ -732,7 +733,7 @@ end
 -- which battlefields are valid for registrant?
 -----------------------------------------------
 
-function findBattlefields(player, npc, itemId, entrance)
+function findBattlefields(player, npc, itemId)
     local mask = 0
     local zbfs = battlefields[player:getZoneID()]
     if zbfs == nil then
@@ -740,9 +741,7 @@ function findBattlefields(player, npc, itemId, entrance)
     end
     for k, v in pairs(zbfs) do
         if v[3] == itemId and checkReqs(player, npc, v[2], true) and not player:battlefieldAtCapacity(v[2]) then
-            if v[4] == entrance then
-                mask = bit.bor(mask,math.pow(2,v[1]))
-            end
+            mask = bit.bor(mask,math.pow(2,v[1]))
         end
     end
     return mask
@@ -828,8 +827,7 @@ function TradeBCNM(player, npc, trade, onUpdate)
 
     -- open menu of valid battlefields
     local validBattlefields = findBattlefields(player, npc, itemId)
-    local battlefieldId = getBattlefieldIdByBit(player, validBattlefields)
-    if validBattlefields ~= 0 and not player:battlefieldAtCapacity(battlefieldId) then
+    if validBattlefields ~= 0 then
         if not onUpdate then
             player:startEvent(32000, 0, 0, 0, validBattlefields, 0, 0, 0, 0)
         end
@@ -843,8 +841,7 @@ end
 -- onTrigger Action
 -----------------------------------------------
 
-function EventTriggerBCNM(player, npc, entrance)
-
+function EventTriggerBCNM(player, npc)
     -- player is in battlefield and clicks to leave
     if player:getBattlefield() then
         player:startEvent(32003)
@@ -852,11 +849,10 @@ function EventTriggerBCNM(player, npc, entrance)
 
     -- player wants to register a new battlefield
     elseif not player:hasStatusEffect(dsp.effect.BATTLEFIELD) then
-        local mask = findBattlefields(player, npc, 0, entrance)
+        local mask = findBattlefields(player, npc, 0)
 
         -- mask = 268435455 -- uncomment to open menu with all possible battlefields
-        local battlefieldId = getBattlefieldIdByBit(player, mask)
-        if mask ~= 0 and not player:battlefieldAtCapacity(battlefieldId) then
+        if mask ~= 0 then
             player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0)
             return true
         end
@@ -880,7 +876,7 @@ end
 -- onEventUpdate
 -----------------------------------------------
 
-function EventUpdateBCNM(player, csid, option, extras, entrance)
+function EventUpdateBCNM(player, csid, option, extras)
     -- player:PrintToPlayer(string.format("EventUpdateBCNM csid=%i option=%i extras=%i", csid, option, extras))
 
     -- requesting a battlefield
@@ -905,14 +901,20 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local partySize = 1
         switch (battlefieldId): caseof 
         {
-            [1298] = function() area = 3 end,
-            [1299] = function() area = 1 end,
-            [1300] = function() area = 2 end,
-            [1301] = function() area = 8 end,
-            [1303] = function() area = 7 end,
-            [1304] = function() area = 6 end,
-            [1305] = function() area = 5 end,
-            [1306] = function() area = 4 end,
+            [1290] = function() area = 2 end, -- NW_Apollyon
+            [1291] = function() area = 1 end, -- SW_Apollyon
+            [1292] = function() area = 4 end, -- NE_Apollyon
+            [1293] = function() area = 3 end, -- SE_Apollyon
+            [1294] = function() area = 6 end, -- CS_Apollyon
+            [1296] = function() area = 5 end, -- Central_Apollyon
+            [1298] = function() area = 3 end, -- Temenos_Western_Tower
+            [1299] = function() area = 1 end, -- Temenos_Northern_Tower
+            [1300] = function() area = 2 end, -- Temenos_Eastern_Tower
+            [1301] = function() area = 8 end, -- Central_Temenos_Basement
+            [1303] = function() area = 7 end, -- Central_Temenos_1st_Floor
+            [1304] = function() area = 6 end, -- Central_Temenos_2nd_Floor
+            [1305] = function() area = 5 end, -- Central_Temenos_3rd_Floor
+            [1306] = function() area = 4 end, -- Central_Temenos_4th_Floor
         }
         local result = dsp.battlefield.returnCode.REQS_NOT_MET
         result = player:registerBattlefield(id, area)

@@ -10,7 +10,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    EventTriggerBCNM(player, npc, 1)
+    EventTriggerBCNM(player, npc)
 end
 
 function onEventUpdate(player, csid, option, extras)
