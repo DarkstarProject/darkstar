@@ -8,13 +8,15 @@ require("scripts/globals/keyitems")
 
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
-    SetServerVariable("[1299]Time", 0)
+    SetServerVariable("[Temenos_Northern_Tower]Time", 0)
     limbus.hideTemenosDoors(Temenos_Northern_Tower)
     limbus.hideArmouryCrates(Temenos_Northern_Tower, TEMENOS)
 end
 
 function onBattlefieldTick(battlefield, tick)
-    SetServerVariable("[1299]Time", battlefield:getRemainingTime()/60)
+    if battlefield:getRemainingTime() % 60 == 0 then
+        SetServerVariable("[Temenos_Northern_Tower]Time", battlefield:getRemainingTime()/60)
+    end
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 

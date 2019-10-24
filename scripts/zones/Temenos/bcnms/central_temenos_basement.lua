@@ -7,13 +7,15 @@ require("scripts/globals/battlefield")
 require("scripts/globals/keyitems")
 
 function onBattlefieldInitialise(battlefield)
-    SetServerVariable("[1301]Time", 0)
+    SetServerVariable("[Central_Temenos_Basement]Time", 0)
     limbus.hideTemenosDoors(Central_Temenos_Basement)
     limbus.hideArmouryCrates(Central_Temenos_Basement, TEMENOS)
 end
 
 function onBattlefieldTick(battlefield, tick)
-    SetServerVariable("[1301]Time", battlefield:getRemainingTime()/60)
+    if battlefield:getRemainingTime() % 60 == 0 then
+        SetServerVariable("[Central_Temenos_Basement]Time", battlefield:getRemainingTime()/60)
+    end
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 

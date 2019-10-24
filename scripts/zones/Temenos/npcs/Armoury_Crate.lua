@@ -893,7 +893,6 @@ function onTrigger(player, npc)
     if not battlefield then
         return
     end
-    local ID = zones[37]
     local cofferID = npc:getID()
     local X = npc:getXPos()
     local Y = npc:getYPos()
