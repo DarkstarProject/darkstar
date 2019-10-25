@@ -1538,12 +1538,13 @@ dsp.mod =
     BERSERK_DURATION                = 954, -- Berserk Duration
     AGGRESSOR_DURATION              = 955, -- Aggressor Duration
     DEFENDER_DURATION               = 956, -- Defender Duration
+    MIJIN_NAGI                      = 957, -- Nagi - Reraise no weakness full HP
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 957, -- stuff
     -- SPARE = 958, -- stuff
     -- SPARE = 959, -- stuff
+    -- SPARE = 960, -- stuff
 };
 
 dsp.latent =

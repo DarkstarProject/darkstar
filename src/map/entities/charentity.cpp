@@ -1491,7 +1491,13 @@ void CCharEntity::OnRaise()
         auto& actionTarget = list.getNewActionTarget();
 
         list.ActionTargetID = id;
-        if (m_hasRaise == 1)
+        // Check for Nagi equipped (MOD) and Mijin Gakure was used.
+        if ((m_hasRaise == 1) && (GetLocalVar("MijinGakure") != 0) && (getMod(Mod::MIJIN_NAGI) != 0))
+        {
+            actionTarget.animation = 511;
+            hpReturned = (uint16)(GetMaxHP());
+        }
+        else if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
             hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);

@@ -290,6 +290,7 @@ enum class Mod
 
     PARALYZE                  = 257, // Paralyze -- percent chance to proc
     MIJIN_GAKURE              = 258, // Tracks whether or not you used this ability to die.
+    MIJIN_NAGI                = 957, // Nagi Buff - Reraise no weakness full HP
     DUAL_WIELD                = 259, // Percent reduction in dual wield delay.
 
     // Warrior
@@ -787,9 +788,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 957, // stuff
     // SPARE = 958, // stuff
     // SPARE = 959, // stuff
+    // SPARE = 960, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
