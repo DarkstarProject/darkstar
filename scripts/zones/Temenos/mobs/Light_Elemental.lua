@@ -21,14 +21,14 @@ function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID()
     switch (mobID): caseof {
         [ID.mob.TEMENOS_C_MOB[2]+1] = function()
-            if limbus.isMobDead(ID.mob.TEMENOS_C_MOB[2]) and limbus.isMobDead(ID.mob.TEMENOS_C_MOB[2]+2) then
+            if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+2):isDead() then
                 GetNPCByID(ID.npc.COFFER_OFFSET+77):setPos(0.5, -6, -459)
                 GetNPCByID(ID.npc.COFFER_OFFSET+77):setStatus(dsp.status.NORMAL)
                 GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
             end
         end,
         [ID.mob.TEMENOS_C_MOB[2]+2] = function()
-            if limbus.isMobDead(ID.mob.TEMENOS_C_MOB[2]) and limbus.isMobDead(ID.mob.TEMENOS_C_MOB[2]+1) then
+            if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+1):isDead() then
                 GetNPCByID(ID.npc.COFFER_OFFSET+77):setPos(0.5, -6, -459)
                 GetNPCByID(ID.npc.COFFER_OFFSET+77):setStatus(dsp.status.NORMAL)
                 GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)

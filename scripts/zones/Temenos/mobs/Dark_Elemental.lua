@@ -20,7 +20,7 @@ function onMobDeath(mob, player, isKiller)
     switch (mobID): caseof {
     -- 100 a 106 inclut (Temenos -Northern Tower )
         [ID.mob.TEMENOS_E_MOB[7]] = function ()
-            if limbus.isMobDead(ID.mob.TEMENOS_E_MOB[7]+1) then
+            if GetMobByID(ID.mob.TEMENOS_E_MOB[7]+1):isDead() then
                 GetNPCByID(ID.npc.COFFER_OFFSET+70):setPos(cofferPos[posRand])
                 GetNPCByID(ID.npc.COFFER_OFFSET+70):setStatus(dsp.status.NORMAL)
                 GetNPCByID(ID.npc.COFFER_OFFSET+123):setPos(cofferPos[3-posRand])
@@ -28,7 +28,7 @@ function onMobDeath(mob, player, isKiller)
             end
         end,
         [ID.mob.TEMENOS_E_MOB[7]+1] = function ()
-            if limbus.isMobDead(ID.mob.TEMENOS_E_MOB[7]) then
+            if GetMobByID(ID.mob.TEMENOS_E_MOB[7]):isDead() then
                 GetNPCByID(ID.npc.COFFER_OFFSET+70):setPos(cofferPos[posRand])
                 GetNPCByID(ID.npc.COFFER_OFFSET+70):setStatus(dsp.status.NORMAL)
                 GetNPCByID(ID.npc.COFFER_OFFSET+123):setPos(cofferPos[3-posRand])

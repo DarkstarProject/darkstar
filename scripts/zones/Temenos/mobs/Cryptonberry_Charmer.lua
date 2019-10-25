@@ -10,7 +10,7 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if limbus.isMobDead(ID.mob.TEMENOS_N_MOB[6]+1) then
+    if GetMobByID(ID.mob.TEMENOS_N_MOB[6]+1):isDead() then
         GetNPCByID(ID.npc.COFFER_OFFSET+38):setPos(-412, -78, 426)
         GetNPCByID(ID.npc.COFFER_OFFSET+38):setStatus(dsp.status.NORMAL)
         GetNPCByID(ID.npc.COFFER_OFFSET+172):setPos(-415, -78, 427)

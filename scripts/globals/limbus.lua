@@ -503,19 +503,19 @@ end
 
 function limbus.despawnCS()
     for n = 16933130, 16933136 do
-        if not limbus.isMobDead(n) then
+        if GetMobByID(n):isAlive() then
             DespawnMob(n)
         end
     end
 
     for n = 16933138, 16933143 do
-        if not limbus.isMobDead(n) then
+        if GetMobByID(n):isAlive() then
             DespawnMob(n)
         end
     end
 
     for n = 16933145, 16933152 do
-        if not limbus.isMobDead(n) then
+        if GetMobByID(n):isAlive() then
             DespawnMob(n)
         end
     end
@@ -525,35 +525,35 @@ function IselementalDayAreDead()
     local day = GetServerVariable("[SW_Apollyon]ElementalTrigger") - 1
     local daykill=false
     if (day == 0) then  --  fire
-        if (limbus.isMobDead(16932913) == true and limbus.isMobDead(16932921) == true and limbus.isMobDead(16932929) == true) then
+        if (GetMobByID(16932913):isDead() and GetMobByID(16932921):isDead() and GetMobByID(16932929):isDead()) then
             daykill = true
         end
     elseif (day == 1) then --  earth
-        if (limbus.isMobDead(16932912) == true and limbus.isMobDead(16932920) == true and limbus.isMobDead(16932928) == true) then
+        if (GetMobByID(16932912):isDead() and GetMobByID(16932920):isDead() and GetMobByID(16932928):isDead()) then
             daykill = true
         end
     elseif (day == 2) then --  water
-        if (limbus.isMobDead(16932916) == true and limbus.isMobDead(16932924) == true and limbus.isMobDead(16932932) == true) then
+        if (GetMobByID(16932916):isDead() and GetMobByID(16932924):isDead() and GetMobByID(16932932):isDead()) then
             daykill = true
         end
     elseif (day == 3) then --  wind
-        if (limbus.isMobDead(16932910) == true and limbus.isMobDead(16932918) == true and limbus.isMobDead(16932926) == true) then
+        if (GetMobByID(16932910):isDead() and GetMobByID(16932918):isDead() and GetMobByID(16932926):isDead()) then
             daykill = true
         end
     elseif (day == 4) then --  ice
-        if (limbus.isMobDead(16932914) == true and limbus.isMobDead(16932922) == true and limbus.isMobDead(16932930) == true) then
+        if (GetMobByID(16932914):isDead() and GetMobByID(16932922):isDead() and GetMobByID(16932930):isDead()) then
             daykill = true
         end
     elseif (day == 5) then --  lightning
-        if (limbus.isMobDead(16932917) == true and limbus.isMobDead(16932925) == true and limbus.isMobDead(16932933) == true) then
+        if (GetMobByID(16932917):isDead() and GetMobByID(16932925):isDead() and GetMobByID(16932933):isDead()) then
             daykill = true
         end
     elseif (day == 6) then --  ligth
-        if (limbus.isMobDead(16932931) == true and limbus.isMobDead(16932915) == true and limbus.isMobDead(16932923) == true) then
+        if (GetMobByID(16932931):isDead() and GetMobByID(16932915):isDead() and GetMobByID(16932923):isDead()) then
             daykill = true
         end
     elseif (day == 7) then  --  dark
-        if (limbus.isMobDead(16932911) == true and limbus.isMobDead(16932919) == true and limbus.isMobDead(16932927) == true) then
+        if (GetMobByID(16932911):isDead() and GetMobByID(16932919):isDead() and GetMobByID(16932927):isDead()) then
             daykill = true
         end
     end

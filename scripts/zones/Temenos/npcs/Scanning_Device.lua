@@ -21,30 +21,6 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if not player:battlefieldAtCapacity(1299) then
-        SetServerVariable("[Temenos_Northern_Tower]Time", 0)
-    end
-    if not player:battlefieldAtCapacity(1300) then
-        SetServerVariable("[Temenos_Eastern_Tower]Time", 0)
-    end
-    if not player:battlefieldAtCapacity(1298) then
-        SetServerVariable("[Temenos_Western_Tower]Time", 0)
-    end
-    if not player:battlefieldAtCapacity(1306) then
-        SetServerVariable("[Central_Temenos_4th_Floor]Time", 0)
-    end
-    if not player:battlefieldAtCapacity(1305) then
-        SetServerVariable("[Central_Temenos_3rd_Floor]Time", 0)
-    end
-    if not player:battlefieldAtCapacity(1304) then
-        SetServerVariable("[Central_Temenos_2nd_Floor]Time", 0)
-    end
-    if not player:battlefieldAtCapacity(1303) then
-        SetServerVariable("[Central_Temenos_1st_Floor]Time", 0)
-    end
-    if not player:battlefieldAtCapacity(1301) then
-        SetServerVariable("[Central_Temenos_Basement]Time", 0)
-    end
     player:startEvent(121, 15)
 end
 

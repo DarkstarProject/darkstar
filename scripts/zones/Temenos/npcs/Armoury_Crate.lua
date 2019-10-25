@@ -955,10 +955,6 @@ function onTrigger(player, npc)
         if lootID == 136 or lootID == 143 or lootID == 150 or lootID == 151 or
             lootID == 152 or lootID == 153 or lootID == 154
         then
-            players = battlefield:getPlayers()
-            for i = 1, #players do
-                players[i]:messageSpecial(ID.text.HUM+1)
-            end
             battlefield:setLocalVar("cutsceneTimer", 10)
             battlefield:setLocalVar("lootSeen", 1)
         end

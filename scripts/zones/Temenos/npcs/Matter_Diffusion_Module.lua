@@ -7,7 +7,11 @@ require("scripts/globals/bcnm")
 local ID = require("scripts/zones/Temenos/IDs")
 
 function onTrade(player, npc, trade)
-    TradeBCNM(player, npc, trade)
+    if player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD) then
+        TradeBCNM(player, npc, trade)
+    else
+        player:messageSpecial(ID.text.NO_KEY+1)
+    end
 end
 
 function onTrigger(player, npc)

@@ -33,7 +33,7 @@ function onMobDeath(mob, player, isKiller)
             GetNPCByID(ID.npc.COFFER_OFFSET+45):setStatus(dsp.status.NORMAL)
         end,
         [ID.mob.TEMENOS_C_MOB[2]+4] = function()
-            if not limbus.isMobDead(ID.mob.TEMENOS_C_MOB[2]+5) then -- wind
+            if GetMobByID(ID.mob.TEMENOS_C_MOB[2]+5):isAlive() then -- wind
                 DespawnMob(ID.mob.TEMENOS_C_MOB[2]+5)
                 SpawnMob(ID.mob.TEMENOS_C_MOB[2]+11)
             end

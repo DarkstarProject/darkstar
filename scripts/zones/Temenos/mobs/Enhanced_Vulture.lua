@@ -19,9 +19,9 @@ function onMobDeath(mob, player, isKiller)
     local mobX = mob:getXPos()
     local mobY = mob:getYPos()
     local mobZ = mob:getZPos()
-    if limbus.isMobDead(ID.mob.TEMENOS_W_MOB[7]) and limbus.isMobDead(ID.mob.TEMENOS_W_MOB[7]+1) and
-        limbus.isMobDead(ID.mob.TEMENOS_W_MOB[7]+2) and limbus.isMobDead(ID.mob.TEMENOS_W_MOB[7]+3) and
-        limbus.isMobDead(ID.mob.TEMENOS_W_MOB[7]+4) and limbus.isMobDead(ID.mob.TEMENOS_W_MOB[7]+5)
+    if GetMobByID(ID.mob.TEMENOS_W_MOB[7]):isDead() and GetMobByID(ID.mob.TEMENOS_W_MOB[7]+1):isDead() and
+        GetMobByID(ID.mob.TEMENOS_W_MOB[7]+2):isDead() and GetMobByID(ID.mob.TEMENOS_W_MOB[7]+3):isDead() and
+        GetMobByID(ID.mob.TEMENOS_W_MOB[7]+4):isDead() and GetMobByID(ID.mob.TEMENOS_W_MOB[7]+5):isDead()
     then
         GetNPCByID(ID.npc.COFFER_OFFSET+17):setPos(mobX, mobY, mobZ)
         GetNPCByID(ID.npc.COFFER_OFFSET+17):setStatus(dsp.status.NORMAL)

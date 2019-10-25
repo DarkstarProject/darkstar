@@ -13,9 +13,9 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]) and limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+1) and
-        limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+2) and limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+3) and
-        limbus.isMobDead(ID.mob.TEMENOS_N_MOB[7]+4)
+    if GetMobByID(ID.mob.TEMENOS_N_MOB[7]):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[7]+1):isDead() and
+        GetMobByID(ID.mob.TEMENOS_N_MOB[7]+2):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[7]+3):isDead() and
+        GetMobByID(ID.mob.TEMENOS_N_MOB[7]+4):isDead()
     then
         GetNPCByID(ID.npc.COFFER_OFFSET+39):setPos(-599, 85, 438)
         GetNPCByID(ID.npc.COFFER_OFFSET+39):setStatus(dsp.status.NORMAL)
