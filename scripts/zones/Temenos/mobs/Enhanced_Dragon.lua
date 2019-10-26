@@ -14,6 +14,7 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
+    local battlefield = player:getBattlefield()
     local mobX = mob:getXPos()
     local mobY = mob:getYPos()
     local mobZ = mob:getZPos()
@@ -23,6 +24,8 @@ function onMobDeath(mob, player, isKiller)
     then
         GetNPCByID(ID.npc.COFFER_OFFSET+71):setPos(mobX, mobY, mobZ)
         GetNPCByID(ID.npc.COFFER_OFFSET+71):setStatus(dsp.status.NORMAL)
+        player:messageSpecial(ID.text.GATE_OPEN)
+        player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
         GetNPCByID(ID.npc.GATE_OFFSET+20):setStatus(dsp.status.NORMAL)
     end
 end

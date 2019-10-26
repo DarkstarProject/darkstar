@@ -10,14 +10,14 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if GetMobByID(ID.mob.TEMENOS_N_MOB[3]):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[3]+1):isDead() and
-        GetMobByID(ID.mob.TEMENOS_N_MOB[3]+4):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[3]+5):isDead()
-    then
-        GetNPCByID(ID.npc.COFFER_OFFSET+26):setPos(19, 80, 430)
-        GetNPCByID(ID.npc.COFFER_OFFSET+26):setStatus(dsp.status.NORMAL)
-        GetNPCByID(ID.npc.COFFER_OFFSET+160):setPos(16, 80, 430)
-        GetNPCByID(ID.npc.COFFER_OFFSET+160):setStatus(dsp.status.NORMAL)
-        GetNPCByID(ID.npc.COFFER_OFFSET+211):setPos(22, 80, 430)
-        GetNPCByID(ID.npc.COFFER_OFFSET+211):setStatus(dsp.status.NORMAL)
+    local mobID = mob:getID()
+    local battlefield = player:getBattlefield()
+    local random = battlefield:getLocalVar("random")
+
+    if mobID - ID.mob.TEMENOS_N_MOB[3] == random - 1 then
+        battlefield:setLocalVar("random", math.random(1, 4))
+        player:messageSpecial(ID.text.GATE_OPEN)
+        player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+        GetNPCByID(ID.npc.GATE_OFFSET+2):setStatus(dsp.status.NORMAL)
     end
 end

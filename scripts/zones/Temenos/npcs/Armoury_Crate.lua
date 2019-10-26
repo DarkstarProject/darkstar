@@ -1002,6 +1002,10 @@ function onTrigger(player, npc)
                     end
                 end
                 if coffer ~= 284 then
+                    player:messageSpecial(ID.text.GATE_OPEN)
+                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                    battlefield:setLocalVar("random", math.random(0,1))
+                    battlefield:setLocalVar("cofferMask", 0)
                     GetNPCByID(ID.npc.GATE_OFFSET+7):setStatus(dsp.status.NORMAL)
                 end
             elseif coffer == 174 or coffer == 216 or coffer == 321 or coffer == 45 then
@@ -1012,6 +1016,10 @@ function onTrigger(player, npc)
                     end
                 end
                 if coffer ~= 321 then
+                    player:messageSpecial(ID.text.GATE_OPEN)
+                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                    battlefield:setLocalVar("random", math.random(0,1))
+                    battlefield:setLocalVar("cofferMask", 0)
                     GetNPCByID(ID.npc.GATE_OFFSET+8):setStatus(dsp.status.NORMAL)
                 end
             elseif coffer == 181 or coffer == 217 or coffer == 348 or coffer == 46 then
@@ -1022,6 +1030,10 @@ function onTrigger(player, npc)
                     end
                 end
                 if coffer ~= 348 then
+                    player:messageSpecial(ID.text.GATE_OPEN)
+                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                    battlefield:setLocalVar("random", math.random(0,1))
+                    battlefield:setLocalVar("cofferMask", 0)
                     GetNPCByID(ID.npc.GATE_OFFSET+9):setStatus(dsp.status.NORMAL)
                 end
             elseif coffer == 182 or coffer == 236 or coffer == 360 or coffer == 47 then
@@ -1032,6 +1044,10 @@ function onTrigger(player, npc)
                     end
                 end
                 if coffer ~= 360 then
+                    player:messageSpecial(ID.text.GATE_OPEN)
+                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                    battlefield:setLocalVar("random", math.random(0,1))
+                    battlefield:setLocalVar("cofferMask", 0)
                     GetNPCByID(ID.npc.GATE_OFFSET+10):setStatus(dsp.status.NORMAL)
                 end
             elseif coffer == 183 or coffer == 261 or coffer == 393 or coffer == 68 then
@@ -1042,6 +1058,10 @@ function onTrigger(player, npc)
                     end
                 end
                 if coffer ~= 393 then
+                    player:messageSpecial(ID.text.GATE_OPEN)
+                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                    battlefield:setLocalVar("random", math.random(0,1))
+                    battlefield:setLocalVar("cofferMask", 0)
                     GetNPCByID(ID.npc.GATE_OFFSET+11):setStatus(dsp.status.NORMAL)
                 end
             elseif coffer == 202 or coffer == 190 or coffer ==  277 or coffer == 69 then
@@ -1052,6 +1072,10 @@ function onTrigger(player, npc)
                     end
                 end
                 if coffer ~= 277 then
+                    player:messageSpecial(ID.text.GATE_OPEN)
+                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                    battlefield:setLocalVar("random", math.random(1,2))
+                    battlefield:setLocalVar("cofferMask", 0)
                     GetNPCByID(ID.npc.GATE_OFFSET+12):setStatus(dsp.status.NORMAL)
                 end
             elseif coffer == 70 or coffer == 123 then
