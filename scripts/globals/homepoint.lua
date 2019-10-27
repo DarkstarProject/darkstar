@@ -162,7 +162,8 @@ local function goToHP(player, choice, index)
     local hasKI  = player:hasKeyItem(dsp.ki.RHAPSODY_IN_WHITE)
 
     if choice == selection.SAME_ZONE then
-        -- For zones like Sky and Uleguerand range, this will force gil deletion
+        -- For zones like Sky and Uleguerand Range, this will force gil deletion
+        -- Positioning within same zone handled by client, no need to setPos
         player:delGil(getCost(origin, origin, hasKI))
     elseif choice == selection.TELEPORT then
         player:delGil(getCost(origin, index, hasKI))
@@ -186,11 +187,11 @@ dsp.homepoint.onTrigger = function(player, csid, index)
     local hpBit  = index % 32
     local hpSet  = math.floor(index / 32)
     local menu   = player:getTeleportMenu(travelType)
-    local params = bit.bor(index, bit.lshift(menu[10] < 1 and 0 or 1, 18))
+    local params = bit.bor(index, bit.lshift(menu[10] < 1 and 0 or 1, 18)) -- Include menu layout
 
     if not player:hasTeleport(travelType, hpBit, hpSet) then
         player:addTeleport(travelType, hpBit, hpSet)
-        params = bit.bor(params, 0x10000)
+        params = bit.bor(params, 0x10000) -- OR in New HP Bit Flag
     end
 
     player:setLocalVar("originIndex", index)
@@ -206,8 +207,8 @@ dsp.homepoint.onEventUpdate = function(player, csid, option)
 
     if choice >= selection.SET_LAYOUT and choice <= selection.REP_FAVORITE then
 
-        local index = bit.rshift(bit.lshift(option, 8), 24)
-        
+        local index = bit.rshift(bit.lshift(option, 8), 24) -- Ret HP #
+
         if choice == selection.ADD_FAVORITE then
             local temp = 0
             for x = 1, 9 do
@@ -236,7 +237,7 @@ dsp.homepoint.onEventUpdate = function(player, csid, option)
 
     end
 
-    for x = 1, 3 do
+    for x = 1, 3 do -- Condense arrays for event params
         favs[1] = favs[1] + favs[x+1] * 256^x
         favs[5] = favs[5] + favs[x+5] * 256^x
     end
