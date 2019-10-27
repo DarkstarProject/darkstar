@@ -65,23 +65,19 @@ dsp.maws.onTrigger = function(player, npc)
     local hasMaw = player:hasTeleport(MAW, maw.bit)
     local event = nil
 
-    if hasMaw then
-        if maw.cs.msn and meetsMission2Reqs(player) then
-            event = maw.cs.msn
-        else
-            event = maw.cs.warp
-        end
+    if maw.cs.msn and meetsMission2Reqs(player) then
+        event = maw.cs.msn
+    elseif hasMaw then
+        event = maw.cs.warp
     else
         local hasFeather = player:hasKeyItem(dsp.ki.PURE_WHITE_FEATHER)
-        if maw.cs.msn and meetsMission2Reqs(player) then
-            event = maw.cs.msn
-        elseif maw.cs.new and not hasFeather then
+        if maw.cs.new and not hasFeather then
             event = maw.cs.new
         elseif maw.cs.add then
             event = maw.cs.add
         end
     end
-    
+
     if event then
         player:startEvent(event)
     else
@@ -106,14 +102,14 @@ dsp.maws.onEventFinish = function(player, csid, option)
     end 
 
     if csid == maw.cs.warp and option == 1 then
-        goToMaw()
+        goToMaw() -- Known to have maw, no need to check
     elseif maw.cs.add and csid == maw.cs.add and option == 1 then
         addMaw()
     elseif maw.cs.msn and csid == maw.cs.msn then
         player:completeMission(WOTG, dsp.mission.id.wotg.BACK_TO_THE_BEGINNING)
         player:addMission(WOTG, dsp.mission.id.wotg.CAIT_SITH)
         player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT)
-        addMaw()
+        addMaw() -- May not have yet, check
     elseif maw.cs.new and csid == maw.cs.new then
         local ID = require("scripts/zones/"..player:getZoneName().."/IDs")
         player:completeMission(WOTG,dsp.mission.id.wotg.CAVERNOUS_MAWS)
