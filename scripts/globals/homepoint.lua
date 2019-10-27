@@ -7,7 +7,7 @@ dsp.homepoint = dsp.homepoint or {}
 
 local HPs =
 {
- -- [  #] = {Group(for No Fee Calc), Fee Multiplier, HP Coordinates
+    -- [Index]= [1]group(if to/from both same group, then no cost) [2]fee multiplier [3]dest{x,y,z,rot,zone}
     [  0] = {group = 1, fee = 1, dest = {  -85.554,       1, -64.554,  45, 230}}, -- Southern San d'Oria #1
     [  1] = {group = 1, fee = 1, dest = {     44.1,       2,   -34.5, 170, 230}}, -- Southern San d'Oria #2
     [  2] = {group = 1, fee = 1, dest = {    140.5,      -2,     121,   0, 230}}, -- Southern San d'Oria #3
@@ -136,7 +136,7 @@ local selection =
 {
     SET_HOMEPOINT    = 1,
     TELEPORT         = 2,
-    UNKNOWN          = 3, -- UNKNOWN - EXISTS?
+    SAME_ZONE        = 3,
     SET_LAYOUT       = 4,
     ADD_FAVORITE     = 5,
     REM_FAVORITE     = 6,
@@ -149,19 +149,25 @@ local travelType = dsp.teleport.type.HOMEPOINT
 local function getCost (from, to, key)
     
     if HPs[from].group == HPs[to].group and HPs[to].group ~= 0 then
-        return 0 -- No fee if in same group
+        return 0
     else
         return (500 * HPs[to].fee) / (key and 5 or 1)
     end
 
 end
 
-local function goToHP(player, index)
+local function goToHP(player, choice, index)
 
     local origin = player:getLocalVar("originIndex")
     local hasKI  = player:hasKeyItem(dsp.ki.RHAPSODY_IN_WHITE)
-    player:delGil(getCost(origin, index, hasKI))
-    player:setPos(unpack(HPs[index].dest))
+
+    if choice == selection.SAME_ZONE then
+        -- For zones like Sky and Uleguerand range, this will force gil deletion
+        player:delGil(getCost(origin, origin, hasKI))
+    elseif choice == selection.TELEPORT then
+        player:delGil(getCost(origin, index, hasKI))
+        player:setPos(unpack(HPs[index].dest))
+    end
 
 end
 
@@ -177,14 +183,14 @@ dsp.homepoint.onTrigger = function(player, csid, index)
         return
     end
 
-    local hpBit  = index % 32 -- 0 -> 31
-    local hpSet  = math.floor(index / 32) -- 0 -> 3
+    local hpBit  = index % 32
+    local hpSet  = math.floor(index / 32)
     local menu   = player:getTeleportMenu(travelType)
-    local params = bit.bor(index, bit.lshift(menu[10] < 1 and 0 or 1, 18)) -- Include menu layout
+    local params = bit.bor(index, bit.lshift(menu[10] < 1 and 0 or 1, 18))
 
     if not player:hasTeleport(travelType, hpBit, hpSet) then
         player:addTeleport(travelType, hpBit, hpSet)
-        params = bit.bor(params, 0x10000) -- OR in New HP Bit Flag
+        params = bit.bor(params, 0x10000)
     end
 
     player:setLocalVar("originIndex", index)
@@ -200,20 +206,20 @@ dsp.homepoint.onEventUpdate = function(player, csid, option)
 
     if choice >= selection.SET_LAYOUT and choice <= selection.REP_FAVORITE then
 
-        local index = bit.rshift(bit.lshift(option, 8), 24) -- Ret HP #
-
+        local index = bit.rshift(bit.lshift(option, 8), 24)
+        
         if choice == selection.ADD_FAVORITE then
+            local temp = 0
             for x = 1, 9 do
-                if favs[x] == -1 then
-                    favs[x] = index -- Unordered Array
-                    break
-                end
+                temp = favs[x]
+                favs[x] = index
+                index = temp
             end
         elseif choice == selection.REM_FAVORITE then
             for x = 1, 9 do
                 if favs[x] == index then
                     for x = x, 8 do
-                        favs[x] = v[x+1]
+                        favs[x] = favs[x+1]
                     end
                     favs[9] = -1
                     break
@@ -230,7 +236,7 @@ dsp.homepoint.onEventUpdate = function(player, csid, option)
 
     end
 
-    for x = 1, 3 do -- Condense arrays for event params
+    for x = 1, 3 do
         favs[1] = favs[1] + favs[x+1] * 256^x
         favs[5] = favs[5] + favs[x+5] * 256^x
     end
@@ -243,11 +249,12 @@ end
 dsp.homepoint.onEventFinish = function(player, csid, option, event)
 
     if csid == event then
-        if option == selection.SET_HOMEPOINT then
+        choice = bit.band(option, 0xFF)
+        if choice == selection.SET_HOMEPOINT then
             player:setHomePoint()
             player:messageSpecial(zones[player:getZoneID()].text.HOMEPOINT_SET)
-        elseif option == selection.TELEPORT or (option > 0x10000 and option < 0x7F0003) then
-            goToHP(player, bit.rshift(option, 16))
+        elseif choice == selection.TELEPORT or choice == selection.SAME_ZONE then
+            goToHP(player, choice, bit.rshift(option, 16))
         end
     end
 
