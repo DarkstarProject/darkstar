@@ -25,9 +25,8 @@ function onUseAbility(player,target,ability)
     target:takeDamage(dmg, player, dsp.attackType.SPECIAL, dsp.damageType.ELEMENTAL)
 
     player:setLocalVar("MijinGakure", 1)
-    if (player:getMod(dsp.mod.MIJIN_NAGI) > 0) then
-        player:delStatusEffect(dsp.effect.RERAISE)
-        player:addStatusEffect(dsp.effect.RERAISE,1,0,3600)
+    if (player:getMod(dsp.mod.MIJIN_RERAISE) > 0) then
+        player:sendReraise(1)
     end
     player:setHP(0)
     return dmg
