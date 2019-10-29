@@ -2310,7 +2310,7 @@ namespace charutils
 
         //add in melee ws
         PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_MAIN));
-        uint8 skill = PItem ? PItem->getSkillType() : 0;
+        uint8 skill = PItem ? PItem->getSkillType() : SKILL_HAND_TO_HAND;
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
