@@ -7769,7 +7769,7 @@ INSERT INTO `mob_groups` VALUES (16,1560,129,'Gigas_Flanker',0,0,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (17,775,129,'Confederate_Belfry',0,128,0,0,0,77,78,0);
 INSERT INTO `mob_groups` VALUES (18,2252,129,'Kingslayer_Doggvdegg',0,128,0,0,0,77,79,0);
 INSERT INTO `mob_groups` VALUES (19,5814,129,'Gherrmoga',0,128,0,0,0,76,77,0);
-INSERT INTO `mob_groups` VALUES (20,5815,129,'Bloodwing_Maimers',0,128,0,0,0,75,75,0);
+INSERT INTO `mob_groups` VALUES (20,5815,129,'Bloodwing_Maimer',0,128,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (22,5786,129,'Excenmille_S',0,128,0,0,0,75,75,1);
 INSERT INTO `mob_groups` VALUES (6868,9,129,'2nd_Legion_Scout',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (6869,205,129,'Aquarian_Caster',0,0,0,0,0,0,0,0);
