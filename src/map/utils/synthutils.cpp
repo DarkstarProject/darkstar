@@ -851,8 +851,8 @@ int32 doSynthResult(CCharEntity* PChar)
             doSynthFail(PChar);
             // And report the incident (will possibly jail the player)
             anticheat::ReportCheatIncident(PChar,
-                anticheat::CHEAT_ID_FASTSYNTH,
-                anticheat::CHEAT_SEVERITY_PROBABLE,
+                anticheat::CheatID::CHEAT_ID_FASTSYNTH,
+                anticheat::CheatSeverity::CHEAT_SEVERITY_PROBABLE,
                 (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(animationDuration).count(),
                 "Player attempted to bypass synth animation by injecting synth done packet.");
             // Return here so we don't do skillups

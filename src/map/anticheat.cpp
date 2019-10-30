@@ -70,7 +70,7 @@ namespace anticheat
     }
 
     // Log and possibly jail
-    bool ReportCheatIncident(CCharEntity* PChar, CHEAT_ID cheatid, CHEAT_SEVERITY severity, uint32 cheatarg, const char* description)
+    bool ReportCheatIncident(CCharEntity* PChar, CheatID cheatid, CheatSeverity severity, uint32 cheatarg, const char* description)
     {
         if (PChar == NULL) {
             return false;
@@ -83,9 +83,10 @@ namespace anticheat
         time_t timeNow = time(NULL);
         strftime(strIncidentTime, sizeof(strIncidentTime), "%Y:%m:%d %H:%M:%S", gmtime(&timeNow));
 
-        Sql_Query(SqlHandle, fmtQuery, PChar->id, strIncidentTime, cheatid, cheatarg, severity, description != NULL ? description : "");
+        uint8 severityIntVal = static_cast<uint8>(severity);
+        Sql_Query(SqlHandle, fmtQuery, PChar->id, strIncidentTime, static_cast<uint32>(cheatid), cheatarg, severityIntVal, description != NULL ? description : "");
         // if g_cheatJailSeverity is zero then jailing is disabled
-        if ((map_config.anticheat_jail_threshold > 0) && (severity >= map_config.anticheat_jail_threshold)) {
+        if ((map_config.anticheat_jail_threshold > 0) && (severityIntVal >= map_config.anticheat_jail_threshold)) {
             JailChar(PChar);
         }
         return true;

@@ -30,7 +30,7 @@
 namespace anticheat
 {
     // Cheat type as appears in the cheat id column in the cheat_incidents table.
-    enum CHEAT_ID
+    enum class CheatID : uint32
     {
         // Player attempted to speed up synth (craft) by injecting a synth done
         // (0x59) packet. If anti cheating is enabled this will cause all cheated
@@ -41,7 +41,7 @@ namespace anticheat
         CHEAT_ID_LAST
     };
 
-    enum CHEAT_SEVERITY
+    enum class CheatSeverity : uint8
     {
         // Debug purposes only. Characters cannot be jailed at this threshold
         CHEAT_SEVERITY_DEBUG = 0,
@@ -72,7 +72,7 @@ namespace anticheat
     // cheatarg - Optional argument (varies by cheat ID)
     // description - Optional text description to be logged
     // returns true on success, false on failure
-    bool ReportCheatIncident(CCharEntity* PChar, CHEAT_ID cheatid, CHEAT_SEVERITY severity, uint32 cheatarg = 0, const char* description = NULL);
+    bool ReportCheatIncident(CCharEntity* PChar, CheatID cheatid, CheatSeverity severity, uint32 cheatarg = 0, const char* description = NULL);
 
 };
 
