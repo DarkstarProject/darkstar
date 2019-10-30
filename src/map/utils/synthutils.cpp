@@ -42,6 +42,7 @@
 #include "../map.h"
 #include "../trade_container.h"
 #include "../vana_time.h"
+#include "../anticheat.h"
 
 #include "charutils.h"
 #include "itemutils.h"
@@ -835,6 +836,29 @@ int32 startSynth(CCharEntity* PChar)
 int32 doSynthResult(CCharEntity* PChar)
 {
     uint8 m_synthResult = PChar->CraftContainer->getQuantity(0);
+    if (map_config.anticheat_enabled)
+    {
+        std::chrono::duration animationDuration = server_clock::now() - PChar->m_LastSynthTime;
+        if (animationDuration < 5s)
+        {
+            // Attempted cheating - Did not spend enough time doing the synth animation,
+            // Synth therefore always fails.
+            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            ShowDebug(CL_CYAN"Caught player cheating by injecting synth done packet.\n");
+            #endif
+            PChar->CraftContainer->setQuantity(0, synthutils::SYNTHESIS_FAIL);
+            m_synthResult = SYNTHESIS_FAIL;
+            doSynthFail(PChar);
+            // And report the incident (will possibly jail the player)
+            anticheat::ReportCheatIncident(PChar,
+                anticheat::CHEAT_ID_FASTSYNTH,
+                anticheat::CHEAT_SEVERITY_PROBABLE,
+                (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(animationDuration).count(),
+                "Player attempted to bypass synth animation by injecting synth done packet.");
+            // Return here so we don't do skillups
+            return 0;
+        }
+    }
 
     if (m_synthResult == SYNTHESIS_FAIL)
     {
