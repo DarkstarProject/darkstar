@@ -32,14 +32,12 @@ namespace anticheat
     // Cheat type as appears in the cheat id column in the cheat_incidents table.
     enum CHEAT_ID
     {
-        // Unused
-        CHEAT_ID_STUB = 0,
         // Player attempted to speed up synth (craft) by injecting a synth done
         // (0x59) packet. If anti cheating is enabled this will cause all cheated
         // crafts to fail.
         // Argument is the time spent on synth animation.
         CHEAT_ID_FASTSYNTH = 1,
-        // Don't remove this
+        // For boundary checks
         CHEAT_ID_LAST
     };
 
@@ -55,7 +53,7 @@ namespace anticheat
         CHEAT_SEVERITY_DEFINITE = 3,
         // Very severe cast of cheating
         CHEAT_SEVERITY_SEVERE = 4,
-        // Don't remove this
+        // For boundary checks
         CHEAT_SEVERITY_LAST
     };
 
