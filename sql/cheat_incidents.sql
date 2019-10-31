@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS `cheat_incidents` (
   `incident_time` datetime NOT NULL,
   `cheatid` int(10) unsigned NOT NULL,
   `cheatarg` int(10) unsigned NOT NULL,
-  `severity` int(10) unsigned NOT NULL,
   `description` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

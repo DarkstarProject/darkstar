@@ -1007,7 +1007,7 @@ int32 map_config_default()
     map_config.healing_tick_delay = 10;
     map_config.skillup_bloodpact = true;
     map_config.anticheat_enabled = false;
-    map_config.anticheat_jail_threshold = 4;
+    map_config.anticheat_jail_disable = false;
     return 0;
 }
 
@@ -1345,9 +1345,9 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.anticheat_enabled = atoi(w2);
         }
-        else if (strcmp(w1, "anticheat_jail_threshold") == 0)
+        else if (strcmp(w1, "anticheat_jail_disable") == 0)
         {
-            map_config.anticheat_jail_threshold = atoi(w2);
+            map_config.anticheat_jail_disable = atoi(w2);
         }
         else
         {

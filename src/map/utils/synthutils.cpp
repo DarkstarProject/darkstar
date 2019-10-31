@@ -841,22 +841,29 @@ int32 doSynthResult(CCharEntity* PChar)
         std::chrono::duration animationDuration = server_clock::now() - PChar->m_LastSynthTime;
         if (animationDuration < 5s)
         {
-            // Attempted cheating - Did not spend enough time doing the synth animation,
-            // Synth therefore always fails.
+            // Attempted cheating - Did not spend enough time doing the synth animation.
             #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Caught player cheating by injecting synth done packet.\n");
             #endif
-            PChar->CraftContainer->setQuantity(0, synthutils::SYNTHESIS_FAIL);
-            m_synthResult = SYNTHESIS_FAIL;
-            doSynthFail(PChar);
+            // Check whether the cheat type action requires us to actively block the cheating attempt
+            bool shouldblock = anticheat::GetCheatPunitiveAction(anticheat::CheatID::CHEAT_ID_FASTSYNTH, nullptr, 0) & anticheat::CHEAT_ACTION_BLOCK;
+            if (shouldblock)
+            {
+                // Block the cheat by forcing the synth to fail
+                PChar->CraftContainer->setQuantity(0, synthutils::SYNTHESIS_FAIL);
+                m_synthResult = SYNTHESIS_FAIL;
+                doSynthFail(PChar);
+            }
             // And report the incident (will possibly jail the player)
             anticheat::ReportCheatIncident(PChar,
                 anticheat::CheatID::CHEAT_ID_FASTSYNTH,
-                anticheat::CheatSeverity::CHEAT_SEVERITY_PROBABLE,
                 (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(animationDuration).count(),
                 "Player attempted to bypass synth animation by injecting synth done packet.");
-            // Return here so we don't do skillups
-            return 0;
+            if (shouldblock)
+            {
+                // Blocking the cheat also means that the offender should not get any skillups
+                return 0;
+            }
         }
     }
 

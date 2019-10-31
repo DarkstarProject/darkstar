@@ -26,6 +26,7 @@
 #include "zone.h"
 #include "utils/charutils.h"
 #include "utils/zoneutils.h"
+#include "packets/chat_message.h"
 
 namespace anticheat
 {
@@ -43,6 +44,28 @@ namespace anticheat
         {-620, -400, -220, 0},  {-180, -400, -220, 0}, {260, -400, -220, 0}, {700, -400, -220, 0},
         {-620, -400, -620, 0},  {-180, -400, -620, 0}, {260, -400, -620, 0}, {700, -400, -620, 0},
     };
+
+    // Action bitmask of the cheat
+    CheatActionBitmask GetCheatPunitiveAction(CheatID cheatid, char* warningmsg, size_t warningsize)
+    {
+        const char* fmtQuery = "SELECT action_bitmask, warning_message FROM cheat_types WHERE cheatid = %u";
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, static_cast<uint32>(cheatid));
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            if (warningmsg != nullptr)
+            {
+                memset(warningmsg, 0, warningsize);
+                char* warnptr = (char*)Sql_GetData(SqlHandle, 1);
+                if (warnptr != nullptr)
+                {
+                    strncpy(warningmsg, warnptr, sizeof(warningmsg) - 1);
+                }
+            }
+            return (CheatActionBitmask)Sql_GetUIntData(SqlHandle, 0);
+        }
+        return CHEAT_ACTION_NOTHING;
+    }
 
     // Jail character
     bool JailChar(CCharEntity* PChar, uint32 cellid)
@@ -70,7 +93,7 @@ namespace anticheat
     }
 
     // Log and possibly jail
-    bool ReportCheatIncident(CCharEntity* PChar, CheatID cheatid, CheatSeverity severity, uint32 cheatarg, const char* description)
+    bool ReportCheatIncident(CCharEntity* PChar, CheatID cheatid, uint32 cheatarg, const char* description)
     {
         if (PChar == NULL) {
             return false;
@@ -78,15 +101,28 @@ namespace anticheat
         if (map_config.anticheat_enabled == false) {
             return false;
         }
-        const char* fmtQuery = "INSERT INTO cheat_incidents SET charid = %u, incident_time = '%s', cheatid = %u, cheatarg = %u, severity = %u, description= '%s';";
-        char strIncidentTime[128];
-        time_t timeNow = time(NULL);
-        strftime(strIncidentTime, sizeof(strIncidentTime), "%Y:%m:%d %H:%M:%S", gmtime(&timeNow));
+        // Check what we should do
+        char warningmsg[256] = { 0 };
+        CheatActionBitmask action = GetCheatPunitiveAction(cheatid, warningmsg, sizeof(warningmsg));
+        if (action & CHEAT_ACTION_LOG)
+        {
+            // Log intgo cheat_incidents table
+            const char* fmtQuery = "INSERT INTO cheat_incidents SET charid = %u, incident_time = '%s', cheatid = %u, cheatarg = %u, severity = %u, description= '%s';";
+            char strIncidentTime[128];
+            time_t timeNow = time(NULL);
+            strftime(strIncidentTime, sizeof(strIncidentTime), "%Y:%m:%d %H:%M:%S", gmtime(&timeNow));
 
-        uint8 severityIntVal = static_cast<uint8>(severity);
-        Sql_Query(SqlHandle, fmtQuery, PChar->id, strIncidentTime, static_cast<uint32>(cheatid), cheatarg, severityIntVal, description != NULL ? description : "");
-        // if g_cheatJailSeverity is zero then jailing is disabled
-        if ((map_config.anticheat_jail_threshold > 0) && (severityIntVal >= map_config.anticheat_jail_threshold)) {
+            Sql_Query(SqlHandle, fmtQuery, PChar->id, strIncidentTime, static_cast<uint32>(cheatid), cheatarg, description != NULL ? description : "");
+        }
+        if (action & CHEAT_ACTION_WARN)
+        {
+            // The message in the warning column in DB is sent as a system message to the offender
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, warningmsg));
+        }
+        if ((action & CHEAT_ACTION_JAIL) && (!map_config.anticheat_jail_disable))
+        {
+            // Send to jail only if both the cheat type requires it *and* the admin
+            // has not disabled auto-jailing globally.
             JailChar(PChar);
         }
         return true;

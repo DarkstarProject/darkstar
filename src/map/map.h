@@ -137,7 +137,7 @@ struct map_config_t
     std::string msg_server_ip;        // central message server IP
     bool   skillup_bloodpact;         // Enable/disable skillups for bloodpacts
     bool   anticheat_enabled;         // Is the anti-cheating system enabled
-    uint8  anticheat_jail_threshold;  // Auto-jail the user if cheating severity above this level
+    bool   anticheat_jail_disable;    // Globally disable auto-jailing by the anti-cheat system
 };
 
 /************************************************************************

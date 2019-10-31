@@ -41,21 +41,29 @@ namespace anticheat
         CHEAT_ID_LAST
     };
 
-    enum class CheatSeverity : uint8
+    enum CheatActionBitmask
     {
-        // Debug purposes only. Characters cannot be jailed at this threshold
-        CHEAT_SEVERITY_DEBUG = 0,
-        // May be a cheat but there could be legitimate reasons
-        CHEAT_SEVERITY_POSSIBLE = 1,
-        // Probably a cheat though it is not tested enough to say with 100% accuracy
-        CHEAT_SEVERITY_PROBABLE = 2,
-        // Definitely a cheat - no possible legitimate reason for this to happen
-        CHEAT_SEVERITY_DEFINITE = 3,
-        // Very severe cast of cheating
-        CHEAT_SEVERITY_SEVERE = 4,
+        // Do nothing, also indicates failure
+        CHEAT_ACTION_NOTHING = 0,
+        // Log the attempt in the cheat_incidents table
+        CHEAT_ACTION_LOG = 1,
+        // Block the cheating attempt
+        CHEAT_ACTION_BLOCK = 2,
+        // Send a warning message to the player
+        CHEAT_ACTION_WARN = 4,
+        // Jail the player
+        CHEAT_ACTION_JAIL = 8,
         // For boundary checks
-        CHEAT_SEVERITY_LAST
+        CHEAT_ACTION_LAST
     };
+
+    // Get the action bitmask of a given cheat type and potentially the warning
+    // message associated with it.
+    // cheatid - ID of the cheat to look up
+    // warningmsg - If not NULL, receives the warning message associated with the cheat
+    // warningsize - Size of the warning message buffer in bytes
+    // returns the action bitmask
+    CheatActionBitmask GetCheatPunitiveAction(CheatID cheatid, char* warningmsg, size_t warningsize);
 
     // Jail a given character. Used by the anti-cheat system if cheat severity
     // is over the cheat threshold.
@@ -68,11 +76,10 @@ namespace anticheat
     // (according to the severity threshold in the map server configuration)
     // PChar - Character object eof the cheating player
     // cheatid - ID of the cheat caught
-    // severity - Severity of the cheat attempt
     // cheatarg - Optional argument (varies by cheat ID)
     // description - Optional text description to be logged
     // returns true on success, false on failure
-    bool ReportCheatIncident(CCharEntity* PChar, CheatID cheatid, CheatSeverity severity, uint32 cheatarg = 0, const char* description = NULL);
+    bool ReportCheatIncident(CCharEntity* PChar, CheatID cheatid, uint32 cheatarg = 0, const char* description = NULL);
 
 };
 
