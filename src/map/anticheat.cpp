@@ -46,12 +46,12 @@ namespace anticheat
     };
 
     // Action bitmask of the cheat
-    CheatActionBitmask GetCheatPunitiveAction(CheatID cheatid, char* warningmsg, size_t warningsize)
+    CheatAction GetCheatPunitiveAction(CheatID cheatid, char* warningmsg, size_t warningsize)
     {
         const char* fmtQuery = "SELECT action_bitmask, warning_message FROM cheat_types WHERE cheatid = %u";
         int32 ret = Sql_Query(SqlHandle, fmtQuery, static_cast<uint32>(cheatid));
 
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
             if (warningmsg != nullptr)
             {
@@ -59,10 +59,10 @@ namespace anticheat
                 char* warnptr = (char*)Sql_GetData(SqlHandle, 1);
                 if (warnptr != nullptr)
                 {
-                    strncpy(warningmsg, warnptr, sizeof(warningmsg) - 1);
+                    strncpy(warningmsg, warnptr, warningsize - 1);
                 }
             }
-            return (CheatActionBitmask)Sql_GetUIntData(SqlHandle, 0);
+            return (CheatAction)Sql_GetUIntData(SqlHandle, 0);
         }
         return CHEAT_ACTION_NOTHING;
     }
@@ -103,11 +103,11 @@ namespace anticheat
         }
         // Check what we should do
         char warningmsg[256] = { 0 };
-        CheatActionBitmask action = GetCheatPunitiveAction(cheatid, warningmsg, sizeof(warningmsg));
+        CheatAction action = GetCheatPunitiveAction(cheatid, warningmsg, sizeof(warningmsg));
         if (action & CHEAT_ACTION_LOG)
         {
             // Log intgo cheat_incidents table
-            const char* fmtQuery = "INSERT INTO cheat_incidents SET charid = %u, incident_time = '%s', cheatid = %u, cheatarg = %u, severity = %u, description= '%s';";
+            const char* fmtQuery = "INSERT INTO cheat_incidents SET charid = %u, incident_time = '%s', cheatid = %u, cheatarg = %u, description= '%s';";
             char strIncidentTime[128];
             time_t timeNow = time(NULL);
             strftime(strIncidentTime, sizeof(strIncidentTime), "%Y:%m:%d %H:%M:%S", gmtime(&timeNow));

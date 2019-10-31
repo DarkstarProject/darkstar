@@ -846,7 +846,9 @@ int32 doSynthResult(CCharEntity* PChar)
             ShowDebug(CL_CYAN"Caught player cheating by injecting synth done packet.\n");
             #endif
             // Check whether the cheat type action requires us to actively block the cheating attempt
-            bool shouldblock = anticheat::GetCheatPunitiveAction(anticheat::CheatID::CHEAT_ID_FASTSYNTH, nullptr, 0) & anticheat::CHEAT_ACTION_BLOCK;
+            // Note: Due to technical reasons jail action also forces us to break the synth
+            // (player cannot be zoned while synth in progress).
+            bool shouldblock = anticheat::GetCheatPunitiveAction(anticheat::CheatID::CHEAT_ID_FASTSYNTH, nullptr, 0) & (anticheat::CHEAT_ACTION_BLOCK | anticheat::CHEAT_ACTION_JAIL);
             if (shouldblock)
             {
                 // Block the cheat by forcing the synth to fail

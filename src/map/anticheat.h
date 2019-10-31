@@ -30,7 +30,7 @@
 namespace anticheat
 {
     // Cheat type as appears in the cheat id column in the cheat_incidents table.
-    enum class CheatID : uint32
+    enum class CheatID : uint16
     {
         // Player attempted to speed up synth (craft) by injecting a synth done
         // (0x59) packet. If anti cheating is enabled this will cause all cheated
@@ -41,18 +41,18 @@ namespace anticheat
         CHEAT_ID_LAST
     };
 
-    enum CheatActionBitmask
+    enum CheatAction
     {
         // Do nothing, also indicates failure
-        CHEAT_ACTION_NOTHING = 0,
+        CHEAT_ACTION_NOTHING = 0x00,
         // Log the attempt in the cheat_incidents table
-        CHEAT_ACTION_LOG = 1,
+        CHEAT_ACTION_LOG = 0x01,
         // Block the cheating attempt
-        CHEAT_ACTION_BLOCK = 2,
+        CHEAT_ACTION_BLOCK = 0x02,
         // Send a warning message to the player
-        CHEAT_ACTION_WARN = 4,
+        CHEAT_ACTION_WARN = 0x04,
         // Jail the player
-        CHEAT_ACTION_JAIL = 8,
+        CHEAT_ACTION_JAIL = 0x08,
         // For boundary checks
         CHEAT_ACTION_LAST
     };
@@ -63,7 +63,7 @@ namespace anticheat
     // warningmsg - If not NULL, receives the warning message associated with the cheat
     // warningsize - Size of the warning message buffer in bytes
     // returns the action bitmask
-    CheatActionBitmask GetCheatPunitiveAction(CheatID cheatid, char* warningmsg, size_t warningsize);
+    CheatAction GetCheatPunitiveAction(CheatID cheatid, char* warningmsg, size_t warningsize);
 
     // Jail a given character. Used by the anti-cheat system if cheat severity
     // is over the cheat threshold.
