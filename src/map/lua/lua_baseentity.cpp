@@ -8637,16 +8637,15 @@ inline int32 CLuaBaseEntity::getAllianceID(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    uint8 id = 0;
-
     if (const CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
     {
         if (PChar->PParty)
         {
             if (PChar->PParty->m_PAlliance)
-                id = PChar->PParty->m_PAlliance->m_AllianceID;
-            lua_pushnumber(L, id);
-            return 1;
+            {
+                lua_pushnumber(L, PChar->PParty->m_PAlliance->m_AllianceID);
+                return 1;
+            }
         }
     }
     lua_pushnil(L);
@@ -8665,14 +8664,11 @@ inline int32 CLuaBaseEntity::getPartyID(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    uint8 id = 0;
-
     if (const CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
     {
         if (PChar->PParty)
         {
-            id = PChar->PParty->GetPartyID();
-            lua_pushnumber(L, id);
+            lua_pushnumber(L, PChar->PParty->GetPartyID());
             return 1;
         }
     }
