@@ -8627,7 +8627,7 @@ inline int32 CLuaBaseEntity::getAllianceSize(lua_State* L)
 
 /************************************************************************
 *  Function: getAllianceID()
-*  Purpose : Returns the id of the alliance/party or player
+*  Purpose : Returns the id of the alliance
 *  Example : local allianceId = player:getAllianceID()
 *  Notes   :
 ************************************************************************/
@@ -8645,16 +8645,36 @@ inline int32 CLuaBaseEntity::getAllianceID(lua_State* L)
         {
             if (PChar->PParty->m_PAlliance)
                 id = PChar->PParty->m_PAlliance->m_AllianceID;
-            else
-                id = PChar->PParty->GetPartyID();
+            lua_pushnumber(L, id);
+            return 1;
         }
-        else
-        {
-            id = PChar->id;
-        }
+    }
+    lua_pushnil(L);
+    return 1;
+}
 
-        lua_pushnumber(L, id);
-        return 1;
+/************************************************************************
+*  Function: getPartyID()
+*  Purpose : Returns the id of the party
+*  Example : local partyId = player:getPartyID()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getPartyID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    uint8 id = 0;
+
+    if (const CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
+    {
+        if (PChar->PParty)
+        {
+            id = PChar->PParty->GetPartyID();
+            lua_pushnumber(L, id);
+            return 1;
+        }
     }
     lua_pushnil(L);
     return 1;
@@ -14116,6 +14136,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     // Parties and Alliances
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),

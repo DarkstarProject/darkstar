@@ -405,6 +405,7 @@ public:
 
     // Parties and Alliances
     int32 getParty(lua_State* L);
+    int32 getPartyID(lua_State* L);                 // Get the id of the party
     int32 getPartySize(lua_State* L);               // Get the size of a party in an entity's alliance
     int32 hasPartyJob(lua_State*);
     int32 getPartyMember(lua_State* L);             // Get a character entity from another entity's party or alliance
@@ -417,7 +418,7 @@ public:
 
     int32 getAlliance(lua_State* L);
     int32 getAllianceSize(lua_State* L);            // Get the size of an entity's alliance
-    int32 getAllianceID(lua_State* L);              // Get the id of the party/alliance, if no party returns player id
+    int32 getAllianceID(lua_State* L);              // Get the id of the alliance
 
     int32 reloadParty(lua_State* L);
     int32 disableLevelSync(lua_State* L);
