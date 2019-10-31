@@ -107,12 +107,8 @@ namespace anticheat
         if (action & CHEAT_ACTION_LOG)
         {
             // Log intgo cheat_incidents table
-            const char* fmtQuery = "INSERT INTO cheat_incidents SET charid = %u, incident_time = '%s', cheatid = %u, cheatarg = %u, description= '%s';";
-            char strIncidentTime[128];
-            time_t timeNow = time(NULL);
-            strftime(strIncidentTime, sizeof(strIncidentTime), "%Y:%m:%d %H:%M:%S", gmtime(&timeNow));
-
-            Sql_Query(SqlHandle, fmtQuery, PChar->id, strIncidentTime, static_cast<uint32>(cheatid), cheatarg, description != NULL ? description : "");
+            const char* fmtQuery = "INSERT INTO cheat_incidents SET charid = %u, cheatid = %u, cheatarg = %u, description= '%s';";
+            Sql_Query(SqlHandle, fmtQuery, PChar->id, static_cast<uint32>(cheatid), cheatarg, description != NULL ? description : "");
         }
         if (action & CHEAT_ACTION_WARN)
         {

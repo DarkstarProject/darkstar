@@ -3,11 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2019 at 08:05 PM
+-- Generation Time: Oct 31, 2019 at 11:13 PM
 -- Server version: 10.3.12-MariaDB
 -- PHP Version: 5.6.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -28,10 +29,10 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `cheat_incidents`;
 CREATE TABLE IF NOT EXISTS `cheat_incidents` (
   `charid` int(10) unsigned NOT NULL,
-  `incident_time` datetime NOT NULL,
+  `incident_time` datetime NOT NULL DEFAULT current_timestamp(),
   `cheatid` int(10) unsigned NOT NULL,
   `cheatarg` int(10) unsigned NOT NULL,
-  `description` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL
+  `description` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
