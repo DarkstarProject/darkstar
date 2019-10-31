@@ -8635,28 +8635,28 @@ inline int32 CLuaBaseEntity::getAllianceSize(lua_State* L)
 inline int32 CLuaBaseEntity::getAllianceID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     uint8 id = 0;
 
-    auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
-
-    if (PChar != nullptr)
+    if (const CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
     {
-        if (PChar->PParty && PChar->PParty->m_PAlliance)
+        if (PChar->PParty)
         {
-            id = PChar->PParty->m_PAlliance->m_AllianceID;
-        }
-        else if (PChar->PParty)
-        {
-            id = PChar->PParty->GetPartyID();
+            if (PChar->PParty->m_PAlliance)
+                id = PChar->PParty->m_PAlliance->m_AllianceID;
+            else
+                id = PChar->PParty->GetPartyID();
         }
         else
         {
             id = PChar->id;
         }
-    }
 
-    lua_pushnumber(L, id);
+        lua_pushnumber(L, id);
+        return 1;
+    }
+    lua_pushnil(L);
     return 1;
 }
 
