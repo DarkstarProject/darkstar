@@ -417,6 +417,7 @@ public:
 
     int32 getAlliance(lua_State* L);
     int32 getAllianceSize(lua_State* L);            // Get the size of an entity's alliance
+    int32 getAllianceID(lua_State* L);              // Get the id of the party/alliance, if no party returns player id
 
     int32 reloadParty(lua_State* L);
     int32 disableLevelSync(lua_State* L);

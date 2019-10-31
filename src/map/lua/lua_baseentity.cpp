@@ -8626,6 +8626,37 @@ inline int32 CLuaBaseEntity::getAllianceSize(lua_State* L)
 }
 
 /************************************************************************
+*  Function: getAllianceID()
+*  Purpose : Returns the id of the alliance/party or player
+*  Example : local allianceId = player:getAllianceID()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getAllianceID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    uint8 id = 0;
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    if (PChar->PParty && PChar->PParty->m_PAlliance)
+    {
+        id = PChar->PParty->m_PAlliance->m_AllianceID;
+    }
+    else if (PChar->PParty)
+    {
+        id = PChar->PParty->GetPartyID();
+    }
+    else
+    {
+        id = PChar->id;
+    }
+
+    lua_pushnumber(L, id);
+    return 1;
+}
+
+/************************************************************************
 *  Function: reloadParty()
 *  Purpose : Display a new party in the event of alliance form/disband
 *  Example : Creates/Destroys the other parties being displayed
@@ -14093,6 +14124,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAlliance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllianceSize),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllianceID),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,reloadParty),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,disableLevelSync),
