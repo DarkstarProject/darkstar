@@ -8640,17 +8640,20 @@ inline int32 CLuaBaseEntity::getAllianceID(lua_State* L)
 
     auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
 
-    if (PChar->PParty && PChar->PParty->m_PAlliance)
+    if (PChar != nullptr)
     {
-        id = PChar->PParty->m_PAlliance->m_AllianceID;
-    }
-    else if (PChar->PParty)
-    {
-        id = PChar->PParty->GetPartyID();
-    }
-    else
-    {
-        id = PChar->id;
+        if (PChar->PParty && PChar->PParty->m_PAlliance)
+        {
+            id = PChar->PParty->m_PAlliance->m_AllianceID;
+        }
+        else if (PChar->PParty)
+        {
+            id = PChar->PParty->GetPartyID();
+        }
+        else
+        {
+            id = PChar->id;
+        }
     }
 
     lua_pushnumber(L, id);
