@@ -8638,7 +8638,8 @@ inline int32 CLuaBaseEntity::getAllianceID(lua_State* L)
 
     uint8 id = 0;
 
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+
     if (PChar->PParty && PChar->PParty->m_PAlliance)
     {
         id = PChar->PParty->m_PAlliance->m_AllianceID;
