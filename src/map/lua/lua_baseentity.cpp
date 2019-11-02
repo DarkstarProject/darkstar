@@ -8626,51 +8626,33 @@ inline int32 CLuaBaseEntity::getAllianceSize(lua_State* L)
 }
 
 /************************************************************************
-*  Function: getAllianceID()
-*  Purpose : Returns the id of the alliance
-*  Example : local allianceId = player:getAllianceID()
-*  Notes   :
+*  Function: getLeaderID()
+*  Purpose : Returns the fallback id of the Alliance/Party or player
+*  Example : local leaderid = player:getLeaderID()
+*  Notes   : if the player is in an alliance, returns alliance ID
+*  Notes   : if the player is in a party and no alliance, returns party ID
+*  Notes   : if the player is not in a party, returns player ID
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::getAllianceID(lua_State* L)
+inline int32 CLuaBaseEntity::getLeaderID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     if (const CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
     {
-        if (PChar->PParty)
+        if (PChar->PParty != nullptr)
         {
-            if (PChar->PParty->m_PAlliance)
+            if (PChar->PParty->m_PAlliance != nullptr)
             {
                 lua_pushnumber(L, PChar->PParty->m_PAlliance->m_AllianceID);
                 return 1;
             }
-        }
-    }
-    lua_pushnil(L);
-    return 1;
-}
-
-/************************************************************************
-*  Function: getPartyID()
-*  Purpose : Returns the id of the party
-*  Example : local partyId = player:getPartyID()
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::getPartyID(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    if (const CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
-    {
-        if (PChar->PParty)
-        {
             lua_pushnumber(L, PChar->PParty->GetPartyID());
             return 1;
         }
+        lua_pushnumber(L, PChar->id);
+        return 1;
     }
     lua_pushnil(L);
     return 1;
@@ -14132,18 +14114,17 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     // Parties and Alliances
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyLeader),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLeaderID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,forMembersInRange),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAlliance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllianceSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllianceID),
 
