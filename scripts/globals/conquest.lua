@@ -82,8 +82,16 @@ local outposts =
 }
 
 local function hasOutpost(player, region)
-    return player:hasTeleport(player:getNation(), region + 5)
-    or UNLOCK_OUTPOST_WARPS >= (region + 5 >= 16 and 2 or 1)
+    local region = region + 5
+    local hasOP = player:hasTeleport(player:getNation(), region)
+    if not hasOP then
+        if UNLOCK_OUTPOST_WARPS == 2 then
+            hasOP = true
+        elseif UNLOCK_OUTPOST_WARPS == 1 then
+            hasOP = region <= dsp.region.ELSHIMOUPLANDS
+        end
+    end
+    return hasOP
 end
 
 local function setHomepointFee(player, guardNation)
@@ -1106,7 +1114,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         player:setCharVar("supplyQuest_region", 0)
         player:setCharVar("supplyQuest_fresh", 0)
 
-        if not hasOutpost(player, sRegion) then
+        if not player:hasTeleport(guardNation, sRegion + 5) then
             player:addTeleport(guardNation, sRegion + 5)
         end
 
