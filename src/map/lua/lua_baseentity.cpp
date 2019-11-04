@@ -8626,6 +8626,39 @@ inline int32 CLuaBaseEntity::getAllianceSize(lua_State* L)
 }
 
 /************************************************************************
+*  Function: getLeaderID()
+*  Purpose : Returns the fallback id of the Alliance/Party or player
+*  Example : local leaderid = player:getLeaderID()
+*  Notes   : if the player is in an alliance, returns alliance ID
+*  Notes   : if the player is in a party and no alliance, returns party ID
+*  Notes   : if the player is not in a party, returns player ID
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getLeaderID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (const CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
+    {
+        if (PChar->PParty != nullptr)
+        {
+            if (PChar->PParty->m_PAlliance != nullptr)
+            {
+                lua_pushnumber(L, PChar->PParty->m_PAlliance->m_AllianceID);
+                return 1;
+            }
+            lua_pushnumber(L, PChar->PParty->GetPartyID());
+            return 1;
+        }
+        lua_pushnumber(L, PChar->id);
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
+}
+
+/************************************************************************
 *  Function: reloadParty()
 *  Purpose : Display a new party in the event of alliance form/disband
 *  Example : Creates/Destroys the other parties being displayed
@@ -14085,6 +14118,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyLeader),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLeaderID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,forMembersInRange),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
