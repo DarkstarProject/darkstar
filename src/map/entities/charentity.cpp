@@ -1563,6 +1563,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
     action.id = this->id;
     action.actiontype = ACTION_ITEM_FINISH;
+    action.actionid = PItem->getID();
 
     actionList_t& actionList = action.getNewActionList();
     actionList.ActionTargetID = PTarget->id;
