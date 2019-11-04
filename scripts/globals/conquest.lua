@@ -83,6 +83,7 @@ local outposts =
 
 local function hasOutpost(player, region)
     return player:hasTeleport(player:getNation(), region + 5)
+    or UNLOCK_OUTPOST_WARPS >= (region + 5 >= 16 and 2 or 1)
 end
 
 local function setHomepointFee(player, guardNation)
@@ -113,7 +114,13 @@ local function getRegionsMask(nation)
 end
 
 local function getAllowedTeleports(player, nation)
-    local allowedTeleports = 0x3F00001F
+    local allowedTeleports = 0x3F40001F -- All outposts set (0 indicates allowed)
+
+    if UNLOCK_OUTPOST_WARPS == 2 then
+        return allowedTeleports -- Allow all outposts
+    elseif UNLOCK_OUTPOST_WARPS == 1 then
+        return 0x3FE0001F -- Allow all outposts except for Tulia and Tavnazia
+    end
     for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
         if not dsp.conquest.canTeleportToOutpost(player, region) then
             allowedTeleports = bit.bor(allowedTeleports, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
@@ -1236,24 +1243,24 @@ end
 
 dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporterEvent)
     if csid == teleporterEvent then
+        local region, hasFee = 0, false
         -- TELEPORT WITH GIL
         if option >= 5 and option <= 23 then
-            local region = option - 5
-            local fee = dsp.conq.outpostFee(player, region)
-
-            if dsp.conquest.canTeleportToOutpost(player, region) and player:delGil(fee) then
-                player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
-            end
-
+            region = option - 5
+            local fee = dsp.conquest.outpostFee(player, region)
+            hasFee = player:delGil(fee)
         -- TELEPORT WITH CP
         elseif option >= 1029 and option <= 1047 then
-            local region = option - 1029
-            local fee = dsp.conq.outpostFee(player, region)
+            region = option - 1029
+            local fee = dsp.conquest.outpostFee(player, region)
+            hasFee = player:getCP() >= fee
+            if hasFee then player:delCP(fee) end
+        end
 
-            if dsp.conquest.canTeleportToOutpost(player, region) and player:getCP() >= fee then
-                player:delCP(fee)
-                player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
-            end
+        local canTeleport = dsp.conquest.canTeleportToOutpost(player, region)
+
+        if canTeleport and hasFee then
+            player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
         end
     end
 end
