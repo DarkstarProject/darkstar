@@ -108,25 +108,6 @@ local function CharCreate(player)
         player:changeContainerSize(dsp.inv.MOGSATCHEL, START_INVENTORY - 30)
     end
 
-    if UNLOCK_OUTPOST_WARPS >= 1 then
-        local b, e, v = 0,0,0
-        if UNLOCK_OUTPOST_WARPS == 1 then
-            v, b, e = 0x1FFFE0, 20, 2^20
-        elseif UNLOCK_OUTPOST_WARPS == 2 then
-            v, b, e = 0xBFFFE0, 23, 2^23
-        end
-        repeat
-            if e <= v then
-                player:addTeleport(dsp.teleport.type.OUTPOST_SANDY,  b)
-                player:addTeleport(dsp.teleport.type.OUTPOST_BASTOK, b)
-                player:addTeleport(dsp.teleport.type.OUTPOST_WINDY,  b)
-                v = v - e
-            end
-            b = b - 1
-            e = 2^b
-        until v == 0
-    end
-
     --[[
         For some intermittent reason m_ZoneList ends up empty on characters, which is
         possibly also why they lose key items.  When that happens, CharCreate will be run and
