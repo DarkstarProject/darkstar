@@ -1243,24 +1243,24 @@ end
 
 dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporterEvent)
     if csid == teleporterEvent then
-        local region, hasFee = 0, false
         -- TELEPORT WITH GIL
         if option >= 5 and option <= 23 then
-            region = option - 5
+            local region = option - 5
             local fee = dsp.conquest.outpostFee(player, region)
-            hasFee = player:delGil(fee)
+
+            if dsp.conquest.canTeleportToOutpost(player, region) and player:delGil(fee) then
+                player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
+            end
+
         -- TELEPORT WITH CP
         elseif option >= 1029 and option <= 1047 then
-            region = option - 1029
+            local region = option - 1029
             local fee = dsp.conquest.outpostFee(player, region)
-            hasFee = player:getCP() >= fee
-            if hasFee then player:delCP(fee) end
-        end
 
-        local canTeleport = dsp.conquest.canTeleportToOutpost(player, region)
-
-        if canTeleport and hasFee then
-            player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
+            if dsp.conquest.canTeleportToOutpost(player, region) and player:getCP() >= fee then
+                player:delCP(fee)
+                player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
+            end
         end
     end
 end
