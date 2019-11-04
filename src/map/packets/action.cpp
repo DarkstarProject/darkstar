@@ -133,6 +133,11 @@ CActionPacket::CActionPacket(action_t& action)
         ActionType = ACTION_ITEM_START;
     }
     break;
+    case ACTION_ITEM_FINISH:
+    {
+        packBitsBE(data, action.actionid, 86, 16);
+    }
+    break;
     case ACTION_RANGED_START:
     {
         ref<uint8>(0x0A) = 0xF0;
