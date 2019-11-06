@@ -32,6 +32,10 @@ ENABLE_FIELD_MANUALS  = 1; -- Enables Fields of Valor
 ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
 REGIME_WAIT = 1; -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
 
+-- TREASURE CASKETS
+ENABLE_CASKETS = 0; -- Set to 1 to enabled caskets to spawn on mob death in in applicable zones, 0 to disable.
+CASKET_DROP_RATE = 1.000; -- Multiplies the base droprate for caskets by this amount (base droprate = 0.1 max is clamped to 1.0) so 10.000 is max CASKET_DROP_RATE.
+
 -- Setting to lock content more accurately to the content you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
 -- as well as a less confusing player experience for things that are disabled (things that are disabled are not loaded)
