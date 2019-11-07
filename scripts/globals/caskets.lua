@@ -1069,7 +1069,6 @@ end
 ----------------------------------------------------------------------------------
 function RemoveChest(player, npc)
     local chestId  = npc:getID()
-    local chest    = GetNPCByID(chestId)
 
     npc:AnimationSub(0)
     npc:entityAnimationPacket("kesu")
