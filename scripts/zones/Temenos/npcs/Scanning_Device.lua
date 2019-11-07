@@ -3,7 +3,6 @@
 -- NPC:  Scanning_Device
 -- !pos 586 0 66 37
 -----------------------------------
-require("scripts/globals/limbus")
 require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)

@@ -2,18 +2,15 @@
 -- Area: Apollyon SE
 --  Mob: Grave Digger
 -----------------------------------
-
-function onMobEngaged(mob,target)
-    GetMobByID(16933021):updateEnmity(target);
-    GetMobByID(16933022):updateEnmity(target);
-    GetMobByID(16933023):updateEnmity(target);
-    GetMobByID(16933024):updateEnmity(target);
-    GetMobByID(16933025):updateEnmity(target);
-    GetMobByID(16933026):updateEnmity(target);
-    GetMobByID(16933027):updateEnmity(target);
-    GetMobByID(16933028):updateEnmity(target);
-end;
+local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobDeath(mob, player, isKiller)
-
-end;
+    if isKiller then
+        local battlefield = player:getBattlefield()
+        local players = battlefield:getPlayers()
+        for i, member in pairs(players) do
+            member:messageSpecial(ID.text.GATE_OPEN)
+            member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+        end
+    end
+end

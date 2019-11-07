@@ -10,16 +10,30 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    local battlefield = player:getBattlefield()
-    local cofferID = limbus.randomCoffer(2, Temenos_Western_Tower)
-    local mobX = mob:getXPos()
-    local mobY = mob:getYPos()
-    local mobZ = mob:getZPos()
-    player:messageSpecial(ID.text.GATE_OPEN)
-    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-    GetNPCByID(ID.npc.GATE_OFFSET+15):setStatus(dsp.status.NORMAL)
-    if cofferID ~= 0 then
-        GetNPCByID(ID.npc.COFFER_OFFSET+cofferID):setPos(mobX, mobY, mobZ)
-        GetNPCByID(ID.npc.COFFER_OFFSET+cofferID):setStatus(dsp.status.NORMAL)
+    if isKiller then
+        local battlefield = player:getBattlefield()
+        local mobX = mob:getXPos()
+        local mobY = mob:getYPos()
+        local mobZ = mob:getZPos()
+        local mobID = mob:getID()
+        local spawn = math.random(0,1) == 1
+
+        if GetNPCByID(ID.npc.GATE_OFFSET+15):getStatus() ~= dsp.status.NORMAL then
+            local players = battlefield:getPlayers()
+            for i, member in pairs(players) do
+                member:messageSpecial(ID.text.GATE_OPEN)
+                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+            end
+            GetNPCByID(ID.npc.GATE_OFFSET+15):setStatus(dsp.status.NORMAL)
+        end
+
+        for i = 0, 8 do
+            if spawn and mobID == ID.mob.TEMENOS_W_MOB[2]+i
+                and GetNPCByID(ID.npc.TEMENOS_W_CRATE[2]+(i%3)):getStatus() == dsp.status.DISAPPEAR
+            then
+                GetNPCByID(ID.npc.TEMENOS_W_CRATE[2]+(i%3)):setPos(mobX, mobY, mobZ)
+                limbus.spawnRandomCrate(ID.npc.TEMENOS_W_CRATE[2]+(i%3), player, "crateMaskF2", battlefield:getLocalVar("crateMaskF2"))
+            end
+        end
     end
 end

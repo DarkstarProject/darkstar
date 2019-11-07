@@ -12,7 +12,7 @@ function onMobSpawn(mob)
 end
 
 function onMobEngaged(mob, target)
-    limbus.hideArmouryCrates(Central_Temenos_4th_Floor, TEMENOS)
+    limbus.hideArmouryCrates(mob:getBattlefieldID())
 end
 
 function onMobFight(mob, target)
@@ -22,7 +22,7 @@ function onMobFight(mob, target)
             mob:useMobAbility(1524) -- use Dissipation on phase change
             phase = phase + 1
             if phase == 2 then -- enable Holy II
-                mob:SetMagicCastingEnabled(true);
+                mob:SetMagicCastingEnabled(true)
             end
             if phase == 4 then -- add Regain in final phase
                 if not mob:hasStatusEffect(dsp.effect.REGAIN) then
@@ -37,7 +37,8 @@ end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.TEMENOS_LIBERATOR)
-    GetNPCByID(ID.npc.COFFER_OFFSET+79):setPos(-559, 5, -357)
-    GetNPCByID(ID.npc.COFFER_OFFSET+79):setStatus(dsp.status.NORMAL)
-    GetNPCByID(ID.npc.GATE_OFFSET+24):setStatus(dsp.status.NORMAL)
+    if isKiller then
+        GetNPCByID(ID.npc.TEMENOS_C_CRATE[4][1]):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.GATE_OFFSET+24):setStatus(dsp.status.NORMAL)
+    end
 end

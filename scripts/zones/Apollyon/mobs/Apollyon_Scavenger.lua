@@ -2,28 +2,21 @@
 -- Area: Apollyon NW
 --  Mob: Apollyon Scavenger
 -----------------------------------
+local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
- local mobID = mob:getID();
- -- print(mobID);
-      local mobX = mob:getXPos();
-    local mobY = mob:getYPos();
-    local mobZ = mob:getZPos();
-
- if (mobID ==16932964) then -- recover
-       GetNPCByID(16932864+327):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+327):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16932966) then -- timer 1
-       GetNPCByID(16932864+177):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+177):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16932967) then -- timer 2
-      GetNPCByID(16932864+189):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+189):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16932969) then -- timer 3
-      GetNPCByID(16932864+190):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+190):setStatus(dsp.status.NORMAL);
- end
-end;
+    if isKiller then
+        local mobID = mob:getID()
+        local battlefield = player:getBattlefield()
+        local randomMob = battlefield:getLocalVar("randomMob")
+        if mobID == randomMob then
+            local players = battlefield:getPlayers()
+            for i, member in pairs(players) do
+                member:messageSpecial(ID.text.GATE_OPEN)
+                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+            end
+            battlefield:setLocalVar("randomMob", ID.mob.APOLLYON_NW_MOB[4]+math.random(1,6))
+            battlefield:setLocalVar("portalF3", 1)
+        end
+    end
+end

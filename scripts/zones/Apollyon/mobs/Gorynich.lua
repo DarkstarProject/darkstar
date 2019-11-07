@@ -2,28 +2,20 @@
 -- Area: Apollyon NW
 --  Mob: Gorynich
 -----------------------------------
+local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
- local mobID = mob:getID();
- -- print(mobID);
-      local mobX = mob:getXPos();
-    local mobY = mob:getYPos();
-    local mobZ = mob:getZPos();
-
- if (mobID ==16932977) then -- recover
-       GetNPCByID(16932864+179):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+179):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16932978) then -- timer 1
-       GetNPCByID(16932864+262):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+262):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16932980) then -- timer 2
-      GetNPCByID(16932864+97):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+97):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16932981) then -- timer 3
-      GetNPCByID(16932864+98):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+98):setStatus(dsp.status.NORMAL);
- end
-end;
+    if isKiller then
+        local mobID = mob:getID()
+        local battlefield = player:getBattlefield()
+        local randomMob = battlefield:getLocalVar("randomMob")
+        if mobID == randomMob then
+            local players = battlefield:getPlayers()
+            for i, member in pairs(players) do
+                member:messageSpecial(ID.text.GATE_OPEN)
+                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+            end
+            battlefield:setLocalVar("portalF4", 1)
+        end
+    end
+end

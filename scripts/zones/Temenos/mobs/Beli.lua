@@ -3,8 +3,9 @@
 --  Mob: Beli
 -----------------------------------
 require("scripts/globals/limbus")
-local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/Temenos/IDs")
 
 function onMobEngaged(mob, target)
     GetMobByID(ID.mob.TEMENOS_N_MOB[2]):updateEnmity(target)
@@ -12,12 +13,11 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if GetMobByID(ID.mob.TEMENOS_N_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[2]+1):isDead() then
-        GetNPCByID(ID.npc.COFFER_OFFSET+19):setPos(200, -82, 495)
-        GetNPCByID(ID.npc.COFFER_OFFSET+19):setStatus(dsp.status.NORMAL)
-        GetNPCByID(ID.npc.COFFER_OFFSET+153):setPos(206, -82, 495)
-        GetNPCByID(ID.npc.COFFER_OFFSET+153):setStatus(dsp.status.NORMAL)
-        GetNPCByID(ID.npc.COFFER_OFFSET+210):setPos(196, -82, 495)
-        GetNPCByID(ID.npc.COFFER_OFFSET+210):setStatus(dsp.status.NORMAL)
+    if isKiller then
+        if GetMobByID(ID.mob.TEMENOS_N_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[2]+1):isDead() then
+            GetNPCByID(ID.npc.TEMENOS_N_CRATE[2]):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.TEMENOS_N_CRATE[2]+1):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.TEMENOS_N_CRATE[2]+2):setStatus(dsp.status.NORMAL)
+        end
     end
 end

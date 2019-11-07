@@ -2,19 +2,16 @@
 -- Area: Apollyon SE
 --  Mob: Flying Spear
 -----------------------------------
-require("scripts/globals/limbus");
------------------------------------
+local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-     local mobID = mob:getID();
-     if (mobID == 16933034) then -- time
-
-     elseif (mobID == 16933037) then -- recover
-
-     elseif (mobID == 16933040) then -- item
-
-     end
-end;
+    if isKiller then
+        local battlefield = player:getBattlefield()
+        battlefield:setLocalVar("killCountF4", battlefield:getLocalVar("killCountF4")+1)
+        local killCount = battlefield:getLocalVar("killCountF4")
+        if killCount == 1 then
+            GetNPCByID(ID.mob.APOLLYON_SE_MOB[4]):setStatus(dsp.status.DISAPPEAR)      
+            GetMobByID(ID.mob.APOLLYON_SE_MOB[4]):spawn()
+        end
+    end
+end

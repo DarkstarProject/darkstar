@@ -7,12 +7,14 @@ local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    local battlefield = player:getBattlefield()
-    players = battlefield:getPlayers()
-    for i = 1, #players do
-        players[i]:messageSpecial(ID.text.HUM+1)
+    if isKiller then
+        local mobX = mob:getXPos()
+        local mobY = mob:getYPos()
+        local mobZ = mob:getZPos()
+        local battlefield = player:getBattlefield()
+        battlefield:setLocalVar("lootSpawned", 0)
+        GetNPCByID(ID.npc.TEMENOS_C_CRATE[5][1]):setPos(mobX, mobY, mobZ)
+        GetNPCByID(ID.npc.TEMENOS_C_CRATE[5][1]):setStatus(dsp.status.NORMAL)
+        GetNPCByID(ID.npc.GATE_OFFSET+25):setStatus(dsp.status.NORMAL)
     end
-    GetNPCByID(ID.npc.GATE_OFFSET+25):setStatus(dsp.status.NORMAL)
-    battlefield:setLocalVar("cutsceneTimer", 10)
-    battlefield:setLocalVar("dontKick", 0)
 end

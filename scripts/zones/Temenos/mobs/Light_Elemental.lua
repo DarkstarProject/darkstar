@@ -18,21 +18,21 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    local mobID = mob:getID()
-    switch (mobID): caseof {
-        [ID.mob.TEMENOS_C_MOB[2]+1] = function()
-            if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+2):isDead() then
-                GetNPCByID(ID.npc.COFFER_OFFSET+77):setPos(0.5, -6, -459)
-                GetNPCByID(ID.npc.COFFER_OFFSET+77):setStatus(dsp.status.NORMAL)
-                GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
-            end
-        end,
-        [ID.mob.TEMENOS_C_MOB[2]+2] = function()
-            if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+1):isDead() then
-                GetNPCByID(ID.npc.COFFER_OFFSET+77):setPos(0.5, -6, -459)
-                GetNPCByID(ID.npc.COFFER_OFFSET+77):setStatus(dsp.status.NORMAL)
-                GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
-            end
-        end,
-    }
+    if isKiller then
+        local mobID = mob:getID()
+        switch (mobID): caseof {
+            [ID.mob.TEMENOS_C_MOB[2]+1] = function()
+                if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+2):isDead() then
+                    GetNPCByID(ID.npc.TEMENOS_C_CRATE[2]):setStatus(dsp.status.NORMAL)
+                    GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
+                end
+            end,
+            [ID.mob.TEMENOS_C_MOB[2]+2] = function()
+                if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+1):isDead() then
+                    GetNPCByID(ID.npc.TEMENOS_C_CRATE[2]):setStatus(dsp.status.NORMAL)
+                    GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
+                end
+            end,
+        }
+    end
 end

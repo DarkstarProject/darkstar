@@ -65,7 +65,6 @@ function dsp.battlefield.onBattlefieldTick(battlefield, timeinside, players)
     local leavecode = -1
     local players = battlefield:getPlayers()
     local cutsceneTimer = battlefield:getLocalVar("cutsceneTimer")
-    local dontKick = battlefield:getLocalVar("dontKick")
 
     if status == dsp.battlefield.status.LOST then
         leavecode = 4
@@ -84,7 +83,7 @@ function dsp.battlefield.onBattlefieldTick(battlefield, timeinside, players)
                 canLeave = true
             end
         end
-        if canLeave and cutsceneTimer >= 15 and dontKick == 0 then
+        if canLeave and cutsceneTimer >= 15 then
             battlefield:cleanup(true)
         end
     end

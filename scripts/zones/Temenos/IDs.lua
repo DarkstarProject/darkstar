@@ -15,6 +15,9 @@ zones[dsp.zone.TEMENOS] =
         GIL_OBTAINED            = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         CHIP_TRADE_T            = 7028, -- What do you wish to do? Show me the cutscene again. Skip the cutscene and continue.
+        TIME_EXCEEDED           = 7054, -- You have exceeded the time limit. Exiting Limbus now.
+        WIPE_KICK               = 7354, -- All party members in Limbus have fallen in battle. Exiting now.
+        WIPE                    = 7364, -- All party members in Limbus have fallen in battle. Exiting in <p3> minutes.
         CONDITION_FOR_LIMBUS_T  = 7055, -- You have clearance to enter Limbus, but cannot enter while you or a party member is engaged in battle.
         HUM                     = 7071, -- You hear a faint hum.
         NO_KEY                  = 7076, -- There is a disc here inscribed ...
@@ -35,16 +38,6 @@ zones[dsp.zone.TEMENOS] =
             16928816,
             16928831,
         },
-        TEMENOS_W_MOB = 
-        {
-            16928898,
-            16928910,
-            16928922,
-            16928931,
-            16928943,
-            16928952,
-            16928959,
-        },
         TEMENOS_E_MOB = 
         {
             16928840,
@@ -54,6 +47,16 @@ zones[dsp.zone.TEMENOS] =
             16928876,
             16928885,
             16928892,
+        },
+        TEMENOS_W_MOB = 
+        {
+            16928898,
+            16928910,
+            16928922,
+            16928931,
+            16928943,
+            16928952,
+            16928959,
         },
         TEMENOS_C_MOB =
         {
@@ -68,6 +71,73 @@ zones[dsp.zone.TEMENOS] =
     {
         GATE_OFFSET = 16929221,
         COFFER_OFFSET = 16928768,
+        TEMENOS_N_CRATE =
+        {
+            16928769,
+            16928778,
+            16928785,
+            16928794,
+            16928806,
+            16928813,
+            16928830,
+        },
+        TEMENOS_E_CRATE =
+        {
+            16928836,
+            16928845,
+            16928854,
+            16928863,
+            16928872,
+            16928881,
+            16928890,
+        },
+        TEMENOS_W_CRATE =
+        {
+            16928895,
+            16928907,
+            16928919,
+            16928928,
+            16928940,
+            16928949,
+            16928958,
+        },
+        TEMENOS_C_CRATE =
+        {
+            16929045,
+            16929029,
+            16929004,
+            [4] = 
+            {
+                [1] = 16928965, -- boss
+                [16928967] = 2, -- NE corner
+                [16928968] = 2, -- SE corner
+                [16928969] = 1, -- SW corner
+                [16928970] = 1, -- NW corner
+                [16928971] = 3, -- center
+                [16928972] = 2, -- E
+                [16928973] = 2, -- E
+                [16928974] = 2, -- E
+                [16928975] = 1, -- W
+                [16928976] = 1, -- W
+                [16928977] = 1, -- W
+                [16928978] = 1, -- SW
+                [16928979] = 1, -- SW
+                [16928980] = 1, -- SW
+                [16928981] = 1, -- SW
+                [16928982] = 2, -- SE
+                [16928983] = 2, -- SE
+                [16928984] = 2, -- SE
+                [16928985] = 2, -- SE
+            },
+            [5] =
+            {
+                [1] = 16929052, -- basement 1 boss
+                [2] = 16929089, -- basement 1
+                [3] = 16929116, -- basement 1
+                [4] = 16929128, -- basement 1
+                [5] = 16929161, -- basement 1
+            },
+        },
     },
 }
 

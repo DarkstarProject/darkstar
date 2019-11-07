@@ -14,18 +14,18 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    local battlefield = player:getBattlefield()
-    local mobX = mob:getXPos()
-    local mobY = mob:getYPos()
-    local mobZ = mob:getZPos()
-    if GetMobByID(ID.mob.TEMENOS_C_MOB[1]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[1]+1):isDead() and
-        GetMobByID(ID.mob.TEMENOS_C_MOB[1]+3):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[1]+4):isDead() and
-        GetMobByID(ID.mob.TEMENOS_C_MOB[1]+5):isDead()
-    then
-        GetNPCByID(ID.npc.COFFER_OFFSET+71):setPos(mobX, mobY, mobZ)
-        GetNPCByID(ID.npc.COFFER_OFFSET+71):setStatus(dsp.status.NORMAL)
-        player:messageSpecial(ID.text.GATE_OPEN)
-        player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-        GetNPCByID(ID.npc.GATE_OFFSET+20):setStatus(dsp.status.NORMAL)
+    if isKiller then
+        local battlefield = player:getBattlefield()
+        local mobX = mob:getXPos()
+        local mobY = mob:getYPos()
+        local mobZ = mob:getZPos()
+        if GetMobByID(ID.mob.TEMENOS_C_MOB[1]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[1]+1):isDead() and
+            GetMobByID(ID.mob.TEMENOS_C_MOB[1]+3):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[1]+4):isDead() and
+            GetMobByID(ID.mob.TEMENOS_C_MOB[1]+5):isDead()
+        then
+            GetNPCByID(ID.npc.TEMENOS_C_CRATE[1]):setPos(mobX, mobY, mobZ)
+            GetNPCByID(ID.npc.TEMENOS_C_CRATE[1]):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.GATE_OFFSET+20):setStatus(dsp.status.NORMAL)
+        end
     end
 end

@@ -3,8 +3,9 @@
 --  Mob: Goblin Warlord
 -----------------------------------
 require("scripts/globals/limbus")
-local ID = require("scripts/zones/Temenos/IDs")
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/Temenos/IDs")
 
 function onMobEngaged(mob, target)
     GetMobByID(ID.mob.TEMENOS_N_MOB[7]):updateEnmity(target)
@@ -14,16 +15,13 @@ function onMobEngaged(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    local battlefield = player:getBattlefield()
-
-    if GetMobByID(ID.mob.TEMENOS_N_MOB[7]):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[7]+1):isDead() and
-        GetMobByID(ID.mob.TEMENOS_N_MOB[7]+2):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[7]+2):isDead() and
-        GetMobByID(ID.mob.TEMENOS_N_MOB[7]+4):isDead()
-    then
-        GetNPCByID(ID.npc.COFFER_OFFSET+39):setPos(-599, 85, 438)
-        GetNPCByID(ID.npc.COFFER_OFFSET+39):setStatus(dsp.status.NORMAL)
-        player:messageSpecial(ID.text.GATE_OPEN)
-        player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-        GetNPCByID(ID.npc.GATE_OFFSET+6):setStatus(dsp.status.NORMAL)
+    if isKiller then
+        if GetMobByID(ID.mob.TEMENOS_N_MOB[7]):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[7]+1):isDead() and
+            GetMobByID(ID.mob.TEMENOS_N_MOB[7]+2):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[7]+2):isDead() and
+            GetMobByID(ID.mob.TEMENOS_N_MOB[7]+4):isDead()
+        then
+            GetNPCByID(ID.npc.TEMENOS_N_CRATE[7]):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.GATE_OFFSET+6):setStatus(dsp.status.NORMAL)
+        end
     end
 end

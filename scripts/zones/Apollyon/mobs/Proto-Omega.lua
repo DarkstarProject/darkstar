@@ -2,78 +2,90 @@
 -- Area: Apollyon (Central)
 --  Mob: Proto-Omega
 -----------------------------------
-require("scripts/globals/limbus");
-require("scripts/globals/titles");
+require("scripts/globals/titles")
 require("scripts/globals/mobs")
 -----------------------------------
+local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
     mob:setMod(dsp.mod.COUNTER, 10) -- "Possesses a Counter trait"
     mob:setMod(dsp.mod.REGEN, 25) -- "Posseses an Auto-Regen (low to moderate)"
-end;
+end
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-    mob:setMod(dsp.mod.UDMGPHYS, -75);
-    mob:setMod(dsp.mod.UDMGRANGE, -75);
-    mob:setMod(dsp.mod.UDMGMAGIC, 0);
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID())
+    mob:setMod(dsp.mod.UDMGPHYS, -75)
+    mob:setMod(dsp.mod.UDMGRANGE, -75)
+    mob:setMod(dsp.mod.UDMGMAGIC, 0)
     mob:setMod(dsp.mod.MOVE, 100) -- "Moves at Flee Speed in Quadrupedal stance and in the Final Form"
-end;
+end
 
-function onMobFight(mob,target)
-    local mobID = mob:getID();
+function onMobFight(mob, target)
+    local mobID = mob:getID()
     local formTime = mob:getLocalVar("formWait")
-    local lifePercent = mob:getHPP();
+    local lifePercent = mob:getHPP()
     local currentForm = mob:getLocalVar("form")
-
-    if (lifePercent < 70 and currentForm < 1) then
-        currentForm = 1;
+    local podReady = mob:getBattlefield():getLocalVar("podReady")
+    
+    if lifePercent < 70 and currentForm < 1 then
+        currentForm = 1
         mob:setLocalVar("form", currentForm)
-        mob:AnimationSub(2);
-        formTime = os.time() + 60;
-        mob:setMod(dsp.mod.UDMGPHYS, 0);
-        mob:setMod(dsp.mod.UDMGRANGE, 0);
-        mob:setMod(dsp.mod.UDMGMAGIC, -75);
+        formTime = os.time()
+        mob:setMod(dsp.mod.UDMGPHYS, 0)
+        mob:setMod(dsp.mod.UDMGRANGE, 0)
+        mob:setMod(dsp.mod.UDMGMAGIC, -75)
         mob:setMod(dsp.mod.MOVE, 0)
     end
 
-    if (currentForm == 1) then
-        if (formTime < os.time()) then
-            if (mob:AnimationSub() == 1) then
-                mob:AnimationSub(2);
+    if currentForm == 1 then
+        if formTime < os.time() then
+            if mob:AnimationSub() == 1 then
+                mob:AnimationSub(2)
+                if podReady == 1 then
+                    mob:getBattlefield():setLocalVar("podReady", 0)
+                    mob:useMobAbility(1532)
+                end 
             else
-                mob:AnimationSub(1);
+                mob:AnimationSub(1)
             end
-            mob:setLocalVar("formWait", os.time() + 60);
+            mob:setLocalVar("formWait", os.time() + 60)
         end
 
-        if (lifePercent < 30) then
-            mob:AnimationSub(2);
-            mob:setMod(dsp.mod.UDMGPHYS, -50);
-            mob:setMod(dsp.mod.UDMGRANGE, -50);
-            mob:setMod(dsp.mod.UDMGMAGIC, -50);
+        if lifePercent < 30 then
+            mob:AnimationSub(2)
+            if podReady == 1 then
+                mob:getBattlefield():setLocalVar("podReady", 0)
+                mob:useMobAbility(1532)
+            end 
+            mob:setMod(dsp.mod.UDMGPHYS, -50)
+            mob:setMod(dsp.mod.UDMGRANGE, -50)
+            mob:setMod(dsp.mod.UDMGMAGIC, -50)
             mob:setMod(dsp.mod.MOVE, 100)
-            mob:addStatusEffect(dsp.effect.REGAIN,7,3,0); -- The final form has Regain,
-            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH);
-            currentForm = 2;
+            mob:addStatusEffect(dsp.effect.REGAIN,7,3,0) -- The final form has Regain,
+            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH)
+            currentForm = 2
             mob:setLocalVar("form", currentForm)
         end
     end
-end;
+    if currentForm == 2 then
+        if formTime < os.time() then
+            local spawnPod = math.random(0, 1) == 1
+            if podReady == 1 and spawnPod then
+                mob:getBattlefield():setLocalVar("podReady", 0)
+                mob:useMobAbility(1532)
+            end
+            mob:setLocalVar("formWait", os.time() + 30)
+        end
+    end
+end
 
 function onAdditionalEffect(mob, target, damage)
     return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.STUN)
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.APOLLYON_RAVAGER);
-end;
+    player:addTitle(dsp.title.APOLLYON_RAVAGER)
+    GetNPCByID(ID.npc.APOLLYON_CENTRAL_CRATE):setStatus(dsp.status.NORMAL)
+end
 
-function onMobDespawn(mob)
-    local mobX = mob:getXPos();
-    local mobY = mob:getYPos();
-    local mobZ = mob:getZPos();
-    GetNPCByID(16932864+39):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+39):setStatus(dsp.status.NORMAL);
-end;

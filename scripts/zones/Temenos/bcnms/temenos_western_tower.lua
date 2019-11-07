@@ -10,18 +10,15 @@ local ID = require("scripts/zones/Temenos/IDs")
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     SetServerVariable("[Temenos_Western_Tower]Time", battlefield:getTimeLimit()/60)
-    limbus.hideTemenosDoors(Temenos_Western_Tower)
-    limbus.hideArmouryCrates(Temenos_Western_Tower, TEMENOS)
+    limbus.hideTemenosDoors(battlefield:getID())
+    limbus.hideArmouryCrates(battlefield:getID())
 end
 
 function onBattlefieldTick(battlefield, tick)
     if battlefield:getRemainingTime() % 60 == 0 then
         SetServerVariable("[Temenos_Western_Tower]Time", battlefield:getRemainingTime()/60)
     end
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
-end
-
-function onBattlefieldRegister(player, battlefield)    
+    dsp.battlefield.onBattlefieldTick(battlefield, tick, ID.text.TIME_EXCEEDED, ID.text.WIPE, ID.text.WIPE_KICK)
 end
 
 function onBattlefieldEnter(player, battlefield)

@@ -2,18 +2,25 @@
 -- Area: Apollyon SE
 --  Mob: Tieholtsodi
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/Apollyon/IDs")
 
-function onMobEngaged(mob,target)
-    GetMobByID(16933007):updateEnmity(target);
-    GetMobByID(16933008):updateEnmity(target);
-    GetMobByID(16933009):updateEnmity(target);
-    GetMobByID(16933010):updateEnmity(target);
-    GetMobByID(16933011):updateEnmity(target);
-    GetMobByID(16933012):updateEnmity(target);
-    GetMobByID(16933013):updateEnmity(target);
-    GetMobByID(16933014):updateEnmity(target);
-end;
+function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.HUNDRED_FISTS, hpp = 50},
+        },
+    })
+end
 
 function onMobDeath(mob, player, isKiller)
-
-end;
+    if isKiller then
+        local battlefield = player:getBattlefield()
+        local players = battlefield:getPlayers()
+        for i, member in pairs(players) do
+            member:messageSpecial(ID.text.GATE_OPEN)
+            member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+        end
+    end
+end

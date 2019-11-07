@@ -2,37 +2,43 @@
 -- Area: Appolyon
 -- Name: NE Apollyon
 -----------------------------------
-require("scripts/globals/limbus");
+require("scripts/globals/limbus")
 require("scripts/globals/battlefield")
-require("scripts/globals/keyitems");
+require("scripts/globals/keyitems")
+local ID = require("scripts/zones/Apollyon/IDs")
 
--- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("randomF1", math.random(1,6))
+    battlefield:setLocalVar("loot", 1)
+    SetServerVariable("[NE_Apollyon]Time", battlefield:getTimeLimit()/60)
+    limbus.hideArmouryCrates(battlefield:getID())
+end
+
 function onBattlefieldTick(battlefield, tick)
+    if battlefield:getRemainingTime() % 60 == 0 then
+        SetServerVariable("[NE_Apollyon]Time", battlefield:getRemainingTime()/60)
+    end
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
+function onBattlefieldRegister(player, battlefield)
+end
 
-function onBattlefieldRegister(player,battlefield)    
-    SetServerVariable("[NE_Apollyon]UniqueID",os.time());
-    limbus.hideArmouryCrates(NE_Apollyon,APOLLYON_SE_NE);
-    SpawnCofferNEfloor1();
-end;
+function onBattlefieldEnter(player, battlefield)
+    player:delKeyItem(dsp.ki.COSMOCLEANSE)
+    player:delKeyItem(dsp.ki.BLACK_CARD)
+end
 
--- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBattlefieldEnter(player,battlefield)
-    player:setCharVar("characterLimbusKey",GetServerVariable("[NE_Apollyon]UniqueID"));
-    player:delKeyItem(dsp.ki.COSMOCLEANSE);
-    player:delKeyItem(dsp.ki.BLACK_CARD);
-end;
+function onBattlefieldDestroy(battlefield)
+    SetServerVariable("[NE_Apollyon]Time", 0)
+end
 
--- Leaving  by every mean possible, given by the LeaveCode
--- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
--- 4=Finish 
-
-function onBattlefieldLeave(player,battlefield,leavecode)
-    --print("leave code "..leavecode);
-    if leavecode == dsp.battlefield.leaveCode.LOST then
-        SetServerVariable("[NE_Apollyon]UniqueID",0);
-        player:setPos(643,0.1,-600);
+function onBattlefieldLeave(player, battlefield, leavecode)
+    player:messageSpecial(ID.text.HUM+1)
+    if leavecode == dsp.battlefield.leaveCode.WON then
+        local name, clearTime, partySize = battlefield:getRecord()
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+        player:startEvent(32002)
     end
-end;
+end
