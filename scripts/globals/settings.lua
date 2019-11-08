@@ -33,11 +33,10 @@ ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
 REGIME_WAIT = 1; -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
 
 -- TREASURE CASKETS
--- Multiplies the base droprate for caskets by this amount.
--- max is clamped to 1.0 (100%)
 -- Retail droprate = 0.1 (10%) with no other effects active
 -- Set to 0 to disable caskets.
-CASKET_DROP_RATE = 0.000;
+-- max is clamped to 1.0 (100%)
+CASKET_DROP_RATE = 0.1;
 
 -- Setting to lock content more accurately to the content you have defined above
 -- This generally results in a more accurate presentation of your selected expansions

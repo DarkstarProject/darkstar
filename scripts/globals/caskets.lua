@@ -252,7 +252,7 @@ function DropChance(player)
     local kupowersMMBPower    = 0
     local prowessCaskets      = 0
     local prowessCasketsPower = 0
-    local baseChance          = 0.1 * CASKET_DROP_RATE
+    local baseChance          = CASKET_DROP_RATE
     local dropChance          = 0
 
     --kupowersMMB = dsp.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES
