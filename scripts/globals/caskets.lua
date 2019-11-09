@@ -547,6 +547,8 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
             if option == 258 then
                 local randText = 0
                 randText = math.random(1,7)
+                printf("rand text = %s", randText)
+                printf("correctNumber = %s", correctNumber)
 
                 if randText == 1 then
                     if isEven(splitNumbers[1]) == true then
@@ -728,11 +730,11 @@ function SetCasketData(player, x, y, z, r, npc, partyID)
     --    kupowersMMBPower = 0.2
     --end
 
-    if typeChance < 0.2 + kupowersMMBPower then
+    --if typeChance < 0.2 + kupowersMMBPower then
         chestStyle = 966 -- Brown locked
-    else
-        chestStyle = 965 -- Blue
-    end
+    --else
+    --    chestStyle = 965 -- Blue
+    --end
 
     if npc ~= nil then
         npc:resetLocalVars()
@@ -1040,26 +1042,24 @@ end
 -- Desc: Messages sent to all players in a party in the zone
 ----------------------------------------------------------------------
 function MessageChest(player, messageId, param1, param2, param3, param4, npc)
-    local zoneId  = player:getZoneID()
-    local ID      = zones[zoneId]
-    local msgBase = 0
+    local zoneId      = player:getZoneID()
+    local ID          = zones[zoneId]
+    local baseMessage = ID.text.PLAYER_OBTAINS_TEMP_ITEM
+    local msg         = 0
 
     if messageId == "UNABLE_TO_OPEN_LOCK" then
-        msgBase = ID.text.UNABLE_TO_OPEN_LOCK
-
+        msg = baseMessage + casketInfo.messageOffset.UNABLE_TO_OPEN_LOCK
     elseif messageId == "OPENED_LOCK" then
-        msgBase = ID.text.OPENED_LOCK
-
+        msg = baseMessage + casketInfo.messageOffset.OPENED_LOCK
     elseif messageId == "PLAYER_OBTAINS_ITEM" then
-        msgBase = ID.text.PLAYER_OBTAINS_ITEM
-
+        msg = ID.text.PLAYER_OBTAINS_ITEM
     elseif messageId == "PLAYER_OBTAINS_TEMP_ITEM" then
-        msgBase = ID.text.PLAYER_OBTAINS_TEMP_ITEM
+        msg = ID.text.PLAYER_OBTAINS_TEMP_ITEM
     end
 
     for _, member in pairs(player:getAlliance()) do
         if member:getZoneID() == player:getZoneID() then
-            member:messageName(msgBase, player, param1, param2, param3, param4, nil)
+            member:messageName(msg, player, param1, param2, param3, param4, nil)
         end
     end
 end
