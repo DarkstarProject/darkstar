@@ -547,8 +547,6 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
             if option == 258 then
                 local randText = 0
                 randText = math.random(1,7)
-                printf("rand text = %s", randText)
-                printf("correctNumber = %s", correctNumber)
 
                 if randText == 1 then
                     if isEven(splitNumbers[1]) == true then
@@ -730,11 +728,11 @@ function SetCasketData(player, x, y, z, r, npc, partyID)
     --    kupowersMMBPower = 0.2
     --end
 
-    --if typeChance < 0.2 + kupowersMMBPower then
+    if typeChance < 0.2 + kupowersMMBPower then
         chestStyle = 966 -- Brown locked
-    --else
-    --    chestStyle = 965 -- Blue
-    --end
+    else
+        chestStyle = 965 -- Blue
+    end
 
     if npc ~= nil then
         npc:resetLocalVars()
