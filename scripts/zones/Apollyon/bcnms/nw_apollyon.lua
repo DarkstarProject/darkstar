@@ -27,6 +27,7 @@ end
 function onBattlefieldEnter(player, battlefield)
     player:delKeyItem(dsp.ki.COSMOCLEANSE)
     player:delKeyItem(dsp.ki.RED_CARD)
+    player:setCharVar("Cosmo_Cleanse_TIME", os.time())
 end
 
 function onBattlefieldDestroy(battlefield)

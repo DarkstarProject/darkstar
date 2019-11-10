@@ -42,8 +42,7 @@ function onMobFight(mob, target)
         if formTime < os.time() then
             if mob:AnimationSub() == 1 then
                 mob:AnimationSub(2)
-                if podReady == 1 then
-                    mob:getBattlefield():setLocalVar("podReady", 0)
+                if podReady == 1 and math.random(0,1) == 1 then
                     mob:useMobAbility(1532)
                 end 
             else
@@ -54,10 +53,6 @@ function onMobFight(mob, target)
 
         if lifePercent < 30 then
             mob:AnimationSub(2)
-            if podReady == 1 then
-                mob:getBattlefield():setLocalVar("podReady", 0)
-                mob:useMobAbility(1532)
-            end 
             mob:setMod(dsp.mod.UDMGPHYS, -50)
             mob:setMod(dsp.mod.UDMGRANGE, -50)
             mob:setMod(dsp.mod.UDMGMAGIC, -50)
@@ -66,16 +61,6 @@ function onMobFight(mob, target)
             mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH)
             currentForm = 2
             mob:setLocalVar("form", currentForm)
-        end
-    end
-    if currentForm == 2 then
-        if formTime < os.time() then
-            local spawnPod = math.random(0, 1) == 1
-            if podReady == 1 and spawnPod then
-                mob:getBattlefield():setLocalVar("podReady", 0)
-                mob:useMobAbility(1532)
-            end
-            mob:setLocalVar("formWait", os.time() + 30)
         end
     end
 end

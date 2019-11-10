@@ -995,15 +995,8 @@ function EventFinishBCNM(player, csid, option)
             local bfid = stat:getPower()
             local item = getItemById(player, bfid)
             if item ~= 0 then
-                if item == -1 and player:hasItem(1907) and player:hasItem(1908) and player:hasItem(1986) then
-                    player:createWornItem(1907)
-                    player:createWornItem(1908)
-                    player:createWornItem(1986)
-                elseif item == -2 and player:hasItem(1909) and player:hasItem(1910) and player:hasItem(1987) and player:hasItem(1988) then
-                    player:createWornItem(1909)
-                    player:createWornItem(1910)
-                    player:createWornItem(1987)
-                    player:createWornItem(1988)
+                if zone == 37 or zone == 38 then
+                    player:tradeComplete()
                 elseif player:hasItem(item) then
                     player:createWornItem(item)
                 end

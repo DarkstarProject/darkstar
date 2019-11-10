@@ -25,6 +25,7 @@ end
 
 function onBattlefieldEnter(player, battlefield)
     player:delKeyItem(dsp.ki.COSMOCLEANSE)
+    player:setCharVar("Cosmo_Cleanse_TIME", os.time())
     if player:getCharVar("ApollyonEntrance") == 0 then
         player:delKeyItem(dsp.ki.BLACK_CARD)
     else

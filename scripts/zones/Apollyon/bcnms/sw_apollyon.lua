@@ -30,6 +30,7 @@ end
 function onBattlefieldEnter(player, battlefield)
     player:delKeyItem(dsp.ki.COSMOCLEANSE)
     player:delKeyItem(dsp.ki.RED_CARD)
+    player:setCharVar("Cosmo_Cleanse_TIME", os.time())
     if battlefield:getLocalVar("raceF1") == 0 then
         battlefield:setLocalVar("raceF1", player:getRace())
     end
