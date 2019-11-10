@@ -236,7 +236,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Omega',54,1535);
 -- INSERT INTO `mob_skill_lists` VALUES ('Omega',54,1536)
 INSERT INTO `mob_skill_lists` VALUES ('Omega',54,1537);
 INSERT INTO `mob_skill_lists` VALUES ('Omega',54,1538);
-INSERT INTO `mob_skill_lists` VALUES ('Omega',54,1539)
+INSERT INTO `mob_skill_lists` VALUES ('Omega',54,1539);
 INSERT INTO `mob_skill_lists` VALUES ('Bird',55,622);
 INSERT INTO `mob_skill_lists` VALUES ('Bird',55,623);
 INSERT INTO `mob_skill_lists` VALUES ('Bomb',56,510);
