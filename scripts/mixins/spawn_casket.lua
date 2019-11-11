@@ -25,4 +25,4 @@ g_mixins.spawn_casket = function(mob)
     end);
 end
 
-return g_mixins.spawn_casket;
+return g_mixins.spawn_casket
