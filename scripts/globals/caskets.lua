@@ -224,7 +224,7 @@ local casketItems =
 
 
 ---------------------------------------------------------------------------------------------
--- Casket spawn checks
+-- Desc: Casket spawn checks, runs through all checks before spawning
 ---------------------------------------------------------------------------------------------
 dsp.caskets.SpawnCasket = function (player, mob, x, y, z, r)
     local chestId    = GetCasketID(mob)
@@ -240,13 +240,15 @@ dsp.caskets.SpawnCasket = function (player, mob, x, y, z, r)
     end
 end
 
+---------------------------------------------------------------------------------------------
+-- Desc: Drop rate check, calculates all drop rate modifiers.
+---------------------------------------------------------------------------------------------
 function DropChance(player)
     -----------------------------------------------------------------------------------------
     -- NOTES: 10% base drop rate.
-    -- Super Kupowers(Myriad Mystery Boxes) adds 10% drop rate.
-    -- GoV Prowess Increased Treasure Casket Discovery adds 2% per level (max 5 levels)
-    -- for a total of 10% increase.
-    -- Total max amount is 30% drop rate.
+    -- Super Kupowers(Myriad Mystery Boxes) adds 10% drop rate to the base rate.
+    -- GoV Prowess Increased Treasure Casket Discovery adds 5% per level (max 5 levels)
+    -- for a total of 25% increase. -- NOTE this needs to be confirmed!
     -----------------------------------------------------------------------------------------
     local kupowersMMB         = 0 -- Super Kupowers Myriad Mystery Boxes not implimented yet.
     local kupowersMMBPower    = 0
@@ -279,6 +281,9 @@ function DropChance(player)
     return false
 end
 
+---------------------------------------------------------------------------------------------
+-- Desc: Grabs an id for a casket if one is available if not, no casket will spawn.
+---------------------------------------------------------------------------------------------
 function GetCasketID(mob)
     local zoneId      = mob:getZoneID()
     local baseChestId = zones[zoneId].npc.CASKET_BASE
@@ -303,6 +308,10 @@ function GetCasketID(mob)
     return chestId
 end
 
+---------------------------------------------------------------------------------------------
+-- Desc: Check for time elapsed since last spawned
+-- NOTE: will NOT allow a spawn if time since last spanwed is under 5 mins.
+---------------------------------------------------------------------------------------------
 function TimeElapsedCheck(npc)
     local lastSpawned = 0
     local spawnTime   = os.time() + 360000 -- defualt time in case no var set.
@@ -318,6 +327,7 @@ function TimeElapsedCheck(npc)
 
     return false
 end
+
 ----------------------------------------------------------------------
 -- Main public casket functions
 ----------------------------------------------------------------------
@@ -399,6 +409,19 @@ dsp.caskets.onTrade = function(player, npc, trade)
         return
     end
 
+    local hintsVar = 0
+    local availableHints = {}
+
+    if npc:getLocalVar("HINTS_TABLE") ~= 0 then
+        hintsVar = npc:getLocalVar("HINTS_TABLE")
+        for hint in string.gmatch(tostring(hintsVar), "%d") do
+            table.insert(availableHints, hint)
+        end
+    else
+        player:messageSpecial(baseMessage + casketInfo.messageOffset.UNABLE_TO_GET_HINT, 0, 0, 0, 0)
+        return
+    end
+
     if locked == 1 then
         if npcUtil.tradeHas(trade,1022,1) then
             GetDrops(npc, itemType, player:getZoneID())
@@ -409,13 +432,7 @@ dsp.caskets.onTrade = function(player, npc, trade)
                table.insert(splitNumbers, digit)
             end
 
-            local randText = 0
-
-            math.randomseed(os.time())
-
-            randText = math.random(1,7)
-
-            player:confirmTrade()
+            local randText = tonumber(availableHints[math.random(#availableHints)])
 
             if randText == 1 then
                 if isEven(splitNumbers[1]) == true then
@@ -488,6 +505,8 @@ dsp.caskets.onTrade = function(player, npc, trade)
             else
                 player:messageSpecial(baseMessage + casketInfo.messageOffset.UNABLE_TO_GET_HINT, 0, 0, 0, 0)
             end
+            player:confirmTrade()
+            RemoveHint(npc, randText)
         end
     end
 end
@@ -530,7 +549,16 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
     -- Minigame
     ------------------------------------
 
-    local splitNumbers = {}
+    local splitNumbers   = {}
+    local hintsVar       = 0
+    local availableHints = {}
+
+    if npc:getLocalVar("HINTS_TABLE") ~= 0 then
+        hintsVar = npc:getLocalVar("HINTS_TABLE")
+        for hint in string.gmatch(tostring(hintsVar), "%d") do
+            table.insert(availableHints, hint)
+        end
+    end
 
     for digit in string.gmatch(tostring(correctNumber), "%d") do
         table.insert(splitNumbers, digit)
@@ -543,30 +571,30 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
         --------------------------------------------
         -- Hints
         --------------------------------------------
-        if lockedChoice == 2 then
+        if lockedChoice == 2 then -- Examine chest
             if option == 258 then
-                local randText = 0
-                randText = math.random(1,7)
+                local randText = tonumber(availableHints[math.random(#availableHints)])
+
+                if randText == 0 or randText == nil then
+                    player:messageSpecial(baseMessage + casketInfo.messageOffset.UNABLE_TO_GET_HINT, 0, 0, 0, 0)
+                    return
+                end
 
                 if randText == 1 then
                     if isEven(splitNumbers[1]) == true then
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_FIRST_EVEN_ODD, 0, 0, 0, 0)
                         npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                        CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                     else
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_FIRST_EVEN_ODD, 1, 0, 0, 0)
                         npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                        CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                     end
                 elseif randText == 2 then
                     if isEven(splitNumbers[2]) == true then
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_SECOND_EVEN_ODD, 0, 0, 0, 0)
                         npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                        CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                     else
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_SECOND_EVEN_ODD, 1, 0, 0, 0)
                         npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                        CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                     end
                 elseif randText == 3 then
                     if tonumber(splitNumbers[1]) <= 6 then
@@ -586,7 +614,6 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
                             splitNumbers[1] +1, 0)
                     end
                     npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                    CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                 elseif randText == 4 then
                     if tonumber(splitNumbers[2]) <= 6 then
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.SECOND_DIGIT_IS,
@@ -605,17 +632,14 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
                             splitNumbers[2] +1, 0)
                     end
                     npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                    CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                 elseif randText == 5 then
                     player:messageSpecial(baseMessage + casketInfo.messageOffset.ONE_OF_TWO_DIGITS_IS,
                         splitNumbers[1], 0, 0, 0)
                     npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                    CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                 elseif randText == 6 then
                     player:messageSpecial(baseMessage + casketInfo.messageOffset.ONE_OF_TWO_DIGITS_IS,
                         splitNumbers[2], 0, 0, 0)
                     npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                    CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                 elseif randText == 7 then
                     local highNum = 0
                     local lowNum  = 0
@@ -634,15 +658,16 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
 
                     player:messageSpecial(baseMessage + casketInfo.messageOffset.COMBINATION_GREATER_LESS, lowNum, highNum, 0, 0)
                     npc:setLocalVar("FAILED_ATEMPTS", failedAtempts +1)
-                    CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
                 else
                     player:messageSpecial(baseMessage + casketInfo.messageOffset.UNABLE_TO_GET_HINT, 0, 0, 0, 0)
                 end
+                CheckRemainingAttempts(player, npc, remainingAttempts, correctNumber)
+                RemoveHint(npc, randText)
             end
         --------------------------------------------
         -- Inputs
         --------------------------------------------
-        elseif lockedChoice == 1 then
+        elseif lockedChoice == 1 then -- Input a number
             if inputNumber > 10 and inputNumber < 100 then
                 local splitNumbers = {}
 
@@ -709,6 +734,10 @@ end
 ----------------------------------------------------------------------
 -- Casket data functions
 ----------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+-- Desc: Sets all the base localVar's, type of chest and if locked, sets the random number.
+---------------------------------------------------------------------------------------------
 function SetCasketData(player, x, y, z, r, npc, partyID)
     ---------------------------------------------------------------------------------------------------
     -- NOTE: Super Kupowers Myriad Mystery Boxes add an additional 20% chance the chest will be locked.
@@ -719,7 +748,7 @@ function SetCasketData(player, x, y, z, r, npc, partyID)
     local partyId          = partyID
     local chestId          = npc:getID()
     local chestStyle       = 965
-    local correctNum       = math.random(11, 99)
+    local correctNum       = math.random(10, 99)
     local attempts         = math.random(4, 6)
 
     --kupowersMMB = dsp.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES
@@ -750,6 +779,7 @@ function SetCasketData(player, x, y, z, r, npc, partyID)
             npc:setLocalVar("FAILED_ATEMPTS", 0)
             npc:setLocalVar("LOCKED", 1)
             npc:setLocalVar("LOOT_TYPE", 2)
+            npc:setLocalVar("HINTS_TABLE",1234567)
         else
             npc:setLocalVar("LOCKED", 0)
             npc:setLocalVar("LOOT_TYPE", 1)
@@ -760,17 +790,20 @@ function SetCasketData(player, x, y, z, r, npc, partyID)
         npc:setPos(x, y, z, r)
         npc:setStatus(dsp.status.NORMAL)
         npc:entityAnimationPacket("deru")
-        SendChestDropMessage(player)
         npc:setModelId(chestStyle)
+        SendChestDropMessage(player)
         -------------------------------------------------------
         -- Despawn chest after 3 Mins
         -------------------------------------------------------
         npc:timer(180000, function(npc)
-            RemoveChest(player, npc)
+            RemoveChest(npc)
         end)
     end
 end
 
+---------------------------------------------------------------------------------------------
+-- Grab random drops from zone item or temp tables depending on type of chest
+---------------------------------------------------------------------------------------------
 function GetDrops(npc, dropType, zoneId)
     local chestType = casketInfo.dropTypes[dropType]
 
@@ -782,9 +815,9 @@ function GetDrops(npc, dropType, zoneId)
     -- Temp drops
     ----------------------------------------------
     if chestType == "tempItems" then
-        local temps        = {0, 0, 0}
+        local temps        = {0,0,0}
         local tempCount    = 1
-        local randomTable  = {1,3,1,2,1,1,1,1,3,1,2,1}
+        local randomTable  = {1,3,1,2,1,2,1,1,3,1,2,1}
 
         tempCount = randomTable[math.random(1, #randomTable)]
 
@@ -817,7 +850,7 @@ function GetDrops(npc, dropType, zoneId)
     -- Item drops
     ----------------------------------------------
     elseif chestType == "items" then
-        local items        = {0, 0, 0, 0}
+        local items        = {0,0,0,0}
         local itemCount    = 1
         local randomTable  = {1,4,1,3,1,1,2,1,3,1,2,1}
 
@@ -863,6 +896,9 @@ function GetDrops(npc, dropType, zoneId)
     end
 end
 
+---------------------------------------------------------------------------------------------------
+-- Desc: Sends the message: "The monster was concealing a treasure chest!" to all in party/alliance
+---------------------------------------------------------------------------------------------------
 function SendChestDropMessage(player)
     local zoneId      = player:getZoneID()
     local ID          = zones[zoneId]
@@ -881,6 +917,9 @@ end
 ----------------------------------------------------------------------------------
 -- Temp item functions
 ----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+-- Desc: Returns an temp items id based on the the local variable i.e. npc:getLocalVariable("TEMP1").
+-----------------------------------------------------------------------------------------------------
 function GetTempDrop(npc, tempNum)
     local query = string.format("TEMP" ..tempNum.. "")
     local var   = npc:getLocalVar(query)
@@ -892,6 +931,9 @@ function GetTempDrop(npc, tempNum)
     end
 end
 
+------------------------------------------------------------------------------------------------
+-- Desc: Sets the temp items id in a local variable for the casket.
+------------------------------------------------------------------------------------------------
 function SetTempItems(npc, temp1, temp2, temp3)
     npc:setLocalVar("TEMP1", temp1)
     npc:setLocalVar("TEMP2", temp2)
@@ -899,6 +941,9 @@ function SetTempItems(npc, temp1, temp2, temp3)
     npc:setLocalVar("ITEMS_SET", 1)
 end
 
+------------------------------------------------------------------------------------------------
+-- Desc: Gives the player the temp item from a casket based on the selection of the csid
+------------------------------------------------------------------------------------------------
 function GiveTempItem(player, npc, tempNum)
     local tempQuery   = string.format("TEMP" ..tempNum.. "")
     local tempID      = npc:getLocalVar(tempQuery)
@@ -921,19 +966,22 @@ function GiveTempItem(player, npc, tempNum)
             if player:addTempItem(tempID) then
                 MessageChest(player, "PLAYER_OBTAINS_TEMP_ITEM", tempID, 0, 0, 0)
                 npc:setLocalVar(tempQuery, 0)
-                CheckTempChestIsEmpty(player, npc)
+                CheckTempChestIsEmpty(npc)
             end
         end
     end
 end
 
-function CheckTempChestIsEmpty(player, npc)
+--------------------------------------------------------------------------------------------------------
+-- Desc: Checks to see if the casket is empty after a player removes an item, if so, despawns the casket
+--------------------------------------------------------------------------------------------------------
+function CheckTempChestIsEmpty(npc)
     local temp1 = npc:getLocalVar("TEMP1")
     local temp2 = npc:getLocalVar("TEMP2")
     local temp3 = npc:getLocalVar("TEMP3")
 
     if temp1 == 0 and temp2 == 0 and temp3 == 0 then
-        RemoveChest(player, npc)
+        RemoveChest(npc)
     end
 end
 
@@ -999,7 +1047,7 @@ function GiveItem(player, npc, itemNum)
                     if player:addItem(itemID) then
                         MessageChest(player, "PLAYER_OBTAINS_ITEM", itemID, 0, 0, 0)
                         npc:setLocalVar(itemQuery, 0)
-                         CheckItemChestIsEmpty(player, npc)
+                         CheckItemChestIsEmpty(npc)
                     end
                 end
             end
@@ -1007,6 +1055,9 @@ function GiveItem(player, npc, itemNum)
     end
 end
 
+-----------------------------------------------------------------------------------------------------------------
+-- Desc: Checks to see if the item needs multiples, i.e. Arrowheads, if so, sends true and the item is multiplied
+-----------------------------------------------------------------------------------------------------------------
 function MultipleItemCheck(itemId)
     local multiples = {1214, 1215, 1211, 1212, 1213, 1217, 1222, 1962}
 
@@ -1021,14 +1072,14 @@ end
 ------------------------------------------------------------------------------------------------
 -- Desc: Checks to see if all the items have been removed from the casket then removes it.
 ------------------------------------------------------------------------------------------------
-function CheckItemChestIsEmpty(player, npc)
+function CheckItemChestIsEmpty(npc)
     local item1 = npc:getLocalVar("ITEM1")
     local item2 = npc:getLocalVar("ITEM2")
     local item3 = npc:getLocalVar("ITEM3")
     local item4 = npc:getLocalVar("ITEM4")
 
     if item1 == 0 and item2 == 0 and item3 == 0 and item4 == 0 then
-        RemoveChest(player, npc)
+        RemoveChest(npc)
     end
 end
 
@@ -1065,11 +1116,10 @@ end
 ----------------------------------------------------------------------------------
 -- Desc: Despawn a chest and reset its local var's
 ----------------------------------------------------------------------------------
-function RemoveChest(player, npc)
+function RemoveChest(npc)
     local chestId  = npc:getID()
 
     npc:AnimationSub(0)
-    npc:entityAnimationPacket("kesu")
     npc:setStatus(dsp.status.DISAPPEAR)
     npc:setLocalVar("SPAWNSTATUS", casketInfo.spawnStatus.DESPAWNED)
 end
@@ -1085,8 +1135,26 @@ function CheckRemainingAttempts(player, npc, remaining, correctNumber)
     if remaining == 1 then
         player:messageSpecial(baseMessage + casketInfo.messageOffset.CORRECT_NUMBER_WAS, correctNumber, 0, 0, 0, 0)
         MessageChest(player, "UNABLE_TO_OPEN_LOCK", 0, 0, 0, 0, npc)
-        RemoveChest(player, npc)
+        RemoveChest(npc)
     end
+end
+
+--------------------------------------------------------------------------------------------------------
+-- Desc: Removes hint so they are not repeated, is no hints left, this enables the message,
+--       "You were unable to glean anything from your examination of the lock."
+--------------------------------------------------------------------------------------------------------
+function RemoveHint(npc, hintNum)
+    local hintVar       = npc:getLocalVar("HINTS_TABLE")
+    local hintString    = tostring(hintVar)
+    local newHintString = ""
+
+    if #hintString > 1 then
+        newHintString = hintString:gsub(tostring(hintNum), "")
+    else
+        newHintString = "0"
+    end
+
+    npc:setLocalVar("HINTS_TABLE", tonumber(newHintString))
 end
 
 ----------------------------------------------------------------------------------
