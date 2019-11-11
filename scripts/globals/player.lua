@@ -2,6 +2,7 @@ require("scripts/globals/gear_sets")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
 require("scripts/globals/status")
+require("scripts/globals/teleports")
 require("scripts/globals/titles")
 require("scripts/globals/zone")
 -----------------------------------
@@ -105,18 +106,6 @@ local function CharCreate(player)
     if START_INVENTORY > 30 then
         player:changeContainerSize(dsp.inv.INVENTORY, START_INVENTORY - 30)
         player:changeContainerSize(dsp.inv.MOGSATCHEL, START_INVENTORY - 30)
-    end
-
-    if UNLOCK_OUTPOST_WARPS >= 1 then
-        player:addNationTeleport(dsp.nation.SANDORIA, 2097120)
-        player:addNationTeleport(dsp.nation.BASTOK,   2097120)
-        player:addNationTeleport(dsp.nation.WINDURST, 2097120)
-
-        if UNLOCK_OUTPOST_WARPS == 2 then -- Tu'Lia and Tavnazia
-            player:addNationTeleport(dsp.nation.SANDORIA, 10485760)
-            player:addNationTeleport(dsp.nation.BASTOK,   10485760)
-            player:addNationTeleport(dsp.nation.WINDURST, 10485760)
-        end
     end
 
     --[[
