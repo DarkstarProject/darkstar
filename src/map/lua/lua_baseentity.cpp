@@ -2212,37 +2212,6 @@ inline int32 CLuaBaseEntity::setWeather(lua_State *L)
 }
 
 /************************************************************************
-*  Function: setHomePoint()
-*  Purpose : Sets a PC's homepoint.
-*  Example : player:setHomePoint()
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::setHomePoint(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    PChar->profile.home_point.p = PChar->loc.p;
-    PChar->profile.home_point.destination = PChar->getZone();
-
-    const char *fmtQuery = "UPDATE chars \
-                            SET home_zone = %u, home_rot = %u, home_x = %.3f, home_y = %.3f, home_z = %.3f \
-                            WHERE charid = %u;";
-
-    Sql_Query(SqlHandle, fmtQuery,
-        PChar->profile.home_point.destination,
-        PChar->profile.home_point.p.rotation,
-        PChar->profile.home_point.p.x,
-        PChar->profile.home_point.p.y,
-        PChar->profile.home_point.p.z,
-        PChar->id);
-    return 0;
-}
-
-/************************************************************************
 *  Function: ChangeMusic()
 *  Purpose : Select a new .bgw file to play on the client
 *  Example : player:ChangeMusic(5,84)
@@ -2915,6 +2884,266 @@ inline int32 CLuaBaseEntity::teleport(lua_State *L)
 }
 
 /************************************************************************
+*  Function: addTeleport(uint8 type, uint32 destination)
+*  Purpose : Grants acces to a new teleport for a PC
+*  Example : player:addTeleport(dsp.teleport.type.HOMEPOINT,16);
+*  Notes   : Param 2 is bits to shift, not exponentiated value
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addTeleport(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8  type = (uint8 )lua_tointeger(L, 1);
+    uint32 bit  = 1 << (uint32)lua_tointeger(L, 2);
+    uint8  set  = lua_isnil(L, 3) ? 0 : (uint8)lua_tointeger(L, 3);
+    
+    if ((type == TELEPORT_HOMEPOINT || type == TELEPORT_SURVIVAL) && (lua_isnil(L, 3) || set > 3))
+    {
+        ShowError("Lua::addteleport : Attempt to index array out-of-bounds or parameter is nil.");
+        return 0;
+    }
+
+    switch (type)
+    {
+        case TELEPORT_OUTPOST_SANDY:   PChar->teleport.outpostSandy   |= bit; break;
+        case TELEPORT_OUTPOST_BASTOK:  PChar->teleport.outpostBastok  |= bit; break;
+        case TELEPORT_OUTPOST_WINDY:   PChar->teleport.outpostWindy   |= bit; break;
+        case TELEPORT_RUNIC_PORTAL:    PChar->teleport.runicPortal    |= bit; break;
+        case TELEPORT_PAST_MAW:        PChar->teleport.pastMaw        |= bit; break;
+        case TELEPORT_CAMPAIGN_SANDY:  PChar->teleport.campaignSandy  |= bit; break;
+        case TELEPORT_CAMPAIGN_BASTOK: PChar->teleport.campaignBastok |= bit; break;
+        case TELEPORT_CAMPAIGN_WINDY:  PChar->teleport.campaignWindy  |= bit; break;
+        case TELEPORT_HOMEPOINT:       PChar->teleport.homepoint.access[set] |= bit; break;
+        case TELEPORT_SURVIVAL:        PChar->teleport.survival.access[set]  |= bit; break;
+        default:
+            ShowError("LuaBaseEntity::addTeleport : Parameter 1 out of bounds.\n");
+            return 0;
+    }
+    charutils::SaveTeleport(PChar, type);
+    return 0;
+}
+
+/************************************************************************
+*  Function: getTeleport(uint8 type)
+*  Purpose : Returns bit mask or table for supplied type of teleport
+*  Example : player:getTeleport(dsp.teleport.type.HOMEPOINT)
+*  Notes   : 
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getTeleport(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 type = (uint8)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    switch (type)
+    {
+        case TELEPORT_OUTPOST_SANDY:   lua_pushinteger(L, PChar->teleport.outpostSandy);   break;
+        case TELEPORT_OUTPOST_BASTOK:  lua_pushinteger(L, PChar->teleport.outpostBastok);  break;
+        case TELEPORT_OUTPOST_WINDY:   lua_pushinteger(L, PChar->teleport.outpostWindy);   break;
+        case TELEPORT_RUNIC_PORTAL:    lua_pushinteger(L, PChar->teleport.runicPortal);    break;
+        case TELEPORT_PAST_MAW:        lua_pushinteger(L, PChar->teleport.pastMaw);        break;
+        case TELEPORT_CAMPAIGN_SANDY:  lua_pushinteger(L, PChar->teleport.campaignSandy);  break;
+        case TELEPORT_CAMPAIGN_BASTOK: lua_pushinteger(L, PChar->teleport.campaignBastok); break;
+        case TELEPORT_CAMPAIGN_WINDY:  lua_pushinteger(L, PChar->teleport.campaignWindy);  break;
+        case TELEPORT_HOMEPOINT:
+            lua_newtable(L);
+            for (uint8 x = 0; x < 4; x++)
+            {
+                lua_pushnumber(L, PChar->teleport.homepoint.access[x]);
+                lua_rawseti(L, -2, x + 1);
+            }
+            break;
+        case TELEPORT_SURVIVAL: 
+            lua_newtable(L);
+            for (uint8 x = 0; x < 4; x++)
+            {
+                lua_pushnumber(L, PChar->teleport.survival.access[x]);
+                lua_rawseti(L, -2, x + 1);
+            }
+            break;
+        default:
+            ShowError("LuaBaseEntity::getteleport : Parameter 1 out of bounds.\n");
+            return 0;
+    }
+    return 1;
+}
+
+/************************************************************************
+*  Function: hasTeleport(uint8 type, uint8 bit, uint8 set (optional))
+*  Purpose : Returns true if player has HP, false otherwise
+*  Example : player:hasTeleport(dsp.teleport.type.HOMEPOINT, bit, set)
+*  Notes   : 
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasTeleport(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8 type = (uint8)lua_tointeger(L, 1);
+    uint8 bit  = (uint8)lua_tointeger(L, 2);
+    uint8 set  = lua_isnil(L, 3) ? 0 : (uint8)lua_tointeger(L, 3);
+    
+    if (type == TELEPORT_HOMEPOINT || type == TELEPORT_SURVIVAL)
+    {
+        if (lua_isnil(L, 3) || set > 3)
+        {
+            ShowError("Lua::addTeleport : Attempt to index array out-of-bounds or parameter is nil.");
+            return 0;
+        }
+        
+        if (type == TELEPORT_HOMEPOINT)
+            lua_pushboolean(L, PChar->teleport.homepoint.access[set] & (1 << bit));
+        else
+            lua_pushboolean(L, PChar->teleport.survival.access[set]  & (1 << bit));
+        return 1;
+    }
+
+    switch (type)
+    {
+        case TELEPORT_OUTPOST_SANDY:   lua_pushboolean(L, PChar->teleport.outpostSandy   & (1 << bit)); break;
+        case TELEPORT_OUTPOST_BASTOK:  lua_pushboolean(L, PChar->teleport.outpostBastok  & (1 << bit)); break;
+        case TELEPORT_OUTPOST_WINDY:   lua_pushboolean(L, PChar->teleport.outpostWindy   & (1 << bit)); break;
+        case TELEPORT_RUNIC_PORTAL:    lua_pushboolean(L, PChar->teleport.runicPortal    & (1 << bit)); break;
+        case TELEPORT_PAST_MAW:        lua_pushboolean(L, PChar->teleport.pastMaw        & (1 << bit)); break;
+        case TELEPORT_CAMPAIGN_SANDY:  lua_pushboolean(L, PChar->teleport.campaignSandy  & (1 << bit)); break;
+        case TELEPORT_CAMPAIGN_BASTOK: lua_pushboolean(L, PChar->teleport.campaignBastok & (1 << bit)); break;
+        case TELEPORT_CAMPAIGN_WINDY:  lua_pushboolean(L, PChar->teleport.campaignWindy  & (1 << bit)); break;
+        default:
+            ShowError("LuaBaseEntity::hasTeleport : Parameter 1 out of bounds.\n");
+            return 0;
+    }
+    return 1;
+}
+
+/************************************************************************
+*  Function: setTeleportMenu(uint8 type)
+*  Purpose : Store favorite homepoints or menu layout
+*  Example : player:setTeleportMenu(dsp.teleport.type.HOMEPOINT)
+*  Notes   : 
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setTeleportMenu(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8 type = (uint8)lua_tointeger(L, 1);
+    if (!lua_istable(L, 2))
+    {
+        ShowError("LuaBaseEntity::setteleportMenu : Table not passed in Parameter 2.\n");
+        return 0;
+    }
+    
+    if (type != TELEPORT_HOMEPOINT && type != TELEPORT_SURVIVAL)
+    {
+        ShowError("LuaBaseEntity::setteleportMenu : Incorrect value for Parameter 1.\n");
+        return 0;
+    }
+
+    uint8 x = 0;
+    auto index = lua_gettop(L);
+    lua_pushnil(L);
+
+    while (lua_next(L,index))
+    {
+        if (type == TELEPORT_HOMEPOINT)
+            PChar->teleport.homepoint.menu[x++] = (int32)lua_tointeger(L, -1);
+        else
+            PChar->teleport.survival.menu[x++]  = (int32)lua_tointeger(L, -1);
+        lua_pop(L, 1);
+    }
+
+    charutils::SaveTeleport(PChar, type);
+    return 0;
+}
+
+/************************************************************************
+*  Function: getTeleportMenu(uint8)
+*  Purpose : Return lua table containing integer values for favs + layout
+*  Example : player:getTeleportMenu(dsp.teleport.teleport.HOMEPOINT)
+*  Notes   : 
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getTeleportMenu(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 type = (uint8)lua_tointeger(L, 1);
+
+    if (type != TELEPORT_HOMEPOINT && type != TELEPORT_SURVIVAL)
+    {
+        ShowError("LuaBaseEntity::getTeleportMenu : Incorrect value or parameter 1.\n");
+        return 0;
+    }
+
+	lua_newtable(L);
+
+    for (uint8 x = 0; x < 10; x++)
+    {
+        if (type == TELEPORT_HOMEPOINT)
+            lua_pushnumber(L, PChar->teleport.homepoint.menu[x]);
+        else
+            lua_pushnumber(L, PChar->teleport.survival.menu[x]);
+        lua_rawseti(L, -2, x + 1);
+    }
+    return 1;
+}
+
+/************************************************************************
+*  Function: setHomePoint()
+*  Purpose : Sets a PC's homepoint.
+*  Example : player:setHomePoint(dsp.teleport.type.HOMEPOINT)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setHomePoint(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->profile.home_point.p = PChar->loc.p;
+    PChar->profile.home_point.destination = PChar->getZone();
+
+    const char *fmtQuery = "UPDATE chars \
+                            SET home_zone = %u, home_rot = %u, home_x = %.3f, home_y = %.3f, home_z = %.3f \
+                            WHERE charid = %u;";
+
+    Sql_Query(SqlHandle, fmtQuery,
+        PChar->profile.home_point.destination,
+        PChar->profile.home_point.p.rotation,
+        PChar->profile.home_point.p.x,
+        PChar->profile.home_point.p.y,
+        PChar->profile.home_point.p.z,
+        PChar->id);
+    return 0;
+}
+
+/************************************************************************
 *  Function: resetPlayer()
 *  Purpose : Delete player's account session and send them to Lower Jeuno
 *  Example : player:resetPlayer()
@@ -3090,77 +3319,6 @@ inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
     }
     lua_pushboolean(L, found);
     return 1;
-}
-
-/************************************************************************
-*  Function:getNationTeleport()
-*  Purpose : Returns the teleport point for a given value
-*  Example : player:getNationTeleport(guardnation)
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    int32 nation = (int32)lua_tointeger(L, 1);
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    switch (nation)
-    {
-        case 0: lua_pushinteger(L, PChar->nationtp.sandoria); return 1; break;
-        case 1: lua_pushinteger(L, PChar->nationtp.bastok); return 1; break;
-        case 2: lua_pushinteger(L, PChar->nationtp.windurst); return 1; break;
-        case 3: lua_pushinteger(L, PChar->nationtp.ahturhgan); return 1; break;
-        case 4: lua_pushinteger(L, PChar->nationtp.maw); return 1; break;
-        case 5: lua_pushinteger(L, PChar->nationtp.pastsandoria); return 1; break;
-        case 6: lua_pushinteger(L, PChar->nationtp.pastbastok); return 1; break;
-        case 7: lua_pushinteger(L, PChar->nationtp.pastwindurst); return 1; break;
-        default:
-            ShowDebug(CL_CYAN"lua::getNationTeleport no region with this number!\n" CL_RESET);
-            return 0;
-    }
-}
-
-/************************************************************************
-*  Function: addNationTeleport()
-*  Purpose : Grants acces to a new teleport for a PC
-*  Example :  player:addNationTeleport(MAW,16);
-*  Notes   : Used in new Maws, Aht Urghan, etc
-************************************************************************/
-
-inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-
-    uint16 nation = (uint16)lua_tointeger(L, 1);
-    uint32 newTP = (uint32)lua_tointeger(L, 2);
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    switch (nation)
-    {
-        case 0: PChar->nationtp.sandoria |= newTP; break;
-        case 1: PChar->nationtp.bastok |= newTP; break;
-        case 2: PChar->nationtp.windurst |= newTP; break;
-        case 3: PChar->nationtp.ahturhgan |= newTP; break;
-        case 4: PChar->nationtp.maw |= newTP; break;
-        case 5: PChar->nationtp.pastsandoria |= newTP; break;
-        case 6: PChar->nationtp.pastbastok |= newTP; break;
-        case 7: PChar->nationtp.pastwindurst |= newTP; break;
-        default:
-            ShowDebug(CL_CYAN"lua::addNationTeleport no region with this number!\n" CL_RESET);
-            return 0;
-    }
-
-    charutils::SaveCharUnlocks(PChar);
-    return 0;
 }
 
 /************************************************************************
@@ -13841,7 +13999,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setWeather),
 
     // PC Instructions
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,ChangeMusic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendMenu),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
@@ -13873,14 +14030,17 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,teleport),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTeleport),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTeleport),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTeleport),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTeleportMenu),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTeleportMenu),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),    
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
-
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addNationTeleport),
 
     // Items
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
