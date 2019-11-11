@@ -9,27 +9,7 @@ local SURVIVAL_GUIDE_TELEPORT_COST_GIL = 1000
 local SURVIVAL_GUIDE_TELEPORT_COST_TABS = 50
 
 -- This is used for the NationTeleport save/get
-local SURVIVALGUIDE = 9
-local cutsceneID = 8500
-local tempMenuLayoutVar = "SgMenuLayout"
-
-local optionMap =
-{
-    TELEPORT = 1,
-    UNKNOWN = 2,
-    SET_MENU_LAYOUT = 3,
-    ADD_FAVORITE = 4,
-    REMOVE_FAVORITE = 5,
-    REPLACE_FAVORITE = 6,
-    TELEPORT_MENU = 7
-}
-
--- Determines if the survival guide teleport cost is like if you had a Rhapsody in White key item. Does not affect UI! (Default: 0)
-local SURVIVAL_GUIDE_TELEPORT_COST_GIL = 1000
-local SURVIVAL_GUIDE_TELEPORT_COST_TABS = 50
-
--- This is used for the NationTeleport save/get
-local SURVIVALGUIDE = 9
+local travelType = dsp.teleport.type.SURVIVAL
 local cutsceneID = 8500
 local tempMenuLayoutVar = "SgMenuLayout"
 
@@ -69,36 +49,15 @@ local function getEnabledExpansions()
     return returnValue
 end
 
-local function checkForRegisteredSurvivalGuide(player, guide, masks)
+local function checkForRegisteredSurvivalGuide(player, guide)
     local group = guide.group
     local mask = nil
     local variableSuffix = ''
-    local hasRegisteredGuide = false
-
-    if guide.groupIndex == 32 then
-        mask = masks[group + 4]
-        variableSuffix = 'a'
-
-        -- This turns negative in the database for int32 max
-        hasRegisteredGuide = mask == (guide.groupMask * -1)
-    else
-        mask = masks[group]
-        hasRegisteredGuide = (bit.band(mask, guide.groupMask) ~= 0)
-    end
+    local hasRegisteredGuide = player:hasTeleport(travelType, guide.groupIndex - 1, guide.group - 1)
 
     if not hasRegisteredGuide then
         player:messageSpecial(zones[guide.zoneId].text.COMMON_SENSE_SURVIVAL)
-
-        local updatedValue = mask + guide.groupMask
-
-        if variableSuffix == 'a' then
-            updatedValue = guide.groupMask
-            masks[group + 4] = updatedValue
-        else
-            masks[group] = updatedValue
-        end
-
-        player:setVar("SgTeleportMask" .. group .. variableSuffix, updatedValue)
+        player:addTeleport(travelType, guide.groupIndex - 1, guide.group - 1)
 
         return false
     end
@@ -109,36 +68,36 @@ end
 local function teleportMenuUpdate(player, option, teleportType, optionMap, var)
     local choice = bit.band(option, 0xFF)
 
-    if choice == optionMap.SET_MENU_LAYOUT then
-        if bit.rshift(option, 16) == 1 then
-            -- Select by content/expansion
-            player:setVar(var, 1)
-        else
-            -- Select by region
-            player:setVar(var, 0)
-        end
-    elseif choice > optionMap.SET_MENU_LAYOUT then
-        local favorites = player:getNationTeleport(teleportType + 2)
+    if choice >= optionMap.SET_MENU_LAYOUT or choice <= optionMap.REPLACE_FAVORITE then
+        local favorites = player:getTeleportMenu(travelType)
 
         if choice ~= optionMap.TELEPORT_MENU then
             local index = bit.rshift(bit.lshift(option, 8), 24)
 
             if choice == optionMap.ADD_FAVORITE then
-                table.insert(favorites, 1, index)
+                local temp = 0
+                for x = 1, 9 do
+                    temp = favorites[x]
+                    favorites[x] = index
+                    index = temp
+                end
             elseif choice == optionMap.REMOVE_FAVORITE then
                 for x = 1, 9 do
                     if favorites[x] == index then
-                        table.remove(favorites, x)
-                        favorites[9] = 0xFF
+                        for x = x, 8 do
+                            favorites[x] = favorites[x+1]
+                        end
+                        favorites[9] = -1
                         break
                     end
                 end
             elseif choice == optionMap.REPLACE_FAVORITE then
-                table.remove(favorites, bit.rshift(option, 24) + 1)
-                table.insert(favorites, 1, index)
+                favorites[bit.rshift(option, 24) + 1] = index
+            elseif choice == optionMap.SET_MENU_LAYOUT then
+                favorites[10] = bit.rshift(option, 16) == 1 and 1 or 0
             end
 
-            player:addNationTeleport(teleportType + 2, 0, favorites)
+            player:setTeleportMenu(travelType, favorites)
         end
 
         for x = 1, 3 do
@@ -163,28 +122,20 @@ dsp.survivalGuide.onTrigger = function(player)
         -- Contains the zone to include, this is a bit-wise value.
         local expansions = getEnabledExpansions()
 
-        local masks =
-        {
-            [1] = player:getVar("SgTeleportMask1"),
-            [2] = player:getVar("SgTeleportMask2"),
-            [3] = player:getVar("SgTeleportMask3"),
-            [4] = player:getVar("SgTeleportMask4"),
-            [5] = player:getVar("SgTeleportMask1a"),
-            [6] = player:getVar("SgTeleportMask2a"),
-            [7] = player:getVar("SgTeleportMask3a")
-        }
-
         -- If this survival guide hasn't been registered yet (saved to database) do that now.
         local foundRegisteredGuide = checkForRegisteredSurvivalGuide(player,
-                                                                     guide,
-                                                                     masks)
+                                                                     guide)
 
         if foundRegisteredGuide then
             local param = bit.bor(tableIndex, bit.lshift(
                                       player:getCurrency("valor_point"), 16))
 
-            -- param 1 = Favorites, this is broken yet, not sure how to fix this, don't really care right now either, the rest of it works (except for tabs).
-            -- param 2 = current area and player amount of tabs - this is the zone index passed in, this means that the area won't show in the list of areas to teleport too.
+            local teleportMenu = player:getTeleportMenu(travelType)
+            local G1,G2,G3,G4 = unpack(player:getTeleport(travelType))
+
+            -- param 1 = Favorites and menu layout.
+            -- param 2 = current area and player amount of tabs - this is the zone index passed in,
+                -- this means that the area won't show in the list of areas to teleport to.
             -- param 3 = gil
             -- param 4 = zones unlocked (group 1), set to -1 to enable all zones in the group.
             -- param 5 = Zones unlocked (group 2), set to -1 to enable all zones in the group.
@@ -192,9 +143,7 @@ dsp.survivalGuide.onTrigger = function(player)
             -- param 7 = zones unlocked (Zehrun mines and Eastern Adoulin), set to -1 to enable all zones in the group.
             -- param 8 = expansions available.
             -- NOTE: To allow teleportation to all zones, set all of the mask values to -1.
-            player:startEvent(cutsceneID, 0, param, player:getGil(),
-                              masks[1] + masks[5], masks[2] + masks[6],
-                              masks[3] + masks[7], masks[4], expansions)
+            player:startEvent(cutsceneID, teleportMenu, param, player:getGil(), G1, G2, G3,G4, expansions)
         end
     else
         player:PrintToPlayer('Survival guides are not enabled!')
@@ -202,8 +151,7 @@ dsp.survivalGuide.onTrigger = function(player)
 end
 
 dsp.survivalGuide.onEventUpdate = function(player, csid, option)
-    -- This will be implemented after new nation teleport is created for homepoints since it will have a template to be followed.
-    -- teleportMenuUpdate(player, option, SURVIVALGUIDE, optionMap, tempMenuLayoutVar)
+    teleportMenuUpdate(player, option, travelType, optionMap, tempMenuLayoutVar)
 end
 
 dsp.survivalGuide.onEventFinish = function(player, eventId, option)
@@ -218,10 +166,12 @@ dsp.survivalGuide.onEventFinish = function(player, eventId, option)
                 local teleportCostGil = SURVIVAL_GUIDE_TELEPORT_COST_GIL
                 local teleportCostTabs = SURVIVAL_GUIDE_TELEPORT_COST_TABS
 
-                -- If the player has the rhapsody in white, the cost is 20% of base.
+                -- If the player has the rhapsody in white, the cost is 10% of original gil or 20% of original tabs.
+                -- GIL: 1000 -> 200
+                -- TABS: 100 -> 10
                 if (player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) == 1) then
                     teleportCostGil = teleportCostGil * .2
-                    teleportCostTabs = teleportCostTabs * .2
+                    teleportCostTabs = teleportCostTabs * .1
                 end
 
                 if bit.rshift(bit.lshift(option, 16), 24) == 1 then
