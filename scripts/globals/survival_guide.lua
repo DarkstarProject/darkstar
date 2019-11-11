@@ -11,7 +11,6 @@ local SURVIVAL_GUIDE_TELEPORT_COST_TABS = 50
 -- This is used for the NationTeleport save/get
 local travelType = dsp.teleport.type.SURVIVAL
 local cutsceneID = 8500
-local tempMenuLayoutVar = "SgMenuLayout"
 
 local optionMap =
 {
@@ -65,15 +64,14 @@ local function checkForRegisteredSurvivalGuide(player, guide)
     return true
 end
 
-local function teleportMenuUpdate(player, option, teleportType, optionMap, var)
+local function teleportMenuUpdate(player, option)
     local choice = bit.band(option, 0xFF)
 
-    if choice >= optionMap.SET_MENU_LAYOUT or choice <= optionMap.REPLACE_FAVORITE then
+    if choice >= optionMap.SET_MENU_LAYOUT and choice <= optionMap.TELEPORT_MENU then
         local favorites = player:getTeleportMenu(travelType)
 
-        if choice ~= optionMap.TELEPORT_MENU then
-            local index = bit.rshift(bit.lshift(option, 8), 24)
-
+        local index = bit.rshift(bit.lshift(option, 8), 24)
+        if (not (choice == optionMap.TELEPORT_MENU)) then
             if choice == optionMap.ADD_FAVORITE then
                 local temp = 0
                 for x = 1, 9 do
@@ -101,9 +99,11 @@ local function teleportMenuUpdate(player, option, teleportType, optionMap, var)
         end
 
         for x = 1, 3 do
-            favorites[1] = favorites[1] + favorites[x + 1] * 256 ^ x
-            favorites[5] = favorites[5] + favorites[x + 5] * 256 ^ x
-        end
+           favorites[1] = favorites[1] + favorites[x + 1] * 256 ^ x
+           favorites[5] = favorites[5] + favorites[x + 5] * 256 ^ x
+         end
+
+         favorites[9] = favorites[9] + favorites[10] * 256
 
         player:updateEvent(favorites[1], favorites[5], favorites[9])
     end
@@ -127,23 +127,34 @@ dsp.survivalGuide.onTrigger = function(player)
                                                                      guide)
 
         if foundRegisteredGuide then
-            local param = bit.bor(tableIndex, bit.lshift(
-                                      player:getCurrency("valor_point"), 16))
+            local param = bit.bor(tableIndex, bit.lshift(player:getCurrency("valor_point"), 16))
 
+            -- Get the teleport menu option.
+            -- Menu options can be organized by Region or Content.
+            -- Default (0) is region.
             local teleportMenu = player:getTeleportMenu(travelType)
+            teleportMenu = teleportMenu[10]
+
+            if teleportMenu == 1 then
+                param = bit.bor(param, 0x0800)
+            end
+
+            if player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) == 1 then
+                -- "Rhapsody in White" key item reduces teleport fee by 80%
+                param = bit.bor(param, 0x2000)
+            end
+
             local G1,G2,G3,G4 = unpack(player:getTeleport(travelType))
 
-            -- param 1 = Favorites and menu layout.
-            -- param 2 = current area and player amount of tabs - this is the zone index passed in,
-                -- this means that the area won't show in the list of areas to teleport to.
+            -- param 1 = Does nothing.
+            -- param 2 = current area, player amount of tabs, fee reducer(s) and menu layout (region/content).
             -- param 3 = gil
             -- param 4 = zones unlocked (group 1), set to -1 to enable all zones in the group.
             -- param 5 = Zones unlocked (group 2), set to -1 to enable all zones in the group.
             -- param 6 = Zones unlocked (group 3), set to -1 to enable all zones in the group.
             -- param 7 = zones unlocked (Zehrun mines and Eastern Adoulin), set to -1 to enable all zones in the group.
             -- param 8 = expansions available.
-            -- NOTE: To allow teleportation to all zones, set all of the mask values to -1.
-            player:startEvent(cutsceneID, teleportMenu, param, player:getGil(), G1, G2, G3,G4, expansions)
+            player:startEvent(cutsceneID, 0, param, player:getGil(), G1, G2, G3, G4, expansions)
         end
     else
         player:PrintToPlayer('Survival guides are not enabled!')
@@ -151,25 +162,26 @@ dsp.survivalGuide.onTrigger = function(player)
 end
 
 dsp.survivalGuide.onEventUpdate = function(player, csid, option)
-    teleportMenuUpdate(player, option, travelType, optionMap, tempMenuLayoutVar)
+    teleportMenuUpdate(player, option)
 end
 
 dsp.survivalGuide.onEventFinish = function(player, eventId, option)
-    if cutsceneID == eventId and option >= 1 and not (option == 7) and
-        not (option == 65539) then
+    if cutsceneID == eventId and not (option >= 1 and option <= 7)
+        and not (option == 65539)  then
         local selectedMenuId = bit.rshift(option, 16)
 
         if selectedMenuId <= 97 then
             local guide = survivalGuides[selectedMenuId]
+            local currentZoneId = player:getZoneID()
 
-            if guide then
+            if guide and not (guide.zoneId == currentZoneId) then
                 local teleportCostGil = SURVIVAL_GUIDE_TELEPORT_COST_GIL
                 local teleportCostTabs = SURVIVAL_GUIDE_TELEPORT_COST_TABS
 
                 -- If the player has the rhapsody in white, the cost is 10% of original gil or 20% of original tabs.
                 -- GIL: 1000 -> 200
                 -- TABS: 100 -> 10
-                if (player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) == 1) then
+                if player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) == 1 then
                     teleportCostGil = teleportCostGil * .2
                     teleportCostTabs = teleportCostTabs * .1
                 end
@@ -181,8 +193,7 @@ dsp.survivalGuide.onEventFinish = function(player, eventId, option)
                     player:delGil(teleportCostGil)
                 end
 
-                player:setPos(guide.posX, guide.posY, guide.posZ, guide.posRot,
-                              guide.zoneId)
+                player:setPos(guide.posX, guide.posY, guide.posZ, guide.posRot, guide.zoneId)
             end
         end
     end
