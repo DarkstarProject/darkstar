@@ -15,6 +15,7 @@ end
 
 function onMobSpawn(mob)
     mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID())
+    mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.NO_TURN))
     mob:setMod(dsp.mod.UDMGPHYS, -75)
     mob:setMod(dsp.mod.UDMGRANGE, -75)
     mob:setMod(dsp.mod.UDMGMAGIC, 0)
@@ -42,10 +43,12 @@ function onMobFight(mob, target)
         if formTime < os.time() then
             if mob:AnimationSub() == 1 then
                 mob:AnimationSub(2)
+                mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
                 if podReady == 1 and math.random(0,1) == 1 then
                     mob:useMobAbility(1532)
                 end 
             else
+                mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.NO_TURN))
                 mob:AnimationSub(1)
             end
             mob:setLocalVar("formWait", os.time() + 60)
@@ -53,6 +56,7 @@ function onMobFight(mob, target)
 
         if lifePercent < 30 then
             mob:AnimationSub(2)
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
             mob:setMod(dsp.mod.UDMGPHYS, -50)
             mob:setMod(dsp.mod.UDMGRANGE, -50)
             mob:setMod(dsp.mod.UDMGMAGIC, -50)

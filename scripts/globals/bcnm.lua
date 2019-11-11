@@ -811,16 +811,8 @@ function TradeBCNM(player, npc, trade, onUpdate)
         return false
     elseif trade:getItemCount() == 3 and trade:hasItemQty(1907,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1986,1) then
         itemId = -1
-        if player:hasWornItem(1907) or player:hasWornItem(1908) or player:hasWornItem(1986) then
-            player:messageBasic(56, 0, 0) -- Unable to use item.
-            return false
-        end
     elseif trade:getItemCount() == 4 and trade:hasItemQty(1909,1) and trade:hasItemQty(1910,1) and trade:hasItemQty(1987,1) and trade:hasItemQty(1988,1) then
         itemId = -2
-        if player:hasWornItem(1909) or player:hasWornItem(1910) or player:hasWornItem(1987) or player:hasWornItem(1988) then
-            player:messageBasic(56, 0, 0) -- Unable to use item.
-            return false
-        end
     else
         itemId = trade:getItemId(0)
         if itemId == nil or itemId < 1 or itemId > 65535 or trade:getItemCount() ~= 1 or trade:getSlotQty(0) ~= 1 then

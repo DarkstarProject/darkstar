@@ -14,6 +14,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local battlefield = mob:getBattlefield()
+    local pod = GetMobByID(mob:getID() + 1)
     if battlefield and not pod:isSpawned() then
         local pod = GetMobByID(mob:getID() + 1)
         local players = battlefield:getPlayers()

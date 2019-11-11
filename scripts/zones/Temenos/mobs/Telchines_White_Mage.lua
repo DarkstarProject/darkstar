@@ -26,11 +26,7 @@ function onMobDeath(mob, player, isKiller)
             GetNPCByID(ID.npc.GATE_OFFSET+2):setStatus(dsp.status.NORMAL)
         end
 
-        if mobID == ID.mob.TEMENOS_N_MOB[3]+1 and random % 2 == 1 then
-            GetNPCByID(ID.npc.TEMENOS_N_CRATE[3]):setStatus(dsp.status.NORMAL)
-            GetNPCByID(ID.npc.TEMENOS_N_CRATE[3]+1):setStatus(dsp.status.NORMAL)
-            GetNPCByID(ID.npc.TEMENOS_N_CRATE[3]+2):setStatus(dsp.status.NORMAL)
-        elseif mobID == ID.mob.TEMENOS_N_MOB[3] and random % 2 == 0 then
+        if random % 2 == 1 then
             GetNPCByID(ID.npc.TEMENOS_N_CRATE[3]):setStatus(dsp.status.NORMAL)
             GetNPCByID(ID.npc.TEMENOS_N_CRATE[3]+1):setStatus(dsp.status.NORMAL)
             GetNPCByID(ID.npc.TEMENOS_N_CRATE[3]+2):setStatus(dsp.status.NORMAL)

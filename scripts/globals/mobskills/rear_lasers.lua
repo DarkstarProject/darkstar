@@ -25,7 +25,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.PETRIFICATION
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 15))
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30))
 
     return typeEffect
 end
