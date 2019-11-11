@@ -1494,7 +1494,13 @@ void CCharEntity::OnRaise()
         auto& actionTarget = list.getNewActionTarget();
 
         list.ActionTargetID = id;
-        if (m_hasRaise == 1)
+        // Mijin Gakure used with MIJIN_RERAISE MOD
+        if (GetLocalVar("MijinGakure") != 0 && getMod(Mod::MIJIN_RERAISE) != 0)
+        {
+            actionTarget.animation = 511;
+            hpReturned = (uint16)(GetMaxHP());
+        }
+        else if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
             hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
@@ -1676,6 +1682,10 @@ void CCharEntity::Die(duration _duration)
 
     if (this->getMod(Mod::RERAISE_III) > 0)
         m_hasRaise = 3;
+    // MIJIN_RERAISE checks
+    if (m_hasRaise == 0 && this->getMod(Mod::MIJIN_RERAISE) > 0)
+        m_hasRaise = 1;
+
     CBattleEntity::Die();
 }
 

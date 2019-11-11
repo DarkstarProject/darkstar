@@ -23427,6 +23427,7 @@ INSERT INTO `item_mods` VALUES (19003,27,10);   -- Nagi 75 - Enmity+10
 INSERT INTO `item_mods` VALUES (19003,30,10);   -- Magic Accuracy+10
 INSERT INTO `item_mods` VALUES (19003,256,29);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19003,355,138); -- Blade: Kamu
+INSERT INTO `item_mods` VALUES (19003,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (19004,256,29);  -- Ryunohige 75 - Aftermath
 INSERT INTO `item_mods` VALUES (19004,355,122); -- Drakesbane
 INSERT INTO `item_mods` VALUES (19004,828,1);   -- Augments jump attacks
@@ -23581,6 +23582,7 @@ INSERT INTO `item_mods` VALUES (19072,27,15);   -- Nagi 80 - Emnity +15
 INSERT INTO `item_mods` VALUES (19072,30,15);   -- Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (19072,256,34);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19072,355,138); -- Blade: Kamu
+INSERT INTO `item_mods` VALUES (19072,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (19073,256,34); -- Ryunohige 80 - Aftermath
 INSERT INTO `item_mods` VALUES (19073,355,122); -- Drakesbane
 INSERT INTO `item_mods` VALUES (19073,362,12);  -- Augments Jump attacks II (Jump +12.5% Attack, rounded)
@@ -23660,6 +23662,7 @@ INSERT INTO `item_mods` VALUES (19092,27,20);   -- Nagi 85 - Enmity+20
 INSERT INTO `item_mods` VALUES (19092,30,20);   -- Magic Accuracy+20
 INSERT INTO `item_mods` VALUES (19092,256,34);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19092,355,138); -- Blade: Kamu
+INSERT INTO `item_mods` VALUES (19092,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (19093,256,34);  -- Ryunohige 85 - Aftermath
 INSERT INTO `item_mods` VALUES (19093,355,122); -- Drakesbane
 INSERT INTO `item_mods` VALUES (19093,362,20);  -- Augments Jump Attacks III (Attack+20%)
@@ -24122,6 +24125,7 @@ INSERT INTO `item_mods` VALUES (19624,30,25);   -- Magic Accuracy+25
 INSERT INTO `item_mods` VALUES (19624,256,34);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19624,355,138); -- Blade: Kamu
 INSERT INTO `item_mods` VALUES (19624,708,15);  -- Blade: Kamu WS DMG +15%
+INSERT INTO `item_mods` VALUES (19624,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (19625,256,34);  -- Ryunohige 90 - Aftermath
 INSERT INTO `item_mods` VALUES (19625,355,122); -- Drakesbane
 INSERT INTO `item_mods` VALUES (19625,362,30);  -- Augments "Jump" attacks IV (Attack+30%)
@@ -24266,6 +24270,7 @@ INSERT INTO `item_mods` VALUES (19722,30,25);   -- Magic Accuracy+25
 INSERT INTO `item_mods` VALUES (19722,256,39);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19722,355,138); -- Blade: Kamu
 INSERT INTO `item_mods` VALUES (19722,708,15);  -- Blade: Kamu WS DMG +15%
+INSERT INTO `item_mods` VALUES (19722,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (19723,256,39);  -- Ryunohige 95 - Aftermath
 INSERT INTO `item_mods` VALUES (19723,355,122); -- Drakesbane
 INSERT INTO `item_mods` VALUES (19723,362,30);  -- Augments "Jump" attacks IV (Attack+30%)
@@ -24584,6 +24589,7 @@ INSERT INTO `item_mods` VALUES (19831,30,30);   -- Magic Accuracy+30
 INSERT INTO `item_mods` VALUES (19831,256,39);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19831,355,138); -- Blade: Kamu
 INSERT INTO `item_mods` VALUES (19831,708,30);  -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (19831,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (19832,256,39);  -- Ryunohige 99 - Aftermath
 INSERT INTO `item_mods` VALUES (19832,355,122); -- Drakesbane
 INSERT INTO `item_mods` VALUES (19832,362,35);  -- Augments jump attacks V (Attack+35%)
@@ -24827,6 +24833,7 @@ INSERT INTO `item_mods` VALUES (19960,30,30);   -- Magic Accuracy+30
 INSERT INTO `item_mods` VALUES (19960,256,39);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19960,355,138); -- Blade: Kamu
 INSERT INTO `item_mods` VALUES (19960,708,30);  -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (19960,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (19961,256,39);  -- Ryunohige 99 AG - Aftermath
 INSERT INTO `item_mods` VALUES (19961,355,122); -- Drakesbane
 INSERT INTO `item_mods` VALUES (19961,362,35);  -- Augments jump attacks V (Attack+35%)
@@ -25585,11 +25592,13 @@ INSERT INTO `item_mods` VALUES (20972,30,30);   -- Magic Accuracy+30
 INSERT INTO `item_mods` VALUES (20972,256,39);  -- Aftermath
 INSERT INTO `item_mods` VALUES (20972,355,138); -- Blade: Kamu
 INSERT INTO `item_mods` VALUES (20972,708,30);  -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (20972,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (20973,27,30);   -- Nagi 119 AG - Enmity+30
 INSERT INTO `item_mods` VALUES (20973,30,30);   -- Magic Accuracy+30
 INSERT INTO `item_mods` VALUES (20973,256,39);  -- Aftermath
 INSERT INTO `item_mods` VALUES (20973,355,138); -- Blade: Kamu
 INSERT INTO `item_mods` VALUES (20973,708,30);  -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (20973,258,1);   -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (20974,11,20);   -- Kannagi 119 - AGI+20
 INSERT INTO `item_mods` VALUES (20974,256,44);  -- Aftermath
 INSERT INTO `item_mods` VALUES (20974,355,140); -- Blade: Hi
@@ -27031,6 +27040,7 @@ INSERT INTO `item_mods` VALUES (21907,256,39);    -- Aftermath
 INSERT INTO `item_mods` VALUES (21907,311,186);   -- Magic Damage+186
 INSERT INTO `item_mods` VALUES (21907,355,138);   -- Blade: Kamu
 INSERT INTO `item_mods` VALUES (21907,708,30);    -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (21907,258,1);     -- Augments Mijin Gakure
 INSERT INTO `item_mods` VALUES (21908,11,50);     -- Kannagi 119 III - AGI +50
 INSERT INTO `item_mods` VALUES (21908,256,45);    -- Aftermath
 INSERT INTO `item_mods` VALUES (21908,311,186);   -- Magic Damage+186
