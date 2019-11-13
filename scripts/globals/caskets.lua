@@ -391,6 +391,13 @@ dsp.caskets.onTrigger = function(player, npc)
     end
 end
 
+-------------------------------------------------------------------------------------------------------------------
+-- Retail notes: from wiki
+-- Thieves can use tools to gain a free hint, without expending one of their attempts.
+-- The only clues that you can obtain via Thief's Tools is a hint that tells you it's between 2 numbers,
+-- (e.g. its between 24 and 58) its usually a good idea to start with this clue.
+-- Multiple tools may be used, however there is a low rate of success after the first.
+-------------------------------------------------------------------------------------------------------------------
 dsp.caskets.onTrade = function(player, npc, trade)
     local zoneId            = player:getZoneID()
     local ID                = zones[zoneId]
@@ -409,96 +416,41 @@ dsp.caskets.onTrade = function(player, npc, trade)
         return
     end
 
-    local hintsVar = 0
-    local availableHints = {}
-
-    if npc:getLocalVar("HINTS_TABLE") ~= 0 then
-        hintsVar = npc:getLocalVar("HINTS_TABLE")
-        for hint in string.gmatch(tostring(hintsVar), "%d") do
-            table.insert(availableHints, hint)
-        end
-    else
-        player:messageSpecial(baseMessage + casketInfo.messageOffset.UNABLE_TO_GET_HINT, 0, 0, 0, 0)
-        return
-    end
-
     if locked == 1 then
         if npcUtil.tradeHas(trade,1022,1) then
-            GetDrops(npc, itemType, player:getZoneID())
 
             local splitNumbers = {}
+            local tradeAttempt = math.random()
+            local firstAttempt = npc:getLocalVar("HINT_TRADE")
+            local canGetHint   = false
 
             for digit in string.gmatch(tostring(correctNumber), "%d") do
-               table.insert(splitNumbers, digit)
+                table.insert(splitNumbers, digit)
             end
 
-            local randText = tonumber(availableHints[math.random(#availableHints)])
+            if firstAttempt == 0 or firstAttempt == nil then
+                npc:setLocalVar("HINT_TRADE", 1)
+                canGetHint = true
+            else
+                if tradeAttempt < 0.2 then
+                    canGetHint = true
+                else
+                    canGetHint = false
+                end
+            end
 
-            if randText == 1 then
-                if isEven(splitNumbers[1]) == true then
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_FIRST_EVEN_ODD, 0, 0, 0, 0)
-                else
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_FIRST_EVEN_ODD, 1, 0, 0, 0)
-                end
-            elseif randText == 2 then
-                if isEven(splitNumbers[2]) == true then
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_SECOND_EVEN_ODD, 0, 0, 0, 0)
-                else
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_SECOND_EVEN_ODD, 1, 0, 0, 0)
-                end
-            elseif randText == 3 then
-                if tonumber(splitNumbers[1]) <= 6 then
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.FIRST_DIGIT_IS,
-                        splitNumbers[1],
-                        splitNumbers[1] +1,
-                        splitNumbers[1] +2, 0)
-                elseif tonumber(splitNumbers[2]) == 9 then
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.FIRST_DIGIT_IS,
-                        splitNumbers[2] -2,
-                        splitNumbers[2] -1,
-                        splitNumbers[2], 0)
-                else
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.FIRST_DIGIT_IS,
-                        splitNumbers[1] -1,
-                        splitNumbers[1],
-                        splitNumbers[1] +1, 0)
-                end
-            elseif randText == 4 then
-                if tonumber(splitNumbers[2]) <= 6 then
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.SECOND_DIGIT_IS,
-                        splitNumbers[2],
-                        splitNumbers[2] +1,
-                        splitNumbers[2] +2, 0)
-                elseif tonumber(splitNumbers[2]) == 9 then
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.SECOND_DIGIT_IS,
-                        splitNumbers[2] -2,
-                        splitNumbers[2] -1,
-                        splitNumbers[2], 0)
-                else
-                    player:messageSpecial(baseMessage + casketInfo.messageOffset.SECOND_DIGIT_IS,
-                        splitNumbers[2] -1,
-                        splitNumbers[2],
-                        splitNumbers[2] +1, 0)
-                end
-            elseif randText == 5 then
-                player:messageSpecial(baseMessage + casketInfo.messageOffset.ONE_OF_TWO_DIGITS_IS,
-                    splitNumbers[1], 0, 0, 0)
-            elseif randText == 6 then
-                player:messageSpecial(baseMessage + casketInfo.messageOffset.ONE_OF_TWO_DIGITS_IS,
-                    splitNumbers[2], 0, 0, 0)
-            elseif randText == 7 then
+            if canGetHint == true then
                 local highNum = 0
                 local lowNum  = 0
-                local rand = math.random(1,9)
 
                 if tonumber(splitNumbers[1]) == 1 then
                     lowNum  = 10
-                    highNum = 20 + rand
+                    highNum = 20 + math.random(1,9)
                 elseif tonumber(splitNumbers[1]) > 1 and tonumber(splitNumbers[1]) < 9 then
-                    lowNum  = tonumber(splitNumbers[1]) * 10 - 10 + rand
-                    highNum = tonumber(splitNumbers[1]) * 10 + 10 + rand
+                    lowNum  = tonumber(splitNumbers[1]) * 10 - 10 + math.random(1,9)
+                    highNum = tonumber(splitNumbers[1]) * 10 + 10 + math.random(1,9)
                 elseif tonumber(splitNumbers[1]) == 9 then
-                    lowNum  = 80 + rand
+                    lowNum  = 80 + math.random(1,9)
                     highNum = 99
                 end
                 player:messageSpecial(baseMessage + casketInfo.messageOffset.COMBINATION_GREATER_LESS, lowNum, highNum, 0, 0)
@@ -506,7 +458,6 @@ dsp.caskets.onTrade = function(player, npc, trade)
                 player:messageSpecial(baseMessage + casketInfo.messageOffset.UNABLE_TO_GET_HINT, 0, 0, 0, 0)
             end
             player:confirmTrade()
-            RemoveHint(npc, randText)
         end
     end
 end
