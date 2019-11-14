@@ -2,22 +2,17 @@
 -- Area: Temenos N T
 --  Mob: Telchines White Mage
 -----------------------------------
-require("scripts/globals/limbus")
------------------------------------
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
-
-function onMobEngaged(mob, target)
-end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then
         local mobID = mob:getID()
         local battlefield = player:getBattlefield()
-        local random = battlefield:getLocalVar("random")
+        local random = battlefield:getLocalVar("randomF3")
 
-        if mobID - ID.mob.TEMENOS_N_MOB[3] == random - 1 then
-            battlefield:setLocalVar("random", math.random(1, 4))
+        if random == 2 then
+            battlefield:setLocalVar("randomF4", math.random(1, 4))
             local players = battlefield:getPlayers()
             for i, member in pairs(players) do
                 member:messageSpecial(ID.text.GATE_OPEN)

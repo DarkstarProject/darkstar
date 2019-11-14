@@ -129,14 +129,7 @@ zones[dsp.zone.TEMENOS] =
                 [16928984] = 3, -- SE
                 [16928985] = 3, -- SE
             },
-            [5] =
-            {
-                [1] = 16929052, -- basement 1 boss
-                [2] = 16929089, -- basement 1
-                [3] = 16929116, -- basement 1
-                [4] = 16929128, -- basement 1
-                [5] = 16929161, -- basement 1
-            },
+            [5] = 16929052, -- basement 1 boss
         },
     },
 }

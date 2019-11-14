@@ -2,9 +2,7 @@
 -- Area: Temenos Central Floor
 --  Mob: Airi
 -----------------------------------
-require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobEngaged(mob, target)
     if GetMobByID(ID.mob.TEMENOS_C_MOB[1]+1):isDead() then

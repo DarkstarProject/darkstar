@@ -2,15 +2,13 @@
 -- Area: Temenos N T
 --  Mob: Kari
 -----------------------------------
-require("scripts/globals/limbus")
------------------------------------
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then
         local battlefield = player:getBattlefield()
-        battlefield:setLocalVar("random", math.random(1,6))
+        battlefield:setLocalVar("randomF3", math.random(1,6))
         local players = battlefield:getPlayers()
         for i, member in pairs(players) do
             member:messageSpecial(ID.text.GATE_OPEN)

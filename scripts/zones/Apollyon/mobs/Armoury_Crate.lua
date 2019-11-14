@@ -5,7 +5,7 @@
 local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.DRAW_IN, 2)
+    --mob:setMobMod(dsp.mobMod.DRAW_IN, 2) -- need to set a maximum distance for draw-in
 end
 
 function onMobDeath(mob, player, isKiller)

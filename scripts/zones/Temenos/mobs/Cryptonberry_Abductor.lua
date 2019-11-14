@@ -1,8 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T
---  Mob: Cryptonberry Charmer
------------------------------------
-require("scripts/globals/limbus")
+--  Mob: Cryptonberry Abductor
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")

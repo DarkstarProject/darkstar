@@ -1,10 +1,8 @@
 -----------------------------------
 -- Area: Temenos N T
---  Mob: Cryptonberry Charmer
+--  Mob: Cryptonberry Designator
 -----------------------------------
-require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobEngaged(mob, target)
 end

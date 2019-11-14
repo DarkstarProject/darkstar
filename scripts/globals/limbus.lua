@@ -9,12 +9,12 @@ limbus = {}
 function limbus.enter(player, entrance)
     switch (entrance): caseof
     {
+        [0] = function ()
+            player:setPos(-668, 0.1, -666, 209, 38)  --  instance entrer -599 0 -600
+        end, --  sortiezone -642, -4, -642, -637, 4, -637
         [1] = function ()
             player:setPos(643, 0.1, -600, 124, 38)  --  instance entrer 600 1 -600
         end, --  sortiezone  637, -4, -642, 642, 4, -637
-        [2] = function ()
-            player:setPos(-668, 0.1, -666, 209, 38)  --  instance entrer -599 0 -600
-        end, --  sortiezone -642, -4, -642, -637, 4, -637
     }
 end
 
@@ -105,9 +105,7 @@ function limbus.hideArmouryCrates(bfid, show)
         end,
         [1301] = function() -- Central_Temenos_Basement
             local ID = zones[dsp.zone.TEMENOS]
-            for i = 1, 5 do
-                GetNPCByID(ID.npc.TEMENOS_C_CRATE[5][i]):setStatus(dsp.status.DISAPPEAR)
-            end
+            GetNPCByID(ID.npc.TEMENOS_C_CRATE[5]):setStatus(dsp.status.DISAPPEAR)
         end,
         [1303] = function() -- Central_Temenos_1st_Floor
             local ID = zones[dsp.zone.TEMENOS]

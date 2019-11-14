@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Temenos/IDs")
 
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
-    battlefield:setLocalVar("random", math.random(1,6))
+    battlefield:setLocalVar("randomF1", math.random(1,6))
     SetServerVariable("[Temenos_Northern_Tower]Time", battlefield:getTimeLimit()/60)
     limbus.hideTemenosDoors(battlefield:getID())
     limbus.hideArmouryCrates(battlefield:getID())

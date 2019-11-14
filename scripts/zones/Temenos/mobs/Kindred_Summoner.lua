@@ -2,9 +2,7 @@
 -- Area: Temenos N T
 --  Mob: Kindred Summoner
 -----------------------------------
-require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobEngaged(mob,target)
     GetMobByID(ID.mob.TEMENOS_N_MOB[4]+3):updateEnmity(target)

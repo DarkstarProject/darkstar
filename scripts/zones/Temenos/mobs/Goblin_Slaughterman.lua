@@ -2,8 +2,6 @@
 -- Area: Temenos N T
 --  Mob: Goblin Slaughterman
 -----------------------------------
-require("scripts/globals/limbus")
------------------------------------
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
 
@@ -11,7 +9,7 @@ function onMobDeath(mob, player, isKiller)
     if isKiller then
         local mobID = mob:getID()
         local battlefield = player:getBattlefield()
-        local random = battlefield:getLocalVar("random")
+        local random = battlefield:getLocalVar("randomF1")
 
         if mobID - ID.mob.TEMENOS_N_MOB[1] == random - 1 then
             local players = battlefield:getPlayers()

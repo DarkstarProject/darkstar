@@ -1388,13 +1388,9 @@ function onTrigger(player, npc)
                 end
             end,
             [1301] = function() -- Temenos Central Basement Crate Handling
-                if model == 962 then
-                    dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
-                else
-                    limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
-                    battlefield:setLocalVar("cutsceneTimer", 10)
-                    battlefield:setLocalVar("lootSeen", 1)
-                end
+                limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
+                battlefield:setLocalVar("cutsceneTimer", 10)
+                battlefield:setLocalVar("lootSeen", 1)
             end,
             [1303] = function() -- Temenos Central F1 Crate Handling
                 limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)

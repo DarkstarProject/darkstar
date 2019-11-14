@@ -2,13 +2,8 @@
 -- Area: Temenos N T
 --  Mob: Praetorian Guard CCXX
 -----------------------------------
-require("scripts/globals/limbus")
------------------------------------
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
-
-function onMobEngaged(mob, target)
-end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then

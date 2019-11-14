@@ -22,8 +22,8 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 160 and option == 1 then
-        limbus.enter(player,APOLLYON_SE_NE)
+        limbus.enter(player,1)
     elseif csid == 159 and option == 1 then
-        limbus.enter(player,APOLLYON_NW_SW)
+        limbus.enter(player,0)
     end
 end
