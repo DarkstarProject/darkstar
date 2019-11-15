@@ -221,6 +221,7 @@ namespace luautils
 
     int32 OnMobInitialize(CBaseEntity* PMob);                                     // Used for passive trait
     int32 ApplyMixins(CBaseEntity* PMob);
+    int32 ApplyZoneMixins(CBaseEntity* PMob);
     int32 OnMobSpawn(CBaseEntity* PMob);                                          // triggers on mob spawn
     int32 OnMobRoamAction(CBaseEntity* PMob);                                     // triggers when event mob is ready for a custom roam action
     int32 OnMobRoam(CBaseEntity* PMob);

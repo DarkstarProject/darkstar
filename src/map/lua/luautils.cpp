@@ -2307,6 +2307,66 @@ namespace luautils
 
         if (PMob->objtype == TYPE_MOB)
         {
+            lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+            lua_pushnil(LuaHandle);
+            lua_setglobal(LuaHandle, "mixins");
+            lua_pushnil(LuaHandle);
+            lua_setglobal(LuaHandle, "mixinOptions");
+
+            //remove any previous definition of the global "mixins"
+
+            auto ret = luaL_loadfile(LuaHandle, (const char*)File);
+            if (ret)
+            {
+                lua_pop(LuaHandle, 1);
+                return -1;
+            }
+
+            ret = lua_pcall(LuaHandle, 0, 0, 0);
+            if (ret)
+            {
+                ShowError("luautils::%s: %s\n", "applyMixins", lua_tostring(LuaHandle, -1));
+                lua_pop(LuaHandle, 1);
+                return -1;
+            }
+
+            //get the function "applyMixins"
+            lua_getglobal(LuaHandle, "applyMixins");
+            if (lua_isnil(LuaHandle, -1))
+            {
+                lua_pop(LuaHandle, 1);
+                return -1;
+            }
+
+            CLuaBaseEntity LuaMobEntity(PMob);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+
+            //get the parameter "mixins"
+            lua_getglobal(LuaHandle, "mixins");
+            if (lua_isnil(LuaHandle, -1))
+            {
+                lua_pop(LuaHandle, 3);
+                return -1;
+            }
+            //get the parameter "mixinOptions" (optional)
+            lua_getglobal(LuaHandle, "mixinOptions");
+
+            if (lua_pcall(LuaHandle, 3, 0, 0))
+            {
+                ShowError("luautils::applyMixins: %s\n", lua_tostring(LuaHandle, -1));
+                lua_pop(LuaHandle, 1);
+            }
+        }
+        return 0;
+    }
+
+    int32 ApplyZoneMixins(CBaseEntity* PMob)
+    {
+        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+
+        if (PMob->objtype == TYPE_MOB)
+        {
             if (PMob->objtype == TYPE_PET)
             {
                 CPetEntity* PPet = (CPetEntity*)PMob;
@@ -2418,57 +2478,6 @@ namespace luautils
                     lua_pop(LuaHandle, 1);
                 }
             }
-        }
-
-        lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
-
-        lua_pushnil(LuaHandle);
-        lua_setglobal(LuaHandle, "mixins");
-        lua_pushnil(LuaHandle);
-        lua_setglobal(LuaHandle, "mixinOptions");
-
-        //remove any previous definition of the global "mixins"
-
-        auto ret = luaL_loadfile(LuaHandle, (const char*)File);
-        if (ret)
-        {
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
-
-        ret = lua_pcall(LuaHandle, 0, 0, 0);
-        if (ret)
-        {
-            ShowError("luautils::%s: %s\n", "applyMixins", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
-
-        //get the function "applyMixins"
-        lua_getglobal(LuaHandle, "applyMixins");
-        if (lua_isnil(LuaHandle, -1))
-        {
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
-
-        CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-
-        //get the parameter "mixins"
-        lua_getglobal(LuaHandle, "mixins");
-        if (lua_isnil(LuaHandle, -1))
-        {
-            lua_pop(LuaHandle, 3);
-            return -1;
-        }
-        //get the parameter "mixinOptions" (optional)
-        lua_getglobal(LuaHandle, "mixinOptions");
-
-        if (lua_pcall(LuaHandle, 3, 0, 0))
-        {
-            ShowError("luautils::applyMixins: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
         }
         return 0;
     }
