@@ -32,9 +32,9 @@ function onTrigger(player,npc)
             end
         elseif currentMission == dsp.mission.id.bastok.MAGICITE and MissionStatus == 1 then
             player:startEvent(132)
-        elseif currentMission == dsp.mission.id.bastok.MAGICITE and missionStatus <= 5 then
+        elseif currentMission == dsp.mission.id.bastok.MAGICITE and MissionStatus <= 5 then
             player:startEvent(135)
-        elseif currentMission == dsp.mission.id.bastok.MAGICITE and missionStatus == 6 then
+        elseif currentMission == dsp.mission.id.bastok.MAGICITE and MissionStatus == 6 then
             player:startEvent(35)
         elseif player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK) then
             player:startEvent(55)
