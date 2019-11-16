@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
 --  NPC: ??? (Beastmen Treasure qm7/chest4)
---   ID: 17281646
 -- !pos -577.734 -0.706 -82.563 123
 -----------------------------------
 local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
+require("scripts/globals/beastmentreasure")
+-----------------------------------
 
 function onTrigger(player,npc)
     dsp.bmt.handleQmOnTrigger(player,npc,ID.text.SOMETHING_IS_BURIED_HERE,ID.text.NOTHING_OUT_OF_ORDINARY,ID.npc.BEASTMEN_TREASURE)

@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Yhoator Jungle
 --  NPC: ??? (Beastmen Treasure qm9/chest5)
---   ID: 17285692
 -- !pos 240.341 -0.826 -402.532 124
 -----------------------------------
 local ID = require("scripts/zones/Yhoator_Jungle/IDs")
+require("scripts/globals/beastmentreasure")
+-----------------------------------
 
 function onTrigger(player,npc)
     dsp.bmt.handleQmOnTrigger(player,npc,ID.text.SOMETHING_IS_BURIED_HERE,ID.text.NOTHING_OUT_OF_ORDINARY,ID.npc.BEASTMEN_TREASURE)
