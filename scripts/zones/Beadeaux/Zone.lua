@@ -15,7 +15,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    -- The Afflictor System (RegionID, X, Radius, Z)
+    -- Regions 1-6 are for the Afflictor System (RegionID, X, Radius, Z)
     zone:registerRegion(1, -163, 10, -137, 0,0,0)
     zone:registerRegion(2, -209, 10, -131, 0,0,0)
     zone:registerRegion(3, -140, 10,   20, 0,0,0)
