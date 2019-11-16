@@ -1,13 +1,12 @@
 -----------------------------------
 -- Area: Yhoator Jungle
 --  NPC: Peddlestox
---   ID: 17285685
 -- !pos -499.914 1.470 -109.039 124
------------------------------------
--- Active on LIGHTNINGDAY in this zone. To test on off-days, use:
--- !exec GetNPCByID(17285685):setStatus(dsp.status.NORMAL)
+-- Active on LIGHTNINGDAY in this zone. To test on off-days, setStatus(dsp.status.NORMAL)
 -----------------------------------
 local ID = require("scripts/zones/Yhoator_Jungle/IDs")
+require("scripts/globals/beastmentreasure")
+-----------------------------------
 
 function onTrigger(player)
     dsp.bmt.handleNpcOnTrigger(player,ID.npc.BEASTMEN_TREASURE)

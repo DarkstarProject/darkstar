@@ -16,12 +16,12 @@ require("scripts/globals/zone")
 
 function onInitialize(zone)
     -- The Afflictor System (RegionID, X, Radius, Z)
-    zone:registerRegion(1, -163, 10, -137, 0,0,0) -- 17379798 The Afflictor
-    zone:registerRegion(2, -209, 10, -131, 0,0,0) -- 17379799 The Afflictor
-    zone:registerRegion(3, -140, 10,   20, 0,0,0) -- 17379800 The Afflictor
-    zone:registerRegion(4,  261, 10,  140, 0,0,0) -- 17379801 The Afflictor
-    zone:registerRegion(5,  340, 10,  100, 0,0,0) -- 17379802 The Afflictor
-    zone:registerRegion(6,  380, 10,   60, 0,0,0) -- 17379803 The Afflictor
+    zone:registerRegion(1, -163, 10, -137, 0,0,0)
+    zone:registerRegion(2, -209, 10, -131, 0,0,0)
+    zone:registerRegion(3, -140, 10,   20, 0,0,0)
+    zone:registerRegion(4,  261, 10,  140, 0,0,0)
+    zone:registerRegion(5,  340, 10,  100, 0,0,0)
+    zone:registerRegion(6,  380, 10,   60, 0,0,0)
 
     dsp.treasure.initZone(zone)
 end
