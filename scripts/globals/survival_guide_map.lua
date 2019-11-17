@@ -1082,7 +1082,7 @@ survivalGuides =
     }
 }
 
-zoneIdToMenuID =
+zoneIdToGuideIdMap =
 {
     [dsp.zone.NORTHERN_SAN_DORIA] = 0,
     [dsp.zone.BASTOK_MINES] = 1,

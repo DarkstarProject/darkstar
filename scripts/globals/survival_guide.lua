@@ -11,7 +11,7 @@ local SURVIVAL_GUIDE_TELEPORT_COST_TABS = 50
 -- This is used for the NationTeleport save/get
 local travelType = dsp.teleport.type.SURVIVAL
 local cutsceneID = 8500
-dsp.survivalGuide.expansions = 0
+dsp.survivalGuide.expansions = 3 + (4 * ENABLE_COP) + (8 * ENABLE_TOAU) + (16 * ENABLE_WOTG) + (2048 * ENABLE_SOA)
 
 local optionMap =
 {
@@ -27,27 +27,6 @@ local optionMap =
 -------------------------------------------------
 -- local functions
 -------------------------------------------------
-
--- 1 = Original zones
--- 2 = Zilart Zones
--- 4 = Chains of Promethia Zones
--- 8 = Treasures of Aht Urgahn
--- 16 = Wings of the Goddess
--- 2048 = Seekers of Auldoin
-local function determineEnabledExpansions()
-    -- Original areas and zilart are always available.
-    local expansions = 3
-
-    if ENABLE_COP == 1 then expansions = expansions + 4 end
-
-    if ENABLE_TOAU == 1 then expansions = expansions + 8 end
-
-    if ENABLE_WOTG == 1 then expansions = expansions + 16 end
-
-    if ENABLE_SOA == 1 then expansions = expansions + 2048 end
-
-    dsp.survivalGuide.expansions = expansions
-end
 
 local function checkForRegisteredSurvivalGuide(player, guide)
     local group = guide.group
@@ -116,16 +95,10 @@ end
 
 dsp.survivalGuide.onTrigger = function(player)
     local currentZoneId = player:getZoneID()
-    local tableIndex = zoneIdToMenuID[currentZoneId]
+    local tableIndex = zoneIdToGuideIdMap[currentZoneId]
     local guide = survivalGuides[tableIndex]
 
     if guide then
-        -- If the explansions haven't been determined yet, do that now.
-        -- Since this is saved in a global, the server will have to be restarted if the admin wants to enable/disable expansions.
-        if dsp.survivalGuide.expansions == 0 then
-            determineEnabledExpansions()
-        end
-
         -- If this survival guide hasn't been registered yet (saved to database) do that now.
         local foundRegisteredGuide = checkForRegisteredSurvivalGuide(player,
                                                                      guide)
@@ -189,16 +162,26 @@ dsp.survivalGuide.onEventFinish = function(player, eventId, option)
                     teleportCostTabs = teleportCostTabs * .1
                 end
 
+                local canTeleport = false
+
                 -- If we got this far, then the UI has determined that the player has enough currency to do the teleportation.
                 if bit.band(bit.rshift(option, 8), 1) then
                 --if bit.rshift(bit.lshift(option, 16), 24) == 1 then
                     -- Paying with tabs
-                    player:delCurrency('valor_point', teleportCostTabs)
+                    if player:getCurrency('valor_point') > teleportCostTabs then
+                        player:delCurrency('valor_point', teleportCostTabs)
+                        canTeleport = true
+                    end
                 else
-                    player:delGil(teleportCostGil)
+                    if player:getGil() > teleportCostGil then
+                        player:delGil(teleportCostGil)
+                        canTeleport = true
+                    end
                 end
 
-                player:setPos(guide.posX, guide.posY, guide.posZ, guide.posRot, guide.zoneId)
+                if canTeleport then
+                    player:setPos(guide.posX, guide.posY, guide.posZ, guide.posRot, guide.zoneId)
+                end
             end
         end
     end
