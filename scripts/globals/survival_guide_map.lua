@@ -11,8 +11,7 @@ survivalGuides =
         posX = -451,
         posY = -19,
         posZ = -217,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [11] =
     {
@@ -23,8 +22,7 @@ survivalGuides =
         posX = 138,
         posY = -7,
         posZ = 97,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [16] =
     {
@@ -35,8 +33,7 @@ survivalGuides =
         posX = 62,
         posY = 0,
         posZ = -12,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [20] =
     {
@@ -47,8 +44,7 @@ survivalGuides =
         posX = -582,
         posY = 40,
         posZ = 52,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [24] =
     {
@@ -59,8 +55,7 @@ survivalGuides =
         posX = 32,
         posY = 24,
         posZ = 410,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [28] =
     {
@@ -71,8 +66,7 @@ survivalGuides =
         posX = -13,
         posY = -12,
         posZ = 315,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [33] =
     {
@@ -83,8 +77,7 @@ survivalGuides =
         posX = -487,
         posY = -32,
         posZ = 47,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [40] =
     {
@@ -95,8 +88,7 @@ survivalGuides =
         posX = -28,
         posY = -59,
         posZ = -125,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [42] =
     {
@@ -107,8 +99,7 @@ survivalGuides =
         posX = 204,
         posY = -24,
         posZ = -203,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [44] =
     {
@@ -119,8 +110,7 @@ survivalGuides =
         posX = -252,
         posY = -20,
         posZ = 297,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [36] =
     {
@@ -131,8 +121,7 @@ survivalGuides =
         posX = -297,
         posY = 16,
         posZ = 423,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [47] =
     {
@@ -143,8 +132,7 @@ survivalGuides =
         posX = -45,
         posY = 0,
         posZ = -151,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [50] =
     {
@@ -155,8 +143,7 @@ survivalGuides =
         posX = -260,
         posY = 8.5,
         posZ = -265,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [53] =
     {
@@ -167,8 +154,7 @@ survivalGuides =
         posX = -188,
         posY = 8,
         posZ = -67,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [57] =
     {
@@ -179,8 +165,7 @@ survivalGuides =
         posX = -240,
         posY = 0,
         posZ = -404,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [61] =
     {
@@ -191,8 +176,7 @@ survivalGuides =
         posX = 197,
         posY = 0,
         posZ = -81,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [66] =
     {
@@ -203,8 +187,7 @@ survivalGuides =
         posX = 549,
         posY = -6,
         posZ = -56,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [64] =
     {
@@ -215,8 +198,7 @@ survivalGuides =
         posX = 13,
         posY = -54,
         posZ = -593,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [65] =
     {
@@ -227,8 +209,7 @@ survivalGuides =
         posX = -260,
         posY = 8,
         posZ = -55,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [8] =
     {
@@ -239,8 +220,7 @@ survivalGuides =
         posX = -13,
         posY = 0,
         posZ = 25,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [29] =
     {
@@ -251,8 +231,7 @@ survivalGuides =
         posX = -308,
         posY = 15,
         posZ = 262,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [19] =
     {
@@ -263,8 +242,7 @@ survivalGuides =
         posX = 418,
         posY = -52,
         posZ = -99,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [27] =
     {
@@ -275,8 +253,7 @@ survivalGuides =
         posX = 364,
         posY = -32,
         posZ = 23,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [39] =
     {
@@ -287,8 +264,7 @@ survivalGuides =
         posX = -383,
         posY = -6,
         posZ = 363,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [0] =
     {
@@ -299,8 +275,7 @@ survivalGuides =
         posX = -175,
         posY = -4,
         posZ = 80,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [1] =
     {
@@ -311,8 +286,7 @@ survivalGuides =
         posX = 18,
         posY = 0,
         posZ = -115,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [2] =
     {
@@ -323,8 +297,7 @@ survivalGuides =
         posX = -219,
         posY = -8,
         posZ = 179,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [3] =
     {
@@ -335,8 +308,7 @@ survivalGuides =
         posX = 44,
         posY = 10,
         posZ = -68,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [10] =
     {
@@ -347,8 +319,7 @@ survivalGuides =
         posX = 773,
         posY = 29,
         posZ = -18,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [17] =
     {
@@ -359,8 +330,7 @@ survivalGuides =
         posX = -59,
         posY = -2,
         posZ = 447,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [12] =
     {
@@ -371,8 +341,7 @@ survivalGuides =
         posX = -223,
         posY = 71,
         posZ = 827,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [25] =
     {
@@ -383,8 +352,7 @@ survivalGuides =
         posX = -226,
         posY = 5,
         posZ = 388,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [32] =
     {
@@ -395,8 +363,7 @@ survivalGuides =
         posX = -157,
         posY = 47,
         posZ = 643,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [37] =
     {
@@ -407,8 +374,7 @@ survivalGuides =
         posX = 344,
         posY = 5,
         posZ = -256,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [7] =
     {
@@ -419,8 +385,7 @@ survivalGuides =
         posX = -139,
         posY = -19,
         posZ = 10,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [26] =
     {
@@ -431,8 +396,7 @@ survivalGuides =
         posX = -264,
         posY = 1,
         posZ = 107,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [18] =
     {
@@ -443,8 +407,7 @@ survivalGuides =
         posX = 222,
         posY = -1,
         posZ = -9,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [38] =
     {
@@ -455,8 +418,7 @@ survivalGuides =
         posX = -221,
         posY = 0,
         posZ = -13,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [43] =
     {
@@ -467,8 +429,7 @@ survivalGuides =
         posX = 372,
         posY = -12,
         posZ = -25,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [41] =
     {
@@ -479,8 +440,7 @@ survivalGuides =
         posX = -146,
         posY = 4,
         posZ = -298,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [46] =
     {
@@ -491,8 +451,7 @@ survivalGuides =
         posX = 464,
         posY = 0,
         posZ = -51,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [9] =
     {
@@ -503,8 +462,7 @@ survivalGuides =
         posX = -120,
         posY = 0,
         posZ = 248,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [23] =
     {
@@ -515,8 +473,7 @@ survivalGuides =
         posX = -24,
         posY = 0,
         posZ = 1,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [30] =
     {
@@ -527,8 +484,7 @@ survivalGuides =
         posX = 453,
         posY = -8,
         posZ = 180,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [13] =
     {
@@ -539,8 +495,7 @@ survivalGuides =
         posX = -102,
         posY = 0,
         posZ = 631,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [14] =
     {
@@ -551,8 +506,7 @@ survivalGuides =
         posX = 58,
         posY = -67,
         posZ = -266,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [34] =
     {
@@ -563,8 +517,7 @@ survivalGuides =
         posX = -338,
         posY = -12,
         posZ = -179,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [48] =
     {
@@ -575,8 +528,7 @@ survivalGuides =
         posX = 51,
         posY = -28,
         posZ = 53,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [51] =
     {
@@ -587,8 +539,7 @@ survivalGuides =
         posX = 420,
         posY = -3,
         posZ = 11,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [62] =
     {
@@ -599,8 +550,7 @@ survivalGuides =
         posX = 60,
         posY = -8,
         posZ = 57,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [22] =
     {
@@ -611,8 +561,7 @@ survivalGuides =
         posX = -463,
         posY = -10,
         posZ = -23,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [55] =
     {
@@ -623,8 +572,7 @@ survivalGuides =
         posX = -16,
         posY = -20,
         posZ = -237,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [58] =
     {
@@ -635,8 +583,7 @@ survivalGuides =
         posX = 223,
         posY = -24,
         posZ = 335,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [56] =
     {
@@ -647,8 +594,7 @@ survivalGuides =
         posX = 296,
         posY = -40,
         posZ = 64,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [35] =
     {
@@ -659,8 +605,7 @@ survivalGuides =
         posX = -63,
         posY = -20,
         posZ = -280,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [15] =
     {
@@ -671,8 +616,7 @@ survivalGuides =
         posX = 224,
         posY = -2,
         posZ = -529,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [31] =
     {
@@ -683,8 +627,7 @@ survivalGuides =
         posX = 494,
         posY = -3,
         posZ = 729,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [67] =
     {
@@ -695,8 +638,7 @@ survivalGuides =
         posX = -61,
         posY = -30,
         posZ = 261,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [68] =
     {
@@ -707,8 +649,7 @@ survivalGuides =
         posX = 254,
         posY = 0,
         posZ = -265,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [69] =
     {
@@ -719,8 +660,7 @@ survivalGuides =
         posX = -220,
         posY = -12,
         posZ = 57,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [70] =
     {
@@ -731,8 +671,7 @@ survivalGuides =
         posX = -836,
         posY = -20,
         posZ = 98,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [71] =
     {
@@ -743,8 +682,7 @@ survivalGuides =
         posX = 215,
         posY = -23,
         posZ = -104,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [72] =
     {
@@ -755,8 +693,7 @@ survivalGuides =
         posX = 7,
         posY = 20,
         posZ = -88,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [78] =
     {
@@ -767,8 +704,7 @@ survivalGuides =
         posX = 659,
         posY = -19,
         posZ = -598,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [79] =
     {
@@ -779,8 +715,7 @@ survivalGuides =
         posX = -197,
         posY = -7,
         posZ = -497,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [85] =
     {
@@ -791,8 +726,7 @@ survivalGuides =
         posX = -523,
         posY = -32,
         posZ = 205,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [80] =
     {
@@ -803,8 +737,7 @@ survivalGuides =
         posX = -404,
         posY = -16,
         posZ = -165,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [83] =
     {
@@ -815,8 +748,7 @@ survivalGuides =
         posX = -284,
         posY = 39,
         posZ = 529,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [84] =
     {
@@ -827,8 +759,7 @@ survivalGuides =
         posX = 798,
         posY = 71,
         posZ = 769,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [86] =
     {
@@ -839,8 +770,7 @@ survivalGuides =
         posX = 545,
         posY = 25,
         posZ = -340,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [87] =
     {
@@ -851,8 +781,7 @@ survivalGuides =
         posX = -42,
         posY = 0,
         posZ = -863,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [90] =
     {
@@ -863,8 +792,7 @@ survivalGuides =
         posX = 84,
         posY = -24,
         posZ = 563,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [91] =
     {
@@ -875,8 +803,7 @@ survivalGuides =
         posX = 126,
         posY = -20,
         posZ = 600,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [92] =
     {
@@ -887,8 +814,7 @@ survivalGuides =
         posX = 732,
         posY = -33,
         posZ = -10,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [93] =
     {
@@ -899,8 +825,7 @@ survivalGuides =
         posX = 476,
         posY = -8,
         posZ = -439,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [95] =
     {
@@ -911,8 +836,7 @@ survivalGuides =
         posX = -138,
         posY = -80,
         posZ = 231,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [96] =
     {
@@ -923,8 +847,7 @@ survivalGuides =
         posX = 371,
         posY = -12,
         posZ = -23,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [94] =
     {
@@ -935,8 +858,7 @@ survivalGuides =
         posX = -299,
         posY = -6,
         posZ = 126,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [88] =
     {
@@ -947,8 +869,7 @@ survivalGuides =
         posX = 368,
         posY = -32,
         posZ = -22,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [81] =
     {
@@ -959,8 +880,7 @@ survivalGuides =
         posX = 419,
         posY = -52,
         posZ = -100,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [59] =
     {
@@ -971,8 +891,7 @@ survivalGuides =
         posX = -41,
         posY = -10,
         posZ = -93,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [60] =
     {
@@ -983,8 +902,7 @@ survivalGuides =
         posX = -13,
         posY = 1,
         posZ = -34,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [52] =
     {
@@ -995,8 +913,7 @@ survivalGuides =
         posX = -3,
         posY = -2,
         posZ = -95,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [4] =
     {
@@ -1007,8 +924,7 @@ survivalGuides =
         posX = -4,
         posY = -27,
         posZ = 105,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [5] =
     {
@@ -1019,8 +935,7 @@ survivalGuides =
         posX = 133,
         posY = 0,
         posZ = 15,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [74] =
     {
@@ -1031,8 +946,7 @@ survivalGuides =
         posX = -18,
         posY = 0,
         posZ = -33,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [77] =
     {
@@ -1043,8 +957,7 @@ survivalGuides =
         posX = 82,
         posY = 1,
         posZ = -68,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [82] =
     {
@@ -1055,8 +968,7 @@ survivalGuides =
         posX = -246,
         posY = 0,
         posZ = 94,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [89] =
     {
@@ -1067,8 +979,7 @@ survivalGuides =
         posX = -57,
         posY = -5,
         posZ = 215,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [76] =
     {
@@ -1079,8 +990,7 @@ survivalGuides =
         posX = -658,
         posY = -13,
         posZ = 342,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [75] =
     {
@@ -1091,8 +1001,7 @@ survivalGuides =
         posX = 473,
         posY = -16,
         posZ = -16,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [73] =
     {
@@ -1103,8 +1012,7 @@ survivalGuides =
         posX = 501,
         posY = 0,
         posZ = 241,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [45] =
     {
@@ -1115,8 +1023,7 @@ survivalGuides =
         posX = 338,
         posY = 26,
         posZ = -77,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [49] =
     {
@@ -1127,8 +1034,7 @@ survivalGuides =
         posX = -60,
         posY = -1,
         posZ = -30,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [54] =
     {
@@ -1139,8 +1045,7 @@ survivalGuides =
         posX = -163,
         posY = -8,
         posZ = 21,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [63] =
     {
@@ -1151,8 +1056,7 @@ survivalGuides =
         posX = 87,
         posY = 0,
         posZ = -297,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [21] =
     {
@@ -1163,8 +1067,7 @@ survivalGuides =
         posX = -11,
         posY = 0,
         posZ = 5,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     },
     [97] =
     {
@@ -1175,109 +1078,108 @@ survivalGuides =
         posX = -51,
         posY = 0,
         posZ = -120,
-        posRot = 64,
-        messageId = 12341
+        posRot = 64
     }
 }
 
 zoneIdToMenuID =
 {
-    [231] = 0,
-    [234] = 1,
-    [240] = 2,
-    [243] = 3,
-    [26] = 4,
-    [50] = 5,
-    [100] = 6,
-    [141] = 7,
-    [167] = 8,
-    [190] = 9,
-    [102] = 10,
-    [103] = 11,
-    [108] = 12,
-    [193] = 13,
-    [196] = 14,
-    [2] = 15,
-    [104] = 16,
-    [105] = 17,
-    [149] = 18,
-    [1954] = 19,
-    [106] = 20,
-    [172] = 21,
-    [173] = 22,
-    [191] = 23,
-    [109] = 24,
-    [110] = 25,
-    [147] = 26,
-    [197] = 27,
-    [115] = 28,
-    [169] = 29,
-    [192] = 30,
-    [4] = 31,
-    [117] = 32,
-    [118] = 33,
-    [198] = 34,
-    [213] = 35,
-    [119] = 36,
-    [120] = 37,
-    [151] = 38,
-    [200] = 39,
-    [111] = 40,
-    [166] = 41,
-    [112] = 42,
-    [161] = 43,
-    [126] = 44,
-    [127] = 45,
-    [184] = 46,
-    [121] = 47,
-    [122] = 48,
-    [154] = 49,
-    [114] = 50,
-    [125] = 51,
-    [247] = 52,
-    [113] = 53,
-    [128] = 54,
-    [174] = 55,
-    [212] = 56,
-    [123] = 57,
-    [176] = 58,
-    [250] = 59,
-    [252] = 60,
-    [124] = 61,
-    [159] = 62,
-    [205] = 63,
-    [130] = 64,
-    [11] = 65,
-    [24] = 66,
-    [25] = 67,
-    [27] = 68,
-    [28] = 69,
-    [51] = 70,
-    [65] = 71,
-    [68] = 72,
-    [62] = 73,
-    [53] = 74,
-    [54] = 75,
-    [79] = 76,
-    [80] = 77,
-    [81] = 78,
-    [82] = 79,
-    [84] = 80,
-    [175] = 81,
-    [87] = 82,
-    [88] = 83,
-    [89] = 84,
-    [83] = 85,
-    [90] = 86,
-    [91] = 87,
-    [171] = 88,
-    [94] = 89,
-    [95] = 90,
-    [96] = 91,
-    [97] = 92,
-    [98] = 93,
-    [164] = 94,
-    [136] = 95,
-    [138] = 96,
-    [257] = 97
+    [dsp.zone.NORTHERN_SAN_DORIA] = 0,
+    [dsp.zone.BASTOK_MINES] = 1,
+    [dsp.zone.PORT_WINDURST] = 2,
+    [dsp.zone.RULUDE_GARDENS] = 3,
+    [dsp.zone.TAVNAZIAN_SAFEHOLD] = 4,
+    [dsp.zone.AHT_URHGAN_WHITEGATE] = 5,
+    [dsp.zone.WEST_RONFAURE] = 6,
+    [dsp.zone.FORT_GHELSBA] = 7,
+    [dsp.zone.BOSTAUNIEUX_OUBLIETTE] = 8,
+    [dsp.zone.KING_RANPERRES_TOMB] = 9,
+    [dsp.zone.LA_THEINE_PLATEAU] = 10,
+    [dsp.zone.VALKURM_DUNES] = 11,
+    [dsp.zone.KONSCHTAT_HIGHLANDS] = 12,
+    [dsp.zone.ORDELLES_CAVES] = 13,
+    [dsp.zone.GUSGEN_MINES] = 14,
+    [dsp.zone.CARPENTERS_LANDING] = 15,
+    [dsp.zone.JUGNER_FOREST] = 16,
+    [dsp.zone.BATALLIA_DOWNS] = 17,
+    [dsp.zone.DAVOI] = 18,
+    [dsp.zone.THE_ELDIEME_NECROPOLIS] = 19,
+    [dsp.zone.NORTH_GUSTABERG] = 20,
+    [dsp.zone.ZERUHN_MINES] = 21,
+    [dsp.zone.KORROLOKA_TUNNEL] = 22,
+    [dsp.zone.DANGRUF_WADI] = 23,
+    [dsp.zone.PASHHOW_MARSHLANDS] = 24,
+    [dsp.zone.ROLANBERRY_FIELDS] = 25,
+    [dsp.zone.BEADEAUX] = 26,
+    [dsp.zone.CRAWLERS_NEST] = 27,
+    [dsp.zone.WEST_SARUTABARUTA] = 28,
+    [dsp.zone.TORAIMARAI_CANAL] = 29,
+    [dsp.zone.INNER_HORUTOTO_RUINS] = 30,
+    [dsp.zone.BIBIKI_BAY] = 31,
+    [dsp.zone.TAHRONGI_CANYON] = 32,
+    [dsp.zone.BUBURIMU_PENINSULA] = 33,
+    [dsp.zone.MAZE_OF_SHAKHRAMI] = 34,
+    [dsp.zone.LABYRINTH_OF_ONZOZO] = 35,
+    [dsp.zone.MERIPHATAUD_MOUNTAINS] = 36,
+    [dsp.zone.SAUROMUGUE_CHAMPAIGN] = 37,
+    [dsp.zone.CASTLE_OZTROJA] = 38,
+    [dsp.zone.GARLAIGE_CITADEL] = 39,
+    [dsp.zone.BEAUCEDINE_GLACIER] = 40,
+    [dsp.zone.RANGUEMONT_PASS] = 41,
+    [dsp.zone.XARCABARD] = 42,
+    [dsp.zone.CASTLE_ZVAHL_BAILEYS] = 43,
+    [dsp.zone.QUFIM_ISLAND] = 44,
+    [dsp.zone.BEHEMOTHS_DOMINION] = 45,
+    [dsp.zone.LOWER_DELKFUTTS_TOWER] = 46,
+    [dsp.zone.THE_SANCTUARY_OF_ZITAH] = 47,
+    [dsp.zone.ROMAEVE] = 48,
+    [dsp.zone.DRAGONS_AERY] = 49,
+    [dsp.zone.EASTERN_ALTEPA_DESERT] = 50,
+    [dsp.zone.WESTERN_ALTEPA_DESERT] = 51,
+    [dsp.zone.RABAO] = 52,
+    [dsp.zone.CAPE_TERIGGAN] = 53,
+    [dsp.zone.VALLEY_OF_SORROWS] = 54,
+    [dsp.zone.KUFTAL_TUNNEL] = 55,
+    [dsp.zone.GUSTAV_TUNNEL] = 56,
+    [dsp.zone.YUHTUNGA_JUNGLE] = 57,
+    [dsp.zone.SEA_SERPENT_GROTTO] = 58,
+    [dsp.zone.KAZHAM] = 59,
+    [dsp.zone.NORG] = 60,
+    [dsp.zone.YHOATOR_JUNGLE] = 61,
+    [dsp.zone.TEMPLE_OF_UGGALEPIH] = 62,
+    [dsp.zone.IFRITS_CAULDRON] = 63,
+    [dsp.zone.RUAUN_GARDENS] = 64,
+    [dsp.zone.OLDTON_MOVALPOLOS] = 65,
+    [dsp.zone.LUFAISE_MEADOWS] = 66,
+    [dsp.zone.MISAREAUX_COAST] = 67,
+    [dsp.zone.PHOMIUNA_AQUEDUCTS] = 68,
+    [dsp.zone.SACRARIUM] = 69,
+    [dsp.zone.WAJAOM_WOODLANDS] = 70,
+    [dsp.zone.MAMOOK] = 71,
+    [dsp.zone.AYDEEWA_SUBTERRANE] = 72,
+    [dsp.zone.HALVUNG] = 73,
+    [dsp.zone.NASHMAU] = 74,
+    [dsp.zone.ARRAPAGO_REEF] = 75,
+    [dsp.zone.CAEDARVA_MIRE] = 76,
+    [dsp.zone.SOUTHERN_SAN_DORIA_S] = 77,
+    [dsp.zone.EAST_RONFAURE_S] = 78,
+    [dsp.zone.JUGNER_FOREST_S] = 79,
+    [dsp.zone.BATALLIA_DOWNS_S] = 80,
+    [dsp.zone.THE_ELDIEME_NECROPOLIS_S] = 81,
+    [dsp.zone.BASTOK_MARKETS_S] = 82,
+    [dsp.zone.NORTH_GUSTABERG_S] = 83,
+    [dsp.zone.GRAUBERG_S] = 84,
+    [dsp.zone.VUNKERL_INLET_S] = 85,
+    [dsp.zone.PASHHOW_MARSHLANDS_S] = 86,
+    [dsp.zone.ROLANBERRY_FIELDS_S] = 87,
+    [dsp.zone.CRAWLERS_NEST_S] = 88,
+    [dsp.zone.WINDURST_WATERS_S] = 89,
+    [dsp.zone.WEST_SARUTABARUTA_S] = 90,
+    [dsp.zone.FORT_KARUGO_NARUGO_S] = 91,
+    [dsp.zone.MERIPHATAUD_MOUNTAINS_S] = 92,
+    [dsp.zone.SAUROMUGUE_CHAMPAIGN_S] = 93,
+    [dsp.zone.GARLAIGE_CITADEL_S] = 94,
+    [dsp.zone.BEAUCEDINE_GLACIER_S] = 95,
+    [dsp.zone.CASTLE_ZVAHL_BAILEYS_S] = 96,
+    [dsp.zone.EASTERN_ADOULIN] = 97
 }
