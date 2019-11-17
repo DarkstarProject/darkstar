@@ -11,6 +11,7 @@ local SURVIVAL_GUIDE_TELEPORT_COST_TABS = 50
 -- This is used for the NationTeleport save/get
 local travelType = dsp.teleport.type.SURVIVAL
 local cutsceneID = 8500
+dsp.survivalGuide.expansions = 0
 
 local optionMap =
 {
@@ -33,25 +34,23 @@ local optionMap =
 -- 8 = Treasures of Aht Urgahn
 -- 16 = Wings of the Goddess
 -- 2048 = Seekers of Auldoin
-local function getEnabledExpansions()
+local function determineEnabledExpansions()
     -- Original areas and zilart are always available.
-    local returnValue = 3
+    local expansions = 3
 
-    if ENABLE_COP == 1 then returnValue = returnValue + 4 end
+    if ENABLE_COP == 1 then expansions = expansions + 4 end
 
-    if ENABLE_TOAU == 1 then returnValue = returnValue + 8 end
+    if ENABLE_TOAU == 1 then expansions = expansions + 8 end
 
-    if ENABLE_WOTG == 1 then returnValue = returnValue + 16 end
+    if ENABLE_WOTG == 1 then expansions = expansions + 16 end
 
-    if ENABLE_SOA == 1 then returnValue = returnValue + 2048 end
+    if ENABLE_SOA == 1 then expansions = expansions + 2048 end
 
-    return returnValue
+    dsp.survivalGuide.expansions = expansions
 end
 
 local function checkForRegisteredSurvivalGuide(player, guide)
     local group = guide.group
-    local mask = nil
-    local variableSuffix = ''
     local hasRegisteredGuide = player:hasTeleport(travelType, guide.groupIndex - 1, guide.group - 1)
 
     if not hasRegisteredGuide then
@@ -70,8 +69,9 @@ local function teleportMenuUpdate(player, option)
     if choice >= optionMap.SET_MENU_LAYOUT and choice <= optionMap.TELEPORT_MENU then
         local favorites = player:getTeleportMenu(travelType)
 
-        local index = bit.rshift(bit.lshift(option, 8), 24)
-        if (not (choice == optionMap.TELEPORT_MENU)) then
+        local index = bit.rshift(option, 16)
+
+        if not (choice == optionMap.TELEPORT_MENU) then
             if choice == optionMap.ADD_FAVORITE then
                 local temp = 0
                 for x = 1, 9 do
@@ -84,7 +84,8 @@ local function teleportMenuUpdate(player, option)
                     if favorites[x] == index then
                         for x = x, 8 do
                             favorites[x] = favorites[x+1]
-                        end
+						end
+
                         favorites[9] = -1
                         break
                     end
@@ -92,7 +93,7 @@ local function teleportMenuUpdate(player, option)
             elseif choice == optionMap.REPLACE_FAVORITE then
                 favorites[bit.rshift(option, 24) + 1] = index
             elseif choice == optionMap.SET_MENU_LAYOUT then
-                favorites[10] = bit.rshift(option, 16) == 1 and 1 or 0
+                favorites[10] = (bit.rshift(option, 16) and 1) or 0
             end
 
             player:setTeleportMenu(travelType, favorites)
@@ -119,8 +120,11 @@ dsp.survivalGuide.onTrigger = function(player)
     local guide = survivalGuides[tableIndex]
 
     if guide then
-        -- Contains the zone to include, this is a bit-wise value.
-        local expansions = getEnabledExpansions()
+        -- If the explansions haven't been determined yet, do that now.
+        -- Since this is saved in a global, the server will have to be restarted if the admin wants to enable/disable expansions.
+        if dsp.survivalGuide.expansions == 0 then
+            determineEnabledExpansions()
+        end
 
         -- If this survival guide hasn't been registered yet (saved to database) do that now.
         local foundRegisteredGuide = checkForRegisteredSurvivalGuide(player,
@@ -133,13 +137,12 @@ dsp.survivalGuide.onTrigger = function(player)
             -- Menu options can be organized by Region or Content.
             -- Default (0) is region.
             local teleportMenu = player:getTeleportMenu(travelType)
-            teleportMenu = teleportMenu[10]
 
-            if teleportMenu == 1 then
+            if teleportMenu[10] == 1 then
                 param = bit.bor(param, 0x0800)
             end
 
-            if player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) == 1 then
+            if player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) then
                 -- "Rhapsody in White" key item reduces teleport fee by 80%
                 param = bit.bor(param, 0x2000)
             end
@@ -154,7 +157,7 @@ dsp.survivalGuide.onTrigger = function(player)
             -- param 6 = Zones unlocked (group 3), set to -1 to enable all zones in the group.
             -- param 7 = zones unlocked (Zehrun mines and Eastern Adoulin), set to -1 to enable all zones in the group.
             -- param 8 = expansions available.
-            player:startEvent(cutsceneID, 0, param, player:getGil(), G1, G2, G3, G4, expansions)
+            player:startEvent(cutsceneID, 0, param, player:getGil(), G1, G2, G3, G4, dsp.survivalGuide.expansions)
         end
     else
         player:PrintToPlayer('Survival guides are not enabled!')
@@ -166,7 +169,7 @@ dsp.survivalGuide.onEventUpdate = function(player, csid, option)
 end
 
 dsp.survivalGuide.onEventFinish = function(player, eventId, option)
-    if cutsceneID == eventId and not (option >= 1 and option <= 7)
+    if cutsceneID == eventId and not (optionMap.TELEPORT > 1 and optionMap.TELEPORT_MENU <= 7)
         and not (option == 65539)  then
         local selectedMenuId = bit.rshift(option, 16)
 
@@ -181,12 +184,14 @@ dsp.survivalGuide.onEventFinish = function(player, eventId, option)
                 -- If the player has the rhapsody in white, the cost is 10% of original gil or 20% of original tabs.
                 -- GIL: 1000 -> 200
                 -- TABS: 100 -> 10
-                if player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) == 1 then
+                if player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) then
                     teleportCostGil = teleportCostGil * .2
                     teleportCostTabs = teleportCostTabs * .1
                 end
 
-                if bit.rshift(bit.lshift(option, 16), 24) == 1 then
+                -- If we got this far, then the UI has determined that the player has enough currency to do the teleportation.
+                if bit.band(bit.rshift(option, 8), 1) then
+                --if bit.rshift(bit.lshift(option, 16), 24) == 1 then
                     -- Paying with tabs
                     player:delCurrency('valor_point', teleportCostTabs)
                 else
