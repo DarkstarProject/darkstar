@@ -8,10 +8,10 @@ local ID = require("scripts/zones/Apollyon/IDs")
 
 function onTrade(player, npc, trade)
     if player:hasKeyItem(dsp.ki.COSMOCLEANSE) and
-        ((player:hasKeyItem(dsp.ki.RED_CARD) and npc:getID() == ID.npc.SWIRLING_VORTEX)
-        or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npc:getID() == ID.npc.SWIRLING_VORTEX+1))
+        ((player:hasKeyItem(dsp.ki.RED_CARD) and npc:getID() == ID.npc.ENTRANCE_OFFSET)
+        or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npc:getID() == ID.npc.ENTRANCE_OFFSET+1))
     then
-        if npc:getID() == ID.npc.SWIRLING_VORTEX+1 then
+        if npc:getID() == ID.npc.ENTRANCE_OFFSET+1 then
             player:setCharVar("ApollyonEntrance", 1)
         else
             player:setCharVar("ApollyonEntrance", 0)
@@ -24,10 +24,10 @@ end
 
 function onTrigger(player, npc)
     if player:hasKeyItem(dsp.ki.COSMOCLEANSE) and
-        ((player:hasKeyItem(dsp.ki.RED_CARD) and npc:getID() == ID.npc.SWIRLING_VORTEX)
-        or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npc:getID() == ID.npc.SWIRLING_VORTEX+1))
+        ((player:hasKeyItem(dsp.ki.RED_CARD) and npc:getID() == ID.npc.ENTRANCE_OFFSET)
+        or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npc:getID() == ID.npc.ENTRANCE_OFFSET+1))
     then
-        if npc:getID() == ID.npc.SWIRLING_VORTEX+1 then
+        if npc:getID() == ID.npc.ENTRANCE_OFFSET+1 then
             player:setCharVar("ApollyonEntrance", 1)
         else
             player:setCharVar("ApollyonEntrance", 0)

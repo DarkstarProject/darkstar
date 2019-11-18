@@ -67,7 +67,7 @@ zones[dsp.zone.APOLLYON] =
     },
     npc =
     {
-        SWIRLING_VORTEX = 16933218,
+        ENTRANCE_OFFSET = 16933218,
         APOLLYON_SW_CRATE =
         {
             16932865,

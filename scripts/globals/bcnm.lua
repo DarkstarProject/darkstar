@@ -459,10 +459,9 @@ function checkReqs(player, npc, bfid, registrant)
     local stc = player:hasCompletedMission(SANDORIA, mi.sandoria.SAVE_THE_CHILDREN)
     local dm1 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT)
     local dm2 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT)
-    local swirlingVortex = zones[dsp.zone.APOLLYON].npc.SWIRLING_VORTEX
-
-    local function getZM14Offset(offset)
-        return zones[dsp.zone.LALOFF_AMPHITHEATER].npc.SHIMMERING_CIRCLE_OFFSET + offset
+    
+    local function getEntranceOffset(offset)
+        return zones[player:getZoneID()].npc.ENTRANCE_OFFSET + offset
     end
 
     -- requirements to register a battlefield
@@ -498,11 +497,11 @@ function checkReqs(player, npc, bfid, registrant)
         [ 224] = function() return ( player:hasKeyItem(dsp.ki.MOON_BAUBLE)                                                                                                  ) end, -- Quest: The Moonlit Path
         [ 225] = function() return ( windy == mi.windurst.MOON_READING and natStat == 2                                                                                     ) end, -- Windy 9-2: Moon Reading
         [ 256] = function() return ( roz == mi.zilart.RETURN_TO_DELKFUTTS_TOWER and rozStat == 3                                                                            ) end, -- ZM8: Return to Delkfutt's Tower
-        [ 288] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(0) and not player:hasKeyItem(dsp.ki.SHARD_OF_APATHY)           ) end, -- ZM14: Ark Angels (Hume)
-        [ 289] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(1) and not player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE)        ) end, -- ZM14: Ark Angels (Tarutaru)
-        [ 290] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(2) and not player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)             ) end, -- ZM14: Ark Angels (Mithra)
-        [ 291] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(3) and not player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)        ) end, -- ZM14: Ark Angels (Elvaan)
-        [ 292] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(4) and not player:hasKeyItem(dsp.ki.SHARD_OF_RAGE)             ) end, -- ZM14: Ark Angels (Galka)
+        [ 288] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getEntranceOffset(0) and not player:hasKeyItem(dsp.ki.SHARD_OF_APATHY)       ) end, -- ZM14: Ark Angels (Hume)
+        [ 289] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getEntranceOffset(1) and not player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE)    ) end, -- ZM14: Ark Angels (Tarutaru)
+        [ 290] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getEntranceOffset(2) and not player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)         ) end, -- ZM14: Ark Angels (Mithra)
+        [ 291] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getEntranceOffset(3) and not player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)    ) end, -- ZM14: Ark Angels (Elvaan)
+        [ 292] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getEntranceOffset(4) and not player:hasKeyItem(dsp.ki.SHARD_OF_RAGE)         ) end, -- ZM14: Ark Angels (Galka)
         [ 293] = function() return ( dm1 == QUEST_ACCEPTED or dm2 == QUEST_ACCEPTED                                                                                         ) end, -- ZM14 Divine Might
         [ 320] = function() return ( roz == mi.zilart.THE_CELESTIAL_NEXUS                                                                                                   ) end, -- ZM16: The Celestial Nexus
         [ 416] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND)                                                                                          ) end, -- Quest: Trial by Wind
@@ -578,14 +577,14 @@ function checkReqs(player, npc, bfid, registrant)
         [1124] = function() return ( toau == mi.toau.SHIELD_OF_DIPLOMACY and toauStat == 2                                                                                  ) end, -- TOAU22: Shield of Diplomacy
         [1154] = function() return ( mjob == dsp.job.BLU and mlvl >= 66                                                                                                     ) end, -- Quest: The Beast Within (BLU LB5)
         [1156] = function() return ( toau == mi.toau.PUPPET_IN_PERIL and toauStat == 1                                                                                      ) end, -- TOAU29: Puppet in Peril
-        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0                           ) end, -- NW Apollyon
-        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0                           ) end, -- SW Apollyon
-        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1                         ) end, -- NE Apollyon
-        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1                         ) end, -- SE Apollyon
-        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0)
-                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1 ))                      ) end, -- CS Apollyon
-        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0)
-                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1 ))                      ) end, -- Central Apollyon
+        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0)                        ) end, -- NW Apollyon
+        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0)                        ) end, -- SW Apollyon
+        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)                      ) end, -- NE Apollyon
+        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)                      ) end, -- SE Apollyon
+        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0))
+                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)))                    ) end, -- CS Apollyon
+        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0))
+                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)))                    ) end, -- Central Apollyon
         [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Western Tower
         [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Northern Tower
         [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                                        ) end, -- Temenos Eastern Tower
@@ -601,14 +600,14 @@ function checkReqs(player, npc, bfid, registrant)
     {
         [ 897] = function() return ( player:hasKeyItem(dsp.ki.WHISPER_OF_THE_WYRMKING)                                                                      ) end, -- Quest: The Wyrmking Descends
         [ 928] = function() return ( player:hasCompletedMission(COP, mi.cop.ANCIENT_VOWS) or (cop == mi.cop.ANCIENT_VOWS and copStat >= 2)                  ) end, -- Quest: Ouryu Cometh
-        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0           ) end, -- NW Apollyon
-        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0           ) end, -- SW Apollyon
-        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1         ) end, -- NE Apollyon
-        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1         ) end, -- SE Apollyon
-        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0)
-                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1 ))      ) end, -- CS Apollyon
-        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == swirlingVortex + 0)
-                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == swirlingVortex + 1 ))      ) end, -- Central Apollyon
+        [1290] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0)        ) end, -- NW Apollyon
+        [1291] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0)        ) end, -- SW Apollyon
+        [1292] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)      ) end, -- NE Apollyon
+        [1293] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)      ) end, -- SE Apollyon
+        [1294] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0))
+                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)))    ) end, -- CS Apollyon
+        [1296] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and ((player:hasKeyItem(dsp.ki.RED_CARD) and npcid == getEntranceOffset(0))
+                                                                            or (player:hasKeyItem(dsp.ki.BLACK_CARD) and npcid == getEntranceOffset(1)))    ) end, -- Central Apollyon
         [1298] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Temenos Western Tower
         [1299] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Temenos Northern Tower
         [1300] = function() return ( player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CARD)                                        ) end, -- Temenos Eastern Tower
@@ -987,8 +986,11 @@ function EventFinishBCNM(player, csid, option)
             local bfid = stat:getPower()
             local item = getItemById(player, bfid)
             if item ~= 0 then
+                -- remove limbus chips
                 if zone == 37 or zone == 38 then
                     player:tradeComplete()
+                    
+                -- set other traded item to worn
                 elseif player:hasItem(item) then
                     player:createWornItem(item)
                 end
