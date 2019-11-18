@@ -459,7 +459,10 @@ function checkReqs(player, npc, bfid, registrant)
     local stc = player:hasCompletedMission(SANDORIA, mi.sandoria.SAVE_THE_CHILDREN)
     local dm1 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT)
     local dm2 = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT)
-    local arkCircleOffset = zones[dsp.zone.LALOFF_AMPHITHEATER].npc.SHIMMERING_CIRCLE_OFFSET
+
+    local function getZM14Offset(offset)
+        return zones[dsp.zone.LALOFF_AMPHITHEATER].npc.SHIMMERING_CIRCLE_OFFSET + offset
+    end
 
     -- requirements to register a battlefield
     local registerReqs =
@@ -494,11 +497,11 @@ function checkReqs(player, npc, bfid, registrant)
         [ 224] = function() return ( player:hasKeyItem(dsp.ki.MOON_BAUBLE)                                                                                                  ) end, -- Quest: The Moonlit Path
         [ 225] = function() return ( windy == mi.windurst.MOON_READING and player:getCharVar("WINDURST92") == 2                                                             ) end, -- Windy 9-2: Moon Reading
         [ 256] = function() return ( roz == mi.zilart.RETURN_TO_DELKFUTTS_TOWER and rozStat == 3                                                                            ) end, -- ZM8: Return to Delkfutt's Tower
-        [ 288] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 0 and not player:hasKeyItem(dsp.ki.SHARD_OF_APATHY)        ) end, -- ZM14: Ark Angels (Hume)
-        [ 289] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 1 and not player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE)     ) end, -- ZM14: Ark Angels (Tarutaru)
-        [ 290] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 2 and not player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)          ) end, -- ZM14: Ark Angels (Mithra)
-        [ 291] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 3 and not player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)     ) end, -- ZM14: Ark Angels (Elvaan)
-        [ 292] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == arkCircleOffset + 4 and not player:hasKeyItem(dsp.ki.SHARD_OF_RAGE)          ) end, -- ZM14: Ark Angels (Galka)
+        [ 288] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(0) and not player:hasKeyItem(dsp.ki.SHARD_OF_APATHY)           ) end, -- ZM14: Ark Angels (Hume)
+        [ 289] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(1) and not player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE)        ) end, -- ZM14: Ark Angels (Tarutaru)
+        [ 290] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(2) and not player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)             ) end, -- ZM14: Ark Angels (Mithra)
+        [ 291] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(3) and not player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)        ) end, -- ZM14: Ark Angels (Elvaan)
+        [ 292] = function() return ( roz == mi.zilart.ARK_ANGELS and rozStat == 1 and npcid == getZM14Offset(4) and not player:hasKeyItem(dsp.ki.SHARD_OF_RAGE)             ) end, -- ZM14: Ark Angels (Galka)
         [ 293] = function() return ( dm1 == QUEST_ACCEPTED or dm2 == QUEST_ACCEPTED                                                                                         ) end, -- ZM14 Divine Might
         [ 320] = function() return ( roz == mi.zilart.THE_CELESTIAL_NEXUS                                                                                                   ) end, -- ZM16: The Celestial Nexus
         [ 416] = function() return ( player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND)                                                                                          ) end, -- Quest: Trial by Wind
