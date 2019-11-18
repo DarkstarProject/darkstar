@@ -12,13 +12,15 @@ function onBattlefieldInitialise(battlefield)
     SetServerVariable("[Central_Temenos_3rd_Floor]Time", battlefield:getTimeLimit()/60)
     limbus.hideTemenosDoors(battlefield:getID())
     limbus.hideArmouryCrates(battlefield:getID())
+    DespawnMob(ID.mob.TEMENOS_C_MOB[3]+3)
+    DespawnMob(ID.mob.TEMENOS_C_MOB[3]+11)
 end
 
 function onBattlefieldTick(battlefield, tick)
     if battlefield:getRemainingTime() % 60 == 0 then
         SetServerVariable("[Central_Temenos_3rd_Floor]Time", battlefield:getRemainingTime()/60)
     end
-    dsp.battlefield.onBattlefieldTick(battlefield, tick, ID.text.TIME_EXCEEDED, ID.text.WIPE, ID.text.WIPE_KICK)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 function onBattlefieldEnter(player, battlefield)
@@ -28,11 +30,11 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldDestroy(battlefield)
+    limbus.hideTemenosDoors(battlefield:getID(), true)
     SetServerVariable("[Central_Temenos_3rd_Floor]Time", 0)
 end
 
 function onBattlefieldLeave(player, battlefield, leavecode)
-    player:messageSpecial(ID.text.HUM+1)
     if leavecode == dsp.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)

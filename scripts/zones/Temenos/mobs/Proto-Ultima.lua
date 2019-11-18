@@ -5,7 +5,6 @@
 require("scripts/globals/titles")
 require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobSpawn(mob)
     mob:SetMagicCastingEnabled(false)
@@ -39,6 +38,5 @@ function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.TEMENOS_LIBERATOR)
     if isKiller then
         GetNPCByID(ID.npc.TEMENOS_C_CRATE[4][1]):setStatus(dsp.status.NORMAL)
-        GetNPCByID(ID.npc.GATE_OFFSET+24):setStatus(dsp.status.NORMAL)
     end
 end

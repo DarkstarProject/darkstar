@@ -4,7 +4,46 @@
 -----------------------------------
 require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
+
+local path =
+{
+    [0] = 
+    {
+        -312.000,0.000,128.000,
+        -312.000,0.000,152.000,
+    },
+    [1] = 
+    {
+        -300.000,0.000,152.000,
+        -300.000,0.000,128.000,
+    },
+    [2] = 
+    {
+        -248.000,0.000,152.000,
+        -248.000,0.000,128.000,
+    },
+    [3] = 
+    {
+        -260.000,0.000,128.000,
+        -260.000,0.000,152.000,
+    },
+}
+
+function onMobRoam(mob)
+    if mob:getBattlefieldID() == 1300 then
+        local offset = mob:getID() - ID.mob.TEMENOS_E_MOB[5]
+        local pause = mob:getLocalVar("pause")
+        if pause < os.time() then
+            local point = mob:getLocalVar("point")+1
+            mob:setLocalVar("point", (point+2)%6)
+            local X = path[offset][point]
+            local Y = path[offset][point+1]
+            local Z = path[offset][point+2]
+            mob:pathTo(X, Y, Z, 10)
+            mob:setLocalVar("pause", os.time()+10)
+        end
+    end
+end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then

@@ -1130,6 +1130,7 @@ INSERT INTO `mob_pets` VALUES (17330481, 1, 15);
 INSERT INTO `mob_pets` VALUES (16928819, 1, 15); -- Tonberry_s_Elemental
 INSERT INTO `mob_pets` VALUES (16928823, 1, 15); -- Tonberry_s_Elemental
 INSERT INTO `mob_pets` VALUES (16928827, 1, 15); -- Tonberry_s_Elemental
+INSERT INTO `mob_pets` VALUES (16928988, 1, 15); -- Yagudo_s_Elemental
 INSERT INTO `mob_pets` VALUES (16929007, 1, 15); -- Yagudo_s_Elemental
 INSERT INTO `mob_pets` VALUES (16929015, 1, 14); -- Orc_s_Wyvern
 INSERT INTO `mob_pets` VALUES (16929055, 1, 14); -- Aern_s_Wynav

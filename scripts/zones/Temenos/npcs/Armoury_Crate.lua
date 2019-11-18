@@ -2,10 +2,8 @@
 -- Area: Temenos
 -- NPC:  Armoury Crate
 -----------------------------------
-require("scripts/globals/titles")
-require("scripts/globals/quests")
+require("scripts/globals/battlefield")
 require("scripts/globals/limbus")
------------------------------------
 local ID = require("scripts/zones/Temenos/IDs")
 
 local loot =
@@ -1267,61 +1265,63 @@ function onTrigger(player, npc)
     local Y = npc:getYPos()
     local Z = npc:getZPos()
     local bfid = battlefield:getID()
+    local hold = false
 
-        switch (bfid): caseof 
-        {
-            [1298] = function() -- Temenos West Crate Handling
-                if crateID ~= ID.npc.TEMENOS_W_CRATE[7] then
-                    for i = 1, 6 do
-                        for j = 0, 2 do
-                            if crateID == ID.npc.TEMENOS_W_CRATE[i]+j then
-                                if model == 960 then
-                                    dsp.battlefield.HealPlayers(battlefield)
-                                elseif model == 961 then
-                                    limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
-                                elseif model == 962 then
-                                    dsp.battlefield.ExtendTimeLimit(battlefield, 15, ID.text.TIME_EXTENDED)
-                                end
+    switch (bfid): caseof 
+    {
+        [1298] = function() -- Temenos West Crate Handling
+            if crateID ~= ID.npc.TEMENOS_W_CRATE[7] then
+                for i = 1, 6 do
+                    for j = 0, 2 do
+                        if crateID == ID.npc.TEMENOS_W_CRATE[i]+j then
+                            if model == 960 then
+                                dsp.battlefield.HealPlayers(battlefield)
+                            elseif model == 961 then
+                                limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
+                            elseif model == 962 then
+                                limbus.ExtendTimeLimit(battlefield, 15, 37)
                             end
                         end
                     end
-                else
-                    limbus.handleLootRolls(battlefield, loot[bfid][7], nil, npc)
-                    battlefield:setLocalVar("cutsceneTimer", 10)
-                    battlefield:setLocalVar("lootSeen", 1)
                 end
-            end,
-            [1299] = function() -- Temenos North Crate Handling
-                if crateID ~= ID.npc.TEMENOS_N_CRATE[7] then
-                    for i = 1, 6 do
-                        for j = 0, 2 do
-                            if crateID == ID.npc.TEMENOS_N_CRATE[i]+j then
-                                GetNPCByID(ID.npc.TEMENOS_N_CRATE[i]):setStatus(dsp.status.DISAPPEAR)
-                                GetNPCByID(ID.npc.TEMENOS_N_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR)
-                                GetNPCByID(ID.npc.TEMENOS_N_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR)
-                                if model == 960 then
-                                    dsp.battlefield.HealPlayers(battlefield)
-                                elseif model == 961 then
-                                    limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
-                                elseif model == 962 then
-                                    dsp.battlefield.ExtendTimeLimit(battlefield, 15, ID.text.TIME_EXTENDED)
-                                end
+            else
+                limbus.handleLootRolls(battlefield, loot[bfid][7], nil, npc)
+                battlefield:setLocalVar("cutsceneTimer", 10)
+                battlefield:setLocalVar("lootSeen", 1)
+            end
+        end,
+        [1299] = function() -- Temenos North Crate Handling
+            if crateID ~= ID.npc.TEMENOS_N_CRATE[7] then
+                for i = 1, 6 do
+                    for j = 0, 2 do
+                        if crateID == ID.npc.TEMENOS_N_CRATE[i]+j then
+                            GetNPCByID(ID.npc.TEMENOS_N_CRATE[i]):setStatus(dsp.status.DISAPPEAR)
+                            GetNPCByID(ID.npc.TEMENOS_N_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR)
+                            GetNPCByID(ID.npc.TEMENOS_N_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR)
+                            if model == 960 then
+                                dsp.battlefield.HealPlayers(battlefield)
+                            elseif model == 961 then
+                                limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
+                            elseif model == 962 then
+                                limbus.ExtendTimeLimit(battlefield, 15, 37)
                             end
                         end
                     end
-                else
-                    limbus.handleLootRolls(battlefield, loot[bfid][7], nil, npc)
-                    battlefield:setLocalVar("cutsceneTimer", 10)
-                    battlefield:setLocalVar("lootSeen", 1)
                 end
-            end,
-            [1300] = function() -- Temenos East Crate Handling
-                local spawnMimic = math.random(0,1) == 1
-                if crateID ~= ID.npc.TEMENOS_E_CRATE[7] and crateID ~= ID.npc.TEMENOS_E_CRATE[7]+1 then
-                    for i = 1, 6 do
-                        local mask = battlefield:getLocalVar("crateMaskF"..i)
-                        for j = 0, 3 do
-                            if crateID == ID.npc.TEMENOS_E_CRATE[i]+j then
+            else
+                limbus.handleLootRolls(battlefield, loot[bfid][7], nil, npc)
+                battlefield:setLocalVar("cutsceneTimer", 10)
+                battlefield:setLocalVar("lootSeen", 1)
+            end
+        end,
+        [1300] = function() -- Temenos East Crate Handling
+            local spawnMimic = math.random(0,1) == 1
+            if crateID ~= ID.npc.TEMENOS_E_CRATE[7] and crateID ~= ID.npc.TEMENOS_E_CRATE[7]+1 then
+                for i = 1, 6 do
+                    local mask = battlefield:getLocalVar("crateMaskF"..i)
+                    for j = 0, 3 do
+                        if crateID == ID.npc.TEMENOS_E_CRATE[i]+j then
+                            if GetMobByID(ID.mob.TEMENOS_E_MOB[i]+4):isDead() then
                                 DespawnMob(ID.mob.TEMENOS_E_MOB[i])
                                 DespawnMob(ID.mob.TEMENOS_E_MOB[i]+1)
                                 DespawnMob(ID.mob.TEMENOS_E_MOB[i]+2)
@@ -1331,16 +1331,15 @@ function onTrigger(player, npc)
                                     GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR)
                                     GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR)
                                     GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+3):setStatus(dsp.status.DISAPPEAR)
-                                    player:messageSpecial(ID.text.GATE_OPEN)
-                                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                                    GetNPCByID(ID.npc.GATE_OFFSET+6+i):setStatus(dsp.status.NORMAL)
+                                    GetNPCByID(ID.npc.TEMENOS_E_GATE[i]):setAnimation(8)
                                     dsp.battlefield.HealPlayers(battlefield)
+                                    local players = battlefield:getPlayers()
+                                    for i, member in pairs(players) do
+                                        member:messageSpecial(ID.text.GATE_OPEN)
+                                        member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                                    end
                                 elseif model == 961 then
                                     if mask > 7 and spawnMimic then
-                                        GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]):untargetable(true)
-                                        GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+1):untargetable(true)
-                                        GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+2):untargetable(true)
-                                        GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+3):untargetable(true)
                                         battlefield:setLocalVar("crateMaskF"..i, mask-8)
                                         battlefield:setLocalVar("mimicID", crateID)
                                         GetMobByID(ID.mob.TEMENOS_E_MOB[i]+4):setSpawn(X, Y, Z)
@@ -1351,33 +1350,42 @@ function onTrigger(player, npc)
                                         GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR)
                                         GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR)
                                         GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+3):setStatus(dsp.status.DISAPPEAR)
-                                        player:messageSpecial(ID.text.GATE_OPEN)
-                                        player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                                        GetNPCByID(ID.npc.GATE_OFFSET+6+i):setStatus(dsp.status.NORMAL)
+                                        GetNPCByID(ID.npc.TEMENOS_E_GATE[i]):setAnimation(8)
                                         limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
+                                        local players = battlefield:getPlayers()
+                                        for i, member in pairs(players) do
+                                            member:messageSpecial(ID.text.GATE_OPEN)
+                                            member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                                        end
                                     end
                                 elseif model == 962 then
                                     GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]):setStatus(dsp.status.DISAPPEAR)
                                     GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR)
                                     GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR)
                                     GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+3):setStatus(dsp.status.DISAPPEAR)
-                                    player:messageSpecial(ID.text.GATE_OPEN)
-                                    player:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                                    GetNPCByID(ID.npc.GATE_OFFSET+6+i):setStatus(dsp.status.NORMAL)
-                                    dsp.battlefield.ExtendTimeLimit(battlefield, 15, ID.text.TIME_EXTENDED)
+                                    GetNPCByID(ID.npc.TEMENOS_E_GATE[i]):setAnimation(8)
+                                    limbus.ExtendTimeLimit(battlefield, 15, 37)
+                                    local players = battlefield:getPlayers()
+                                    for i, member in pairs(players) do
+                                        member:messageSpecial(ID.text.GATE_OPEN)
+                                        member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
+                                    end
                                 end
+                            else
+                                hold = true
+                                player:messageSpecial(ID.text.CANNOT_OPEN_CHEST)
                             end
                         end
                     end
-                else
+                end
+            else
+                if GetMobByID(ID.mob.TEMENOS_E_MOB[7]+2):isDead() then
                     local otherCrate = ID.npc.TEMENOS_E_CRATE[7]
                     if crateID % 2 == 0 then otherCrate = otherCrate + 1 end
                     if spawnMimic and battlefield:getLocalVar("otherCrate") == 0 then
                         GetMobByID(ID.mob.TEMENOS_E_MOB[7]+2):setSpawn(X, Y, Z)
                         SpawnMob(ID.mob.TEMENOS_E_MOB[7]+2):setPos(X, Y, Z)
                         GetMobByID(ID.mob.TEMENOS_E_MOB[7]+2):updateClaim(player)
-                        GetNPCByID(otherCrate):untargetable(true)
-                        GetNPCByID(crateID):setStatus(dsp.status.DISAPPEAR)
                         battlefield:setLocalVar("otherCrate", otherCrate)
                     else
                         GetNPCByID(otherCrate):setStatus(dsp.status.DISAPPEAR)
@@ -1385,62 +1393,67 @@ function onTrigger(player, npc)
                         battlefield:setLocalVar("cutsceneTimer", 10)
                         battlefield:setLocalVar("lootSeen", 1)
                     end
-                end
-            end,
-            [1301] = function() -- Temenos Central Basement Crate Handling
-                limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
-                battlefield:setLocalVar("cutsceneTimer", 10)
-                battlefield:setLocalVar("lootSeen", 1)
-            end,
-            [1303] = function() -- Temenos Central F1 Crate Handling
-                limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
-                battlefield:setLocalVar("cutsceneTimer", 10)
-                battlefield:setLocalVar("lootSeen", 1)
-            end,
-            [1304] = function() -- Temenos Central F2 Crate Handling
-                limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
-                battlefield:setLocalVar("cutsceneTimer", 10)
-                battlefield:setLocalVar("lootSeen", 1)
-            end,
-            [1305] = function() -- Temenos Central F3 Crate Handling
-                limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
-                battlefield:setLocalVar("cutsceneTimer", 10)
-                battlefield:setLocalVar("lootSeen", 1)
-            end,
-            [1306] = function() -- Temenos Central F4 Crate Handling
-                if crateID ~= ID.npc.TEMENOS_C_CRATE[4][1] then
-                    local randmimic = math.random(1, 24)
-                    if randmimic < 17 then
-                        local MimicList =
-                        {
-                            ID.mob.TEMENOS_C_MOB[4]+20, ID.mob.TEMENOS_C_MOB[4]+21,
-                            ID.mob.TEMENOS_C_MOB[4]+22, ID.mob.TEMENOS_C_MOB[4]+25,
-                            ID.mob.TEMENOS_C_MOB[4]+26, ID.mob.TEMENOS_C_MOB[4]+27,
-                            ID.mob.TEMENOS_C_MOB[4]+28, ID.mob.TEMENOS_C_MOB[4]+29,
-                            ID.mob.TEMENOS_C_MOB[4]+30, ID.mob.TEMENOS_C_MOB[4]+31,
-                            ID.mob.TEMENOS_C_MOB[4]+32, ID.mob.TEMENOS_C_MOB[4]+33,
-                            ID.mob.TEMENOS_C_MOB[4]+34, ID.mob.TEMENOS_C_MOB[4]+35,
-                            ID.mob.TEMENOS_C_MOB[4]+36, ID.mob.TEMENOS_C_MOB[4]+37,
-                        }
-                        GetMobByID(MimicList[randmimic]):setSpawn(X, Y, Z)
-                        SpawnMob(MimicList[randmimic]):setPos(X, Y, Z)
-                        GetMobByID(MimicList[randmimic]):updateClaim(player)
-                    else
-                        limbus.handleLootRolls(battlefield, loot[bfid][2], nil, npc)
-                    end
-                    for i = ID.npc.TEMENOS_C_CRATE[4][1]+2, ID.npc.TEMENOS_C_CRATE[4][1]+20 do
-                        if ID.npc.TEMENOS_C_CRATE[4][crateID] == ID.npc.TEMENOS_C_CRATE[4][i] then
-                            GetNPCByID(i):setStatus(dsp.status.DISAPPEAR)
-                        end
-                    end
                 else
-                    limbus.handleLootRolls(battlefield, loot[bfid][1], nil, npc)
-                    battlefield:setLocalVar("cutsceneTimer", 10)
-                    battlefield:setLocalVar("lootSeen", 1)
+                    player:messageSpecial(ID.text.CANNOT_OPEN_CHEST)
                 end
-            end,
-        }
-    npc:setStatus(dsp.status.DISAPPEAR)
+            end
+        end,
+        [1301] = function() -- Temenos Central Basement Crate Handling
+            limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
+            battlefield:setLocalVar("cutsceneTimer", 10)
+            battlefield:setLocalVar("lootSeen", 1)
+        end,
+        [1303] = function() -- Temenos Central F1 Crate Handling
+            limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
+            battlefield:setLocalVar("cutsceneTimer", 10)
+            battlefield:setLocalVar("lootSeen", 1)
+        end,
+        [1304] = function() -- Temenos Central F2 Crate Handling
+            limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
+            battlefield:setLocalVar("cutsceneTimer", 10)
+            battlefield:setLocalVar("lootSeen", 1)
+        end,
+        [1305] = function() -- Temenos Central F3 Crate Handling
+            limbus.handleLootRolls(battlefield, loot[bfid], nil, npc)
+            battlefield:setLocalVar("cutsceneTimer", 10)
+            battlefield:setLocalVar("lootSeen", 1)
+        end,
+        [1306] = function() -- Temenos Central F4 Crate Handling
+            if crateID ~= ID.npc.TEMENOS_C_CRATE[4][1] then
+                local randmimic = math.random(1, 24)
+                if randmimic < 17 then
+                    local MimicList =
+                    {
+                        ID.mob.TEMENOS_C_MOB[4]+20, ID.mob.TEMENOS_C_MOB[4]+21,
+                        ID.mob.TEMENOS_C_MOB[4]+22, ID.mob.TEMENOS_C_MOB[4]+25,
+                        ID.mob.TEMENOS_C_MOB[4]+26, ID.mob.TEMENOS_C_MOB[4]+27,
+                        ID.mob.TEMENOS_C_MOB[4]+28, ID.mob.TEMENOS_C_MOB[4]+29,
+                        ID.mob.TEMENOS_C_MOB[4]+30, ID.mob.TEMENOS_C_MOB[4]+31,
+                        ID.mob.TEMENOS_C_MOB[4]+32, ID.mob.TEMENOS_C_MOB[4]+33,
+                        ID.mob.TEMENOS_C_MOB[4]+34, ID.mob.TEMENOS_C_MOB[4]+35,
+                        ID.mob.TEMENOS_C_MOB[4]+36, ID.mob.TEMENOS_C_MOB[4]+37,
+                    }
+                    GetMobByID(MimicList[randmimic]):setSpawn(X, Y, Z)
+                    SpawnMob(MimicList[randmimic]):setPos(X, Y, Z)
+                    GetMobByID(MimicList[randmimic]):updateClaim(player)
+                else
+                    limbus.handleLootRolls(battlefield, loot[bfid][2], nil, npc)
+                end
+                for i = ID.npc.TEMENOS_C_CRATE[4][1]+2, ID.npc.TEMENOS_C_CRATE[4][1]+20 do
+                    if ID.npc.TEMENOS_C_CRATE[4][crateID] == ID.npc.TEMENOS_C_CRATE[4][i] then
+                        GetNPCByID(i):setStatus(dsp.status.DISAPPEAR)
+                    end
+                end
+            else
+                limbus.handleLootRolls(battlefield, loot[bfid][1], nil, npc)
+                battlefield:setLocalVar("cutsceneTimer", 10)
+                battlefield:setLocalVar("lootSeen", 1)
+            end
+        end,
+    }
+    if not hold then
+        npc:setStatus(dsp.status.DISAPPEAR)
+    end
 end
 
 function onEventUpdate(player, csid, option)

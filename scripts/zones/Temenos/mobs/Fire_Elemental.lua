@@ -4,7 +4,6 @@
 -----------------------------------
 require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then

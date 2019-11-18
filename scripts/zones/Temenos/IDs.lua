@@ -24,6 +24,7 @@ zones[dsp.zone.TEMENOS] =
         TIME_EXTENDED           = 7372, -- Your time in Limbus has been extended...
         TIME_LEFT               = 7373, -- You have <p0> minutes left in Limbus.
         CONQUEST_BASE           = 7375, -- Tallying conquest results...
+        CANNOT_OPEN_CHEST       = 7556, -- You cannot open the treasure chest now.
         GATE_OPEN               = 7557, -- The gate opens...
     },
     mob =
@@ -69,8 +70,44 @@ zones[dsp.zone.TEMENOS] =
     },
     npc =
     {
-        GATE_OFFSET = 16929221,
-        COFFER_OFFSET = 16928768,
+        TEMENOS_N_GATE =
+        {
+            16929197,
+            16929198,
+            16929199,
+            16929200,
+            16929201,
+            16929202,
+            16929203,
+        },
+        TEMENOS_E_GATE =
+        {
+            16929204,
+            16929205,
+            16929206,
+            16929207,
+            16929208,
+            16929209,
+            16929210,
+        },
+        TEMENOS_W_GATE =
+        {
+            16929211,
+            16929212,
+            16929213,
+            16929214,
+            16929215,
+            16929216,
+            16929217,
+        },
+        TEMENOS_C_GATE =
+        {
+            16929219,
+            16929220,
+            16929221,
+            16929222,
+            16929218,
+        },
         TEMENOS_N_CRATE =
         {
             16928769,

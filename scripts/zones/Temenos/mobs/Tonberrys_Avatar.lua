@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Temenos
---  Mob: Grognard Impaler
+-- Area: Temenos N T
+--  Mob: Tonberry's Avatar
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins = {require("scripts/mixins/families/avatar")}
 
 function onMobDeath(mob, player, isKiller)
 end

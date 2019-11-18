@@ -2,9 +2,7 @@
 -- Area: Temenos E T
 --  Mob: Light Elemental
 -----------------------------------
-require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobEngaged(mob, target)
     local mobID = mob:getID()
@@ -24,13 +22,11 @@ function onMobDeath(mob, player, isKiller)
             [ID.mob.TEMENOS_C_MOB[2]+1] = function()
                 if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+2):isDead() then
                     GetNPCByID(ID.npc.TEMENOS_C_CRATE[2]):setStatus(dsp.status.NORMAL)
-                    GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
                 end
             end,
             [ID.mob.TEMENOS_C_MOB[2]+2] = function()
                 if GetMobByID(ID.mob.TEMENOS_C_MOB[2]):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+1):isDead() then
                     GetNPCByID(ID.npc.TEMENOS_C_CRATE[2]):setStatus(dsp.status.NORMAL)
-                    GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
                 end
             end,
         }

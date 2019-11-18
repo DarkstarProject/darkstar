@@ -229,7 +229,7 @@ function dsp.battlefield.ExtendTimeLimit(battlefield, minutes, message, param, p
     if message then
         players = players or battlefield:getPlayers()
         for _, player in pairs(players) do
-            player:messageSpecial(message, param or minutes)
+            player:messageBasic(message, param or minutes)
         end
     end
 end

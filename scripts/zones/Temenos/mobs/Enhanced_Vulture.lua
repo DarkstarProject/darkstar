@@ -2,9 +2,7 @@
 -- Area: Temenos W T
 --  Mob: Enhanced Vulture
 -----------------------------------
-require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobEngaged(mob, target)
     GetMobByID(ID.mob.TEMENOS_W_MOB[7]):updateEnmity(target)
@@ -25,7 +23,6 @@ function onMobDeath(mob, player, isKiller)
             GetMobByID(ID.mob.TEMENOS_W_MOB[7]+4):isDead() and GetMobByID(ID.mob.TEMENOS_W_MOB[7]+5):isDead()
         then
             GetNPCByID(ID.npc.TEMENOS_W_CRATE[7]):setStatus(dsp.status.NORMAL)
-            GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
         end
     end
 end

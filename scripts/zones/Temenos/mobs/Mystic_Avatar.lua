@@ -2,9 +2,7 @@
 -- Area: Temenos E T
 --  Mob: Mystic Avatar
 -----------------------------------
-require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobSpawn(mob)
     local mobID = mob:getID()
@@ -42,7 +40,7 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.GATE_OPEN)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+7):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.TEMENOS_E_GATE[1]):setAnimation(8)
             else
                 for i = 0, 3 do
                     if ID.npc.TEMENOS_E_CRATE[1]+i ~= mimicID then
@@ -65,7 +63,7 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.GATE_OPEN)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+8):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.TEMENOS_E_GATE[2]):setAnimation(8)
             else
                 for i = 0, 3 do
                     if ID.npc.TEMENOS_E_CRATE[2]+i ~= mimicID then
@@ -88,7 +86,7 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.GATE_OPEN)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+9):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.TEMENOS_E_GATE[3]):setAnimation(8)
             else
                 for i = 0, 3 do
                     if ID.npc.TEMENOS_E_CRATE[3]+i ~= mimicID then
@@ -111,7 +109,7 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.GATE_OPEN)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+10):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.TEMENOS_E_GATE[4]):setAnimation(8)
             else
                 for i = 0, 3 do
                     if ID.npc.TEMENOS_E_CRATE[4]+i ~= mimicID then
@@ -134,7 +132,7 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.GATE_OPEN)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+11):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.TEMENOS_E_GATE[5]):setAnimation(8)
             else
                 for i = 0, 3 do
                     if ID.npc.TEMENOS_E_CRATE[5]+i ~= mimicID then
@@ -157,7 +155,7 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.GATE_OPEN)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
-                GetNPCByID(ID.npc.GATE_OFFSET+12):setStatus(dsp.status.NORMAL)
+                GetNPCByID(ID.npc.TEMENOS_E_GATE[6]):setAnimation(8)
             else
                 for i = 0, 3 do
                     if ID.npc.TEMENOS_E_CRATE[6]+i ~= mimicID then
@@ -213,7 +211,6 @@ function onMobDeath(mob, player, isKiller)
         elseif mobID == ID.mob.TEMENOS_C_MOB[2] then --Carbuncle (Central Temenos 2nd Floor)
             if GetMobByID(ID.mob.TEMENOS_C_MOB[2]+1):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[2]+2):isDead() then
                 GetNPCByID(ID.npc.TEMENOS_C_CRATE[2]):setStatus(dsp.status.NORMAL)
-                GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
             end
         end
     end

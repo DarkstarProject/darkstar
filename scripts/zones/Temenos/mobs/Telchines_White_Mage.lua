@@ -18,7 +18,7 @@ function onMobDeath(mob, player, isKiller)
                 member:messageSpecial(ID.text.GATE_OPEN)
                 member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
             end
-            GetNPCByID(ID.npc.GATE_OFFSET+2):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.TEMENOS_N_GATE[3]):setAnimation(8)
         end
 
         if random % 2 == 1 then

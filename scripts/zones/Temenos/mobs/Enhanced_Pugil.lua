@@ -4,7 +4,6 @@
 -----------------------------------
 require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobEngaged(mob, target)
 end
@@ -18,13 +17,13 @@ function onMobDeath(mob, player, isKiller)
         local mobID = mob:getID()
         local spawn = math.random(0,1) == 1
 
-        if GetNPCByID(ID.npc.GATE_OFFSET+19):getStatus() ~= dsp.status.NORMAL then
+        if GetNPCByID(ID.npc.TEMENOS_W_GATE[6]):getAnimation() == 9 then
             local players = battlefield:getPlayers()
             for i, member in pairs(players) do
                 member:messageSpecial(ID.text.GATE_OPEN)
                 member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
             end
-            GetNPCByID(ID.npc.GATE_OFFSET+19):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.TEMENOS_W_GATE[6]):setAnimation(8)
         end
 
         for i = 0, 8 do

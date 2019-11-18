@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
---  Mob: Grognard Impaler
+--  Mob: Koo Buzu the Theomanic
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 

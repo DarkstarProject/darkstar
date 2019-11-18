@@ -18,7 +18,6 @@ function onMobDeath(mob, player, isKiller)
             GetMobByID(ID.mob.TEMENOS_N_MOB[7]+4):isDead()
         then
             GetNPCByID(ID.npc.TEMENOS_N_CRATE[7]):setStatus(dsp.status.NORMAL)
-            GetNPCByID(ID.npc.GATE_OFFSET+6):setStatus(dsp.status.NORMAL)
         end
     end
 end

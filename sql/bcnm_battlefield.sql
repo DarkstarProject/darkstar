@@ -1413,6 +1413,7 @@ INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928797,1);-- Kindred Warrior
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928798,1);-- Kindred Dark Knight
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928799,1);-- Kindred Summoner
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928800,1);-- Kindred's Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928801,0);-- Kindred's Avatar
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928802,1);-- Kindred Black Mage
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928803,1);-- Kindred Black Mage
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928804,1);-- Kindred Black Mage
@@ -1426,12 +1427,15 @@ INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928817,1);-- Cryptonberry Skulke
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928818,1);-- Cryptonberry Abductor
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928819,1);-- Cryptonberry Designator
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928820,1);-- Tonberry's Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928821,0);-- Tonberry's Avatar
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928822,1);-- Cryptonberry Abductor
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928823,1);-- Cryptonberry Designator
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928824,1);-- Tonberry's Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928825,0);-- Tonberry's Avatar
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928826,1);-- Cryptonberry Abductor
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928827,1);-- Cryptonberry Designator
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928828,1);-- Tonberry's Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928829,0);-- Tonberry's Avatar
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928831,3);-- Goblin Warlord
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928832,3);-- Goblin Fencer
 INSERT INTO `bcnm_battlefield` VALUES (1299,1,16928833,3);-- Goblin Theurgist
@@ -1534,6 +1538,8 @@ INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928966,3);-- Proto-Ultima
 INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928986,0);-- Kingslayer Doggvdegg
 INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928987,0);-- Ji'Gho Ageless
 INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928988,0);-- Koo Buzu the Theomanic
+INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928989,0);-- Yagudo's Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928990,0);-- Yagudo's Avatar
 INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928991,0);-- Mystic Avatar
 INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928992,0);-- Mystic Avatar
 INSERT INTO `bcnm_battlefield` VALUES (1306,4,16928993,0);-- Mystic Avatar

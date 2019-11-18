@@ -22,7 +22,6 @@ function onMobDeath(mob, player, isKiller)
         then
             GetNPCByID(ID.npc.TEMENOS_C_CRATE[1]):setPos(mobX, mobY, mobZ)
             GetNPCByID(ID.npc.TEMENOS_C_CRATE[1]):setStatus(dsp.status.NORMAL)
-            GetNPCByID(ID.npc.GATE_OFFSET+20):setStatus(dsp.status.NORMAL)
         end
     end
 end

@@ -2,7 +2,12 @@
 -- Area: Temenos
 --  Mob: Temenos Aern
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/limbus")
+mixins =
+{
+    require("scripts/mixins/families/aern"),
+    require("scripts/mixins/job_special")
+}
 local ID = require("scripts/zones/Temenos/IDs")
 
 function onMobDeath(mob, player, isKiller)
@@ -22,16 +27,16 @@ function onMobDespawn(mob)
         
         switch (mobID): caseof {
             [ID.mob.TEMENOS_C_MOB[5]+19] = function()
-                dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                limbus.ExtendTimeLimit(battlefield, 5, 37)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+20] = function()
-                dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                limbus.ExtendTimeLimit(battlefield, 5, 37)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+29] = function()
-                dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                limbus.ExtendTimeLimit(battlefield, 5, 37)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+30] = function()
-                dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                limbus.ExtendTimeLimit(battlefield, 5, 37)
             end,
         }
         local leftAern=0

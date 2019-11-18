@@ -2,9 +2,8 @@
 -- Area: Temenos
 --  Mob: Pee Qoho the Python
 -----------------------------------
-require("scripts/globals/limbus")
+mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
------------------------------------
 
 function onMobEngaged(mob, target)
     if GetMobByID(ID.mob.TEMENOS_C_MOB[3]+18):isDead() and GetMobByID(ID.mob.TEMENOS_C_MOB[3]+19):isDead() and
@@ -31,7 +30,6 @@ function onMobDeath(mob, player, isKiller)
             GetMobByID(ID.mob.TEMENOS_C_MOB[3]+2):isDead()
         then
             GetNPCByID(ID.npc.TEMENOS_C_CRATE[3]):setStatus(dsp.status.NORMAL)
-            GetNPCByID(ID.npc.GATE_OFFSET+20):setStatus(dsp.status.NORMAL)
         end
     end
 end

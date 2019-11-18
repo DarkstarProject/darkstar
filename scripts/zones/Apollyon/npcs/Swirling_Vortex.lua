@@ -18,7 +18,7 @@ function onTrade(player, npc, trade)
         end
         TradeBCNM(player, npc, trade)
     else
-        player:messageSpecial(ID.text.NO_KEY+1)
+        player:messageSpecial(ID.text.NO_KEY)
     end
 end
 
