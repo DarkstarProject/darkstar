@@ -1,5 +1,4 @@
 -- Casket Mixins
-require("scripts/globals/settings")
 require("scripts/globals/caskets")
 require("scripts/globals/status")
 require("scripts/globals/mixins")
@@ -17,10 +16,10 @@ g_mixins.spawn_casket = function(mob)
         if mob:getMaster() ~= nil then
             local master = mob:getMaster()
             if master:isMob() then -- sanity check, ensuring the mob killed is not a player's pet.
-                dsp.caskets.SpawnCasket(player, mob, mobPos.x, mobPos.y, mobPos.z, mobPos.rot)
+                dsp.caskets.spawnCasket(player, mob, mobPos.x, mobPos.y, mobPos.z, mobPos.rot)
             end
         else
-            dsp.caskets.SpawnCasket(player, mob, mobPos.x, mobPos.y, mobPos.z, mobPos.rot)
+            dsp.caskets.spawnCasket(player, mob, mobPos.x, mobPos.y, mobPos.z, mobPos.rot)
         end
     end);
 end
