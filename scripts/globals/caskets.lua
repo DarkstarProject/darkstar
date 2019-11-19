@@ -721,7 +721,7 @@ local function giveItem(player, npc, itemNum)
             return
         elseif player:getFreeSlotsCount() > 0 then
             if itemID ~= 0 then
-                if multipleItemCheck(itemID) == true then
+                if multipleItemCheck(itemID) then
                     if player:addItem(itemID, 33) then
                         messageChest(player, "PLAYER_OBTAINS_ITEM", itemID, 0, 0, 0)
                         npc:setLocalVar(itemQuery, 0)
@@ -861,7 +861,7 @@ dsp.caskets.onTrade = function(player, npc, trade)
                 end
             end
 
-            if canGetHint == true then
+            if canGetHint then
                 local highNum = 0
                 local lowNum  = 0
 
@@ -946,7 +946,7 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
                 end
 
                 if randText == 1 then
-                    if isEven(splitNumbers[1]) == true then
+                    if isEven(splitNumbers[1]) then
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_FIRST_EVEN_ODD, 0, 0, 0, 0)
                         npc:setLocalVar("[caskets]FAILED_ATEMPTS", failedAtempts +1)
                     else
@@ -954,7 +954,7 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
                         npc:setLocalVar("[caskets]FAILED_ATEMPTS", failedAtempts +1)
                     end
                 elseif randText == 2 then
-                    if isEven(splitNumbers[2]) == true then
+                    if isEven(splitNumbers[2]) then
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.HUNCH_SECOND_EVEN_ODD, 0, 0, 0, 0)
                         npc:setLocalVar("[caskets]FAILED_ATEMPTS", failedAtempts +1)
                     else
