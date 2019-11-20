@@ -7758,7 +7758,7 @@ INSERT INTO `mob_groups` VALUES (1,4218,128,'Velociraptor',330,0,2573,0,0,66,69,
 INSERT INTO `mob_groups` VALUES (2,3120,128,'Peryton',330,0,1991,0,0,69,72,0);
 INSERT INTO `mob_groups` VALUES (3,1341,128,'Fire_Elemental',330,4,6860,0,0,66,68,0);
 INSERT INTO `mob_groups` VALUES (4,71,128,'Air_Elemental',330,4,0,0,0,66,68,0);
-INSERT INTO `mob_groups` VALUES (5,4125,128,'Valley_Manticore',330,0,2537,0,0,72,74,0);
+INSERT INTO `mob_groups` VALUES (5,4125,128,'Valley_Manticore',330,0,2537,0,0,71,74,0);
 INSERT INTO `mob_groups` VALUES (6,44,128,'Adamantoise',0,128,21,7000,0,72,74,0);
 INSERT INTO `mob_groups` VALUES (7,268,128,'Aspidochelone',0,128,183,15000,0,85,88,0);
 INSERT INTO `mob_groups` VALUES (8,3643,128,'Skahnowa',1,0,0,0,0,1,1,0);
@@ -7835,7 +7835,7 @@ INSERT INTO `mob_groups` VALUES (2,1360,130,'Flamingo',330,0,843,0,0,72,74,0);
 INSERT INTO `mob_groups` VALUES (3,1827,130,'Groundskeeper',300,0,1242,0,0,75,78,0);
 INSERT INTO `mob_groups` VALUES (4,1341,130,'Fire_Elemental',330,0,831,0,0,78,79,0);
 INSERT INTO `mob_groups` VALUES (5,4309,130,'Water_Elemental',330,0,2629,0,0,78,79,0);
-INSERT INTO `mob_groups` VALUES (6,71,130,'Air_Elemental',330,0,38,0,0,73,74,0);
+INSERT INTO `mob_groups` VALUES (6,71,130,'Air_Elemental',330,0,38,0,0,78,79,0);
 INSERT INTO `mob_groups` VALUES (7,3912,130,'Thunder_Elemental',330,0,2410,0,0,78,79,0);
 INSERT INTO `mob_groups` VALUES (8,2413,130,'Light_Elemental',330,0,1521,0,0,78,79,0);
 INSERT INTO `mob_groups` VALUES (9,913,130,'Dark_Elemental',330,0,568,0,0,78,79,0);
@@ -7849,8 +7849,8 @@ INSERT INTO `mob_groups` VALUES (16,3540,130,'Seiryu',0,128,2196,22000,0,88,90,0
 INSERT INTO `mob_groups` VALUES (17,592,130,'Byakko',0,128,394,21500,0,88,90,0);
 INSERT INTO `mob_groups` VALUES (18,3816,130,'Suzaku',0,128,2362,21000,0,88,90,0);
 INSERT INTO `mob_groups` VALUES (19,1249,130,'Eraser',1,0,0,0,0,1,1,0);
-INSERT INTO `mob_groups` VALUES (20,4720,130,'Aello',0,128,0,0,9999,93,95,0);
-INSERT INTO `mob_groups` VALUES (21,4721,130,'Aello_Handmaiden',0,128,0,0,9999,90,92,0);
+INSERT INTO `mob_groups` VALUES (20,4720,130,'Aello',0,128,0,0,9999,110,110,0);
+INSERT INTO `mob_groups` VALUES (21,4721,130,'Aello_Handmaiden',0,128,0,0,9999,100,100,0);
 INSERT INTO `mob_groups` VALUES (6933,2226,130,'Kilhwch',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (6934,2405,130,'Lhu_Mhakaracca',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (6937,2904,130,'Noillurie',0,0,0,0,0,0,0,0);
