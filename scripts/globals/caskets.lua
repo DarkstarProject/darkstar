@@ -660,7 +660,6 @@ local function giveTempItem(player, npc, tempNum)
     local spawnStatus = npc:getLocalVar("[caskets]SPAWNSTATUS")
 
     if spawnStatus == casketInfo.spawnStatus.DESPAWNED then
-        player:PrintToPlayer("The chest had already disappeared!", 13)
         return
     end
 
@@ -708,7 +707,6 @@ local function giveItem(player, npc, itemNum)
     local spawnStatus = npc:getLocalVar("[caskets]SPAWNSTATUS")
 
     if spawnStatus == casketInfo.spawnStatus.DESPAWNED then
-        player:PrintToPlayer("The chest had already disappeared!", dsp.msg.channel.NS_SAY)
         return
     end
 
