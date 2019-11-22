@@ -326,6 +326,8 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
                 BattlefieldMob_t mob;
                 mob.PMob = static_cast<CMobEntity*>(PEntity);
                 mob.condition = conditions;
+                mob.PMob->m_bcnmID = this->GetID();
+                mob.PMob->m_battlefieldID = this->GetArea();
 
                 if (mob.condition & CONDITION_WIN_REQUIREMENT)
                     m_RequiredEnemyList.push_back(mob);
