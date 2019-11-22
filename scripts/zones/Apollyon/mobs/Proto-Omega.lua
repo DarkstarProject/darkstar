@@ -27,7 +27,6 @@ function onMobFight(mob, target)
     local formTime = mob:getLocalVar("formWait")
     local lifePercent = mob:getHPP()
     local currentForm = mob:getLocalVar("form")
-    local podReady = mob:getBattlefield():getLocalVar("podReady")
     
     if lifePercent < 70 and currentForm < 1 then
         currentForm = 1
@@ -44,7 +43,7 @@ function onMobFight(mob, target)
             if mob:AnimationSub() == 1 then
                 mob:AnimationSub(2)
                 mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
-                if podReady == 1 and math.random(0,1) == 1 then
+                if not pod:isSpawned() and math.random(0,1) == 1 then
                     mob:useMobAbility(1532)
                 end 
             else

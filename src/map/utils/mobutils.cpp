@@ -821,11 +821,12 @@ void SetupBattlefieldMob(CMobEntity* PMob)
     PMob->m_roamFlags |= ROAMFLAG_EVENT;
     PMob->m_maxRoamDistance = 0.5f;
 
-    if((PMob->m_bcnmID != 864) && (PMob->m_bcnmID != 704) && (PMob->m_bcnmID != 706))
+    if(PMob->m_bcnmID != 864 && PMob->m_bcnmID != 704 && PMob->m_bcnmID != 706
+        && PMob->loc.zone->GetRegionID() != REGION_LIMBUS)
     {
         // bcnmID 864 (desires of emptiness), 704 (darkness named), and 706 (waking dreams) don't superlink
+        // Limbus mobs don't superlink
         // force all mobs in same instance to superlink
-        // plus one in case id is zero
         PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_battlefieldID);
     }
 

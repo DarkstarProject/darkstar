@@ -9,6 +9,7 @@ local ID = require("scripts/zones/Apollyon/IDs")
 
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
+    battlefield:setLocalVar("lootSpawned", 1)
     SetServerVariable("[SW_Apollyon]Time", battlefield:getTimeLimit()/60)
     local random = math.random(0, 7)
     battlefield:setLocalVar("timePH", ID.npc.APOLLYON_SW_CRATE[3]+random)

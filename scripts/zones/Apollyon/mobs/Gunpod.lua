@@ -100,9 +100,3 @@ function onMobDeath(mob, player, isKiller)
         end
     end
 end
-
-function onMobDespawn(mob)
-    if mob:getBattlefield() then
-        mob:getBattlefield():setLocalVar("podReady", 1)
-    end
-end
