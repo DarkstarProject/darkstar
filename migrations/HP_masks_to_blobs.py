@@ -47,7 +47,7 @@ def migrate(cur, db):
 
                 masks[x-1] = (left << 16) | right
 
-            hpData = array.array('i', masks).tobytes()
+            hpData = array.array('I', masks).tobytes()
             try:
                 cur.execute("UPDATE char_unlocks SET homepoints = %s WHERE charid = %s", (hpData, charid))
                 db.commit()
