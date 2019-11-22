@@ -1268,7 +1268,9 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
         if player:hasStatusEffect(prowess) then
 
             -- stack up to 11 times
-            if prowess == dsp.effect.PROWESS_TH then
+            if prowess == dsp.effect.PROWESS_CASKET_RATE then
+                power = utils.clamp(player:getStatusEffect(prowess):getPower() + 1, 0, 11)
+            elseif prowess == dsp.effect.PROWESS_TH then
                 power = utils.clamp(player:getStatusEffect(prowess):getPower() + 1, 0, 11)
             elseif prowess == dsp.effect.PROWESS_ATTACK_SPEED then
                 power = 400
@@ -1289,7 +1291,9 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
 
         -- new buff
         else
-            if prowess == dsp.effect.PROWESS_TH then
+            if prowess == dsp.effect.PROWESS_CASKET_RATE then
+                power = 1
+            elseif prowess == dsp.effect.PROWESS_TH then
                 power = 1
             elseif prowess == dsp.effect.PROWESS_ATTACK_SPEED then
                 power = 400
