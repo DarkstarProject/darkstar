@@ -15,7 +15,7 @@ dsp.maws = dsp.maws or {}
 local ZN = dsp.zone
 local MAW = dsp.teleport.type.PAST_MAW
 
-local pastMaws = 
+local pastMaws =
 { --[ZONE ID]                    = {Bit Slot in Array, Cutscenes{new to WoTg or add new, mission, warp}, Destination {Coordinates}}
     [ZN.BATALLIA_DOWNS]          = {bit = 0, cs = {new = 500, msn = 501, warp = 910}, dest = { -51.486,   0.371,  436.972, 128,  84}},
     [ZN.ROLANBERRY_FIELDS]       = {bit = 1, cs = {new = 500, msn = 501, warp = 904}, dest = {-196.500,   7.999,  361.192, 225,  91}},
@@ -43,7 +43,7 @@ local function meetsMission2Reqs(player)
         return false
     end
 
-    local Q  = dsp.quest.id.crystalWar    
+    local Q  = dsp.quest.id.crystalWar
     local Q1 = player:getQuestStatus(CRYSTAL_WAR, Q.CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED
     local Q2 = player:getQuestStatus(CRYSTAL_WAR, Q.THE_TIGRESS_STRIKES)  == QUEST_COMPLETED
     local Q3 = player:getQuestStatus(CRYSTAL_WAR, Q.FIRES_OF_DISCONTENT)  == QUEST_COMPLETED
@@ -53,8 +53,7 @@ local function meetsMission2Reqs(player)
 end
 
 dsp.maws.onTrigger = function(player, npc)
-
-    local ID = require("scripts/zones/"..player:getZoneName().."/IDs")
+    local ID = zones[player:getZoneID()]
 
     if not ENABLE_WOTG == 1 then
         player:messageSpecial(ID.text.NOTHING_HAPPENS)
@@ -99,7 +98,7 @@ dsp.maws.onEventFinish = function(player, csid, option)
             player:addTeleport(MAW, maw.bit)
         end
         goToMaw()
-    end 
+    end
 
     if csid == maw.cs.warp and option == 1 then
         goToMaw() -- Known to have maw, no need to check
@@ -111,7 +110,7 @@ dsp.maws.onEventFinish = function(player, csid, option)
         player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT)
         addMaw() -- May not have yet, check
     elseif maw.cs.new and csid == maw.cs.new then
-        local ID = require("scripts/zones/"..player:getZoneName().."/IDs")
+        local ID = zones[player:getZoneID()]
         player:completeMission(WOTG,dsp.mission.id.wotg.CAVERNOUS_MAWS)
         player:addMission(WOTG,dsp.mission.id.wotg.BACK_TO_THE_BEGINNING)
         player:addKeyItem(dsp.ki.PURE_WHITE_FEATHER)
