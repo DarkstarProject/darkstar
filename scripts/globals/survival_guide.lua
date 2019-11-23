@@ -142,8 +142,8 @@ dsp.survivalGuide.onEventUpdate = function(player, csid, option)
 end
 
 dsp.survivalGuide.onEventFinish = function(player, eventId, option)
-    if cutsceneID == eventId and not (optionMap.TELEPORT > 1 and optionMap.TELEPORT_MENU <= 7)
-        and not (option == 65539)  then
+    if cutsceneID == eventId and not (option > optionMap.TELEPORT and option <= optionMap.TELEPORT_MENU)
+        and not (option == 65539) and not (option == 0)  then
         local selectedMenuId = bit.rshift(option, 16)
 
         if selectedMenuId <= 97 then
@@ -164,9 +164,7 @@ dsp.survivalGuide.onEventFinish = function(player, eventId, option)
 
                 local canTeleport = false
 
-                -- If we got this far, then the UI has determined that the player has enough currency to do the teleportation.
-                if bit.band(bit.rshift(option, 8), 1) then
-                --if bit.rshift(bit.lshift(option, 16), 24) == 1 then
+                if bit.band(bit.rshift(option, 8), 1) == 1 then
                     -- Paying with tabs
                     if player:getCurrency('valor_point') > teleportCostTabs then
                         player:delCurrency('valor_point', teleportCostTabs)
