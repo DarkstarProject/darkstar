@@ -159,7 +159,7 @@ dsp.survivalGuide.onEventFinish = function(player, eventId, option)
                 -- TABS: 100 -> 10
                 if player:hasKeyItem(dsp.keyItem.RHAPSODY_IN_WHITE) then
                     teleportCostGil = teleportCostGil * .2
-                    teleportCostTabs = teleportCostTabs * .1
+                    teleportCostTabs = teleportCostTabs * .2
                 end
 
                 local canTeleport = false
