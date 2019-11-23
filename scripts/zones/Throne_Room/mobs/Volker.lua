@@ -25,7 +25,7 @@ function onMobRoam(mob)
     local wait = mob:getLocalVar("wait");
     local ready = mob:getLocalVar("ready");
     if (ready == 0 and wait > 40) then
-        local baseID = ID.mob.ZEID_BCNM_OFFSET + (mob:getBattlefield():getBattlefieldNumber() - 1) * 4;
+        local baseID = ID.mob.ZEID_BCNM_OFFSET + (mob:getBattlefield():getArea() - 1) * 4;
         mob:setLocalVar("ready", bit.band(baseID, 0xFFF));
         mob:setLocalVar("wait", 0);
     elseif (ready > 0) then

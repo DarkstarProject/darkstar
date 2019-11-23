@@ -15,7 +15,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 32004) then
 
-        local bfid = player:getCharVar("bcnm_instanceid");
+        local bfid = player:getBattlefield():getArea()
         local zeidId = ID.mob.ZEID_BCNM_OFFSET + (bfid - 1) * 4;
         local playerCoords =
         {
@@ -31,7 +31,7 @@ function onEventFinish(player,csid,option)
         };
         
         SpawnMob(zeidId);
-        local volker = player:getBattlefield():insertAlly(14182)
+        local volker = player:getBattlefield():insertEntity(14182, true, true)
         player:setPos(unpack(playerCoords[bfid]));
         volker:setSpawn(unpack(volkerCoords[bfid]));
         volker:spawn();

@@ -30,6 +30,7 @@ function onMobFight(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
+    mob:getBattlefield():setLocalVar("loot", 0)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
 end;
