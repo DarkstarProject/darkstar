@@ -12,7 +12,7 @@ require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
 ---------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target, mob, skill)
     return 0
 end
 
@@ -21,10 +21,10 @@ function onMobWeaponSkill(target, mob, skill)
     local numhits = 1
     local accmod = 1
     local dmgmod = 2.3
-    local shadows = info.hitslanded
     local info = MobPhysicalMove(mob, target, skill, numhits, accmod, dmgmod, TP_NO_EFFECT)
+    local shadows = info.hitslanded
 
-    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if mob:isMobType(MOBTYPE_NOTORIOUS) then
         shadows = MOBPARAM_IGNORE_SHADOWS
         typeEffect = dsp.effect.POISON
 		mob:resetEnmity(target)
