@@ -12,7 +12,7 @@ function onMobInitialize(mob)
 end
 
 function onMobRoam(mob)
-    local promathia = ID.mob.PROMATHIA_OFFSET + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
+    local promathia = ID.mob.PROMATHIA_OFFSET + (mob:getBattlefield():getArea() - 1) * 2
     local wait = mob:getLocalVar("wait")
     local ready = mob:getLocalVar("ready")
 
@@ -40,11 +40,8 @@ function onMobEngaged(mob, target)
 end
 
 function onMobFight(mob, target)
-    if (mob:getHPP() == 0 and mob:getLocalVar("Raise") == 1) then
-        mob:entityAnimationPacket("sp00")
+    if (mob:getLocalVar("Raise") == 1) then
         mob:messageText(mob, ID.text.PRISHE_TEXT + 3)
-        mob:addHP(mob:getMaxHP())
-        mob:addMP(mob:getMaxMP())
         mob:setLocalVar("Raise", 0)
         mob:stun(3000)
     elseif (mob:getHPP() < 70 and mob:getLocalVar("HF") == 0) then

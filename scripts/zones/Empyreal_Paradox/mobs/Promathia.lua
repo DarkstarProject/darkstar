@@ -51,7 +51,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     local battlefield = player:getBattlefield();
-    player:startEvent(32004, battlefield:getBattlefieldNumber());
+    player:startEvent(32004, battlefield:getArea());
 end;
 
 function onEventUpdate(player,csid,option)

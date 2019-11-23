@@ -68,4 +68,5 @@ function onMagicCastingCheck(mob, target, spell)
 end;
 
 function onMobDeath(mob, player, isKiller)
+    mob:getBattlefield():setLocalVar("loot", 0)
 end;
