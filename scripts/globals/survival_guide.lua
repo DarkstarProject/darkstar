@@ -142,8 +142,7 @@ dsp.survivalGuide.onEventUpdate = function(player, csid, option)
 end
 
 dsp.survivalGuide.onEventFinish = function(player, eventId, option)
-    if cutsceneID == eventId and not (option > optionMap.TELEPORT and option <= optionMap.TELEPORT_MENU)
-        and not (option == 65539) and not (option == 0)  then
+    if cutsceneID == eventId and bit.band(option, 0xFF) == optionMap.TELEPORT  then
         local selectedMenuId = bit.rshift(option, 16)
 
         if selectedMenuId <= 97 then
