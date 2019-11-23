@@ -12,7 +12,7 @@ require("scripts/globals/titles")
 function onTrade(player,npc,trade)
 
     local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.OVER_THE_HILLS_AND_FAR_AWAY)
-    local louverancesPath = player:getVar("COP_Louverance_s_Path")
+    local louverancesPath = player:getCharVar("COP_Louverance_s_Path")
 
     -- Taking a logical guess what criteria displays what message.
     if overTheHillsAndFarAway == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 1729) then -- 1729 = Moblin Hotrok

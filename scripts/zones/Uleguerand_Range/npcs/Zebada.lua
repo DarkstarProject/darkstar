@@ -18,7 +18,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local ZephyrFanCD = player:getVar("[ENM]ZephyrFan");
+    local ZephyrFanCD = player:getCharVar("[ENM]ZephyrFan");
 
     if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
         player:startEvent(12);
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
     if (csid == 13) then
         player:addKeyItem(dsp.ki.ZEPHYR_FAN);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ZEPHYR_FAN);
-        player:setVar("[ENM]ZephyrFan",os.time()+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
+        player:setCharVar("[ENM]ZephyrFan",os.time()+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
     elseif (csid == 14) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1779); -- Cotton Pouch

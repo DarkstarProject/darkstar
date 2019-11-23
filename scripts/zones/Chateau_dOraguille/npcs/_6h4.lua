@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
 
     local currentMission = player:getCurrentMission(SANDORIA);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
 
     -- Mission San D'Oria 9-2 The Heir to the Light
     if (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then
@@ -56,24 +56,24 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 537) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
         player:addKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 61) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 87) then
-        player:setVar('MissionStatus',2);
+        player:setCharVar('MissionStatus',2);
     elseif (csid == 100) then
-        player:setVar("Mission8-1Completed",0) -- dont need this var anymore. JP midnight is done and prev mission completed.
-        player:setVar("MissionStatus",1);
+        player:setCharVar("Mission8-1Completed",0) -- dont need this var anymore. JP midnight is done and prev mission completed.
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 104) then
-        player:setVar("Mission8-2Kills",0);
+        player:setCharVar("Mission8-2Kills",0);
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 8) then
-        player:setVar("MissionStatus",6);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 32) then
-        player:setVar("Cutscenes_8-2",0); -- dont need this var now that mission is flagged and cs have been triggered to progress
-        player:setVar("MissionStatus",1);
+        player:setCharVar("Cutscenes_8-2",0); -- dont need this var now that mission is flagged and cs have been triggered to progress
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 76) then
         finishMissionTimeline(player,3,csid,option);
     end

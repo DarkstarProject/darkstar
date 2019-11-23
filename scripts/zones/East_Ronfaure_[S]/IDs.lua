@@ -17,6 +17,7 @@ zones[dsp.zone.EAST_RONFAURE_S] =
         NOTHING_OUT_OF_ORDINARY  = 6402, -- There is nothing out of the ordinary here.
         LOGGING_IS_POSSIBLE_HERE = 7146, -- Logging is possible here if you have <item>.
         FISHING_MESSAGE_OFFSET   = 7730, -- You can't fish here.
+        COMMON_SENSE_SURVIVAL    = 8957, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

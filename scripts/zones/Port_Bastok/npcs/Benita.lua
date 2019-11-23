@@ -15,7 +15,7 @@ BombAsh = trade:hasItemQty(928,1);
 
     if (count == 1 and BombAsh == true) then
         TheWisdom = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS);
-        TheWisdomVar = player:getVar("TheWisdomVar");
+        TheWisdomVar = player:getCharVar("TheWisdomVar");
         if (TheWisdom == 1 and TheWisdomVar == 2) then
             player:tradeComplete();
             player:startEvent(176);
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 174) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS);
-        player:setVar("TheWisdomVar",1);
+        player:setCharVar("TheWisdomVar",1);
     elseif (csid == 176) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12500);

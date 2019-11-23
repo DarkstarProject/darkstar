@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     -- the door breaks during the CS in Al'Taieu after receiving the Dawn mission, which sets the var to 1. Also checking for The Last Verse mission for whenever that gets implemented.
-    if ((player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus") > 0) or player:getCurrentMission(COP) > dsp.mission.id.cop.DAWN) then
+    if ((player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus") > 0) or player:getCurrentMission(COP) > dsp.mission.id.cop.DAWN) then
         if (player:getZPos() <= 360) then
             player:startEvent(140);
         else

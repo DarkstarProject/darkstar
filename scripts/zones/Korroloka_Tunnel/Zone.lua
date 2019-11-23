@@ -30,9 +30,9 @@ function onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)
-    local pooltime = os.time() - player:getVar("POOL_TIME")
+    local pooltime = os.time() - player:getCharVar("POOL_TIME")
 
-    if player:getVar("BathedInScent") == 1 then  -- pollen scent from touching all 3 Blue Rafflesias in Yuhtunga
+    if player:getCharVar("BathedInScent") == 1 then  -- pollen scent from touching all 3 Blue Rafflesias in Yuhtunga
         switch (region:GetRegionID()): caseof
         {
             [1] = function (x)  -- Left Pool
@@ -55,11 +55,11 @@ function onRegionLeave(player, region)
     local RegionID = region:GetRegionID()
     local pooltime = os.time() - player:getLocalVar("POOL_TIME")
 
-    if RegionID <= 3 and player:getVar("BathedInScent") == 1 then
+    if RegionID <= 3 and player:getCharVar("BathedInScent") == 1 then
         if pooltime >= 300 then
             player:messageSpecial(ID.text.LEFT_SPRING_CLEAN)
             player:setLocalVar("POOL_TIME", 0)
-            player:setVar("BathedInScent", 0)
+            player:setCharVar("BathedInScent", 0)
         else
             player:messageSpecial(ID.text.LEFT_SPRING_EARLY)
             player:setLocalVar("POOL_TIME", 0)

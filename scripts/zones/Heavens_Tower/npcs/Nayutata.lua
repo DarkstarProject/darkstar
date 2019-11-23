@@ -14,7 +14,7 @@ function onTrigger(player,npc)
 
     local pNation = player:getNation();
     local currentMission = player:getCurrentMission(pNation);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
     
     if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 3) or (player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING)) then
         player:startEvent(395);
@@ -28,6 +28,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 395) then
-        player:setVar("TimeOfPiece",0);
+        player:setCharVar("TimeOfPiece",0);
     end
 end;

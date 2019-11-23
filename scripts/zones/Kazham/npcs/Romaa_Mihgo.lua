@@ -14,9 +14,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(266);
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 3) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getCharVar("MissionStatus") == 3) then
         player:startEvent(267);
     else
         player:startEvent(263);
@@ -30,7 +30,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 266) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     end
 
 end;

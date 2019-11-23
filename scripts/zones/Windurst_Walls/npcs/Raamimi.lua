@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
     local ToBee = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
-    local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
+    local ToBeeOrNotStatus = player:getCharVar("ToBeeOrNot_var");
 
     if (ToBeeOrNotStatus == 10 and ToBee == QUEST_AVAILABLE) then
         player:startEvent(67); -- Quest Started - He gives you honey
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
         else
-            player:setVar("ToBeeOrNot_var",0);
+            player:setCharVar("ToBeeOrNot_var",0);
             player:addItem(4156,3); -- Mulsum x3
             player:messageSpecial(ID.text.ITEMS_OBTAINED, 4156,3);
             player:needToZone(true);

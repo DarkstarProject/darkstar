@@ -15,7 +15,7 @@ end
 
 function onTrigger(player, npc)
     local efao = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.EQUIPPED_FOR_ALL_OCCASIONS)
-    local efaoStat = player:getVar("EquippedforAllOccasions")
+    local efaoStat = player:getCharVar("EquippedforAllOccasions")
 
     if efao == QUEST_ACCEPTED and efaoStat == 1 and npcUtil.popFromQM(player, npc, ID.mob.LOST_SOUL, {hide = 0}) then
         -- no further action
@@ -30,6 +30,6 @@ end
 function onEventFinish(player, csid, option)
     if csid == 66 then
         npcUtil.giveKeyItem(player, dsp.ki.WHEEL_LOCK_TRIGGER)
-        player:setVar("EquippedforAllOccasions", 3)
+        player:setCharVar("EquippedforAllOccasions", 3)
     end
 end

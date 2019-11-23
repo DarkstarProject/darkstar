@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("BathedInScent") == 1) then
+    if (player:getCharVar("BathedInScent") == 1) then
         player:startEvent(163); -- scent from Blue Rafflesias
         npc:wait();
     else

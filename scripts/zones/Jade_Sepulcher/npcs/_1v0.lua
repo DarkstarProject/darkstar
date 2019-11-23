@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end; 
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PUPPET_IN_PERIL and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PUPPET_IN_PERIL and player:getCharVar("AhtUrganStatus") == 0) then
         player:startEvent(4);
     elseif (EventTriggerBCNM(player,npc)) then
         return;
@@ -26,7 +26,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 4) then
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

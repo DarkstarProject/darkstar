@@ -30,7 +30,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 32001 then
-        player:setVar("CarbuncleDebacleProgress", 7)
+        player:setCharVar("CarbuncleDebacleProgress", 7)
         player:delKeyItem(dsp.ki.DAZEBREAKER_CHARM)
     end
 end

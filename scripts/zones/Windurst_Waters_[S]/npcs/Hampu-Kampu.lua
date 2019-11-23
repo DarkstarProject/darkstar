@@ -15,7 +15,7 @@ end
 
 function onTrigger(player,npc)
     local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
-    local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
+    local sayItWithAHandbagCS = player:getCharVar("sayItWithAHandbagCS")
 
     if sayItWithAHandbag == QUEST_COMPLETED then
         player:startEvent(175)
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
             var = "sayItWithAHandbagCS"
         }) then
             player:delKeyItem(dsp.ki.REPAIRED_HANDBAG)
-            player:setVar("sayItWithAHandbagBonusCS", 1)
+            player:setCharVar("sayItWithAHandbagBonusCS", 1)
         end
     elseif csid == 172 then
         npcUtil.giveKeyItem(player, dsp.ki.TORN_PATCHES_OF_LEATHER)

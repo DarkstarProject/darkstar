@@ -15,10 +15,10 @@ end
 
 function onTrigger(player,npc)
     if player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) then
-        if player:getVar("trueWillKilledNM") > 0 then
+        if player:getCharVar("trueWillKilledNM") > 0 then
             player:addKeyItem(dsp.ki.OLD_TRICK_BOX)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_TRICK_BOX)
-            player:setVar("trueWillKilledNM", 0)
+            player:setCharVar("trueWillKilledNM", 0)
         else
             npcUtil.popFromQM(player, npc, {ID.mob.KAPPA_AKUSO, ID.mob.KAPPA_BONZE, ID.mob.KAPPA_BIWA})
         end

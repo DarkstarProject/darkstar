@@ -35,10 +35,10 @@ function onZoneIn( player, prevZone)
         cs = 62
     elseif player:getCurrentMission(ASA) == dsp.mission.id.asa.BURGEONING_DREAD and prevZone == dsp.zone.PORT_WINDURST then
         cs = 63
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 50
     -- removed only "cs =" works onzonein and can't take parameters atm
-    -- elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 1 then
+    -- elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         -- player:startEvent(50,0,0,0,0,0,2) -- talking doll go east
     end
 
@@ -56,7 +56,7 @@ function onEventUpdate( player, csid, option)
     if csid == 48 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 62 or csid == 63 then
-        player:setVar("ASA_Status", option)
+        player:setCharVar("ASA_Status", option)
     elseif csid == 50 then
         if player:getZPos() > 470 then
             player:updateEvent(0,0,0,0,0,2)

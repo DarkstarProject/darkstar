@@ -15,13 +15,13 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    -- The Afflictor System (RegionID, X, Radius, Z)
-    zone:registerRegion(1, -163, 10, -137, 0,0,0) -- 17379798 The Afflictor
-    zone:registerRegion(2, -209, 10, -131, 0,0,0) -- 17379799 The Afflictor
-    zone:registerRegion(3, -140, 10,   20, 0,0,0) -- 17379800 The Afflictor
-    zone:registerRegion(4,  261, 10,  140, 0,0,0) -- 17379801 The Afflictor
-    zone:registerRegion(5,  340, 10,  100, 0,0,0) -- 17379802 The Afflictor
-    zone:registerRegion(6,  380, 10,   60, 0,0,0) -- 17379803 The Afflictor
+    -- Regions 1-6 are for the Afflictor System (RegionID, X, Radius, Z)
+    zone:registerRegion(1, -163, 10, -137, 0,0,0)
+    zone:registerRegion(2, -209, 10, -131, 0,0,0)
+    zone:registerRegion(3, -140, 10,   20, 0,0,0)
+    zone:registerRegion(4,  261, 10,  140, 0,0,0)
+    zone:registerRegion(5,  340, 10,  100, 0,0,0)
+    zone:registerRegion(6,  380, 10,   60, 0,0,0)
 
     dsp.treasure.initZone(zone)
 end
@@ -34,9 +34,9 @@ function onZoneIn(player,prevZone)
     end
 
     if prevZone == dsp.zone.PASHHOW_MARSHLANDS then
-        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 100 then
+        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getCharVar("ChaosbringerKills") >= 100 then
             cs = 121
-        elseif player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1 then
+        elseif player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and player:getCharVar("MissionStatus") == 1 then
             cs = 120
         elseif player:getMainJob() == dsp.job.DRK and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_AVAILABLE then
             cs = 122
@@ -54,8 +54,8 @@ function onRegionEnter(player,region)
     if region:GetRegionID() <= 6 then
         if not player:hasStatusEffect(dsp.effect.CURSE_I) and not player:hasStatusEffect(dsp.effect.SILENCE) then
             player:addStatusEffect(dsp.effect.CURSE_I, 50, 0, 300)
-            if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getVar("cCollectCurse") == 0 then
-                player:setVar("cCollectCurse", 1)
+            if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getCharVar("cCollectCurse") == 0 then
+                player:setCharVar("cCollectCurse", 1)
             end
         end
     end
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
         player:unlockJob(dsp.job.DRK)
         player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_DARK_KNIGHT)
     elseif csid == 120 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
         player:setPos(-297, 1, 96, 1)
     elseif csid == 122 then
         player:addQuest(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL)

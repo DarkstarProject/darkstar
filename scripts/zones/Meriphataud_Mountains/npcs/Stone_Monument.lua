@@ -9,7 +9,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if npcUtil.tradeHas(trade, 571) and npcUtil.giveItem(player, 570) then
-        player:setVar("anExplorer-CurrentTablet", 0x04000)
+        player:setCharVar("anExplorer-CurrentTablet", 0x04000)
         player:confirmTrade()
     end
 end

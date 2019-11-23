@@ -16,7 +16,7 @@ function onTrigger(player,npc)
     local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local SOA_Mission = player:getCurrentMission(SOA);
     if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
-        if ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 1)) then
+        if ((ACSP == QUEST_ACCEPTED) and (player:getCharVar("ACSP_NPCs_Visited") == 1)) then
             -- Progresses Quest: 'A Certain Substitute Patrolman'
             player:startEvent(2553);
         else
@@ -35,6 +35,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2553) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
-        player:setVar("ACSP_NPCs_Visited", 2);
+        player:setCharVar("ACSP_NPCs_Visited", 2);
     end
 end;

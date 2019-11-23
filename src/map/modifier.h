@@ -289,7 +289,7 @@ enum class Mod
     DEATHRES                  = 255, // Used by gear and ATMA that give resistance to instance KO
 
     PARALYZE                  = 257, // Paralyze -- percent chance to proc
-    MIJIN_GAKURE              = 258, // Tracks whether or not you used this ability to die.
+    MIJIN_RERAISE             = 258, // Augments Mijin Gakure
     DUAL_WIELD                = 259, // Percent reduction in dual wield delay.
 
     // Warrior

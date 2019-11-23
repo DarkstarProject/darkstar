@@ -10,9 +10,9 @@ cmdprops =
 };
 
 function onTrigger(player)
-    if (player:getVar("GodMode") == 0) then
+    if (player:getCharVar("GodMode") == 0) then
         -- Toggle GodMode on..
-        player:setVar("GodMode", 1);
+        player:setCharVar("GodMode", 1);
 
         -- Add bonus effects to the player..
         player:addStatusEffect(dsp.effect.MAX_HP_BOOST,1000,0,0);
@@ -44,7 +44,7 @@ function onTrigger(player)
         player:setMP( 50000 );
     else
         -- Toggle GodMode off..
-        player:setVar("GodMode", 0);
+        player:setCharVar("GodMode", 0);
 
         -- Remove bonus effects..
         player:delStatusEffect(dsp.effect.MAX_HP_BOOST);

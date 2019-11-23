@@ -25,7 +25,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 11 and option == 0 then
-        player:setVar("HeartsOfMythril", 1)
+        player:setCharVar("HeartsOfMythril", 1)
         player:delKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS)
     end
 end

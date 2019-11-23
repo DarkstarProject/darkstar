@@ -14,7 +14,7 @@ end;
 function onTrigger(player,npc)
     local SirensTear = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
 
-    if (SirensTear == QUEST_ACCEPTED and player:getVar("SirensTear") == 0) then
+    if (SirensTear == QUEST_ACCEPTED and player:getCharVar("SirensTear") == 0) then
         player:startEvent(5);
     else
         player:startEvent(20);

@@ -15,13 +15,13 @@ end;
 
 function onTrigger(player,npc)
     local Raptor_Rapture = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
-    local Raptor_Rapture_Status = player:getVar("Raptor_Rapture_Status");
+    local Raptor_Rapture_Status = player:getCharVar("Raptor_Rapture_Status");
 
     if (Raptor_Rapture == QUEST_AVAILABLE) then
         if (Raptor_Rapture_Status < 3) then
             -- Starts chain of events for the introduction CS for Quest: 'Raptor Rapture'.
             -- If player somehow doesn't finish the chain of events, they can just talk to Pagnelle again to retry.
-            player:setVar("Raptor_Rapture_Status", 1);
+            player:setCharVar("Raptor_Rapture_Status", 1);
             player:startEvent(5032);
         else
             -- Player has finished introductory CS event chain, but didn't accept the quest.
@@ -72,19 +72,19 @@ function onEventFinish(player,csid,option)
     elseif ((csid == 5061) and (option == 1)) then
         -- Starts Quest: 'Raptor Rapture'
         player:addQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
-        player:setVar("Raptor_Rapture_Status", 4);
+        player:setCharVar("Raptor_Rapture_Status", 4);
     elseif (csid == 5035) then
         -- Progresses Quest: 'Raptor Rapture', spoke to Ilney, now need rockberries.
-        player:setVar("Raptor_Rapture_Status", 6);
+        player:setCharVar("Raptor_Rapture_Status", 6);
     elseif (csid == 5037) then
         -- Progresses Quest: 'Raptor Rapture', brought rockberries, now need to go to Rala.
         player:delKeyItem(dsp.ki.ROCKBERRY1);
         player:delKeyItem(dsp.ki.ROCKBERRY2);
         player:delKeyItem(dsp.ki.ROCKBERRY3);
-        player:setVar("Raptor_Rapture_Status", 7);
+        player:setCharVar("Raptor_Rapture_Status", 7);
     elseif (csid == 5039) then
         -- Finishing Quest: 'Raptor Rapture'
-        player:setVar("Raptor_Rapture_Status", 0);
+        player:setCharVar("Raptor_Rapture_Status", 0);
         player:completeQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);

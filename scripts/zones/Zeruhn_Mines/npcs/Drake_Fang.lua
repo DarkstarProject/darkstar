@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK)
-    local MissionStatus = player:getVar("MissionStatus")
+    local MissionStatus = player:getCharVar("MissionStatus")
 
     -- Enter the Talekeeper 8-2
     if currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 4 then
@@ -37,11 +37,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 200 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
     elseif csid == 202 then
-        player:setVar("Missionstatus", 1)
+        player:setCharVar("Missionstatus", 1)
     elseif csid == 204 then
-        player:setVar("Missionstatus", 5)
+        player:setCharVar("Missionstatus", 5)
         player:delKeyItem(dsp.ki.OLD_PIECE_OF_WOOD)
         player:setPos(23, 0, 4)
     end

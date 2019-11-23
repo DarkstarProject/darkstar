@@ -21,7 +21,7 @@ function onTrigger(player, npc)
         player:startEvent(hasAssault)
     else
         local hasPermit = player:hasKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT)
-        local runicPortals = player:getNationTeleport(dsp.teleport.nation.RUNIC_PORTAL)
+        local runicPortals = player:getTeleport(dsp.teleport.type.RUNIC_PORTAL)
         local mercRank = dsp.besieged.getMercenaryRank(player)
         local points = player:getCurrency("imperial_standing")
         local hasAstral = dsp.besieged.getAstralCandescence()

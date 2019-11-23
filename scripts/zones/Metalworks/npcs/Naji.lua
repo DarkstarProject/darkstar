@@ -15,9 +15,9 @@ local ID = require("scripts/zones/Metalworks/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 6) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_2") == 6) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-            player:setVar("ridingOnTheClouds_2",0);
+            player:setCharVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
@@ -44,20 +44,20 @@ function onTrigger(player,npc)
         elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY and player:hasKeyItem(dsp.ki.KINDRED_REPORT)) then
             player:startEvent(714);
         elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY) then
-            if (player:hasKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
+            if (player:hasKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK) == false and player:getCharVar("MissionStatus") == 0) then
                 player:startEvent(713);
             else
                 player:showText(npc,ID.text.GOOD_LUCK);
             end
-        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
+        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK) and player:getCharVar("MissionStatus") == 0) then
             player:startEvent(720);
-        elseif (currentMission == dsp.mission.id.bastok.DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
+        elseif (currentMission == dsp.mission.id.bastok.DARKNESS_RISING and player:getCharVar("MissionStatus") == 1) then
             player:startEvent(721);
         elseif (player:hasKeyItem(dsp.ki.BURNT_SEAL)) then
             player:startEvent(722);
-        elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 0) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getCharVar("MissionStatus") == 0) then
             player:startEvent(761);
-        elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 3) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_PIRATE_S_COVE and player:getCharVar("MissionStatus") == 3) then
             player:startEvent(762);
         else
             player:startEvent(700);
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
             player:addItem(16678);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16678); -- Razor Axe
             player:delKeyItem(dsp.ki.YASINS_SWORD);
-            player:setVar("theDoormanCS",0);
+            player:setCharVar("theDoormanCS",0);
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_DOORMAN);
         else
@@ -94,17 +94,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 713) then
         player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 720 and option == 0 or csid == 721) then
         player:delKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK);
         player:addKeyItem(dsp.ki.NEW_FEIYIN_SEAL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
-        player:setVar("MissionStatus",10);
+        player:setCharVar("MissionStatus",10);
     elseif (csid == 720 and option == 1) then
         player:delKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK);
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 761) then
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 714 or csid == 722 or csid == 762) then
         finishMissionTimeline(player,1,csid,option);
     end

@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
+    local thickAsThievesGamblingCS = player:getCharVar("thickAsThievesGamblingCS")
 
     if thickAsThievesGamblingCS == 5 then
         npcUtil.popFromQM(player, npc, ID.mob.GAMBILOX_WANDERLING, {hide = 0})
@@ -26,6 +26,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 200 and npcUtil.giveItem(player, 1092) then
-        player:setVar("thickAsThievesGamblingCS", 7)
+        player:setCharVar("thickAsThievesGamblingCS", 7)
     end
 end

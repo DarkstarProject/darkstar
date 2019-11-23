@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP);
-    local copStat = player:getVar("PromathiaStatus");
+    local copStat = player:getCharVar("PromathiaStatus");
     
     if (cop == dsp.mission.id.cop.A_FATE_DECIDED and copStat == 1 and not GetMobByID(ID.mob.IXGHRAH):isSpawned()) then
         SpawnMob(ID.mob.IXGHRAH):updateClaim(player);
@@ -26,7 +26,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 3) then
-        player:setVar("PromathiaStatus", 0);
+        player:setCharVar("PromathiaStatus", 0);
         player:completeMission(COP, dsp.mission.id.cop.A_FATE_DECIDED);
         player:addMission(COP, dsp.mission.id.cop.WHEN_ANGELS_FALL);
     end

@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     local currentMission = player:getCurrentMission(WINDURST);
     local nextMissionFinished = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_NEW_JOURNEY);
 
-    if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 3) then
+    if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and player:getCharVar("MissionStatus") == 3) then
         if (trade:hasItemQty(16447,3) and trade:getItemCount() == 3) then -- Trade Rusty Dagger
             player:tradeComplete();
             player:startEvent(151);
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(WINDURST);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
     local nextMissionFinished = player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_NEW_JOURNEY);
 
     if (currentMission == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and nextMissionFinished == false) then
@@ -63,13 +63,13 @@ function onEventFinish(player,csid,option)
     if (csid == 121) then
         player:addKeyItem(dsp.ki.CHARM_OF_LIGHT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHARM_OF_LIGHT);
-        player:setVar("MissionStatus",1);
+        player:setCharVar("MissionStatus",1);
     elseif (csid == 149 or csid == 257) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 135 or csid == 151) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 387) then
-        player:setVar("WindurstSecured",0);
+        player:setCharVar("WindurstSecured",0);
     end
 
 end;

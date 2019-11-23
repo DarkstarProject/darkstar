@@ -123,15 +123,15 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-351.136,-2.25,-380,253);
     end
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getCharVar("PromathiaStatus") == 0) then
         cs = 201 ;
     end
-    player:setVar("Ru-Hmet-TP",0);
+    player:setCharVar("Ru-Hmet-TP",0);
     return cs;
 end;
 
 function onRegionEnter(player,region)
-    if (player:getVar("Ru-Hmet-TP") == 0 and player:getAnimation() == 0) then
+    if (player:getCharVar("Ru-Hmet-TP") == 0 and player:getAnimation() == 0) then
         switch (region:GetRegionID()): caseof
         {
             [1] = function (x)
@@ -198,7 +198,7 @@ end;
 function onEventUpdate(player,csid,option)
 
     if ((csid >149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
-        player:setVar("Ru-Hmet-TP",1);
+        player:setCharVar("Ru-Hmet-TP",1);
     end
 end;
 
@@ -206,11 +206,11 @@ function onEventFinish(player,csid,option)
 
     if (csid == 101 and option == 1) then
         player:setPos(540,-1,-499.900,62,36);
-        player:setVar("Ru-Hmet-TP",0);
+        player:setCharVar("Ru-Hmet-TP",0);
     elseif ((csid > 149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
-        player:setVar("Ru-Hmet-TP",0);
+        player:setCharVar("Ru-Hmet-TP",0);
     elseif (csid == 201) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PromathiaStatus",1);
     elseif (csid == 32000 and option==1) then
         player:setPos(420,0,398,68);
     end

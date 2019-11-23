@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Metalworks/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK and player:getVar("MissionStatus") == 5) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK and player:getCharVar("MissionStatus") == 5) then
         if (trade:hasItemQty(599,1) and trade:getItemCount() == 1) then -- Trade Mythril Sand
             player:startEvent(255);
         end
@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
 
     currentMission = player:getCurrentMission(WINDURST);
-    MissionStatus = player:getVar("MissionStatus");
+    MissionStatus = player:getCharVar("MissionStatus");
 
     if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
         if (MissionStatus == 1) then
@@ -52,10 +52,10 @@ function onEventFinish(player,csid,option)
     if (csid == 254) then
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 256) then
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2);
-        player:setVar("MissionStatus",8);
+        player:setCharVar("MissionStatus",8);
     elseif (csid == 257) then
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
     elseif (csid == 255) then
         player:tradeComplete();
-        player:setVar("MissionStatus",7);
+        player:setCharVar("MissionStatus",7);
         player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS);
     end
 

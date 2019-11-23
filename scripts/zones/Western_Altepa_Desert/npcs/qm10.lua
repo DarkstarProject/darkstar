@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Western Altepa Desert
 --  NPC: ??? (Beastmen Treasure qm10/chest7)
---   ID: 17289779
 -- !pos -670.697 -8.438 -677.751 125
 -----------------------------------
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
+require("scripts/globals/beastmentreasure")
+-----------------------------------
 
 function onTrigger(player,npc)
     dsp.bmt.handleQmOnTrigger(player,npc,ID.text.SOMETHING_IS_BURIED_HERE,ID.text.NOTHING_OUT_OF_ORDINARY,ID.npc.BEASTMEN_TREASURE)

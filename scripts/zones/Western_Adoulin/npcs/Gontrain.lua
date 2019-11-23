@@ -14,7 +14,7 @@ end;
 function onTrigger(player,npc)
     local Raptor_Rapture = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
 
-    if ((Raptor_Rapture == QUEST_ACCEPTED) and (player:getVar("Raptor_Rapture_Status") == 4)) then
+    if ((Raptor_Rapture == QUEST_ACCEPTED) and (player:getCharVar("Raptor_Rapture_Status") == 4)) then
         -- Progresses Quest: 'Raptor Rapture', speaking to Ilney.
         player:startEvent(5034);
     else
@@ -29,6 +29,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 5034) then
         -- Progresses Quest: 'Raptor Rapture', spoke to Ilney.
-        player:setVar("Raptor_Rapture_Status", 5);
+        player:setCharVar("Raptor_Rapture_Status", 5);
     end
 end;

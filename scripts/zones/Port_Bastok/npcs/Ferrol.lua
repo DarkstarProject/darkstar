@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
         if (EarthFork) then
             player:startEvent(251); -- Dialogue given to remind player to be prepared
-        elseif (EarthFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeEarth_date")) then
+        elseif (EarthFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeEarth_date")) then
             player:startEvent(301,0,1547,1,20); -- Need another mini tuning fork
         else
             player:startEvent(303); -- Standard dialog when you loose, and you don't wait 1 real day
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork
         else
-            player:setVar("TrialSizeEarth_date",0)
+            player:setCharVar("TrialSizeEarth_date",0)
             player:addQuest(BASTOK,dsp.quest.id.bastok.TRIAL_SIZE_TRIAL_BY_EARTH);
             player:addItem(1547);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1547);

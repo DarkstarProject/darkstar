@@ -12,7 +12,7 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
     -- CHOCOBILIOUS
-    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHOCOBILIOUS) == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 1 and npcUtil.tradeHas(trade, 938) then
+    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHOCOBILIOUS) == QUEST_ACCEPTED and player:getCharVar("ChocobiliousQuest") == 1 and npcUtil.tradeHas(trade, 938) then
         player:startEvent(229, 0, 938)
 
     -- PAYING LIP SERVICE
@@ -27,7 +27,7 @@ end
 
 function onTrigger(player,npc)
     local chocobilious = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHOCOBILIOUS)
-    local chocobiliousCS = player:getVar("ChocobiliousQuest")
+    local chocobiliousCS = player:getCharVar("ChocobiliousQuest")
     local payingLipService = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.PAYING_LIP_SERVICE)
 
     -- CHOCOBILIOUS
@@ -56,9 +56,9 @@ end
 function onEventFinish(player,csid,option)
     -- CHOCOBILIOUS
     if csid == 227 then
-        player:setVar("ChocobiliousQuest",1)
+        player:setCharVar("ChocobiliousQuest",1)
     elseif csid == 229 then
-        player:setVar("ChocobiliousQuest",2)
+        player:setCharVar("ChocobiliousQuest",2)
 
     -- PAYING LIP SERVICE
     elseif csid == 477 and option == 1 then

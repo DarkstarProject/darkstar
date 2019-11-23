@@ -33,6 +33,7 @@ zones[dsp.zone.SACRARIUM] =
         HEART_RACING              = 7361, -- Your heart is racing.
         LEAVE_QUICKLY_AS_POSSIBLE = 7362, -- Your common sense tells you to leave as quickly as possible.
         NOTHING_HAPPENS           = 7365, -- Nothing happens.
+        COMMON_SENSE_SURVIVAL     = 7369, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

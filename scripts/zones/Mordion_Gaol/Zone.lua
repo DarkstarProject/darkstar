@@ -17,7 +17,7 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if player:getVar("inJail") > 0 then
+    if player:getCharVar("inJail") > 0 then
         player:jail()
     end
 

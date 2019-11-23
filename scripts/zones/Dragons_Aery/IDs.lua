@@ -19,6 +19,7 @@ zones[dsp.zone.DRAGONS_AERY] =
         NOTHING_OUT_OF_ORDINARY    = 6402, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET     = 7049, -- You can't fish here.
         CONQUEST_BASE              = 7151, -- Tallying conquest results...
+        COMMON_SENSE_SURVIVAL      = 7495, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

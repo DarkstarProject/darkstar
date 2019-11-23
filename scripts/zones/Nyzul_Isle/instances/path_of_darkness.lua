@@ -66,8 +66,8 @@ function onInstanceComplete(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        if (v:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and v:getVar("AhtUrganStatus") == 1) then
-            v:setVar("AhtUrganStatus", 2);
+        if (v:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and v:getCharVar("AhtUrganStatus") == 1) then
+            v:setCharVar("AhtUrganStatus", 2);
         end
 
         v:setPos(0,0,0,0,72);

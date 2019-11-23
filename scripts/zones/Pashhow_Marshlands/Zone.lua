@@ -30,7 +30,7 @@ function onZoneIn(player, prevZone)
     end
 
     if prevZone == dsp.zone.BEADEAUX and player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS then
-        local missionStatus = player:getVar("MissionStatus")
+        local missionStatus = player:getCharVar("MissionStatus")
 
         if missionStatus > 0 and missionStatus < 22 then
             cs = 10
@@ -39,7 +39,7 @@ function onZoneIn(player, prevZone)
         end
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 13
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 15
     end
 

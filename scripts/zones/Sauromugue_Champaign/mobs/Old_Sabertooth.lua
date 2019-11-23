@@ -16,7 +16,7 @@ function onMobDeath(mob, player, isKiller)
 
         for i, person in pairs(players) do -- can't use the variable name "player" because it's already being used
             if person:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_FANGED_ONE) == QUEST_ACCEPTED and person:checkDistance(mob) < 32 then
-                person:setVar("TheFangedOneCS", 2)
+                person:setCharVar("TheFangedOneCS", 2)
             end
         end
     end

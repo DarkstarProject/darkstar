@@ -12,13 +12,13 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getVar("dancerTailorCS") == 1) then
+    if (player:getCharVar("dancerTailorCS") == 1) then
         player:startEvent(10167);
-    elseif (player:getVar("comebackQueenCS") == 1) then
+    elseif (player:getCharVar("comebackQueenCS") == 1) then
         player:startEvent(10146);
-    elseif (player:getVar("comebackQueenCS") == 3) then
+    elseif (player:getCharVar("comebackQueenCS") == 3) then
         player:startEvent(10150);
-    elseif (player:getVar("comebackQueenCS") == 5) then --player cleared Laila's story
+    elseif (player:getCharVar("comebackQueenCS") == 5) then --player cleared Laila's story
         player:startEvent(10156);
     else
         player:startEvent(10122);
@@ -30,6 +30,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10167) then
-        player:setVar("dancerTailorCS", 2);
+        player:setCharVar("dancerTailorCS", 2);
     end;
 end;

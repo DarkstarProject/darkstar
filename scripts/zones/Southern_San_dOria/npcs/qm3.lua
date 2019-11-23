@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("UnderOathCS") == 4) then  -- Quest: Under Oath - PLD AF3
+    if (player:getCharVar("UnderOathCS") == 4) then  -- Quest: Under Oath - PLD AF3
         player:startEvent(41)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);

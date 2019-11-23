@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Norg/IDs");
 
 function onTrade(player,npc,trade)
 
-    local questItem = player:getVar("ForgeYourDestiny_Event");
+    local questItem = player:getCharVar("ForgeYourDestiny_Event");
     local checkItem = testflag(tonumber(questItem),0x01);
 
     if (checkItem == true) then
@@ -32,13 +32,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local swordTimer = player:getVar("ForgeYourDestiny_timer")
+    local swordTimer = player:getCharVar("ForgeYourDestiny_timer")
 
     if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and swordTimer == 0) then
         if (player:hasItem(1152)) then
             player:startEvent(48,1152); -- Bomb Steel
         elseif (player:hasItem(1151) == false) then
-            local questItem = player:getVar("ForgeYourDestiny_Event");
+            local questItem = player:getCharVar("ForgeYourDestiny_Event");
             local checkItem = testflag(tonumber(questItem),0x01);
 
             if (checkItem == false) then
@@ -62,13 +62,13 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    local questItem = player:getVar("ForgeYourDestiny_Event");
+    local questItem = player:getCharVar("ForgeYourDestiny_Event");
 
     if (csid == 44) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1151);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 1151); -- Oriental Steel
-            player:setVar("ForgeYourDestiny_Event",questItem + 0x01);
+            player:setCharVar("ForgeYourDestiny_Event",questItem + 0x01);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end

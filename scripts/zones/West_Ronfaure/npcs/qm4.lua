@@ -15,14 +15,14 @@ end
 function onTrigger(player, npc)
     if
         player:getCurrentMission(SANDORIA, dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE) and
-        player:getVar("MissionStatus") == 1 and
+        player:getCharVar("MissionStatus") == 1 and
         not GetMobByID(ID.mob.MARAUDER_DVOGZOG):isSpawned()
     then
-        if player:getVar("Mission7-1MobKilled") == 1 and player:needToZone() then
+        if player:getCharVar("Mission7-1MobKilled") == 1 and player:needToZone() then
             player:addKeyItem(dsp.ki.ANCIENT_SANDORIAN_TABLET)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ANCIENT_SANDORIAN_TABLET)
-            player:setVar("Mission7-1MobKilled", 0)
-            player:setVar("MissionStatus", 2)
+            player:setCharVar("Mission7-1MobKilled", 0)
+            player:setCharVar("MissionStatus", 2)
         else
             SpawnMob(ID.mob.MARAUDER_DVOGZOG):updateClaim(player)
         end

@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 
     -- PAINFUL MEMORY (Bard AF1)
     elseif painfulMemory == QUEST_AVAILABLE and job == dsp.job.BRD and level >= AF1_QUEST_LEVEL then
-        if player:getVar("PainfulMemoryCS") == 0 then
+        if player:getCharVar("PainfulMemoryCS") == 0 then
             player:startEvent(138) -- Long dialog for "Painful Memory"
         else
             player:startEvent(137) -- Short dialog for "Painful Memory"
@@ -66,7 +66,7 @@ end
 function onEventFinish(player,csid,option)
     -- THE OLD MONUMENT
     if csid == 102 then
-        player:setVar("TheOldMonument_Event",1)
+        player:setCharVar("TheOldMonument_Event",1)
 
     -- A MINSTREL IN DESPAIR
     elseif csid == 101 then
@@ -78,20 +78,20 @@ function onEventFinish(player,csid,option)
 
         -- Placing this here allows the player to get additional poetic
         -- parchments should they drop them until this quest is complete
-        player:setVar("TheOldMonument_Event",0)
+        player:setCharVar("TheOldMonument_Event",0)
 
     -- PAINFUL MEMORY (Bard AF1)
     elseif csid == 138 and option == 0 then
-        player:setVar("PainfulMemoryCS",1) -- player declined quest
+        player:setCharVar("PainfulMemoryCS",1) -- player declined quest
     elseif (csid == 137 or csid == 138) and option == 1 then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.PAINFUL_MEMORY)
-        player:setVar("PainfulMemoryCS",0)
+        player:setCharVar("PainfulMemoryCS",0)
         player:addKeyItem(dsp.ki.MERTAIRES_BRACELET)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MERTAIRES_BRACELET)
 
     -- CIRCLE OF TIME (Bard AF3)
     elseif csid == 139 then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME)
-        player:setVar("circleTime",1)
+        player:setCharVar("circleTime",1)
     end
 end

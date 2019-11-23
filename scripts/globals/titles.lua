@@ -1028,6 +1028,7 @@ dsp.title =
     DREAD_PURGER                              = 1035,
     SIDHE_SMASHER                             = 1036,
     ALEXANDER_ANNIHILATOR                     = 1037,
+    LILITH_LIQUIDATOR                         = 1038,
     VEGETABLE_HERO                            = 1044,
     CONTRIBUTER_FROM_THE_SHADOWS              = 1045,
     THE_DECIDER                               = 1046,

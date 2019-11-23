@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         end
     elseif (player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD) then
         local item = 0
-        local asaStatus = player:getVar("ASA_Status")
+        local asaStatus = player:getCharVar("ASA_Status")
 
         -- TODO: Other Enfeebling Kits
         if (asaStatus == 0) then

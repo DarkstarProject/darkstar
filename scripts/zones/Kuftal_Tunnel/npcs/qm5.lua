@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1 then
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and player:getCharVar("MissionStatus") == 1 then
         player:startEvent(12)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
@@ -23,7 +23,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 12 and option == 0 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
         player:messageSpecial(ID.text.FELL)
     end
 end

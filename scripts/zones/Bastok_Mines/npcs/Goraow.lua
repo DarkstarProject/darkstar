@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     local Vengeful = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.VENGEFUL_WRATH);
     local Fame = player:getFameLevel(BASTOK);
 
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
     if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,16) == false) then
         player:startEvent(506);
@@ -60,6 +60,6 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*900);
         player:completeQuest(BASTOK, dsp.quest.id.bastok.VENGEFUL_WRATH); -- for save fame
     elseif (csid == 506) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",16,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",16,true);
     end
 end;

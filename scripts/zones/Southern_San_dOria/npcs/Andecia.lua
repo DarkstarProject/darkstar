@@ -13,7 +13,7 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getVar("OfferingWaterOK") == 1) then
+        if (trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getCharVar("OfferingWaterOK") == 1) then
             player:startEvent(624);
         end
     end
@@ -39,9 +39,9 @@ function onTrigger(player,npc)
 
     if (Tomb == QUEST_AVAILABLE) then
         player:startEvent(541);
-    elseif (Tomb == QUEST_ACCEPTED and WellWater == false and player:getVar("OfferingWaterOK") == 0) then
+    elseif (Tomb == QUEST_ACCEPTED and WellWater == false and player:getCharVar("OfferingWaterOK") == 0) then
         player:startEvent(622);
-    elseif (Tomb == QUEST_ACCEPTED and Waterskin == true and player:getVar("OfferingWaterOK") == 0) then
+    elseif (Tomb == QUEST_ACCEPTED and Waterskin == true and player:getCharVar("OfferingWaterOK") == 0) then
         player:startEvent(623);
     elseif (Tomb == QUEST_COMPLETED) then
         player:startEvent(558);
@@ -61,13 +61,13 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,567); -- Well Water
         else
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS);
-            player:setVar("graveConcernsVar",0);
+            player:setCharVar("graveConcernsVar",0);
             player:addItem(567);
             player:messageSpecial(ID.text.ITEM_OBTAINED,567); -- Well Water
         end
     elseif (csid == 624) then
         player:tradeComplete();
-        player:setVar("OfferingWaterOK",0);
+        player:setCharVar("OfferingWaterOK",0);
         player:addTitle(dsp.title.ROYAL_GRAVE_KEEPER);
         player:addGil(GIL_RATE*560);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*560)

@@ -57,9 +57,9 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getVar("LegionStatus") == 0 then
+    if player:getCharVar("LegionStatus") == 0 then
         player:startEvent(8004)
-    elseif player:getVar("LegionStatus") == 1 then
+    elseif player:getCharVar("LegionStatus") == 1 then
         local maximus = player:hasKeyItem(dsp.ki.LEGION_TOME_PAGE_MAXIMUS) and 1 or 0
         local minimus = player:hasKeyItem(dsp.ki.LEGION_TOME_PAGE_MINIMUS) and 1 or 0
         local title =
@@ -78,7 +78,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 8004 then
-        player:setVar("LegionStatus", 1)
+        player:setCharVar("LegionStatus", 1)
     elseif csid == 8005 then
         local ware = wares[option]
 

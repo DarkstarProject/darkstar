@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
     if npcUtil.tradeHas(trade, 605) then -- pickaxe
         if player:getFreeSlotsCount() > 0 then
             if math.random() < 0.47 then
-                if player:getVar("rockracketeer_sold") == 5 then
+                if player:getCharVar("rockracketeer_sold") == 5 then
                     player:startEvent(51, 12, 598) -- Sharp Stone
                 else
                     player:startEvent(43, 12, 0, 597) -- Mine Gravel

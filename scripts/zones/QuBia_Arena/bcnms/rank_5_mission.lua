@@ -34,7 +34,7 @@ function onEventFinish(player, csid, option)
     if csid == 32001 and player:hasKeyItem(dsp.ki.NEW_FEIYIN_SEAL) then
         player:addKeyItem(dsp.ki.BURNT_SEAL)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BURNT_SEAL)
-        player:setVar("MissionStatus", 12)
+        player:setCharVar("MissionStatus", 12)
         player:delKeyItem(dsp.ki.NEW_FEIYIN_SEAL)
     end
 end

@@ -15,7 +15,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 32004) then
 
-        local bfid = player:getVar("bcnm_instanceid");
+        local bfid = player:getCharVar("bcnm_instanceid");
         local zeidId = ID.mob.ZEID_BCNM_OFFSET + (bfid - 1) * 4;
         local playerCoords =
         {

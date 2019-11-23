@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("NoStringsAttachedProgress") == 3 then
+    if player:getCharVar("NoStringsAttachedProgress") == 3 then
         player:startEvent(214)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
@@ -26,6 +26,6 @@ end
 function onEventFinish(player,csid,option)
     if csid == 214 then
         npcUtil.giveKeyItem(player, dsp.ki.ANTIQUE_AUTOMATON)
-        player:setVar("NoStringsAttachedProgress", 4)
+        player:setCharVar("NoStringsAttachedProgress", 4)
     end
 end

@@ -91,7 +91,7 @@ function moogleTrigger(player,npc)
         local theMooglePicnic = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
         local moogleInTheWild = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
 
-        if player:getVar("MoghouseExplication") == 1 then
+        if player:getCharVar("MoghouseExplication") == 1 then
             player:startEvent(30000)
 
         -- A Moogle Kupo d'Etat
@@ -99,27 +99,27 @@ function moogleTrigger(player,npc)
             player:startEvent(30023)
 
         elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_AVAILABLE and homeNationFameLevel >= 3 and
-               player:getVar("[MS1]BedPlaced") == 1 then
+               player:getCharVar("[MS1]BedPlaced") == 1 then
             player:startEvent(30005,0,0,0,5,0,17161,13457)
-        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
+        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 1 then
             player:startEvent(30006,0,0,0,0,0,17161,13457)
-        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
+        elseif player:getLocalVar("QuestSeen") == 0 and giveMoogleABreak == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 2 then
             player:startEvent(30008)
 
         elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_AVAILABLE and homeNationFameLevel >= 5 and
-                giveMoogleABreak == QUEST_COMPLETED and player:getVar("[MS2]BedPlaced") == 1 then
+                giveMoogleABreak == QUEST_COMPLETED and player:getCharVar("[MS2]BedPlaced") == 1 then
             player:startEvent(30009,0,0,0,4,0,17402,615)
-        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
+        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 1 then
             player:startEvent(30010,0,0,0,0,0,17402,615)
-        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
+        elseif player:getLocalVar("QuestSeen") == 0 and theMooglePicnic == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 2 then
             player:startEvent(30012)
 
         elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_AVAILABLE and homeNationFameLevel >= 7 and
-                theMooglePicnic == QUEST_COMPLETED and player:getVar("[MS3]BedPlaced") == 1 then
+                theMooglePicnic == QUEST_COMPLETED and player:getCharVar("[MS3]BedPlaced") == 1 then
             player:startEvent(30013,0,0,0,6,0,13593,12474)
-        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 1 then
+        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 1 then
             player:startEvent(30014,0,0,0,0,0,13593,12474)
-        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getVar("MogSafeProgress") == 2 then
+        elseif player:getLocalVar("QuestSeen") == 0 and moogleInTheWild == QUEST_ACCEPTED and player:getCharVar("MogSafeProgress") == 2 then
             player:startEvent(30016)
 
         else
@@ -140,7 +140,7 @@ end
 function moogleEventFinish(player,csid,option)
     if player:isInMogHouse() then
         if csid == 30000 then
-            player:setVar("MoghouseExplication", 0)
+            player:setCharVar("MoghouseExplication", 0)
 
         elseif csid == 30023 then
             player:completeMission(AMK,dsp.mission.id.amk.A_MOOGLE_KUPO_DETAT)
@@ -152,56 +152,56 @@ function moogleEventFinish(player,csid,option)
         elseif csid == 30005 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS1]BedPlaced", 0)
-            player:setVar("MogSafeProgress", 1)
+            player:setCharVar("[MS1]BedPlaced", 0)
+            player:setCharVar("MogSafeProgress", 1)
         elseif csid == 30005 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30006 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30007 then
             player:tradeComplete()
-            player:setVar("MogSafeProgress", 2)
+            player:setCharVar("MogSafeProgress", 2)
         elseif csid == 30008 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.GIVE_A_MOOGLE_A_BREAK)
             player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_KIND_MASTER)
-            player:setVar("MogSafeProgress", 0)
+            player:setCharVar("MogSafeProgress", 0)
 
         elseif csid == 30009 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS2]BedPlaced", 0)
-            player:setVar("MogSafeProgress", 1)
+            player:setCharVar("[MS2]BedPlaced", 0)
+            player:setCharVar("MogSafeProgress", 1)
         elseif csid == 30009 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30010 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30011 then
             player:tradeComplete()
-            player:setVar("MogSafeProgress", 2)
+            player:setCharVar("MogSafeProgress", 2)
         elseif csid == 30012 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_MOOGLE_PICNIC)
             player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_EXCEPTIONALLY_KIND_MASTER)
-            player:setVar("MogSafeProgress", 0)
+            player:setCharVar("MogSafeProgress", 0)
 
         elseif csid == 30013 and option == 1 then
             player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
             player:setLocalVar("QuestSeen", 1)
-            player:setVar("[MS3]BedPlaced", 0)
-            player:setVar("MogSafeProgress", 1)
+            player:setCharVar("[MS3]BedPlaced", 0)
+            player:setCharVar("MogSafeProgress", 1)
         elseif csid == 30013 and option == 2 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30014 then
             player:setLocalVar("QuestSeen", 1)
         elseif csid == 30015 then
             player:tradeComplete()
-            player:setVar("MogSafeProgress", 2)
+            player:setCharVar("MogSafeProgress", 2)
         elseif csid == 30016 then
             player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.MOOGLES_IN_THE_WILD)
             player:changeContainerSize(dsp.inv.MOGSAFE, 10)
             player:addTitle(dsp.title.MOGS_LOVING_MASTER)
-            player:setVar("MogSafeProgress", 0)
+            player:setCharVar("MogSafeProgress", 0)
         end
 
         return true
@@ -211,7 +211,7 @@ end
 
 -- Unlocks a mog locker for a player. Returns the 'expired' timestamp (-1)
 function unlockMogLocker(player)
-    player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
+    player:setCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
     local currentSize = player:getContainerSize(dsp.inv.MOGLOCKER)
     if currentSize == 0 then -- we do this check in case some servers auto-set 80 slots for mog locker items
         player:changeContainerSize(dsp.inv.MOGLOCKER, 30)
@@ -221,13 +221,13 @@ end
 
 -- Sets the mog locker access type (all area or alzahbi only). Returns the new access type.
 function setMogLockerAccessType(player, accessType)
-    player:setVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE, accessType)
+    player:setCharVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE, accessType)
     return accessType
 end
 
 -- Gets the mog locker access type (all area or alzahbi only). Returns the new access type.
 function getMogLockerAccessType(player)
-    return player:getVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
+    return player:getCharVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
 end
 
 -- Adds time to your mog locker, given the number of bronze coins.
@@ -254,7 +254,7 @@ function addMogLockerExpiryTime(player, numBronze)
     local timeIncrease = 60 * 60 * 24 * numDaysPerBronze * numBronze
     local newTs = currentTs + timeIncrease
 
-    player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, newTs)
+    player:setCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, newTs)
     -- send an invent size packet to enable the items if they weren't
     player:changeContainerSize(dsp.inv.MOGLOCKER, 0)
     return true
@@ -262,7 +262,7 @@ end
 
 -- Gets the expiry time for your locker. A return value of -1 is expired. A return value of nil means mog locker hasn't been unlocked.
 function getMogLockerExpiryTimestamp(player)
-    local expiryTime = player:getVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP)
+    local expiryTime = player:getCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP)
 
     if (expiryTime == 0) then
         return nil
@@ -270,7 +270,7 @@ function getMogLockerExpiryTimestamp(player)
 
     local now = os.time() - MOGLOCKER_START_TS
     if now > expiryTime then
-        player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
+        player:setCharVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
         return -1
     end
 

@@ -34,12 +34,12 @@ function onZoneIn(player,prevZone)
     -- MOG HOUSE EXIT
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(41.2,-5, 84,85);
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
             cs = 30004;
         end
-        player:setVar("PlayerMainJob",0);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus") == 0) then
-        player:setVar("PromathiaStatus",1);
+        player:setCharVar("PlayerMainJob",0);
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.TENDING_AGED_WOUNDS and player:getCharVar("PromathiaStatus") == 0) then
+        player:setCharVar("PromathiaStatus",1);
         cs = 70;
     elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == dsp.mission.id.acp.A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
         cs = 10094;
@@ -54,7 +54,7 @@ end;
 
 function onRegionEnter(player,region)
     if (region:GetRegionID() == 1) then
-        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and player:getVar("ZilartStatus") < 2) then
+        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.AWAKENING and player:getCharVar("ZilartStatus") < 2) then
             player:startEvent(20);
         end
     end
@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 20) then
-        player:addVar("ZilartStatus", 2);
+        player:addCharVar("ZilartStatus", 2);
     elseif (csid == 10094) then
         player:completeMission(ACP,dsp.mission.id.acp.A_CRYSTALLINE_PROPHECY);
         player:addMission(ACP,dsp.mission.id.acp.THE_ECHO_AWAKENS);

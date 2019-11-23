@@ -924,7 +924,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
                 -- 8-1
                 first_mission = first_mission + 1048576;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
+            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getCharVar("Mission8-1Completed") == 1) then
                 -- 8-2
                 first_mission = first_mission + 2097152;
             end
@@ -933,7 +933,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
                 -- 9-1
                 first_mission = first_mission + 4194304;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
+            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getCharVar("Cutscenes_8-2") == 2) then
                 -- 9-2
                 first_mission = first_mission + 8388608;
 
@@ -1039,7 +1039,7 @@ function getMissionMask(player)
         end
     end
 
-    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
+    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getCharVar("MissionStatus") == 8) then
         mission_mask = 2147483647 - 16384;
     else
         mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
@@ -1134,7 +1134,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- missionid, {Guard1CS,option}, {Guard2CS,option}, {NPC1 CS,option}, {NPC2 CS,option}, {{function,value},...},
     --  1: player:addMission(nation,mission);
     --  2: player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-    --  3: player:setVar(variablename,value);
+    --  3: player:setCharVar(variablename,value);
     --  4: player:tradeComplete();
     --  5: player:addRankPoints(number);
     --  6: player:setRankPoints(0);
@@ -1145,7 +1145,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- 11: player:setRank(number);
     -- 12: player:completeMission(nation,mission);
     -- 13: player:addTitle(number);
-    -- 14: player:setVar("MissionStatus",value);
+    -- 14: player:setCharVar("MissionStatus",value);
 
     if (nation == dsp.nation.SANDORIA) then
         if ((csid == 1009 or csid == 2009) and option ~= 1073741824 and option ~= 31) then
@@ -1187,7 +1187,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 15,{0,0},      {0,0},     {61,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}},                             -- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
                 16,{0,0},      {0,0},     {111,0},{0,0},{{14,0},{9,268},{10,270},{12}},                                 -- MISSION 6-1 (Finish (Chalvatot))
                 17,{1034,0},{1033,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}},                                -- MISSION 6-2 (Finish (Guard))
-                18,{0,0},      {0,0},     {7,0},{0,0},{{14,1}},                                                     -- MISSION 7-1 (setVar("MissionStatus",1) (Door: Papal Chambers))
+                18,{0,0},      {0,0},     {7,0},{0,0},{{14,1}},                                                     -- MISSION 7-1 (setCharVar("MissionStatus",1) (Door: Papal Chambers))
                 18,{0,0},      {0,0},     {8,0},{0,0},{{14,0},{9,283},{5,1000},{12}},                                 -- MISSION 7-1 (Finish (Door: Papal Chambers))
                 19,{1044,0},{1043,0},{0,0},{0,0},{{14,0},{6},{3,"SecretWeaponStatus",0},{9,284},{11,8},{8,60000},{12}}, -- MISSION 7-2 (Finish)
                 20,{0,0},      {0,0},     {102,0},{0,0},{{14,0},{9,288},{5,800},{12}},                                    -- MISSION 8-1 (Finish)
@@ -1273,7 +1273,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 switch (messList[1]) : caseof {
                     [1] = function (x) if (messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
                     [2] = function (x) player:messageSpecial(zones[player:getZoneID()].text.YOU_ACCEPT_THE_MISSION); end,
-                    [3] = function (x) player:setVar(messList[2],messList[3]); end,
+                    [3] = function (x) player:setCharVar(messList[2],messList[3]); end,
                     [4] = function (x) player:tradeComplete(); end,
                     [5] = function (x) if ((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,
                     [6] = function (x) player:setRankPoints(0); end,
@@ -1284,7 +1284,7 @@ function finishMissionTimeline(player,guard,csid,option)
                     [11] = function (x) player:setRank(messList[2]); end,
                     [12] = function (x) player:completeMission(nation,timeline[cs]); end,
                     [13] = function (x) player:addTitle(messList[2]); end,
-                    [14] = function (x) player:setVar("MissionStatus",messList[2]); end,
+                    [14] = function (x) player:setCharVar("MissionStatus",messList[2]); end,
                 }
             end
         end

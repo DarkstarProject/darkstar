@@ -10,30 +10,36 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED    = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        FULL_INVENTORY_AFTER_TRADE = 6386, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
-        ITEM_OBTAINED              = 6388, -- Obtained: <item>.
-        GIL_OBTAINED               = 6389, -- Obtained <number> gil.
-        KEYITEM_OBTAINED           = 6391, -- Obtained key item: <keyitem>.
-        ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
-        NOTHING_OUT_OF_ORDINARY    = 6402, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE              = 7049, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET     = 7208, -- You can't fish here.
-        CHEST_UNLOCKED             = 7316, -- You unlock the chest!
-        SAHAGIN_DOOR_INSIDE        = 7334, -- The door is tightly shut.
-        SAHAGIN_DOOR_OUTSIDE       = 7335, -- This door has an oddly shaped keyhole. It looks as if once you enter, you may not be able to get out the way you came in.
-        SAHAGIN_DOOR_TRADED        = 7336, -- The <item> breaks!
-        FIRST_CHECK                = 7340, -- You do not see anything out of the ordinary.
-        SECOND_CHECK               = 7341, -- You do not see anything out of the ordinary...
-        THIRD_CHECK                = 7342, -- It looks like a rock wall.
-        FOURTH_CHECK               = 7343, -- It looks like a rock wall...
-        FIFTH_CHECK                = 7344, -- You see a small indentation in the wall.
-        SILVER_CHECK               = 7345, -- You see something silver glittering around the indentation.
-        MYTHRIL_CHECK              = 7346, -- You find something that looks like mythril dust scattered about the indentation.
-        GOLD_CHECK                 = 7347, -- You see something gold glittering around the indentation.
-        COMPLETED_CHECK            = 7348, -- It is a door you can open using <item>!
-        SENSE_OMINOUS_PRESENCE     = 7362, -- You sense an ominous presence...
-        REGIME_REGISTERED          = 9682, -- New training regime registered!
+        ITEM_CANNOT_BE_OBTAINED    = 6382,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE = 6386,  -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+        ITEM_OBTAINED              = 6388,  -- Obtained: <item>.
+        GIL_OBTAINED               = 6389,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED           = 6391,  -- Obtained key item: <keyitem>.
+        ITEMS_OBTAINED             = 6397,  -- You obtain <number> <item>!
+        NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
+        CONQUEST_BASE              = 7049,  -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET     = 7208,  -- You can't fish here.
+        CHEST_UNLOCKED             = 7316,  -- You unlock the chest!
+        SAHAGIN_DOOR_INSIDE        = 7334,  -- The door is tightly shut.
+        SAHAGIN_DOOR_OUTSIDE       = 7335,  -- This door has an oddly shaped keyhole. It looks as if once you enter, you may not be able to get out the way you came in.
+        SAHAGIN_DOOR_TRADED        = 7336,  -- The <item> breaks!
+        FIRST_CHECK                = 7340,  -- You do not see anything out of the ordinary.
+        SECOND_CHECK               = 7341,  -- You do not see anything out of the ordinary...
+        THIRD_CHECK                = 7342,  -- It looks like a rock wall.
+        FOURTH_CHECK               = 7343,  -- It looks like a rock wall...
+        FIFTH_CHECK                = 7344,  -- You see a small indentation in the wall.
+        SILVER_CHECK               = 7345,  -- You see something silver glittering around the indentation.
+        MYTHRIL_CHECK              = 7346,  -- You find something that looks like mythril dust scattered about the indentation.
+        GOLD_CHECK                 = 7347,  -- You see something gold glittering around the indentation.
+        COMPLETED_CHECK            = 7348,  -- It is a door you can open using <item>!
+        SENSE_OMINOUS_PRESENCE     = 7362,  -- You sense an ominous presence...
+        PLAYER_OBTAINS_ITEM        = 7596,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM      = 7597,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM   = 7598,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP       = 7599,  -- You already possess that temporary item.
+        NO_COMBINATION             = 7604,  -- You were unable to enter a combination.
+        REGIME_REGISTERED          = 9682,  -- New training regime registered!
+        COMMON_SENSE_SURVIVAL      = 10742, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -111,6 +117,7 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
     },
     npc =
     {
+        CASKET_BASE     = 17498579,
         TREASURE_CHEST  = 17498625,
         TREASURE_COFFER = 17498626,
     },

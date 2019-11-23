@@ -69,7 +69,7 @@ function onTrigger(player,npc)
         if (InvisibleManSticker == true) then
             player:startEvent(800);
         else
-            local ThePromiseVar = player:getVar("ThePromise");
+            local ThePromiseVar = player:getCharVar("ThePromise");
 
             if (ThePromiseVar == 1) then
                 player:startEvent(798,0,1148,dsp.ki.INVISIBLE_MAN_STICKER);
@@ -92,11 +92,11 @@ function onTrigger(player,npc)
         else
             player:startEvent(651); -- Standard Conversation
         end
-    elseif (InAPickle == QUEST_ACCEPTED or player:getVar("QuestInAPickle_var") == 1) then
+    elseif (InAPickle == QUEST_ACCEPTED or player:getCharVar("QuestInAPickle_var") == 1) then
         player:startEvent(655,0,4444); -- IN A PICKLE + RARAB TAIL: Quest Objective Reminder
     elseif (InAPickle == QUEST_COMPLETED and NeedToZone) then
         player:startEvent(660); -- IN A PICKLE: After Quest
-    elseif (InAPickle == QUEST_COMPLETED and NeedToZone == false and player:getVar("QuestInAPickle_var") ~= 1) then
+    elseif (InAPickle == QUEST_COMPLETED and NeedToZone == false and player:getCharVar("QuestInAPickle_var") ~= 1) then
         local rand = math.random(1,2)
         if (rand == 1) then
             player:startEvent(661); -- IN A PICKLE: Repeatable Quest Begin
@@ -121,7 +121,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.FAKE_MOUSTACHE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FAKE_MOUSTACHE);
     elseif (csid == 797) then
-        player:setVar("ThePromise",1);
+        player:setCharVar("ThePromise",1);
     elseif (csid == 799) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
@@ -138,12 +138,12 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*200);
         player:addFame(WINDURST,75);
     elseif (csid == 661 and option == 1) then
-        player:setVar("QuestInAPickle_var",1)
+        player:setCharVar("QuestInAPickle_var",1)
     elseif (csid == 662) then  -- IN A PICKLE + 200 GIL: Repeatable Quest Turn In
         player:tradeComplete(trade);
         player:needToZone(true);
         player:addGil(GIL_RATE*200);
         player:addFame(WINDURST,8);
-        player:setVar("QuestInAPickle_var",0)
+        player:setCharVar("QuestInAPickle_var",0)
     end
 end;

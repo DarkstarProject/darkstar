@@ -5,7 +5,7 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if player:getVar("unbridledPassion") == 4 then
-        player:setVar("unbridledPassion", 5)
+    if player:getCharVar("unbridledPassion") == 4 then
+        player:setCharVar("unbridledPassion", 5)
     end
 end

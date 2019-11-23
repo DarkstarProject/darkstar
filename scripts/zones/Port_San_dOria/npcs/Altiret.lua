@@ -27,7 +27,7 @@ end
 
 function onTrigger(player, npc)
     -- THE PICKPOCKET
-    if player:getVar("thePickpocket") > 0 then
+    if player:getCharVar("thePickpocket") > 0 then
         player:startEvent(547)
     elseif player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET) == QUEST_COMPLETED then
         player:startEvent(580)

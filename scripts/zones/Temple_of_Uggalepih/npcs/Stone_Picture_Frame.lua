@@ -36,7 +36,7 @@ function onTrigger(player, npc)
                 player:messageSpecial(ID.text.PAINTBRUSH_OFFSET + 23, dsp.ki.PAINTBRUSH_OF_SOULS) -- The <KEY_ITEM> begins to twitch. The canvas is graced with the image from your soul.
             elseif player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS) and X >= -53.2 and Z <= 0.1 and Z >= -0.1 then -- has paintbrush of souls + close enough
                 player:messageSpecial(ID.text.PAINTBRUSH_OFFSET + 17, dsp.ki.PAINTBRUSH_OF_SOULS)
-                player:setVar("started_painting", os.time())
+                player:setCharVar("started_painting", os.time())
                 player:startEvent(60, dsp.ki.PAINTBRUSH_OF_SOULS)
             elseif player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS) then
                 player:messageSpecial(ID.text.PAINTBRUSH_OFFSET + 15, dsp.ki.PAINTBRUSH_OF_SOULS)
@@ -57,13 +57,13 @@ function onEventFinish(player, csid, option)
     if csid == 50 then
         -- Soon !
     elseif csid == 60 then
-        local time_elapsed = os.time() - player:getVar("started_painting")
+        local time_elapsed = os.time() - player:getCharVar("started_painting")
         if time_elapsed >= 30 then
             player:messageSpecial(ID.text.PAINTBRUSH_OFFSET + 22) -- You succeeded in projecting the image in your soul to the blank canvas. The door to the Rancor Den has opened!<Prompt>
             GetNPCByID(ID.npc.DOOR_TO_RANCOR):openDoor(45) -- Open the door to Den of Rancor for 45 sec
         else
             player:messageSpecial(ID.text.PAINTBRUSH_OFFSET + 21) -- You were unable to fill the canvas with an image from your soul.
         end
-        player:setVar("started_painting", 0)
+        player:setCharVar("started_painting", 0)
     end
 end

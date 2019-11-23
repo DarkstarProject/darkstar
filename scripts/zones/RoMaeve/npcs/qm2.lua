@@ -14,11 +14,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1 then
-        if player:getVar("Mission7-1MobKilled") == 1 then
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getCharVar("MissionStatus") == 1 then
+        if player:getCharVar("Mission7-1MobKilled") == 1 then
             npcUtil.giveKeyItem(player, dsp.ki.REINFORCED_CERMET)
-            player:setVar("Mission7-1MobKilled", 0)
-            player:setVar("MissionStatus", 2)
+            player:setCharVar("Mission7-1MobKilled", 0)
+            player:setCharVar("MissionStatus", 2)
         elseif npcUtil.popFromQM(player, npc, {ID.mob.MOKKURKALFI_I, ID.mob.MOKKURKALFI_II}, {claim=false, look=true, radius=2}) then
             -- move QM
             local newPosition = npcUtil.pickNewPosition(npc:getID(), ID.npc.BASTOK_7_1_QM_POS, true)

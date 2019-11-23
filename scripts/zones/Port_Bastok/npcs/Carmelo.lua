@@ -17,12 +17,12 @@ end;
 
 function onTrigger(player,npc)
     local SirensTear = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
-    local SirensTearProgress = player:getVar("SirensTear");
+    local SirensTearProgress = player:getCharVar("SirensTear");
     local TheStarsOfIfrit = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_STARS_OF_IFRIT);
     local LoveAndIce = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LOVE_AND_ICE);
-    local LoveAndIceProgress = player:getVar("LoveAndIceProgress");
+    local LoveAndIceProgress = player:getCharVar("LoveAndIceProgress");
     local ATestOfTrueLove = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE);
-    local ATestOfTrueLoveProgress = player:getVar("ATestOfTrueLoveProgress");
+    local ATestOfTrueLoveProgress = player:getCharVar("ATestOfTrueLoveProgress");
     local LoversInTheDusk = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LOVERS_IN_THE_DUSK);
 
     if (SirensTear == QUEST_ACCEPTED) then
@@ -64,9 +64,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 6) then
-        player:setVar("SirensTear",1);
+        player:setCharVar("SirensTear",1);
     elseif (csid == 19) then
-        player:setVar("SirensTear",2);
+        player:setCharVar("SirensTear",2);
     elseif (csid == 185) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.LOVE_AND_ICE);
         player:addKeyItem(dsp.ki.CARMELOS_SONG_SHEET);
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17356);
         else
-            player:setVar("LoveAndIceProgress",0);
+            player:setCharVar("LoveAndIceProgress",0);
             player:needToZone(true);
             player:addTitle(dsp.title.SORROW_DROWNER);
             player:addItem(17356);
@@ -86,10 +86,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 270) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE);
     elseif (csid == 272) then
-        player:setVar("ATestOfTrueLoveProgress",4);
+        player:setCharVar("ATestOfTrueLoveProgress",4);
         player:needToZone(true);
     elseif (csid == 274) then
-        player:setVar("ATestOfTrueLoveProgress",0);
+        player:setCharVar("ATestOfTrueLoveProgress",0);
         player:needToZone(true);
         player:addFame(BASTOK,120);
         player:completeQuest(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE);

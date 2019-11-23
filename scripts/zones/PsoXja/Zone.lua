@@ -33,9 +33,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-29.956,-1.903,212.521,188);
     end
 
-    if (player:getXPos() == -300 and player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 2) then
+    if (player:getXPos() == -300 and player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("PromathiaStatus") == 2) then
         cs = 1; -- COP event
-    elseif (player:getXPos() == 220 and player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
+    elseif (player:getXPos() == 220 and player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Tenzen_s_Path") == 8) then
         cs = 4;
     end
 
@@ -63,7 +63,7 @@ function afterZoneIn(player)
 
     -- ZONE WIDE LEVEL RESTRICTION
     if (ENABLE_COP_ZONE_CAP == 1) then
-        local LVLcap = player:getVar("PSOXJA_RESTRICTION_LVL");
+        local LVLcap = player:getCharVar("PSOXJA_RESTRICTION_LVL");
         if (LVLcap > 0) then -- LV cap depends on entrance
             player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,LVLcap,0,0);
         end
@@ -82,9 +82,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:setVar("PromathiaStatus",3);
+        player:setCharVar("PromathiaStatus",3);
     elseif (csid == 4) then
-        player:setVar("COP_Tenzen_s_Path",9);
+        player:setCharVar("COP_Tenzen_s_Path",9);
     elseif (csid == 20 and option == 1) then
         player:setPos(-20,-60.250,-60,63,111);
     elseif (csid == 21 and option == 1) then

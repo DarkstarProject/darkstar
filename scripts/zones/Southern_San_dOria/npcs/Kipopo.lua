@@ -14,7 +14,7 @@ require("scripts/globals/status")
 function onTrade(player,npc,trade)
     if
         player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) 
-        and player:getVar("sayItWithAHandbagCS") == 2
+        and player:getCharVar("sayItWithAHandbagCS") == 2
         and npcUtil.tradeHasExactly(trade, {2012, 850, 816})
     then
         player:startEvent(910)
@@ -22,13 +22,13 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local sayItWithAHandbagCS = player:getVar("sayItWithAHandbagCS")
+    local sayItWithAHandbagCS = player:getCharVar("sayItWithAHandbagCS")
     local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT)
     local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT)
 
     if
         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG) == QUEST_COMPLETED
-        and player:getVar("sayItWithAHandbagBonusCS") == 1
+        and player:getCharVar("sayItWithAHandbagBonusCS") == 1
     then
         player:startEvent(914)
     elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
@@ -59,17 +59,17 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 914 then
-        player:setVar("sayItWithAHandbagBonusCS", 0)
+        player:setCharVar("sayItWithAHandbagBonusCS", 0)
     elseif csid == 912 then
         npcUtil.giveKeyItem(player, dsp.ki.REPAIRED_HANDBAG)
-        player:setVar("sayItWithAHandbagCS", 4)
+        player:setCharVar("sayItWithAHandbagCS", 4)
     elseif csid == 910 then
         player:delKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER)
-        player:setVar("sayItWithAHandbagCS", 3)
+        player:setCharVar("sayItWithAHandbagCS", 3)
         player:needToZone(true)
         player:confirmTrade()
     elseif csid == 908 and option == 1 then
-        player:setVar("sayItWithAHandbagCS", 2)
+        player:setCharVar("sayItWithAHandbagCS", 2)
     elseif csid == 651 and option == 1 then
         player:messageSpecial(ID.text.LEATHER_SUPPORT,0,5,1)
         player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120)

@@ -27,10 +27,16 @@ zones[dsp.zone.ORDELLES_CAVES] =
         A_SQUIRE_S_TEST_II_DIALOG_II  = 7359,  -- The dew from the stalactite slips through your fingers.
         A_SQUIRE_S_TEST_II_DIALOG_III = 7360,  -- You have already obtained the dew.
         CHEST_UNLOCKED                = 7392,  -- You unlock the chest!
+        PLAYER_OBTAINS_ITEM           = 8377,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM         = 8378,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM      = 8379,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP          = 8380,  -- You already possess that temporary item.
+        NO_COMBINATION                = 8385,  -- You were unable to enter a combination.
         GERWITZS_AXE_DIALOG           = 7414,  -- Mine axe shall rend thy throat!
         GERWITZS_SWORD_DIALOG         = 7415,  -- Mine sword shall pierce thy tongue!
         GERWITZS_SOUL_DIALOG          = 7416,  -- Long have I waited. I will tell all...
         REGIME_REGISTERED             = 10463, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL         = 11539, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -52,6 +58,7 @@ zones[dsp.zone.ORDELLES_CAVES] =
     },
     npc =
     {
+        CASKET_BASE    = 17568148,
         TREASURE_CHEST = 17568192,
     },
 }

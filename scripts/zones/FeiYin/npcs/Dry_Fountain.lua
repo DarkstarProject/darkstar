@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 17) then
         player:tradeComplete();
-        player:setVar("peaceForTheSpiritCS",2);
+        player:setCharVar("peaceForTheSpiritCS",2);
     end
 
 end;

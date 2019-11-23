@@ -30,7 +30,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-252.715,-7.666,-30.64,128)
     end
 
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHADES_OF_VENGEANCE and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHADES_OF_VENGEANCE and player:getCharVar("AhtUrganStatus") == 1) then
         cs = 21
     end
 
@@ -54,8 +54,8 @@ function onEventFinish(player,csid,option)
 
     if csid == 21 then
         player:completeMission(TOAU,dsp.mission.id.toau.SHADES_OF_VENGEANCE)
-        player:setVar("AhtUrganStatus", 0)
-        player:setVar("TOAUM31_PERMITDAY", 0)
+        player:setCharVar("AhtUrganStatus", 0)
+        player:setCharVar("TOAUM31_PERMITDAY", 0)
         player:setTitle(dsp.title.NASHMEIRAS_MERCENARY)
         player:addMission(TOAU,dsp.mission.id.toau.IN_THE_BLOOD)
     elseif csid == 133 then -- enter instance, warp to periqia

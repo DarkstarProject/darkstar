@@ -9,7 +9,7 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getVar("UnderOathCS") == 5 and npcUtil.tradeHas(trade, 1095) then
+    if player:getCharVar("UnderOathCS") == 5 and npcUtil.tradeHas(trade, 1095) then
         player:startEvent(113)
     else
         player:messageSpecial(ID.text.A_WELL)
@@ -18,7 +18,7 @@ end
 
 function onTrigger(player,npc)
     if
-        player:getVar("UnderOathCS") == 5 and
+        player:getCharVar("UnderOathCS") == 5 and
         player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER) and
         not player:hasItem(1095) and
         not GetMobByID(ID.mob.ONE_EYED_GWAJBOJ):isSpawned() and
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     then
         SpawnMob(ID.mob.ONE_EYED_GWAJBOJ):updateClaim(player)
         SpawnMob(ID.mob.THREE_EYED_PROZPUZ):updateClaim(player)
-    elseif player:getVar("UnderOathCS") == 6 and player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) then
+    elseif player:getCharVar("UnderOathCS") == 6 and player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) then
         player:startEvent(112) -- read contents of letter
     else
         player:messageSpecial(ID.text.A_WELL)
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
     if csid == 113 then
         player:confirmTrade()
         npcUtil.giveKeyItem(player, dsp.ki.KNIGHTS_CONFESSION)
-        player:setVar("UnderOathCS", 6)
+        player:setCharVar("UnderOathCS", 6)
         player:delKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)
     end
 end
