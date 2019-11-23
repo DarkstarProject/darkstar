@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 32004) then
         local battlefield = player:getBattlefield();
         if (battlefield) then
-            local inst = battlefield:getBattlefieldNumber();
+            local inst = battlefield:getArea();
             local instOffset = ID.mob.MOON_READING_OFFSET + (6 * (inst - 1));
             local allyPos =
             {
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
             -- spawn Ajido-Marujido and set ally positions
             local allies = battlefield:getAllies();
             if (#allies == 0) then
-                local ajido = battlefield:insertAlly(14184);
+                local ajido = battlefield:insertEntity(14184, true, true);
                 ajido:setSpawn(allyPos[inst].ajidoPos);
                 ajido:spawn();
             end
