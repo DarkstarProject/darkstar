@@ -15,7 +15,7 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("lootSpawned", 1)
 end
 
-function onBattlefieldLeave(player,battlefield,leavecode)
+function onBattlefieldLeave(player, battlefield, leavecode)
     if leavecode == dsp.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
         local arg8 = (player:getCurrentMission(WINDURST) ~= dsp.mission.id.windurst.MOON_READING) and 1 or 0
