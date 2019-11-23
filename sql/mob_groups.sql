@@ -2645,7 +2645,7 @@ INSERT INTO `mob_groups` VALUES (2153,4336,63,'Whyjham',0,0,0,0,0,81,83,0);
 INSERT INTO `mob_groups` VALUES (2154,4465,63,'Yanshaal',1,0,0,0,0,1,1,0);
 INSERT INTO `mob_groups` VALUES (10633,5872,63,'Qiqirn_Mine',0,128,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (1,2221,64,'Khimaira_13',0,128,0,0,0,75,75,0);
-INSERT INTO `mob_groups` VALUES (2,2189,64,'Karababa',0,128,0,1000,1000,75,75,1);
+INSERT INTO `mob_groups` VALUES (2157,2189,64,'Karababa',0,128,0,1000,1000,75,75,1);
 INSERT INTO `mob_groups` VALUES (2156,2063,64,'Immortal_Flan',0,128,0,0,0,50,50,0);
 INSERT INTO `mob_groups` VALUES (2159,3219,64,'Pudding_Master',0,128,0,0,0,50,50,0);
 INSERT INTO `mob_groups` VALUES (2160,3582,64,'Shamarhaan',0,128,0,0,0,75,75,0);
