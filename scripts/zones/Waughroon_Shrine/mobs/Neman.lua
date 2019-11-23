@@ -11,9 +11,6 @@ function onMobInitialize(mob)
 end
 
 function onMobSpawn(mob)
-    local mobId = mob:getID()
-    local offset = (mobId - ID.mob.MACHA_OFFSET) % 4
-    mob:setMobMod(dsp.mobMod.SUPERLINK, GetMobByID(mobId - offset):getShortID())
     mob:setMobMod(dsp.mobMod.CHARMABLE, 1)
 end
 

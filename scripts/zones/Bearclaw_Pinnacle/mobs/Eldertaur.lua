@@ -12,9 +12,5 @@ function onMobInitialize(mob)
     mob:setMod(dsp.mod.SLEEPRES, 75)
 end
 
-function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID())
-end
-
 function onMobDeath(mob, player, isKiller)
 end
