@@ -34,7 +34,7 @@ function onMobRoam(mob)
     local wait = mob:getLocalVar("wait");
     if (wait > 40) then
         -- pick a random living target from the three enemies
-        local inst = mob:getBattlefield():getBattlefieldNumber();
+        local inst = mob:getBattlefield():getArea();
         local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
         local target = GetMobByID(instOffset + math.random(0,2));
         if (not target:isDead()) then

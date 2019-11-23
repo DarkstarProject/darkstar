@@ -32,7 +32,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32004) then
         local battlefield = player:getBattlefield();
         if (battlefield) then
-            local inst = battlefield:getBattlefieldNumber();
+            local inst = battlefield:getArea();
             local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
             local allyPos =
             {
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
             -- spawn trion and set ally positions
             local allies = battlefield:getAllies();
             if (#allies == 0) then
-                local trion = battlefield:insertAlly(14183);
+                local trion = battlefield:insertEntity(14183, true, true);
                 trion:setSpawn(allyPos[inst].trionPos);
                 trion:spawn();
             end

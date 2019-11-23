@@ -10,7 +10,7 @@ function onMobInitialize(mob)
 end;
 
 function allHeirMobsDead(player)
-    local inst = player:getBattlefield():getBattlefieldNumber();
+    local inst = player:getBattlefield():getArea();
     local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
     for i = instOffset + 3, instOffset + 13 do
         if (not GetMobByID(i):isDead()) then
@@ -21,7 +21,7 @@ function allHeirMobsDead(player)
 end;
 
 function onMobFight(mob,target)
-    local inst = mob:getBattlefield():getBattlefieldNumber();
+    local inst = mob:getBattlefield():getArea();
     local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
     mob:setMP(9999);
 
