@@ -51,8 +51,9 @@ zones[dsp.zone.JUGNER_FOREST] =
     },
     npc =
     {
-        CASKET_BASE   = 17203785,
-        OVERSEER_BASE = 17203847,
+        CASKET_BASE     = 17203785,
+        SIGNPOST_OFFSET = 17203808,
+        OVERSEER_BASE   = 17203847,
         LOGGING =
         {
             17203863,

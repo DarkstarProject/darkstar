@@ -26,14 +26,14 @@ function onInitialize(zone)
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end
 
-function onZoneIn( player, prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
 
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos( 342, -5, 15.117, 169)
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(342, -5, 15.117, 169)
     end
 
-    if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
+    if triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 15
     end
 
@@ -44,24 +44,24 @@ function onConquestUpdate(zone, updatetype)
     dsp.conq.onConquestUpdate(zone, updatetype)
 end
 
-function onRegionEnter( player, region)
-    if (region:GetRegionID() == 1) then
-        if (player:getCharVar("UnderOathCS") == 7) then -- Quest: Under Oath - PLD AF3
+function onRegionEnter(player, region)
+    if region:GetRegionID() == 1 then
+        if player:getCharVar("UnderOathCS") == 7 then -- Quest: Under Oath - PLD AF3
             player:startEvent(14)
         end
     end
 end
 
-function onEventUpdate( player, csid, option)
-    if (csid == 15) then
+function onEventUpdate(player, csid, option)
+    if csid == 15 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     end
 end
 
-function onEventFinish( player, csid, option)
-    if (csid == 15) then
+function onEventFinish(player, csid, option)
+    if csid == 15 then
         lightCutsceneFinish(player) -- Quest: I Can Hear A Rainbow
-    elseif (csid == 14) then
+    elseif csid == 14 then
         player:setCharVar("UnderOathCS", 8) -- Quest: Under Oath - PLD AF3
     end
 end

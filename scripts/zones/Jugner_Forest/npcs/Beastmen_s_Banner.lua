@@ -14,9 +14,7 @@ function onTrigger(player, npc)
 end
 
 function onEventUpdate(player, csid, option)
-    -- printf("OPTION: %u", option)
 end
 
 function onEventFinish(player, csid, option)
-    -- printf("OPTION: %u", option)
 end

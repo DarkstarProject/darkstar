@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Jugner Forest
 --  NPC: Cavernous Maw
--- !pos -118 -8 -518 104
 -- Teleports Players to Jugner Forest [S]
+-- !pos -118 -8 -518 104
 -----------------------------------
 require("scripts/globals/maws")
 -----------------------------------

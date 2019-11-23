@@ -4,7 +4,7 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- !pos -65.976 -23.829 -661.362 104
 -----------------------------------
-local ID = require("scripts/zones/Jugner_Forest/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrigger(player, npc)
@@ -12,11 +12,9 @@ function onTrigger(player, npc)
 end
 
 function onTrade(player, npc, trade)
-    if (trade:getItemCount() == 1 and trade:hasItemQty(571, 1)) then
-        player:tradeComplete()
-        player:addItem(570)
-        player:messageSpecial(ID.text.ITEM_OBTAINED, 570)
+    if npcUtil.tradeHas(trade, 571) and npcUtil.giveItem(player, 570) then
         player:setCharVar("anExplorer-CurrentTablet", 0x00010)
+        player:confirmTrade()
     end
 end
 
