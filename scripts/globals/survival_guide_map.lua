@@ -252,7 +252,7 @@ survivalGuides =
         groupIndex = 23,
         posX = 364,
         posY = -32,
-        posZ = 23,
+        posZ = -23,
         posRot = 64
     },
     [39] =
