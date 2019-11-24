@@ -27,11 +27,6 @@ zones[dsp.zone.WAUGHROON_SHRINE] =
     },
     mob =
     {
-        HEAVY_METAL_CRAB_OFFSET = 17367086,
-        MACHA_OFFSET            = 17367098,
-        METSANNEITSYT_OFFSET    = 17367110,
-        FLAYER_FRANZ_OFFSET     = 17367122,
-        PLATOON_SCORPION_OFFSET = 17367266,
     },
     npc =
     {
