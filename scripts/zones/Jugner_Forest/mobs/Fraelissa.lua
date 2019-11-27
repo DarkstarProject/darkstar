@@ -2,6 +2,9 @@
 -- Area: Jugner Forest
 --   NM: Fraelissa
 -----------------------------------
+local ID = require("scripts/zones/Jugner_Forest/IDs")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end
