@@ -3,21 +3,19 @@
 --  NPC: _5cc (Gate of Ice)
 -- !pos -228 0 99 192
 -----------------------------------
-local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs");
+local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.DOOR_FIRMLY_CLOSED)
+    return 1
+end
 
-    player:messageSpecial(ID.text.DOOR_FIRMLY_CLOSED);
-    return 1;
+function onEventUpdate(player, csid, option)
+end
 
-end;
-
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end
