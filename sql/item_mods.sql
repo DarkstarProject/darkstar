@@ -27661,6 +27661,7 @@ INSERT INTO `item_mods` VALUES (22211,28,7);      -- Elan Strap +1: Magic Attack
 INSERT INTO `item_mods` VALUES (22212,2,70);      -- utu_grip HP+70
 INSERT INTO `item_mods` VALUES (22212,23,30);     -- Attack+30
 INSERT INTO `item_mods` VALUES (22212,25,30);     -- Accuracy+30
+INSERT INTO `item_mods` VALUES (22212,957,10);    -- Weaponskill DEX +10% (dex_wsc)
 INSERT INTO `item_mods` VALUES (22213,12,10);     -- enki_strap INT+10
 INSERT INTO `item_mods` VALUES (22213,13,10);     -- MND+10
 INSERT INTO `item_mods` VALUES (22213,30,10);     -- Magic Accuracy+10
