@@ -46,7 +46,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 39 then
-        finishMissionTimeline(player,1,csid,option)
+        finishMissionTimeline(player,3,csid,option)
     elseif csid == 130 and option == 1 then
         player:setCharVar("MissionStatus",1)
         if not player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
