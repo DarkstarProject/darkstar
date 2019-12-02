@@ -10,8 +10,6 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobEngaged(mob, targ)
-	print("darter engaged!")
-	
 	local targPlayer = nil
 	
 	if targ:isPC() then
