@@ -19,22 +19,20 @@ end
 function onZoneIn(player,prevZone)
     local cs = -1
 
-    -- SOA 1-1 Optional CS
-    if 
-        ENABLE_SOA and 
-        player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
-        player:getCharVar("SOA_1_CS3") == 0 
-    then
-        cs = 839
-    end
-
     -- FIRST LOGIN (START CS)
-    if player:getPlaytime(false) == 0 then
-        if OPENING_CUTSCENE_ENABLE == 1 then
-            cs = 367
-        end
+    if player:getPlaytime(false) == 0 and OPENING_CUTSCENE_ENABLE == 1 then
+        cs = 367
         player:setPos(0,0,-50,0)
         player:setHomePoint()
+    end
+
+    -- SOA 1-1 Optional CS
+    if
+        ENABLE_SOA == 1 and
+        player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and
+        player:getCharVar("SOA_1_CS3") == 0
+    then
+        cs = 839
     end
 
     -- MOG HOUSE EXIT
