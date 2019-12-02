@@ -18,13 +18,13 @@ end;
 function onTrigger(player,npc)
 
     -- Windurst 8-2
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getCharVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(22);
 
     -- Curses, Foiled A_Golem!?
-    elseif (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then
+    elseif (player:hasKeyItem(tpz.ki.SHANTOTTOS_NEW_SPELL)) then
         player:startEvent(14); -- deliver spell
-    elseif (player:hasKeyItem(dsp.ki.SHANTOTTOS_EXSPELL)) then
+    elseif (player:hasKeyItem(tpz.ki.SHANTOTTOS_EXSPELL)) then
         player:startEvent(13); -- spell erased, try again!
 
     -- standard dialog
@@ -41,11 +41,11 @@ function onEventFinish(player,csid,option)
     -- Curses, Foiled A_Golem!?
     if (csid == 14) then
         player:setCharVar("foiledagolemdeliverycomplete",1);
-        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL); -- remove key item
+        player:delKeyItem(tpz.ki.SHANTOTTOS_NEW_SPELL); -- remove key item
     elseif (csid == 22) then
-        player:addKeyItem(dsp.ki.RHINOSTERY_RING);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RHINOSTERY_RING);
-        if (player:hasKeyItem(dsp.ki.AURASTERY_RING) and player:hasKeyItem(dsp.ki.OPTISTERY_RING)) then
+        player:addKeyItem(tpz.ki.RHINOSTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.RHINOSTERY_RING);
+        if (player:hasKeyItem(tpz.ki.AURASTERY_RING) and player:hasKeyItem(tpz.ki.OPTISTERY_RING)) then
             player:setCharVar("MissionStatus",2)
         end
     end

@@ -23,26 +23,26 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local dINT = (caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT))
     local params = {}
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
 
     local resist = applyResistance(caster, target, spell, params)
-    local effect = dsp.effect.NONE
+    local effect = tpz.effect.NONE
 
     if (resist > 0.0625) then
         if (target:isFacing(caster)) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ERASE)
+            spell:setMsg(tpz.msg.basic.MAGIC_ERASE)
             effect = target:dispelStatusEffect()
-            if (effect == dsp.effect.NONE) then
-                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            if (effect == tpz.effect.NONE) then
+                spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
             end
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
 
     return effect

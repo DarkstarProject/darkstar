@@ -7,15 +7,15 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 600);
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1);
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 600);
 end;
 
 function onAdditionalEffect(mob, target, damage)
-    if mob:hasStatusEffect(dsp.effect.ENSTONE) then
+    if mob:hasStatusEffect(tpz.effect.ENSTONE) then
         return 0, 0, 0
     else
-        return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.STUN)
+        return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.STUN)
     end
 end
 

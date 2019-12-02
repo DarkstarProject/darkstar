@@ -14,7 +14,7 @@ require("scripts/globals/msg")
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() ~= 4249) then
-        mob:messageBasic(dsp.msg.basic.READIES_WS, 0, 39)
+        mob:messageBasic(tpz.msg.basic.READIES_WS, 0, 39)
     end
 
     return 0
@@ -22,7 +22,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     if (mob:getPool() == 4249) then -- Volker@Throne_Room only
-        target:showText(mob,zones[dsp.zone.THRONE_ROOM].text.RETURN_TO_THE_DARKNESS)
+        target:showText(mob,zones[tpz.zone.THRONE_ROOM].text.RETURN_TO_THE_DARKNESS)
     end
 
     local tp = skill:getTP()
@@ -43,7 +43,7 @@ function onMobWeaponSkill(target, mob, skill)
     dmg = target:breathDmgTaken(dmg)
 
     -- Handling phalanx
-    dmg = dmg - target:getMod(dsp.mod.PHALANX)
+    dmg = dmg - target:getMod(tpz.mod.PHALANX)
 
     if (dmg < 0) then
         return 0
@@ -56,6 +56,6 @@ function onMobWeaponSkill(target, mob, skill)
         target:updateEnmityFromDamage(mob,dmg)
     end
 
-    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.ELEMENTAL)
+    target:takeDamage(dmg, mob, tpz.attackType.BREATH, tpz.damageType.ELEMENTAL)
     return dmg
 end

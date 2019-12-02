@@ -9,5 +9,5 @@ require("scripts/globals/wsquest")
 -----------------------------------
 
 function onTrigger(player, npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.detonator, player, ID.mob.BEET_LEAFHOPPER)
+    tpz.wsquest.handleQmTrigger(tpz.wsquest.detonator, player, ID.mob.BEET_LEAFHOPPER)
 end

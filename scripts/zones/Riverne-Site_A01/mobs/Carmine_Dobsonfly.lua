@@ -7,7 +7,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, ID.mob.CARMINE_DOBSONFLY_OFFSET);
+    mob:setMobMod(tpz.mobMod.SUPERLINK, ID.mob.CARMINE_DOBSONFLY_OFFSET);
     mob:SetMagicCastingEnabled(false); -- does not cast spells while idle
 end;
 

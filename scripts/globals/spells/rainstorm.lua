@@ -13,25 +13,25 @@ end
 
 function onSpellCast(caster, target, spell)
 
-    target:delStatusEffectSilent(dsp.effect.FIRESTORM)
-    target:delStatusEffectSilent(dsp.effect.SANDSTORM)
-    target:delStatusEffectSilent(dsp.effect.RAINSTORM)
-    target:delStatusEffectSilent(dsp.effect.WINDSTORM)
-    target:delStatusEffectSilent(dsp.effect.HAILSTORM)
-    target:delStatusEffectSilent(dsp.effect.THUNDERSTORM)
-    target:delStatusEffectSilent(dsp.effect.AURORASTORM)
-    target:delStatusEffectSilent(dsp.effect.VOIDSTORM)
+    target:delStatusEffectSilent(tpz.effect.FIRESTORM)
+    target:delStatusEffectSilent(tpz.effect.SANDSTORM)
+    target:delStatusEffectSilent(tpz.effect.RAINSTORM)
+    target:delStatusEffectSilent(tpz.effect.WINDSTORM)
+    target:delStatusEffectSilent(tpz.effect.HAILSTORM)
+    target:delStatusEffectSilent(tpz.effect.THUNDERSTORM)
+    target:delStatusEffectSilent(tpz.effect.AURORASTORM)
+    target:delStatusEffectSilent(tpz.effect.VOIDSTORM)
 
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 42, target:getMainLvl())
 
-    local merit = caster:getMerit(dsp.merit.STORMSURGE)
+    local merit = caster:getMerit(tpz.merit.STORMSURGE)
     local power = 0
     if merit > 0 then
-        power = merit + caster:getMod(dsp.mod.STORMSURGE_EFFECT) + 2
+        power = merit + caster:getMod(tpz.mod.STORMSURGE_EFFECT) + 2
     end
 
-    target:addStatusEffect(dsp.effect.RAINSTORM, power, 0, duration)
+    target:addStatusEffect(tpz.effect.RAINSTORM, power, 0, duration)
 
-    return dsp.effect.RAINSTORM
+    return tpz.effect.RAINSTORM
 end

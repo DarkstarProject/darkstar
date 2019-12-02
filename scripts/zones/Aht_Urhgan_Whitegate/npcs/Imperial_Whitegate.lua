@@ -16,16 +16,16 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getEquipID(dsp.slot.MAIN) == 0 and player:getEquipID(dsp.slot.SUB) == 0 then
-        if player:getCurrentMission(TOAU) == dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE and player:getCharVar("AhtUrganStatus") == 1 and
+    if player:getEquipID(tpz.slot.MAIN) == 0 and player:getEquipID(tpz.slot.SUB) == 0 then
+        if player:getCurrentMission(TOAU) == tpz.mission.id.toau.GUESTS_OF_THE_EMPIRE and player:getCharVar("AhtUrganStatus") == 1 and
                 doRoyalPalaceArmorCheck(player) == true then
             player:startEvent(3078,0,1,0,0,0,0,0,1,0)
-        elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.SEAL_OF_THE_SERPENT then
+        elseif player:getCurrentMission(TOAU) == tpz.mission.id.toau.SEAL_OF_THE_SERPENT then
             player:startEvent(3111)
-        elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMPERIAL_CORONATION and
+        elseif player:getCurrentMission(TOAU) == tpz.mission.id.toau.IMPERIAL_CORONATION and
                 doRoyalPalaceArmorCheck(player) == true then
-            player:startEvent(3140,dsp.besieged.getMercenaryRank(player),player:getTitle(),0,0,0,0,0,0,0)
-        elseif player:getCurrentMission(TOAU) >= dsp.mission.id.toau.IMPERIAL_CORONATION and
+            player:startEvent(3140,tpz.besieged.getMercenaryRank(player),player:getTitle(),0,0,0,0,0,0,0)
+        elseif player:getCurrentMission(TOAU) >= tpz.mission.id.toau.IMPERIAL_CORONATION and
                 doRoyalPalaceArmorCheck(player) == true then
             local ring = player:getCharVar("TOAU_RINGTIME")
             local standard = player:hasItem(129)
@@ -70,18 +70,18 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 3078 and npcUtil.giveItem(player,2186) then
-        player:completeMission(TOAU,dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE)
+        player:completeMission(TOAU,tpz.mission.id.toau.GUESTS_OF_THE_EMPIRE)
         player:setCharVar("AhtUrganStatus",0)
-        player:addTitle(dsp.title.OVJANGS_ERRAND_RUNNER)
+        player:addTitle(tpz.title.OVJANGS_ERRAND_RUNNER)
         player:needToZone(true)
         player:setCharVar("TOAUM18_STARTDAY", VanadielDayOfTheYear())
-        player:addMission(TOAU,dsp.mission.id.toau.PASSING_GLORY)
+        player:addMission(TOAU,tpz.mission.id.toau.PASSING_GLORY)
     elseif csid == 3111 then
-        player:completeMission(TOAU,dsp.mission.id.toau.SEAL_OF_THE_SERPENT)
-        player:addMission(TOAU,dsp.mission.id.toau.MISPLACED_NOBILITY)
+        player:completeMission(TOAU,tpz.mission.id.toau.SEAL_OF_THE_SERPENT)
+        player:addMission(TOAU,tpz.mission.id.toau.MISPLACED_NOBILITY)
     elseif csid == 3140 and player:getCharVar("TOAU_RINGRECV") == 1 then
-        player:completeMission(TOAU,dsp.mission.id.toau.IMPERIAL_CORONATION)
-        player:addMission(TOAU,dsp.mission.id.toau.THE_EMPRESS_CROWNED)
+        player:completeMission(TOAU,tpz.mission.id.toau.IMPERIAL_CORONATION)
+        player:addMission(TOAU,tpz.mission.id.toau.THE_EMPRESS_CROWNED)
         player:setCharVar("TOAU_RINGRECV", 0)
     elseif csid == 3155 and option == 6 then
         npcUtil.giveItem(player,129)

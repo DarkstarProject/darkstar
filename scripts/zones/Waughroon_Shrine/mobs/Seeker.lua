@@ -7,7 +7,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.HP_STANDBACK, 50);
+    mob:setMobMod(tpz.mobMod.HP_STANDBACK, 50);
 end;
 
 function onMobDeath(mob, player, isKiller)

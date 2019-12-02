@@ -18,8 +18,8 @@ function onSpellCast(caster,target,spell)
 
     --get resist multiplier (1x if no resist)
     local params = {}
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.DARK_MAGIC
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.DARK_MAGIC
     local resist = applyResistance(caster, target, spell, params)
 
     --get the resisted damage
@@ -33,12 +33,12 @@ function onSpellCast(caster,target,spell)
 
     --add in final adjustments
     if (resist <= 0.125) then
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
         dmg = 0
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_ABSORB_TP)
+        spell:setMsg(tpz.msg.basic.MAGIC_ABSORB_TP)
 
-        dmg = dmg * ((100 + caster:getMod(dsp.mod.AUGMENTS_ABSORB)) / 100)
+        dmg = dmg * ((100 + caster:getMod(tpz.mod.AUGMENTS_ABSORB)) / 100)
 
         if ((target:getTP()) < dmg) then
             dmg = target:getTP()

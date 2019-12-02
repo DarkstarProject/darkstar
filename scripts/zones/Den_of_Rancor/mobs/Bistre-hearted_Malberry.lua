@@ -10,10 +10,10 @@ mixins =
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.MANAFONT, hpp = math.random(40, 95)},
+            {id = tpz.jsa.MANAFONT, hpp = math.random(40, 95)},
         },
     })
 end

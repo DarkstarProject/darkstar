@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -154,21 +152,21 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 
-	DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
-	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
+	TPZ_DEBUG_BREAK_IF(WeaponItem == nullptr);
+	TPZ_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
+	TPZ_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
 	uint16 RodID = WeaponItem->getID();
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
-	DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
-	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
+	TPZ_DEBUG_BREAK_IF(WeaponItem == nullptr);
+	TPZ_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
+	TPZ_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
 	uint16 LureID = WeaponItem->getID();
 
-	int32 FishingChance = dsprand::GetRandomNumber(100);
+	int32 FishingChance = tpzrand::GetRandomNumber(100);
 
 	if (FishingChance <= 20)
 	{
@@ -230,7 +228,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
             
             if (!caughtQuestedFish)
             {
-                int32 luckyFish = dsprand::GetRandomNumber((int32)Sql_NumRows(SqlHandle));
+                int32 luckyFish = tpzrand::GetRandomNumber((int32)Sql_NumRows(SqlHandle));
                 PFish = new CItemFish(*itemutils::GetItemPointer(fishIDs[luckyFish]));
 
                 PChar->UContainer->SetType(UCONTAINER_FISHING);
@@ -262,7 +260,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
 			int32 FisherLuck = 0;
-            int32 FishingChance = dsprand::GetRandomNumber(1000);
+            int32 FishingChance = tpzrand::GetRandomNumber(1000);
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 			{
@@ -293,9 +291,9 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 {	
 	CItemWeapon* PLure = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
-	DSP_DEBUG_BREAK_IF(PLure == nullptr);
-	DSP_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
-	DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FISHING);
+	TPZ_DEBUG_BREAK_IF(PLure == nullptr);
+	TPZ_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
+	TPZ_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FISHING);
 
 	if (!RemoveFly &&
 	   ( PLure->getStackSize() == 1))
@@ -323,7 +321,7 @@ void RodBreaks(CCharEntity* PChar)
 	uint8  SlotID = PChar->equip[SLOT_RANGED];
 	CItem* PRod   = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-	DSP_DEBUG_BREAK_IF(PRod == nullptr);
+	TPZ_DEBUG_BREAK_IF(PRod == nullptr);
 
 	uint16 BrokenRodID = 0;
 
@@ -345,7 +343,7 @@ void RodBreaks(CCharEntity* PChar)
 		case 0x43EF:  BrokenRodID = 0x01E5; break;
 	}
 
-	DSP_DEBUG_BREAK_IF(BrokenRodID == 0);
+	TPZ_DEBUG_BREAK_IF(BrokenRodID == 0);
 
 	charutils::EquipItem(PChar, 0, SLOT_RANGED, LOC_INVENTORY);
 	charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1); 
@@ -391,8 +389,8 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32
 			{
 				// сообщение: "You caught fish!"
 
-				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
-				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
+				TPZ_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
+				TPZ_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
 
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
                 PChar->updatemask |= UPDATE_HP;

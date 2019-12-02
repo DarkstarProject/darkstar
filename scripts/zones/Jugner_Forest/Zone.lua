@@ -12,7 +12,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
@@ -21,9 +21,9 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.FRAELISSA)
     GetMobByID(ID.mob.FRAELISSA):setRespawnTime(math.random(900, 10800))
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 
-    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    tpz.helm.initZone(zone, tpz.helm.type.LOGGING)
 end
 
 function onZoneIn( player, prevZone)
@@ -41,7 +41,7 @@ function onZoneIn( player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter( player, region)

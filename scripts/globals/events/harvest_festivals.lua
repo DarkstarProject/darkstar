@@ -31,8 +31,8 @@ end;
 
 
 function halloweenItemsCheck(player)
-    local headSlot = player:getEquipID(dsp.slot.HEAD);
-    local mainHand = player:getEquipID(dsp.slot.MAIN);
+    local headSlot = player:getEquipID(tpz.slot.HEAD);
+    local mainHand = player:getEquipID(tpz.slot.MAIN);
     local reward = 0;
 
     -- Normal Quality Rewards
@@ -158,7 +158,7 @@ function onHalloweenTrade(player,trade,npc)
                     player:addItem(itemReward);
                     player:messageSpecial(ID.text.ITEM_OBTAINED,itemReward);
 
-                elseif target:canUseMisc(dsp.zoneMisc.COSTUME) and not AlreadyTradedChk then
+                elseif target:canUseMisc(tpz.zoneMisc.COSTUME) and not AlreadyTradedChk then
                 -- Other neat looking halloween type costumes
                 -- two dragon skins: @420/421
                 -- @422 dancing weapon
@@ -184,7 +184,7 @@ function onHalloweenTrade(player,trade,npc)
                     local halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker};
 
                     local costumePicked = halloween_costume_list[math.random(1,#halloween_costume_list)]; -- will randomly pick one of the costumes in the list
-                    player:addStatusEffect(dsp.effect.COSTUME,costumePicked,0,3600);
+                    player:addStatusEffect(tpz.effect.COSTUME,costumePicked,0,3600);
 
                     -- pitchForkCostumeList defines the special costumes per zone that can trigger the pitch fork requirement
                     -- zone, costumeID

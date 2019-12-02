@@ -11,9 +11,9 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.FOOD) == true) then
-        target:delStatusEffect(dsp.effect.FOOD)
-    elseif (target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
-        target:delStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)
+    if (target:hasStatusEffect(tpz.effect.FOOD) == true) then
+        target:delStatusEffect(tpz.effect.FOOD)
+    elseif (target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD) == true) then
+        target:delStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD)
     end
 end

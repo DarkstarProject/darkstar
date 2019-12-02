@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU] =
+zones[tpz.zone.SILVER_SEA_ROUTE_TO_NASHMAU] =
 {
     text =
     {
@@ -26,4 +26,4 @@ zones[dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU] =
     },
 }
 
-return zones[dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU]
+return zones[tpz.zone.SILVER_SEA_ROUTE_TO_NASHMAU]

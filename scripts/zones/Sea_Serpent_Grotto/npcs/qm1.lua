@@ -9,5 +9,5 @@ require("scripts/globals/wsquest")
 -----------------------------------
 
 function onTrigger(player, npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.impulse_drive, player, ID.mob.WATER_LEAPER)
+    tpz.wsquest.handleQmTrigger(tpz.wsquest.impulse_drive, player, ID.mob.WATER_LEAPER)
 end

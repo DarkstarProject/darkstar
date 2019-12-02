@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.WINDURST then
+    if GetRegionOwner(tpz.region.QUFIMISLAND) ~= tpz.nation.WINDURST then
         player:showText(npc,ID.text.MILLEROVIEUNET_CLOSED_DIALOG)
     else
         local stock =
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc,ID.text.MILLEROVIEUNET_OPEN_DIALOG)
-        dsp.shop.general(player, stock, WINDURST)
+        tpz.shop.general(player, stock, WINDURST)
     end
 end
 

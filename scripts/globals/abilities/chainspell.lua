@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.CHAINSPELL,1,0,60)
+    player:addStatusEffect(tpz.effect.CHAINSPELL,1,0,60)
 end

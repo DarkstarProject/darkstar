@@ -23,25 +23,25 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effect.STUN
-    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local typeEffect = tpz.effect.STUN
+    local dINT = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 0
-    params.effect = dsp.effect.STUN
+    params.effect = tpz.effect.STUN
     local resist = applyResistanceEffect(caster, target, spell, params)
     local duration = 5 * resist
 
     if (resist > 0.0625) then -- Do it!
         if (target:addStatusEffect(typeEffect,2,0,duration)) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
 
     return typeEffect

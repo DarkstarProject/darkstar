@@ -12,8 +12,8 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    caster:delStatusEffect(dsp.effect.ENMITY_BOOST)
+    caster:delStatusEffect(tpz.effect.ENMITY_BOOST)
 
-    caster:addStatusEffect(dsp.effect.PAX,15,0,300)
-    return dsp.effect.PAX
+    caster:addStatusEffect(tpz.effect.PAX,15,0,300)
+    return tpz.effect.PAX
 end

@@ -10,7 +10,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:hasKeyItem(dsp.ki.SILVER_SEA_SALT) then
+    if player:hasKeyItem(tpz.ki.SILVER_SEA_SALT) then
         player:startEvent(12)
     else
         player:startEvent(14)
@@ -22,6 +22,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 12 and option == 1 then
-        player:delKeyItem(dsp.ki.SILVER_SEA_SALT)
+        player:delKeyItem(tpz.ki.SILVER_SEA_SALT)
     end
 end

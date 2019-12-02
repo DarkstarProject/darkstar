@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    dsp.mob.phOnDespawn(mob, ID.mob.MOLTENOX_STUBTHUMBS_PH, 10, 1200) -- 20 minutes
+    tpz.mob.phOnDespawn(mob, ID.mob.MOLTENOX_STUBTHUMBS_PH, 10, 1200) -- 20 minutes
 end

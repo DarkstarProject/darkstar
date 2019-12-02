@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.QUBIA_ARENA] =
+zones[tpz.zone.QUBIA_ARENA] =
 {
     text =
     {
@@ -38,4 +38,4 @@ zones[dsp.zone.QUBIA_ARENA] =
     },
 }
 
-return zones[dsp.zone.QUBIA_ARENA]
+return zones[tpz.zone.QUBIA_ARENA]

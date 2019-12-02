@@ -13,8 +13,8 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local skill = caster:getSkillLevel(dsp.skill.DARK_MAGIC)
-    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local skill = caster:getSkillLevel(tpz.skill.DARK_MAGIC)
+    local dINT = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
 
     if (skill > 500) then
         skill = 500
@@ -27,8 +27,8 @@ function onSpellCast(caster,target,spell)
     local base = math.floor((math.floor(0.67 * caster:getMainLvl())/10)*(37 + math.floor(0.67*dINT)))
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.DARK_MAGIC
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.DARK_MAGIC
     params.bonus = 0
     params.effect = nil
     local resist = applyResistance(caster, target, spell, params)
@@ -38,7 +38,7 @@ function onSpellCast(caster,target,spell)
     dmg = adjustForTarget(target,dmg,spell:getElement())
     dmg = finalMagicAdjustments(caster,target,spell,dmg)
 
-    target:addStatusEffect(dsp.effect.KAUSTRA,math.floor(dmg/3),3,duration)
+    target:addStatusEffect(tpz.effect.KAUSTRA,math.floor(dmg/3),3,duration)
 
     return dmg
 end

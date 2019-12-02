@@ -11,9 +11,9 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    MobBuffMove(mob, dsp.effect.AZURE_LORE, 1, 0, 45)
+    MobBuffMove(mob, tpz.effect.AZURE_LORE, 1, 0, 45)
 
-    skill:setMsg(dsp.msg.basic.USES)
+    skill:setMsg(tpz.msg.basic.USES)
 
-    return dsp.effect.AZURE_LORE
+    return tpz.effect.AZURE_LORE
 end

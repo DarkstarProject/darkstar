@@ -16,17 +16,17 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onUseAbility(player, target, ability)
-    local helix = target:getStatusEffect(dsp.effect.HELIX)
+    local helix = target:getStatusEffect(tpz.effect.HELIX)
     if helix ~= nil then
         local mvPower = helix:getSubPower()
-        local resist = applyResistanceAbility(player, target, dsp.magic.ele.NONE, dsp.skill.ELEMENTAL_MAGIC, 0) -- seems reasonable...
+        local resist = applyResistanceAbility(player, target, tpz.magic.ele.NONE, tpz.skill.ELEMENTAL_MAGIC, 0) -- seems reasonable...
         -- Doesn't work against NMs apparently
         if mvPower > 0 or resist < 0.25 or target:isNM() then -- Don't let Modus Veritas stack to prevent abuse
-            ability:setMsg(dsp.msg.basic.JA_MISS) --Miss
+            ability:setMsg(tpz.msg.basic.JA_MISS) --Miss
             return 0
         else
             -- Double power and halve remaining time
-            local mvMerits = player:getMerit(dsp.merit.MODUS_VERITAS_DURATION)
+            local mvMerits = player:getMerit(tpz.merit.MODUS_VERITAS_DURATION)
             local durationMultiplier = 0.5 + (0.05 * mvMerits)
             mvPower = mvPower + 1
             local helixPower = helix:getPower() * 2
@@ -40,6 +40,6 @@ function onUseAbility(player, target, ability)
             helix:setDuration(duration * 1000) -- back to milliseconds
         end
     else
-        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2) -- No effect
+        ability:setMsg(tpz.msg.basic.JA_NO_EFFECT_2) -- No effect
     end
 end

@@ -11,7 +11,7 @@ require("scripts/globals/status")
 function onTrigger(player,npc)
     local brassDoor = GetNPCByID(npc:getID() - 4)
 
-    if npc:getAnimation() == dsp.anim.CLOSE_DOOR and brassDoor:getAnimation() == dsp.anim.CLOSE_DOOR then
+    if npc:getAnimation() == tpz.anim.CLOSE_DOOR and brassDoor:getAnimation() == tpz.anim.CLOSE_DOOR then
         player:startEvent(10)
     end
 end

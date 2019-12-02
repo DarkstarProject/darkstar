@@ -9,12 +9,12 @@ require("scripts/globals/zone")
 -----------------------------------------
 
 function onItemCheck(target)
-    if target:getZoneID() == dsp.zone.SILVER_SEA_REMNANTS then
+    if target:getZoneID() == tpz.zone.SILVER_SEA_REMNANTS then
         return 0
     end
     return 56
 end
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.S_REM,0,1)
+    target:addStatusEffectEx(tpz.effect.TELEPORT,0,tpz.teleport.id.S_REM,0,1)
 end

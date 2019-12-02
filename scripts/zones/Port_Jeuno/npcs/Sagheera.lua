@@ -330,7 +330,7 @@ function onTrigger(player,npc)
     local wildcatJeuno = player:getCharVar("WildcatJeuno")
 
     -- LURE OF THE WILDCAT
-    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
+    if player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
         player:startEvent(313)
 
     -- DEFAULT DIALOG (menu)
@@ -354,7 +354,7 @@ function onTrigger(player,npc)
         -- calculate cosmocleanse parameters
         local cosmoTime = 0
 
-        if player:hasKeyItem(dsp.ki.COSMOCLEANSE) then
+        if player:hasKeyItem(tpz.ki.COSMOCLEANSE) then
             hasCosmoCleanse = 1
         else
             cosmoTime = getCosmoCleanseTime(player)
@@ -388,7 +388,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 310 and option == 3 then
         local cosmoTime = getCosmoCleanseTime(player)
         if cosmoTime == COSMO_READY and player:delGil(15000) then
-            npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
+            npcUtil.giveKeyItem(player, tpz.ki.COSMOCLEANSE)
             player:setCharVar("Cosmo_Cleanse_TIME", os.time())
         end
 

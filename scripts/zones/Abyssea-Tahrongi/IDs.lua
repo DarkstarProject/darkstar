@@ -7,7 +7,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.ABYSSEA_TAHRONGI] =
+zones[tpz.zone.ABYSSEA_TAHRONGI] =
 {
     text =
     {
@@ -37,17 +37,17 @@ zones[dsp.zone.ABYSSEA_TAHRONGI] =
             --  [16961963] = {'qm10',           {2924},                                                                                                                     {}, 16961926}, -- Tefnet
             --  [16961964] = {'qm11',      {2925,2950},                                                                                                                     {}, 16961927}, -- Muscaliet
             --  [16961965] = {'qm12',           {2926},                                                                                                                     {}, 16961928}, -- Lachrymater
-            --  [16961966] = {'qm13',               {},         {dsp.ki.VEINOUS_HECTEYES_EYELID,dsp.ki.TORN_BAT_WING,dsp.ki.GORY_SCORPION_CLAW,dsp.ki.MOSSY_ADAMANTOISE_SHELL}, 16961929}, -- Chloris
-            --  [16961967] = {'qm14',               {}, {dsp.ki.FAT_LINED_COCKATRICE_SKIN,dsp.ki.SODDEN_SANDWORM_HUSK,dsp.ki.LUXURIANT_MANTICORE_MANE,dsp.ki.STICKY_GNAT_WING}, 16961930}, -- Glavoid
-            --  [16961968] = {'qm15',               {},                                                     {dsp.ki.OVERGROWN_MANDRAGORA_FLOWER,dsp.ki.CHIPPED_SANDWORM_TOOTH}, 16961931}, -- Lacovie
-            --  [16961969] = {'qm16',               {},         {dsp.ki.VEINOUS_HECTEYES_EYELID,dsp.ki.TORN_BAT_WING,dsp.ki.GORY_SCORPION_CLAW,dsp.ki.MOSSY_ADAMANTOISE_SHELL}, 16961946}, -- Chloris
-            --  [16961970] = {'qm17',               {}, {dsp.ki.FAT_LINED_COCKATRICE_SKIN,dsp.ki.SODDEN_SANDWORM_HUSK,dsp.ki.LUXURIANT_MANTICORE_MANE,dsp.ki.STICKY_GNAT_WING}, 16961947}, -- Glavoid
-            --  [16961971] = {'qm18',               {},                                                     {dsp.ki.OVERGROWN_MANDRAGORA_FLOWER,dsp.ki.CHIPPED_SANDWORM_TOOTH}, 16961948}, -- Lacovie
-            --  [16961972] = {'qm19',               {},         {dsp.ki.VEINOUS_HECTEYES_EYELID,dsp.ki.TORN_BAT_WING,dsp.ki.GORY_SCORPION_CLAW,dsp.ki.MOSSY_ADAMANTOISE_SHELL}, 16961949}, -- Chloris
-            --  [16961973] = {'qm20',               {}, {dsp.ki.FAT_LINED_COCKATRICE_SKIN,dsp.ki.SODDEN_SANDWORM_HUSK,dsp.ki.LUXURIANT_MANTICORE_MANE,dsp.ki.STICKY_GNAT_WING}, 16961950}, -- Glavoid
-            --  [16961974] = {'qm21',               {},                                                     {dsp.ki.OVERGROWN_MANDRAGORA_FLOWER,dsp.ki.CHIPPED_SANDWORM_TOOTH}, 16961951}, -- Lacovie
+            --  [16961966] = {'qm13',               {},         {tpz.ki.VEINOUS_HECTEYES_EYELID,tpz.ki.TORN_BAT_WING,tpz.ki.GORY_SCORPION_CLAW,tpz.ki.MOSSY_ADAMANTOISE_SHELL}, 16961929}, -- Chloris
+            --  [16961967] = {'qm14',               {}, {tpz.ki.FAT_LINED_COCKATRICE_SKIN,tpz.ki.SODDEN_SANDWORM_HUSK,tpz.ki.LUXURIANT_MANTICORE_MANE,tpz.ki.STICKY_GNAT_WING}, 16961930}, -- Glavoid
+            --  [16961968] = {'qm15',               {},                                                     {tpz.ki.OVERGROWN_MANDRAGORA_FLOWER,tpz.ki.CHIPPED_SANDWORM_TOOTH}, 16961931}, -- Lacovie
+            --  [16961969] = {'qm16',               {},         {tpz.ki.VEINOUS_HECTEYES_EYELID,tpz.ki.TORN_BAT_WING,tpz.ki.GORY_SCORPION_CLAW,tpz.ki.MOSSY_ADAMANTOISE_SHELL}, 16961946}, -- Chloris
+            --  [16961970] = {'qm17',               {}, {tpz.ki.FAT_LINED_COCKATRICE_SKIN,tpz.ki.SODDEN_SANDWORM_HUSK,tpz.ki.LUXURIANT_MANTICORE_MANE,tpz.ki.STICKY_GNAT_WING}, 16961947}, -- Glavoid
+            --  [16961971] = {'qm18',               {},                                                     {tpz.ki.OVERGROWN_MANDRAGORA_FLOWER,tpz.ki.CHIPPED_SANDWORM_TOOTH}, 16961948}, -- Lacovie
+            --  [16961972] = {'qm19',               {},         {tpz.ki.VEINOUS_HECTEYES_EYELID,tpz.ki.TORN_BAT_WING,tpz.ki.GORY_SCORPION_CLAW,tpz.ki.MOSSY_ADAMANTOISE_SHELL}, 16961949}, -- Chloris
+            --  [16961973] = {'qm20',               {}, {tpz.ki.FAT_LINED_COCKATRICE_SKIN,tpz.ki.SODDEN_SANDWORM_HUSK,tpz.ki.LUXURIANT_MANTICORE_MANE,tpz.ki.STICKY_GNAT_WING}, 16961950}, -- Glavoid
+            --  [16961974] = {'qm21',               {},                                                     {tpz.ki.OVERGROWN_MANDRAGORA_FLOWER,tpz.ki.CHIPPED_SANDWORM_TOOTH}, 16961951}, -- Lacovie
         },
     },
 }
 
-return zones[dsp.zone.ABYSSEA_TAHRONGI]
+return zones[tpz.zone.ABYSSEA_TAHRONGI]

@@ -8,7 +8,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.REGAIN, 30);
+    mob:addMod(tpz.mod.REGAIN, 30);
 end;
 
 function onMobSpawn(mob)

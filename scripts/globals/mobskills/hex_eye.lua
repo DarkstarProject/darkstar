@@ -18,8 +18,8 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local message = dsp.msg.basic.SKILL_MISS
-    local typeEffect = dsp.effect.PARALYSIS
+    local message = tpz.msg.basic.SKILL_MISS
+    local typeEffect = tpz.effect.PARALYSIS
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 25, 0, 120))
 

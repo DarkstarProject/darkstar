@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -75,8 +73,8 @@ TREASUREPOOLTYPE CTreasurePool::GetPoolType()
 
 void CTreasurePool::AddMember(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
     members.push_back(PChar);
 
@@ -98,8 +96,8 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
 
 void CTreasurePool::DelMember(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
     //if(m_TreasurePoolType != TREASUREPOOL_ZONE){
         //Zone drops e.g. Dynamis DO NOT remove previous lot info. Everything else does.
@@ -241,8 +239,8 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 
 void CTreasurePool::UpdatePool(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
     if (PChar->status != STATUS_DISAPPEAR)
     {
@@ -261,8 +259,8 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 
 void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
     if (SlotID >= TREASUREPOOL_SIZE) return;
 
@@ -299,8 +297,8 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 
 void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
     if (SlotID >= TREASUREPOOL_SIZE) return;
 
@@ -470,7 +468,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
             else
             {
                 //select random member from this pool to give item to
-                CCharEntity* PChar = candidates.at(dsprand::GetRandomNumber(candidates.size()));
+                CCharEntity* PChar = candidates.at(tpzrand::GetRandomNumber(candidates.size()));
                 if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
                 {
                     TreasureWon(PChar, SlotID);
@@ -492,9 +490,9 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
 
 void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 {
-    DSP_DEBUG_BREAK_IF(winner == nullptr);
-    DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
-    DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
+    TPZ_DEBUG_BREAK_IF(winner == nullptr);
+    TPZ_DEBUG_BREAK_IF(winner->PTreasurePool != this);
+    TPZ_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 
     m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
@@ -516,9 +514,9 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 
 void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 {
-    DSP_DEBUG_BREAK_IF(winner == nullptr);
-    DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
-    DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
+    TPZ_DEBUG_BREAK_IF(winner == nullptr);
+    TPZ_DEBUG_BREAK_IF(winner->PTreasurePool != this);
+    TPZ_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 
     m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
@@ -540,7 +538,7 @@ void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 
 void CTreasurePool::TreasureLost(uint8 SlotID)
 {
-    DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
+    TPZ_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 
     m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 

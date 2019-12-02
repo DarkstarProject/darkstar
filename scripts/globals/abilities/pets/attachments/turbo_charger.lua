@@ -10,7 +10,7 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 0)
+    updateModPerformance(pet, tpz.mod.HASTE_MAGIC, 'turbo_charger_haste', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
@@ -23,12 +23,12 @@ end
 
 function onUpdate(pet, maneuvers)
     if maneuvers == 0 then
-        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 500)
+        updateModPerformance(pet, tpz.mod.HASTE_MAGIC, 'turbo_charger_haste', 500)
     elseif maneuvers == 1 then
-        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 1500)
+        updateModPerformance(pet, tpz.mod.HASTE_MAGIC, 'turbo_charger_haste', 1500)
     elseif maneuvers == 2 then
-        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 2000)
+        updateModPerformance(pet, tpz.mod.HASTE_MAGIC, 'turbo_charger_haste', 2000)
     elseif maneuvers == 3 then
-        updateModPerformance(pet, dsp.mod.HASTE_MAGIC, 'turbo_charger_haste', 2500)
+        updateModPerformance(pet, tpz.mod.HASTE_MAGIC, 'turbo_charger_haste', 2500)
     end
 end

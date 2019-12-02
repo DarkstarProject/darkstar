@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effect.INVISIBLE
+--     tpz.effect.INVISIBLE
 --
 -----------------------------------
 require("scripts/globals/msg")
@@ -11,7 +11,7 @@ end
 function onEffectTick(target,effect)
     local tick = effect:getLastTick()
     if (tick < 4 and tick ~= 0) then
-        target:messageBasic(dsp.msg.basic.ABOUT_TO_WEAR_OFF, effect:getType())
+        target:messageBasic(tpz.msg.basic.ABOUT_TO_WEAR_OFF, effect:getType())
     end
 end
 

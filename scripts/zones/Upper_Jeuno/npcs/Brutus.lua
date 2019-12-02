@@ -14,10 +14,10 @@ require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
 
-local wsQuest = dsp.wsquest.decimation
+local wsQuest = tpz.wsquest.decimation
 
 function onTrade(player, npc, trade)
-    local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest, player, trade)
+    local wsQuestEvent = tpz.wsquest.getTradeEvent(wsQuest, player, trade)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
@@ -25,15 +25,15 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest, player)
-    local chocoboOnTheLoose = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
+    local wsQuestEvent = tpz.wsquest.getTriggerEvent(wsQuest, player)
+    local chocoboOnTheLoose = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
     local chocoboOnTheLooseStat = player:getCharVar("ChocoboOnTheLoose")
-    local chocobosWounds = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS)
+    local chocobosWounds = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.CHOCOBO_S_WOUNDS)
     local chocobosWoundsStat = player:getCharVar("ChocobosWounds_Event")
-    local saveMySon = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON)
-    local pathOfTheBeastmaster = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
-    local wingsOfGold = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
-    local scatteredIntoShadow = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW)
+    local saveMySon = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.SAVE_MY_SON)
+    local pathOfTheBeastmaster = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
+    local wingsOfGold = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.WINGS_OF_GOLD)
+    local scatteredIntoShadow = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.SCATTERED_INTO_SHADOW)
     local scatteredIntoShadowStat = player:getCharVar("scatIntoShadowCS")
 
     local mLvl = player:getMainLvl()
@@ -70,7 +70,7 @@ function onTrigger(player, npc)
         player:startEvent(70)
 
     -- WINGS OF GOLD
-    elseif pathOfTheBeastmaster == QUEST_COMPLETED and wingsOfGold == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF1_QUEST_LEVEL then
+    elseif pathOfTheBeastmaster == QUEST_COMPLETED and wingsOfGold == QUEST_AVAILABLE and mJob == tpz.job.BST and mLvl >= AF1_QUEST_LEVEL then
         if player:getCharVar("wingsOfGold_shortCS") == 1 then
             player:startEvent(137) -- Start Quest "Wings of gold" (Short dialog)
         else
@@ -78,14 +78,14 @@ function onTrigger(player, npc)
             player:startEvent(139) -- Start Quest "Wings of gold" (Long dialog)
         end
     elseif wingsOfGold == QUEST_ACCEPTED then
-        if not player:hasKeyItem(dsp.ki.GUIDING_BELL) then
+        if not player:hasKeyItem(tpz.ki.GUIDING_BELL) then
             player:startEvent(136)
         else
             player:startEvent(138) -- Finish Quest "Wings of gold"
         end
 
     -- SCATTERED INTO SHADOW
-    elseif wingsOfGold == QUEST_COMPLETED and scatteredIntoShadow == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF2_QUEST_LEVEL then
+    elseif wingsOfGold == QUEST_COMPLETED and scatteredIntoShadow == QUEST_AVAILABLE and mJob == tpz.job.BST and mLvl >= AF2_QUEST_LEVEL then
         if player:getCharVar("scatIntoShadow_shortCS") == 1 then
             player:startEvent(143)
         else
@@ -93,7 +93,7 @@ function onTrigger(player, npc)
             player:startEvent(141)
         end
     elseif scatteredIntoShadow == QUEST_ACCEPTED then
-        if player:hasKeyItem(dsp.ki.AQUAFLORA1) or player:hasKeyItem(dsp.ki.AQUAFLORA2) or player:hasKeyItem(dsp.ki.AQUAFLORA3) then
+        if player:hasKeyItem(tpz.ki.AQUAFLORA1) or player:hasKeyItem(tpz.ki.AQUAFLORA2) or player:hasKeyItem(tpz.ki.AQUAFLORA3) then
             player:startEvent(142)
         elseif scatteredIntoShadowStat == 0 then
             player:startEvent(144)
@@ -122,7 +122,7 @@ end
 function onEventFinish(player, csid, option)
     -- CHOCOBO ON THE LOOSE
     if csid == 10093 then
-        player:addQuest(JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
+        player:addQuest(JEUNO, tpz.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
     elseif csid == 10094 then
         player:setCharVar("ChocoboOnTheLoose", 1)
     elseif csid == 10095 then
@@ -135,39 +135,39 @@ function onEventFinish(player, csid, option)
         player:setCharVar("ChocoboOnTheLooseYear", VanadielYear())
         player:needToZone(true)
     elseif csid == 10109 then
-        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE, {item = 2317, var = {"ChocoboOnTheLoose", "ChocoboOnTheLooseDay", "ChocoboOnTheLooseYear"}})
+        npcUtil.completeQuest(player, JEUNO, tpz.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE, {item = 2317, var = {"ChocoboOnTheLoose", "ChocoboOnTheLooseDay", "ChocoboOnTheLooseYear"}})
 
     -- CHOCOBO'S WOUNDS
     elseif csid == 71 and option == 1 then
-        player:addQuest(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS)
+        player:addQuest(JEUNO, tpz.quest.id.jeuno.CHOCOBO_S_WOUNDS)
         player:setCharVar("ChocobosWounds_Event", 1)
 
     -- PATH OF THE BEASTMASTER
     elseif csid == 70 then
-        player:addQuest(JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
-        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER, {title = dsp.title.ANIMAL_TRAINER})
-        player:unlockJob(dsp.job.BST)
+        player:addQuest(JEUNO, tpz.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
+        npcUtil.completeQuest(player, JEUNO, tpz.quest.id.jeuno.PATH_OF_THE_BEASTMASTER, {title = tpz.title.ANIMAL_TRAINER})
+        player:unlockJob(tpz.job.BST)
         player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_BEASTMASTER)
 
     -- WINGS OF GOLD
     elseif (csid == 137 or csid == 139) and option == 1 then
-        player:addQuest(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
+        player:addQuest(JEUNO, tpz.quest.id.jeuno.WINGS_OF_GOLD)
         player:setCharVar("wingsOfGold_shortCS", 0)
-    elseif csid == 138 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD, {item = 16680, fame = 20}) then
-        player:delKeyItem(dsp.ki.GUIDING_BELL)
+    elseif csid == 138 and npcUtil.completeQuest(player, JEUNO, tpz.quest.id.jeuno.WINGS_OF_GOLD, {item = 16680, fame = 20}) then
+        player:delKeyItem(tpz.ki.GUIDING_BELL)
 
     -- SCATTERED INTO SHADOW
     elseif (csid == 141 or csid == 143) and option == 1 then
-        player:addQuest(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW)
+        player:addQuest(JEUNO, tpz.quest.id.jeuno.SCATTERED_INTO_SHADOW)
         player:setCharVar("scatIntoShadow_shortCS", 0)
-        npcUtil.giveKeyItem(player, {dsp.ki.AQUAFLORA1, dsp.ki.AQUAFLORA2, dsp.ki.AQUAFLORA3})
+        npcUtil.giveKeyItem(player, {tpz.ki.AQUAFLORA1, tpz.ki.AQUAFLORA2, tpz.ki.AQUAFLORA3})
     elseif csid == 144 then
         player:setCharVar("scatIntoShadowCS", 1)
     elseif csid == 135 then
-        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW, {item = 14097, fame = 40, var = "scatIntoShadowCS"})
+        npcUtil.completeQuest(player, JEUNO, tpz.quest.id.jeuno.SCATTERED_INTO_SHADOW, {item = 14097, fame = 40, var = "scatIntoShadowCS"})
 
     -- AXE THE COMPETITION
     else
-        dsp.wsquest.handleEventFinish(wsQuest, player, csid, option, ID.text.DECIMATION_LEARNED)
+        tpz.wsquest.handleEventFinish(wsQuest, player, csid, option, ID.text.DECIMATION_LEARNED)
     end
 end

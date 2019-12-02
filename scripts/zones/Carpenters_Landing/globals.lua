@@ -13,9 +13,9 @@ CARPENTERS_LANDING = {
         ..............................................................................................]]
     herculesTreeOnGameHour = function()
         local hour = VanadielHour()
-        local stat = dsp.status.NORMAL
+        local stat = tpz.status.NORMAL
         if hour >= 7 and hour < 22 then
-            stat = dsp.status.DISAPPEAR
+            stat = tpz.status.DISAPPEAR
         else
             GetMobByID(ID.mob.HERCULES_BEETLE):setLocalVar("hasSpawned", 0)
         end
@@ -74,7 +74,7 @@ CARPENTERS_LANDING = {
                     player:messageSpecial(msgOffset + 3) -- "You did not catch anything."
                 end
 
-                npc:setStatus(dsp.status.DISAPPEAR)
+                npc:setStatus(tpz.status.DISAPPEAR)
             end
         end
     end

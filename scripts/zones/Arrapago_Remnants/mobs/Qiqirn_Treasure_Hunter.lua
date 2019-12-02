@@ -40,9 +40,9 @@ function onMobFight(mob, target)
     local runTime = mob:getLocalVar("runTime")
     local popTime = mob:getLocalVar("popTime")
     local POS = mob:getPos()
-    local PET = instance:getEntity(bit.band((mob:getID()+1), 0xFFF), dsp.objType.MOB)
+    local PET = instance:getEntity(bit.band((mob:getID()+1), 0xFFF), tpz.objType.MOB)
     
-    if act == dsp.act.MOBABILITY_START or act == dsp.act.MOBABILITY_USING or act == dsp.act.MOBABILITY_FINISH or act == dsp.act.MAGIC_START or act == dsp.act.MAGIC_CASTING or act == dsp.act.MAGIC_START then
+    if act == tpz.act.MOBABILITY_START or act == tpz.act.MOBABILITY_USING or act == tpz.act.MOBABILITY_FINISH or act == tpz.act.MAGIC_START or act == tpz.act.MAGIC_CASTING or act == tpz.act.MAGIC_START then
         isBusy = true; -- is set to true if mob is in any stage of using a mobskill or casting a spell
     end
 
@@ -54,9 +54,9 @@ function onMobFight(mob, target)
             PET:updateEnmity(target)
             PET:setPos(POS.x, POS.y, POS.z, POS.rot)
             mob:setLocalVar("popTime", os.time())
-            PET:setStatus(dsp.status.UPDATE)
+            PET:setStatus(tpz.status.UPDATE)
             PET:timer(1000, function(mob) mob:useMobAbility(1838) end)
-            PET:timer(4000, function(mob) mob:setStatus(dsp.status.DISAPPEAR) end)
+            PET:timer(4000, function(mob) mob:setStatus(tpz.status.DISAPPEAR) end)
         end
     end
 end

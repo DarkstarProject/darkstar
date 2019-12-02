@@ -10,8 +10,8 @@ require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.treasure.initZone(zone)
-    dsp.helm.initZone(zone, dsp.helm.type.MINING)
+    tpz.treasure.initZone(zone)
+    tpz.helm.initZone(zone, tpz.helm.type.MINING)
 end
 
 function onZoneIn(player, prevZone)
@@ -25,7 +25,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)

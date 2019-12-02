@@ -6,7 +6,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.KHIMAIRA_CARVER)
+    player:addTitle(tpz.title.KHIMAIRA_CARVER)
 end
 
 function onMobDespawn(mob)

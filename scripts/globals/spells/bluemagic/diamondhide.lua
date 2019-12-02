@@ -24,13 +24,13 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effect.STONESKIN
-    local blueskill = caster:getSkillLevel(dsp.skill.BLUE_MAGIC)
+    local typeEffect = tpz.effect.STONESKIN
+    local blueskill = caster:getSkillLevel(tpz.skill.BLUE_MAGIC)
     local power = ((blueskill)/3) *2
     local duration = 300
 
     if not target:addStatusEffect(typeEffect,power,0,duration,0,0,2) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 
     return typeEffect

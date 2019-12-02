@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    local groceries = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.GROCERIES);
+    local groceries = player:getQuestStatus(BASTOK, tpz.quest.id.bastok.GROCERIES);
     local groceriesProgress = player:getCharVar("Groceries");
 
     -- GROCERIES (trade meat jerky)
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local groceries = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.GROCERIES);
+    local groceries = player:getQuestStatus(BASTOK, tpz.quest.id.bastok.GROCERIES);
     local groceriesProgress = player:getCharVar("Groceries");
 
     -- GROCERIES
@@ -45,9 +45,9 @@ end;
 function onEventFinish(player,csid,option)
     -- GROCERIES
     if (csid == 110) then
-        player:addQuest(BASTOK, dsp.quest.id.bastok.GROCERIES);
-        player:addKeyItem(dsp.ki.TAMIS_NOTE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TAMIS_NOTE);
+        player:addQuest(BASTOK, tpz.quest.id.bastok.GROCERIES);
+        player:addKeyItem(tpz.ki.TAMIS_NOTE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.TAMIS_NOTE);
         player:setCharVar("Groceries", 1);
     elseif (csid == 112) then
         player:addFame(BASTOK,8);
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() >= 1) then
             player:tradeComplete();
             player:setCharVar("Groceries",0);
-            player:completeQuest(BASTOK,dsp.quest.id.bastok.GROCERIES);
+            player:completeQuest(BASTOK,tpz.quest.id.bastok.GROCERIES);
             player:addFame(BASTOK,75);
             player:addItem(13594); -- Rabbit Mantle
             player:messageSpecial(ID.text.ITEM_OBTAINED,13594);

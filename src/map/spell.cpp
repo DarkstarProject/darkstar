@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -556,7 +554,7 @@ namespace spell
     //Get Spell By ID
     CSpell* GetSpell(SpellID SpellID)
     {
-        DSP_DEBUG_BREAK_IF(static_cast<uint16>(SpellID) >= MAX_SPELL_ID);
+        TPZ_DEBUG_BREAK_IF(static_cast<uint16>(SpellID) >= MAX_SPELL_ID);
 
         auto id = static_cast<uint16>(SpellID);
         if (id >= MAX_SPELL_ID)

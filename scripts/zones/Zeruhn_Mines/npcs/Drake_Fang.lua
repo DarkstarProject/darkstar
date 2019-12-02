@@ -16,16 +16,16 @@ function onTrigger(player,npc)
     local MissionStatus = player:getCharVar("MissionStatus")
 
     -- Enter the Talekeeper 8-2
-    if currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 4 then
+    if currentMission == tpz.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 4 then
         player:startEvent(204)
-    elseif currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 then
+    elseif currentMission == tpz.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 then
         player:startEvent(203)
-    elseif currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 0 then
+    elseif currentMission == tpz.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 0 then
         player:startEvent(202)
     -- Return of the Talekeeper 6-1
-    elseif currentMission == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus > 1 then
+    elseif currentMission == tpz.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus > 1 then
         player:startEvent(201)
-    elseif currentMission == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus == 1 then
+    elseif currentMission == tpz.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus == 1 then
         player:startEvent(200)
     else
         player:startEvent(108)
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
         player:setCharVar("Missionstatus", 1)
     elseif csid == 204 then
         player:setCharVar("Missionstatus", 5)
-        player:delKeyItem(dsp.ki.OLD_PIECE_OF_WOOD)
+        player:delKeyItem(tpz.ki.OLD_PIECE_OF_WOOD)
         player:setPos(23, 0, 4)
     end
 end

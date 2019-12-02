@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Threnody - dsp.mod.WINDRES
+-- Spell: Threnody - tpz.mod.WINDRES
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")
@@ -10,5 +10,5 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    return handleThrenody(caster, target, spell, 50, 60, dsp.mod.WINDRES)
+    return handleThrenody(caster, target, spell, 50, 60, tpz.mod.WINDRES)
 end

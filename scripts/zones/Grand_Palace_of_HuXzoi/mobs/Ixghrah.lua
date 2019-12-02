@@ -7,10 +7,10 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onMobSpawn(mob)
-    if (mob:getMod(dsp.mod.SLASHRES)) then mob:setMod(dsp.mod.SLASHRES,1000); end
-    if (mob:getMod(dsp.mod.PIERCERES)) then mob:setMod(dsp.mod.PIERCERES,1000); end
-    if (mob:getMod(dsp.mod.IMPACTRES)) then mob:setMod(dsp.mod.IMPACTRES,1000); end
-    if (mob:getMod(dsp.mod.HTHRES)) then mob:setMod(dsp.mod.HTHRES,1000); end
+    if (mob:getMod(tpz.mod.SLASHRES)) then mob:setMod(tpz.mod.SLASHRES,1000); end
+    if (mob:getMod(tpz.mod.PIERCERES)) then mob:setMod(tpz.mod.PIERCERES,1000); end
+    if (mob:getMod(tpz.mod.IMPACTRES)) then mob:setMod(tpz.mod.IMPACTRES,1000); end
+    if (mob:getMod(tpz.mod.HTHRES)) then mob:setMod(tpz.mod.HTHRES,1000); end
 end;
 
 function onMobFight(mob,target)
@@ -23,7 +23,7 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.A_FATE_DECIDED  and player:getCharVar("PromathiaStatus")==1) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.A_FATE_DECIDED  and player:getCharVar("PromathiaStatus")==1) then
         player:setCharVar("PromathiaStatus",2);
     end
 end;

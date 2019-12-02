@@ -46,7 +46,7 @@ function onSpellCast(caster,target,spell)
     local chance = math.random()
 
     if (damage > 0 and chance > 1) then
-        local typeEffect = dsp.effect.DEFENSE_DOWN
+        local typeEffect = tpz.effect.DEFENSE_DOWN
         target:delStatusEffect(typeEffect)
         target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect))
     end

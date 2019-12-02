@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.SHOCK_SPIKES
+    local typeEffect = tpz.effect.SHOCK_SPIKES
     local randy = math.random(15,30)
     skill:setMsg(MobBuffMove(mob, typeEffect, randy, 0, 180))
 

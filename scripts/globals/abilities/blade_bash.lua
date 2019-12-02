@@ -12,7 +12,7 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if (not player:isWeaponTwoHanded()) then
-        return dsp.msg.basic.NEEDS_2H_WEAPON,0
+        return tpz.msg.basic.NEEDS_2H_WEAPON,0
     else
         return 0,0
     end
@@ -21,29 +21,29 @@ end
 function onUseAbility(player,target,ability)
     -- Stun rate
     if (math.random(1,100) < 99) then
-        target:addStatusEffect(dsp.effect.STUN,1,0,6)
+        target:addStatusEffect(tpz.effect.STUN,1,0,6)
     end
 
     -- Yes, even Blade Bash deals damage dependant of Dark Knight level
     local darkKnightLvl = 0
     local damage = 0
-    if (player:getMainJob() == dsp.job.DRK) then
-        damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH))
-    elseif (player:getSubJob() == dsp.job.DRK) then
-        damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH))
+    if (player:getMainJob() == tpz.job.DRK) then
+        damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(tpz.mod.WEAPON_BASH))
+    elseif (player:getSubJob() == tpz.job.DRK) then
+        damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(tpz.mod.WEAPON_BASH))
     end
 
     -- Calculating and applying Blade Bash damage
     damage = utils.stoneskin(target, damage)
-    target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    target:takeDamage(damage, player, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
 
     -- Applying Plague based on merit level.
     if (math.random(1,100) < 65) then
-        target:addStatusEffect(dsp.effect.PLAGUE,5,0,15 + player:getMerit(dsp.merit.BLADE_BASH))
+        target:addStatusEffect(tpz.effect.PLAGUE,5,0,15 + player:getMerit(tpz.merit.BLADE_BASH))
     end
 
-    ability:setMsg(dsp.msg.basic.JA_DAMAGE)
+    ability:setMsg(tpz.msg.basic.JA_DAMAGE)
 
     return damage
 end

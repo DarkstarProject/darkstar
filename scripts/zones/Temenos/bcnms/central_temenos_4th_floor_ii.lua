@@ -7,7 +7,7 @@ require("scripts/globals/battlefield")
 
 
 function onBattlefieldTick(battlefield, tick)
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+    tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -25,10 +25,10 @@ end;
 function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
 
-    if leavecode == dsp.battlefield.leaveCode.WON then
+    if leavecode == tpz.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
      --    player:setPos(0,0,0,0,0x00);
     end
-    if leavecode == dsp.battlefield.leaveCode.LOST then
+    if leavecode == tpz.battlefield.leaveCode.LOST then
     end
 end;

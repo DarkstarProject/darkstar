@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -37,7 +35,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
     this->type = 0xDD;
     this->size = 0x20;
 
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
 
     ref<uint32>(0x04) = PChar->id;
 
@@ -74,7 +72,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CTrustEntity* PTrust, uint8 M
     this->type = 0xDD;
     this->size = 0x20;
 
-    DSP_DEBUG_BREAK_IF(PTrust == nullptr);
+    TPZ_DEBUG_BREAK_IF(PTrust == nullptr);
 
     ref<uint32>(0x04) = PTrust->id;
 

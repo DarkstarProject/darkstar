@@ -12,7 +12,7 @@ function onMobFight(mob,target)
     if (mob:getHPP() <= 50 and mob:getLocalVar("powerup") == 0) then
         target:showText(mob,ID.text.KARABABA_ENOUGH);
         target:showText(mob,ID.text.KARABABA_ROUGH);
-        mob:addStatusEffect(dsp.effect.MAGIC_ATK_BOOST,15,0,1800);
+        mob:addStatusEffect(tpz.effect.MAGIC_ATK_BOOST,15,0,1800);
         mob:setLocalVar("powerup",1);
     elseif (mob:getHPP() <= 20 and warp == 0) then
         mob:setLocalVar("warp",1);

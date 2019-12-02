@@ -14,8 +14,8 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE) then
-        if (player:hasKeyItem(dsp.ki.DRINK_OFFERINGS)) then
+    if (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_PRICE_OF_PEACE) then
+        if (player:hasKeyItem(tpz.ki.DRINK_OFFERINGS)) then
             -- We have the offerings
             player:startEvent(49);
         else
@@ -42,10 +42,10 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 49) then
-        player:delKeyItem(dsp.ki.DRINK_OFFERINGS);
+        player:delKeyItem(tpz.ki.DRINK_OFFERINGS);
         player:setCharVar("ghoo_talk",1);
 
-        if (player:hasKeyItem(dsp.ki.FOOD_OFFERINGS) == false) then
+        if (player:hasKeyItem(tpz.ki.FOOD_OFFERINGS) == false) then
             player:setCharVar("MissionStatus",2);
         end
     elseif (csid == 50) then

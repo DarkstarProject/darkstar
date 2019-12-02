@@ -9,7 +9,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local arceliaAppears = player:getCurrentMission(SOA) == dsp.mission.id.soa.ARCIELA_APPEARS_AGAIN
+    local arceliaAppears = player:getCurrentMission(SOA) == tpz.mission.id.soa.ARCIELA_APPEARS_AGAIN
 
     if arceliaAppears and player:getFameLevel(ADOULIN) >= 4 then
         if player:getCharVar("SOA") == 0 then 
@@ -28,8 +28,8 @@ end
 function onEventFinish(player,csid,option)
     if (csid == 6 or csid == 7) and option == 1 then
         player:setCharVar("SOA", 0)
-        player:completeMission(SOA,dsp.mission.id.soa.ARCIELA_APPEARS_AGAIN)
-        player:addMission(SOA,dsp.mission.id.soa.BUILDING_PROSPECTS)
+        player:completeMission(SOA,tpz.mission.id.soa.ARCIELA_APPEARS_AGAIN)
+        player:addMission(SOA,tpz.mission.id.soa.BUILDING_PROSPECTS)
     elseif csid == 6 and option == 0 then
         player:setCharVar("SOA", 1)
     end

@@ -15,8 +15,8 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,dsp.magic.ele.FIRE,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
-    target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.PIERCING)
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,tpz.magic.ele.FIRE,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.RANGED,tpz.damageType.PIERCING,info.hitslanded)
+    target:takeDamage(dmg, mob, tpz.attackType.RANGED, tpz.damageType.PIERCING)
     return dmg
 end

@@ -24,26 +24,26 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local pINT = caster:getStat(dsp.mod.INT)
-    local mINT = target:getStat(dsp.mod.INT)
+    local pINT = caster:getStat(tpz.mod.INT)
+    local mINT = target:getStat(tpz.mod.INT)
     local dINT = pINT - mINT
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 0
     params.effect = nil
     local resist = applyResistance(caster, target, spell, params)
 
     if resist < 0.5 then
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); --resist message
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST); --resist message
     else
-        if target:addStatusEffect(dsp.effect.SLOW, 2000, 0, getBlueEffectDuration(caster, resist, dsp.effect.SLOW)) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+        if target:addStatusEffect(tpz.effect.SLOW, 2000, 0, getBlueEffectDuration(caster, resist, tpz.effect.SLOW)) then
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     end
 
-    return dsp.effect.SLOW
+    return tpz.effect.SLOW
 end

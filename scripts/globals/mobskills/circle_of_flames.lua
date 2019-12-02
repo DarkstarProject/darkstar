@@ -22,10 +22,10 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = .8
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.SLASHING,info.hitslanded)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.SLASHING)
 
-    local typeEffect = dsp.effect.WEIGHT
+    local typeEffect = tpz.effect.WEIGHT
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 60)
 

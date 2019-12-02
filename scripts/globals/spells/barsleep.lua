@@ -10,5 +10,5 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    return applyBarstatus(dsp.effect.BARSLEEP,caster,target,spell)
+    return applyBarstatus(tpz.effect.BARSLEEP,caster,target,spell)
 end

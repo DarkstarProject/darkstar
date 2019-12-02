@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:getCharVar("ASA4_Cerulean") == 1) then
+    if (player:getCurrentMission(ASA) == tpz.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:getCharVar("ASA4_Cerulean") == 1) then
         player:startEvent(2);
     elseif (EventTriggerBCNM(player,npc)) then
         return;
@@ -33,9 +33,9 @@ function onEventFinish(player,csid,option)
     --printf("onFinish RESULT: %u",option);
 
     if (csid==2) then
-        player:delKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL);
-        player:addKeyItem(dsp.ki.CERULEAN_COUNTERSEAL);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CERULEAN_COUNTERSEAL);
+        player:delKeyItem(tpz.ki.DOMINAS_CERULEAN_SEAL);
+        player:addKeyItem(tpz.ki.CERULEAN_COUNTERSEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.CERULEAN_COUNTERSEAL);
         player:setCharVar("ASA4_Cerulean","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

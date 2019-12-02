@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") >= 1 then
+    if player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") >= 1 then
         player:startEvent(68)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
@@ -25,6 +25,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 68 then
-        npcUtil.giveKeyItem(player, dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH)
+        npcUtil.giveKeyItem(player, tpz.ki.ANCIENT_VERSE_OF_UGGALEPIH)
     end
 end

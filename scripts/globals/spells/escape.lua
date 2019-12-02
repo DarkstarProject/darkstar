@@ -11,8 +11,8 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    spell:setMsg(dsp.msg.basic.MAGIC_TELEPORT)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.ESCAPE,0,4)
+    spell:setMsg(tpz.msg.basic.MAGIC_TELEPORT)
+    target:addStatusEffectEx(tpz.effect.TELEPORT,0,tpz.teleport.id.ESCAPE,0,4)
 
     return 0
 end

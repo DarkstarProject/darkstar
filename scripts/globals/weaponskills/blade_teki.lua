@@ -25,8 +25,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
     params.atk100 = 1 params.atk200 = 1 params.atk300 = 1
     params.hybridWS = true
-    params.ele = dsp.magic.ele.WATER
-    params.skill = dsp.skill.KATANA
+    params.ele = tpz.magic.ele.WATER
+    params.skill = tpz.skill.KATANA
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.str_wsc = 0.3 params.int_wsc = 0.3

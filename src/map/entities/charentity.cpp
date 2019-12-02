@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -344,7 +342,7 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
         case LOC_WARDROBE4:  return m_Wardrobe4.get();
     }
 
-    DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
+    TPZ_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
     return 0;
 }
 
@@ -849,7 +847,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
                         recycleChance = 100;
                     }
-                    if (dsprand::GetRandomNumber(100) > recycleChance)
+                    if (tpzrand::GetRandomNumber(100) > recycleChance)
                     {
                         battleutils::RemoveAmmo(this);
                     }
@@ -1043,9 +1041,9 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                     if ((PAbility->getAddType() & ADDTYPE_ASTRAL_FLOW) == 0)
                     {
                         int16 bloodBoonRate = getMod(Mod::BLOOD_BOON);
-                        if (dsprand::GetRandomNumber(100) < bloodBoonRate)
+                        if (tpzrand::GetRandomNumber(100) < bloodBoonRate)
                         {
-                            mpCost *= dsprand::GetRandomNumber(8.f, 16.f) / 16.f;
+                            mpCost *= tpzrand::GetRandomNumber(8.f, 16.f) / 16.f;
                         }
                     }
 
@@ -1265,7 +1263,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             actionTarget.speceffect = SPECEFFECT_NONE;
             hitCount = i; // end barrage, shot missed
         }
-        else if (dsprand::GetRandomNumber(100) < battleutils::GetRangedHitRate(this, PTarget, isBarrage)) // hit!
+        else if (tpzrand::GetRandomNumber(100) < battleutils::GetRangedHitRate(this, PTarget, isBarrage)) // hit!
         {
             // absorbed by shadow
             if (battleutils::IsAbsorbByShadow(PTarget))
@@ -1274,7 +1272,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             }
             else
             {
-                bool isCritical = dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true);
+                bool isCritical = tpzrand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true);
                 float pdif = battleutils::GetRangedDamageRatio(this, PTarget, isCritical);
 
                 if (isCritical)
@@ -1342,7 +1340,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             recycleChance = 100;
         }
 
-        if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
+        if (PAmmo != nullptr && tpzrand::GetRandomNumber(100) > recycleChance)
         {
             ++ammoConsumed;
             TrackArrowUsageForScavenge(PAmmo);
@@ -1409,7 +1407,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         uint16 power = StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
 
         // remove shadows
-        while (realHits-- && dsprand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(this));
+        while (realHits-- && tpzrand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(this));
 
         StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
     }
@@ -1423,7 +1421,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     //if (this->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !this->secondDoubleShotTaken &&	!isBarrage && !isSange)
     //{
     //    uint16 doubleShotChance = getMod(Mod::DOUBLE_SHOT_RATE);
-    //    if (dsprand::GetRandomNumber(100) < doubleShotChance)
+    //    if (tpzrand::GetRandomNumber(100) < doubleShotChance)
     //    {
     //        this->secondDoubleShotTaken = true;
     //        m_ActionType = ACTION_RANGED_FINISH;
@@ -1435,7 +1433,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
 bool CCharEntity::IsMobOwner(CBattleEntity* PBattleTarget)
 {
-    DSP_DEBUG_BREAK_IF(PBattleTarget == nullptr);
+    TPZ_DEBUG_BREAK_IF(PBattleTarget == nullptr);
 
     if (PBattleTarget->m_OwnerID.id == 0 || PBattleTarget->m_OwnerID.id == this->id || PBattleTarget->objtype == TYPE_PC)
     {

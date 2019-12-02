@@ -9,7 +9,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    RunElevator(dsp.elevator.PALBOROUGH_MINES_LIFT)
+    RunElevator(tpz.elevator.PALBOROUGH_MINES_LIFT)
 end
 
 function onEventUpdate(player, csid, option)

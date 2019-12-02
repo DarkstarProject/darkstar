@@ -10,5 +10,5 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    GetNPCByID(16928770+452):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16928770+452):setStatus(tpz.status.NORMAL);
 end;

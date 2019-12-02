@@ -13,20 +13,20 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local enhskill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC)
+    local enhskill = caster:getSkillLevel(tpz.skill.ENHANCING_MAGIC)
     local final = 0
-    local merits = caster:getMerit(dsp.merit.PHALANX_II)
+    local merits = caster:getMerit(tpz.merit.PHALANX_II)
 
     local duration = calculateDuration(90 + 10 * merits, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 75, target:getMainLvl())
 
     final = enhskill / 25 + merits + 1
 
-    if target:addStatusEffect(dsp.effect.PHALANX,final,0,duration) then
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
+    if target:addStatusEffect(tpz.effect.PHALANX,final,0,duration) then
+        spell:setMsg(tpz.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 
-    return dsp.effect.PHALANX
+    return tpz.effect.PHALANX
 end

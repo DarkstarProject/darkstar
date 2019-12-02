@@ -10,16 +10,16 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL) == QUEST_ACCEPTED and trade:hasItemQty(1210,1) and trade:getItemCount() == 1) then
+    if (player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL) == QUEST_ACCEPTED and trade:hasItemQty(1210,1) and trade:getItemCount() == 1) then
         player:startEvent(2,1210);
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_GENERAL_S_SECRET) == QUEST_ACCEPTED) and (player:hasKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY) == true) then
-        player:addKeyItem(dsp.ki.CURILLAS_BOTTLE_FULL)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CURILLAS_BOTTLE_FULL);
-        player:delKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY);
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.THE_GENERAL_S_SECRET) == QUEST_ACCEPTED) and (player:hasKeyItem(tpz.ki.CURILLAS_BOTTLE_EMPTY) == true) then
+        player:addKeyItem(tpz.ki.CURILLAS_BOTTLE_FULL)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.CURILLAS_BOTTLE_FULL);
+        player:delKeyItem(tpz.ki.CURILLAS_BOTTLE_EMPTY);
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
@@ -34,7 +34,7 @@ function onEventFinish(player,csid,option)
         player:addItem(4949); -- Scroll of Jubaku: Ichi
         player:messageSpecial(ID.text.ITEM_OBTAINED, 4949);
         player:addFame(NORG,75);
-        player:addTitle(dsp.title.CRACKER_OF_THE_SECRET_CODE);
-        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
+        player:addTitle(tpz.title.CRACKER_OF_THE_SECRET_CODE);
+        player:completeQuest(OUTLANDS,tpz.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
     end
 end;

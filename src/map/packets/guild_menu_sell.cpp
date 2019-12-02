@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -37,8 +35,8 @@ CGuildMenuSellPacket::CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* P
     this->type = 0x85;
     this->size = 0x7C;
 
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PGuild == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PGuild == nullptr);
 
     uint8 ItemCount = 0;
     uint8 PacketCount = 0;

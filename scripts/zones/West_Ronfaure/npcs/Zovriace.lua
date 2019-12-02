@@ -1006,17 +1006,17 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi()
-    npc:setPos(dsp.path.first(path))
+    npc:setPos(tpz.path.first(path))
     onPath(npc)
 end
 
 function onPath(npc)
-    if npc:atPoint(dsp.path.get(path, 288)) then
+    if npc:atPoint(tpz.path.get(path, 288)) then
         GetNPCByID(npc:getID() + 4):showText(npc, ID.text.ZOVRIACE_REPORT)
         -- small delay after path finish
         npc:wait(8000)
     end
-    dsp.path.patrol(npc, path)
+    tpz.path.patrol(npc, path)
 end
 
 function onTrade(player, npc, trade)

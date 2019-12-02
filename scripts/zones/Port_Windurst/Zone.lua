@@ -24,7 +24,7 @@ function onZoneIn(player,prevZone)
         player:setHomePoint();
     end
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == dsp.zone.WINDURST_JEUNO_AIRSHIP) then
+        if (prevZone == tpz.zone.WINDURST_JEUNO_AIRSHIP) then
             cs = 10004;
             player:setPos(228.000, -3.000, 76.000, 160);
         else
@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onTransportEvent(player,transport)

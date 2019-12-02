@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1526,1) == true and trade:getItemCount() == 1 and player:getCharVar("BeatAroundTheBushin") == 2) then
             player:startEvent(156); -- After trade Wyrm Beard
         elseif (trade:hasItemQty(1527,1) == true and trade:getItemCount() == 1 and player:getCharVar("BeatAroundTheBushin") == 4) then
@@ -28,13 +28,13 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN and player:getCharVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN and player:getCharVar("PromathiaStatus") == 0) then
         player:startEvent(86); --COP event
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.TENDING_AGED_WOUNDS and player:getCharVar("PromathiaStatus")==1) then
+    elseif (player:getCurrentMission(COP) == tpz.mission.id.cop.TENDING_AGED_WOUNDS and player:getCharVar("PromathiaStatus")==1) then
         player:startEvent(22); --COP event
     elseif (player:getCharVar("BeatAroundTheBushin") == 1) then
         player:startEvent(155); -- Start Quest "Beat around the Bushin"
-    elseif (player:hasKeyItem(dsp.ki.TENSHODO_MEMBERS_CARD) == true) then
+    elseif (player:hasKeyItem(tpz.ki.TENSHODO_MEMBERS_CARD) == true) then
         player:startEvent(105); -- Open the door
     else
         player:messageSpecial(ID.text.ITS_LOCKED);
@@ -50,12 +50,12 @@ function onEventFinish(player,csid,option)
         player:setCharVar("PromathiaStatus",1);
         player:startEvent(9);
     elseif (csid == 22 ) then
-        player:completeMission(COP,dsp.mission.id.cop.TENDING_AGED_WOUNDS);
-        player:addMission(COP,dsp.mission.id.cop.DARKNESS_NAMED);
+        player:completeMission(COP,tpz.mission.id.cop.TENDING_AGED_WOUNDS);
+        player:addMission(COP,tpz.mission.id.cop.DARKNESS_NAMED);
         player:setCharVar("PromathiaStatus",0);
         player:startEvent(10);
     elseif (csid == 155) then
-        player:addQuest(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
+        player:addQuest(JEUNO,tpz.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
         player:setCharVar("BeatAroundTheBushin",2);
     elseif (csid == 156) then
         player:setCharVar("BeatAroundTheBushin",3);
@@ -70,13 +70,13 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13186);
         else
-            player:addTitle(dsp.title.BLACK_BELT);
+            player:addTitle(tpz.title.BLACK_BELT);
             player:addItem(13186);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13186);
             player:setCharVar("BeatAroundTheBushin",0);
             player:addFame(NORG,125);
             player:tradeComplete();
-            player:completeQuest(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
+            player:completeQuest(JEUNO,tpz.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
         end
     end
 end;

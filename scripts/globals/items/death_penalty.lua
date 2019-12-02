@@ -8,7 +8,7 @@ require("scripts/globals/npc_util")
 
 function onItemCheck(target)
     if target:getFreeSlotsCount() == 0 then
-        return dsp.msg.basic.ITEM_UNABLE_TO_USE
+        return tpz.msg.basic.ITEM_UNABLE_TO_USE
     end
 
     return 0

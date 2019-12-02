@@ -33,12 +33,12 @@ function onMobWeaponSkill(target, mob, skill)
         shadows = MOBPARAM_WIPE_SHADOWS
     end
 
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,shadows)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.BLUNT,shadows)
 
-    local typeEffect = dsp.effect.STUN
+    local typeEffect = tpz.effect.STUN
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4)
 
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
     return dmg
 end

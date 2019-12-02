@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
@@ -22,16 +22,16 @@ end;
 function onTrigger(player,npc)
 
     local DistantLoyaltiesProgress = player:getCharVar("DistantLoyaltiesProgress");
-    local DistantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
+    local DistantLoyalties = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.DISTANT_LOYALTIES);
     local WildcatSandy = player:getCharVar("WildcatSandy");
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
         player:startEvent(807);
     elseif (player:getFameLevel(SANDORIA) >= 4 and DistantLoyalties == 0) then
         player:startEvent(663);
     elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 1) then
         player:startEvent(664);
-    elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 4 and player:hasKeyItem(dsp.ki.MYTHRIL_HEARTS)) then
+    elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 4 and player:hasKeyItem(tpz.ki.MYTHRIL_HEARTS)) then
         player:startEvent(665);
     else
         player:startEvent(661);
@@ -47,19 +47,19 @@ function onEventFinish(player,csid,option)
     if (csid == 807) then
         player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",3,true);
     elseif (csid == 663 and option == 0) then
-        player:addKeyItem(dsp.ki.GOLDSMITHING_ORDER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);
-        player:addQuest(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
+        player:addKeyItem(tpz.ki.GOLDSMITHING_ORDER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.GOLDSMITHING_ORDER);
+        player:addQuest(SANDORIA,tpz.quest.id.sandoria.DISTANT_LOYALTIES);
         player:setCharVar("DistantLoyaltiesProgress",1);
     elseif (csid == 665) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13585);
         else
-            player:delKeyItem(dsp.ki.MYTHRIL_HEARTS);
+            player:delKeyItem(tpz.ki.MYTHRIL_HEARTS);
             player:addItem(13585,1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13585);
             player:setCharVar("DistantLoyaltiesProgress",0);
-            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
+            player:completeQuest(SANDORIA,tpz.quest.id.sandoria.DISTANT_LOYALTIES);
         end;
     end;
 

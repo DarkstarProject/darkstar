@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -57,7 +55,7 @@ CLuaAbility::CLuaAbility(CAbility* PAbility)
 
 inline int32 CLuaAbility::getID(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushinteger(L, m_PLuaAbility->getID());
     return 1;
@@ -66,7 +64,7 @@ inline int32 CLuaAbility::getID(lua_State *L)
 
 int32 CLuaAbility::getMsg(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushinteger(L, m_PLuaAbility->getMessage());
     return 1;
@@ -74,7 +72,7 @@ int32 CLuaAbility::getMsg(lua_State* L)
 
 inline int32 CLuaAbility::getRecast(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushinteger(L, m_PLuaAbility->getRecastTime());
     return 1;
@@ -82,7 +80,7 @@ inline int32 CLuaAbility::getRecast(lua_State* L)
 
 inline int32 CLuaAbility::getRange(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushinteger(L, (lua_Integer)m_PLuaAbility->getRange());
     return 1;
@@ -90,7 +88,7 @@ inline int32 CLuaAbility::getRange(lua_State* L)
 
 inline int32 CLuaAbility::getName(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushstring(L, (const char*)m_PLuaAbility->getName());
     return 1;
@@ -98,7 +96,7 @@ inline int32 CLuaAbility::getName(lua_State* L)
 
 int32 CLuaAbility::getAnimation(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushinteger(L, m_PLuaAbility->getAnimationID());
     return 1;
@@ -106,8 +104,8 @@ int32 CLuaAbility::getAnimation(lua_State* L)
 
 inline int32 CLuaAbility::setMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaAbility->setMessage((uint16)lua_tointeger(L, -1));
     return 0;
@@ -115,8 +113,8 @@ inline int32 CLuaAbility::setMsg(lua_State *L)
 
 inline int32 CLuaAbility::setAnimation(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaAbility->setAnimationID((uint16)lua_tointeger(L, -1));
     return 0;
@@ -124,8 +122,8 @@ inline int32 CLuaAbility::setAnimation(lua_State *L)
 
 inline int32 CLuaAbility::setRecast(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaAbility->setRecastTime((uint16)lua_tointeger(L, -1));
     return 0;
@@ -133,8 +131,8 @@ inline int32 CLuaAbility::setRecast(lua_State* L)
 
 inline int32 CLuaAbility::setCE(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaAbility->setCE((uint16)lua_tointeger(L, -1));
     return 0;
@@ -142,8 +140,8 @@ inline int32 CLuaAbility::setCE(lua_State* L)
 
 inline int32 CLuaAbility::setVE(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaAbility->setVE((uint16)lua_tointeger(L, -1));
     return 0;
@@ -151,8 +149,8 @@ inline int32 CLuaAbility::setVE(lua_State* L)
 
 inline int32 CLuaAbility::setRange(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaAbility->setRange((float)lua_tointeger(L, -1));
     return 0;

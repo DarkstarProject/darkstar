@@ -11,8 +11,8 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:hasKeyItem(dsp.keyItem.LEUJAOAM_ASSAULT_ORDERS) then
-        player:messageSpecial(ID.text.CANNOT_LEAVE, dsp.keyItem.LEUJAOAM_ASSAULT_ORDERS)
+    if player:hasKeyItem(tpz.keyItem.LEUJAOAM_ASSAULT_ORDERS) then
+        player:messageSpecial(ID.text.CANNOT_LEAVE, tpz.keyItem.LEUJAOAM_ASSAULT_ORDERS)
     elseif player:getZPos() <= -438 and player:getZPos() >= -440 then
         player:messageSpecial(ID.text.STAGING_POINT_AZOUPH)
         player:messageSpecial(ID.text.IMPERIAL_CONTROL)

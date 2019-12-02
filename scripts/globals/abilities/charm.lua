@@ -21,9 +21,9 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() ~= nil) then
-        return dsp.msg.basic.ALREADY_HAS_A_PET,0
+        return tpz.msg.basic.ALREADY_HAS_A_PET,0
     elseif (target:getMaster() ~= nil and target:getMaster():isPC()) then
-        return dsp.msg.basic.THAT_SOMEONES_PET,0
+        return tpz.msg.basic.THAT_SOMEONES_PET,0
     else
         return 0,0
     end
@@ -33,14 +33,14 @@ function onUseAbility(player,target,ability)
     local Tamed = false
 
     if (player:getLocalVar("Tamed_Mob") == target:getID())then
-        player:addMod(dsp.mod.CHARM_CHANCE, 10)
+        player:addMod(tpz.mod.CHARM_CHANCE, 10)
         Tamed = true
     end
 
     player:charmPet(target)
 
     if (Tamed == true) then
-        player:delMod(dsp.mod.CHARM_CHANCE, 10)
+        player:delMod(tpz.mod.CHARM_CHANCE, 10)
         player:setLocalVar("Tamed_Mob",0)
     end
 end

@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(dsp.skill.CLOTHCRAFT)
-    local stock = dsp.shop.generalGuildStock[guild.clothcraft]
-    dsp.shop.generalGuild(player, stock, guildRank)
+    local guildRank = player:getSkillRank(tpz.skill.CLOTHCRAFT)
+    local stock = tpz.shop.generalGuildStock[guild.clothcraft]
+    tpz.shop.generalGuild(player, stock, guildRank)
     player:showText(npc,ID.text.CLOTHCRAFT_SHOP_DIALOG)
 end
 

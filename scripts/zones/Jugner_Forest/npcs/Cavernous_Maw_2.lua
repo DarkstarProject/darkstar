@@ -17,8 +17,8 @@ function onTrigger(player, npc)
     if ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30 then
         if
             getTravStonesTotal(player) >= 1 and
-            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED and
-            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_BEAST_OF_BASTORE) == QUEST_AVAILABLE
+            player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED and
+            player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.THE_BEAST_OF_BASTORE) == QUEST_AVAILABLE
         then
             player:startEvent(48)
         else
@@ -34,7 +34,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 48 then
-        player:addQuest(ABYSSEA, dsp.quest.id.abyssea.THE_BEAST_OF_BASTORE)
+        player:addQuest(ABYSSEA, tpz.quest.id.abyssea.THE_BEAST_OF_BASTORE)
     elseif csid == 49 then
         -- Killed Sedna
     elseif csid == 47 and option == 1 then

@@ -15,9 +15,9 @@ end
 
 function onTrigger(player, npc)
     if not OldSchoolG2 or GetMobByID(ID.mob.BOREAL_HOUND):isDead() then
-        if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.TRIANGULAR_FRIGICITE) then
-            player:addKeyItem(dsp.ki.TRIANGULAR_FRIGICITE)
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TRIANGULAR_FRIGICITE)
+        if player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.TRIANGULAR_FRIGICITE) then
+            player:addKeyItem(tpz.ki.TRIANGULAR_FRIGICITE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.TRIANGULAR_FRIGICITE)
         else
             player:messageSpecial(ID.text.ONLY_SHARDS)
         end

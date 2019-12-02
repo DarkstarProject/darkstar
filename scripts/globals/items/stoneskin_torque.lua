@@ -11,9 +11,9 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if target:addStatusEffect(dsp.effect.STONESKIN, 104, 0, 300, 0, 0, 4) then
-        target:messageBasic(dsp.msg.basic.GAINS_EFFECT_OF_STATUS, dsp.effect.STONESKIN)
+    if target:addStatusEffect(tpz.effect.STONESKIN, 104, 0, 300, 0, 0, 4) then
+        target:messageBasic(tpz.msg.basic.GAINS_EFFECT_OF_STATUS, tpz.effect.STONESKIN)
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

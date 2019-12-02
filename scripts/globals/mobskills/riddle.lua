@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.MAX_MP_DOWN
+    local typeEffect = tpz.effect.MAX_MP_DOWN
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 42, 0, 120))
 

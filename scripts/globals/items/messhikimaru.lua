@@ -14,16 +14,16 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.ENCHANTMENT) == false) then
-        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,600,17826)
+    if (target:hasStatusEffect(tpz.effect.ENCHANTMENT) == false) then
+        target:addStatusEffect(tpz.effect.ENCHANTMENT,0,0,600,17826)
     end
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.ARCANA_KILLER, 20)
+    target:addMod(tpz.mod.ARCANA_KILLER, 20)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.ARCANA_KILLER, 20)
+    target:delMod(tpz.mod.ARCANA_KILLER, 20)
 end
 

@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
         shadowTwo:updateEnmity(target)
     end
 
-    skill:setMsg(dsp.msg.basic.NONE)
+    skill:setMsg(tpz.msg.basic.NONE)
 
     return 0
 end

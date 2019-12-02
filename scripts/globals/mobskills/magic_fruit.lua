@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     potency = potency - math.random(0, potency/4)
 
-    skill:setMsg(dsp.msg.basic.SELF_HEAL)
+    skill:setMsg(tpz.msg.basic.SELF_HEAL)
 
     return MobHealMove(mob, mob:getMaxHP() * potency / 100)
 end

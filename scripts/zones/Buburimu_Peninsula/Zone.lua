@@ -12,13 +12,13 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 
-    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    tpz.helm.initZone(zone, tpz.helm.type.LOGGING)
 end;
 
 function onZoneIn( player, prevZone)
@@ -30,7 +30,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 3;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
         cs = 5; -- zone 4 buburimu no update (north)
     end
 
@@ -38,7 +38,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -48,9 +48,9 @@ function onEventUpdate( player, csid, option)
     if (csid == 3) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 5) then
-        if (player:getPreviousZone() == dsp.zone.LABYRINTH_OF_ONZOZO or player:getPreviousZone() == dsp.zone.MHAURA) then
+        if (player:getPreviousZone() == tpz.zone.LABYRINTH_OF_ONZOZO or player:getPreviousZone() == tpz.zone.MHAURA) then
             player:updateEvent(0,0,0,0,0,7);
-        elseif (player:getPreviousZone() == dsp.zone.MAZE_OF_SHAKHRAMI) then
+        elseif (player:getPreviousZone() == tpz.zone.MAZE_OF_SHAKHRAMI) then
             player:updateEvent(0,0,0,0,0,6);
         end
     end

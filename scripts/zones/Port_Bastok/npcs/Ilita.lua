@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc, ID.text.ILITA_SHOP_DIALOG, 513)
-    dsp.shop.general(player, stock)
+    tpz.shop.general(player, stock)
 end
 
 function onEventUpdate(player,csid,option)

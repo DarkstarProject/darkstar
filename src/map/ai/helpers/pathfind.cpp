@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -134,7 +132,7 @@ bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, uin
     Clear();
     //position_t* lastPoint = &point;
 
-    //float randomRadian = dsprand::GetRandomNumber<float>(0, 2 * (float)M_PI);
+    //float randomRadian = tpzrand::GetRandomNumber<float>(0, 2 * (float)M_PI);
     //lastPoint->x += cosf(randomRadian) * distanceFromPoint;
     //lastPoint->z += sinf(randomRadian) * distanceFromPoint;
 
@@ -349,7 +347,7 @@ bool CPathFind::FindPath(const position_t& start, const position_t& end)
 
 bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint16 roamFlags)
 {
-    auto m_turnLength = dsprand::GetRandomNumber((int)maxTurns) + 1;
+    auto m_turnLength = tpzrand::GetRandomNumber((int)maxTurns) + 1;
 
     position_t startPosition = start;
 

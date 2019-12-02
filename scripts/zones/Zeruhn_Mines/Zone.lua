@@ -11,21 +11,21 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.helm.initZone(zone, dsp.helm.type.MINING)
+    tpz.helm.initZone(zone, tpz.helm.type.MINING)
 end
 
 function onZoneIn(player,prevZone)
     local cs = -1
 
-    if prevZone == dsp.zone.PALBOROUGH_MINES then
+    if prevZone == tpz.zone.PALBOROUGH_MINES then
         cs = 150
-        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED then
+        if player:getQuestStatus(BASTOK, tpz.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED then
             if player:getCharVar("ZeruhnMines_Zeid_CS") == 0 then
                 cs = 130
             elseif not player:hasItem(16607) then
                 cs = 131
             end
-        elseif player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED then
+        elseif player:getQuestStatus(BASTOK,tpz.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED then
             if not player:hasItem(16607) then
                 cs = 131
             end
@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player,region)

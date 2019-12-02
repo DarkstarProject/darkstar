@@ -13,7 +13,7 @@ end
 
 function onItemUse(target)
     local duration = 7200
-    target:delStatusEffect(dsp.effect.RERAISE)
-    target:addStatusEffect(dsp.effect.RERAISE, 3, 0, duration)
-    target:messageBasic(dsp.msg.basic.GAINS_EFFECT_OF_STATUS, dsp.effect.RERAISE)
+    target:delStatusEffect(tpz.effect.RERAISE)
+    target:addStatusEffect(tpz.effect.RERAISE, 3, 0, duration)
+    target:messageBasic(tpz.msg.basic.GAINS_EFFECT_OF_STATUS, tpz.effect.RERAISE)
 end

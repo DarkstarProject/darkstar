@@ -15,7 +15,7 @@ require("scripts/globals/weaponskills")
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     -- Apply aftermath
-    dsp.aftermath.addStatusEffect(player, tp, dsp.slot.MAIN, dsp.aftermath.type.EMPYREAN)
+    tpz.aftermath.addStatusEffect(player, tp, tpz.slot.MAIN, tpz.aftermath.type.EMPYREAN)
 
     local ftphp = fTP(tp, 0.22, 0.33, 0.52)
     local ftpmp = fTP(tp, 0.15, 0.22, 0.35)

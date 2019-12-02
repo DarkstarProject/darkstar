@@ -12,14 +12,14 @@ end
 
 
 function onSpellCast(caster, target, spell)
-    local effect = dsp.effect.ENLIGHT
-    local magicskill = target:getSkillLevel(dsp.skill.DIVINE_MAGIC)
+    local effect = tpz.effect.ENLIGHT
+    local magicskill = target:getSkillLevel(tpz.skill.DIVINE_MAGIC)
     local potency = (magicskill / 8) + 12.5
 
     if target:addStatusEffect(effect, potency, 0, 180) then
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 
     return effect

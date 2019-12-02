@@ -11,7 +11,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
@@ -28,7 +28,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 901;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
         cs = 903;
     end
 
@@ -36,7 +36,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)

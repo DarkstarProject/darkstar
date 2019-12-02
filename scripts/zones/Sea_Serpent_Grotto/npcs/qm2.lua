@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_SAHAGINS_STASH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SEA_SERPENT_STATUE) then
+    if player:getQuestStatus(OUTLANDS, tpz.quest.id.outlands.THE_SAHAGINS_STASH) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.SEA_SERPENT_STATUE) then
         player:startEvent(1)
     end
 end
@@ -22,7 +22,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 1 then
-        player:addKeyItem(dsp.ki.SEA_SERPENT_STATUE)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SEA_SERPENT_STATUE)
+        player:addKeyItem(tpz.ki.SEA_SERPENT_STATUE)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.SEA_SERPENT_STATUE)
     end
 end

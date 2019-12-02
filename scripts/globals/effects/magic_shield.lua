@@ -8,40 +8,40 @@ require("scripts/globals/status")
 
 function onEffectGain(target,effect)
     if effect:getPower() == 3 then -- arcane stomp
-        target:addMod(dsp.mod.FIRE_ABSORB, 100)
-        target:addMod(dsp.mod.EARTH_ABSORB, 100)
-        target:addMod(dsp.mod.WATER_ABSORB, 100)
-        target:addMod(dsp.mod.WIND_ABSORB, 100)
-        target:addMod(dsp.mod.ICE_ABSORB, 100)
-        target:addMod(dsp.mod.LTNG_ABSORB, 100)
-        target:addMod(dsp.mod.LIGHT_ABSORB, 100)
-        target:addMod(dsp.mod.DARK_ABSORB, 100)
+        target:addMod(tpz.mod.FIRE_ABSORB, 100)
+        target:addMod(tpz.mod.EARTH_ABSORB, 100)
+        target:addMod(tpz.mod.WATER_ABSORB, 100)
+        target:addMod(tpz.mod.WIND_ABSORB, 100)
+        target:addMod(tpz.mod.ICE_ABSORB, 100)
+        target:addMod(tpz.mod.LTNG_ABSORB, 100)
+        target:addMod(tpz.mod.LIGHT_ABSORB, 100)
+        target:addMod(tpz.mod.DARK_ABSORB, 100)
     elseif effect:getPower() < 2 then
-        target:addMod(dsp.mod.UDMGMAGIC, -101)
+        target:addMod(tpz.mod.UDMGMAGIC, -101)
         if target:isPC() and target:hasTrait(77) then -- Iron Will
-            target:addMod(dsp.mod.SPELLINTERRUPT, target:getMerit(dsp.merit.IRON_WILL))
+            target:addMod(tpz.mod.SPELLINTERRUPT, target:getMerit(tpz.merit.IRON_WILL))
         end
     else
-        target:addMod(dsp.mod.MAGIC_ABSORB, 100)
+        target:addMod(tpz.mod.MAGIC_ABSORB, 100)
     end
 end
 
 function onEffectLose(target,effect)
     if effect:getPower() == 3 then -- arcane stomp
-        target:delMod(dsp.mod.FIRE_ABSORB, 100)
-        target:delMod(dsp.mod.EARTH_ABSORB, 100)
-        target:delMod(dsp.mod.WATER_ABSORB, 100)
-        target:delMod(dsp.mod.WIND_ABSORB, 100)
-        target:delMod(dsp.mod.ICE_ABSORB, 100)
-        target:delMod(dsp.mod.LTNG_ABSORB, 100)
-        target:delMod(dsp.mod.LIGHT_ABSORB, 100)
-        target:delMod(dsp.mod.DARK_ABSORB, 100)
+        target:delMod(tpz.mod.FIRE_ABSORB, 100)
+        target:delMod(tpz.mod.EARTH_ABSORB, 100)
+        target:delMod(tpz.mod.WATER_ABSORB, 100)
+        target:delMod(tpz.mod.WIND_ABSORB, 100)
+        target:delMod(tpz.mod.ICE_ABSORB, 100)
+        target:delMod(tpz.mod.LTNG_ABSORB, 100)
+        target:delMod(tpz.mod.LIGHT_ABSORB, 100)
+        target:delMod(tpz.mod.DARK_ABSORB, 100)
     elseif effect:getPower() < 2 then
-        target:delMod(dsp.mod.UDMGMAGIC, -101)
+        target:delMod(tpz.mod.UDMGMAGIC, -101)
         if target:isPC() and target:hasTrait(77) then -- Iron Will
-            target:delMod(dsp.mod.SPELLINTERRUPT, target:getMerit(dsp.merit.IRON_WILL))
+            target:delMod(tpz.mod.SPELLINTERRUPT, target:getMerit(tpz.merit.IRON_WILL))
         end
     else
-        target:delMod(dsp.mod.MAGIC_ABSORB, 100)
+        target:delMod(tpz.mod.MAGIC_ABSORB, 100)
     end
 end

@@ -16,15 +16,15 @@ function onItemUse(target)
     local cMP = target:getMP()
     if (VanadielDayElement() == LIGHTDAY) then
         if (cMP < (mMP * .85)) then
-            if (not target:hasStatusEffect(dsp.effect.REFRESH)) then
-                target:addStatusEffect(dsp.effect.REFRESH,2,3,1800)
+            if (not target:hasStatusEffect(tpz.effect.REFRESH)) then
+                target:addStatusEffect(tpz.effect.REFRESH,2,3,1800)
             else
-                target:messageBasic(dsp.msg.basic.NO_EFFECT)
+                target:messageBasic(tpz.msg.basic.NO_EFFECT)
             end
         else
-            target:messageBasic(dsp.msg.basic.NO_EFFECT)
+            target:messageBasic(tpz.msg.basic.NO_EFFECT)
         end
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

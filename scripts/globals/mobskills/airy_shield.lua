@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.ARROW_SHIELD
+    local typeEffect = tpz.effect.ARROW_SHIELD
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 60))
 

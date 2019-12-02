@@ -14,11 +14,11 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,7);
-    local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT);
-    local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT);
+    local SkillCap = getCraftSkillCap(player, tpz.skill.LEATHERCRAFT);
+    local SkillLevel = player:getSkillLevel(tpz.skill.LEATHERCRAFT);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == false) then
+        if (player:hasStatusEffect(tpz.effect.LEATHERCRAFT_IMAGERY) == false) then
             player:startEvent(652,SkillCap,SkillLevel,2,239,player:getGil(),0,0,0);
         else
             player:startEvent(652,SkillCap,SkillLevel,2,239,player:getGil(),7075,0,0);
@@ -34,6 +34,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 652 and option == 1) then
         player:messageSpecial(ID.text.LEATHER_SUPPORT,0,5,2);
-        player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120);
+        player:addStatusEffect(tpz.effect.LEATHERCRAFT_IMAGERY,1,0,120);
     end
 end;

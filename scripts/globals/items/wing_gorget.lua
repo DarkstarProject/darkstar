@@ -11,9 +11,9 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.REGAIN)) then
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+    if (target:hasStatusEffect(tpz.effect.REGAIN)) then
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     else
-        target:addStatusEffect(dsp.effect.REGAIN, 5, 3, 30)
+        target:addStatusEffect(tpz.effect.REGAIN, 5, 3, 30)
     end
 end

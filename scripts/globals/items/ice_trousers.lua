@@ -12,5 +12,5 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.ICE_SPIKES, 7, 0, 180)
+    target:addStatusEffect(tpz.effect.ICE_SPIKES, 7, 0, 180)
 end

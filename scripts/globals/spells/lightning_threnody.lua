@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Threnody - dsp.mod.THUNDERRES
+-- Spell: Threnody - tpz.mod.THUNDERRES
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")
@@ -10,5 +10,5 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    return handleThrenody(caster, target, spell, 50, 60, dsp.mod.THUNDERRES)
+    return handleThrenody(caster, target, spell, 50, 60, tpz.mod.THUNDERRES)
 end

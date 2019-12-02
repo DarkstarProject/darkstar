@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -263,7 +261,7 @@ namespace petutils
 
     void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget)
     {
-        DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
         CBattleEntity* PPet = PMaster->PPet;
 
@@ -275,7 +273,7 @@ namespace petutils
 
     void RetreatToMaster(CBattleEntity* PMaster)
     {
-        DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
         CBattleEntity* PPet = PMaster->PPet;
 
@@ -969,7 +967,7 @@ namespace petutils
 
     void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
-        DSP_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
+        TPZ_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
         if (PMaster->objtype == TYPE_PC && (PetID == PETID_HARLEQUINFRAME || PetID == PETID_VALOREDGEFRAME || PetID == PETID_SHARPSHOTFRAME || PetID == PETID_STORMWAKERFRAME))
         {
             puppetutils::LoadAutomaton(static_cast<CCharEntity*>(PMaster));
@@ -1156,8 +1154,8 @@ namespace petutils
 
     void DetachPet(CBattleEntity* PMaster)
     {
-        DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
-        DSP_DEBUG_BREAK_IF(PMaster->objtype != TYPE_PC);
+        TPZ_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMaster->objtype != TYPE_PC);
 
         CBattleEntity* PPet = PMaster->PPet;
         CCharEntity* PChar = (CCharEntity*)PMaster;
@@ -1250,7 +1248,7 @@ namespace petutils
 
     void DespawnPet(CBattleEntity* PMaster)
     {
-        DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
         petutils::DetachPet(PMaster);
     }
@@ -1379,7 +1377,7 @@ namespace petutils
         {
             // increase charm duration
             // 30 mins - 1-5 mins
-            PPet->charmTime += 30min - std::chrono::milliseconds(dsprand::GetRandomNumber(300000u));
+            PPet->charmTime += 30min - std::chrono::milliseconds(tpzrand::GetRandomNumber(300000u));
         }
 
         float rate = 0.10f;
@@ -1401,7 +1399,7 @@ namespace petutils
 
     void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
-        DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
+        TPZ_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
         if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN)
             return;
 
@@ -1658,7 +1656,7 @@ namespace petutils
             }
 
             // Randomize: 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
-            highestLvl -= dsprand::GetRandomNumber(3 - std::clamp<int16>(PChar->getMod(Mod::JUG_LEVEL_RANGE), 0, 2));
+            highestLvl -= tpzrand::GetRandomNumber(3 - std::clamp<int16>(PChar->getMod(Mod::JUG_LEVEL_RANGE), 0, 2));
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
@@ -1724,7 +1722,7 @@ namespace petutils
 
     CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
     {
-        DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
+        TPZ_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
         CTrustEntity* PTrust = new CTrustEntity(PMaster);
         PTrust->loc = PMaster->loc;
         PTrust->m_OwnerID.id = PMaster->id;

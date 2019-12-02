@@ -6,7 +6,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.TRIPLE_ATTACK, 33)
+    mob:setMod(tpz.mod.TRIPLE_ATTACK, 33)
 end
 
 function onMobDeath(mob, player, isKiller)

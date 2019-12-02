@@ -13,7 +13,7 @@ require("scripts/globals/status")
 
 function onTrade(player,npc,trade)
     if
-        player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) 
+        player:hasKeyItem(tpz.ki.TORN_PATCHES_OF_LEATHER) 
         and player:getCharVar("sayItWithAHandbagCS") == 2
         and npcUtil.tradeHasExactly(trade, {2012, 850, 816})
     then
@@ -23,15 +23,15 @@ end
 
 function onTrigger(player,npc)
     local sayItWithAHandbagCS = player:getCharVar("sayItWithAHandbagCS")
-    local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT)
-    local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT)
+    local SkillCap = getCraftSkillCap(player, tpz.skill.LEATHERCRAFT)
+    local SkillLevel = player:getSkillLevel(tpz.skill.LEATHERCRAFT)
 
     if
-        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG) == QUEST_COMPLETED
+        player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG) == QUEST_COMPLETED
         and player:getCharVar("sayItWithAHandbagBonusCS") == 1
     then
         player:startEvent(914)
-    elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
+    elseif player:hasKeyItem(tpz.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
         player:startEvent(913)
     elseif sayItWithAHandbagCS == 3 then
         if player:needToZone() then
@@ -41,10 +41,10 @@ function onTrigger(player,npc)
         end
     elseif sayItWithAHandbagCS == 2 then
         player:startEvent(909)
-    elseif player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 1 then
+    elseif player:hasKeyItem(tpz.ki.TORN_PATCHES_OF_LEATHER) and sayItWithAHandbagCS == 1 then
         player:startEvent(908)
     elseif isGuildMember(player,7) == 1 then
-        if not player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) then
+        if not player:hasStatusEffect(tpz.effect.LEATHERCRAFT_IMAGERY) then
             player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),0,0,0)
         else
             player:startEvent(651,SkillCap,SkillLevel,1,239,player:getGil(),7128,0,0)
@@ -61,10 +61,10 @@ function onEventFinish(player,csid,option)
     if csid == 914 then
         player:setCharVar("sayItWithAHandbagBonusCS", 0)
     elseif csid == 912 then
-        npcUtil.giveKeyItem(player, dsp.ki.REPAIRED_HANDBAG)
+        npcUtil.giveKeyItem(player, tpz.ki.REPAIRED_HANDBAG)
         player:setCharVar("sayItWithAHandbagCS", 4)
     elseif csid == 910 then
-        player:delKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER)
+        player:delKeyItem(tpz.ki.TORN_PATCHES_OF_LEATHER)
         player:setCharVar("sayItWithAHandbagCS", 3)
         player:needToZone(true)
         player:confirmTrade()
@@ -72,6 +72,6 @@ function onEventFinish(player,csid,option)
         player:setCharVar("sayItWithAHandbagCS", 2)
     elseif csid == 651 and option == 1 then
         player:messageSpecial(ID.text.LEATHER_SUPPORT,0,5,1)
-        player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120)
+        player:addStatusEffect(tpz.effect.LEATHERCRAFT_IMAGERY,1,0,120)
     end
 end

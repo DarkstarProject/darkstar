@@ -17,7 +17,7 @@ function onTrade(player, npc, trade)
         local doorOffset = ID.npc.DOOR_OFFSET + math.min(offset, 2) * 4
         for i = doorOffset, doorOffset + 3 do
             local door = GetNPCByID(i)
-            door:setAnimation((door:getAnimation() == dsp.anim.OPEN_DOOR) and dsp.anim.CLOSE_DOOR or dsp.anim.OPEN_DOOR)
+            door:setAnimation((door:getAnimation() == tpz.anim.OPEN_DOOR) and tpz.anim.CLOSE_DOOR or tpz.anim.OPEN_DOOR)
         end
     else
         player:startEvent(20) -- no firesand message

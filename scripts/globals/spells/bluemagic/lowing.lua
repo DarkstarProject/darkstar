@@ -24,21 +24,21 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
-    params.effect = dsp.effect.PLAGUE
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
+    params.effect = tpz.effect.PLAGUE
     local resist = applyResistance(caster, target, spell, params)
     local duration = 60 * resist
     local power = 5
 
     if (resist > 0.5) then -- Do it!
         if (target:addStatusEffect(params.effect,power,0,duration)) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
 
     return params.effect

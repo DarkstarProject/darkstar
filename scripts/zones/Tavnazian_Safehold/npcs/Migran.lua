@@ -17,7 +17,7 @@ function onTrigger(player,npc)
         12985, 1625,      -- Holly Clogs
     }
 
-    if player:getCurrentMission(COP) >= dsp.mission.id.cop.SHELTERING_DOUBT then
+    if player:getCurrentMission(COP) >= tpz.mission.id.cop.SHELTERING_DOUBT then
         table.insert(stock, 14317)    -- Barone Cosciales
         table.insert(stock, 4042200)
         table.insert(stock, 15305)    -- Barone Gambieras
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     end
 
     player:showText(npc, ID.text.MIGRAN_SHOP_DIALOG)
-    dsp.shop.general(player, stock)
+    tpz.shop.general(player, stock)
 end
 
 function onEventUpdate(player,csid,option)

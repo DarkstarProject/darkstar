@@ -11,7 +11,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+    tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 function onBattlefieldRegister(player, battlefield)
@@ -21,11 +21,11 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldLeave(player, battlefield, leavecode)
-    if leavecode == dsp.battlefield.leaveCode.WON then
+    if leavecode == tpz.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
-        local arg8 = (player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.SAVE_THE_CHILDREN)) and 1 or 0
+        local arg8 = (player:hasCompletedMission(SANDORIA, tpz.mission.id.sandoria.SAVE_THE_CHILDREN)) and 1 or 0
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), arg8)
-    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+    elseif leavecode == tpz.battlefield.leaveCode.LOST then
         player:startEvent(32002)
     end
 end
@@ -37,11 +37,11 @@ function onEventFinish(player, csid, option)
     if
         csid == 32001 and
         option == 0 and
-        player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and
+        player:getCurrentMission(SANDORIA) == tpz.mission.id.sandoria.SAVE_THE_CHILDREN and
         player:getCharVar("MissionStatus") == 2
     then
-        npcUtil.giveKeyItem(player, dsp.ki.ORCISH_HUT_KEY)
-        player:setTitle(dsp.title.FODDERCHIEF_FLAYER)
+        npcUtil.giveKeyItem(player, tpz.ki.ORCISH_HUT_KEY)
+        player:setTitle(tpz.title.FODDERCHIEF_FLAYER)
         player:setCharVar("MissionStatus", 3)
     end
 end

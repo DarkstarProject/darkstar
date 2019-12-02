@@ -21,10 +21,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local attack =
     {
-        ['type'] = dsp.attackType.BREATH,
-        ['slot'] = dsp.slot.MAIN,
-        ['weaponType'] = player:getWeaponSkillType(dsp.slot.MAIN),
-        ['damageType'] = dsp.damageType.ELEMENTAL
+        ['type'] = tpz.attackType.BREATH,
+        ['slot'] = tpz.slot.MAIN,
+        ['weaponType'] = player:getWeaponSkillType(tpz.slot.MAIN),
+        ['damageType'] = tpz.damageType.ELEMENTAL
     }
     local calcParams =
     {
@@ -66,8 +66,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
             calcParams.tpHitsLanded = 1
         end
     end
-    if (player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        damage = damage * (100 + player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID))/100
+    if (player:getMod(tpz.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+        damage = damage * (100 + player:getMod(tpz.mod.WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     damage = damage * WEAPON_SKILL_POWER
     calcParams.finalDmg = damage

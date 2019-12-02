@@ -10,14 +10,14 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.HARVESTMAN);
     GetMobByID(ID.mob.HARVESTMAN):setRespawnTime(math.random(900, 10800));
 
-    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
+    tpz.helm.initZone(zone, tpz.helm.type.HARVESTING)
 end;
 
 function onZoneIn(player,prevZone)
@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-100,-13.5,-479.514,60);
     end
-    if (prevZone == dsp.zone.MAMOOL_JA_TRAINING_GROUNDS) then
+    if (prevZone == tpz.zone.MAMOOL_JA_TRAINING_GROUNDS) then
         player:setPos(-186,-10,-802,80);
     end
     return cs;

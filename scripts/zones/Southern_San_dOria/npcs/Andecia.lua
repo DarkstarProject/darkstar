@@ -12,14 +12,14 @@ require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getCharVar("OfferingWaterOK") == 1) then
             player:startEvent(624);
         end
     end
 
         -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 
-    Tomb = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS);
+    Tomb = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.GRAVE_CONCERNS);
     WellWater = player:hasItem(567); -- Well Water
     Waterskin = player:hasItem(547); -- Tomb Waterskin
 
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,567); -- Well Water
         else
-            player:addQuest(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS);
+            player:addQuest(SANDORIA,tpz.quest.id.sandoria.GRAVE_CONCERNS);
             player:setCharVar("graveConcernsVar",0);
             player:addItem(567);
             player:messageSpecial(ID.text.ITEM_OBTAINED,567); -- Well Water
@@ -68,11 +68,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 624) then
         player:tradeComplete();
         player:setCharVar("OfferingWaterOK",0);
-        player:addTitle(dsp.title.ROYAL_GRAVE_KEEPER);
+        player:addTitle(tpz.title.ROYAL_GRAVE_KEEPER);
         player:addGil(GIL_RATE*560);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*560)
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS);
+        player:completeQuest(SANDORIA,tpz.quest.id.sandoria.GRAVE_CONCERNS);
     end
 
 end;

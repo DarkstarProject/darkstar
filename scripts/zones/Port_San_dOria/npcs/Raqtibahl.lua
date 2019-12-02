@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
     local letterRed = player:getCharVar("LeleroonsLetterRed");
 
     -- magicmart flyer
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
         player:messageSpecial(ID.text.FLYER_REFUSED);
 
     -- gold chain, velvet cloth, red grass cloth, sailcloth
@@ -29,7 +29,7 @@ end;
 
 function onTrigger(player,npc)
     local letterRed = player:getCharVar("LeleroonsLetterRed");
-    if (player:hasKeyItem(dsp.ki.LELEROONS_LETTER_RED)) then
+    if (player:hasKeyItem(tpz.ki.LELEROONS_LETTER_RED)) then
         player:startEvent(753); -- accept letter, now bring me four items
     elseif (letterRed == 2) then
         player:startEvent(754); -- i'm waiting for four items
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 753) then
         player:setCharVar("LeleroonsLetterRed", 2);
-        player:delKeyItem(dsp.ki.LELEROONS_LETTER_RED);
+        player:delKeyItem(tpz.ki.LELEROONS_LETTER_RED);
     elseif (csid == 755) then
         player:tradeComplete();
         player:setCharVar("LeleroonsLetterRed", 3);

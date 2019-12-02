@@ -15,12 +15,12 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.SLEEP_I
+    local typeEffect = tpz.effect.SLEEP_I
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30)
 
-    local dmgmod = MobBreathMove(mob, target, 0.125, 3, dsp.magic.ele.WATER, 500)
-    local dmg = MobFinalAdjustments(dmgmod, mob, skill, target, dsp.attackType.BREATH, dsp.damageType.WATER, MOBPARAM_IGNORE_SHADOWS)
-    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.WATER)
+    local dmgmod = MobBreathMove(mob, target, 0.125, 3, tpz.magic.ele.WATER, 500)
+    local dmg = MobFinalAdjustments(dmgmod, mob, skill, target, tpz.attackType.BREATH, tpz.damageType.WATER, MOBPARAM_IGNORE_SHADOWS)
+    target:takeDamage(dmg, mob, tpz.attackType.BREATH, tpz.damageType.WATER)
 
     return dmg
 end

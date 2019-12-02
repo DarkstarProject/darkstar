@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local effect = dsp.effect.AUSPICE
+    local effect = tpz.effect.AUSPICE
     doEnspell(caster, target, spell, effect)
     return effect
 end

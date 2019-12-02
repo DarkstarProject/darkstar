@@ -8,7 +8,7 @@ require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.chocobo.initZone(zone)
+    tpz.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

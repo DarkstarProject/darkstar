@@ -11,12 +11,12 @@ require("scripts/globals/status")
 -----------------------------------
 
 local function otherLights(player)
-    return (player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and 1 or 0) +
-           (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and 1 or 0)
+    return (player:hasKeyItem(tpz.ki.LIGHT_OF_MEA) and 1 or 0) +
+           (player:hasKeyItem(tpz.ki.LIGHT_OF_DEM) and 1 or 0)
 end
 
 function onBattlefieldTick(battlefield, tick)
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+    tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 function onBattlefieldRegister(player, battlefield)
@@ -26,11 +26,11 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldLeave(player, battlefield, leavecode)
-    if leavecode == dsp.battlefield.leaveCode.WON then
+    if leavecode == tpz.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
         local arg8 = 1 + otherLights(player)
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), arg8)
-    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+    elseif leavecode == tpz.battlefield.leaveCode.LOST then
         player:startEvent(32002)
     end
 end
@@ -40,19 +40,19 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 32001 then
-        local teleportTo = dsp.teleport.id.EXITPROMHOLLA
-        local ki = dsp.ki.LIGHT_OF_HOLLA
+        local teleportTo = tpz.teleport.id.EXITPROMHOLLA
+        local ki = tpz.ki.LIGHT_OF_HOLLA
 
         -- first promyvion completed
-        if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS then
-            player:completeMission(COP, dsp.mission.id.cop.BELOW_THE_ARKS)
-            player:addMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS)
+        if player:getCurrentMission(COP) == tpz.mission.id.cop.BELOW_THE_ARKS then
+            player:completeMission(COP, tpz.mission.id.cop.BELOW_THE_ARKS)
+            player:addMission(COP, tpz.mission.id.cop.THE_MOTHERCRYSTALS)
             player:setCharVar("cspromy2", 1)
             player:setCharVar("PromathiaStatus", 0)
             player:addKeyItem(ki)
             player:messageSpecial(ID.text.CANT_REMEMBER, ki)
 
-        elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(ki) then
+        elseif player:getCurrentMission(COP) == tpz.mission.id.cop.THE_MOTHERCRYSTALS and not player:hasKeyItem(ki) then
 
             -- second promyvion completed
             if otherLights(player) < 2 then
@@ -62,16 +62,16 @@ function onEventFinish(player, csid, option)
 
             -- final promyvion completed
             else
-                player:completeMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS)
+                player:completeMission(COP, tpz.mission.id.cop.THE_MOTHERCRYSTALS)
                 player:setCharVar("PromathiaStatus", 0)
-                player:addMission(COP, dsp.mission.id.cop.AN_INVITATION_WEST)
+                player:addMission(COP, tpz.mission.id.cop.AN_INVITATION_WEST)
                 player:addKeyItem(ki)
                 player:messageSpecial(ID.text.CANT_REMEMBER, ki)
-                teleportTo = dsp.teleport.id.LUFAISE
+                teleportTo = tpz.teleport.id.LUFAISE
             end
         end
 
         player:addExp(1500)
-        player:addStatusEffectEx(dsp.effect.TELEPORT, 0, teleportTo, 0, 1)
+        player:addStatusEffectEx(tpz.effect.TELEPORT, 0, teleportTo, 0, 1)
     end
 end

@@ -15,15 +15,15 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.FROST
+    local typeEffect = tpz.effect.FROST
 
     local power = (mob:getMainLvl()/5 *.6 + 6)
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60)
 
     local dmgmod = 1
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,dsp.magic.ele.ICE,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
-    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.ICE)
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,tpz.magic.ele.ICE,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.MAGICAL,tpz.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
+    target:takeDamage(dmg, mob, tpz.attackType.MAGICAL, tpz.damageType.ICE)
     return dmg
 end

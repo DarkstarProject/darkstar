@@ -30,14 +30,14 @@ function onTrigger(player,npc)
 
     local hour = VanadielHour();
     local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
-    local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+    local doneCommService = (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
     local currCommService = player:getCharVar("currCommService");
-    local hasMembershipCard = player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
+    local hasMembershipCard = player:hasKeyItem(tpz.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
 
     local allLampsLit = true;
     for i=0,11 do
         local lamp = GetNPCByID(ID.npc.STREETLAMP_OFFSET + i);
-        if (lamp:getAnimation() == dsp.anim.CLOSE_DOOR) then
+        if (lamp:getAnimation() == tpz.anim.CLOSE_DOOR) then
             allLampsLit = false;
             break;
         end
@@ -76,14 +76,14 @@ function onEventUpdate(player,csid,option)
         -- player accepts quest
         -- if nobody else has already been assigned to the quest, including Vhana, give it to this player
 
-        local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+        local doneCommService = (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
         local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
         local hour = VanadielHour();
 
         if (playerOnQuestId == 0 and (hour >= 18 or hour < 1)) then
             -- nobody is currently on the quest
             SetServerVariable("[JEUNO]CommService",player:getID());
-            player:addQuest(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE);
+            player:addQuest(JEUNO,tpz.quest.id.jeuno.COMMUNITY_SERVICE);
             player:setCharVar("currCommService",1);
             player:updateEvent(1,doneCommService);
         else
@@ -101,22 +101,22 @@ function onEventFinish(player,csid,option)
 
     -- COMMUNITY SERVICE
     elseif (csid == 117) then
-        local params = {title = dsp.title.TORCHBEARER, var = "currCommService"};
-        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
+        local params = {title = tpz.title.TORCHBEARER, var = "currCommService"};
+        if (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
             -- first victory
             params.fame = 30;
         else
             -- repeat victory. offer membership card.
             params.fame = 15;
             if (option == 1) then
-                params.keyItem = dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD;
+                params.keyItem = tpz.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD;
             end
         end
-        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.COMMUNITY_SERVICE, params);
+        npcUtil.completeQuest(player, JEUNO, tpz.quest.id.jeuno.COMMUNITY_SERVICE, params);
 
     elseif (csid == 118 and option == 1) then
         -- player drops membership card
-        player:delKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD);
+        player:delKeyItem(tpz.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD);
 
     elseif (csid == 119) then
         -- player fails quest

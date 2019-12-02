@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effect.LEVEL_RESTRICTION
+--     tpz.effect.LEVEL_RESTRICTION
 --
 -----------------------------------
 

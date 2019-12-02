@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de données: `tpzdb`
 --
 
 -- --------------------------------------------------------
@@ -2852,7 +2852,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Toppling_Tuber',828,310); -- queazyshroom
 INSERT INTO `mob_skill_lists` VALUES ('Toppling_Tuber',828,311); -- numbshroom
 -- INSERT INTO `mob_skill_lists` VALUES ('Toppling_Tuber',828,2607); -- agaricus
 INSERT INTO `mob_skill_lists` VALUES ('Trudging_Thomas',829,266); -- ram charge
--- INSERT INTO `mob_skill_lists` VALUES ('Trudging_Thomas',829,0); -- Doom Bleat missing from mob_skills.sql in DSP -- Doom Bleat which is roughly 50% HP down. HP down effect can be erased
+-- INSERT INTO `mob_skill_lists` VALUES ('Trudging_Thomas',829,0); -- Doom Bleat missing from mob_skills.sql in Topaz -- Doom Bleat which is roughly 50% HP down. HP down effect can be erased
 INSERT INTO `mob_skill_lists` VALUES ('Abas',830,515); -- toxic spit
 INSERT INTO `mob_skill_lists` VALUES ('Adze',831,2158); -- insipid nip
 INSERT INTO `mob_skill_lists` VALUES ('Adze',831,2159); -- pandemic nip
@@ -3180,7 +3180,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Rakshas',926,273); -- Claw Cyclone
 -- INSERT INTO `mob_skill_lists` VALUES ('Rakshas',926,2207); -- Disorienting_Waul
 INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2437); -- Aqua_Blast
 INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2439); -- Hydro Wave
--- INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2439); -- Hydro Blast not in DSP/Custom skill list http://ffxi.gamerescape.com/wiki/Hydro_Blast
+-- INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2439); -- Hydro Blast not in Topaz/Custom skill list http://ffxi.gamerescape.com/wiki/Hydro_Blast
 INSERT INTO `mob_skill_lists` VALUES ('Seps',928,1720); -- Wind Shear
 INSERT INTO `mob_skill_lists` VALUES ('Seps',928,1721); -- Obfuscate
 INSERT INTO `mob_skill_lists` VALUES ('Seps',928,1723); -- Ill Wind

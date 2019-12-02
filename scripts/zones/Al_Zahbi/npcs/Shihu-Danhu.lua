@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end;
 
 function onTrigger(player, npc)
-    if dsp.besieged.getAstralCandescence() == 1 then
+    if tpz.besieged.getAstralCandescence() == 1 then
         player:startEvent(103)
     else
         player:messageSpecial(ID.text.NEED_CANDESCENCE_BACK) -- Missing the denied due to lack of Astral Candescence message.

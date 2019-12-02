@@ -6,8 +6,8 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.GIL_MIN, 1500)
-    mob:setMobMod(dsp.mobMod.GIL_MAX, 1800)
+    mob:setMobMod(tpz.mobMod.GIL_MIN, 1500)
+    mob:setMobMod(tpz.mobMod.GIL_MAX, 1800)
 end
 
 function onMobDeath(mob, player, isKiller)

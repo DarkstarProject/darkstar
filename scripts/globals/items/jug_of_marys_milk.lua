@@ -12,8 +12,8 @@ end
 
 function onItemUse(target)
     if (not hasSleepEffects(target)) then
-        target:addStatusEffect(dsp.effect.SLEEP_I,1,0,60)
+        target:addStatusEffect(tpz.effect.SLEEP_I,1,0,60)
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

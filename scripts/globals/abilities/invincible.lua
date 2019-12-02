@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.INVINCIBLE,1,0,30)
+    player:addStatusEffect(tpz.effect.INVINCIBLE,1,0,30)
 end

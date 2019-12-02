@@ -22,13 +22,13 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local dINT = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 0
-    params.effect = dsp.effect.STUN
+    params.effect = tpz.effect.STUN
     local resist = applyResistanceEffect(caster, target, spell, params)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
@@ -52,7 +52,7 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
     if (resist > 0.25) then -- This line may need adjusting for retail accuracy.
-        target:addStatusEffect(dsp.effect.STUN, 1, 0, 5 * resist)
+        target:addStatusEffect(tpz.effect.STUN, 1, 0, 5 * resist)
     end
 
     return damage

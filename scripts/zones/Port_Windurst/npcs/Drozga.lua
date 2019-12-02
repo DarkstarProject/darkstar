@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc,ID.text.DROZGA_SHOP_DIALOG)
-    dsp.shop.general(player, stock, WINDURST)
+    tpz.shop.general(player, stock, WINDURST)
 end
 
 function onEventUpdate(player,csid,option)

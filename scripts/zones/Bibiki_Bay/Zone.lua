@@ -10,7 +10,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
@@ -22,8 +22,8 @@ function onZoneIn(player,prevZone)
     local cs = -1
 
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        if prevZone == dsp.zone.MANACLIPPER then
-            cs = dsp.manaclipper.onZoneIn(player)
+        if prevZone == tpz.zone.MANACLIPPER then
+            cs = tpz.manaclipper.onZoneIn(player)
         else
             player:setPos(669.917, -23.138, 911.655, 111)
         end
@@ -33,19 +33,19 @@ function onZoneIn(player,prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player,region)
-    dsp.manaclipper.aboard(player, region:GetRegionID(), true)
+    tpz.manaclipper.aboard(player, region:GetRegionID(), true)
 end
 
 function onRegionLeave(player,region)
-    dsp.manaclipper.aboard(player, region:GetRegionID(), false)
+    tpz.manaclipper.aboard(player, region:GetRegionID(), false)
 end
 
 function onTransportEvent(player,transport)
-    dsp.manaclipper.onTransportEvent(player, transport)
+    tpz.manaclipper.onTransportEvent(player, transport)
 end
 
 function onEventUpdate(player,csid,option)
@@ -57,6 +57,6 @@ function onEventFinish(player,csid,option)
     elseif csid == 13 then
         player:startEvent(11) -- arrive at Purgonorgo Isle CS
     elseif csid == 14 or csid == 16 then
-        player:setPos(0, 0, 0, 0, dsp.zone.MANACLIPPER)
+        player:setPos(0, 0, 0, 0, tpz.zone.MANACLIPPER)
     end
 end

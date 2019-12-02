@@ -9,10 +9,10 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.EES_AERN, hpp = math.random(90, 95), cooldown = 120}
+            {id = tpz.jsa.EES_AERN, hpp = math.random(90, 95), cooldown = 120}
         }
     })
 end

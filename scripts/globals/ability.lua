@@ -6,9 +6,9 @@
 require("scripts/globals/status");
 require("scripts/globals/msg");
 
-dsp = dsp or {};
+tpz = tpz or {};
 
-dsp.jobAbility =
+tpz.jobAbility =
 {
     MIGHTY_STRIKES     = 0,
     HUNDRED_FISTS      = 1,
@@ -429,9 +429,9 @@ dsp.jobAbility =
     THUNDERSTORM       = 615,
     JUDGMENT_BOLT      = 616,
 };
-dsp.ja = dsp.jobAbility;
+tpz.ja = tpz.jobAbility;
 
-dsp.reaction =
+tpz.reaction =
 {
     NONE     = 0x00,
     MISS     = 0x01,
@@ -442,7 +442,7 @@ dsp.reaction =
     GUARD    = 0x14,
 };
 
-dsp.specEffect =
+tpz.specEffect =
 {
     NONE           = 0x00,
     BLOOD          = 0x02,
@@ -454,9 +454,9 @@ dsp.specEffect =
 
 function corsairSetup(caster, ability, action, effect, job)
     local roll = math.random(1,6);
-    caster:delStatusEffectSilent(dsp.effect.DOUBLE_UP_CHANCE);
-    caster:addStatusEffectEx(dsp.effect.DOUBLE_UP_CHANCE,
-                             dsp.effect.DOUBLE_UP_CHANCE,
+    caster:delStatusEffectSilent(tpz.effect.DOUBLE_UP_CHANCE);
+    caster:addStatusEffectEx(tpz.effect.DOUBLE_UP_CHANCE,
+                             tpz.effect.DOUBLE_UP_CHANCE,
                              roll,
                              0,
                              45,
@@ -470,17 +470,17 @@ function corsairSetup(caster, ability, action, effect, job)
         action:recast(action:recast()/2)
     end
     checkForJobBonus(caster, job)
-    caster:addRecast(dsp.recast.ABILITY, 194, 8)
+    caster:addRecast(tpz.recast.ABILITY, 194, 8)
 end
 
 function atMaxCorsairBusts(caster)
     local numBusts = caster:numBustEffects();
-    return (numBusts >= 2 and caster:getMainJob() == dsp.job.COR) or (numBusts >= 1 and caster:getMainJob() ~= dsp.job.COR);
+    return (numBusts >= 2 and caster:getMainJob() == tpz.job.COR) or (numBusts >= 1 and caster:getMainJob() ~= tpz.job.COR);
 end
 
 function checkForJobBonus(caster, job)
     local jobBonus = 0
-    if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(dsp.mod.JOB_BONUS_CHANCE)) then
+    if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(tpz.mod.JOB_BONUS_CHANCE)) then
         jobBonus = 1;
     end
     caster:setLocalVar("corsairRollBonus", jobBonus);
@@ -489,12 +489,12 @@ end
 function checkForElevenRoll(caster)
     local effects = caster:getStatusEffects()
     for _,effect in ipairs(effects) do
-        if (effect:getType() >= dsp.effect.FIGHTERS_ROLL and
-            effect:getType() <= dsp.effect.NATURALISTS_ROLL and
+        if (effect:getType() >= tpz.effect.FIGHTERS_ROLL and
+            effect:getType() <= tpz.effect.NATURALISTS_ROLL and
             effect:getSubPower() == 11) then
             return true
         end
-        if (effect:getType() == dsp.effect.RUNEISTS_ROLL and
+        if (effect:getType() == tpz.effect.RUNEISTS_ROLL and
                 effect:getSubPower() == 11) then
             return true
         end
@@ -502,8 +502,8 @@ function checkForElevenRoll(caster)
     return false
 end
 
-function phantombuffMultiple(caster) -- Check for dsp.mod.PHANTOM_ROLL Value and apply non-stack logic.
-    local phantomValue = caster:getMod(dsp.mod.PHANTOM_ROLL);
+function phantombuffMultiple(caster) -- Check for tpz.mod.PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(tpz.mod.PHANTOM_ROLL);
     local phantombuffValue = 0;
     if (phantomValue == 3) then
         phantombuffMultiplier = 3;
@@ -526,15 +526,15 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle pd
-    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.TOO_HIGH) )
-            and skilltype == dsp.attackType.PHYSICAL) then
-        skill:setMsg(dsp.msg.basic.JA_MISS_2);
+    if ((target:hasStatusEffect(tpz.effect.PERFECT_DODGE) or target:hasStatusEffect(tpz.effect.TOO_HIGH) )
+            and skilltype == tpz.attackType.PHYSICAL) then
+        skill:setMsg(tpz.msg.basic.JA_MISS_2);
         return 0;
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(dsp.msg.basic.USES_JA_TAKE_DAMAGE);
+    skill:setMsg(tpz.msg.basic.USES_JA_TAKE_DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -543,34 +543,34 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 
         -- dealt zero damage, so shadows took hit
         if (dmg == 0) then
-            skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
+            skill:setMsg(tpz.msg.basic.SHADOW_ABSORB);
             return shadowbehav;
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(dsp.effect.COPY_IMAGE);
-        target:delStatusEffect(dsp.effect.BLINK);
-        target:delStatusEffect(dsp.effect.THIRD_EYE);
+        target:delStatusEffect(tpz.effect.COPY_IMAGE);
+        target:delStatusEffect(tpz.effect.BLINK);
+        target:delStatusEffect(tpz.effect.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide
-    if (skilltype == dsp.attackType.PHYSICAL and utils.thirdeye(target)) then
-        skill:setMsg(dsp.msg.basic.ANTICIPATE);
+    if (skilltype == tpz.attackType.PHYSICAL and utils.thirdeye(target)) then
+        skill:setMsg(tpz.msg.basic.ANTICIPATE);
         return 0;
     end
 
-    if (skilltype == dsp.attackType.PHYSICAL) then
+    if (skilltype == tpz.attackType.PHYSICAL) then
         dmg = target:physicalDmgTaken(dmg, skillparam);
-    elseif (skilltype == dsp.attackType.MAGICAL) then
+    elseif (skilltype == tpz.attackType.MAGICAL) then
         dmg = target:magicDmgTaken(dmg);
-    elseif (skilltype == dsp.attackType.BREATH) then
+    elseif (skilltype == tpz.attackType.BREATH) then
         dmg = target:breathDmgTaken(dmg);
-    elseif (skilltype == dsp.attackType.RANGED) then
+    elseif (skilltype == tpz.attackType.RANGED) then
         dmg = target:rangedDmgTaken(dmg);
     end
 
     --handling phalanx
-    dmg = dmg - target:getMod(dsp.mod.PHALANX);
+    dmg = dmg - target:getMod(tpz.mod.PHALANX);
 
     if (dmg < 0) then
         return 0;
@@ -591,16 +591,16 @@ function takeAbilityDamage(defender, attacker, params, primary, finaldmg, attack
     if tpHitsLanded + extraHitsLanded > 0 then
         if finaldmg >= 0 then
             if finaldmg > 0 then
-                action:reaction(defender:getID(), dsp.reaction.HIT)
-                action:speceffect(defender:getID(), dsp.specEffect.RECOIL)
+                action:reaction(defender:getID(), tpz.reaction.HIT)
+                action:speceffect(defender:getID(), tpz.specEffect.RECOIL)
             end
         else
             -- TODO: ability absorb messages (if there are any)
-            -- action:messageID(defender:getID(), dsp.msg.basic.WHATEVER)
+            -- action:messageID(defender:getID(), tpz.msg.basic.WHATEVER)
         end
         action:param(defender:getID(), finaldmg)
     elseif shadowsAbsorbed > 0 then
-        action:messageID(defender:getID(), dsp.msg.basic.SHADOW_ABSORB)
+        action:messageID(defender:getID(), tpz.msg.basic.SHADOW_ABSORB)
         action:param(defender:getID(), shadowsAbsorbed)
     else
         -- no abilities that use ability message can miss (the rest use ws messages)

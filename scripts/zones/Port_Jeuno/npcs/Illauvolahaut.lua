@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    KazhPass = player:hasKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
+    KazhPass = player:hasKeyItem(tpz.ki.AIRSHIP_PASS_FOR_KAZHAM);
     Gil = player:getGil();
 
     if (KazhPass == false) then

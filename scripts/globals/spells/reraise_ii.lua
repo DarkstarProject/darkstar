@@ -10,8 +10,8 @@ end
 
 function onSpellCast(caster,target,spell)
     --duration = 1800
-    target:delStatusEffect(dsp.effect.RERAISE)
-    target:addStatusEffect(dsp.effect.RERAISE,2,0,3600) --reraise 2, 30min duration
+    target:delStatusEffect(tpz.effect.RERAISE)
+    target:addStatusEffect(tpz.effect.RERAISE,2,0,3600) --reraise 2, 30min duration
 
-    return dsp.effect.RERAISE
+    return tpz.effect.RERAISE
 end

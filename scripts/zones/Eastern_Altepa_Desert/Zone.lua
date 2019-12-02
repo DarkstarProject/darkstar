@@ -11,7 +11,7 @@ require("scripts/globals/chocobo")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
@@ -24,12 +24,12 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.CENTURIO_XII_I)
     GetMobByID(ID.mob.CENTURIO_XII_I):setRespawnTime(math.random(900, 10800))
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
-    dsp.chocobo.initZone(zone)
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.chocobo.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onZoneIn(player, prevZone)

@@ -11,7 +11,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.promyvion.initZone(zone)
+    tpz.promyvion.initZone(zone)
 end
 
 function onZoneIn(player, prevZone)
@@ -21,7 +21,7 @@ function onZoneIn(player, prevZone)
         player:setPos(-14.744, 0.036, -119.736, 1) -- To Floor 1 {R}
     end
 
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus") == 0 then
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus") == 0 then
         cs = 50
     end
 
@@ -30,12 +30,12 @@ end
 
 function afterZoneIn(player)
     if ENABLE_COP_ZONE_CAP == 1 then
-        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 50, 0, 0)
+        player:addStatusEffect(tpz.effect.LEVEL_RESTRICTION, 50, 0, 0)
     end
 end
 
 function onRegionEnter(player, region)
-    dsp.promyvion.onRegionEnter(player, region)
+    tpz.promyvion.onRegionEnter(player, region)
 end
 
 function onRegionLeave(player, region)

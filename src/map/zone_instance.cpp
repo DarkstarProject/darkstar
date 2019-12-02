@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -159,9 +157,9 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 
 void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->loc.zone != nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->loc.zone != nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->PTreasurePool != nullptr);
 
     //return char to instance (d/c or logout)
     if (!PChar->PInstance)

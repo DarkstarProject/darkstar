@@ -9,13 +9,13 @@ require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    spell:setFlag(dsp.magic.spellFlag.IGNORE_SHADOWS)
+    spell:setFlag(tpz.magic.spellFlag.IGNORE_SHADOWS)
     return 0
 end
 
 function onSpellCast(caster,target,spell)
-    if target:isUndead() or target:hasStatusEffect(dsp.effect.MAGIC_SHIELD) or math.random(0,99) < target:getMod(dsp.mod.DEATHRES) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+    if target:isUndead() or target:hasStatusEffect(tpz.effect.MAGIC_SHIELD) or math.random(0,99) < target:getMod(tpz.mod.DEATHRES) then
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         return 0
     end
 

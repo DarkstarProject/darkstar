@@ -377,13 +377,13 @@ function onMobSpawn(mob)
 end
 
 function onPath(mob)
-    dsp.path.patrol(mob, path)
+    tpz.path.patrol(mob, path)
 end
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if not mob:isFollowingPath() then
-        mob:pathThrough(dsp.path.first(path))
+        mob:pathThrough(tpz.path.first(path))
     end
 end
 

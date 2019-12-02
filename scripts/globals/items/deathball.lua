@@ -10,17 +10,17 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = dsp.msg.basic.IS_FULL
+    if (target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD)) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,180,4566)
-    if (not target:hasStatusEffect(dsp.effect.POISON)) then
-        target:addStatusEffect(dsp.effect.POISON,2,3,180)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,180,4566)
+    if (not target:hasStatusEffect(tpz.effect.POISON)) then
+        target:addStatusEffect(tpz.effect.POISON,2,3,180)
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

@@ -24,18 +24,18 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local dmg = 1 + (0.709 * caster:getSkillLevel(dsp.skill.BLUE_MAGIC))
+    local dmg = 1 + (0.709 * caster:getSkillLevel(tpz.skill.BLUE_MAGIC))
     local params = {}
-    params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND)
-    params.attribute = dsp.mod.MND
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.diff = caster:getStat(tpz.mod.MND)-target:getStat(tpz.mod.MND)
+    params.attribute = tpz.mod.MND
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 1.0
     local resist = applyResistance(caster, target, spell, params)
     dmg = dmg*resist
     dmg = addBonuses(caster,spell,target,dmg)
     dmg = adjustForTarget(target,dmg,spell:getElement())
-    if (dmg > (caster:getSkillLevel(dsp.skill.BLUE_MAGIC) + 20)) then
-        dmg = (caster:getSkillLevel(dsp.skill.BLUE_MAGIC) + 20)
+    if (dmg > (caster:getSkillLevel(tpz.skill.BLUE_MAGIC) + 20)) then
+        dmg = (caster:getSkillLevel(tpz.skill.BLUE_MAGIC) + 20)
     end
 
     if (dmg < 0) then
@@ -43,7 +43,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:isUndead()) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         return dmg
     end
 

@@ -13,7 +13,7 @@ require("scripts/globals/titles")
 
 function onTrade(player, npc, trade)
     -- FLYERS FOR REGINE
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         if player:getCharVar("tradeMiene") == 0 then
             player:messageSpecial(ID.text.MIENE_DIALOG)
             player:messageSpecial(ID.text.FLYER_ACCEPTED)
@@ -28,7 +28,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local thePickpocket = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET)
+    local thePickpocket = player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.THE_PICKPOCKET)
     local thePickpocketStat = player:getCharVar("thePickpocket")
 
     -- THE PICKPOCKET

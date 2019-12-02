@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tortoise Stomp
 --
---  Description: Single target Defense Down dsp.effect.
+--  Description: Single target Defense Down tpz.effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb:&nbsp??
 --  Range: Varying Area of Effect
@@ -21,11 +21,11 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 2.8
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.BLUNT,info.hitslanded)
 
-    local typeEffect = dsp.effect.DEFENSE_DOWN
+    local typeEffect = tpz.effect.DEFENSE_DOWN
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 30, 0, 180)
 
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
     return dmg
 end

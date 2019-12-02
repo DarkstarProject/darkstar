@@ -12,7 +12,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 local function isNaked(player)
-    for i = dsp.slot.MAIN, dsp.slot.BACK do
+    for i = tpz.slot.MAIN, tpz.slot.BACK do
         if player:getEquipID(i) ~= 0 then return false end
     end
     return true
@@ -31,7 +31,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local thickAsThieves = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
+    local thickAsThieves = player:getQuestStatus(WINDURST, tpz.quest.id.windurst.AS_THICK_AS_THIEVES)
     local grapplingCS = player:getCharVar("thickAsThievesGrapplingCS")
 
     if thickAsThieves == QUEST_ACCEPTED then
@@ -60,8 +60,8 @@ end
 function onEventFinish(player, csid, option)
     if csid == 2 then
         player:setCharVar("thickAsThievesGrapplingCS", 8)
-        player:delKeyItem(dsp.ki.FIRST_FORGED_ENVELOPE)
-        npcUtil.giveKeyItem(player, dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE)
+        player:delKeyItem(tpz.ki.FIRST_FORGED_ENVELOPE)
+        npcUtil.giveKeyItem(player, tpz.ki.FIRST_SIGNED_FORGED_ENVELOPE)
         player:confirmTrade()
     end
 end

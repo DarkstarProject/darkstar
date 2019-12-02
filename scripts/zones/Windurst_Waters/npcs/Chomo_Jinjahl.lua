@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(dsp.skill.COOKING)
-    local stock = dsp.shop.generalGuildStock[guild.cooking]
-    dsp.shop.generalGuild(player, stock, guildRank)
+    local guildRank = player:getSkillRank(tpz.skill.COOKING)
+    local stock = tpz.shop.generalGuildStock[guild.cooking]
+    tpz.shop.generalGuild(player, stock, guildRank)
     player:showText(npc,ID.text.CHOMOJINJAHL_SHOP_DIALOG)
 end
 

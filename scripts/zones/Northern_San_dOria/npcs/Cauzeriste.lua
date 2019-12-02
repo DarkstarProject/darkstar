@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(dsp.skill.WOODWORKING)
-    local stock = dsp.shop.generalGuildStock[guild.woodworking]
-    dsp.shop.generalGuild(player, stock, guildRank)
+    local guildRank = player:getSkillRank(tpz.skill.WOODWORKING)
+    local stock = tpz.shop.generalGuildStock[guild.woodworking]
+    tpz.shop.generalGuild(player, stock, guildRank)
     player:showText(npc,ID.text.CAUZERISTE_SHOP_DIALOG)
 end
 

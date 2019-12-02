@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local count = trade:getItemCount();
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
         if (count == 1 and trade:getGil() == 100) then  -- pay to replace package
             local prog = player:getCharVar("TheBrugaireConsortium-Parcels");
             if (prog == 10 and player:hasItem(593) == false) then
@@ -30,18 +30,18 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and count == 1) then -- Trade Magicmart Flyer
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_1") == 6) then
+    if (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_1") == 6) then
         if (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setCharVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(dsp.ki.SCOWLING_STONE);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
+            player:addKeyItem(tpz.ki.SCOWLING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.SCOWLING_STONE);
         end
     end
 
@@ -49,7 +49,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local TheBrugaireConsortium = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
+    local TheBrugaireConsortium = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
 
     if (TheBrugaireConsortium == QUEST_AVAILABLE) then
         player:startEvent(509);
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
         if (freeSlots ~= 0) then
             player:addItem(593);
             player:messageSpecial(ID.text.ITEM_OBTAINED,593);
-            player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM)
+            player:addQuest(SANDORIA,tpz.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM)
             player:setCharVar("TheBrugaireConsortium-Parcels",10)
         else
             player:startEvent(537);
@@ -105,8 +105,8 @@ function onEventFinish(player,csid,option)
         if (freeSlots ~= 0) then
             player:addItem(12289);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12289);
-            player:addTitle(dsp.title.COURIER_EXTRAORDINAIRE);
-            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
+            player:addTitle(tpz.title.COURIER_EXTRAORDINAIRE);
+            player:completeQuest(SANDORIA,tpz.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
             player:addFame(SANDORIA,30);
             player:setCharVar("TheBrugaireConsortium-Parcels",0);
         else

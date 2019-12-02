@@ -14,15 +14,15 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.ENCHANTMENT) == false) then
-        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,3600,11403)
+    if (target:hasStatusEffect(tpz.effect.ENCHANTMENT) == false) then
+        target:addStatusEffect(tpz.effect.ENCHANTMENT,0,0,3600,11403)
     end
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.MOVE, 15)
+    target:addMod(tpz.mod.MOVE, 15)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.MOVE, 15)
+    target:delMod(tpz.mod.MOVE, 15)
 end

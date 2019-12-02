@@ -1,6 +1,6 @@
 #include <random>
 
-class dsprand
+class tpzrand
 {
 public:
     static std::mt19937& mt()

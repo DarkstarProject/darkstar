@@ -12,7 +12,7 @@ require("scripts/globals/status")
 
 function onSpawn(npc)
     if LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1 then
-        npc:setStatus(dsp.status.DISAPPEAR)
+        npc:setStatus(tpz.status.DISAPPEAR)
     end
 end
 

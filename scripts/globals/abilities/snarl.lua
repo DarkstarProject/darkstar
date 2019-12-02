@@ -13,12 +13,12 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return dsp.msg.basic.REQUIRES_A_PET,0
+        return tpz.msg.basic.REQUIRES_A_PET,0
     else
         if ((player:getPet():getTarget() ~= nil) and (player:isJugPet())) then
             return 0,0
         else
-            return dsp.msg.basic.PET_CANNOT_DO_ACTION,0
+            return tpz.msg.basic.PET_CANNOT_DO_ACTION,0
         end
     end
 end

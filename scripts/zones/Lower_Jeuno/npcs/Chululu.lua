@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COLLECT_TARUT_CARDS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.COLLECT_TARUT_CARDS) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(558,1) == true and trade:hasItemQty(559,1) == true and trade:hasItemQty(561,1) == true and trade:hasItemQty(562,1) == true and trade:getItemCount() == 4) then
             player:startEvent(200); -- Finish quest "Collect Tarut Cards"
         end
@@ -22,9 +22,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local CollectTarutCards = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COLLECT_TARUT_CARDS);
-    local RubbishDay = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
-    local SearchingForTheRightWords = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS);
+    local CollectTarutCards = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.COLLECT_TARUT_CARDS);
+    local RubbishDay = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.RUBBISH_DAY);
+    local SearchingForTheRightWords = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS);
 
     if (player:getFameLevel(JEUNO) >= 3 and CollectTarutCards == QUEST_AVAILABLE) then
         player:startEvent(28); -- Start quest "Collect Tarut Cards" with option
@@ -81,22 +81,22 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,card);
         else
-            player:addQuest(JEUNO,dsp.quest.id.jeuno.COLLECT_TARUT_CARDS);
+            player:addQuest(JEUNO,tpz.quest.id.jeuno.COLLECT_TARUT_CARDS);
             player:addItem(card,5);
             player:messageSpecial(ID.text.ITEM_OBTAINED,card);
         end
     elseif (csid == 200) then
-        player:addTitle(dsp.title.CARD_COLLECTOR);
+        player:addTitle(tpz.title.CARD_COLLECTOR);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
-        player:completeQuest(JEUNO,dsp.quest.id.jeuno.COLLECT_TARUT_CARDS);
+        player:completeQuest(JEUNO,tpz.quest.id.jeuno.COLLECT_TARUT_CARDS);
     elseif (csid == 199 and option == 0) then
         player:addCharVar("RubbishDay_prog", 1);
         player:setCharVar("RubbishDay_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 198 and option == 0) then
-        player:addQuest(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
-        player:addKeyItem(dsp.ki.MAGIC_TRASH);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGIC_TRASH);
+        player:addQuest(JEUNO,tpz.quest.id.jeuno.RUBBISH_DAY);
+        player:addKeyItem(tpz.ki.MAGIC_TRASH);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.MAGIC_TRASH);
         player:setCharVar("RubbishDay_prog",0);
         player:setCharVar("RubbishDay_day",0);
     elseif (csid == 197) then
@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,13083);
             player:setCharVar("RubbishDayVar",0);
             player:addFame(JEUNO, 30);
-            player:completeQuest(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
+            player:completeQuest(JEUNO,tpz.quest.id.jeuno.RUBBISH_DAY);
         end
     end
 end;

@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.HALL_OF_TRANSFERENCE] =
+zones[tpz.zone.HALL_OF_TRANSFERENCE] =
 {
     text =
     {
@@ -24,4 +24,4 @@ zones[dsp.zone.HALL_OF_TRANSFERENCE] =
     },
 }
 
-return zones[dsp.zone.HALL_OF_TRANSFERENCE]
+return zones[tpz.zone.HALL_OF_TRANSFERENCE]

@@ -8,7 +8,7 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     if (not target:hasPet()) then
-        return dsp.msg.basic.REQUIRES_A_PET
+        return tpz.msg.basic.REQUIRES_A_PET
     end
     return 0
 end
@@ -18,5 +18,5 @@ function onItemUse(target)
     local pet = target:getPet()
     local totalHP = (pet:getMaxHP()/100)*percent
     pet:addHP(totalHP)
-    pet:messageBasic(dsp.msg.basic.RECOVERS_HP, 0, totalHP)
+    pet:messageBasic(tpz.msg.basic.RECOVERS_HP, 0, totalHP)
 end

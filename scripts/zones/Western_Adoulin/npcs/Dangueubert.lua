@@ -15,7 +15,7 @@ end;
 function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
 
-    if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
+    if (SOA_Mission >= tpz.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         if ((ACSP == QUEST_ACCEPTED) and (player:getCharVar("ACSP_NPCs_Visited") == 6)) then
             -- Progresses Quest: 'A Certain Substitute Patrolman'
             player:startEvent(2558);

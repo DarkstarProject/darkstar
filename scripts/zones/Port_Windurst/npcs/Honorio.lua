@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true and player:getGil() >= 200) then
+    if (player:hasKeyItem(tpz.ki.AIRSHIP_PASS) == true and player:getGil() >= 200) then
         player:startEvent(181,0,8,0,0,0,0,0,200);
     else
         player:startEvent(183,0,8);

@@ -26,9 +26,9 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
-        params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
-        params.attribute = dsp.mod.INT
-        params.skillType = dsp.skill.BLUE_MAGIC
+        params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
+        params.attribute = tpz.mod.INT
+        params.skillType = tpz.skill.BLUE_MAGIC
         params.bonus = 1.0
         -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.multiplier = multi
@@ -48,12 +48,12 @@ function onSpellCast(caster,target,spell)
     local damage = (HP / 10) + (LVL / 1.25)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
-    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
+    if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         multi = multi + 0.50
     end
 
     if (damage > 0 and resist > 0.3) then
-        local typeEffect = dsp.effect.POISON
+        local typeEffect = tpz.effect.POISON
         target:delStatusEffect(typeEffect)
         target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect))
     end

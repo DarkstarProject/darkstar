@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
+zones[tpz.zone.LABYRINTH_OF_ONZOZO] =
 {
     text =
     {
@@ -90,4 +90,4 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
     },
 }
 
-return zones[dsp.zone.LABYRINTH_OF_ONZOZO]
+return zones[tpz.zone.LABYRINTH_OF_ONZOZO]

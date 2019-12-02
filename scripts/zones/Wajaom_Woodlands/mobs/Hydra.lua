@@ -37,7 +37,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(dsp.title.HYDRA_HEADHUNTER);
+    player:addTitle(tpz.title.HYDRA_HEADHUNTER);
 
 end;
 

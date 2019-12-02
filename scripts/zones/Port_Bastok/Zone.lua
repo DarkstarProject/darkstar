@@ -16,7 +16,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == dsp.zone.BASTOK_JEUNO_AIRSHIP) then
+        if (prevZone == tpz.zone.BASTOK_JEUNO_AIRSHIP) then
             cs = 73;
             player:setPos(-36.000, 7.000, -58.000, 194);
         else
@@ -44,7 +44,7 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("PromathiaStatus") == 0) then
         cs = 306;
     end
 
@@ -54,7 +54,7 @@ end;
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
     -- printf("regionID: %u",regionID);
-    if (regionID == 1 and player:getCurrentMission(COP) == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getCharVar("PromathiaStatus") == 0) then
+    if (regionID == 1 and player:getCurrentMission(COP) == tpz.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getCharVar("PromathiaStatus") == 0) then
         player:startEvent(305);
     end
 end;

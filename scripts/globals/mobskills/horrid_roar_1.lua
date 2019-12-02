@@ -18,13 +18,13 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dispel =  target:dispelStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD))
+    local dispel =  target:dispelStatusEffect(bit.bor(tpz.effectFlag.DISPELABLE, tpz.effectFlag.FOOD))
 
-    if (dispel == dsp.effect.NONE) then
+    if (dispel == tpz.effect.NONE) then
         -- no effect
-        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT) -- no effect
+        skill:setMsg(tpz.msg.basic.SKILL_NO_EFFECT) -- no effect
     else
-        skill:setMsg(dsp.msg.basic.SKILL_ERASE)
+        skill:setMsg(tpz.msg.basic.SKILL_ERASE)
     end
 
     mob:lowerEnmity(target, 20)

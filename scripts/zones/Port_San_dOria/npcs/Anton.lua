@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == false) then
+    if (player:hasKeyItem(tpz.ki.AIRSHIP_PASS) == false) then
         player:startEvent(517);
     elseif (player:getGil() < 200) then
         player:startEvent(716);

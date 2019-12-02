@@ -13,13 +13,13 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 
-    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
+    tpz.helm.initZone(zone, tpz.helm.type.HARVESTING)
 end
 
 function onZoneIn( player, prevZone)
@@ -31,14 +31,14 @@ function onZoneIn( player, prevZone)
 
     if triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 48
-    elseif player:getCurrentMission(ASA) == dsp.mission.id.asa.BURGEONING_DREAD and prevZone == dsp.zone.WINDURST_WATERS then
+    elseif player:getCurrentMission(ASA) == tpz.mission.id.asa.BURGEONING_DREAD and prevZone == tpz.zone.WINDURST_WATERS then
         cs = 62
-    elseif player:getCurrentMission(ASA) == dsp.mission.id.asa.BURGEONING_DREAD and prevZone == dsp.zone.PORT_WINDURST then
+    elseif player:getCurrentMission(ASA) == tpz.mission.id.asa.BURGEONING_DREAD and prevZone == tpz.zone.PORT_WINDURST then
         cs = 63
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 50
     -- removed only "cs =" works onzonein and can't take parameters atm
-    -- elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    -- elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         -- player:startEvent(50,0,0,0,0,0,2) -- talking doll go east
     end
 
@@ -46,7 +46,7 @@ function onZoneIn( player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter( player, region)
@@ -70,7 +70,7 @@ function onEventFinish( player, csid, option)
     if csid == 48 then
         lightCutsceneFinish(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 62 or csid == 63 then
-        player:completeMission(ASA, dsp.mission.id.asa.BURGEONING_DREAD)
-        player:addMission(ASA, dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD)
+        player:completeMission(ASA, tpz.mission.id.asa.BURGEONING_DREAD)
+        player:addMission(ASA, tpz.mission.id.asa.THAT_WHICH_CURDLES_BLOOD)
     end
 end

@@ -15,17 +15,17 @@ end;
 
 function onTrigger(player,npc)
 
-    local gates = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GATES_TO_PARADISE);
+    local gates = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.GATES_TO_PARADISE);
     if (gates == QUEST_COMPLETED) then
         player:showText(npc, ID.text.FAURBELLANT_4);
     elseif (gates == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(dsp.ki.SCRIPTURE_OF_WIND) == true) then
-            player:showText(npc, ID.text.FAURBELLANT_2, 0, dsp.ki.SCRIPTURE_OF_WIND);
-            player:delKeyItem(dsp.ki.SCRIPTURE_OF_WIND);
-            player:addKeyItem(dsp.ki.SCRIPTURE_OF_WATER);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SCRIPTURE_OF_WATER)
+        if (player:hasKeyItem(tpz.ki.SCRIPTURE_OF_WIND) == true) then
+            player:showText(npc, ID.text.FAURBELLANT_2, 0, tpz.ki.SCRIPTURE_OF_WIND);
+            player:delKeyItem(tpz.ki.SCRIPTURE_OF_WIND);
+            player:addKeyItem(tpz.ki.SCRIPTURE_OF_WATER);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.SCRIPTURE_OF_WATER)
         else
-            player:showText(npc, ID.text.FAURBELLANT_3, dsp.ki.SCRIPTURE_OF_WATER);
+            player:showText(npc, ID.text.FAURBELLANT_3, tpz.ki.SCRIPTURE_OF_WATER);
         end;
     else
         player:showText(npc, ID.text.FAURBELLANT_1);

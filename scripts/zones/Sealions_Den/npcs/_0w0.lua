@@ -14,11 +14,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.SLANDEROUS_UTTERINGS and player:getCharVar("PromathiaStatus") == 1 then
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.SLANDEROUS_UTTERINGS and player:getCharVar("PromathiaStatus") == 1 then
         player:startEvent(13)
     elseif EventTriggerBCNM(player, npc) then
         return
-    elseif (player:getCurrentMission(COP) > dsp.mission.cop.THE_WARRIOR_S_PATH) then
+    elseif (player:getCurrentMission(COP) > tpz.mission.cop.THE_WARRIOR_S_PATH) then
         player:startEvent(12)
     end
 end
@@ -39,8 +39,8 @@ function onEventFinish(player,csid,option)
         toPalaceEntrance(player)
     elseif (csid == 13) then
         player:setCharVar("PromathiaStatus",0)
-        player:completeMission(COP, dsp.mission.id.cop.SLANDEROUS_UTTERINGS)
-        player:addMission(COP, dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR)
-        player:addTitle(dsp.title.THE_LOST_ONE)
+        player:completeMission(COP, tpz.mission.id.cop.SLANDEROUS_UTTERINGS)
+        player:addMission(COP, tpz.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR)
+        player:addTitle(tpz.title.THE_LOST_ONE)
     end
 end

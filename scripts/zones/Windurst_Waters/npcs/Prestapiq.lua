@@ -13,8 +13,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.MOVALPOLOS);
-    if (RegionOwner ~= dsp.nation.WINDURST) then
+    local RegionOwner = GetRegionOwner(tpz.region.MOVALPOLOS);
+    if (RegionOwner ~= tpz.nation.WINDURST) then
         player:showText(npc,ID.text.PRESTAPIQ_CLOSED_DIALOG);
     else
         player:showText(npc,ID.text.PRESTAPIQ_OPEN_DIALOG);
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
             1650,  6500,   --Kopparnickel Ore
             5165,   736    --Movalpolos Water
         }
-        dsp.shop.general(player, stock, WINDURST);
+        tpz.shop.general(player, stock, WINDURST);
 
     end
 

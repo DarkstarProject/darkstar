@@ -11,10 +11,10 @@ db = None
 cur = None
 
 def connect():
-    print("Loading conf/map_darkstar.conf")
+    print("Loading conf/map.conf")
 
     # Grab mysql credentials
-    filename = "../conf/map_darkstar.conf"
+    filename = "../conf/map.conf"
 
     global credentials
     global db

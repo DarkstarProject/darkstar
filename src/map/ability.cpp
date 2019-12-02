@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -438,7 +436,7 @@ namespace ability
 
     CAbility* GetTwoHourAbility(JOBTYPE JobID)
     {
-        DSP_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID >= MAX_JOBTYPE);
+        TPZ_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID >= MAX_JOBTYPE);
 
         switch (JobID)
         {

@@ -11,12 +11,12 @@ local ID = require("scripts/zones/Mhaura/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_3") == 8) then
+    if (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_3") == 8) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setCharVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
-            player:addKeyItem(dsp.ki.SOMBER_STONE);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
+            player:addKeyItem(tpz.ki.SOMBER_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.SOMBER_STONE);
         end
     end
 

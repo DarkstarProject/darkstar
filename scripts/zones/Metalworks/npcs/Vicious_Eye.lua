@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(dsp.skill.SMITHING)
-    local stock = dsp.shop.generalGuildStock[guild.smithing]
-    dsp.shop.generalGuild(player, stock, guildRank)
+    local guildRank = player:getSkillRank(tpz.skill.SMITHING)
+    local stock = tpz.shop.generalGuildStock[guild.smithing]
+    tpz.shop.generalGuild(player, stock, guildRank)
     player:showText(npc,ID.text.VICIOUS_EYE_SHOP_DIALOG)
 end
 

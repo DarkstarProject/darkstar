@@ -1,13 +1,13 @@
 -----------------------------------
 --
--- dsp.effect.CHR_BOOST
+-- tpz.effect.CHR_BOOST
 --
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.CHR,effect:getPower())
+    target:addMod(tpz.mod.CHR,effect:getPower())
 end
 
 function onEffectTick(target,effect)
@@ -15,13 +15,13 @@ function onEffectTick(target,effect)
     local boostCHR_effect_size = effect:getPower()
     if (boostCHR_effect_size > 0) then
         effect:setPower(boostCHR_effect_size - 1)
-        target:delMod(dsp.mod.CHR,1)
+        target:delMod(tpz.mod.CHR,1)
     end
 end
 
 function onEffectLose(target,effect)
     local boostCHR_effect_size = effect:getPower()
     if (boostCHR_effect_size > 0) then
-        target:delMod(dsp.mod.CHR,boostCHR_effect_size)
+        target:delMod(tpz.mod.CHR,boostCHR_effect_size)
     end
 end

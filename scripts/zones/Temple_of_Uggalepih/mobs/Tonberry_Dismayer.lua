@@ -10,14 +10,14 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 790, 1, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 791, 1, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 792, 1, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 793, 1, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 794, 1, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 795, 1, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 790, 1, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 791, 1, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 792, 1, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 793, 1, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 794, 1, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 795, 1, tpz.regime.type.GROUNDS)
 end
 
 function onMobDespawn(mob)
-    dsp.mob.phOnDespawn(mob, ID.mob.TONBERRY_KINQ_PH, 10, 21600) -- 6 hours, 10% pop chance
+    tpz.mob.phOnDespawn(mob, ID.mob.TONBERRY_KINQ_PH, 10, 21600) -- 6 hours, 10% pop chance
 end

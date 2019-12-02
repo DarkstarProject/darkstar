@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    dsp.mob.phOnDespawn(mob, ID.mob.KOTAN_KOR_KAMUY_PH, 5, 10800) -- 3 hours
+    tpz.mob.phOnDespawn(mob, ID.mob.KOTAN_KOR_KAMUY_PH, 5, 10800) -- 3 hours
 end

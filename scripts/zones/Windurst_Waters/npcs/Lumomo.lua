@@ -18,9 +18,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local ecoWarWindurst = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR);
+    local ecoWarWindurst = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.ECO_WARRIOR);
     local ecoWarActiveNation = player:getCharVar("ECO_WARRIOR_ACTIVE");
-    if (player:hasKeyItem(dsp.ki.INDIGESTED_MEAT) and ecoWarActiveNation == 238) then
+    if (player:hasKeyItem(tpz.ki.INDIGESTED_MEAT) and ecoWarActiveNation == 238) then
         player:startEvent(822); -- quest done
     elseif (ecoWarActiveNation < 1 and player:getFameLevel(WINDURST) >= 1 and player:getCharVar("ECO-WAR_ConquestWeek") ~= getConquestTally()) then
         player:startEvent(818); -- Start CS
@@ -38,20 +38,20 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 818 and option == 1) then
-        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR) == QUEST_AVAILABLE) then
-            player:addQuest(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR);
+        if (player:getQuestStatus(WINDURST,tpz.quest.id.windurst.ECO_WARRIOR) == QUEST_AVAILABLE) then
+            player:addQuest(WINDURST,tpz.quest.id.windurst.ECO_WARRIOR);
         end
         player:setCharVar("ECO_WARRIOR_ACTIVE",player:getZoneID());
         player:setCharVar("ECO-WAR_ConquestWeek",0);
     elseif (csid == 822) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.ECO_WARRIOR);
-            player:delKeyItem(dsp.ki.INDIGESTED_MEAT);
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.ECO_WARRIOR);
+            player:delKeyItem(tpz.ki.INDIGESTED_MEAT);
             player:addGil(GIL_RATE * 5000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE * 5000);
             player:addItem(4198);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4198);
-            player:addTitle(dsp.title.EMERALD_EXTERMINATOR);
+            player:addTitle(tpz.title.EMERALD_EXTERMINATOR);
             player:addFame(WINDURST, 80);
             player:setCharVar("ECO-WAR_ConquestWeek",getConquestTally())
             player:setCharVar("ECO_WARRIOR_ACTIVE",0);

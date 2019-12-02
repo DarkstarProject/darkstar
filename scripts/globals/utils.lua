@@ -29,14 +29,14 @@ end;
 function utils.stoneskin(target, dmg)
     --handling stoneskin
     if (dmg > 0) then
-        skin = target:getMod(dsp.mod.STONESKIN);
+        skin = target:getMod(tpz.mod.STONESKIN);
         if (skin > 0) then
             if (skin > dmg) then --absorb all damage
-                target:delMod(dsp.mod.STONESKIN,dmg);
+                target:delMod(tpz.mod.STONESKIN,dmg);
                 return 0;
             else --absorbs some damage then wear
-                target:delStatusEffect(dsp.effect.STONESKIN);
-                target:setMod(dsp.mod.STONESKIN, 0);
+                target:delStatusEffect(tpz.effect.STONESKIN);
+                target:setMod(tpz.mod.STONESKIN, 0);
                 return dmg - skin;
             end
         end
@@ -50,12 +50,12 @@ function utils.takeShadows(target, dmg, shadowbehav)
         shadowbehav = 1;
     end
 
-    local targShadows = target:getMod(dsp.mod.UTSUSEMI);
-    local shadowType = dsp.mod.UTSUSEMI;
+    local targShadows = target:getMod(tpz.mod.UTSUSEMI);
+    local shadowType = tpz.mod.UTSUSEMI;
 
     if (targShadows == 0) then --try blink, as utsusemi always overwrites blink this is okay
-        targShadows = target:getMod(dsp.mod.BLINK);
-        shadowType = dsp.mod.BLINK;
+        targShadows = target:getMod(tpz.mod.BLINK);
+        shadowType = tpz.mod.BLINK;
     end
 
     if (targShadows > 0) then
@@ -67,28 +67,28 @@ function utils.takeShadows(target, dmg, shadowbehav)
 
             target:setMod(shadowType, shadowsLeft);
 
-            if (shadowsLeft > 0 and shadowType == dsp.mod.UTSUSEMI) then --update icon
-                effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
+            if (shadowsLeft > 0 and shadowType == tpz.mod.UTSUSEMI) then --update icon
+                effect = target:getStatusEffect(tpz.effect.COPY_IMAGE);
                 if (effect ~= nil) then
                     if (shadowsLeft == 1) then
-                        effect:setIcon(dsp.effect.COPY_IMAGE);
+                        effect:setIcon(tpz.effect.COPY_IMAGE);
                     elseif (shadowsLeft == 2) then
-                        effect:setIcon(dsp.effect.COPY_IMAGE_2);
+                        effect:setIcon(tpz.effect.COPY_IMAGE_2);
                     elseif (shadowsLeft == 3) then
-                        effect:setIcon(dsp.effect.COPY_IMAGE_3);
+                        effect:setIcon(tpz.effect.COPY_IMAGE_3);
                     end
                 end
             end
             -- remove icon
             if (shadowsLeft <= 0) then
-                target:delStatusEffect(dsp.effect.COPY_IMAGE);
-                target:delStatusEffect(dsp.effect.BLINK);
+                target:delStatusEffect(tpz.effect.COPY_IMAGE);
+                target:delStatusEffect(tpz.effect.BLINK);
             end
 
             return 0;
         else --less shadows than this move will take, remove all and factor damage down
-            target:delStatusEffect(dsp.effect.COPY_IMAGE);
-            target:delStatusEffect(dsp.effect.BLINK);
+            target:delStatusEffect(tpz.effect.COPY_IMAGE);
+            target:delStatusEffect(tpz.effect.BLINK);
             return dmg * ((shadowbehav-targShadows)/shadowbehav);
         end
     end
@@ -100,7 +100,7 @@ end;
 function utils.thirdeye(target)
     --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
     --chance of anticipate based on previous successful anticipates.
-    local teye = target:getStatusEffect(dsp.effect.THIRD_EYE);
+    local teye = target:getStatusEffect(tpz.effect.THIRD_EYE);
 
     if (teye == nil) then
         return false;
@@ -110,7 +110,7 @@ function utils.thirdeye(target)
 
     if ( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
         --anticipated!
-        target:delStatusEffect(dsp.effect.THIRD_EYE);
+        target:delStatusEffect(tpz.effect.THIRD_EYE);
         return true;
     end
 
@@ -269,94 +269,94 @@ function utils.getSystemStrengthBonus(attacker, defender)
     local attackerSystem = attacker:getSystem();
     local defenderSystem = defender:getSystem();
 
-    if (attackerSystem == dsp.eco.BEAST) then
-        if (defenderSystem == dsp.eco.LIZARD) then
+    if (attackerSystem == tpz.eco.BEAST) then
+        if (defenderSystem == tpz.eco.LIZARD) then
             return 1;
-        elseif (defenderSystem == dsp.eco.PLANTOID) then
+        elseif (defenderSystem == tpz.eco.PLANTOID) then
             return -1;
         end
     end
 
-    if (attackerSystem == dsp.eco.LIZARD) then
-        if (defenderSystem == dsp.eco.VERMIN) then
+    if (attackerSystem == tpz.eco.LIZARD) then
+        if (defenderSystem == tpz.eco.VERMIN) then
             return 1;
-        elseif (defenderSystem == dsp.eco.BEAST) then
+        elseif (defenderSystem == tpz.eco.BEAST) then
             return -1;
         end
     end
 
-    if (attackerSystem == dsp.eco.VERMIN) then
-        if (defenderSystem == dsp.eco.PLANTOID) then
+    if (attackerSystem == tpz.eco.VERMIN) then
+        if (defenderSystem == tpz.eco.PLANTOID) then
             return 1;
-        elseif (defenderSystem == dsp.eco.LIZARD) then
+        elseif (defenderSystem == tpz.eco.LIZARD) then
             return -1;
         end
     end
 
-    if (attackerSystem == dsp.eco.PLANTOID) then
-        if (defenderSystem == dsp.eco.BEAST) then
+    if (attackerSystem == tpz.eco.PLANTOID) then
+        if (defenderSystem == tpz.eco.BEAST) then
             return 1;
-        elseif (defenderSystem == dsp.eco.VERMIN) then
+        elseif (defenderSystem == tpz.eco.VERMIN) then
             return -1;
         end
     end
 
-    if (attackerSystem == dsp.eco.AQUAN) then
-        if (defenderSystem == dsp.eco.AMORPH) then
+    if (attackerSystem == tpz.eco.AQUAN) then
+        if (defenderSystem == tpz.eco.AMORPH) then
             return 1;
-        elseif (defenderSystem == dsp.eco.BIRD) then
+        elseif (defenderSystem == tpz.eco.BIRD) then
             return -1;
         end
     end
 
-    if (attackerSystem == dsp.eco.AMORPH) then
-        if (defenderSystem == dsp.eco.BIRD) then
+    if (attackerSystem == tpz.eco.AMORPH) then
+        if (defenderSystem == tpz.eco.BIRD) then
             return 1;
-        elseif (defenderSystem == dsp.eco.AQUAN) then
+        elseif (defenderSystem == tpz.eco.AQUAN) then
             return -1;
         end
     end
 
-    if (attackerSystem == dsp.eco.BIRD) then
-        if (defenderSystem == dsp.eco.AQUAN) then
+    if (attackerSystem == tpz.eco.BIRD) then
+        if (defenderSystem == tpz.eco.AQUAN) then
             return 1;
-        elseif (defenderSystem == dsp.eco.AMORPH) then
+        elseif (defenderSystem == tpz.eco.AMORPH) then
             return -1;
         end
     end
 
-    if (attackerSystem == dsp.eco.UNDEAD) then
-        if (defenderSystem == dsp.eco.ARCANA) then
+    if (attackerSystem == tpz.eco.UNDEAD) then
+        if (defenderSystem == tpz.eco.ARCANA) then
             return 1;
         end
     end
 
-    if (attackerSystem == dsp.eco.ARCANA) then
-        if (defenderSystem == dsp.eco.UNDEAD) then
+    if (attackerSystem == tpz.eco.ARCANA) then
+        if (defenderSystem == tpz.eco.UNDEAD) then
             return 1;
         end
     end
 
-    if (attackerSystem == dsp.eco.DRAGON) then
-        if (defenderSystem == dsp.eco.DEMON) then
+    if (attackerSystem == tpz.eco.DRAGON) then
+        if (defenderSystem == tpz.eco.DEMON) then
             return 1;
         end
     end
 
-    if (attackerSystem == dsp.eco.DEMON) then
-        if (defenderSystem == dsp.eco.DRAGON) then
+    if (attackerSystem == tpz.eco.DEMON) then
+        if (defenderSystem == tpz.eco.DRAGON) then
             return 1;
         end
     end
 
-    if (attackerSystem == dsp.eco.LUMORIAN) then
-        if (defenderSystem == dsp.eco.LUMINION) then
+    if (attackerSystem == tpz.eco.LUMORIAN) then
+        if (defenderSystem == tpz.eco.LUMINION) then
             return 1;
         end
     end
 
-    if (attackerSystem == dsp.eco.LUMINION) then
-        if (defenderSystem == dsp.eco.LUMORIAN) then
+    if (attackerSystem == tpz.eco.LUMINION) then
+        if (defenderSystem == tpz.eco.LUMORIAN) then
             return 1;
         end
     end

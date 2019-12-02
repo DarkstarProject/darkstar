@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Perfect Defense
 --
--- Description: Reduces damage taken and greatly increases resistance to most status dsp.effect.
+-- Description: Reduces damage taken and greatly increases resistance to most status tpz.effect.
 -- Type: Enhancing
 -- Can be dispelled: No
 -- Range: Self
@@ -22,8 +22,8 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    MobBuffMove(mob, dsp.effect.PERFECT_DEFENSE, 1, 0, skill:getParam())
+    MobBuffMove(mob, tpz.effect.PERFECT_DEFENSE, 1, 0, skill:getParam())
 
-    skill:setMsg(dsp.msg.basic.USES)
-    return dsp.effect.PERFECT_DEFENSE
+    skill:setMsg(tpz.msg.basic.USES)
+    return tpz.effect.PERFECT_DEFENSE
 end

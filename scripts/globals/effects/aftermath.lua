@@ -1,15 +1,15 @@
 -----------------------------------
 --
--- dsp.effect.AFTERMATH
+-- tpz.effect.AFTERMATH
 --
 -----------------------------------
 require("scripts/globals/aftermath")
 -----------------------------------
 
 function onEffectGain(target, effect)
-    dsp.aftermath.onEffectGain(target, effect)
+    tpz.aftermath.onEffectGain(target, effect)
 end
 
 function onEffectLose(target, effect)
-    dsp.aftermath.onEffectLose(target, effect)
+    tpz.aftermath.onEffectLose(target, effect)
 end

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effect.TELEPORT
+-- tpz.effect.TELEPORT
 --
 -----------------------------------
 require("scripts/globals/teleports")
@@ -17,18 +17,18 @@ function onEffectLose(target,effect)
     
     if (target:isMob()) then
         DespawnMob(target:getID())
-    elseif (destination == dsp.teleport.id.WARP) then
+    elseif (destination == tpz.teleport.id.WARP) then
         target:warp()
-    elseif (destination == dsp.teleport.id.ESCAPE) then
-        dsp.teleport.escape(target)
-    elseif (destination == dsp.teleport.id.OUTPOST) then
+    elseif (destination == tpz.teleport.id.ESCAPE) then
+        tpz.teleport.escape(target)
+    elseif (destination == tpz.teleport.id.OUTPOST) then
         local region = effect:getSubPower()
-        dsp.teleport.toOutpost(target, region)
-    elseif (destination == dsp.teleport.id.LEADER) then
-        dsp.teleport.toLeader(target)
-    elseif (destination == dsp.teleport.id.HOME_NATION) then
-        dsp.teleport.toHomeNation(target)
+        tpz.teleport.toOutpost(target, region)
+    elseif (destination == tpz.teleport.id.LEADER) then
+        tpz.teleport.toLeader(target)
+    elseif (destination == tpz.teleport.id.HOME_NATION) then
+        tpz.teleport.toHomeNation(target)
     else
-        dsp.teleport.to(target, destination)
+        tpz.teleport.to(target, destination)
     end
 end

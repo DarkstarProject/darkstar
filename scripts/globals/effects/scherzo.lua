@@ -1,6 +1,6 @@
 -----------------------------------
 --
---      dsp.effect.CAROL
+--      tpz.effect.CAROL
 --  TODO: MOD_CRITICAL_DAMAGE_REDUCTION
 -----------------------------------
 

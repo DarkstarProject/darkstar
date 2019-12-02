@@ -12,7 +12,7 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if player:getShieldSize() == 0 then
-        return dsp.msg.basic.REQUIRES_SHIELD, 0
+        return tpz.msg.basic.REQUIRES_SHIELD, 0
     else
         return 0, 0
     end
@@ -23,7 +23,7 @@ function onUseAbility(player, target, ability)
     local shieldSize = player:getShieldSize()
     local damage = 0
     local chance = 90
-    damage = player:getMod(dsp.mod.SHIELD_BASH)
+    damage = player:getMod(tpz.mod.SHIELD_BASH)
 
     if shieldSize == 1 or shieldSize == 5 then
         damage = 25 + damage
@@ -36,7 +36,7 @@ function onUseAbility(player, target, ability)
     end
 
     -- Main job factors
-    if player:getMainJob() ~= dsp.job.PLD then
+    if player:getMainJob() ~= tpz.job.PLD then
         damage = math.floor(damage / 2.5)
         chance = 60
     else
@@ -47,11 +47,11 @@ function onUseAbility(player, target, ability)
     chance = chance + (player:getMainLvl() - target:getMainLvl()) * 5
 
     if math.random()*100 < chance then
-        target:addStatusEffect(dsp.effect.STUN, 1, 0, 6)
+        target:addStatusEffect(tpz.effect.STUN, 1, 0, 6)
     end
 
     -- Randomize damage
-    local ratio = player:getStat(dsp.mod.ATT)/target:getStat(dsp.mod.DEF)
+    local ratio = player:getStat(tpz.mod.ATT)/target:getStat(tpz.mod.DEF)
 
     if ratio > 1.3 then
         ratio = 1.3
@@ -67,9 +67,9 @@ function onUseAbility(player, target, ability)
 
     damage = damage * (pdif / 1000)
     damage = utils.stoneskin(target, damage)
-    target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    target:takeDamage(damage, player, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
-    ability:setMsg(dsp.msg.basic.JA_DAMAGE)
+    ability:setMsg(tpz.msg.basic.JA_DAMAGE)
 
     return damage
 end

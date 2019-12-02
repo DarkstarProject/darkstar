@@ -8,7 +8,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.DYNAMIS_JEUNO] =
+zones[tpz.zone.DYNAMIS_JEUNO] =
 {
     text =
     {
@@ -28,11 +28,11 @@ zones[dsp.zone.DYNAMIS_JEUNO] =
     {
         TIME_EXTENSION =
         {
-            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = {17547301, 17547302, 17547303}},
-            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 17547389},
-            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17547390},
-            {minutes = 15, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17547420},
-            {minutes = 15, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17547467},
+            {minutes = 10, ki = tpz.ki.CRIMSON_GRANULES_OF_TIME,   mob = {17547301, 17547302, 17547303}},
+            {minutes = 10, ki = tpz.ki.AZURE_GRANULES_OF_TIME,     mob = 17547389},
+            {minutes = 10, ki = tpz.ki.AMBER_GRANULES_OF_TIME,     mob = 17547390},
+            {minutes = 15, ki = tpz.ki.ALABASTER_GRANULES_OF_TIME, mob = 17547420},
+            {minutes = 15, ki = tpz.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17547467},
         },
         REFILL_STATUE =
         {
@@ -79,4 +79,4 @@ zones[dsp.zone.DYNAMIS_JEUNO] =
     },
 }
 
-return zones[dsp.zone.DYNAMIS_JEUNO]
+return zones[tpz.zone.DYNAMIS_JEUNO]

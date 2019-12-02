@@ -21,25 +21,25 @@ function onTrigger(player, npc)
     local randfoss = player:getCharVar("MissionStatus_randfoss")
 
     -- LOST FOR WORDS
-    if offset <= 6 and windyMiss == dsp.mission.id.windurst.LOST_FOR_WORDS and (windyStat == 2 or windyStat == 3) then
+    if offset <= 6 and windyMiss == tpz.mission.id.windurst.LOST_FOR_WORDS and (windyStat == 2 or windyStat == 3) then
         if randfoss == 0 or randfoss > 6 then -- account for values higher than 6 from defunct code
             randfoss = math.random(1, 6)
             player:setCharVar("MissionStatus_randfoss", randfoss)
         end
 
         if (offset == 0 and randfoss == 1) or (offset > 1 and offset == randfoss) then -- clicked target stone
-            if player:hasKeyItem(dsp.ki.LAPIS_CORAL) then
+            if player:hasKeyItem(tpz.ki.LAPIS_CORAL) then
                 player:messageSpecial(ID.text.FOSSIL_EXTRACTED)
             else
                 player:setCharVar("MissionStatus", 3)
-                npcUtil.giveKeyItem(player, dsp.ki.LAPIS_CORAL)
+                npcUtil.giveKeyItem(player, tpz.ki.LAPIS_CORAL)
             end
         else
             player:messageSpecial(ID.text.NOTHING_FOSSIL)
         end
 
     -- BLAST FROM THE PAST
-    elseif offset == 8 and player:getQuestStatus(WINDURST, dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED then
+    elseif offset == 8 and player:getQuestStatus(WINDURST, tpz.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED then
         if not GetMobByID(ID.mob.ICHOROUS_IRE):isSpawned() and not player:hasItem(16511) then
             SpawnMob(ID.mob.ICHOROUS_IRE):updateClaim(player)
         else

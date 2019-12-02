@@ -19,38 +19,38 @@ local idStrengths = {
 
 function onAbilityCheck(player,target,ability)
     if not player:getPet() then
-        return dsp.msg.basic.REQUIRES_A_PET, 0
+        return tpz.msg.basic.REQUIRES_A_PET, 0
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
-        return dsp.msg.basic.NO_EFFECT_ON_PET, 0
+        return tpz.msg.basic.NO_EFFECT_ON_PET, 0
     else
-        local id = player:getEquipID(dsp.slot.AMMO)
+        local id = player:getEquipID(tpz.slot.AMMO)
         if idStrengths[id] then
             return 0, 0
         else
-            return dsp.msg.basic.UNABLE_TO_USE_JA, 0
+            return tpz.msg.basic.UNABLE_TO_USE_JA, 0
         end
     end
 end
 
 function onUseAbility(player,target,ability)
-    local id = player:getEquipID(dsp.slot.AMMO)
+    local id = player:getEquipID(tpz.slot.AMMO)
     local pet = player:getPet()
 
     local function removeStatus()
-        --if pet:delStatusEffect(dsp.effect.DOOM) then return true end
-        if pet:delStatusEffect(dsp.effect.PETRIFICATION) then return true end
-        --if pet:delStatusEffect(dsp.effect.LULLABY) then return true end
-        --if pet:delStatusEffect(dsp.effect.SLEEP_II) then return true end
-        --if pet:delStatusEffect(dsp.effect.SLEEP) then return true end
-        if pet:delStatusEffect(dsp.effect.SILENCE) then return true end
-        if pet:delStatusEffect(dsp.effect.BANE) then return true end
-        if pet:delStatusEffect(dsp.effect.CURSE_II) then return true end
-        if pet:delStatusEffect(dsp.effect.CURSE) then return true end
-        if pet:delStatusEffect(dsp.effect.PARALYSIS) then return true end
-        if pet:delStatusEffect(dsp.effect.PLAGUE) then return true end
-        if pet:delStatusEffect(dsp.effect.POISON) then return true end
-        if pet:delStatusEffect(dsp.effect.DISEASE) then return true end
-        if pet:delStatusEffect(dsp.effect.BLINDNESS) then return true end
+        --if pet:delStatusEffect(tpz.effect.DOOM) then return true end
+        if pet:delStatusEffect(tpz.effect.PETRIFICATION) then return true end
+        --if pet:delStatusEffect(tpz.effect.LULLABY) then return true end
+        --if pet:delStatusEffect(tpz.effect.SLEEP_II) then return true end
+        --if pet:delStatusEffect(tpz.effect.SLEEP) then return true end
+        if pet:delStatusEffect(tpz.effect.SILENCE) then return true end
+        if pet:delStatusEffect(tpz.effect.BANE) then return true end
+        if pet:delStatusEffect(tpz.effect.CURSE_II) then return true end
+        if pet:delStatusEffect(tpz.effect.CURSE) then return true end
+        if pet:delStatusEffect(tpz.effect.PARALYSIS) then return true end
+        if pet:delStatusEffect(tpz.effect.PLAGUE) then return true end
+        if pet:delStatusEffect(tpz.effect.POISON) then return true end
+        if pet:delStatusEffect(tpz.effect.DISEASE) then return true end
+        if pet:delStatusEffect(tpz.effect.BLINDNESS) then return true end
         if pet:eraseStatusEffect() ~= 255 then return true end
         return false
     end

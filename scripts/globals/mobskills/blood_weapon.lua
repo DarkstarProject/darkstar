@@ -11,9 +11,9 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    MobBuffMove(mob, dsp.effect.BLOOD_WEAPON, 1, 0, 30)
+    MobBuffMove(mob, tpz.effect.BLOOD_WEAPON, 1, 0, 30)
 
-    skill:setMsg(dsp.msg.basic.USES)
+    skill:setMsg(tpz.msg.basic.USES)
 
-    return dsp.effect.BLOOD_WEAPON
+    return tpz.effect.BLOOD_WEAPON
 end

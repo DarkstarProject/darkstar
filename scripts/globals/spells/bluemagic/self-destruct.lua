@@ -29,10 +29,10 @@ function onSpellCast(caster,target,spell)
     local damage = playerHP - 1
 
     if damage > 0 then
-        target:takeDamage(playerHP, caster, dsp.attackType.MAGICAL, dsp.damageType.FIRE)
+        target:takeDamage(playerHP, caster, tpz.attackType.MAGICAL, tpz.damageType.FIRE)
         caster:setHP(1)
-        caster:delStatusEffect(dsp.effect.WEAKNESS)
-        caster:addStatusEffect(dsp.effect.WEAKNESS,1,0,duration)
+        caster:delStatusEffect(tpz.effect.WEAKNESS)
+        caster:addStatusEffect(tpz.effect.WEAKNESS,1,0,duration)
     end
 
     return damage

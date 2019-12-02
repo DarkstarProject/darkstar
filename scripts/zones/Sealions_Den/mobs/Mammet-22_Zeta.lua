@@ -7,8 +7,8 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100)
-    mob:setMobMod(dsp.mobMod.GIL_MAX, -1)
+    mob:setMobMod(tpz.mobMod.EXP_BONUS, -100)
+    mob:setMobMod(tpz.mobMod.GIL_MAX, -1)
 end
 
 function onMobDeath(mob, player, isKiller)
@@ -36,7 +36,7 @@ function onEventFinish(player, csid, option)
 
         if inst >= 1 and inst <= 3 then
             -- players are healed in between fights, but their TP is set to 0
-            player:addTitle(dsp.title.BRANDED_BY_LIGHTNING)
+            player:addTitle(tpz.title.BRANDED_BY_LIGHTNING)
             player:setHP(player:getMaxHP())
             player:setMP(player:getMaxMP())
             player:setTP(0)

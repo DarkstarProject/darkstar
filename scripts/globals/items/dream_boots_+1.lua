@@ -13,7 +13,7 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(dsp.effect.SNEAK)) then
-        target:addStatusEffect(dsp.effect.SNEAK, 1, 10, math.floor(200 * SNEAK_INVIS_DURATION_MULTIPLIER))
+    if (not target:hasStatusEffect(tpz.effect.SNEAK)) then
+        target:addStatusEffect(tpz.effect.SNEAK, 1, 10, math.floor(200 * SNEAK_INVIS_DURATION_MULTIPLIER))
     end
 end

@@ -8,9 +8,9 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
-    mob:setMod(dsp.mod.SLEEPRES, 50)
-    mob:setMod(dsp.mod.LULLABYRES, 50)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 180)
+    mob:setMod(tpz.mod.SLEEPRES, 50)
+    mob:setMod(tpz.mod.LULLABYRES, 50)
 end
 
 function onMobSpawn(mob)
@@ -21,7 +21,7 @@ function onMobDeath(mob, player, isKiller)
     if
         GetMobByID(ID.mob.CORRUPTED_YORGOS):isDead() and
         GetMobByID(ID.mob.CORRUPTED_SOFFEIL):isDead() and
-        player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and
+        player:getCurrentMission(SANDORIA) == tpz.mission.id.sandoria.RANPERRE_S_FINAL_REST and
         player:getCharVar("MissionStatus") == 1
     then
         player:setCharVar("Mission6-2MobKilled", 1)

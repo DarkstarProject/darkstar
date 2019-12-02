@@ -13,9 +13,9 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return dsp.msg.basic.CANNOT_PERFORM_TARG,0
+        return tpz.msg.basic.CANNOT_PERFORM_TARG,0
     elseif (player:getHP() < 4) then -- Fails if HP < 4
-        return dsp.msg.basic.UNABLE_TO_USE_JA,0
+        return tpz.msg.basic.UNABLE_TO_USE_JA,0
     else
         return 0,0
     end
@@ -23,7 +23,7 @@ end
 
 function onUseAbility(player,target,ability)
     -- Plus 5 percent hp recovers per extra martyr merit
-    local meritBonus = player:getMerit(dsp.merit.MARTYR) - 5
+    local meritBonus = player:getMerit(tpz.merit.MARTYR) - 5
     -- printf("Martyr Merit Bonus: %d", meritBonus)
 
     local hpPercent = (200 + meritBonus) / 100

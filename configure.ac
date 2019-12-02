@@ -1,9 +1,9 @@
 ### Package information
 AC_PREREQ(2.61)
-AC_INIT(DarkStarProject,m4_esyscmd_s([git rev-parse HEAD]))
+AC_INIT(ProjectTopaz,m4_esyscmd_s([git rev-parse HEAD]))
 AC_CONFIG_SRCDIR([src/common/cbasetypes.h])
 AC_CANONICAL_SYSTEM
-AM_INIT_AUTOMAKE(DarkStar,git)
+AM_INIT_AUTOMAKE(Topaz,git)
 
 ### Checks for compiler and core header files
 AC_PROG_CC
@@ -13,8 +13,8 @@ AC_LANG([C++])
 AC_HEADER_STDC
 
 ### Add flags without overriding user-defined flags
-DARKSTAR_CXXFLAGS="$CXXFLAGS -pipe -ffast-math -Wno-sign-compare"
-DARKSTAR_CPPFLAGS="$CPPFLAGS -I../common"
+TOPAZ_CXXFLAGS="$CXXFLAGS -pipe -ffast-math -Wno-sign-compare"
+TOPAZ_CPPFLAGS="$CPPFLAGS -I../common"
 
 ### Big endian test
 AC_C_BIGENDIAN(
@@ -40,19 +40,19 @@ AC_HEADER_TIME
 ### Detect target platform
 case "$host" in
         *-*-linux*)
-                darkstar_arch_linux=true
+                topaz_arch_linux=true
                 ;;
         *-*-solaris*)
-                darkstar_arch_solaris=true
+                topaz_arch_solaris=true
                 ;;
         *-*-freebsd* | *-*-netbsd*)
-                darkstar_arch_freebsd=true
+                topaz_arch_freebsd=true
                 ;;
         *-*-cygwin* | *-*-mingw32*)
-                darkstar_arch_win32=true
+                topaz_arch_win32=true
                 ;;
         *-*-darwin*)
-                darkstar_arch_osx=true
+                topaz_arch_osx=true
                 ;;
         *)
                 AC_MSG_ERROR([*** Invalid host])
@@ -127,69 +127,69 @@ AC_ARG_ENABLE(
 )
 
 AC_MSG_CHECKING([whether $CXX supports -Wno-unused-parameter])
-OLD_DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS"
-DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -Wno-unused-parameter"
+OLD_TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS"
+TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -Wno-unused-parameter"
 AC_COMPILE_IFELSE(
         [int foo;],
         [AC_MSG_RESULT([yes])],
         [
              AC_MSG_RESULT([no])
-             DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
+             TOPAZ_CXXFLAGS="$OLD_TOPAZ_CXXFLAGS"
         ]
 )
 
 AC_MSG_CHECKING([whether $CXX supports -Wno-pointer-sign])
-OLD_DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS"
-DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -Wno-pointer-sign"
+OLD_TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS"
+TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -Wno-pointer-sign"
 AC_COMPILE_IFELSE(
         [int foo;],
         [AC_MSG_RESULT([yes])],
         [
             AC_MSG_RESULT([no])
-            DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
+            TOPAZ_CXXFLAGS="$OLD_TOPAZ_CXXFLAGS"
         ]
 )
 
 AC_MSG_CHECKING([whether $CXX supports -Wno-switch])
-OLD_DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS"
-DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -Wno-switch"
+OLD_TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS"
+TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -Wno-switch"
 AC_COMPILE_IFELSE(
         [int foo;],
         [AC_MSG_RESULT([yes])],
         [
              AC_MSG_RESULT([no])
-             DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
+             TOPAZ_CXXFLAGS="$OLD_TOPAZ_CXXFLAGS"
         ]
 )
 
 ### Checks for libraries and header files
 
-AC_CHECK_FUNC([setrlimit],[DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAFGS -DHAVE_SETRLIMIT"])
+AC_CHECK_FUNC([setrlimit],[TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -DHAVE_SETRLIMIT"])
 
 ### Memory manager
 case $enable_manager in
         "no")
-             DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -DNO_MEMGR"
+             TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -DNO_MEMGR"
              ;;
         "builtin")
              #enabled by default
              ;;
         "memwatch")
-            DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -DMEMWATCH"
+            TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -DMEMWATCH"
             AC_CHECK_HEADER([memwatch.h], , [AC_MSG_ERROR([memwatch header not found...stopping])])
             ;;
         "dmalloc")
-            DARKSTAR_CXXFLAGS "$DARKSTAR_CXXFLAGS -DDMALLOC -DDMALLOC_FUNC_CHECK"
-            DARKSTAR_LIBS="$DARKSTAR_LIBS -ldmalloc"
+            TOPAZ_CXXFLAGS "$TOPAZ_CXXFLAGS -DDMALLOC -DDMALLOC_FUNC_CHECK"
+            TOPAZ_LIBS="$TOPAZ_LIBS -ldmalloc"
             AC_CHECK_HEADER([dmalloc.h], , AC_MSG_ERROR([dmalloc header not found...stopping]))
             ;;
         "gcollect")
-            DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -DGCOLLECT"
-            DARKSTAR_LIBS="$DARKSTAR_LIBS -lgc"
+            TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -DGCOLLECT"
+            TOPAZ_LIBS="$TOPAZ_LIBS -lgc"
             AC_CHECK_HEADER([gc.h], , [AC_MSG_ERROR([gcollect header not found... stopping])])
             ;;
         "bcheck")
-            DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -DBCHECK"
+            TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -DBCHECK"
             ;;
 esac
 
@@ -197,13 +197,13 @@ esac
 case $enable_debug in
         "no")
              #default value
-             DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -Wno-unused -Wno-parentheses"
+             TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -Wno-unused -Wno-parentheses"
              ;;
         "yes")
-             DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -g -DDEBUG"
+             TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -g -DDEBUG"
              ;;
         "gdb")
-             DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -ggdb -DDEBUG"
+             TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -ggdb -DDEBUG"
              ;;
 esac
 
@@ -213,7 +213,7 @@ case $enable_rdtsc in
            #default value
            ;;
         1)
-           DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -DENABLE_RDTSC"
+           TOPAZ_CXXFLAGS="$TOPAZ_CXXFLAGS -DENABLE_RDTSC"
            ;;
 esac
 
@@ -224,56 +224,56 @@ AC_CHECK_LIB([m], [sqrt], [], [AC_MSG_ERROR([math library not found... stopping]
 AC_CHECK_LIB([rt], [clock_gettime])
 
 ### Linux specifics
-if test "$darkstar_arch_linux"
+if test "$topaz_arch_linux"
 then
         AC_MSG_RESULT(Building Linux targets)
-        AC_DEFINE(DARKSTAR_ARCH_LINUX,1,Compile code for a linux-based target)
+        AC_DEFINE(TOPAZ_ARCH_LINUX,1,Compile code for a linux-based target)
 fi
 
 ### Solaris Specifics
-if test "$darkstar_arch_solaris"
+if test "$topaz_arch_solaris"
 then
         AC_MSG_RESULT(Building Solaris targets)
-        AC_DEFINE(DARKSTAR_ARCH_SOLARIS,1,Compile code for a Solaris target)
+        AC_DEFINE(TOPAZ_ARCH_SOLARIS,1,Compile code for a Solaris target)
 fi
 
 ### FreeBSD Specifics
-if test "$darkstar_arch_freebsd"
+if test "$topaz_arch_freebsd"
 then
         AC_MSG_RESULT(Building FreeBSD targets)
-        AC_DEFINE(DARKSTAR_ARCH_FREEBSD,1,Compile code for a FreeBSD target)
+        AC_DEFINE(TOPAZ_ARCH_FREEBSD,1,Compile code for a FreeBSD target)
 fi
 
 ### NetBSD Specifics
-if test "$darkstar_arch_netbsd"
+if test "$topaz_arch_netbsd"
 then
         AC_MSG_RESULT(Building NetBSD targets)
-        AC_DEFINE(DARKSTAR_ARCH_NETBSD,1,Compile code for a NetBSD target)
+        AC_DEFINE(TOPAZ_ARCH_NETBSD,1,Compile code for a NetBSD target)
 fi
 
 ### Win32 Specifics
-if test "$darkstar_arch_win32"
+if test "$topaz_arch_win32"
 then
         AC_MSG_RESULT(Building Win32 targets)
-        AC_DEFINE(DARKSTAR_ARCH_WIN32,1,Compile code for a windows target)
+        AC_DEFINE(TOPAZ_ARCH_WIN32,1,Compile code for a windows target)
         DLLEXT=".dll"
 fi
 
 ### OSX Specifics
-if test "$darkstar_arch_osx"
+if test "$topaz_arch_osx"
 then
         AC_MSG_RESULT(Building OSX targets)
-        AC_DEFINE(DARKSTAR_ARCH_OSX,1,Compile code for an OSX target)
+        AC_DEFINE(TOPAZ_ARCH_OSX,1,Compile code for an OSX target)
 fi
 
 AC_SUBST([DLLEXT])
 
-AM_CONDITIONAL(DARKSTAR_ARCH_LINUX,test "$darkstar_arch_linux")
-AM_CONDITIONAL(DARKSTAR_ARCH_SOLARIS,test "$darkstar_arch_solaris")
-AM_CONDITIONAL(DARKSTAR_ARCH_FREEBSD,test "$darkstar_arch_freebsd")
-AM_CONDITIONAL(DARKSTAR_ARCH_NETBSD,test "$darkstar_arch_netbsd")
-AM_CONDITIONAL(DARKSTAR_ARCH_WIN32,test "$darkstar_arch_win32")
-AM_CONDITIONAL(DARKSTAR_ARCH_OSX,test "$darkstar_arch_osx")
+AM_CONDITIONAL(TOPAZ_ARCH_LINUX,test "$topaz_arch_linux")
+AM_CONDITIONAL(TOPAZ_ARCH_SOLARIS,test "$topaz_arch_solaris")
+AM_CONDITIONAL(TOPAZ_ARCH_FREEBSD,test "$topaz_arch_freebsd")
+AM_CONDITIONAL(TOPAZ_ARCH_NETBSD,test "$topaz_arch_netbsd")
+AM_CONDITIONAL(TOPAZ_ARCH_WIN32,test "$topaz_arch_win32")
+AM_CONDITIONAL(TOPAZ_ARCH_OSX,test "$topaz_arch_osx")
 
 AC_CONFIG_HEADER([src/common/config.h])
 AC_CONFIG_FILES([Makefile])

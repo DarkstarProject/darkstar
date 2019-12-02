@@ -17,7 +17,7 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PARALYSIS
+    local typeEffect = tpz.effect.PARALYSIS
     local numhits = 1
     local accmod = 1
     local dmgmod = 2.3
@@ -26,13 +26,13 @@ function onMobWeaponSkill(target, mob, skill)
 
     if mob:isMobType(MOBTYPE_NOTORIOUS) then
         shadows = MOBPARAM_IGNORE_SHADOWS
-        typeEffect = dsp.effect.POISON
+        typeEffect = tpz.effect.POISON
 		mob:resetEnmity(target)
     end
 
-    local dmg = MobFinalAdjustments(info.dmg, mob, skill,target, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING,shadows)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill,target, tpz.attackType.PHYSICAL, tpz.damageType.PIERCING,shadows)
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 20, 0, 120)
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.PIERCING)
 	
     return dmg
 end

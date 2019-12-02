@@ -46,7 +46,7 @@ function onEventFinish(player, csid, option)
             3985, 1111,  -- Monarch Beetle Saliva (11th Anniversary Campaign)
             3984, 1111,  -- Golden Seed Pouch (11th Anniversary Campaign)
         };
-        dsp.shop.general(player, stock);
+        tpz.shop.general(player, stock);
 
     elseif (csid == 1016 and option == 0xFFB00FF) then -- Leave this Mog Garden -> Whence I Came
         player:warp(); -- Ghetto for now, the last zone seems to get messed up due to mog house issues.

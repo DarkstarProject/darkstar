@@ -12,12 +12,12 @@ end;
 
 function onTrigger(player,npc)
 
-TruthJusticeOnionWay = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
-KnowOnesOnions       = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
-InspectorsGadget     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
-OnionRings           = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
-CryingOverOnions     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS);
-ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
+TruthJusticeOnionWay = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+KnowOnesOnions       = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.KNOW_ONE_S_ONIONS);
+InspectorsGadget     = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.INSPECTOR_S_GADGET);
+OnionRings           = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.ONION_RINGS);
+CryingOverOnions     = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.CRYING_OVER_ONIONS);
+ThePromise = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.THE_PROMISE);
 
     if (ThePromise == QUEST_COMPLETED) then
         Message = math.random(0,1)

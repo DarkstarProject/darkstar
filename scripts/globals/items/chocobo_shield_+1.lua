@@ -8,7 +8,7 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     if target:getFreeSlotsCount() == 0 then
-        return dsp.msg.basic.ITEM_NO_USE_INVENTORY
+        return tpz.msg.basic.ITEM_NO_USE_INVENTORY
     end
     return 0
 end

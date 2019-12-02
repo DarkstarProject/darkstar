@@ -15,6 +15,6 @@ end
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effect.REIVE_MARK)
+        target:getPet():delStatusEffect(tpz.effect.REIVE_MARK)
     end
 end

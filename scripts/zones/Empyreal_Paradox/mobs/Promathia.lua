@@ -9,8 +9,8 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.REGAIN, 50);
-    mob:addMod(dsp.mod.UFASTCAST,50);
+    mob:addMod(tpz.mod.REGAIN, 50);
+    mob:addMod(tpz.mod.UFASTCAST,50);
 end;
 
 function onMobEngaged(mob,target)
@@ -29,7 +29,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob,target)
-    if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(dsp.effect.STUN)) then
+    if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(tpz.effect.STUN)) then
         mob:AnimationSub(0);
         mob:stun(1500);
     end

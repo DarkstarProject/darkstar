@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.RANGUEMONT_PASS] =
+zones[tpz.zone.RANGUEMONT_PASS] =
 {
     text =
     {
@@ -48,4 +48,4 @@ zones[dsp.zone.RANGUEMONT_PASS] =
     },
 }
 
-return zones[dsp.zone.RANGUEMONT_PASS]
+return zones[tpz.zone.RANGUEMONT_PASS]

@@ -12,7 +12,7 @@ require("scripts/globals/msg")
 function onAbilityCheck(player,target,ability)
     -- The wyvern must be present in order to use Spirit Surge
     if (target:getPet() == nil) then
-        return dsp.msg.basic.REQUIRES_A_PET,0
+        return tpz.msg.basic.REQUIRES_A_PET,0
     else
         return 0,0
     end
@@ -29,7 +29,7 @@ function onUseAbility(player,target,ability)
     pet:delTP(petTP) -- remove TP from pet
     -- Spirit Surge increases dragoon's Strength
     local strBoost = 0
-    if (target:getMainJob() == dsp.job.DRG) then
+    if (target:getMainJob() == tpz.job.DRG) then
         strBoost = (1 + target:getMainLvl()/5) -- Use Mainjob Lvl
     else
         strBoost = (1 + target:getSubLvl()/5)  -- Use Subjob Lvl
@@ -39,9 +39,9 @@ function onUseAbility(player,target,ability)
 
     target:despawnPet()
     -- All Jump recast times are reset
-    target:resetRecast(dsp.recast.ABILITY,158) -- Jump
-    target:resetRecast(dsp.recast.ABILITY,159) -- High Jump
-    target:resetRecast(dsp.recast.ABILITY,160) -- Super Jump
+    target:resetRecast(tpz.recast.ABILITY,158) -- Jump
+    target:resetRecast(tpz.recast.ABILITY,159) -- High Jump
+    target:resetRecast(tpz.recast.ABILITY,160) -- Super Jump
 
-    target:addStatusEffect(dsp.effect.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost)
+    target:addStatusEffect(tpz.effect.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost)
 end

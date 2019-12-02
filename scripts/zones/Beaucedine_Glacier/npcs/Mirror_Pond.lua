@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     if (npc:getID() == ID.npc.MIRROR_POND_J8) then
-        if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LOVE_AND_ICE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CARMELOS_SONG_SHEET)) then
+        if (player:getQuestStatus(BASTOK,tpz.quest.id.bastok.LOVE_AND_ICE) == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.CARMELOS_SONG_SHEET)) then
             player:startEvent(100);
         end
     end
@@ -25,6 +25,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 100) then
         player:setCharVar("LoveAndIceProgress",1);
-        player:delKeyItem(dsp.ki.CARMELOS_SONG_SHEET);
+        player:delKeyItem(tpz.ki.CARMELOS_SONG_SHEET);
     end
 end;

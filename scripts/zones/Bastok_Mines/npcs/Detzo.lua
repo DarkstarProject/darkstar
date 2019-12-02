@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Bastok_Mines/IDs");
 
 function onTrade(player,npc,trade)
 
-    Rivals = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.RIVALS);
+    Rivals = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.RIVALS);
 
     if (Rivals == QUEST_ACCEPTED) then
         FreeSlots = player:getFreeSlotsCount();
@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-    Rivals = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.RIVALS);
+    Rivals = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.RIVALS);
 
     if (player:getCharVar("theTalekeeperGiftCS") == 1) then
         player:startEvent(171);
@@ -57,16 +57,16 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 93) then
-        player:addQuest(BASTOK,dsp.quest.id.bastok.RIVALS);
+        player:addQuest(BASTOK,tpz.quest.id.bastok.RIVALS);
     elseif (csid == 94) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13571);
         else
-            player:addTitle(dsp.title.CONTEST_RIGGER);
+            player:addTitle(tpz.title.CONTEST_RIGGER);
             player:addItem(13571);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13571);
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,dsp.quest.id.bastok.RIVALS);
+            player:completeQuest(BASTOK,tpz.quest.id.bastok.RIVALS);
         end
     end
 

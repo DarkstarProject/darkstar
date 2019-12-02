@@ -1,13 +1,13 @@
 -----------------------------------
 --
--- dsp.effect.VIT_BOOST
+-- tpz.effect.VIT_BOOST
 --
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.VIT,effect:getPower())
+    target:addMod(tpz.mod.VIT,effect:getPower())
 end
 
 function onEffectTick(target,effect)
@@ -15,13 +15,13 @@ function onEffectTick(target,effect)
     local boostVIT_effect_size = effect:getPower()
     if (boostVIT_effect_size > 0) then
         effect:setPower(boostVIT_effect_size - 1)
-        target:delMod(dsp.mod.VIT,1)
+        target:delMod(tpz.mod.VIT,1)
     end
 end
 
 function onEffectLose(target,effect)
     local boostVIT_effect_size = effect:getPower()
     if (boostVIT_effect_size > 0) then
-        target:delMod(dsp.mod.VIT,boostVIT_effect_size)
+        target:delMod(tpz.mod.VIT,boostVIT_effect_size)
     end
 end

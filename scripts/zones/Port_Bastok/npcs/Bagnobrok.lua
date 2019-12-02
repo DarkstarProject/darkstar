@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.MOVALPOLOS) ~= dsp.nation.BASTOK then
+    if GetRegionOwner(tpz.region.MOVALPOLOS) ~= tpz.nation.BASTOK then
         player:showText(npc, ID.text.BAGNOBROK_CLOSED_DIALOG)
     else
         local stock =
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ID.text.BAGNOBROK_OPEN_DIALOG)
-        dsp.shop.general(player, stock, BASTOK)
+        tpz.shop.general(player, stock, BASTOK)
     end
 end
 

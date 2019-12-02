@@ -7,21 +7,21 @@ require("scripts/globals/strangeapparatus")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    dsp.strangeApparatus.onTrade(player, trade, 2)
+    tpz.strangeApparatus.onTrade(player, trade, 2)
 end
 
 function onTrigger(player,npc)
-    dsp.strangeApparatus.onTrigger(player, 0)
+    tpz.strangeApparatus.onTrigger(player, 0)
 end
 
 function onEventUpdate(player,csid,option)
     if csid == 0 then
-        dsp.strangeApparatus.onEventUpdate(player, option)
+        tpz.strangeApparatus.onEventUpdate(player, option)
     end
 end
 
 function onEventFinish(player,csid,option)
     if csid == 2 then
-        dsp.strangeApparatus.onEventFinish(player)
+        tpz.strangeApparatus.onEventFinish(player)
     end
 end

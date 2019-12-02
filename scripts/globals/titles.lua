@@ -3,9 +3,9 @@
 --     TITLES IDs
 --
 -----------------------------------
-dsp = dsp or {}
+tpz = tpz or {}
 
-dsp.title =
+tpz.title =
 {
     FODDERCHIEF_FLAYER                        = 1,
     WARCHIEF_WRECKER                          = 2,
@@ -1076,7 +1076,7 @@ end
 -- public title changer functions
 -----------------------------------
 
-dsp.title.changerOnTrigger = function(player, eventId, titleInfo)
+tpz.title.changerOnTrigger = function(player, eventId, titleInfo)
     player:startEvent(
         eventId,
         titleMask(player, titleInfo[1]),
@@ -1090,7 +1090,7 @@ dsp.title.changerOnTrigger = function(player, eventId, titleInfo)
     )
 end
 
-dsp.title.changerOnEventFinish = function(player, csid, option, eventId, titleInfo)
+tpz.title.changerOnEventFinish = function(player, csid, option, eventId, titleInfo)
     if csid == eventId then
         local group = titleInfo[bit.rshift(option, 8) + 1]
         if group then

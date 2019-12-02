@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.3.7-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: dspdb
+-- Host: localhost    Database: tpzdb
 -- ------------------------------------------------------
 -- Server version   10.3.7-MariaDB
 

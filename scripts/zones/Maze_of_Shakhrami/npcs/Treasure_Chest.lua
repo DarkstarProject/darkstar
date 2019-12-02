@@ -8,11 +8,11 @@ require("scripts/globals/treasure")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    dsp.treasure.onTrade(player, npc, trade, dsp.treasure.type.CHEST)
+    tpz.treasure.onTrade(player, npc, trade, tpz.treasure.type.CHEST)
 end
 
 function onTrigger(player, npc)
-    dsp.treasure.onTrigger(player, dsp.treasure.type.CHEST)
+    tpz.treasure.onTrigger(player, tpz.treasure.type.CHEST)
 end
 
 function onEventUpdate(player, csid, option)

@@ -12,7 +12,7 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onPetAbility(target, pet, skill, summoner)
-    local bonusTime = utils.clamp(summoner:getSkillLevel(dsp.skill.SUMMONING_MAGIC) - 300, 0, 200)
+    local bonusTime = utils.clamp(summoner:getSkillLevel(tpz.skill.SUMMONING_MAGIC) - 300, 0, 200)
     local duration = 120 + bonusTime
 
     local magicskill = utils.getSkillLvl(1, target:getMainLvl())
@@ -22,7 +22,7 @@ function onPetAbility(target, pet, skill, summoner)
         potency = 5 + ((5*magicskill)/100)
     end
 
-    local typeEffect = dsp.effect.ENTHUNDER
+    local typeEffect = tpz.effect.ENTHUNDER
 
     skill:setMsg(MobBuffMove(target, typeEffect, potency, 0, duration))
 

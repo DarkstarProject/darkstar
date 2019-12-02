@@ -13,30 +13,30 @@ end
 function onSpellCast(caster,target,spell)
     local duration = 5
 
-    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local dINT = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.INT
+    params.attribute = tpz.mod.INT
     params.skillType = 37
     params.bonus = 0
-    params.effect = dsp.effect.STUN
+    params.effect = tpz.effect.STUN
     local resist = applyResistanceEffect(caster, target, spell, params)
     if (resist <= (1/16)) then
         -- resisted!
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
         return 0
     end
 
-    if (target:hasStatusEffect(dsp.effect.STUN)) then
+    if (target:hasStatusEffect(tpz.effect.STUN)) then
         -- no effect
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     else
-        if (target:addStatusEffect(dsp.effect.STUN,1,0,duration*resist)) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+        if (target:addStatusEffect(tpz.effect.STUN,1,0,duration*resist)) then
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     end
 
-    return dsp.effect.STUN
+    return tpz.effect.STUN
 end

@@ -14,7 +14,7 @@ end
 function onTrigger(player, npc)
     local guardian = GetMobByID(ID.mob.TEMPLE_GUARDIAN)
 
-    if npc:getAnimation() == dsp.anim.CLOSE_DOOR then
+    if npc:getAnimation() == tpz.anim.CLOSE_DOOR then
         player:messageSpecial(ID.text.PROTECTED_BY_UNKNOWN_FORCE)
     end
 

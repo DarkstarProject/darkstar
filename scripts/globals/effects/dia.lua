@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effect.DIA
+-- tpz.effect.DIA
 --
 ----------------------------------
 -- Quick Explanation of Algorithm:
@@ -14,8 +14,8 @@ require("scripts/globals/status")
 function onEffectGain(target,effect)
     local power = effect:getPower()
     local subpower = effect:getSubPower()
-    target:addMod(dsp.mod.REGEN_DOWN, power)
-    target:addMod(dsp.mod.DEFP,-subpower)
+    target:addMod(tpz.mod.REGEN_DOWN, power)
+    target:addMod(tpz.mod.DEFP,-subpower)
 end
 
 function onEffectTick(target,effect)
@@ -24,6 +24,6 @@ end
 function onEffectLose(target,effect)
     local power = effect:getPower()
     local subpower = effect:getSubPower()
-    target:delMod(dsp.mod.REGEN_DOWN, power)
-    target:delMod(dsp.mod.DEFP,-subpower)
+    target:delMod(tpz.mod.REGEN_DOWN, power)
+    target:delMod(tpz.mod.DEFP,-subpower)
 end

@@ -19,7 +19,7 @@ function onEventFinish(entity, eventid, result, door)
         instance:setProgress(1)
         door:setAnimation(8)
         for i,v in pairs(ID.npc[2][1]) do
-            local npc = instance:getEntity(bit.band(v, 0xFFF), dsp.objType.NPC)
+            local npc = instance:getEntity(bit.band(v, 0xFFF), tpz.objType.NPC)
             npc:untargetable(true)
         end
     end

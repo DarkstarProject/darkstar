@@ -6,7 +6,7 @@ require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.HARVESTING, 901)
+    tpz.helm.onTrade(player, npc, trade, tpz.helm.type.HARVESTING, 901)
 end
 
 function onTrigger(player,npc)

@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local seeingSpots = player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.SEEING_SPOTS);
+    local seeingSpots = player:getQuestStatus(CRYSTAL_WAR,tpz.quest.id.crystalWar.SEEING_SPOTS);
     if (seeingSpots == QUEST_AVAILABLE) then
         player:startEvent(2);
     elseif (seeingSpots == QUEST_ACCEPTED) then
@@ -30,16 +30,16 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 2) then
-        player:addQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.SEEING_SPOTS);
+        player:addQuest(CRYSTAL_WAR,tpz.quest.id.crystalWar.SEEING_SPOTS);
     elseif (csid == 4) then
         player:tradeComplete();
-        if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.SEEING_SPOTS) == QUEST_ACCEPTED) then
-            player:addTitle(dsp.title.LADY_KILLER);
+        if (player:getQuestStatus(CRYSTAL_WAR,tpz.quest.id.crystalWar.SEEING_SPOTS) == QUEST_ACCEPTED) then
+            player:addTitle(tpz.title.LADY_KILLER);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
-            player:completeQuest(CRYSTAL_WAR,dsp.quest.id.crystalWar.SEEING_SPOTS);
+            player:completeQuest(CRYSTAL_WAR,tpz.quest.id.crystalWar.SEEING_SPOTS);
         else
-            player:addTitle(dsp.title.LADY_KILLER);
+            player:addTitle(tpz.title.LADY_KILLER);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         end

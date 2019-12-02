@@ -3,14 +3,14 @@
 --  PETS ID
 --
 -----------------------------------
-dsp = dsp or {}
-dsp.pet = dsp.pet or {}
+tpz = tpz or {}
+tpz.pet = tpz.pet or {}
 
 -----------------------------------
 -- Pet types
 -----------------------------------
 
-dsp.pet.type =
+tpz.pet.type =
 {
     AVATAR             = 0,
     WYVERN             = 1,
@@ -26,7 +26,7 @@ dsp.pet.type =
 --  Pet IDs
 -----------------------------------
 
-dsp.pet.id =
+tpz.pet.id =
 {
     --  Summoner
     FIRE_SPIRIT           =  0,
@@ -91,7 +91,7 @@ dsp.pet.id =
 -- Pet names
 -----------------------------------
 
-dsp.pet.name =
+tpz.pet.name =
 {
     AZURE         = 1,
     CERULEAN      = 2,

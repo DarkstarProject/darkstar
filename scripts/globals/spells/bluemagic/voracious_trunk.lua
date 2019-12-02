@@ -21,19 +21,19 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local resist = applyResistanceAbility(caster, target, dsp.magic.ele.WIND, 0, 0)
+    local resist = applyResistanceAbility(caster, target, tpz.magic.ele.WIND, 0, 0)
     local StealChance = math.random(1,100)
     local stolen = 0
 
     if resist > 0.0625 and StealChance < 90 then
         stolen = caster:stealStatusEffect(target)
         if stolen ~= 0 then
-            spell:setMsg(dsp.msg.basic.MAGIC_STEAL)
+            spell:setMsg(tpz.msg.basic.MAGIC_STEAL)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
     
     return stolen

@@ -6,11 +6,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobEngaged(mob,target)
-    mob:setMod(dsp.mod.REGAIN, 50);
+    mob:setMod(tpz.mod.REGAIN, 50);
 end;
 
 function onMobDisengage(mob)
-    mob:setMod(dsp.mod.REGAIN,0);
+    mob:setMod(tpz.mod.REGAIN,0);
 end;
 
 function onMobDeath(mob, player, isKiller)

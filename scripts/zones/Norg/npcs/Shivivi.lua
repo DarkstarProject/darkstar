@@ -54,18 +54,18 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
+    npc:setPos(tpz.path.first(path));
     -- onPath(npc);
 end;
 
 function onPath(npc)
-    dsp.path.patrol(npc, path);
+    tpz.path.patrol(npc, path);
 end;
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    DampScroll = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
+    DampScroll = player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
     mLvl = player:getMainLvl();
 
     if (DampScroll == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 10 and player:hasItem(1210) == true) then
@@ -84,7 +84,7 @@ end;
 
 function onEventFinish(player,csid,option,npc)
     if (csid == 31) then
-        player:addQuest(OUTLANDS,dsp.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
+        player:addQuest(OUTLANDS,tpz.quest.id.outlands.SECRET_OF_THE_DAMP_SCROLL);
     end
 
     npc:wait(0);

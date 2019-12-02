@@ -15,7 +15,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = dsp.effect.ENAERO
+    local typeEffect = tpz.effect.ENAERO
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60))
 

@@ -12,8 +12,8 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local sLvl = caster:getSkillLevel(dsp.skill.SINGING) -- Gets skill level of Singing
-    local iLvl = caster:getWeaponSkillLevel(dsp.slot.RANGED)
+    local sLvl = caster:getSkillLevel(tpz.skill.SINGING) -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(tpz.slot.RANGED)
 
     local power = 0
 
@@ -27,25 +27,25 @@ function onSpellCast(caster,target,spell)
         power = 15
     end
 
-    local iBoost = caster:getMod(dsp.mod.ETUDE_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
+    local iBoost = caster:getMod(tpz.mod.ETUDE_EFFECT) + caster:getMod(tpz.mod.ALL_SONGS_EFFECT)
     power = power + iBoost
 
-    if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
+    if (caster:hasStatusEffect(tpz.effect.SOUL_VOICE)) then
         power = power * 2
-    elseif (caster:hasStatusEffect(dsp.effect.MARCATO)) then
+    elseif (caster:hasStatusEffect(tpz.effect.MARCATO)) then
         power = power * 1.5
     end
-    caster:delStatusEffect(dsp.effect.MARCATO)
+    caster:delStatusEffect(tpz.effect.MARCATO)
 
     local duration = 120
-    duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1)
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(tpz.mod.SONG_DURATION_BONUS)/100) + 1)
 
-    if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
+    if (caster:hasStatusEffect(tpz.effect.TROUBADOUR)) then
         duration = duration * 2
     end
 
-    if not (target:addBardSong(caster,dsp.effect.ETUDE,power,10,duration,caster:getID(), dsp.mod.VIT, 2)) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+    if not (target:addBardSong(caster,tpz.effect.ETUDE,power,10,duration,caster:getID(), tpz.mod.VIT, 2)) then
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
-    return dsp.effect.ETUDE
+    return tpz.effect.ETUDE
 end

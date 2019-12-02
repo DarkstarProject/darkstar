@@ -11,12 +11,12 @@ require("scripts/globals/magic")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 60)
+    mob:setMobMod(tpz.mobMod.MAGIC_COOL, 60)
 end
 
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(ID.npc.BEHEMOTH_QM):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(ID.npc.BEHEMOTH_QM):setStatus(tpz.status.DISAPPEAR)
     end
 
     mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
@@ -24,8 +24,8 @@ end
 
 function onSpellPrecast(mob, spell)
     if spell:getID() == 218 then
-        spell:setAoE(dsp.magic.aoe.RADIAL)
-        spell:setFlag(dsp.magic.spellFlag.HIT_ALL)
+        spell:setAoE(tpz.magic.aoe.RADIAL)
+        spell:setFlag(tpz.magic.spellFlag.HIT_ALL)
         spell:setRadius(30)
         spell:setAnimation(280)
         spell:setMPCost(1)
@@ -33,7 +33,7 @@ function onSpellPrecast(mob, spell)
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.BEHEMOTH_DETHRONER)
+    player:addTitle(tpz.title.BEHEMOTH_DETHRONER)
 end
 
 function onMobDespawn(mob)

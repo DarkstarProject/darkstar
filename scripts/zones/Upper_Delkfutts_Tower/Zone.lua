@@ -12,11 +12,11 @@ function onInitialize(zone)
     zone:registerRegion(1, -369, -146, 83,  -365, -145,  89) -- Tenth Floor F-6 porter to Middle Delkfutt's Tower
     zone:registerRegion(2, -369, -178, -49, -365, -177, -43) -- Twelfth Floor F-10 porter to Stellar Fulcrum
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onZoneIn(player, prevZone)

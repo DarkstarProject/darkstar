@@ -13,8 +13,8 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getQuestStatus(BASTOK, dsp.quest.id.bastok.HEARTS_OF_MYTHRIL) == QUEST_ACCEPTED and
-        player:hasKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS)
+        player:getQuestStatus(BASTOK, tpz.quest.id.bastok.HEARTS_OF_MYTHRIL) == QUEST_ACCEPTED and
+        player:hasKeyItem(tpz.ki.BOUQUETS_FOR_THE_PIONEERS)
     then
         player:startEvent(11)
     end
@@ -26,6 +26,6 @@ end
 function onEventFinish(player, csid, option)
     if csid == 11 and option == 0 then
         player:setCharVar("HeartsOfMythril", 1)
-        player:delKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS)
+        player:delKeyItem(tpz.ki.BOUQUETS_FOR_THE_PIONEERS)
     end
 end

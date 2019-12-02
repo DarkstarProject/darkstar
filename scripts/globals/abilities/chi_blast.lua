@@ -14,19 +14,19 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local boost = player:getStatusEffect(dsp.effect.BOOST)
+    local boost = player:getStatusEffect(tpz.effect.BOOST)
     local multiplier = 1.0
     if boost ~= nil then
         multiplier = (boost:getPower()/100) * 4 -- power is the raw % atk boost
     end
     
-    local dmg = math.floor(player:getStat(dsp.mod.MND) * (0.5 + (math.random() / 2))) * multiplier
+    local dmg = math.floor(player:getStat(tpz.mod.MND) * (0.5 + (math.random() / 2))) * multiplier
 
     dmg = utils.stoneskin(target, dmg)
-    target:takeDamage(dmg, player, dsp.attackType.SPECIAL, dsp.damageType.ELEMENTAL)
+    target:takeDamage(dmg, player, tpz.attackType.SPECIAL, tpz.damageType.ELEMENTAL)
     target:updateEnmityFromDamage(player,dmg)
     target:updateClaim(player)
-    player:delStatusEffect(dsp.effect.BOOST)
+    player:delStatusEffect(tpz.effect.BOOST)
 
     return dmg
 end

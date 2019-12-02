@@ -16,7 +16,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SISTER) == QUEST_ACCEPTED and player:getCharVar("saveMySisterFireLantern") < 4 then
+    if player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.SAVE_MY_SISTER) == QUEST_ACCEPTED and player:getCharVar("saveMySisterFireLantern") < 4 then
         player:setCharVar("saveMySisterLanternID", npc:getID())
         player:startEvent(44)
     else
@@ -35,33 +35,33 @@ function onEventFinish(player, csid, option)
 
         if lanternOrder == 0 then
             if offset == 0 then -- (F-9)
-                player:messageSpecial(ID.text.THE_LIGHT_DIMLY, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.THE_LIGHT_DIMLY, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
                 player:setCharVar("saveMySisterFireLantern", 1)
             else
-                player:messageSpecial(ID.text.REFUSE_TO_LIGHT, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.REFUSE_TO_LIGHT, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
             end
         elseif lanternOrder == 1 then
             if offset == 1 then -- (H-7)
-                player:messageSpecial(ID.text.THE_LIGHT_HAS_INTENSIFIED, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.THE_LIGHT_HAS_INTENSIFIED, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
                 player:setCharVar("saveMySisterFireLantern", 2)
             else
-                player:messageSpecial(ID.text.LANTERN_GOES_OUT, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.LANTERN_GOES_OUT, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
                 player:setCharVar("saveMySisterFireLantern", 0)
             end
         elseif lanternOrder == 2 then
             if offset == 2 then -- (F-7)
-                player:messageSpecial(ID.text.THE_LIGHT_HAS_INTENSIFIED, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.THE_LIGHT_HAS_INTENSIFIED, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
                 player:setCharVar("saveMySisterFireLantern", 3)
             else
-                player:messageSpecial(ID.text.LANTERN_GOES_OUT, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.LANTERN_GOES_OUT, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
                 player:setCharVar("saveMySisterFireLantern", 0)
             end
         elseif lanternOrder == 3 then
             if offset == 3 then -- (H-9)
-                player:messageSpecial(ID.text.THE_LIGHT_IS_FULLY_LIT, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.THE_LIGHT_IS_FULLY_LIT, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
                 player:setCharVar("saveMySisterFireLantern", 4)
             else
-                player:messageSpecial(ID.text.LANTERN_GOES_OUT, 0, 0, 0, dsp.ki.DUCAL_GUARDS_LANTERN_LIT)
+                player:messageSpecial(ID.text.LANTERN_GOES_OUT, 0, 0, 0, tpz.ki.DUCAL_GUARDS_LANTERN_LIT)
                 player:setCharVar("saveMySisterFireLantern", 0)
             end
         end

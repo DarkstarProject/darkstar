@@ -936,7 +936,7 @@ void socket_init_tcp(void)
 	if(!_vsocket_init())
 		return;
 
-    const char *SOCKET_CONF_FILENAME = "./conf/packet_darkstar_tcp.conf";
+    const char *SOCKET_CONF_FILENAME = "./conf/packet_tcp.conf";
 	socket_config_read(SOCKET_CONF_FILENAME);
 	// session[0] is now currently used for disconnected sessions of the map server, and as such,
 	// should hold enough buffer (it is a vacuum so to speak) as it is never flushed. [Skotlex]
@@ -1082,7 +1082,7 @@ void socket_init_udp(void)
 {
 	if(!_vsocket_init())
 		return;
-    const char * SOCKET_CONF_FILENAME = "./conf/packet_darkstar_udp.conf";
+    const char * SOCKET_CONF_FILENAME = "./conf/packet_udp.conf";
 	socket_config_read(SOCKET_CONF_FILENAME);
 }
 

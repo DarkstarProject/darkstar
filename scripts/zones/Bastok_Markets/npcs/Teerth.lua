@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(dsp.skill.GOLDSMITHING)
-    local stock = dsp.shop.generalGuildStock[guild.goldsmithing]
-    dsp.shop.generalGuild(player, stock, guildRank)
+    local guildRank = player:getSkillRank(tpz.skill.GOLDSMITHING)
+    local stock = tpz.shop.generalGuildStock[guild.goldsmithing]
+    tpz.shop.generalGuild(player, stock, guildRank)
     player:showText(npc,ID.text.TEERTH_SHOP_DIALOG)
 end
 

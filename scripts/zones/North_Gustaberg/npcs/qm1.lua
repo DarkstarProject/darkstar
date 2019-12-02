@@ -59,7 +59,7 @@ function onEventFinish(player, csid, option)
     if csid == 10 and option == 0 then
         local npc = player:getEventTarget()
 
-        if player:getEquipID(dsp.slot.MAIN) == 0 and player:getEquipID(dsp.slot.SUB) == 0 then
+        if player:getEquipID(tpz.slot.MAIN) == 0 and player:getEquipID(tpz.slot.SUB) == 0 then
             if player:hasItem(576) then
                 player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED_TWICE, 576)
             elseif npcUtil.giveItem(player, 576) then

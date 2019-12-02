@@ -15,7 +15,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = dsp.effect.ENSTONE
+    local typeEffect = tpz.effect.ENSTONE
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60))
 

@@ -13,11 +13,11 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.POISON
+    local typeEffect = tpz.effect.POISON
     MobStatusEffectMove(mob, target, typeEffect, math.random(20,40), 3, 60)
 
-    local dmgmod = MobBreathMove(mob, target, 0.3, 1.875, dsp.magic.ele.WATER, 500)
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
-    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.ICE)
+    local dmgmod = MobBreathMove(mob, target, 0.3, 1.875, tpz.magic.ele.WATER, 500)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,tpz.attackType.BREATH,tpz.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
+    target:takeDamage(dmg, mob, tpz.attackType.BREATH, tpz.damageType.ICE)
     return dmg
 end

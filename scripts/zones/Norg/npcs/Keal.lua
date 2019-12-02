@@ -64,12 +64,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
+    npc:setPos(tpz.path.first(path));
     -- onPath(npc);
 end;
 
 function onPath(npc)
-    dsp.path.patrol(npc, path);
+    tpz.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
@@ -77,17 +77,17 @@ end;
 
 function onTrigger(player,npc)
 
-    local Vault = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.ITS_NOT_YOUR_VAULT);
+    local Vault = player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.ITS_NOT_YOUR_VAULT);
     local mLvl = player:getMainLvl();
-    local IronBox = player:hasKeyItem(dsp.ki.SEALED_IRON_BOX);
+    local IronBox = player:hasKeyItem(tpz.ki.SEALED_IRON_BOX);
 
     if (Vault == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 5) then
-        player:startEvent(36,dsp.ki.SEALED_IRON_BOX); -- Start quest
+        player:startEvent(36,tpz.ki.SEALED_IRON_BOX); -- Start quest
     elseif (Vault == QUEST_ACCEPTED) then
         if (IronBox == true) then
             player:startEvent(38); -- Finish quest
         else
-            player:startEvent(37,dsp.ki.MAP_OF_THE_SEA_SERPENT_GROTTO); -- Reminder/Directions Dialogue
+            player:startEvent(37,tpz.ki.MAP_OF_THE_SEA_SERPENT_GROTTO); -- Reminder/Directions Dialogue
         end
     elseif (Vault == QUEST_COMPLETED) then
         player:startEvent(39); -- New Standard Dialogue for everyone who has completed the quest
@@ -103,16 +103,16 @@ end;
 
 function onEventFinish(player,csid,option,npc)
     if (csid == 36 and option == 1) then
-        player:addQuest(OUTLANDS,dsp.quest.id.outlands.ITS_NOT_YOUR_VAULT);
+        player:addQuest(OUTLANDS,tpz.quest.id.outlands.ITS_NOT_YOUR_VAULT);
     elseif (csid == 38) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4961);
         else
-            player:delKeyItem(dsp.ki.SEALED_IRON_BOX);
+            player:delKeyItem(tpz.ki.SEALED_IRON_BOX);
             player:addItem(4961); -- Scroll of Tonko: Ichi
             player:messageSpecial(ID.text.ITEM_OBTAINED, 4961);
             player:addFame(NORG,50);
-            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.ITS_NOT_YOUR_VAULT);
+            player:completeQuest(OUTLANDS,tpz.quest.id.outlands.ITS_NOT_YOUR_VAULT);
         end
     end
 

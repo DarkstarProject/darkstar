@@ -13,8 +13,8 @@ require("scripts/globals/status")
 require("scripts/globals/zone")
 -----------------------------------
 
-dsp = dsp or {}
-dsp.conquest = dsp.conquest or {}
+tpz = tpz or {}
+tpz.conquest = tpz.conquest or {}
 
 -----------------------------------
 -- (LOCAL) constants
@@ -31,19 +31,19 @@ local CONQUEST_UPDATE      = 2
 
 local exForceMenuData =
 {
-    0x20006,ZULK_EF,103,0x000040,20,dsp.ki.ZULKHEIM_EF_INSIGNIA,
-    0x20007,NORV_EF,104,0x000080,25,dsp.ki.NORVALLEN_EF_INSIGNIA,
-    0x20009,DERF_EF,109,0x000200,25,dsp.ki.DERFLAND_EF_INSIGNIA,
-    0x2000B,KOLS_EF,118,0x000800,20,dsp.ki.KOLSHUSHU_EF_INSIGNIA,
-    0x2000C,ARAG_EF,119,0x001000,25,dsp.ki.ARAGONEU_EF_INSIGNIA,
-    0x2000D,FAUR_EF,111,0x002000,35,dsp.ki.FAUREGANDI_EF_INSIGNIA,
-    0x2000E,VALD_EF,112,0x004000,40,dsp.ki.VALDEAUNIA_EF_INSIGNIA,
-    0x2000F,QUFI_EF,126,0x008000,25,dsp.ki.QUFIM_EF_INSIGNIA,
-    0x20010,LITE_EF,121,0x010000,35,dsp.ki.LITELOR_EF_INSIGNIA,
-    0x20011,KUZO_EF,114,0x020000,40,dsp.ki.KUZOTZ_EF_INSIGNIA,
-    0x20012,VOLL_EF,113,0x040000,65,dsp.ki.VOLLBOW_EF_INSIGNIA,
-    0x20013,ELLO_EF,123,0x080000,35,dsp.ki.ELSHIMO_LOWLANDS_EF_INSIGNIA,
-    0x20014,ELUP_EF,124,0x100000,45,dsp.ki.ELSHIMO_UPLANDS_EF_INSIGNIA
+    0x20006,ZULK_EF,103,0x000040,20,tpz.ki.ZULKHEIM_EF_INSIGNIA,
+    0x20007,NORV_EF,104,0x000080,25,tpz.ki.NORVALLEN_EF_INSIGNIA,
+    0x20009,DERF_EF,109,0x000200,25,tpz.ki.DERFLAND_EF_INSIGNIA,
+    0x2000B,KOLS_EF,118,0x000800,20,tpz.ki.KOLSHUSHU_EF_INSIGNIA,
+    0x2000C,ARAG_EF,119,0x001000,25,tpz.ki.ARAGONEU_EF_INSIGNIA,
+    0x2000D,FAUR_EF,111,0x002000,35,tpz.ki.FAUREGANDI_EF_INSIGNIA,
+    0x2000E,VALD_EF,112,0x004000,40,tpz.ki.VALDEAUNIA_EF_INSIGNIA,
+    0x2000F,QUFI_EF,126,0x008000,25,tpz.ki.QUFIM_EF_INSIGNIA,
+    0x20010,LITE_EF,121,0x010000,35,tpz.ki.LITELOR_EF_INSIGNIA,
+    0x20011,KUZO_EF,114,0x020000,40,tpz.ki.KUZOTZ_EF_INSIGNIA,
+    0x20012,VOLL_EF,113,0x040000,65,tpz.ki.VOLLBOW_EF_INSIGNIA,
+    0x20013,ELLO_EF,123,0x080000,35,tpz.ki.ELSHIMO_LOWLANDS_EF_INSIGNIA,
+    0x20014,ELUP_EF,124,0x100000,45,tpz.ki.ELSHIMO_UPLANDS_EF_INSIGNIA
 }
 
 local function getExForceAvailable(player, guardNation)
@@ -60,25 +60,25 @@ end
 
 local outposts =
 {
-    [dsp.region.RONFAURE]        = {zone = 100, ki = dsp.ki.RONFAURE_SUPPLIES,              cp = 10, lvl = 10, fee = 100},
-    [dsp.region.ZULKHEIM]        = {zone = 103, ki = dsp.ki.ZULKHEIM_SUPPLIES,              cp = 30, lvl = 10, fee = 100},
-    [dsp.region.NORVALLEN]       = {zone = 104, ki = dsp.ki.NORVALLEN_SUPPLIES,             cp = 40, lvl = 15, fee = 150},
-    [dsp.region.GUSTABERG]       = {zone = 106, ki = dsp.ki.GUSTABERG_SUPPLIES,             cp = 10, lvl = 10, fee = 100},
-    [dsp.region.DERFLAND]        = {zone = 109, ki = dsp.ki.DERFLAND_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
-    [dsp.region.SARUTABARUTA]    = {zone = 115, ki = dsp.ki.SARUTABARUTA_SUPPLIES,          cp = 10, lvl = 10, fee = 100},
-    [dsp.region.KOLSHUSHU]       = {zone = 118, ki = dsp.ki.KOLSHUSHU_SUPPLIES,             cp = 40, lvl = 10, fee = 100},
-    [dsp.region.ARAGONEU]        = {zone = 119, ki = dsp.ki.ARAGONEU_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
-    [dsp.region.FAUREGANDI]      = {zone = 111, ki = dsp.ki.FAUREGANDI_SUPPLIES,            cp = 70, lvl = 35, fee = 350},
-    [dsp.region.VALDEAUNIA]      = {zone = 112, ki = dsp.ki.VALDEAUNIA_SUPPLIES,            cp = 50, lvl = 40, fee = 400},
-    [dsp.region.QUFIMISLAND]     = {zone = 126, ki = dsp.ki.QUFIM_SUPPLIES,                 cp = 60, lvl = 15, fee = 150},
-    [dsp.region.LITELOR]         = {zone = 121, ki = dsp.ki.LITELOR_SUPPLIES,               cp = 40, lvl = 25, fee = 250},
-    [dsp.region.KUZOTZ]          = {zone = 114, ki = dsp.ki.KUZOTZ_SUPPLIES,                cp = 70, lvl = 30, fee = 300},
-    [dsp.region.VOLLBOW]         = {zone = 113, ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
-    [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
-    [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
-    [dsp.region.TULIA]           = {zone = 130,                                             cp = 0,  lvl = 70, fee = 500},
-    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250},
-    [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
+    [tpz.region.RONFAURE]        = {zone = 100, ki = tpz.ki.RONFAURE_SUPPLIES,              cp = 10, lvl = 10, fee = 100},
+    [tpz.region.ZULKHEIM]        = {zone = 103, ki = tpz.ki.ZULKHEIM_SUPPLIES,              cp = 30, lvl = 10, fee = 100},
+    [tpz.region.NORVALLEN]       = {zone = 104, ki = tpz.ki.NORVALLEN_SUPPLIES,             cp = 40, lvl = 15, fee = 150},
+    [tpz.region.GUSTABERG]       = {zone = 106, ki = tpz.ki.GUSTABERG_SUPPLIES,             cp = 10, lvl = 10, fee = 100},
+    [tpz.region.DERFLAND]        = {zone = 109, ki = tpz.ki.DERFLAND_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
+    [tpz.region.SARUTABARUTA]    = {zone = 115, ki = tpz.ki.SARUTABARUTA_SUPPLIES,          cp = 10, lvl = 10, fee = 100},
+    [tpz.region.KOLSHUSHU]       = {zone = 118, ki = tpz.ki.KOLSHUSHU_SUPPLIES,             cp = 40, lvl = 10, fee = 100},
+    [tpz.region.ARAGONEU]        = {zone = 119, ki = tpz.ki.ARAGONEU_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
+    [tpz.region.FAUREGANDI]      = {zone = 111, ki = tpz.ki.FAUREGANDI_SUPPLIES,            cp = 70, lvl = 35, fee = 350},
+    [tpz.region.VALDEAUNIA]      = {zone = 112, ki = tpz.ki.VALDEAUNIA_SUPPLIES,            cp = 50, lvl = 40, fee = 400},
+    [tpz.region.QUFIMISLAND]     = {zone = 126, ki = tpz.ki.QUFIM_SUPPLIES,                 cp = 60, lvl = 15, fee = 150},
+    [tpz.region.LITELOR]         = {zone = 121, ki = tpz.ki.LITELOR_SUPPLIES,               cp = 40, lvl = 25, fee = 250},
+    [tpz.region.KUZOTZ]          = {zone = 114, ki = tpz.ki.KUZOTZ_SUPPLIES,                cp = 70, lvl = 30, fee = 300},
+    [tpz.region.VOLLBOW]         = {zone = 113, ki = tpz.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
+    [tpz.region.ELSHIMOLOWLANDS] = {zone = 123, ki = tpz.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
+    [tpz.region.ELSHIMOUPLANDS]  = {zone = 124, ki = tpz.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
+    [tpz.region.TULIA]           = {zone = 130,                                             cp = 0,  lvl = 70, fee = 500},
+    [tpz.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250},
+    [tpz.region.TAVNAZIANARCH]   = {zone =  24, ki = tpz.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
 }
 
 local function hasOutpost(player, region)
@@ -88,7 +88,7 @@ local function hasOutpost(player, region)
         if UNLOCK_OUTPOST_WARPS == 2 then
             hasOP = true
         elseif UNLOCK_OUTPOST_WARPS == 1 then
-            hasOP = region <= dsp.region.ELSHIMOUPLANDS
+            hasOP = region <= tpz.region.ELSHIMOUPLANDS
         end
     end
     return hasOP
@@ -98,7 +98,7 @@ local function setHomepointFee(player, guardNation)
     local pNation = player:getNation()
     local fee = 0
 
-    if pNation ~= guardNation and not dsp.conquest.areAllies(pNation, guardNation) then
+    if pNation ~= guardNation and not tpz.conquest.areAllies(pNation, guardNation) then
         local rank = player:getRank()
         if rank <= 5 then
             fee = 100 * math.pow(2, rank - 1)
@@ -112,7 +112,7 @@ end
 
 local function getRegionsMask(nation)
     local mask = 0
-    for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
+    for region = tpz.region.RONFAURE, tpz.region.TAVNAZIANARCH do
         if GetRegionOwner(region) == nation then
             mask = bit.bor(mask, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
         end
@@ -129,8 +129,8 @@ local function getAllowedTeleports(player, nation)
     elseif UNLOCK_OUTPOST_WARPS == 1 then
         return 0x3FE0001F -- Allow all outposts except for Tulia and Tavnazia
     end
-    for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
-        if not dsp.conquest.canTeleportToOutpost(player, region) then
+    for region = tpz.region.RONFAURE, tpz.region.TAVNAZIANARCH do
+        if not tpz.conquest.canTeleportToOutpost(player, region) then
             allowedTeleports = bit.bor(allowedTeleports, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
         end
     end
@@ -159,7 +159,7 @@ local function suppliesAvailableBitmask(player, nation)
 
     if mask ~= -1 and mask ~= 4294967295 then
         for i = 0, 18 do
-            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED)) then
+            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, tpz.mission.id.cop.DARKNESS_NAMED)) then
                 mask = mask + 2^(i + 5)
             end
         end
@@ -179,7 +179,7 @@ local function areSuppliesRotten(player, npc, guardType)
     end
 
     if rotten then
-        if guardType <= dsp.conquest.guard.FOREIGN then
+        if guardType <= tpz.conquest.guard.FOREIGN then
             player:showText(npc, text.CONQUEST + 40) -- "We will dispose of those unusable supplies."
         else
             player:showText(npc, text.CONQUEST - 1) -- "Hmm... These supplies you have brought us are too old to be of any use."
@@ -214,325 +214,325 @@ end
 
 local overseerOffsets =
 {
-    [dsp.region.RONFAURE] =
+    [tpz.region.RONFAURE] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Doladepaiton, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Ballie, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- Flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- Flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Yoshihiro, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Molting Moth, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- Flag
-        {offset = 13, nation = dsp.nation.BASTOK},   -- Flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Kyanta-Pakyanta, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Tottoto, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- Flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- Flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- Flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- Flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Harvetour
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Doladepaiton, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Ballie, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- Flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- Flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Yoshihiro, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Molting Moth, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- Flag
+        {offset = 13, nation = tpz.nation.BASTOK},   -- Flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Kyanta-Pakyanta, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Tottoto, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- Flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- Flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- Flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- Flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Harvetour
     },
-    [dsp.region.ZULKHEIM] =
+    [tpz.region.ZULKHEIM] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Quanteilleron, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Prunilla, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 12, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Tsunashige, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Fighting Ant, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 13, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Nyata-Mobuta, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Tebubu, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 14, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 15, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Medicine Axe
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Quanteilleron, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Prunilla, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 12, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Tsunashige, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Fighting Ant, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 13, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Nyata-Mobuta, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Tebubu, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 14, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 15, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Medicine Axe
     },
-    [dsp.region.NORVALLEN] =
+    [tpz.region.NORVALLEN] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Chaplion, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Taumiale, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Takamoto, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Pure Heart, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Bubchu-Bibinchu, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Geruru, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Mionie
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Chaplion, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Taumiale, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Takamoto, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Pure Heart, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Bubchu-Bibinchu, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Geruru, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Mionie
     },
-    [dsp.region.GUSTABERG] =
+    [tpz.region.GUSTABERG] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Ennigreaud, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Quellebie, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Shigezane, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Heavy Fog, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Kuuwari-Aori, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Butsutsu, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Kuleo
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Ennigreaud, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Quellebie, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Shigezane, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Heavy Fog, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Kuuwari-Aori, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Butsutsu, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Kuleo
     },
-    [dsp.region.DERFLAND] =
+    [tpz.region.DERFLAND] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Mesachedeau, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Ioupie, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Souun, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Sharp Tooth, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Mokto-Lankto, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Shikoko, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Tahmasp
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Mesachedeau, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Ioupie, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Souun, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Sharp Tooth, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Mokto-Lankto, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Shikoko, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Tahmasp
     },
-    [dsp.region.SARUTABARUTA] =
+    [tpz.region.SARUTABARUTA] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Naguipeillont, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Banege, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Ryokei, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Slow Axe, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Roshina-Kuleshuna, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Darumomo, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Mahien-Uhien
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Naguipeillont, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Banege, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Ryokei, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Slow Axe, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Roshina-Kuleshuna, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Darumomo, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Mahien-Uhien
     },
-    [dsp.region.KOLSHUSHU] =
+    [tpz.region.KOLSHUSHU] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Bonbavour, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Craigine, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Ishin, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Wise Turtle, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Ganemu-Punnemu, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Mashasha, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Lobho Ukipturi
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Bonbavour, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Craigine, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Ishin, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Wise Turtle, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Ganemu-Punnemu, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Mashasha, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Lobho Ukipturi
     },
-    [dsp.region.ARAGONEU] =
+    [tpz.region.ARAGONEU] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Chegourt, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Buliame, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Akane, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Three Steps, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Donmo-Boronmo, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Daruru, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Mushosho
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Chegourt, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Buliame, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Akane, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Three Steps, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Donmo-Boronmo, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Daruru, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Mushosho
     },
-    [dsp.region.FAUREGANDI] =
+    [tpz.region.FAUREGANDI] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Parledaire, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Leaufetie, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Akane, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Rattling Rain, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Ryunchi-Pauchi, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Chopapa, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Gueriette
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Parledaire, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Leaufetie, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Akane, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Rattling Rain, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Ryunchi-Pauchi, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Chopapa, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Gueriette
     },
-    [dsp.region.VALDEAUNIA] =
+    [tpz.region.VALDEAUNIA] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Jeantelas, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Pilcha, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Kaya, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Heavy Bear, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Magumo-Yagimo, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Tememe, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Pelogrant
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Jeantelas, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Pilcha, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Kaya, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Heavy Bear, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Magumo-Yagimo, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Tememe, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Pelogrant
     },
-    [dsp.region.QUFIMISLAND] =
+    [tpz.region.QUFIMISLAND] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Pitoire, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Matica, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Sasa, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Singing Blade, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Tsonga-Hoponga, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Numumu, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Jiwon
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Pitoire, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Matica, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Sasa, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Singing Blade, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Tsonga-Hoponga, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Numumu, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Jiwon
     },
-    [dsp.region.LITELOR] =
+    [tpz.region.LITELOR] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Credaurion, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Limion, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Calliope, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Dedden, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Ajimo-Majimo, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Ochocho, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Kasim
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Credaurion, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Limion, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Calliope, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Dedden, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Ajimo-Majimo, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Ochocho, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Kasim
     },
-    [dsp.region.KUZOTZ] =
+    [tpz.region.KUZOTZ] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Eaulevisat, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Laimeve, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Lindgard, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Daborn, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Variko-Njariko, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Sahgygy, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Sowande
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Eaulevisat, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Laimeve, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Lindgard, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Daborn, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Variko-Njariko, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Sahgygy, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Sowande
     },
-    [dsp.region.VOLLBOW] =
+    [tpz.region.VOLLBOW] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Salimardi, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Paise, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Sarmistha, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Dultwa, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Voranbo-Natanbo, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Orukeke, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Bright Moon
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Salimardi, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Paise, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Sarmistha, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Dultwa, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Voranbo-Natanbo, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Orukeke, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Bright Moon
     },
-    [dsp.region.ELSHIMOLOWLANDS] =
+    [tpz.region.ELSHIMOLOWLANDS] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Zorchorevi, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Mupia, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Mahol, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Bammiro, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Uphra-Kophra, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Richacha, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Robino-Mobino
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Zorchorevi, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Mupia, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Mahol, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Bammiro, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Uphra-Kophra, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Richacha, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Robino-Mobino
     },
-    [dsp.region.ELSHIMOUPLANDS] =
+    [tpz.region.ELSHIMOUPLANDS] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Ilieumort, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Emila, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Mintoo, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Guddal, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Etaj-Pohtaj, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Ghantata, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Mugha Dovajaiho
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Ilieumort, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Emila, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Mintoo, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Guddal, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Etaj-Pohtaj, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Ghantata, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Mugha Dovajaiho
     },
-    [dsp.region.TULIA] =
+    [tpz.region.TULIA] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  3, nation = dsp.nation.BEASTMEN}, -- flag
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  3, nation = tpz.nation.BEASTMEN}, -- flag
     },
-    [dsp.region.MOVALPOLOS] =
+    [tpz.region.MOVALPOLOS] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  3, nation = dsp.nation.BEASTMEN}, -- flag
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  3, nation = tpz.nation.BEASTMEN}, -- flag
     },
-    [dsp.region.TAVNAZIANARCH] =
+    [tpz.region.TAVNAZIANARCH] =
     {
-        {offset =  0, nation = dsp.nation.SANDORIA}, -- Jemmoquel, R.K.
-        {offset =  7, nation = dsp.nation.SANDORIA}, -- Chilaumme, R.K.
-        {offset =  3, nation = dsp.nation.SANDORIA}, -- flag
-        {offset = 11, nation = dsp.nation.SANDORIA}, -- flag
-        {offset =  1, nation = dsp.nation.BASTOK},   -- Yoram, I.M.
-        {offset =  8, nation = dsp.nation.BASTOK},   -- Ghost Talker, I.M.
-        {offset =  4, nation = dsp.nation.BASTOK},   -- flag
-        {offset = 12, nation = dsp.nation.BASTOK},   -- flag
-        {offset =  2, nation = dsp.nation.WINDURST}, -- Teldo-Moroldo, W.W.
-        {offset =  9, nation = dsp.nation.WINDURST}, -- Cotete, W.W.
-        {offset =  5, nation = dsp.nation.WINDURST}, -- flag
-        {offset = 13, nation = dsp.nation.WINDURST}, -- flag
-        {offset =  6, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 14, nation = dsp.nation.BEASTMEN}, -- flag
-        {offset = 10, nation = dsp.nation.OTHER},    -- Jersey
+        {offset =  0, nation = tpz.nation.SANDORIA}, -- Jemmoquel, R.K.
+        {offset =  7, nation = tpz.nation.SANDORIA}, -- Chilaumme, R.K.
+        {offset =  3, nation = tpz.nation.SANDORIA}, -- flag
+        {offset = 11, nation = tpz.nation.SANDORIA}, -- flag
+        {offset =  1, nation = tpz.nation.BASTOK},   -- Yoram, I.M.
+        {offset =  8, nation = tpz.nation.BASTOK},   -- Ghost Talker, I.M.
+        {offset =  4, nation = tpz.nation.BASTOK},   -- flag
+        {offset = 12, nation = tpz.nation.BASTOK},   -- flag
+        {offset =  2, nation = tpz.nation.WINDURST}, -- Teldo-Moroldo, W.W.
+        {offset =  9, nation = tpz.nation.WINDURST}, -- Cotete, W.W.
+        {offset =  5, nation = tpz.nation.WINDURST}, -- flag
+        {offset = 13, nation = tpz.nation.WINDURST}, -- flag
+        {offset =  6, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 14, nation = tpz.nation.BEASTMEN}, -- flag
+        {offset = 10, nation = tpz.nation.OTHER},    -- Jersey
     },
 }
 
@@ -565,7 +565,7 @@ local expRings =
 
 local function conquestRanking()
     -- computes part of argument 3 for gate guard events. represents the conquest standing of the 3 nations. Verified.
-    return getNationRank(dsp.nation.SANDORIA) + 4 * getNationRank(dsp.nation.BASTOK) + 16 * getNationRank(dsp.nation.WINDURST)
+    return getNationRank(tpz.nation.SANDORIA) + 4 * getNationRank(tpz.nation.BASTOK) + 16 * getNationRank(tpz.nation.WINDURST)
 end
 
 local function getArg1(player, guardNation, guardType)
@@ -573,11 +573,11 @@ local function getArg1(player, guardNation, guardType)
     local output = 0
     local signet = 0
 
-    if guardNation == dsp.nation.WINDURST then
+    if guardNation == tpz.nation.WINDURST then
         output = 33
-    elseif guardNation == dsp.nation.SANDORIA then
+    elseif guardNation == tpz.nation.SANDORIA then
         output = 1
-    elseif guardNation == dsp.nation.BASTOK then
+    elseif guardNation == tpz.nation.BASTOK then
         output = 17
     end
 
@@ -585,22 +585,22 @@ local function getArg1(player, guardNation, guardType)
         signet = 0
     else
         signet = 7
-        if dsp.conquest.areAllies(pNation, guardNation) then
+        if tpz.conquest.areAllies(pNation, guardNation) then
             signet = 2^(2 - pNation)
         end
     end
 
-    if guardNation == dsp.nation.OTHER then
+    if guardNation == tpz.nation.OTHER then
         output = (pNation * 16) + (3 * 256) + 65537
     else
         output = output + 256 * signet
     end
 
-    if guardType >= dsp.conquest.guard.OUTPOST then
+    if guardType >= tpz.conquest.guard.OUTPOST then
         output = output - 1
     end
 
-    if output >= 1792 and guardType >= dsp.conquest.guard.OUTPOST then
+    if output >= 1792 and guardType >= tpz.conquest.guard.OUTPOST then
         output = 1808
     end
 
@@ -818,7 +818,7 @@ local overseerInvNation =
 local function getStock(player, guardNation, option)
     local r = overseerInvCommon[option]
     if r == nil then
-        if guardNation == dsp.nation.OTHER then
+        if guardNation == tpz.nation.OTHER then
             r = overseerInvNation[player:getNation()][option]
         else
             r = overseerInvNation[guardNation][option]
@@ -853,7 +853,7 @@ end
 -- (PUBLIC) conquest
 -----------------------------------
 
-dsp.conquest.guard =
+tpz.conquest.guard =
 {
     CITY    = 1,
     FOREIGN = 2,
@@ -861,11 +861,11 @@ dsp.conquest.guard =
     BORDER  = 4,
 }
 
-dsp.conquest.areAllies = function(nationA, nationB)
+tpz.conquest.areAllies = function(nationA, nationB)
     return isConquestAlliance() and getNationRank(nationA) > 1 and getNationRank(nationB) > 1
 end
 
-dsp.conquest.outpostFee = function(player, region)
+tpz.conquest.outpostFee = function(player, region)
     if not hasOutpost(player, region) then
         return 0
     end
@@ -878,7 +878,7 @@ dsp.conquest.outpostFee = function(player, region)
     end
 end
 
-dsp.conquest.canTeleportToOutpost = function(player, region)
+tpz.conquest.canTeleportToOutpost = function(player, region)
     local outpost = outposts[region]
     if
         outpost == nil or
@@ -890,7 +890,7 @@ dsp.conquest.canTeleportToOutpost = function(player, region)
     return true
 end
 
-dsp.conquest.setRegionalConquestOverseers = function(region)
+tpz.conquest.setRegionalConquestOverseers = function(region)
     local zone = outposts[region].zone
 
     if zone then
@@ -906,16 +906,16 @@ dsp.conquest.setRegionalConquestOverseers = function(region)
 
                 if npc then
                     if v.nation == owner then
-                        npc:setStatus(dsp.status.NORMAL)
+                        npc:setStatus(tpz.status.NORMAL)
                     else
-                        npc:setStatus(dsp.status.DISAPPEAR)
+                        npc:setStatus(tpz.status.DISAPPEAR)
                     end
 
-                    if v.nation == dsp.nation.OTHER then
-                        if owner ~= dsp.nation.BEASTMEN then
-                            npc:setStatus(dsp.status.NORMAL)
+                    if v.nation == tpz.nation.OTHER then
+                        if owner ~= tpz.nation.BEASTMEN then
+                            npc:setStatus(tpz.status.NORMAL)
                         else
-                            npc:setStatus(dsp.status.DISAPPEAR)
+                            npc:setStatus(tpz.status.DISAPPEAR)
                         end
                     end
                 end
@@ -928,14 +928,14 @@ end
 -- (PUBLIC) overseer
 -----------------------------------
 
-dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardType)
-    if player:getNation() == guardNation or guardNation == dsp.nation.OTHER then
+tpz.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardType)
+    if player:getNation() == guardNation or guardNation == tpz.nation.OTHER then
         local item = trade:getItemId()
         local tradeConfirmed = false
         local mOffset = zones[player:getZoneID()].text.CONQUEST
 
         -- DONATE CRYSTALS FOR RANK OR CONQUEST POINTS
-        if guardType <= dsp.conquest.guard.FOREIGN and crystals[item] then
+        if guardType <= tpz.conquest.guard.FOREIGN and crystals[item] then
             local pRank = player:getRank()
             local pRankPoints = player:getRankPoints()
             local addPoints = 0
@@ -994,17 +994,17 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
     end
 end
 
-dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, guardEvent, guardRegion)
+tpz.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, guardEvent, guardRegion)
     local pNation = player:getNation()
 
     -- SUPPLY RUNS
     if pNation == guardNation and areSuppliesRotten(player, npc, guardType) then
         -- do nothing else
-    elseif pNation == guardNation and guardType >= dsp.conquest.guard.OUTPOST and canDeliverSupplies(player, guardNation, guardEvent, guardRegion) then
+    elseif pNation == guardNation and guardType >= tpz.conquest.guard.OUTPOST and canDeliverSupplies(player, guardNation, guardEvent, guardRegion) then
         -- do nothing else
 
     -- JEUNO OVERSEERS
-    elseif guardType == dsp.conquest.guard.CITY and guardNation == dsp.nation.OTHER then
+    elseif guardType == tpz.conquest.guard.CITY and guardNation == tpz.nation.OTHER then
         local a1 = getArg1(player, guardNation, guardType)
         local a3 = conquestRanking()
         local a6 = getArg6(player)
@@ -1013,7 +1013,7 @@ dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, g
         player:startEvent(guardEvent, a1, 0, a3, 0, 0, a6, a7, 0)
 
     -- CITY AND FOREIGN OVERSEERS
-    elseif guardType <= dsp.conquest.guard.FOREIGN then
+    elseif guardType <= tpz.conquest.guard.FOREIGN then
         local a1 = getArg1(player, guardNation, guardType)
         local a2 = getExForceAvailable(player, guardNation)
         local a3 = conquestRanking()
@@ -1026,7 +1026,7 @@ dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, g
         player:startEvent(guardEvent, a1, a2, a3, a4, a5, a6, a7, a8)
 
     -- OUTPOST AND BORDER OVERSEERS
-    elseif guardType >= dsp.conquest.guard.OUTPOST then
+    elseif guardType >= tpz.conquest.guard.OUTPOST then
         local a1 = getArg1(player, guardNation, guardType)
         if a1 == 1808 then -- non-allied nation
             player:startEvent(guardEvent, a1, 0, 0, 0, 0, player:getRank(), 0, 0)
@@ -1036,7 +1036,7 @@ dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, g
     end
 end
 
-dsp.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
+tpz.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
     local stock = getStock(player, guardNation, option)
 
     if stock ~= nil then
@@ -1057,9 +1057,9 @@ dsp.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
         end
 
         local rankCheck = true
-        if guardNation ~= dsp.nation.OTHER and guardNation ~= pNation and getNationRank(guardNation) <= pRank then -- buy from other nation, must be higher ranked
+        if guardNation ~= tpz.nation.OTHER and guardNation ~= pNation and getNationRank(guardNation) <= pRank then -- buy from other nation, must be higher ranked
             rankCheck = false
-        elseif guardNation ~= dsp.nation.OTHER and stock.place ~= nil and guardNation ~= pNation then -- buy from other nation, cannot buy items with nation rank requirement
+        elseif guardNation ~= tpz.nation.OTHER and stock.place ~= nil and guardNation ~= pNation then -- buy from other nation, cannot buy items with nation rank requirement
             rankCheck = false
         elseif stock.place ~= nil and pRank > stock.place then -- buy from own nation, check nation rank
             rankCheck = false
@@ -1073,7 +1073,7 @@ dsp.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
     end
 end
 
-dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation, guardType, guardRegion)
+tpz.conquest.overseerOnEventFinish = function(player, csid, option, guardNation, guardType, guardRegion)
     local pNation  = player:getNation()
     local pRank    = player:getRank()
     local sRegion  = player:getCharVar("supplyQuest_region")
@@ -1083,12 +1083,12 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     -- SIGNET
     if option == 1 then
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
-        player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
-        player:addStatusEffect(dsp.effect.SIGNET, 0, 0, duration)
+        player:delStatusEffectsByFlag(tpz.effectFlag.INFLUENCE, true)
+        player:addStatusEffect(tpz.effect.SIGNET, 0, 0, duration)
         player:messageSpecial(mOffset + 1) -- "You've received your nation's Signet!"
 
     -- BEGIN SUPPLY RUN
-    elseif option >= 65541 and option <= 65565 and guardType <= dsp.conquest.guard.FOREIGN then
+    elseif option >= 65541 and option <= 65565 and guardType <= tpz.conquest.guard.FOREIGN then
         local region = option - 65541
         local outpost = outposts[region]
         if outpost ~= nil then
@@ -1101,7 +1101,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     -- FINISH SUPPLY RUN
     elseif
         option == 2 and
-        guardType >= dsp.conquest.guard.OUTPOST and
+        guardType >= tpz.conquest.guard.OUTPOST and
         sRegion == guardRegion and
         sOutpost ~= nil and
         player:hasKeyItem(sOutpost.ki) and
@@ -1151,7 +1151,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
 
         -- validate price
         local price = stock.cp
-        if stock.rank ~= nil and player:getNation() ~= guardNation and guardNation ~= dsp.nation.OTHER then
+        if stock.rank ~= nil and player:getNation() ~= guardNation and guardNation ~= tpz.nation.OTHER then
             if price <= 8000 then
                 price = price * 2
             else
@@ -1182,38 +1182,38 @@ end
 -- (PUBLIC) vendor
 -----------------------------------
 
-dsp.conquest.vendorOnTrigger = function(player, vendorRegion, vendorEvent)
+tpz.conquest.vendorOnTrigger = function(player, vendorRegion, vendorEvent)
     local pNation = player:getNation()
     local owner = GetRegionOwner(vendorRegion)
 
     local nation = 0
     if owner == pNation then
         nation = 1
-    elseif dsp.conquest.areAllies(pNation, owner) then
+    elseif tpz.conquest.areAllies(pNation, owner) then
         nation = 2
     end
 
-    local fee = dsp.conquest.outpostFee(player, vendorRegion)
+    local fee = tpz.conquest.outpostFee(player, vendorRegion)
     player:startEvent(vendorEvent,nation,fee,0,fee,player:getCP(),0,0,0)
 end
 
-dsp.conquest.vendorOnEventUpdate = function(player, vendorRegion)
-    local fee = dsp.conquest.outpostFee(player, vendorRegion)
+tpz.conquest.vendorOnEventUpdate = function(player, vendorRegion)
+    local fee = tpz.conquest.outpostFee(player, vendorRegion)
     player:updateEvent(player:getGil(),fee,0,fee,player:getCP())
 end
 
-dsp.conquest.vendorOnEventFinish = function(player, option, vendorRegion)
-    local fee = dsp.conquest.outpostFee(player, vendorRegion)
+tpz.conquest.vendorOnEventFinish = function(player, option, vendorRegion)
+    local fee = tpz.conquest.outpostFee(player, vendorRegion)
 
     if option == 1 then
-        dsp.shop.outpost(player)
+        tpz.shop.outpost(player)
     elseif option == 2 then
         if player:delGil(fee) then
-            player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.HOME_NATION, 0, 1, 0, region)
+            player:addStatusEffectEx(tpz.effect.TELEPORT, 0, tpz.teleport.id.HOME_NATION, 0, 1, 0, region)
         end
     elseif option == 6 then
         player:delCP(fee)
-        player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.HOME_NATION, 0, 1, 0, region)
+        player:addStatusEffectEx(tpz.effect.TELEPORT, 0, tpz.teleport.id.HOME_NATION, 0, 1, 0, region)
     end
 end
 
@@ -1221,53 +1221,53 @@ end
 -- (PUBLIC) outpost teleport NPC
 -----------------------------------
 
-dsp.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporterEvent)
+tpz.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporterEvent)
     if player:getNation() == teleporterNation then
-        local sandyRegions = getRegionsMask(dsp.nation.SANDORIA)
-        local bastokRegions = getRegionsMask(dsp.nation.BASTOK)
-        local windyRegions = getRegionsMask(dsp.nation.WINDURST)
-        local beastmenRegions = getRegionsMask(dsp.nation.BEASTMEN)
+        local sandyRegions = getRegionsMask(tpz.nation.SANDORIA)
+        local bastokRegions = getRegionsMask(tpz.nation.BASTOK)
+        local windyRegions = getRegionsMask(tpz.nation.WINDURST)
+        local beastmenRegions = getRegionsMask(tpz.nation.BEASTMEN)
         local allowedTeleports = getAllowedTeleports(player, teleporterNation)
-        local teleporterRegion = dsp.region.SANDORIA + teleporterNation
+        local teleporterRegion = tpz.region.SANDORIA + teleporterNation
         player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, bit.lshift(1, teleporterRegion), 0, player:getMainLvl(), allowedTeleports)
     else
         local a6 =
         {
-            [dsp.nation.SANDORIA] = 1,
-            [dsp.nation.BASTOK]   = 256,
-            [dsp.nation.WINDURST] = 512,
+            [tpz.nation.SANDORIA] = 1,
+            [tpz.nation.BASTOK]   = 256,
+            [tpz.nation.WINDURST] = 512,
         }
         player:startEvent(teleporterEvent, 0, 0, 0, 0, 0, a6[teleporterNation], 0, 0)
     end
 end
 
-dsp.conquest.teleporterOnEventUpdate = function(player, csid, option, teleporterEvent)
+tpz.conquest.teleporterOnEventUpdate = function(player, csid, option, teleporterEvent)
     if csid == teleporterEvent then
         local region = option - 1073741829
-        local fee = dsp.conquest.outpostFee(player, region)
+        local fee = tpz.conquest.outpostFee(player, region)
         player:updateEvent(player:getGil(), fee, 0, fee, player:getCP())
     end
 end
 
-dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporterEvent)
+tpz.conquest.teleporterOnEventFinish = function(player, csid, option, teleporterEvent)
     if csid == teleporterEvent then
         -- TELEPORT WITH GIL
         if option >= 5 and option <= 23 then
             local region = option - 5
-            local fee = dsp.conquest.outpostFee(player, region)
+            local fee = tpz.conquest.outpostFee(player, region)
 
-            if dsp.conquest.canTeleportToOutpost(player, region) and player:delGil(fee) then
-                player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
+            if tpz.conquest.canTeleportToOutpost(player, region) and player:delGil(fee) then
+                player:addStatusEffectEx(tpz.effect.TELEPORT, 0, tpz.teleport.id.OUTPOST, 0, 1, 0, region)
             end
 
         -- TELEPORT WITH CP
         elseif option >= 1029 and option <= 1047 then
             local region = option - 1029
-            local fee = dsp.conquest.outpostFee(player, region)
+            local fee = tpz.conquest.outpostFee(player, region)
 
-            if dsp.conquest.canTeleportToOutpost(player, region) and player:getCP() >= fee then
+            if tpz.conquest.canTeleportToOutpost(player, region) and player:getCP() >= fee then
                 player:delCP(fee)
-                player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
+                player:addStatusEffectEx(tpz.effect.TELEPORT, 0, tpz.teleport.id.OUTPOST, 0, 1, 0, region)
             end
         end
     end
@@ -1277,7 +1277,7 @@ end
 -- (PUBLIC) conquest messages
 -----------------------------------
 
-dsp.conquest.onConquestUpdate = function(zone, updatetype)
+tpz.conquest.onConquestUpdate = function(zone, updatetype)
     local region = zone:getRegionID()
     local owner = GetRegionOwner(region)
     local players = zone:getPlayers()
@@ -1385,4 +1385,4 @@ dsp.conquest.onConquestUpdate = function(zone, updatetype)
     end
 end
 
-dsp.conq = dsp.conquest
+tpz.conq = tpz.conquest

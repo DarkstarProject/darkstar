@@ -10,8 +10,8 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    updateModPerformance(pet, dsp.mod.ATTP, 'tension_iii_attp', 0)
-    updateModPerformance(pet, dsp.mod.RATTP, 'tension_iii_rattp', 0)
+    updateModPerformance(pet, tpz.mod.ATTP, 'tension_iii_attp', 0)
+    updateModPerformance(pet, tpz.mod.RATTP, 'tension_iii_rattp', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
@@ -24,16 +24,16 @@ end
 
 function onUpdate(pet, maneuvers)
     if maneuvers == 0 then
-        updateModPerformance(pet, dsp.mod.ATTP, 'tension_iii_attp', 12)
-        updateModPerformance(pet, dsp.mod.RATTP, 'tension_iii_rattp', 12)
+        updateModPerformance(pet, tpz.mod.ATTP, 'tension_iii_attp', 12)
+        updateModPerformance(pet, tpz.mod.RATTP, 'tension_iii_rattp', 12)
     elseif maneuvers == 1 then
-        updateModPerformance(pet, dsp.mod.ATTP, 'tension_iii_attp', 15)
-        updateModPerformance(pet, dsp.mod.RATTP, 'tension_iii_rattp', 15)
+        updateModPerformance(pet, tpz.mod.ATTP, 'tension_iii_attp', 15)
+        updateModPerformance(pet, tpz.mod.RATTP, 'tension_iii_rattp', 15)
     elseif maneuvers == 2 then
-        updateModPerformance(pet, dsp.mod.ATTP, 'tension_iii_attp', 18)
-        updateModPerformance(pet, dsp.mod.RATTP, 'tension_iii_rattp', 18)
+        updateModPerformance(pet, tpz.mod.ATTP, 'tension_iii_attp', 18)
+        updateModPerformance(pet, tpz.mod.RATTP, 'tension_iii_rattp', 18)
     elseif maneuvers == 3 then
-        updateModPerformance(pet, dsp.mod.ATTP, 'tension_iii_attp', 21)
-        updateModPerformance(pet, dsp.mod.RATTP, 'tension_iii_rattp', 21)
+        updateModPerformance(pet, tpz.mod.ATTP, 'tension_iii_attp', 21)
+        updateModPerformance(pet, tpz.mod.RATTP, 'tension_iii_rattp', 21)
     end
 end

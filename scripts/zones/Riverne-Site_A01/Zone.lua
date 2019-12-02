@@ -13,7 +13,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -28,7 +28,7 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,40,0,0); -- LV40 cap
+        player:addStatusEffect(tpz.effect.LEVEL_RESTRICTION,40,0,0); -- LV40 cap
     end
 end;
 

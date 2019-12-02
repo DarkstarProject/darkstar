@@ -32,7 +32,7 @@ function onTrigger(player, target)
 
     -- get previous zone
     zoneId = targ:getPreviousZone();
-    if (zoneId == nil or zoneId == dsp.zone.UNKNOWN or zoneId == dsp.zone.RESIDENTIAL_AREA) then
+    if (zoneId == nil or zoneId == tpz.zone.UNKNOWN or zoneId == tpz.zone.RESIDENTIAL_AREA) then
         error(player, "Previous zone was a Mog House or there was a problem fetching the ID.");
         return;
     end

@@ -24,8 +24,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.ftp100 = 1.75 params.ftp200 = 1.75 params.ftp300 = 1.75
     params.str_wsc = 0.0 params.dex_wsc = 0.0 params.vit_wsc = 0.0 params.agi_wsc = 0.0 params.int_wsc = 0.3
     params.mnd_wsc = 0.0 params.chr_wsc = 0.0
-    params.ele = dsp.magic.ele.DARK
-    params.skill = dsp.skill.STAFF
+    params.ele = tpz.magic.ele.DARK
+    params.skill = tpz.skill.STAFF
     params.includemab = true
 
     if USE_ADOULIN_WEAPON_SKILL_CHANGES then
@@ -36,12 +36,12 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if damage > 0 then
         local duration = tp / 1000 * 60
-        if not target:hasStatusEffect(dsp.effect.MAGIC_DEF_DOWN) then
-            target:addStatusEffect(dsp.effect.MAGIC_DEF_DOWN, 10, 0, duration)
+        if not target:hasStatusEffect(tpz.effect.MAGIC_DEF_DOWN) then
+            target:addStatusEffect(tpz.effect.MAGIC_DEF_DOWN, 10, 0, duration)
         end
 
         -- Apply aftermath
-        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.MAIN, dsp.aftermath.type.MYTHIC)
+        tpz.aftermath.addStatusEffect(player, tp, tpz.slot.MAIN, tpz.aftermath.type.MYTHIC)
     end
 
     return tpHits, extraHits, criticalHit, damage

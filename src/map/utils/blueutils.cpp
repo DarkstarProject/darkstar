@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -137,7 +135,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
             if (playerSkillLvl >= skillLvlForSpell - 31)
             {
                 auto chanceToLearn = 33 + PBlueMage->getMod(Mod::BLUE_LEARN_CHANCE);
-                if (dsprand::GetRandomNumber(100) < chanceToLearn) {
+                if (tpzrand::GetRandomNumber(100) < chanceToLearn) {
 					if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
 						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
 						charutils::SaveSpell(PBlueMage, static_cast<uint16>(PSpell->getID()));

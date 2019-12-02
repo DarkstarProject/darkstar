@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -55,7 +53,7 @@ struct login_config_t
     uint16      mysql_port;         // mysql port     -> 3306
     std::string mysql_login;        // mysql login    -> default root
     std::string mysql_password;     // mysql pass     -> default NULL
-    std::string mysql_database;     // mysql database -> default dspdb
+    std::string mysql_database;     // mysql database -> default tpzdb
 
     uint32 search_server_port;      // search_server_port -> 54002
 

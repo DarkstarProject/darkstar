@@ -13,20 +13,20 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == true) then
+    if (target:hasStatusEffect(tpz.effect.LEATHERCRAFT_IMAGERY) == true) then
         result = 240
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,3,0,120)
+    target:addStatusEffect(tpz.effect.LEATHERCRAFT_IMAGERY,3,0,120)
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.LEATHER, 1)
+    target:addMod(tpz.mod.LEATHER, 1)
 end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.LEATHER, 1)
+    target:delMod(tpz.mod.LEATHER, 1)
 end

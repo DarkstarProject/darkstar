@@ -11,11 +11,11 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         chance = 75, -- "Is possible that she will not use Eagle Eye Shot at all." (guessing 75 percent)
         specials =
         {
-            {id = dsp.jsa.EES_LAMIA, hpp = math.random(5, 99)},
+            {id = tpz.jsa.EES_LAMIA, hpp = math.random(5, 99)},
         },
     })
 end
@@ -45,7 +45,7 @@ function onMobFight(mob, target)
     end
     for i = ID.mob.MEDUSA + 1, ID.mob.MEDUSA + 4 do
         local pet = GetMobByID(i)
-        if (pet:getCurrentAction() == dsp.act.ROAMING) then
+        if (pet:getCurrentAction() == tpz.act.ROAMING) then
             pet:updateEnmity(target)
         end
     end
@@ -57,7 +57,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     player:showText(mob, ID.text.MEDUSA_DEATH)
-    player:addTitle(dsp.title.GORGONSTONE_SUNDERER)
+    player:addTitle(tpz.title.GORGONSTONE_SUNDERER)
     for i = 1,4 do DespawnMob(ID.mob.MEDUSA + i) end
 end
 

@@ -10,27 +10,27 @@ local ID = require("scripts/zones/Windurst_Waters/IDs");
 
 local keyitems = {
     [0] = {
-        id = dsp.ki.RAW_FISH_HANDLING,
+        id = tpz.ki.RAW_FISH_HANDLING,
         rank = 3,
         cost = 30000
     },
     [1] = {
-        id = dsp.ki.NOODLE_KNEADING,
+        id = tpz.ki.NOODLE_KNEADING,
         rank = 3,
         cost = 30000
     },
     [2] = {
-        id = dsp.ki.PATISSIER,
+        id = tpz.ki.PATISSIER,
         rank = 3,
         cost = 8000
     },
     [3] = {
-        id = dsp.ki.STEWPOT_MASTERY,
+        id = tpz.ki.STEWPOT_MASTERY,
         rank = 3,
         cost = 30000
     },
     [4] = {
-        id = dsp.ki.WAY_OF_THE_CULINARIAN,
+        id = tpz.ki.WAY_OF_THE_CULINARIAN,
         rank = 9,
         cost = 20000
     }

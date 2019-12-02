@@ -10,23 +10,23 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,dsp.skill.BONECRAFT)
+    local newRank = tradeTestItem(player,npc,trade,tpz.skill.BONECRAFT)
 
     if newRank ~= 0 then
-        player:setSkillRank(dsp.skill.BONECRAFT,newRank)
+        player:setSkillRank(tpz.skill.BONECRAFT,newRank)
         player:startEvent(10017,0,0,0,0,newRank)
     end
 end
 
 function onTrigger(player,npc)
     local getNewRank = 0
-    local craftSkill = player:getSkillLevel(dsp.skill.BONECRAFT)
-    local testItem = getTestItem(player,npc,dsp.skill.BONECRAFT)
+    local craftSkill = player:getSkillLevel(tpz.skill.BONECRAFT)
+    local testItem = getTestItem(player,npc,tpz.skill.BONECRAFT)
     local guildMember = isGuildMember(player,2)
     if guildMember == 1 then
         guildMember = 64
     end
-    if canGetNewRank(player,craftSkill,dsp.skill.BONECRAFT) == 1 then
+    if canGetNewRank(player,craftSkill,tpz.skill.BONECRAFT) == 1 then
         getNewRank = 100
     end
 

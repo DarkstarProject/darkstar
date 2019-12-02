@@ -14,7 +14,7 @@ end
 function onTrigger(player,npc)
     local WildcatBastok = player:getCharVar("WildcatBastok")
 
-    if player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(WildcatBastok,15)  then
+    if player:getQuestStatus(BASTOK,tpz.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(WildcatBastok,15)  then
         player:startEvent(507)
     else
         local stock =
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ID.text.GRISELDA_SHOP_DIALOG)
-        dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+        tpz.shop.nation(player, stock, tpz.nation.BASTOK)
     end
 end
 

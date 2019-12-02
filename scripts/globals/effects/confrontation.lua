@@ -15,6 +15,6 @@ end
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effect.CONFRONTATION)
+        target:getPet():delStatusEffect(tpz.effect.CONFRONTATION)
     end
 end

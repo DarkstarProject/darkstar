@@ -45,7 +45,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.TIAMAT);
     GetMobByID(ID.mob.TIAMAT):setRespawnTime(math.random(86400, 259200));
 
-    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
+    tpz.helm.initZone(zone, tpz.helm.type.EXCAVATION)
 end;
 
 function onZoneIn(player,prevZone)
@@ -57,18 +57,18 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
-    -- TODO: Gasponia's shouldn't "always" poison you. However, in retail regions constantly reapply themselves without having to re-enter the region. In DSP that doesn't happen so I'm leaving it as-is for now.
+    -- TODO: Gasponia's shouldn't "always" poison you. However, in retail regions constantly reapply themselves without having to re-enter the region. In Topaz that doesn't happen so I'm leaving it as-is for now.
     local regionId = region:GetRegionID();
     if (regionId <= 30) then
         local gasponia = GetNPCByID(ID.npc.GASPONIA_OFFSET + (regionId - 1));
         if (gasponia ~= nil) then
             gasponia:openDoor(3);
-            if (not player:hasStatusEffect(dsp.effect.POISON)) then
-                player:addStatusEffect(dsp.effect.POISON, 15, 0, math.random(30,60));
+            if (not player:hasStatusEffect(tpz.effect.POISON)) then
+                player:addStatusEffect(tpz.effect.POISON, 15, 0, math.random(30,60));
                 player:messageSpecial(ID.text.GASPONIA_POISON);
             end
         end

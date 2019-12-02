@@ -8,7 +8,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if (player:hasKeyItem(dsp.ki.MERTAIRES_BRACELET)) then
+    if (player:hasKeyItem(tpz.ki.MERTAIRES_BRACELET)) then
         player:setCharVar("TrosKilled",1);
         player:setCharVar("Tros_Timer",os.time());
     end

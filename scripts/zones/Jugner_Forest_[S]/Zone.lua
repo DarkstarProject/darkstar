@@ -10,8 +10,8 @@ require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
-    dsp.chocobo.initZone(zone)
+    tpz.helm.initZone(zone, tpz.helm.type.LOGGING)
+    tpz.chocobo.initZone(zone)
 end
 
 function onZoneIn(player, prevZone)
@@ -21,7 +21,7 @@ function onZoneIn(player, prevZone)
         player:setPos(621.865, -6.665, 300.264, 149)
     end
 
-    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getCharVar("ClawsOfGriffonProg") == 0 then
+    if player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getCharVar("ClawsOfGriffonProg") == 0 then
         cs = 200
     elseif player:getCharVar("roadToDivadomCS") == 1 then
         cs = 105

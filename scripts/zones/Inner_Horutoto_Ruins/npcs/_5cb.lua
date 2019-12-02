@@ -12,7 +12,7 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and
+        player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and
         player:getCharVar("MissionStatus") == 9
     then
         player:startEvent(75)

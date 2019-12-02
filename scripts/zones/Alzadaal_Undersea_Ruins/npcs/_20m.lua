@@ -14,17 +14,17 @@ end
 
 function onTrigger(player,npc)
 
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:hasKeyItem(dsp.ki.NYZUL_ISLE_ROUTE) and player:getCharVar("AhtUrganStatus") == 1 then
+    if player:getCurrentMission(TOAU) == tpz.mission.id.toau.PATH_OF_DARKNESS and player:hasKeyItem(tpz.ki.NYZUL_ISLE_ROUTE) and player:getCharVar("AhtUrganStatus") == 1 then
         player:setLocalVar("PathOfDarkness",1)
         player:startEvent(405, 58, -6, 0, 99, 5, 0)
-    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) and player:getCharVar("AhtUrganStatus") == 1 then
+    elseif player:getCurrentMission(TOAU) == tpz.mission.id.toau.NASHMEIRAS_PLEA and player:hasKeyItem(tpz.ki.MYTHRIL_MIRROR) and player:getCharVar("AhtUrganStatus") == 1 then
         player:setLocalVar("NashmeirasPlea",1)
         player:startEvent(405, 59, -10, 0, 99, 5, 0)
-    elseif player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) then
+    elseif player:hasKeyItem(tpz.ki.NYZUL_ISLE_ASSAULT_ORDERS) then
         local assaultid = player:getCurrentAssault()
         local recommendedLevel = getRecommendedAssaultLevel(assaultid)
         local armband = 0
-        if player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) then
+        if player:hasKeyItem(tpz.ki.ASSAULT_ARMBAND) then
             armband = 1
         end
         player:startEvent(405, assaultid, -4, 0, recommendedLevel, 5, armband)
@@ -84,7 +84,7 @@ function onEventUpdate(player,csid,option,target)
         if party ~= nil then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() then
-                    if v:getCurrentMission(TOAU) < dsp.mission.id.toau.PATH_OF_DARKNESS then
+                    if v:getCurrentMission(TOAU) < tpz.mission.id.toau.PATH_OF_DARKNESS then
                         player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                         player:instanceEntry(target,1)
                         return
@@ -103,7 +103,7 @@ function onEventUpdate(player,csid,option,target)
         if party ~= nil then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() then
-                    if v:getCurrentMission(TOAU) < dsp.mission.id.toau.NASHMEIRAS_PLEA then
+                    if v:getCurrentMission(TOAU) < tpz.mission.id.toau.NASHMEIRAS_PLEA then
                         player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                         player:instanceEntry(target,1)
                         return
@@ -122,7 +122,7 @@ function onEventUpdate(player,csid,option,target)
         if party ~= nil then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() then
-                    if not v:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid then
+                    if not v:hasKeyItem(tpz.ki.NYZUL_ISLE_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid then
                         player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                         player:instanceEntry(target,1)
                         return
@@ -156,15 +156,15 @@ function onInstanceCreated(player,target,instance)
     if instance then
         if pathOfDarkness == 1 then
             player:setLocalVar("PathOfDarkness", 0)
-            player:delKeyItem(dsp.ki.NYZUL_ISLE_ROUTE)
+            player:delKeyItem(tpz.ki.NYZUL_ISLE_ROUTE)
         elseif nashmeirasPlea == 1 then
             player:setLocalVar("NashmeirasPlea", 0)
-            player:delKeyItem(dsp.ki.MYTHRIL_MIRROR)
+            player:delKeyItem(tpz.ki.MYTHRIL_MIRROR)
         else
             instance:setLevelCap(player:getCharVar("AssaultCap"))
             player:setCharVar("AssaultCap", 0)
-            player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)
-            player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)
+            player:delKeyItem(tpz.ki.NYZUL_ISLE_ASSAULT_ORDERS)
+            player:delKeyItem(tpz.ki.ASSAULT_ARMBAND)
         end
 
         player:setInstance(instance)
@@ -179,11 +179,11 @@ function onInstanceCreated(player,target,instance)
                     v:setLocalVar("Nyzul",1)
 
                     if pathOfDarkness == 1 then
-                        v:delKeyItem(dsp.ki.NYZUL_ISLE_ROUTE)
+                        v:delKeyItem(tpz.ki.NYZUL_ISLE_ROUTE)
                     elseif nashmeirasPlea == 1 then
-                        v:delKeyItem(dsp.ki.MYTHRIL_MIRROR)
+                        v:delKeyItem(tpz.ki.MYTHRIL_MIRROR)
                     else
-                        v:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)
+                        v:delKeyItem(tpz.ki.NYZUL_ISLE_ASSAULT_ORDERS)
                     end
                 end
             end

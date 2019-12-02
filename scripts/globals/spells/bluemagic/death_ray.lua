@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 1.625
-    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
+    if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         multi = multi + 2.0
     end
         params.multiplier = multi

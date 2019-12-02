@@ -10,7 +10,7 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
 end
 
 function onMobEngaged(mob,target)
@@ -18,11 +18,11 @@ function onMobEngaged(mob,target)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PARALYZE, {duration = 60})
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.PARALYZE, {duration = 60})
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.DEITY_DEBUNKER)
+    player:addTitle(tpz.title.DEITY_DEBUNKER)
     if isKiller then
         mob:showText(mob, ID.text.YAGUDO_KING_DEATH)
     end

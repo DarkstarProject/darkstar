@@ -23,7 +23,7 @@ end
 
 function onSpellCast(caster,target,spell)
     local multi = 2.90
-    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
+    if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         multi = multi + 0.50
     end
 
@@ -39,9 +39,9 @@ function onSpellCast(caster,target,spell)
         params.int_wsc = 0.0
         params.mnd_wsc = 0.3
         params.chr_wsc = 0.0
-        params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
-        params.attribute = dsp.mod.INT
-        params.skillType = dsp.skill.BLUE_MAGIC
+        params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
+        params.attribute = tpz.mod.INT
+        params.skillType = tpz.skill.BLUE_MAGIC
         params.bonus = 1.0
 
     local resist = applyResistance(caster, target, spell, params)
@@ -49,14 +49,14 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
     if (damage > 0 and resist > 0.3) then
-    local typeEffect = dsp.effect.SLOW
+    local typeEffect = tpz.effect.SLOW
         target:delStatusEffect(typeEffect)
         target:addStatusEffect(typeEffect,3500,0,getBlueEffectDuration(caster,resist,typeEffect))
     end
 
     if (damage > 0 and resist > 0.3) then
-        target:delStatusEffect(dsp.effect.SILENCE)
-        target:addStatusEffect(dsp.effect.SILENCE,25,0,getBlueEffectDuration(caster,resist,dsp.effect.SILENCE))
+        target:delStatusEffect(tpz.effect.SILENCE)
+        target:addStatusEffect(tpz.effect.SILENCE,25,0,getBlueEffectDuration(caster,resist,tpz.effect.SILENCE))
     end
 
     return damage

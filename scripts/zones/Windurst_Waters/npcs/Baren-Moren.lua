@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    featherstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
+    featherstatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
     if (featherstatus >= 1 and trade:hasItemQty(842,3) == true and trade:getGil() == 0 and trade:getItemCount() == 3) then
         player:startEvent(79,1500); -- Quest Turn In
     end
@@ -20,14 +20,14 @@ end;
 
 function onTrigger(player,npc)
 
---    player:delQuest(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
+--    player:delQuest(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
 --    player:addFame(WINDURST,200);   -- ================== FOR TESTING ONLY =====================
 
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
-    featherstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
+    hatstatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.HAT_IN_HAND);
+    featherstatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
     pfame = player:getFameLevel(WINDURST);
     if (hatstatus == 0) then
         player:startEvent(48); -- Quest Offered
@@ -98,13 +98,13 @@ end;
 function onEventFinish(player,csid,option)
 printf("RESULT: %u",option);
     if (csid == 48 and option == 1) then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
-        player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
+        player:addQuest(WINDURST,tpz.quest.id.windurst.HAT_IN_HAND);
+        player:addKeyItem(tpz.ki.NEW_MODEL_HAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.NEW_MODEL_HAT);
     elseif (csid == 49 and option == 1) then
         player:setCharVar("QuestHatInHand_var2",1);
-        player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
+        player:addKeyItem(tpz.ki.NEW_MODEL_HAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.NEW_MODEL_HAT);
     elseif (csid == 52 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
         player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12543);
     elseif (csid == 52 and option >= 1) then
@@ -135,23 +135,23 @@ printf("RESULT: %u",option);
         else
             player:addFame(WINDURST,8);
         end
-        player:completeQuest(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
+        player:completeQuest(WINDURST,tpz.quest.id.windurst.HAT_IN_HAND);
         player:setCharVar("QuestHatInHand_count",0);
         player:setCharVar("QuestHatInHand_var",0);
         player:needToZone(true);
-        player:delKeyItem(dsp.ki.NEW_MODEL_HAT);
+        player:delKeyItem(tpz.ki.NEW_MODEL_HAT);
         player:setCharVar("QuestHatInHand_var2",0);
 
 
     elseif (csid == 75 and option == 1) then
-        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_AVAILABLE) then
-            player:addQuest(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
-        elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_COMPLETED) then
+        if (player:getQuestStatus(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_AVAILABLE) then
+            player:addQuest(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
+        elseif (player:getQuestStatus(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_COMPLETED) then
             player:setCharVar("QuestFeatherInOnesCap_var",1);
         end
     elseif (csid == 79) then
-        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
+        if (player:getQuestStatus(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP) == QUEST_ACCEPTED) then
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.A_FEATHER_IN_ONE_S_CAP);
             player:addFame(WINDURST,75);
         else
             player:addFame(WINDURST,8);

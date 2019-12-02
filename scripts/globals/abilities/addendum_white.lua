@@ -19,25 +19,25 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effect.ADDENDUM_WHITE) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
+    if player:hasStatusEffect(tpz.effect.ADDENDUM_WHITE) then
+        return tpz.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
     return 0,0
 end
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(dsp.effect.DARK_ARTS)
-    player:delStatusEffectSilent(dsp.effect.ADDENDUM_BLACK)
-    player:delStatusEffectSilent(dsp.effect.LIGHT_ARTS)
+    player:delStatusEffectSilent(tpz.effect.DARK_ARTS)
+    player:delStatusEffectSilent(tpz.effect.ADDENDUM_BLACK)
+    player:delStatusEffectSilent(tpz.effect.LIGHT_ARTS)
 
-    local skillbonus = player:getMod(dsp.mod.LIGHT_ARTS_SKILL)
-    local effectbonus = player:getMod(dsp.mod.LIGHT_ARTS_EFFECT)
+    local skillbonus = player:getMod(tpz.mod.LIGHT_ARTS_SKILL)
+    local effectbonus = player:getMod(tpz.mod.LIGHT_ARTS_EFFECT)
     local regenbonus = 0
-    if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == tpz.job.SCH and player:getMainLvl() >= 20) then
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10)
     end
 
-    player:addStatusEffectEx(dsp.effect.ADDENDUM_WHITE,dsp.effect.ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus,true)
+    player:addStatusEffectEx(tpz.effect.ADDENDUM_WHITE,tpz.effect.ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus,true)
 
-    return dsp.effect.ADDENDUM_WHITE
+    return tpz.effect.ADDENDUM_WHITE
 end

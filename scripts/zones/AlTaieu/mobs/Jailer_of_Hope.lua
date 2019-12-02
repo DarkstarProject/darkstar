@@ -7,17 +7,17 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobSpawn(mob)
     mob:setSpellList(0); -- If it dies with the ability to cast spells, the next spawn would be able to cast from the start.
-    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 20); -- This gives around 6 - 15 seconds between casts. Doesn't seem to work anywhere except in this function.
+    mob:setMobMod(tpz.mobMod.MAGIC_COOL, 20); -- This gives around 6 - 15 seconds between casts. Doesn't seem to work anywhere except in this function.
 
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.MIGHTY_STRIKES, cooldown = 90, hpp = math.random(85, 95)}, -- "May use Mighty Strikes multiple times."
+            {id = tpz.jsa.MIGHTY_STRIKES, cooldown = 90, hpp = math.random(85, 95)}, -- "May use Mighty Strikes multiple times."
         },
     })
 end;
@@ -37,7 +37,7 @@ function onMobWeaponSkill(target, mob, skill)
 end;
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.STUN, {chance = 65, duration = math.random(4, 8)})
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.STUN, {chance = 65, duration = math.random(4, 8)})
 end
 
 function onMobDeath(mob, player, isKiller)

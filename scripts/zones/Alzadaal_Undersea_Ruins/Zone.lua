@@ -40,16 +40,16 @@ end
 function onZoneIn(player,prevZone)
     local cs = -1
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        if prevZone == dsp.zone.ARRAPAGO_REMNANTS then
+        if prevZone == tpz.zone.ARRAPAGO_REMNANTS then
             player:setPos(-579, 0.05, -100, 192)
         else
             player:setPos(222.798, -0.5, 19.872, 0)
         end
     end
 
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_DARKNESS and player:getCharVar("AhtUrganStatus") == 2 then
+    if player:getCurrentMission(TOAU) == tpz.mission.id.toau.PATH_OF_DARKNESS and player:getCharVar("AhtUrganStatus") == 2 then
         cs = 7
-    elseif player:getCurrentMission(TOAU) == dsp.mission.id.toau.NASHMEIRAS_PLEA and player:getCharVar("AhtUrganStatus") == 2 then
+    elseif player:getCurrentMission(TOAU) == tpz.mission.id.toau.NASHMEIRAS_PLEA and player:getCharVar("AhtUrganStatus") == 2 then
         cs = 10
     end
 
@@ -132,8 +132,8 @@ function onRegionEnter(player,region)
             player:startEvent(210)
         end,
         [23] = function (x)
-            if player:getCurrentMission(TOAU) == dsp.mission.id.toau.UNDERSEA_SCOUTING then
-                player:startEvent(1, dsp.besieged.getMercenaryRank(player))
+            if player:getCurrentMission(TOAU) == tpz.mission.id.toau.UNDERSEA_SCOUTING then
+                player:startEvent(1, tpz.besieged.getMercenaryRank(player))
             end
         end,
     }
@@ -159,20 +159,20 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 1 then
-        player:addKeyItem(dsp.ki.ASTRAL_COMPASS)
-        player:completeMission(TOAU,dsp.mission.id.toau.UNDERSEA_SCOUTING)
-        player:addMission(TOAU,dsp.mission.id.toau.ASTRAL_WAVES)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ASTRAL_COMPASS)
+        player:addKeyItem(tpz.ki.ASTRAL_COMPASS)
+        player:completeMission(TOAU,tpz.mission.id.toau.UNDERSEA_SCOUTING)
+        player:addMission(TOAU,tpz.mission.id.toau.ASTRAL_WAVES)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.ASTRAL_COMPASS)
     elseif csid == 7 then
-        player:completeMission(TOAU,dsp.mission.id.toau.PATH_OF_DARKNESS)
-        player:setTitle(dsp.title.NAJAS_COMRADEINARMS)
+        player:completeMission(TOAU,tpz.mission.id.toau.PATH_OF_DARKNESS)
+        player:setTitle(tpz.title.NAJAS_COMRADEINARMS)
         player:setCharVar("AhtUrganStatus",0)
-        player:addMission(TOAU,dsp.mission.id.toau.FANGS_OF_THE_LION)
+        player:addMission(TOAU,tpz.mission.id.toau.FANGS_OF_THE_LION)
     elseif csid == 10 then
-        player:completeMission(TOAU,dsp.mission.id.toau.NASHMEIRAS_PLEA)
-        player:setTitle(dsp.title.PREVENTER_OF_RAGNAROK)
+        player:completeMission(TOAU,tpz.mission.id.toau.NASHMEIRAS_PLEA)
+        player:setTitle(tpz.title.PREVENTER_OF_RAGNAROK)
         player:setCharVar("AhtUrganStatus",0)
-        player:addMission(TOAU,dsp.mission.id.toau.RAGNAROK)
+        player:addMission(TOAU,tpz.mission.id.toau.RAGNAROK)
     elseif csid == 116 and player:getLocalVar("SalvageArrapago") == 1 then -- enter Salvage Silver Sea zone
         player:setPos(0,0,0,0,74)
     elseif csid == 116 and player:getLocalVar("SalvageSilverSea") == 1 then -- enter Salvage Arrapago zone

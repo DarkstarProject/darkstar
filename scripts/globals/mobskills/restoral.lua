@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     if mob:getPool() == 243 then
         heal = heal * 2.5
     end
-    skill:setMsg(dsp.msg.basic.SELF_HEAL)
+    skill:setMsg(tpz.msg.basic.SELF_HEAL)
 
     return MobHealMove(mob, heal)
 end

@@ -13,16 +13,16 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local fangedOne = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_FANGED_ONE)
+    local fangedOne = player:getQuestStatus(WINDURST, tpz.quest.id.windurst.THE_FANGED_ONE)
     local fangedOneCS = player:getCharVar("TheFangedOneCS")
 
     -- THE FANGED ONE
     if fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID(ID.mob.OLD_SABERTOOTH):isSpawned() then
-        SpawnMob(ID.mob.OLD_SABERTOOTH):addStatusEffect(dsp.effect.POISON, 40, 10, 210)
+        SpawnMob(ID.mob.OLD_SABERTOOTH):addStatusEffect(tpz.effect.POISON, 40, 10, 210)
         player:messageSpecial(ID.text.OLD_SABERTOOTH_DIALOG_I)
-    elseif fangedOne == QUEST_ACCEPTED and fangedOneCS == 2 and not player:hasKeyItem(dsp.ki.OLD_TIGERS_FANG) then
-        player:addKeyItem(dsp.ki.OLD_TIGERS_FANG)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.OLD_TIGERS_FANG)
+    elseif fangedOne == QUEST_ACCEPTED and fangedOneCS == 2 and not player:hasKeyItem(tpz.ki.OLD_TIGERS_FANG) then
+        player:addKeyItem(tpz.ki.OLD_TIGERS_FANG)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.OLD_TIGERS_FANG)
         player:setCharVar("TheFangedOneCS", 0)
 
     -- DEFAULT DIALOG

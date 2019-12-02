@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         1241,   354,3      --Twinkle Powder
     }
 
-    rank = getNationRank(dsp.nation.WINDURST);
+    rank = getNationRank(tpz.nation.WINDURST);
     if (rank ~= 1) then
         table.insert(stock,1022); --Thief's Tools
         table.insert(stock,3643);
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
         table.insert(stock,5520);
         table.insert(stock,3);
     end
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST);
 
 end;
 

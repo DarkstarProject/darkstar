@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -138,7 +136,7 @@ protected:
     template<typename T, typename... Args>
     bool ChangeState(Args&&... args)
     {
-        DSP_DEBUG_BREAK_IF(m_stateStack.size() > 10);
+        TPZ_DEBUG_BREAK_IF(m_stateStack.size() > 10);
         if (CanChangeState())
         {
             try
@@ -157,7 +155,7 @@ protected:
     template<typename T, typename... Args>
     bool ForceChangeState(Args&&... args)
     {
-        DSP_DEBUG_BREAK_IF(m_stateStack.size() > 10);
+        TPZ_DEBUG_BREAK_IF(m_stateStack.size() > 10);
         try
         {
             CheckCompletedStates();

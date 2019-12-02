@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.VALLEY_OF_SORROWS] =
+zones[tpz.zone.VALLEY_OF_SORROWS] =
 {
     text =
     {
@@ -40,4 +40,4 @@ zones[dsp.zone.VALLEY_OF_SORROWS] =
     },
 }
 
-return zones[dsp.zone.VALLEY_OF_SORROWS]
+return zones[tpz.zone.VALLEY_OF_SORROWS]

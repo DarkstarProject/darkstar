@@ -9,8 +9,8 @@ require("scripts/globals/magic")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.REFRESH, 1)
-    mob:setMobMod(dsp.mobMod.TELEPORT_CD, 30)
+    mob:setMod(tpz.mod.REFRESH, 1)
+    mob:setMobMod(tpz.mobMod.TELEPORT_CD, 30)
 end;
 
 function onMobSpawn(mob)
@@ -42,7 +42,7 @@ function onMobRoam(mob)
 end
 
 function onMobEngaged(mob, target)
-    mob:setMobMod(dsp.mobMod.TELEPORT_TYPE, 0)
+    mob:setMobMod(tpz.mobMod.TELEPORT_TYPE, 0)
 end
 
 function onMobFight(mob, target)
@@ -51,7 +51,7 @@ function onMobFight(mob, target)
         mob:setLocalVar("saidMessage", 1)
     end
     if target:isEngaged() then
-        mob:setMobMod(dsp.mobMod.TELEPORT_TYPE, 1)
+        mob:setMobMod(tpz.mobMod.TELEPORT_TYPE, 1)
     end
 end
 

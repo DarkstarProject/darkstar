@@ -27,25 +27,25 @@ function onEventFinish(player,csid,option)
 
         if (c == 0) then
             player:setCharVar("countRedPoolForORB", c + 1);
-            player:delKeyItem(dsp.ki.WHITE_ORB);
-            player:addKeyItem(dsp.ki.PINK_ORB);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.PINK_ORB);
+            player:delKeyItem(tpz.ki.WHITE_ORB);
+            player:addKeyItem(tpz.ki.PINK_ORB);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.PINK_ORB);
         elseif (c == 2 or c == 4 or c == 8) then
             player:setCharVar("countRedPoolForORB", c + 1);
-            player:delKeyItem(dsp.ki.PINK_ORB);
-            player:addKeyItem(dsp.ki.RED_ORB);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.RED_ORB);
+            player:delKeyItem(tpz.ki.PINK_ORB);
+            player:addKeyItem(tpz.ki.RED_ORB);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.RED_ORB);
         elseif (c == 6 or c == 10 or c == 12) then
             player:setCharVar("countRedPoolForORB", c + 1);
-            player:delKeyItem(dsp.ki.RED_ORB);
-            player:addKeyItem(dsp.ki.BLOOD_ORB);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BLOOD_ORB);
+            player:delKeyItem(tpz.ki.RED_ORB);
+            player:addKeyItem(tpz.ki.BLOOD_ORB);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.BLOOD_ORB);
         elseif (c == 14) then
             player:setCharVar("countRedPoolForORB", c + 1);
-            player:delKeyItem(dsp.ki.BLOOD_ORB);
-            player:addKeyItem(dsp.ki.CURSED_ORB);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CURSED_ORB);
-            player:addStatusEffect(dsp.effect.CURSE_I,50,0,900);
+            player:delKeyItem(tpz.ki.BLOOD_ORB);
+            player:addKeyItem(tpz.ki.CURSED_ORB);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.CURSED_ORB);
+            player:addStatusEffect(tpz.effect.CURSE_I,50,0,900);
         end
     end
 

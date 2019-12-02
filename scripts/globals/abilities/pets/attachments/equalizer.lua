@@ -10,7 +10,7 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    updateModPerformance(pet, dsp.mod.AUTO_EQUALIZER, 'equalizer_mod', 0)
+    updateModPerformance(pet, tpz.mod.AUTO_EQUALIZER, 'equalizer_mod', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
@@ -23,12 +23,12 @@ end
 
 function onUpdate(pet, maneuvers)
     if maneuvers == 0 then
-        updateModPerformance(pet, dsp.mod.AUTO_EQUALIZER, 'equalizer_mod', 9)
+        updateModPerformance(pet, tpz.mod.AUTO_EQUALIZER, 'equalizer_mod', 9)
     elseif maneuvers == 1 then
-        updateModPerformance(pet, dsp.mod.AUTO_EQUALIZER, 'equalizer_mod', 24)
+        updateModPerformance(pet, tpz.mod.AUTO_EQUALIZER, 'equalizer_mod', 24)
     elseif maneuvers == 2 then
-        updateModPerformance(pet, dsp.mod.AUTO_EQUALIZER, 'equalizer_mod', 48)
+        updateModPerformance(pet, tpz.mod.AUTO_EQUALIZER, 'equalizer_mod', 48)
     elseif maneuvers == 3 then
-        updateModPerformance(pet, dsp.mod.AUTO_EQUALIZER, 'equalizer_mod', 72)
+        updateModPerformance(pet, tpz.mod.AUTO_EQUALIZER, 'equalizer_mod', 72)
     end
 end

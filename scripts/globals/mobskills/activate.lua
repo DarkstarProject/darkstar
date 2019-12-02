@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     mob:spawnPet()
 
-    skill:setMsg(dsp.msg.basic.NONE)
+    skill:setMsg(tpz.msg.basic.NONE)
 
     return 0
 end

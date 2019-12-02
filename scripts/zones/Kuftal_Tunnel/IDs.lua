@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.KUFTAL_TUNNEL] =
+zones[tpz.zone.KUFTAL_TUNNEL] =
 {
     text =
     {
@@ -112,4 +112,4 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
     },
 }
 
-return zones[dsp.zone.KUFTAL_TUNNEL]
+return zones[tpz.zone.KUFTAL_TUNNEL]

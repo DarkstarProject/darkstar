@@ -8,7 +8,7 @@ require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldTick(battlefield, tick)
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+    tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 
@@ -20,8 +20,8 @@ end;
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
     player:setCharVar("characterLimbusKey",GetServerVariable("[NW_Apollyon]UniqueID"));
-    player:delKeyItem(dsp.ki.COSMOCLEANSE);
-    player:delKeyItem(dsp.ki.RED_CARD);
+    player:delKeyItem(tpz.ki.COSMOCLEANSE);
+    player:delKeyItem(tpz.ki.RED_CARD);
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
@@ -30,7 +30,7 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
     --print("leave code "..leavecode);
-    if leavecode == dsp.battlefield.leaveCode.LOST then
+    if leavecode == tpz.battlefield.leaveCode.LOST then
         SetServerVariable("[NW_Apollyon]UniqueID",0);
         player:setPos(-668,0.1,-666);
     end

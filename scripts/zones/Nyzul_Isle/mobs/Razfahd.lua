@@ -7,7 +7,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.NO_MOVE, 1);
+    mob:setMobMod(tpz.mobMod.NO_MOVE, 1);
 end;
 
 function onMobSpawn(mob)

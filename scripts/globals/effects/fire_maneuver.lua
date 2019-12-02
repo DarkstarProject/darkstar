@@ -7,7 +7,7 @@
 function onEffectGain(target,effect)
     local pet = target:getPet()
     if (pet) then
-        pet:addMod(dsp.mod.STR, effect:getPower())
+        pet:addMod(tpz.mod.STR, effect:getPower())
     end
 end
 
@@ -17,6 +17,6 @@ end
 function onEffectLose(target,effect)
     local pet = target:getPet()
     if (pet) then
-        pet:delMod(dsp.mod.STR, effect:getPower())
+        pet:delMod(tpz.mod.STR, effect:getPower())
     end
 end

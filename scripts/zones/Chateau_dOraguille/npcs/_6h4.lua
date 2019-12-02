@@ -19,28 +19,28 @@ function onTrigger(player,npc)
     local MissionStatus = player:getCharVar("MissionStatus");
 
     -- Mission San D'Oria 9-2 The Heir to the Light
-    if (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then
+    if (currentMission == tpz.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then
         player:startEvent(8);
     -- Mission San D'Oria 9-1 Breaking Barriers
-    elseif (currentMission == dsp.mission.id.sandoria.BREAKING_BARRIERS and MissionStatus == 4) then
-        if (player:hasKeyItem(dsp.ki.FIGURE_OF_TITAN) and player:hasKeyItem(dsp.ki.FIGURE_OF_GARUDA) and player:hasKeyItem(dsp.ki.FIGURE_OF_LEVIATHAN)) then
+    elseif (currentMission == tpz.mission.id.sandoria.BREAKING_BARRIERS and MissionStatus == 4) then
+        if (player:hasKeyItem(tpz.ki.FIGURE_OF_TITAN) and player:hasKeyItem(tpz.ki.FIGURE_OF_GARUDA) and player:hasKeyItem(tpz.ki.FIGURE_OF_LEVIATHAN)) then
             player:startEvent(76);
         end
-    elseif (currentMission == dsp.mission.id.sandoria.BREAKING_BARRIERS and MissionStatus == 0) then
+    elseif (currentMission == tpz.mission.id.sandoria.BREAKING_BARRIERS and MissionStatus == 0) then
         player:startEvent(32);
         -- Mission San D'Oria 8-2 Lightbringer
-    elseif (currentMission == dsp.mission.id.sandoria.LIGHTBRINGER and MissionStatus == 6) then
+    elseif (currentMission == tpz.mission.id.sandoria.LIGHTBRINGER and MissionStatus == 6) then
         player:startEvent(104);
-    elseif (currentMission == dsp.mission.id.sandoria.LIGHTBRINGER and MissionStatus == 0) then
+    elseif (currentMission == tpz.mission.id.sandoria.LIGHTBRINGER and MissionStatus == 0) then
         player:startEvent(100);
     -- Mission San D'Oria 6-1 Leaute's Last Wishes
-    elseif (currentMission == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
+    elseif (currentMission == tpz.mission.id.sandoria.LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
         player:startEvent(87);
     -- Mission San D'Oria 5-2 The Shadow Lord
-    elseif (currentMission == dsp.mission.id.sandoria.THE_SHADOW_LORD and MissionStatus == 5) then
+    elseif (currentMission == tpz.mission.id.sandoria.THE_SHADOW_LORD and MissionStatus == 5) then
         player:startEvent(61);
     -- Mission San D'Oria 3-3 Appointment to Jeuno
-    elseif (currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 2) then
+    elseif (currentMission == tpz.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 2) then
         player:startEvent(537);
     else
         player:startEvent(514);
@@ -57,8 +57,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 537) then
         player:setCharVar("MissionStatus",3);
-        player:addKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
+        player:addKeyItem(tpz.ki.LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 61) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 87) then

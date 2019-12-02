@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 
 The StatusEffeectContainer manages status effects on battleentities.
@@ -156,7 +154,7 @@ namespace effects
 CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
 {
     m_POwner = PEntity;
-    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     memset(m_StatusIcons, 0xFF, sizeof(m_StatusIcons));
     m_StatusEffectList.reserve(32);
@@ -675,7 +673,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        auto rndIdx = dsprand::GetRandomNumber(erasableList.size());
+        auto rndIdx = tpzrand::GetRandomNumber(erasableList.size());
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -698,7 +696,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
     }
     if (!waltzableList.empty())
     {
-        auto rndIdx = dsprand::GetRandomNumber(waltzableList.size());
+        auto rndIdx = tpzrand::GetRandomNumber(waltzableList.size());
         EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(waltzableList.at(rndIdx));
         return result;
@@ -747,7 +745,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
     }
     if (!dispelableList.empty())
     {
-        auto rndIdx = dsprand::GetRandomNumber(dispelableList.size());
+        auto rndIdx = tpzrand::GetRandomNumber(dispelableList.size());
         EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(dispelableList.at(rndIdx), true);
         return result;
@@ -865,7 +863,7 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration)
 {
     //break if not a COR roll.
-    DSP_DEBUG_BREAK_IF(!((PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+    TPZ_DEBUG_BREAK_IF(!((PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
         PStatusEffect->GetStatusID() <= EFFECT_NATURALISTS_ROLL) || (PStatusEffect->GetStatusID() == EFFECT_RUNEISTS_ROLL)));
 
     //if all match tier/id/effect then overwrite
@@ -1136,7 +1134,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect(EFFECTFLAG flag)
     }
     if (!dispelableList.empty())
     {
-        auto rndIdx = dsprand::GetRandomNumber(dispelableList.size());
+        auto rndIdx = tpzrand::GetRandomNumber(dispelableList.size());
         uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
@@ -1205,9 +1203,9 @@ void CStatusEffectContainer::UpdateStatusIcons()
 
 void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 {
-    DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() >= MAX_EFFECTID);
-    DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_FOOD && StatusEffect->GetSubID() == 0);
-    DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_NONE && StatusEffect->GetSubID() == 0);
+    TPZ_DEBUG_BREAK_IF(StatusEffect->GetStatusID() >= MAX_EFFECTID);
+    TPZ_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_FOOD && StatusEffect->GetSubID() == 0);
+    TPZ_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_NONE && StatusEffect->GetSubID() == 0);
 
     string_t name;
     EFFECT effect = StatusEffect->GetStatusID();
@@ -1273,7 +1271,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
 void CStatusEffectContainer::LoadStatusEffects()
 {
-    DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
+    TPZ_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
     const char* Query =
         "SELECT "
@@ -1355,7 +1353,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 
 void CStatusEffectContainer::SaveStatusEffects(bool logout)
 {
-    DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
+    TPZ_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
     Sql_Query(SqlHandle, "DELETE FROM char_effects WHERE charid = %u", m_POwner->id);
 
@@ -1435,7 +1433,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
 void CStatusEffectContainer::CheckEffectsExpiry(time_point tick)
 {
-    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -1458,7 +1456,7 @@ void CStatusEffectContainer::CheckEffectsExpiry(time_point tick)
 
 void CStatusEffectContainer::TickEffects(time_point tick)
 {
-    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     if (!m_POwner->isDead())
     {
@@ -1484,7 +1482,7 @@ void CStatusEffectContainer::TickEffects(time_point tick)
 
 void CStatusEffectContainer::TickRegen(time_point tick)
 {
-    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     if (!m_POwner->isDead())
     {

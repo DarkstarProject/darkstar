@@ -12,7 +12,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobFight(mob,target)
-    if (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON) == false and mob:actionQueueEmpty() == true) then
+    if (mob:hasStatusEffect(tpz.effect.BLOOD_WEAPON) == false and mob:actionQueueEmpty() == true) then
         local changeTime = mob:getLocalVar("changeTime");
         local twohourTime = mob:getLocalVar("twohourTime");
 
@@ -26,7 +26,7 @@ function onMobFight(mob,target)
             mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+20);
         elseif (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(dsp.effect.TOO_HIGH, 0, 1, 0, 0);
+            mob:addStatusEffectEx(tpz.effect.TOO_HIGH, 0, 1, 0, 0);
             mob:SetMobSkillAttack(732);
             -- and record the time this phase was started
             mob:setLocalVar("changeTime", mob:getBattleTime());
@@ -38,7 +38,7 @@ function onMobFight(mob,target)
         -- subanimation 2 is grounded mode, so check if he should take off
         elseif (mob:AnimationSub() == 2 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(dsp.effect.TOO_HIGH, 0, 1, 0, 0);
+            mob:addStatusEffectEx(tpz.effect.TOO_HIGH, 0, 1, 0, 0);
             mob:SetMobSkillAttack(732);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
@@ -61,7 +61,7 @@ function onMobWeaponSkill(target, mob, skill)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.WORLD_SERPENT_SLAYER);
+    player:addTitle(tpz.title.WORLD_SERPENT_SLAYER);
 end;
 
 function onMobDespawn(mob)

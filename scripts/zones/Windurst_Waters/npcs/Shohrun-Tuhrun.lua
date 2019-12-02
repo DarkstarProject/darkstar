@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         4736, 74520,3,     --Scroll of Protectra IV
         4868, 64400,3      --Scroll of Dispel
     }
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST);
 
 end;
 

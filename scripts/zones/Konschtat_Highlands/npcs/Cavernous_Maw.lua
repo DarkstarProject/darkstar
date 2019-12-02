@@ -18,8 +18,8 @@ function onTrigger(player, npc)
     if ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30 then
         if
             getTravStonesTotal(player) >= 1 and
-            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED and
-            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.TO_PASTE_A_PEISTE) == QUEST_AVAILABLE
+            player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED and
+            player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.TO_PASTE_A_PEISTE) == QUEST_AVAILABLE
         then
             player:startEvent(0)
         else
@@ -35,7 +35,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 0 then
-        player:addQuest(ABYSSEA, dsp.quest.id.abyssea.TO_PASTE_A_PEISTE)
+        player:addQuest(ABYSSEA, tpz.quest.id.abyssea.TO_PASTE_A_PEISTE)
     elseif csid == 1 then
         -- Killed Kukulkan
     elseif csid == 107 and option == 1 then

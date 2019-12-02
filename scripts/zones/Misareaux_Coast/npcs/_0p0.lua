@@ -15,23 +15,23 @@ function onTrigger(player,npc)
     local copStat = player:getCharVar("PromathiaStatus");
     
     -- AN ETERNAL MEMORY (PM2-4)
-    if (cop == dsp.mission.id.cop.AN_ETERNAL_MELODY and copStat == 1) then
+    if (cop == tpz.mission.id.cop.AN_ETERNAL_MELODY and copStat == 1) then
         player:startEvent(5);
 
     -- SHELTERING DOUBT (PM4-1)
-    elseif (cop == dsp.mission.id.cop.SHELTERING_DOUBT and copStat == 3) then
+    elseif (cop == tpz.mission.id.cop.SHELTERING_DOUBT and copStat == 3) then
         player:startEvent(7);
 
     -- A PLACE TO RETURN (PM6-2)
     elseif (
-        cop == dsp.mission.id.cop.A_PLACE_TO_RETURN and copStat == 1 and
+        cop == tpz.mission.id.cop.A_PLACE_TO_RETURN and copStat == 1 and
         player:getCharVar("Warder_Aglaia_KILL") == 1 and
         player:getCharVar("Warder_Euphrosyne_KILL") == 1 and
         player:getCharVar("Warder_Thalia_KILL") == 1
     ) then
         player:startEvent(10);
     elseif (
-        cop == dsp.mission.id.cop.A_PLACE_TO_RETURN and copStat == 1 and
+        cop == tpz.mission.id.cop.A_PLACE_TO_RETURN and copStat == 1 and
         not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 0):isSpawned() and
         not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 1):isSpawned() and
         not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 2):isSpawned()
@@ -57,8 +57,8 @@ function onEventFinish(player,csid,option)
     -- SHELTERING DOUBT (PM4-1)
     elseif (csid == 7) then
         player:setCharVar("PromathiaStatus",0);
-        player:completeMission(COP,dsp.mission.id.cop.SHELTERING_DOUBT);
-        player:addMission(COP,dsp.mission.id.cop.THE_SAVAGE);
+        player:completeMission(COP,tpz.mission.id.cop.SHELTERING_DOUBT);
+        player:addMission(COP,tpz.mission.id.cop.THE_SAVAGE);
 
     -- A PLACE TO RETURN (PM6-2)
     elseif (csid == 10) then
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:setCharVar("Warder_Aglaia_KILL",0);
         player:setCharVar("Warder_Euphrosyne_KILL",0);
         player:setCharVar("Warder_Thalia_KILL",0);
-        player:completeMission(COP,dsp.mission.id.cop.A_PLACE_TO_RETURN);
-        player:addMission(COP,dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS);
+        player:completeMission(COP,tpz.mission.id.cop.A_PLACE_TO_RETURN);
+        player:addMission(COP,tpz.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS);
     end
 end;

@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    crisisstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
+    crisisstatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.A_CRISIS_IN_THE_MAKING);
     if (crisisstatus >= 1 and player:getCharVar("QuestCrisisMaking_var") == 1) then
         player:startEvent(53); -- A Crisis in the Making: Receive Offering
     else
@@ -28,8 +28,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 53 and option == 1) then
-        player:addKeyItem(39,dsp.ki.OFF_OFFERING);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OFF_OFFERING);
+        player:addKeyItem(39,tpz.ki.OFF_OFFERING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.OFF_OFFERING);
         player:setCharVar("QuestCrisisMaking_var",2);
     end
 end;

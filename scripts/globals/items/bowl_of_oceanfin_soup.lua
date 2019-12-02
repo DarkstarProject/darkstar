@@ -15,36 +15,36 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
-        result = dsp.msg.basic.IS_FULL
+    if target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,6070)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,14400,6070)
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.FOOD_ACCP, 15)
-    target:addMod(dsp.mod.FOOD_ACC_CAP, 95)
-    target:addMod(dsp.mod.FOOD_RACCP, 15)
-    target:addMod(dsp.mod.FOOD_RACC_CAP, 95)
-    target:addMod(dsp.mod.FOOD_ATTP, 19)
-    target:addMod(dsp.mod.FOOD_ATT_CAP, 85)
-    target:addMod(dsp.mod.FOOD_RATTP, 19)
-    target:addMod(dsp.mod.FOOD_RATT_CAP, 85)
-    target:addMod(dsp.mod.AMORPH_KILLER, 6)
+    target:addMod(tpz.mod.FOOD_ACCP, 15)
+    target:addMod(tpz.mod.FOOD_ACC_CAP, 95)
+    target:addMod(tpz.mod.FOOD_RACCP, 15)
+    target:addMod(tpz.mod.FOOD_RACC_CAP, 95)
+    target:addMod(tpz.mod.FOOD_ATTP, 19)
+    target:addMod(tpz.mod.FOOD_ATT_CAP, 85)
+    target:addMod(tpz.mod.FOOD_RATTP, 19)
+    target:addMod(tpz.mod.FOOD_RATT_CAP, 85)
+    target:addMod(tpz.mod.AMORPH_KILLER, 6)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.FOOD_ACCP, 15)
-    target:delMod(dsp.mod.FOOD_ACC_CAP, 95)
-    target:delMod(dsp.mod.FOOD_RACCP, 15)
-    target:delMod(dsp.mod.FOOD_RACC_CAP, 95)
-    target:delMod(dsp.mod.FOOD_ATTP, 19)
-    target:delMod(dsp.mod.FOOD_ATT_CAP, 85)
-    target:delMod(dsp.mod.FOOD_RATTP, 19)
-    target:delMod(dsp.mod.FOOD_RATT_CAP, 85)
-    target:delMod(dsp.mod.AMORPH_KILLER, 6)
+    target:delMod(tpz.mod.FOOD_ACCP, 15)
+    target:delMod(tpz.mod.FOOD_ACC_CAP, 95)
+    target:delMod(tpz.mod.FOOD_RACCP, 15)
+    target:delMod(tpz.mod.FOOD_RACC_CAP, 95)
+    target:delMod(tpz.mod.FOOD_ATTP, 19)
+    target:delMod(tpz.mod.FOOD_ATT_CAP, 85)
+    target:delMod(tpz.mod.FOOD_RATTP, 19)
+    target:delMod(tpz.mod.FOOD_RATT_CAP, 85)
+    target:delMod(tpz.mod.AMORPH_KILLER, 6)
 end

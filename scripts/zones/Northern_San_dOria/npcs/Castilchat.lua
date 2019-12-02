@@ -14,9 +14,9 @@ function onTrade(player,npc,trade)
 
     -- "Flyers for Regine" conditional script
     local count = trade:getItemCount();
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:hasItemQty(532,1) and count == 1) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:hasItemQty(532,1) and count == 1) then
         player:messageSpecial(ID.text.FLYER_REFUSED);
-    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN and count == 1) then -- Trade mini fork of ice
+    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == tpz.job.SMN and count == 1) then -- Trade mini fork of ice
         player:startEvent(734,0,1545,4,20);
     end
 
@@ -24,9 +24,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialSizeByIce = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
+    local TrialSizeByIce = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
 
-    if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then -- Requires player to be Summoner at least lvl 20
+    if (player:getMainLvl() >= 20 and player:getMainJob() == tpz.job.SMN and TrialSizeByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then -- Requires player to be Summoner at least lvl 20
         player:startEvent(733,0,1545,4,20);     --mini tuning fork of ice, zone, level
     elseif (TrialSizeByIce == QUEST_ACCEPTED) then
         local IceFork = player:hasItem(1545);
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1545);
         else
             player:setCharVar("TrialSizeIce_date", 0);
-            player:addQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
+            player:addQuest(SANDORIA,tpz.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
             player:addItem(1545);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1545);
         end
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,1545);
         end
     elseif (csid == 734 and option == 1) then
-        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_FROST);
+        tpz.teleport.to(player, tpz.teleport.id.CLOISTER_OF_FROST);
     end
 
 end;

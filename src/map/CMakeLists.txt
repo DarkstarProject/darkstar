@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(darkstar)
+project(topaz)
 
 add_definitions(
     -DdsUDPSERV
@@ -14,7 +14,7 @@ else()
     set(resource "../../win32/vcxproj/gameserver.rc")
 endif()
 
-add_executable(DSGame-server
+add_executable(TPZGame-server
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
     ../common/detour/DetourAlloc.cpp
@@ -35,14 +35,14 @@ add_executable(DSGame-server
     ${resource}
 )
 
-set_target_properties(DSGame-server PROPERTIES OUTPUT_NAME DSGame-server${spacer}${platform_suffix})
+set_target_properties(TPZGame-server PROPERTIES OUTPUT_NAME TPZGame-server${spacer}${platform_suffix})
 
 if(UNIX)
-    target_include_directories(DSGame-server PRIVATE
+    target_include_directories(TPZGame-server PRIVATE
         ${MYSQLCLIENT_INCLUDE_DIRS}
         ${LUAJIT_INCLUDE_DIRS}
     )
-    target_link_libraries(DSGame-server
+    target_link_libraries(TPZGame-server
         ${MYSQLCLIENT_LIBRARIES}
         ${ZMQ_LIBRARIES}
         ${LUAJIT_LIBRARIES}
@@ -50,17 +50,17 @@ if(UNIX)
     )
 
     if(APPLE)
-        target_link_options(DSGame-server PUBLIC -pagezero_size 10000 -image_base 100000000)
+        target_link_options(TPZGame-server PUBLIC -pagezero_size 10000 -image_base 100000000)
     endif()
 else()
-    target_include_directories(DSGame-server PRIVATE
+    target_include_directories(TPZGame-server PRIVATE
         ../common
         ../../win32/external
         ../../win32/external/mysql
         ../../win32/external/zmq
     )
 
-    target_link_libraries(DSGame-server
+    target_link_libraries(TPZGame-server
         libmariadb${platform_suffix}
         lua51${spacer}${platform_suffix}
         libzmq${lib_debug}${spacer}${platform_suffix}

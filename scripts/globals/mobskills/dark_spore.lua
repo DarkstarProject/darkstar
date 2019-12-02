@@ -16,13 +16,13 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.BLINDNESS
+    local typeEffect = tpz.effect.BLINDNESS
     MobStatusEffectMove(mob, target, typeEffect, 15, 3, 120)
 
-    local dmgmod = MobBreathMove(mob, target, 0.25, 2, dsp.magic.ele.DARK, 800)
+    local dmgmod = MobBreathMove(mob, target, 0.25, 2, tpz.magic.ele.DARK, 800)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.DARK,MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,tpz.attackType.BREATH,tpz.damageType.DARK,MOBPARAM_IGNORE_SHADOWS)
 
-    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.DARK)
+    target:takeDamage(dmg, mob, tpz.attackType.BREATH, tpz.damageType.DARK)
     return dmg
 end

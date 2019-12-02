@@ -56,20 +56,20 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
+    npc:setPos(tpz.path.first(path));
     onPath(npc);
 
     -- test fromStart
-    local start = dsp.path.fromStart(path, 2);
-    local startFirst = dsp.path.get(path, 3);
+    local start = tpz.path.fromStart(path, 2);
+    local startFirst = tpz.path.get(path, 3);
 
     if (start[1] ~= startFirst[1] or start[2] ~= startFirst[2] or start[3] ~= startFirst[3]) then
         printf("[Error] start path is not right %f %f %f actually = %f %f %f", startFirst[1], startFirst[2], startFirst[3], start[1], start[2], start[3]);
     end
 
     -- test fromEnd
-    -- local endPt = dsp.path.fromEnd(path, 2);
-    -- local endFirst = dsp.path.get(path, 37);
+    -- local endPt = tpz.path.fromEnd(path, 2);
+    -- local endFirst = tpz.path.get(path, 37);
 
     -- if (endPt[1] ~= endFirst[1] or endPt[2] ~= endFirst[2] or endPt[3] ~= endFirst[3]) then
     --     printf("[Error] endPt path is not right %f %f %f actually = %f %f %f", endFirst[1], endFirst[2], endFirst[3], endPt[1], endPt[2], endPt[3]);
@@ -77,38 +77,38 @@ function onSpawn(npc)
 end;
 
 function onPath(npc)
-    if (npc:atPoint(dsp.path.get(path, 23))) then
+    if (npc:atPoint(tpz.path.get(path, 23))) then
         npc:lookAt(GetNPCByID(ID.npc.ARPETION):getPos());
         npc:wait();
-    elseif (npc:atPoint(dsp.path.get(path, -1))) then
+    elseif (npc:atPoint(tpz.path.get(path, -1))) then
         -- give package to Lusiane, wait 4 seconds, then continue
         local lus = GetNPCByID(ID.npc.LUSIANE);
         lus:showText(npc, ID.text.RAMINEL_DELIVERY);
         npc:showText(lus, ID.text.LUSIANE_THANK);
         npc:wait();
-    elseif (npc:atPoint(dsp.path.last(path))) then
+    elseif (npc:atPoint(tpz.path.last(path))) then
         -- when I walk away stop looking at me
         GetNPCByID(ID.npc.LUSIANE):clearTargID();
     end
 
     -- go back and forth the set path
-    dsp.path.patrol(npc, path);
+    tpz.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_1") == 1) then
+    if (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_1") == 1) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setCharVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(dsp.ki.SCOWLING_STONE);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
+            player:addKeyItem(tpz.ki.SCOWLING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.SCOWLING_STONE);
         end
     end
 

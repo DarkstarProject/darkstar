@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -30,17 +30,17 @@ function onTrigger(player,npc)
 --    player:startEvent(19)  -- thanks for your help i have to tell trion -- under oath
 --     player:startEvent(77)    -- a boys dream
 -- "Father and Son" Event Dialogs
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FATHER_AND_SON) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FATHER_AND_SON) == QUEST_ACCEPTED) then
         player:startEvent(542);
     elseif (player:getCharVar("aBoysDreamCS") == 2) then
         player:startEvent(50);
     elseif (player:getCharVar("aBoysDreamCS") >= 7) then
         player:startEvent(32);
-    elseif (player:getCharVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)) then
+    elseif (player:getCharVar("UnderOathCS") == 4 and player:hasKeyItem(tpz.ki.STRANGE_SHEET_OF_PAPER)) then
         player:startEvent(77);
     elseif (player:getCharVar("UnderOathCS") == 5) then
         player:startEvent(79);
-    elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getCharVar("UnderOathCS") == 6) then
+    elseif (player:hasKeyItem(tpz.ki.KNIGHTS_CONFESSION) and player:getCharVar("UnderOathCS") == 6) then
         player:startEvent(51);
     elseif (player:getCharVar("UnderOathCS") == 8) then
         player:startEvent(19);

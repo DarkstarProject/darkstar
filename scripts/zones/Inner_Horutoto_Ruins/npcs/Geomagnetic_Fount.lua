@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    dsp.geomagneticFount.checkFount(player, npc)
+    tpz.geomagneticFount.checkFount(player, npc)
 end
 
 function onEventUpdate(player, csid, option)

@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.AGI,effect:getPower())
+    target:addMod(tpz.mod.AGI,effect:getPower())
 end
 
 function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.AGI,effect:getPower())
+    target:delMod(tpz.mod.AGI,effect:getPower())
 end

@@ -11,11 +11,11 @@ require("scripts/globals/msg")
 function onAdditionalEffect(player,target,damage)
     local chance = 30
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.ICE,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,tpz.magic.ele.ICE,0) <= 0.5) then
         return 0,0,0
     else
-        target:delStatusEffect(dsp.effect.EVASION_BOOST)
-        target:addStatusEffect(dsp.effect.EVASION_DOWN, 10, 0, 30)
-        return dsp.subEffect.EVASION_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.EVASION_DOWN
+        target:delStatusEffect(tpz.effect.EVASION_BOOST)
+        target:addStatusEffect(tpz.effect.EVASION_DOWN, 10, 0, 30)
+        return tpz.subEffect.EVASION_DOWN, tpz.msg.basic.ADD_EFFECT_STATUS, tpz.effect.EVASION_DOWN
     end
 end

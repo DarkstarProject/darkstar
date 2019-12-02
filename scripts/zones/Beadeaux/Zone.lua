@@ -23,7 +23,7 @@ function onInitialize(zone)
     zone:registerRegion(5,  340, 10,  100, 0,0,0)
     zone:registerRegion(6,  380, 10,   60, 0,0,0)
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)
@@ -33,12 +33,12 @@ function onZoneIn(player,prevZone)
         player:setPos(387.382,38.029,19.694,3)
     end
 
-    if prevZone == dsp.zone.PASHHOW_MARSHLANDS then
-        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getCharVar("ChaosbringerKills") >= 100 then
+    if prevZone == tpz.zone.PASHHOW_MARSHLANDS then
+        if player:getQuestStatus(BASTOK, tpz.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getCharVar("ChaosbringerKills") >= 100 then
             cs = 121
-        elseif player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and player:getCharVar("MissionStatus") == 1 then
+        elseif player:getCurrentMission(BASTOK) == tpz.mission.id.bastok.THE_FOUR_MUSKETEERS and player:getCharVar("MissionStatus") == 1 then
             cs = 120
-        elseif player:getMainJob() == dsp.job.DRK and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_AVAILABLE then
+        elseif player:getMainJob() == tpz.job.DRK and player:getQuestStatus(BASTOK, tpz.quest.id.bastok.DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK, tpz.quest.id.bastok.BLADE_OF_EVIL) == QUEST_AVAILABLE then
             cs = 122
         end
     end
@@ -47,14 +47,14 @@ function onZoneIn(player,prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player,region)
     if region:GetRegionID() <= 6 then
-        if not player:hasStatusEffect(dsp.effect.CURSE_I) and not player:hasStatusEffect(dsp.effect.SILENCE) then
-            player:addStatusEffect(dsp.effect.CURSE_I, 50, 0, 300)
-            if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getCharVar("cCollectCurse") == 0 then
+        if not player:hasStatusEffect(tpz.effect.CURSE_I) and not player:hasStatusEffect(tpz.effect.SILENCE) then
+            player:addStatusEffect(tpz.effect.CURSE_I, 50, 0, 300)
+            if player:getQuestStatus(BASTOK, tpz.quest.id.bastok.THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getCharVar("cCollectCurse") == 0 then
                 player:setCharVar("cCollectCurse", 1)
             end
         end
@@ -68,13 +68,13 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if csid == 121 and npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS, {title=dsp.title.DARK_SIDER, var="ZeruhnMines_Zeid_CS"}) then
-        player:unlockJob(dsp.job.DRK)
+    if csid == 121 and npcUtil.completeQuest(player, BASTOK, tpz.quest.id.bastok.BLADE_OF_DARKNESS, {title=tpz.title.DARK_SIDER, var="ZeruhnMines_Zeid_CS"}) then
+        player:unlockJob(tpz.job.DRK)
         player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_DARK_KNIGHT)
     elseif csid == 120 then
         player:setCharVar("MissionStatus", 2)
         player:setPos(-297, 1, 96, 1)
     elseif csid == 122 then
-        player:addQuest(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL)
+        player:addQuest(BASTOK, tpz.quest.id.bastok.BLADE_OF_EVIL)
     end
 end

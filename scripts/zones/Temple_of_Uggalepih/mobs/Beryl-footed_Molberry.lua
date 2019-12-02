@@ -10,10 +10,10 @@ mixins =
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.MIJIN_GAKURE, hpp = math.random(20, 30)},
+            {id = tpz.jsa.MIJIN_GAKURE, hpp = math.random(20, 30)},
         },
     })
 end

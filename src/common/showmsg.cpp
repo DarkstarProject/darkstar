@@ -1,8 +1,6 @@
 /*
 ===========================================================================
 Copyright (c) Athena Dev Teams - Licensed under GNU G
-
-This file is part of DarkStar-server source code.
 ===========================================================================
 */
 

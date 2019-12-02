@@ -13,9 +13,9 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local Eati = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.EVIL_AT_THE_INLET)
+    local Eati = player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.EVIL_AT_THE_INLET)
 
-    if Eati == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.EVIL_WARDING_SEAL) then
+    if Eati == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.EVIL_WARDING_SEAL) then
         player:startEvent(112)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
@@ -27,6 +27,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 112 then
-        player:delKeyItem(dsp.ki.EVIL_WARDING_SEAL)
+        player:delKeyItem(tpz.ki.EVIL_WARDING_SEAL)
     end
 end

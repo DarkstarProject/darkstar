@@ -12,12 +12,12 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.DEDICATION) == true) then
+    if (target:hasStatusEffect(tpz.effect.DEDICATION) == true) then
         result = 56
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.DEDICATION,100,0,43200,0,3000)
+    target:addStatusEffect(tpz.effect.DEDICATION,100,0,43200,0,3000)
 end

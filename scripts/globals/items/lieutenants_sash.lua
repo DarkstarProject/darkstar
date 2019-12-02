@@ -11,6 +11,6 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:delStatusEffect(dsp.effect.FOOD)
-    target:delStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)
+    target:delStatusEffect(tpz.effect.FOOD)
+    target:delStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD)
 end

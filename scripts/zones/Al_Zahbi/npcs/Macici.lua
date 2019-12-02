@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 
     if guildMember == 1 then
         if trade:hasItemQty(2184,1) and trade:getItemCount() == 1 then
-            if player:hasStatusEffect(dsp.effect.SMITHING_IMAGERY) == false then
+            if player:hasStatusEffect(tpz.effect.SMITHING_IMAGERY) == false then
                 player:tradeComplete()
                 player:startEvent(233,8,0,0,0,188,0,2,0)
             else
@@ -26,10 +26,10 @@ end
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,8)
-    local SkillLevel = player:getSkillLevel(dsp.skill.SMITHING)
+    local SkillLevel = player:getSkillLevel(tpz.skill.SMITHING)
 
     if guildMember == 1 then
-        if player:hasStatusEffect(dsp.effect.SMITHING_IMAGERY) == false then
+        if player:hasStatusEffect(tpz.effect.SMITHING_IMAGERY) == false then
             player:startEvent(232,8,SkillLevel,0,511,188,0,2,2184)
         else
             player:startEvent(232,8,SkillLevel,0,511,188,6566,2,2184)
@@ -46,9 +46,9 @@ function onEventFinish(player,csid,option)
 
     if csid == 232 and option == 1 then
         player:messageSpecial(ID.text.IMAGE_SUPPORT,0,2,1)
-        player:addStatusEffect(dsp.effect.SMITHING_IMAGERY,1,0,120)
+        player:addStatusEffect(tpz.effect.SMITHING_IMAGERY,1,0,120)
     elseif csid == 233 then
         player:messageSpecial(ID.text.IMAGE_SUPPORT,0,2,0)
-        player:addStatusEffect(dsp.effect.SMITHING_IMAGERY,3,0,480)
+        player:addStatusEffect(tpz.effect.SMITHING_IMAGERY,3,0,480)
     end
 end

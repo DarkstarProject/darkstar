@@ -10,7 +10,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(COP) > dsp.mission.id.cop.THE_WARRIOR_S_PATH then
+    if player:getCurrentMission(COP) > tpz.mission.id.cop.THE_WARRIOR_S_PATH then
         player:startEvent(204)
     else
         player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE+1) -- Telepoint Disappeared

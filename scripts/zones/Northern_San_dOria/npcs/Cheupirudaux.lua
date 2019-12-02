@@ -11,21 +11,21 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,dsp.skill.WOODWORKING);
+    local newRank = tradeTestItem(player,npc,trade,tpz.skill.WOODWORKING);
 
     if (newRank ~= 0) then
-        player:setSkillRank(dsp.skill.WOODWORKING,newRank);
+        player:setSkillRank(tpz.skill.WOODWORKING,newRank);
         player:startEvent(622,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(dsp.skill.WOODWORKING);
-    local testItem = getTestItem(player,npc,dsp.skill.WOODWORKING);
+    local craftSkill = player:getSkillLevel(tpz.skill.WOODWORKING);
+    local testItem = getTestItem(player,npc,tpz.skill.WOODWORKING);
     local guildMember = isGuildMember(player,9);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,dsp.skill.WOODWORKING) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,tpz.skill.WOODWORKING) == 1) then getNewRank = 100; end
 
     player:startEvent(621,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;

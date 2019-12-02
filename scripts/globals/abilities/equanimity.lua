@@ -19,14 +19,14 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effect.EQUANIMITY) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
+    if player:hasStatusEffect(tpz.effect.EQUANIMITY) then
+        return tpz.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
     return 0,0
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.EQUANIMITY,player:getMerit(dsp.merit.EQUANIMITY),0,60)
+    player:addStatusEffect(tpz.effect.EQUANIMITY,player:getMerit(tpz.merit.EQUANIMITY),0,60)
 
-    return dsp.effect.EQUANIMITY
+    return tpz.effect.EQUANIMITY
 end

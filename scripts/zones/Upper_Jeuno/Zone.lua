@@ -10,7 +10,7 @@ require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.chocobo.initZone(zone)
+    tpz.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
     end
 
     -- COP mission 1-1
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_RITES_OF_LIFE and player:getCharVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_RITES_OF_LIFE and player:getCharVar("PromathiaStatus") == 0) then
         cs = 2;
     -- MOG HOUSE EXIT
     elseif (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

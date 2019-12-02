@@ -13,10 +13,10 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS) then
+    if player:hasKeyItem(tpz.ki.LEBROS_ASSAULT_ORDERS) then
         local assaultid = player:getCurrentAssault()
         local recommendedLevel = getRecommendedAssaultLevel(assaultid)
-        local armband = player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) and 1 or 0
+        local armband = player:hasKeyItem(tpz.ki.ASSAULT_ARMBAND) and 1 or 0
 
         player:startEvent(203, assaultid, -4, 0, recommendedLevel, 2, armband)
     else
@@ -44,7 +44,7 @@ function onEventUpdate(player, csid, option, target)
 
     if party then
         for i, v in ipairs(party) do
-            if not (v:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid) then
+            if not (v:hasKeyItem(tpz.ki.LEBROS_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid) then
                 player:messageText(target, ID.text.MEMBER_NO_REQS, false)
                 player:instanceEntry(target, 1)
                 return
@@ -71,8 +71,8 @@ function onInstanceCreated(player, target, instance)
         player:setCharVar("AssaultCap", 0)
         player:setInstance(instance)
         player:instanceEntry(target, 4)
-        player:delKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS)
-        player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)
+        player:delKeyItem(tpz.ki.LEBROS_ASSAULT_ORDERS)
+        player:delKeyItem(tpz.ki.ASSAULT_ARMBAND)
 
         local party = player:getParty()
         if party then
@@ -80,7 +80,7 @@ function onInstanceCreated(player, target, instance)
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance)
                     v:startEvent(208, 2)
-                    v:delKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS)
+                    v:delKeyItem(tpz.ki.LEBROS_ASSAULT_ORDERS)
                 end
             end
         end

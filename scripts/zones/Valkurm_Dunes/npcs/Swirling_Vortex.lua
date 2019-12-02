@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasCompletedMission(COP,dsp.mission.id.cop.THE_MOTHERCRYSTALS)) then
+    if (player:hasCompletedMission(COP,tpz.mission.id.cop.THE_MOTHERCRYSTALS)) then
         player:startEvent(12);
     else
         player:messageSpecial(ID.text.AN_EMPTY_LIGHT_SWIRLS);
@@ -28,7 +28,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 12 and option == 1) then
-        dsp.teleport.to(player, dsp.teleport.id.LUFAISE_VORTEX);
+        tpz.teleport.to(player, tpz.teleport.id.LUFAISE_VORTEX);
     end
 
 end;

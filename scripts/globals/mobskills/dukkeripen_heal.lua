@@ -9,7 +9,7 @@ require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if mob:getMainJob() == dsp.job.COR then
+    if mob:getMainJob() == tpz.job.COR then
         return 0
     else
         return 1
@@ -18,7 +18,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    skill:setMsg(dsp.msg.basic.SELF_HEAL)
+    skill:setMsg(tpz.msg.basic.SELF_HEAL)
     
     return MobHealMove(mob, math.random(350,500))
 end

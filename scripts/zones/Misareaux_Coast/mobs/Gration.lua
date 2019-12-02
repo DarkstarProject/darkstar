@@ -7,7 +7,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:addStatusEffect(dsp.effect.KILLER_INSTINCT, 40, 0, 0)
+    mob:addStatusEffect(tpz.effect.KILLER_INSTINCT, 40, 0, 0)
     mob:setLocalVar("fomorHateAdj", -2)
 end
 

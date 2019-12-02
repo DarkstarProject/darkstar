@@ -19,7 +19,7 @@ end
 
 function onMobFight(mob, target)
     -- ASA-4: Astral Flow Behavior - Guaranteed to Use At Least 5 times before killable, at specified intervals.
-    if mob:getBattlefieldID() == 547 and mob:getCurrentAction() == dsp.act.ATTACK then
+    if mob:getBattlefieldID() == 547 and mob:getCurrentAction() == tpz.act.ATTACK then
         local astralFlows = mob:getLocalVar("astralflows")
         if (astralFlows == 0 and mob:getHPP() <= 80)
         or (astralFlows == 1 and mob:getHPP() <= 60)

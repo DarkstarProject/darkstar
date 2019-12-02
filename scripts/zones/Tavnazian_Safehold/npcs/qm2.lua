@@ -13,19 +13,19 @@ require("scripts/globals/keyitems");
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED
--- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNFORGIVEN) == 0
--- means if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNFORGIVEN) == QUEST AVAILABLE
+-- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,tpz.quest.id.otherAreas.UNFORGIVEN) == 0
+-- means if (player:getQuestStatus(OTHER_AREAS_LOG,tpz.quest.id.otherAreas.UNFORGIVEN) == QUEST AVAILABLE
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
 
-local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNFORGIVEN);
+local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,tpz.quest.id.otherAreas.UNFORGIVEN);
 
-    if (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == false) then
-        player:addKeyItem(dsp.ki.ALABASTER_HAIRPIN);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ALABASTER_HAIRPIN) -- ALABASTER HAIRPIN for Unforgiven Quest
+    if (Unforgiven == 1 and player:hasKeyItem(tpz.ki.ALABASTER_HAIRPIN) == false) then
+        player:addKeyItem(tpz.ki.ALABASTER_HAIRPIN);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.ALABASTER_HAIRPIN) -- ALABASTER HAIRPIN for Unforgiven Quest
 
     end
 end

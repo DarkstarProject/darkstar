@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Northern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
 
     local realday = tonumber(tostring(os.date("%Y")) .. os.date("%m") .. os.date("%d"));
-    local TheMissingPiece = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.THE_MISSING_PIECE);
+    local TheMissingPiece = player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.THE_MISSING_PIECE);
 
-    if (TheMissingPiece == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC) and player:hasKeyItem(dsp.ki.LETTER_FROM_ALFESAR)) then
+    if (TheMissingPiece == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.TABLET_OF_ANCIENT_MAGIC) and player:hasKeyItem(tpz.ki.LETTER_FROM_ALFESAR)) then
         player:startEvent(703); -- Continuing the Quest
     elseif (TheMissingPiece == QUEST_ACCEPTED and realday < player:getCharVar("TheMissingPiece_date")) then
         player:startEvent(704); -- didn't wait a day yet
@@ -46,9 +46,9 @@ function onEventFinish(player,csid,option)
 
     if (csid == 703) then
         player:setCharVar("TheMissingPiece_date", tostring(os.date("%Y")) .. os.date("%m") .. os.date("%d") + 1);
-        player:addTitle(dsp.title.ACQUIRER_OF_ANCIENT_ARCANUM);
-        player:delKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC);
-        player:delKeyItem(dsp.ki.LETTER_FROM_ALFESAR);
+        player:addTitle(tpz.title.ACQUIRER_OF_ANCIENT_ARCANUM);
+        player:delKeyItem(tpz.ki.TABLET_OF_ANCIENT_MAGIC);
+        player:delKeyItem(tpz.ki.LETTER_FROM_ALFESAR);
     elseif (csid == 705) then
         if (player:getFreeSlotsCount() == 0) then -- does the player have space
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4729);
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4729);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4729);
             player:addFame(RABAO,30);
-            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.THE_MISSING_PIECE);
+            player:completeQuest(OUTLANDS,tpz.quest.id.outlands.THE_MISSING_PIECE);
         end;
 
     end;

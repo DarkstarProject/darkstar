@@ -19,21 +19,21 @@ function onTrigger(player,npc)
     npc:openDoor(1)
 
     -- Animate lever's Gear - do not use openDoor() / closeDoor() here!
-    if gear:getAnimation() == dsp.animation.OPEN_DOOR then
-        gear:setAnimation(dsp.animation.CLOSE_DOOR)
+    if gear:getAnimation() == tpz.animation.OPEN_DOOR then
+        gear:setAnimation(tpz.animation.CLOSE_DOOR)
     else
-        gear:setAnimation(dsp.animation.OPEN_DOOR)
+        gear:setAnimation(tpz.animation.OPEN_DOOR)
     end
 
     -- Animate bigWinch - do not use openDoor() / closeDoor() here!
-    if bigWinch:getAnimation() == dsp.animation.OPEN_DOOR then
-        bigWinch:setAnimation(dsp.animation.CLOSE_DOOR)
+    if bigWinch:getAnimation() == tpz.animation.OPEN_DOOR then
+        bigWinch:setAnimation(tpz.animation.CLOSE_DOOR)
     else
-        bigWinch:setAnimation(dsp.animation.OPEN_DOOR)
+        bigWinch:setAnimation(tpz.animation.OPEN_DOOR)
     end
 
     -- Move platform
-    RunElevator(dsp.elevator.FORT_GHELSBA_LIFT)
+    RunElevator(tpz.elevator.FORT_GHELSBA_LIFT)
 end;
 
 function onEventUpdate(player,csid,option)

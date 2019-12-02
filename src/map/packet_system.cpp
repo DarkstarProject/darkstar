@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -498,8 +496,8 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         // On zone change, only sending a version message if mismatch
-        if ((bool)Sql_GetUIntData(SqlHandle, 0))
-            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version. Please refrain from posting issues on DSP bugtracker."));
+        //if ((bool)Sql_GetUIntData(SqlHandle, 0))
+            //PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version."));
     }
     return;
 }
@@ -906,7 +904,7 @@ void SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     // 0 - world pass, 2 - gold world pass; +1 - purchase
 
-    PChar->pushPacket(new CWorldPassPacket(data.ref<uint8>(0x04) & 1 ? (uint32)dsprand::GetRandomNumber(9999999999) : 0));
+    PChar->pushPacket(new CWorldPassPacket(data.ref<uint8>(0x04) & 1 ? (uint32)tpzrand::GetRandomNumber(9999999999) : 0));
     return;
 }
 
@@ -1495,7 +1493,7 @@ void SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (!PChar->PTreasurePool->HasLottedItem(PChar, SlotID))
         {
-            PChar->PTreasurePool->LotItem(PChar, SlotID,dsprand::GetRandomNumber(1,1000)); //1 ~ 998+1
+            PChar->PTreasurePool->LotItem(PChar, SlotID,tpzrand::GetRandomNumber(1,1000)); //1 ~ 998+1
         }
     }
 }
@@ -1551,9 +1549,9 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         if ((bool)Sql_GetUIntData(SqlHandle, 0))
-            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version. Please refrain from posting issues on DSP bugtracker."));
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version."));
         else
-            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Report bugs at DSP bugtracker if server admin confirms the bug occurs on stock DSP."));
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Report bugs on Topaz bugtracker if server admin confirms the bug occurs on stock Topaz."));
     }
     return;
 }
@@ -3870,7 +3868,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0A2(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 diceroll = dsprand::GetRandomNumber(1000);
+    uint16 diceroll = tpzrand::GetRandomNumber(1000);
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, MsgStd::DiceRoll));
     return;
@@ -5702,8 +5700,8 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    DSP_DEBUG_BREAK_IF(PChar->BazaarID.id != 0);
-    DSP_DEBUG_BREAK_IF(PChar->BazaarID.targid != 0);
+    TPZ_DEBUG_BREAK_IF(PChar->BazaarID.id != 0);
+    TPZ_DEBUG_BREAK_IF(PChar->BazaarID.targid != 0);
 
     uint32 charid = data.ref<uint32>(0x04);
 

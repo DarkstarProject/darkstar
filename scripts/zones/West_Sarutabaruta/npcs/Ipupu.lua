@@ -12,8 +12,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:hasKeyItem(dsp.ki.NOTES_FROM_HARIGAORIGA) then
-        player:startEvent(47, 0, dsp.ki.NOTES_FROM_HARIGAORIGA)
+    if player:hasKeyItem(tpz.ki.NOTES_FROM_HARIGAORIGA) then
+        player:startEvent(47, 0, tpz.ki.NOTES_FROM_HARIGAORIGA)
     else
         player:showText(npc, ID.text.IPUPU_DIALOG)
     end
@@ -24,8 +24,8 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 47 then
-        player:delKeyItem(dsp.ki.NOTES_FROM_HARIGAORIGA)
-        player:addKeyItem(dsp.ki.NOTES_FROM_IPUPU)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.NOTES_FROM_IPUPU)
+        player:delKeyItem(tpz.ki.NOTES_FROM_HARIGAORIGA)
+        player:addKeyItem(tpz.ki.NOTES_FROM_IPUPU)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.NOTES_FROM_IPUPU)
     end
 end

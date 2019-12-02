@@ -14,7 +14,7 @@ end
 
 function onTrigger(player, npc)
     local offset                = npc:getID() - ID.npc.INDESCRIPT_MARKINGS_OFFSET
-    local onSabbatical          = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.ON_SABBATICAL)
+    local onSabbatical          = player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.ON_SABBATICAL)
     local onSabbaticalProgress  = player:getCharVar("OnSabbatical")
     local pantsQuestProgress    = player:getCharVar("AF_SCH_PANTS")
     local gownQuestProgress     = player:getCharVar("AF_SCH_BODY")
@@ -24,8 +24,8 @@ function onTrigger(player, npc)
         player:startEvent(2)
 
     -- SCH AF SIDEQUEST: PANTS
-    elseif offset == 1 and pantsQuestProgress > 0 and pantsQuestProgress < 3 and not player:hasKeyItem(dsp.ki.SLUG_MUCUS) then
-        npcUtil.giveKeyItem(player, dsp.ki.SLUG_MUCUS)
+    elseif offset == 1 and pantsQuestProgress > 0 and pantsQuestProgress < 3 and not player:hasKeyItem(tpz.ki.SLUG_MUCUS) then
+        npcUtil.giveKeyItem(player, tpz.ki.SLUG_MUCUS)
         player:setCharVar("AF_SCH_PANTS", pantsQuestProgress + 1)
 
         local positions =
@@ -44,8 +44,8 @@ function onTrigger(player, npc)
         npc:setPos(newPosition.x, newPosition.y, newPosition.z)
 
     -- SCH AF SIDEQUEST: BODY
-    elseif offset == 2 and gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.ki.PEISTE_DUNG) then
-        npcUtil.giveKeyItem(player, dsp.ki.PEISTE_DUNG)
+    elseif offset == 2 and gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(tpz.ki.PEISTE_DUNG) then
+        npcUtil.giveKeyItem(player, tpz.ki.PEISTE_DUNG)
         player:setCharVar("AF_SCH_BODY", gownQuestProgress + 1)
 
         local positions =
@@ -76,7 +76,7 @@ end
 function onEventFinish(player, csid, option)
     -- ON SABBATICAL
     if csid == 2 then
-        npcUtil.giveKeyItem(player, dsp.ki.SCHULTS_SEALED_LETTER)
+        npcUtil.giveKeyItem(player, tpz.ki.SCHULTS_SEALED_LETTER)
         player:setCharVar("OnSabbatical", 3)
     end
 end

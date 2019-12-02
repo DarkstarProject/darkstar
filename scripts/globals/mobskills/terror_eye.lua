@@ -21,7 +21,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.TERROR
+    local typeEffect = tpz.effect.TERROR
     local duration = 30
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration))

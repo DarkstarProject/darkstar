@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -157,10 +155,10 @@ int32 do_init(int32 argc, char** argv)
             map_port = std::stoi(argv[i + 1]);
     }
 
-    MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
+    MAP_CONF_FILENAME = "./conf/map.conf";
 
     srand((uint32)time(nullptr));
-    dsprand::seed();
+    tpzrand::seed();
 
     map_config_default();
     map_config_read((const int8*)MAP_CONF_FILENAME);
@@ -303,7 +301,7 @@ void do_abort(void)
 
 void set_server_type()
 {
-    SERVER_TYPE = DARKSTAR_SERVER_MAP;
+    SERVER_TYPE = TOPAZ_SERVER_MAP;
     SOCKET_TYPE = socket_type::UDP;
 }
 
@@ -922,8 +920,8 @@ void map_helpscreen(int32 flag)
 
 void map_versionscreen(int32 flag)
 {
-    ShowInfo(CL_WHITE "Darkstar version %d.%02d.%02d" CL_RESET"\n",
-        DARKSTAR_MAJOR_VERSION, DARKSTAR_MINOR_VERSION, DARKSTAR_REVISION);
+    ShowInfo(CL_WHITE "Topaz version %d.%02d.%02d" CL_RESET"\n",
+        TOPAZ_MAJOR_VERSION, TOPAZ_MINOR_VERSION, TOPAZ_REVISION);
     if (flag)
     {
         exit(EXIT_FAILURE);
@@ -943,7 +941,7 @@ int32 map_config_default()
     map_config.mysql_host = "127.0.0.1";
     map_config.mysql_login = "root";
     map_config.mysql_password = "root";
-    map_config.mysql_database = "dspdb";
+    map_config.mysql_database = "tpzdb";
     map_config.mysql_port = 3306;
     map_config.server_message = "";
     map_config.server_message_fr = "";

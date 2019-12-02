@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -161,7 +159,7 @@ static const MeritCategoryInfo_t meritCatInfo[] =
 CMeritPoints::CMeritPoints(CCharEntity* PChar)
 {
 	/*
-	DSP_DEBUG_BREAK_IF(sizeof(merits) != sizeof(merits::GMeritsTemplate));
+	TPZ_DEBUG_BREAK_IF(sizeof(merits) != sizeof(merits::GMeritsTemplate));
 
     memcpy(merits, merits::GMeritsTemplate, sizeof(merits));
 
@@ -177,7 +175,7 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
     }
 	*/
 
-	DSP_DEBUG_BREAK_IF(sizeof(merits) != sizeof(meritNameSpace::GMeritsTemplate));
+	TPZ_DEBUG_BREAK_IF(sizeof(merits) != sizeof(meritNameSpace::GMeritsTemplate));
 
     memcpy(merits, meritNameSpace::GMeritsTemplate, sizeof(merits));
 
@@ -367,7 +365,7 @@ const Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 
 const Merit_t* CMeritPoints::GetMeritByIndex(uint16 index)
 {
-    DSP_DEBUG_BREAK_IF(index >= MERITS_COUNT);
+    TPZ_DEBUG_BREAK_IF(index >= MERITS_COUNT);
 
 	return  &merits[index];
 }

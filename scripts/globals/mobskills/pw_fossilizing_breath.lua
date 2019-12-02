@@ -22,7 +22,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PETRIFICATION
+    local typeEffect = tpz.effect.PETRIFICATION
     local power = 1
     local duration = 30
 

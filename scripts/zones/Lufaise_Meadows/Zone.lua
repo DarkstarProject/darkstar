@@ -20,13 +20,13 @@ function onInitialize(zone)
         SpawnMob(v);
     end
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID());
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID());
 
-    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    tpz.helm.initZone(zone, tpz.helm.type.LOGGING)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -36,9 +36,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-475.825,-20.461,281.149,11);
     end
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.AN_INVITATION_WEST and player:getCharVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.AN_INVITATION_WEST and player:getCharVar("PromathiaStatus") == 0) then
         cs = 110;
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.CHAINS_AND_BONDS and player:getCharVar("PromathiaStatus") == 0) then
+    elseif (player:getCurrentMission(COP) == tpz.mission.id.cop.CHAINS_AND_BONDS and player:getCharVar("PromathiaStatus") == 0) then
         cs = 111;
     end
 
@@ -47,7 +47,7 @@ end;
 
 function onRegionEnter(player,region)
     local regionID = region:GetRegionID();
-    if (regionID == 1 and player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus") == 6) then
+    if (regionID == 1 and player:getCurrentMission(COP) == tpz.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus") == 6) then
         player:startEvent(116);
     end
 end;
@@ -60,13 +60,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 110) then
-        player:messageSpecial(ID.text.KI_STOLEN,0,dsp.ki.MYSTERIOUS_AMULET);
-        player:delKeyItem(dsp.ki.MYSTERIOUS_AMULET);
+        player:messageSpecial(ID.text.KI_STOLEN,0,tpz.ki.MYSTERIOUS_AMULET);
+        player:delKeyItem(tpz.ki.MYSTERIOUS_AMULET);
         player:setCharVar("PromathiaStatus",1);
     elseif (csid == 111 and npcUtil.giveItem(player, 14657)) then
         player:setCharVar("PromathiaStatus",1);
     elseif (csid == 116) then
         player:setCharVar("PromathiaStatus",7);
-        player:addTitle(dsp.title.BANISHER_OF_EMPTINESS);
+        player:addTitle(tpz.title.BANISHER_OF_EMPTINESS);
     end
 end;

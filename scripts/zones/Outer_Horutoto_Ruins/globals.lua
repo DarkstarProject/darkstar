@@ -31,22 +31,22 @@ end
 
 local darkOrbKI =
 {
-    dsp.ki.FIRST_DARK_MANA_ORB,
-    dsp.ki.SECOND_DARK_MANA_ORB,
-    dsp.ki.THIRD_DARK_MANA_ORB,
-    dsp.ki.FOURTH_DARK_MANA_ORB,
-    dsp.ki.FIFTH_DARK_MANA_ORB,
-    dsp.ki.SIXTH_DARK_MANA_ORB,
+    tpz.ki.FIRST_DARK_MANA_ORB,
+    tpz.ki.SECOND_DARK_MANA_ORB,
+    tpz.ki.THIRD_DARK_MANA_ORB,
+    tpz.ki.FOURTH_DARK_MANA_ORB,
+    tpz.ki.FIFTH_DARK_MANA_ORB,
+    tpz.ki.SIXTH_DARK_MANA_ORB,
 }
 
 local glowingOrbKI =
 {
-    dsp.ki.FIRST_GLOWING_MANA_ORB,
-    dsp.ki.SECOND_GLOWING_MANA_ORB,
-    dsp.ki.THIRD_GLOWING_MANA_ORB,
-    dsp.ki.FOURTH_GLOWING_MANA_ORB,
-    dsp.ki.FIFTH_GLOWING_MANA_ORB,
-    dsp.ki.SIXTH_GLOWING_MANA_ORB,
+    tpz.ki.FIRST_GLOWING_MANA_ORB,
+    tpz.ki.SECOND_GLOWING_MANA_ORB,
+    tpz.ki.THIRD_GLOWING_MANA_ORB,
+    tpz.ki.FOURTH_GLOWING_MANA_ORB,
+    tpz.ki.FIFTH_GLOWING_MANA_ORB,
+    tpz.ki.SIXTH_GLOWING_MANA_ORB,
 }
 
 -------------------------------------------------
@@ -92,7 +92,7 @@ OUTER_HORUTOTO_RUINS = {
         local gizmoNum = npc:getID() - ID.npc.GATE_MAGICAL_GIZMO -- gizmoNum will be 1 through 6
         local msgBase = ID.text.ORB_ALREADY_PLACED
 
-        if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER then
+        if player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_HEART_OF_THE_MATTER then
             local missionStatus = player:getCharVar("MissionStatus")
 
             -- placing dark mana orbs

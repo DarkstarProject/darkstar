@@ -18,7 +18,7 @@ function onTrigger(player, npc)
 
     -- Check if we are on Windurst Mission 1-1
     if
-        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and
+        player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and
         player:getCharVar("MissionStatus") == 2
     then
         -- Check if we found the correct Magical Gizmo or not
@@ -45,8 +45,8 @@ function onEventFinish(player, csid, option)
     if csid == 50 then
         player:setCharVar("MissionStatus", 3)
         player:setCharVar("MissionStatus_rv", 0)
-        player:addKeyItem(dsp.ki.CRACKED_MANA_ORBS)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CRACKED_MANA_ORBS)
+        player:addKeyItem(tpz.ki.CRACKED_MANA_ORBS)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.CRACKED_MANA_ORBS)
     elseif csid == 51 then
         -- Opened the wrong one
         player:setCharVar("MissionStatus_op2", 2)

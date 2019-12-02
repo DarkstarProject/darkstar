@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
     -- skillList 727 = Proto-Omega
     -- skillList 728 = Ultima
     -- skillList 729 = Proto-Ultima
-    local skillList = mob:getMobMod(dsp.mobMod.SKILL_LIST)
+    local skillList = mob:getMobMod(tpz.mobMod.SKILL_LIST)
     local mobhp = mob:getHPP()
     local phase = mob:getLocalVar("battlePhase")
 
@@ -25,13 +25,13 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PLAGUE
+    local typeEffect = tpz.effect.PLAGUE
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 5, 3, 30)
 
     local dmgmod = 2
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.FIRE,dmgmod,TP_MAB_BONUS,1)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.FIRE,MOBPARAM_IGNORE_SHADOWS)
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,tpz.magic.ele.FIRE,dmgmod,TP_MAB_BONUS,1)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.MAGICAL,tpz.damageType.FIRE,MOBPARAM_IGNORE_SHADOWS)
 
-    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.FIRE)
+    target:takeDamage(dmg, mob, tpz.attackType.MAGICAL, tpz.damageType.FIRE)
     return dmg
 end

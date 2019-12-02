@@ -7,12 +7,12 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.ACC,15)
+    target:addMod(tpz.mod.ACC,15)
 end
 
 function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.ACC,15)
+    target:delMod(tpz.mod.ACC,15)
 end

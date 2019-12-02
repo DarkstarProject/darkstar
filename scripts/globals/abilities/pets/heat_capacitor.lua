@@ -12,12 +12,12 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 90)
-    local maneuvers = master:countEffect(dsp.effect.FIRE_MANEUVER)
-    skill:setMsg(dsp.msg.basic.TP_INCREASE)
+    automaton:addRecast(tpz.recast.ABILITY, skill:getID(), 90)
+    local maneuvers = master:countEffect(tpz.effect.FIRE_MANEUVER)
+    skill:setMsg(tpz.msg.basic.TP_INCREASE)
 
     for i = 1, maneuvers do
-        master:delStatusEffectSilent(dsp.effect.FIRE_MANEUVER)
+        master:delStatusEffectSilent(tpz.effect.FIRE_MANEUVER)
     end
     
     

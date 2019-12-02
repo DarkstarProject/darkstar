@@ -18,12 +18,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
+    npc:setPos(tpz.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    dsp.path.patrol(npc, path);
+    tpz.path.patrol(npc, path);
 end;
 
 
@@ -39,7 +39,7 @@ function onTrade(player,npc,trade)
     -- 905       Wyvern Skull
     -- 1147      Ancient Salt
     -- 4600      Lucky Egg
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, tpz.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getCharVar("OPO_OPO_PROGRESS");
     local failed = player:getCharVar("OPO_OPO_FAILED");
     local goodtrade = trade:hasItemQty(4600,1);
@@ -57,7 +57,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, tpz.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getCharVar("OPO_OPO_PROGRESS");
     local failed = player:getCharVar("OPO_OPO_FAILED");
     local retry = player:getCharVar("OPO_OPO_RETRY");
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option,npc)
         if (FreeSlots >= 4) then
             player:tradeComplete();
             player:addFame(KAZHAM, 75);
-            player:completeQuest(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
+            player:completeQuest(OUTLANDS, tpz.quest.id.outlands.THE_OPO_OPO_AND_I);
             player:addItem(13870);   -- opo opo crown
             player:messageSpecial(ID.text.ITEM_OBTAINED,13870);
             player:addItem(4468,3);  -- 3 pamamas
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option,npc)
             player:setCharVar("OPO_OPO_PROGRESS",0);
             player:setCharVar("OPO_OPO_FAILED", 0);
             player:setCharVar("OPO_OPO_RETRY", 0);
-            player:setTitle(dsp.title.KING_OF_THE_OPOOPOS);
+            player:setTitle(tpz.title.KING_OF_THE_OPOOPOS);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         end

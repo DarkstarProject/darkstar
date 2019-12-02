@@ -13,21 +13,21 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effect.PARALYSIS
+    local effect = tpz.effect.PARALYSIS
     -- Base Stats
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local dINT = (caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT))
     --Duration Calculation
     local duration = 420
     local params = {}
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.NINJUTSU
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.NINJUTSU
     params.bonus = 0
     duration = duration * applyResistance(caster, target, spell, params)
     --Paralyze base power is 35 and is not affected by resistaces.
     local power = 35
 
     --Calculates resist chanve from Reist Blind
-    if (math.random(0,100) >= target:getMod(dsp.mod.PARALYZERES)) then
+    if (math.random(0,100) >= target:getMod(tpz.mod.PARALYZERES)) then
         if (duration >= 210) then
             -- Erases a weaker blind and applies the stronger one
             local paralysis = target:getStatusEffect(effect)
@@ -35,19 +35,19 @@ function onSpellCast(caster,target,spell)
                 if (paralysis:getPower() < power) then
                     target:delStatusEffect(effect)
                     target:addStatusEffect(effect,power,0,duration)
-                    spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
+                    spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB)
                 else
-                    spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+                    spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
                 end
             else
                 target:addStatusEffect(effect,power,0,duration)
-                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
+                spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB)
             end
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+            spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST_2)
     end
     return effect
 end

@@ -12,8 +12,8 @@ end
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(dsp.effect.SILENCE) == true) then
-        target:delStatusEffect(dsp.effect.SILENCE)
+    if (target:hasStatusEffect(tpz.effect.SILENCE) == true) then
+        target:delStatusEffect(tpz.effect.SILENCE)
     end
 end
 

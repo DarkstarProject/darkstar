@@ -13,8 +13,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.RONFAURE);
-    if (RegionOwner ~= dsp.nation.WINDURST) then
+    local RegionOwner = GetRegionOwner(tpz.region.RONFAURE);
+    if (RegionOwner ~= tpz.nation.WINDURST) then
         player:showText(npc,ID.text.JOURILLE_CLOSED_DIALOG);
     else
         player:showText(npc,ID.text.JOURILLE_OPEN_DIALOG);
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
             610,    55,  -- San d'Orian Flour
             4431,   69,  -- San d'Orian Grape
         }
-        dsp.shop.general(player, stock, WINDURST);
+        tpz.shop.general(player, stock, WINDURST);
     end
 end;
 

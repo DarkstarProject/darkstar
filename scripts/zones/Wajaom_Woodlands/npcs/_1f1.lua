@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.SICKLEMOON_SALT)) then
+    if (player:hasKeyItem(tpz.ki.SICKLEMOON_SALT)) then
         player:startEvent(514);
     else
         player:startEvent(516);
@@ -25,7 +25,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 514 and option == 1) then
-        player:delKeyItem(dsp.ki.SICKLEMOON_SALT);
+        player:delKeyItem(tpz.ki.SICKLEMOON_SALT);
     end
 
 end;

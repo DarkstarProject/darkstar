@@ -13,7 +13,7 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    target:delStatusEffect(dsp.effect.AFFLATUS_SOLACE)
-    target:delStatusEffect(dsp.effect.AFFLATUS_MISERY)
-    target:addStatusEffect(dsp.effect.AFFLATUS_SOLACE,8,0,7200)
+    target:delStatusEffect(tpz.effect.AFFLATUS_SOLACE)
+    target:delStatusEffect(tpz.effect.AFFLATUS_MISERY)
+    target:addStatusEffect(tpz.effect.AFFLATUS_SOLACE,8,0,7200)
 end

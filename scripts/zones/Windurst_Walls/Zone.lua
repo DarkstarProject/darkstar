@@ -26,10 +26,10 @@ function onZoneIn(player,prevZone)
             cs = 30004;
         end
         player:setCharVar("PlayerMainJob",0);
-    elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == dsp.mission.id.asa.A_SHANTOTTO_ASCENSION
-        and (prevZone == dsp.zone.WINDURST_WATERS or prevZone == dsp.zone.WINDURST_WOODS) and player:getMainLvl()>=10) then
+    elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == tpz.mission.id.asa.A_SHANTOTTO_ASCENSION
+        and (prevZone == tpz.zone.WINDURST_WATERS or prevZone == tpz.zone.WINDURST_WOODS) and player:getMainLvl()>=10) then
         cs = 510;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") == 4) then
+    elseif (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") == 4) then
         cs = 443;
     end
 
@@ -37,7 +37,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -64,17 +64,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 510) then
         player:startEvent(514);
     elseif (csid == 514) then
-        player:completeMission(ASA,dsp.mission.id.asa.A_SHANTOTTO_ASCENSION);
-        player:addMission(ASA,dsp.mission.id.asa.BURGEONING_DREAD);
+        player:completeMission(ASA,tpz.mission.id.asa.A_SHANTOTTO_ASCENSION);
+        player:addMission(ASA,tpz.mission.id.asa.BURGEONING_DREAD);
         player:setCharVar("ASA_Status",0);
     elseif (csid == 443) then
-        player:completeMission(WINDURST,dsp.mission.id.windurst.MOON_READING);
+        player:completeMission(WINDURST,tpz.mission.id.windurst.MOON_READING);
         player:setCharVar("MissionStatus",0);
         player:setRank(10);
         player:addGil(GIL_RATE*100000);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000);
         player:addItem(183);
         player:messageSpecial(ID.text.ITEM_OBTAINED,183);
-        player:addTitle(dsp.title.VESTAL_CHAMBERLAIN);
+        player:addTitle(tpz.title.VESTAL_CHAMBERLAIN);
     end
 end;

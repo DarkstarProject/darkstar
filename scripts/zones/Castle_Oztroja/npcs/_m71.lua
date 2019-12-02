@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:hasKeyItem(dsp.ki.YAGUDO_TORCH) then
+    if player:hasKeyItem(tpz.ki.YAGUDO_TORCH) then
         player:startEvent(11)
     else
         player:messageSpecial(ID.text.PROBABLY_WORKS_WITH_SOMETHING_ELSE)

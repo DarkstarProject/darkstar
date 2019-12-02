@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    Guardian = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
+    Guardian = player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
     Pamamas = player:getCharVar("PamamaVar");
     pfame = player:getFameLevel(KAZHAM)
     needToZone = player:needToZone();
@@ -44,15 +44,15 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 68 and option == 1) then
-        player:addQuest(OUTLANDS,dsp.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
+        player:addQuest(OUTLANDS,tpz.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
         player:setCharVar("PamamaVar",0);
     elseif (csid == 71) then
         if (Pamamas == 1) then --First completion of quest; set title, complete quest, and give higher fame
             player:addGil(GIL_RATE*5000);
             player:messageSpecial(ID.text.GIL_OBTAINED, 5000);
-            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
+            player:completeQuest(OUTLANDS,tpz.quest.id.outlands.GREETINGS_TO_THE_GUARDIAN);
             player:addFame(WINDURST,100);
-            player:addTitle(dsp.title.KAZHAM_CALLER);
+            player:addTitle(tpz.title.KAZHAM_CALLER);
             player:setCharVar("PamamaVar",0);
             player:needToZone(true);
         elseif (Pamamas == 2) then --Repeats of quest; give only gil and less fame

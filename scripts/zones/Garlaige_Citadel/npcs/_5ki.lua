@@ -10,7 +10,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.POUCH_OF_WEIGHTED_STONES) == false or player:getZPos() > 359) then
+    if (player:hasKeyItem(tpz.ki.POUCH_OF_WEIGHTED_STONES) == false or player:getZPos() > 359) then
         player:messageSpecial(ID.text.A_GATE_OF_STURDY_STEEL);
         return 1;
     else

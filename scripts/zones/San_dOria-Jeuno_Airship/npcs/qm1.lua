@@ -15,12 +15,12 @@ end;
 
 function onTrigger(player,npc)
     local TOTD = VanadielTOTD();
-    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_STARS_OF_IFRIT);
+    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.THE_STARS_OF_IFRIT);
 
-    if (TOTD == dsp.time.NIGHT and IsMoonFull()) then
-        if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CARRIER_PIGEON_LETTER) == false) then
-            player:addKeyItem(dsp.ki.CARRIER_PIGEON_LETTER);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CARRIER_PIGEON_LETTER);
+    if (TOTD == tpz.time.NIGHT and IsMoonFull()) then
+        if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.CARRIER_PIGEON_LETTER) == false) then
+            player:addKeyItem(tpz.ki.CARRIER_PIGEON_LETTER);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.CARRIER_PIGEON_LETTER);
         end
     end
 end;

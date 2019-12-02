@@ -9,7 +9,7 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(dsp.effect.FIRE_MANEUVER)
+    return master:countEffect(tpz.effect.FIRE_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
@@ -17,7 +17,7 @@ function onPetAbility(target, automaton, skill, master, action)
         numHits = 1,
         atkmulti = 1,
         accBonus = 100,
-        weaponType = dsp.skill.SWORD,
+        weaponType = tpz.skill.SWORD,
         ftp100 = 1.5,
         ftp200 = 2.0,
         ftp300 = 3.0,

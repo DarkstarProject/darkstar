@@ -25,7 +25,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -48,7 +48,7 @@ function afterZoneIn(player)
 end;
 
 function onRegionEnter(player,region)
-    if (player:getCharVar("Hu-Xzoi-TP") == 0 and player:getAnimation() == dsp.anim.NONE) then -- prevent 2cs at same time
+    if (player:getCharVar("Hu-Xzoi-TP") == 0 and player:getAnimation() == tpz.anim.NONE) then -- prevent 2cs at same time
         player:startEvent(149 + region:GetRegionID());
     end
 end;

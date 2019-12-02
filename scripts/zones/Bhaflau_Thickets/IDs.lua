@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BHAFLAU_THICKETS] =
+zones[tpz.zone.BHAFLAU_THICKETS] =
 {
     text =
     {
@@ -65,4 +65,4 @@ zones[dsp.zone.BHAFLAU_THICKETS] =
     },
 }
 
-return zones[dsp.zone.BHAFLAU_THICKETS]
+return zones[tpz.zone.BHAFLAU_THICKETS]

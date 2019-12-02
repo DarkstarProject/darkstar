@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local twinstoneBonding = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TWINSTONE_BONDING)
+    local twinstoneBonding = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.TWINSTONE_BONDING)
 
     if twinstoneBonding == QUEST_COMPLETED then
         if player:needToZone() then
@@ -39,15 +39,15 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 487 then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.TWINSTONE_BONDING)
+        player:addQuest(WINDURST,tpz.quest.id.windurst.TWINSTONE_BONDING)
         player:setCharVar("GiohAijhriSpokenTo", 1)
     elseif csid == 490 then
         player:confirmTrade()
         player:needToZone(true)
         player:setCharVar("GiohAijhriSpokenTo", 0)
 
-        if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TWINSTONE_BONDING) == QUEST_ACCEPTED then
-            npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.TWINSTONE_BONDING, {item=17154, fame=80, title=dsp.title.BOND_FIXER})
+        if player:getQuestStatus(WINDURST,tpz.quest.id.windurst.TWINSTONE_BONDING) == QUEST_ACCEPTED then
+            npcUtil.completeQuest(player, WINDURST, tpz.quest.id.windurst.TWINSTONE_BONDING, {item=17154, fame=80, title=tpz.title.BOND_FIXER})
         else
             player:addFame(WINDURST, 10)
             player:addGil(GIL_RATE*900)

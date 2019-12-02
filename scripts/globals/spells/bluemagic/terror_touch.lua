@@ -45,10 +45,10 @@ function onSpellCast(caster,target,spell)
     damage = BluePhysicalSpell(caster, target, spell, params)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
-    if (target:hasStatusEffect(dsp.effect.ATTACK_DOWN)) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
+    if (target:hasStatusEffect(tpz.effect.ATTACK_DOWN)) then
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT) -- no effect
     else
-        target:addStatusEffect(dsp.effect.ATTACK_DOWN,15,0,20)
+        target:addStatusEffect(tpz.effect.ATTACK_DOWN,15,0,20)
     end
 
     return damage

@@ -4,13 +4,13 @@
 --
 -- Contains variable-ized definitions of things like core enums for use in lua scripts.
 ------------------------------------
-dsp = dsp or {}
+tpz = tpz or {}
 
 ------------------------------------
 -- Zone Misc Flags
 ------------------------------------
 
-dsp.zoneMisc =
+tpz.zoneMisc =
 {
     NONE       = 0x0000, -- Able to be used in any area
     ESCAPE     = 0x0001, -- Ability to use Escape Spell
@@ -30,7 +30,7 @@ dsp.zoneMisc =
 -- Job IDs
 ------------------------------------
 
-dsp.job =
+tpz.job =
 {
     NONE            =  0,
     WAR             =  1,
@@ -56,13 +56,13 @@ dsp.job =
     GEO             = 21,
     RUN             = 22,
 }
-dsp.MAX_JOB_TYPE = 23
+tpz.MAX_JOB_TYPE = 23
 
 ------------------------------------
 -- Race IDs
 ------------------------------------
 
-dsp.race =
+tpz.race =
 {
     HUME_M   = 1,
     HUME_F   = 2,
@@ -78,7 +78,7 @@ dsp.race =
 -- STATUSES
 ------------------------------------
 
-dsp.status =
+tpz.status =
 {
     NORMAL          =  0,
     UPDATE          =  1,
@@ -95,7 +95,7 @@ dsp.status =
 -- additional effects animations from battleentity.h
 ------------------------------------
 
-dsp.subEffect =
+tpz.subEffect =
 {
     -- ATTACKS
     FIRE_DAMAGE         = 1,   -- 110000        3
@@ -168,7 +168,7 @@ dsp.subEffect =
 -- They are simply for convenience.
 ------------------------------------
 
-dsp.effect =
+tpz.effect =
 {
     KO                       = 0,
     WEAKNESS                 = 1,
@@ -833,7 +833,7 @@ dsp.effect =
 -- Effect Flags
 ------------------------------------
 
-dsp.effectFlag =
+tpz.effectFlag =
 {
     NONE            = 0x0000,
     DISPELABLE      = 0x0001,
@@ -865,13 +865,13 @@ dsp.effectFlag =
 ------------------------------------
 
 function removeSleepEffects(target)
-    target:delStatusEffect(dsp.effect.SLEEP_I)
-    target:delStatusEffect(dsp.effect.SLEEP_II)
-    target:delStatusEffect(dsp.effect.LULLABY)
+    target:delStatusEffect(tpz.effect.SLEEP_I)
+    target:delStatusEffect(tpz.effect.SLEEP_II)
+    target:delStatusEffect(tpz.effect.LULLABY)
 end
 
 function hasSleepEffects(target)
-    return target:hasStatusEffect(dsp.effect.SLEEP_I) or target:hasStatusEffect(dsp.effect.SLEEP_II) or target:hasStatusEffect(dsp.effect.LULLABY)
+    return target:hasStatusEffect(tpz.effect.SLEEP_I) or target:hasStatusEffect(tpz.effect.SLEEP_II) or target:hasStatusEffect(tpz.effect.LULLABY)
 end
 
 ------------------------------------
@@ -881,11 +881,11 @@ end
 --
 -- Even if the particular mod is not completely (or at all) implemented yet, you can still script the effects using these codes.
 --
--- Example: target:getMod(dsp.mod.STR) will get the sum of STR bonuses/penalties from gear, food, STR Etude, Absorb-STR, and any other STR-related buff/debuff.
+-- Example: target:getMod(tpz.mod.STR) will get the sum of STR bonuses/penalties from gear, food, STR Etude, Absorb-STR, and any other STR-related buff/debuff.
 -- Note that the above will ignore base statistics, and that getStat() should be used for stats, Attack, and Defense, while getACC(), getRACC(), and getEVA() also exist.
 ------------------------------------
 
-dsp.mod =
+tpz.mod =
 {
     NONE                            = 0,
     DEF                             = 1,
@@ -1547,7 +1547,7 @@ dsp.mod =
     -- SPARE = 960, -- stuff
 };
 
-dsp.latent =
+tpz.latent =
 {
     HP_UNDER_PERCENT         = 0,  -- hp less than or equal to % - PARAM: HP PERCENT
     HP_OVER_PERCENT          = 1,  -- hp more than % - PARAM: HP PERCENT
@@ -1671,7 +1671,7 @@ local MCATEGORY_SCH_2 = 0x0CC0
 local MCATEGORY_START = 0x0040
 local MCATEGORY_COUNT = 0x0D00
 
-dsp.merit =
+tpz.merit =
 {
     -- HP
     MAX_HP                      = MCATEGORY_HP_MP + 0x00,
@@ -2032,7 +2032,7 @@ dsp.merit =
 -- Inventory locations
 ------------------------------------
 
-dsp.inventoryLocation =
+tpz.inventoryLocation =
 {
     INVENTORY       = 0,
     MOGSAFE         = 1,
@@ -2048,13 +2048,13 @@ dsp.inventoryLocation =
     WARDROBE3       = 11,
     WARDROBE4       = 12,
 }
-dsp.inv = dsp.inventoryLocation
+tpz.inv = tpz.inventoryLocation
 
 ------------------------------------
 -- Equipment Slots
 ------------------------------------
 
-dsp.slot =
+tpz.slot =
 {
     MAIN   = 0,
     SUB    = 1,
@@ -2073,13 +2073,13 @@ dsp.slot =
     RING2  = 14,
     BACK   = 15,
 }
-dsp.MAX_SLOTID  = 15
+tpz.MAX_SLOTID  = 15
 
 ----------------------------------
 -- Objtype Definitions
 ----------------------------------
 
-dsp.objType =
+tpz.objType =
 {
     PC   = 0x01,
     NPC  = 0x02,
@@ -2092,7 +2092,7 @@ dsp.objType =
 -- Attack Type
 ----------------------------------
 
-dsp.attackType =
+tpz.attackType =
 {
     NONE     = 0,
     PHYSICAL = 1,
@@ -2106,7 +2106,7 @@ dsp.attackType =
 -- Damage Type
 ----------------------------------
 
-dsp.damageType =
+tpz.damageType =
 {
     NONE      = 0,
     PIERCING  = 1,
@@ -2147,7 +2147,7 @@ dsp.damageType =
 -- MOBMODs
 ------------------------------------
 
-dsp.mobMod =
+tpz.mobMod =
 {
     NONE                = 0,
     GIL_MIN             = 1,  -- minimum gil drop -- spawn mod only
@@ -2223,7 +2223,7 @@ dsp.mobMod =
 -- Job Specials (1hr / 2hr moves)
 ------------------------------------
 
-dsp.jobSpecialAbility =
+tpz.jobSpecialAbility =
 {
     MIGHTY_STRIKES      = 688,
     MIGHTY_STRIKES_MAAT = 1008,
@@ -2326,13 +2326,13 @@ dsp.jobSpecialAbility =
     -- ELEMENTAL_SFORZO     = 3479,
     -- BOLSTER              = 3482,
 }
-dsp.jsa = dsp.jobSpecialAbility
+tpz.jsa = tpz.jobSpecialAbility
 
 ------------------------------------
 -- Skills
 ------------------------------------
 
-dsp.skill =
+tpz.skill =
 {
     -- Combat Skills
     NONE = 0,
@@ -2402,7 +2402,7 @@ dsp.skill =
 -- Craft Skill Ranks
 ------------------------------------
 
-dsp.craftRank =
+tpz.craftRank =
 {
     AMATEUR     = 0,
     RECRUIT     = 1,
@@ -2427,7 +2427,7 @@ dsp.craftRank =
 -- Recast IDs
 ------------------------------------
 
-dsp.recast =
+tpz.recast =
 {
     ITEM     = 0,
     MAGIC    = 1,
@@ -2438,7 +2438,7 @@ dsp.recast =
 -- ACTION IDs
 ------------------------------------
 
-dsp.action =
+tpz.action =
 {
     NONE                 = 0,
     ATTACK               = 1,
@@ -2478,13 +2478,13 @@ dsp.action =
     MOBABILITY_INTERRUPT = 35,
     LEAVE                = 36,
 }
-dsp.act = dsp.action
+tpz.act = tpz.action
 
 ------------------------------------
 -- ECOSYSTEM IDs
 ------------------------------------
 
-dsp.ecosystem =
+tpz.ecosystem =
 {
     ERROR          = 0,
     AMORPH         = 1,
@@ -2509,13 +2509,13 @@ dsp.ecosystem =
     VERMIN         = 20,
     VORAGEAN       = 21,
 }
-dsp.eco = dsp.ecosystem
+tpz.eco = tpz.ecosystem
 
 ------------------------------------
 -- Behavior bits
 ------------------------------------
 
-dsp.behavior =
+tpz.behavior =
 {
     NONE         = 0x000,
     NO_DESPAWN   = 0x001, -- mob does not despawn on death
@@ -2529,7 +2529,7 @@ dsp.behavior =
 -- Elevator IDs
 ------------------------------------
 
-dsp.elevator =
+tpz.elevator =
 {
     TIMED_AUTOMATIC           = 0,
     DAVOI_LIFT                = 1,
@@ -2541,7 +2541,7 @@ dsp.elevator =
 -- Item Type
 -----------------------------------
 
-dsp.itemType =
+tpz.itemType =
 {
     BASIC       = 0x00,
     GENERAL     = 0x01,
@@ -2558,7 +2558,7 @@ dsp.itemType =
 -- Animations
 ------------------------------------
 
-dsp.animation =
+tpz.animation =
 {
     NONE                    = 0,
     ATTACK                  = 1,
@@ -2597,13 +2597,13 @@ dsp.animation =
     MOUNT                   = 85,
     -- TRUST                = 90, -- This is the animation for a trust NPC spawning in.
 }
-dsp.anim = dsp.animation
+tpz.anim = tpz.animation
 
 ------------------------------------
 -- Mounts
 ------------------------------------
 
-dsp.mount =
+tpz.mount =
 {
     CHOCOBO        = 0,
     QUEST_RAPTOR   = 1,
@@ -2632,7 +2632,7 @@ dsp.mount =
 -- Automaton Frame IDs
 ------------------------------------
 
-dsp.frames =
+tpz.frames =
 {
     HARLEQUIN  = 0x20,
     VALOREDGE  = 0x21,
@@ -2644,7 +2644,7 @@ dsp.frames =
 -- Item Check Params
 ------------------------------------
 
-dsp.itemCheck =
+tpz.itemCheck =
 {
     NONE    = 0,
     EQUIP   = 1,
@@ -2654,7 +2654,7 @@ dsp.itemCheck =
 ------------------------------------
 -- Emote Values
 ------------------------------------
-dsp.emote =
+tpz.emote =
 {
     POINT = 0,
     BOW = 1,
@@ -2707,7 +2707,7 @@ dsp.emote =
     JOB = 74
 }
 
-dsp.emoteMode =
+tpz.emoteMode =
 {
     ALL = 0,
     TEXT = 1,

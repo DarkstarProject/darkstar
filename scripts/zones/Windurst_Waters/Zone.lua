@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
         player:setCharVar("PlayerMainJob",0);
     end
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 1) then -- COP MEMORIES_OF_A_MAIDEN--3-3B: Windurst Route
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 1) then -- COP MEMORIES_OF_A_MAIDEN--3-3B: Windurst Route
         player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",2);
         cs = 871;
     end
@@ -49,7 +49,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -58,7 +58,7 @@ function onRegionEnter(player,region)
     {
         [1] = function (x)  -- Windurst Mission 1-3, final cutscene with Leepe-Hoppe
             -- If we're on Windurst Mission 1-3
-            if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE and player:getCharVar("MissionStatus") == 2) then
+            if (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_PRICE_OF_PEACE and player:getCharVar("MissionStatus") == 2) then
                 player:startEvent(146);
             end
         end,

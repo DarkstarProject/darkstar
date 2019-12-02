@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -69,8 +67,8 @@ struct CParty::partyInfo_t
 
 CParty::CParty(CBattleEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
 
     m_PartyID = PEntity->id;
     m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
@@ -174,7 +172,7 @@ void CParty::DisbandParty(bool playerInitiated)
 
 void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 {
-    DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
+    TPZ_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
     switch (role)
     {
@@ -218,7 +216,7 @@ uint8 CParty::MemberCount(uint16 ZoneID)
 
 CBattleEntity* CParty::GetMemberByName(const int8* MemberName)
 {
-    DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
+    TPZ_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
     for (uint32 i = 0; i < members.size(); ++i)
         if (strcmp((const char*)MemberName, (const char*)members.at(i)->GetName()) == 0)
@@ -235,8 +233,8 @@ CBattleEntity* CParty::GetMemberByName(const int8* MemberName)
 
 void CParty::RemoveMember(CBattleEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
+    TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity->PParty != this);
 
     if (m_PLeader == PEntity)
     {
@@ -316,8 +314,8 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
 void CParty::DelMember(CBattleEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
+    TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity->PParty != this);
 
     if (m_PLeader == PEntity)
     {
@@ -424,7 +422,7 @@ void CParty::PopMember(CBattleEntity* PEntity)
 
 void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(members.empty());
+    TPZ_DEBUG_BREAK_IF(members.empty());
 
     int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
                                     JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE partyid = %u AND NOT partyflag & %d \
@@ -474,15 +472,15 @@ std::vector<CParty::partyInfo_t> CParty::GetPartyInfo()
 
 void CParty::AddMember(CBattleEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
 
     PEntity->PParty = this;
     members.push_back(PEntity);
 
     if (m_PartyType == PARTY_PCS)
     {
-        DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
+        TPZ_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
 
         CCharEntity* PChar = (CCharEntity*)PEntity;
 
@@ -571,8 +569,8 @@ void CParty::AddMember(uint32 id)
 
 void CParty::PushMember(CBattleEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity->PParty != nullptr);
 
     PEntity->PParty = this;
     members.push_back(PEntity);
@@ -658,8 +656,8 @@ CBattleEntity* CParty::GetQuaterMaster()
 
 uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
+    TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity->PParty != this);
 
     uint16 Flags = 0;
 
@@ -832,7 +830,7 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 
 void CParty::ReloadTreasurePool(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
 
     if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
         return;

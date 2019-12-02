@@ -13,11 +13,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local cCollector = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR)
+    local cCollector = player:getQuestStatus(BASTOK, tpz.quest.id.bastok.THE_CURSE_COLLECTOR)
 
     if cCollector == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >=4 then
         player:startEvent(251) -- Quest Start Dialogue
-    elseif cCollector == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CURSEPAPER) and player:getCharVar("cCollectSilence") == 1 and player:getCharVar("cCollectCurse") == 1 then
+    elseif cCollector == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.CURSEPAPER) and player:getCharVar("cCollectSilence") == 1 and player:getCharVar("cCollectCurse") == 1 then
         player:startEvent(252) -- Quest Completion Dialogue
     else
         player:startEvent(250)
@@ -29,9 +29,9 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 251 then
-        player:addQuest(BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR)
-        npcUtil.giveKeyItem(player, dsp.ki.CURSEPAPER)
-    elseif csid == 252 and npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.THE_CURSE_COLLECTOR, {item = 16387, var = {"cCollectSilence", "cCollectCurse"}}) then
-        player:delKeyItem(dsp.ki.CURSEPAPER)
+        player:addQuest(BASTOK, tpz.quest.id.bastok.THE_CURSE_COLLECTOR)
+        npcUtil.giveKeyItem(player, tpz.ki.CURSEPAPER)
+    elseif csid == 252 and npcUtil.completeQuest(player, BASTOK, tpz.quest.id.bastok.THE_CURSE_COLLECTOR, {item = 16387, var = {"cCollectSilence", "cCollectCurse"}}) then
+        player:delKeyItem(tpz.ki.CURSEPAPER)
     end
 end

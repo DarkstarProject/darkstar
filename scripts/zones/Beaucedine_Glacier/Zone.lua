@@ -14,13 +14,13 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.HUMBABA)
     GetMobByID(ID.mob.HUMBABA):setRespawnTime(math.random(3600, 4200))
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onZoneIn( player, prevZone)
     local cs = -1
 
-    if prevZone == dsp.zone.DYNAMIS_BEAUCEDINE then -- warp player to a correct position after dynamis
+    if prevZone == tpz.zone.DYNAMIS_BEAUCEDINE then -- warp player to a correct position after dynamis
         player:setPos(-284.751,-39.923,-422.948,235)
     end
 
@@ -28,11 +28,11 @@ function onZoneIn( player, prevZone)
         player:setPos( -247.911, -82.165, 260.207, 248)
     end
 
-    if player:getCurrentMission( COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar( "PromathiaStatus") == 9 then
+    if player:getCurrentMission( COP) == tpz.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar( "PromathiaStatus") == 9 then
         cs = 206
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 114
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1 then
         cs = 116
     end
 
@@ -40,7 +40,7 @@ function onZoneIn( player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter( player, region)
@@ -65,9 +65,9 @@ end
 function onZoneWeatherChange(weather)
     local mirrorPond = GetNPCByID(ID.npc.MIRROR_POND_J8) -- Quest: Love And Ice
 
-    if weather ~= dsp.weather.SNOW and weather ~= dsp.weather.BLIZZARDS then
-        mirrorPond:setStatus(dsp.status.NORMAL)
+    if weather ~= tpz.weather.SNOW and weather ~= tpz.weather.BLIZZARDS then
+        mirrorPond:setStatus(tpz.status.NORMAL)
     else
-        mirrorPond:setStatus(dsp.status.DISAPPEAR)
+        mirrorPond:setStatus(tpz.status.DISAPPEAR)
     end
 end

@@ -12,10 +12,10 @@ require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Metalworks/IDs")
 -----------------------------------
 
-local wsQuest = dsp.wsquest.steel_cyclone
+local wsQuest = tpz.wsquest.steel_cyclone
 
 function onTrade(player,npc,trade)
-    local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest,player,trade)
+    local wsQuestEvent = tpz.wsquest.getTradeEvent(wsQuest,player,trade)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
@@ -23,17 +23,17 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
+    local wsQuestEvent = tpz.wsquest.getTriggerEvent(wsQuest,player)
     local currentMission = player:getCurrentMission(BASTOK)
     local missionStatus = player:getCharVar("MissionStatus")
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (currentMission == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
+    elseif (currentMission == tpz.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
         player:startEvent(715)
-    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("BASTOK92") == 0) then
+    elseif (currentMission == tpz.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("BASTOK92") == 0) then
         player:startEvent(780)
-    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("BASTOK92") == 2) then
+    elseif (currentMission == tpz.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("BASTOK92") == 2) then
         player:startEvent(782)
     elseif (player:getCharVar("Flagbastok") == 1) then
         if (player:getFreeSlotsCount() == 0) then
@@ -43,15 +43,15 @@ function onTrigger(player,npc)
             player:addItem(182)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
-    elseif (currentMission == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 1) then
+    elseif (currentMission == tpz.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 1) then
         player:startEvent(716)
-    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
+    elseif (currentMission == tpz.mission.id.bastok.THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
         player:startEvent(767) -- First cutscene of mission
-    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
+    elseif (currentMission == tpz.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
         player:showText(npc, 8596) -- Dialogue after first cutscene
-    elseif (currentMission == dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
+    elseif (currentMission == tpz.mission.id.bastok.THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
         player:startEvent(768) -- Cutscene on return from Quicksand Caves
-    elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(CRYSTAL_WAR,tpz.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
         if (player:getCharVar("FiresOfDiscProg") == 1) then
             player:startEvent(956)
         else
@@ -80,14 +80,14 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
         player:setCharVar("BASTOK92",0)
-        player:completeMission(BASTOK,dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE)
+        player:completeMission(BASTOK,tpz.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000)
-        player:setTitle(dsp.title.HERO_AMONG_HEROES)
+        player:setTitle(tpz.title.HERO_AMONG_HEROES)
     elseif (csid == 956) then
         player:setCharVar("FiresOfDiscProg",2)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.STEEL_CYCLONE_LEARNED)
+        tpz.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.STEEL_CYCLONE_LEARNED)
     end
 end

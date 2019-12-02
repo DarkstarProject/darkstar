@@ -7,11 +7,11 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1) -- "Aggros regardless of level"
+    mob:setMobMod(tpz.mobMod.ALWAYS_AGGRO, 1) -- "Aggros regardless of level"
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.MORBOLBANE)
+    player:addTitle(tpz.title.MORBOLBANE)
 end
 
 function onMobDespawn(mob)

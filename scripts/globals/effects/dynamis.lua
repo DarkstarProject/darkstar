@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effect.DYNAMIS
+--     tpz.effect.DYNAMIS
 --
 -----------------------------------
 require("scripts/globals/keyitems")
@@ -54,11 +54,11 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delKeyItem(dsp.ki.CRIMSON_GRANULES_OF_TIME)
-    target:delKeyItem(dsp.ki.AZURE_GRANULES_OF_TIME)
-    target:delKeyItem(dsp.ki.AMBER_GRANULES_OF_TIME)
-    target:delKeyItem(dsp.ki.ALABASTER_GRANULES_OF_TIME)
-    target:delKeyItem(dsp.ki.OBSIDIAN_GRANULES_OF_TIME)
+    target:delKeyItem(tpz.ki.CRIMSON_GRANULES_OF_TIME)
+    target:delKeyItem(tpz.ki.AZURE_GRANULES_OF_TIME)
+    target:delKeyItem(tpz.ki.AMBER_GRANULES_OF_TIME)
+    target:delKeyItem(tpz.ki.ALABASTER_GRANULES_OF_TIME)
+    target:delKeyItem(tpz.ki.OBSIDIAN_GRANULES_OF_TIME)
     if effect:getTimeRemaining() == 0 then
         target:messageSpecial(zones[target:getZoneID()].text.DYNAMIS_TIME_EXPIRED)
         target:disengage()

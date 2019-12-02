@@ -20,7 +20,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 554 and option == 1) then
-        dsp.teleport.to(player, dsp.teleport.id.QUFIM_VORTEX);
+        tpz.teleport.to(player, tpz.teleport.id.QUFIM_VORTEX);
     end
 
 end;

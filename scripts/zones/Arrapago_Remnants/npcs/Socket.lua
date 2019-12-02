@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Arrapago_Remnants/IDs")
 
 function onTrade(player,npc,trade)
     local instance = npc:getInstance()
-    local mob = instance:getEntity(bit.band(ID.mob[2][3].wahzil, 0xFFF), dsp.objType.MOB)
+    local mob = instance:getEntity(bit.band(ID.mob[2][3].wahzil, 0xFFF), tpz.objType.MOB)
     local COUNT = trade:getItemCount()
     local INCUS_CELL = 5365
     local SPISSATUS_CELL = 5384

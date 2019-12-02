@@ -14,7 +14,7 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and
+        player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and
         player:getCharVar("MissionStatus") == 4 and
         not GetMobByID(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 0):isSpawned() and
         not GetMobByID(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 1):isSpawned()
@@ -22,7 +22,7 @@ function onTrigger(player, npc)
         SpawnMob(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 0):updateEnmity(player)
         SpawnMob(ID.mob.JESTER_WHO_D_BE_KING_OFFSET + 1):updateEnmity(player)
 
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getCharVar("MissionStatus") == 5) then
+    elseif (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getCharVar("MissionStatus") == 5) then
         player:startEvent(71)
     end
 end
@@ -32,8 +32,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 71 then
-        player:addKeyItem(dsp.ki.ORASTERY_RING)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ORASTERY_RING)
+        player:addKeyItem(tpz.ki.ORASTERY_RING)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.ORASTERY_RING)
         player:setCharVar("MissionStatus", 6)
     end
 end

@@ -14,16 +14,16 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local basedmg = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 3
+    local basedmg = caster:getSkillLevel(tpz.skill.ENFEEBLING_MAGIC) / 3
     local params = {}
     params.dmg = basedmg
     params.multiplier = 5
-    params.skillType = dsp.skill.ENFEEBLING_MAGIC
-    params.attribute = dsp.mod.INT
+    params.skillType = tpz.skill.ENFEEBLING_MAGIC
+    params.attribute = tpz.mod.INT
     params.hasMultipleTargetReduction = false
-    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.ENFEEBLING_MAGIC
     params.bonus = 1.0
 
     -- Calculate raw damage
@@ -43,19 +43,19 @@ function onSpellCast(caster, target, spell)
 
     -- Calculate duration and bonus
     local duration = calculateDuration(120, spell:getSkillType(), spell:getSpellGroup(), caster, target)
-    local dotBonus = caster:getMod(dsp.mod.DIA_DOT) -- Dia Wand
+    local dotBonus = caster:getMod(tpz.mod.DIA_DOT) -- Dia Wand
 
     -- Check for Bio
-    local bio = target:getStatusEffect(dsp.effect.BIO)
+    local bio = target:getStatusEffect(tpz.effect.BIO)
 
     -- Do it!
-    target:addStatusEffect(dsp.effect.DIA, 3 + dotBonus, 3, duration, 0, 20, 3)
-    spell:setMsg(dsp.msg.basic.MAGIC_DMG)
+    target:addStatusEffect(tpz.effect.DIA, 3 + dotBonus, 3, duration, 0, 20, 3)
+    spell:setMsg(tpz.msg.basic.MAGIC_DMG)
 
     -- Try to kill same tier Bio (non-default behavior)
     if BIO_OVERWRITE == 1 and bio ~= nil then
         if bio:getPower() <= 3 then
-            target:delStatusEffect(dsp.effect.BIO)
+            target:delStatusEffect(tpz.effect.BIO)
         end
     end
 

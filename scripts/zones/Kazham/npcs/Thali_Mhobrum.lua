@@ -20,12 +20,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
+    npc:setPos(tpz.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    dsp.path.patrol(npc, path);
+    tpz.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)

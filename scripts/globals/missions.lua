@@ -2,10 +2,10 @@ require("scripts/globals/keyitems")
 require("scripts/globals/log_ids")
 require("scripts/globals/zone")
 
-dsp = dsp or {}
-dsp.mission = dsp.mission or {}
+tpz = tpz or {}
+tpz.mission = tpz.mission or {}
 
-dsp.mission.log_id =
+tpz.mission.log_id =
 {
     SANDORIA    =  0,
     BASTOK      =  1,
@@ -23,30 +23,30 @@ dsp.mission.log_id =
     ROV         = 13,
 }
 
-dsp.mission.area =
+tpz.mission.area =
 {
-    [dsp.mission.log_id.SANDORIA]    = 'sandoria',
-    [dsp.mission.log_id.BASTOK]      = 'bastok',
-    [dsp.mission.log_id.WINDURST]    = 'windurst',
-    [dsp.mission.log_id.ZILART]      = 'zilart',
-    [dsp.mission.log_id.TOAU]        = 'toau',
-    [dsp.mission.log_id.WOTG]        = 'wotg',
-    [dsp.mission.log_id.COP]         = 'cop',
-    [dsp.mission.log_id.ASSAULT]     = 'assault',
-    [dsp.mission.log_id.CAMPAIGN]    = 'campaign',
-    [dsp.mission.log_id.ACP]         = 'acp',
-    [dsp.mission.log_id.AMK]         = 'amk',
-    [dsp.mission.log_id.ASA]         = 'asa',
-    [dsp.mission.log_id.SOA]         = 'soa',
-    [dsp.mission.log_id.ROV]         = 'rov',
+    [tpz.mission.log_id.SANDORIA]    = 'sandoria',
+    [tpz.mission.log_id.BASTOK]      = 'bastok',
+    [tpz.mission.log_id.WINDURST]    = 'windurst',
+    [tpz.mission.log_id.ZILART]      = 'zilart',
+    [tpz.mission.log_id.TOAU]        = 'toau',
+    [tpz.mission.log_id.WOTG]        = 'wotg',
+    [tpz.mission.log_id.COP]         = 'cop',
+    [tpz.mission.log_id.ASSAULT]     = 'assault',
+    [tpz.mission.log_id.CAMPAIGN]    = 'campaign',
+    [tpz.mission.log_id.ACP]         = 'acp',
+    [tpz.mission.log_id.AMK]         = 'amk',
+    [tpz.mission.log_id.ASA]         = 'asa',
+    [tpz.mission.log_id.SOA]         = 'soa',
+    [tpz.mission.log_id.ROV]         = 'rov',
 }
 
-dsp.mission.id =
+tpz.mission.id =
 {
     -----------------------------------
     --  San d'Oria (0)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.SANDORIA]] =
+    [tpz.mission.area[tpz.mission.log_id.SANDORIA]] =
     {
         SMASH_THE_ORCISH_SCOUTS = 0,  -- ± --
         BAT_HUNT                = 1,  -- ± --
@@ -78,7 +78,7 @@ dsp.mission.id =
     -----------------------------------
     --  Bastok (1)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.BASTOK]] =
+    [tpz.mission.area[tpz.mission.log_id.BASTOK]] =
     {
         THE_ZERUHN_REPORT         = 0,  -- ± --
         GEOLOGICAL_SURVEY         = 1,  -- ± --
@@ -110,7 +110,7 @@ dsp.mission.id =
     -----------------------------------
     --  Windurst (2)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.WINDURST]] =
+    [tpz.mission.area[tpz.mission.log_id.WINDURST]] =
     {
         THE_HORUTOTO_RUINS_EXPERIMENT = 0,  -- ± --
         THE_HEART_OF_THE_MATTER       = 1,  -- ± --
@@ -142,7 +142,7 @@ dsp.mission.id =
     -----------------------------------
     --  Zilart Missions (3)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.ZILART]] =
+    [tpz.mission.area[tpz.mission.log_id.ZILART]] =
     {
         THE_NEW_FRONTIER              = 0,  -- ± --
         WELCOME_TNORG                 = 4,  -- ± --
@@ -168,7 +168,7 @@ dsp.mission.id =
     -----------------------------------
     --  Promathia Missions (6)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.COP]] =
+    [tpz.mission.area[tpz.mission.log_id.COP]] =
     {
         ANCIENT_FLAMES_BECKON            = 0,  -- Category
         THE_RITES_OF_LIFE                = 1,  -- ± --
@@ -239,7 +239,7 @@ dsp.mission.id =
     -----------------------------------
     --  Aht Urhgan Missions (4)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.TOAU]] =
+    [tpz.mission.area[tpz.mission.log_id.TOAU]] =
     {
         LAND_OF_SACRED_SERPENTS = 0,
         IMMORTAL_SENTRIES       = 1,
@@ -294,7 +294,7 @@ dsp.mission.id =
     -----------------------------------
     --  Wings of the Goddess (5)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.WOTG]] =
+    [tpz.mission.area[tpz.mission.log_id.WOTG]] =
     {
         CAVERNOUS_MAWS             = 0,
         BACK_TO_THE_BEGINNING      = 1,
@@ -355,7 +355,7 @@ dsp.mission.id =
     -----------------------------------
     --  A Crystalline Prophecy (9)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.ACP]] =
+    [tpz.mission.area[tpz.mission.log_id.ACP]] =
     {
         A_CRYSTALLINE_PROPHECY        = 0, -- ± --
         THE_ECHO_AWAKENS              = 1, -- ± --
@@ -374,7 +374,7 @@ dsp.mission.id =
     -----------------------------------
     --  A Moogle Kupo d'Etat (10)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.AMK]] =
+    [tpz.mission.area[tpz.mission.log_id.AMK]] =
     {
         A_MOOGLE_KUPO_DETAT                 = 0,  -- ± --
         DRENCHED_IT_BEGAN_WITH_A_RAINDROP   = 1,  -- ± --
@@ -396,7 +396,7 @@ dsp.mission.id =
     -----------------------------------
     --  A Shantotto Ascension (11)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.ASA]] =
+    [tpz.mission.area[tpz.mission.log_id.ASA]] =
     {
         A_SHANTOTTO_ASCENSION       = 0, -- ± --
         BURGEONING_DREAD            = 1, -- ± --
@@ -418,7 +418,7 @@ dsp.mission.id =
     -----------------------------------
     --  Seekers of Adoulin (12)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.SOA]] =
+    [tpz.mission.area[tpz.mission.log_id.SOA]] =
     {
         -- THE_SACRED_CITY_OF_ADOULIN   =  -- Category
         RUMORS_FROM_THE_WEST            = 0,   -- ± --
@@ -536,7 +536,7 @@ dsp.mission.id =
     -----------------------------------
     --  Rhapsodies of Vana Diel (13)
     -----------------------------------
-    [dsp.mission.area[dsp.mission.log_id.ROV]] =
+    [tpz.mission.area[tpz.mission.log_id.ROV]] =
     {
         RHAPSODIES_OF_VANADIEL          = 0,
         -- CREATION_AND_REBIRTH         =  -- Category
@@ -636,8 +636,8 @@ dsp.mission.id =
         THE_ORBS_RADIANCE               = 224,
         A_RHAPSODY_FOR_THE_AGES         = 226,
     },
-    [dsp.mission.area[dsp.mission.log_id.ASSAULT]] = {},
-    [dsp.mission.area[dsp.mission.log_id.CAMPAIGN]] = {},
+    [tpz.mission.area[tpz.mission.log_id.ASSAULT]] = {},
+    [tpz.mission.area[tpz.mission.log_id.CAMPAIGN]] = {},
 }
 
 -- Assault and Campaign IDs deliberately left out of mission table
@@ -748,31 +748,31 @@ function getMissionMask(player)
     first_mission = 0;
     repeat_mission = 0;
 
-    if (nation == dsp.nation.WINDURST) then
+    if (nation == tpz.nation.WINDURST) then
         if (rank >= 1) then
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Windurst
                 --first_mission = first_mission + 1;
             end
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER) == false) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_HEART_OF_THE_MATTER) == false) then
                 -- 1-2 NOTE: This mission will not be listed in the Mission List for Windurst
                 --first_mission = first_mission + 2;
             end
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_PRICE_OF_PEACE) == false) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_PRICE_OF_PEACE) == false) then
                 -- 1-3 NOTE: This mission will not be listed in the Mission List for Windurst
                 --first_mission = first_mission + 4;
             end
         end
         if (rank >= 2) then
             -- 2-1
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.LOST_FOR_WORDS) == false and getMissionRankPoints(player,3) == 1) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.LOST_FOR_WORDS) == false and getMissionRankPoints(player,3) == 1) then
                 first_mission = first_mission + 8;
             else
-                if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.LOST_FOR_WORDS) and (rank > 2 or getMissionRankPoints(player,4) == 1)) then
+                if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.LOST_FOR_WORDS) and (rank > 2 or getMissionRankPoints(player,4) == 1)) then
                     -- 2-2 Repeatable
                     repeat_mission = repeat_mission + 16;
                 end
-                if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS) == false and getMissionRankPoints(player,5) == 1) then
+                if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_THREE_KINGDOMS) == false and getMissionRankPoints(player,5) == 1) then
                     -- 2-3
                     first_mission = first_mission + 32;
                 end
@@ -780,17 +780,17 @@ function getMissionMask(player)
         end
         if (rank >= 3) then
             -- 3-1
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT) == false and getMissionRankPoints(player,10) == 1) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT) == false and getMissionRankPoints(player,10) == 1) then
                 first_mission = first_mission + 1024;
             else
-                if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS) == false and getMissionRankPoints(player,11) == 1) then
+                if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.WRITTEN_IN_THE_STARS) == false and getMissionRankPoints(player,11) == 1) then
                     -- 3-2 Repeatable & Skippable
                     repeat_mission = repeat_mission + 2048;
                 elseif (rank > 3 or getMissionRankPoints(player,11) == 1) then
                     -- 3-2 Repeatable & Skippable
                     repeat_mission = repeat_mission + 2048;
                 end
-                if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.A_NEW_JOURNEY) == false and getMissionRankPoints(player,12) == 1) then
+                if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.A_NEW_JOURNEY) == false and getMissionRankPoints(player,12) == 1) then
                     -- 3-3
                     first_mission = first_mission + 4096;
                 end
@@ -801,59 +801,59 @@ function getMissionMask(player)
             -- first_mission = first_mission + 8192;
         end
         if (rank == 5) then
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
         end
         if (rank == 6) then
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.FULL_MOON_FOUNTAIN) == false and getMissionRankPoints(player,16) == 1) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.FULL_MOON_FOUNTAIN) == false and getMissionRankPoints(player,16) == 1) then
                 -- 6-1
                 first_mission = first_mission + 65536;
-            elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.SAINTLY_INVITATION) == false and getMissionRankPoints(player,17) == 1) then
+            elseif (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.SAINTLY_INVITATION) == false and getMissionRankPoints(player,17) == 1) then
                 -- 6-2
                 first_mission = first_mission + 131072;
             end
         end
         if (rank == 7) then
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_SIXTH_MINISTRY) == false and getMissionRankPoints(player,18) == 1) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_SIXTH_MINISTRY) == false and getMissionRankPoints(player,18) == 1) then
                 -- 7-1
                 first_mission = first_mission + 262144;
-            elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.AWAKENING_OF_THE_GODS) == false and getMissionRankPoints(player,19) == 1) then
+            elseif (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.AWAKENING_OF_THE_GODS) == false and getMissionRankPoints(player,19) == 1) then
                 -- 7-2
                 first_mission = first_mission + 524288;
             end
         end
         if (rank == 8) then
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.VAIN) == false and getMissionRankPoints(player,20) == 1) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.VAIN) == false and getMissionRankPoints(player,20) == 1) then
                 -- 8-1
                 first_mission = first_mission + 1048576;
-            elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) == false and getMissionRankPoints(player,21) == 1) then
+            elseif (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) == false and getMissionRankPoints(player,21) == 1) then
                 -- 8-2
                 first_mission = first_mission + 2097152;
             end
         end
         if (rank == 9) then
-            if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.DOLL_OF_THE_DEAD) == false and getMissionRankPoints(player,22) == 1) then
+            if (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.DOLL_OF_THE_DEAD) == false and getMissionRankPoints(player,22) == 1) then
                 -- 9-1
                 first_mission = first_mission + 4194304;
-            elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.MOON_READING) == false and getMissionRankPoints(player,23) == 1) then
+            elseif (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.MOON_READING) == false and getMissionRankPoints(player,23) == 1) then
                 -- 9-2
                 first_mission = first_mission + 8388608;
             end
         end
-    elseif (nation == dsp.nation.SANDORIA) then
+    elseif (nation == tpz.nation.SANDORIA) then
         if (rank >= 1) then
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
                 -- 1-1
                 repeat_mission = repeat_mission + 1;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BAT_HUNT) == false) then
+            elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.BAT_HUNT) == false) then
                 -- 1-2 If we completed 1-1, we can start and repeat this mission
                 repeat_mission = repeat_mission + 2 + 1;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SAVE_THE_CHILDREN) == false) then
+            elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.SAVE_THE_CHILDREN) == false) then
                 -- 1-3 If we completed 1-2, we can start and repeat this mission
                 repeat_mission = repeat_mission + 4 + 2 + 1;
             else
@@ -862,14 +862,14 @@ function getMissionMask(player)
         end
         if (rank >= 2) then
             -- 2-1
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_RESCUE_DRILL) == false and getMissionRankPoints(player,3) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.THE_RESCUE_DRILL) == false and getMissionRankPoints(player,3) == 1) then
                 first_mission = first_mission + 8;
             else
                 if (rank > 2 or getMissionRankPoints(player,4) == 1) then
                     -- 2-2 Repeatable & Skippable
                     repeat_mission = repeat_mission + 16;
                 end
-                if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.JOURNEY_ABROAD) == false and getMissionRankPoints(player,5) == 1) then
+                if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.JOURNEY_ABROAD) == false and getMissionRankPoints(player,5) == 1) then
                     -- 2-3
                     first_mission = first_mission + 32;
                 end
@@ -880,11 +880,11 @@ function getMissionMask(player)
                 -- 3-1
                 repeat_mission = repeat_mission + 1024;
             end
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.INFILTRATE_DAVOI) == true and getMissionRankPoints(player,11) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.INFILTRATE_DAVOI) == true and getMissionRankPoints(player,11) == 1) then
                 -- 3-2 Repeatable & Skippable
                 repeat_mission = repeat_mission + 2048;
             end
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO) == false and getMissionRankPoints(player,12) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.APPOINTMENT_TO_JEUNO) == false and getMissionRankPoints(player,12) == 1) then
                 -- 3-3
                 first_mission = first_mission + 4096;
             end
@@ -894,80 +894,80 @@ function getMissionMask(player)
             -- first_mission = first_mission + 8192;
         end
         if (rank == 5) then
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA) == false) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(tpz.ki.MESSAGE_TO_JEUNO_SANDORIA) == false) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
         end
         if (rank == 6) then
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES) == false and getMissionRankPoints(player,16) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.LEAUTE_S_LAST_WISHES) == false and getMissionRankPoints(player,16) == 1) then
                 -- 6-1
                 first_mission = first_mission + 65536;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST) == false and getMissionRankPoints(player,17) == 1) then
+            elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.RANPERRE_S_FINAL_REST) == false and getMissionRankPoints(player,17) == 1) then
                 -- 6-2
                 first_mission = first_mission + 131072;
             end
         end
         if (rank == 7) then
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE) == false and getMissionRankPoints(player,18) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE) == false and getMissionRankPoints(player,18) == 1) then
                 -- 7-1
                 first_mission = first_mission + 262144;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_SECRET_WEAPON) == false and getMissionRankPoints(player,19) == 1) then
+            elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.THE_SECRET_WEAPON) == false and getMissionRankPoints(player,19) == 1) then
                 -- 7-2
                 first_mission = first_mission + 524288;
             end
         end
         if (rank == 8) then
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
                 -- 8-1
                 first_mission = first_mission + 1048576;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getCharVar("Mission8-1Completed") == 1) then
+            elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getCharVar("Mission8-1Completed") == 1) then
                 -- 8-2
                 first_mission = first_mission + 2097152;
             end
         end
         if (rank == 9) then
-            if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
+            if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
                 -- 9-1
                 first_mission = first_mission + 4194304;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getCharVar("Cutscenes_8-2") == 2) then
+            elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getCharVar("Cutscenes_8-2") == 2) then
                 -- 9-2
                 first_mission = first_mission + 8388608;
 
-    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
+    elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
                 -- 9-2
                 first_mission = first_mission + 8388608;
 
             end
         end
-    elseif (nation == dsp.nation.BASTOK) then
+    elseif (nation == tpz.nation.BASTOK) then
         if (rank >= 1) then
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_ZERUHN_REPORT) == false) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_ZERUHN_REPORT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
                 --first_mission = first_mission + 1;
             end
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.GEOLOGICAL_SURVEY) == false) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.GEOLOGICAL_SURVEY) == false) then
                 -- 1-2 NOTE: This mission will not be listed in the Mission List for Bastok
                 first_mission = first_mission + 2;
             end
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.GEOLOGICAL_SURVEY) == true) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.GEOLOGICAL_SURVEY) == true) then
                 -- 1-3
                 repeat_mission = repeat_mission + 4;
             end
         end
         if (rank >= 2) then
             -- 2-1
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_CRYSTAL_LINE) == false and getMissionRankPoints(player,3) == 1) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_CRYSTAL_LINE) == false and getMissionRankPoints(player,3) == 1) then
                 first_mission = first_mission + 8;
             else
                 if (rank > 2 or getMissionRankPoints(player,4) == 1) then
                     -- 2-2 Repeatable
                     repeat_mission = repeat_mission + 16;
                 end
-                if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY) == false and getMissionRankPoints(player,5) == 1) then
+                if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_EMISSARY) == false and getMissionRankPoints(player,5) == 1) then
                     -- 2-3
                     first_mission = first_mission + 32;
                 end
@@ -975,14 +975,14 @@ function getMissionMask(player)
         end
         if (rank >= 3) then
             -- 3-1
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_FOUR_MUSKETEERS) == false and getMissionRankPoints(player,10) == 1) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_FOUR_MUSKETEERS) == false and getMissionRankPoints(player,10) == 1) then
                 first_mission = first_mission + 1024;
             else
                 if (rank > 3 or getMissionRankPoints(player,11) == 1) then
                     -- 3-2 Repeatable & Skippable
                     repeat_mission = repeat_mission + 2048;
                 end
-                if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.JEUNO) == false and getMissionRankPoints(player,12) == 1) then
+                if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.JEUNO) == false and getMissionRankPoints(player,12) == 1) then
                     -- 3-3
                     first_mission = first_mission + 4096;
                 end
@@ -993,53 +993,53 @@ function getMissionMask(player)
             -- first_mission = first_mission + 8192;
         end
         if (rank == 5) then
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
                 first_mission = first_mission + 16384;
             end
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.DARKNESS_RISING) and player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.DARKNESS_RISING) and player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
                 -- 5-2
                 first_mission = first_mission + 32768;
             end
         end
         if (rank == 6) then
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER) == false and getMissionRankPoints(player,16) == 1) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.RETURN_OF_THE_TALEKEEPER) == false and getMissionRankPoints(player,16) == 1) then
                 -- 6-1
                 first_mission = first_mission + 65536;
-            elseif (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_PIRATE_S_COVE) == false and getMissionRankPoints(player,17) == 1) then
+            elseif (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_PIRATE_S_COVE) == false and getMissionRankPoints(player,17) == 1) then
                 -- 6-2
                 first_mission = first_mission + 131072;
             end
         end
         if (rank == 7) then
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_FINAL_IMAGE) == false and getMissionRankPoints(player,18) == 1) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_FINAL_IMAGE) == false and getMissionRankPoints(player,18) == 1) then
                 -- 7-1
                 first_mission = first_mission + 262144;
-            elseif (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.ON_MY_WAY) == false and getMissionRankPoints(player,19) == 1) then
+            elseif (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.ON_MY_WAY) == false and getMissionRankPoints(player,19) == 1) then
                 -- 7-2
                 first_mission = first_mission + 524288;
             end
         end
         if (rank == 8) then
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_CHAINS_THAT_BIND_US) == false and getMissionRankPoints(player,20) == 1) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_CHAINS_THAT_BIND_US) == false and getMissionRankPoints(player,20) == 1) then
                 -- 8-1
                 first_mission = first_mission + 1048576;
-            elseif (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.ENTER_THE_TALEKEEPER) == false and getMissionRankPoints(player,21) == 1) then
+            elseif (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.ENTER_THE_TALEKEEPER) == false and getMissionRankPoints(player,21) == 1) then
                 -- 8-2
                 first_mission = first_mission + 2097152;
             end
         end
         if (rank == 9) then
-            if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH) == false and getMissionRankPoints(player,22) == 1) then
+            if (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.THE_SALT_OF_THE_EARTH) == false and getMissionRankPoints(player,22) == 1) then
                 -- 9-1
                 first_mission = first_mission + 4194304;
-            elseif (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE) == false and getMissionRankPoints(player,23) == 1) then
+            elseif (player:hasCompletedMission(BASTOK,tpz.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE) == false and getMissionRankPoints(player,23) == 1) then
                 -- 9-2
                 first_mission = first_mission + 8388608;
             end
         end
     end
 
-    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getCharVar("MissionStatus") == 8) then
+    if (player:getCurrentMission(nation) == tpz.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getCharVar("MissionStatus") == 8) then
         mission_mask = 2147483647 - 16384;
     else
         mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
@@ -1053,7 +1053,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
     offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
     nation = player:getNation();
 
-    if (nation == dsp.nation.SANDORIA) then
+    if (nation == tpz.nation.SANDORIA) then
 
             if (guard == 1) then GuardCS = {1022,1021,1025,1004,1024,1005,1006,1028,1029,1012,1031};
         elseif (guard == 2) then GuardCS = {2022,2021,2025,2004,2024,2005,2006,2028,2029,2012,2031};
@@ -1080,7 +1080,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
         }
         return cs, params, offset;
 
-    elseif (nation == dsp.nation.BASTOK) then
+    elseif (nation == tpz.nation.BASTOK) then
 
         switch (pMission) : caseof {
             [0] = function (x) offset = 0; end,
@@ -1105,7 +1105,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
         }
         return cs, params, offset;
 
-    elseif (nation == dsp.nation.WINDURST) then
+    elseif (nation == tpz.nation.WINDURST) then
 
             if (guard == 1) then GuardCS = {127,136,150,154,160,473,177};
         elseif (guard == 2) then GuardCS = {123,131,310,148,156,177,215};
@@ -1147,7 +1147,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- 13: player:addTitle(number);
     -- 14: player:setCharVar("MissionStatus",value);
 
-    if (nation == dsp.nation.SANDORIA) then
+    if (nation == tpz.nation.SANDORIA) then
         if ((csid == 1009 or csid == 2009) and option ~= 1073741824 and option ~= 31) then
             if (option > 100) then
                 badoption = {101,1,102,2,104,4,110,10,111,11};
@@ -1197,7 +1197,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
             };
         end
-    elseif (nation == dsp.nation.BASTOK) then
+    elseif (nation == tpz.nation.BASTOK) then
         if (csid == 1001 and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{1001,option},{0,0},{0,0},{0,0},{{1},{2}}};
         else
@@ -1226,7 +1226,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 21,{176,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,9},{9,293},{8,80000},{12}},                                     -- MISSION 8-2 (Finish (Bastok Mines))
             };
         end
-    elseif (nation == dsp.nation.WINDURST) then
+    elseif (nation == tpz.nation.WINDURST) then
         guardlist = {114,111,78,93};
         if (csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}}};

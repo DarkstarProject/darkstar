@@ -1,10 +1,10 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : darkstar
+Source Server         : Topaz
 Source Server Version : 50172
 Source Host           : localhost:3306
-Source Database       : dspdb
+Source Database       : tpzdb
 
 Target Server Type    : MYSQL
 Target Server Version : 50172

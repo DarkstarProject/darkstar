@@ -7,16 +7,16 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.REGAIN, 50);
+    mob:addMod(tpz.mod.REGAIN, 50);
 end;
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         between = 30,
         specials =
         {
-            {id = dsp.jsa.MIGHTY_STRIKES},
-            {id = dsp.jsa.MIJIN_GAKURE},
+            {id = tpz.jsa.MIGHTY_STRIKES},
+            {id = tpz.jsa.MIJIN_GAKURE},
         },
     })
 end
@@ -26,7 +26,7 @@ function onMobEngaged(mob,target)
 
     for member = mobid, mobid+7 do
         local m = GetMobByID(member)
-        if m:getCurrentAction() == dsp.act.ROAMING then
+        if m:getCurrentAction() == tpz.act.ROAMING then
             m:updateEnmity(target)
         end
     end

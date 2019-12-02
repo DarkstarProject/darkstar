@@ -5,7 +5,7 @@
 -- Type: Physical
 -- Utsusemi/Blink absorb: 1 shadow
 -- Range: Melee
--- Notes: Stun may or may not take dsp.effect.
+-- Notes: Stun may or may not take tpz.effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/settings")
@@ -21,10 +21,10 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 3
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,info.hitslanded)
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.BLUNT,info.hitslanded)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
 
-    local typeEffect = dsp.effect.STUN
+    local typeEffect = tpz.effect.STUN
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4)
 

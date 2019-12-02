@@ -12,7 +12,7 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return dsp.msg.basic.REQUIRES_A_PET,0
+        return tpz.msg.basic.REQUIRES_A_PET,0
     end
 
     return 0,0
@@ -26,15 +26,15 @@ function onUseAbility(player,target,ability,action)
       -- more than 10.  This seems to mimic retail.  There is no formula
       -- that I can find, but this seems close.
         local level = 0
-        if (player:getMainJob() == dsp.job.BST) then
+        if (player:getMainJob() == tpz.job.BST) then
             level = player:getMainLvl()
-        elseif (player:getSubJob() == dsp.job.BST) then
+        elseif (player:getSubJob() == tpz.job.BST) then
             level = player:getSubLvl()
         end
 
         local tick = 10 - math.ceil(math.max(0, level / 20))
         --printf('tick: %d', tick)
-        pet:addStatusEffectEx(dsp.effect.HEALING, 0, 0, tick, 0)
+        pet:addStatusEffectEx(tpz.effect.HEALING, 0, 0, tick, 0)
         pet:setAnimation(0)
     end
 end

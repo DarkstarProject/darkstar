@@ -42,7 +42,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     -- Apply aftermath
     if damage > 0 then
-        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.MAIN, dsp.aftermath.type.EMPYREAN)
+        tpz.aftermath.addStatusEffect(player, tp, tpz.slot.MAIN, tpz.aftermath.type.EMPYREAN)
     end
 
     return tpHits, extraHits, criticalHit, damage

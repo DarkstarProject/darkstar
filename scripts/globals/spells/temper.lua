@@ -13,8 +13,8 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local effect = dsp.effect.MULTI_STRIKES
-    local enhskill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC)
+    local effect = tpz.effect.MULTI_STRIKES
+    local enhskill = caster:getSkillLevel(tpz.skill.ENHANCING_MAGIC)
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 95, target:getMainLvl())
 
@@ -29,9 +29,9 @@ function onSpellCast(caster, target, spell)
     power = math.min(power, 20)
 
     if target:addStatusEffect(effect, power, 0, duration) then
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 
     return effect

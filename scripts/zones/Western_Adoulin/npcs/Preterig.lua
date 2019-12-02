@@ -21,7 +21,7 @@ function onTrigger(player,npc)
         4421, 1560,   -- Melon Pie
         4422, 200,    -- Orange Juice
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

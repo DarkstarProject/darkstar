@@ -727,31 +727,31 @@ function onTrigger(player, npc)
 -- printf("lootID: %u",lootID)
 
     if (CofferType == cTIME) then
-        dsp.battlefield.ExtendTimeLimit(battlefield, addtime)
+        tpz.battlefield.ExtendTimeLimit(battlefield, addtime)
     elseif (CofferType == cITEM) then
         battlefield:setLocalVar("loot", 1)
         battlefield:spawnLoot(npc)
-        dsp.battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
+        tpz.battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
     elseif (CofferType == cRESTORE) then
-        dsp.battlefield.HealPlayers(battlefield)
+        tpz.battlefield.HealPlayers(battlefield)
     elseif (CofferType == cMIMIC) then
          if (CofferID==16932864+210) then
                 GetNPCByID(16932864+195):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos())
-                GetNPCByID(16932864+195):setStatus(dsp.status.NORMAL)
+                GetNPCByID(16932864+195):setStatus(tpz.status.NORMAL)
          elseif (CofferID==16932864+211) then
                           GetMobByID(16932896):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos())
                         GetMobByID(16932896):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos())
                         GetMobByID(16932896):updateClaim(player)
          elseif (CofferID==16932864+212) then
                 GetNPCByID(16932864+196):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos())
-                GetNPCByID(16932864+196):setStatus(dsp.status.NORMAL)
+                GetNPCByID(16932864+196):setStatus(tpz.status.NORMAL)
          elseif (CofferID==16932864+213) then
                          GetMobByID(16932897):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos())
                         GetMobByID(16932897):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos())
                         GetMobByID(16932897):updateClaim(player)
          elseif (CofferID==16932864+214) then
                 GetNPCByID(16932864+197):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos())
-                GetNPCByID(16932864+197):setStatus(dsp.status.NORMAL)
+                GetNPCByID(16932864+197):setStatus(tpz.status.NORMAL)
          elseif (CofferID==16932864+215) then
                          GetMobByID(16932898):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos())
                         GetMobByID(16932898):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos())
@@ -767,7 +767,7 @@ function onTrigger(player, npc)
         HideArmouryCrates(InstanceRegion,APOLLYON_SE_NE)
     end
 
-   npc:setStatus(dsp.status.DISAPPEAR)
+   npc:setStatus(tpz.status.DISAPPEAR)
 end
 
 -----------------------------------

@@ -8,8 +8,8 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMod(dsp.mod.TRIPLE_ATTACK, 25)
-    mob:addMod(dsp.mod.GRAVITYRES, 50)
+    mob:setMod(tpz.mod.TRIPLE_ATTACK, 25)
+    mob:addMod(tpz.mod.GRAVITYRES, 50)
 end
 
 function onMobDeath(mob, player, isKiller)

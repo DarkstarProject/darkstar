@@ -16,29 +16,29 @@ function onTrigger(player)
         pet:setLocalVar("GodMode", 1);
 
         -- Add bonus effects to the pet..
-        pet:addStatusEffect(dsp.effect.MAX_HP_BOOST,1000,0,0);
-        pet:addStatusEffect(dsp.effect.MAX_MP_BOOST,1000,0,0);
-        pet:addStatusEffect(dsp.effect.SENTINEL,100,0,0);
-        pet:addStatusEffect(dsp.effect.MIGHTY_STRIKES,1,0,0);
-        pet:addStatusEffect(dsp.effect.HUNDRED_FISTS,1,0,0);
-        pet:addStatusEffect(dsp.effect.CHAINSPELL,1,0,0);
-        pet:addStatusEffect(dsp.effect.PERFECT_DODGE,1,0,0);
-        pet:addStatusEffect(dsp.effect.INVINCIBLE,1,0,0);
-        pet:addStatusEffect(dsp.effect.MANAFONT,1,0,0);
-        pet:addStatusEffect(dsp.effect.REGAIN,150,1,0);
-        pet:addStatusEffect(dsp.effect.REFRESH,99,0,0);
-        pet:addStatusEffect(dsp.effect.REGEN,99,0,0);
+        pet:addStatusEffect(tpz.effect.MAX_HP_BOOST,1000,0,0);
+        pet:addStatusEffect(tpz.effect.MAX_MP_BOOST,1000,0,0);
+        pet:addStatusEffect(tpz.effect.SENTINEL,100,0,0);
+        pet:addStatusEffect(tpz.effect.MIGHTY_STRIKES,1,0,0);
+        pet:addStatusEffect(tpz.effect.HUNDRED_FISTS,1,0,0);
+        pet:addStatusEffect(tpz.effect.CHAINSPELL,1,0,0);
+        pet:addStatusEffect(tpz.effect.PERFECT_DODGE,1,0,0);
+        pet:addStatusEffect(tpz.effect.INVINCIBLE,1,0,0);
+        pet:addStatusEffect(tpz.effect.MANAFONT,1,0,0);
+        pet:addStatusEffect(tpz.effect.REGAIN,150,1,0);
+        pet:addStatusEffect(tpz.effect.REFRESH,99,0,0);
+        pet:addStatusEffect(tpz.effect.REGEN,99,0,0);
 
         -- Add bonus mods to the pet..
-        pet:addMod(dsp.mod.RACC,2500);
-        pet:addMod(dsp.mod.RATT,2500);
-        pet:addMod(dsp.mod.ACC,2500);
-        pet:addMod(dsp.mod.ATT,2500);
-        pet:addMod(dsp.mod.MATT,2500);
-        pet:addMod(dsp.mod.MACC,2500);
-        pet:addMod(dsp.mod.RDEF,2500);
-        pet:addMod(dsp.mod.DEF,2500);
-        pet:addMod(dsp.mod.MDEF,2500);
+        pet:addMod(tpz.mod.RACC,2500);
+        pet:addMod(tpz.mod.RATT,2500);
+        pet:addMod(tpz.mod.ACC,2500);
+        pet:addMod(tpz.mod.ATT,2500);
+        pet:addMod(tpz.mod.MATT,2500);
+        pet:addMod(tpz.mod.MACC,2500);
+        pet:addMod(tpz.mod.RDEF,2500);
+        pet:addMod(tpz.mod.DEF,2500);
+        pet:addMod(tpz.mod.MDEF,2500);
 
         -- Heal the pet from the new buffs..
         pet:addHP( 50000 );
@@ -48,28 +48,28 @@ function onTrigger(player)
         pet:setLocalVar("GodMode", 0);
 
         -- Remove bonus effects..
-        pet:delStatusEffect(dsp.effect.MAX_HP_BOOST);
-        pet:delStatusEffect(dsp.effect.MAX_MP_BOOST);
-        pet:delStatusEffect(dsp.effect.SENTINEL);
-        pet:delStatusEffect(dsp.effect.MIGHTY_STRIKES);
-        pet:delStatusEffect(dsp.effect.HUNDRED_FISTS);
-        pet:delStatusEffect(dsp.effect.CHAINSPELL);
-        pet:delStatusEffect(dsp.effect.PERFECT_DODGE);
-        pet:delStatusEffect(dsp.effect.INVINCIBLE);
-        pet:delStatusEffect(dsp.effect.MANAFONT);
-        pet:delStatusEffect(dsp.effect.REGAIN);
-        pet:delStatusEffect(dsp.effect.REFRESH);
-        pet:delStatusEffect(dsp.effect.REGEN);
+        pet:delStatusEffect(tpz.effect.MAX_HP_BOOST);
+        pet:delStatusEffect(tpz.effect.MAX_MP_BOOST);
+        pet:delStatusEffect(tpz.effect.SENTINEL);
+        pet:delStatusEffect(tpz.effect.MIGHTY_STRIKES);
+        pet:delStatusEffect(tpz.effect.HUNDRED_FISTS);
+        pet:delStatusEffect(tpz.effect.CHAINSPELL);
+        pet:delStatusEffect(tpz.effect.PERFECT_DODGE);
+        pet:delStatusEffect(tpz.effect.INVINCIBLE);
+        pet:delStatusEffect(tpz.effect.MANAFONT);
+        pet:delStatusEffect(tpz.effect.REGAIN);
+        pet:delStatusEffect(tpz.effect.REFRESH);
+        pet:delStatusEffect(tpz.effect.REGEN);
 
         -- Remove bonus mods..
-        pet:delMod(dsp.mod.RACC,2500);
-        pet:delMod(dsp.mod.RATT,2500);
-        pet:delMod(dsp.mod.ACC,2500);
-        pet:delMod(dsp.mod.ATT,2500);
-        pet:delMod(dsp.mod.MATT,2500);
-        pet:delMod(dsp.mod.MACC,2500);
-        pet:delMod(dsp.mod.RDEF,2500);
-        pet:delMod(dsp.mod.DEF,2500);
-        pet:delMod(dsp.mod.MDEF,2500);
+        pet:delMod(tpz.mod.RACC,2500);
+        pet:delMod(tpz.mod.RATT,2500);
+        pet:delMod(tpz.mod.ACC,2500);
+        pet:delMod(tpz.mod.ATT,2500);
+        pet:delMod(tpz.mod.MATT,2500);
+        pet:delMod(tpz.mod.MACC,2500);
+        pet:delMod(tpz.mod.RDEF,2500);
+        pet:delMod(tpz.mod.DEF,2500);
+        pet:delMod(tpz.mod.MDEF,2500);
     end
 end

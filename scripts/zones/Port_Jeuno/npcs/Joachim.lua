@@ -43,13 +43,13 @@ function onTrigger(player,npc)
         isCap = 1;
     end
 
-    if (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.A_JOURNEY_BEGINS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.A_JOURNEY_BEGINS) == QUEST_ACCEPTED) then
         player:startEvent(325);
-    elseif (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getCharVar("1stTimeAbyssea") == 1) then
+    elseif (player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getCharVar("1stTimeAbyssea") == 1) then
         player:startEvent(327,0,0,MaxKI); -- cs for "The Truth Beckons" completion
-    elseif (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) ~= QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.THE_TRUTH_BECKONS) ~= QUEST_COMPLETED) then
         player:startEvent(326); -- Pre "The Truth Beckons" Menu
-    elseif (player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED) then
         player:startEvent(328,0,StonesStock,StonesKI,isCap,1,1,1,3); -- Post "The Truth Beckons" Menu
     -- elseif
         -- player:startEvent(332);
@@ -61,34 +61,34 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 325) then
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE1);
-        player:addKeyItem(dsp.ki.TRAVERSER_STONE1)
-        player:completeQuest(ABYSSEA, dsp.quest.id.abyssea.A_JOURNEY_BEGINS);
-        player:addQuest(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TRAVERSER_STONE1);
+        player:addKeyItem(tpz.ki.TRAVERSER_STONE1)
+        player:completeQuest(ABYSSEA, tpz.quest.id.abyssea.A_JOURNEY_BEGINS);
+        player:addQuest(ABYSSEA, tpz.quest.id.abyssea.THE_TRUTH_BECKONS);
     elseif (csid == 327) then
-        player:completeQuest(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS);
-        player:addQuest(ABYSSEA, dsp.quest.id.abyssea.DAWN_OF_DEATH);
+        player:completeQuest(ABYSSEA, tpz.quest.id.abyssea.THE_TRUTH_BECKONS);
+        player:addQuest(ABYSSEA, tpz.quest.id.abyssea.DAWN_OF_DEATH);
         player:setCharVar("1stTimeAbyssea",0);
     elseif (csid == 328 and option == 6) then
         local StonesKI = getTravStonesTotal(player);
         if (StonesKI == 5) then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE6);
-            player:addKeyItem(dsp.ki.TRAVERSER_STONE6)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TRAVERSER_STONE6);
+            player:addKeyItem(tpz.ki.TRAVERSER_STONE6)
         elseif (StonesKI == 4) then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE5);
-            player:addKeyItem(dsp.ki.TRAVERSER_STONE5)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TRAVERSER_STONE5);
+            player:addKeyItem(tpz.ki.TRAVERSER_STONE5)
         elseif (StonesKI == 3) then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE4)
-            player:addKeyItem(dsp.ki.TRAVERSER_STONE4);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TRAVERSER_STONE4)
+            player:addKeyItem(tpz.ki.TRAVERSER_STONE4);
         elseif (StonesKI == 2) then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE3);
-            player:addKeyItem(dsp.ki.TRAVERSER_STONE3)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TRAVERSER_STONE3);
+            player:addKeyItem(tpz.ki.TRAVERSER_STONE3)
         elseif (StonesKI == 1) then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE2);
-            player:addKeyItem(dsp.ki.TRAVERSER_STONE2)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TRAVERSER_STONE2);
+            player:addKeyItem(tpz.ki.TRAVERSER_STONE2)
         elseif (StonesKI == 0) then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE1);
-            player:addKeyItem(dsp.ki.TRAVERSER_STONE1)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TRAVERSER_STONE1);
+            player:addKeyItem(tpz.ki.TRAVERSER_STONE1)
         end
     end
 end;

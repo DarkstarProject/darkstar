@@ -10,9 +10,9 @@ function onMobInitialize(mob)
 end
 
 function onMobFight(mob, target)
-    dsp.promyvion.receptacleOnFight(mob, target)
+    tpz.promyvion.receptacleOnFight(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dsp.promyvion.receptacleOnDeath(mob, isKiller)
+    tpz.promyvion.receptacleOnDeath(mob, isKiller)
 end

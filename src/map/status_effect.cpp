@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -128,7 +126,7 @@ void CStatusEffect::UnsetFlag(uint32 flag)
 
 void CStatusEffect::SetIcon(uint16 Icon)
 {
-    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_POwner == nullptr);
 
 	m_Icon = Icon;
     m_POwner->StatusEffectContainer->UpdateStatusIcons();

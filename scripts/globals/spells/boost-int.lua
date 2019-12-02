@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effect.INT_BOOST
+    local effect = tpz.effect.INT_BOOST
     doBoostGain(caster,target,spell,effect)
     return effect
 end

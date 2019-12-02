@@ -30,9 +30,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10) then
         local prevzone = player:getPreviousZone();
-        if (prevzone == dsp.zone.KAZHAM) then
+        if (prevzone == tpz.zone.KAZHAM) then
             player:setPos(0,0,0,0,246);
-        elseif (prevzone == dsp.zone.PORT_JEUNO) then
+        elseif (prevzone == tpz.zone.PORT_JEUNO) then
             player:setPos(0,0,0,0,250);
         end
     end

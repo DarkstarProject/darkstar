@@ -13,7 +13,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+    tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 function onBattlefieldRegister(player, battlefield)
@@ -36,10 +36,10 @@ function onBattlefieldDestroy(battlefield)
 end
 
 function onBattlefieldLeave(player, battlefield, leavecode)
-    if leavecode == dsp.battlefield.leaveCode.WON then
+    if leavecode == tpz.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
         player:startEvent(6)
-    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+    elseif leavecode == tpz.battlefield.leaveCode.LOST then
         player:startEvent(32002)
     end
 end
@@ -50,11 +50,11 @@ end
 function onEventFinish(player, csid, option)
     if csid == 6 then
         player:setPos(539, 0, -593, 192)
-        player:addTitle(dsp.title.AVERTER_OF_THE_APOCALYPSE)
+        player:addTitle(tpz.title.AVERTER_OF_THE_APOCALYPSE)
         player:startEvent(3)
-        if player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus") == 2 then
-            player:addKeyItem(dsp.ki.TEAR_OF_ALTANA)
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TEAR_OF_ALTANA)
+        if player:getCurrentMission(COP) == tpz.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus") == 2 then
+            player:addKeyItem(tpz.ki.TEAR_OF_ALTANA)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.TEAR_OF_ALTANA)
             player:setCharVar("Promathia_kill_day", tonumber(os.date("%j")))
             player:setCharVar("PromathiaStatus", 3)
         end

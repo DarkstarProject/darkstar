@@ -7,7 +7,7 @@ require("scripts/globals/keyitems")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+    tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 function onBattlefieldRegister(player, battlefield)
@@ -17,10 +17,10 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldLeave(player, battlefield, leavecode)
-    if leavecode == dsp.battlefield.leaveCode.WON then
+    if leavecode == tpz.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
-    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+    elseif leavecode == tpz.battlefield.leaveCode.LOST then
         player:startEvent(32002)
     end
 end
@@ -31,6 +31,6 @@ end
 function onEventFinish(player, csid, option)
     if csid == 32001 then
         player:setCharVar("CarbuncleDebacleProgress", 7)
-        player:delKeyItem(dsp.ki.DAZEBREAKER_CHARM)
+        player:delKeyItem(tpz.ki.DAZEBREAKER_CHARM)
     end
 end

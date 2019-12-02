@@ -10,27 +10,27 @@ local ID = require("scripts/zones/Northern_San_dOria/IDs");
 
 local keyitems = {
     [0] = {
-        id = dsp.ki.WOOD_PURIFICATION,
+        id = tpz.ki.WOOD_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = dsp.ki.WOOD_ENSORCELLMENT,
+        id = tpz.ki.WOOD_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = dsp.ki.LUMBERJACK,
+        id = tpz.ki.LUMBERJACK,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = dsp.ki.BOLTMAKER,
+        id = tpz.ki.BOLTMAKER,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = dsp.ki.WAY_OF_THE_CARPENTER,
+        id = tpz.ki.WAY_OF_THE_CARPENTER,
         rank = 9,
         cost = 20000
     }

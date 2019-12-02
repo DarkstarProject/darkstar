@@ -24,24 +24,24 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.DEFENSE_DOWN
+    local typeEffect = tpz.effect.DEFENSE_DOWN
 
     local silenced = false
     local blinded = false
 
-    silenced = MobStatusEffectMove(mob, target, dsp.effect.DEFENSE_DOWN, 10, 0, 120)
+    silenced = MobStatusEffectMove(mob, target, tpz.effect.DEFENSE_DOWN, 10, 0, 120)
 
-    blinded = MobStatusEffectMove(mob, target, dsp.effect.MAGIC_DEF_DOWN, 8, 0, 120)
+    blinded = MobStatusEffectMove(mob, target, tpz.effect.MAGIC_DEF_DOWN, 8, 0, 120)
 
-    skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS)
+    skill:setMsg(tpz.msg.basic.SKILL_ENFEEB_IS)
 
     -- display silenced first, else blind
-    if (silenced == dsp.msg.basic.SKILL_ENFEEB_IS) then
-        typeEffect = dsp.effect.DEFENSE_DOWN
-    elseif (blinded == dsp.msg.basic.SKILL_ENFEEB_IS) then
-        typeEffect = dsp.effect.MAGIC_DEF_DOWN
+    if (silenced == tpz.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = tpz.effect.DEFENSE_DOWN
+    elseif (blinded == tpz.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = tpz.effect.MAGIC_DEF_DOWN
     else
-        skill:setMsg(dsp.msg.basic.SKILL_MISS)
+        skill:setMsg(tpz.msg.basic.SKILL_MISS)
     end
 
     return typeEffect

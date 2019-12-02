@@ -56,7 +56,7 @@ function onZoneIn(player,prevZone)
     end
 
     -- ZM 15 -> ZM 16
-    if (ZilartMission == dsp.mission.id.zilart.THE_SEALED_SHRINE and player:getCharVar("ZilartStatus") == 1 and
+    if (ZilartMission == tpz.mission.id.zilart.THE_SEALED_SHRINE and player:getCharVar("ZilartStatus") == 1 and
     xPos >= -45 and yPos >= -4 and zPos >= -240 and
     xPos <= -33 and yPos <= 0 and zPos <= -226 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- Entered through main gate
         cs = 51;
@@ -70,7 +70,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -138,8 +138,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 51) then
-        player:completeMission(ZILART,dsp.mission.id.zilart.THE_SEALED_SHRINE);
-        player:addMission(ZILART,dsp.mission.id.zilart.THE_CELESTIAL_NEXUS);
+        player:completeMission(ZILART,tpz.mission.id.zilart.THE_SEALED_SHRINE);
+        player:addMission(ZILART,tpz.mission.id.zilart.THE_CELESTIAL_NEXUS);
         player:setCharVar("ZilartStatus",0);
     end
 end;

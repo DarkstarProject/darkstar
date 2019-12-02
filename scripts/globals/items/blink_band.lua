@@ -11,10 +11,10 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.COPY_IMAGE) or target:hasStatusEffect(dsp.effect.THIRD_EYE)) then
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+    if (target:hasStatusEffect(tpz.effect.COPY_IMAGE) or target:hasStatusEffect(tpz.effect.THIRD_EYE)) then
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     else
-        target:addStatusEffect(dsp.effect.BLINK, 3, 0, 300)
-        target:messageBasic(dsp.msg.basic.GAINS_EFFECT_OF_STATUS, dsp.effect.BLINK)
+        target:addStatusEffect(tpz.effect.BLINK, 3, 0, 300)
+        target:messageBasic(tpz.msg.basic.GAINS_EFFECT_OF_STATUS, tpz.effect.BLINK)
     end
 end

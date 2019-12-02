@@ -17,8 +17,8 @@ function onUseAbility(player,target,ability)
     local HP = player:getHP()
     if MP > 0 then
         -- Murgleis sword augments Convert.
-        if player:getMod(dsp.mod.AUGMENTS_CONVERT) > 0 and HP > player:getMaxHP()/2 then
-            HP = HP * player:getMod(dsp.mod.AUGMENTS_CONVERT)
+        if player:getMod(tpz.mod.AUGMENTS_CONVERT) > 0 and HP > player:getMaxHP()/2 then
+            HP = HP * player:getMod(tpz.mod.AUGMENTS_CONVERT)
         end
         player:setHP(MP)
         player:setMP(HP)

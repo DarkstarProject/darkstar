@@ -23,7 +23,7 @@ function onTrigger(player,npc)
         17308, 60,     -- Hawkeye
         17320, 8,      -- Iron Arrow
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

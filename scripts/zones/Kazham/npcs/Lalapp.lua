@@ -15,12 +15,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
+    npc:setPos(tpz.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    dsp.path.patrol(npc, path);
+    tpz.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
@@ -35,7 +35,7 @@ function onTrade(player,npc,trade)
     -- 905       Wyvern Skull
     -- 1147      Ancient Salt
     -- 4600      Lucky Egg
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, tpz.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getCharVar("OPO_OPO_PROGRESS");
     local failed = player:getCharVar("OPO_OPO_FAILED");
     local goodtrade = trade:hasItemQty(1147,1);
@@ -53,7 +53,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_OPO_OPO_AND_I);
+    local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, tpz.quest.id.outlands.THE_OPO_OPO_AND_I);
     local progress = player:getCharVar("OPO_OPO_PROGRESS");
     local failed = player:getCharVar("OPO_OPO_FAILED");
     local retry = player:getCharVar("OPO_OPO_RETRY");

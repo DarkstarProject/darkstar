@@ -25,11 +25,11 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == dsp.zone.OPEN_SEA_ROUTE_TO_AL_ZAHBI) then
+        if (prevZone == tpz.zone.OPEN_SEA_ROUTE_TO_AL_ZAHBI) then
             cs = 201;
-        elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_AL_ZAHBI) then
+        elseif (prevZone == tpz.zone.SILVER_SEA_ROUTE_TO_AL_ZAHBI) then
             cs = 204;
-        elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU) then
+        elseif (prevZone == tpz.zone.SILVER_SEA_ROUTE_TO_NASHMAU) then
             cs = 204;
         else
             -- MOG HOUSE EXIT
@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.STIRRINGS_OF_WAR and player:getCharVar("AhtUrganStatus") == 0 and
+    if (player:getCurrentMission(TOAU) == tpz.mission.id.toau.STIRRINGS_OF_WAR and player:getCharVar("AhtUrganStatus") == 0 and
             player:getCharVar("TOAUM38_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
         cs = 3220;
     end
@@ -64,41 +64,41 @@ function onRegionEnter(player,region)
             end
         end,
         [3] = function (x) -- TOAU Mission 1
-            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.LAND_OF_SACRED_SERPENTS) then
+            if (player:getCurrentMission(TOAU)== tpz.mission.id.toau.LAND_OF_SACRED_SERPENTS) then
                 player:startEvent(3000,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.A_MERCENARY_LIFE and player:needToZone() == false) then
-                if (prevZone ~= dsp.zone.AHT_URHGAN_WHITEGATE) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.A_MERCENARY_LIFE and player:needToZone() == false) then
+                if (prevZone ~= tpz.zone.AHT_URHGAN_WHITEGATE) then
                     player:startEvent(3050,3,3,3,3,3,3,3,3,0);
                 end
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.FINDERS_KEEPERS) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.FINDERS_KEEPERS) then
                 player:startEvent(3093);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SOCIAL_GRACES) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.SOCIAL_GRACES) then
                 player:startEvent(3095)
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.FOILED_AMBITION and player:getCharVar("TOAUM23_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.FOILED_AMBITION and player:getCharVar("TOAUM23_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
                 player:startEvent(3097,0,0,0,0,0,0,0,0,0)
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PLAYING_THE_PART and player:getCharVar("TOAUM24_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.PLAYING_THE_PART and player:getCharVar("TOAUM24_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
                 player:startEvent(3110);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PATH_OF_BLOOD) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.PATH_OF_BLOOD) then
                 player:startEvent(3131,1,1,1,1,1,1,1,1);
             end
         end,
         [4] = function (x) -- AH mission
-            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getCharVar("AhtUrganStatus") == 2) then
+            if (player:getCurrentMission(TOAU)== tpz.mission.id.toau.KNIGHT_OF_GOLD and player:getCharVar("AhtUrganStatus") == 2) then
                 player:startEvent(3024,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU)== dsp.mission.id.toau.BASTION_OF_KNOWLEDGE) then
+            elseif (player:getCurrentMission(TOAU)== tpz.mission.id.toau.BASTION_OF_KNOWLEDGE) then
                 player:startEvent(3112);
             end
         end,
         [5] = function (x) -- AH mission
-            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getCharVar("AhtUrganStatus") == 3) then
+            if (player:getCurrentMission(TOAU)== tpz.mission.id.toau.KNIGHT_OF_GOLD and player:getCharVar("AhtUrganStatus") == 3) then
                 player:startEvent(3026,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.WESTERLY_WINDS and player:getCharVar("AhtUrganStatus") == 0) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.WESTERLY_WINDS and player:getCharVar("AhtUrganStatus") == 0) then
                 player:startEvent(3027,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SWEETS_FOR_THE_SOUL) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.SWEETS_FOR_THE_SOUL) then
                 player:startEvent(3092);
-            elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.STIRRINGS_OF_WAR and player:getCharVar("AhtUrganStatus") == 1) then
+            elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.STIRRINGS_OF_WAR and player:getCharVar("AhtUrganStatus") == 1) then
                 player:startEvent(3136,0,0,0,0,0,0,0,0,0);
-            elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_AVAILABLE and player:getMainJob() == dsp.job.COR and player:getMainLvl() >= AF3_QUEST_LEVEL) then
+            elseif (player:getQuestStatus(AHT_URHGAN,tpz.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,tpz.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_AVAILABLE and player:getMainJob() == tpz.job.COR and player:getMainLvl() >= AF3_QUEST_LEVEL) then
                 player:startEvent(797);
             end
         end,
@@ -150,78 +150,78 @@ function onEventFinish(player,csid,option)
         player:setCharVar("gotitallCS",6);
         player:setPos(60,0,-71,38);
     elseif (csid == 3000) then
-        player:addKeyItem(dsp.ki.SUPPLIES_PACKAGE);
-        player:completeMission(TOAU,dsp.mission.id.toau.LAND_OF_SACRED_SERPENTS);
-        player:addMission(TOAU,dsp.mission.id.toau.IMMORTAL_SENTRIES);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUPPLIES_PACKAGE);
+        player:addKeyItem(tpz.ki.SUPPLIES_PACKAGE);
+        player:completeMission(TOAU,tpz.mission.id.toau.LAND_OF_SACRED_SERPENTS);
+        player:addMission(TOAU,tpz.mission.id.toau.IMMORTAL_SENTRIES);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.SUPPLIES_PACKAGE);
     elseif (csid == 3024) then
         player:setCharVar("AhtUrganStatus",3);
     elseif (csid == 3026) then
         player:setCharVar("AhtUrganStatus",0);
-        player:addKeyItem(dsp.ki.RAILLEFALS_LETTER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_LETTER);
-        player:completeMission(TOAU,dsp.mission.id.toau.KNIGHT_OF_GOLD);
-        player:addMission(TOAU,dsp.mission.id.toau.CONFESSIONS_OF_ROYALTY);
+        player:addKeyItem(tpz.ki.RAILLEFALS_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.RAILLEFALS_LETTER);
+        player:completeMission(TOAU,tpz.mission.id.toau.KNIGHT_OF_GOLD);
+        player:addMission(TOAU,tpz.mission.id.toau.CONFESSIONS_OF_ROYALTY);
     elseif (csid == 3027) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:setCharVar("AhtUrganStatus",1)
-            player:addKeyItem(dsp.ki.RAILLEFALS_NOTE);
-            player:setTitle(dsp.title.AGENT_OF_THE_ALLIED_FORCES);
+            player:addKeyItem(tpz.ki.RAILLEFALS_NOTE);
+            player:setTitle(tpz.title.AGENT_OF_THE_ALLIED_FORCES);
             player:addItem(2185,1);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_NOTE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.RAILLEFALS_NOTE);
             player:messageSpecial(ID.text.ITEM_OBTAINED,2185);
         end
     elseif (csid == 3050) then
-        player:completeMission(TOAU,dsp.mission.id.toau.A_MERCENARY_LIFE);
-        player:addMission(TOAU,dsp.mission.id.toau.UNDERSEA_SCOUTING);
+        player:completeMission(TOAU,tpz.mission.id.toau.A_MERCENARY_LIFE);
+        player:addMission(TOAU,tpz.mission.id.toau.UNDERSEA_SCOUTING);
     elseif (csid == 3092) then
-        player:completeMission(TOAU,dsp.mission.id.toau.SWEETS_FOR_THE_SOUL);
-        player:addMission(TOAU,dsp.mission.id.toau.TEAHOUSE_TUMULT);
+        player:completeMission(TOAU,tpz.mission.id.toau.SWEETS_FOR_THE_SOUL);
+        player:addMission(TOAU,tpz.mission.id.toau.TEAHOUSE_TUMULT);
     elseif (csid == 3093) then
-        player:completeMission(TOAU,dsp.mission.id.toau.FINDERS_KEEPERS);
-        player:setTitle(dsp.title.KARABABAS_BODYGUARD);
-        player:addMission(TOAU,dsp.mission.id.toau.SHIELD_OF_DIPLOMACY);
+        player:completeMission(TOAU,tpz.mission.id.toau.FINDERS_KEEPERS);
+        player:setTitle(tpz.title.KARABABAS_BODYGUARD);
+        player:addMission(TOAU,tpz.mission.id.toau.SHIELD_OF_DIPLOMACY);
     elseif (csid == 3095) then
-        player:completeMission(TOAU,dsp.mission.id.toau.SOCIAL_GRACES);
+        player:completeMission(TOAU,tpz.mission.id.toau.SOCIAL_GRACES);
         player:needToZone(true);
         player:setCharVar("TOAUM23_STARTDAY", VanadielDayOfTheYear());
-        player:addMission(TOAU,dsp.mission.id.toau.FOILED_AMBITION);
+        player:addMission(TOAU,tpz.mission.id.toau.FOILED_AMBITION);
     elseif (csid == 3097) then
-        player:completeMission(TOAU,dsp.mission.id.toau.FOILED_AMBITION);
-        player:setTitle(dsp.title.KARABABAS_SECRET_AGENT);
+        player:completeMission(TOAU,tpz.mission.id.toau.FOILED_AMBITION);
+        player:setTitle(tpz.title.KARABABAS_SECRET_AGENT);
         player:addItem(2187,5);
         player:setCharVar("TOAUM23_STARTDAY", 0);
         player:needToZone(true);
         player:setCharVar("TOAUM24_STARTDAY", VanadielDayOfTheYear());
-        player:addMission(TOAU,dsp.mission.id.toau.PLAYING_THE_PART);
+        player:addMission(TOAU,tpz.mission.id.toau.PLAYING_THE_PART);
     elseif (csid == 3110) then
-        player:completeMission(TOAU,dsp.mission.id.toau.PLAYING_THE_PART);
+        player:completeMission(TOAU,tpz.mission.id.toau.PLAYING_THE_PART);
         player:setCharVar("TOAUM24_STARTDAY", 0);
-        player:addMission(TOAU,dsp.mission.id.toau.SEAL_OF_THE_SERPENT);
+        player:addMission(TOAU,tpz.mission.id.toau.SEAL_OF_THE_SERPENT);
     elseif (csid == 3112) then
-        player:completeMission(TOAU,dsp.mission.id.toau.BASTION_OF_KNOWLEDGE);
-        player:setTitle(dsp.title.APHMAUS_MERCENARY);
-        player:addMission(TOAU,dsp.mission.id.toau.PUPPET_IN_PERIL);
+        player:completeMission(TOAU,tpz.mission.id.toau.BASTION_OF_KNOWLEDGE);
+        player:setTitle(tpz.title.APHMAUS_MERCENARY);
+        player:addMission(TOAU,tpz.mission.id.toau.PUPPET_IN_PERIL);
     elseif (csid == 3131) then
-        player:completeMission(TOAU,dsp.mission.id.toau.PATH_OF_BLOOD);
+        player:completeMission(TOAU,tpz.mission.id.toau.PATH_OF_BLOOD);
         player:needToZone(true);
         player:setCharVar("TOAUM38_STARTDAY", VanadielDayOfTheYear());
-        player:addMission(TOAU,dsp.mission.id.toau.STIRRINGS_OF_WAR);
+        player:addMission(TOAU,tpz.mission.id.toau.STIRRINGS_OF_WAR);
     elseif (csid == 3220) then
         player:setCharVar("TOAUM38_STARTDAY", 0);
         player:setCharVar("AhtUrganStatus", 1);
     elseif (csid == 3136) then
-        player:completeMission(TOAU,dsp.mission.id.toau.STIRRINGS_OF_WAR);
+        player:completeMission(TOAU,tpz.mission.id.toau.STIRRINGS_OF_WAR);
         player:setCharVar("AhtUrganStatus", 0);
-        player:addKeyItem(dsp.ki.ALLIED_COUNCIL_SUMMONS);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ALLIED_COUNCIL_SUMMONS);
-        player:addMission(TOAU,dsp.mission.id.toau.ALLIED_RUMBLINGS);
+        player:addKeyItem(tpz.ki.ALLIED_COUNCIL_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.ALLIED_COUNCIL_SUMMONS);
+        player:addMission(TOAU,tpz.mission.id.toau.ALLIED_RUMBLINGS);
     elseif (csid == 797) then
         player:setCharVar("AgainstAllOdds",1); -- Set For Corsair BCNM
-        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS); -- Start of af 3 not completed yet
-        player:addKeyItem(dsp.ki.LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.LIFE_FLOAT);
+        player:addQuest(AHT_URHGAN,tpz.quest.id.ahtUrhgan.AGAINST_ALL_ODDS); -- Start of af 3 not completed yet
+        player:addKeyItem(tpz.ki.LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.LIFE_FLOAT);
     end
 end;

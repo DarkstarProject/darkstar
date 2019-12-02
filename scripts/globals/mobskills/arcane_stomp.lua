@@ -16,6 +16,6 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(MobBuffMove(mob,dsp.effect.MAGIC_SHIELD,3,0,300))
-    return dsp.effect.MAGIC_SHIELD
+    skill:setMsg(MobBuffMove(mob,tpz.effect.MAGIC_SHIELD,3,0,300))
+    return tpz.effect.MAGIC_SHIELD
 end

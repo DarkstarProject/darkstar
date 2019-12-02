@@ -12,9 +12,9 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onPetAbility(target, pet, skill)
-    local dint = pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local dint = pet:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
     local dmg = 500 + dint*1.5 + skill:getTP()/20
     target:updateEnmityFromDamage(pet,dmg)
-    target:takeDamage(dmg, pet, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
+    target:takeDamage(dmg, pet, tpz.attackType.MAGICAL, tpz.damageType.LIGHT)
     return dmg
 end

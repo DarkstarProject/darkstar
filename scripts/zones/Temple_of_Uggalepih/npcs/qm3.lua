@@ -13,7 +13,7 @@ end
 function onTrigger(player, npc)
     if not player:hasItem(1184) then
         if npcUtil.giveItem(player, 1184) then -- Uggalepih Whistle
-            npc:setStatus(dsp.status.DISAPPEAR)
+            npc:setStatus(tpz.status.DISAPPEAR)
             npc:updateNPCHideTime(7200) -- 2 hours
             -- TODO: ??? reappears at new position
         end

@@ -11,7 +11,7 @@ require("scripts/globals/titles")
 
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(ID.npc.FAFNIR_QM):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(ID.npc.FAFNIR_QM):setStatus(tpz.status.DISAPPEAR)
     end
 
     mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
@@ -34,7 +34,7 @@ function onMobFight(mob, target)
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.NIDHOGG_SLAYER)
+    player:addTitle(tpz.title.NIDHOGG_SLAYER)
 end
 
 function onMobDespawn(mob)

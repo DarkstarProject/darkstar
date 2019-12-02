@@ -13,7 +13,7 @@ require("scripts/globals/zone")
 
 function onInitialize(zone)
     applyHalloweenNpcCostumes(zone:getID())
-    dsp.chocobo.initZone(zone)
+    tpz.chocobo.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)
@@ -22,7 +22,7 @@ function onZoneIn(player,prevZone)
     -- SOA 1-1 Optional CS
     if 
         ENABLE_SOA and 
-        player:getCurrentMission(SOA) == dsp.mission.id.soa.RUMORS_FROM_THE_WEST and 
+        player:getCurrentMission(SOA) == tpz.mission.id.soa.RUMORS_FROM_THE_WEST and 
         player:getCharVar("SOA_1_CS3") == 0 
     then
         cs = 839
@@ -51,7 +51,7 @@ function onZoneIn(player,prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player,region)

@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BASTOK_MARKETS] =
+zones[tpz.zone.BASTOK_MARKETS] =
 {
     text =
     {
@@ -74,4 +74,4 @@ zones[dsp.zone.BASTOK_MARKETS] =
     },
 }
 
-return zones[dsp.zone.BASTOK_MARKETS]
+return zones[tpz.zone.BASTOK_MARKETS]

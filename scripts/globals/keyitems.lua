@@ -3,9 +3,9 @@
 --  KEYITEMS IDS
 --
 ---------------------------------------------
-dsp = dsp or {}
+tpz = tpz or {}
 
-dsp.keyItem =
+tpz.keyItem =
 {
     ZERUHN_REPORT                            = 1,
     PALBOROUGH_MINES_LOGS                    = 2,
@@ -3001,4 +3001,4 @@ dsp.keyItem =
     REASSEMBLING_TECHNIQUE                   = 3154,
     EMPTY_HOURGLASS                          = 3156,
 }
-dsp.ki = dsp.keyItem
+tpz.ki = tpz.keyItem

@@ -12,9 +12,9 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE))
-    if (not player:hasStatusEffect(dsp.effect.DOUBLE_UP_CHANCE)) then
-        return dsp.msg.basic.NO_ELIGIBLE_ROLL,0
+    ability:setRange(ability:getRange() + player:getMod(tpz.mod.ROLL_RANGE))
+    if (not player:hasStatusEffect(tpz.effect.DOUBLE_UP_CHANCE)) then
+        return tpz.msg.basic.NO_ELIGIBLE_ROLL,0
     else
         return 0,0
     end
@@ -22,28 +22,28 @@ end
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        local du_effect = caster:getStatusEffect(dsp.effect.DOUBLE_UP_CHANCE)
+        local du_effect = caster:getStatusEffect(tpz.effect.DOUBLE_UP_CHANCE)
         local prev_roll = caster:getStatusEffect(du_effect:getSubPower())
         local roll = prev_roll:getSubPower()
         local job = du_effect:getTier()
         caster:setLocalVar("corsairActiveRoll", du_effect:getSubType())
-        local snake_eye = caster:getStatusEffect(dsp.effect.SNAKE_EYE)
+        local snake_eye = caster:getStatusEffect(tpz.effect.SNAKE_EYE)
         if (snake_eye) then
             if (prev_roll:getPower() > 5 and math.random(100) < snake_eye:getPower()) then
                 roll = 11
             else
                 roll = roll + 1
             end
-            caster:delStatusEffect(dsp.effect.SNAKE_EYE)
+            caster:delStatusEffect(tpz.effect.SNAKE_EYE)
         else
             roll = roll + math.random(1,6)
             if (roll > 12) then
                 roll = 12
-                caster:delStatusEffectSilent(dsp.effect.DOUBLE_UP_CHANCE)
+                caster:delStatusEffectSilent(tpz.effect.DOUBLE_UP_CHANCE)
             end
         end
         if (roll == 11) then
-            caster:resetRecast(dsp.recast.ABILITY, 193)
+            caster:resetRecast(tpz.recast.ABILITY, 193)
         end
         caster:setLocalVar("corsairRollTotal", roll)
         action:speceffect(caster:getID(),roll-prev_roll:getSubPower())
@@ -58,9 +58,9 @@ function onUseAbility(caster,target,ability,action)
         local total = applyRoll(caster,target,ability,action,total)
         local msg = ability:getMsg()
         if msg == 420 then
-            ability:setMsg(dsp.msg.basic.DOUBLEUP)
+            ability:setMsg(tpz.msg.basic.DOUBLEUP)
         elseif msg == 422 then
-            ability:setMsg(dsp.msg.basic.DOUBLEUP_FAIL)
+            ability:setMsg(tpz.msg.basic.DOUBLEUP_FAIL)
         end
         return total
     end

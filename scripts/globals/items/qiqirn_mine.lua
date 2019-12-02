@@ -9,7 +9,7 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if target:getZoneID() ~= dsp.zone.LEBROS_CAVERN then
+    if target:getZoneID() ~= tpz.zone.LEBROS_CAVERN then
         result = 55
     end
     return result

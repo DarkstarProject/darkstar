@@ -11,7 +11,7 @@ require("scripts/globals/magic")
 -----------------------------------
 
 function onSpawn(npc)
-    npcUtil.castingAnimation(npc, dsp.magic.spellGroup.BLACK, 16)
+    npcUtil.castingAnimation(npc, tpz.magic.spellGroup.BLACK, 16)
 end
 
 function onTrade(player,npc,trade)
@@ -20,7 +20,7 @@ end
 function onTrigger(player,npc)
     local WildcatWindurst = player:getCharVar("WildcatWindurst")
 
-    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,15) == false then
+    if player:getQuestStatus(WINDURST,tpz.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,15) == false then
         player:startEvent(623)
     else
         player:startEvent(228)

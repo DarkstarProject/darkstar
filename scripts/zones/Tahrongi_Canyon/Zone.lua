@@ -15,12 +15,12 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
-    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
-    dsp.chocobo.initZone(zone)
+    tpz.helm.initZone(zone, tpz.helm.type.EXCAVATION)
+    tpz.chocobo.initZone(zone)
 end
 
 function onZoneIn(player, prevZone)
@@ -32,7 +32,7 @@ function onZoneIn(player, prevZone)
 
     if triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 35
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 37
     end
 
@@ -40,7 +40,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)
@@ -50,9 +50,9 @@ function onEventUpdate(player, csid, option)
     if csid == 35 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 37 then
-        if player:getPreviousZone() == dsp.zone.EAST_SARUTABARUTA or player:getPreviousZone() == dsp.zone.BUBURIMU_PENINSULA then
+        if player:getPreviousZone() == tpz.zone.EAST_SARUTABARUTA or player:getPreviousZone() == tpz.zone.BUBURIMU_PENINSULA then
             player:updateEvent(0, 0, 0, 0, 0, 7)
-        elseif player:getPreviousZone() == dsp.zone.MAZE_OF_SHAKHRAMI then
+        elseif player:getPreviousZone() == tpz.zone.MAZE_OF_SHAKHRAMI then
             player:updateEvent(0, 0, 0, 0, 0, 6)
         end
     end
@@ -65,7 +65,7 @@ function onEventFinish(player, csid, option)
 end
 
 local function isHabrokWeather(weather)
-    return (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM or weather == dsp.weather.WIND or weather == dsp.weather.GALES)
+    return (weather == tpz.weather.DUST_STORM or weather == tpz.weather.SAND_STORM or weather == tpz.weather.WIND or weather == tpz.weather.GALES)
 end
 
 function onZoneWeatherChange(weather)

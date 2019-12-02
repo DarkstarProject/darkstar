@@ -11,7 +11,7 @@ require("scripts/globals/titles")
 
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(ID.npc.BEHEMOTH_QM):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(ID.npc.BEHEMOTH_QM):setStatus(tpz.status.DISAPPEAR)
     end
     if LandKingSystem_HQ == 0 then
         SetDropRate(270,3342,0) -- do not drop savory_shank
@@ -21,7 +21,7 @@ function onMobSpawn(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.BEHEMOTHS_BANE)
+    player:addTitle(tpz.title.BEHEMOTHS_BANE)
 end
 
 function onMobDespawn(mob)

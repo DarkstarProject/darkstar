@@ -16,7 +16,7 @@ require("scripts/globals/status")
 function onMobSkillCheck(target,mob,skill)
     local dispel = target:eraseStatusEffect()
 
-    if (dispel ~= dsp.effect.NONE) then
+    if (dispel ~= tpz.effect.NONE) then
         return 0
     end
 

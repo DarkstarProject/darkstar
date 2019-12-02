@@ -9,7 +9,7 @@ require("scripts/globals/keyitems");
 local ID = require("scripts/zones/Apollyon/IDs");
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
-if (player:hasKeyItem(dsp.ki.COSMOCLEANSE)) then
+if (player:hasKeyItem(tpz.ki.COSMOCLEANSE)) then
   if (count==1 and trade:hasItemQty(2127,1)) then-- metal chip
      player:setCharVar("Limbus_Trade_Item",32);
      player:tradeComplete();
@@ -44,22 +44,22 @@ function onTrigger(player,npc)
 printf("currentlimbus: %u",currentlimbus);
 
 
-   if (player:hasKeyItem(dsp.ki.COSMOCLEANSE)) then
-       if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+   if (player:hasKeyItem(tpz.ki.COSMOCLEANSE)) then
+       if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
          local LimbusTradeItem = player:getCharVar("Limbus_Trade_Item");
            for nt = 1,#instancelist,2 do
                  --   printf("list d'instance: %u",instancelist[nt]);
-               if (instancelist[nt+1][1]==true and player:hasKeyItem(dsp.ki.WHITE_CARD)) then
+               if (instancelist[nt+1][1]==true and player:hasKeyItem(tpz.ki.WHITE_CARD)) then
                 --   print("player_have_white_card");
                    limbusbitmap = limbusbitmap + instancelist[nt+1][4];
                 --   printf("bitmapadd: %u",instancelist[nt+1][4]);
                end
-               if (instancelist[nt+1][2]==true and player:hasKeyItem(dsp.ki.RED_CARD)) then
+               if (instancelist[nt+1][2]==true and player:hasKeyItem(tpz.ki.RED_CARD)) then
                 --   print("player_have_red_card");
                     limbusbitmap = limbusbitmap + instancelist[nt+1][4];
                --     printf("bitmapadd: %u",instancelist[nt+1][4]);
                end
-               if (instancelist[nt+1][3]==true and player:hasKeyItem(dsp.ki.BLACK_CARD)) then
+               if (instancelist[nt+1][3]==true and player:hasKeyItem(tpz.ki.BLACK_CARD)) then
                 --   print("player_have_black_card");
                     limbusbitmap = limbusbitmap + instancelist[nt+1][4];
                  --   printf("bitmapadd: %u",instancelist[nt+1][4]);
@@ -68,19 +68,19 @@ printf("currentlimbus: %u",currentlimbus);
         limbusbitmap= limbusbitmap + LimbusTradeItem;
       ----- /////////////////////////////////////////////on doit ajouter le mipmap pour l'item trade ici
        else
-             local    status = player:getStatusEffect(dsp.effect.BATTLEFIELD);
+             local    status = player:getStatusEffect(tpz.effect.BATTLEFIELD);
             local    playerbcnmid = status:getPower();
            -- check if the player has the key item for the current battlefield
            for nt = 1,#instancelist,2 do
                --     printf("list d'instance: %u",instancelist[nt]);
                     if (instancelist[nt] == playerbcnmid) then
-                        if (instancelist[nt+1][1]== true and player:hasKeyItem(dsp.ki.WHITE_CARD) == false) then
+                        if (instancelist[nt+1][1]== true and player:hasKeyItem(tpz.ki.WHITE_CARD) == false) then
                            AllowLimbusToPlayer = false;
                         end
-                        if (instancelist[nt+1][2]== true  and player:hasKeyItem(dsp.ki.RED_CARD) == false ) then
+                        if (instancelist[nt+1][2]== true  and player:hasKeyItem(tpz.ki.RED_CARD) == false ) then
                            AllowLimbusToPlayer = false;
                         end
-                        if (instancelist[nt+1][3]== true and player:hasKeyItem(dsp.ki.BLACK_CARD) == false ) then
+                        if (instancelist[nt+1][3]== true and player:hasKeyItem(tpz.ki.BLACK_CARD) == false ) then
                            AllowLimbusToPlayer = false;
                         end
                         if (AllowLimbusToPlayer == true) then --player have the correct key item for the current battflield
@@ -126,11 +126,11 @@ function onEventUpdate(player,csid,option)
 
 
      if (csid == 32000) then
-       if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+       if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
            ResetPlayerLimbusVariable(player);
            player:setCharVar("characterLimbusKey",0);
        else
-               local status = player:getStatusEffect(dsp.effect.BATTLEFIELD);
+               local status = player:getStatusEffect(tpz.effect.BATTLEFIELD);
             player:setCharVar("LimbusID",status:getPower());
              player:setCharVar("characterLimbusKey",GetLimbusKeyFromInstance(status:getPower()));
        end

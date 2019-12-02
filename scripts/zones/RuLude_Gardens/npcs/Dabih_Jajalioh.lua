@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc, ID.text.DABIHJAJALIOH_SHOP_DIALOG)
-    dsp.shop.general(player, stock, JEUNO)
+    tpz.shop.general(player, stock, JEUNO)
 end
 
 function onEventUpdate(player,csid,option)

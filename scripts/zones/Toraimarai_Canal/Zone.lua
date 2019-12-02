@@ -9,7 +9,7 @@ require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end
 
 function onZoneIn(player, prevZone)
@@ -21,7 +21,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onEventUpdate(player, csid, option)

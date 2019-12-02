@@ -23,7 +23,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local power = 15
     local duration = 90
-    local typeEffect = dsp.effect.ATTACK_BOOST
+    local typeEffect = tpz.effect.ATTACK_BOOST
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration))
 

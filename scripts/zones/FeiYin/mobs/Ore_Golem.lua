@@ -8,11 +8,11 @@ require("scripts/globals/keyitems");
 
 function onMobDeath(mob, player, isKiller)
 
-    dsp.regime.checkRegime(player, mob, 712, 2, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 712, 2, tpz.regime.type.GROUNDS)
     -- Curses, Foiled A-Golem!?
-    if (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then
-        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL);
-        player:addKeyItem(dsp.ki.SHANTOTTOS_EXSPELL);
+    if (player:hasKeyItem(tpz.ki.SHANTOTTOS_NEW_SPELL)) then
+        player:delKeyItem(tpz.ki.SHANTOTTOS_NEW_SPELL);
+        player:addKeyItem(tpz.ki.SHANTOTTOS_EXSPELL);
     end
 
 end;

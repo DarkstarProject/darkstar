@@ -15,7 +15,7 @@ function onInitialize(zone)
     zone:registerRegion(3, -257.8, 0, -24.9, -256.1, 1, -23.5) -- Black
     zone:registerRegion(4, -261, -3, 182, -257, -1, 186) -- Teleport at H-6
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end
 
 function onZoneIn(player, prevZone)
@@ -29,7 +29,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)
@@ -46,30 +46,30 @@ function onRegionEnter(player, region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if player:getMainJob() == dsp.job.RDM and region:AddCount(1) == 1 then
-                red:setAnimation(dsp.anim.OPEN_DOOR)
+            if player:getMainJob() == tpz.job.RDM and region:AddCount(1) == 1 then
+                red:setAnimation(tpz.anim.OPEN_DOOR)
                 red:entityAnimationPacket("smin")
-                if white:getAnimation() == dsp.anim.OPEN_DOOR and black:getAnimation() == dsp.anim.OPEN_DOOR then
+                if white:getAnimation() == tpz.anim.OPEN_DOOR and black:getAnimation() == tpz.anim.OPEN_DOOR then
                     GetNPCByID(circle+3):openDoor(30)
                     GetNPCByID(circle+4):openDoor(30)
                 end
             end
         end,
         [2] = function (x)  -- White Circle
-            if player:getMainJob() == dsp.job.WHM and region:AddCount(1) == 1 then
-                white:setAnimation(dsp.anim.OPEN_DOOR)
+            if player:getMainJob() == tpz.job.WHM and region:AddCount(1) == 1 then
+                white:setAnimation(tpz.anim.OPEN_DOOR)
                 white:entityAnimationPacket("smin")
-                if red:getAnimation() == dsp.anim.OPEN_DOOR and black:getAnimation() == dsp.anim.OPEN_DOOR then
+                if red:getAnimation() == tpz.anim.OPEN_DOOR and black:getAnimation() == tpz.anim.OPEN_DOOR then
                     GetNPCByID(circle+3):openDoor(30)
                     GetNPCByID(circle+4):openDoor(30)
                 end
             end
         end,
         [3] = function (x)  -- Black Circle
-            if player:getMainJob() == dsp.job.BLM and region:AddCount(1) == 1 then
-                black:setAnimation(dsp.anim.OPEN_DOOR)
+            if player:getMainJob() == tpz.job.BLM and region:AddCount(1) == 1 then
+                black:setAnimation(tpz.anim.OPEN_DOOR)
                 black:entityAnimationPacket("smin")
-                if red:getAnimation() == dsp.anim.OPEN_DOOR and white:getAnimation() == dsp.anim.OPEN_DOOR then
+                if red:getAnimation() == tpz.anim.OPEN_DOOR and white:getAnimation() == tpz.anim.OPEN_DOOR then
                     GetNPCByID(circle+3):openDoor(30)
                     GetNPCByID(circle+4):openDoor(30)
                 end
@@ -91,20 +91,20 @@ function onRegionLeave(player, region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if player:getMainJob() == dsp.job.RDM and region:DelCount(1) == 0 then
-                red:setAnimation(dsp.anim.CLOSE_DOOR)
+            if player:getMainJob() == tpz.job.RDM and region:DelCount(1) == 0 then
+                red:setAnimation(tpz.anim.CLOSE_DOOR)
                 red:entityAnimationPacket("kmin")
             end
         end,
         [2] = function (x)  -- White Circle
-            if player:getMainJob() == dsp.job.WHM and region:DelCount(1) == 0 then
-                white:setAnimation(dsp.anim.CLOSE_DOOR)
+            if player:getMainJob() == tpz.job.WHM and region:DelCount(1) == 0 then
+                white:setAnimation(tpz.anim.CLOSE_DOOR)
                 white:entityAnimationPacket("kmin")
             end
         end,
         [3] = function (x)  -- Black Circle
-            if player:getMainJob() == dsp.job.BLM and region:DelCount(1) == 0 then
-                black:setAnimation(dsp.anim.CLOSE_DOOR)
+            if player:getMainJob() == tpz.job.BLM and region:DelCount(1) == 0 then
+                black:setAnimation(tpz.anim.CLOSE_DOOR)
                 black:entityAnimationPacket("kmin")
             end
         end,

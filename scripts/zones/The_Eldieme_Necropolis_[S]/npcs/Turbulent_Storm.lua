@@ -22,9 +22,9 @@ function onTrigger(player,npc)
             -- message for other nations missing
             player:startEvent(9);
         end
-    elseif (player:hasKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER) == true) then
+    elseif (player:hasKeyItem(tpz.ki.RED_RECOMMENDATION_LETTER) == true) then
         player:startEvent(8);
-    elseif (player:hasKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER) == false) then
+    elseif (player:hasKeyItem(tpz.ki.RED_RECOMMENDATION_LETTER) == false) then
         player:startEvent(7);
     end
 end;
@@ -34,7 +34,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 7 and option == 0) then
-        player:addKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BLUE_RECOMMENDATION_LETTER);
+        player:addKeyItem(tpz.ki.BLUE_RECOMMENDATION_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.BLUE_RECOMMENDATION_LETTER);
     end
 end;

@@ -22,13 +22,13 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
+    npc:setPos(tpz.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
 
-    dsp.path.patrol(npc, path);
+    tpz.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
@@ -36,7 +36,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.INFILTRATE_DAVOI and player:getCharVar("MissionStatus") == 3) then
+    if (player:getCurrentMission(SANDORIA) == tpz.mission.id.sandoria.INFILTRATE_DAVOI and player:getCharVar("MissionStatus") == 3) then
         player:startEvent(117);
         npc:wait();
     else
@@ -53,8 +53,8 @@ function onEventFinish(player,csid,option,npc)
 
     if (csid == 117) then
         player:setCharVar("MissionStatus",4);
-        player:addKeyItem(dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:addKeyItem(tpz.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
     end
 
     npc:wait(0);

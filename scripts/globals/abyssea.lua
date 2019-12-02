@@ -59,7 +59,7 @@ local blue_weakness =
 function getMaxTravStones(player)
     local MaxTravStones = 3
 
-    for ki = dsp.ki.VIRIDIAN_ABYSSITE_OF_AVARICE, dsp.ki.VERMILLION_ABYSSITE_OF_AVARICE do
+    for ki = tpz.ki.VIRIDIAN_ABYSSITE_OF_AVARICE, tpz.ki.VERMILLION_ABYSSITE_OF_AVARICE do
         if player:hasKeyItem(ki) then
             MaxTravStones = MaxTravStones + 1
         end
@@ -73,7 +73,7 @@ end
 function getTravStonesTotal(player)
     local STONES = 0
 
-    for ki = dsp.ki.TRAVERSER_STONE1, dsp.ki.TRAVERSER_STONE6 do
+    for ki = tpz.ki.TRAVERSER_STONE1, tpz.ki.TRAVERSER_STONE6 do
         if player:hasKeyItem(ki) then
             STONES = STONES + 1
         end
@@ -85,81 +85,81 @@ end
 -- removes Traverser Stone KIs
 function spendTravStones(player, spentstones)
     if (spentstones == 4) then
-        if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE6)) then
+        if (player:hasKeyItem(tpz.ki.TRAVERSER_STONE6)) then
             spentstones = 3;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE6);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE5)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE6);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE5)) then
             spentstones = 3;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE5);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE4)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE5);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE4)) then
             spentstones = 3;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE4);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE3)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE4);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE3)) then
             spentstones = 3;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE3);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE2)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE3);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE2)) then
             spentstones = 3;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE2);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE1)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE2);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE1)) then
             spentstones = 3;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE1);
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE1);
         end
     end
     if (spentstones == 3) then
-        if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE6)) then
+        if (player:hasKeyItem(tpz.ki.TRAVERSER_STONE6)) then
             spentstones = 2;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE6);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE5)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE6);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE5)) then
             spentstones = 2;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE5);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE4)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE5);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE4)) then
             spentstones = 2;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE4);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE3)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE4);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE3)) then
             spentstones = 2;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE3);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE2)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE3);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE2)) then
             spentstones = 2;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE2);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE1)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE2);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE1)) then
             spentstones = 2;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE1);
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE1);
         end
     end
     if (spentstones == 2) then
-        if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE6)) then
+        if (player:hasKeyItem(tpz.ki.TRAVERSER_STONE6)) then
             spentstones = 1;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE6);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE5)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE6);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE5)) then
             spentstones = 1;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE5);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE4)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE5);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE4)) then
             spentstones = 1;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE4);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE3)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE4);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE3)) then
             spentstones = 1;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE3);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE2)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE3);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE2)) then
             spentstones = 1;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE2);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE1)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE2);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE1)) then
             spentstones = 1;
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE1);
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE1);
         end
     end
     if (spentstones == 1) then
-        if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE6)) then
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE6);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE5)) then
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE5);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE4)) then
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE4);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE3)) then
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE3);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE2)) then
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE2);
-        elseif (player:hasKeyItem(dsp.ki.TRAVERSER_STONE1)) then
-            player:delKeyItem(dsp.ki.TRAVERSER_STONE1);
+        if (player:hasKeyItem(tpz.ki.TRAVERSER_STONE6)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE6);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE5)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE5);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE4)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE4);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE3)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE3);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE2)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE2);
+        elseif (player:hasKeyItem(tpz.ki.TRAVERSER_STONE1)) then
+            player:delKeyItem(tpz.ki.TRAVERSER_STONE1);
         end
     end
 end;
@@ -170,21 +170,21 @@ function getAbyssiteTotal(player, abyssite)
     local FURTHERANCE = 0
     local MERIT = 0
     if abyssite == "SOJOURN" then
-        for ki = dsp.ki.IVORY_ABYSSITE_OF_SOJOURN, dsp.ki.EMERALD_ABYSSITE_OF_SOJOURN do
+        for ki = tpz.ki.IVORY_ABYSSITE_OF_SOJOURN, tpz.ki.EMERALD_ABYSSITE_OF_SOJOURN do
             if player:hasKeyItem(ki) then
                 SOJOURN = SOJOURN + 1
             end
         end
         return SOJOURN
     elseif abyssite == "FURTHERANCE" then
-        for ki = dsp.ki.SCARLET_ABYSSITE_OF_FURTHERANCE, dsp.ki.IVORY_ABYSSITE_OF_FURTHERANCE do
+        for ki = tpz.ki.SCARLET_ABYSSITE_OF_FURTHERANCE, tpz.ki.IVORY_ABYSSITE_OF_FURTHERANCE do
             if player:hasKeyItem(ki) then
                 FURTHERANCE = FURTHERANCE + 1
             end
         end
         return FURTHERANCE
     elseif abyssite == "MERIT" then
-        for ki = dsp.ki.AZURE_ABYSSITE_OF_MERIT, dsp.ki.INDIGO_ABYSSITE_OF_MERIT do
+        for ki = tpz.ki.AZURE_ABYSSITE_OF_MERIT, tpz.ki.INDIGO_ABYSSITE_OF_MERIT do
             if player:hasKeyItem(ki) then
                 MERIT = MERIT + 1
             end
@@ -197,37 +197,37 @@ end
 function getDemiluneAbyssite(player)
     local Demilune = 0;
     -- Todo: change this into proper bitmask
-    if (player:hasKeyItem(dsp.ki.CLEAR_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.CLEAR_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 1;
     end
-    if (player:hasKeyItem(dsp.ki.COLORFUL_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.COLORFUL_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 2;
     end
-    if (player:hasKeyItem(dsp.ki.SCARLET_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.SCARLET_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 4;
     end
-    if (player:hasKeyItem(dsp.ki.AZURE_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.AZURE_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 8;
     end
-    if (player:hasKeyItem(dsp.ki.VIRIDIAN_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.VIRIDIAN_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 16;
     end
-    if (player:hasKeyItem(dsp.ki.JADE_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.JADE_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 32;
     end
-    if (player:hasKeyItem(dsp.ki.SAPPHIRE_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.SAPPHIRE_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 64;
     end
-    if (player:hasKeyItem(dsp.ki.CRIMSON_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.CRIMSON_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 128;
     end
-    if (player:hasKeyItem(dsp.ki.EMERALD_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.EMERALD_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 256;
     end
-    if (player:hasKeyItem(dsp.ki.VERMILLION_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.VERMILLION_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 512;
     end
-    if (player:hasKeyItem(dsp.ki.INDIGO_DEMILUNE_ABYSSITE)) then
+    if (player:hasKeyItem(tpz.ki.INDIGO_DEMILUNE_ABYSSITE)) then
         Demilune = Demilune + 1024;
     end
     return Demilune;

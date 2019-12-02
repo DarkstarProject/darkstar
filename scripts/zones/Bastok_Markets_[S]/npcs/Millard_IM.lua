@@ -84,8 +84,8 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
-            player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
+            player:delStatusEffectsByFlag(tpz.effectFlag.INFLUENCE, true)
+            player:addStatusEffect(tpz.effect.SIGIL, power, 0, duration, 0, subPower, 0);
             player:messageSpecial(ID.text.ALLIED_SIGIL);
 
             if (cost > 0) then

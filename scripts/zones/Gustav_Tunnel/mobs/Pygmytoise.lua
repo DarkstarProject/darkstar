@@ -14,16 +14,16 @@ function onMobInitialize(mob)
     along with a damage bonus on ice (all spell get a partial resist).
     These are annoyingly x/256 scaled.
     ]]
-    mob:setMod(dsp.mod.FIREDEF, 128)
-    mob:setMod(dsp.mod.ICEDEF, 52)
-    mob:setMod(dsp.mod.WINDDEF, 128)
-    mob:setMod(dsp.mod.EARTHDEF, 200)
-    mob:setMod(dsp.mod.THUNDERDEF, 200)
-    mob:setMod(dsp.mod.WATERDEF, 128)
-    mob:setMod(dsp.mod.LIGHTDEF, 128)
-    mob:setMod(dsp.mod.DARKDEF, 128)
+    mob:setMod(tpz.mod.FIREDEF, 128)
+    mob:setMod(tpz.mod.ICEDEF, 52)
+    mob:setMod(tpz.mod.WINDDEF, 128)
+    mob:setMod(tpz.mod.EARTHDEF, 200)
+    mob:setMod(tpz.mod.THUNDERDEF, 200)
+    mob:setMod(tpz.mod.WATERDEF, 128)
+    mob:setMod(tpz.mod.LIGHTDEF, 128)
+    mob:setMod(tpz.mod.DARKDEF, 128)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 770, 2, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 770, 2, tpz.regime.type.GROUNDS)
 end

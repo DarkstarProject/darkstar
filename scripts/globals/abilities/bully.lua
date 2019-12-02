@@ -15,6 +15,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffectEx(dsp.effect.DOUBT, dsp.effect.INTIMIDATE, 15, 0, 30)
-    return dsp.effect.INTIMIDATE
+    target:addStatusEffectEx(tpz.effect.DOUBT, tpz.effect.INTIMIDATE, 15, 0, 30)
+    return tpz.effect.INTIMIDATE
 end

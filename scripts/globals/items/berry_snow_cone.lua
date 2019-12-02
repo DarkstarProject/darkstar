@@ -12,24 +12,24 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD)) then
-        result = dsp.msg.basic.IS_FULL
+    if (target:hasStatusEffect(tpz.effect.FOOD)) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,300,5710)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,300,5710)
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.FOOD_MPP, 30)
-    target:addMod(dsp.mod.FOOD_MP_CAP, 30)
-    target:addMod(dsp.mod.INT, 1)
+    target:addMod(tpz.mod.FOOD_MPP, 30)
+    target:addMod(tpz.mod.FOOD_MP_CAP, 30)
+    target:addMod(tpz.mod.INT, 1)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.FOOD_MPP, 30)
-    target:delMod(dsp.mod.FOOD_MP_CAP, 30)
-    target:delMod(dsp.mod.INT, 1)
+    target:delMod(tpz.mod.FOOD_MPP, 30)
+    target:delMod(tpz.mod.FOOD_MP_CAP, 30)
+    target:delMod(tpz.mod.INT, 1)
 end

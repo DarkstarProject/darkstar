@@ -31,6 +31,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 255 then
-        player:setPos(0, 0, 0, 0, dsp.zone.SELBINA)
+        player:setPos(0, 0, 0, 0, tpz.zone.SELBINA)
     end
 end

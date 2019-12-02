@@ -16,7 +16,7 @@ function onTrigger(player,npc)
     local Z=player:getZPos();
 
     if (Z >= -238) then
-        if (player:hasKeyItem(dsp.ki.GREEN_BRACELET) == true) then -- Green Bracelet
+        if (player:hasKeyItem(tpz.ki.GREEN_BRACELET) == true) then -- Green Bracelet
             player:startEvent(62);
         else
             player:messageSpecial(ID.text.ARCH_GLOW_GREEN);

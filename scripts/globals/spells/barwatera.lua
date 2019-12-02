@@ -10,5 +10,5 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    return applyBarspell(dsp.effect.BARWATER,caster,target,spell)
+    return applyBarspell(tpz.effect.BARWATER,caster,target,spell)
 end

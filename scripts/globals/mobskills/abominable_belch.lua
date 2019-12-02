@@ -13,9 +13,9 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effect.PLAGUE, 1, 3, 120))
-    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effect.SILENCE, 1, 0, 120))
-    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effect.PARALYSIS, 25, 0, 120))
+    skill:setMsg(MobStatusEffectMove(mob, target, tpz.effect.PLAGUE, 1, 3, 120))
+    skill:setMsg(MobStatusEffectMove(mob, target, tpz.effect.SILENCE, 1, 0, 120))
+    skill:setMsg(MobStatusEffectMove(mob, target, tpz.effect.PARALYSIS, 25, 0, 120))
 
-    return dsp.effect.PLAGUE
+    return tpz.effect.PLAGUE
 end

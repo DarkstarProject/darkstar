@@ -8,10 +8,10 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
-    mob:setMobMod(dsp.mobMod.HP_STANDBACK, -1)
-    mob:setMobMod(dsp.mobMod.DRAW_IN, 1)
-    mob:setMod(dsp.mod.STUNRES, 50)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 180)
+    mob:setMobMod(tpz.mobMod.HP_STANDBACK, -1)
+    mob:setMobMod(tpz.mobMod.DRAW_IN, 1)
+    mob:setMod(tpz.mod.STUNRES, 50)
 end
 
 function onMobSpawn(mob)

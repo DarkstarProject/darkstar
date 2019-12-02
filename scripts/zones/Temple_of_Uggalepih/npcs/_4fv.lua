@@ -13,11 +13,11 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getCharVar("MissionStatus") == 5 then
+    if player:getCurrentMission(SANDORIA) == tpz.mission.id.sandoria.LIGHTBRINGER and player:getCharVar("MissionStatus") == 5 then
         if
-            player:hasKeyItem(dsp.ki.PIECE_OF_A_BROKEN_KEY1) and
-            player:hasKeyItem(dsp.ki.PIECE_OF_A_BROKEN_KEY2) and
-            player:hasKeyItem(dsp.ki.PIECE_OF_A_BROKEN_KEY3) and
+            player:hasKeyItem(tpz.ki.PIECE_OF_A_BROKEN_KEY1) and
+            player:hasKeyItem(tpz.ki.PIECE_OF_A_BROKEN_KEY2) and
+            player:hasKeyItem(tpz.ki.PIECE_OF_A_BROKEN_KEY3) and
             not GetMobByID(ID.mob.NIO_A):isSpawned() and
             not GetMobByID(ID.mob.NIO_HUM):isSpawned()
         then

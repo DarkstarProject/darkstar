@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:hasCompletedMission(COP, dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
+    if player:hasCompletedMission(COP, tpz.mission.id.cop.THE_MOTHERCRYSTALS) then
         player:startEvent(300)
     else
         player:messageSpecial(ID.text.AN_EMPTY_LIGHT_SWIRLS)
@@ -25,6 +25,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 300 and option == 1 then
-        dsp.teleport.to(player, dsp.teleport.id.MISAREAUX_VORTEX)
+        tpz.teleport.to(player, tpz.teleport.id.MISAREAUX_VORTEX)
     end
 end

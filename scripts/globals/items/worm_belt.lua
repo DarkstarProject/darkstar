@@ -8,12 +8,12 @@ require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    if not target:canUseMisc(dsp.zoneMisc.COSTUME) then
-        return dsp.msg.basic.CANT_BE_USED_IN_AREA
+    if not target:canUseMisc(tpz.zoneMisc.COSTUME) then
+        return tpz.msg.basic.CANT_BE_USED_IN_AREA
     end
     return 0
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.COSTUME,424,0,3600)
+    target:addStatusEffect(tpz.effect.COSTUME,424,0,3600)
 end

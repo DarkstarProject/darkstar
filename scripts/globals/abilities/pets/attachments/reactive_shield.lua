@@ -7,7 +7,7 @@ require("scripts/globals/status")
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_REACTIVE_SHIELD", function(automaton, target)
         local master = automaton:getMaster()
-        if not automaton:hasRecast(dsp.recast.ABILITY, 2031) and master and master:countEffect(dsp.effect.FIRE_MANEUVER) > 0 then
+        if not automaton:hasRecast(tpz.recast.ABILITY, 2031) and master and master:countEffect(tpz.effect.FIRE_MANEUVER) > 0 then
             automaton:useMobAbility(2031, automaton)
         end
     end)

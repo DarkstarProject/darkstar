@@ -25,7 +25,7 @@ function onMobFight(mob,target)
     end
 
     -- make sure pet has a target
-    if auraGear:getCurrentAction() == dsp.act.ROAMING then
+    if auraGear:getCurrentAction() == tpz.act.ROAMING then
         auraGear:updateEnmity(target)
     end
 end
@@ -41,7 +41,7 @@ function onMobDisengage(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 749, 1, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 749, 1, tpz.regime.type.GROUNDS)
 end
 
 function onMobDespawn( mob )

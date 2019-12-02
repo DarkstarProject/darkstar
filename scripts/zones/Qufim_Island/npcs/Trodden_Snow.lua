@@ -14,7 +14,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     -- Trade Enfeebling Kit
-    if player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD then
+    if player:getCurrentMission(ASA) == tpz.mission.id.asa.THAT_WHICH_CURDLES_BLOOD then
         local item = 0
         local asaStatus = player:getCharVar("ASA_Status")
 
@@ -33,14 +33,14 @@ end
 
 function onTrigger(player, npc)
     --ASA 4 CS: Triggers With At Least 3 Counterseals.
-    if player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE then
+    if player:getCurrentMission(ASA) == tpz.mission.id.asa.SUGAR_COATED_DIRECTIVE then
         local completedSeals =
-            (player:hasKeyItem(dsp.ki.AMBER_COUNTERSEAL)    and 1 or 0) +
-            (player:hasKeyItem(dsp.ki.AZURE_COUNTERSEAL)    and 1 or 0) +
-            (player:hasKeyItem(dsp.ki.CERULEAN_COUNTERSEAL) and 1 or 0) +
-            (player:hasKeyItem(dsp.ki.EMERALD_COUNTERSEAL)  and 1 or 0) +
-            (player:hasKeyItem(dsp.ki.SCARLET_COUNTERSEAL)  and 1 or 0) +
-            (player:hasKeyItem(dsp.ki.VIOLET_COUNTERSEAL)   and 1 or 0)
+            (player:hasKeyItem(tpz.ki.AMBER_COUNTERSEAL)    and 1 or 0) +
+            (player:hasKeyItem(tpz.ki.AZURE_COUNTERSEAL)    and 1 or 0) +
+            (player:hasKeyItem(tpz.ki.CERULEAN_COUNTERSEAL) and 1 or 0) +
+            (player:hasKeyItem(tpz.ki.EMERALD_COUNTERSEAL)  and 1 or 0) +
+            (player:hasKeyItem(tpz.ki.SCARLET_COUNTERSEAL)  and 1 or 0) +
+            (player:hasKeyItem(tpz.ki.VIOLET_COUNTERSEAL)   and 1 or 0)
 
         if completedSeals >= 3 then
             player:setCharVar("ASA_Status", completedSeals)
@@ -55,16 +55,16 @@ end
 function onEventFinish(player, csid, option)
     if csid == 44 then
         npcUtil.giveKeyItem(player, {
-            dsp.ki.DOMINAS_SCARLET_SEAL,
-            dsp.ki.DOMINAS_CERULEAN_SEAL,
-            dsp.ki.DOMINAS_EMERALD_SEAL,
-            dsp.ki.DOMINAS_AMBER_SEAL,
-            dsp.ki.DOMINAS_VIOLET_SEAL,
-            dsp.ki.DOMINAS_AZURE_SEAL
+            tpz.ki.DOMINAS_SCARLET_SEAL,
+            tpz.ki.DOMINAS_CERULEAN_SEAL,
+            tpz.ki.DOMINAS_EMERALD_SEAL,
+            tpz.ki.DOMINAS_AMBER_SEAL,
+            tpz.ki.DOMINAS_VIOLET_SEAL,
+            tpz.ki.DOMINAS_AZURE_SEAL
         })
 
-        player:completeMission(ASA, dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD)
-        player:addMission(ASA, dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE)
+        player:completeMission(ASA, tpz.mission.id.asa.THAT_WHICH_CURDLES_BLOOD)
+        player:addMission(ASA, tpz.mission.id.asa.SUGAR_COATED_DIRECTIVE)
 
         player:setCharVar("ASA_Status", 0)
         player:setCharVar("ASA4_Amber", "0")
@@ -90,23 +90,23 @@ function onEventFinish(player, csid, option)
         end
 
         -- Clean Up Remaining Key Items
-        player:delKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL)
-        player:delKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL)
-        player:delKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL)
-        player:delKeyItem(dsp.ki.DOMINAS_AMBER_SEAL)
-        player:delKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL)
-        player:delKeyItem(dsp.ki.DOMINAS_AZURE_SEAL)
+        player:delKeyItem(tpz.ki.DOMINAS_SCARLET_SEAL)
+        player:delKeyItem(tpz.ki.DOMINAS_CERULEAN_SEAL)
+        player:delKeyItem(tpz.ki.DOMINAS_EMERALD_SEAL)
+        player:delKeyItem(tpz.ki.DOMINAS_AMBER_SEAL)
+        player:delKeyItem(tpz.ki.DOMINAS_VIOLET_SEAL)
+        player:delKeyItem(tpz.ki.DOMINAS_AZURE_SEAL)
 
-        player:delKeyItem(dsp.ki.SCARLET_COUNTERSEAL)
-        player:delKeyItem(dsp.ki.CERULEAN_COUNTERSEAL)
-        player:delKeyItem(dsp.ki.EMERALD_COUNTERSEAL)
-        player:delKeyItem(dsp.ki.AMBER_COUNTERSEAL)
-        player:delKeyItem(dsp.ki.VIOLET_COUNTERSEAL)
-        player:delKeyItem(dsp.ki.AZURE_COUNTERSEAL)
+        player:delKeyItem(tpz.ki.SCARLET_COUNTERSEAL)
+        player:delKeyItem(tpz.ki.CERULEAN_COUNTERSEAL)
+        player:delKeyItem(tpz.ki.EMERALD_COUNTERSEAL)
+        player:delKeyItem(tpz.ki.AMBER_COUNTERSEAL)
+        player:delKeyItem(tpz.ki.VIOLET_COUNTERSEAL)
+        player:delKeyItem(tpz.ki.AZURE_COUNTERSEAL)
 
         -- Advance Mission
-        player:completeMission(ASA, dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE)
-        player:addMission(ASA, dsp.mission.id.asa.ENEMY_OF_THE_EMPIRE_I)
+        player:completeMission(ASA, tpz.mission.id.asa.SUGAR_COATED_DIRECTIVE)
+        player:addMission(ASA, tpz.mission.id.asa.ENEMY_OF_THE_EMPIRE_I)
         player:setCharVar("ASA_Status", 0)
     end
 end

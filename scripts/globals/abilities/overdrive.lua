@@ -13,15 +13,15 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if not player:getPet() then
-        return dsp.msg.basic.REQUIRES_A_PET, 0
+        return tpz.msg.basic.REQUIRES_A_PET, 0
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
-        return dsp.msg.basic.NO_EFFECT_ON_PET, 0
+        return tpz.msg.basic.NO_EFFECT_ON_PET, 0
     else
         return 0, 0
     end
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.OVERDRIVE, 0, 0, 60)
-    return dsp.effect.OVERDRIVE
+    player:addStatusEffect(tpz.effect.OVERDRIVE, 0, 0, 60)
+    return tpz.effect.OVERDRIVE
 end

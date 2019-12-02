@@ -18,11 +18,11 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 0.8
     local dmgmod = 2.3
     local info = MobRangedMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.RANGED,tpz.damageType.PIERCING,info.hitslanded)
 
-    local typeEffect = dsp.effect.STUN
+    local typeEffect = tpz.effect.STUN
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4)
 
-    target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.PIERCING)
+    target:takeDamage(dmg, mob, tpz.attackType.RANGED, tpz.damageType.PIERCING)
     return dmg
 end

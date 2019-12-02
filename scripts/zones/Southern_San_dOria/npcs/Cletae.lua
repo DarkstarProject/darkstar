@@ -22,9 +22,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(dsp.skill.LEATHERCRAFT)
-    local stock = dsp.shop.generalGuildStock[guild.leathercraft]
-    dsp.shop.generalGuild(player, stock, guildRank)
+    local guildRank = player:getSkillRank(tpz.skill.LEATHERCRAFT)
+    local stock = tpz.shop.generalGuildStock[guild.leathercraft]
+    tpz.shop.generalGuild(player, stock, guildRank)
     player:showText(npc,ID.text.CLETAE_DIALOG)
 end
 

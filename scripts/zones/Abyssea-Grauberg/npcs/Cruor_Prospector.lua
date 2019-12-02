@@ -2,7 +2,7 @@
 -- Area: Abyssea - Grauberg
 --  NPC: Cruor Prospector
 -- Type: Cruor NPC
--- !pos ? ? ? 254 (missing from DSP database)
+-- !pos -528 26 -782 254
 -----------------------------------
 require("scripts/globals/abyssea")
 -----------------------------------

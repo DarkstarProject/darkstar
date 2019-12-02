@@ -10,8 +10,8 @@ require("scripts/globals/quests");
 require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
-    local flyersForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
-    local theBrugaireConsortium = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
+    local flyersForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local theBrugaireConsortium = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
 
     -- FLYERS FOR REGINE
     if (flyersForRegine == QUEST_ACCEPTED and npcUtil.tradeHas( trade, {{"gil",10}} )) then
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     local ffr = player:getCharVar("FFR");
 
     -- FLYERS FOR REGINE
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
         player:startEvent(601);
     elseif (ffr == 1) then
         player:startEvent(510,2);
@@ -55,11 +55,11 @@ function onEventFinish(player,csid,option)
         player:setCharVar("FFR",1);
     elseif (csid == 510 and option == 2) then
         if (npcUtil.giveItem(player, {{532,12}, {532,3}} )) then
-            player:addQuest(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+            player:addQuest(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
             player:setCharVar("FFR",17);
         end
     elseif (csid == 603) then
-        if (npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE, {gil=440, title=dsp.title.ADVERTISING_EXECUTIVE})) then
+        if (npcUtil.completeQuest(player, SANDORIA, tpz.quest.id.sandoria.FLYERS_FOR_REGINE, {gil=440, title=tpz.title.ADVERTISING_EXECUTIVE})) then
             player:setCharVar("tradeAnswald",0);
             player:setCharVar("tradePrietta",0);
             player:setCharVar("tradeMiene",0);
@@ -106,7 +106,7 @@ function onEventFinish(player,csid,option)
             4651,219,3,  -- Scroll of Protect
             4656,1584,3  -- Scroll of Shell
         }
-        dsp.shop.nation(player, stockA, dsp.nation.SANDORIA);
+        tpz.shop.nation(player, stockA, tpz.nation.SANDORIA);
 
     -- BLACK MAGIC SHOP
     elseif (csid == 510 and option == 1) then
@@ -130,6 +130,6 @@ function onEventFinish(player,csid,option)
             4772,3261,3, -- Scroll of Thunder
             4777,140,3   -- Scroll of Water
         }
-        dsp.shop.nation(player, stockB, dsp.nation.SANDORIA);
+        tpz.shop.nation(player, stockB, tpz.nation.SANDORIA);
     end
 end;

@@ -19,14 +19,14 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effect.RAPTURE) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
+    if player:hasStatusEffect(tpz.effect.RAPTURE) then
+        return tpz.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
     return 0,0
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.RAPTURE,1,0,60)
+    player:addStatusEffect(tpz.effect.RAPTURE,1,0,60)
 
-    return dsp.effect.RAPTURE
+    return tpz.effect.RAPTURE
 end

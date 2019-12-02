@@ -12,5 +12,5 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.SHOCK_SPIKES, 7, 0, 180)
+    target:addStatusEffect(tpz.effect.SHOCK_SPIKES, 7, 0, 180)
 end

@@ -7,12 +7,12 @@ require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    if (target:hasStatusEffect(dsp.effect.NEGATE_DOOM)) then
+    if (target:hasStatusEffect(tpz.effect.NEGATE_DOOM)) then
         return 56
     end
     return 0
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.NEGATE_DOOM,1,0,120)
+    target:addStatusEffect(tpz.effect.NEGATE_DOOM,1,0,120)
 end

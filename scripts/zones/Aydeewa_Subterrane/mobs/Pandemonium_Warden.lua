@@ -26,9 +26,9 @@ local avatarSkins =     {   22,    23,    19,    18,    20,    21,    17,    16}
 
 function onMobSpawn(mob)
 
-    mob:setMod(dsp.mod.DEF, 450);
-    mob:setMod(dsp.mod.MEVA, 380);
-    mob:setMod(dsp.mod.MDEF, 50);
+    mob:setMod(tpz.mod.DEF, 450);
+    mob:setMod(tpz.mod.MEVA, 380);
+    mob:setMod(tpz.mod.MDEF, 50);
     -- Make sure model is reset back to start
     mob:setModelId(1840);
    -- Prevent death and hide HP until final phase
@@ -44,7 +44,7 @@ end;
 function onMobDisengage(mob)
     -- Make sure model is reset back to start
     mob:setModelId(1840);
-    mob:setMobMod(dsp.mobMod.SKILL_LIST, 316);
+    mob:setMobMod(tpz.mobMod.SKILL_LIST, 316);
   
     -- Prevent death and hide HP until final phase
     mob:setUnkillable(true);
@@ -100,14 +100,14 @@ function onMobFight(mob,target)
         mob:setTP(0);
         mob:setModelId(mobModelID[phase]);
         mob:setHP(mobHP[phase]);
-        mob:setMobMod(dsp.mobMod.SKILL_LIST,skillID[phase]);
+        mob:setMobMod(tpz.mobMod.SKILL_LIST,skillID[phase]);
 
         -- Handle pets
         for i = 1, 8 do
             local oldPet = pets[phase % 2][i];
             local newPet = pets[(phase - 1) % 2][i];
             newPet:updateEnmity(target);
-            newPet:setMobMod(dsp.mobMod.MAGIC_DELAY,4);
+            newPet:setMobMod(tpz.mobMod.MAGIC_DELAY,4);
             handlePet(mob, newPet, oldPet, target, petModelID[phase]);
         end
        
@@ -160,7 +160,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(dsp.title.PANDEMONIUM_QUELLER);
+    player:addTitle(tpz.title.PANDEMONIUM_QUELLER);
    
     -- Despawn pets
     for i = 0, 1 do

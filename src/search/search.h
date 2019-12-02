@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -30,7 +28,7 @@ struct search_config_t
     uint16      mysql_port;         // mysql port     -> 3306
     std::string mysql_login;        // mysql login    -> default root
     std::string mysql_password;     // mysql pass     -> default root
-    std::string mysql_database;     // mysql database -> default dspdb
+    std::string mysql_database;     // mysql database -> default tpzdb
     bool        expire_auctions;    // If true, then start task to expire old auctions off the auction house
     uint8       expire_days;        // Number of days to keep stuff on the auction house
     int16       expire_interval;    // How often the task should run (time * 1000) in seconds

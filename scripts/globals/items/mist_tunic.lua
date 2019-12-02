@@ -11,9 +11,9 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(dsp.effect.EVASION_BOOST)) then
-        target:addStatusEffect(dsp.effect.EVASION_BOOST,20,0,180)
+    if (not target:hasStatusEffect(tpz.effect.EVASION_BOOST)) then
+        target:addStatusEffect(tpz.effect.EVASION_BOOST,20,0,180)
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

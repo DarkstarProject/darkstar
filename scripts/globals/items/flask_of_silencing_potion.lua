@@ -11,9 +11,9 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(dsp.effect.SILENCE)) then
-        target:addStatusEffect(dsp.effect.SILENCE,1,3,180)
+    if (not target:hasStatusEffect(tpz.effect.SILENCE)) then
+        target:addStatusEffect(tpz.effect.SILENCE,1,3,180)
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

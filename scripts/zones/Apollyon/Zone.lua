@@ -63,7 +63,7 @@ end;
 -----------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 
@@ -73,7 +73,7 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-    if (prevZone ~= dsp.zone.ALTAIEU) then
+    if (prevZone ~= tpz.zone.ALTAIEU) then
       local playerLimbusID = player:getCharVar("LimbusID");
         if (playerLimbusID== 1290 or playerLimbusID== 1291 or playerLimbusID== 1294 or playerLimbusID== 1295 or playerLimbusID== 1296 or playerLimbusID== 1297) then
         player:setPos(-668,0.1,-666);
@@ -103,32 +103,32 @@ function onRegionEnter(player,region)
             -- print("APOLLYON_NW_SW");
         end,
         [3] = function (x)
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+              if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1293);
               end   --create instance appolyon SE
         end,
         [4] = function (x)
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+              if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1292);
               end   --create instance appolyon NE
         end,
         [5] = function (x)
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+              if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1291);
               end   --create instance appolyon SW
         end,
         [6] = function (x)
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+              if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1290);
               end   --create instance appolyon NW
         end,
         [7] = function (x)
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+              if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1294);
               end   --create instance appolyon CS
         end,
         [8] = function (x)
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+              if (player:hasStatusEffect(tpz.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1296);
               end   --create instance appolyon CENTER
         end,

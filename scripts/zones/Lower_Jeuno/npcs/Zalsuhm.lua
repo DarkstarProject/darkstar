@@ -13,7 +13,7 @@ require("scripts/globals/weaponskillids")
 
 function getQuestId(mainJobId)
 
-    return dsp.quest.jeuno.UNLOCKING_A_MYTH_WARRIOR - 1 + mainJobId
+    return tpz.quest.jeuno.UNLOCKING_A_MYTH_WARRIOR - 1 + mainJobId
 
 end
 
@@ -42,8 +42,8 @@ end
 function onTrigger(player,npc)
     local mainJobId = player:getMainJob()
     local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(mainJobId))
-    local nyzulWeaponMain = isBaseNyzulWeapon(player:getEquipID(dsp.slot.MAIN))
-    local nyzulWeaponRanged = isBaseNyzulWeapon(player:getEquipID(dsp.slot.RANGED))
+    local nyzulWeaponMain = isBaseNyzulWeapon(player:getEquipID(tpz.slot.MAIN))
+    local nyzulWeaponRanged = isBaseNyzulWeapon(player:getEquipID(tpz.slot.RANGED))
 
     if unlockingAMyth == QUEST_AVAILABLE then
         if player:needToZone() and player:getCharVar("Upset_Zalsuhm") > 0 then
@@ -75,32 +75,32 @@ function onEventFinish(player,csid,option)
         if option == 53 then
             player:setCharVar("Upset_Zalsuhm", 1)
             player:needToZone(true)
-        elseif option <= dsp.job.SCH then
+        elseif option <= tpz.job.SCH then
             player:addQuest(JEUNO, questId)
         end
-    elseif csid == 10088 and option <= dsp.job.SCH then
+    elseif csid == 10088 and option <= tpz.job.SCH then
         local jobs = 
         {
-            [dsp.job.WAR] = dsp.ws_unlock.KINGS_JUSTICE,
-            [dsp.job.MNK] = dsp.ws_unlock.ASCETICS_FURY,
-            [dsp.job.WHM] = dsp.ws_unlock.MYSTIC_BOON,
-            [dsp.job.BLM] = dsp.ws_unlock.VIDOHUNIR,
-            [dsp.job.RDM] = dsp.ws_unlock.DEATH_BLOSSOM,
-            [dsp.job.THF] = dsp.ws_unlock.MANDALIC_STAB,
-            [dsp.job.PLD] = dsp.ws_unlock.ATONEMENT,
-            [dsp.job.DRK] = dsp.ws_unlock.INSURGENCY,
-            [dsp.job.BST] = dsp.ws_unlock.PRIMAL_REND,
-            [dsp.job.BRD] = dsp.ws_unlock.MORDANT_RIME,
-            [dsp.job.RNG] = dsp.ws_unlock.TRUEFLIGHT,
-            [dsp.job.SAM] = dsp.ws_unlock.TACHI_RANA,
-            [dsp.job.NIN] = dsp.ws_unlock.BLADE_KAMU,
-            [dsp.job.DRG] = dsp.ws_unlock.DRAKESBANE,
-            [dsp.job.SMN] = dsp.ws_unlock.GARLAND_OF_BLISS,
-            [dsp.job.BLU] = dsp.ws_unlock.EXPIACION,
-            [dsp.job.COR] = dsp.ws_unlock.LEADEN_SALUTE,
-            [dsp.job.PUP] = dsp.ws_unlock.STRINGING_PUMMEL,
-            [dsp.job.DNC] = dsp.ws_unlock.PYRRHIC_KLEOS,
-            [dsp.job.SCH] = dsp.ws_unlock.OMNISCIENCE,
+            [tpz.job.WAR] = tpz.ws_unlock.KINGS_JUSTICE,
+            [tpz.job.MNK] = tpz.ws_unlock.ASCETICS_FURY,
+            [tpz.job.WHM] = tpz.ws_unlock.MYSTIC_BOON,
+            [tpz.job.BLM] = tpz.ws_unlock.VIDOHUNIR,
+            [tpz.job.RDM] = tpz.ws_unlock.DEATH_BLOSSOM,
+            [tpz.job.THF] = tpz.ws_unlock.MANDALIC_STAB,
+            [tpz.job.PLD] = tpz.ws_unlock.ATONEMENT,
+            [tpz.job.DRK] = tpz.ws_unlock.INSURGENCY,
+            [tpz.job.BST] = tpz.ws_unlock.PRIMAL_REND,
+            [tpz.job.BRD] = tpz.ws_unlock.MORDANT_RIME,
+            [tpz.job.RNG] = tpz.ws_unlock.TRUEFLIGHT,
+            [tpz.job.SAM] = tpz.ws_unlock.TACHI_RANA,
+            [tpz.job.NIN] = tpz.ws_unlock.BLADE_KAMU,
+            [tpz.job.DRG] = tpz.ws_unlock.DRAKESBANE,
+            [tpz.job.SMN] = tpz.ws_unlock.GARLAND_OF_BLISS,
+            [tpz.job.BLU] = tpz.ws_unlock.EXPIACION,
+            [tpz.job.COR] = tpz.ws_unlock.LEADEN_SALUTE,
+            [tpz.job.PUP] = tpz.ws_unlock.STRINGING_PUMMEL,
+            [tpz.job.DNC] = tpz.ws_unlock.PYRRHIC_KLEOS,
+            [tpz.job.SCH] = tpz.ws_unlock.OMNISCIENCE,
         }
         local skill = jobs[option]
         

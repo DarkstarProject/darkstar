@@ -10,7 +10,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.EXPERTISE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {4400, 4447}) then
+    if player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.EXPERTISE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {4400, 4447}) then
         player:startEvent(103)
     end
 end
@@ -19,11 +19,11 @@ function onTrigger(player,npc)
     local expertiseStat = player:getCharVar("QUEST_EXPERTISE_STATE_var")
 
     -- HIS NAME IS VALGEIR
-    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.HIS_NAME_IS_VALGEIR) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA) then
+    if player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.HIS_NAME_IS_VALGEIR) == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.ARAGONEU_PIZZA) then
         player:startEvent(100)
 
     -- EXPERTISE
-    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.EXPERTISE) == QUEST_ACCEPTED and expertiseStat ~= 3 then
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.EXPERTISE) == QUEST_ACCEPTED and expertiseStat ~= 3 then
         if expertiseStat == 1 then
             player:startEvent(104)
         elseif expertiseStat == 2 then
@@ -40,9 +40,9 @@ function onTrigger(player,npc)
         end
 
     -- THE BASICS
-    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_BASICS) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MHAURAN_COUSCOUS) then
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.THE_BASICS) == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.MHAURAN_COUSCOUS) then
         player:startEvent(106)
-    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_BASICS) == QUEST_COMPLETED and player:getCharVar("QuestTheBacisCommentary_var") == 1 then
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.THE_BASICS) == QUEST_COMPLETED and player:getCharVar("QuestTheBacisCommentary_var") == 1 then
         player:startEvent(107)
 
     -- STANDARD DIALOG
@@ -57,7 +57,7 @@ end
 function onEventFinish(player,csid,option)
     -- HIS NAME IS VALGEIR
     if csid == 100 then
-        player:delKeyItem(dsp.ki.ARAGONEU_PIZZA)
+        player:delKeyItem(tpz.ki.ARAGONEU_PIZZA)
 
     -- EXPERTISE
     elseif csid == 102 then
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
         player:setCharVar("QuestExpertiseDayStarted_var", VanadielDayOfTheYear())
         player:confirmTrade()
     elseif csid == 105 then -- done with the cooking
-        npcUtil.giveKeyItem(player, dsp.ki.LAND_CRAB_BISQUE)
+        npcUtil.giveKeyItem(player, tpz.ki.LAND_CRAB_BISQUE)
         player:setCharVar("QUEST_EXPERTISE_STATE_var", 3)
         player:setCharVar("QuestExpertiseHourStarted_var", 0)
         player:setCharVar("QuestExpertiseDayStarted_var", 0)
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
     -- THE BASICS
     elseif csid == 106 and npcUtil.giveItem(player, 4436) then
         player:setCharVar("QuestTheBacisCommentary_var", 1)
-        player:delKeyItem(dsp.ki.MHAURAN_COUSCOUS)
+        player:delKeyItem(tpz.ki.MHAURAN_COUSCOUS)
     elseif csid == 107 then
         player:setCharVar("QuestTheBacisCommentary_var", 0)
     end

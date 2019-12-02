@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 #include "../common/mmo.h"
@@ -64,7 +62,7 @@ std::thread consoleInputThread;
 int32 do_init(int32 argc, char** argv)
 {
     int32 i;
-    LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
+    LOGIN_CONF_FILENAME = "conf/login.conf";
     VERSION_INFO_FILENAME = "version.info";
     MAINT_CONF_FILENAME = "conf/maint.conf";
 
@@ -236,7 +234,7 @@ void do_abort(void)
 }
 void set_server_type()
 {
-    SERVER_TYPE = DARKSTAR_SERVER_LOGIN;
+    SERVER_TYPE = TOPAZ_SERVER_LOGIN;
     SOCKET_TYPE = socket_type::TCP;
 }
 
@@ -478,7 +476,7 @@ void login_config_default()
     login_config.login_auth_ip = "127.0.0.1";
     login_config.login_auth_port = 54231;
 
-    login_config.servername = "DarkStar";
+    login_config.servername = "Topaz";
 
     login_config.mysql_host = "";
     login_config.mysql_login = "";
@@ -623,9 +621,9 @@ int32 config_write(const char* fileName, const char *config, std::function<std::
 
 void login_versionscreen(int32 flag)
 {
-    ShowInfo(CL_WHITE "Darkstar version %d.%02d.%02d" CL_RESET"\n",
-        DARKSTAR_MAJOR_VERSION, DARKSTAR_MINOR_VERSION, DARKSTAR_REVISION);
-    ShowInfo(CL_GREEN "Forum:" CL_RESET "\thttp://forums.dspt.info/\n");
+    ShowInfo(CL_WHITE "Topaz version %d.%02d.%02d" CL_RESET"\n",
+        TOPAZ_MAJOR_VERSION, TOPAZ_MINOR_VERSION, TOPAZ_REVISION);
+    ShowInfo(CL_GREEN "Forum:" CL_RESET "\thttps://github.com/project-topaz/topaz\n");
     if (flag) exit(EXIT_FAILURE);
 }
 

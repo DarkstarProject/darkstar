@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -24,12 +24,12 @@ end;
 
 function onTrigger(player,npc)
 
-    chasingStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
+    chasingStatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.CHASING_TALES);
 
-    if (player:getCharVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == false) then
+    if (player:getCharVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(tpz.ki.A_SONG_OF_LOVE) == false) then
         player:startEvent(611); -- Neeed CS here
-    elseif (player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == true) then
-        player:startEvent(612,0,dsp.ki.A_SONG_OF_LOVE);
+    elseif (player:hasKeyItem(tpz.ki.A_SONG_OF_LOVE) == true) then
+        player:startEvent(612,0,tpz.ki.A_SONG_OF_LOVE);
     else
         player:startEvent(610);
     end
@@ -41,7 +41,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 611) then
-        player:addKeyItem(dsp.ki.A_SONG_OF_LOVE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.A_SONG_OF_LOVE);
+        player:addKeyItem(tpz.ki.A_SONG_OF_LOVE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.A_SONG_OF_LOVE);
     end
 end;

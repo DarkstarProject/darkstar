@@ -18,9 +18,9 @@ function onTrigger(player,npc)
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
+    hatstatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.HAT_IN_HAND);
     if ((hatstatus == 1  or player:getCharVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getCharVar("QuestHatInHand_var")),1) == false) then
-        player:messageSpecial(ID.text.YOU_SHOW_OFF_THE, dsp.ki.NEW_MODEL_HAT)
+        player:messageSpecial(ID.text.YOU_SHOW_OFF_THE, tpz.ki.NEW_MODEL_HAT)
         player:addCharVar("QuestHatInHand_var", 1);
         player:addCharVar("QuestHatInHand_count", 1);
     end

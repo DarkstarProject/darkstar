@@ -32,7 +32,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 4)
+    MobPhysicalStatusEffectMove(mob, target, skill, tpz.effect.STUN, 1, 0, 4)
 
-    return dsp.effect.STUN
+    return tpz.effect.STUN
 end

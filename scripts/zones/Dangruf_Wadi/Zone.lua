@@ -16,11 +16,11 @@ function onInitialize(zone)
     zone:registerRegion(2, -213.5, 2,  92.6, -212.7, 4,   94.0);  -- H-8 Geyser
     zone:registerRegion(3,  -67.3, 2, 532.8,  -66.3, 4,  534.0);  -- J-3 Geyser
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -47,9 +47,9 @@ function onRegionEnter(player,region)
             SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 2, "kkj3");
         end,
     }
-    if (player:hasKeyItem(dsp.ki.BLUE_ACIDITY_TESTER)) then
-        player:delKeyItem(dsp.ki.BLUE_ACIDITY_TESTER);
-        player:addKeyItem(dsp.ki.RED_ACIDITY_TESTER);
+    if (player:hasKeyItem(tpz.ki.BLUE_ACIDITY_TESTER)) then
+        player:delKeyItem(tpz.ki.BLUE_ACIDITY_TESTER);
+        player:addKeyItem(tpz.ki.RED_ACIDITY_TESTER);
     end
 end;
 
@@ -72,9 +72,9 @@ function onGameHour(zone)
 end;
 
 function onZoneWeatherChange(weather)
-    if (weather == dsp.weather.NONE or weather == dsp.weather.SUNSHINE) then
-        GetNPCByID(ID.npc.AN_EMPTY_VESSEL_QM):setStatus(dsp.status.NORMAL);
+    if (weather == tpz.weather.NONE or weather == tpz.weather.SUNSHINE) then
+        GetNPCByID(ID.npc.AN_EMPTY_VESSEL_QM):setStatus(tpz.status.NORMAL);
     else
-        GetNPCByID(ID.npc.AN_EMPTY_VESSEL_QM):setStatus(dsp.status.DISAPPEAR);
+        GetNPCByID(ID.npc.AN_EMPTY_VESSEL_QM):setStatus(tpz.status.DISAPPEAR);
     end
 end;

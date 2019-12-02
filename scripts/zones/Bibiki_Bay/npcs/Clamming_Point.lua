@@ -48,7 +48,7 @@ local clammingItems = {
 
 local function giveImprovedResults(player)
 
-    if (player:getMod(dsp.mod.CLAMMING_IMPROVED_RESULTS) > 0) then
+    if (player:getMod(tpz.mod.CLAMMING_IMPROVED_RESULTS) > 0) then
         return 1;
     end
 
@@ -57,7 +57,7 @@ end;
 
 local function giveReducedIncidents(player)
 
-    if (player:getMod(dsp.mod.CLAMMING_REDUCED_INCIDENTS) > 0) then
+    if (player:getMod(tpz.mod.CLAMMING_REDUCED_INCIDENTS) > 0) then
         return 0.05;
     end
 
@@ -68,7 +68,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.CLAMMING_KIT)) then
+    if (player:hasKeyItem(tpz.ki.CLAMMING_KIT)) then
         player:setLocalVar("ClammingPointID", npc:getID());
 
         if (GetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse") == 1) then

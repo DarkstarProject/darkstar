@@ -8,7 +8,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.REGAIN, 200) -- "Seemed to have very high TP gain." (guessing 200 after watching video)
+    mob:setMod(tpz.mod.REGAIN, 200) -- "Seemed to have very high TP gain." (guessing 200 after watching video)
 end
 
 function onMobDeath(mob, player, isKiller)

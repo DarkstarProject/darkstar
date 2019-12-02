@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -65,8 +63,8 @@ CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
 
 inline int32 CLuaMobSkill::setMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
     m_PLuaMobSkill->setMsg((uint16)lua_tointeger(L, -1));
     return 0;
@@ -74,7 +72,7 @@ inline int32 CLuaMobSkill::setMsg(lua_State *L)
 
 inline int32 CLuaMobSkill::hasMissMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean(L, m_PLuaMobSkill->hasMissMsg());
     return 1;
@@ -82,7 +80,7 @@ inline int32 CLuaMobSkill::hasMissMsg(lua_State *L)
 
 inline int32 CLuaMobSkill::isSingle(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean(L, m_PLuaMobSkill->isSingle());
     return 1;
@@ -90,7 +88,7 @@ inline int32 CLuaMobSkill::isSingle(lua_State *L)
 
 inline int32 CLuaMobSkill::isAoE(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean(L, m_PLuaMobSkill->isAoE());
     return 1;
@@ -98,7 +96,7 @@ inline int32 CLuaMobSkill::isAoE(lua_State *L)
 
 inline int32 CLuaMobSkill::isConal(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushboolean(L, m_PLuaMobSkill->isConal());
     return 1;
@@ -106,7 +104,7 @@ inline int32 CLuaMobSkill::isConal(lua_State *L)
 
 inline int32 CLuaMobSkill::getTotalTargets(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushinteger(L, m_PLuaMobSkill->getTotalTargets());
     return 1;
@@ -114,7 +112,7 @@ inline int32 CLuaMobSkill::getTotalTargets(lua_State *L)
 
 inline int32 CLuaMobSkill::getMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushinteger(L, m_PLuaMobSkill->getMsg());
     return 1;
@@ -122,7 +120,7 @@ inline int32 CLuaMobSkill::getMsg(lua_State *L)
 
 inline int32 CLuaMobSkill::getID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushinteger(L, m_PLuaMobSkill->getID());
     return 1;
@@ -130,7 +128,7 @@ inline int32 CLuaMobSkill::getID(lua_State* L)
 
 inline int32 CLuaMobSkill::getParam(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushinteger(L, m_PLuaMobSkill->getParam());
     return 1;
@@ -144,7 +142,7 @@ inline int32 CLuaMobSkill::getParam(lua_State* L)
 
 inline int32 CLuaMobSkill::getTP(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushnumber(L, (float)m_PLuaMobSkill->getTP());
     return 1;
@@ -153,7 +151,7 @@ inline int32 CLuaMobSkill::getTP(lua_State* L)
 // Retrieves the Monsters HP% as it was at the start of mobskill
 inline int32 CLuaMobSkill::getMobHPP(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
     lua_pushinteger(L, m_PLuaMobSkill->getHPP());
     return 1;

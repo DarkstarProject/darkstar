@@ -9,7 +9,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.chocobo.initZone(zone)
+    tpz.chocobo.initZone(zone)
 end
 
 function onZoneIn(player, prevZone)
@@ -29,9 +29,9 @@ function onGameHour(zone)
 
     if npc then
         if hour == 17 then
-            npc:setStatus(dsp.status.DISAPPEAR)
+            npc:setStatus(tpz.status.DISAPPEAR)
         elseif hour == 7 then
-            npc:setStatus(dsp.status.NORMAL)
+            npc:setStatus(tpz.status.NORMAL)
         end
     end
 end

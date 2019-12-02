@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -371,7 +369,7 @@ namespace linkshell
 
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum)
     {
-        DSP_DEBUG_BREAK_IF(PChar == nullptr);
+        TPZ_DEBUG_BREAK_IF(PChar == nullptr);
         if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             CLinkshell* PLinkshell = nullptr;
@@ -399,7 +397,7 @@ namespace linkshell
 
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
-        DSP_DEBUG_BREAK_IF(PChar == nullptr);
+        TPZ_DEBUG_BREAK_IF(PChar == nullptr);
         if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             try

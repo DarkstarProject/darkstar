@@ -15,7 +15,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = dsp.effect.ENWATER
+    local typeEffect = tpz.effect.ENWATER
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60))
 

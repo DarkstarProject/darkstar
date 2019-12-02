@@ -11,8 +11,8 @@ function onAdditionalEffect(player, target, damage)
     local chance = 15
     if math.random(100) <= chance then
         local effect = target:dispelStatusEffect()
-        if effect ~= dsp.effect.NONE then
-            return dsp.subEffect.DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, effect
+        if effect ~= tpz.effect.NONE then
+            return tpz.subEffect.DISPEL, tpz.msg.basic.ADD_EFFECT_DISPEL, effect
         end
     end
 

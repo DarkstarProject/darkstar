@@ -7,16 +7,16 @@ require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/msg")
 
-local keyItemId = dsp.ki.REFINED_CHAIR
+local keyItemId = tpz.ki.REFINED_CHAIR
 
 function onItemCheck(target)
     if target:hasKeyItem(keyItemId) then
-        return dsp.msg.basic.ALREADY_HAVE_KEY_ITEM,0,keyItemId
+        return tpz.msg.basic.ALREADY_HAVE_KEY_ITEM,0,keyItemId
     end
     return 0
 end
 
 function onItemUse(target)
     target:addKeyItem(keyItemId)
-    target:messageBasic(dsp.msg.basic.OBTAINED_KEY_ITEM,6380,keyItemId)
+    target:messageBasic(tpz.msg.basic.OBTAINED_KEY_ITEM,6380,keyItemId)
 end

@@ -14,44 +14,44 @@ function onSpellCast(caster, target, spell)
     local duration = 240
     local power = 10000
 
-    local pCHR = caster:getStat(dsp.mod.CHR)
-    local mCHR = target:getStat(dsp.mod.CHR)
+    local pCHR = caster:getStat(tpz.mod.CHR)
+    local mCHR = target:getStat(tpz.mod.CHR)
     local dCHR = pCHR - mCHR
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.CHR
-    params.skillType = dsp.skill.SINGING
+    params.attribute = tpz.mod.CHR
+    params.skillType = tpz.skill.SINGING
     params.bonus = 0
-    params.effect = dsp.effect.ELEGY
+    params.effect = tpz.effect.ELEGY
     resm = applyResistanceEffect(caster, target, spell, params)
 
     if resm < 0.5 then
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST) -- resist message
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST) -- resist message
     else
-        local iBoost = caster:getMod(dsp.mod.ELEGY_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
+        local iBoost = caster:getMod(tpz.mod.ELEGY_EFFECT) + caster:getMod(tpz.mod.ALL_SONGS_EFFECT)
         power = power + iBoost * 100
 
-        if caster:hasStatusEffect(dsp.effect.SOUL_VOICE) then
+        if caster:hasStatusEffect(tpz.effect.SOUL_VOICE) then
             power = power * 2
-        elseif caster:hasStatusEffect(dsp.effect.MARCATO) then
+        elseif caster:hasStatusEffect(tpz.effect.MARCATO) then
             power = power * 1.5
         end
-        caster:delStatusEffect(dsp.effect.MARCATO)
+        caster:delStatusEffect(tpz.effect.MARCATO)
 
-        duration = duration * (iBoost * 0.1 + caster:getMod(dsp.mod.SONG_DURATION_BONUS) / 100 + 1)
+        duration = duration * (iBoost * 0.1 + caster:getMod(tpz.mod.SONG_DURATION_BONUS) / 100 + 1)
 
-        if caster:hasStatusEffect(dsp.effect.TROUBADOUR) then
+        if caster:hasStatusEffect(tpz.effect.TROUBADOUR) then
             duration = duration * 2
         end
 
         -- Try to overwrite weaker elegy
-        if target:addStatusEffect(dsp.effect.ELEGY, power, 0, duration) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
+        if target:addStatusEffect(tpz.effect.ELEGY, power, 0, duration) then
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT) -- no effect
         end
 
     end
 
-    return dsp.effect.ELEGY
+    return tpz.effect.ELEGY
 end

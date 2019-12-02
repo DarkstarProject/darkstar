@@ -17,7 +17,7 @@ function onMobSpawn(mob)
     -- Give a little buffer for while the instance loads
     mob:timer(80000, function(mob)
         if(mob:getLocalVar("ready") == 0 and not(mob:getTarget())) then
-            dsp.ally.startAssist(mob, dsp.ally.ASSIST_RANDOM);
+            tpz.ally.startAssist(mob, tpz.ally.ASSIST_RANDOM);
         end
     end)
 
@@ -52,7 +52,7 @@ function onMobRoam(mob)
 
     -- When Gessho becomes ready via you pulling, he will assist you
     if (ready == 1) then
-        dsp.ally.startAssist(mob, dsp.ally.ASSIST_PLAYER);
+        tpz.ally.startAssist(mob, tpz.ally.ASSIST_PLAYER);
     end
 end;
 

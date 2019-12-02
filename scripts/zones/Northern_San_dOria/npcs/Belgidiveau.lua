@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
 
-    troubleAtTheSluice = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
-    NeutralizerKI = player:hasKeyItem(dsp.ki.NEUTRALIZER);
+    troubleAtTheSluice = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
+    NeutralizerKI = player:hasKeyItem(tpz.ki.NEUTRALIZER);
 
     if (troubleAtTheSluice == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
         player:startEvent(57);
@@ -37,18 +37,18 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 57 and option == 0) then
-        player:addQuest(SANDORIA,dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
+        player:addQuest(SANDORIA,tpz.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
         player:setCharVar("troubleAtTheSluiceVar",1);
     elseif (csid == 56) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
         else
             player:tradeComplete();
-            player:delKeyItem(dsp.ki.NEUTRALIZER);
+            player:delKeyItem(tpz.ki.NEUTRALIZER);
             player:addItem(16706);
             player:messageSpecial(ID.text.ITEM_OBTAINED,16706); -- Heavy Axe
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
+            player:completeQuest(SANDORIA,tpz.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
         end
     end
 

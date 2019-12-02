@@ -10,9 +10,9 @@ function onEffectGain(target,effect)
     local refresh = math.floor(skill / 100) + 1
     local haste = (math.floor(skill / 20) + 1) * 100
 
-    target:addMod(dsp.mod.REGEN, regen)
-    target:addMod(dsp.mod.REFRESH, refresh)
-    target:addMod(dsp.mod.HASTE_MAGIC, haste)
+    target:addMod(tpz.mod.REGEN, regen)
+    target:addMod(tpz.mod.REFRESH, refresh)
+    target:addMod(tpz.mod.HASTE_MAGIC, haste)
 end
 
 function onEffectTick(target,effect)
@@ -24,7 +24,7 @@ function onEffectLose(target,effect)
     local refresh = math.floor(skill / 100) + 1
     local haste = (math.floor(skill / 20) + 1) * 100
 
-    target:delMod(dsp.mod.REGEN, regen)
-    target:delMod(dsp.mod.REFRESH, refresh)
-    target:delMod(dsp.mod.HASTE_MAGIC, haste)
+    target:delMod(tpz.mod.REGEN, regen)
+    target:delMod(tpz.mod.REFRESH, refresh)
+    target:delMod(tpz.mod.HASTE_MAGIC, haste)
 end

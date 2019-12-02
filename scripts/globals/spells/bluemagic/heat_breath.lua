@@ -24,9 +24,9 @@ end
 function onSpellCast(caster,target,spell)
     local multi = 6.38
     local params = {}
-    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 1.0
     local resist = applyResistance(caster, target, spell, params)
     local params = {}
@@ -44,7 +44,7 @@ function onSpellCast(caster,target,spell)
     damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
-    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
+    if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         multi = multi + 0.50
     end
 

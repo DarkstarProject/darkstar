@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.ABYSSEA_EMPYREAL_PARADOX] =
+zones[tpz.zone.ABYSSEA_EMPYREAL_PARADOX] =
 {
     text =
     {
@@ -25,4 +25,4 @@ zones[dsp.zone.ABYSSEA_EMPYREAL_PARADOX] =
     },
 }
 
-return zones[dsp.zone.ABYSSEA_EMPYREAL_PARADOX]
+return zones[tpz.zone.ABYSSEA_EMPYREAL_PARADOX]

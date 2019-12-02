@@ -10,7 +10,7 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_mod', 0)
+    updateModPerformance(pet, tpz.mod.DMGPHYS, 'armor_plate_mod', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
@@ -23,12 +23,12 @@ end
 
 function onUpdate(pet, maneuvers)
     if maneuvers == 0 then
-        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_mod', -5)
+        updateModPerformance(pet, tpz.mod.DMGPHYS, 'armor_plate_mod', -5)
     elseif maneuvers == 1 then
-        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_mod', -7)
+        updateModPerformance(pet, tpz.mod.DMGPHYS, 'armor_plate_mod', -7)
     elseif maneuvers == 2 then
-        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_mod', -10)
+        updateModPerformance(pet, tpz.mod.DMGPHYS, 'armor_plate_mod', -10)
     elseif maneuvers == 3 then
-        updateModPerformance(pet, dsp.mod.DMGPHYS, 'armor_plate_mod', -15)
+        updateModPerformance(pet, tpz.mod.DMGPHYS, 'armor_plate_mod', -15)
     end
 end

@@ -12,8 +12,8 @@ function onTrigger(player, npc)
 end
 
 function onTrade(player, npc, trade)
-    if npcUtil.tradeHas(trade, 1721) and not player:hasKeyItem(dsp.ki.MAP_OF_PROMYVION_DEM) then
-        npcUtil.giveKeyItem(player, dsp.ki.MAP_OF_PROMYVION_DEM)
+    if npcUtil.tradeHas(trade, 1721) and not player:hasKeyItem(tpz.ki.MAP_OF_PROMYVION_DEM) then
+        npcUtil.giveKeyItem(player, tpz.ki.MAP_OF_PROMYVION_DEM)
         player:confirmTrade()
     else
         player:messageSpecial(ID.text.NOTHING_HAPPENS)

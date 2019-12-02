@@ -5,8 +5,8 @@ require("scripts/zones/Promyvion-Vahzl/IDs")
 require("scripts/globals/status")
 ------------------------------------
 
-dsp = dsp or {}
-dsp.promyvion = dsp.promyvion or {}
+tpz = tpz or {}
+tpz.promyvion = tpz.promyvion or {}
 
 ------------------------------------
 -- LOCAL FUNCTIONS
@@ -52,7 +52,7 @@ end
 -- PUBLIC FUNCTIONS
 ------------------------------------
 
-dsp.promyvion.initZone = function(zone)
+tpz.promyvion.initZone = function(zone)
     local ID = zones[zone:getID()]
 
     -- register teleporter regions
@@ -66,7 +66,7 @@ dsp.promyvion.initZone = function(zone)
     end
 end
 
-dsp.promyvion.strayOnSpawn = function(mob)
+tpz.promyvion.strayOnSpawn = function(mob)
     local mother = GetMobByID(findMother(mob))
 
     if mother ~= nil and mother:isSpawned() then
@@ -75,7 +75,7 @@ dsp.promyvion.strayOnSpawn = function(mob)
     end
 end
 
-dsp.promyvion.receptacleOnFight = function(mob, target)
+tpz.promyvion.receptacleOnFight = function(mob, target)
     if os.time() > mob:getLocalVar("[promy]nextStray") then
         local ID = zones[mob:getZoneID()]
         local mobId = mob:getID()
@@ -95,7 +95,7 @@ dsp.promyvion.receptacleOnFight = function(mob, target)
     end
 end
 
-dsp.promyvion.receptacleOnDeath = function(mob, isKiller)
+tpz.promyvion.receptacleOnDeath = function(mob, isKiller)
     if isKiller then
         local ID = zones[mob:getZoneID()]
         local mobId = mob:getID()
@@ -116,7 +116,7 @@ dsp.promyvion.receptacleOnDeath = function(mob, isKiller)
     end
 end
 
-dsp.promyvion.onRegionEnter = function(player, region)
+tpz.promyvion.onRegionEnter = function(player, region)
     if player:getAnimation() == 0 then
         local ID = zones[player:getZoneID()]
         local regionId = region:GetRegionID()
@@ -126,7 +126,7 @@ dsp.promyvion.onRegionEnter = function(player, region)
             event = ID.npc.MEMORY_STREAMS[regionId][7][1]
         else
             local stream = GetNPCByID(regionId)
-            if stream ~= nil and stream:getAnimation() == dsp.anim.OPEN_DOOR then
+            if stream ~= nil and stream:getAnimation() == tpz.anim.OPEN_DOOR then
                 event = stream:getLocalVar("[promy]destination")
             end
         end

@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -141,7 +139,7 @@ uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
         int16 thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
         if (m_Burden[element] > thresh)
         {
-            if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
+            if (tpzrand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
             {
                 //return overload duration
                 return m_Burden[element] - thresh;

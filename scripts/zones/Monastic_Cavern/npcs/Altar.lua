@@ -13,9 +13,9 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local circleOfTime = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME)
+    local circleOfTime = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.THE_CIRCLE_OF_TIME)
 
-    if circleOfTime == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.STAR_RING1) and player:hasKeyItem(dsp.ki.MOON_RING) then
+    if circleOfTime == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.STAR_RING1) and player:hasKeyItem(tpz.ki.MOON_RING) then
         if player:getCharVar("circleTime") == 7 and npcUtil.popFromQM(player, npc, ID.mob.BUGABOO, {hide = 0}) then
             -- no further action needed
         elseif player:getCharVar("circleTime") == 8 then
@@ -34,7 +34,7 @@ end
 function onEventFinish(player, csid, option)
     if csid == 3 then
         player:setCharVar("circleTime", 9)
-        player:delKeyItem(dsp.ki.MOON_RING)
-        player:delKeyItem(dsp.ki.STAR_RING1)
+        player:delKeyItem(tpz.ki.MOON_RING)
+        player:delKeyItem(tpz.ki.STAR_RING1)
     end
 end

@@ -10,7 +10,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if npc:getAnimation() == dsp.anim.CLOSE_DOOR then
+    if npc:getAnimation() == tpz.anim.CLOSE_DOOR then
         if player:getZPos() > 137 then
             npc:openDoor(3.2)
         else

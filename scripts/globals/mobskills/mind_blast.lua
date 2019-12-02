@@ -16,14 +16,14 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PARALYSIS
+    local typeEffect = tpz.effect.PARALYSIS
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 180)
 
     local dmgmod = 1
     local accmod = 1
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,dsp.magic.ele.THUNDER,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.LIGHTNING,MOBPARAM_WIPE_SHADOWS)
-    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.LIGHTNING)
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,tpz.magic.ele.THUNDER,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.MAGICAL,tpz.damageType.LIGHTNING,MOBPARAM_WIPE_SHADOWS)
+    target:takeDamage(dmg, mob, tpz.attackType.MAGICAL, tpz.damageType.LIGHTNING)
     return dmg
 end

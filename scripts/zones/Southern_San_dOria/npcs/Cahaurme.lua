@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.BOOK_OF_TASKS) and player:hasKeyItem(dsp.ki.BOOK_OF_THE_EAST) == false) then
+    if (player:hasKeyItem(tpz.ki.BOOK_OF_TASKS) and player:hasKeyItem(tpz.ki.BOOK_OF_THE_EAST) == false) then
         player:startEvent(633);
     else
         player:showText(npc, 7817); -- nothing to report
@@ -40,8 +40,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 633) then
-        player:addKeyItem(dsp.ki.BOOK_OF_THE_EAST);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BOOK_OF_THE_EAST);
+        player:addKeyItem(tpz.ki.BOOK_OF_THE_EAST);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.BOOK_OF_THE_EAST);
     end
 
 end;

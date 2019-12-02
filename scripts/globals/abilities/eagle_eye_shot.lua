@@ -12,23 +12,23 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local ranged = player:getStorageItem(0, 0, dsp.slot.RANGED)
-    local ammo = player:getStorageItem(0, 0, dsp.slot.AMMO)
+    local ranged = player:getStorageItem(0, 0, tpz.slot.RANGED)
+    local ammo = player:getStorageItem(0, 0, tpz.slot.AMMO)
 
-    if ranged and ranged:isType(dsp.itemType.WEAPON) then
+    if ranged and ranged:isType(tpz.itemType.WEAPON) then
         local skilltype = ranged:getSkillType()
-        if skilltype == dsp.skill.ARCHERY or skilltype == dsp.skill.MARKSMANSHIP or skilltype == dsp.skill.THROWING then
-            if ammo and (ammo:isType(dsp.itemType.WEAPON) or skilltype == dsp.skill.THROWING) then
+        if skilltype == tpz.skill.ARCHERY or skilltype == tpz.skill.MARKSMANSHIP or skilltype == tpz.skill.THROWING then
+            if ammo and (ammo:isType(tpz.itemType.WEAPON) or skilltype == tpz.skill.THROWING) then
                 return 0, 0
             end
         end
     end
 
-    return dsp.msg.basic.NO_RANGED_WEAPON, 0
+    return tpz.msg.basic.NO_RANGED_WEAPON, 0
 end
 
 function onUseAbility(player,target,ability,action)
-    if (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MARKSMANSHIP) then
+    if (player:getWeaponSkillType(tpz.slot.RANGED) == tpz.skill.MARKSMANSHIP) then
         action:animation(target:getID(), action:animation(target:getID()) + 1)
     end
     local params = {}
@@ -46,10 +46,10 @@ function onUseAbility(player,target,ability,action)
 
     -- Set the message id ourselves
     if (tpHits + extraHits > 0) then
-        action:messageID(target:getID(), dsp.msg.basic.JA_DAMAGE)
+        action:messageID(target:getID(), tpz.msg.basic.JA_DAMAGE)
         action:speceffect(target:getID(), 32)
     else
-        action:messageID(target:getID(), dsp.msg.basic.JA_MISS_2)
+        action:messageID(target:getID(), tpz.msg.basic.JA_MISS_2)
         action:speceffect(target:getID(), 0)
     end
 

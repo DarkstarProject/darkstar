@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -38,7 +36,7 @@ This file is part of DarkStar-server source code.
 
 CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester)
 {
-    DSP_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
+    TPZ_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
     requester = PRequester;
     zone = PZone;

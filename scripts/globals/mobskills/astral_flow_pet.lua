@@ -8,12 +8,12 @@ require("scripts/globals/msg")
 
 local function petInactive(pet)
     return
-        pet:hasStatusEffect(dsp.effect.LULLABY) or
-        pet:hasStatusEffect(dsp.effect.STUN) or
-        pet:hasStatusEffect(dsp.effect.PETRIFICATION) or
-        pet:hasStatusEffect(dsp.effect.SLEEP_II) or
-        pet:hasStatusEffect(dsp.effect.SLEEP_I) or
-        pet:hasStatusEffect(dsp.effect.TERROR)
+        pet:hasStatusEffect(tpz.effect.LULLABY) or
+        pet:hasStatusEffect(tpz.effect.STUN) or
+        pet:hasStatusEffect(tpz.effect.PETRIFICATION) or
+        pet:hasStatusEffect(tpz.effect.SLEEP_II) or
+        pet:hasStatusEffect(tpz.effect.SLEEP_I) or
+        pet:hasStatusEffect(tpz.effect.TERROR)
 end
 
 function onMobSkillCheck(target, mob, skill)
@@ -33,10 +33,10 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.ASTRAL_FLOW
+    local typeEffect = tpz.effect.ASTRAL_FLOW
     local pet = mob:getPet()
 
-    skill:setMsg(dsp.msg.basic.USES)
+    skill:setMsg(tpz.msg.basic.USES)
 
     -- no effect if pet is inactive
     if petInactive(pet) then

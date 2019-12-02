@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         4151, 800,    -- Echo Drops
         4155, 3360,   -- Remedy
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -66,16 +66,16 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then -- e.g. is a PC and not a monster (?)
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == tpz.objType.PC or target:getObjType() == tpz.objType.MOB)) then -- e.g. is a PC and not a monster (?)
         if (USE_OLD_CURE_FORMULA == true) then
             basecure = getBaseCureOld(power,divisor,constant)
         else
             basecure = getBaseCure(power,divisor,constant,basepower)
         end
         final = getCureFinal(caster,spell,basecure,minCure,false)
-        if (caster:hasStatusEffect(dsp.effect.AFFLATUS_SOLACE) and target:hasStatusEffect(dsp.effect.STONESKIN) == false) then
+        if (caster:hasStatusEffect(tpz.effect.AFFLATUS_SOLACE) and target:hasStatusEffect(tpz.effect.STONESKIN) == false) then
             local solaceStoneskin = 0
-            local equippedBody = caster:getEquipID(dsp.slot.BODY)
+            local equippedBody = caster:getEquipID(tpz.slot.BODY)
             if (equippedBody == 11186) then
                 solaceStoneskin = math.floor(final * 0.30)
             elseif (equippedBody == 11086) then
@@ -83,9 +83,9 @@ function onSpellCast(caster,target,spell)
             else
                 solaceStoneskin = math.floor(final * 0.25)
             end
-            target:addStatusEffect(dsp.effect.STONESKIN,solaceStoneskin,0,25,0,0,1)
+            target:addStatusEffect(tpz.effect.STONESKIN,solaceStoneskin,0,25,0,0,1)
         end
-        final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
+        final = final + (final * (target:getMod(tpz.mod.CURE_POTENCY_RCVD)/100))
 
         --Applying server mods....
         final = final * CURE_POWER
@@ -100,19 +100,19 @@ function onSpellCast(caster,target,spell)
         caster:updateEnmityFromCure(target, 65535)
     else
         if (target:isUndead()) then -- e.g. PCs healing skeles for damage (?)
-            spell:setMsg(dsp.msg.basic.MAGIC_DMG)
+            spell:setMsg(tpz.msg.basic.MAGIC_DMG)
             local params = {}
             params.dmg = minCure
             params.multiplier = 1
-            params.skillType = dsp.skill.HEALING_MAGIC
-            params.attribute = dsp.mod.MND
+            params.skillType = tpz.skill.HEALING_MAGIC
+            params.attribute = tpz.mod.MND
             params.hasMultipleTargetReduction = false
 
             local dmg = calculateMagicDamage(caster, target, spell, params)*0.5
             local params = {}
-            params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND)
-            params.attribute = dsp.mod.MND
-            params.skillType = dsp.skill.HEALING_MAGIC
+            params.diff = caster:getStat(tpz.mod.MND)-target:getStat(tpz.mod.MND)
+            params.attribute = tpz.mod.MND
+            params.skillType = tpz.skill.HEALING_MAGIC
             params.bonus = 1.0
             local resist = applyResistance(caster, target, spell, params)
             dmg = dmg*resist
@@ -120,10 +120,10 @@ function onSpellCast(caster,target,spell)
             dmg = adjustForTarget(target,dmg,spell:getElement())
             dmg = finalMagicAdjustments(caster,target,spell,dmg)
             final = dmg
-            target:takeDamage(final, caster, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
+            target:takeDamage(final, caster, tpz.attackType.MAGICAL, tpz.damageType.LIGHT)
             target:updateEnmityFromDamage(caster,final)
-        elseif (caster:getObjType() == dsp.objType.PC) then
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        elseif (caster:getObjType() == tpz.objType.PC) then
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         else
             -- e.g. monsters healing themselves.
             if (USE_OLD_CURE_FORMULA == true) then
@@ -140,7 +140,7 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    local mpBonusPercent = (final*caster:getMod(dsp.mod.CURE2MP_PERCENT))/100
+    local mpBonusPercent = (final*caster:getMod(tpz.mod.CURE2MP_PERCENT))/100
     if (mpBonusPercent > 0) then
         caster:addMP(mpBonusPercent)
     end

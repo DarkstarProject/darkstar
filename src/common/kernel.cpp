@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -52,7 +50,7 @@ int arg_c = 0;
 char **arg_v = NULL;
 
 char *SERVER_NAME = NULL;
-char  SERVER_TYPE = DARKSTAR_SERVER_NONE;
+char  SERVER_TYPE = TOPAZ_SERVER_NONE;
 
 // Copyright (c) Athena Dev Teams 
 // Added by Gabuzomeu
@@ -210,7 +208,7 @@ void signals_init (void)
 
 static void display_title(void)
 {
-	ShowInfo("DarkStar");
+	ShowInfo("Topaz");
 }
 
 /************************************************************************
@@ -224,7 +222,7 @@ void usercheck(void)
 #ifndef _WIN32
     if ((getuid() == 0) && (getgid() == 0)) 
 	{
-		ShowWarning ("You are running DSP as the root superuser.\n");
+		ShowWarning ("You are running Topaz as the root superuser.\n");
 		ShowWarning ("It is unnecessary and unsafe to run with root privileges.\n");
 		sleep(3);
     }

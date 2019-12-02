@@ -15,7 +15,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+    if player:hasKeyItem(tpz.ki.DELKFUTT_KEY) then
         player:startEvent(6)
     else
         player:messageSpecial(ID.text.THIS_ELEVATOR_GOES_DOWN)
@@ -27,9 +27,9 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 6 then
-        if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+        if not player:hasKeyItem(tpz.ki.DELKFUTT_KEY) then
             player:confirmTrade()
-            npcUtil.giveKeyItem(player, dsp.ki.DELKFUTT_KEY)
+            npcUtil.giveKeyItem(player, tpz.ki.DELKFUTT_KEY)
         end
     end
 end

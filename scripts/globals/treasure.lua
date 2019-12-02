@@ -11,10 +11,10 @@ require("scripts/globals/status")
 require("scripts/globals/zone")
 ------------------------------------
 
-dsp = dsp or {}
-dsp.treasure = dsp.treasure or {}
+tpz = tpz or {}
+tpz.treasure = tpz.treasure or {}
 
-dsp.treasure.type =
+tpz.treasure.type =
 {
     CHEST   = 1,
     COFFER  = 2,
@@ -30,15 +30,15 @@ local keyType =
 
 local treasureInfo =
 {
-    [dsp.treasure.type.CHEST] =
+    [tpz.treasure.type.CHEST] =
     {
         zone =
         {
-            [dsp.zone.PSOXJA] = -- 9
+            [tpz.zone.PSOXJA] = -- 9
             {
                 treasureLvl = 53,
                 key = 1064,
-                map = dsp.ki.MAP_OF_PSOXJA,
+                map = tpz.ki.MAP_OF_PSOXJA,
                 points =
                 {
                     {-393.000,   16.000, -208.000,   0},
@@ -54,11 +54,11 @@ local treasureInfo =
                 gil = {0.762, 5200, 12500},
                 gem = {0.238, 811, 798, 815, 790, 799, 788, 808},
             },
-            [dsp.zone.OLDTON_MOVALPOLOS] = -- 11
+            [tpz.zone.OLDTON_MOVALPOLOS] = -- 11
             {
                 treasureLvl = 43,
                 key = 1062,
-                map = dsp.ki.MAP_OF_OLDTON_MOVALPOLOS,
+                map = tpz.ki.MAP_OF_OLDTON_MOVALPOLOS,
                 points =
                 {
                     {-140.636,    7.999,  200.498, 192},
@@ -77,7 +77,7 @@ local treasureInfo =
                 gil = {0.731, 3200, 6400},
                 gem = {0.269, 811, 808, 796, 799, 788, 815, 798},
             },
-            [dsp.zone.SACRARIUM] = -- 28
+            [tpz.zone.SACRARIUM] = -- 28
             {
                 treasureLvl = 53,
                 key = 1061,
@@ -95,7 +95,7 @@ local treasureInfo =
                 gil = {0.929, 5100, 9900},
                 gem = {0.071, 790, 799, 815, 788, 796},
             },
-            [dsp.zone.FORT_GHELSBA] = -- 141
+            [tpz.zone.FORT_GHELSBA] = -- 141
             {
                 treasureLvl = 53,
                 key = 1024,
@@ -111,7 +111,7 @@ local treasureInfo =
                 gem = {0.036, 814, 800, 795, 807, 806},
                 item = {0.464, 16702},
             },
-            [dsp.zone.YUGHOTT_GROTTO] = -- 142
+            [tpz.zone.YUGHOTT_GROTTO] = -- 142
             {
                 treasureLvl = 53,
                 key = 1024,
@@ -129,7 +129,7 @@ local treasureInfo =
                 gem = {0.100, 814, 800, 795, 807, 806},
                 item = {0.450, 16702},
             },
-            [dsp.zone.PALBOROUGH_MINES] = -- 143
+            [tpz.zone.PALBOROUGH_MINES] = -- 143
             {
                 treasureLvl = 43,
                 key = 1025,
@@ -152,7 +152,7 @@ local treasureInfo =
                 gem = {0.136, 795, 800, 814, 807, 806, 809},
                 item = {0.409, 17291},
             },
-            [dsp.zone.GIDDEUS] = -- 145
+            [tpz.zone.GIDDEUS] = -- 145
             {
                 treasureLvl = 43,
                 key = 1026,
@@ -174,7 +174,7 @@ local treasureInfo =
                 gem = {0.069, 814, 800, 809, 795, 807, 806},
                 item = {0.483, 13365},
             },
-            [dsp.zone.BEADEAUX] = -- 147
+            [tpz.zone.BEADEAUX] = -- 147
             {
                 treasureLvl = 53,
                 key = 1034,
@@ -197,7 +197,7 @@ local treasureInfo =
                 gem = {0.090, 811, 790, 796, 798, 808, 815},
                 item = {0.758, 13230},
             },
-            [dsp.zone.DAVOI] = -- 149
+            [tpz.zone.DAVOI] = -- 149
             {
                 treasureLvl = 43,
                 key = 1033,
@@ -220,14 +220,14 @@ local treasureInfo =
                 gem = {0.107, 811, 790, 808, 796, 799, 788, 815, 798},
                 item = {0.464, 13515},
             },
-            [dsp.zone.CASTLE_OZTROJA] = -- 151
+            [tpz.zone.CASTLE_OZTROJA] = -- 151
             {
                 treasureLvl = 43,
                 key = 1035,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getCharVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getCharVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
                         code = function(player) npcUtil.giveItem(player, 13121) end,
                     },
                 },
@@ -251,15 +251,15 @@ local treasureInfo =
                 gem = {0.080, 811, 790, 808, 796, 788, 807, 815, 798},
                 item = {0.480, 13840},
             },
-            [dsp.zone.MIDDLE_DELKFUTTS_TOWER] = -- 157
+            [tpz.zone.MIDDLE_DELKFUTTS_TOWER] = -- 157
             {
                 treasureLvl = 43,
                 key = 1036,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.GUIDING_BELL) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.GUIDING_BELL) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.GUIDING_BELL) end,
                     },
                 },
                 points =
@@ -277,15 +277,15 @@ local treasureInfo =
                 gem = {0.161, 814, 800, 809, 795, 796, 799, 806},
                 item = {0.484, 16674},
             },
-            [dsp.zone.UPPER_DELKFUTTS_TOWER] = -- 158
+            [tpz.zone.UPPER_DELKFUTTS_TOWER] = -- 158
             {
                 treasureLvl = 43,
                 key = 1036,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.GUIDING_BELL) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.GUIDING_BELL) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.GUIDING_BELL) end,
                     },
                 },
                 points =
@@ -299,16 +299,16 @@ local treasureInfo =
                 gem = {0.161, 814, 800, 809, 795, 796, 799, 806},
                 item = {0.484, 16674},
             },
-            [dsp.zone.CASTLE_ZVAHL_BAILEYS] = -- 161
+            [tpz.zone.CASTLE_ZVAHL_BAILEYS] = -- 161
             {
                 treasureLvl = 53,
                 key = 1038,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,tpz.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.UN_MOMENT) end,
                         code = function(player)
-                            npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
+                            npcUtil.giveKeyItem(player, tpz.ki.UN_MOMENT)
                             player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
@@ -335,16 +335,16 @@ local treasureInfo =
                 gem = {0.008, 811, 790, 808, 788, 799, 815},
                 item = {0.610, 13516},
             },
-            [dsp.zone.CASTLE_ZVAHL_KEEP] = -- 162
+            [tpz.zone.CASTLE_ZVAHL_KEEP] = -- 162
             {
                 treasureLvl = 53,
                 key = 1038,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,tpz.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.UN_MOMENT) end,
                         code = function(player)
-                            npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
+                            npcUtil.giveKeyItem(player, tpz.ki.UN_MOMENT)
                             player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
@@ -357,17 +357,17 @@ local treasureInfo =
                 gem = {0.204, 798, 790, 808, 788, 815, 796},
                 item = {0.490, 13516},
             },
-            [dsp.zone.SEA_SERPENT_GROTTO] = -- 176
+            [tpz.zone.SEA_SERPENT_GROTTO] = -- 176
             {
                 treasureLvl = 53,
                 key = 1055,
-                map = dsp.ki.MAP_OF_THE_SEA_SERPENT_GROTTO,
+                map = tpz.ki.MAP_OF_THE_SEA_SERPENT_GROTTO,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LEPHEMERE) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,tpz.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.LEPHEMERE) end,
                         code = function(player)
-                            npcUtil.giveKeyItem(player, dsp.ki.LEPHEMERE)
+                            npcUtil.giveKeyItem(player, tpz.ki.LEPHEMERE)
                             player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
@@ -389,7 +389,7 @@ local treasureInfo =
                 gil = {0.929, 3355, 8900},
                 gem = {0.071, 811, 808, 790, 796, 815, 788, 799, 798},
             },
-            [dsp.zone.KING_RANPERRES_TOMB] = -- 190
+            [tpz.zone.KING_RANPERRES_TOMB] = -- 190
             {
                 treasureLvl = 43,
                 key = 1027,
@@ -414,7 +414,7 @@ local treasureInfo =
                 gem = {0.093, 814, 800, 809, 795, 807, 806},
                 item = {0.433, 12799},
             },
-            [dsp.zone.DANGRUF_WADI] = -- 191
+            [tpz.zone.DANGRUF_WADI] = -- 191
             {
                 treasureLvl = 43,
                 key = 1028,
@@ -440,7 +440,7 @@ local treasureInfo =
                 gem = {0.230, 814, 800, 809, 795, 807, 806},
                 item = {0.462, 12341},
             },
-            [dsp.zone.INNER_HORUTOTO_RUINS] = -- 192
+            [tpz.zone.INNER_HORUTOTO_RUINS] = -- 192
             {
                 treasureLvl = 43,
                 key = 1029,
@@ -452,7 +452,7 @@ local treasureInfo =
                 gem = {0.109, 814, 800, 809, 795, 806},
                 item = {0.432, 16719},
             },
-            [dsp.zone.ORDELLES_CAVES] = -- 193
+            [tpz.zone.ORDELLES_CAVES] = -- 193
             {
                 treasureLvl = 43,
                 key = 1030,
@@ -460,15 +460,15 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getCharVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(dsp.ki.TORN_OUT_PAGES)
+                            return player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getCharVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(tpz.ki.TORN_OUT_PAGES)
                         end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.TORN_OUT_PAGES) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.TORN_OUT_PAGES) end,
                     },
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(tpz.ki.MAGICAL_PATTERN)
                         end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.MAGICAL_PATTERN) end,
                     },
                 },
                 points =
@@ -493,7 +493,7 @@ local treasureInfo =
                 gem = {0.214, 800, 809, 806, 807, 796, 795, 814, 799},
                 item = {0.476, 13222},
             },
-            [dsp.zone.OUTER_HORUTOTO_RUINS] = -- 194
+            [tpz.zone.OUTER_HORUTOTO_RUINS] = -- 194
             {
                 treasureLvl = 43,
                 key = 1029,
@@ -505,7 +505,7 @@ local treasureInfo =
                 gem = {0.109, 814, 800, 809, 795, 806},
                 item = {0.432, 16719},
             },
-            [dsp.zone.THE_ELDIEME_NECROPOLIS] = -- 195
+            [tpz.zone.THE_ELDIEME_NECROPOLIS] = -- 195
             {
                 treasureLvl = 53,
                 key = 1039,
@@ -526,7 +526,7 @@ local treasureInfo =
                 gem = {0.105, 811, 808, 796, 799, 815, 790},
                 item = {0.474, 16771},
             },
-            [dsp.zone.GUSGEN_MINES] = -- 196
+            [tpz.zone.GUSGEN_MINES] = -- 196
             {
                 treasureLvl = 43,
                 key = 1031,
@@ -534,9 +534,9 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 1 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 1 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(tpz.ki.MAGICAL_PATTERN)
                         end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.MAGICAL_PATTERN) end,
                     },
                 },
                 points =
@@ -558,7 +558,7 @@ local treasureInfo =
                 gem = {0.233, 806, 809, 814, 800, 796, 795, 799},
                 item = {0.465, 12338, 17426},
             },
-            [dsp.zone.CRAWLERS_NEST] = -- 197
+            [tpz.zone.CRAWLERS_NEST] = -- 197
             {
                 treasureLvl = 43,
                 key = 1040,
@@ -567,7 +567,7 @@ local treasureInfo =
                     {
                         test = function(player) return player:getCharVar("needs_crawler_blood") == 1 end,
                         code = function(player)
-                            npcUtil.giveKeyItem(player, dsp.ki.CRAWLER_BLOOD)
+                            npcUtil.giveKeyItem(player, tpz.ki.CRAWLER_BLOOD)
                             player:setCharVar("needs_crawler_blood",0)
                         end,
                     },
@@ -592,7 +592,7 @@ local treasureInfo =
                 gem = {0.162, 811, 790, 808, 796, 799, 788, 815, 798},
                 item = {0.444, 16710},
             },
-            [dsp.zone.MAZE_OF_SHAKHRAMI] = -- 198
+            [tpz.zone.MAZE_OF_SHAKHRAMI] = -- 198
             {
                 treasureLvl = 43,
                 key = 1032,
@@ -600,9 +600,9 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(tpz.ki.MAGICAL_PATTERN)
                         end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.MAGICAL_PATTERN) end,
                     },
                 },
                 points =
@@ -628,7 +628,7 @@ local treasureInfo =
                 gem = {0.060, 814, 800, 809, 795, 796, 799, 807, 806},
                 item = {0.415, 17071},
             },
-            [dsp.zone.GARLAIGE_CITADEL] = -- 200
+            [tpz.zone.GARLAIGE_CITADEL] = -- 200
             {
                 treasureLvl = 53,
                 key = 1041,
@@ -649,15 +649,15 @@ local treasureInfo =
                 gem = {0.059, 811, 790, 808, 796, 799, 788, 815, 798},
                 item = {0.365, 13723},
             },
-            [dsp.zone.FEIYIN] = -- 204
+            [tpz.zone.FEIYIN] = -- 204
             {
                 treasureLvl = 53,
                 key = 1037,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.FEIYIN_MAGIC_TOME) end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.FEIYIN_MAGIC_TOME) end,
+                        test = function(player) return player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.FEIYIN_MAGIC_TOME) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.FEIYIN_MAGIC_TOME) end,
                     },
                 },
                 points =
@@ -681,17 +681,17 @@ local treasureInfo =
                 gem = {0.091, 811, 790, 808, 796, 799, 788, 815, 798},
                 item = {0.440, 13231},
             },
-            [dsp.zone.LABYRINTH_OF_ONZOZO] = -- 213
+            [tpz.zone.LABYRINTH_OF_ONZOZO] = -- 213
             {
                 treasureLvl = 43,
                 key = 1056,
-                map = dsp.ki.MAP_OF_THE_LABYRINTH_OF_ONZOZO,
+                map = tpz.ki.MAP_OF_THE_LABYRINTH_OF_ONZOZO,
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LANCIENNE) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,tpz.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.LANCIENNE) end,
                         code = function(player)
-                            npcUtil.giveKeyItem(player, dsp.ki.LANCIENNE)
+                            npcUtil.giveKeyItem(player, tpz.ki.LANCIENNE)
                             player:addCharVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
@@ -721,16 +721,16 @@ local treasureInfo =
 
     -------------------------------------------------
 
-    [dsp.treasure.type.COFFER] =
+    [tpz.treasure.type.COFFER] =
     {
         zone =
         {
 
-            [dsp.zone.NEWTON_MOVALPOLOS] = -- 12
+            [tpz.zone.NEWTON_MOVALPOLOS] = -- 12
             {
                 treasureLvl = 53,
                 key = 1063,
-                map = dsp.ki.MAP_OF_NEWTON_MOVALPOLOS,
+                map = tpz.ki.MAP_OF_NEWTON_MOVALPOLOS,
                 points =
                 {
                     { -46.014,   17.980,  -26.274,  64},
@@ -746,11 +746,11 @@ local treasureInfo =
                 gil = {0.927, 9800, 19180},
                 gem = {0.073, 791, 797, 784, 803, 805, 801, 802},
             },
-            [dsp.zone.RUAUN_GARDENS] = -- 130
+            [tpz.zone.RUAUN_GARDENS] = -- 130
             {
                 treasureLvl = 53,
                 key = 1058,
-                map = dsp.ki.MAP_OF_THE_RUAUN_GARDENS,
+                map = tpz.ki.MAP_OF_THE_RUAUN_GARDENS,
                 points =
                 {
                     {-306.824,  -23.999,  230.783, 155},
@@ -769,18 +769,18 @@ local treasureInfo =
                 gil = {0.821, 9576, 19460},
                 gem = {0.179, 791, 801, 810, 784, 802, 797, 805, 803},
             },
-            [dsp.zone.BEADEAUX] = -- 147
+            [tpz.zone.BEADEAUX] = -- 147
             {
                 treasureLvl = 53,
                 key = 1043,
                 hands = {
-                    [dsp.job.WHM] = true,
+                    [tpz.job.WHM] = true,
                 },
                 af =
                 {
-                    [dsp.job.BST] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,     reward = 12646}, -- Beast Jackcoat
-                    [dsp.job.PLD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS, reward = 14220}, -- Gallant Breeches
-                    [dsp.job.MNK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS, reward = 12639}, -- Temple Cyclas
+                    [tpz.job.BST] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,     reward = 12646}, -- Beast Jackcoat
+                    [tpz.job.PLD] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS, reward = 14220}, -- Gallant Breeches
+                    [tpz.job.MNK] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS, reward = 12639}, -- Temple Cyclas
                 },
                 points =
                 {
@@ -797,18 +797,18 @@ local treasureInfo =
                 gem = {0.240, 791, 801, 802, 797, 788, 803, 805, 810, 784},
                 item = {0.385, 4820},
             },
-            [dsp.zone.MONASTIC_CAVERN] = -- 150
+            [tpz.zone.MONASTIC_CAVERN] = -- 150
             {
                 treasureLvl = 53,
                 key = 1042,
                 hands = {
-                    [dsp.job.THF] = true,
+                    [tpz.job.THF] = true,
                 },
                 af =
                 {
-                    [dsp.job.DRK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,   reward = 14221}, -- Chaos Flanchard
-                    [dsp.job.RNG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,   reward = 12648}, -- Hunter's Jerkin
-                    [dsp.job.BLM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 12641}, -- Wizard's Coat
+                    [tpz.job.DRK] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,   reward = 14221}, -- Chaos Flanchard
+                    [tpz.job.RNG] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,   reward = 12648}, -- Hunter's Jerkin
+                    [tpz.job.BLM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 12641}, -- Wizard's Coat
                 },
                 points =
                 {
@@ -827,16 +827,16 @@ local treasureInfo =
                 gem = {0.055, 801, 810, 784, 802, 797, 803},
                 item = {0.127, 13398},
             },
-            [dsp.zone.CASTLE_OZTROJA] = -- 151
+            [tpz.zone.CASTLE_OZTROJA] = -- 151
             {
                 treasureLvl = 53,
                 key = 1044,
                 af =
                 {
-                    [dsp.job.DRK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,    reward = 12645}, -- Chaos Cuirass
-                    [dsp.job.BRD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 14223}, -- Choral Cannions
-                    [dsp.job.THF] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,     reward = 14219}, -- Rogue's Culottes
-                    [dsp.job.RDM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 12642}, -- Warlock's Tabard
+                    [tpz.job.DRK] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,    reward = 12645}, -- Chaos Cuirass
+                    [tpz.job.BRD] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 14223}, -- Choral Cannions
+                    [tpz.job.THF] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,     reward = 14219}, -- Rogue's Culottes
+                    [tpz.job.RDM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 12642}, -- Warlock's Tabard
                 },
                 points =
                 {
@@ -855,17 +855,17 @@ local treasureInfo =
                 gem = {0.044, 791, 801, 810, 784, 802, 797, 803, 805},
                 item = {0.304, 14670},
             },
-            [dsp.zone.THE_BOYAHDA_TREE] = -- 153
+            [tpz.zone.THE_BOYAHDA_TREE] = -- 153
             {
                 treasureLvl = 53,
                 key = 1052,
-                map = dsp.ki.MAP_OF_THE_BOYAHDA_TREE,
+                map = tpz.ki.MAP_OF_THE_BOYAHDA_TREE,
                 hands = {
-                    [dsp.job.DRG] = true,
+                    [tpz.job.DRG] = true,
                 },
                 af =
                 {
-                    [dsp.job.NIN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 13869}, -- Ninja Hatsuburi
+                    [tpz.job.NIN] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 13869}, -- Ninja Hatsuburi
                 },
                 points =
                 {
@@ -888,15 +888,15 @@ local treasureInfo =
                 gem = {0.092, 791, 801, 810, 784, 802, 803, 805, 797},
                 item = {0.115, 4447},
             },
-            [dsp.zone.TEMPLE_OF_UGGALEPIH] = -- 159
+            [tpz.zone.TEMPLE_OF_UGGALEPIH] = -- 159
             {
                 treasureLvl = 53,
                 key = 1049,
-                map = dsp.ki.MAP_OF_THE_TEMPLE_OF_UGGALEPIH,
+                map = tpz.ki.MAP_OF_THE_TEMPLE_OF_UGGALEPIH,
                 af =
                 {
-                    [dsp.job.SMN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 12650}, -- Evoker's Doublet
-                    [dsp.job.SAM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,   reward = 13781}, -- Myochin Domaru
+                    [tpz.job.SMN] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 12650}, -- Evoker's Doublet
+                    [tpz.job.SAM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,   reward = 13781}, -- Myochin Domaru
                 },
                 points =
                 {
@@ -914,11 +914,11 @@ local treasureInfo =
                 gil = {0.846, 7320, 14400},
                 gem = {0.154, 797, 801, 810, 802, 805, 803},
             },
-            [dsp.zone.DEN_OF_RANCOR] = -- 160
+            [tpz.zone.DEN_OF_RANCOR] = -- 160
             {
                 treasureLvl = 53,
                 key = 1050,
-                map = dsp.ki.MAP_OF_THE_DEN_OF_RANCOR,
+                map = tpz.ki.MAP_OF_THE_DEN_OF_RANCOR,
                 points =
                 {
                     { 371.199,   -5.059,  260.752,  95},
@@ -937,23 +937,23 @@ local treasureInfo =
                 gil = {0.700, 8000, 16770},
                 gem = {0.300, 797, 805},
             },
-            [dsp.zone.CASTLE_ZVAHL_BAILEYS] = -- 161
+            [tpz.zone.CASTLE_ZVAHL_BAILEYS] = -- 161
             {
                 treasureLvl = 53,
                 key = 1048,
                 hands = {
-                    [dsp.job.BRD] = true,
+                    [tpz.job.BRD] = true,
                 },
                 af =
                 {
-                    [dsp.job.WAR] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS, reward = 14214}, -- Fighter's Cuisses
-                    [dsp.job.THF] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,  reward = 12643}, -- Rogue's Vest
+                    [tpz.job.WAR] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS, reward = 14214}, -- Fighter's Cuisses
+                    [tpz.job.THF] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,  reward = 12643}, -- Rogue's Vest
                 },
                 misc =
                 {
                     {
                         test = function(player) return player:getCharVar("UnderOathCS") == 3 end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MIQUES_PAINTBRUSH) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.MIQUES_PAINTBRUSH) end,
                     },
                 },
                 points =
@@ -971,20 +971,20 @@ local treasureInfo =
                 gem = {0.080, 791, 801, 810, 784, 802, 797, 803, 805},
                 item = {0.189, 4995},
             },
-            [dsp.zone.TORAIMARAI_CANAL] = -- 169
+            [tpz.zone.TORAIMARAI_CANAL] = -- 169
             {
                 treasureLvl = 53,
                 key = 1057,
                 af =
                 {
-                    [dsp.job.SMN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 14103}, -- Evoker's Pigaches
+                    [tpz.job.SMN] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 14103}, -- Evoker's Pigaches
                 },
                 misc =
                 {
                     {
                         test = function(player) return player:getCharVar("WildCard") == 2 end,
                         code = function(player)
-                            npcUtil.giveKeyItem(player, dsp.ki.JOKER_CARD)
+                            npcUtil.giveKeyItem(player, tpz.ki.JOKER_CARD)
                             player:setCharVar("WildCard",3)
                         end,
                     },
@@ -1010,23 +1010,23 @@ local treasureInfo =
                 gil = {0.900, 7440, 14280},
                 gem = {0.100, 791, 801, 784, 802, 797, 803, 805},
             },
-            [dsp.zone.KUFTAL_TUNNEL] = -- 174
+            [tpz.zone.KUFTAL_TUNNEL] = -- 174
             {
                 treasureLvl = 53,
                 key = 1051,
-                map = dsp.ki.MAP_OF_THE_KUFTAL_TUNNEL,
+                map = tpz.ki.MAP_OF_THE_KUFTAL_TUNNEL,
                 hands = {
-                    [dsp.job.SAM] = true,
+                    [tpz.job.SAM] = true,
                 },
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and player:getCharVar("trueWillCS") == 2 and not player:hasKeyItem(dsp.ki.LARGE_TRICK_BOX) end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.LARGE_TRICK_BOX) end,
+                        test = function(player) return player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and player:getCharVar("trueWillCS") == 2 and not player:hasKeyItem(tpz.ki.LARGE_TRICK_BOX) end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.LARGE_TRICK_BOX) end,
                     },
                     {
-                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getCharVar("KnightStalker_Progress") == 1 end,
-                        code = function(player) npcUtil.giveKeyItem(player, dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) end,
+                        test = function(player) return player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getCharVar("KnightStalker_Progress") == 1 end,
+                        code = function(player) npcUtil.giveKeyItem(player, tpz.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) end,
                     },
                 },
                 points =
@@ -1048,17 +1048,17 @@ local treasureInfo =
                 gil = {0.943, 5200, 16100},
                 gem = {0.057, 802, 801, 797, 784, 803, 791, 805, 810},
             },
-            [dsp.zone.SEA_SERPENT_GROTTO] = -- 176
+            [tpz.zone.SEA_SERPENT_GROTTO] = -- 176
             {
                 treasureLvl = 53,
                 key = 1059,
-                map = dsp.ki.MAP_OF_THE_SEA_SERPENT_GROTTO,
+                map = tpz.ki.MAP_OF_THE_SEA_SERPENT_GROTTO,
                 hands = {
-                    [dsp.job.SMN] = true,
+                    [tpz.job.SMN] = true,
                 },
                 af =
                 {
-                    [dsp.job.NIN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 14101}, -- Ninja Kyahan
+                    [tpz.job.NIN] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 14101}, -- Ninja Kyahan
                 },
                 points =
                 {
@@ -1077,11 +1077,11 @@ local treasureInfo =
                 gil = {0.550, 6145, 19580},
                 gem = {0.450, 791, 810, 784, 802, 803, 797, 801},
             },
-            [dsp.zone.VELUGANNON_PALACE] = -- 177
+            [tpz.zone.VELUGANNON_PALACE] = -- 177
             {
                 treasureLvl = 53,
                 key = 1060,
-                map = dsp.ki.MAP_OF_THE_VELUGANNON_PALACE,
+                map = tpz.ki.MAP_OF_THE_VELUGANNON_PALACE,
                 points =
                 {
                     { 101.588,   15.837,  380.587,   1},
@@ -1097,19 +1097,19 @@ local treasureInfo =
                 gil = {0.500, 9940, 18900},
                 gem = {0.500, 791, 805},
             },
-            [dsp.zone.THE_ELDIEME_NECROPOLIS] = -- 195
+            [tpz.zone.THE_ELDIEME_NECROPOLIS] = -- 195
             {
                 treasureLvl = 53,
                 key = 1046,
                 hands = {
-                    [dsp.job.WAR] = true,
-                    [dsp.job.RDM] = true,
-                    [dsp.job.PLD] = true,
-                    [dsp.job.DRK] = true,
+                    [tpz.job.WAR] = true,
+                    [tpz.job.RDM] = true,
+                    [tpz.job.PLD] = true,
+                    [tpz.job.DRK] = true,
                 },
                 af =
                 {
-                    [dsp.job.BLM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 14217}, -- Wizard's Tonban
+                    [tpz.job.BLM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 14217}, -- Wizard's Tonban
                 },
                 points =
                 {
@@ -1127,20 +1127,20 @@ local treasureInfo =
                 gem = {0.250, 801, 810, 802, 797, 803},
                 item = {0.250, 4175},
             },
-            [dsp.zone.CRAWLERS_NEST] = -- 197
+            [tpz.zone.CRAWLERS_NEST] = -- 197
             {
                 treasureLvl = 53,
                 key = 1045,
                 hands = {
-                    [dsp.job.MNK] = true,
-                    [dsp.job.BST] = true,
+                    [tpz.job.MNK] = true,
+                    [tpz.job.BST] = true,
                 },
                 af =
                 {
-                    [dsp.job.BRD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 13857}, -- Choral Roundlet
-                    [dsp.job.WAR] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS,    reward = 12511}, -- Fighter's Mask
-                    [dsp.job.WHM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 14216}, -- Healer's Pantaloons
-                    [dsp.job.RNG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,    reward = 14224}, -- Hunter's Braccae
+                    [tpz.job.BRD] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 13857}, -- Choral Roundlet
+                    [tpz.job.WAR] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS,    reward = 12511}, -- Fighter's Mask
+                    [tpz.job.WHM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 14216}, -- Healer's Pantaloons
+                    [tpz.job.RNG] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,    reward = 14224}, -- Hunter's Braccae
                 },
                 points =
                 {
@@ -1156,21 +1156,21 @@ local treasureInfo =
                 gem = {0.387, 791, 801, 784, 797, 805, 803},
                 item = {0.226, 4173},
             },
-            [dsp.zone.GARLAIGE_CITADEL] = -- 200
+            [tpz.zone.GARLAIGE_CITADEL] = -- 200
             {
                 treasureLvl = 53,
                 key = 1047,
                 hands = {
-                    [dsp.job.BLM] = true,
-                    [dsp.job.RNG] = true,
+                    [tpz.job.BLM] = true,
+                    [tpz.job.RNG] = true,
                 },
                 af =
                 {
-                    [dsp.job.BST] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,       reward = 12517}, -- Beast Helm
-                    [dsp.job.PLD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS,   reward = 12515}, -- Gallant Coronet
-                    [dsp.job.WHM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 13855}, -- Healer's Cap
-                    [dsp.job.MNK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS,   reward = 12512}, -- Temple Crown
-                    [dsp.job.RDM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 14218}, -- Warlock's Tights
+                    [tpz.job.BST] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,       reward = 12517}, -- Beast Helm
+                    [tpz.job.PLD] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS,   reward = 12515}, -- Gallant Coronet
+                    [tpz.job.WHM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 13855}, -- Healer's Cap
+                    [tpz.job.MNK] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS,   reward = 12512}, -- Temple Crown
+                    [tpz.job.RDM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 14218}, -- Warlock's Tights
                 },
                 points =
                 {
@@ -1186,17 +1186,17 @@ local treasureInfo =
                 gem = {0.125, 801, 784, 802},
                 item = {0.125, 13977},
             },
-            [dsp.zone.IFRITS_CAULDRON] = -- 205
+            [tpz.zone.IFRITS_CAULDRON] = -- 205
             {
                 treasureLvl = 53,
                 key = 1053,
-                map = dsp.ki.MAP_OF_IFRITS_CAULDRON,
+                map = tpz.ki.MAP_OF_IFRITS_CAULDRON,
                 hands = {
-                    [dsp.job.NIN] = true,
+                    [tpz.job.NIN] = true,
                 },
                 af =
                 {
-                    [dsp.job.DRG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 12649}, -- Drachen Mail
+                    [tpz.job.DRG] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 12649}, -- Drachen Mail
                 },
                 points =
                 {
@@ -1217,15 +1217,15 @@ local treasureInfo =
                 gil = {0.897, 7200, 21060},
                 gem = {0.103, 802, 797, 803, 801, 810, 791},
             },
-            [dsp.zone.QUICKSAND_CAVES] = -- 208
+            [tpz.zone.QUICKSAND_CAVES] = -- 208
             {
                 treasureLvl = 53,
                 key = 1054,
-                map = dsp.ki.MAP_OF_THE_QUICKSAND_CAVES,
+                map = tpz.ki.MAP_OF_THE_QUICKSAND_CAVES,
                 af =
                 {
-                    [dsp.job.DRG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 14102}, -- Drachen Greaves
-                    [dsp.job.SAM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,  reward = 14225}, -- Myochin Haidate
+                    [tpz.job.DRG] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 14102}, -- Drachen Greaves
+                    [tpz.job.SAM] = {quest = tpz.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,  reward = 14225}, -- Myochin Haidate
                 },
                 points =
                 {
@@ -1274,7 +1274,7 @@ local function spawnMimic(player, npc)
     if mimicId then
         GetMobByID(mimicId):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos(), npc:getRotPos())
         npcUtil.popFromQM(player, npc, mimicId, {claim=true, hide=5})
-        moveChest(npc, zoneId, dsp.treasure.type.COFFER, true)
+        moveChest(npc, zoneId, tpz.treasure.type.COFFER, true)
     else
         printf("treasure.lua MIMIC id missing in zoneId %i", zoneId)
     end
@@ -1284,23 +1284,23 @@ end
 -- public functions
 -------------------------------------------------
 
-dsp.treasure.initZone = function(zone)
+tpz.treasure.initZone = function(zone)
     local zoneId = zone:getID()
     local ID = zones[zoneId]
 
     if ID.npc.TREASURE_CHEST then
         local npc = GetNPCByID(ID.npc.TREASURE_CHEST)
         if npc then
-            npc:setStatus(dsp.status.NORMAL)
-            moveChest(npc, zoneId, dsp.treasure.type.CHEST)
+            npc:setStatus(tpz.status.NORMAL)
+            moveChest(npc, zoneId, tpz.treasure.type.CHEST)
         end
     end
 
     if ID.npc.TREASURE_COFFER then
         local npc = GetNPCByID(ID.npc.TREASURE_COFFER)
         if npc then
-            npc:setStatus(dsp.status.NORMAL)
-            moveChest(npc, zoneId, dsp.treasure.type.COFFER)
+            npc:setStatus(tpz.status.NORMAL)
+            moveChest(npc, zoneId, tpz.treasure.type.COFFER)
         end
     end
 end
@@ -1317,7 +1317,7 @@ end
     7 The chest appears to be locked. If only you had <item>, perhaps you could open it...
 --]]
 
-dsp.treasure.onTrade = function(player, npc, trade, chestType)
+tpz.treasure.onTrade = function(player, npc, trade, chestType)
     local zoneId = player:getZoneID()
     local ID = zones[zoneId]
     local msgBase = ID.text.CHEST_UNLOCKED
@@ -1349,13 +1349,13 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
     if keyTraded ~= keyType.ZONE_KEY then
 
         -- can't lockpick while weakened
-        if player:hasStatusEffect(dsp.effect.WEAKNESS) then
+        if player:hasStatusEffect(tpz.effect.WEAKNESS) then
             player:messageSpecial(msgBase + 3)
             return
         end
 
         -- determine chance of success
-        if mJob ~= dsp.job.THF or mLvl < (info.treasureLvl - 10) then
+        if mJob ~= tpz.job.THF or mLvl < (info.treasureLvl - 10) then
             success = 0
         elseif keyTraded == keyType.SKELETON_KEY then
             success = (mLvl / info.treasureLvl) - 0.50 + 0.2
@@ -1372,7 +1372,7 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
 
             -- determine type of failure
             local failureType = 1
-            if chestType == dsp.treasure.type.COFFER then
+            if chestType == tpz.treasure.type.COFFER then
                 failureType = math.random(3)
             else
                 failureType = math.random(2)
@@ -1382,7 +1382,7 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
                 player:messageSpecial(msgBase + 1, player:getID()) -- "<name> fails to open the chest."
             elseif failureType == 2 then
                 player:messageSpecial(msgBase + 2) -- "The chest was trapped!"
-                player:addStatusEffect(dsp.effect.WEAKNESS, 1, 0, math.random(300, 10800)) -- 5 minutes to 3 hours
+                player:addStatusEffect(tpz.effect.WEAKNESS, 1, 0, math.random(300, 10800)) -- 5 minutes to 3 hours
             else
                 player:messageSpecial(msgBase + 4) -- "The chest was a mimic!"
                 spawnMimic(player, npc)
@@ -1394,14 +1394,14 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
 
     -- old gauntlets
     if
-        chestType == dsp.treasure.type.COFFER and
+        chestType == tpz.treasure.type.COFFER and
         activeHands > 0 and
         info.hands and
         info.hands[activeHands] and
-        not player:hasKeyItem(dsp.ki.OLD_GAUNTLETS)
+        not player:hasKeyItem(tpz.ki.OLD_GAUNTLETS)
     then
         player:messageSpecial(msgBase)
-        npcUtil.giveKeyItem(player, dsp.ki.OLD_GAUNTLETS)
+        npcUtil.giveKeyItem(player, tpz.ki.OLD_GAUNTLETS)
         player:confirmTrade()
         moveChest(npc, zoneId, chestType)
         return
@@ -1409,7 +1409,7 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
 
     -- artifact armor
     if
-        chestType == dsp.treasure.type.COFFER and
+        chestType == tpz.treasure.type.COFFER and
         info.af and
         info.af[mJob] and
         player:getQuestStatus(JEUNO, info.af[mJob].quest) >= QUEST_ACCEPTED and
@@ -1492,7 +1492,7 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
     end
 
     player:confirmTrade()
-    if chestType == dsp.treasure.type.CHEST then
+    if chestType == tpz.treasure.type.CHEST then
         npc:setLocalVar("illusionCooldown", os.time() + math.random(CHEST_MIN_ILLUSION_TIME, CHEST_MAX_ILLUSION_TIME))
     else
         npc:setLocalVar("illusionCooldown", os.time() + math.random(COFFER_MIN_ILLUSION_TIME, COFFER_MAX_ILLUSION_TIME))
@@ -1500,7 +1500,7 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
     moveChest(npc, zoneId, chestType)
 end
 
-dsp.treasure.onTrigger = function(player, chestType)
+tpz.treasure.onTrigger = function(player, chestType)
     local zoneId = player:getZoneID()
     local msgBase = zones[zoneId].text.CHEST_UNLOCKED
     local info = treasureInfo[chestType].zone[zoneId]

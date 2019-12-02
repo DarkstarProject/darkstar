@@ -7,7 +7,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.BYEBYE_TAISAI);
+    player:addTitle(tpz.title.BYEBYE_TAISAI);
 end;
 
 function onMobDespawn(mob)

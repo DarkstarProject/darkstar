@@ -1,9 +1,9 @@
 -----------------------------------
 --  Weather Conditions
 -----------------------------------
-dsp = dsp or {}
+tpz = tpz or {}
 
-dsp.weather =
+tpz.weather =
 {
     NONE            =  0,
     SUNSHINE        =  1,
@@ -27,7 +27,7 @@ dsp.weather =
     DARKNESS        = 19,
 }
 
-dsp.day =
+tpz.day =
 {
     FIRESDAY      = 0,
     EARTHSDAY     = 1,
@@ -39,7 +39,7 @@ dsp.day =
     DARKSDAY      = 7,
 }
 
-dsp.time =
+tpz.time =
 {
     NONE        = 0,
     MIDNIGHT    = 1,

@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(player:getNation()) == 13 and not player:hasKeyItem(dsp.ki.MAGICITE_AURASTONE) then
+    if player:getCurrentMission(player:getNation()) == 13 and not player:hasKeyItem(tpz.ki.MAGICITE_AURASTONE) then
         if player:getCharVar("Magicite") == 2 then
             player:startEvent(0,1) -- play Lion part of the CS (this is last magicite)
         else
@@ -34,7 +34,7 @@ function onEventFinish(player,csid,option)
             player:setCharVar("Magicite",player:getCharVar("Magicite")+1)
         end
         player:setCharVar("MissionStatus",4)
-        player:addKeyItem(dsp.ki.MAGICITE_AURASTONE)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICITE_AURASTONE)
+        player:addKeyItem(tpz.ki.MAGICITE_AURASTONE)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.MAGICITE_AURASTONE)
     end
 end

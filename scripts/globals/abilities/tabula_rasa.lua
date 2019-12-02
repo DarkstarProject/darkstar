@@ -16,18 +16,18 @@ end
 function onUseAbility(player,target,ability)
 
     local regenbonus = 0
-    if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == tpz.job.SCH and player:getMainLvl() >= 20) then
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10)
     end
 
     local helixbonus = 0
-    if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == tpz.job.SCH and player:getMainLvl() >= 20) then
         helixbonus = math.floor(player:getMainLvl() / 4)
     end
-    player:resetRecast(dsp.recast.ABILITY, 228)
-    player:resetRecast(dsp.recast.ABILITY, 231)
-    player:resetRecast(dsp.recast.ABILITY, 232)
-    player:addStatusEffect(dsp.effect.TABULA_RASA,math.floor(helixbonus*1.5),0,180,0,math.floor(regenbonus*1.5))
+    player:resetRecast(tpz.recast.ABILITY, 228)
+    player:resetRecast(tpz.recast.ABILITY, 231)
+    player:resetRecast(tpz.recast.ABILITY, 232)
+    player:addStatusEffect(tpz.effect.TABULA_RASA,math.floor(helixbonus*1.5),0,180,0,math.floor(regenbonus*1.5))
 
-    return dsp.effect.TABULA_RASA
+    return tpz.effect.TABULA_RASA
 end

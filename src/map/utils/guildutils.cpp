@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -72,7 +70,7 @@ void Initialize()
             g_PGuildList.push_back(new CGuild(Sql_GetIntData(SqlHandle, 0), (const char*)Sql_GetData(SqlHandle, 1)));
         }
     }
-    DSP_DEBUG_BREAK_IF(g_PGuildShopList.size() != 0);
+    TPZ_DEBUG_BREAK_IF(g_PGuildShopList.size() != 0);
 
     fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC LIMIT 256;";
 
@@ -146,7 +144,7 @@ void UpdateGuildsStock()
 
 void UpdateGuildPointsPattern()
 {
-    uint8 pattern = dsprand::GetRandomNumber(8);
+    uint8 pattern = tpzrand::GetRandomNumber(8);
 
     const char* query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern_update';";
 

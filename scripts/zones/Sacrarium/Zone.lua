@@ -14,7 +14,7 @@ function onInitialize(zone)
     -- Set random variable for determining Old Prof. Mariselle's spawn location
     SetServerVariable("Old_Prof_Spawn_Location", math.random(2,7));
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -27,12 +27,12 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,50,0,0); -- LV50 cap
+        player:addStatusEffect(tpz.effect.LEVEL_RESTRICTION,50,0,0); -- LV50 cap
     end
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -53,7 +53,7 @@ function onGameDay()
     };
     local doors = labyrinthDoorsByDay[VanadielDayElement()];
     for i = 0, 17 do
-        GetNPCByID(ID.npc.LABYRINTH_OFFSET + i):setAnimation(dsp.anim.OPEN_DOOR + doors[i+1]);
+        GetNPCByID(ID.npc.LABYRINTH_OFFSET + i):setAnimation(tpz.anim.OPEN_DOOR + doors[i+1]);
     end
 end;
 

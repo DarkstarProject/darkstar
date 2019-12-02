@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
+    local dMND = caster:getStat(tpz.mod.MND) - target:getStat(tpz.mod.MND)
 
     -- Calculate potency.
     local potency = utils.clamp(math.floor(dMND / 4) + 15, 5, 25)
@@ -26,21 +26,21 @@ function onSpellCast(caster, target, spell)
     -- printf("Potency : %u",potency)
     local params = {}
     params.diff = dMND
-    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.skillType = tpz.skill.ENFEEBLING_MAGIC
     params.bonus = 0
-    params.effect = dsp.effect.PARALYSIS
+    params.effect = tpz.effect.PARALYSIS
     local resist = applyResistanceEffect(caster, target, spell, params)
 
     if resist >= 0.5 then -- There are no quarter or less hits, if target resists more than .5 spell is resisted completely
         if target:addStatusEffect(params.effect, potency, 0, duration * resist) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
             -- no effect
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
         -- resist
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
 
     return params.effect

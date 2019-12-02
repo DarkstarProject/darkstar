@@ -20,7 +20,7 @@ function onTrigger(player,npc)
 
     local ZephyrFanCD = player:getCharVar("[ENM]ZephyrFan");
 
-    if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
+    if (player:hasKeyItem(tpz.ki.ZEPHYR_FAN)) then
         player:startEvent(12);
     else
         if (ZephyrFanCD >= os.time()) then
@@ -41,8 +41,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 13) then
-        player:addKeyItem(dsp.ki.ZEPHYR_FAN);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ZEPHYR_FAN);
+        player:addKeyItem(tpz.ki.ZEPHYR_FAN);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.ZEPHYR_FAN);
         player:setCharVar("[ENM]ZephyrFan",os.time()+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
     elseif (csid == 14) then
         if (player:getFreeSlotsCount() == 0) then

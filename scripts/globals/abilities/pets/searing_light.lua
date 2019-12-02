@@ -19,16 +19,16 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onPetAbility(target, pet, skill, master)
-    local dINT = math.floor(pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local dINT = math.floor(pet:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT))
     
     local level = pet:getMainLvl()
     local damage = 26 + (level * 6)
     damage = damage + (dINT * 1.5)
-    damage = MobMagicalMove(pet,target,skill,damage,dsp.magic.ele.LIGHT,1,TP_NO_EFFECT,0)
-    damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.LIGHT)
-    damage = AvatarFinalAdjustments(damage,pet,skill,target,dsp.attackType.MAGICAL,dsp.damageType.LIGHT,1)
+    damage = MobMagicalMove(pet,target,skill,damage,tpz.magic.ele.LIGHT,1,TP_NO_EFFECT,0)
+    damage = mobAddBonuses(pet, nil, target, damage.dmg, tpz.magic.ele.LIGHT)
+    damage = AvatarFinalAdjustments(damage,pet,skill,target,tpz.attackType.MAGICAL,tpz.damageType.LIGHT,1)
 
-    target:takeDamage(damage, pet, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
+    target:takeDamage(damage, pet, tpz.attackType.MAGICAL, tpz.damageType.LIGHT)
     target:updateEnmityFromDamage(pet,damage)
     master:setMP(0)
 

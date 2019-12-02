@@ -24,26 +24,26 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effect.REFRESH
+    local typeEffect = tpz.effect.REFRESH
     local power = 3
     local duration = 300
 
-    if (caster:hasStatusEffect(dsp.effect.DIFFUSION)) then
-        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION)
+    if (caster:hasStatusEffect(tpz.effect.DIFFUSION)) then
+        local diffMerit = caster:getMerit(tpz.merit.DIFFUSION)
 
         if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit
         end
 
-        caster:delStatusEffect(dsp.effect.DIFFUSION)
+        caster:delStatusEffect(tpz.effect.DIFFUSION)
     end
 
-    if (target:hasStatusEffect(dsp.effect.REFRESH)) then
-        target:delStatusEffect(dsp.effect.REFRESH)
+    if (target:hasStatusEffect(tpz.effect.REFRESH)) then
+        target:delStatusEffect(tpz.effect.REFRESH)
     end
 
     if (target:addStatusEffect(typeEffect,power,3,duration) == false) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 
     return typeEffect

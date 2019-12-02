@@ -18,13 +18,13 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    local hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
-    local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
+    local hatstatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.HAT_IN_HAND);
+    local MakingHeadlines = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.MAKING_HEADLINES);
     local WildcatWindurst = player:getCharVar("WildcatWindurst");
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status")==4) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status")==4) then
         player:startEvent(873);
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,14) == false) then
+    elseif (player:getQuestStatus(WINDURST,tpz.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,14) == false) then
         player:startEvent(939);
     elseif ((hatstatus == 1  or player:getCharVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getCharVar("QuestHatInHand_var")),16) == false) then
         player:startEvent(60); -- Show Off Hat
@@ -57,8 +57,8 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 668) then
         prog = player:getCharVar("QuestMakingHeadlines_var");
-        player:addKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WATERS_SCOOP);
+        player:addKeyItem(tpz.ki.WINDURST_WATERS_SCOOP);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.WINDURST_WATERS_SCOOP);
         player:setCharVar("QuestMakingHeadlines_var",prog+1);
     elseif (csid == 60) then  -- Show Off Hat
         player:addCharVar("QuestHatInHand_var", 16);

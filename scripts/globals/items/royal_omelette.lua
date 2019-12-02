@@ -29,62 +29,62 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
-        result = dsp.msg.basic.IS_FULL
+    if target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,4564)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,10800,4564)
 end
 
 function onEffectGain(target, effect)
-    if (target:getRace() == dsp.race.ELVAAN_M or target:getRace() == dsp.race.ELVAAN_F) then
-        target:addMod(dsp.mod.HP, 20)
-        target:addMod(dsp.mod.MP, 20)
-        target:addMod(dsp.mod.STR, 6)
-        target:addMod(dsp.mod.DEX, 2)
-        target:addMod(dsp.mod.INT, -2)
-        target:addMod(dsp.mod.MND, 5)
-        target:addMod(dsp.mod.CHR, 4)
-        target:addMod(dsp.mod.FOOD_ATTP, 22)
-        target:addMod(dsp.mod.FOOD_ATT_CAP, 80)
-        target:addMod(dsp.mod.FOOD_RATTP, 22)
-        target:addMod(dsp.mod.FOOD_RATT_CAP, 80)
+    if (target:getRace() == tpz.race.ELVAAN_M or target:getRace() == tpz.race.ELVAAN_F) then
+        target:addMod(tpz.mod.HP, 20)
+        target:addMod(tpz.mod.MP, 20)
+        target:addMod(tpz.mod.STR, 6)
+        target:addMod(tpz.mod.DEX, 2)
+        target:addMod(tpz.mod.INT, -2)
+        target:addMod(tpz.mod.MND, 5)
+        target:addMod(tpz.mod.CHR, 4)
+        target:addMod(tpz.mod.FOOD_ATTP, 22)
+        target:addMod(tpz.mod.FOOD_ATT_CAP, 80)
+        target:addMod(tpz.mod.FOOD_RATTP, 22)
+        target:addMod(tpz.mod.FOOD_RATT_CAP, 80)
     else
-        target:addMod(dsp.mod.STR, 5)
-        target:addMod(dsp.mod.DEX, 2)
-        target:addMod(dsp.mod.INT, -3)
-        target:addMod(dsp.mod.MND, 4)
-        target:addMod(dsp.mod.FOOD_ATTP, 20)
-        target:addMod(dsp.mod.FOOD_ATT_CAP, 65)
-        target:addMod(dsp.mod.FOOD_RATTP, 20)
-        target:addMod(dsp.mod.FOOD_RATT_CAP, 65)
+        target:addMod(tpz.mod.STR, 5)
+        target:addMod(tpz.mod.DEX, 2)
+        target:addMod(tpz.mod.INT, -3)
+        target:addMod(tpz.mod.MND, 4)
+        target:addMod(tpz.mod.FOOD_ATTP, 20)
+        target:addMod(tpz.mod.FOOD_ATT_CAP, 65)
+        target:addMod(tpz.mod.FOOD_RATTP, 20)
+        target:addMod(tpz.mod.FOOD_RATT_CAP, 65)
     end
 end
 
 function onEffectLose(target, effect)
-    if (target:getRace() == dsp.race.ELVAAN_M or target:getRace() == dsp.race.ELVAAN_F) then
-        target:delMod(dsp.mod.HP, 20)
-        target:delMod(dsp.mod.MP, 20)
-        target:delMod(dsp.mod.STR, 6)
-        target:delMod(dsp.mod.DEX, 2)
-        target:delMod(dsp.mod.INT, -2)
-        target:delMod(dsp.mod.MND, 5)
-        target:delMod(dsp.mod.CHR, 4)
-        target:delMod(dsp.mod.FOOD_ATTP, 22)
-        target:delMod(dsp.mod.FOOD_ATT_CAP, 80)
-        target:delMod(dsp.mod.FOOD_RATTP, 22)
-        target:delMod(dsp.mod.FOOD_RATT_CAP, 80)
+    if (target:getRace() == tpz.race.ELVAAN_M or target:getRace() == tpz.race.ELVAAN_F) then
+        target:delMod(tpz.mod.HP, 20)
+        target:delMod(tpz.mod.MP, 20)
+        target:delMod(tpz.mod.STR, 6)
+        target:delMod(tpz.mod.DEX, 2)
+        target:delMod(tpz.mod.INT, -2)
+        target:delMod(tpz.mod.MND, 5)
+        target:delMod(tpz.mod.CHR, 4)
+        target:delMod(tpz.mod.FOOD_ATTP, 22)
+        target:delMod(tpz.mod.FOOD_ATT_CAP, 80)
+        target:delMod(tpz.mod.FOOD_RATTP, 22)
+        target:delMod(tpz.mod.FOOD_RATT_CAP, 80)
     else
-        target:delMod(dsp.mod.STR, 5)
-        target:delMod(dsp.mod.DEX, 2)
-        target:delMod(dsp.mod.INT, -3)
-        target:delMod(dsp.mod.MND, 4)
-        target:delMod(dsp.mod.FOOD_ATTP, 20)
-        target:delMod(dsp.mod.FOOD_ATT_CAP, 65)
-        target:delMod(dsp.mod.FOOD_RATTP, 20)
-        target:delMod(dsp.mod.FOOD_RATT_CAP, 65)
+        target:delMod(tpz.mod.STR, 5)
+        target:delMod(tpz.mod.DEX, 2)
+        target:delMod(tpz.mod.INT, -3)
+        target:delMod(tpz.mod.MND, 4)
+        target:delMod(tpz.mod.FOOD_ATTP, 20)
+        target:delMod(tpz.mod.FOOD_ATT_CAP, 65)
+        target:delMod(tpz.mod.FOOD_RATTP, 20)
+        target:delMod(tpz.mod.FOOD_RATT_CAP, 65)
     end
 end

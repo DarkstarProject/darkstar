@@ -13,11 +13,11 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onPetAbility(target, pet, skill, summoner)
-    local bonusTime = utils.clamp(summoner:getSkillLevel(dsp.skill.SUMMONING_MAGIC) - 300, 0, 200)
+    local bonusTime = utils.clamp(summoner:getSkillLevel(tpz.skill.SUMMONING_MAGIC) - 300, 0, 200)
     local duration = 180 + bonusTime
     -- Garuda's Hastega is a weird exception and uses 153/1024 instead of 150/1024 like Haste spell
     -- That's why it overwrites some things regular haste won't.
-    target:addStatusEffect(dsp.effect.HASTE, 1494, 0, duration) -- 153/1024 ~14.94%
-    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
-    return dsp.effect.HASTE
+    target:addStatusEffect(tpz.effect.HASTE, 1494, 0, duration) -- 153/1024 ~14.94%
+    skill:setMsg(tpz.msg.basic.SKILL_GAIN_EFFECT)
+    return tpz.effect.HASTE
 end

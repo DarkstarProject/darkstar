@@ -15,5 +15,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(dsp.effect.SOUL_VOICE,1,0,180)
+    player:addStatusEffect(tpz.effect.SOUL_VOICE,1,0,180)
 end

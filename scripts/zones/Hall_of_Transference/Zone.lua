@@ -28,18 +28,18 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(274,-82,-62 ,180);
 
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
+    elseif (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_MOTHERCRYSTALS) then
         if (player:getCharVar("cspromy3") == 1) then
-            if (prevZone == dsp.zone.LA_THEINE_PLATEAU) then
-                if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
+            if (prevZone == tpz.zone.LA_THEINE_PLATEAU) then
+                if (player:hasKeyItem(tpz.ki.LIGHT_OF_DEM) and player:hasKeyItem(tpz.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(tpz.ki.LIGHT_OF_HOLLA))) then
                     cs = 155;
                 end
-            elseif (prevZone == dsp.zone.KONSCHTAT_HIGHLANDS) then
-                if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
+            elseif (prevZone == tpz.zone.KONSCHTAT_HIGHLANDS) then
+                if (player:hasKeyItem(tpz.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(tpz.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(tpz.ki.LIGHT_OF_DEM))) then
                     cs = 155;
                 end
-            elseif (prevZone == dsp.zone.TAHRONGI_CANYON) then
-                if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
+            elseif (prevZone == tpz.zone.TAHRONGI_CANYON) then
+                if (player:hasKeyItem(tpz.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(tpz.ki.LIGHT_OF_DEM) and not(player:hasKeyItem(tpz.ki.LIGHT_OF_MEA))) then
                     cs = 155;
                 end
             -- cs you got when you enter hall of transference for the last promyvion
@@ -126,32 +126,32 @@ function onEventFinish(player,csid,option)
     elseif (csid == 155) then
         player:setCharVar("cspromy3",0)
         player:setCharVar("cslastpromy",1)
-        if (not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
+        if (not(player:hasKeyItem(tpz.ki.LIGHT_OF_DEM))) then
             -- print("shouldbezonedtodem")
             player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
-        elseif (not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
+        elseif (not(player:hasKeyItem(tpz.ki.LIGHT_OF_HOLLA))) then
             -- print("shouldbezonedtoholla")
             player:setPos(92.033, 0, 80.380, 255, 16); -- To Promyvion Holla {R}
-        elseif (not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
+        elseif (not(player:hasKeyItem(tpz.ki.LIGHT_OF_MEA))) then
             player:setPos(-93.268, 0, 170.749, 162, 20); -- To Promyvion Mea {R}
         end
     elseif (csid == 161 and option == 1) then
-        if (player:getPreviousZone() == dsp.zone.LA_THEINE_PLATEAU) then -- Holla
+        if (player:getPreviousZone() == tpz.zone.LA_THEINE_PLATEAU) then -- Holla
             player:setCharVar("LastSkyWarpHolla", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == dsp.zone.KONSCHTAT_HIGHLANDS) then -- Dem
+        elseif (player:getPreviousZone() == tpz.zone.KONSCHTAT_HIGHLANDS) then -- Dem
             player:setCharVar("LastSkyWarpDem", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == dsp.zone.TAHRONGI_CANYON) then -- Mea
+        elseif (player:getPreviousZone() == tpz.zone.TAHRONGI_CANYON) then -- Mea
             player:setCharVar("LastSkyWarpMea", tonumber(os.date("%j")));
         end
-        dsp.teleport.to(player, dsp.teleport.id.SKY);
+        tpz.teleport.to(player, tpz.teleport.id.SKY);
     elseif (csid == 169 and option == 1) then
         player:setCharVar("MeaChipRegistration",0);
-        dsp.teleport.to(player, dsp.teleport.id.SKY);
+        tpz.teleport.to(player, tpz.teleport.id.SKY);
     elseif (csid == 170 and option == 1) then
         player:setCharVar("HollaChipRegistration",0);
-        dsp.teleport.to(player, dsp.teleport.id.SKY);
+        tpz.teleport.to(player, tpz.teleport.id.SKY);
     elseif (csid == 171 and option == 1) then
         player:setCharVar("DemChipRegistration",0);
-        dsp.teleport.to(player, dsp.teleport.id.SKY);
+        tpz.teleport.to(player, tpz.teleport.id.SKY);
     end
 end;

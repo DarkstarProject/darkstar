@@ -18,7 +18,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local thickAsThieves = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
+    local thickAsThieves = player:getQuestStatus(WINDURST, tpz.quest.id.windurst.AS_THICK_AS_THIEVES)
     local grapplingCS = player:getCharVar("thickAsThievesGrapplingCS")
 
     if thickAsThieves == QUEST_ACCEPTED then

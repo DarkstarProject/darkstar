@@ -15,6 +15,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local effect = dsp.effect.BLOOD_WEAPON
+    local effect = tpz.effect.BLOOD_WEAPON
     doEnspell(player,target,nil,effect)
 end

@@ -34,7 +34,7 @@ function onTrigger(player, npc)
     local offset = npc:getID() - ID.npc.SARCOPHAGUS_OFFSET
 
     -- A NEW DAWN (Beastmaster AF3)
-    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN) == QUEST_ACCEPTED and npc:getID() == ID.npc.SARCOPHAGUS_OFFSET then
+    if player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.A_NEW_DAWN) == QUEST_ACCEPTED and npc:getID() == ID.npc.SARCOPHAGUS_OFFSET then
         local aNewDawnEvent = player:getCharVar("ANewDawn_Event")
 
         if aNewDawnEvent == 4 then
@@ -69,11 +69,11 @@ function onEventFinish(player,csid,option)
         player:setCharVar("TheRequiemYumKilled", 0)
         player:setCharVar("TheRequiemRandom", 0)
         player:setCharVar("TheRequiemAlreadyPoped", 0)
-        npcUtil.giveKeyItem(player, dsp.ki.STAR_RING1)
+        npcUtil.giveKeyItem(player, tpz.ki.STAR_RING1)
 
     -- A NEW DAWN
-    elseif csid == 45 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN, {item = 14222, title = dsp.title.PARAGON_OF_BEASTMASTER_EXCELLENCE}) then
+    elseif csid == 45 and npcUtil.completeQuest(player, JEUNO, tpz.quest.id.jeuno.A_NEW_DAWN, {item = 14222, title = tpz.title.PARAGON_OF_BEASTMASTER_EXCELLENCE}) then
         player:setCharVar("ANewDawn_Event", 6)
-        player:delKeyItem(dsp.ki.TAMERS_WHISTLE)
+        player:delKeyItem(tpz.ki.TAMERS_WHISTLE)
     end
 end

@@ -14,7 +14,7 @@ function onInitialize(zone)
     zone:registerRegion(2, -101, 7, -114, 0, 0, 0) -- Center Pool
     zone:registerRegion(3, -112, 3, -103, 0, 0, 0) -- Right Pool
 
-    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
+    tpz.helm.initZone(zone, tpz.helm.type.EXCAVATION)
 end
 
 function onZoneIn(player, prevZone)
@@ -26,7 +26,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)

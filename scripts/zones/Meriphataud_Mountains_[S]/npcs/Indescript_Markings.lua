@@ -14,12 +14,12 @@ end
 function onTrigger(player, npc)
     local loafersQuestProgress = player:getCharVar("AF_SCH_BOOTS")
 
-    player:delStatusEffect(dsp.effect.SNEAK)
+    player:delStatusEffect(tpz.effect.SNEAK)
 
     -- SCH AF Quest - Boots
-    if loafersQuestProgress > 0 and loafersQuestProgress < 3 and not player:hasKeyItem(dsp.ki.DROGAROGAN_BONEMEAL) then
-        player:addKeyItem(dsp.ki.DROGAROGAN_BONEMEAL)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DROGAROGAN_BONEMEAL)
+    if loafersQuestProgress > 0 and loafersQuestProgress < 3 and not player:hasKeyItem(tpz.ki.DROGAROGAN_BONEMEAL) then
+        player:addKeyItem(tpz.ki.DROGAROGAN_BONEMEAL)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.DROGAROGAN_BONEMEAL)
         player:setCharVar("AF_SCH_BOOTS", loafersQuestProgress + 1)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

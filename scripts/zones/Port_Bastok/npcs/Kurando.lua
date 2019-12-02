@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FEAR_OF_FLYING) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(BASTOK,tpz.quest.id.bastok.FEAR_OF_FLYING) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4526,1) and trade:getItemCount() == 1) then
             player:startEvent(171); -- Quest Completion Dialogue
         end
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local FearofFlying = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FEAR_OF_FLYING);
+    local FearofFlying = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.FEAR_OF_FLYING);
     -- csid 173 ?
     if (FearofFlying == QUEST_AVAILABLE and    player:getFameLevel(BASTOK) >=3) then
         player:startEvent(170); -- Quest Start Dialogue
@@ -38,7 +38,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 170) then
-        player:addQuest(BASTOK,dsp.quest.id.bastok.FEAR_OF_FLYING);
+        player:addQuest(BASTOK,tpz.quest.id.bastok.FEAR_OF_FLYING);
 
     elseif (csid == 171) then
         if    (player:getFreeSlotsCount() == 0) then
@@ -48,8 +48,8 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(13113,1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13113);
-            player:setTitle(dsp.title.AIRSHIP_DENOUNCER);
-            player:completeQuest(BASTOK,dsp.quest.id.bastok.FEAR_OF_FLYING);
+            player:setTitle(tpz.title.AIRSHIP_DENOUNCER);
+            player:completeQuest(BASTOK,tpz.quest.id.bastok.FEAR_OF_FLYING);
             player:addFame(BASTOK,30);
         end
     end

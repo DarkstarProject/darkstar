@@ -9,5 +9,5 @@ require("scripts/globals/wsquest")
 -----------------------------------
 
 function onTrigger(player, npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.blade_ku, player, ID.mob.MEGAPOD_MEGALOPS)
+    tpz.wsquest.handleQmTrigger(tpz.wsquest.blade_ku, player, ID.mob.MEGAPOD_MEGALOPS)
 end

@@ -22,10 +22,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local ANewDawn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN);
+    local ANewDawn = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.A_NEW_DAWN);
     local ANewDawnEvent = player:getCharVar("ANewDawn_Event");
 
-    local ChocobosWounds = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
+    local ChocobosWounds = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.CHOCOBO_S_WOUNDS);
     local feed = player:getCharVar("ChocobosWounds_Event");
 
     -- A New Dawn
@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
             player:setCharVar("ANewDawn_Event",3);
         end
     elseif (csid == 148) then
-        player:addKeyItem(dsp.ki.TAMERS_WHISTLE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TAMERS_WHISTLE);
+        player:addKeyItem(tpz.ki.TAMERS_WHISTLE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.TAMERS_WHISTLE);
         player:setCharVar("ANewDawn_Event",4);
     end
 

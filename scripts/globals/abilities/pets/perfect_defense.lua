@@ -15,15 +15,15 @@ function onPetAbility(target, pet, skill, master)
     local power = 100 * (master:getMP() / master:getMaxMP())
     duration = 60
     if (master ~= nil) then
-        local summoningSkill = master:getSkillLevel(dsp.skill.SUMMONING_MAGIC)
+        local summoningSkill = master:getSkillLevel(tpz.skill.SUMMONING_MAGIC)
         if (summoningSkill > 600) then
             summoningSkill = 600
         end
         duration = 30 + summoningSkill / 20
     end
-    target:delStatusEffect(dsp.effect.PERFECT_DEFENSE)
-    target:addStatusEffect(dsp.effect.PERFECT_DEFENSE,power,3,duration)
-    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
+    target:delStatusEffect(tpz.effect.PERFECT_DEFENSE)
+    target:addStatusEffect(tpz.effect.PERFECT_DEFENSE,power,3,duration)
+    skill:setMsg(tpz.msg.basic.SKILL_GAIN_EFFECT)
     master:setMP(0)
-    return dsp.effect.PERFECT_DEFENSE
+    return tpz.effect.PERFECT_DEFENSE
 end

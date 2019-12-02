@@ -12,5 +12,5 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.BLAZE_SPIKES, 10, 0, 180) -- This is a guess, no potency or duration info is known
+    target:addStatusEffect(tpz.effect.BLAZE_SPIKES, 10, 0, 180) -- This is a guess, no potency or duration info is known
 end

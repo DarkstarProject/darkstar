@@ -1,18 +1,18 @@
 -----------------------------------
 --
--- dsp.effect.ENMITY_DOWN
+-- tpz.effect.ENMITY_DOWN
 --
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.ENMITY,-effect:getPower())
+    target:addMod(tpz.mod.ENMITY,-effect:getPower())
 end
 
 function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.ENMITY,-effect:getPower())
+    target:delMod(tpz.mod.ENMITY,-effect:getPower())
 end

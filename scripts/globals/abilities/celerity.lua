@@ -19,14 +19,14 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effect.CELERITY) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
+    if player:hasStatusEffect(tpz.effect.CELERITY) then
+        return tpz.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
     return 0,0
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.CELERITY,1,0,60)
+    player:addStatusEffect(tpz.effect.CELERITY,1,0,60)
 
-    return dsp.effect.CELERITY
+    return tpz.effect.CELERITY
 end

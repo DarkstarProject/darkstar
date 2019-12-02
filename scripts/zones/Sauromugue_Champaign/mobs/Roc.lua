@@ -7,7 +7,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.ROC_STAR)
+    player:addTitle(tpz.title.ROC_STAR)
 end
 
 function onMobDespawn(mob)

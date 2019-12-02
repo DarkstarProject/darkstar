@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.DROWN
+    local typeEffect = tpz.effect.DROWN
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 25, 3, 120))
 

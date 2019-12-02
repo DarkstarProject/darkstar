@@ -21,9 +21,9 @@ local CASTLE_OZTROJA = {
         repeat
             numOpen = 0
             for i = 0, 3 do
-                local correctState = dsp.anim.OPEN_DOOR + math.random(0, 1)
+                local correctState = tpz.anim.OPEN_DOOR + math.random(0, 1)
                 combo[i] = correctState
-                if correctState == dsp.anim.OPEN_DOOR then
+                if correctState == tpz.anim.OPEN_DOOR then
                     numOpen = numOpen + 1
                 end
             end
@@ -33,7 +33,7 @@ local CASTLE_OZTROJA = {
         for i = 0, 3 do
             local realLever = GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2 + 2 + i)
             local hintLever = GetNPCByID(ID.npc.HINT_HANDLE_OFFSET + i)
-            realLever:setAnimation(dsp.anim.CLOSE_DOOR)
+            realLever:setAnimation(tpz.anim.CLOSE_DOOR)
             hintLever:setAnimation(combo[i])
         end
     end,
@@ -50,10 +50,10 @@ local CASTLE_OZTROJA = {
         ..............................................................................................]]
     handleOnTrigger = function(npc)
         -- toggle the lever
-        if npc:getAnimation() == dsp.anim.CLOSE_DOOR then
-            npc:setAnimation(dsp.anim.OPEN_DOOR)
+        if npc:getAnimation() == tpz.anim.CLOSE_DOOR then
+            npc:setAnimation(tpz.anim.OPEN_DOOR)
         else
-            npc:setAnimation(dsp.anim.CLOSE_DOOR)
+            npc:setAnimation(tpz.anim.CLOSE_DOOR)
         end
 
         npc:timer(1500, function(npc)
@@ -69,7 +69,7 @@ local CASTLE_OZTROJA = {
             if comboFound then
                 GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2):openDoor(6)
                 for i = 0, 3 do
-                    GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2 + 2 + i):setAnimation(dsp.anim.CLOSE_DOOR)
+                    GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2 + 2 + i):setAnimation(tpz.anim.CLOSE_DOOR)
                 end
             end
         end)

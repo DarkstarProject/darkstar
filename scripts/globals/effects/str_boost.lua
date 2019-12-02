@@ -1,13 +1,13 @@
 -----------------------------------
 --
--- dsp.effect.STR_BOOST
+-- tpz.effect.STR_BOOST
 --
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.STR,effect:getPower())
+    target:addMod(tpz.mod.STR,effect:getPower())
 end
 
 function onEffectTick(target,effect)
@@ -15,13 +15,13 @@ function onEffectTick(target,effect)
     local boostSTR_effect_size = effect:getPower()
     if (boostSTR_effect_size > 0) then
         effect:setPower(boostSTR_effect_size - 1)
-        target:delMod(dsp.mod.STR,1)
+        target:delMod(tpz.mod.STR,1)
     end
 end
 
 function onEffectLose(target,effect)
     local boostSTR_effect_size = effect:getPower()
     if (boostSTR_effect_size > 0) then
-        target:delMod(dsp.mod.STR,boostSTR_effect_size)
+        target:delMod(tpz.mod.STR,boostSTR_effect_size)
     end
 end

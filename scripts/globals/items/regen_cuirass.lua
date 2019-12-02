@@ -11,9 +11,9 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.REGEN)) then
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+    if (target:hasStatusEffect(tpz.effect.REGEN)) then
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     else
-        target:addStatusEffect(dsp.effect.REGEN, 15, 3, 180)
+        target:addStatusEffect(tpz.effect.REGEN, 15, 3, 180)
     end
 end

@@ -16,14 +16,14 @@ require("scripts/globals/status")
 
 local rse_map =
 {
-    [dsp.race.HUME_M]   = {12654,12761,12871,13015},
-    [dsp.race.HUME_F]   = {12655,12762,12872,13016},
-    [dsp.race.ELVAAN_M] = {12656,12763,12873,13017},
-    [dsp.race.ELVAAN_F] = {12657,12764,12874,13018},
-    [dsp.race.TARU_M]   = {12658,12765,12875,13019},
-    [dsp.race.TARU_F]   = {12658,12765,12875,13019},
-    [dsp.race.MITHRA]   = {12659,12766,12876,13020},
-    [dsp.race.GALKA]    = {12660,12767,12877,13021},
+    [tpz.race.HUME_M]   = {12654,12761,12871,13015},
+    [tpz.race.HUME_F]   = {12655,12762,12872,13016},
+    [tpz.race.ELVAAN_M] = {12656,12763,12873,13017},
+    [tpz.race.ELVAAN_F] = {12657,12764,12874,13018},
+    [tpz.race.TARU_M]   = {12658,12765,12875,13019},
+    [tpz.race.TARU_F]   = {12658,12765,12875,13019},
+    [tpz.race.MITHRA]   = {12659,12766,12876,13020},
+    [tpz.race.GALKA]    = {12660,12767,12877,13021},
 }
 
 local function hasRSE(player)
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
     local pFame = player:getFameLevel(JEUNO);
     local pRace = player:getRace();
     local pLevel = player:getMainLvl();
-    local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
+    local questStatus = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.THE_GOBLIN_TAILOR);
     local rseGear = hasRSE(player);
     local rseRace = VanadielRSERace();
     local rseLocation = VanadielRSELocation();
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
         if (rseGear < 15 ) then
             if (questStatus == QUEST_AVAILABLE) then
                 player:startEvent(10016,rseLocation,rseRace);
-            elseif (questStatus >= QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MAGICAL_PATTERN) and rseRace == pRace) then
+            elseif (questStatus >= QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.MAGICAL_PATTERN) and rseRace == pRace) then
                 player:startEvent(10018,rseGear);
             else
                 player:startEvent(10017,rseLocation,rseRace);
@@ -72,10 +72,10 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
+    local questStatus = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.THE_GOBLIN_TAILOR);
 
     if (csid == 10016) then
-        player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
+        player:addQuest(JEUNO,tpz.quest.id.jeuno.THE_GOBLIN_TAILOR);
     elseif (csid == 10018 and option >= 1 and option <= 4) then
         local rseGear = rse_map[player:getRace()][option]
 
@@ -84,10 +84,10 @@ function onEventFinish(player,csid,option)
         else
             if (questStatus == QUEST_ACCEPTED) then
                 player:addFame(JEUNO, 30);
-                player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR);
+                player:completeQuest(JEUNO,tpz.quest.id.jeuno.THE_GOBLIN_TAILOR);
             end
 
-            player:delKeyItem(dsp.ki.MAGICAL_PATTERN);
+            player:delKeyItem(tpz.ki.MAGICAL_PATTERN);
             player:addItem(rseGear);
             player:messageSpecial(ID.text.ITEM_OBTAINED,rseGear);
         end

@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS) == QUEST_ACCEPTED and player:getCharVar("ChasingQuotas_Progress") == 0 and
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.CHASING_QUOTAS) == QUEST_ACCEPTED and player:getCharVar("ChasingQuotas_Progress") == 0 and
         trade:getItemCount() == 1 and trade:hasItemQty(12494,1) and trade:getGil() == 0) then -- Trading gold hairpin only
             player:tradeComplete();
             player:startEvent(17);
@@ -20,17 +20,17 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Quotas_Status = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
+    local Quotas_Status = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.CHASING_QUOTAS);
     local Quotas_Progress = player:getCharVar("ChasingQuotas_Progress");
     local Quotas_No = player:getCharVar("ChasingQuotas_No");
-    local Stalker_Status = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
+    local Stalker_Status = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.KNIGHT_STALKER);
     local Stalker_Progress = player:getCharVar("KnightStalker_Progress");
 
-    if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_HOLY_CREST) == QUEST_AVAILABLE) then
+    if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.THE_HOLY_CREST) == QUEST_AVAILABLE) then
         player:startEvent(24);
 
     -- Chasing Quotas (DRG AF2)
-    elseif (Quotas_Status == QUEST_AVAILABLE and player:getMainJob() == dsp.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and Quotas_No == 0) then
+    elseif (Quotas_Status == QUEST_AVAILABLE and player:getMainJob() == tpz.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and Quotas_No == 0) then
         player:startEvent(18); -- Long version of quest start
     elseif (Quotas_No == 1) then
         player:startEvent(14); -- Short version for those that said no.
@@ -58,7 +58,7 @@ function onTrigger(player,npc)
     elseif (Stalker_Status == QUEST_ACCEPTED and Stalker_Progress == 0) then
         player:startEvent(19); -- Fetch the last Dragoon's helmet
     elseif (Stalker_Progress == 1) then
-        if (player:hasKeyItem(dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) == false) then
+        if (player:hasKeyItem(tpz.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) == false) then
             player:startEvent(23); -- Reminder to get helmet
         else
             player:startEvent(20); -- Response if you try to turn in the challenge to Ceraulian
@@ -87,11 +87,11 @@ function onEventFinish(player,csid,option)
         if option == 0 then
             player:setCharVar("ChasingQuotas_No",1);
         else
-            player:addQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
+            player:addQuest(SANDORIA,tpz.quest.id.sandoria.CHASING_QUOTAS);
         end
     elseif (csid == 14 and option == 1) then
         player:setCharVar("ChasingQuotas_No",0);
-        player:addQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
+        player:addQuest(SANDORIA,tpz.quest.id.sandoria.CHASING_QUOTAS);
     elseif (csid == 17) then
         player:setCharVar("ChasingQuotas_Progress",1);
         player:setCharVar("ChasingQuotas_date", getMidnight());
@@ -102,11 +102,11 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14227);
         else
-            player:delKeyItem(dsp.ki.RANCHURIOMES_LEGACY);
+            player:delKeyItem(tpz.ki.RANCHURIOMES_LEGACY);
             player:addItem(14227);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14227); -- Drachen Brais
             player:addFame(SANDORIA,40);
-            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS);
+            player:completeQuest(SANDORIA,tpz.quest.id.sandoria.CHASING_QUOTAS);
             player:setCharVar("ChasingQuotas_Progress",0);
         end
 

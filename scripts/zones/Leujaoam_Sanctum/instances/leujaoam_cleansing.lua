@@ -19,12 +19,12 @@ function onInstanceCreated(instance)
         SpawnMob(v, instance);
     end
 
-    local rune = instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
-    local box = instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
+    local rune = instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), tpz.objType.NPC);
+    local box = instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), tpz.objType.NPC);
     rune:setPos(476,8.479,39,49);
     box:setPos(476,8.479,40,49);
 
-    instance:getEntity(bit.band(ID.npc._1XN, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(ID.npc._1XN, 0xFFF), tpz.objType.NPC):setAnimation(8);
 
 end;
 
@@ -58,10 +58,10 @@ function onInstanceComplete(instance)
         v:messageSpecial(ID.text.RUNE_UNLOCKED_POS, 8, 8);
     end
 
-    local rune = instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
-    local box = instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
-    rune:setStatus(dsp.status.NORMAL);
-    box:setStatus(dsp.status.NORMAL);
+    local rune = instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), tpz.objType.NPC);
+    local box = instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), tpz.objType.NPC);
+    rune:setStatus(tpz.status.NORMAL);
+    box:setStatus(tpz.status.NORMAL);
 
 end;
 

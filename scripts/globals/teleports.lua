@@ -4,8 +4,8 @@
 require("scripts/globals/settings")
 require("scripts/globals/zone")
 
-dsp = dsp or {}
-dsp.teleport = dsp.teleport or {}
+tpz = tpz or {}
+tpz.teleport = tpz.teleport or {}
 
 -----------------------------------
 -- TELEPORT IDS
@@ -72,7 +72,7 @@ local ids =
     CHOCO_UPPER_JEUNO   = 58,
     ZVAHL_KEEP          = 59
 }
-dsp.teleport.id = ids
+tpz.teleport.id = ids
 
 -----------------------------------
 -- TELEPORT TO SINGLE DESTINATION
@@ -136,7 +136,7 @@ local destinations =
     [ids.ZVAHL_KEEP]            = {-555.996,  -70.100,   59.989,   0, 162}
 }
 
-dsp.teleport.type =
+tpz.teleport.type =
 {
     OUTPOST_SANDORIA   = 0,
     OUTPOST_BASTOK     = 1,
@@ -151,7 +151,7 @@ dsp.teleport.type =
     SURVIVAL           = 10
 }
 
-dsp.teleport.runic_portal =
+tpz.teleport.runic_portal =
 {
     AZOUPH  = 1,
     DVUCCA  = 2,
@@ -161,7 +161,7 @@ dsp.teleport.runic_portal =
     NYZUL   = 6,
 }
 
-dsp.teleport.to = function(player, destination)
+tpz.teleport.to = function(player, destination)
     local dest = destinations[destination]
     if dest then
         player:setPos(unpack(dest))
@@ -172,7 +172,7 @@ end
 -- TELEPORT TO PARTY LEADER
 -----------------------------------
 
-dsp.teleport.toLeader = function(player)
+tpz.teleport.toLeader = function(player)
     local leader = player:getPartyLeader()
     if leader ~= nil and not leader:isInMogHouse() then
         player:gotoPlayer(leader:getName())
@@ -207,7 +207,7 @@ local campaignDestinations =
     [20] = { 294.350, -27.500,   19.947,   0, 175}, -- {R} The Eldieme Necropolis [S]
 }
 
-dsp.teleport.toCampaign = function(player, option)
+tpz.teleport.toCampaign = function(player, option)
     local dest = campaignDestinations[option]
     if dest then
         player:setPos(unpack(dest))
@@ -231,27 +231,27 @@ end
 
 local outpostDestinations =
 {
-    [dsp.region.RONFAURE]        = {-437.688, -20.255, -219.227, 124, 100}, -- Ronfaure {R}
-    [dsp.region.ZULKHEIM]        = { 148.231,  -7.975,   93.479, 154, 103}, -- Zulkheim {R}
-    [dsp.region.NORVALLEN]       = {  62.030,   0.463,   -2.025,  67, 104}, -- Norvallen {R}
-    [dsp.region.GUSTABERG]       = {-580.161,  39.578,   62.680,  89, 106}, -- Gustaberg {R}
-    [dsp.region.DERFLAND]        = { 465.820,  23.625,  423.164,  29, 109}, -- Derfland {R}
-    [dsp.region.SARUTABARUTA]    = { -17.921, -13.335,  318.156, 254, 115}, -- Sarutabaruta {R}
-    [dsp.region.KOLSHUSHU]       = {-480.237, -30.943,   58.079,  62, 118}, -- Kolshushu {R}
-    [dsp.region.ARAGONEU]        = {-297.047,  16.988,  418.026, 225, 119}, -- Aragoneu {R}
-    [dsp.region.FAUREGANDI]      = { -18.690, -60.048, -109.243, 100, 111}, -- Fauregandi {R}
-    [dsp.region.VALDEAUNIA]      = { 211.210, -24.016, -207.338, 160, 112}, -- Valdeaunia {R}
-    [dsp.region.QUFIMISLAND]     = {-243.049, -19.983,  306.712,  71, 126}, -- Qufim Island {R}
-    [dsp.region.LITELOR]         = { -37.669,   0.419, -141.216,  69, 121}, -- Li'Telor {R}
-    [dsp.region.KUZOTZ]          = {-249.983,   7.965, -252.976, 122, 114}, -- Kuzotz {R}
-    [dsp.region.VOLLBOW]         = {-176.360,   7.624,  -63.580, 122, 113}, -- Vollbow {R}
-    [dsp.region.ELSHIMOLOWLANDS] = {-240.860,  -0.031, -388.434,  64, 123}, -- Elshimo Lowlands {R}
-    [dsp.region.ELSHIMOUPLANDS]  = { 207.821,  -0.128,  -86.623, 159, 124}, -- Elshimo Uplands {R}
-    [dsp.region.TULIA]           = {   4.000, -54.000, -600.000, 192, 130}, -- Tu'Lia (can't acquire on retail, but exists in NCP event menu)
-    [dsp.region.TAVNAZIANARCH]   = {-535.861,  -7.149,  -53.628, 122,  24}, -- Tavnazia {R}
+    [tpz.region.RONFAURE]        = {-437.688, -20.255, -219.227, 124, 100}, -- Ronfaure {R}
+    [tpz.region.ZULKHEIM]        = { 148.231,  -7.975,   93.479, 154, 103}, -- Zulkheim {R}
+    [tpz.region.NORVALLEN]       = {  62.030,   0.463,   -2.025,  67, 104}, -- Norvallen {R}
+    [tpz.region.GUSTABERG]       = {-580.161,  39.578,   62.680,  89, 106}, -- Gustaberg {R}
+    [tpz.region.DERFLAND]        = { 465.820,  23.625,  423.164,  29, 109}, -- Derfland {R}
+    [tpz.region.SARUTABARUTA]    = { -17.921, -13.335,  318.156, 254, 115}, -- Sarutabaruta {R}
+    [tpz.region.KOLSHUSHU]       = {-480.237, -30.943,   58.079,  62, 118}, -- Kolshushu {R}
+    [tpz.region.ARAGONEU]        = {-297.047,  16.988,  418.026, 225, 119}, -- Aragoneu {R}
+    [tpz.region.FAUREGANDI]      = { -18.690, -60.048, -109.243, 100, 111}, -- Fauregandi {R}
+    [tpz.region.VALDEAUNIA]      = { 211.210, -24.016, -207.338, 160, 112}, -- Valdeaunia {R}
+    [tpz.region.QUFIMISLAND]     = {-243.049, -19.983,  306.712,  71, 126}, -- Qufim Island {R}
+    [tpz.region.LITELOR]         = { -37.669,   0.419, -141.216,  69, 121}, -- Li'Telor {R}
+    [tpz.region.KUZOTZ]          = {-249.983,   7.965, -252.976, 122, 114}, -- Kuzotz {R}
+    [tpz.region.VOLLBOW]         = {-176.360,   7.624,  -63.580, 122, 113}, -- Vollbow {R}
+    [tpz.region.ELSHIMOLOWLANDS] = {-240.860,  -0.031, -388.434,  64, 123}, -- Elshimo Lowlands {R}
+    [tpz.region.ELSHIMOUPLANDS]  = { 207.821,  -0.128,  -86.623, 159, 124}, -- Elshimo Uplands {R}
+    [tpz.region.TULIA]           = {   4.000, -54.000, -600.000, 192, 130}, -- Tu'Lia (can't acquire on retail, but exists in NCP event menu)
+    [tpz.region.TAVNAZIANARCH]   = {-535.861,  -7.149,  -53.628, 122,  24}, -- Tavnazia {R}
 }
 
-dsp.teleport.toOutpost = function(player, region)
+tpz.teleport.toOutpost = function(player, region)
     local dest = outpostDestinations[region]
     player:setPos(unpack(dest))
 end
@@ -260,11 +260,11 @@ end
 -- TELEPORT TO HOME NATION
 -----------------------------------
 
-dsp.teleport.toHomeNation = function(player)
+tpz.teleport.toHomeNation = function(player)
     local pNation = player:getNation()
-    if pNation == dsp.nation.BASTOK then
+    if pNation == tpz.nation.BASTOK then
         player:setPos(89, 0 , -66, 0, 234)
-    elseif pNation == dsp.nation.SANDORIA then
+    elseif pNation == tpz.nation.SANDORIA then
         player:setPos(49, -1 , 29, 164, 231)
     else
         player:setPos(193, -12 , 220, 64, 240)
@@ -275,7 +275,7 @@ end
 -- TELEPORT TO CHAMBER OF PASSAGE
 -----------------------------------
 
-dsp.teleport.toChamberOfPassage = function(player)
+tpz.teleport.toChamberOfPassage = function(player)
     if math.random(1,2) == 1 then
         player:setPos(133.400, 1.485, 47.427, 96, 50) -- {R} Aht Urhgan Whitegate Chamber of Passage Left
     else
@@ -287,7 +287,7 @@ end
 -- TELEPORT TO EXPLORER MOOGLE
 -----------------------------------
 
-dsp.teleport.toExplorerMoogle = function(player, zone)
+tpz.teleport.toExplorerMoogle = function(player, zone)
     if zone == 231 then
         player:setPos(39.4, -0.2, 25, 253, zone)       -- Northern_San_d'Oria
     elseif zone == 234 then
@@ -305,7 +305,7 @@ end
 -- CAST ESCAPE SPELL
 -----------------------------------
 
-dsp.teleport.escape = function(player)
+tpz.teleport.escape = function(player)
     local zone = player:getZoneID()
 
     -- Ronfaure {R}
@@ -476,7 +476,7 @@ end
 -- EXPLORER MOOGLE EVENTS
 -----------------------------------
 
-dsp.teleport.explorerMoogleOnTrigger = function(player, event)
+tpz.teleport.explorerMoogleOnTrigger = function(player, event)
     local accept = 0
 
     if player:getGil() < 300 then
@@ -490,20 +490,20 @@ dsp.teleport.explorerMoogleOnTrigger = function(player, event)
     player:startEvent(event, player:getZoneID(), 0, accept)
 end
 
-dsp.teleport.explorerMoogleOnEventFinish = function(player, csid, option, event)
+tpz.teleport.explorerMoogleOnEventFinish = function(player, csid, option, event)
     local price = 300
 
     if csid == event then
         if option == 1 and player:delGil(price) then
-            dsp.teleport.toExplorerMoogle(player, 231)
+            tpz.teleport.toExplorerMoogle(player, 231)
         elseif option == 2 and player:delGil(price) then
-            dsp.teleport.toExplorerMoogle(player, 234)
+            tpz.teleport.toExplorerMoogle(player, 234)
         elseif option == 3 and player:delGil(price) then
-            dsp.teleport.toExplorerMoogle(player, 240)
+            tpz.teleport.toExplorerMoogle(player, 240)
         elseif option == 4 and player:delGil(price) then
-            dsp.teleport.toExplorerMoogle(player, 248)
+            tpz.teleport.toExplorerMoogle(player, 248)
         elseif option == 5 and player:delGil(price) then
-            dsp.teleport.toExplorerMoogle(player, 249)
+            tpz.teleport.toExplorerMoogle(player, 249)
         end
     end
 end

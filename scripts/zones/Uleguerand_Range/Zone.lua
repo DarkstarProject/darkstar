@@ -17,7 +17,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(363.025,16,-60,12);
     end
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("COP_louverance_story")== 1 ) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.DAWN and player:getCharVar("COP_louverance_story")== 1 ) then
         cs=17;
     end
     return cs;
@@ -45,13 +45,13 @@ end;
 
 function onZoneWeatherChange(weather)
     local waterfall = GetNPCByID(ID.npc.WATERFALL);
-    if (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS) then
-        if (waterfall:getAnimation() ~= dsp.anim.CLOSE_DOOR) then
-            waterfall:setAnimation(dsp.anim.CLOSE_DOOR);
+    if (weather == tpz.weather.SNOW or weather == tpz.weather.BLIZZARDS) then
+        if (waterfall:getAnimation() ~= tpz.anim.CLOSE_DOOR) then
+            waterfall:setAnimation(tpz.anim.CLOSE_DOOR);
         end
     else
-        if (waterfall:getAnimation() ~= dsp.anim.OPEN_DOOR) then
-            waterfall:setAnimation(dsp.anim.OPEN_DOOR);
+        if (waterfall:getAnimation() ~= tpz.anim.OPEN_DOOR) then
+            waterfall:setAnimation(tpz.anim.OPEN_DOOR);
         end
     end
 end;

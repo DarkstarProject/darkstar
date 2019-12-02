@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.EVASION_DOWN
+    local typeEffect = tpz.effect.EVASION_DOWN
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 50, 0, 120))
 
     return typeEffect

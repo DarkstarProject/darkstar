@@ -8,11 +8,11 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
 end
 
 function onMonsterMagicPrepare(mob, target)
-    if not mob:hasStatusEffect(dsp.effect.HUNDRED_FISTS, 0) then
+    if not mob:hasStatusEffect(tpz.effect.HUNDRED_FISTS, 0) then
         local rnd = math.random()
         if rnd < 0.5 then
             return 186 -- aeroga 3
@@ -28,7 +28,7 @@ function onMonsterMagicPrepare(mob, target)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENAERO)
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.ENAERO)
 end
 
 function onMobDeath(mob, player, isKiller)

@@ -9,9 +9,9 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 804, 1, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 804, 1, tpz.regime.type.GROUNDS)
 end
 
 function onMobDespawn(mob)
-    dsp.mob.phOnDespawn(mob, ID.mob.MASAN_PH, 10, 14400) -- 4 hours
+    tpz.mob.phOnDespawn(mob, ID.mob.MASAN_PH, 10, 14400) -- 4 hours
 end

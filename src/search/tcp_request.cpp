@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -247,7 +245,7 @@ int32 CTCPRequestPacket::CheckPacketHash()
 
 uint8 CTCPRequestPacket::GetPacketType()
 {
-    DSP_DEBUG_BREAK_IF(m_data == nullptr)
+    TPZ_DEBUG_BREAK_IF(m_data == nullptr)
 
         return m_data[0x0B];
 }
