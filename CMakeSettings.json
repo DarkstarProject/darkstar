@@ -1,5 +1,4 @@
 {
-  // See https://go.microsoft.com//fwlink//?linkid=834763 for more information about this file.
   "environments": [
     {
       "BuildDir": "${workspaceRoot}\\build\\${name}",
@@ -50,6 +49,10 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "-v:detailed",
       "ctestCommandArgs": ""
+    },
+    {
+      "name": "topaz",
+      "cacheRoot": "C:\\Games\\FFXI\\Topaz\\build\\x86-Debug"
     }
   ]
 }

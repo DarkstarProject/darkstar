@@ -15,7 +15,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)'=='TPZGame-server'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)'=='topaz-game'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -28,7 +28,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='TPZGame-server|Win32'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz-game|Win32'">
     <Link>
       <AdditionalDependencies>libmariadb.lib;lua51.lib;libzmq.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
@@ -40,7 +40,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='TPZGame-server|x64'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz-game|x64'">
     <Link>
       <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq_64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
@@ -51,7 +51,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)'=='TPZConnect-server'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)'=='topaz-connect'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -62,7 +62,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='TPZConnect-server|Win32'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz-connect|Win32'">
     <Link>
       <AdditionalDependencies>libmariadb.lib;libzmq.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
@@ -73,7 +73,7 @@
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='TPZConnect-server|x64'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz-connect|x64'">
     <Link>
       <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib64</AdditionalLibraryDirectories>
@@ -84,7 +84,7 @@
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)'=='TPZSearch-server'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)'=='topaz-search'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -95,7 +95,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='TPZSearch-server|Win32'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz-search|Win32'">
     <Link>
       <AdditionalDependencies>libmariadb.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
@@ -106,7 +106,7 @@
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='TPZSearch-server|x64'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz-search|x64'">
     <Link>
       <AdditionalDependencies>libmariadb64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib64</AdditionalLibraryDirectories>

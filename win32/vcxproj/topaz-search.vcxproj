@@ -19,9 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\common\blowfish.cpp" />
+    <ClCompile Include="..\..\src\common\md52.cpp" />
+    <ClCompile Include="..\..\src\common\showmsg.cpp" />
+    <ClCompile Include="..\..\src\common\sql.cpp" />
+    <ClCompile Include="..\..\src\common\taskmgr.cpp" />
+    <ClCompile Include="..\..\src\common\timer.cpp" />
+    <ClCompile Include="..\..\src\common\utils.cpp" />
+    <ClCompile Include="..\..\src\search\data_loader.cpp" />
+    <ClCompile Include="..\..\src\search\packets\auction_history.cpp" />
+    <ClCompile Include="..\..\src\search\packets\auction_list.cpp" />
+    <ClCompile Include="..\..\src\search\packets\linkshell_list.cpp" />
+    <ClCompile Include="..\..\src\search\packets\party_list.cpp" />
+    <ClCompile Include="..\..\src\search\packets\search_comment.cpp" />
+    <ClCompile Include="..\..\src\search\packets\search_list.cpp" />
+    <ClCompile Include="..\..\src\search\search.cpp" />
+    <ClCompile Include="..\..\src\search\tcp_request.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="..\..\src\common\blowfish.h" />
     <ClInclude Include="..\..\src\common\cbasetypes.h" />
-    <ClInclude Include="..\..\src\common\kernel.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
     <ClInclude Include="..\..\src\common\mmo.h" />
     <ClInclude Include="..\..\src\common\showmsg.h" />
@@ -30,44 +47,27 @@
     <ClInclude Include="..\..\src\common\taskmgr.h" />
     <ClInclude Include="..\..\src\common\timer.h" />
     <ClInclude Include="..\..\src\common\utils.h" />
-    <ClInclude Include="..\..\src\common\version.h" />
-    <ClInclude Include="..\..\src\common\zlib.h" />
-    <ClInclude Include="..\..\src\login\account.h" />
-    <ClInclude Include="..\..\src\login\message_server.h" />
-    <ClInclude Include="..\..\src\login\lobby.h" />
-    <ClInclude Include="..\..\src\login\login.h" />
-    <ClInclude Include="..\..\src\login\login_auth.h" />
-    <ClInclude Include="..\..\src\login\login_session.h" />
-    <ClInclude Include="connectserver.h" />
+    <ClInclude Include="..\..\src\search\data_loader.h" />
+    <ClInclude Include="..\..\src\search\packets\auction_history.h" />
+    <ClInclude Include="..\..\src\search\packets\auction_list.h" />
+    <ClInclude Include="..\..\src\search\packets\linkshell_list.h" />
+    <ClInclude Include="..\..\src\search\packets\party_list.h" />
+    <ClInclude Include="..\..\src\search\packets\search_comment.h" />
+    <ClInclude Include="..\..\src\search\packets\search_list.h" />
+    <ClInclude Include="..\..\src\search\search.h" />
+    <ClInclude Include="..\..\src\search\tcp_request.h" />
+    <ClInclude Include="searchserver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\common\blowfish.cpp" />
-    <ClCompile Include="..\..\src\common\kernel.cpp" />
-    <ClCompile Include="..\..\src\common\md52.cpp" />
-    <ClCompile Include="..\..\src\common\showmsg.cpp" />
-    <ClCompile Include="..\..\src\common\socket.cpp" />
-    <ClCompile Include="..\..\src\common\sql.cpp" />
-    <ClCompile Include="..\..\src\common\taskmgr.cpp" />
-    <ClCompile Include="..\..\src\common\timer.cpp" />
-    <ClCompile Include="..\..\src\common\utils.cpp" />
-    <ClCompile Include="..\..\src\common\zlib.cpp" />
-    <ClCompile Include="..\..\src\login\account.cpp" />
-    <ClCompile Include="..\..\src\login\message_server.cpp" />
-    <ClCompile Include="..\..\src\login\lobby.cpp" />
-    <ClCompile Include="..\..\src\login\login.cpp" />
-    <ClCompile Include="..\..\src\login\login_auth.cpp" />
-    <ClCompile Include="..\..\src\login\login_session.cpp" />
+    <ResourceCompile Include="searchserver.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="connectserver.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\icons\connectserver.ico" />
+    <None Include="..\..\icons\searchserver.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}</ProjectGuid>
+    <ProjectGuid>{5C763F9B-F332-434F-9EE6-B64B15E1E520}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TPZConnectserver</RootNamespace>
+    <RootNamespace>topaz-searchserver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -144,13 +144,13 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_WINSOCK_DEPRECATED_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;DEBUGLOGLOGIN;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libmariadb.lib;libzmq.lib;WS2_32.Lib</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;WS2_32.Lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
     </Link>
@@ -160,17 +160,15 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_WINSOCK_DEPRECATED_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;DEBUGLOGLOGIN;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libmariadb64.lib;libzmq-d_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb64.lib;WS2_32.Lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib64</AdditionalLibraryDirectories>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
-      <IgnoreSpecificDefaultLibraries>
-      </IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -180,8 +178,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_WINSOCK_DEPRECATED_NO_WARNINGS;NDEBUG;_CONSOLE;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,7 +188,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmariadb.lib;libzmq.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
@@ -201,8 +199,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_WINSOCK_DEPRECATED_NO_WARNINGS;NDEBUG;_CONSOLE;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -211,9 +209,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>
-      </IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>libmariadb64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>

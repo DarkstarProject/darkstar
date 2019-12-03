@@ -126,9 +126,9 @@ UpgradeLog*.XML
 *.app
 
 # Generated executables
-/tpzconnect
-/tpzgame
-/tpzsearch
+/topaz-connect
+/topaz-game
+/topaz-search
 
 # Generated files, mostly autotools-related
 .deps

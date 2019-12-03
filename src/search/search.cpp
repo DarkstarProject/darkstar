@@ -256,7 +256,7 @@ int32 main(int32 argc, char **argv)
     }
 
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
-    ShowMessage(CL_WHITE"TPZSearch-server\n\n");
+    ShowMessage(CL_WHITE"topaz-search\n\n");
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
     if (search_config.expire_auctions == 1) {
         ShowMessage(CL_GREEN"AH task to return items older than %u days is running\n" CL_RESET, search_config.expire_days);
@@ -315,7 +315,7 @@ int32 main(int32 argc, char **argv)
 
 /************************************************************************
 *                                                                       *
-*  TPZSearch-Server default config                                       *
+*  topaz-search default config                                       *
 *                                                                       *
 ************************************************************************/
 
@@ -333,7 +333,7 @@ void search_config_default()
 
 /************************************************************************
 *                                                                       *
-*  TPZSearch-Server config                                               *
+*  topaz-search config                                               *
 *                                                                       *
 ************************************************************************/
 

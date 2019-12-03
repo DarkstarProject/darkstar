@@ -46,25 +46,25 @@ LDFLAGS_ALL             += -pagezero_size 10000 -image_base 100000000
 endif
 
 ## Targets
-bin_PROGRAMS          = tpzgame tpzconnect tpzsearch
+bin_PROGRAMS          = topaz-game topaz-connect topaz-search
 
-tpzgame_SOURCES        = $(SRC_ALL) $(SRC_MAP)
-tpzgame_CXXFLAGS       = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
-tpzgame_CPPFLAGS       = $(CPPFLAGS_ALL)
-tpzgame_CFLAGS         = $(CFLAGS_ALL)
-tpzgame_LDFLAGS        = $(LDFLAGS_ALL)
-tpzgame_LDADD          = $(LIBS_ALL)
+topaz-game_SOURCES        = $(SRC_ALL) $(SRC_MAP)
+topaz-game_CXXFLAGS       = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
+topaz-game_CPPFLAGS       = $(CPPFLAGS_ALL)
+topaz-game_CFLAGS         = $(CFLAGS_ALL)
+topaz-game_LDFLAGS        = $(LDFLAGS_ALL)
+topaz-game_LDADD          = $(LIBS_ALL)
 
-tpzconnect_SOURCES     = $(SRC_ALL) $(SRC_LOGIN)
-tpzconnect_CXXFLAGS    = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
-tpzconnect_CPPFLAGS    = $(CPPFLAGS_ALL)
-tpzconnect_CFLAGS      = $(CFLAGS_ALL)
-tpzconnect_LDFLAGS     = $(LDFLAGS_ALL)
-tpzconnect_LDADD       = $(LIBS_ALL)
+topaz-connect_SOURCES     = $(SRC_ALL) $(SRC_LOGIN)
+topaz-connect_CXXFLAGS    = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
+topaz-connect_CPPFLAGS    = $(CPPFLAGS_ALL)
+topaz-connect_CFLAGS      = $(CFLAGS_ALL)
+topaz-connect_LDFLAGS     = $(LDFLAGS_ALL)
+topaz-connect_LDADD       = $(LIBS_ALL)
 
-tpzsearch_SOURCES     = $(SRC_SEARCH_COMMON) $(SRC_SEARCH)
-tpzsearch_CXXFLAGS    = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
-tpzsearch_CPPFLAGS    = $(CPPFLAGS_ALL)
-tpzsearch_CFLAGS      = $(CFLAGS_ALL)
-tpzsearch_LDFLAGS     = $(LDFLAGS_ALL)
-tpzsearch_LDADD       = $(LIBS_ALL)
+topaz-search_SOURCES     = $(SRC_SEARCH_COMMON) $(SRC_SEARCH)
+topaz-search_CXXFLAGS    = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
+topaz-search_CPPFLAGS    = $(CPPFLAGS_ALL)
+topaz-search_CFLAGS      = $(CFLAGS_ALL)
+topaz-search_LDFLAGS     = $(LDFLAGS_ALL)
+topaz-search_LDADD       = $(LIBS_ALL)

@@ -13,7 +13,7 @@ else()
     set(resource "../../win32/vcxproj/searchserver.rc")
 endif()
 
-add_executable(TPZSearch-server
+add_executable(topaz-search
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
     ../common/md52.cpp
@@ -25,25 +25,25 @@ add_executable(TPZSearch-server
     ${resource}
 )
 
-set_target_properties(TPZSearch-server PROPERTIES OUTPUT_NAME TPZSearch-server${spacer}${platform_suffix})
+set_target_properties(topaz-search PROPERTIES OUTPUT_NAME topaz-search${spacer}${platform_suffix})
 
 if(UNIX)
-    target_include_directories(TPZSearch-server PRIVATE
+    target_include_directories(topaz-search PRIVATE
         ${MYSQLCLIENT_INCLUDE_DIRS}
     )
 
-    target_link_libraries(TPZSearch-server
+    target_link_libraries(topaz-search
         ${MYSQLCLIENT_LIBRARIES}
         ${ZMQ_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
     )
 else()
-    target_include_directories(TPZSearch-server PRIVATE
+    target_include_directories(topaz-search PRIVATE
         ../common
         ../../win32/external
         ../../win32/external/mysql
     )
-    target_link_libraries(TPZSearch-server
+    target_link_libraries(topaz-search
         libmariadb${platform_suffix}
         WS2_32
     )

@@ -15,7 +15,7 @@ else()
 endif()
 
 
-add_executable(TPZConnect-server
+add_executable(topaz-connect
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
     ../common/kernel.cpp
@@ -30,27 +30,27 @@ add_executable(TPZConnect-server
     ${resource}
 )
 
-set_target_properties(TPZConnect-server PROPERTIES OUTPUT_NAME TPZConnect-server${spacer}${platform_suffix})
+set_target_properties(topaz-connect PROPERTIES OUTPUT_NAME topaz-connect${spacer}${platform_suffix})
 
 if(UNIX)
-    target_include_directories(TPZConnect-server PRIVATE
+    target_include_directories(topaz-connect PRIVATE
         ${MYSQLCLIENT_INCLUDE_DIRS}
     )
 
-    target_link_libraries(TPZConnect-server
+    target_link_libraries(topaz-connect
         ${MYSQLCLIENT_LIBRARIES}
         ${ZMQ_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
     )
 else()
-    target_include_directories(TPZConnect-server PRIVATE
+    target_include_directories(topaz-connect PRIVATE
         ../common
         ../../win32/external
         ../../win32/external/mysql
         ../../win32/external/zmq
     )
 
-    target_link_libraries(TPZConnect-server
+    target_link_libraries(topaz-connect
         libmariadb${platform_suffix}
         libzmq${lib_debug}${spacer}${platform_suffix}
         WS2_32
