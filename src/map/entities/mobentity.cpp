@@ -954,8 +954,12 @@ void CMobEntity::OnEngage(CAttackState& state)
     if (range != 0)
     {
         CBaseEntity* PTarget = state.GetTarget();
+        CBaseEntity* PPet = nullptr;
         if (PTarget->objtype == TYPE_PET)
+        {
+            PPet = state.GetTarget();
             PTarget = ((CPetEntity*)PTarget)->PMaster;
+        }
         if (PTarget->objtype == TYPE_PC)
         {
             ((CCharEntity*)PTarget)->ForAlliance([this, PTarget, range](CBattleEntity* PMember)
@@ -964,7 +968,7 @@ void CMobEntity::OnEngage(CAttackState& state)
                 if (currentDistance < range)
                     this->PEnmityContainer->AddBaseEnmity(PMember);
             });
-            this->PEnmityContainer->UpdateEnmity((CBattleEntity*)PTarget, 0, 1); // Set VE so target doesn't change
+            this->PEnmityContainer->UpdateEnmity((PPet ? (CBattleEntity*)PPet : (CBattleEntity*)PTarget), 0, 1); // Set VE so target doesn't change
         }
     }
 
