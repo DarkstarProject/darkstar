@@ -950,6 +950,23 @@ void CMobEntity::OnEngage(CAttackState& state)
 {
     CBattleEntity::OnEngage(state);
     luautils::OnMobEngaged(this, state.GetTarget());
+    unsigned int range = this->getMobMod(MOBMOD_ALLI_HATE);
+    if (range != 0)
+    {
+        CBaseEntity* PTarget = state.GetTarget();
+        if (PTarget->objtype == TYPE_PET)
+            PTarget = ((CPetEntity*)PTarget)->PMaster;
+        if (PTarget->objtype == TYPE_PC)
+        {
+            ((CCharEntity*)PTarget)->ForAlliance([this, PTarget, range](CBattleEntity* PMember)
+            {
+                auto currentDistance = distance(PMember->loc.p, PTarget->loc.p);
+                if (currentDistance < range)
+                    this->PEnmityContainer->AddBaseEnmity(PMember);
+            });
+            this->PEnmityContainer->UpdateEnmity((CBattleEntity*)PTarget, 0, 1); // Set VE so target doesn't change
+        }
+    }
 
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
