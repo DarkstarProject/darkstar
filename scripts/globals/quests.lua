@@ -20,7 +20,7 @@ QUEST_COMPLETED = 2;
 
 -- These integers are the ones used by the client
 -- to diffierentiate different quest log update packets
-dsp.quest.log_id =
+dsp.quest.log =
 {
     SANDORIA    =  0,
     BASTOK      =  1,
@@ -40,21 +40,21 @@ dsp.quest.log_id =
 -- These areas are keyed by the area's quest log ID to facilitate
 -- fetching the area's quests.
 -- Ex: If all you have is a quest log ID, you can pull all
--- quest IDs for that area by: dsp.quest.id[dsp.quest.area[log_id]]
+-- quest IDs for that area by: dsp.quest.id[dsp.quest.area[log]]
 -- These can also be tied into quest file directories later.
 dsp.quest.area =
 {
-    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-    [dsp.quest.log_id.BASTOK]      = 'bastok',
-    [dsp.quest.log_id.WINDURST]    = 'windurst',
-    [dsp.quest.log_id.JEUNO]       = 'jeuno',
-    [dsp.quest.log_id.OTHER_AREAS] = 'otherAreas',
-    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-    [dsp.quest.log_id.AHT_URHGAN]  = 'ahtUrhgan',
-    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystalWar',
-    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-    [dsp.quest.log_id.COALITION]   = 'coalition'
+    [dsp.quest.log.SANDORIA]    = 'sandoria',
+    [dsp.quest.log.BASTOK]      = 'bastok',
+    [dsp.quest.log.WINDURST]    = 'windurst',
+    [dsp.quest.log.JEUNO]       = 'jeuno',
+    [dsp.quest.log.OTHER_AREAS] = 'otherAreas',
+    [dsp.quest.log.OUTLANDS]    = 'outlands',
+    [dsp.quest.log.AHT_URHGAN]  = 'ahtUrhgan',
+    [dsp.quest.log.CRYSTAL_WAR] = 'crystalWar',
+    [dsp.quest.log.ABYSSEA]     = 'abyssea',
+    [dsp.quest.log.ADOULIN]     = 'adoulin',
+    [dsp.quest.log.COALITION]   = 'coalition'
 }
 
 -----------------------------------
@@ -66,7 +66,7 @@ dsp.quest.id =
     -----------------------------------
     --  San d'Oria
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] =
+    [dsp.quest.area[dsp.quest.log.SANDORIA]] =
     {
         A_SENTRY_S_PERIL                = 0,  -- ± --
         WATER_OF_THE_CHEVAL             = 1,  -- ± --
@@ -154,7 +154,7 @@ dsp.quest.id =
     -----------------------------------
     --  Bastok
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.BASTOK]] =
+    [dsp.quest.area[dsp.quest.log.BASTOK]] =
     {
         THE_SIREN_S_TEAR                = 0,  -- ± --
         BEAUTY_AND_THE_GALKA            = 1,  -- ± --
@@ -252,7 +252,7 @@ dsp.quest.id =
     -----------------------------------
     --  Windurst
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.WINDURST]] =
+    [dsp.quest.area[dsp.quest.log.WINDURST]] =
     {
         HAT_IN_HAND                     = 0,  -- + --
         A_FEATHER_IN_ONE_S_CAP          = 1,  -- + --
@@ -348,7 +348,7 @@ dsp.quest.id =
     -----------------------------------
     --  Jeuno
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.JEUNO]] =
+    [dsp.quest.area[dsp.quest.log.JEUNO]] =
     {
         CREST_OF_DAVOI                  = 0,  -- + --
         SAVE_MY_SISTER                  = 1,  -- + --
@@ -499,7 +499,7 @@ dsp.quest.id =
     -----------------------------------
     --  Other Areas
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] =
+    [dsp.quest.area[dsp.quest.log.OTHER_AREAS]] =
     {
         RYCHARDE_THE_CHEF               = 0,  -- + --
         WAY_OF_THE_COOK                 = 1,  -- + --
@@ -572,7 +572,7 @@ dsp.quest.id =
     -----------------------------------
     --  Outlands
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] =
+    [dsp.quest.area[dsp.quest.log.OUTLANDS]] =
     {
         -- Kazham (1-15)
         THE_FIREBLOOM_TREE              = 1,
@@ -644,7 +644,7 @@ dsp.quest.id =
     -----------------------------------
     --  Aht Urhgan
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] =
+    [dsp.quest.area[dsp.quest.log.AHT_URHGAN]] =
     {
         KEEPING_NOTES                   = 0,
         ARTS_AND_CRAFTS                 = 1,
@@ -702,7 +702,7 @@ dsp.quest.id =
     -----------------------------------
     --  Crystal War
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] =
+    [dsp.quest.area[dsp.quest.log.CRYSTAL_WAR]] =
     {
         LOST_IN_TRANSLOCATION            = 0,
         MESSAGE_ON_THE_WINDS             = 1,
@@ -801,7 +801,7 @@ dsp.quest.id =
     -----------------------------------
     --  Abyssea
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] =
+    [dsp.quest.area[dsp.quest.log.ABYSSEA]] =
     {
         -- For some reason these did not match dat file order,
         -- had to adjust IDs >120 after using @addquest
@@ -1002,7 +1002,7 @@ dsp.quest.id =
     -----------------------------------
     --  Adoulin
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] =
+    [dsp.quest.area[dsp.quest.log.ADOULIN]] =
     {
         -- These also do not match the DAT file order, had
         -- discrepencies and swapped orders from the start.
@@ -1108,7 +1108,7 @@ dsp.quest.id =
     -----------------------------------
     --  Coalition
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.COALITION]] =
+    [dsp.quest.area[dsp.quest.log.COALITION]] =
     {
         -- Also slightly incongruent with DAT file order
         PROCURE_CEIZAK_BATTLEGROUNDS    = 0,
@@ -1239,17 +1239,17 @@ dsp.quest.string = buildQuestStringTable(dsp.quest.id)
 -- Quest objects inside these tables will be loaded/reloaded as required by NPC scripts and GM commands
 dsp.quest.object =
 {
-    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] = {},
-    [dsp.quest.area[dsp.quest.log_id.BASTOK]] = {},
-    [dsp.quest.area[dsp.quest.log_id.WINDURST]] = {},
-    [dsp.quest.area[dsp.quest.log_id.JEUNO]] = {},
-    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] = {},
-    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] = {},
-    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] = {},
-    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] = {},
-    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] = {},
-    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] = {},
-    [dsp.quest.area[dsp.quest.log_id.COALITION]] = {}
+    [dsp.quest.area[dsp.quest.log.SANDORIA]] = {},
+    [dsp.quest.area[dsp.quest.log.BASTOK]] = {},
+    [dsp.quest.area[dsp.quest.log.WINDURST]] = {},
+    [dsp.quest.area[dsp.quest.log.JEUNO]] = {},
+    [dsp.quest.area[dsp.quest.log.OTHER_AREAS]] = {},
+    [dsp.quest.area[dsp.quest.log.OUTLANDS]] = {},
+    [dsp.quest.area[dsp.quest.log.AHT_URHGAN]] = {},
+    [dsp.quest.area[dsp.quest.log.CRYSTAL_WAR]] = {},
+    [dsp.quest.area[dsp.quest.log.ABYSSEA]] = {},
+    [dsp.quest.area[dsp.quest.log.ADOULIN]] = {},
+    [dsp.quest.area[dsp.quest.log.COALITION]] = {}
 }
 
 -----------------------------------
@@ -1261,6 +1261,7 @@ dsp.quest.stage =
     STAGE0   =  0, STAGE1  =  1, STAGE2  =  2, STAGE3   =  3, STAGE4   =  4,
     STAGE5   =  5, STAGE6  =  6, STAGE7  =  7, STAGE8   =  8, STAGE9   =  9,
     STAGE10  = 10, STAGE11 = 11, STAGE12 = 12, STAGE13  = 13, STAGE14  = 14,
+    COMPLETE = 255
 }
 
 dsp.quest.fame =
@@ -1284,18 +1285,29 @@ dsp.quest.status =
 dsp.quest.var =
 {
     CHAR   = 1,
-    LOCAL  = 2,
+    ENTITY = 2,
     SERVER = 3,
 }
 
 dsp.quest.event =
 {
-    TRIGGER = 1,
-    TRADE = 2,
-    UPDATE = 3,
-    FINISH = 4,
+    TRIGGER   = 1,
+    TRADE     = 2,
+    UPDATE    = 3,
+    FINISH    = 4,
     MOB_DEATH = 5,
-    ZONE_IN = 6
+    ZONE_IN   = 6
+}
+
+dsp.quest.eventType =
+{
+    NEVER     = 0, -- Never displayed; can be used to disable quests (set this on starting event)
+    DEFAULT   = 1, -- Becomes NPC's "default dialogue" if nothing else takes precendence
+    CYCLE     = 2, -- Will be displayed repeatedly every N other qualifying same-level events the NPC has
+    TOGGLE    = 3, -- Will display every-other time the NPC is triggered if nothing else takes precendence
+    ZONE      = 4, -- Triggers only once until the player zones and speaks to NPC again
+    ONCE      = 5, -- Only displays once - ever - regardless of zoning, uses charvar
+    ALWAYS    = 6  -- Will always be the chosen event (barring a _higher_ priority event of equal type)
 }
 
 -----------------------------------
@@ -1345,7 +1357,7 @@ dsp.quest.newQuest = function()
         end
 
         if not var then
-            ret.message = " unable to find "..varname.." for quest: "..quest.name.." (log_id: "..quest.log_id..")"
+            ret.message = " unable to find "..varname.." for quest: "..quest.name.." (log: "..quest.log..")"
         else
             if vartype == dsp.quest.var.CHAR then
                 if get then
@@ -1415,7 +1427,14 @@ dsp.quest.newQuest = function()
     ---------------------------------------------------------------
     this.getStage = function(entity)
         local message = this.string_key.. ".getStage -> "
-        return this.getVar(entity, this.vars.stage, message)
+        local stage = this.getVar(entity, this.vars.stage, message)
+        if stage > 0 then
+            return stage
+        elseif entity:getQuestStatus(this.log, this.quest_id) == dsp.quest.status.COMPLETED then
+            return dsp.quest.stage.COMPLETE
+        else
+            return 0
+        end
     end
 
     -- Advances the player's current quest stage by 1
@@ -1430,16 +1449,16 @@ dsp.quest.newQuest = function()
     -- Returns true if the player meets all the listed quest requirements
     ---------------------------------------------------------------
     this.checkRequirements = function(player)
-        local questStatusCheck = player:getQuestStatus(this.log_id, this.quest_id)
+        local questStatusCheck = player:getQuestStatus(this.log, this.quest_id)
 
         if questStatusCheck == dsp.quest.status.AVAILABLE
         or (questStatusCheck == dsp.quest.status.COMPLETED and this.repeatable) then
             -- Check all required quests
             if this.requirements.quests then
                 for i, requiredQuest in ipairs(this.requirements.quests) do
-                    local requiredQuestStatus = player:getQuestStatus(requiredQuest.log_id, requiredQuest.quest_id)
+                    local requiredQuestStatus = player:getQuestStatus(requiredQuest.log, requiredQuest.quest_id)
                     if requiredQuest.stage then
-                        local quest = dsp.quest.getQuest(requiredQuest.log_id, requiredQuest.quest_id)
+                        local quest = dsp.quest.getQuest(requiredQuest.log, requiredQuest.quest_id)
                         if quest then
                             if quest.getStage(player) < requiredQuest.stage then
                                 return false
@@ -1494,7 +1513,7 @@ dsp.quest.newQuest = function()
     -- Adds a quest to the player's log and sets their stage to 1
     ---------------------------------------------------------------
     this.begin = function(player)
-        player:addQuest(this.log_id, this.quest_id)
+        player:addQuest(this.log, this.quest_id)
         return this.advanceStage(player)
     end
 
@@ -1515,11 +1534,10 @@ dsp.quest.newQuest = function()
 
     -- Begins an event for the player, with built-in return
     ---------------------------------------------------------------
-    this.startEvent = function(player, event, params)
+    this.startEvent = function(player, event, params, type)
         if not params then params = {} end
-        player:startEvent(event, params[1], params[2], params[3], params[4],
-                                 params[5], params[6], params[7], params[8])
-        return true
+        if not type then type = dsp.quest.eventType.DEFAULT end
+        return {['id'] = event, ['params'] = params, ['type'] = type}
     end
 
     -- Attempt to give item to the player.
@@ -1531,7 +1549,6 @@ dsp.quest.newQuest = function()
         if npcUtil.giveItem(player, item, silent_fail) then
             return true
         else
-            this.holdItem(player, item)
             return false
         end
     end
@@ -1678,7 +1695,7 @@ dsp.quest.newQuest = function()
                     end
                 end
 
-                rewards_given = npcUtil.completeQuest(player, this.log_id, this.quest_id, reward_set)
+                rewards_given = npcUtil.completeQuest(player, this.log, this.quest_id, reward_set)
                 if not rewards_given then
                     error(player, message.. "Unable to give quest rewards.")
                 end
@@ -1699,13 +1716,19 @@ dsp.quest.newQuest = function()
                 end
             end
 
-            -- make certain any forgotten temporary key items have been removed
+            -- Make certain any forgotten temporary key items have been removed
             if this.temporary and this.temporary.key_items then
                 for _, ki in pairs(this.temporary.key_items) do
                     player:delKeyItem(ki)
                 end
             end
 
+            -- Clear all char_vars from having seen dsp.quest.eventType.ONCE type events
+            if this.temporary and this.temporary.seen_events then
+                for _, seen_event in pairs(this.temporary.seen_events) do
+                    player:setVar('[QE][Z'.. seen_event[1] ..']'.. seen_event[2], 0)
+                end
+            end
             return true
         end
     end
@@ -1724,16 +1747,119 @@ dsp.quest.involvedQuests = function(involvedQuests)
     -- Internal helper functions
     ---------------------------------------------------------------
 
+    -- Helper function returning if a player has seen an event of a given type
+    local hasSeen = function(player, trackingTag, eventType)
+        if (eventType >= dsp.quest.eventType.CYCLE) and (eventType <= dsp.quest.eventType.ZONE) then
+            return player:getLocalVar(trackingTag) == 1
+        elseif eventType == dsp.quest.eventType.ONCE then
+            return player:getVar(trackingTag) == 1
+        else
+            return false
+        end
+    end
+
     -- Helper function to check all of our involvedQuests for a given quest event
-    local check = function(player, type, target, args)
+    local check = function(player, checkType, target, args)
+        local trackingName = function(player, event)
+            return '[QE][Z'.. player:getZoneID() ..']'.. event
+        end
+
+        local result = false
+        local highestEvent = {}
+        highestEvent.type = dsp.quest.eventType.NEVER
+
+        local hasCycleEvents = false
+        local isLastCycleEvent = false
+        local unseenCycleEvent = false
+        local wasLastCycleEvent = player:getLocalVar('[QE][WLC]'.. target) == 1
+
         for _, quest in ipairs(this.involvedQuests) do
-            local questResult = quest.check(player, type, target, args)
-            if questResult then
-                return questResult
+            result = quest.check(player, checkType, target, args)
+            if result then
+                if checkType == 'onTrigger' then -- We found an onTrigger the player currently qualifies for
+                    if type(result) == 'bool' then
+                        -- But this quest already initiated an event/message directly and returned true.
+                        -- We don't want to mess up whatever special scenario it's doing
+                        return true
+                    else -- The result should be a table describing the qualifying event
+                        local trackingTag = trackingName(player, result.id)
+                        local sawEvent = hasSeen(player, trackingTag, result.type)
+
+
+                        if result.type == dsp.quest.eventType.CYCLE then
+                            -- If player just viewed the final cycle event, we need to mark all as unseen
+                            if wasLastCycleEvent then
+                                player:setLocalVar(trackingTag, 0)
+                                sawEvent = false
+                            end
+
+                            -- We need to assume that the first cycle we find is the last, or else we'd never
+                            -- pick it multiple times when there's only one cycle event the player qualifies for
+                            if not hasCycleEvents then
+                                hasCycleEvents = true   -- So on the first cycle event only...
+                                isLastCycleEvent = true -- Presume it's the last in the list to view
+                                player:setLocalVar('[QE][WLC]'.. target, 0) -- (Let's reset our local var here, though.)
+                                unseenCycleEvent = not sawEvent -- But if this is an unseen cycle event...
+                            elseif isLastCycleEvent and not sawEvent then -- ..or if a later cycle event is unseen
+                                if not unseenCycleEvent then
+                                    unseenCycleEvent = true -- Note there are unseen cycle events...
+                                else
+                                    isLastCycleEvent = false -- ..and then on the SECOND unseen event, mark our assumption false
+                                end
+                            end
+                        elseif result.type == dsp.quest.eventType.TOGGLE then
+                            if sawEvent then
+                                -- Go ahead an mark the toggle event as unseen (but we won't
+                                -- select it until next time because sawEvent is still false)
+                                player:setLocalVar(trackingTag, 0)
+                            end
+                        end
+
+                        if result.type > highestEvent.type then
+                            if result.type == dsp.quest.eventType.ONCE and not sawEvent then
+                                highestEvent = result
+                            elseif ((result.type >= dsp.quest.eventType.CYCLE) and (result.type <= dsp.quest.eventType.ZONE)) and not sawEvent then
+                                highestEvent = result
+                            elseif (result.type == dsp.quest.eventType.ALWAYS) or (result.type == dsp.quest.eventType.DEFAULT) then
+                                highestEvent = result
+                            end
+                        end
+                    end
+                else
+                    break -- trades, finishes, and updates should only have one valid match
+                end
             end
         end
-        return false
+
+        if unseenCycleEvent and isLastCycleEvent then
+            player:setLocalVar('[QE][WLC]'.. target, 1)
+        end
+
+        if highestEvent.type > dsp.quest.eventType.NEVER then  -- We figured out an onTrigger to play
+            player:startEvent(highestEvent.id, unpack(highestEvent.params)) -- Invoke our thunked highest event
+            -- We're only going to mark what kind of event we have, so we can check later during an onEventFinish
+            -- We don't want to mark the event as "seen" _now_ because the event might get interupted before finishing
+            player:setLocalVar('[QE][ST]', highestEvent.type) -- Seen Type, so we know what _kind_ of var to set during onFinish
+            player:setLocalVar('[QE][SI]', highestEvent.id) -- And the Seen ID our "seen" check should be firing on
+            return true -- Return that we have chosen (and played) an event
+        elseif checkType ~= 'onTrigger' then -- ('Result' can be dirty, and we should have already played any applicable onTrigger)
+            if checkType == 'onEventFinish' then
+                if player:getLocalVar('[QE][SI]') == target then -- "target" is our CS ID during onEventFinish checks
+                    local trackingType = player:getLocalVar('[QE][ST]')
+                    if trackingType == dsp.quest.eventType.ONCE then
+                        player:setVar(trackingName(player, target), 1)
+                    elseif (trackingType >= dsp.quest.eventType.CYCLE) and (trackingType <= dsp.quest.eventType.ZONE) then
+                        player:setLocalVar(trackingName(player, target), 1)
+                    end
+                    player:setLocalVar('[QE][SI]', 0)
+                    player:setLocalVar('[QE][ST]', 0)
+                end
+            end
+            return result -- Return result of our (already-executed) highest priority onTrade/onUpdate/onFinish
+        end
     end
+
+
 
     ---------------------------------------------------------------
     -- Public Methods
@@ -1786,17 +1912,17 @@ dsp.quest.getQuest = function(area_log_id, quest_id)
                 local quest_filename = 'scripts/quests/'
                 local area_dirs =
                 {
-                    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-                    [dsp.quest.log_id.BASTOK]      = 'bastok',
-                    [dsp.quest.log_id.WINDURST]    = 'windurst',
-                    [dsp.quest.log_id.JEUNO]       = 'jeuno',
-                    [dsp.quest.log_id.OTHER_AREAS] = 'other_areas',
-                    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-                    [dsp.quest.log_id.AHT_URHGAN]  = 'aht_urhgan',
-                    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystal_war',
-                    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-                    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-                    [dsp.quest.log_id.COALITION]   = 'coalition'
+                    [dsp.quest.log.SANDORIA]    = 'sandoria',
+                    [dsp.quest.log.BASTOK]      = 'bastok',
+                    [dsp.quest.log.WINDURST]    = 'windurst',
+                    [dsp.quest.log.JEUNO]       = 'jeuno',
+                    [dsp.quest.log.OTHER_AREAS] = 'other_areas',
+                    [dsp.quest.log.OUTLANDS]    = 'outlands',
+                    [dsp.quest.log.AHT_URHGAN]  = 'aht_urhgan',
+                    [dsp.quest.log.CRYSTAL_WAR] = 'crystal_war',
+                    [dsp.quest.log.ABYSSEA]     = 'abyssea',
+                    [dsp.quest.log.ADOULIN]     = 'adoulin',
+                    [dsp.quest.log.COALITION]   = 'coalition'
                 }
                 quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. string.lower(quest_string)
                 local quest = require(quest_filename)

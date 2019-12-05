@@ -4,12 +4,12 @@ require("scripts/globals/quests")
 local thisQuest = dsp.quest.newQuest()
 
 thisQuest.name = "A Certain Substitute Patrolman"
-thisQuest.log_id = dsp.quest.log_id.ADOULIN
+thisQuest.log = dsp.quest.log.ADOULIN
 thisQuest.quest_id = dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN
 thisQuest.string_key = dsp.quest.string.adoulin[thisQuest.quest_id]
 
 thisQuest.repeatable = false
-thisQuest.var_prefix = "[Q]["..thisQuest.log_id.."]["..thisQuest.quest_id.."]"
+thisQuest.var_prefix = "[Q]["..thisQuest.log.."]["..thisQuest.quest_id.."]"
 thisQuest.vars =
 {
     stage = thisQuest.var_prefix,
