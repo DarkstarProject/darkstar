@@ -470,6 +470,9 @@
     <ClInclude Include="..\..\src\map\alliance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\anticheat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\party_invite.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
@@ -1235,6 +1238,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\alliance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\anticheat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\party_invite.cpp">

@@ -136,6 +136,8 @@ struct map_config_t
     uint16 msg_server_port;           // central message server port
     std::string msg_server_ip;        // central message server IP
     bool   skillup_bloodpact;         // Enable/disable skillups for bloodpacts
+    bool   anticheat_enabled;         // Is the anti-cheating system enabled
+    bool   anticheat_jail_disable;    // Globally disable auto-jailing by the anti-cheat system
 };
 
 /************************************************************************
