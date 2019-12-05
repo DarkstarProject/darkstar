@@ -31,9 +31,9 @@ function onTrigger(player,npc)
         player:startEvent(wsQuestEvent)
     elseif (currentMission == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
         player:startEvent(715)
-    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("BASTOK92") == 0) then
+    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("MissionStatus") == 0) then
         player:startEvent(780)
-    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("BASTOK92") == 2) then
+    elseif (currentMission == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(782)
     elseif (player:getCharVar("Flagbastok") == 1) then
         if (player:getFreeSlotsCount() == 0) then
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     if (csid == 715 and option == 0) then
         player:setCharVar("MissionStatus",1)
     elseif (csid == 780) then
-        player:setCharVar("BASTOK92", 1)
+        player:setCharVar("MissionStatus", 1)
     elseif (csid == 767 and option == 0) then
         player:setCharVar("MissionStatus", 1)
     elseif (csid == 768) then
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
             player:addItem(182)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
-        player:setCharVar("BASTOK92",0)
+        player:setCharVar("MissionStatus",0)
         player:completeMission(BASTOK,dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
