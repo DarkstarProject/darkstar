@@ -289,7 +289,7 @@ enum class Mod
     DEATHRES                  = 255, // Used by gear and ATMA that give resistance to instance KO
 
     PARALYZE                  = 257, // Paralyze -- percent chance to proc
-    MIJIN_GAKURE              = 258, // Tracks whether or not you used this ability to die.
+    MIJIN_RERAISE             = 258, // Augments Mijin Gakure
     DUAL_WIELD                = 259, // Percent reduction in dual wield delay.
 
     // Warrior
@@ -778,6 +778,7 @@ enum class Mod
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
     WS_NO_DEPLETE             = 949, // % chance a Weaponskill depletes no TP.
+    WS_DEX_BONUS              = 957, // % bonus to dex_wsc.
 
     EXPERIENCE_RETAINED       = 914, // Experience points retained upon death (this is a percentage)
     CAPACITY_BONUS            = 915, // Capacity point bonus granted
@@ -787,9 +788,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 957, // stuff
     // SPARE = 958, // stuff
     // SPARE = 959, // stuff
+    // SPARE = 960, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

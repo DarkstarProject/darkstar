@@ -8,8 +8,6 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, GetMobByID(mob:getID() - 2):getShortID())
-
     dsp.mix.jobSpecial.config(mob, {
         specials =
         {

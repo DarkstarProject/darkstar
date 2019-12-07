@@ -14,8 +14,6 @@ function onMobInitialize(mob)
 end
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID())
-
     if VanadielDayElement() == dsp.day.WATERSDAY then
         mob:setMod(dsp.mod.REGEN, 6, 3, 0)
     end

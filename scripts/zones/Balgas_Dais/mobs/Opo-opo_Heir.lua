@@ -9,7 +9,6 @@ require("scripts/globals/status");
 function onMobSpawn (mob)
     mob:SetAutoAttackEnabled(false);
     mob:SetMobAbilityEnabled(false);
-    mob:setMobMod(dsp.mobMod.SUPERLINK, GetMobByID(mob:getID() - 1):getShortID())
 end;
 
 function onMobFight (mob,target)

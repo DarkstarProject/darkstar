@@ -439,7 +439,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     charutils::SaveCharStats(PChar);
     charutils::SaveCharExp(PChar, PChar->GetMJob());
-    charutils::SaveCharUnlocks(PChar);
 
     PChar->status = STATUS_DISAPPEAR;
     return;

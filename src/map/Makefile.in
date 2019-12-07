@@ -12,7 +12,7 @@ COMMON_H   = ../common/svnversion.h ../common/mmo.h ../common/version.h         
 MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/charentity.o obj_map/mobentity.o obj_map/npcentity.o               \
      obj_map/item_container.o obj_map/packet_system.o obj_map/charutils.o                                                                      \
      obj_map/zone.o obj_map/zoneutils.o obj_map/itemutils.o obj_map/commandhandler.o                                                           \
-     obj_map/transport.o obj_map/vana_time.o obj_map/time_server.o                                                                             \
+     obj_map/transport.o obj_map/vana_time.o obj_map/time_server.o  obj_map/anticheat.o                                                        \
      obj_map/trade_container.o obj_map/modifier.o obj_map/synthutils.o obj_map/status_effect.o                                                 \
      obj_map/status_effect_container.o obj_map/mobutils.o   obj_map/battleutils.o obj_map/conquest_system.o                                    \
      obj_map/ability.o obj_map/alliance.o obj_map/enmity_container.o obj_map/fishingutils.o obj_map/grades.o                                   \
@@ -56,7 +56,7 @@ MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/char
 
 MAP_H    = map.h baseentity.h battleentity.h charentity.h mobentity.h npcentity.h item_container.h packet_system.h                             \
    charutils.h zone.h  zoneutils.h itemutils.h commandhandler.h                                                                                \
-   transport.h vana_time.h time_server.h trade_container.h modifier.h synthutils.h status_effect.h                                             \
+   transport.h vana_time.h time_server.h trade_container.h modifier.h synthutils.h status_effect.h anticheat.h                                 \
    status_effect_container.h mobutils.h battleutils.h conquest_system.h                                                                        \
    ability.h alliance.h enmity_container.h fishingutils.h grades.h guildutils.h mobskill.h party.h petentity.h petutils.h                      \
    spell.h trait.h treasure_pool.h universal_container.h weapon_skill.h region.h linkshell.h                                                   \

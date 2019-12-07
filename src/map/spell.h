@@ -68,9 +68,10 @@ enum SPELLAOE
 
 enum SPELLFLAG
 {
-    SPELLFLAG_NONE          = 0x00,
-    SPELLFLAG_HIT_ALL       = 0x01, // Hit all targets in range regardless of party
-    SPELLFLAG_WIPE_SHADOWS  = 0x02  // Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
+    SPELLFLAG_NONE           = 0x00,
+    SPELLFLAG_HIT_ALL        = 0x01, // Hit all targets in range regardless of party
+    SPELLFLAG_WIPE_SHADOWS   = 0x02, // Wipe shadows even if single target and miss/resist (example: "Maiden's Virelai")
+    SPELLFLAG_IGNORE_SHADOWS = 0x04  // Ignore shadows and hit player anyways (example: Mobs "Death" spell)
 };
 
 enum class SpellID : uint16

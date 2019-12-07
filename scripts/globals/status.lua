@@ -1105,7 +1105,7 @@ dsp.mod =
     DEATHRES                        = 255,
     AFTERMATH                       = 256,
     PARALYZE                        = 257,
-    MIJIN_GAKURE                    = 258,
+    MIJIN_RERAISE                   = 258,
     DUAL_WIELD                      = 259,
     DOUBLE_ATTACK                   = 288,
     SUBTLE_BLOW                     = 289,
@@ -1517,6 +1517,7 @@ dsp.mod =
     -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT             = 841, -- Generic (all Weaponskills) damage, first hit only.
     WS_NO_DEPLETE                   = 949, -- % chance a Weaponskill depletes no TP.
+    WS_DEX_BONUS                    = 957, -- % bonus to dex_wsc.
 
     -- Circle Abilities Extended Duration from AF/AF+1
     HOLY_CIRCLE_DURATION            = 857,
@@ -1541,9 +1542,9 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 957, -- stuff
     -- SPARE = 958, -- stuff
     -- SPARE = 959, -- stuff
+    -- SPARE = 960, -- stuff
 };
 
 dsp.latent =
@@ -2215,7 +2216,8 @@ dsp.mobMod =
     CHARMABLE           = 64, -- mob is charmable
     NO_MOVE             = 65, -- Mob will not be able to move
     MULTI_HIT           = 66, -- Mob will have as many swings as defined.
-    NO_AGGRO            = 67  -- If set, mob cannot aggro until unset.
+    NO_AGGRO            = 67, -- If set, mob cannot aggro until unset.
+    ALLI_HATE           = 68  -- Range around target to add alliance member to enmity list.
 }
 
 ------------------------------------

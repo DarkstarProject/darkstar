@@ -4,18 +4,17 @@
 -----------------------------------
 require("scripts/globals/battlefield")
 require("scripts/globals/missions")
+local ID = require("scripts/zones/Navukgo_Execution_Chamber/IDs")
 ----------------------------------------
 
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
-function onBattlefieldRegister(player, battlefield)
-    local baseID = ID.mob.KARABABA_OFFSET + (battlefield:getArea() - 1) * 2
-    local pos = GetMobByID(baseID):getSpawnPos()
+function onBattlefieldInitialise(battlefield)
 
-    local karababa  = battlefield:insertEntity(2157, true)
-    karababa:setSpawn(pos.x, pos.y, pos.z, 0)
+    local karababa  = battlefield:insertEntity(2157, true, true)
+    karababa:setSpawn(360.937,-116.5,376.937, 0)
     karababa:spawn()
 end
 

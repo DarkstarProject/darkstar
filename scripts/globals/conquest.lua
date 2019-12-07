@@ -77,14 +77,21 @@ local outposts =
     [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
     [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
     [dsp.region.TULIA]           = {zone = 130,                                             cp = 0,  lvl = 70, fee = 500},
+    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250},
     [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
-    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250}
 }
 
 local function hasOutpost(player, region)
-    local regionBit = math.pow(2, region + 5)
-    local supplyQuests = player:getNationTeleport(player:getNation())
-    return bit.band(supplyQuests, regionBit) == regionBit
+    local region = region + 5
+    local hasOP = player:hasTeleport(player:getNation(), region)
+    if not hasOP then
+        if UNLOCK_OUTPOST_WARPS == 2 then
+            hasOP = true
+        elseif UNLOCK_OUTPOST_WARPS == 1 then
+            hasOP = region <= dsp.region.ELSHIMOUPLANDS
+        end
+    end
+    return hasOP
 end
 
 local function setHomepointFee(player, guardNation)
@@ -115,7 +122,13 @@ local function getRegionsMask(nation)
 end
 
 local function getAllowedTeleports(player, nation)
-    local allowedTeleports = 0x3F00001F
+    local allowedTeleports = 0x3F40001F -- All outposts set (0 indicates allowed)
+
+    if UNLOCK_OUTPOST_WARPS == 2 then
+        return allowedTeleports -- Allow all outposts
+    elseif UNLOCK_OUTPOST_WARPS == 1 then
+        return 0x3FE0001F -- Allow all outposts except for Tulia and Tavnazia
+    end
     for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
         if not dsp.conquest.canTeleportToOutpost(player, region) then
             allowedTeleports = bit.bor(allowedTeleports, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
@@ -1005,7 +1018,7 @@ dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, g
         local a2 = getExForceAvailable(player, guardNation)
         local a3 = conquestRanking()
         local a4 = suppliesAvailableBitmask(player, guardNation)
-        local a5 = player:getNationTeleport(guardNation)
+        local a5 = player:getTeleport(guardNation)
         local a6 = getArg6(player)
         local a7 = player:getCP()
         local a8 = getExForceReward(player, guardNation)
@@ -1101,8 +1114,8 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         player:setCharVar("supplyQuest_region", 0)
         player:setCharVar("supplyQuest_fresh", 0)
 
-        if not hasOutpost(player, sRegion) then
-            player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
+        if not player:hasTeleport(guardNation, sRegion + 5) then
+            player:addTeleport(guardNation, sRegion + 5)
         end
 
     -- SET HOMEPOINT
@@ -1214,11 +1227,8 @@ dsp.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporter
         local bastokRegions = getRegionsMask(dsp.nation.BASTOK)
         local windyRegions = getRegionsMask(dsp.nation.WINDURST)
         local beastmenRegions = getRegionsMask(dsp.nation.BEASTMEN)
-
         local allowedTeleports = getAllowedTeleports(player, teleporterNation)
-
         local teleporterRegion = dsp.region.SANDORIA + teleporterNation
-
         player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, bit.lshift(1, teleporterRegion), 0, player:getMainLvl(), allowedTeleports)
     else
         local a6 =
@@ -1244,7 +1254,7 @@ dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporter
         -- TELEPORT WITH GIL
         if option >= 5 and option <= 23 then
             local region = option - 5
-            local fee = dsp.conq.outpostFee(player, region)
+            local fee = dsp.conquest.outpostFee(player, region)
 
             if dsp.conquest.canTeleportToOutpost(player, region) and player:delGil(fee) then
                 player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
@@ -1253,7 +1263,7 @@ dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporter
         -- TELEPORT WITH CP
         elseif option >= 1029 and option <= 1047 then
             local region = option - 1029
-            local fee = dsp.conq.outpostFee(player, region)
+            local fee = dsp.conquest.outpostFee(player, region)
 
             if dsp.conquest.canTeleportToOutpost(player, region) and player:getCP() >= fee then
                 player:delCP(fee)

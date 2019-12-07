@@ -11,4 +11,4 @@ function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 757, 2, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 758, 2, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 759, 1, dsp.regime.type.GROUNDS)
-end;
+end

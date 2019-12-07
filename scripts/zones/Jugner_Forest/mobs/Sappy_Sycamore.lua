@@ -8,8 +8,8 @@ require("scripts/globals/mobs")
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
-    mob:addMod(dsp.mod.SLEEPRES,20)
-    mob:addMod(dsp.mod.BINDRES,20)
+    mob:addMod(dsp.mod.SLEEPRES, 20)
+    mob:addMod(dsp.mod.BINDRES, 20)
 end
 
 function onAdditionalEffect(mob, target, damage)

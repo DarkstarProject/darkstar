@@ -1183,7 +1183,7 @@ void AddCustomMods(CMobEntity* PMob)
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 {
     const char* Query =
-        "SELECT zoneid, name, \
+        "SELECT zoneid, mob_groups.name, \
         respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
         modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
         systemid, mobsize, speed, \
@@ -1310,6 +1310,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 
             luautils::OnMobInitialize(PMob);
             luautils::ApplyMixins(PMob);
+            luautils::ApplyZoneMixins(PMob);
 
             PMob->saveModifiers();
             PMob->saveMobModifiers();
