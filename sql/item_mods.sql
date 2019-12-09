@@ -30283,7 +30283,7 @@ INSERT INTO `item_mods` VALUES (23445,31,100);    -- Magic Evasion+100
 INSERT INTO `item_mods` VALUES (23445,68,61);     -- Evasion+61
 INSERT INTO `item_mods` VALUES (23445,114,21);    -- Enfeebling Magic Skill+21
 INSERT INTO `item_mods` VALUES (23445,311,48);    -- Magic Damage+48
-INSERT INTO `item_mods` VALUES (23445,381,30);    -- Ranged Delay+30
+INSERT INTO `item_mods` VALUES (23445,384,300);    -- Haste+3%
 INSERT INTO `item_mods` VALUES (23446,1,146);     -- atrophy_tabard_+3 DEF:146
 INSERT INTO `item_mods` VALUES (23446,2,91);      -- HP+91
 INSERT INTO `item_mods` VALUES (23446,5,98);      -- MP+98
@@ -30605,7 +30605,7 @@ INSERT INTO `item_mods` VALUES (23463,31,100);    -- Magic Evasion+100
 INSERT INTO `item_mods` VALUES (23463,68,61);     -- Evasion+61
 INSERT INTO `item_mods` VALUES (23463,116,21);    -- Dark Magic Skill+21
 INSERT INTO `item_mods` VALUES (23463,369,3);     -- Refresh+3
-INSERT INTO `item_mods` VALUES (23463,381,30);    -- Ranged Delay+30
+INSERT INTO `item_mods` VALUES (23463,384,300);    -- Haste+3%
 INSERT INTO `item_mods` VALUES (23464,1,155);     -- runeists_coat_+3 DEF:155
 INSERT INTO `item_mods` VALUES (23464,2,218);     -- HP+218
 INSERT INTO `item_mods` VALUES (23464,5,76);      -- MP+76
