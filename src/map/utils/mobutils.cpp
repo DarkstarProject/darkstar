@@ -547,6 +547,10 @@ void CalculateStats(CMobEntity * PMob)
     {
         SetupDynamisMob(PMob);
     }
+    else if(zoneType == ZONETYPE_LIMBUS)
+    {
+        SetupLimbusMob(PMob);
+    }
 
     if(PMob->m_Type & MOBTYPE_NOTORIOUS)
     {
@@ -783,6 +787,26 @@ void SetupPetSkills(CMobEntity* PMob)
     }
 }
 
+void SetupLimbusMob(CMobEntity* PMob)
+{
+    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+    PMob->setMobMod(MOBMOD_EXP_BONUS, -100);
+    PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, 1);
+
+    // Battlefield mobs don't drop gil
+    PMob->setMobMod(MOBMOD_GIL_MAX, -1);
+    PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+
+    // never despawn
+    PMob->SetDespawnTime(0s);
+    // do not roam around
+    PMob->m_roamFlags |= ROAMFLAG_EVENT;
+    PMob->m_maxRoamDistance = 0.5f;
+
+    PMob->setMobMod(MOBMOD_ALLI_HATE, 200);
+
+}
+
 void SetupDynamisMob(CMobEntity* PMob)
 {
     // no gil drop and no mugging!
@@ -821,12 +845,11 @@ void SetupBattlefieldMob(CMobEntity* PMob)
     PMob->m_roamFlags |= ROAMFLAG_EVENT;
     PMob->m_maxRoamDistance = 0.5f;
 
-    if(PMob->m_bcnmID != 864 && PMob->m_bcnmID != 704 && PMob->m_bcnmID != 706
-        && PMob->loc.zone->GetRegionID() != REGION_LIMBUS)
+    if((PMob->m_bcnmID != 864) && (PMob->m_bcnmID != 704) && (PMob->m_bcnmID != 706))
     {
         // bcnmID 864 (desires of emptiness), 704 (darkness named), and 706 (waking dreams) don't superlink
-        // Limbus mobs don't superlink
         // force all mobs in same instance to superlink
+        // plus one in case id is zero
         PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_battlefieldID);
     }
 

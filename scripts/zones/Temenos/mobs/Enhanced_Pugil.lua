@@ -26,12 +26,13 @@ function onMobDeath(mob, player, isKiller)
             GetNPCByID(ID.npc.TEMENOS_W_GATE[6]):setAnimation(8)
         end
 
-        for i = 0, 8 do
-            if spawn and mobID == ID.mob.TEMENOS_W_MOB[6]+i
-                and GetNPCByID(ID.npc.TEMENOS_W_CRATE[6]+(i%2)):getStatus() == dsp.status.DISAPPEAR
-            then
-                GetNPCByID(ID.npc.TEMENOS_W_CRATE[6]+(i%2)):setPos(mobX, mobY, mobZ)
-                limbus.spawnRandomCrate(ID.npc.TEMENOS_W_CRATE[6]+(i%2), player, "crateMaskF6", battlefield:getLocalVar("crateMaskF6"))
+        if spawn then
+            for i = 0, 2 do
+                if GetNPCByID(ID.npc.TEMENOS_W_CRATE[6]+i):getStatus() == dsp.status.DISAPPEAR then
+                    GetNPCByID(ID.npc.TEMENOS_W_CRATE[6]+i):setPos(mobX, mobY, mobZ)
+                    limbus.spawnRandomCrate(ID.npc.TEMENOS_W_CRATE[6]+i, player, "crateMaskF6", battlefield:getLocalVar("crateMaskF6"))
+                    break
+                end
             end
         end
     end
