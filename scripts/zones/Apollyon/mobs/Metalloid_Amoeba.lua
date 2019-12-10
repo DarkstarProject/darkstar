@@ -4,6 +4,12 @@
 -----------------------------------
 local ID = require("scripts/zones/Apollyon/IDs")
 
+function onMobSpawn(mob)
+    mob:setMod(dsp.mod.SLASHRES, 1500)
+    mob:setMod(dsp.mod.HTHRES, 0)
+    mob:setMod(dsp.mod.IMPACTRES, 0)
+end
+
 function onMobDeath(mob, player, isKiller)
     local mobX = mob:getXPos()
     local mobY = mob:getYPos()

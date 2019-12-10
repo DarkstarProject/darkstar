@@ -4,6 +4,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Apollyon/IDs")
 
+function onMobSpawn(mob)
+    mob:setMod(dsp.mod.SLASHRES, 0)
+    mob:setMod(dsp.mod.PIERCERES, 1500)
+end
+
 function onMobDeath(mob, player, isKiller)
     if isKiller then
         local battlefield = player:getBattlefield()

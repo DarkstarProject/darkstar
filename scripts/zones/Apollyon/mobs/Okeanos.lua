@@ -4,6 +4,10 @@
 -----------------------------------
 local ID = require("scripts/zones/Apollyon/IDs")
 
+function onMobSpawn(mob)
+    mob:setMod(dsp.mod.UDMGRANGE, -100)
+end
+
 function onMobDeath(mob, player, isKiller)
     if isKiller then
         local mobID = mob:getID()
