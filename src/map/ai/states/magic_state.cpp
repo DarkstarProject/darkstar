@@ -305,12 +305,14 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
 
                 if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
                 {
-                    if (m_PEntity->objtype == TYPE_PC)
+                    if (m_PEntity->objtype == TYPE_PC || (m_PEntity->PMaster && m_PEntity->PMaster->objtype == TYPE_PC))
                     {
+                        auto claimer = m_PEntity->objtype == TYPE_PC ? m_PEntity : m_PEntity->PMaster;
+
                         if (!mob->CalledForHelp())
                         {
-                            mob->m_OwnerID.id = m_PEntity->id;
-                            mob->m_OwnerID.targid = m_PEntity->targid;
+                            mob->m_OwnerID.id = claimer->id;
+                            mob->m_OwnerID.targid = claimer->targid;
                         }
                         mob->updatemask |= UPDATE_STATUS;
                     }
