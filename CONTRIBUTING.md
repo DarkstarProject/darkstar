@@ -8,7 +8,7 @@
 
 # Pull Request Contributions:
 
-**By submitting a pull request to Project Topaz, you agree to our [Limited Contributor License Agreement](https://github.com/project-topaz/topaz/tree/master/CONTRIBUTER_AGREEMENT.md)**
+**By submitting a pull request to Project Topaz, you agree to our [Limited Contributor License Agreement](https://github.com/project-topaz/topaz/tree/master/CONTRIBUTOR_AGREEMENT.md)**
 
 All contributions must be done through pull requests to the Topaz repository.  We don't take fixes from Discord to apply ourselves.  If you need help with making a pull request, there is a GitHub guide on how to do so.  If you still need help after consulting the guide, you can ask for help in Discord and we will be happy to help you.
 
