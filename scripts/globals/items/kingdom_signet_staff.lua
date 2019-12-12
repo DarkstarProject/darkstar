@@ -10,11 +10,10 @@ require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target, param, caster)
-    
     if (target:getNation() ~= tpz.nation.SANDORIA) then
         return tpz.msg.basic.ITEM_CANNOT_USE_ON
     end
-    
+
     -- If target's current region is not a conquest region or not a nation city involved with conquest
     if (target:getCurrentRegion() > tpz.region.JEUNO) then
         return tpz.msg.basic.ITEM_UNABLE_TO_USE
@@ -26,12 +25,12 @@ function onItemCheck(target, param, caster)
             return tpz.msg.basic.ITEM_CANNOT_USE_ON
         end
     end
-    
+
     return 0
 end
 
 
 function onItemUse(target)
-    player:delStatusEffectsByFlag(tpz.effectFlag.INFLUENCE, true)
+    target:delStatusEffectsByFlag(tpz.effectFlag.INFLUENCE, true)
     target:addStatusEffect(tpz.effect.SIGNET,0,0,18000)
 end

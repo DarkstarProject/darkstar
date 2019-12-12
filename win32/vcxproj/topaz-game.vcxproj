@@ -261,6 +261,7 @@
     <ClInclude Include="..\..\src\map\ai\states\trigger_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\weaponskill_state.h" />
     <ClInclude Include="..\..\src\map\alliance.h" />
+    <ClInclude Include="..\..\src\map\anticheat.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
     <ClInclude Include="..\..\src\map\char_recast_container.h" />
@@ -513,6 +514,7 @@
     <ClCompile Include="..\..\src\map\ai\states\trigger_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\weaponskill_state.cpp" />
     <ClCompile Include="..\..\src\map\alliance.cpp" />
+    <ClCompile Include="..\..\src\map\anticheat.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
     <ClCompile Include="..\..\src\map\char_recast_container.cpp" />

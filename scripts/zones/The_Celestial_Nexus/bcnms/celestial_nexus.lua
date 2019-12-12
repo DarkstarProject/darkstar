@@ -11,6 +11,11 @@ function onBattlefieldTick(battlefield, tick)
     tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+    battlefield:setLocalVar("lootSpawned", 1)
+end
+
 function onBattlefieldRegister(player, battlefield)
 end
 

@@ -21,7 +21,7 @@ function onTrigger(player,npc)
         2262,  4940,    -- Auto-Repair Kit
         2266,  4940,    -- Mana Tank
         2240,  9925,    -- Inhibitor
-        8462,  9925,    -- Speedloader
+        9229,  9925,    -- Speedloader
         2242,  9925,    -- Mana Booster
         2247,  9925,    -- Scope
         2250,  9925,    -- Shock Absorber

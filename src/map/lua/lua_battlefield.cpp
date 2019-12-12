@@ -384,7 +384,7 @@ inline int32 CLuaBattlefield::insertEntity(lua_State* L)
     TPZ_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
     TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1));
 
-    auto PLuaEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    auto PLuaEntity = !lua_isnumber(L, 1) ? Lunar<CLuaBaseEntity>::check(L, 1) : nullptr;
     auto PEntity = PLuaEntity ? PLuaEntity->GetBaseEntity() : nullptr;
 
     auto targid = PEntity ? PEntity->targid : lua_tointeger(L, 1);
@@ -400,7 +400,7 @@ inline int32 CLuaBattlefield::insertEntity(lua_State* L)
 
     if (PEntity)
     {
-        m_PLuaBattlefield->InsertEntity(PEntity, inBattlefield, conditions);
+        m_PLuaBattlefield->InsertEntity(PEntity, inBattlefield, conditions, ally);
 
         lua_getglobal(L, CLuaBaseEntity::className);
         lua_pushstring(L, "new");
