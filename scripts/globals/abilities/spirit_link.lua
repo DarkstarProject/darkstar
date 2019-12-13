@@ -114,7 +114,7 @@ function onUseAbility(player,target,ability)
                 pet:delStatusEffect(copyEffect:getType())
             end
             
-            pet:addStatusEffect(copyEffect:getType(),copyEffect:getType(),copyEffect:getTick(),math.ceil((copyEffect:getTimeRemaining())/1000)) -- id,power,tick,duration(convert ms to s)
+            pet:addStatusEffect(copyEffect:getType(),copyEffect:getPower(),copyEffect:getTick(),math.ceil((copyEffect:getTimeRemaining())/1000)) -- id,power,tick,duration(convert ms to s)
             copyi = copyi + 1
         end
     end
