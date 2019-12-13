@@ -87,7 +87,7 @@ function onUseAbility(player,target,ability)
     end
     
     -- Empathy copying
-    local empathyTotal = player:getMerit(dsp.merit.EMPATHY)/5 -- +5 value per increase for this merit... not sure why
+    local empathyTotal = player:getMerit(dsp.merit.EMPATHY)
     if empathyTotal > 0 then
         local effects = player:getStatusEffects()
         local validEffects = { }
