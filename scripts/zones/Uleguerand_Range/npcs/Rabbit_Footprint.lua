@@ -96,7 +96,7 @@ function onTimeTrigger(npc, triggerID)
 			if activeTime == 0 then
 				npc:setLocalVar("activeTime",os.time()+math.random(60*9,60*15)) -- moon phase just changed, i'm active in 9 to 15 mins from now
 			elseif os.time() > activeTime then
-				print("MOVING!")
+				--print("MOVING!")
 				moveFootprint(npc)
 			end
 		else
