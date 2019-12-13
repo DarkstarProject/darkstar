@@ -43,7 +43,6 @@ CREATE TABLE `status_effects` (
 
 LOCK TABLES `status_effects` WRITE;
 /*!40000 ALTER TABLE `status_effects` DISABLE KEYS */;
-
 INSERT INTO `status_effects` VALUES (0,'ko',0,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (1,'weakness',8388608,0,0,3,0,0,0,1);
 INSERT INTO `status_effects` VALUES (2,'sleep',8388656,2,19,1,193,0,8,1);
