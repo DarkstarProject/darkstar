@@ -123,4 +123,4 @@ function onUseAbility(player,target,ability)
     pet:addStatusEffect(dsp.effect.REGEN,regenAmount,3,90,0,0,0) -- 90 seconds of regen
     player:addTP(petTP/2) --add half pet tp to you
     pet:delTP(petTP/2) -- remove half tp from pet
-en
+end
