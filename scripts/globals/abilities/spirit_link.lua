@@ -9,6 +9,22 @@ require("scripts/globals/status")
 require("scripts/globals/msg")
 -----------------------------------
 
+function cutEmpathyEffectTable(validEffects,i,maxCount)
+    local delindex = 1
+    
+    while maxCount < i do
+        delindex = math.random(1,i)
+        while validEffects[delindex+1] ~= nil do
+            validEffects[delindex] = validEffects[delindex+1]
+            delindex = delindex + 1
+        end
+        validEffects[delindex+1] = nil -- could be in the above loop, but unsure if Lua allows copying of nil?
+        i = i - 1
+    end
+    
+    return validEffects
+end
+
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
         return dsp.msg.basic.REQUIRES_A_PET,0
