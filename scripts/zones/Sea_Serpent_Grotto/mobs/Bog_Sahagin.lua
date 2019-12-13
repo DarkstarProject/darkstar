@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Bog Sahagin
+--  Mob: Bog Sahagin
 -- Note: PH for Mouu the Waverider
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

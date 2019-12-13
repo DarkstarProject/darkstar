@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Vunkerl Inlet (S)
+-- Area: Vunkerl Inlet [S]
 --   NM: Judgmental Julika
 -----------------------------------
 require("scripts/globals/mobs")

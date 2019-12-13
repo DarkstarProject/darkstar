@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Labyrinth of Onzozo
---  MOB: Labyrinth Leech
+-- Area: Labyrinth of Onzozo
+--  Mob: Labyrinth Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

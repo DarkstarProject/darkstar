@@ -15,9 +15,9 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("WildcatSandy"), 13) then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(player:getCharVar("WildcatSandy"), 13) then
         player:startEvent(747)
-    elseif player:getVar("thePickpocket") == 1 then
+    elseif player:getCharVar("thePickpocket") == 1 then
         player:showText(npc, ID.text.PICKPOCKET_PARCARIN)
     else
         player:startEvent(566)
@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 747 then
-        player:setMaskBit(player:getVar("WildcatSandy"), "WildcatSandy", 13, true)
+        player:setMaskBit(player:getCharVar("WildcatSandy"), "WildcatSandy", 13, true)
     end
 end

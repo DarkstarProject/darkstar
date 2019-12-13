@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Phasma
+--  Mob: Phasma
 -- Note: PH for Ixtab
 -----------------------------------
 local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")

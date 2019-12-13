@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Decorative Weapon
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Decorative Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

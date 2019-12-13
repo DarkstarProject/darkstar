@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
---  MOB: Chigoe
+--  Mob: Tunga
 -----------------------------------
 mixins = {require("scripts/mixins/families/chigoe")}
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Aura Butler
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Aura Butler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

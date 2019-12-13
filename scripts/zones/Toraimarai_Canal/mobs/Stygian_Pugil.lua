@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Stygian Pugil
+-- Area: Toraimarai Canal
+--  Mob: Stygian Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

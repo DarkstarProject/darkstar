@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Ashu Talif (The Black Coffin)
--- MOB: Gessho
+--  Mob: Gessho
 -- TOAU-15 Mission Battle
 -----------------------------------
 

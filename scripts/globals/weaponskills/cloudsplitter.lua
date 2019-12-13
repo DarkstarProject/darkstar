@@ -29,7 +29,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.ftp200 = 6.7 params.ftp300 = 8.5
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params)
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, action, primary)
 
     -- Apply aftermath
     if damage > 0 then

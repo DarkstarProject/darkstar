@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Evil Weapon
+--  Mob: Evil Weapon
 -- Note: PH for Blighting Brand
 -----------------------------------
 local ID = require("scripts/zones/Sauromugue_Champaign/IDs")

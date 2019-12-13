@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  NM:  Boreal Coeurl
+--   NM: Boreal Coeurl
 -- Involved in Quests: Atop the Highest Mountains
 -- !pos 580 -9 290 112
 -----------------------------------
@@ -22,7 +22,7 @@ function onMobDeath(mob, player, isKiller)
         -- show ??? for desired duration
         -- notify people on the quest who need the KI
         GetNPCByID(ID.npc.BOREAL_COEURL_QM):showNPC(FrigiciteDuration)
-        if player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SQUARE_FRIGICITE) then
+        if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SQUARE_FRIGICITE) then
             player:messageSpecial(ID.text.BLOCKS_OF_ICE)
         end
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monarch Linn
---  MOB: Ouryu
+--  Mob: Ouryu
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------
@@ -13,7 +13,7 @@ end;
 function onMobFight(mob,target)
 
     local bf = mob:getBattlefield()
-    if bf:getBcnmID() == 961 and mob:getHPP() < 30 then
+    if bf:getID() == 961 and mob:getHPP() < 30 then
         bf:win()
         return
     end
@@ -32,7 +32,7 @@ function onMobFight(mob,target)
             mob:setLocalVar("twohourTime", math.random((mob:getBattleTime()/15)+12, (mob:getBattleTime()/15)+16));
         elseif (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(dsp.effect.ALL_MISS, 0, 1, 0, 0);
+            mob:addStatusEffectEx(dsp.effect.TOO_HIGH, 0, 1, 0, 0);
             mob:SetMobSkillAttack(731);
             --and record the time this phase was started
             mob:setLocalVar("changeTime", mob:getBattleTime());
@@ -45,7 +45,7 @@ function onMobFight(mob,target)
         elseif (mob:AnimationSub() == 2 and
                 mob:getBattleTime() - changeTime > 120) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(dsp.effect.ALL_MISS, 0, 1, 0, 0);
+            mob:addStatusEffectEx(dsp.effect.TOO_HIGH, 0, 1, 0, 0);
             mob:SetMobSkillAttack(731);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end

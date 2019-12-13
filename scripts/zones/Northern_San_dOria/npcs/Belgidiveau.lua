@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 57 and option == 0) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE);
-        player:setVar("troubleAtTheSluiceVar",1);
+        player:setCharVar("troubleAtTheSluiceVar",1);
     elseif (csid == 56) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe

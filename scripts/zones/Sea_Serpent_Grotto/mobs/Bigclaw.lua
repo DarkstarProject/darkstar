@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Bigclaw
+--  Mob: Bigclaw
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

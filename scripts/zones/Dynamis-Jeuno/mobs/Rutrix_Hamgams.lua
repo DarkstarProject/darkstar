@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Rutrix_Hamgams
+-- Area: Dynamis - Jeuno
+--  Mob: Rutrix Hamgams
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

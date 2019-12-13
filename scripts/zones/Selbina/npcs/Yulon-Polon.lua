@@ -37,7 +37,7 @@ local titleInfo =
             dsp.title.YAGUDO_INITIATE,
             dsp.title.MOBLIN_KINSMAN,
             dsp.title.TEAM_PLAYER,
-            dsp.title.DYNAMISVALKURM_INTERLOPER,
+            dsp.title.DYNAMIS_VALKURM_INTERLOPER,
             dsp.title.DISTURBER_OF_SLUMBER,
             dsp.title.INTERRUPTER_OF_DREAMS,
         },

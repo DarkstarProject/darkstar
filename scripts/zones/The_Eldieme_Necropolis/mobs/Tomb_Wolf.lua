@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Tomb Wolf
+--  Mob: Tomb Wolf
 -- Note: PH for Cwn Cyrff
 -----------------------------------
 local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs")

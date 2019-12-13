@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---   NM: Ix'aern (drk)
+--   NM: Ix'aern DRK
 -- !pos -240 5.00 440 35
 -- !pos -280 5.00 240 35
 -- !pos -560 5.00 239 35

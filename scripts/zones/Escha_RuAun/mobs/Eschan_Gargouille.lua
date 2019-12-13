@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Escha Ruaun
---  MOB: Gargouilles
+-- Area: Escha Ru'Aun
+--  Mob: Eschan Gargouille
 -----------------------------------
 
 function onMobSpawn(mob)

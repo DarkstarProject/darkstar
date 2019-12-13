@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Sand Beetle
+--  Mob: Sand Beetle
 -- Note: PH for Donnergugi
 -----------------------------------
 local ID = require("scripts/zones/Eastern_Altepa_Desert/IDs")

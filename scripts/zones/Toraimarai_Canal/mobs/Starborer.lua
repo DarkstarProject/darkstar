@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Starborer
+-- Area: Toraimarai Canal
+--  Mob: Starborer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

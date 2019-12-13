@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Pso'xja
---  MOB: Gargoyle
+-- Area: Pso'Xja
+--  Mob: Gargoyle
 -----------------------------------
 local ID = require("scripts/zones/PsoXja/IDs");
 

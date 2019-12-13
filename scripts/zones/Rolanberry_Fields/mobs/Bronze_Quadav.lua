@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Bronze Quadav
+--  Mob: Bronze Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Beleaguerer
+--  Mob: Tonberry Beleaguerer
 -- Note: PH for Bistre-hearted Malberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}

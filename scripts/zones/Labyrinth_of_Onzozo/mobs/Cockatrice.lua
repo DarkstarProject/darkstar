@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Labyrinth of Onzozo
---  MOB: Cockatrice
+-- Area: Labyrinth of Onzozo
+--  Mob: Cockatrice
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

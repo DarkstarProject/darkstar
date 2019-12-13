@@ -29,7 +29,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.4 params.int_wsc = 0.4
     end
 
-    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params)
+    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, action, primary)
     return tpHits, extraHits, criticalHit, damage
 
 end

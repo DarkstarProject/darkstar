@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sand Digger
+--  Mob: Sand Digger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

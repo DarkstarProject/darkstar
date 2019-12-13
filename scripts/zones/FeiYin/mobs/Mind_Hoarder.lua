@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Mind Hoarder
+--  Mob: Mind Hoarder
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

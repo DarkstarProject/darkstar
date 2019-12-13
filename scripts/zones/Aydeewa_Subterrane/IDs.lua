@@ -19,6 +19,7 @@ zones[dsp.zone.AYDEEWA_SUBTERRANE] =
         MINING_IS_POSSIBLE_HERE = 7320, -- Mining is possible here if you have <item>.
         BLOOD_STAINS            = 8029, -- The ground is smeared with bloodstains...
         DRAWS_NEAR              = 8030, -- Something draws near!
+        COMMON_SENSE_SURVIVAL   = 8902, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

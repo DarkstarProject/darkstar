@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Tumbling Truffle
+--  Mob: Tumbling Truffle
 -----------------------------------
 require("scripts/globals/regimes")
 

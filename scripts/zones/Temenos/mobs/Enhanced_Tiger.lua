@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T
---  NPC: Enhanced_Tiger
-
+--  Mob: Enhanced Tiger
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------
@@ -11,7 +10,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-local cofferID=Randomcoffer(1,GetInstanceRegion(1298));
+local cofferID=Randomcoffer(1,Temenos_Western_Tower);
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();

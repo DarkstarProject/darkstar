@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Riparian Sahagin
+--  Mob: Riparian Sahagin
 -- Note: PH for Seww the Squidlimbed and Fyuu the Seabellow
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

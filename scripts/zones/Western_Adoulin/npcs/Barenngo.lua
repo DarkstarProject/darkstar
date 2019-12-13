@@ -13,10 +13,10 @@ end;
 
 function onTrigger(player,npc)
     local DELM = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.DONT_EVER_LEAF_ME);
-    if ((DELM == QUEST_ACCEPTED) and (player:getVar("DELM_Barenngo_Branch") < 1)) then
+    if ((DELM == QUEST_ACCEPTED) and (player:getCharVar("DELM_Barenngo_Branch") < 1)) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
         player:startEvent(5015);
-    elseif ((DELM == QUEST_ACCEPTED) and (player:getVar("DELM_Barenngo_Branch") < 2)) then
+    elseif ((DELM == QUEST_ACCEPTED) and (player:getCharVar("DELM_Barenngo_Branch") < 2)) then
         -- Reminds player of hint for Quest: 'Dont Ever Leaf Me'
         player:startEvent(5016);
     else
@@ -31,6 +31,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 5015) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
-        player:setVar("DELM_Barenngo_Branch", 1);
+        player:setCharVar("DELM_Barenngo_Branch", 1);
     end
 end;

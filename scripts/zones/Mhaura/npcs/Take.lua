@@ -27,9 +27,9 @@ function onTrigger(player,npc)
 
 
 if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then -- if available and allready talked to mayor assistant
-    if (player:getVar("QuestRychardetheChef_var") == 1) then
+    if (player:getCharVar("QuestRychardetheChef_var") == 1) then
         player:startEvent(60); -- tell to look for ricarde
-    elseif (player:getVar("QuestRychardetheChef_var") == 2) then
+    elseif (player:getCharVar("QuestRychardetheChef_var") == 2) then
         player:startEvent(68); -- not talked to rycharde yet
     else
         player:startEvent(59); -- talk abaout something else
@@ -66,7 +66,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 60) then
-        player:setVar("QuestRychardetheChef_var",2); -- second stage on quest
+        player:setCharVar("QuestRychardetheChef_var",2); -- second stage on quest
     elseif (csid == 61) then  -- accept quest EXPERTICE
         player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE);
     elseif (csid == 62) then   -- end quest expertice
@@ -77,11 +77,11 @@ function onEventFinish(player,csid,option)
             player:addItem(132);
             player:messageSpecial(ID.text.ITEM_OBTAINED,132);
             player:addTitle(dsp.title.THREESTAR_PURVEYOR);
-            player:setVar("QUEST_EXPERTISE_STATE_var",0); --done cooking
-            player:setVar("QuestHNIVCCompDay_var",0); -- completition day of unending chase
-            player:setVar("QuestHNIVCCompYear_var",0);
-            player:setVar("QuestExpertiseCompDay_var",VanadielDayOfTheYear()); -- completition day of expertise quest
-            player:setVar("QuestExpertiseCompYear_var",VanadielYear());
+            player:setCharVar("QUEST_EXPERTISE_STATE_var",0); --done cooking
+            player:setCharVar("QuestHNIVCCompDay_var",0); -- completition day of unending chase
+            player:setCharVar("QuestHNIVCCompYear_var",0);
+            player:setCharVar("QuestExpertiseCompDay_var",VanadielDayOfTheYear()); -- completition day of expertise quest
+            player:setCharVar("QuestExpertiseCompYear_var",VanadielYear());
             player:delKeyItem(dsp.ki.LAND_CRAB_BISQUE); --give Land Crab Bisque from Valgeir
             player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE);
         end

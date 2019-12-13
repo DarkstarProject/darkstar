@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Shaman
+--  Mob: Goblin Shaman
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -27,14 +27,14 @@ end
 function onTrigger(player, npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest, player)
     local chocoboOnTheLoose = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
-    local chocoboOnTheLooseStat = player:getVar("ChocoboOnTheLoose")
+    local chocoboOnTheLooseStat = player:getCharVar("ChocoboOnTheLoose")
     local chocobosWounds = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS)
-    local chocobosWoundsStat = player:getVar("ChocobosWounds_Event")
+    local chocobosWoundsStat = player:getCharVar("ChocobosWounds_Event")
     local saveMySon = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON)
     local pathOfTheBeastmaster = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.PATH_OF_THE_BEASTMASTER)
     local wingsOfGold = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
     local scatteredIntoShadow = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW)
-    local scatteredIntoShadowStat = player:getVar("scatIntoShadowCS")
+    local scatteredIntoShadowStat = player:getCharVar("scatIntoShadowCS")
 
     local mLvl = player:getMainLvl()
     local mJob = player:getMainJob()
@@ -54,7 +54,7 @@ function onTrigger(player, npc)
         player:startEvent(10099)
     elseif chocoboOnTheLoose == QUEST_ACCEPTED and (chocoboOnTheLooseStat == 5 or chocoboOnTheLooseStat == 6) then
         player:startEvent(10100)
-    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 7 and not player:needToZone() and (player:getVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getVar("ChocoboOnTheLooseYear") < VanadielYear()) then
+    elseif chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStat == 7 and not player:needToZone() and (player:getCharVar("ChocoboOnTheLooseDay") < VanadielDayOfTheYear() or player:getCharVar("ChocoboOnTheLooseYear") < VanadielYear()) then
         player:startEvent(10109)
 
     -- CHOCOBO'S WOUNDS
@@ -71,10 +71,10 @@ function onTrigger(player, npc)
 
     -- WINGS OF GOLD
     elseif pathOfTheBeastmaster == QUEST_COMPLETED and wingsOfGold == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF1_QUEST_LEVEL then
-        if player:getVar("wingsOfGold_shortCS") == 1 then
+        if player:getCharVar("wingsOfGold_shortCS") == 1 then
             player:startEvent(137) -- Start Quest "Wings of gold" (Short dialog)
         else
-            player:setVar("wingsOfGold_shortCS", 1)
+            player:setCharVar("wingsOfGold_shortCS", 1)
             player:startEvent(139) -- Start Quest "Wings of gold" (Long dialog)
         end
     elseif wingsOfGold == QUEST_ACCEPTED then
@@ -86,10 +86,10 @@ function onTrigger(player, npc)
 
     -- SCATTERED INTO SHADOW
     elseif wingsOfGold == QUEST_COMPLETED and scatteredIntoShadow == QUEST_AVAILABLE and mJob == dsp.job.BST and mLvl >= AF2_QUEST_LEVEL then
-        if player:getVar("scatIntoShadow_shortCS") == 1 then
+        if player:getCharVar("scatIntoShadow_shortCS") == 1 then
             player:startEvent(143)
         else
-            player:setVar("scatIntoShadow_shortCS", 1)
+            player:setCharVar("scatIntoShadow_shortCS", 1)
             player:startEvent(141)
         end
     elseif scatteredIntoShadow == QUEST_ACCEPTED then
@@ -124,15 +124,15 @@ function onEventFinish(player, csid, option)
     if csid == 10093 then
         player:addQuest(JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE)
     elseif csid == 10094 then
-        player:setVar("ChocoboOnTheLoose", 1)
+        player:setCharVar("ChocoboOnTheLoose", 1)
     elseif csid == 10095 then
-        player:setVar("ChocoboOnTheLoose", 3)
+        player:setCharVar("ChocoboOnTheLoose", 3)
     elseif csid == 10099 then
-        player:setVar("ChocoboOnTheLoose", 4)
+        player:setCharVar("ChocoboOnTheLoose", 4)
     elseif csid == 10100 then
-        player:setVar("ChocoboOnTheLoose", 7)
-        player:setVar("ChocoboOnTheLooseDay", VanadielDayOfTheYear())
-        player:setVar("ChocoboOnTheLooseYear", VanadielYear())
+        player:setCharVar("ChocoboOnTheLoose", 7)
+        player:setCharVar("ChocoboOnTheLooseDay", VanadielDayOfTheYear())
+        player:setCharVar("ChocoboOnTheLooseYear", VanadielYear())
         player:needToZone(true)
     elseif csid == 10109 then
         npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE, {item = 2317, var = {"ChocoboOnTheLoose", "ChocoboOnTheLooseDay", "ChocoboOnTheLooseYear"}})
@@ -140,7 +140,7 @@ function onEventFinish(player, csid, option)
     -- CHOCOBO'S WOUNDS
     elseif csid == 71 and option == 1 then
         player:addQuest(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS)
-        player:setVar("ChocobosWounds_Event", 1)
+        player:setCharVar("ChocobosWounds_Event", 1)
 
     -- PATH OF THE BEASTMASTER
     elseif csid == 70 then
@@ -152,19 +152,19 @@ function onEventFinish(player, csid, option)
     -- WINGS OF GOLD
     elseif (csid == 137 or csid == 139) and option == 1 then
         player:addQuest(JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD)
-        player:setVar("wingsOfGold_shortCS", 0)
-    elseif csid == 138 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD, {item = 16680, fame = AF1_FAME}) then
+        player:setCharVar("wingsOfGold_shortCS", 0)
+    elseif csid == 138 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.WINGS_OF_GOLD, {item = 16680, fame = 20}) then
         player:delKeyItem(dsp.ki.GUIDING_BELL)
 
     -- SCATTERED INTO SHADOW
     elseif (csid == 141 or csid == 143) and option == 1 then
         player:addQuest(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW)
-        player:setVar("scatIntoShadow_shortCS", 0)
+        player:setCharVar("scatIntoShadow_shortCS", 0)
         npcUtil.giveKeyItem(player, {dsp.ki.AQUAFLORA1, dsp.ki.AQUAFLORA2, dsp.ki.AQUAFLORA3})
     elseif csid == 144 then
-        player:setVar("scatIntoShadowCS", 1)
+        player:setCharVar("scatIntoShadowCS", 1)
     elseif csid == 135 then
-        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW, {item = 14097, fame = AF2_FAME, var = "scatIntoShadowCS"})
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW, {item = 14097, fame = 40, var = "scatIntoShadowCS"})
 
     -- AXE THE COMPETITION
     else

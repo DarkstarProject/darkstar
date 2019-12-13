@@ -60,7 +60,7 @@ dsp.besieged.onEventFinish = function(player, csid, option)
 end
 
 -----------------------------------------------------------------
--- Variable for getNationTeleport and getRegionPoint
+-- Variable for addTeleport and getRegionPoint
 -----------------------------------------------------------------
 LEUJAOAM_ASSAULT_POINT = 0
 MAMOOL_ASSAULT_POINT = 1
@@ -70,12 +70,11 @@ ILRUSI_ASSAULT_POINT = 4
 NYZUL_ISLE_ASSAULT_POINT = 5
 
 dsp.besieged.addRunicPortal = function(player, portal)
-    player:addNationTeleport(dsp.teleport.nation.RUNIC_PORTAL, portal)
+    player:addTeleport(dsp.teleport.type.RUNIC_PORTAL, portal)
 end
 
 dsp.besieged.hasRunicPortal = function(player, portal)
-    local runicPortals = player:getNationTeleport(dsp.teleport.nation.RUNIC_PORTAL)
-    return bit.band(runicPortals, portal) ~= 0
+    return player:hasTeleport(dsp.teleport.type.RUNIC_PORTAL, portal)
 end
 
 dsp.besieged.hasAssaultOrders = function(player)

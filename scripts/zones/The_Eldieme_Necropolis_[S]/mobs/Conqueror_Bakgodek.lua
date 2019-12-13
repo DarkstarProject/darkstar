@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Conqueror_Bakgodek
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Conqueror Bakgodek
 -----------------------------------
 
 -- -----------------------------------

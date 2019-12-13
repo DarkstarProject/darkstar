@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(544,1) and count == 1 and trade:getGil() == 0) then
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-            if (player:getVar("QuestMakingTheGrade_prog") == 1) then
+            if (player:getCharVar("QuestMakingTheGrade_prog") == 1) then
                 player:startEvent(285); -- MAKING THE GRADE: Turn in Test Answer & Told to go back to Fuepepe & Chomoro
             else
                 player:startEvent(287); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
@@ -29,8 +29,8 @@ function onTrade(player,npc,trade)
     elseif (qStarStruck == QUEST_ACCEPTED and trade:hasItemQty(582,1) and count == 1 and trade:getGil() == 0) then
         player:startEvent(211);
     elseif (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
-            player:setVar("ridingOnTheClouds_4",0);
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getCharVar("ridingOnTheClouds_4") == 4) then
+            player:setCharVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
@@ -45,10 +45,10 @@ function onTrade(player,npc,trade)
         if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_ROOT_OF_THE_PROBLEM) == QUEST_ACCEPTED) then
             player:startEvent(349);
             player:tradeComplete();
-            player:setVar("rootProblem",2);
+            player:setCharVar("rootProblem",2);
         end
     elseif (trade:hasItemQty(17299,4) and count == 4 and trade:getGil() == 0) then -- trade:getItemCount() is apparently checking total of all 8 slots combined. Could have sworn that wasn't how it worked before.
-        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 2) then
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getCharVar("ClassReunionProgress") == 2) then
             player:startEvent(407); -- now Koru remembers something that you need to inquire his former students.
         end;
     end;
@@ -57,16 +57,16 @@ end;
 function onTrigger(player,npc)
     local qStarStruck = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.STAR_STRUCK);
     local blastFromPast = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST);
-    local blastProg = player:getVar("BlastFromThePast_Prog");
+    local blastProg = player:getCharVar("BlastFromThePast_Prog");
     local rootProblem = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_ROOT_OF_THE_PROBLEM);
     local ThePuppetMaster = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER);
-    local ThePuppetMasterProgress = player:getVar("ThePuppetMasterProgress");
+    local ThePuppetMasterProgress = player:getCharVar("ThePuppetMasterProgress");
     local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
-    local ClassReunionProgress = player:getVar("ClassReunionProgress");
-    local talk1 = player:getVar("ClassReunion_TalkedToFupepe");
-    local talk2 = player:getVar("ClassReunion_TalkedToFurakku");
+    local ClassReunionProgress = player:getCharVar("ClassReunionProgress");
+    local talk1 = player:getCharVar("ClassReunion_TalkedToFupepe");
+    local talk2 = player:getCharVar("ClassReunion_TalkedToFurakku");
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
-    local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
+    local CarbuncleDebacleProgress = player:getCharVar("CarbuncleDebacleProgress");
 
     if (blastFromPast == QUEST_AVAILABLE and qStarStruck == QUEST_COMPLETED and player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) ~= QUEST_ACCEPTED and player:getFameLevel(WINDURST) >= 3 and player:needToZone() == false) then
         player:startEvent(214);
@@ -75,7 +75,7 @@ function onTrigger(player,npc)
     elseif (blastFromPast == QUEST_ACCEPTED) then
         player:startEvent(216);
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-        local makingGradeProg = player:getVar("QuestMakingTheGrade_prog");
+        local makingGradeProg = player:getCharVar("QuestMakingTheGrade_prog");
         if (makingGradeProg == 0 and player:hasItem(544)) then
             player:startEvent(287); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
         elseif (makingGradeProg == 1) then
@@ -120,7 +120,7 @@ function onTrigger(player,npc)
     elseif (ThePuppetMaster == QUEST_COMPLETED and ClassReunion ~= 2) then
         player:startEvent(405); -- new cs after completed AF1
     ----------------------------------------------------------
-    elseif (rootProblem == QUEST_ACCEPTED and player:getVar("rootProblem") == 1) then
+    elseif (rootProblem == QUEST_ACCEPTED and player:getCharVar("rootProblem") == 1) then
         player:startEvent(348,0,829);
     else
         if (qStarStruck == QUEST_COMPLETED) then
@@ -140,7 +140,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addKeyItem(dsp.ki.TATTERED_TEST_SHEET);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TATTERED_TEST_SHEET);
-        player:setVar("QuestMakingTheGrade_prog",2);
+        player:setCharVar("QuestMakingTheGrade_prog",2);
     elseif (csid == 211) then
         player:tradeComplete();
         player:addItem(12502);
@@ -158,7 +158,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST);
     elseif (csid == 224) then
         player:tradeComplete();
-        player:setVar("BlastFromThePast_Prog",0);
+        player:setCharVar("BlastFromThePast_Prog",0);
         player:completeQuest(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST);
         player:addItem(17030);
         player:messageSpecial(ID.text.ITEM_OBTAINED,17030);
@@ -170,35 +170,35 @@ function onEventFinish(player,csid,option)
             player:addItem(17532);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17532);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER);
-            player:setVar("ThePuppetMasterProgress",0);
+            player:setCharVar("ThePuppetMasterProgress",0);
             player:needToZone(true);
-            player:addFame(WINDURST,AF1_FAME);
+            player:addFame(WINDURST,20);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17532);
         end;
     elseif (csid == 412) then
         player:delKeyItem(dsp.ki.CARBUNCLES_TEAR);
-        player:setVar("ClassReunionProgress",2);
+        player:setCharVar("ClassReunionProgress",2);
     elseif (csid == 407) then
         player:tradeComplete();
-        player:setVar("ClassReunionProgress",3);
+        player:setCharVar("ClassReunionProgress",3);
     elseif (csid == 410) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(14228);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14228);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
-            player:setVar("ClassReunionProgress",0);
-            player:setVar("ClassReunion_TalkedToFurakku",0);
-            player:setVar("ClassReunion_TalkedToFupepe",0);
+            player:setCharVar("ClassReunionProgress",0);
+            player:setCharVar("ClassReunion_TalkedToFurakku",0);
+            player:setCharVar("ClassReunion_TalkedToFupepe",0);
             player:needToZone(true);
-            player:addFame(WINDURST,AF2_FAME);
+            player:addFame(WINDURST,40);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14228);
         end;
     elseif (csid == 416) then
-        player:setVar("CarbuncleDebacleProgress",2);
+        player:setCharVar("CarbuncleDebacleProgress",2);
     elseif (csid == 417) then
-        player:setVar("CarbuncleDebacleProgress",5);
+        player:setCharVar("CarbuncleDebacleProgress",5);
         player:addKeyItem(dsp.ki.DAZEBREAKER_CHARM);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DAZEBREAKER_CHARM);
     elseif (csid == 419) then
@@ -207,8 +207,8 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,12520);
             player:addTitle(dsp.title.PARAGON_OF_SUMMONER_EXCELLENCE);
             player:completeQuest(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
-            player:addFame(WINDURST,AF3_FAME);
-            player:setVar("CarbuncleDebacleProgress",0);
+            player:addFame(WINDURST,60);
+            player:setCharVar("CarbuncleDebacleProgress",0);
             player:needToZone(true);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12520);

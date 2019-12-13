@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
 
     local mobHP = mob:getHP()
-    local hpMod = skill:getHPP() / 100
+    local hpMod = skill:getMobHPP() / 100
     dmgmod = dmgmod + hpMod * 14 + math.random(2,6)
 
     if (mob:isMobType(MOBTYPE_NOTORIOUS)) then

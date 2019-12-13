@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---   Mob: Oggbi
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Oggbi
 -----------------------------------
 
 -- -----------------------------------

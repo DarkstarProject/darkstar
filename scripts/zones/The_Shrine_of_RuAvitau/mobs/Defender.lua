@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
---  MOB: Defender
+--  Mob: Defender
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

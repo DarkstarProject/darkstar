@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Labyrinth Manticore
+--  Mob: Labyrinth Manticore
 -- Note: Place holder Narasimha
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")

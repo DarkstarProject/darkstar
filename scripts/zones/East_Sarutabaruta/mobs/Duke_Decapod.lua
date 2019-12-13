@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta (116)
---   NM: Duke_Decapod
+--   NM: Duke Decapod
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

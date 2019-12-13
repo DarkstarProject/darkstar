@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Veteran Quadav
+--  Mob: Veteran Quadav
 -- Note: PH for Ni'Zho Bladebender
 -----------------------------------
 local ID = require("scripts/zones/Pashhow_Marshlands/IDs")

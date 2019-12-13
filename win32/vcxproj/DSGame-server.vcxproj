@@ -261,6 +261,7 @@
     <ClInclude Include="..\..\src\map\ai\states\trigger_state.h" />
     <ClInclude Include="..\..\src\map\ai\states\weaponskill_state.h" />
     <ClInclude Include="..\..\src\map\alliance.h" />
+    <ClInclude Include="..\..\src\map\anticheat.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
     <ClInclude Include="..\..\src\map\char_recast_container.h" />
@@ -283,7 +284,7 @@
     <ClInclude Include="..\..\src\map\instance.h" />
     <ClInclude Include="..\..\src\map\instance_loader.h" />
     <ClInclude Include="..\..\src\map\items\item.h" />
-    <ClInclude Include="..\..\src\map\items\item_armor.h" />
+    <ClInclude Include="..\..\src\map\items\item_equipment.h" />
     <ClInclude Include="..\..\src\map\items\item_currency.h" />
     <ClInclude Include="..\..\src\map\items\item_fish.h" />
     <ClInclude Include="..\..\src\map\items\item_furnishing.h" />
@@ -513,6 +514,7 @@
     <ClCompile Include="..\..\src\map\ai\states\trigger_state.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\weaponskill_state.cpp" />
     <ClCompile Include="..\..\src\map\alliance.cpp" />
+    <ClCompile Include="..\..\src\map\anticheat.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
     <ClCompile Include="..\..\src\map\char_recast_container.cpp" />
@@ -535,7 +537,7 @@
     <ClCompile Include="..\..\src\map\instance.cpp" />
     <ClCompile Include="..\..\src\map\instance_loader.cpp" />
     <ClCompile Include="..\..\src\map\items\item.cpp" />
-    <ClCompile Include="..\..\src\map\items\item_armor.cpp" />
+    <ClCompile Include="..\..\src\map\items\item_equipment.cpp" />
     <ClCompile Include="..\..\src\map\items\item_currency.cpp" />
     <ClCompile Include="..\..\src\map\items\item_fish.cpp" />
     <ClCompile Include="..\..\src\map\items\item_furnishing.cpp" />

@@ -13,7 +13,7 @@ require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
     wonderingstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL);
-    if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getItemCount() == 1 and player:getVar("QuestWonderingMin_var") == 1) then
+    if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getItemCount() == 1 and player:getCharVar("QuestWonderingMin_var") == 1) then
         player:startEvent(638);                 -- WONDERING_MINSTREL: Quest Finish
     end
 end;
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,75);
             player:addTitle(dsp.title.DOWN_PIPER_PIPEUPPERER);
             player:needToZone(true);
-            player:setVar("QuestWonderingMin_var",0);
+            player:setCharVar("QuestWonderingMin_var",0);
         end
     end
 end;

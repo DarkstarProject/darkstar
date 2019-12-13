@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Ooze
+--  Mob: Ooze
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

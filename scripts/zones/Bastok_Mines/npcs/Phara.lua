@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         player:startEvent(151); -- Start Quests "The doorman"
     elseif (player:hasKeyItem(dsp.ki.SWORD_GRIP_MATERIAL)) then
         player:startEvent(152); -- Need to wait 1 vanadiel day
-    elseif (player:getVar("theDoormanCS") == 2 and VanadielDayOfTheYear() ~= player:getVar("theDoorman_time")) then
+    elseif (player:getCharVar("theDoormanCS") == 2 and VanadielDayOfTheYear() ~= player:getCharVar("theDoorman_time")) then
         player:startEvent(153); -- The doorman notification, go to naji
     elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE) then
         player:startEvent(154); -- New standard dialog
@@ -42,18 +42,18 @@ function onEventFinish(player,csid,option)
 
     if (csid == 151) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.THE_DOORMAN);
-        player:setVar("theDoormanCS",1);
+        player:setCharVar("theDoormanCS",1);
     elseif (csid == 152) then
-        player:setVar("theDoorman_time",VanadielDayOfTheYear());
-        player:setVar("theDoormanCS",2);
+        player:setCharVar("theDoorman_time",VanadielDayOfTheYear());
+        player:setCharVar("theDoormanCS",2);
         player:delKeyItem(dsp.ki.SWORD_GRIP_MATERIAL);
     elseif (csid == 153) then
         player:addKeyItem(dsp.ki.YASINS_SWORD);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.YASINS_SWORD);
-        player:setVar("theDoormanCS",3);
-        player:setVar("theDoorman_time",0);
+        player:setCharVar("theDoormanCS",3);
+        player:setCharVar("theDoorman_time",0);
     elseif (csid == 154) then
-        player:setVar("theTalekeeperTruthCS",1);
+        player:setCharVar("theTalekeeperTruthCS",1);
     end
 
 end;

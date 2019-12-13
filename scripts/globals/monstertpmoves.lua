@@ -454,7 +454,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,attackType,damageType,shadowbe
     end
 
     --handle pd
-    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.TOO_HIGH) )
             and attackType==dsp.attackType.PHYSICAL) then
         skill:setMsg(dsp.msg.basic.SKILL_MISS);
         return 0;

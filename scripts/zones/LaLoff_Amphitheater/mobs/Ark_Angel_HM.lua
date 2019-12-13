@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel HM
+--  Mob: Ark Angel HM
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");

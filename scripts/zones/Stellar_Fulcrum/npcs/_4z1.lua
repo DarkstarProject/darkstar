@@ -25,13 +25,13 @@ function onEventFinish(player,csid,option)
     local pZone = player:getZoneID();
 
     if (csid == 32003 and option == 4) then
-        if (player:getVar(tostring(pZone) .. "_Fight") == 100) then
-            player:setVar("BCNM_Killed",0);
-            player:setVar("BCNM_Timer",0);
+        if (player:getCharVar(tostring(pZone) .. "_Fight") == 100) then
+            player:setCharVar("BCNM_Killed",0);
+            player:setCharVar("BCNM_Timer",0);
         end
-        player:setVar(tostring(pZone) .. "_Runaway",1);
+        player:setCharVar(tostring(pZone) .. "_Runaway",1);
         player:delStatusEffect(dsp.effect.BATTLEFIELD);
-        player:setVar(tostring(pZone) .. "_Runaway",0)
+        player:setCharVar(tostring(pZone) .. "_Runaway",0)
     end
 
 end;

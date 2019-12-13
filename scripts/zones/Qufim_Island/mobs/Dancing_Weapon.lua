@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Dancing Weapon
+--  Mob: Dancing Weapon
 -- Note: PH for Trickster Kinetix
 -----------------------------------
 local ID = require("scripts/zones/Qufim_Island/IDs")

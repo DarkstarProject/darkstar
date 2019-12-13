@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Healer
+--  Mob: Goblin Healer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

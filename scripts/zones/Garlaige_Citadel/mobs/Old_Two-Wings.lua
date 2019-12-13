@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel (200)
---   NM: Old_Two_Wings
+--   NM: Old Two-Wings
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

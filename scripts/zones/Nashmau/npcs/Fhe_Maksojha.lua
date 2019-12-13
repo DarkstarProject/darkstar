@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local notmeanttobe = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NOT_MEANT_TO_BE);
-    local notMeantToBeProg = player:getVar("notmeanttobeCS");
+    local notMeantToBeProg = player:getCharVar("notmeanttobeCS");
     if (notmeanttobe == QUEST_AVAILABLE) then
         player:startEvent(293);
     elseif (notMeantToBeProg == 1) then
@@ -35,15 +35,15 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 293) then
-        player:setVar("notmeanttobeCS",1);
+        player:setCharVar("notmeanttobeCS",1);
         player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NOT_MEANT_TO_BE);
     elseif (csid == 294) then
-        player:setVar("notmeanttobeCS",3);
+        player:setCharVar("notmeanttobeCS",3);
     elseif (csid == 297) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINEDX,2187,3);
         else
-            player:setVar("notmeanttobeCS",0);
+            player:setCharVar("notmeanttobeCS",0);
             player:addItem(2187,3);
             player:messageSpecial(ID.text.ITEM_OBTAINEDX,2187,3);
             player:completeQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NOT_MEANT_TO_BE);

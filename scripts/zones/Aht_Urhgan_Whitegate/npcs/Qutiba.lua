@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local vanishProg = player:getVar("vanishingactCS")
-    if player:getVar("deliveringTheGoodsCS") == 1 then
+    local vanishProg = player:getCharVar("vanishingactCS")
+    if player:getCharVar("deliveringTheGoodsCS") == 1 then
         player:startEvent(40)
     elseif player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.DELIVERING_THE_GOODS) == QUEST_COMPLETED and vanishProg == 1 then
         player:startEvent(42)
@@ -34,10 +34,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 40 then
-        player:setVar("deliveringTheGoodsCS",2)
+        player:setCharVar("deliveringTheGoodsCS",2)
     elseif csid == 42 and option == 0 then
         player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.VANISHING_ACT)
-        player:setVar("vanishingactCS",2)
+        player:setCharVar("vanishingactCS",2)
     elseif csid == 45 and npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.VANISHING_ACT, {item=2185, var="vanishingactCS"}) then
         player:delKeyItem(dsp.ki.RAINBOW_BERRY)
     end

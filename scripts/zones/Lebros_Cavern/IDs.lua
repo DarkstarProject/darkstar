@@ -17,8 +17,8 @@ zones[dsp.zone.LEBROS_CAVERN] =
         KEYITEM_LOST               = 6392, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL        = 6393, -- You do not have enough gil.
         ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
-        MINE_COUNTDOWN             = 6980, -- #....
-        TEMP_ITEM                  = 7210, -- Obtained temporary item:
+        MINE_COUNTDOWN             = 6980, -- <number>...
+        TEMP_ITEM                  = 7210, -- Obtained temporary item: <item>!
         ASSAULT_21_START           = 7367, -- Commencing <assault>! Objective: Remove the obstructions
         ASSAULT_22_START           = 7368, -- Commencing <assault>! Objective: Deliver the provisions
         ASSAULT_23_START           = 7369, -- Commencing <assault>! Objective: Destroy the Troll fugitives
@@ -70,7 +70,7 @@ zones[dsp.zone.LEBROS_CAVERN] =
         {
         },
         -- Troll Figitives
-        [23] = 
+        [23] =
         {
             TROLL_FUGITIVE1  = 17035310,
             TROLL_FUGITIVE2  = 17035311,
@@ -134,7 +134,7 @@ zones[dsp.zone.LEBROS_CAVERN] =
         }
     },
 
-    npc = 
+    npc =
     {
         ANCIENT_LOCKBOX = 17035478,
         RUNE_OF_RELEASE = 17035479,

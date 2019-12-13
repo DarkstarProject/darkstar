@@ -10,7 +10,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    local grapplingCS = player:getVar("thickAsThievesGrapplingCS")
+    local grapplingCS = player:getCharVar("thickAsThievesGrapplingCS")
 
     if grapplingCS >= 2 and grapplingCS <= 7 and npcUtil.tradeHas(trade, 17474) then
         player:messageSpecial(ID.text.THF_AF_WALL_OFFSET + 3, 0, 17474) -- You cannot get a decent grip on the wall using the [Grapnel].
@@ -19,7 +19,7 @@ end
 
 function onTrigger(player, npc)
     local thickAsThieves = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
-    local grapplingCS = player:getVar("thickAsThievesGrapplingCS")
+    local grapplingCS = player:getCharVar("thickAsThievesGrapplingCS")
 
     if thickAsThieves == QUEST_ACCEPTED then
         if grapplingCS == 4 then

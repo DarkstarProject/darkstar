@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
         if (LightningFork == true) then
             player:startEvent(10018); --Dialogue given to remind player to be prepared
-        elseif (LightningFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeLightning_date")) then
+        elseif (LightningFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeLightning_date")) then
             player:startEvent(10029,0,1548,5,20); --Need another mini tuning fork
         end
     elseif (TrialSizeLightning == QUEST_COMPLETED) then
@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
         else
-            player:setVar("TrialSizeLightning_date", 0);
+            player:setCharVar("TrialSizeLightning_date", 0);
             player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING);
             player:addItem(1548);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1548);

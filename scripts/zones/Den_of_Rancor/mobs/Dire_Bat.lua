@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Dire Bat
+--  Mob: Dire Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

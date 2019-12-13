@@ -33,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.atk100 = 2; params.atk200 = 2; params.atk300 = 2;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary, action)
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, action, primary)
     return tpHits, extraHits, criticalHit, damage
 
 end

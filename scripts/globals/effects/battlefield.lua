@@ -14,10 +14,13 @@ function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-    if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effect.BATTLEFIELD)
+    local pet = target:getPet()
+    if pet then
+        pet:delStatusEffect(dsp.effect.BATTLEFIELD)
+        pet:leaveBattlefield(1)
     end
-end
+    target:setLocalVar("[battlefield]area", 0)
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid)

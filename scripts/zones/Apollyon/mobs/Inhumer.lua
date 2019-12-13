@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Inhumer
-
+--  Mob: Inhumer
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

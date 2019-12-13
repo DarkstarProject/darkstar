@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Vespo
+--  Mob: Vespo
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

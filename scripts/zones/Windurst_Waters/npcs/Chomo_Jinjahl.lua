@@ -4,22 +4,25 @@
 -- Guild Merchant NPC: Cooking Guild
 -- !pos -105.094 -2.222 73.791 238
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-local ID = require("scripts/zones/Windurst_Waters/IDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs")
+require("scripts/globals/shop")
+require("scripts/globals/crafting")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    if (player:sendGuild(5302,5,20,7)) then
-        player:showText(npc,ID.text.CHOMOJINJAHL_SHOP_DIALOG);
-    end
-end;
+    local guildRank = player:getSkillRank(dsp.skill.COOKING)
+    local stock = dsp.shop.generalGuildStock[guild.cooking]
+    dsp.shop.generalGuild(player, stock, guildRank)
+    player:showText(npc,ID.text.CHOMOJINJAHL_SHOP_DIALOG)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

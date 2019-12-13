@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Goblin Bandit
+--  Mob: Goblin Bandit
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

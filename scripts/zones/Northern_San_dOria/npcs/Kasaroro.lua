@@ -25,9 +25,9 @@ function onTrigger(player,npc)
     pNation = player:getNation();
     if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
-        MissionStatus = player:getVar("MissionStatus");
+        MissionStatus = player:getCharVar("MissionStatus");
 
-        if (currentMission == THE_THREE_KINGDOMS) then
+        if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
             if (MissionStatus == 2) then
                 player:startEvent(546);
             elseif (MissionStatus == 6) then
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
             elseif (MissionStatus == 11) then
                 player:showText(npc,ID.text.KASARORO_DIALOG + 20);
             end
-        elseif (currentMission == THE_THREE_KINGDOMS_SANDORIA) then
+        elseif (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA) then
             if (MissionStatus == 3) then
                 player:showText(npc,ID.text.KASARORO_DIALOG);
             elseif (MissionStatus == 4) then
@@ -45,13 +45,13 @@ function onTrigger(player,npc)
             elseif (MissionStatus == 5) then
                 player:startEvent(550); -- done with Sandy first path, now go to bastok
             end
-        elseif (currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
+        elseif (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) then
             if (MissionStatus == 8) then
                 player:showText(npc,ID.text.KASARORO_DIALOG);
             elseif (MissionStatus == 10) then
                 player:startEvent(551);
             end
-        elseif (player:hasCompletedMission(WINDURST,THE_THREE_KINGDOMS)) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS)) then
             player:startEvent(604);
         else
             player:startEvent(548);
@@ -68,21 +68,21 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 546) then
-        player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA);
+        player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (csid == 550) then
-        player:addMission(WINDURST,THE_THREE_KINGDOMS);
-        player:setVar("MissionStatus",6);
+        player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS);
+        player:setCharVar("MissionStatus",6);
     elseif (csid == 547) then
-        player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA2);
-        player:setVar("MissionStatus",8);
+        player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2);
+        player:setCharVar("MissionStatus",8);
     elseif (csid == 551) then
-        player:addMission(WINDURST,THE_THREE_KINGDOMS);
+        player:addMission(WINDURST,dsp.mission.id.windurst.THE_THREE_KINGDOMS);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
-        player:setVar("MissionStatus",11);
+        player:setCharVar("MissionStatus",11);
     end
 
 end;

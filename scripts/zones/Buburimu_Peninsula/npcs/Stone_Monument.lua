@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         player:addItem(570);
         player:messageSpecial(ID.text.ITEM_OBTAINED,570);
-        player:setVar("anExplorer-CurrentTablet",0x02000);
+        player:setCharVar("anExplorer-CurrentTablet",0x02000);
     end
 end;
 

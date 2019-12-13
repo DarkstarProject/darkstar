@@ -13,11 +13,11 @@ end;
 function onTrigger(player,npc)
 
     local currentCoP = player:getCurrentMission(COP);
-    local PromathiaStatus = player:getVar("PromathiaStatus");
+    local PromathiaStatus = player:getCharVar("PromathiaStatus");
 
-    if (currentCoP == THE_SECRETS_OF_WORSHIP and PromathiaStatus == 1) then
+    if (currentCoP == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and PromathiaStatus == 1) then
         player:startEvent(9);
-    elseif (player:hasCompletedMission(COP,THE_LAST_VERSE) or (currentCoP == THE_SECRETS_OF_WORSHIP and PromathiaStatus >= 2)or(currentCoP > THE_SECRETS_OF_WORSHIP)) then
+    elseif (player:hasCompletedMission(COP,dsp.mission.id.cop.THE_LAST_VERSE) or (currentCoP == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and PromathiaStatus >= 2)or(currentCoP > dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP)) then
         player:startEvent(502);
     else
         player:messageSpecial(ID.text.DOOR_CLOSED);
@@ -30,7 +30,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 9 and option == 1) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
         player:setPos(-220.075,-15.999,79.634,62,28); -- To Sacrarium {R}
     elseif (csid == 502 and option == 1) then
         player:setPos(-220.075,-15.999,79.634,62,28); -- To Sacrarium {R}

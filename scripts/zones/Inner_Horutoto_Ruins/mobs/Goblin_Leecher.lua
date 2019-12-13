@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -- Note: PH for Slendlix Spindlethumb
 -----------------------------------
 local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")

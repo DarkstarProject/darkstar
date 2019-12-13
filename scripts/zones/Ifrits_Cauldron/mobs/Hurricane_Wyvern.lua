@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Hurricane Wyvern
+--  Mob: Hurricane Wyvern
 -- Note: PH for Vouivre
 -----------------------------------
 local ID = require("scripts/zones/Ifrits_Cauldron/IDs")

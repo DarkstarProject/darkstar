@@ -29,7 +29,7 @@ zones[dsp.zone.WINDURST_WALLS] =
         RETRIBUTION_LEARNED            = 9060, -- You have learned the weapon skill Retribution!
         YOU_CANNOT_ENTER_DYNAMIS       = 9083, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 9085, -- Players who have not reached level <number> are prohibited from entering Dynamis.
-        STRANDS_OF_GRASS_HERE          = 9097, -- The strands of grass here have been tied together.
+        DYNA_NPC_DEFAULT_MESSAGE       = 9097, -- The strands of grass here have been tied together.
         TEAR_IN_FABRIC_OF_SPACE        = 10804, -- There appears to be a tear in the fabric of space...
     },
     mob =

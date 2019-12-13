@@ -69,6 +69,7 @@ enum EFFECTFLAG
     EFFECTFLAG_ON_JOBCHANGE     = 0x400000, // Removes effect when you change jobs
     EFFECTFLAG_NO_CANCEL        = 0x800000, // CAN NOT CLICK IT OFF IN CLIENT
     EFFECTFLAG_INFLUENCE        = 0x1000000, // Influence effects - e.g. Signet, Sanction, Sigil, Ionis
+    EFFECTFLAG_OFFLINE_TICK     = 0x2000000, // Duration elapses while offline
 };
 
 enum EFFECT
@@ -786,7 +787,8 @@ public:
          uint32 duration,
          uint32 subid = 0,
          uint16 subPower = 0,
-         uint16 tier = 0);
+         uint16 tier = 0,
+         uint32 flags = 0);
 
    ~CStatusEffect();
 

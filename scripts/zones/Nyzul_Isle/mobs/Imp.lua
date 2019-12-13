@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle
---  MOB: Imp
+--  Mob: Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

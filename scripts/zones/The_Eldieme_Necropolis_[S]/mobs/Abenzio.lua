@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Abenzio
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Abenzio
 -----------------------------------
 
 -- -----------------------------------

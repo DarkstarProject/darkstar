@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Celestial Nexus
---  MOB: Eald'Narche - Phase 1
+--  Mob: Eald'narche (Phase 1)
 -- Zilart Mission 16 BCNM Fight
 -----------------------------------
 require("scripts/globals/titles");
@@ -49,7 +49,7 @@ function onMobDeath(mob, player, isKiller)
     DespawnMob(mob:getID()+3);
     DespawnMob(mob:getID()+4);
     local battlefield = player:getBattlefield();
-    player:startEvent(32004, battlefield:getBattlefieldNumber());
+    player:startEvent(32004, battlefield:getArea());
 end;
 
 function onEventUpdate(player,csid,option)

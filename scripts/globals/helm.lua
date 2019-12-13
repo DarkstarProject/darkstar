@@ -6,9 +6,10 @@
 -- https://ffxiclopedia.wikia.com/wiki/Mining
 -----------------------------------
 require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 require("scripts/globals/npc_util")
-require("scripts/globals/settings")
 require("scripts/globals/quests")
+require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/zone")
 -----------------------------------
@@ -1399,6 +1400,7 @@ end
 dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
     local info = helmInfo[helmType]
     local zoneId = player:getZoneID()
+    local regionId = player:getCurrentRegion()
 
     if trade:hasItemQty(info.tool, 1) and trade:getItemCount() == 1 then
         -- start event
@@ -1430,6 +1432,31 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
             npcUtil.giveKeyItem(player, dsp.ki.RAINBOW_BERRY)
         end
 
+        local amkChance = 20
+        if 
+            player:getCurrentMission(AMK) == dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE and
+            broke ~= 1
+        then
+            if
+                helmType == dsp.helm.type.MINING and
+                not player:hasKeyItem(dsp.ki.STURDY_METAL_STRIP) and
+                dsp.expansionRegion.ORIGINAL_ROTZ[regionId] and math.random(100) <= amkChance
+            then
+                npcUtil.giveKeyItem(player, dsp.ki.STURDY_METAL_STRIP)
+            elseif
+                helmType == dsp.helm.type.LOGGING and
+                not player:hasKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK) and
+                dsp.expansionRegion.ORIGINAL_ROTZ[regionId] and math.random(100) <= amkChance
+            then
+                npcUtil.giveKeyItem(player, dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
+            elseif
+                helmType == dsp.helm.type.HARVESTING and
+                not player:hasKeyItem(dsp.ki.SAVORY_LAMB_ROAST) and
+                dsp.expansionRegion.ORIGINAL_ROTZ[regionId] and math.random(100) <= amkChance
+            then
+                npcUtil.giveKeyItem(player, dsp.ki.SAVORY_LAMB_ROAST)
+            end
+        end
     else
         player:messageSpecial(zones[zoneId].text[info.message], info.tool)
     end

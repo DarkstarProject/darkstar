@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(BASTOK) == THE_ZERUHN_REPORT then
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_ZERUHN_REPORT then
         if player:hasKeyItem(dsp.ki.ZERUHN_REPORT) then
             player:messageSpecial(ID.text.MAKARIM_DIALOG_I)
         else

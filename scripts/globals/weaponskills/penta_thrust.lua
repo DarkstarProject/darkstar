@@ -27,7 +27,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.canCrit = false
     params.acc100 = 0.8 params.acc200= 0.9 params.acc300= 1
     params.atk100 = 0.875; params.atk200 = 0.875; params.atk300 = 0.875;
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
     return tpHits, extraHits, criticalHit, damage
 
 end

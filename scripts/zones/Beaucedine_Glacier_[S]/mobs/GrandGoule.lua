@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Beaucedine Glacier (S)
+-- Area: Beaucedine Glacier [S]
 --   NM: Grand'Goule
 -----------------------------------
 require("scripts/globals/mobs")

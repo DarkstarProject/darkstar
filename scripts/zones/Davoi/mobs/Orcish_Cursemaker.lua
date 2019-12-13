@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Orcish Cursemaker
+--  Mob: Orcish Cursemaker
 -- Note: PH for Hawkeyed Dnatbat
 -----------------------------------
 local ID = require("scripts/zones/Davoi/IDs")

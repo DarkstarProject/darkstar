@@ -19,14 +19,14 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getVar("KnightStalker_Progress") == 4 and
-        player:getVar("KnightStalker_Kill") == 0 and
+        player:getCharVar("KnightStalker_Progress") == 4 and
+        player:getCharVar("KnightStalker_Kill") == 0 and
         player:getMainJob() == dsp.job.DRG and
         player:getPetID() == dsp.pet.id.WYVERN and
         npcUtil.popFromQM(player, npc, {ID.mob.CLEUVARION_M_RESOAIX, ID.mob.ROMPAULION_S_CITALLE}, {hide = 0, claim = false})
     then
         player:messageSpecial(ID.text.SOME_SORT_OF_CEREMONY + 1) -- Your wyvern reacts violently to this spot!
-    elseif player:getVar("KnightStalker_Kill") == 1 then
+    elseif player:getCharVar("KnightStalker_Kill") == 1 then
         player:startEvent(67)
     else
         player:messageSpecial(ID.text.SOME_SORT_OF_CEREMONY)
@@ -39,10 +39,10 @@ end
 function onEventFinish(player, csid, option)
     if
         csid == 67 and
-        npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.KNIGHT_STALKER, {item = 12519, fame = AF3_FAME, title = dsp.title.PARAGON_OF_DRAGOON_EXCELLENCE, var = {"KnightStalker_Kill", "KnightStalker_Progress"}})
+        npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.KNIGHT_STALKER, {item = 12519, fame = 60, title = dsp.title.PARAGON_OF_DRAGOON_EXCELLENCE, var = {"KnightStalker_Kill", "KnightStalker_Progress"}})
     then
         player:delKeyItem(dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS)
-        player:setVar("KnightStalker_Option1", 1) -- Optional post-quest cutscenes.
-        player:setVar("KnightStalker_Option2", 1)
+        player:setCharVar("KnightStalker_Option1", 1) -- Optional post-quest cutscenes.
+        player:setCharVar("KnightStalker_Option2", 1)
     end
 end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Delta Sahagin
+--  Mob: Delta Sahagin
 -- Note: PH for Zuug the Shoreleaper
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

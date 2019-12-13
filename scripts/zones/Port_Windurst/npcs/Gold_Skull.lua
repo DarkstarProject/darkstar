@@ -13,15 +13,15 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) ~= 255) then
+    if (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
         currentMission = player:getCurrentMission(BASTOK);
-        missionStatus = player:getVar("MissionStatus");
+        missionStatus = player:getCharVar("MissionStatus");
 
         if (player:hasKeyItem(dsp.ki.SWORD_OFFERING)) then
             player:startEvent(53);
         elseif (player:hasKeyItem(dsp.ki.KINDRED_REPORT)) then
             player:startEvent(68);
-        elseif (currentMission == THE_EMISSARY_WINDURST2) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST2) then
             if (missionStatus == 7) then
                 player:startEvent(62);
             elseif (missionStatus == 8) then
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             elseif (missionStatus == 9) then
                 player:startEvent(57);
             end
-        elseif (currentMission == THE_EMISSARY_WINDURST) then
+        elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST) then
             if (missionStatus == 2) then
                 player:startEvent(50);
             elseif (missionStatus == 12) then

@@ -12,8 +12,8 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED and player:getVar("BoyAndTheBeast") == 0) then
-        if (player:getCurrentMission(WOTG) == CAIT_SITH or player:hasCompletedMission(WOTG, CAIT_SITH)) then
+    if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED and player:getCharVar("BoyAndTheBeast") == 0) then
+        if (player:getCurrentMission(WOTG) == dsp.mission.id.wotg.CAIT_SITH or player:hasCompletedMission(WOTG, dsp.mission.id.wotg.CAIT_SITH)) then
             player:startEvent(55);
         end
     else
@@ -26,6 +26,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 55) then
-        player:setVar("BoyAndTheBeast",1);
+        player:setCharVar("BoyAndTheBeast",1);
     end
 end;

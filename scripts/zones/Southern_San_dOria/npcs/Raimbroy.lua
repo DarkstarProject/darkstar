@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 
     -- "The Sweetest Things" Quest Dialogs
     if (player:getFameLevel(SANDORIA) >= 2 and theSweetestThings == QUEST_AVAILABLE) then
-        theSweetestThingsVar = player:getVar("theSweetestThings");
+        theSweetestThingsVar = player:getCharVar("theSweetestThings");
         if (theSweetestThingsVar == 1) then
             player:startEvent(533);
         elseif (theSweetestThingsVar == 2) then
@@ -64,17 +64,17 @@ function onEventFinish(player,csid,option)
 
     -- "The Sweetest Things" ACCEPTED
     if (csid == 532) then
-        player:setVar("theSweetestThings", 1);
+        player:setCharVar("theSweetestThings", 1);
     elseif (csid == 533) then
         if (option == 0) then
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
-            player:setVar("theSweetestThings", 0);
+            player:setCharVar("theSweetestThings", 0);
         else
-            player:setVar("theSweetestThings", 2);
+            player:setCharVar("theSweetestThings", 2);
         end
     elseif (csid == 534 and option == 0) then
         player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
-        player:setVar("theSweetestThings", 0);
+        player:setCharVar("theSweetestThings", 0);
     elseif (csid == 535) then
         player:tradeComplete();
         player:addTitle(dsp.title.APIARIST);

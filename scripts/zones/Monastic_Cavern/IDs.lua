@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Monastic_Cavern
+-- Area: Monastic Cavern (150)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -15,6 +15,7 @@ zones[dsp.zone.MONASTIC_CAVERN] =
         GIL_OBTAINED                 = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY      = 6402, -- There is nothing out of the ordinary here.
+        GEOMAGNETRON_ATTUNED         = 7010, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CONQUEST_BASE                = 7049, -- Tallying conquest results...
         ALTAR                        = 7264, -- This appears to be an altar.
         THE_MAGICITE_GLOWS_OMINOUSLY = 7267, -- The magicite glows ominously.

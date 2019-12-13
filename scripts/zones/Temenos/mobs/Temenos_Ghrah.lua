@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
---  NPC: Temenos_Ghrah
+--  Mob: Temenos Ghrah
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

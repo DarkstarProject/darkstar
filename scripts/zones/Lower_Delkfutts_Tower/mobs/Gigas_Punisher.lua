@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Gigas Punisher
+--  Mob: Gigas Punisher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

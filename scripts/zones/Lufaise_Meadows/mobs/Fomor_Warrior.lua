@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Warrior
+--  Mob: Fomor Warrior
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

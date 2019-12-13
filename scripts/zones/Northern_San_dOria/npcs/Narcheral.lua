@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17422);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17422); -- Blessed Hammer
             player:tradeComplete();
-            player:addFame(SANDORIA,AF1_FAME);
+            player:addFame(SANDORIA,20);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.MESSENGER_FROM_BEYOND);
         end
     elseif (csid == 691) then
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:addItem(14091);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14091); -- Healer's Duckbills
             player:tradeComplete();
-            player:addFame(SANDORIA,AF2_FAME);
+            player:addFame(SANDORIA,40);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.PRELUDE_OF_BLACK_AND_WHITE);
         end
     elseif (csid == 692) then
@@ -76,11 +76,11 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12640); -- Healer's Briault
         else
             player:addTitle(dsp.title.PARAGON_OF_WHITE_MAGE_EXCELLENCE);
-            player:setVar("pieujesDecisionCS",0);
+            player:setCharVar("pieujesDecisionCS",0);
             player:addItem(12640);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12640); -- Healer's Briault
             player:tradeComplete();
-            player:addFame(SANDORIA,AF3_FAME);
+            player:addFame(SANDORIA,60);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.PIEUJE_S_DECISION);
         end
     end

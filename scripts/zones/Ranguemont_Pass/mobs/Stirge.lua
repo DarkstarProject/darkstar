@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Stirge
+--  Mob: Stirge
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -24,11 +24,11 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 103 and option == 1 then
-        local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
+        local shihuDanhuEncounters = player:getCharVar("ShihuDanhu_Encounters")
         -- If you use TP, you need to wait 1 real day for using Kaduru TP
-        player:setVar("ShihuDanhu_TP_date", os.date("%j"))
+        player:setCharVar("ShihuDanhu_TP_date", os.date("%j"))
         -- Update total number of Shihu-Danhu encounters.
-        player:setVar("ShihuDanhu_Encounters", (shihuDanhuEncounters + 1))
+        player:setCharVar("ShihuDanhu_Encounters", (shihuDanhuEncounters + 1))
 
         -- Random TP positions
         -- Coordinates marked {R} have been obtained by packet capture from retail. Don't change them.

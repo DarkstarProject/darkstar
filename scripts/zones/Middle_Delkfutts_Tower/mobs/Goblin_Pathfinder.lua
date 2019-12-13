@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Goblin Pathfinder
+--  Mob: Goblin Pathfinder
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

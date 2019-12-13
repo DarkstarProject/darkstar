@@ -26,12 +26,15 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.canCrit = false
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
     params.atk100 = 1; params.atk200 = 1; params.atk300 = 1;
+    params.hybridWS = true
+    params.ele = dsp.magic.ele.LIGHT
+    params.skill = dsp.skill.GREAT_KATANA
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.str_wsc = 0.3 params.mnd_wsc = 0.5
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
     return tpHits, extraHits, criticalHit, damage
 
 end

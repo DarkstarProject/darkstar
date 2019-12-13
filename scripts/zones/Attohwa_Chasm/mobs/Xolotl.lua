@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Xolotl
+--  Mob: Xolotl
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

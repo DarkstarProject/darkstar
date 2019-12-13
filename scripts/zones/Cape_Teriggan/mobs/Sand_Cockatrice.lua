@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Sand Cockatrice
+--  Mob: Sand Cockatrice
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

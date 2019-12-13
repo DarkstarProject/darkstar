@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Gaki
+--  Mob: Gaki
 -- a Thief in Norg BCNM Fight
 -----------------------------------
 

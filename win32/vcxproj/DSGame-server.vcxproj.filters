@@ -209,7 +209,7 @@
     <ClInclude Include="..\..\src\map\items\item.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\items\item_armor.h">
+    <ClInclude Include="..\..\src\map\items\item_equipment.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\items\item_currency.h">
@@ -468,6 +468,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\alliance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\anticheat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\party_invite.h">
@@ -979,7 +982,7 @@
     <ClCompile Include="..\..\src\map\items\item.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\items\item_armor.cpp">
+    <ClCompile Include="..\..\src\map\items\item_equipment.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\items\item_currency.cpp">
@@ -1235,6 +1238,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\alliance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\anticheat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\party_invite.cpp">

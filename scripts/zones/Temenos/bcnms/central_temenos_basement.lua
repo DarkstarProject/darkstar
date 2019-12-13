@@ -1,24 +1,27 @@
 -----------------------------------
 -- Area: Temenos
--- Name:
+-- Name: Central Temenos Basement
 -----------------------------------
-
-
+require("scripts/globals/limbus");
+require("scripts/globals/battlefield")
+require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
-    SetServerVariable("[C_Temenos_Base]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1301),TEMENOS);
-    HideTemenosDoor(GetInstanceRegion(1301));
-    player:setVar("Limbus_Trade_Item-T",0);
-    if (GetMobAction(16929088) > 0) then DespawnMob(16928988);end
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
+function onBattlefieldRegister(player,battlefield)    
+    SetServerVariable("[C_Temenos_Base]UniqueID",os.time());
+    HideArmouryCrates(Central_Temenos_Basement,TEMENOS);        
+    HideTemenosDoor(Central_Temenos_Basement);
+    if (GetMobByID(16929088):isSpawned()) then DespawnMob(16929088); end
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
-    player:setVar("limbusbitmap",0);
-    player:setVar("characterLimbusKey",GetServerVariable("[C_Temenos_Base]UniqueID"));
-    player:setVar("LimbusID",1301);
+function onBattlefieldEnter(player,battlefield)
+    player:setCharVar("characterLimbusKey",GetServerVariable("[C_Temenos_Base]UniqueID"));
     player:delKeyItem(dsp.ki.COSMOCLEANSE);
     player:delKeyItem(dsp.ki.WHITE_CARD);
 end;
@@ -27,10 +30,10 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function onBcnmLeave(player,instance,leavecode)
---print("leave code "..leavecode);
-    if (leavecode == 4) then
-         player:setPos(580,-1.5,4.452,192);
-        ResetPlayerLimbusVariable(player)
+function onBattlefieldLeave(player,battlefield,leavecode)
+    --print("leave code "..leavecode);
+    if leavecode == dsp.battlefield.leaveCode.LOST then
+        SetServerVariable("[C_Temenos_Base]UniqueID",0);
+        player:setPos(580,-1.5,4.452,192);
     end
 end;

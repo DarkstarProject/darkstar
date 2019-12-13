@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Scarab Beetle
+--  Mob: Scarab Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

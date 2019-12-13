@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
---  MOB: Peryton
+--  Mob: Peryton
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

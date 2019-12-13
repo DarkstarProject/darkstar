@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local basty = player:getCurrentMission(BASTOK);
-    local soteStat = player:getVar("BASTOK91");
+    local soteStat = player:getCharVar("BASTOK91");
     
     local anyPlasmsAlive = false;
     for i = ID.mob.GIGAPLASM, ID.mob.GIGAPLASM + 14 do
@@ -24,9 +24,9 @@ function onTrigger(player,npc)
         end
     end
 
-    if (basty == THE_SALT_OF_THE_EARTH and soteStat == 2 and not anyPlasmsAlive) then
+    if (basty == dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH and soteStat == 2 and not anyPlasmsAlive) then
         SpawnMob(ID.mob.GIGAPLASM):updateClaim(player);
-    elseif (basty == THE_SALT_OF_THE_EARTH and soteStat == 3 and not player:hasKeyItem(dsp.ki.MIRACLESALT)) then
+    elseif (basty == dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH and soteStat == 3 and not player:hasKeyItem(dsp.ki.MIRACLESALT)) then
         player:addKeyItem(dsp.ki.MIRACLESALT);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MIRACLESALT);
     else

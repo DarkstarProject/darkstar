@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Bilopdop
+--  Mob: Bilopdop
 -- Involved in Quest: The First Meeting
 -----------------------------------
 require("scripts/globals/keyitems");
@@ -12,6 +12,6 @@ function onMobDeath(mob, player, isKiller)
     local martialArtsScroll = player:hasKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL);
 
     if (theFirstMeeting == QUEST_ACCEPTED and martialArtsScroll == false) then
-        player:addVar("theFirstMeetingKilledNM", 1)
+        player:addCharVar("theFirstMeetingKilledNM", 1)
     end
 end;

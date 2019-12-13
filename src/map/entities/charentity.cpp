@@ -116,7 +116,6 @@ CCharEntity::CCharEntity()
     memset(&equip, 0, sizeof(equip));
     memset(&equipLoc, 0, sizeof(equipLoc));
     memset(&RealSkills, 0, sizeof(RealSkills));
-    memset(&nationtp, 0, sizeof(nationtp));
     memset(&expChain, 0, sizeof(expChain));
     memset(&nameflags, 0, sizeof(nameflags));
     memset(&menuConfigFlags, 0, sizeof(menuConfigFlags));
@@ -136,6 +135,10 @@ CCharEntity::CCharEntity()
     memset(&m_missionLog, 0, sizeof(m_missionLog));
     memset(&m_assaultLog, 0, sizeof(m_assaultLog));
     memset(&m_campaignLog, 0, sizeof(m_campaignLog));
+
+    memset(&teleport, 0, sizeof(teleport));
+    memset(&teleport.homepoint.menu, -1, sizeof(teleport.homepoint.menu));
+    memset(&teleport.survival.menu,  -1, sizeof(teleport.survival.menu));
 
     for (uint8 i = 0; i <= 3; ++i)
     {
@@ -347,7 +350,7 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 
 int8 CCharEntity::getShieldSize()
 {
-    CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
+    CItemEquipment* PItem = (CItemEquipment*)(getEquip(SLOT_SUB));
 
     if (PItem == nullptr) {
         return 0;
@@ -441,15 +444,15 @@ uint32 CCharEntity::GetPlayTime(bool needUpdate)
     return m_PlayTime;
 }
 
-CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
+CItemEquipment* CCharEntity::getEquip(SLOTTYPE slot)
 {
     uint8 loc = equip[slot];
     uint8 est = equipLoc[slot];
-    CItemArmor* item = nullptr;
+    CItemEquipment* item = nullptr;
 
     if (loc != 0)
     {
-        item = (CItemArmor*)getStorage(est)->GetItem(loc);
+        item = (CItemEquipment*)getStorage(est)->GetItem(loc);
     }
     return item;
 }
@@ -746,7 +749,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
         if (PSpell->getSkillType() == SKILL_SINGING)
         {
             CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
-            if (PItem && PItem->isType(ITEM_ARMOR))
+            if (PItem && PItem->isType(ITEM_EQUIPMENT))
             {
                 SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
                 if (Skilltype == SKILL_STRING_INSTRUMENT || Skilltype == SKILL_WIND_INSTRUMENT || Skilltype == SKILL_SINGING)
@@ -1491,7 +1494,13 @@ void CCharEntity::OnRaise()
         auto& actionTarget = list.getNewActionTarget();
 
         list.ActionTargetID = id;
-        if (m_hasRaise == 1)
+        // Mijin Gakure used with MIJIN_RERAISE MOD
+        if (GetLocalVar("MijinGakure") != 0 && getMod(Mod::MIJIN_RERAISE) != 0)
+        {
+            actionTarget.animation = 511;
+            hpReturned = (uint16)(GetMaxHP());
+        }
+        else if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
             hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
@@ -1563,6 +1572,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
     action.id = this->id;
     action.actiontype = ACTION_ITEM_FINISH;
+    action.actionid = PItem->getID();
 
     actionList_t& actionList = action.getNewActionList();
     actionList.ActionTargetID = PTarget->id;
@@ -1570,7 +1580,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     actionTarget_t& actionTarget = actionList.getNewActionTarget();
     actionTarget.animation = PItem->getAnimationID();
 
-    if (PItem->isType(ITEM_ARMOR))
+    if (PItem->isType(ITEM_EQUIPMENT))
     {
         if (PItem->getMaxCharges() > 1)
         {
@@ -1672,6 +1682,10 @@ void CCharEntity::Die(duration _duration)
 
     if (this->getMod(Mod::RERAISE_III) > 0)
         m_hasRaise = 3;
+    // MIJIN_RERAISE checks
+    if (m_hasRaise == 0 && this->getMod(Mod::MIJIN_RERAISE) > 0)
+        m_hasRaise = 1;
+
     CBattleEntity::Die();
 }
 

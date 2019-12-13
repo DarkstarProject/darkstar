@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Blizzard Gigas
+--  Mob: Blizzard Gigas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

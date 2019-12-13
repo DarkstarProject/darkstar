@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Drummer
+--  Mob: Yagudo Drummer
 -- Note: PH for Mee Deggi the Punisher
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja/IDs")

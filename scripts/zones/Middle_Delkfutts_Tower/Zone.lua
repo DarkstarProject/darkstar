@@ -42,7 +42,7 @@ end
 
 function onRegionEnter(player, region)
     local regionId = region:GetRegionID()
-    if regionId == 8 and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getVar("bladeOfEvilCS") == 1 then
+    if regionId == 8 and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getCharVar("bladeOfEvilCS") == 1 then
         player:startEvent(14)
     else
         player:startEvent(regionId - 1)
@@ -69,7 +69,7 @@ function onEventFinish(player, csid, option)
         end
 
     -- BLADE OF EVIL
-    elseif csid == 14 and option == 0 and npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL, {item=12516, title=dsp.title.PARAGON_OF_DARK_KNIGHT_EXCELLENCE, fame=AF3_FAME}) then
-        player:setVar("bladeOfEvilCS", 0)
+    elseif csid == 14 and option == 0 and npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL, {item=12516, title=dsp.title.PARAGON_OF_DARK_KNIGHT_EXCELLENCE, fame=60}) then
+        player:setCharVar("bladeOfEvilCS", 0)
     end
 end

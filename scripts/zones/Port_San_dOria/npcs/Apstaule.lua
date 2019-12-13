@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
         if (TheBrugaireConsortium == 1) then
             player:tradeComplete();
             player:startEvent(540);
-            player:setVar("TheBrugaireConsortium-Parcels", 21);
+            player:setCharVar("TheBrugaireConsortium-Parcels", 21);
         end
     end
 

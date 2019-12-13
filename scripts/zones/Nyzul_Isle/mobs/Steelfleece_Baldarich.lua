@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle
---  NM:  Steelfleece_Baldarich
+--   NM: Steelfleece Baldarich
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus (145)
---  MOB: Yagudo_Piper
+--  Mob: Yagudo Piper
 -- Note: PH for Vuu Puqu the Beguiler
 -----------------------------------
 local ID = require("scripts/zones/Giddeus/IDs")

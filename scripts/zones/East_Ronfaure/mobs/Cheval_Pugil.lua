@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Cheval Pugil
+--  Mob: Cheval Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

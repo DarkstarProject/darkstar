@@ -10,10 +10,10 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
-        a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
+        a = player:getCharVar("saveTheClockTowerNPCz2"); -- NPC Zone2
         if (a == 0 or (a ~= 128 and a ~= 160 and a ~= 192 and a ~= 384 and a ~= 640 and a ~= 224 and a ~= 896 and a ~= 416 and
            a ~= 704 and a ~= 448 and a ~= 672 and a ~= 480 and a ~= 736 and a ~= 928 and a ~= 960 and a ~= 992)) then
-            player:startEvent(74,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+            player:startEvent(74,10 - player:getCharVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
 end;
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             player:startEvent(32); -- Same...
         end
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_LOST_CARDIAN) == QUEST_AVAILABLE) then
-        if (player:getVar("theLostCardianVar") == 0) then
+        if (player:getCharVar("theLostCardianVar") == 0) then
             player:startEvent(29); -- First dialog for "The lost cardien" quest
         else
             player:startEvent(66);
@@ -50,9 +50,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 74) then
-        player:addVar("saveTheClockTowerVar", 1);
-        player:addVar("saveTheClockTowerNPCz2", 128);
+        player:addCharVar("saveTheClockTowerVar", 1);
+        player:addCharVar("saveTheClockTowerNPCz2", 128);
     elseif (csid == 29) then
-        player:setVar("theLostCardianVar",1);
+        player:setCharVar("theLostCardianVar",1);
     end
 end;

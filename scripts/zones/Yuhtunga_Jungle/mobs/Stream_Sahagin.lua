@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Stream Sahagin
+--  Mob: Stream Sahagin
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

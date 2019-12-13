@@ -41,22 +41,22 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     m_sataOccured = false;
     m_subWeaponType = 0;
 
-    if (attacker->m_Weapons[SLOT_SUB]->isType(ITEM_WEAPON))
+    if (auto weapon = dynamic_cast<CItemWeapon*>(attacker->m_Weapons[SLOT_SUB]))
     {
-        m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
+        m_subWeaponType = weapon->getDmgType();
     }
 
     // Grab a trick attack assistant.
     m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->GetBattleTarget());
 
     // Build main weapon attacks.
-    CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
+    CreateAttacks(dynamic_cast<CItemWeapon*>(attacker->m_Weapons[SLOT_MAIN]), RIGHTATTACK);
 
     // Build dual wield off hand weapon attacks.
     if (IsH2H())
     {
         // Build left hand H2H attacks.
-        CreateAttacks(attacker->m_Weapons[SLOT_MAIN], LEFTATTACK);
+        CreateAttacks(dynamic_cast<CItemWeapon*>(attacker->m_Weapons[SLOT_MAIN]), LEFTATTACK);
 
         // Build kick attacks.
         CreateKickAttacks();
@@ -65,7 +65,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
         (attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD)))
     {
-        CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
+        CreateAttacks(dynamic_cast<CItemWeapon*>(attacker->m_Weapons[SLOT_SUB]), LEFTATTACK);
     }
 
     // Build Daken throw
@@ -158,7 +158,9 @@ CBattleEntity*	CAttackRound::GetTAEntity()
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
-    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND ? true : false;
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[SLOT_MAIN]))
+        return weapon->getSkillType() == SKILL_HAND_TO_HAND;
+    return false;
 }
 
 /************************************************************************
@@ -200,6 +202,9 @@ void CAttackRound::DeleteAttackSwing()
 ************************************************************************/
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
+    if (!PWeapon)
+        return;
+
     uint8 num = 1;
 
     bool isPC = m_attacker->objtype == TYPE_PC;
@@ -284,9 +289,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         // Check for ammo
         CCharEntity* PChar = (CCharEntity*)m_attacker;
-        CItemArmor* PAmmo = PChar->getEquip(SLOT_AMMO);
-        CItemArmor* PMain = PChar->getEquip(SLOT_MAIN);
-        CItemArmor* PSub = PChar->getEquip(SLOT_SUB);
+        CItemEquipment* PAmmo = PChar->getEquip(SLOT_AMMO);
+        CItemEquipment* PMain = PChar->getEquip(SLOT_MAIN);
+        CItemEquipment* PSub = PChar->getEquip(SLOT_SUB);
         uint8 slot = PChar->equip[SLOT_AMMO];
         uint8 loc = PChar->equipLoc[SLOT_AMMO];
         uint8 ammoCount = 0;
@@ -377,7 +382,7 @@ void CAttackRound::CreateDakenAttack()
 {
     if (m_attacker->objtype == TYPE_PC)
     {
-        CItemWeapon* PAmmo = m_attacker->m_Weapons[SLOT_AMMO];
+        auto PAmmo = dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[SLOT_AMMO]);
         if (PAmmo && PAmmo->isShuriken())
         {
             uint16 daken = m_attacker->getMod(Mod::DAKEN);

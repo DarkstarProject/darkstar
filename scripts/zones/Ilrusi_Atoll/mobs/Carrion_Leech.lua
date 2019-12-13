@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll (Extermination)
---  MOB: Carrion Leech
+--  Mob: Carrion Leech
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

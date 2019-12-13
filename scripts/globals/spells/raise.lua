@@ -16,6 +16,9 @@ function onSpellCast(caster,target,spell)
         if (target:getName() == "Prishe") then
             -- CoP 8-4 Prishe
             target:setLocalVar("Raise", 1)
+            target:entityAnimationPacket("sp00")
+            target:addHP(target:getMaxHP())
+            target:addMP(target:getMaxMP())
         end
     end
     spell:setMsg(dsp.msg.basic.MAGIC_CASTS_ON)

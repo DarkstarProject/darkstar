@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Giant Sentry
+--  Mob: Giant Sentry
 -- Note: PH for Rhoitos and Eurytos
 -----------------------------------
 local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs")

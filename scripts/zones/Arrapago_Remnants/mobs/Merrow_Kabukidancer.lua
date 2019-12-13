@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Merrow Kabukidancer
+--  Mob: Merrow Kabukidancer
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------

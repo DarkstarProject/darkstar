@@ -21,13 +21,13 @@ function onSpellCast(caster,target,spell)
         power = power + math.floor((sLvl+iLvl-85) / 18)
     end
 
-    if (power >= 15) then
-        power = 15
+    if (power >= 48) then
+        power = 48
     end
 
     local iBoost = caster:getMod(dsp.mod.MAMBO_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
     if (iBoost > 0) then
-        power = power + 1 + (iBoost-1)*4
+        power = power + iBoost*5
     end
 
     if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then

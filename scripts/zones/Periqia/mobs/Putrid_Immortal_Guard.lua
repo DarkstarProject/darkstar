@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Periqia (Requiem)
---  MOB: PUTRID_IMMORTAL_GUARD
+--  Mob: Putrid Immortal Guard
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

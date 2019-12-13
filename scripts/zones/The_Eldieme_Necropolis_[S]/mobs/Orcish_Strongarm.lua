@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Orcish_Strongarm
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Orcish Strongarm
 -----------------------------------
 
 -- -----------------------------------

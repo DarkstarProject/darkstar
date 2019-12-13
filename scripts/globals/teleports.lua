@@ -70,7 +70,7 @@ local ids =
     SEA                 = 56,
     HOME_NATION         = 57,
     CHOCO_UPPER_JEUNO   = 58,
-	ZVAHL_KEEP			= 59
+    ZVAHL_KEEP          = 59
 }
 dsp.teleport.id = ids
 
@@ -133,31 +133,32 @@ local destinations =
     [ids.MINESHAFT]             = { -93.657, -120.000, -583.561,   0,  13}, -- (R)
     [ids.WHITEGATE]             = {  27.424,   -6.000, -123.792, 192,  50}, -- {R}
     [ids.SEA]                   = { -31.800,    0.000, -618.700, 190,  33}, -- {R}
-	[ids.ZVAHL_KEEP]			= {-555.996,  -70.100,   59.989,   0, 162}
+    [ids.ZVAHL_KEEP]            = {-555.996,  -70.100,   59.989,   0, 162}
 }
 
--- Use to call to player:getNationTeleport
--- Called nation for lack of a better name
-dsp.teleport.nation =
+dsp.teleport.type =
 {
     OUTPOST_SANDORIA   = 0,
     OUTPOST_BASTOK     = 1,
     OUTPOST_WINDURST   = 2,
     RUNIC_PORTAL       = 3,
-    MAW                = 4,
-    CAMPAIGN_SANDORIA  = 5,
-    CAMPAIGN_BASTOK    = 6,
-    CAMPAIGN_WINDURST  = 7
+    PAST_MAW           = 4,
+    ABBYSEA_MAW        = 5,
+    CAMPAIGN_SANDORIA  = 6,
+    CAMPAIGN_BASTOK    = 7,
+    CAMPAIGN_WINDURST  = 8,
+    HOMEPOINT          = 9,
+    SURVIVAL           = 10
 }
 
 dsp.teleport.runic_portal =
 {
-    AZOUPH  = 0x02,
-    DVUCCA  = 0x04,
-    MAMOOL  = 0x08,
-    HALVUNG = 0x10,
-    ILRUSI  = 0x20,
-    NYZUL   = 0x40,
+    AZOUPH  = 1,
+    DVUCCA  = 2,
+    MAMOOL  = 3,
+    HALVUNG = 4,
+    ILRUSI  = 5,
+    NYZUL   = 6,
 }
 
 dsp.teleport.to = function(player, destination)
@@ -213,30 +214,6 @@ dsp.teleport.toCampaign = function(player, option)
     end
 end
 
------------------------------------
--- TELEPORT TO MAW
------------------------------------
-
-local mawDestinations =
-{
-    [ 1] = { -51.486,   0.371,  436.972, 128,  84}, -- {R} Batallia Downs [S]
-    [ 2] = { -51.486,   0.371,  436.972, 128, 105}, -- {R} Batallia Downs
-    [ 3] = {-196.500,   7.999,  361.192, 225,  91}, -- {R} Rolanberry Fields [S]
-    [ 4] = {-196.500,   7.999,  361.192, 225, 110}, -- {R} Rolanberry Fields
-    [ 5] = { 366.858,   8.545, -228.861,  95,  98}, -- {R} Sauromugue Champaign [S]
-    [ 6] = { 366.858,   8.545, -228.861,  95, 120}, -- {R} Sauromugue Champaign
-    [ 7] = {   2.628,  -0.150, -166.562,  32,  95}, -- {R} West Sarutabaruta [S]
-    [ 8] = {   2.628,  -0.150, -166.562,  32, 115}, -- {R} West Sarutabaruta
-    [ 9] = { 322.057, -60.059,  503.712,  64,  81}, -- {R} East Ronfaure [S]
-    [10] = { 322.057, -60.059,  503.712,  64, 101}, -- {R} East Ronfaure
-    [11] = { 469.697,  -0.050,  478.949,   0,  88}, -- {R} North Gustaberg [S]
-    [12] = { 469.697,  -0.050,  478.949,   0, 106}, -- {R} North Gustaberg
-    [13] = {-116.093,  -8.005, -520.041,   0,  82}, -- {R} Jugner Forest [S]
-    [14] = {-116.093,  -8.005, -520.041,   0, 104}, -- {R} Jugner Forest
-    [15] = { 415.945,  24.659,   25.611, 101,  90}, -- {R} Pashhow Marshlands [S]
-    [16] = { 415.945,  24.659,   25.611, 101, 109}, -- {R} Pashhow Marshlands
-    [17] = { 595.000, -32.000,  279.300,  93,  97}, -- {R} Meriphataud Mountains [S]
-    [18] = { 595.000, -32.000,  279.300,  93, 119}, -- {R} Meriphataud Mountains
     -- TODO: Abyessa Maws:
     -- Tahrongi Canyon (H-12)
     -- Konschtat Highlands (I-12)
@@ -247,14 +224,6 @@ local mawDestinations =
     -- South Gustaberg (J-10)
     -- North Gustaberg (G-6)
     -- Xarcabard (H-8)
-}
-
-dsp.teleport.toMaw = function(player, option)
-    local dest = mawDestinations[option]
-    if dest then
-        player:setPos(unpack(dest))
-    end
-end
 
 -----------------------------------
 -- TELEPORT TO REGIONAL OUTPOST
@@ -514,7 +483,7 @@ dsp.teleport.explorerMoogleOnTrigger = function(player, event)
         accept = 1
     end
 
-    if player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP then
+    if player:getMainLvl() < EXPLORER_MOOGLE_LV then
         event = event + 1
     end
 

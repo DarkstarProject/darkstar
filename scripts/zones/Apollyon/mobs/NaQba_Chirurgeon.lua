@@ -1,20 +1,13 @@
 -----------------------------------
 -- Area: Apollyon CS
---  MOB: Na_Qba_Chirurgeon
+--  Mob: Na'Qba Chirurgeon
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     local mobID = mob:getID();
@@ -25,9 +18,6 @@ function onMobEngaged(mob,target)
     SpawnMob(16933140):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
     SpawnMob(16933138):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local mobID = mob:getID();
@@ -35,7 +25,7 @@ function onMobFight(mob,target)
     local Y = mob:getYPos();
     local Z = mob:getZPos();
     local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100);
-    local instancetime = target:getSpecialBattlefieldLeftTime(5);
+    local instancetime = target:getBattlefieldTimeLeft(Central_Temenos_2nd_Floor);
 
     if (lifepourcent < 50 and GetNPCByID(16933246):getAnimation() == 8) then
         SpawnMob(16933142):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
@@ -43,23 +33,19 @@ function onMobFight(mob,target)
         SpawnMob(16933141):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
         GetNPCByID(16933246):setAnimation(9);
     end
-    
+
     if (instancetime < 13) then
-        if (IsMobDead(16933129) == false) then
+        if (GetMobByID(16933129):isAlive()) then
             GetMobByID(16933129):updateEnmity(target);
-        elseif (IsMobDead(16933144) == false) then
+        elseif (GetMobByID(16933144):isAlive()) then
             GetMobByID(16933144):updateEnmity(target);
         end
     end
 end;
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if ((IsMobDead(16933129) == false or IsMobDead(16933144) == false)
-    and alreadyReceived(player,2,GetInstanceRegion(1294)) == false) then
-        player:addTimeToSpecialBattlefield(5,5);
-        addLimbusList(player,2,GetInstanceRegion(1294));
+    if ( ( GetMobByID(16933129):isAlive() or GetMobByID(16933144):isAlive() ) and alreadyReceived(player,2,Central_Temenos_2nd_Floor) == false) then
+        player:addTimeToBattlefield(Central_Temenos_2nd_Floor,5);
+        addLimbusList(player,2,Central_Temenos_2nd_Floor);
     end
 end;

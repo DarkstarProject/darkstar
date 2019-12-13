@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Goblin Smithy
+--  Mob: Goblin Smithy
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

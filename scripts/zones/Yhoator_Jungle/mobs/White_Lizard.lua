@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: White Lizard
+--  Mob: White Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

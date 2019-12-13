@@ -86,7 +86,7 @@ local titleInfo =
             dsp.title.HEIR_OF_THE_GREAT_EARTH,
             dsp.title.MOGS_LOVING_MASTER,
             dsp.title.HERO_AMONG_HEROES,
-            dsp.title.DYNAMISBASTOK_INTERLOPER,
+            dsp.title.DYNAMIS_BASTOK_INTERLOPER,
             dsp.title.MASTER_OF_MANIPULATION,
         },
     },

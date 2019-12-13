@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lebros Cavern (Excavation Duty)
--- MOB: Qiqirn Mine
+--  Mob: Qiqirn Mine
 -----------------------------------
 local ID = require("scripts/zones/Lebros_Cavern/IDs")
 require("scripts/globals/status")

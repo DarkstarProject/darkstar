@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Goblin Fisher
+--  Mob: Goblin Fisher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

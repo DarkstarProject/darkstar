@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Poacher
+--  Mob: Goblin Poacher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

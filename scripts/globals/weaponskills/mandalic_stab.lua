@@ -36,7 +36,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.atk100 = 1.75; params.atk200 = 1.75; params.atk300 = 1.75;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
 
     -- Apply aftermath
     if damage > 0 then

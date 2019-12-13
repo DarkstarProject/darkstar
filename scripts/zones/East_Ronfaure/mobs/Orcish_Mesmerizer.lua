@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Orcish Mesmerizer
+--  Mob: Orcish Mesmerizer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

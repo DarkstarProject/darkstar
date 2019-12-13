@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---   NM: Oni_Carcass
+-- Area: Toraimarai Canal
+--   NM: Oni Carcass
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

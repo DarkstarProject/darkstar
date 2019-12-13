@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
---  NPC: Kaiser Behemoth
-
+--  Mob: Kaiser Behemoth
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

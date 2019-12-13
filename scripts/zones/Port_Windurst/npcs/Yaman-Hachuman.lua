@@ -15,9 +15,9 @@ end;
 function onTrigger(player,npc)
 
     local WonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS);
-    local WildcatWindurst = player:getVar("WildcatWindurst");
+    local WildcatWindurst = player:getCharVar("WildcatWindurst");
 
-    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,16) == false) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,16) == false) then
         player:startEvent(624);
     elseif (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(256,0,0,0,17061);
@@ -34,7 +34,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 624) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",16,true);
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",16,true);
     end
 
 end;

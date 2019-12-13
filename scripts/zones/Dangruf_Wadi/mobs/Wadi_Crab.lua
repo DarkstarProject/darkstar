@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Wadi Crab
+--  Mob: Wadi Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

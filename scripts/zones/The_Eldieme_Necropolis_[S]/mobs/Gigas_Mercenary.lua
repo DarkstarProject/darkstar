@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Gigas_Mercenary
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Gigas Mercenary
 -----------------------------------
 
 -- -----------------------------------

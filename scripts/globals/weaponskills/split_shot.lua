@@ -37,7 +37,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.ignored200 = 0.35
     params.ignored300 = 0.5
 
-    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary, action)
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, action, primary)
     return tpHits, extraHits, criticalHit, damage
 
 end

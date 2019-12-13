@@ -8,7 +8,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local kill=player:getVar("FOMOR_HATE");
+    local kill=player:getCharVar("FOMOR_HATE");
     local n=0;
     if (kill< 8) then n=0;
     elseif (kill< 15) then n=1;

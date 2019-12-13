@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Living Statue
+--  Mob: Living Statue
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

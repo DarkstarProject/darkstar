@@ -9,17 +9,17 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 4569) and player:getVar("theTenshodoShowdownCS") == 3 then -- Quadav Stew
+    if npcUtil.tradeHas(trade, 4569) and player:getCharVar("theTenshodoShowdownCS") == 3 then -- Quadav Stew
         player:startEvent(10004, 0, dsp.ki.TENSHODO_ENVELOPE, 4569)
     end
 end
 
 function onTrigger(player,npc)
-    local theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS")
+    local theTenshodoShowdownCS = player:getCharVar("theTenshodoShowdownCS")
 
     if theTenshodoShowdownCS == 2 then
         player:startEvent(10002, 0, dsp.ki.TENSHODO_ENVELOPE, 4569) -- During Quest "The Tenshodo Showdown"
-        player:setVar("theTenshodoShowdownCS", 3)
+        player:setCharVar("theTenshodoShowdownCS", 3)
     elseif theTenshodoShowdownCS == 3 then
         player:startEvent(10003, 0, 0, 4569)
     else
@@ -32,7 +32,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10004 then
-        player:setVar("theTenshodoShowdownCS", 4)
+        player:setCharVar("theTenshodoShowdownCS", 4)
         player:delKeyItem(dsp.ki.TENSHODO_ENVELOPE)
         npcUtil.giveKeyItem(player, dsp.ki.SIGNED_ENVELOPE)
         player:confirmTrade()

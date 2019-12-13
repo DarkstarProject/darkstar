@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Tonberry Creeper
+--  Mob: Tonberry Creeper
 -- Note: PH for Hoar-knuckled Rimberry
 -----------------------------------
 local ID = require("scripts/zones/Yhoator_Jungle/IDs")

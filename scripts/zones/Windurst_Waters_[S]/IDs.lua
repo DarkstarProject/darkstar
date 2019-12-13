@@ -24,10 +24,12 @@ zones[dsp.zone.WINDURST_WATERS_S] =
         HOMEPOINT_SET              = 10861, -- Home point set!
         YASSI_POSSI_DIALOG         = 10881, -- Swifty-wifty and safey-wafey parcel delivery! Is there something you need to send?
         EZURAROMAZURA_SHOP_DIALOG  = 10882, -- A potent spelly-well or two can be the key to survival in this time of war. But can you mastaru my magic, or will it master you?
+        DOOR_ACOLYTE_HOSTEL_LOCKED = 11324, -- The door appears to be locked...
         MIKHE_ARYOHCHA_DIALOG      = 12461, -- Do you like the headpiece? I made it from my firrrst victim. I wear it to let everrryone know what happens when they cross Mikhe Aryohcha!
         LUTETE_DIALOG              = 12463, -- <Yaaawn>... Mastering these Near Eastern magics can be quite taxing. If I had a choice, I'd rather be back in bed, relaxing...
         ALLIED_SIGIL               = 12907, -- You have received the Allied Sigil!
         RETRIEVE_DIALOG_ID         = 14974, -- You retrieve <item> from the porter moogle's care.
+        COMMON_SENSE_SURVIVAL      = 15035, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T
---  NPC: Goblin_Slaughterman
-
+--  Mob: Goblin Slaughterman
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

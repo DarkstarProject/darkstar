@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
--- MOB: Nephiyl Pinnacletosser
--- Fight:  Demolition Squad
+--  Mob: Nephiyl Pinnacletosser
+-- BCNM: Demolition Squad
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

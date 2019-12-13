@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Signifer
+--  Mob: Antican Signifer
 -- Note: PH for Centurio X-I and Antican Proconsul
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Orcish Impaler
+--  Mob: Orcish Impaler
 -- Note: PH for Poisonhand Gnadgad and Steelbiter Gudrud
 -----------------------------------
 local ID = require("scripts/zones/Davoi/IDs")

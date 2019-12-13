@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Pygmaioi
+--  Mob: Pygmaioi
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

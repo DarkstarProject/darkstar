@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
---  MOB: Qiqirn Archaeologist
+--  Mob: Qiqirn Archaeologist
 -- Note: PH for Bluestreak Gyugyuroon
 -----------------------------------
 local ID = require("scripts/zones/Aydeewa_Subterrane/IDs")

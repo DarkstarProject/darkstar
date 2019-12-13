@@ -17,9 +17,9 @@ end
 
 function onTrigger(player,npc)
     local amazinScorpio = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_AMAZIN_SCORPIO)
-    local wildcatWindurst = player:getVar("WildcatWindurst")
+    local wildcatWindurst = player:getCharVar("WildcatWindurst")
 
-    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,0) then
+    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,0) then
         player:startEvent(735)
     elseif amazinScorpio == QUEST_COMPLETED then
         player:startEvent(485)
@@ -41,6 +41,6 @@ function onEventFinish(player,csid,option)
     elseif csid == 484 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.THE_AMAZIN_SCORPIO, {fame=80, title=dsp.title.GREAT_GRAPPLER_SCORPIO, gil=1500}) then
         player:confirmTrade()
     elseif csid == 735 then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",0,true)
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",0,true)
     end
 end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
---  NM:  Mother Globe
+--   NM: Mother Globe
 -- TODO: Looked like pets had an additional effect: stun with an unknown proc rate
 -- TODO: "Links with Slave Globes, and Slave Globes link with Defenders. Defenders do not link with Slave Globes or Mother Globe."
 -----------------------------------

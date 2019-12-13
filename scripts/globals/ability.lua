@@ -526,7 +526,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle pd
-    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.TOO_HIGH) )
             and skilltype == dsp.attackType.PHYSICAL) then
         skill:setMsg(dsp.msg.basic.JA_MISS_2);
         return 0;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Lord Ruthven
+--  Mob: Lord Ruthven
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

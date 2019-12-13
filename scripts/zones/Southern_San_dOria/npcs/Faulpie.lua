@@ -27,10 +27,10 @@ function onTrigger(player,npc)
     if (guildMember == 1) then guildMember = 150995375; end
     if (canGetNewRank(player,craftSkill,dsp.skill.LEATHERCRAFT) == 1) then getNewRank = 100; end
 
-    if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
+    if (player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
         getNewRank ~= 100) then
         local item = 0;
-        local asaStatus = player:getVar("ASA_Status");
+        local asaStatus = player:getCharVar("ASA_Status");
 
         -- TODO: Other Enfeebling Kits
         if (asaStatus == 0) then

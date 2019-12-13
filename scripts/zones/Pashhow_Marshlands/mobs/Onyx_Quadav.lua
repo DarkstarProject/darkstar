@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Onyx Quadav
+--  Mob: Onyx Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

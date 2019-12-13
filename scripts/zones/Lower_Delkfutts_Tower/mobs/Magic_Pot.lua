@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Magic Pot
+--  Mob: Magic Pot
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

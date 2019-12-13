@@ -15,7 +15,7 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
     -- TO THE FORSAKEN MINES: Hare Meat
     if (
-        player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and
+        player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.TO_THE_FORSAKEN_MINES and
         npcUtil.tradeHas(trade, 4358) and
         not player:hasItem(563) and
         not GetMobByID(ID.mob.BLIND_MOBY):isSpawned()
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     -- BLADE OF DEATH: Chaosbringer
     elseif (
         player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED and
-        player:getVar("ChaosbringerKills") >= 200 and
+        player:getCharVar("ChaosbringerKills") >= 200 and
         npcUtil.tradeHas(trade, 16607)
     ) then
         player:startEvent(10);

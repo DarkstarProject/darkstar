@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Balga's Dais
--- MOB: Bitoso
--- BCNM Fight: Creeping Doom
+--  Mob: Bitoso
+-- BCNM: Creeping Doom
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

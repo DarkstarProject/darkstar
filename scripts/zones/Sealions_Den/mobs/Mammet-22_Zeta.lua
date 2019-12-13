@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealions Den
---  Mob: Mammet-22_Zeta
+--  Mob: Mammet-22 Zeta
 -----------------------------------
 local ID = require("scripts/zones/Sealions_Den/IDs")
 require("scripts/globals/titles")
@@ -32,7 +32,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 11 then
-        local inst = player:getVar("bcnm_instanceid")
+        local inst = player:getCharVar("bcnm_instanceid")
 
         if inst >= 1 and inst <= 3 then
             -- players are healed in between fights, but their TP is set to 0

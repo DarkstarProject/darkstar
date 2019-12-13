@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Demon Warlock
+--  Mob: Demon Warlock
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

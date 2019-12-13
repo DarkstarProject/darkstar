@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Poison Funguar
+--  Mob: Poison Funguar
 -----------------------------------
 local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 require("scripts/globals/regimes")

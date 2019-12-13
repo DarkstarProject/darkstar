@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Butcher
+--  Mob: Goblin Butcher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

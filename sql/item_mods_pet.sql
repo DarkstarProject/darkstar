@@ -228,8 +228,30 @@ INSERT INTO `item_mods_pet` VALUES (21361,28,6,0);      -- Esper Stone +1 Pet: "
 INSERT INTO `item_mods_pet` VALUES (21526,25,50,3);     -- Xiucoatl: Automaton: Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21526,26,50,3);     -- Xiucoatl: Automaton: Ranged Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21526,30,50,3);     -- Xiucoatl: Automaton: Magic Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21715,25,30,0);     -- Monster Axe: Pet: Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21715,26,30,0);     -- Monster Axe: Pet: Ranged Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21715,30,30,0);     -- Monster Axe: Pet: Magic Accuracy+30
+INSERT INTO `item_mods_pet` VALUES (21716,25,40,0);     -- Ankusa Axe: Pet: Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21716,26,40,0);     -- Ankusa Axe: Pet: Ranged Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21716,30,40,0);     -- Ankusa Axe: Pet: Magic Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (21717,25,50,0);     -- Pangu: Pet: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21717,26,50,0);     -- Pangu: Pet: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (21717,30,50,0);     -- Pangu: Pet: Magic Accuracy+50
 INSERT INTO `item_mods_pet` VALUES (21751,23,80,0);     -- Aymur 119 III Pet: Attack Bonus V
+INSERT INTO `item_mods_pet` VALUES (21865,370,5,2);     -- Arasy Lance: Wyvern: "Regen"+5
+INSERT INTO `item_mods_pet` VALUES (21866,370,8,2);     -- Arasy Lance +1: Wyvern: "Regen"+8
+INSERT INTO `item_mods_pet` VALUES (22015,30,10,1);     -- Arasy Rod: Avatar: Magic Accuracy+10
+INSERT INTO `item_mods_pet` VALUES (22016,30,15,1);     -- Arasy Rod +1: Avatar: Magic Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (22054,28,115,1);    -- Grioavolr: Avatar: "Magic Atk. Bonus"+115
+INSERT INTO `item_mods_pet` VALUES (22054,30,35,1);     -- Grioavolr: Avatar: Magic Accuracy+35
 INSERT INTO `item_mods_pet` VALUES (22063,126,40,1);    -- Nirvana 119 III Avatar: "Blood Pact" damage +40
+INSERT INTO `item_mods_pet` VALUES (22074,126,3,1);     -- Arasy Staff: Avatar: "Blood Pact" damage +3
+INSERT INTO `item_mods_pet` VALUES (22075,126,5,1);     -- Arasy Staff +1: Avatar: "Blood Pact" damage +5
+INSERT INTO `item_mods_pet` VALUES (22096,25,50,1);     -- Draumstafir: Avatar: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (22096,26,50,1);     -- Draumstafir: Avatar: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (22096,30,50,1);     -- Draumstafir: Avatar: Magic Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (22210,126,3,1);     -- Elan Strap: Avatar: "Blood Pact" damage +3
+INSERT INTO `item_mods_pet` VALUES (22211,126,5,1);     -- Elan Strap +1: Avatar: "Blood Pact" damage +5
 INSERT INTO `item_mods_pet` VALUES (23057,25,31,3);     -- Foire Taj +2 Automaton: Accuracy +31
 INSERT INTO `item_mods_pet` VALUES (23057,369,1,3);     -- Automaton: Refresh +1
 INSERT INTO `item_mods_pet` VALUES (23057,370,3,3);     -- Automaton: Regen +3
@@ -272,6 +294,56 @@ INSERT INTO `item_mods_pet` VALUES (23593,384,600,3);   -- Automaton: Haste +6%
 INSERT INTO `item_mods_pet` VALUES (23660,28,25,3);     -- Foire Babouches +3 Automaton: Magic Attack Bonus +25
 INSERT INTO `item_mods_pet` VALUES (23660,30,50,3);     -- Automaton: Magic Accuracy +50
 INSERT INTO `item_mods_pet` VALUES (23660,384,500,3);   -- Automaton: Haste +5%
+INSERT INTO `item_mods_pet` VALUES (23674,68,38,0);     -- Ankusa Gaiters +3: Pet: Evasion+38
+INSERT INTO `item_mods_pet` VALUES (23674,161,-5,0);    -- Ankusa Gaiters +3: Pet: Physical damage taken -5%
+INSERT INTO `item_mods_pet` VALUES (23679,2,290,2);     -- Pteroslaver Greaves +3: Wyvern: HP+290
+INSERT INTO `item_mods_pet` VALUES (23679,370,10,2);    -- Pteroslaver Greaves +3: Wyvern: "Regen"+10
+INSERT INTO `item_mods_pet` VALUES (23680,23,89,1);     -- Glyphic Pigaches +3: Avatar: Attack+89
+INSERT INTO `item_mods_pet` VALUES (23680,25,36,1);     -- Glyphic Pigaches +3: Avatar: Accuracy+36
+INSERT INTO `item_mods_pet` VALUES (23680,562,13,1);    -- Glyphic Pigaches +3: Avatar: Magic critical hit rate +13%
+INSERT INTO `item_mods_pet` VALUES (23683,28,57,3);     -- Pitre Babouches +3: Automaton: "Magic Atk. Bonus"+57
+INSERT INTO `item_mods_pet` VALUES (23683,30,43,3);     -- Pitre Babouches +3: Automaton: Magic Accuracy+43
+-- INSERT INTO `item_mods_pet` VALUES (23686,370,5,?);  -- Bagua Sandals +3: Luopan: "Regen"+5
+INSERT INTO `item_mods_pet` VALUES (25465,25,15,0);     -- Beastmaster Collar: Pet: Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25465,26,15,0);     -- Beastmaster Collar: Pet: Ranged Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25465,30,15,0);     -- Beastmaster Collar: Pet: Magic Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25466,25,20,0);     -- Beastmaster Collar+1: Pet: Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25466,26,20,0);     -- Beastmaster Collar+1: Pet: Ranged Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25466,30,20,0);     -- Beastmaster Collar+1: Pet: Magic Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25467,25,25,0);     -- Beastmaster Collar+2: Pet: Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25467,26,25,0);     -- Beastmaster Collar+2: Pet: Ranged Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25467,30,25,0);     -- Beastmaster Collar+2: Pet: Magic Accuracy+25
+-- INSERT INTO `item_mods_pet` VALUES (25495,??,1,2);   -- Dragoon's Collar: Wyvern: Lv.+1
+-- INSERT INTO `item_mods_pet` VALUES (25496,??,1,2);   -- Dragoon's Collar+1: Wyvern: Lv.+1
+-- INSERT INTO `item_mods_pet` VALUES (25497,??,1,2);   -- Dragoon's Collar+2: Wyvern: Lv.+1
+INSERT INTO `item_mods_pet` VALUES (25501,25,15,1);     -- Summoner's Collar: Avatar: Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25501,26,15,1);     -- Summoner's Collar: Avatar: Ranged Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25501,30,15,1);     -- Summoner's Collar: Avatar: Magic Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25502,25,20,1);     -- Summoner's Collar: Avatar: Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25502,26,20,1);     -- Summoner's Collar: Avatar: Ranged Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25502,30,20,1);     -- Summoner's Collar: Avatar: Magic Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25503,25,25,1);     -- Summoner's Collar: Avatar: Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25503,26,25,1);     -- Summoner's Collar: Avatar: Ranged Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25503,30,25,1);     -- Summoner's Collar: Avatar: Magic Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25519,25,15,3);     -- Pup. Collar: Automaton: Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25519,26,15,3);     -- Pup. Collar: Automaton: Ranged Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25519,30,15,3);     -- Pup. Collar: Automaton: Magic Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (25520,25,20,3);     -- Pup. Collar+1: Automaton: Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25520,26,20,3);     -- Pup. Collar+1: Automaton: Ranged Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25520,30,20,3);     -- Pup. Collar+1: Automaton: Magic Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (25521,25,25,3);     -- Pup. Collar+2: Automaton: Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25521,26,25,3);     -- Pup. Collar+2: Automaton: Ranged Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25521,30,25,3);     -- Pup. Collar+2: Automaton: Magic Accuracy+25
+INSERT INTO `item_mods_pet` VALUES (25563,25,40,0);     -- Heyoka Cap: Pet: Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (25563,26,40,0);     -- Heyoka Cap: Pet: Ranged Accuracy+40
+INSERT INTO `item_mods_pet` VALUES (25563,27,8,0);      -- Heyoka Cap: Pet: Enmity+8
+INSERT INTO `item_mods_pet` VALUES (25563,384,600,0);   -- Heyoka Cap: Pet: Haste+6%
+INSERT INTO `item_mods_pet` VALUES (25564,25,50,0);     -- Heyoka Cap +1: Pet: Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (25564,26,50,0);     -- Heyoka Cap +1: Pet: Ranged Accuracy+50
+INSERT INTO `item_mods_pet` VALUES (25564,27,10,0);     -- Heyoka Cap +1: Pet: Enmity+10
+INSERT INTO `item_mods_pet` VALUES (25564,384,600,0);   -- Heyoka Cap +1: Pet: Haste+6%
+INSERT INTO `item_mods_pet` VALUES (25565,368,3,1);     -- Baayami Hat: Avatar: "Regain"+3
+INSERT INTO `item_mods_pet` VALUES (25566,368,4,1);     -- Baayami Hat+1: Avatar: "Regain"+4
 INSERT INTO `item_mods_pet` VALUES (26201,23,23,0);     -- Thur. Ring +1 Pet: Attack+23
 INSERT INTO `item_mods_pet` VALUES (26201,24,23,0);     -- Pet: Ranged Attack+23
 INSERT INTO `item_mods_pet` VALUES (26201,25,22,0);     -- Pet: Accuracy+22

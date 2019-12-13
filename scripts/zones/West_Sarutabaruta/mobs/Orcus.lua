@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Orcus
+--  Mob: Orcus
 -----------------------------------
 require("scripts/globals/titles")
 -----------------------------------

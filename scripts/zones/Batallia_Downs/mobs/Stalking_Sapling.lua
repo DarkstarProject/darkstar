@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Stalking Sapling
+--  Mob: Stalking Sapling
 -- Note: PH for Tottering Toby
 -----------------------------------
 local ID = require("scripts/zones/Batallia_Downs/IDs");

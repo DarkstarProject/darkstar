@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Tavnazia
---  MOB: Hydra_Monk
+-- Area: Dynamis - Tavnazia
+--  Mob: Hydra Monk
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

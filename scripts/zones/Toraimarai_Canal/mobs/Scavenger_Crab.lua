@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Scavenger Crab
+-- Area: Toraimarai Canal
+--  Mob: Scavenger Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

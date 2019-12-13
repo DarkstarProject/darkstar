@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Warden Beetle
+--  Mob: Warden Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Smithy
+--  Mob: Goblin Smithy
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if player:hasKeyItem(dsp.ki.SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 1 then
+    if player:hasKeyItem(dsp.ki.SEANCE_STAFF) and player:getCharVar("Enagakure_Killed") == 1 then
         cs = 1101
     end
 

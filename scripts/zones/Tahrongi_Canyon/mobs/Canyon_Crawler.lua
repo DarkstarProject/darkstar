@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Canyon Crawler
+--  Mob: Canyon Crawler
 -- Note: PH for Herbage Hunter
 -----------------------------------
 local ID = require("scripts/zones/Tahrongi_Canyon/IDs")

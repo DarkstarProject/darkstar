@@ -28,16 +28,16 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ffr = player:getVar("FFR");
+    local ffr = player:getCharVar("FFR");
 
     -- FLYERS FOR REGINE
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
         player:startEvent(601);
     elseif (ffr == 1) then
         player:startEvent(510,2);
-    elseif (player:getVar("FFR") == 2) then
+    elseif (player:getCharVar("FFR") == 2) then
         player:startEvent(603);
-    elseif (player:getVar("FFR") > 2 and not player:hasItem(532)) then
+    elseif (player:getCharVar("FFR") > 2 and not player:hasItem(532)) then
         player:startEvent(510,3);
         
     -- DEFAULT MENU
@@ -52,36 +52,36 @@ end;
 function onEventFinish(player,csid,option)
     -- FLYERS FOR REGINE
     if (csid == 601) then
-        player:setVar("FFR",1);
+        player:setCharVar("FFR",1);
     elseif (csid == 510 and option == 2) then
         if (npcUtil.giveItem(player, {{532,12}, {532,3}} )) then
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
-            player:setVar("FFR",17);
+            player:setCharVar("FFR",17);
         end
     elseif (csid == 603) then
         if (npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE, {gil=440, title=dsp.title.ADVERTISING_EXECUTIVE})) then
-            player:setVar("tradeAnswald",0);
-            player:setVar("tradePrietta",0);
-            player:setVar("tradeMiene",0);
-            player:setVar("tradePortaure",0);
-            player:setVar("tradeAuvare",0);
-            player:setVar("tradeGuilberdrier",0);
-            player:setVar("tradeVilion",0);
-            player:setVar("tradeCapiria",0);
-            player:setVar("tradeBoncort",0);
-            player:setVar("tradeCoullene",0);
-            player:setVar("tradeLeuveret",0);
-            player:setVar("tradeBlendare",0);
-            player:setVar("tradeMaugie",0);
-            player:setVar("tradeAdaunel",0);
-            player:setVar("tradeRosel",0);
-            player:setVar("FFR",0);
+            player:setCharVar("tradeAnswald",0);
+            player:setCharVar("tradePrietta",0);
+            player:setCharVar("tradeMiene",0);
+            player:setCharVar("tradePortaure",0);
+            player:setCharVar("tradeAuvare",0);
+            player:setCharVar("tradeGuilberdrier",0);
+            player:setCharVar("tradeVilion",0);
+            player:setCharVar("tradeCapiria",0);
+            player:setCharVar("tradeBoncort",0);
+            player:setCharVar("tradeCoullene",0);
+            player:setCharVar("tradeLeuveret",0);
+            player:setCharVar("tradeBlendare",0);
+            player:setCharVar("tradeMaugie",0);
+            player:setCharVar("tradeAdaunel",0);
+            player:setCharVar("tradeRosel",0);
+            player:setCharVar("FFR",0);
         end
 
     -- THE BRUGAIRE CONSORTIUM
     elseif (csid == 535) then
         player:confirmTrade();
-        player:setVar("TheBrugaireConsortium-Parcels", 11);
+        player:setCharVar("TheBrugaireConsortium-Parcels", 11);
         
     -- WHITE MAGIC SHOP
     elseif (csid == 510 and option == 0) then

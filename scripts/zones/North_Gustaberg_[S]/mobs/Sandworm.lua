@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Crystal War Areas
---  MOB: Sandworm
+-- Area: North Gustaberg [S]
+--  Mob: Sandworm
 -- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------
 require("scripts/globals/titles");
