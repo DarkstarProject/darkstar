@@ -69,7 +69,40 @@ function onUseAbility(player,target,ability)
     if (pet:getHP() < pet:getMaxHP()) then -- sleep is only removed if it heals the wyvern
         removeSleepEffects(pet)
     end
-
+    
+    -- Empathy copying
+    local empathyTotal = player:getMerit(dsp.merit.EMPATHY)/5 -- +5 value per increase for this merit... not sure why
+    if empathyTotal > 0 then
+        local effects = player:getStatusEffects()
+        local validEffects = { }
+        local i = 0 -- highest existing index
+        local copyi = 0
+        
+        for _,effect in ipairs(effects) do
+            if bit.band(effect:getFlag(),dsp.effectFlag.EMPATHY) == dsp.effectFlag.EMPATHY then
+                validEffects[i+1] = effect
+                i = i + 1
+            end
+        end
+        
+        if i < empathyTotal then
+            empathyTotal = i
+        elseif i > empathyTotal then
+            validEffects = cutEmpathyEffectTable(validEffects,i,empathyTotal)
+        end
+        
+        local copyEffect = nil
+        while copyi < empathyTotal do
+            copyEffect = validEffects[copyi+1]
+            if pet:hasStatusEffect(copyEffect:getType()) then
+                pet:delStatusEffect(copyEffect:getType())
+            end
+            
+            pet:addStatusEffect(copyEffect:getType(),copyEffect:getType(),copyEffect:getTick(),math.ceil((copyEffect:getTimeRemaining())/1000)) -- id,power,tick,duration(convert ms to s)
+            copyi = copyi + 1
+        end
+    end
+    
     pet:addHP(healPet) --add the hp to pet
     pet:addStatusEffect(dsp.effect.REGEN,regenAmount,3,90,0,0,0) -- 90 seconds of regen
     player:addTP(petTP/2) --add half pet tp to you
