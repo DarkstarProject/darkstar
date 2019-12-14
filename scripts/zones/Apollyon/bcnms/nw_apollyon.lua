@@ -11,6 +11,7 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("randomMob", ID.mob.APOLLYON_NW_MOB[1]+math.random(1,8))
     battlefield:setLocalVar("loot", 1)
     SetServerVariable("[NW_Apollyon]Time", battlefield:getTimeLimit()/60)
+    limbus.hideDoors(battlefield:getID())
     limbus.hideArmouryCrates(battlefield:getID())
 end
 
@@ -31,6 +32,7 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldDestroy(battlefield)
+    limbus.hideDoors(battlefield:getID(), true)
     SetServerVariable("[NW_Apollyon]Time", 0)
 end
 

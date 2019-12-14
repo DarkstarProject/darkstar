@@ -68,6 +68,36 @@ zones[dsp.zone.APOLLYON] =
     npc =
     {
         ENTRANCE_OFFSET = 16933218,
+        APOLLYON_NW_PORTAL =
+        {
+            16933226, -- nw 1>2
+            16933227, -- nw 2>3
+            16933228, -- nw 3>4
+            16933224, -- nw 4>5
+            16933225, -- nw 5>e
+        },
+        APOLLYON_SW_PORTAL =
+        {
+            16933230, -- sw 1>2
+            16933231, -- sw 2>3
+            16933232, -- sw 3>4
+            16933229, -- sw 4>e
+        },
+        APOLLYON_NE_PORTAL =
+        {
+            16933235, -- ne 1>2
+            16933234, -- ne 2>3
+            16933233, -- ne 3>4
+            16933237, -- ne 4>5
+            16933236, -- ne 5>e
+        },
+        APOLLYON_SE_PORTAL =
+        {
+            16933239, -- se 1>2
+            16933238, -- se 2>3
+            16933241, -- se 3>4
+            16933240, -- se 4>e
+        },
         APOLLYON_SW_CRATE =
         {
             16932865,

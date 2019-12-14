@@ -908,7 +908,7 @@ function onTrigger(player, npc)
                                 elseif model == 961 then
                                     limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                                    limbus.ExtendTimeLimit(battlefield, 15, 38)
                                 end
                                 npc:setStatus(dsp.status.DISAPPEAR)
                             end
@@ -939,7 +939,7 @@ function onTrigger(player, npc)
                                             limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                             npc:setStatus(dsp.status.DISAPPEAR)
                                         elseif crateID == timePH then
-                                            dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                                            limbus.ExtendTimeLimit(battlefield, 15, 38)
                                             npc:setStatus(dsp.status.DISAPPEAR)
                                         else
                                             if mimicSpawned == 0 or mimicSpawned == 2 or mimicSpawned == 4 or mimicSpawned == 6 then
@@ -976,7 +976,7 @@ function onTrigger(player, npc)
                                     elseif model == 961 then
                                         limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                     elseif model == 962 then
-                                        dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                                        limbus.ExtendTimeLimit(battlefield, 15, 38)
                                     end
                                     npc:setStatus(dsp.status.DISAPPEAR)
                                 end
@@ -1000,7 +1000,7 @@ function onTrigger(player, npc)
                                 elseif model == 961 then
                                     limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                                    limbus.ExtendTimeLimit(battlefield, 15, 38)
                                 end
                             end
                         end
@@ -1022,7 +1022,7 @@ function onTrigger(player, npc)
                                 elseif model == 961 then
                                     limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    dsp.battlefield.ExtendTimeLimit(battlefield, 10, ID.text.TIME_EXTENDED)
+                                    limbus.ExtendTimeLimit(battlefield, 15, 38)
                                 end
                             end
                         end
@@ -1039,7 +1039,7 @@ function onTrigger(player, npc)
             end,
             [1294] = function() -- CS Apollyon Crate Handling
                 if crateID ~= ID.npc.APOLLYON_CS_CRATE then
-                    dsp.battlefield.ExtendTimeLimit(battlefield, 5, ID.text.TIME_EXTENDED)
+                    limbus.ExtendTimeLimit(battlefield, 15, 38)
                 else
                     limbus.handleLootRolls(battlefield, loot[bfid][1], nil, npc)
                     battlefield:setLocalVar("cutsceneTimer", 10)

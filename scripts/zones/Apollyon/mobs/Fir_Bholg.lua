@@ -22,7 +22,7 @@ function onMobDeath(mob, player, isKiller)
                         member:messageSpecial(ID.text.GATE_OPEN)
                         member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                     end
-                    battlefield:setLocalVar("portalF1", 1)
+                    GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[1]):setAnimation(8)
                 end
             end
         elseif race == 3 or race == 4 then
@@ -37,7 +37,7 @@ function onMobDeath(mob, player, isKiller)
                         member:messageSpecial(ID.text.GATE_OPEN)
                         member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                     end
-                    battlefield:setLocalVar("portalF1", 1)
+                    GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[1]):setAnimation(8)
                 end
             end
         elseif race == 5 or race == 6 then
@@ -52,7 +52,7 @@ function onMobDeath(mob, player, isKiller)
                         member:messageSpecial(ID.text.GATE_OPEN)
                         member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                     end
-                    battlefield:setLocalVar("portalF1", 1)
+                    GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[1]):setAnimation(8)
                 end
             end
         elseif race == 7 then
@@ -67,7 +67,7 @@ function onMobDeath(mob, player, isKiller)
                         member:messageSpecial(ID.text.GATE_OPEN)
                         member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                     end
-                    battlefield:setLocalVar("portalF1", 1)
+                    GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[1]):setAnimation(8)
                 end
             end
         elseif race == 8 then
@@ -82,7 +82,7 @@ function onMobDeath(mob, player, isKiller)
                         member:messageSpecial(ID.text.GATE_OPEN)
                         member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                     end
-                    battlefield:setLocalVar("portalF1", 1)
+                    GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[1]):setAnimation(8)
                 end
             end
         end

@@ -223,33 +223,69 @@ function limbus.elementalsDead()
     return daykill
 end
 
-function limbus.hideTemenosDoors(bfid, open)
+function limbus.hideDoors(bfid, open)
     local animation = 9
     if open then animation = 8 end
-    local ID = zones[dsp.zone.TEMENOS]
-    if bfid == 1299 then -- Temenos_Northern_Tower
+    local ID
+    if bfid == 1290 or bfid == 1291 or bfid == 1292 or bfid == 1293 then
+        ID = zones[dsp.zone.APOLLYON]
+    else
+        ID = zones[dsp.zone.TEMENOS]
+    end
+
+    switch (bfid): caseof
+    {
+    [1290] = function() -- NW_Apollyon
+        for i = 1, 5 do
+            GetNPCByID(ID.npc.APOLLYON_NW_PORTAL[i]):setAnimation(animation)
+        end
+    end,
+    [1291] = function() -- SW_Apollyon
+        for i = 1, 4 do
+            GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[i]):setAnimation(animation)
+        end
+    end,
+    [1292] = function() -- NE_Apollyon
+        for i = 1, 5 do
+            GetNPCByID(ID.npc.APOLLYON_NE_PORTAL[i]):setAnimation(animation)
+        end
+    end,
+    [1293] = function() -- SE_Apollyon
+        for i = 1, 4 do
+            GetNPCByID(ID.npc.APOLLYON_SE_PORTAL[i]):setAnimation(animation)
+        end
+    end,
+    [1299] = function() -- Temenos_Northern_Tower
         for i = 1, 7 do
             GetNPCByID(ID.npc.TEMENOS_N_GATE[i]):setAnimation(animation)
         end
-    elseif bfid == 1300 then -- Temenos_Eastern_Tower
+    end,
+    [1300] = function() -- Temenos_Eastern_Tower
         for i = 1, 7 do
             GetNPCByID(ID.npc.TEMENOS_E_GATE[i]):setAnimation(animation)
         end
-    elseif bfid == 1298 then -- Temenos_Western_Tower
+    end,
+    [1298] = function() -- Temenos_Western_Tower
         for i = 1, 7 do
             GetNPCByID(ID.npc.TEMENOS_W_GATE[i]):setAnimation(animation)
         end
-    elseif bfid == 1303 then -- Central_Temenos_1st_Floor
+    end,
+    [1303] = function() -- Central_Temenos_1st_Floor
         GetNPCByID(ID.npc.TEMENOS_C_GATE[1]):setAnimation(animation)
-    elseif bfid == 1304 then -- Central_Temenos_2nd_Floor
+    end,
+    [1304] = function() -- Central_Temenos_2nd_Floor
         GetNPCByID(ID.npc.TEMENOS_C_GATE[2]):setAnimation(animation)
-    elseif bfid == 1305 then -- Central_Temenos_3rd_Floor
+    end,
+    [1305] = function() -- Central_Temenos_3rd_Floor
         GetNPCByID(ID.npc.TEMENOS_C_GATE[3]):setAnimation(animation)
-    elseif bfid == 1306 then -- Central_Temenos_4th_Floor
+    end,
+    [1306] = function() -- Central_Temenos_4th_Floor
         GetNPCByID(ID.npc.TEMENOS_C_GATE[4]):setAnimation(animation)
-    elseif bfid == 1301 then -- Central_Temenos_Basement
+    end,
+    [1301] = function() -- Central_Temenos_Basement
         GetNPCByID(ID.npc.TEMENOS_C_GATE[5]):setAnimation(animation)
-    end
+    end,
+}
 end
 
 function limbus.spawnRandomCrate(npc, player, var, mask, canMimic)

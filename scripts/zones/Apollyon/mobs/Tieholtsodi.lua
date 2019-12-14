@@ -27,5 +27,6 @@ function onMobDeath(mob, player, isKiller)
             member:messageSpecial(ID.text.GATE_OPEN)
             member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
         end
+        GetNPCByID(ID.npc.APOLLYON_SE_PORTAL[2]):setAnimation(8)
     end
 end

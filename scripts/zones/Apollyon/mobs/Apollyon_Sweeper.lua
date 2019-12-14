@@ -16,7 +16,7 @@ function onMobDeath(mob, player, isKiller)
                 member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
             end
             battlefield:setLocalVar("randomF4", ID.mob.APOLLYON_NE_MOB[4]+math.random(0,2))
-            battlefield:setLocalVar("portalF3", 1)
+            GetNPCByID(ID.npc.APOLLYON_NE_PORTAL[3]):setAnimation(8)
         end
     end
 end

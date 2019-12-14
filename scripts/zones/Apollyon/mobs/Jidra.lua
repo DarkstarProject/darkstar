@@ -18,6 +18,7 @@ function onMobDeath(mob, player, isKiller)
                 member:messageSpecial(ID.text.GATE_OPEN)
                 member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
             end
+            GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[2]):setAnimation(8)
         elseif mobID == ID.mob.APOLLYON_SW_MOB[2]+1 then
             GetMobByID(ID.mob.APOLLYON_SW_MOB[2]+8):setSpawn(mobX, mobY, mobZ)
             GetMobByID(ID.mob.APOLLYON_SW_MOB[2]+8):setPos(mobX, mobY, mobZ)

@@ -37,7 +37,7 @@ function onMobDeath(mob, player, isKiller)
                 battlefield:setLocalVar("portalTriggerF3", ID.mob.APOLLYON_NE_MOB[3]+(math.random(0,2)*5))
                 battlefield:setLocalVar("itemF3", ID.mob.APOLLYON_NE_MOB[3]+1+(math.random(0,2)*5))
             end
-            battlefield:setLocalVar("portalF2", 1)
+            GetNPCByID(ID.npc.APOLLYON_NE_PORTAL[2]):setAnimation(8)
         end
     end
 end

@@ -8,15 +8,15 @@ function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID()
     if isKiller then
         local battlefield = player:getBattlefield()
-        local randomMob = battlefield:getLocalVar("randomMob")
-        if mobID == randomMob then
+        local randomF2 = battlefield:getLocalVar("randomF2")
+        if mobID == randomF2 then
             local players = battlefield:getPlayers()
             for i, member in pairs(players) do
                 member:messageSpecial(ID.text.GATE_OPEN)
                 member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
             end
-            battlefield:setLocalVar("randomMob", ID.mob.APOLLYON_NW_MOB[3]+math.random(1,8))
-            battlefield:setLocalVar("portalF2", 1)
+            battlefield:setLocalVar("randomF3", ID.mob.APOLLYON_NW_MOB[3]+math.random(1,8))
+            GetNPCByID(ID.npc.APOLLYON_NW_PORTAL[2]):setAnimation(8)
         end
     end
 end
