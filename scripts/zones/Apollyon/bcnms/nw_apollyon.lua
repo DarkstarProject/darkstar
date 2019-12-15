@@ -8,7 +8,7 @@ require("scripts/globals/keyitems")
 local ID = require("scripts/zones/Apollyon/IDs")
 
 function onBattlefieldInitialise(battlefield)
-    battlefield:setLocalVar("randomMob", ID.mob.APOLLYON_NW_MOB[1]+math.random(1,8))
+    battlefield:setLocalVar("randomF1", ID.mob.APOLLYON_NW_MOB[1]+math.random(1,8))
     battlefield:setLocalVar("loot", 1)
     SetServerVariable("[NW_Apollyon]Time", battlefield:getTimeLimit()/60)
     limbus.hideDoors(battlefield:getID())
