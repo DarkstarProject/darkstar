@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Tiny Mandragora
+--  Mob: Tiny Mandragora
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

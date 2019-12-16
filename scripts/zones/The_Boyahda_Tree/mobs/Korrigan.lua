@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Korrigan
+--  Mob: Korrigan
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

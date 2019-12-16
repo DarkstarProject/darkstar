@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon CS
---  MOB: Carnagechief_Jackbodokk
+--  Mob: Carnagechief Jackbodokk
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------
@@ -25,7 +25,7 @@ function onMobFight(mob,target)
     local Y = mob:getYPos();
     local Z = mob:getZPos();
     local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100);
-    local instancetime = target:getSpecialBattlefieldLeftTime(5);
+    local instancetime = target:getBattlefieldTimeLeft(Central_Temenos_2nd_Floor);
 
 
     if (lifepourcent < 50 and GetNPCByID(16933245):getAnimation() == 8) then
@@ -37,18 +37,17 @@ function onMobFight(mob,target)
     end
 
     if (instancetime < 13) then
-        if (IsMobDead(16933144) == false) then  --link  dee wapa
+        if (GetMobByID(16933144):isAlive()) then
             GetMobByID(16933144):updateEnmity(target);
-        elseif (IsMobDead(16933137) == false) then  --link na qba
+        elseif (GetMobByID(16933137):isAlive()) then
             GetMobByID(16933137):updateEnmity(target);
         end
     end
-
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if ((IsMobDead(16933144) == false or IsMobDead(16933137) == false) and alreadyReceived(player,1,GetInstanceRegion(1294)) == false) then
-        player:addTimeToSpecialBattlefield(5,5);
-        addLimbusList(player,1,GetInstanceRegion(1294));
+    if ( ( GetMobByID(16933144):isAlive() or GetMobByID(16933137):isAlive() ) and alreadyReceived(player,1,Central_Temenos_2nd_Floor) == false) then
+        player:addTimeToBattlefield(Central_Temenos_2nd_Floor,5);
+        addLimbusList(player,1,Central_Temenos_2nd_Floor);
     end
 end;

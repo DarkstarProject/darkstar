@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Predator
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Predator
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

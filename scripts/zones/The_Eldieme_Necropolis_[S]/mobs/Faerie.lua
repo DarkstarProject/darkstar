@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---   Mob: Faerie
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Faerie
 -----------------------------------
 
 -- -----------------------------------

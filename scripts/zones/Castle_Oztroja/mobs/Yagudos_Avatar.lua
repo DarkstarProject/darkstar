@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja
---  MOB: Yagudo's Avatar
+--  Mob: Yagudo's Avatar
 -----------------------------------
 mixins = {require("scripts/mixins/families/avatar")}
 

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Labyrinth of Onzozo
---  MOB: Babaulas
+-- Area: Labyrinth of Onzozo
+--  Mob: Babaulas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

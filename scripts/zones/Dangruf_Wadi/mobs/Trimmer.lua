@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Trimmer
+--  Mob: Trimmer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

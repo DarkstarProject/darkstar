@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Bonecutter
+--  Mob: Gigas Bonecutter
 -- Note: PH for Enkelados
 -----------------------------------
 local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")

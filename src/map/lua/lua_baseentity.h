@@ -58,9 +58,9 @@ public:
     int32 messageSystem(lua_State*);        // Sends System Message
 
     // Variables
-    int32 getVar(lua_State*);               // Returns a character variable
-    int32 setVar(lua_State*);               // Sets a character variable
-    int32 addVar(lua_State*);               // Increments/decriments/sets a character variable
+    int32 getCharVar(lua_State*);           // Returns a character variable
+    int32 setCharVar(lua_State*);           // Sets a character variable
+    int32 addCharVar(lua_State*);           // Increments/decriments/sets a character variable
     int32 getLocalVar(lua_State*);
     int32 setLocalVar(lua_State*);
     int32 resetLocalVars(lua_State*);
@@ -134,7 +134,6 @@ public:
     int32 setWeather(lua_State*);            // Set Weather condition (GM COMMAND)
 
     // PC Instructions
-    int32 setHomePoint(lua_State*);          // Sets character's homepoint
     int32 ChangeMusic(lua_State* L);         // Sets the specified music Track for specified music block.
     int32 sendMenu(lua_State*);              // Displays a menu (AH,Raise,Tractor,MH etc)
     int32 sendGuild(lua_State*);             // Sends guild shop menu
@@ -168,14 +167,19 @@ public:
     int32 setPos(lua_State*);                // Set Entity position (x,y,z,rot) or (x,y,z,rot,zone)
     int32 warp(lua_State*);                  // Returns Character to home point
     int32 teleport(lua_State*);              // Set Entity position (without entity despawn/spawn packets)
+
+    int32 addTeleport(lua_State*);           // Add new teleport means to char unlocks
+    int32 getTeleport(lua_State*);           // Get unlocked teleport means
+    int32 hasTeleport(lua_State*);           // Has access to specific teleport
+    int32 setTeleportMenu(lua_State*);       // Set favorites or menu layout preferences for homepoints or survival guides
+    int32 getTeleportMenu(lua_State*);       // Get favorites and menu layout preferences
+    int32 setHomePoint(lua_State*);          // Sets character's homepoint
+    
     int32 resetPlayer(lua_State*);           // if player is stuck, GM command @resetPlayer name
 
     int32 goToEntity(lua_State*);            // Warps self to NPC or Mob; works across multiple game servers
     int32 gotoPlayer(lua_State*);            // warps self to target player
     int32 bringPlayer(lua_State*);           // warps target to self
-
-    int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)
-    int32 addNationTeleport(lua_State*);     // Add new teleport: addNationTeleport(nation,number)
 
     // Items
     int32 getEquipID(lua_State*);            // Gets the Item Id of the item in specified slot
@@ -265,7 +269,6 @@ public:
     int32 changeJob(lua_State*);            // changes the job of a char (testing only!)
     int32 changesJob(lua_State*);           // changes the sub job of a char (testing only!)
     int32 unlockJob(lua_State*);            // Unlocks a job for the entity, sets job level to 1
-    int32 sjRestriction(lua_State*);        // Establish/return subjob restriction
 
     int32 getMainLvl(lua_State*);           // Gets Entity Main Job Level
     int32 getSubLvl(lua_State*);            // Get Entity Sub Job Level
@@ -410,6 +413,8 @@ public:
     int32 hasPartyJob(lua_State*);
     int32 getPartyMember(lua_State* L);             // Get a character entity from another entity's party or alliance
     int32 getPartyLeader(lua_State* L);
+    int32 getLeaderID(lua_State* L);              // Get the id of the alliance/party leader *falls back to player id if no party*
+
     int32 forMembersInRange(lua_State* L);
 
     int32 addPartyEffect(lua_State*);               // Adds Effect to all party members
@@ -425,7 +430,7 @@ public:
     int32 checkSoloPartyAlliance(lua_State*);        // Check if Player is in Party or Alliance 0=Solo 1=Party 2=Alliance
 
     int32 checkFovAllianceAllowed(lua_State*);       // checks the map config, 1 if alliance is allowed to farm Fov pages
-    int32 checkValorCredit(lua_State*);
+    int32 checkKillCredit(lua_State*);
 
     // Instances
     int32 getInstance(lua_State* L);
@@ -437,34 +442,15 @@ public:
     int32 getConfrontationEffect(lua_State* L);
     int32 copyConfrontationEffect(lua_State* L);     // copy confrontation effect, param = targetEntity:getShortID()
 
-    // Battledfields
-    int32 getBattlefield(lua_State* L);
-    int32 getBattlefieldID(lua_State*);              //returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
-    int32 isInBattlefieldList(lua_State*);           // Return true is the mob is in battlefield list
-    int32 addInBattlefieldList(lua_State*);          // Add the mob to the battlefield list
-    int32 addPlayerToSpecialBattlefield(lua_State*); //for limbus
-    int32 getSpecialBattlefieldLeftTime(lua_State*); // return left time of the specific instance
-    int32 addTimeToSpecialBattlefield(lua_State*);   // add time of the specific instance
-    int32 isSpecialBattlefieldEmpty(lua_State*);     // 1 if this battlefield is full
-    int32 RestoreAndHealOnBattlefield(lua_State*);   // restore ability , PM and PV on the specific instance
+    // Battlefields
+    int32 getBattlefield(lua_State* L);    // returns CBattlefield* or nullptr if not available
+    int32 getBattlefieldID(lua_State*);    // returns entity->PBattlefield->GetID() or -1 if not available
+    int32 registerBattlefield(lua_State*); // attempt to register a battlefield, returns BATTLEFIELD_RETURNCODE
+    int32 battlefieldAtCapacity(lua_State*);     // 1 if this battlefield is full
+    int32 enterBattlefield(lua_State*);    // enter a battlefield entity is registered with
+    int32 leaveBattlefield(lua_State*);    // leave battlefield if inside one
+    int32 isInDynamis(lua_State*);         //If player is in Dynamis return true else false
 
-    // BCNM
-    int32 bcnmRegister(lua_State*);                  //Attempts to register a bcnm battlefield (used by Dynamis and BCNM)
-    int32 bcnmEnter(lua_State*);                     //Enter a bcnm battlefield (used by Dynamis and BCNM)
-    int32 bcnmLeave(lua_State*);                     //Leave a bcnm battlefield
-    int32 isInBcnm(lua_State*);                      //true if you're INSIDE the bc (not just the status)
-    int32 isBcnmsFull(lua_State*);                   //true if all 3 battlefield are full
-    int32 getBCNMloot(lua_State*);                   //triggers if the player opens the chest inside bcnm
-    int32 BCNMSetLoot(lua_State*);                   // set a lootlist for a special instance
-
-    // Dynamis
-    int32 getDynamisUniqueID(lua_State*);      //Get unique Dynamis ID
-    int32 addPlayerToDynamis(lua_State*);      //Add player to the Dynamis
-    int32 addTimeToDynamis(lua_State*);        //Add time to the Dynamis
-    int32 launchDynamisSecondPart(lua_State*); //Spawn Mob part 2 when mega boss is defeated
-    int32 isInDynamis(lua_State*);             //If player is in Dynamis return true else false
-    int32 getStatPoppedMobs(lua_State*);       // True if dyna statue has popped mobs
-    int32 setStatPoppedMobs(lua_State*);       // Set to 1 for true, 0 for false
 
     // Battle Utilities
     int32 isAlive(lua_State* L);
@@ -575,7 +561,7 @@ public:
     int32 getOffhandDmg(lua_State*);            // gets the current equipped offhand's DMG rating (used in WS calcs)
     int32 getOffhandDmgRank(lua_State*);        // gets the current equipped offhand's DMG rating for Rank calc
     int32 getRangedDmg(lua_State*);             // Get ranged weapon DMG rating
-    int32 getRangedDmgForRank(lua_State*);      // Get ranged weapond DMG rating used for calculating rank
+    int32 getRangedDmgRank(lua_State*);         // Get ranged weapond DMG rating used for calculating rank
     int32 getAmmoDmg(lua_State*);               // Get ammo DMG rating
 
     int32 removeAmmo(lua_State* L);

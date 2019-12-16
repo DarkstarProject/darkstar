@@ -17,27 +17,27 @@ function onTrigger(player,npc)
         player:startEvent(103); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);
-        MissionStatus = player:getVar("MissionStatus");
+        MissionStatus = player:getCharVar("MissionStatus");
         pRank = player:getRank();
         cs, p, offset = getMissionOffset(player,2,CurrentMission,MissionStatus);
 
-        if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
+        if (CurrentMission <= dsp.mission.id.windurst.THE_SHADOW_AWAITS and (cs ~= 0 or offset ~= 0 or (CurrentMission == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and offset == 0))) then
             if (cs == 0) then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
-        elseif (CurrentMission ~= 255) then
+        elseif (CurrentMission ~= dsp.mission.id.windurst.NONE) then
             player:startEvent(109);
-        elseif (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
             player:startEvent(118);
-        elseif (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER) == false) then
             player:startEvent(130);
-        elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_PRICE_OF_PEACE) == false) then
             player:startEvent(135);
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(232);
-        elseif (player:hasCompletedMission(WINDURST,MOON_READING) == true) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.MOON_READING) == true) then
             player:startEvent(837);
         else
             flagMission, repeatMission = getMissionMask(player);
@@ -62,7 +62,7 @@ printf("RESULT: %u",option);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
     if (csid == 837) then
-        player:setVar("WWatersRTenText",1);
+        player:setCharVar("WWatersRTenText",1);
     end
     
 end;

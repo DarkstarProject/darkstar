@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: North Gusberg
---  MOB: Gambilox Wanderling
+-- Area: North Gustaberg
+--  Mob: Gambilox Wanderling
 -- Quest NM - "As Thick as Thieves"
 -----------------------------------
 require("scripts/globals/status")
@@ -11,9 +11,7 @@ function onMobInitialize(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
-
-    if thickAsThievesGamblingCS == 5 then
-        player:setVar("thickAsThievesGamblingCS",6)
+    if player:getCharVar("thickAsThievesGamblingCS") == 5 then
+        player:setCharVar("thickAsThievesGamblingCS", 6)
     end
 end

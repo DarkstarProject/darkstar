@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Death Cap
+--  Mob: Death Cap
 -- Note: PH for Ellyllon
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs")

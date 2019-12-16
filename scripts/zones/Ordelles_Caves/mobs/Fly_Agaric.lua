@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Fly Agaric
+--  Mob: Fly Agaric
 -- Note: PH for Donggu
 -----------------------------------
 local ID = require("scripts/zones/Ordelles_Caves/IDs")

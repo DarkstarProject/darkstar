@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost (140)
---  MOB: Orcish_Stonechucker
+--  Mob: Orcish Stonechucker
 -- Note: PH for Thousandarm Deshglesh
 -----------------------------------
 local ID = require("scripts/zones/Ghelsba_Outpost/IDs");

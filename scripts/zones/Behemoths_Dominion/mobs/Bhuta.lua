@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Bhuta
+--  Mob: Bhuta
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

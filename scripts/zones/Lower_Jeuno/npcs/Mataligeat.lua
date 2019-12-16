@@ -14,7 +14,7 @@ function onTrigger(player,npc)
     local pathOfTheBard = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PATH_OF_THE_BARD);
 
     -- THE OLD MONUMENT
-    if (player:getVar("TheOldMonument_Event") == 1) then
+    if (player:getCharVar("TheOldMonument_Event") == 1) then
         player:startEvent(141); -- looks like his girlfriend dumped him
 
     -- PAINFUL MEMORY
@@ -22,7 +22,7 @@ function onTrigger(player,npc)
         player:startEvent(140); -- he's forgotten why he took up the lute in the first place
 
     -- THE REQUIEM
-    elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3) then
+    elseif (theRequiem == QUEST_ACCEPTED and player:getCharVar("TheRequiemCS") == 3) then
         player:startEvent(142); -- huh? the bard interred inside eldieme?
 
     -- PATH OF THE BARD

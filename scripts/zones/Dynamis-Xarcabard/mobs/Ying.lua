@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  NM:  Ying
+-- Area: Dynamis - Xarcabard
+--   NM: Ying
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

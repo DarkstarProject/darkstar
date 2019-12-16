@@ -4,10 +4,11 @@
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/settings")
 require("scripts/globals/status")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    mob:showText(mob, PROMATHIA_TEXT + 6)
+    mob:showText(mob, ID.text.PROMATHIA_TEXT + 6)
     return 0
 end
 

@@ -1,30 +1,33 @@
 -----------------------------------
 -- Area: Temenos
--- Name:
+-- Name: Temenos Eastern Tower
 -----------------------------------
-
-
+require("scripts/globals/limbus");
+require("scripts/globals/battlefield")
+require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
-if (GetMobAction(16928844) > 0) then DespawnMob(16928844);end
-if (GetMobAction(16928853) > 0) then DespawnMob(16928853);end
-if (GetMobAction(16928862) > 0) then DespawnMob(16928862);end
-if (GetMobAction(16928871) > 0) then DespawnMob(16928871);end
-if (GetMobAction(16928880) > 0) then DespawnMob(16928880);end
-if (GetMobAction(16928889) > 0) then DespawnMob(16928889);end
-if (GetMobAction(16928894) > 0) then DespawnMob(16928894);end
-    SetServerVariable("[Temenos_E_Tower]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1300),TEMENOS);
-    HideTemenosDoor(GetInstanceRegion(1300));
-                        
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
+function onBattlefieldRegister(player,battlefield)
+    if (GetMobByID(16928844):isSpawned()) then DespawnMob(16928844); end
+    if (GetMobByID(16928853):isSpawned()) then DespawnMob(16928853); end
+    if (GetMobByID(16928862):isSpawned()) then DespawnMob(16928862); end
+    if (GetMobByID(16928871):isSpawned()) then DespawnMob(16928871); end
+    if (GetMobByID(16928880):isSpawned()) then DespawnMob(16928880); end
+    if (GetMobByID(16928889):isSpawned()) then DespawnMob(16928889); end
+    if (GetMobByID(16928894):isSpawned()) then DespawnMob(16928894); end
+    SetServerVariable("[Temenos_E_Tower]UniqueID",os.time());
+    HideArmouryCrates(Temenos_Eastern_Tower,TEMENOS);        
+    HideTemenosDoor(Temenos_Eastern_Tower);
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
-    player:setVar("limbusbitmap",0);
-    player:setVar("characterLimbusKey",GetServerVariable("[Temenos_E_Tower]UniqueID"));
-    player:setVar("LimbusID",1300);
+function onBattlefieldEnter(player,battlefield)
+    player:setCharVar("characterLimbusKey",GetServerVariable("[Temenos_E_Tower]UniqueID"));
     player:delKeyItem(dsp.ki.COSMOCLEANSE);
     player:delKeyItem(dsp.ki.WHITE_CARD);
 end;
@@ -33,10 +36,10 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function onBcnmLeave(player,instance,leavecode)
---print("leave code "..leavecode);
-    if (leavecode == 4) then
-         player:setPos(580,-1.5,4.452,192);
-        ResetPlayerLimbusVariable(player)
+function onBattlefieldLeave(player,battlefield,leavecode)
+    --print("leave code "..leavecode);
+    if leavecode == dsp.battlefield.leaveCode.LOST then
+        SetServerVariable("[Temenos_E_Tower]UniqueID",0);
+        player:setPos(580,-1.5,4.452,192);
     end
 end;

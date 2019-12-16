@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Castle Zvahl Keep (S)
---  MOB: Keep Imp
+-- Area: Castle Zvahl Keep [S]
+--  Mob: Keep Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

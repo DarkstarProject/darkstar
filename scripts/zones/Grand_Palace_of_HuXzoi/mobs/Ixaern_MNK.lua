@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
---  MOB: Ix'aern (MNK)
+--  Mob: Ix'aern MNK
 -----------------------------------
 local ID = require("scripts/zones/Grand_Palace_of_HuXzoi/IDs");
 require("scripts/globals/settings");
@@ -19,7 +19,7 @@ function onMobSpawn(mob)
         SetDropRate(4398, 1901, chance * 10); -- Vice of Antipathy
     end
     qm:setLocalVar("[SEA]IxAern_DropRate", 0);
-    
+
     mob:AnimationSub(1); -- Reset the subanim - otherwise it will respawn with bracers on. Note that Aerns are never actually supposed to be in subanim 0.
 end;
 
@@ -54,7 +54,7 @@ end;
 function onMobDespawn(mob)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
-    
+
     local qm = GetNPCByID(ID.npc.IXAERN_MNK_QM);
     if (math.random(0,1) == 1) then
         qm:setPos(380,0,540,0); -- G-7

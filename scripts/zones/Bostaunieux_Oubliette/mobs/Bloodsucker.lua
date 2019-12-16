@@ -1,7 +1,7 @@
 -----------------------------------
---   Area: Bostaunieux Oubliette (167)
--- Mob/NM: Bloodsucker
---   Note: This script will be loaded for both the NM and non-NM mobs of this name.
+-- Area: Bostaunieux Oubliette (167)
+--  Mob: Bloodsucker
+-- Note: This script will be loaded for both the NM and non-NM mobs of this name.
 -- !pos -21.776 16.983 -231.477 167
 -----------------------------------
 local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs")

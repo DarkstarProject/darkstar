@@ -449,7 +449,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
             haveHate = selfEnmity > masterEnmity ? true : false;
         }
     }
-    
+
     // Prioritize hate
     if (haveHate)
     {

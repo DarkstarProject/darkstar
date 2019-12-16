@@ -16,9 +16,9 @@ zones[dsp.zone.FULL_MOON_FOUNTAIN] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         UNABLE_TO_PROTECT       = 7366, -- You were unable to protect Ajido-Marujido. Now leaving the battlefield.
-        PLAY_TIME_IS_OVER       = 7751, -- Play time is over! Powers of dark mana, answer my call!
-        YOU_SHOULD_BE_THANKFUL  = 7752, -- You should be thankful. I'll give you a shortaru trip back to the hell you came from!
-        DONT_GIVE_UP            = 7753, -- Don't give up, adventurer! You are Windurst's guiding star, our beacon of hope!
+        PLAY_TIME_IS_OVER       = 7752, -- Play time is over! Powers of dark mana, answer my call!
+        YOU_SHOULD_BE_THANKFUL  = 7753, -- You should be thankful. I'll give you a shortaru trip back to the hell you came from!
+        DONT_GIVE_UP            = 7754, -- Don't give up, adventurer! You are Windurst's guiding star, our beacon of hope!
     },
     mob =
     {

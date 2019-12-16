@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
---  MOB: Yagudo Sentinel
+-- Area: Castle Oztroja [S]
+--  Mob: Yagudo Sentinel
 -- Note: PH for Aa Xalmo the Savage and Zhuu Buxu the Silent
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja_[S]/IDs")

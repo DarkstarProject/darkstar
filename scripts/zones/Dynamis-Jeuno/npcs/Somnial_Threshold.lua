@@ -2,25 +2,16 @@
 -- Area: Dynamis
 --  NPC: Somnial Threshold
 -------------------------------------
+require("scripts/globals/dynamis")
+-----------------------------------
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
+    dynamis.somnialThresholdOnTrigger(player, npc)
+end
 
-    player:startEvent(101, 0, 0, 5);
+function onEventUpdate(player, csid, option)
+end
 
-end;
-
-function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
-
-end;
-
-function onEventFinish(player,csid,option)
-    -- printf("onFinish CSID: %u",csid);
-    -- printf("onFinish RESULT: %u",option);
-
-    if (csid == 101 and option == 1) then
-        player:setPos(48.930,10.002,-71.032,195,243);
-    end
-
-end;
+function onEventFinish(player, csid, option)
+    dynamis.somnialThresholdOnEventFinish(player, csid, option)
+end

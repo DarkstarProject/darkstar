@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Crawler
+--  Mob: Crawler
 -- Note: PH for Spiny Spipi
 -----------------------------------
 local ID = require("scripts/zones/East_Sarutabaruta/IDs")

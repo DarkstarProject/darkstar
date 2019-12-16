@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Davoi Mush
+--  Mob: Davoi Mush
 -- Note: PH for Blubbery Bulge
 -----------------------------------
 local ID = require("scripts/zones/Davoi/IDs");

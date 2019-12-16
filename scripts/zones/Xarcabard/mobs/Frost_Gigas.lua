@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Frost Gigas
+--  Mob: Frost Gigas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

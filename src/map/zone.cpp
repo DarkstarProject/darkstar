@@ -32,6 +32,7 @@
 
 #include <string.h>
 
+#include "battlefield.h"
 #include "enmity_container.h"
 #include "latent_effect_container.h"
 #include "linkshell.h"
@@ -371,7 +372,7 @@ void CZone::LoadZoneSettings()
 
         if (Sql_GetData(SqlHandle, 10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
-            m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
+            m_BattlefieldHandler = new CBattlefieldHandler(this);
         }
         if (m_miscMask & MISC_TREASURE)
         {
@@ -780,7 +781,7 @@ void CZone::ZoneServer(time_point tick, bool check_regions)
 
     if (m_BattlefieldHandler != nullptr)
     {
-        m_BattlefieldHandler->handleBattlefields(tick);
+        m_BattlefieldHandler->HandleBattlefields(tick);
     }
 }
 
@@ -880,6 +881,10 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     {
         PChar->PInstance = nullptr;
     }
+
+    if (m_BattlefieldHandler)
+        if (auto PBattlefield = m_BattlefieldHandler->GetBattlefield(PChar, true))
+            PBattlefield->InsertEntity(PChar, true);
 
     PChar->PLatentEffectContainer->CheckLatentsZone();
 }

@@ -19,7 +19,7 @@ end;
 function onTrigger(player,npc)
     TheWonderMagicSet = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
     WonderMagicSetKI = player:hasKeyItem(dsp.ki.WONDER_MAGIC_SET);
-    TheLostCardianCS = player:getVar("theLostCardianVar");
+    TheLostCardianCS = player:getCharVar("theLostCardianVar");
     TheKindCardian = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN);
 
     if (player:getFameLevel(JEUNO) >= 4 and TheWonderMagicSet == QUEST_AVAILABLE) then
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(40); -- Standard dialog
         end
-    elseif (TheKindCardian == QUEST_ACCEPTED and player:getVar("theKindCardianVar") == 2) then
+    elseif (TheKindCardian == QUEST_ACCEPTED and player:getCharVar("theKindCardianVar") == 2) then
         player:startEvent(35); -- Finish quest "The kind cardien"
     elseif (TheKindCardian == QUEST_COMPLETED) then
         player:startEvent(76); -- New standard dialog after "The kind cardien"
@@ -67,14 +67,14 @@ function onEventFinish(player,csid,option)
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
         end
     elseif (csid == 30) then
-        player:setVar("theLostCardianVar",2);
+        player:setCharVar("theLostCardianVar",2);
     elseif (csid == 35) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13596);
         else
             player:addTitle(dsp.title.BRINGER_OF_BLISS);
             player:delKeyItem(dsp.ki.TWO_OF_SWORDS);
-            player:setVar("theKindCardianVar",0);
+            player:setCharVar("theKindCardianVar",0);
             player:addItem(13596);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13596); -- Green Cape
             player:addFame(JEUNO, 30);

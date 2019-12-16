@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Labyrinth of Onzozo
---  MOB: Goblin Bouncer
+-- Area: Labyrinth of Onzozo
+--  Mob: Goblin Bouncer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

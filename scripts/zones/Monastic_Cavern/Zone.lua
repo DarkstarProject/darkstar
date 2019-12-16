@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Monastic_Cavern (150)
+-- Zone: Monastic Cavern (150)
 --
 -----------------------------------
 local ID = require("scripts/zones/Monastic_Cavern/IDs")

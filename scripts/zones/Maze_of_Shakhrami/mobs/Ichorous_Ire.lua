@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---   NM: Ichorous_Ire
+--   NM: Ichorous Ire
 -----------------------------------
 require("scripts/globals/titles")
 -----------------------------------

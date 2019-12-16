@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Cursemaker
+--  Mob: Orcish Cursemaker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

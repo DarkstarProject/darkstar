@@ -1,7 +1,10 @@
-import MySQLdb
+import mysql.connector
+from mysql.connector import Error
 import re
 import spell_blobs_to_spell_table
 import unnamed_flags
+import char_unlock_table_columns
+import HP_masks_to_blobs
 
 credentials = {}
 db = None
@@ -36,7 +39,7 @@ def connect():
 
     print(database, host, port, login, password)
 
-    db = MySQLdb.connect(host=host,
+    db = mysql.connector.connect(host=host,
             user=login,
             passwd=password,
             db=database,
@@ -50,16 +53,6 @@ def close():
     print("Closing connection...")
     cur.close()
     db.close()
-
-def run_all_migrations():
-    connect()
-
-    run_migration(spell_blobs_to_spell_table)
-    run_migration(unnamed_flags)
-
-    print("Finished running all migrations")
-
-    close()
 
 def run_migration(migration):
     # Ensure things like new table exists
@@ -76,6 +69,17 @@ def run_migration(migration):
 
     print("[Success] Done running " + migration.migration_name())
 
+def run_all_migrations():
+    connect()
+
+    run_migration(unnamed_flags)
+    run_migration(spell_blobs_to_spell_table)
+    run_migration(char_unlock_table_columns)
+    run_migration(HP_masks_to_blobs)
+    close()
+
+    print("Finished running all migrations")
+    success = input("Please close the window")
 
 if __name__ == "__main__":
     run_all_migrations()

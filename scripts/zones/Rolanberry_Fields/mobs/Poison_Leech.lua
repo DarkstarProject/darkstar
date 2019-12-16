@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Poison Leech
+--  Mob: Poison Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

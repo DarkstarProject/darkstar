@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Lake Sahagin
+--  Mob: Lake Sahagin
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

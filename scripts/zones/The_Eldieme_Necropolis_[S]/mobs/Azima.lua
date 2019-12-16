@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Azima
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Azima
 -----------------------------------
 
 -- -----------------------------------

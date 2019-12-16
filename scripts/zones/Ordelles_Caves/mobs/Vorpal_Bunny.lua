@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Vorpal Bunny
+--  Mob: Vorpal Bunny
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

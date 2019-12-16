@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
---  MOB: Dark Ixion
+--  Mob: Dark Ixion
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

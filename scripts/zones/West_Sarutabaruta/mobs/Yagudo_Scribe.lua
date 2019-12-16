@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Yagudo Scribe
+--  Mob: Yagudo Scribe
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

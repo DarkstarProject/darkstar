@@ -1464,9 +1464,9 @@ INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 362, 1, 255); -- Bindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 366, 1, 255); -- Graviga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
-INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255);  -- Drown
+INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255); -- Drown
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,201,1,255); -- Waterga III
-INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,362,1,255); -- Bindaga
+INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,361,1,255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,214,1,255); -- Flood
 INSERT INTO `mob_spell_lists` VALUES ('Iratham_HP_50to100', 153, 176, 1, 255); -- Firaga 3 (Only used when over 50% HP)
 INSERT INTO `mob_spell_lists` VALUES ('Iratham_HP_50to100', 153, 177, 1, 255); -- Firaga 4 (Only used when over 50% HP)
@@ -2500,6 +2500,21 @@ INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,359,1,255); -- silencega
 INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,152,1,255); -- blizzard_iv
 INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,181,1,255); -- blizzaga_iii
 INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,144,1,255); -- fire
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,164,1,255); -- thunder
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,266,1,255); -- absorb-str
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,267,1,255); -- absorb-dex
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,268,1,255); -- absorb-vit
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,269,1,255); -- absorb-agi
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,270,1,255); -- absorb-int
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,271,1,255); -- absorb-mnd
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,272,1,255); -- absorb-chr
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,145,1,255); -- fire_ii
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,150,1,255); -- blizzard_ii
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,174,1,255); -- firaga
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,179,1,255); -- blizzaga
+INSERT INTO `mob_spell_lists` VALUES ('Saa_Doyi_the_Fervid',306,320,1,255); -- katon_ichi
+INSERT INTO `mob_spell_lists` VALUES ('Frost_Flambeau',307,180,1,255); -- blizzaga_ii
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Shepherd
+--  Mob: Goblin Shepherd
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Yagudo Acolyte
+--  Mob: Yagudo Acolyte
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

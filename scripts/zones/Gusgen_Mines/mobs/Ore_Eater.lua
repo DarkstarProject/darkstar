@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Ore Eater
+--  Mob: Ore Eater
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

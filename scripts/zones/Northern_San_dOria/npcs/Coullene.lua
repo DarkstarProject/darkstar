@@ -11,13 +11,13 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeCoulene") == 0) then
+        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getCharVar("tradeCoulene") == 0) then
             player:messageSpecial(ID.text.COULLENE_DIALOG);
-            player:addVar("FFR", -1);
-            player:setVar("tradeCoulene",1);
+            player:addCharVar("FFR", -1);
+            player:setCharVar("tradeCoulene",1);
             player:messageSpecial(ID.text.FLYER_ACCEPTED);
             player:tradeComplete();
-        elseif (player:getVar("tradeCoulene") ==1) then
+        elseif (player:getCharVar("tradeCoulene") ==1) then
             player:messageSpecial(ID.text.FLYER_ALREADY);
         end
     end

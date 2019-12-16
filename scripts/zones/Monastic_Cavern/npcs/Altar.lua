@@ -16,9 +16,9 @@ function onTrigger(player, npc)
     local circleOfTime = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME)
 
     if circleOfTime == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.STAR_RING1) and player:hasKeyItem(dsp.ki.MOON_RING) then
-        if player:getVar("circleTime") == 7 and npcUtil.popFromQM(player, npc, ID.mob.BUGABOO, {hide = 0}) then
+        if player:getCharVar("circleTime") == 7 and npcUtil.popFromQM(player, npc, ID.mob.BUGABOO, {hide = 0}) then
             -- no further action needed
-        elseif player:getVar("circleTime") == 8 then
+        elseif player:getCharVar("circleTime") == 8 then
             player:startEvent(3)
         else
             player:messageSpecial(ID.text.ALTAR)
@@ -33,7 +33,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 3 then
-        player:setVar("circleTime", 9)
+        player:setCharVar("circleTime", 9)
         player:delKeyItem(dsp.ki.MOON_RING)
         player:delKeyItem(dsp.ki.STAR_RING1)
     end

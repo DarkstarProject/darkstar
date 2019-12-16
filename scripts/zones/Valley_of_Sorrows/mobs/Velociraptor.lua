@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
---  MOB: Velociraptor
+--  Mob: Velociraptor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

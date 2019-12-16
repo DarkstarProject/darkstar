@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local AGreetingCardian = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_GREETING_CARDIAN);
-    local AGCcs = player:getVar("AGreetingCardian_Event");
+    local AGCcs = player:getCharVar("AGreetingCardian_Event");
 
     if (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 4) then
         player:startEvent(1); -- A Greeting Cardian step three
@@ -26,6 +26,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:setVar("AGreetingCardian_Event",5);
+        player:setCharVar("AGreetingCardian_Event",5);
     end
 end;

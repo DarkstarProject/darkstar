@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Habrok
+--  Mob: Habrok
 -----------------------------------
 
 function onMobInitialize(mob)

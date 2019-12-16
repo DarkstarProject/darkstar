@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Thunder Elemental
+--  Mob: Thunder Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

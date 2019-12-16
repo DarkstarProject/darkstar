@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
     local currentday = tonumber(os.date("%j"))
-    local lastPermit = player:getVar("LAST_PERMIT")
+    local lastPermit = player:getCharVar("LAST_PERMIT")
     local diffday = currentday - lastPermit
     local a1 = player:getAssaultPoint(LEUJAOAM_ASSAULT_POINT)
     local a2 = player:getAssaultPoint(MAMOOL_ASSAULT_POINT)
@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 
     if player:hasKeyItem(dsp.ki.REMNANTS_PERMIT) then
         player:startEvent(821)
---[[    elseif player:getCurrentMission(TOAU) > GUESTS_OF_THE_EMPIRE and player:getMainLvl() >= 65 then
+--[[    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.GUESTS_OF_THE_EMPIRE and player:getMainLvl() >= 65 then
         if lastPermit == 0 then
             player:startEvent(818,a1,a2,a3,a4,a5)
         elseif diffday > 0 then
@@ -68,6 +68,6 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(dsp.ki.REMNANTS_PERMIT)
         end
         player:setLocalVar("SalvageValid",0)
-        player:setVar("LAST_PERMIT",currentday)
+        player:setCharVar("LAST_PERMIT",currentday)
     end
 end

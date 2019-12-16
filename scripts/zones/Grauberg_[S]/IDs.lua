@@ -17,6 +17,7 @@ zones[dsp.zone.GRAUBERG_S] =
         NOTHING_OUT_OF_ORDINARY     = 6402, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET      = 7049, -- You can't fish here.
         HARVESTING_IS_POSSIBLE_HERE = 7687, -- Harvesting is possible here if you have <item>.
+        COMMON_SENSE_SURVIVAL       = 9292, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

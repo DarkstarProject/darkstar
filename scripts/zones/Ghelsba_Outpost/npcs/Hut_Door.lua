@@ -8,18 +8,15 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
--------------------------------------
 
 function onTrade(player,npc,trade)
-    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
-        return;
-    end
+    TradeBCNM(player,npc,trade);
 end;
 
 function onTrigger(player,npc)
 
     if (player:hasKeyItem(dsp.ki.ORCISH_HUT_KEY)) then
-        if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
+        if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SAVE_THE_CHILDREN)) then
             player:startEvent(3);
         else
             player:startEvent(55);
@@ -31,16 +28,14 @@ function onTrigger(player,npc)
     end
 end;
 
-function onEventUpdate(player,csid,option)
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 function onEventFinish(player,csid,option)
     if (csid == 3 or csid == 55) then
         player:delKeyItem(dsp.ki.ORCISH_HUT_KEY);
-        player:setVar("MissionStatus",4);
+        player:setCharVar("MissionStatus",4);
     else
         if (EventFinishBCNM(player,csid,option)) then
             return;

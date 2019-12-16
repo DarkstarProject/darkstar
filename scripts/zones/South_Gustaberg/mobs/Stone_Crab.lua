@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Stone Crab
+--  Mob: Stone Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
---  MOB: Dark Ixion
+--  Mob: Dark Ixion
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

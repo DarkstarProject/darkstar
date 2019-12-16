@@ -21,11 +21,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local DistantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
+    local DistantLoyaltiesProgress = player:getCharVar("DistantLoyaltiesProgress");
     local DistantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local WildcatSandy = player:getCharVar("WildcatSandy");
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
         player:startEvent(807);
     elseif (player:getFameLevel(SANDORIA) >= 4 and DistantLoyalties == 0) then
         player:startEvent(663);
@@ -45,12 +45,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 807) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",3,true);
     elseif (csid == 663 and option == 0) then
         player:addKeyItem(dsp.ki.GOLDSMITHING_ORDER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
-        player:setVar("DistantLoyaltiesProgress",1);
+        player:setCharVar("DistantLoyaltiesProgress",1);
     elseif (csid == 665) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13585);
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.MYTHRIL_HEARTS);
             player:addItem(13585,1);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13585);
-            player:setVar("DistantLoyaltiesProgress",0);
+            player:setCharVar("DistantLoyaltiesProgress",0);
             player:completeQuest(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
         end;
     end;

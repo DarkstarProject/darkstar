@@ -57,9 +57,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(286,0,937) -- Post Making Amens! dialogue (before Wonder Wands)
         end
-    elseif (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD) then
+    elseif (player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD) then
         local item = 0
-        local asaStatus = player:getVar("ASA_Status")
+        local asaStatus = player:getCharVar("ASA_Status")
 
         -- TODO: Other Enfeebling Kits
         if (asaStatus == 0) then

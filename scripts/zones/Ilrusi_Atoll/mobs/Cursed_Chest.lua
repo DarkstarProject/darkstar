@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Illrusi atoll
---  MOB: Cursed Chest
+-- Area: Ilrusi Atoll
+--  Mob: Cursed Chest
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------

@@ -12,22 +12,20 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(2);
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     end
 end;
 
-function onEventUpdate(player,csid,option)
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 function onEventFinish(player,csid,option)
     if (csid == 2) then
-        player:setVar("AhtUrganStatus", 2);
+        player:setCharVar("AhtUrganStatus", 2);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

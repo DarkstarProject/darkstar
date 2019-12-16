@@ -198,8 +198,18 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
         case EFFECT_SLEEP:
         case EFFECT_SLEEP_II:
         case EFFECT_LULLABY:
-            if (m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
+        {
+            if (m_POwner->hasImmunity(IMMUNITY_SLEEP))
+                return false;
+
+            uint16 subPower = PStatusEffect->GetSubPower();
+            if (subPower == ELEMENT_LIGHT && m_POwner->hasImmunity(IMMUNITY_LIGHT_SLEEP))
+                return false;
+            if (subPower == ELEMENT_DARK && m_POwner->hasImmunity(IMMUNITY_DARK_SLEEP))
+                return false;
+
             break;
+        }
         case EFFECT_WEIGHT:
             if (m_POwner->hasImmunity(IMMUNITY_GRAVITY)) return false;
             break;
@@ -464,9 +474,8 @@ void CStatusEffectContainer::DeleteStatusEffects()
     }
 }
 
-void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
+void CStatusEffectContainer::RemoveStatusEffect(CStatusEffect* PStatusEffect, bool silent)
 {
-    CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
     if (!PStatusEffect->deleted)
     {
         if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
@@ -494,12 +503,17 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
         }
         else
         {
-            if (silent == false && PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
+            if (!silent && PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
             {
                 m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
             }
         }
     }
+}
+
+void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
+{
+    RemoveStatusEffect(m_StatusEffectList.at(id), silent);
 }
 
 /************************************************************************
@@ -1270,7 +1284,9 @@ void CStatusEffectContainer::LoadStatusEffects()
         "duration,"
         "subid,"
         "subpower,"
-        "tier "
+        "tier, "
+        "flags, "
+        "timestamp "
         "FROM char_effects "
         "WHERE charid = %u;";
 
@@ -1282,21 +1298,40 @@ void CStatusEffectContainer::LoadStatusEffects()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
+            auto flags = (uint32)Sql_GetUIntData(SqlHandle, 8);
+            auto duration = (uint32)Sql_GetUIntData(SqlHandle, 4);
+            if (flags & EFFECTFLAG_OFFLINE_TICK)
+            {
+                auto timestamp = (uint32)Sql_GetUIntData(SqlHandle, 9);
+                if (server_clock::now() < time_point() + std::chrono::seconds(timestamp) + std::chrono::seconds(duration))
+                {
+                    duration = (uint32)std::chrono::duration_cast<std::chrono::seconds>(
+                        time_point() + std::chrono::seconds(timestamp) + std::chrono::seconds(duration) - server_clock::now()
+                    ).count();
+                }
+                else
+                {
+                    // Effect expired while offline
+                    continue;
+                }
+            }
             CStatusEffect* PStatusEffect = new CStatusEffect(
                 (EFFECT)Sql_GetUIntData(SqlHandle, 0),
                 (uint16)Sql_GetUIntData(SqlHandle, 1),
                 (uint16)Sql_GetUIntData(SqlHandle, 2),
                 (uint32)Sql_GetUIntData(SqlHandle, 3),
-                (uint32)Sql_GetUIntData(SqlHandle, 4),
+                duration,
                 (uint16)Sql_GetUIntData(SqlHandle, 5),
                 (uint16)Sql_GetUIntData(SqlHandle, 6),
-                (uint16)Sql_GetUIntData(SqlHandle, 7));
+                (uint16)Sql_GetUIntData(SqlHandle, 7),
+                flags
+                );
 
             PEffectList.push_back(PStatusEffect);
 
             // load shadows left
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetPower());
+                m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetSubPower());
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
                 m_POwner->setModifier(Mod::BLINK, PStatusEffect->GetPower());
@@ -1328,8 +1363,11 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
     {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
-        if (logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT)
+        if ((logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT) || (!logout && PStatusEffect->GetFlag() & EFFECTFLAG_ON_ZONE))
+        {
+            RemoveStatusEffect(PStatusEffect, true);
             continue;
+        }
 
         if (PStatusEffect->deleted)
             continue;
@@ -1339,11 +1377,11 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
         if (realduration > 0s)
         {
-            const char* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
+            const char* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier, flags, timestamp) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u);";
 
             // save power of utsusemi and blink
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                PStatusEffect->SetPower(m_POwner->getMod(Mod::UTSUSEMI));
+                PStatusEffect->SetSubPower(m_POwner->getMod(Mod::UTSUSEMI));
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
                 PStatusEffect->SetPower(m_POwner->getMod(Mod::BLINK));
@@ -1357,14 +1395,20 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
             if (PStatusEffect->GetDuration() > 0)
             {
-                auto seconds = (uint32)std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
-
-                if (seconds > 0)
-                    duration = seconds;
+                if (PStatusEffect->GetFlag() & EFFECTFLAG_OFFLINE_TICK)
+                {
+                    duration = PStatusEffect->GetDuration() / 1000;
+                }
                 else
-                    continue;
-            }
+                {
+                    auto seconds = (uint32)std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
 
+                    if (seconds > 0)
+                        duration = seconds;
+                    else
+                        continue;
+                }
+            }
             Sql_Query(SqlHandle, Query,
                 m_POwner->id,
                 PStatusEffect->GetStatusID(),
@@ -1374,9 +1418,13 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
                 duration,
                 PStatusEffect->GetSubID(),
                 PStatusEffect->GetSubPower(),
-                PStatusEffect->GetTier());
+                PStatusEffect->GetTier(),
+                PStatusEffect->GetFlag(),
+                std::chrono::duration_cast<std::chrono::seconds>(PStatusEffect->GetStartTime().time_since_epoch()).count()
+            );
         }
     }
+    DeleteStatusEffects();
 }
 
 /************************************************************************

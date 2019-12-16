@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Doom Soldier
+--  Mob: Doom Soldier
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

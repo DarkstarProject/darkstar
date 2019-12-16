@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Ogrefly
+--  Mob: Ogrefly
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

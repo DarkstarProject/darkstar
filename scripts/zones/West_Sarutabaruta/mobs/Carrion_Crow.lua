@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Carrion Crow
+--  Mob: Carrion Crow
 -- Note: PH for Nunyenunc
 -----------------------------------
 local ID = require("scripts/zones/West_Sarutabaruta/IDs")

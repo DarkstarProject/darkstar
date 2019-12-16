@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Sagittarius
+--  Mob: Antican Sagittarius
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

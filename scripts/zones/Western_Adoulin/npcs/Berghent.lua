@@ -25,7 +25,7 @@ function onTrigger(player,npc)
             player:startEvent(82);
         end
     elseif (FOOL == QUEST_AVAILABLE) then
-        if (player:getVar("FOOL_Refused_Once") == 1) then
+        if (player:getCharVar("FOOL_Refused_Once") == 1) then
             -- Starts Quest: 'Flavors of Our Lives' after player refused once
             player:startEvent(81);
         else
@@ -46,17 +46,17 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             -- Starts Quest: 'Flavors of Our Lives'
             player:addQuest(ADOULIN, dsp.quest.id.adoulin.FLAVORS_OF_OUR_LIVES);
-            player:setVar("FOOL_Refused_Once", 0);
+            player:setCharVar("FOOL_Refused_Once", 0);
         else
             -- Refuses Quest: 'Flavors of Our Lives'
-            player:setVar("FOOL_Refused_Once", 1);
+            player:setCharVar("FOOL_Refused_Once", 1);
         end
         --
     elseif (csid == 81) then
         if (option == 1) then
             -- Starts Quest: 'Flavors of Our Lives'
             player:addQuest(ADOULIN, dsp.quest.id.adoulin.FLAVORS_OF_OUR_LIVES);
-            player:setVar("FOOL_Refused_Once", 0);
+            player:setCharVar("FOOL_Refused_Once", 0);
         end
     elseif (csid == 87) then
         -- Finishing Quest: 'Flavors of Our Lives'

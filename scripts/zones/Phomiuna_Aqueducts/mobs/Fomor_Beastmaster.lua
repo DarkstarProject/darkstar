@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---  MOB: Fomor Beastmaster
+--  Mob: Fomor Beastmaster
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

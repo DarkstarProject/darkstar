@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Sabotender Sediendo
+--  Mob: Sabotender Sediendo
 -- Note: Place Holder for Sabotender Mariachi
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs")

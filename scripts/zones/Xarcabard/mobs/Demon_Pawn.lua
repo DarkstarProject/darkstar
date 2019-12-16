@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Demon Pawn
+--  Mob: Demon Pawn
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

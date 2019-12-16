@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Overgrown Rose
+--  Mob: Overgrown Rose
 -----------------------------------
 local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
 

@@ -41,8 +41,8 @@ HEAVY_CROSSBOW         = 17220
 function satisfy_attachment(player,new_attachmentStatus,new_attachmentReady)
     player:tradeComplete()
     player:startEvent(625)
-    player:setVar("PUP_AttachmentStatus", new_attachmentStatus)
-    player:setVar("PUP_AttachmentReady",new_attachmentReady)
+    player:setCharVar("PUP_AttachmentStatus", new_attachmentStatus)
+    player:setCharVar("PUP_AttachmentReady",new_attachmentReady)
 end
 
 function play_event624(player, attachments, new_attachmentStatus)
@@ -54,26 +54,26 @@ function play_event624(player, attachments, new_attachmentStatus)
     elseif attachments == 2 then
         player:startEvent(624, 0, 0, 0, 0, 0, IMPERIAL_GOLD_PIECE, 1)
     end
-    player:setVar("PUP_AttachmentStatus", new_attachmentStatus)
+    player:setCharVar("PUP_AttachmentStatus", new_attachmentStatus)
 end
 
 function play_event902(player, new_attachmentStatus, new_attachmentWait)
     player:tradeComplete()
-    player:setVar("PUP_AttachmentStatus", new_attachmentStatus)
-    player:setVar("PUP_AttachmentReady", getVanaMidnight())
-    player:setVar("PUP_AttachmentWait", new_attachmentWait)
+    player:setCharVar("PUP_AttachmentStatus", new_attachmentStatus)
+    player:setCharVar("PUP_AttachmentReady", getVanaMidnight())
+    player:setCharVar("PUP_AttachmentWait", new_attachmentWait)
     player:startEvent(902)
 end
 
 
 
 function onTrade(player,npc,trade)
-    local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-    local attachments = player:getVar("PUP_Attachments")
-    local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
-    local attachmentTime = player:getVar("PUP_AttachmentReady")
+    local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+    local attachments = player:getCharVar("PUP_Attachments")
+    local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
+    local attachmentTime = player:getCharVar("PUP_AttachmentReady")
     local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time())
-    local attachmentWait = player:getVar("PUP_AttachmentWait")
+    local attachmentWait = player:getCharVar("PUP_AttachmentWait")
 
     local payment_received =
            attachments == 0 and trade:getItemQty(IMPERIAL_SILVER_PIECE) == 3
@@ -167,8 +167,8 @@ function onTrade(player,npc,trade)
     elseif (attachmentStatus == 12 or attachmentStatus == 13) and attachmentWait > 0 and attachmentReady == true then
         if trade:getSlotCount() == 1 and trade:getItemQty(IMPERIAL_COFFEE) == 1 then
             player:tradeComplete()
-            player:setVar("PUP_AttachmentReady",getVanaMidnight())
-            player:setVar("PUP_AttachmentWait",attachmentWait - 1)
+            player:setCharVar("PUP_AttachmentReady",getVanaMidnight())
+            player:setCharVar("PUP_AttachmentWait",attachmentWait - 1)
             player:startEvent(904)
         end
     end
@@ -193,18 +193,18 @@ function onTrigger(player,npc)
     --cs 905 - head complete
 
     local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED)
-    local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress")
+    local NoStringsAttachedProgress = player:getCharVar("NoStringsAttachedProgress")
     local Automaton = player:hasKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     local automatonName = player:getAutomatonName()
-    local CreationStarted_Day = player:getVar("CreationStarted_Day")
+    local CreationStarted_Day = player:getCharVar("CreationStarted_Day")
     local currentDay = VanadielDayOfTheYear()
-    local CreationReady = ((CreationStarted_Day < currentDay) or (player:getVar("CreationStarted_Year") < VanadielYear()))
-    local attachments = player:getVar("PUP_Attachments")
-    local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-    local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
-    local attachmentTime = player:getVar("PUP_AttachmentReady")
+    local CreationReady = ((CreationStarted_Day < currentDay) or (player:getCharVar("CreationStarted_Year") < VanadielYear()))
+    local attachments = player:getCharVar("PUP_Attachments")
+    local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+    local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
+    local attachmentTime = player:getCharVar("PUP_AttachmentReady")
     local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time())
-    local attachmentWait = player:getVar("PUP_AttachmentWait")
+    local attachmentWait = player:getCharVar("PUP_AttachmentWait")
     local playerLvl = player:getMainLvl()
 
     --[[
@@ -316,68 +316,68 @@ end
 function onEventFinish(player,csid,option)
 
     if csid == 262 then
-        player:setVar("NoStringsAttachedProgress",3)
+        player:setCharVar("NoStringsAttachedProgress",3)
     elseif csid == 264 then
-        player:setVar("CreationStarted_Day",VanadielDayOfTheYear())
-        player:setVar("CreationStarted_Year",VanadielYear())
-        player:setVar("NoStringsAttachedProgress",5)
+        player:setCharVar("CreationStarted_Day",VanadielDayOfTheYear())
+        player:setCharVar("CreationStarted_Year",VanadielYear())
+        player:setCharVar("NoStringsAttachedProgress",5)
         player:delKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     elseif csid == 265 then
-        player:setVar("NoStringsAttachedProgress",6)
-        player:setVar("CreationStarted_Day",0)
-        player:setVar("CreationStarted_Year",0)
+        player:setCharVar("NoStringsAttachedProgress",6)
+        player:setCharVar("CreationStarted_Day",0)
+        player:setCharVar("CreationStarted_Year",0)
     elseif csid == 620 or csid == 621 then
-        player:setVar("PUP_AttachmentStatus", option+1)
+        player:setCharVar("PUP_AttachmentStatus", option+1)
     elseif csid == 627 then
-        local attachments = player:getVar("PUP_Attachments")
-        local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-        local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
+        local attachments = player:getCharVar("PUP_Attachments")
+        local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+        local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
         if attachmentStatus == 8 then
             player:unlockAttachment(8225)
             player:unlockAttachment(8194)
-            player:setVar("PUP_AttachmentStatus", 0)
-            player:setVar("PUP_Attachments", attachments+1)
-            player:setVar("PUP_AttachmentUnlock", unlockedAttachments+2)
-            player:setVar("PUP_AttachmentReady", 0)
+            player:setCharVar("PUP_AttachmentStatus", 0)
+            player:setCharVar("PUP_Attachments", attachments+1)
+            player:setCharVar("PUP_AttachmentUnlock", unlockedAttachments+2)
+            player:setCharVar("PUP_AttachmentReady", 0)
             player:messageSpecial(ID.text.AUTOMATON_VALOREDGE_UNLOCK)
         elseif attachmentStatus == 9 then
             player:unlockAttachment(8226)
             player:unlockAttachment(8195)
-            player:setVar("PUP_AttachmentStatus", 0)
-            player:setVar("PUP_Attachments", attachments+1)
-            player:setVar("PUP_AttachmentUnlock", unlockedAttachments+4)
-            player:setVar("PUP_AttachmentReady", 0)
+            player:setCharVar("PUP_AttachmentStatus", 0)
+            player:setCharVar("PUP_Attachments", attachments+1)
+            player:setCharVar("PUP_AttachmentUnlock", unlockedAttachments+4)
+            player:setCharVar("PUP_AttachmentReady", 0)
             player:messageSpecial(ID.text.AUTOMATON_SHARPSHOT_UNLOCK)
         elseif attachmentStatus == 10 then
             player:unlockAttachment(8227)
             player:unlockAttachment(8196)
-            player:setVar("PUP_AttachmentStatus", 0)
-            player:setVar("PUP_Attachments", attachments+1)
-            player:setVar("PUP_AttachmentUnlock", unlockedAttachments+8)
-            player:setVar("PUP_AttachmentReady", 0)
+            player:setCharVar("PUP_AttachmentStatus", 0)
+            player:setCharVar("PUP_Attachments", attachments+1)
+            player:setCharVar("PUP_AttachmentUnlock", unlockedAttachments+8)
+            player:setCharVar("PUP_AttachmentReady", 0)
             player:messageSpecial(ID.text.AUTOMATON_STORMWAKER_UNLOCK)
         end
     elseif csid == 900 then
-        player:setVar("PUP_AttachmentStatus", 11)
+        player:setCharVar("PUP_AttachmentStatus", 11)
     elseif csid == 901 then
-        player:setVar("PUP_AttachmentStatus", 14)
+        player:setCharVar("PUP_AttachmentStatus", 14)
     elseif csid == 905 then
-        local attachments = player:getVar("PUP_Attachments")
-        local attachmentStatus = player:getVar("PUP_AttachmentStatus")
-        local unlockedAttachments = player:getVar("PUP_AttachmentUnlock")
+        local attachments = player:getCharVar("PUP_Attachments")
+        local attachmentStatus = player:getCharVar("PUP_AttachmentStatus")
+        local unlockedAttachments = player:getCharVar("PUP_AttachmentUnlock")
         if attachmentStatus == 12 then
             player:unlockAttachment(8197)
-            player:setVar("PUP_AttachmentStatus", 0)
-            player:setVar("PUP_Attachments", attachments+1)
-            player:setVar("PUP_AttachmentReady", 0)
-            player:setVar("PUP_AttachmentUnlock", unlockedAttachments+16)
+            player:setCharVar("PUP_AttachmentStatus", 0)
+            player:setCharVar("PUP_Attachments", attachments+1)
+            player:setCharVar("PUP_AttachmentReady", 0)
+            player:setCharVar("PUP_AttachmentUnlock", unlockedAttachments+16)
             player:messageSpecial(ID.text.AUTOMATON_SOULSOOTHER_UNLOCK)
         elseif attachmentStatus == 13 then
             player:unlockAttachment(8198)
-            player:setVar("PUP_AttachmentStatus", 0)
-            player:setVar("PUP_Attachments", attachments+1)
-            player:setVar("PUP_AttachmentReady", 0)
-            player:setVar("PUP_AttachmentUnlock", unlockedAttachments+32)
+            player:setCharVar("PUP_AttachmentStatus", 0)
+            player:setCharVar("PUP_Attachments", attachments+1)
+            player:setCharVar("PUP_AttachmentReady", 0)
+            player:setCharVar("PUP_AttachmentUnlock", unlockedAttachments+32)
             player:messageSpecial(ID.text.AUTOMATON_SPIRITREAVER_UNLOCK)
         end
     end

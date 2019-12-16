@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Vunkerl Inlet [S]
---  MOB: Chigoe
+--  Mob: Chigoe
 -----------------------------------
 mixins = {require("scripts/mixins/families/chigoe")}
 -----------------------------------

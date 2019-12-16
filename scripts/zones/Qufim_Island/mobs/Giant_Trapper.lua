@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Giant Trapper
+--  Mob: Giant Trapper
 -- Note: PH for Slippery Sucker
 -----------------------------------
 local ID = require("scripts/zones/Qufim_Island/IDs")

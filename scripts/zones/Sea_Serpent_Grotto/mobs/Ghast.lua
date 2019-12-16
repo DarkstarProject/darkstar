@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Ghast
+--  Mob: Ghast
 -- Note: PH for Namtar
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

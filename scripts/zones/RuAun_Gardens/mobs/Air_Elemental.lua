@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Air Elemental
+--  Mob: Air Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

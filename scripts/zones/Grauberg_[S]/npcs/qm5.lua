@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED and player:getVar("FiresOfDiscProg") == 3) then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED and player:getCharVar("FiresOfDiscProg") == 3) then
         player:startEvent(11);
     end
 end;
@@ -21,6 +21,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid==11) then
-        player:setVar("FiresOfDiscProg",4);
+        player:setCharVar("FiresOfDiscProg",4);
     end
 end;

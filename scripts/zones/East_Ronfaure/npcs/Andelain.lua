@@ -15,11 +15,11 @@ function onTrade(player,npc,trade)
     if (sermonQuest == QUEST_ACCEPTED) then
         count = trade:getItemCount();
         BluePeas = trade:getItemQty(618);
-        if (BluePeas == 1 and count == 1 and player:getVar("sermonQuestVar") == 0) then
+        if (BluePeas == 1 and count == 1 and player:getCharVar("sermonQuestVar") == 0) then
             player:tradeComplete();
             player:showText(npc, 7349);
             player:startEvent(19);
-            player:setVar("sermonQuestVar",1);
+            player:setCharVar("sermonQuestVar",1);
         elseif (BluePeas > 1 and count == BluePeas) then
             player:showText(npc, 7352);
             player:startEvent(19);

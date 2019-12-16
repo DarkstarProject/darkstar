@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Caithleann
+--  Mob: Caithleann
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

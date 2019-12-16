@@ -10,10 +10,10 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
-        local a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Part1
+        local a = player:getCharVar("saveTheClockTowerNPCz1"); -- NPC Part1
         if (a == 0 or (a ~= 16 and a ~= 17 and a ~= 18 and a ~= 20 and a ~= 24 and a ~= 19 and a ~= 28 and a ~= 21 and
            a ~= 26 and a ~= 22 and a ~= 25 and a ~= 23 and a ~= 27 and a ~= 29 and a ~= 30 and a ~= 31)) then
-            player:startEvent(182,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+            player:startEvent(182,10 - player:getCharVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
 end;
@@ -33,7 +33,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 182) then
-        player:addVar("saveTheClockTowerVar", 1);
-        player:addVar("saveTheClockTowerNPCz1", 16);
+        player:addCharVar("saveTheClockTowerVar", 1);
+        player:addCharVar("saveTheClockTowerNPCz1", 16);
     end
 end;

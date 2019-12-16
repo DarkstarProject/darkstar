@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Mystic Weapon
+--  Mob: Mystic Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Stag Beetle
+--  Mob: Stag Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

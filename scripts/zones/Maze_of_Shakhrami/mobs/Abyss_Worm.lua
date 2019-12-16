@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Abyss Worm
+--  Mob: Abyss Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

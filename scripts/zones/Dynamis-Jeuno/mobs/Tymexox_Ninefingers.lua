@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Tymexox_Ninefingers
+-- Area: Dynamis - Jeuno
+--  Mob: Tymexox Ninefingers
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

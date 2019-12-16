@@ -14,19 +14,19 @@ require("scripts/globals/status")
 
 function onInitialize(zone)
     -- Weight Door System (RegionID, X, Radius, Z)
-    zone:registerRegion(1, -15, 5, -60, 0,0,0);   -- 17629679 Door
-    zone:registerRegion(3, 15, 5,-180, 0,0,0);    -- 17629681 Door
-    zone:registerRegion(5, -580, 5,-420, 0,0,0);  -- 17629683 Door
-    zone:registerRegion(7, -700, 5,-420, 0,0,0);  -- 17629685 Door
-    zone:registerRegion(9, -700, 5,-380, 0,0,0);  -- 17629687 Door
-    zone:registerRegion(11, -780, 5,-460, 0,0,0); -- 17629689 Door
-    zone:registerRegion(13, -820, 5,-380, 0,0,0); -- 17629691 Door
-    zone:registerRegion(15, -260, 5, 740, 0,0,0); -- 17629693 Door
-    zone:registerRegion(17, -340, 5, 660, 0,0,0); -- 17629695 Door
-    zone:registerRegion(19, -420, 5, 740, 0,0,0); -- 17629697 Door
-    zone:registerRegion(21, -340, 5, 820, 0,0,0); -- 17629699 Door
-    zone:registerRegion(23, -409, 5, 800, 0,0,0); -- 17629701 Door
-    zone:registerRegion(25, -400, 5, 670, 0,0,0); -- 17629703 Door
+    zone:registerRegion(1, -15, 5, -60, 0,0,0);
+    zone:registerRegion(3, 15, 5,-180, 0,0,0);
+    zone:registerRegion(5, -580, 5,-420, 0,0,0);
+    zone:registerRegion(7, -700, 5,-420, 0,0,0);
+    zone:registerRegion(9, -700, 5,-380, 0,0,0);
+    zone:registerRegion(11, -780, 5,-460, 0,0,0);
+    zone:registerRegion(13, -820, 5,-380, 0,0,0);
+    zone:registerRegion(15, -260, 5, 740, 0,0,0);
+    zone:registerRegion(17, -340, 5, 660, 0,0,0);
+    zone:registerRegion(19, -420, 5, 740, 0,0,0);
+    zone:registerRegion(21, -340, 5, 820, 0,0,0);
+    zone:registerRegion(23, -409, 5, 800, 0,0,0);
+    zone:registerRegion(25, -400, 5, 670, 0,0,0);
 
     -- Hole in the Sand
     zone:registerRegion(30,495,-9,-817,497,-7,-815); -- E-11 (Map 2)

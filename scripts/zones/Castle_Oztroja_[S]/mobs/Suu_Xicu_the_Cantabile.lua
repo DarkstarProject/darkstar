@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
+-- Area: Castle Oztroja [S]
 --   NM: Suu Xicu the Cantabile
 -- TODO:
 --  Summoning of pets should be tied to Soul Voice usage.

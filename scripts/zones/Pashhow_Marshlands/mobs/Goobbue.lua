@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Goobbue
+--  Mob: Goobbue
 -- Note: PH for Jolly Green
 -----------------------------------
 local ID = require("scripts/zones/Pashhow_Marshlands/IDs")

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Smithy
+--  Mob: Goblin Smithy
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

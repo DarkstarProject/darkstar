@@ -40,6 +40,7 @@ This file is part of DarkStar-server source code.
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
 
+class CItemWeapon;
 class CTrustEntity;
 
 struct jobs_t
@@ -90,18 +91,25 @@ struct expChain_t
     uint32 chainTime;
 };
 
-struct NationTP_t
+struct Telepoint_t
 {
-    uint32		sandoria;
-    uint32		bastok;
-    uint32		windurst;
-    uint32		ahturhgan;
-    uint32		maw;
-    uint32		pastsandoria;
-    uint32		pastbastok;
-    uint32		pastwindurst;
+    uint32 access[4];
+    int32  menu[10];
 };
 
+struct Teleport_t
+{
+    uint32		outpostSandy;
+    uint32		outpostBastok;
+    uint32		outpostWindy;
+    uint32		runicPortal;
+    uint32		pastMaw;
+    uint32		campaignSandy;
+    uint32		campaignBastok;
+    uint32		campaignWindy;
+    Telepoint_t homepoint;
+    Telepoint_t survival;
+};
 
 struct PetInfo_t
 {
@@ -149,7 +157,7 @@ class CLatentEffectContainer;
 class CTradeContainer;
 class CItemContainer;
 class CUContainer;
-class CItemArmor;
+class CItemEquipment;
 class CAutomatonEntity;
 class CAbilityState;
 class CRangeState;
@@ -219,8 +227,8 @@ public:
 
     // TODO: половина этого массива должна храниться в char_vars, а не здесь, т.к. эта информация не отображается в интерфейсе клиента и сервер не проводит с ними никаких операций
 
-    //currency_t        m_currency;                   // conquest points, imperial standing points etc
-    NationTP_t		  nationtp;						// supply tp, runic portal, campaign tp,...
+    //currency_t        m_currency;                 // conquest points, imperial standing points etc
+    Teleport_t	      teleport;					    // Outposts, Runic Portals, Homepoints, Survival Guides, Maws, etc
 
     uint8             GetGender();                  // узнаем пол персонажа
 
@@ -313,7 +321,7 @@ public:
     void SetPlayTime(uint32 playTime);				// Set playtime
     uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
 
-    CItemArmor*	getEquip(SLOTTYPE slot);
+    CItemEquipment*	getEquip(SLOTTYPE slot);
 
     void		ReloadPartyInc();
     void        ReloadPartyDec();

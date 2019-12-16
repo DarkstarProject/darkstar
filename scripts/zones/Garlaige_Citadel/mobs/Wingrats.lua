@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Wingrats
+--  Mob: Wingrats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

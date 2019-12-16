@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Puroboros
+--  Mob: Puroboros
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

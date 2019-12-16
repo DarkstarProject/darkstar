@@ -34,7 +34,7 @@ local ID = require("scripts/zones/Norg/IDs");
 function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA) == QUEST_ACCEPTED) then
-        local tradesMamaMia = player:getVar("tradesMamaMia")
+        local tradesMamaMia = player:getCharVar("tradesMamaMia")
         if (trade:hasItemQty(1202,1) and trade:getItemCount() == 1) then -- Trade Bubbly water
             wasSet = player:getMaskBit(tradesMamaMia,0)
             tradesMamaMia = player:setMaskBit(tradesMamaMia,"tradesMamaMia",0,true)
@@ -121,7 +121,7 @@ function onTrigger(player,npc)
     local moonlitPath = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH);
     local EvokersRing = player:hasItem(14625);
     local realday = tonumber(os.date("%j"));  -- %M for next minute, %j for next day
-    local questday = player:getVar("MamaMia_date")
+    local questday = player:getCharVar("MamaMia_date")
 
 
 
@@ -129,7 +129,7 @@ function onTrigger(player,npc)
         player:startEvent(191); -- Start Quest "Mama Mia"
 
     elseif (MamaMia == QUEST_ACCEPTED) then
-    local tradesMamaMia = player:getVar("tradesMamaMia")
+    local tradesMamaMia = player:getCharVar("tradesMamaMia")
     local maskFull = player:isMaskFull(tradesMamaMia,7)
         if (maskFull) then
             if (realday == questday) then
@@ -166,7 +166,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 195) then
         player:tradeComplete();
-        player:setVar("MamaMia_date", os.date("%j")); -- %M for next minute, %j for next day
+        player:setCharVar("MamaMia_date", os.date("%j")); -- %M for next minute, %j for next day
 
     elseif (csid == 197) then
         if (player:getFreeSlotsCount() == 0) then
@@ -176,7 +176,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,14625); -- Evokers Ring
             player:addFame(NORG,30); --idk how much fame the quest adds, just left at 30 which the levi quest gave.
             player:completeQuest(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA);
-            player:setVar("tradesMamaMia",0)
+            player:setCharVar("tradesMamaMia",0)
         end
 
     elseif (csid == 243) then

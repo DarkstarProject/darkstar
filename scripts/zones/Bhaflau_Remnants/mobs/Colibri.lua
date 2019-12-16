@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Remnants
---  MOB: Colibri
+--  Mob: Colibri
 -----------------------------------
 mixins = {require("scripts/mixins/families/colibri_mimic")}
 -----------------------------------

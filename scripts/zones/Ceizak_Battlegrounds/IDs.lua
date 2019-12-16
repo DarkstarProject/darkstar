@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Ceizak_Battlegrounds
+-- Area: Ceizak Battlegrounds (261)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------

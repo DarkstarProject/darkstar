@@ -29,6 +29,22 @@ function onTrade(player,npc,trade)
         {2971, 5867}, -- inoshishinofuda
         {2972, 5868}, -- shikanofuda
         {2973, 5869}, -- chonofuda
+		
+        {17301, 6299}, -- shuriken
+        {17302, 6297}, -- juji shuriken
+        {17303, 6298}, -- manji shuriken
+        {17304, 6302}, -- fuma shuriken
+        {18712, 6300}, -- koga shuriken
+        {19783, 6303}, -- iga shuriken
+        {21351, 6304}, -- roppo shuriken
+        {21352, 6305}, -- roppo shuriken +1
+        {21353, 6306}, -- happo shuriken
+        {21354, 6307}, -- happo shuriken +1
+        {21355, 6308}, -- hachiya shuriken
+        {21356, 6309}, -- suppa shuriken
+        {21357, 6301}, -- togakushi shuriken
+        {22276, 6447}, -- sasuke shuriken
+        {22277, 6448}, -- sasuke shuriken +1
     }
 
     local fruitNeeded = 0;

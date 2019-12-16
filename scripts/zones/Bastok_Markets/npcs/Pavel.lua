@@ -11,12 +11,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
     local StampHunt = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.STAMP_HUNT);
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,14) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,14) == false) then
         player:startEvent(431);
-    elseif (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),2) == false) then
+    elseif (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getCharVar("StampHunt_Mask"),2) == false) then
         player:startEvent(227);
     else
         player:startEvent(128);
@@ -30,9 +30,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 431) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",14,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",14,true);
     elseif (csid == 227) then
-        player:setMaskBit(player:getVar("StampHunt_Mask"),"StampHunt_Mask",2,true);
+        player:setMaskBit(player:getCharVar("StampHunt_Mask"),"StampHunt_Mask",2,true);
     end
 
 end;

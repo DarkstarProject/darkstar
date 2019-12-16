@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Iron_Bomb
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Iron Bomb
 -----------------------------------
 
 -- -----------------------------------

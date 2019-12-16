@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Gusgen_Mines (196)
+-- Zone: Gusgen Mines (196)
 --
 -----------------------------------
 local ID = require("scripts/zones/Gusgen_Mines/IDs");

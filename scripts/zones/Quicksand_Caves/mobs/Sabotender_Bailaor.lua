@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sabotender Bailaor
+--  Mob: Sabotender Bailaor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

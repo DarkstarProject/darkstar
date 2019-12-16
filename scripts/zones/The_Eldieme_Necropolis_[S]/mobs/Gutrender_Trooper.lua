@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Gutrender_Trooper
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Gutrender Trooper
 -----------------------------------
 
 -- -----------------------------------

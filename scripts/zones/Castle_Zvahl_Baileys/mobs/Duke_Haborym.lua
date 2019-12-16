@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys (161)
---   NM: Duke_Haborym
+--   NM: Duke Haborym
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

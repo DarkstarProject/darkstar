@@ -14,11 +14,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
+    local hittingTheMarquisateHagainCS = player:getCharVar("hittingTheMarquisateHagainCS");
 
     if (hittingTheMarquisateHagainCS == 5) then
         player:messageSpecial(ID.text.PRESENCE_FROM_CEILING);
-        player:setVar("hittingTheMarquisateHagainCS",6);
+        player:setCharVar("hittingTheMarquisateHagainCS",6);
     end
 
 end;

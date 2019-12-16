@@ -6,19 +6,11 @@
 require("scripts/globals/bcnm");
 
 function onTrade(player,npc,trade)
-    
-    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
-        return;
-    end
-    
+    TradeBCNM(player,npc,trade);
 end;
 
-function onTrigger(player,npc)
-    
-    if (EventTriggerBCNM(player,npc)) then
-        return 1;
-    end
-    
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 function onEventUpdate(player,csid,option)

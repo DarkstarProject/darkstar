@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goliath Beetle
+--  Mob: Goliath Beetle
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

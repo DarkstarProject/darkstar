@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Coral Crab
+--  Mob: Coral Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

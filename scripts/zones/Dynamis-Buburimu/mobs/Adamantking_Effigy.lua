@@ -1,24 +1,14 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Adamantking_Effigy
-
+-- Area: Dynamis - Buburimu
+--  Mob: Adamantking Effigy
 -----------------------------------
-require("scripts/globals/dynamis");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/dynamis")
+-----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-end;
-
-function onMobEngaged(mob,target)
-    dynamis.spawnGroup(mob, BuburimuQuadavList);
-end;
+    dynamis.refillStatueOnSpawn(mob)
+end
 
 function onMobDeath(mob, player, isKiller)
-    local mobID = mob:getID();
-    if (mobID ==16941457) then
-        player:messageBasic(dsp.msg.basic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
-        player:restoreMP(3000);
-    end
-end;
+    dynamis.refillStatueOnDeath(mob, player, isKiller)
+end

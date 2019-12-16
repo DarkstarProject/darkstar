@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
---  MOB: Sandworm
+--  Mob: Sandworm
 -- Note: Title Given if Sandworm does not Doomvoid
 -----------------------------------
 require("scripts/globals/titles");

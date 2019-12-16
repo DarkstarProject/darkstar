@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local killCount = player:getVar("EVERYONES_GRUDGE_KILLS")
+    local killCount = player:getCharVar("EVERYONES_GRUDGE_KILLS")
 
     if player:hasKeyItem(dsp.ki.TONBERRY_PRIEST_KEY) then
         if killCount >= 1 then
@@ -31,8 +31,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 66 and option == 1 then
-        if player:delGil(250 * (player:getVar("EVERYONES_GRUDGE_KILLS") / 20 + 1)) then
-            player:setVar("EVERYONES_GRUDGE_KILLS", 0)
+        if player:delGil(250 * (player:getCharVar("EVERYONES_GRUDGE_KILLS") / 20 + 1)) then
+            player:setCharVar("EVERYONES_GRUDGE_KILLS", 0)
             player:messageSpecial(ID.text.HATE_RESET)
 
             --[[

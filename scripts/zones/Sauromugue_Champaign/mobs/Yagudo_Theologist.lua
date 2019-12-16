@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Theologist
+--  Mob: Yagudo Theologist
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

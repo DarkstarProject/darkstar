@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Goblin Thug
+--  Mob: Goblin Thug
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

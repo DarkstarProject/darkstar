@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Goblin Robber
+--  Mob: Goblin Robber
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

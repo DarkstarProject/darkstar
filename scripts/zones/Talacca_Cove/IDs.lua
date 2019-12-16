@@ -15,7 +15,7 @@ zones[dsp.zone.TALACCA_COVE] =
         GIL_OBTAINED                 = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6391, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET       = 7049, -- You can't fish here.
-        YOU_CAN_NOW_BECOME_A_CORSAIR = 7781, -- You can now become a corsair!
+        YOU_CAN_NOW_BECOME_A_CORSAIR = 7782, -- You can now become a corsair!
     },
     mob =
     {

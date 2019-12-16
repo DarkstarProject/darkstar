@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 
         4506,  5216,2,     --Mutton Tortilla
         4440,  6064,2,     --Whitefish Stew
-        4572,  1669,2,     --Beaugreen Sautee
+        4572,  1669,2,     --Beaugreen Saute
         4422,   184,2,     --Orange Juice
         4438,  1324,2,     --Dhalmel Steak
 

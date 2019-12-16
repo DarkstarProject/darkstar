@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
     -- "The Dismayed Customer"
     if (csid == 605 and option == 0) then
         player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_DISMAYED_CUSTOMER);
-        player:setVar("theDismayedCustomer", math.random(1,3));
+        player:setCharVar("theDismayedCustomer", math.random(1,3));
     elseif (csid == 607) then
         player:delKeyItem(dsp.ki.GULEMONTS_DOCUMENT);
         player:addFame(SANDORIA,30);

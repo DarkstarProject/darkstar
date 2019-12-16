@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             if IsMoonNew() or not correctTime then
                 player:messageSpecial(ID.text.CANNOT_SEE_MOON)
 
-            elseif player:getVar("Searching_AgasKilled") == 1 then
+            elseif player:getCharVar("Searching_AgasKilled") == 1 then
                 player:startEvent(14)
 
             else
@@ -50,6 +50,6 @@ function onEventFinish(player,csid,option)
     if csid == 14 then
         player:addKeyItem(dsp.ki.MOONDROP)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MOONDROP)
-        player:setVar("Searching_AgasKilled", 0)
+        player:setCharVar("Searching_AgasKilled", 0)
     end
 end

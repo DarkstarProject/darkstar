@@ -11,14 +11,14 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET) == QUEST_ACCEPTED and player:getVar("thePickpocket") == 1 and npcUtil.tradeHas(trade, 578) then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET) == QUEST_ACCEPTED and player:getCharVar("thePickpocket") == 1 and npcUtil.tradeHas(trade, 578) then
         player:startEvent(121)
     end
 end
 
 function onTrigger(player, npc)
-    local thePickpocketStat = player:getVar("thePickpocket")
-    local chasingQuotasStat = player:getVar("ChasingQuotas_Progress")
+    local thePickpocketStat = player:getCharVar("thePickpocket")
+    local chasingQuotasStat = player:getCharVar("ChasingQuotas_Progress")
 
     -- CHASING QUOTAS
     if chasingQuotasStat == 4 then
@@ -46,12 +46,12 @@ end
 function onEventFinish(player, csid, option)
     -- THE PICKPOCKET
     if csid == 121 and npcUtil.giveItem(player, 579) then
-        player:setVar("thePickpocket", 2)
+        player:setCharVar("thePickpocket", 2)
         player:confirmTrade()
 
     -- CHASING QUOTAS
     elseif csid == 137 then
-        player:setVar("ChasingQuotas_Progress", 5)
+        player:setCharVar("ChasingQuotas_Progress", 5)
         player:delKeyItem(dsp.ki.SHINY_EARRING)
     end
 end

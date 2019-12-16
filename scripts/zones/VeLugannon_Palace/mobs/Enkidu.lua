@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Enkidu
+--  Mob: Enkidu
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Coastal Sahagin
+--  Mob: Coastal Sahagin
 -- Note: PH for Denn the Orcavoiced
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

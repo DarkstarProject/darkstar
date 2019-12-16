@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Wurdalak
+--  Mob: Wurdalak
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

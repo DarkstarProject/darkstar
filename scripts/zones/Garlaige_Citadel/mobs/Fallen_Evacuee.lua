@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Fallen Evacuee
+--  Mob: Fallen Evacuee
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

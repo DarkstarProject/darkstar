@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Makara
+--  Mob: Makara
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

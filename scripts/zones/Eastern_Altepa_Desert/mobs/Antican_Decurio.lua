@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Decurio
+--  Mob: Antican Decurio
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

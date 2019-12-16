@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ul'Aern
+--  Mob: Ul'aern
 -----------------------------------
 mixins = {require("scripts/mixins/families/aern")}
 -----------------------------------

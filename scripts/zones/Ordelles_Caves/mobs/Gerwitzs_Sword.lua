@@ -6,7 +6,7 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if player:getVar("darkPuppetCS") >= 3 then
-        player:setVar("darkPuppetCS", 4)
+    if player:getCharVar("darkPuppetCS") >= 3 then
+        player:setCharVar("darkPuppetCS", 4)
     end
 end

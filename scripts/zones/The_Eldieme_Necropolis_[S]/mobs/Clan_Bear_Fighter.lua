@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Clan_Bear_Fighter
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Clan Bear Fighter
 -----------------------------------
 
 -- -----------------------------------

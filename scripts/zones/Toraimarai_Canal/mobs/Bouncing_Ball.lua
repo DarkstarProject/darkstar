@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Toraimorai Canal
+-- Area: Toraimarai Canal
 --  Mob: Bouncing Ball
 -- Note: PH for Canal Moocher
 -----------------------------------

@@ -1,26 +1,27 @@
 -----------------------------------
 -- Area: Navukgo Execution Chamber
--- MOB: Khimaira 13
------------------------------------
-require("scripts/globals/allyassist");
+--  Mob: Khimaira 13
 -----------------------------------
 
-function onMobFight(mob,target)
-    local assist = mob:getLocalVar("assist");
-
-    if (assist == 0) then
-        dsp.ally.startAssist(mob);
-        mob:setLocalVar("assist", 1);
+function onMobEngaged(mob, target)
+    local bcnmAllies = mob:getBattlefield():getAllies()
+    for i,v in pairs(bcnmAllies) do
+        if v:getName() == "Karababa" then
+            v:addEnmity(mob,0,1)
+        end
     end
-end;
+end
+
+function onMobFight(mob, target)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
     -- printf("updateCSID: %u",csid);
-end;
+end
 
-function onEventFinish(player,csid,option,target)
+function onEventFinish(player, csid, option, target)
     -- printf("finishCSID: %u",csid);
-end;
+end

@@ -10,18 +10,23 @@ zones[dsp.zone.DEN_OF_RANCOR] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
-        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE           = 7049, -- Tallying conquest results...
-        LANTERN_OFFSET          = 7208, -- The grating will not budge.
-        FISHING_MESSAGE_OFFSET  = 7236, -- You can't fish here.
-        CHEST_UNLOCKED          = 7344, -- You unlock the chest!
-        SENSE_OMINOUS_PRESENCE  = 7354, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 9487, -- New training regime registered!
-        HOMEPOINT_SET           = 10537, -- Home point set!
+        ITEM_CANNOT_BE_OBTAINED  = 6382,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED            = 6388,  -- Obtained: <item>.
+        GIL_OBTAINED             = 6389,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED         = 6391,  -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
+        CONQUEST_BASE            = 7049,  -- Tallying conquest results...
+        LANTERN_OFFSET           = 7208,  -- The grating will not budge.
+        FISHING_MESSAGE_OFFSET   = 7236,  -- You can't fish here.
+        CHEST_UNLOCKED           = 7344,  -- You unlock the chest!
+        SENSE_OMINOUS_PRESENCE   = 7354,  -- You sense an ominous presence...
+        PLAYER_OBTAINS_ITEM      = 7401,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 7402,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 7403,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP     = 7404,  -- You already possess that temporary item.
+        NO_COMBINATION           = 7409,  -- You were unable to enter a combination.
+        REGIME_REGISTERED        = 9487,  -- New training regime registered!
+        HOMEPOINT_SET            = 10537, -- Home point set!
     },
     mob =
     {
@@ -63,6 +68,7 @@ zones[dsp.zone.DEN_OF_RANCOR] =
     },
     npc =
     {
+        CASKET_BASE     = 17433024,
         LANTERN_OFFSET  = 17433047,
         DROP_GATE       = 17433051,
         TREASURE_COFFER = 17433077,

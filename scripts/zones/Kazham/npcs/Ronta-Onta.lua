@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     WhisperOfFlames = player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES);
     realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 
-    if ((TrialByFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) or (TrialByFire == QUEST_COMPLETED and realday ~= player:getVar("TrialByFire_date"))) then
+    if ((TrialByFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) or (TrialByFire == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByFire_date"))) then
         player:startEvent(270,0,dsp.ki.TUNING_FORK_OF_FIRE); -- Start and restart quest "Trial by Fire"
     elseif (TrialByFire == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_FIRE) == false and WhisperOfFlames == false) then
         player:startEvent(285,0,dsp.ki.TUNING_FORK_OF_FIRE); -- Defeat against Ifrit : Need new Fork
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
             player:delQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_FIRE);
         end
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_FIRE);
-        player:setVar("TrialByFire_date", 0);
+        player:setCharVar("TrialByFire_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_FIRE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_FIRE);
     elseif (csid == 285) then
@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_FIRE);
             player:delKeyItem(dsp.ki.WHISPER_OF_FLAMES);
-            player:setVar("TrialByFire_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("TrialByFire_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(KAZHAM,30);
             player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_FIRE);
         end

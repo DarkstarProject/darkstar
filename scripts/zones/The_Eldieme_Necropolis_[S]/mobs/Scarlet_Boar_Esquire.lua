@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Scarlet_Boar_Esquire
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Scarlet Boar Esquire
 -----------------------------------
 
 -- -----------------------------------

@@ -17,7 +17,7 @@ function onTrigger(player,npc)
     local APBIF = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_PIONEERS_BEST_IMAGINARY_FRIEND);
     local SOA_Mission = player:getCurrentMission(SOA);
 
-    if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
+    if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         if ((APBIF == QUEST_ACCEPTED) and (not player:hasStatusEffect(dsp.effect.IONIS))) then
             -- Progresses Quest: 'A Pioneers Best (Imaginary) Friend'
             player:startEvent(2523);

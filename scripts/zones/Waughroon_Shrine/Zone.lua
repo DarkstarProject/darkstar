@@ -16,7 +16,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-361.434,101.798,-259.996,0);
     end
-    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:getVar("aThiefinNorgCS") == 4) then
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:getCharVar("aThiefinNorgCS") == 4) then
         cs = 2;
     end
 
@@ -37,7 +37,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 2) then
-        player:setVar("aThiefinNorgCS",5);
+        player:setCharVar("aThiefinNorgCS",5);
     end
 
 end;

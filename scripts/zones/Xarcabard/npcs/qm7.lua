@@ -7,19 +7,19 @@
 local ID = require("scripts/zones/Xarcabard/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
 end
 
-function onTrigger(player,npc)
-    if player:getVar("unbridledPassion") == 4 and not GetMobByID(ID.mob.KOENIGSTIGER):isSpawned() then
+function onTrigger(player, npc)
+    if player:getCharVar("unbridledPassion") == 4 and not GetMobByID(ID.mob.KOENIGSTIGER):isSpawned() then
         player:startEvent(8)
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 8 then
         SpawnMob(ID.mob.KOENIGSTIGER):updateClaim(player)
     end

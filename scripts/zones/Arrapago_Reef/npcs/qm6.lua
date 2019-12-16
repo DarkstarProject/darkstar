@@ -18,9 +18,9 @@ end
 function onTrigger(player,npc)
     local mJob   = player:getMainJob()
     local mLvl   = player:getMainLvl()
-    local lotdCS = player:getVar("LuckOfTheDraw")
+    local lotdCS = player:getCharVar("LuckOfTheDraw")
     local efao   = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.EQUIPPED_FOR_ALL_OCCASIONS)
-    local efaoCS = player:getVar("EquippedforAllOccasions")
+    local efaoCS = player:getCharVar("EquippedforAllOccasions")
     local ntus   = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS)
 
     -- LUCK OF THE DRAW
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     -- NAVIGATING THE UNFRIENDLY SEAS
     elseif efao == QUEST_COMPLETED and ntus == QUEST_AVAILABLE and mJob == dsp.job.COR and mLvl >= AF2_QUEST_LEVEL then
         player:startEvent(232)
-    elseif player:getVar("NavigatingtheUnfriendlySeas") == 4 then
+    elseif player:getCharVar("NavigatingtheUnfriendlySeas") == 4 then
         player:startEvent(233)
         
     -- DEFAULT DIALOG
@@ -51,20 +51,20 @@ end
 function onEventFinish(player,csid,option)
     -- LUCK OF THE DRAW
     if csid == 211 then
-        player:setVar("LuckOfTheDraw", 3)
+        player:setCharVar("LuckOfTheDraw", 3)
         
     -- EQUIPPED FOR ALL OCCASIONS
     elseif csid == 228 then
         player:addQuest(AHT_URHGAN, dsp.quest.id.ahtUrhgan.EQUIPPED_FOR_ALL_OCCASIONS)
-        player:setVar("EquippedforAllOccasions", 1)
+        player:setCharVar("EquippedforAllOccasions", 1)
     elseif csid == 231 then
         player:delKeyItem(dsp.ki.WHEEL_LOCK_TRIGGER)
-        player:setVar("EquippedforAllOccasions", 4)
+        player:setCharVar("EquippedforAllOccasions", 4)
 
     -- NAVIGATING THE UNFRIENDLY SEAS
     elseif csid == 232 then
         player:addQuest(AHT_URHGAN, dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS)
-        player:setVar("NavigatingtheUnfriendlySeas", 1)
+        player:setCharVar("NavigatingtheUnfriendlySeas", 1)
     elseif csid == 233 then
         npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS, {item=15601, var={"NavigatingtheUnfriendlySeas", "HydrogauageTimer"}})
     end

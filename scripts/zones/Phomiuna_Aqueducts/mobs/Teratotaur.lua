@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---  MOB: Teratotaur
+--  Mob: Teratotaur
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

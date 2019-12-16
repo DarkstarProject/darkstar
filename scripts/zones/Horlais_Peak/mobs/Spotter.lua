@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  NPC: Spotter
+--  Mob: Spotter
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 

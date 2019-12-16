@@ -23,9 +23,9 @@ function onTrigger(player,npc)
     then
         player:startEvent(135)
     elseif player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_ACCEPTED then
-        if player:getVar("TigressStrikesProg") < 3 then
+        if player:getCharVar("TigressStrikesProg") < 3 then
             player:startEvent(131)
-        elseif player:getVar("TigressStrikesProg") == 3 then
+        elseif player:getCharVar("TigressStrikesProg") == 3 then
             player:startEvent(134)
         end
     else

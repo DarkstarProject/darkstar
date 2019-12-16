@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Gold_Badger_Esquire
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Gold Badger Esquire
 -----------------------------------
 
 -- -----------------------------------

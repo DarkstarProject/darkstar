@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Giant Lobber
+--  Mob: Giant Lobber
 -- Note: PH for Rhoitos and Polybotes
 -----------------------------------
 local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs")

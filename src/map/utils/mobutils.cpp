@@ -383,11 +383,11 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
-        PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+        ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->resetDelay();
     }
 
     uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
@@ -661,19 +661,6 @@ void SetupJob(CMobEntity* PMob)
                 PMob->defaultMobMod(MOBMOD_GIL_BONUS, 150);
             }
             break;
-        case JOB_DRG:
-            // drg can use 2 hour multiple times
-            PMob->setMobMod(MOBMOD_MULTI_2HOUR, 1);
-
-            // only drgs in 3rd expansion calls wyvern as non-NM
-            // include fomors
-            if ((!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT) || PMob->m_Family == 115)
-            {
-                // 20 min recast
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
-            }
-            break;
         case JOB_RNG:
             if ((PMob->m_Family >= 126 && PMob->m_Family <= 130) || PMob->m_Family == 328) // Gigas
             {
@@ -698,10 +685,12 @@ void SetupJob(CMobEntity* PMob)
             {
                 // aern
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+	            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
             else if (PMob->m_Family != 335) // exclude NIN Maat
             {
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
+	            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
@@ -800,23 +789,9 @@ void SetupDynamisMob(CMobEntity* PMob)
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 
-    // used for dynamis stat-spawned mobs
-    PMob->m_StatPoppedMobs = false;
-
-    // dynamis mobs have true sight
-    PMob->m_TrueDetection = true;
-
     // boost dynamis mobs weapon damage
     PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
-    PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
-
-    // never despawn
-    PMob->SetDespawnTime(0s);
-    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-
-    // do not roam around
-    PMob->m_roamFlags |= ROAMFLAG_EVENT;
-    PMob->m_maxRoamDistance = 0.5f;
+    ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDamage(GetWeaponDamage(PMob));
 
     // job resist traits are much more powerful in dynamis
     // according to wiki
@@ -1208,7 +1183,7 @@ void AddCustomMods(CMobEntity* PMob)
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 {
     const char* Query =
-        "SELECT zoneid, name, \
+        "SELECT zoneid, mob_groups.name, \
         respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
         modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
         systemid, mobsize, speed, \
@@ -1251,11 +1226,11 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
             PMob->SetMJob(Sql_GetIntData(SqlHandle, 10));
             PMob->SetSJob(Sql_GetIntData(SqlHandle, 11));
 
-            PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
-            PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle, 12));
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setSkillType(Sql_GetIntData(SqlHandle, 12));
             PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 13);
-            PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
-            PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
+            ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
 
             PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 15);
             PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 16);
@@ -1335,6 +1310,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 
             luautils::OnMobInitialize(PMob);
             luautils::ApplyMixins(PMob);
+            luautils::ApplyZoneMixins(PMob);
 
             PMob->saveModifiers();
             PMob->saveMobModifiers();

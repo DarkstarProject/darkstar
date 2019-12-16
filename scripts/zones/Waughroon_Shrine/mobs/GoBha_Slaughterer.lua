@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Go'Bha Slaughterer
+--  Mob: Go'Bha Slaughterer
 -----------------------------------
 
 function onMobSpawn(mob)

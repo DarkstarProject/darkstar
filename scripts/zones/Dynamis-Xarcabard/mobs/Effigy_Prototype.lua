@@ -1,19 +1,10 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Effigy Prototype
+-- Area: Dynamis - Xarcabard
+--  Mob: Effigy Prototype
 -----------------------------------
-require("scripts/globals/dynamis");
-require("scripts/globals/msg");
-
-function onMobInitialize(mob,target)
-end;
+require("scripts/globals/dynamis")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    local mobID = mob:getID();
-
-    -- HP Bonus: 112 142
-    if (mobID == 17330532 or mobID == 17330911) then
-        player:restoreHP(2000);
-        player:messageBasic(dsp.msg.basic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
-    end
-end;
+    dynamis.timeExtensionOnDeath(mob, player, isKiller)
+end

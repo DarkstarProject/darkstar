@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Dread Dragon
+--  Mob: Dread Dragon
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 require("scripts/globals/titles");

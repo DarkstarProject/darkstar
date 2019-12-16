@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Gigantobugard
+--  Mob: Gigantobugard
 -- Note: PH for Megalobugard
 -----------------------------------
 local ID = require("scripts/zones/Lufaise_Meadows/IDs")

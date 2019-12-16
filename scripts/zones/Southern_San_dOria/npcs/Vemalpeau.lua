@@ -22,13 +22,13 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH) == QUEST_ACCEPTED and player:getVar("UnderOathCS") == 0) then   -- Quest: Under Oath - PLD AF3
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH) == QUEST_ACCEPTED and player:getCharVar("UnderOathCS") == 0) then   -- Quest: Under Oath - PLD AF3
         player:startEvent(7); --Under Oath - mentions the boy missing
-    elseif (player:getVar("UnderOathCS") == 3 and player:hasKeyItem(dsp.ki.MIQUES_PAINTBRUSH)) then
+    elseif (player:getCharVar("UnderOathCS") == 3 and player:hasKeyItem(dsp.ki.MIQUES_PAINTBRUSH)) then
         player:startEvent(5); --Under Oath - upset about the paintbrush
-    elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)) then
+    elseif (player:getCharVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)) then
         player:startEvent(3); -- Under Oath - mentions commanding officer
-    elseif (player:getVar("UnderOathCS") == 9 and player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION)) then
+    elseif (player:getCharVar("UnderOathCS") == 9 and player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION)) then
         player:startEvent(2); -- Under Oath - Thanks you and concludes quest
     else
         player:startEvent(1);
@@ -41,12 +41,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 7) then
-        player:setVar("UnderOathCS", 1)
+        player:setCharVar("UnderOathCS", 1)
     elseif (csid == 5) then
-        player:setVar("UnderOathCS", 4)
+        player:setCharVar("UnderOathCS", 4)
         player:delKeyItem(dsp.ki.MIQUES_PAINTBRUSH);
     elseif (csid == 2) then
-        player:setVar("UnderOathCS", 0)
+        player:setCharVar("UnderOathCS", 0)
         player:delKeyItem(dsp.ki.KNIGHTS_CONFESSION);
     end
 

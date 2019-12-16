@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Crawler
+--  Mob: Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

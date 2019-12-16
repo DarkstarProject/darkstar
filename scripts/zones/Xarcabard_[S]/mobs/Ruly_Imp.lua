@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard [S]
---  MOB: Ruly Imp
+--  Mob: Ruly Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

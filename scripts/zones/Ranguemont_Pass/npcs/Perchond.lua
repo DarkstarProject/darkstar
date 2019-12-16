@@ -10,7 +10,7 @@ require("scripts/globals/keyitems")
 function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(1107,1) and trade:getItemCount() == 1) then -- glitter sand
-        local SinHunting = player:getVar("sinHunting");    -- RNG AF1
+        local SinHunting = player:getCharVar("sinHunting");    -- RNG AF1
         if (SinHunting == 2) then
             player:startEvent(5);
         end
@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local SinHunting = player:getVar("sinHunting");    -- RNG AF1
+    local SinHunting = player:getCharVar("sinHunting");    -- RNG AF1
 
     if (SinHunting == 1) then
         player:startEvent(3, 0, 1107);
@@ -35,12 +35,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 3) then
-        player:setVar("sinHunting",2);
+        player:setCharVar("sinHunting",2);
     elseif (csid == 5) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.PERCHONDS_ENVELOPE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERCHONDS_ENVELOPE);
-        player:setVar("sinHunting",3);
+        player:setCharVar("sinHunting",3);
     end
 
 end;

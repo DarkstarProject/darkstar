@@ -86,7 +86,7 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdde
 
     if (PItem)
     {
-        int32 curPoints = charutils::GetVar(PChar, "[GUILD]daily_points");
+        int32 curPoints = charutils::GetCharVar(PChar, "[GUILD]daily_points");
 
         if (curPoints >= 0)
         {
@@ -121,7 +121,7 @@ std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
     rank = std::clamp<uint8>(rank, 3, 9);
 
     auto GPItem = m_GPItems[rank - 3];
-    auto curPoints = (uint16)charutils::GetVar(PChar, "[GUILD]daily_points");
+    auto curPoints = (uint16)charutils::GetCharVar(PChar, "[GUILD]daily_points");
     if (curPoints == -1)
     {
         return std::make_pair(GPItem[0].item->getID(), 0);

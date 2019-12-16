@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Yhoator Mandragora
+--  Mob: Yhoator Mandragora
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

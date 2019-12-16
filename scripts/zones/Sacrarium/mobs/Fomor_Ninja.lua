@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Ninja
+--  Mob: Fomor Ninja
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

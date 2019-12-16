@@ -224,7 +224,7 @@ enum ZONEID : uint16
     ZONE_LALOFF_AMPHITHEATER            = 180,
     ZONE_THE_CELESTIAL_NEXUS            = 181,
     ZONE_WALK_OF_ECHOES                 = 182,
-    ZONE_MAQUETTE_ABDHALJS_LEGION       = 183,
+    ZONE_MAQUETTE_ABDHALJS_LEGION_A     = 183,
     ZONE_LOWER_DELKFUTTS_TOWER          = 184,
     ZONE_DYNAMIS_SAN_DORIA              = 185,
     ZONE_DYNAMIS_BASTOK                 = 186,
@@ -328,7 +328,7 @@ enum ZONEID : uint16
     ZONE_CELENNIA_MEMORIAL_LIBRARY      = 284,
     ZONE_FERETORY                       = 285,
     ZONE_286                            = 286,
-    ZONE_287                            = 287,
+    ZONE_MAQUETTE_ABDHALJS_LEGION_B     = 287,
     ZONE_ESCHA_ZITAH                    = 288,
     ZONE_ESCHA_RUAUN                    = 289,
     ZONE_DESUETIA_EMPYREAL_PARADOX      = 290,
@@ -338,10 +338,11 @@ enum ZONEID : uint16
     ZONE_DYNAMIS_SAN_DORIA_D            = 294,
     ZONE_DYNAMIS_BASTOK_D               = 295,
     ZONE_DYNAMIS_WINDURST_D             = 296,
-    ZONE_DYNAMIS_JEUNO_D                = 297
+    ZONE_DYNAMIS_JEUNO_D                = 297,
+    ZONE_WALK_OF_ECHOES_P               = 298
 };
 
-#define MAX_ZONEID 298
+#define MAX_ZONEID 299
 
 enum REGIONTYPE : uint8
 {
@@ -420,6 +421,21 @@ enum GLOBAL_MESSAGE_TYPE
     CHAR_INRANGE_SELF,
     CHAR_INSHOUT,
     CHAR_INZONE
+};
+
+enum TELEPORT_TYPE
+{
+    TELEPORT_OUTPOST_SANDY   = 0,
+    TELEPORT_OUTPOST_BASTOK  = 1,
+    TELEPORT_OUTPOST_WINDY   = 2,
+    TELEPORT_RUNIC_PORTAL    = 3,
+    TELEPORT_PAST_MAW        = 4,
+    TELEPORT_ABBYSEA_MAW     = 5,
+    TELEPORT_CAMPAIGN_SANDY  = 6,
+    TELEPORT_CAMPAIGN_BASTOK = 7,
+    TELEPORT_CAMPAIGN_WINDY  = 8,
+    TELEPORT_HOMEPOINT       = 9,
+    TELEPORT_SURVIVAL        = 10
 };
 
 enum ZONEMISC

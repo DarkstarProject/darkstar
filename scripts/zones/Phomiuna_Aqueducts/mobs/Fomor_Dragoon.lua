@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---  MOB: Fomor Dragoon
+--  Mob: Fomor Dragoon
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

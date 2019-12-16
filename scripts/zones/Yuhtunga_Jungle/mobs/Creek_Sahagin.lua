@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Creek Sahagin
+--  Mob: Creek Sahagin
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

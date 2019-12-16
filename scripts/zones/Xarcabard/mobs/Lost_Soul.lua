@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Lost Soul
+--  Mob: Lost Soul
 -- Note: PH for Timeworn Warrior
 -----------------------------------
 local ID = require("scripts/zones/Xarcabard/IDs")

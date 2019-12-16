@@ -9,7 +9,7 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local currentRelic = player:getVar("RELIC_IN_PROGRESS")
+    local currentRelic = player:getCharVar("RELIC_IN_PROGRESS")
 
     -- Mandau
     if currentRelic == 18269 and npcUtil.tradeHas(trade, {1457, 1572, 1589, 18269}) then -- currency, shard, necropsyche, stage 4
@@ -31,9 +31,9 @@ end
 function onEventFinish(player,csid,option)
     if csid == 207 and npcUtil.giveItem(player, {18270, {1456, 30}}) then
         player:confirmTrade()
-        player:setVar("RELIC_IN_PROGRESS", 0)
+        player:setCharVar("RELIC_IN_PROGRESS", 0)
     elseif csid == 216 and npcUtil.giveItem(player, {18324, {1453, 30}}) then
         player:confirmTrade()
-        player:setVar("RELIC_IN_PROGRESS", 0)
+        player:setCharVar("RELIC_IN_PROGRESS", 0)
     end
 end

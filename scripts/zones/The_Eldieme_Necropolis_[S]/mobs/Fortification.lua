@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Fortification
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Fortification
 -----------------------------------
 
 -- -----------------------------------

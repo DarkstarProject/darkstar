@@ -1,9 +1,10 @@
 -----------------------------------
 -- Area: Balga's Dais
--- MOB: Opo-opo Heir
--- BCNM Fight: Royal Succession
+--  Mob: Opo-opo Heir
+-- BCNM: Royal Succession
 -----------------------------------
 require("scripts/globals/status");
+-----------------------------------
 
 function onMobSpawn (mob)
     mob:SetAutoAttackEnabled(false);

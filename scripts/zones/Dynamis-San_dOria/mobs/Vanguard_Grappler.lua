@@ -1,11 +1,13 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Grappler
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Grappler
+-----------------------------------
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
-
-
 function onMobDeath(mob, player, isKiller)
-end;
+end

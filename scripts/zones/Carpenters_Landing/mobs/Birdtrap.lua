@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---  MOB: Birdtrap
+--  Mob: Birdtrap
 -- Note: Placeholder Orctrap
 -----------------------------------
 local ID = require("scripts/zones/Carpenters_Landing/IDs");

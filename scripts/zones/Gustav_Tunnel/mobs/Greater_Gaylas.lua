@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Greater Gaylas
+--  Mob: Greater Gaylas
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

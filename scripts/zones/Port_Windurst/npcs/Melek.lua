@@ -16,12 +16,12 @@ function onTrigger(player,npc)
 
     pNation = player:getNation();
 
-    if (player:getCurrentMission(BASTOK) ~= 255) then
+    if (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
         currentMission = player:getCurrentMission(pNation);
 
         if (pNation == dsp.nation.BASTOK) then
-            missionStatus = player:getVar("MissionStatus");
-            if (currentMission == THE_EMISSARY) then
+            missionStatus = player:getCharVar("MissionStatus");
+            if (currentMission == dsp.mission.id.bastok.THE_EMISSARY) then
                 -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
                 if (missionStatus == 1) then
                     player:startEvent(48);
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
                     player:startEvent(67);
                 end
             -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
-            elseif (currentMission == THE_EMISSARY_WINDURST) then
+            elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST) then
                 if (missionStatus == 2) then
                     player:startEvent(49);
                 elseif (player:hasKeyItem(dsp.ki.SWORD_OFFERING)) then
@@ -45,7 +45,7 @@ function onTrigger(player,npc)
                     player:startEvent(55);
                 end
             -- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-            elseif (currentMission == THE_EMISSARY_WINDURST2) then
+            elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST2) then
                 if (missionStatus == 7) then
                     player:startEvent(64);
                 elseif (missionStatus == 8) then
@@ -69,25 +69,25 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 48) then
-        player:addMission(BASTOK,THE_EMISSARY_WINDURST);
-        player:setVar("MissionStatus",2);
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY_WINDURST);
+        player:setCharVar("MissionStatus",2);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
     elseif (csid == 53) then
         player:addKeyItem(dsp.ki.DULL_SWORD)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DULL_SWORD);
-        player:setVar("MissionStatus",4);  --> Gideus next
+        player:setCharVar("MissionStatus",4);  --> Gideus next
         player:delKeyItem(dsp.ki.SWORD_OFFERING) -- remove sword offering
     elseif (csid == 55) then
-        player:addMission(BASTOK,THE_EMISSARY);
-        player:setVar("MissionStatus",7); -- to Sandy now
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY);
+        player:setCharVar("MissionStatus",7); -- to Sandy now
     elseif (csid == 61) then
-        player:addMission(BASTOK,THE_EMISSARY_WINDURST2);
-        player:setVar("MissionStatus",7);
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY_WINDURST2);
+        player:setCharVar("MissionStatus",7);
     elseif (csid == 66) then
-        player:addMission(BASTOK,THE_EMISSARY);
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY);
         player:addKeyItem(dsp.ki.KINDRED_REPORT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
-        player:setVar("MissionStatus",10);  -- return to Bastok
+        player:setCharVar("MissionStatus",10);  -- return to Bastok
         player:delKeyItem(dsp.ki.KINDRED_CREST)
     end
 

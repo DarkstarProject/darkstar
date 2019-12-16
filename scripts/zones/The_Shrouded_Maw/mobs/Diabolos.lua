@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrouded Maw
---  MOB: Diabolos
+--  Mob: Diabolos
 -----------------------------------
 local ID = require("scripts/zones/The_Shrouded_Maw/IDs");
 

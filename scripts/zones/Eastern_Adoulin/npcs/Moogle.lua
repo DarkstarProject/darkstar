@@ -1,7 +1,6 @@
 -----------------------------------
--- Area: Eastern Adoulin
+-- Area: Eastern Adoulin (257)
 --  NPC: Moogle
---
 -----------------------------------
 require("scripts/globals/moghouse")
 

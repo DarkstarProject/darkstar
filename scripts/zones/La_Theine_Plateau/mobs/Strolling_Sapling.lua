@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Strolling Sapling
+--  Mob: Strolling Sapling
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

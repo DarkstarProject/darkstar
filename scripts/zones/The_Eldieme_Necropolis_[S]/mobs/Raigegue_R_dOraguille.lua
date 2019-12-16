@@ -1,9 +1,7 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Raigegue_R_d_Oraguille
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Raigegue R d'Oraguille
 -----------------------------------
-
--- -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

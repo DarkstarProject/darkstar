@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Cactuar
+--  Mob: Cactuar
 -- Note: Place holder for Cactuar_Cantautor
 -----------------------------------
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs")

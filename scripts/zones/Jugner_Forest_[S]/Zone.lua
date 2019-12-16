@@ -12,36 +12,35 @@ require("scripts/globals/helm")
 function onInitialize(zone)
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
     dsp.chocobo.initZone(zone)
-end;
+end
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(621.865,-6.665,300.264,149);
+function onZoneIn(player, prevZone)
+    local cs = -1
+
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(621.865, -6.665, 300.264, 149)
     end
 
-    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 0) then
-        cs = 200;
+    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getCharVar("ClawsOfGriffonProg") == 0 then
+        cs = 200
+    elseif player:getCharVar("roadToDivadomCS") == 1 then
+        cs = 105
+    end
 
-    elseif (player:getVar("roadToDivadomCS") == 1) then
-        cs = 105;
-    end;
+    return cs
 
-    return cs;
+end
 
-end;
+function onRegionEnter(player, region)
+end
 
-function onRegionEnter(player,region)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventUpdate(player,csid,option)
-end;
-
-function onEventFinish(player,csid,option)
-    if (csid == 200) then
-        player:setVar("ClawsOfGriffonProg",1);
-    elseif (csid == 105 ) then
-        player:setVar("roadToDivadomCS", 2);
-    end;
-
-end;
+function onEventFinish(player, csid, option)
+    if csid == 200 then
+        player:setCharVar("ClawsOfGriffonProg", 1)
+    elseif csid == 105 then
+        player:setCharVar("roadToDivadomCS", 2)
+    end
+end

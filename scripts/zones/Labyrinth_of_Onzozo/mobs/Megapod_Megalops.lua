@@ -1,12 +1,12 @@
-----------------------------------
+-----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Megapod Megalops
---   ID: 17649861
+--  Mob: Megapod Megalops
 -- Note: Popped by qm1
 -- !pos 115 14.68 164.1 213
 -- Involved in Quest: Bugi Soden
 -----------------------------------
 require("scripts/globals/wsquest")
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)

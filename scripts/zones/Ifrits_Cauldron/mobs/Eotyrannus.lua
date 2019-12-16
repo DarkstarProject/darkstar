@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Eotyrannus
+--  Mob: Eotyrannus
 -- Note: PH for Lindwurm
 -----------------------------------
 local ID = require("scripts/zones/Ifrits_Cauldron/IDs")

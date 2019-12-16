@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Air Elemental
+--  Mob: Air Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

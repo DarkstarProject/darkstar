@@ -48,7 +48,7 @@ function onTrade(player,npc,trade)
     local numBronze = trade:getItemQty(2184)
     local numMythril = trade:getItemQty(2186)
     local numGold = trade:getItemQty(2187)
-    if player:getCurrentMission(TOAU) >= 2 then
+    if player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM then
         if numBronze > 0 and numMythril == 0 and numGold == 0 then
             if addMogLockerExpiryTime(player, numBronze) then
                 -- remove bronze
@@ -90,7 +90,7 @@ function onTrigger(player,npc)
     -- if < mission 2 then
     --      player:startEvent(600)
     -- else
-    if player:getCurrentMission(TOAU) >= 2 then
+    if player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM then
         local accessType = getMogLockerAccessType(player)
         local mogLockerExpiryTimestamp = getMogLockerExpiryTimestamp(player)
 
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
     -- printf("fCSID: %u",csid)
     -- printf("fRESULT: %u",option)
     if csid == 600 and option == 3 then
-        local accessType = player:getVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
+        local accessType = player:getCharVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE)
         if accessType == MOGLOCKER_ACCESS_TYPE_ALLAREAS then
             -- they want to restrict their access to alzahbi only
             setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALZAHBI)

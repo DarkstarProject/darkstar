@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Pyuu the Spatemaker
+--  Mob: Pyuu the Spatemaker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

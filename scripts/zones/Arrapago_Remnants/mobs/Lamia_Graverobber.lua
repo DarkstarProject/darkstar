@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Remnants
---  MOB: Graverobber
+--  Mob: Lamia Graverobber
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------

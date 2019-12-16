@@ -36,6 +36,7 @@ zones[dsp.zone.BIBIKI_BAY] =
         HAVE_BILLET             = 7486, -- You cannot buy morrre than one <item>. Use the one you have now to ride the next ship.
         LEFT_BILLET             = 7491, -- You use your <item>. (<number> trip[/s] remaining)
         END_BILLET              = 7492, -- You use up your <item>.
+        COMMON_SENSE_SURVIVAL   = 8637, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
         NEWS_BILLET             = 8660, -- <item> has been [added to your list of favorites/removed from your list of favorites].
     },
     mob =

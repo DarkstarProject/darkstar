@@ -20,9 +20,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local WildcatSandy = player:getCharVar("WildcatSandy");
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,10) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,10) == false) then
         player:startEvent(750);
     else
         player:startEvent(762);
@@ -36,7 +36,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 750) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",10,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",10,true);
     end
 
 end;

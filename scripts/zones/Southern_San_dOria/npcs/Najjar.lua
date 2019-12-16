@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("UnderOathCS") == 1) then  -- Quest: Under Oath - PLD AF3
+    if (player:getCharVar("UnderOathCS") == 1) then  -- Quest: Under Oath - PLD AF3
         player:startEvent(16)
     else
         player:startEvent(17);
@@ -33,6 +33,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 16) then
-        player:setVar("UnderOathCS", 2)  -- Quest: Under Oath - PLD AF3
+        player:setCharVar("UnderOathCS", 2)  -- Quest: Under Oath - PLD AF3
     end
 end;

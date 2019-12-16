@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monastic Cavern
---  MOB: Overlord Bakgodek
+--  Mob: Overlord Bakgodek
 -- TODO: messages should be zone-wide
 -----------------------------------
 local ID = require("scripts/zones/Monastic_Cavern/IDs")

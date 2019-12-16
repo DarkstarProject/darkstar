@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Tulwar Scorpion
+--  Mob: Tulwar Scorpion
 -- Note: PH for Calchas
 -----------------------------------
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs")

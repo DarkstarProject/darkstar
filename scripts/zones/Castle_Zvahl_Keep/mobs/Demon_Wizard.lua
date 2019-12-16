@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Demon_Wizard
+--  Mob: Demon Wizard
 -- Note: PH for Baron Vapula
 -----------------------------------
 local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");

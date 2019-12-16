@@ -12,16 +12,16 @@ local ID = require("scripts/zones/Port_Bastok/IDs");
 function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(12497,1) and trade:getItemCount() == 1) then -- Trade Brass Hairpin
-        if (player:getVar("ForevertoHold_Event") == 2) then
+        if (player:getCharVar("ForevertoHold_Event") == 2) then
             player:tradeComplete();
             player:startEvent(125);
-            player:setVar("ForevertoHold_Event",3);
+            player:setCharVar("ForevertoHold_Event",3);
         end
     elseif (trade:hasItemQty(12721,1) and trade:getItemCount() == 1) then -- Trade Cotton Gloves
-        if (player:getVar("ForevertoHold_Event") == 3) then
+        if (player:getCharVar("ForevertoHold_Event") == 3) then
             player:tradeComplete();
             player:startEvent(129);
-            player:setVar("ForevertoHold_Event",4);
+            player:setCharVar("ForevertoHold_Event",4);
         end
     end
 
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
     local ForevertoHold = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FOREVER_TO_HOLD);
     local TilldeathdousPart = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.TILL_DEATH_DO_US_PART);
 
-    if (pFame >= 3 and ForevertoHold == QUEST_COMPLETED and TilldeathdousPart == QUEST_AVAILABLE and player:getVar("ForevertoHold_Event") == 3) then
+    if (pFame >= 3 and ForevertoHold == QUEST_COMPLETED and TilldeathdousPart == QUEST_AVAILABLE and player:getCharVar("ForevertoHold_Event") == 3) then
         player:startEvent(128);
     else
         player:startEvent(34);

@@ -12,26 +12,26 @@ end;
 
 function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP);
-    local copStat = player:getVar("PromathiaStatus");
+    local copStat = player:getCharVar("PromathiaStatus");
     
     -- AN ETERNAL MEMORY (PM2-4)
-    if (cop == AN_ETERNAL_MELODY and copStat == 1) then
+    if (cop == dsp.mission.id.cop.AN_ETERNAL_MELODY and copStat == 1) then
         player:startEvent(5);
 
     -- SHELTERING DOUBT (PM4-1)
-    elseif (cop == SHELTERING_DOUBT and copStat == 3) then
+    elseif (cop == dsp.mission.id.cop.SHELTERING_DOUBT and copStat == 3) then
         player:startEvent(7);
 
     -- A PLACE TO RETURN (PM6-2)
     elseif (
-        cop == A_PLACE_TO_RETURN and copStat == 1 and
-        player:getVar("Warder_Aglaia_KILL") == 1 and
-        player:getVar("Warder_Euphrosyne_KILL") == 1 and
-        player:getVar("Warder_Thalia_KILL") == 1
+        cop == dsp.mission.id.cop.A_PLACE_TO_RETURN and copStat == 1 and
+        player:getCharVar("Warder_Aglaia_KILL") == 1 and
+        player:getCharVar("Warder_Euphrosyne_KILL") == 1 and
+        player:getCharVar("Warder_Thalia_KILL") == 1
     ) then
         player:startEvent(10);
     elseif (
-        cop == A_PLACE_TO_RETURN and copStat == 1 and
+        cop == dsp.mission.id.cop.A_PLACE_TO_RETURN and copStat == 1 and
         not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 0):isSpawned() and
         not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 1):isSpawned() and
         not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 2):isSpawned()
@@ -52,21 +52,21 @@ end;
 function onEventFinish(player,csid,option)
     -- AN ETERNAL MEMORY (PM2-4)
     if (csid == 5) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
 
     -- SHELTERING DOUBT (PM4-1)
     elseif (csid == 7) then
-        player:setVar("PromathiaStatus",0);
-        player:completeMission(COP,SHELTERING_DOUBT);
-        player:addMission(COP,THE_SAVAGE);
+        player:setCharVar("PromathiaStatus",0);
+        player:completeMission(COP,dsp.mission.id.cop.SHELTERING_DOUBT);
+        player:addMission(COP,dsp.mission.id.cop.THE_SAVAGE);
 
     -- A PLACE TO RETURN (PM6-2)
     elseif (csid == 10) then
-        player:setVar("PromathiaStatus",0);
-        player:setVar("Warder_Aglaia_KILL",0);
-        player:setVar("Warder_Euphrosyne_KILL",0);
-        player:setVar("Warder_Thalia_KILL",0);
-        player:completeMission(COP,A_PLACE_TO_RETURN);
-        player:addMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
+        player:setCharVar("PromathiaStatus",0);
+        player:setCharVar("Warder_Aglaia_KILL",0);
+        player:setCharVar("Warder_Euphrosyne_KILL",0);
+        player:setCharVar("Warder_Thalia_KILL",0);
+        player:completeMission(COP,dsp.mission.id.cop.A_PLACE_TO_RETURN);
+        player:addMission(COP,dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS);
     end
 end;

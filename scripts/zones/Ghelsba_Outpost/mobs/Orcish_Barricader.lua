@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost (140)
---  MOB: Orcish Barricader
+--  Mob: Orcish Barricader
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

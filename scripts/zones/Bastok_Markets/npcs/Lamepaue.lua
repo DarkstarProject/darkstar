@@ -14,10 +14,10 @@ function onTrigger(player,npc)
 
     -- Bastok Missions.
     local BastokMissions = 0xFFFFFFFE;
-    if (player:hasCompletedMission (BASTOK,FETICHISM)) then
+    if (player:hasCompletedMission (BASTOK,dsp.mission.id.bastok.FETICHISM)) then
         BastokMissions = BastokMissions - 2; -- Fetichism.
     end
-    if (player:hasCompletedMission (BASTOK,TO_THE_FORSAKEN_MINES)) then
+    if (player:hasCompletedMission (BASTOK,dsp.mission.id.bastok.TO_THE_FORSAKEN_MINES)) then
         BastokMissions = BastokMissions - 4; -- To the Forsaken Mines.
     end
 
@@ -115,7 +115,7 @@ function onTrigger(player,npc)
     -- Seekers of Adoulin
     local SeekersOfAdoulin = 0xFFFFFFFE;
 -- *Need the correct csid
---    if (player:hasCompletedMission (SOA,RUMORS_FROM_THE_WEST)) then
+--    if (player:hasCompletedMission (SOA,dsp.mission.id.soa.RUMORS_FROM_THE_WEST)) then
 --        SeekersOfAdoulin = SeekersOfAdoulin - 2; -- Rumors from the West
 --    end
 

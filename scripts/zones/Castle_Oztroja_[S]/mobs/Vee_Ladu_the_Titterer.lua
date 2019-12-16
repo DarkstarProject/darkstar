@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
+-- Area: Castle Oztroja [S]
 --   NM: Vee Ladu the Titterer
 -- TODO: summons up to four low-HP copies of itself when it casts utsusemi: ni
 -----------------------------------

@@ -1,7 +1,9 @@
-----------------------------------
+-----------------------------------
 -- Area: Gustav Tunnel
 --   NM: Gigaplasm
 -- Note: Part of mission "The Salt of the Earth"
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)

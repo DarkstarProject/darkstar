@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Yughott_Grotto
+-- Area: Yughott Grotto (142)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -15,6 +15,7 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
         ITEM_OBTAINED           = 6547, -- Obtained: <item>.
         GIL_OBTAINED            = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
+        GEOMAGNETRON_ATTUNED    = 7169, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
         CHEST_UNLOCKED          = 7334, -- You unlock the chest!
         MINING_IS_POSSIBLE_HERE = 7342, -- Mining is possible here if you have <item>.

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto (176)
---  MOB: Devil Manta
+--  Mob: Devil Manta
 -- Note: Place holder Charybdis
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

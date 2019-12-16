@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Bastok
---  MOB: Vanguard_Defender
+-- Area: Dynamis - Bastok
+--  Mob: Vanguard Defender
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

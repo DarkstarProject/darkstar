@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Beadeaux (S)
---  MOB: Adaman Quadav
+-- Area: Beadeaux [S]
+--  Mob: Adaman Quadav
 -- Note: PH for Ea'Tho Cruelheart and Ba'Tho Mercifulheart
 -----------------------------------
 local ID = require("scripts/zones/Beadeaux_[S]/IDs")

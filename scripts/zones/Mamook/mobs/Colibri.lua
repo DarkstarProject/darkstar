@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamook
---  MOB: Colibri
+--  Mob: Colibri
 -----------------------------------
 mixins = {require("scripts/mixins/families/colibri_mimic")}
 -----------------------------------

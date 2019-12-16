@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Worker Crawler
+--  Mob: Worker Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

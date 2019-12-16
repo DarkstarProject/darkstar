@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
             if (item[1] == itemID) then
                 if (trade:hasItemQty(itemID, 8) and trade:getItemCount() == 8) then
                     -- Correct amount, valid item.
-                    player:setVar("ANTIQUE_PAYOUT", (GIL_RATE*item[2]));
+                    player:setCharVar("ANTIQUE_PAYOUT", (GIL_RATE*item[2]));
                     player:startEvent(102, GIL_RATE*item[2], itemID);
                 elseif (trade:getItemCount() < 8) then
                     -- Wrong amount, but valid item.
@@ -67,7 +67,7 @@ end;
 
 function onEventFinish(player,csid,option)
     local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
-    local payout = player:getVar("ANTIQUE_PAYOUT");
+    local payout = player:getCharVar("ANTIQUE_PAYOUT");
 
     if (csid == 101) then
         player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
         player:addGil(payout);
         player:messageSpecial(ID.text.GIL_OBTAINED,payout);
         player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
-        player:setVar("ANTIQUE_PAYOUT", 0);
+        player:setCharVar("ANTIQUE_PAYOUT", 0);
         player:setLocalVar("OrlandoRepeat", 0);
     elseif (csid == 103) then
         if (QuestStatus == QUEST_COMPLETED) then

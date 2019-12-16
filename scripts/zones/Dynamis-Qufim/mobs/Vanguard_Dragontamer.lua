@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Qufim
---  MOB: Vanguard_Dragontamer
+-- Area: Dynamis - Qufim
+--  Mob: Vanguard Dragontamer
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

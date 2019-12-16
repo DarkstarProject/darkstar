@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Swamp Sahagin
+--  Mob: Swamp Sahagin
 -- Note: PH for Pahh the Gullcaller
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")

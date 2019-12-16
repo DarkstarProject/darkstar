@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Bolster
+--  Mob: Bolster
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

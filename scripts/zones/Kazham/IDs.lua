@@ -29,6 +29,7 @@ zones[dsp.zone.KAZHAM] =
         MAMERIE_SHOP_DIALOG        = 10609, -- Is there something you require?
         EVISCERATION_LEARNED       = 10646, -- You have learned the weapon skill Evisceration!
         RETRIEVE_DIALOG_ID         = 10996, -- You retrieve <item> from the porter moogle's care.
+        COMMON_SENSE_SURVIVAL      = 11854, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

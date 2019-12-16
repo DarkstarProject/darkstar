@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Seven of Swords
+-- Area: Outer Horutoto Ruins
+--  Mob: Seven of Swords
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

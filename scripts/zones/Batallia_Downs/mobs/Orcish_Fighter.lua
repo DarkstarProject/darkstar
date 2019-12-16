@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Fighter
+--  Mob: Orcish Fighter
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

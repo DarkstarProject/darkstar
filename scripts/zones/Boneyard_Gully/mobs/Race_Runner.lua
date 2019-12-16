@@ -1,10 +1,11 @@
 -----------------------------------
--- Area: Boneyard_Gully
--- Name: Race Runner
+-- Area: Boneyard Gully
+--  Mob: Race Runner
+--  ENM: Like the Wind
 -----------------------------------
-require("scripts/globals/pathfind");
-require("scripts/globals/titles");
-require("scripts/globals/status");
+require("scripts/globals/pathfind")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 local path =
@@ -16,24 +17,21 @@ local path =
     -572, 2, -433,
     -545, 1, -440,
     -532, 0, -466
-};
+}
 
 function onMobSpawn(mob)
-    onMobRoam(mob);
-end;
+    onMobRoam(mob)
+end
 
 function onMobRoamAction(mob)
-
-    dsp.path.patrol(mob, path, dsp.path.flag.REVERSE);
-
-end;
+    dsp.path.patrol(mob, path, dsp.path.flag.REVERSE)
+end
 
 function onMobRoam(mob)
-    -- move to start position if not moving
-    if (mob:isFollowingPath() == false) then
-        mob:pathThrough(dsp.path.first(path));
+    if not mob:isFollowingPath() then
+        mob:pathThrough(dsp.path.first(path))
     end
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

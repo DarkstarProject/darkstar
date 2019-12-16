@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local WhisperOfStorms = player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
-    local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
+    local CarbuncleDebacleProgress = player:getCharVar("CarbuncleDebacleProgress");
 
     ---------------------------------------------------------------------
     -- Carbunlce Debacle
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         player:startEvent(10023,0,1172,0,0,0,0,0,0); -- "lost the pendulum?"
     ---------------------------------------------------------------------
     -- Trial by Lightning
-    elseif ((TrialByLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 6) or (TrialByLightning == QUEST_COMPLETED and realday ~= player:getVar("TrialByLightning_date"))) then
+    elseif ((TrialByLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 6) or (TrialByLightning == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByLightning_date"))) then
         player:startEvent(10016,0,dsp.ki.TUNING_FORK_OF_LIGHTNING); -- Start and restart quest "Trial by Lightning"
     elseif (TrialByLightning == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING) == false and WhisperOfStorms == false) then
         player:startEvent(10024,0,dsp.ki.TUNING_FORK_OF_LIGHTNING); -- Defeat against Ramuh : Need new Fork
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
             player:delQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
         end
         player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
-        player:setVar("TrialByLightning_date", 0);
+        player:setCharVar("TrialByLightning_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10024) then
@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(dsp.ki.WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
-            player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:setCharVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(MHAURA,30);
             player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING);
         end
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1172);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1172);
-            player:setVar("CarbuncleDebacleProgress",3);
+            player:setCharVar("CarbuncleDebacleProgress",3);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1172);
         end;

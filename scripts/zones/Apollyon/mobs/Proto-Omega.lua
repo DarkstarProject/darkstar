@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon (Central)
---  MOB: Proto-Omega
+--  Mob: Proto-Omega
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/titles");

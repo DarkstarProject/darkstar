@@ -14,6 +14,7 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
         ITEM_OBTAINED               = 6388, -- Obtained: <item>.
         GIL_OBTAINED                = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED            = 6391, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                = 6392, -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY     = 6402, -- There is nothing out of the ordinary here.
         CONQUEST_BASE               = 7049, -- Tallying conquest results...
         CONQUEST                    = 7217, -- You've earned conquest points!
@@ -24,6 +25,7 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
         MURDEROUS_PRESENCE          = 7736, -- Wait, you sense a murderous presence...!
         YOU_CAN_SEE_FOR_MALMS       = 7737, -- You can see for malms in every direction.
         SPINE_CHILLING_PRESENCE     = 7739, -- You sense a spine-chilling presence!
+        COMMON_SENSE_SURVIVAL       = 8734, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

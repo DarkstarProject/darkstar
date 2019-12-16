@@ -9,9 +9,9 @@ require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
     if
-        player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_THREE_MAGI) == QUEST_ACCEPTED and
+        player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_THREE_MAGI) == QUEST_ACCEPTED and
         npcUtil.tradeHas(trade, 613) and
         not player:hasItem(1104) and
         npcUtil.popFromQM(player, npc, ID.mob.CHAOS_ELEMENTAL)
@@ -20,12 +20,12 @@ function onTrade(player,npc,trade)
     end
 end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
 end

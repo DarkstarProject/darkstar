@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
---  NPC: Kaiser Behemoth
-
+--  Mob: Bardha
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
