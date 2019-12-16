@@ -122,7 +122,12 @@ bool CPlayerController::Ability(uint16 targid, uint16 abilityid)
 bool CPlayerController::RangedAttack(uint16 targid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (PChar->PAI->CanChangeState())
+    uint8 anim = PChar->animation;
+    if (anim != ANIMATION_NONE && anim != ANIMATION_ATTACK)
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_PERFORM_ACTION));
+    }
+    else if (PChar->PAI->CanChangeState())
     {
         return PChar->PAI->Internal_RangedAttack(targid);
     }
