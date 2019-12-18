@@ -52,8 +52,8 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
     },
     npc =
     {
-        CASKET_BASE   = 17265218,
-        OVERSEER_BASE = 17265270,
+        CASKET_BASE   = 17265219,
+        OVERSEER_BASE = 17265271,
     },
 }
 

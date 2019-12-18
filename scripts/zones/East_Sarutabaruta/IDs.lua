@@ -47,7 +47,7 @@ zones[dsp.zone.EAST_SARUTABARUTA] =
     },
     npc =
     {
-        CASKET_BASE = 17252999,
+        CASKET_BASE = 17253000,
     },
 }
 

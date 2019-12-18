@@ -63,17 +63,17 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
     },
     npc =
     {
-        CASKET_BASE     = 17261112,
-        OVERSEER_BASE   = 17261149,
-        SIGNPOST_OFFSET = 17261164,
+        CASKET_BASE     = 17261113,
+        OVERSEER_BASE   = 17261150,
+        SIGNPOST_OFFSET = 17261165,
         LOGGING =
         {
-            17261174,
             17261175,
             17261176,
             17261177,
             17261178,
             17261179,
+            17261180,
         },
     },
 }

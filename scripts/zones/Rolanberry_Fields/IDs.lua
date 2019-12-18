@@ -54,7 +54,7 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
     },
     npc =
     {
-        CASKET_BASE = 17228318,
+        CASKET_BASE = 17228319,
     },
 }
 

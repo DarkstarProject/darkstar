@@ -51,7 +51,7 @@ zones[dsp.zone.BATALLIA_DOWNS] =
     },
     npc =
     {
-        CASKET_BASE   = 17207793,
+        CASKET_BASE   = 17207794,
     },
 }
 

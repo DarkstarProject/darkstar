@@ -51,7 +51,7 @@ zones[dsp.zone.SAUROMUGUE_CHAMPAIGN] =
     },
     npc =
     {
-        CASKET_BASE = 17269189,
+        CASKET_BASE = 17269190,
     },
 }
 
