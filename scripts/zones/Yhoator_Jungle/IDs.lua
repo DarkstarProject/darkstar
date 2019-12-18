@@ -30,14 +30,14 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
         WATER_HOLE                  = 7681,  -- There is an Opo-opo drinking well here. It seems they feast here, too.
         FAINT_CRY                   = 7682,  -- You hear the cry of a famished Opo-opo!
         PAMAMAS                     = 7685,  -- You might be able to draw an Opo-opo here if you had more pamamas.
-        SOMETHING_IS_BURIED_HERE    = 7727,  -- It looks like something is buried here. If you had <item> you could dig it up.
-        PLAYER_OBTAINS_ITEM         = 7816,  -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM       = 7817,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM    = 7818,  -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP        = 7819,  -- You already possess that temporary item.
-        NO_COMBINATION              = 7824,  -- You were unable to enter a combination.
-        REGIME_REGISTERED           = 10002, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL       = 11121, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        SOMETHING_IS_BURIED_HERE    = 7722,  -- It looks like something is buried here. If you had <item> you could dig it up.
+        PLAYER_OBTAINS_ITEM         = 7811,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM       = 7812,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM    = 7813,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP        = 7814,  -- You already possess that temporary item.
+        NO_COMBINATION              = 7819,  -- You were unable to enter a combination.
+        REGIME_REGISTERED           = 9997, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL       = 11116, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

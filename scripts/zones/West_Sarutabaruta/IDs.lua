@@ -38,15 +38,15 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
         MELT_BARE_HANDS             = 7402,  -- It looks like it would melt if you touched it with your bare hands...
         HARVESTING_IS_POSSIBLE_HERE = 7438,  -- Harvesting is possible here if you have <item>.
         CONQUEST                    = 7454,  -- You've earned conquest points!
-        PLAYER_OBTAINS_ITEM         = 7860,  -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM       = 7861,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM    = 7862,  -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP        = 7863,  -- You already possess that temporary item.
-        NO_COMBINATION              = 7868,  -- You were unable to enter a combination.
-        REGIME_REGISTERED           = 10188, -- New training regime registered!
-        DONT_SWAP_JOBS              = 10189, -- hanging your job will result in the cancellation of your current training regime.
-        REGIME_CANCELED             = 10190, -- Training regime canceled.
-        COMMON_SENSE_SURVIVAL       = 12339, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        PLAYER_OBTAINS_ITEM         = 7855,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM       = 7856,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM    = 7857,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP        = 7858,  -- You already possess that temporary item.
+        NO_COMBINATION              = 7863,  -- You were unable to enter a combination.
+        REGIME_REGISTERED           = 10183, -- New training regime registered!
+        DONT_SWAP_JOBS              = 10184, -- hanging your job will result in the cancellation of your current training regime.
+        REGIME_CANCELED             = 10185, -- Training regime canceled.
+        COMMON_SENSE_SURVIVAL       = 12334, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

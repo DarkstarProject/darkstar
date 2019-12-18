@@ -27,12 +27,12 @@ zones[dsp.zone.SOUTH_GUSTABERG] =
         FIRE_TAKE                = 7406, -- You take <item> out of the fire.
         FIRE_LONGER              = 7407, -- It may take a little while more to cook the <item>.
         MEAT_ALREADY_PUT         = 7408, -- The <item> is already in the fire.
-        PLAYER_OBTAINS_ITEM      = 7530, -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM    = 7531, -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 7532, -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP     = 7533, -- You already possess that temporary item.
-        NO_COMBINATION           = 7538, -- You were unable to enter a combination.
-        REGIME_REGISTERED        = 9898, -- New training regime registered!
+        PLAYER_OBTAINS_ITEM      = 7525, -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 7526, -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 7527, -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP     = 7528, -- You already possess that temporary item.
+        NO_COMBINATION           = 7533, -- You were unable to enter a combination.
+        REGIME_REGISTERED        = 9893, -- New training regime registered!
     },
     mob =
     {

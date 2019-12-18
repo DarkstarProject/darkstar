@@ -23,13 +23,13 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
         FIND_NOTHING             = 7245,  -- You dig and you dig, but find nothing.
         NOTHING_FOUND            = 7488,  -- You find nothing.
         CONQUEST                 = 7900,  -- You've earned conquest points!
-        PLAYER_OBTAINS_ITEM      = 8342,  -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM    = 8343,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 8344,  -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP     = 8345,  -- You already possess that temporary item.
-        NO_COMBINATION           = 8350,  -- You were unable to enter a combination.
-        REGIME_REGISTERED        = 10590, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 12619, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        PLAYER_OBTAINS_ITEM      = 8337,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 8338,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 8339,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP     = 8340,  -- You already possess that temporary item.
+        NO_COMBINATION           = 8345,  -- You were unable to enter a combination.
+        REGIME_REGISTERED        = 10585, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL    = 12614, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
