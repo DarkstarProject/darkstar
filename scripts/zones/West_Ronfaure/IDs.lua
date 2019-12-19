@@ -31,13 +31,13 @@ zones[dsp.zone.WEST_RONFAURE] =
         ZOVRIACE_DIALOG          = 7382,  -- Let me be! I return to Southgate with word on La Theine.
         DISMAYED_CUSTOMER        = 7408,  -- You find some worthless scraps of paper.
         CONQUEST                 = 7530,  -- You've earned conquest points!
-        PLAYER_OBTAINS_ITEM      = 8053,  -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM    = 8054,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 8055,  -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP     = 8056,  -- You already possess that temporary item.
-        NO_COMBINATION           = 8061,  -- You were unable to enter a combination.
-        REGIME_REGISTERED        = 10426, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 12427, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        PLAYER_OBTAINS_ITEM      = 8048,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 8049,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 8050,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP     = 8051,  -- You already possess that temporary item.
+        NO_COMBINATION           = 8056,  -- You were unable to enter a combination.
+        REGIME_REGISTERED        = 10421, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL    = 12422, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -61,9 +61,9 @@ zones[dsp.zone.WEST_RONFAURE] =
     },
     npc =
     {
-        CASKET_BASE     = 17187499,
-        SIGNPOST_OFFSET = 17187537,
-        OVERSEER_BASE   = 17187557,
+        CASKET_BASE     = 17187500,
+        SIGNPOST_OFFSET = 17187538,
+        OVERSEER_BASE   = 17187558,
     },
 }
 

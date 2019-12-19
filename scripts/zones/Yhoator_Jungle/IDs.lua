@@ -30,14 +30,14 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
         WATER_HOLE                  = 7681,  -- There is an Opo-opo drinking well here. It seems they feast here, too.
         FAINT_CRY                   = 7682,  -- You hear the cry of a famished Opo-opo!
         PAMAMAS                     = 7685,  -- You might be able to draw an Opo-opo here if you had more pamamas.
-        SOMETHING_IS_BURIED_HERE    = 7727,  -- It looks like something is buried here. If you had <item> you could dig it up.
-        PLAYER_OBTAINS_ITEM         = 7816,  -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM       = 7817,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM    = 7818,  -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP        = 7819,  -- You already possess that temporary item.
-        NO_COMBINATION              = 7824,  -- You were unable to enter a combination.
-        REGIME_REGISTERED           = 10002, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL       = 11121, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        SOMETHING_IS_BURIED_HERE    = 7722,  -- It looks like something is buried here. If you had <item> you could dig it up.
+        PLAYER_OBTAINS_ITEM         = 7811,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM       = 7812,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM    = 7813,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP        = 7814,  -- You already possess that temporary item.
+        NO_COMBINATION              = 7819,  -- You were unable to enter a combination.
+        REGIME_REGISTERED           = 9997, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL       = 11116, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -57,34 +57,34 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     npc =
     {
-        CASKET_BASE       = 17285618,
-        OVERSEER_BASE     = 17285649,
-        PEDDLESTOX        = 17285685,
+        CASKET_BASE       = 17285619,
+        OVERSEER_BASE     = 17285650,
+        PEDDLESTOX        = 17285686,
         BEASTMEN_TREASURE =
         {
-            17285695, -- qm4
-            17285688, -- qm5
-            17285689, -- qm6
-            17285690, -- qm7
-            17285691, -- qm8
-            17285692, -- qm9
-            17285693, -- qm10
-            17285694, -- qm11
+            17285696, -- qm4
+            17285689, -- qm5
+            17285690, -- qm6
+            17285691, -- qm7
+            17285692, -- qm8
+            17285693, -- qm9
+            17285694, -- qm10
+            17285695, -- qm11
         },
         HARVESTING =
         {
-            17285680,
             17285681,
             17285682,
+            17285683,
         },
         LOGGING =
         {
-            17285674,
             17285675,
             17285676,
             17285677,
             17285678,
             17285679,
+            17285680,
         },
     },
 }

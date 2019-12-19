@@ -24,13 +24,13 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
         DIG_THROW_AWAY           = 7563,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING             = 7565,  -- You dig and you dig, but find nothing.
         ALREADY_OBTAINED_TELE    = 7659,  -- You already possess the gate crystal for this telepoint.
-        PLAYER_OBTAINS_ITEM      = 7764,  -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM    = 7765,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM = 7766,  -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP     = 7767,  -- You already possess that temporary item.
-        NO_COMBINATION           = 7772,  -- You were unable to enter a combination.
-        REGIME_REGISTERED        = 9950,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 11086, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        PLAYER_OBTAINS_ITEM      = 7759,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 7760,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 7761,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP     = 7762,  -- You already possess that temporary item.
+        NO_COMBINATION           = 7767,  -- You were unable to enter a combination.
+        REGIME_REGISTERED        = 9945,  -- New training regime registered!
+        COMMON_SENSE_SURVIVAL    = 11081, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -51,8 +51,8 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
     },
     npc =
     {
-        CASKET_BASE   = 17244595,
-        OVERSEER_BASE = 17244626,
+        CASKET_BASE   = 17244596,
+        OVERSEER_BASE = 17244627,
     },
 }
 
