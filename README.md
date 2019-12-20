@@ -1,7 +1,9 @@
 Project Topaz
 ========
 
-**If you're switching to Project Topaz from Darkstar Project, we have a differing license agreement, which may require your server source code to be made available to users. See the [Project Topaz License](https://github.com/project-topaz/topaz/blob/master/LICENSE), and the [GNU AGPLv3](https://github.com/project-topaz/topaz/blob/master/AGPL3) (Section 13).**
+**If you're switching to Project Topaz from Darkstar Project, portions of our project may be governed by the [GNU AGPLv3](https://github.com/project-topaz/topaz/blob/master/AGPL3) instead of the [GNU GPLv3](https://github.com/project-topaz/topaz/blob/master/GPL3). This may require your server source code to be made available to users.**
+
+**Any such portions will be clearly marked as being governed by the AGPLv3 in all relevant source files. Any source code not so marked is instead governed by the GPLv3, and may be used or modified without offering source to connecting users, provided it is not combined with any AGPLv3 source code. See Section 13 of both the GPLv3 and AGPLv3 for more information, and the [Project Topaz License](https://github.com/project-topaz/topaz/blob/master/LICENSE) for [additional permissions](https://github.com/project-topaz/topaz/blob/master/LICENSE#L182) which may exempt you from this requirement.**
 
 Welcome to Project Topaz, an emulation server for FFXI.
 Visit our Discord to keep in touch with the latest developments.
