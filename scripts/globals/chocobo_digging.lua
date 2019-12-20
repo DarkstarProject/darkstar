@@ -842,10 +842,11 @@ local function canDig(player)
         updatePlayerDigCount(player, 0)
         digCount = 0
     end
-
     -- neither player nor zone have reached their dig limit
 
-    if (digCount < 100 and zoneItemsDug < 20) or DIG_FATIGUE == 0 then
+    -- https://ffxiclopedia.fandom.com/wiki/Chocobo_Digging_Guide
+    -- states 20-50... lets just go with 50?
+    if (digCount < 100 and zoneItemsDug < 50) or DIG_FATIGUE == 0 then
         -- pesky delays
         if (zoneInTime + areaDigDelay) <= currentTime and (lastDigTime + digDelay) <= currentTime then
             return true
@@ -986,12 +987,31 @@ dsp.chocoboDig.start = function(player, precheck)
             end
 
             updatePlayerDigCount(player, 1)
-            -- updateZoneDigCount(zoneId, 1) -- TODO: implement mechanic for resetting zone dig count. until then, leave this commented out
+            updateZoneDigCount(zoneId, 1)
             -- TODO: learn abilities from chocobo raising
         end
 
         calculateSkillUp(player)
 
         return true
+    end
+end
+
+-- https://ffxiclopedia.fandom.com/wiki/Chocobo_Digging_Guide
+-- 2 - 8 items depending on MoonPhase
+function updateDigZones()
+    for zoneId, _ in pairs(digInfo) do
+        local serverVar = '[DIG]ZONE' .. zoneId .. '_ITEMS'
+        local zoneItemsDug = GetServerVariable(serverVar)
+
+        if zoneItemsDug ~= 0 then
+            local newItems = 2 + math.floor((6*(VanadielMoonPhase()/100)))
+
+            zoneItemsDug = zoneItemsDug - newItems
+            if zoneItemsDug < 0 then
+                zoneItemsDug = 0
+            end
+            SetServerVariable(serverVar, zoneItemsDug)
+        end
     end
 end
