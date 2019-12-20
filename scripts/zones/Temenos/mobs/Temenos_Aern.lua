@@ -27,16 +27,16 @@ function onMobDespawn(mob)
         
         switch (mobID): caseof {
             [ID.mob.TEMENOS_C_MOB[5]+19] = function()
-                limbus.ExtendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+20] = function()
-                limbus.ExtendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+29] = function()
-                limbus.ExtendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+30] = function()
-                limbus.ExtendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
             end,
         }
         local leftAern=0

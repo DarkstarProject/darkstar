@@ -11,12 +11,12 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     battlefield:setLocalVar("lootSpawned", 1)
     SetServerVariable("[SW_Apollyon]Time", battlefield:getTimeLimit()/60)
-    limbus.hideDoors(battlefield:getID())
+    dsp.limbus.hideDoors(battlefield:getID())
     local random = math.random(0, 7)
     battlefield:setLocalVar("timePH", ID.npc.APOLLYON_SW_CRATE[3]+random)
     battlefield:setLocalVar("restorePH", ID.npc.APOLLYON_SW_CRATE[3]+random+1)
     battlefield:setLocalVar("itemPH", ID.npc.APOLLYON_SW_CRATE[3]+random+2)
-    limbus.hideArmouryCrates(battlefield:getID())
+    dsp.limbus.hideArmouryCrates(battlefield:getID())
 end
 
 function onBattlefieldTick(battlefield, tick)
@@ -39,7 +39,7 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldDestroy(battlefield)
-    limbus.hideDoors(battlefield:getID(), true)
+    dsp.limbus.hideDoors(battlefield:getID(), true)
     SetServerVariable("[SW_Apollyon]Time", 0)
 end
 

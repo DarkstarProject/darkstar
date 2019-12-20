@@ -22,8 +22,8 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 160 and option == 1 then
-        limbus.enter(player,1)
+        dsp.limbus.enter(player,1)
     elseif csid == 159 and option == 1 then
-        limbus.enter(player,0)
+        dsp.limbus.enter(player,0)
     end
 end

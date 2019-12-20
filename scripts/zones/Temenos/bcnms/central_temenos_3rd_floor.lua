@@ -10,8 +10,8 @@ local ID = require("scripts/zones/Temenos/IDs")
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     SetServerVariable("[Central_Temenos_3rd_Floor]Time", battlefield:getTimeLimit()/60)
-    limbus.hideDoors(battlefield:getID())
-    limbus.hideArmouryCrates(battlefield:getID())
+    dsp.limbus.hideDoors(battlefield:getID())
+    dsp.limbus.hideArmouryCrates(battlefield:getID())
     DespawnMob(ID.mob.TEMENOS_C_MOB[3]+3)
     DespawnMob(ID.mob.TEMENOS_C_MOB[3]+11)
 end
@@ -30,7 +30,7 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldDestroy(battlefield)
-    limbus.hideDoors(battlefield:getID(), true)
+    dsp.limbus.hideDoors(battlefield:getID(), true)
     SetServerVariable("[Central_Temenos_3rd_Floor]Time", 0)
 end
 

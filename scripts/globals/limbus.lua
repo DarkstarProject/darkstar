@@ -4,9 +4,10 @@ require("scripts/globals/status")
 require("scripts/globals/zone")
 --------------------------------------
 
-limbus = {}
+dsp = dsp or {}
+dsp.limbus = dsp.limbus or {}
 
-function limbus.enter(player, entrance)
+function dsp.limbus.enter(player, entrance)
     switch (entrance): caseof
     {
         [0] = function ()
@@ -18,7 +19,7 @@ function limbus.enter(player, entrance)
     }
 end
 
-function limbus.hideArmouryCrates(bfid, show)
+function dsp.limbus.hideArmouryCrates(bfid, show)
     local ID
     if bfid == 1290 or bfid == 1291 or bfid == 1292 or bfid == 1293 or
         bfid == 1294 or bfid == 1296
@@ -127,11 +128,8 @@ function limbus.hideArmouryCrates(bfid, show)
     }
 end
 
-function limbus.handleLootRolls(battlefield, lootTable, players, npc)
+function dsp.limbus.handleLootRolls(battlefield, lootTable, players, npc)
     players = players or battlefield:getPlayers()
-    if npc then
-        npc:setAnimation(90)
-    end
     for i = 1, #lootTable do
         local lootGroup = lootTable[i]
         if lootGroup then
@@ -153,7 +151,7 @@ function limbus.handleLootRolls(battlefield, lootTable, players, npc)
     end
 end
 
-function limbus.ExtendTimeLimit(battlefield, minutes, zone)
+function dsp.limbus.extendTimeLimit(battlefield, minutes, zone, npc)
     local timeLimit = battlefield:getTimeLimit()
     local extension = minutes * 60
     battlefield:setTimeLimit(timeLimit + extension)
@@ -166,7 +164,7 @@ function limbus.ExtendTimeLimit(battlefield, minutes, zone)
     end
 end
 
-function limbus.elementalsDead()
+function dsp.limbus.elementalsDead()
     local ID = zones[dsp.zone.APOLLYON]
     local day = VanadielDayElement()
     local daykill = false
@@ -223,7 +221,7 @@ function limbus.elementalsDead()
     return daykill
 end
 
-function limbus.hideDoors(bfid, open)
+function dsp.limbus.hideDoors(bfid, open)
     local animation = 9
     if open then animation = 8 end
     local ID
@@ -288,7 +286,7 @@ function limbus.hideDoors(bfid, open)
 }
 end
 
-function limbus.spawnRandomCrate(npc, player, var, mask, canMimic)
+function dsp.limbus.spawnRandomCrate(npc, player, var, mask, canMimic)
     local battlefield = player:getBattlefield()
     if mask < 8 then
         local spawnMimic = math.random(0,1) == 1
@@ -402,7 +400,7 @@ function limbus.spawnRandomCrate(npc, player, var, mask, canMimic)
             end,
         }
     else
-        limbus.spawnRandomCrate(npc, player, var, mask-8)
+        dsp.limbus.spawnRandomCrate(npc, player, var, mask-8)
         mask = battlefield:getLocalVar(var)
         battlefield:setLocalVar(var, mask+8)
         return

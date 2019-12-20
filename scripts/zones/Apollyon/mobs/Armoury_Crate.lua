@@ -11,7 +11,7 @@ end
 function onMobDeath(mob, player, isKiller)
     if isKiller then
         local battlefield = player:getBattlefield()
-        if GetNPCByID(ID.npc.APOLLYON_NW_PORTAL[3]):getAnimation() ~= 8 then
+        if GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[3]):getAnimation() ~= 8 then
             local players = battlefield:getPlayers()
             for i, member in pairs(players) do
                 member:messageSpecial(ID.text.GATE_OPEN)

@@ -895,7 +895,8 @@ function onTrigger(player, npc)
     local Y = npc:getYPos()
     local Z = npc:getZPos()
     local bfid = battlefield:getID()
-
+    local hold = false
+    if npc:getAnimation() ~= 90 then
         switch (bfid): caseof 
         {
             [1290] = function() -- NW Apollyon Crate Handling
@@ -906,19 +907,17 @@ function onTrigger(player, npc)
                                 if model == 960 then
                                     dsp.battlefield.HealPlayers(battlefield)
                                 elseif model == 961 then
-                                    limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
+                                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    limbus.ExtendTimeLimit(battlefield, 15, 38)
+                                    dsp.limbus.extendTimeLimit(battlefield, 15, 38)
                                 end
-                                npc:setStatus(dsp.status.DISAPPEAR)
                             end
                         end
                     end
                 else
-                    limbus.handleLootRolls(battlefield, loot[bfid][5], nil, npc)
+                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][5], nil, npc)
                     battlefield:setLocalVar("cutsceneTimer", 10)
                     battlefield:setLocalVar("lootSeen", 1)
-                    npc:setStatus(dsp.status.DISAPPEAR)
                 end
             end,
             [1291] = function() -- SW Apollyon Crate Handling
@@ -934,13 +933,10 @@ function onTrigger(player, npc)
                                     if crateID == ID.npc.APOLLYON_SW_CRATE[i]+j then
                                         if crateID == restorePH then
                                             dsp.battlefield.HealPlayers(battlefield)
-                                            npc:setStatus(dsp.status.DISAPPEAR)
                                         elseif crateID == itemPH then
-                                            limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
-                                            npc:setStatus(dsp.status.DISAPPEAR)
+                                            dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                         elseif crateID == timePH then
-                                            limbus.ExtendTimeLimit(battlefield, 15, 38)
-                                            npc:setStatus(dsp.status.DISAPPEAR)
+                                            dsp.limbus.extendTimeLimit(battlefield, 15, 38)
                                         else
                                             if mimicSpawned == 0 or mimicSpawned == 2 or mimicSpawned == 4 or mimicSpawned == 6 then
                                                 npc:setStatus(dsp.status.DISAPPEAR)
@@ -964,30 +960,30 @@ function onTrigger(player, npc)
                                         end
                                     end
                                 end
+                            else
+                                hold = true
                             end
                         else
                             for j = 0, 2 do
                                 if crateID == ID.npc.APOLLYON_SW_CRATE[i]+j then
-                                    GetNPCByID(ID.npc.APOLLYON_SW_CRATE[i]):setStatus(dsp.status.DISAPPEAR)
-                                    GetNPCByID(ID.npc.APOLLYON_SW_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR)
-                                    GetNPCByID(ID.npc.APOLLYON_SW_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR)
+                                    if j ~= 0 then GetNPCByID(ID.npc.APOLLYON_SW_CRATE[i]):setStatus(dsp.status.DISAPPEAR) end
+                                    if j ~= 1 then GetNPCByID(ID.npc.APOLLYON_SW_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR) end
+                                    if j ~= 2 then GetNPCByID(ID.npc.APOLLYON_SW_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR) end
                                     if model == 960 then
                                         dsp.battlefield.HealPlayers(battlefield)
                                     elseif model == 961 then
-                                        limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
+                                        dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                     elseif model == 962 then
-                                        limbus.ExtendTimeLimit(battlefield, 15, 38)
+                                        dsp.limbus.extendTimeLimit(battlefield, 15, 38)
                                     end
-                                    npc:setStatus(dsp.status.DISAPPEAR)
                                 end
                             end
                         end
                     end
                 else
-                    limbus.handleLootRolls(battlefield, loot[bfid][4], nil, npc)
+                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][4], nil, npc)
                     battlefield:setLocalVar("cutsceneTimer", 10)
                     battlefield:setLocalVar("lootSeen", 1)
-                    npc:setStatus(dsp.status.DISAPPEAR)
                 end
             end,
             [1292] = function() -- NE Apollyon Crate Handling
@@ -998,19 +994,18 @@ function onTrigger(player, npc)
                                 if model == 960 then
                                     dsp.battlefield.HealPlayers(battlefield)
                                 elseif model == 961 then
-                                    limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
+                                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    limbus.ExtendTimeLimit(battlefield, 15, 38)
+                                    dsp.limbus.extendTimeLimit(battlefield, 15, 38)
                                 end
                             end
                         end
                     end
                 else
-                    limbus.handleLootRolls(battlefield, loot[bfid][5], nil, npc)
+                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][5], nil, npc)
                     battlefield:setLocalVar("cutsceneTimer", 10)
                     battlefield:setLocalVar("lootSeen", 1)
                 end
-                npc:setStatus(dsp.status.DISAPPEAR)
             end,
             [1293] = function() -- SE Apollyon Crate Handling
                 if crateID ~= ID.npc.APOLLYON_SE_CRATE[4] then
@@ -1020,9 +1015,9 @@ function onTrigger(player, npc)
                                 if model == 960 then
                                     dsp.battlefield.HealPlayers(battlefield)
                                 elseif model == 961 then
-                                    limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
+                                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    limbus.ExtendTimeLimit(battlefield, 15, 38)
+                                    dsp.limbus.extendTimeLimit(battlefield, 15, 38)
                                 end
                             end
                         end
@@ -1031,29 +1026,36 @@ function onTrigger(player, npc)
                     for i = 1, 8 do
                         GetMobByID(ID.mob.APOLLYON_SE_MOB[4]+i):setStatus(dsp.status.DISAPPEAR)
                     end
-                    limbus.handleLootRolls(battlefield, loot[bfid][4], nil, npc)
+                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][4], nil, npc)
                     battlefield:setLocalVar("cutsceneTimer", 10)
                     battlefield:setLocalVar("lootSeen", 1)
                 end
-                npc:setStatus(dsp.status.DISAPPEAR)
             end,
             [1294] = function() -- CS Apollyon Crate Handling
                 if crateID ~= ID.npc.APOLLYON_CS_CRATE then
-                    limbus.ExtendTimeLimit(battlefield, 15, 38)
+                    dsp.limbus.extendTimeLimit(battlefield, 15, 38)
                 else
-                    limbus.handleLootRolls(battlefield, loot[bfid][1], nil, npc)
+                    dsp.limbus.handleLootRolls(battlefield, loot[bfid][1], nil, npc)
                     battlefield:setLocalVar("cutsceneTimer", 10)
                     battlefield:setLocalVar("lootSeen", 1)
                 end
-                npc:setStatus(dsp.status.DISAPPEAR)
             end,
             [1296] = function() -- Central Apollyon Crate Handling
-                limbus.handleLootRolls(battlefield, loot[bfid][1], nil, npc)
+                dsp.limbus.handleLootRolls(battlefield, loot[bfid][1], nil, npc)
                 battlefield:setLocalVar("cutsceneTimer", 10)
                 battlefield:setLocalVar("lootSeen", 1)
-                npc:setStatus(dsp.status.DISAPPEAR)
             end,
         }
+        if not hold then
+            npc:setAnimation(90)
+            npc:timer(15000, function(npc)
+                npc:setStatus(dsp.status.DISAPPEAR)
+                npc:timer(500, function(npc)
+                    npc:setAnimation(0)
+                end)
+            end)
+        end
+    end
 end
 
 function onEventUpdate(player, csid, option)

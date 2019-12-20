@@ -11,7 +11,7 @@ function onMobSpawn(mob)
 end
 
 function onMobEngaged(mob, target)
-    limbus.hideArmouryCrates(mob:getBattlefieldID())
+    dsp.limbus.hideArmouryCrates(mob:getBattlefieldID())
 end
 
 function onMobFight(mob, target)

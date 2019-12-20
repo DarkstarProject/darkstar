@@ -62,7 +62,7 @@ function onMobDeath(mob, player, isKiller)
             for i = 0, 2 do
                 if GetNPCByID(ID.npc.TEMENOS_W_CRATE[1]+i):getStatus() == dsp.status.DISAPPEAR then
                     GetNPCByID(ID.npc.TEMENOS_W_CRATE[1]+i):setPos(mobX, mobY, mobZ)
-                    limbus.spawnRandomCrate(ID.npc.TEMENOS_W_CRATE[1]+i, player, "crateMaskF1", battlefield:getLocalVar("crateMaskF1"))
+                    dsp.limbus.spawnRandomCrate(ID.npc.TEMENOS_W_CRATE[1]+i, player, "crateMaskF1", battlefield:getLocalVar("crateMaskF1"))
                     break
                 end
             end

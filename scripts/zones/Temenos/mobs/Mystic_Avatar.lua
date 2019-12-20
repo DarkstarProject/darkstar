@@ -41,19 +41,6 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
                 GetNPCByID(ID.npc.TEMENOS_E_GATE[1]):setAnimation(8)
-            else
-                for i = 0, 3 do
-                    if ID.npc.TEMENOS_E_CRATE[1]+i ~= mimicID then
-                        local model = GetNPCByID(ID.npc.TEMENOS_E_CRATE[1]+i):getModelId()
-                        if  model == 960 and bit.band(1, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[1]+i):untargetable(false)
-                        elseif model == 961 and bit.band(2, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[1]+i):untargetable(false)
-                        elseif model == 962 and bit.band(4, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[1]+i):untargetable(false)
-                        end
-                    end
-                end
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[2]+4 then --Shiva
             local crateMask = battlefield:getLocalVar("crateMaskF2")
@@ -64,19 +51,6 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
                 GetNPCByID(ID.npc.TEMENOS_E_GATE[2]):setAnimation(8)
-            else
-                for i = 0, 3 do
-                    if ID.npc.TEMENOS_E_CRATE[2]+i ~= mimicID then
-                        local model = GetNPCByID(ID.npc.TEMENOS_E_CRATE[2]+i):getModelId()
-                        if  model == 960 and bit.band(1, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[2]+i):untargetable(false)
-                        elseif model == 961 and bit.band(2, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[2]+i):untargetable(false)
-                        elseif model == 962 and bit.band(4, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[2]+i):untargetable(false)
-                        end
-                    end
-                end
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[3]+4 then --Garuda
             local crateMask = battlefield:getLocalVar("crateMaskF3")
@@ -87,19 +61,6 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
                 GetNPCByID(ID.npc.TEMENOS_E_GATE[3]):setAnimation(8)
-            else
-                for i = 0, 3 do
-                    if ID.npc.TEMENOS_E_CRATE[3]+i ~= mimicID then
-                        local model = GetNPCByID(ID.npc.TEMENOS_E_CRATE[3]+i):getModelId()
-                        if  model == 960 and bit.band(1, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[3]+i):untargetable(false)
-                        elseif model == 961 and bit.band(2, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[3]+i):untargetable(false)
-                        elseif model == 962 and bit.band(4, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[3]+i):untargetable(false)
-                        end
-                    end
-                end
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[4]+4 then --Titan
             local crateMask = battlefield:getLocalVar("crateMaskF4")
@@ -110,19 +71,6 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
                 GetNPCByID(ID.npc.TEMENOS_E_GATE[4]):setAnimation(8)
-            else
-                for i = 0, 3 do
-                    if ID.npc.TEMENOS_E_CRATE[4]+i ~= mimicID then
-                        local model = GetNPCByID(ID.npc.TEMENOS_E_CRATE[4]+i):getModelId()
-                        if  model == 960 and bit.band(1, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[4]+i):untargetable(false)
-                        elseif model == 961 and bit.band(2, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[4]+i):untargetable(false)
-                        elseif model == 962 and bit.band(4, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[4]+i):untargetable(false)
-                        end
-                    end
-                end
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[5]+4 then --Ramuh
             local crateMask = battlefield:getLocalVar("crateMaskF5")
@@ -133,19 +81,6 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
                 GetNPCByID(ID.npc.TEMENOS_E_GATE[5]):setAnimation(8)
-            else
-                for i = 0, 3 do
-                    if ID.npc.TEMENOS_E_CRATE[5]+i ~= mimicID then
-                        local model = GetNPCByID(ID.npc.TEMENOS_E_CRATE[5]+i):getModelId()
-                        if  model == 960 and bit.band(1, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[5]+i):untargetable(false)
-                        elseif model == 961 and bit.band(2, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[5]+i):untargetable(false)
-                        elseif model == 962 and bit.band(4, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[5]+i):untargetable(false)
-                        end
-                    end
-                end
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[6]+4 then --Leviathan
             local crateMask = battlefield:getLocalVar("crateMaskF6")
@@ -156,22 +91,7 @@ function onMobDeath(mob, player, isKiller)
                     member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
                 end
                 GetNPCByID(ID.npc.TEMENOS_E_GATE[6]):setAnimation(8)
-            else
-                for i = 0, 3 do
-                    if ID.npc.TEMENOS_E_CRATE[6]+i ~= mimicID then
-                        local model = GetNPCByID(ID.npc.TEMENOS_E_CRATE[6]+i):getModelId()
-                        if  model == 960 and bit.band(1, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[6]+i):untargetable(false)
-                        elseif model == 961 and bit.band(2, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[6]+i):untargetable(false)
-                        elseif model == 962 and bit.band(4, crateMask) ~= 0 then
-                            GetNPCByID(ID.npc.TEMENOS_E_CRATE[6]+i):untargetable(false)
-                        end
-                    end
-                end
             end
-        elseif mobID == ID.mob.TEMENOS_E_MOB[7]+2 then --Fenrir
-            GetNPCByID(battlefield:getLocalVar("otherCrate")):untargetable(false)
         elseif mobID == ID.mob.TEMENOS_C_MOB[2]+9 then --Ifrit (Central Temenos 2nd Floor)
             GetMobByID(ID.mob.TEMENOS_C_MOB[2]):setMod(dsp.mod.FIREDEF, -128)
             if GetMobByID(ID.mob.TEMENOS_C_MOB[2]+4):isAlive() then
