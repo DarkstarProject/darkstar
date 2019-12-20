@@ -190,7 +190,7 @@ INSERT INTO `item_usable` VALUES (4242,'plasma_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4243,'torrent_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4244,'aurora_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4245,'twilight_crystal',1,0,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (4246,'bottle_of_cantarella',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4246,'bottle_of_cantarella',1,1,68,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4247,'page_from_miratetes_memoirs',1,5,34,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4248,'copy_of_ginuvas_battle_theory',1,5,34,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4249,'copy_of_schultz_stratagems',1,5,34,0,0,0,0,0);
