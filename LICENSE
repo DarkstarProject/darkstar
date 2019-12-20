@@ -181,64 +181,64 @@ through a network.
 the following additional terms to our material:
 
     a) ADDITIONAL PERMISSIONS.
-	For all of our material which is governed by the AGPLv3, 
-	Project Topaz grants you an additional permission exempting 
-	you from being bound by Section 13 Remote Network Interaction 
-	of the AGPLv3, for modifications you make to the Program, if 
-	the modification is:
+    For all of our material which is governed by the AGPLv3, 
+    Project Topaz grants you an additional permission exempting 
+    you from being bound by Section 13 Remote Network Interaction 
+    of the AGPLv3, for modifications you make to the Program, if 
+    the modification is:
 
       i. Necessary for the basic operation of a private server. 
-	  Examples include basic server configuration, network 
-	  connection configuration, and database access information; or
+      Examples include basic server configuration, network 
+      connection configuration, and database access information; or
 
-	  ii. A non-retail modification, which can not reasonably be
-	  considered a modification with the purpose of improving server 
-	  stability, performance, or security; or
+      ii. A non-retail modification, which can not reasonably be
+      considered a modification with the purpose of improving server 
+      stability, performance, or security; or
 
-	  iii. A modification to the database import files included
-	  with the source code, if the modification can be reasonably 
-	  considered to necessitate secrecy for the purpose of player 
-	  surprise or discovery
+      iii. A modification to the database import files included
+      with the source code, if the modification can be reasonably 
+      considered to necessitate secrecy for the purpose of player 
+      surprise or discovery
 
-	b) ATTRIBUTION.
-	If you convey this Program to a recipient, you must preserve 
-	and also convey to the recipient any existing lists of 
-	Program authors and contributors, such as those displayed by 
-	the Program, or those found in an AUTHORS file. All existing 
-	dates, and all existing copyright notices must also be retained.
-	
-	As an exception to the above, you may alter any attributions 
-	or notices added by Project Topaz to the extent required to 
-	remedy known factual inaccuracies.
+    b) ATTRIBUTION.
+    If you convey this Program to a recipient, you must preserve 
+    and also convey to the recipient any existing lists of 
+    Program authors and contributors, such as those displayed by 
+    the Program, or those found in an AUTHORS file. All existing 
+    dates, and all existing copyright notices must also be retained.
+    
+    As an exception to the above, you may alter any attributions 
+    or notices added by Project Topaz to the extent required to 
+    remedy known factual inaccuracies.
 
-	If you modify and convey this Program, you are permitted to 
-	to add yourself to such lists. You are also permitted to
-	rename any attribution files, so long as the filename still 
-	clearly indicates that the authors listed in the file 
-	contributed to the modified Program. If this is done, you must 
-	include a notice in any new author attribution files you 
-	create stating the following:
-	"Contributors to Project Topaz, upon which this Program is based, 
-	 can be found: " followed by the path to original file.
+    If you modify and convey this Program, you are permitted to 
+    to add yourself to such lists. You are also permitted to
+    rename any attribution files, so long as the filename still 
+    clearly indicates that the authors listed in the file 
+    contributed to the modified Program. If this is done, you must 
+    include a notice in any new author attribution files you 
+    create stating the following:
+    "Contributors to Project Topaz, upon which this Program is based, 
+     can be found: " followed by the path to original file.
 
     c) MISREPRESENTATION.
-	The origin of this Program must not be misrepresented. You
-	shall not claim, suggest, nor imply you wrote this Program, 
-	in whole or in part, unless you are the original author for 
-	the distinct part for which you claim to be the author.
+    The origin of this Program must not be misrepresented. You
+    shall not claim, suggest, nor imply you wrote this Program, 
+    in whole or in part, unless you are the original author for 
+    the distinct part for which you claim to be the author.
 
-	If you convey modified versions of this Program, you may not 
-	misrepresent that modified Program as being "Project Topaz", 
-	unless that modified Program is being conveyed back to 
-	Project Topaz with the intention of the modification's inclusion 
-	into the project.
-	
-	If you convey modified versions to recipients other than Project 
-	Topaz, you shall mark the material such that any users interacting 
-	with the Program are given notice - through an applicable player 
-	interface of your choosing - that the Program has been modified 
-	from its original version, unless that modification was necessary 
-	for the basic operation of the server.
+    If you convey modified versions of this Program, you may not 
+    misrepresent that modified Program as being "Project Topaz", 
+    unless that modified Program is being conveyed back to 
+    Project Topaz with the intention of the modification's inclusion 
+    into the project.
+    
+    If you convey modified versions to recipients other than Project 
+    Topaz, you shall mark the material such that any users interacting 
+    with the Program are given notice - through an applicable player 
+    interface of your choosing - that the Program has been modified 
+    from its original version, unless that modification was necessary 
+    for the basic operation of the server.
 
   4. Revised Versions.
 
