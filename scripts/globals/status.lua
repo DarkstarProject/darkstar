@@ -2714,3 +2714,27 @@ dsp.emoteMode =
     TEXT = 1,
     MOTION = 2
 }
+
+------------------------------------
+-- Relic IDs
+------------------------------------
+
+dsp.relic =
+{
+    SPHARAI       = 0,
+    MANDAU        = 1,
+    EXCALIBUR     = 2,
+    RAGNAROK      = 3,
+    GUTTLER       = 4,
+    BRAVURA       = 5,
+    APOCALYPSE    = 6,
+    GUNGNIR       = 7,
+    KIKOKU        = 8,
+    AMANOMURAKUMO = 9,
+    MJOLLNIR      = 10,
+    CLAUSTRUM     = 11,
+    YOICHINOYUMI  = 12,
+    ANNIHILATOR   = 13,
+    GJALLARHORN   = 14,
+    AEGIS         = 15
+}
