@@ -431,8 +431,8 @@ local relics =
         15070, 16195, 16196, 16197, 16198, 11927, 16200
     },
 }
----------------------------------------------------
--- Returns a mask of acquired stages of given relic
+-------------------------------------------------------
+-- Returns a mask of relic stages in players possession
 -- Bit:
 -- 0  = 75
 -- 1  = 80
@@ -445,7 +445,7 @@ local relics =
 -- 8  = 119 II
 -- 9  = 119 III
 -- 10 = 119 III (ammo dispensing)
----------------------------------------------------
+-------------------------------------------------------
 function utils.getRelicStages(player, relic)
     local stages = 0
     for i, id in pairs(relics[relic]) do
