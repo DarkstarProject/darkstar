@@ -11,9 +11,6 @@ function onMobSpawn(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    local mobX = mob:getXPos()
-    local mobY = mob:getYPos()
-    local mobZ = mob:getZPos()
     local cratePos =
     {
         [1] = {366.000,-0.500,-313.000},

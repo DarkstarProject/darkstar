@@ -2,6 +2,7 @@
 -- Area: Temenos N T
 --  Mob: Telchines Monk
 -----------------------------------
+require("scripts/globals/limbus")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
 
@@ -41,12 +42,7 @@ function onMobDeath(mob, player, isKiller)
 
         if mobID - ID.mob.TEMENOS_N_MOB[3] == random - 1 then
             battlefield:setLocalVar("randomF4", math.random(1, 4))
-            local players = battlefield:getPlayers()
-            for i, member in pairs(players) do
-                member:messageSpecial(ID.text.GATE_OPEN)
-                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-            end
-            GetNPCByID(ID.npc.TEMENOS_N_GATE[3]):setAnimation(8)
+            dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_N_GATE[3])
         end
     end
 end

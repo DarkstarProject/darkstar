@@ -1333,37 +1333,21 @@ function onTrigger(player, npc)
                                     DespawnMob(ID.mob.TEMENOS_E_MOB[i]+2)
                                     DespawnMob(ID.mob.TEMENOS_E_MOB[i]+3)
                                     if model == 960 then
-                                        GetNPCByID(ID.npc.TEMENOS_E_GATE[i]):setAnimation(8)
                                         dsp.battlefield.HealPlayers(battlefield)
-                                        local players = battlefield:getPlayers()
-                                        for i, member in pairs(players) do
-                                            member:messageSpecial(ID.text.GATE_OPEN)
-                                            member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                                        end
+                                        dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[i])
                                     elseif model == 961 then
                                         if mask > 7 and spawnMimic then
                                             battlefield:setLocalVar("crateMaskF"..i, mask-8)
-                                            battlefield:setLocalVar("mimicID", crateID)
                                             GetMobByID(ID.mob.TEMENOS_E_MOB[i]+4):setSpawn(X, Y, Z)
                                             SpawnMob(ID.mob.TEMENOS_E_MOB[i]+4):setPos(X, Y, Z)
                                             GetMobByID(ID.mob.TEMENOS_E_MOB[i]+4):updateClaim(player)
                                         else
-                                            GetNPCByID(ID.npc.TEMENOS_E_GATE[i]):setAnimation(8)
                                             dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
-                                            local players = battlefield:getPlayers()
-                                            for i, member in pairs(players) do
-                                                member:messageSpecial(ID.text.GATE_OPEN)
-                                                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                                            end
+                                            dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[i])
                                         end
                                     elseif model == 962 then
-                                        GetNPCByID(ID.npc.TEMENOS_E_GATE[i]):setAnimation(8)
                                         dsp.limbus.extendTimeLimit(battlefield, 15, 37)
-                                        local players = battlefield:getPlayers()
-                                        for i, member in pairs(players) do
-                                            member:messageSpecial(ID.text.GATE_OPEN)
-                                            member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                                        end
+                                        dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[i])
                                     end
                                 else
                                     hold = true

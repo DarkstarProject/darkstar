@@ -2,6 +2,7 @@
 -- Area: Apollyon NE
 --  Mob: Apollyon Sweeper
 -----------------------------------
+require("scripts/globals/limbus")
 local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobDeath(mob, player, isKiller)
@@ -10,13 +11,8 @@ function onMobDeath(mob, player, isKiller)
         local battlefield = player:getBattlefield()
         local portalTriggerF3 = battlefield:getLocalVar("portalTriggerF3")
         if portalTriggerF3 == mobID then
-            local players = battlefield:getPlayers()
-            for i, member in pairs(players) do
-                member:messageSpecial(ID.text.GATE_OPEN)
-                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-            end
             battlefield:setLocalVar("randomF4", ID.mob.APOLLYON_NE_MOB[4]+math.random(0,2))
-            GetNPCByID(ID.npc.APOLLYON_NE_PORTAL[3]):setAnimation(8)
+            dsp.limbus.handleDoors(battlefield, true, ID.npc.APOLLYON_NE_PORTAL[3])
         end
     end
 end

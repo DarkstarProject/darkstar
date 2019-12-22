@@ -2,6 +2,8 @@
 -- Area: Temenos N T
 --  Mob: Cryptonberry Abductor
 -----------------------------------
+require("scripts/globals/status")
+require("scripts/globals/limbus")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
 
@@ -44,14 +46,8 @@ end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then
-        local battlefield = player:getBattlefield()
-        if GetNPCByID(ID.npc.TEMENOS_N_GATE[6]):getAnimation() == 9 then
-            local players = battlefield:getPlayers()
-            for i, member in pairs(players) do
-                member:messageSpecial(ID.text.GATE_OPEN)
-                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-            end
-            GetNPCByID(ID.npc.TEMENOS_N_GATE[6]):setAnimation(8)
+        if GetNPCByID(ID.npc.TEMENOS_N_GATE[6]):getAnimation() == dsp.animation.CLOSE_DOOR then
+            dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.TEMENOS_N_GATE[6])
         end
     end
 end

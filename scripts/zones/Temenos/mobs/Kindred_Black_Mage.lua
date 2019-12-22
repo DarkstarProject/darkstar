@@ -2,6 +2,7 @@
 -- Area: Temenos N T
 --  Mob: Kindred Black Mage
 -----------------------------------
+require("scripts/globals/limbus")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
 
@@ -50,12 +51,7 @@ function onMobDeath(mob, player, isKiller)
         local random = battlefield:getLocalVar("randomF4")
 
         if mobID - ID.mob.TEMENOS_N_MOB[4] == random + 4 then
-            local players = battlefield:getPlayers()
-            for i, member in pairs(players) do
-                member:messageSpecial(ID.text.GATE_OPEN)
-                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-            end
-            GetNPCByID(ID.npc.TEMENOS_N_GATE[4]):setAnimation(8)
+            dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_N_GATE[4])
         end
     end
 end

@@ -11,8 +11,8 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     battlefield:setLocalVar("lootSpawned", 1)
     SetServerVariable("[Central_Temenos_Basement]Time", battlefield:getTimeLimit()/60)
-    dsp.limbus.hideDoors(battlefield:getID())
-    dsp.limbus.hideArmouryCrates(battlefield:getID())
+    dsp.limbus.handleDoors(battlefield)
+    dsp.limbus.setupArmouryCrates(battlefield:getID())
     DespawnMob(ID.mob.TEMENOS_C_MOB[5]+3)
     DespawnMob(ID.mob.TEMENOS_C_MOB[5]+6)
     DespawnMob(ID.mob.TEMENOS_C_MOB[5]+14)
@@ -35,7 +35,7 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldDestroy(battlefield)
-    dsp.limbus.hideDoors(battlefield:getID(), true)
+    dsp.limbus.handleDoors(battlefield, true)
     SetServerVariable("[Central_Temenos_Basement]Time", 0)
 end
 

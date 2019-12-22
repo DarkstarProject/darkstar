@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Temenos/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onInitialize(zone)
@@ -63,7 +64,7 @@ end
 function onRegionEnter(player, region)
     local regionID = region:GetRegionID()
     local cs
-    if GetNPCByID(ID.npc.TEMENOS_N_GATE[1] + (regionID - 1)):getAnimation() == 8 then
+    if GetNPCByID(ID.npc.TEMENOS_N_GATE[1] + (regionID - 1)):getAnimation() == dsp.animation.OPEN_DOOR then
         if regionID > 20 then
             cs = 120
         else

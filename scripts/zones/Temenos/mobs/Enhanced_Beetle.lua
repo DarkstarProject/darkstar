@@ -2,6 +2,7 @@
 -- Area: Temenos W T
 --  Mob: Enhanced Beetle
 -----------------------------------
+require("scripts/globals/status")
 require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
 
@@ -59,23 +60,18 @@ end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then
-        local battlefield = player:getBattlefield()
         local mobX = mob:getXPos()
         local mobY = mob:getYPos()
         local mobZ = mob:getZPos()
         local mobID = mob:getID()
         local spawn = math.random(0,1) == 1
 
-        if GetNPCByID(ID.npc.TEMENOS_W_GATE[3]):getAnimation() == 9 then
-            local players = battlefield:getPlayers()
-            for i, member in pairs(players) do
-                member:messageSpecial(ID.text.GATE_OPEN)
-                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-            end
-            GetNPCByID(ID.npc.TEMENOS_W_GATE[3]):setAnimation(8)
+        if GetNPCByID(ID.npc.TEMENOS_W_GATE[3]):getAnimation() == dsp.animation.CLOSE_DOOR then
+            dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.TEMENOS_W_GATE[3])
         end
 
         if spawn then
+            local battlefield = player:getBattlefield()
             for i = 0, 2 do
                 if GetNPCByID(ID.npc.TEMENOS_W_CRATE[3]+i):getStatus() == dsp.status.DISAPPEAR then
                     GetNPCByID(ID.npc.TEMENOS_W_CRATE[3]+i):setPos(mobX, mobY, mobZ)

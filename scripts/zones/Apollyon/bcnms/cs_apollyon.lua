@@ -10,7 +10,7 @@ local ID = require("scripts/zones/Apollyon/IDs")
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     SetServerVariable("[CS_Apollyon]Time", battlefield:getTimeLimit()/60)
-    dsp.limbus.hideArmouryCrates(battlefield:getID())
+    dsp.limbus.setupArmouryCrates(battlefield:getID())
 end
 
 function onBattlefieldTick(battlefield, tick)

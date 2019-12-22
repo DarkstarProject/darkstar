@@ -2,6 +2,7 @@
 -- Area: Temenos N T
 --  Mob: Goblin Slaughterman
 -----------------------------------
+require("scripts/globals/limbus")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
 
@@ -12,12 +13,7 @@ function onMobDeath(mob, player, isKiller)
         local random = battlefield:getLocalVar("randomF1")
 
         if mobID - ID.mob.TEMENOS_N_MOB[1] == random - 1 then
-            local players = battlefield:getPlayers()
-            for i, member in pairs(players) do
-                member:messageSpecial(ID.text.GATE_OPEN)
-                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-            end
-            GetNPCByID(ID.npc.TEMENOS_N_GATE[1]):setAnimation(8)
+            dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_N_GATE[1])
         end
 
         if mobID == ID.mob.TEMENOS_N_MOB[1]+1 and random % 2 == 1 then

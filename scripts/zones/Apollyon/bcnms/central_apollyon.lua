@@ -11,7 +11,7 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
     battlefield:setLocalVar("podReady", 1)
     SetServerVariable("[Central_Apollyon]Time", battlefield:getTimeLimit()/60)
-    dsp.limbus.hideArmouryCrates(battlefield:getID())       
+    dsp.limbus.setupArmouryCrates(battlefield:getID())       
 end
 
 function onBattlefieldTick(battlefield, tick)

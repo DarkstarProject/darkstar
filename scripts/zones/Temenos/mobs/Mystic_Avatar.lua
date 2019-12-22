@@ -2,6 +2,7 @@
 -- Area: Temenos E T
 --  Mob: Mystic Avatar
 -----------------------------------
+require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
 
 function onMobSpawn(mob)
@@ -30,67 +31,36 @@ function onMobDeath(mob, player, isKiller)
     if isKiller then
         local mobID = mob:getID()
         local battlefield = player:getBattlefield()
-        local mimicID = battlefield:getLocalVar("mimicID")
 
         if mobID == ID.mob.TEMENOS_E_MOB[1]+4 then --Ifrit
             local crateMask = battlefield:getLocalVar("crateMaskF1")
             if crateMask == 0 then
-                local players = battlefield:getPlayers()
-                for i, member in pairs(players) do
-                    member:messageSpecial(ID.text.GATE_OPEN)
-                    member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                end
-                GetNPCByID(ID.npc.TEMENOS_E_GATE[1]):setAnimation(8)
+                dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[1])
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[2]+4 then --Shiva
             local crateMask = battlefield:getLocalVar("crateMaskF2")
             if crateMask == 0 then
-                local players = battlefield:getPlayers()
-                for i, member in pairs(players) do
-                    member:messageSpecial(ID.text.GATE_OPEN)
-                    member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                end
-                GetNPCByID(ID.npc.TEMENOS_E_GATE[2]):setAnimation(8)
+                dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[2])
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[3]+4 then --Garuda
             local crateMask = battlefield:getLocalVar("crateMaskF3")
             if crateMask == 0 then
-                local players = battlefield:getPlayers()
-                for i, member in pairs(players) do
-                    member:messageSpecial(ID.text.GATE_OPEN)
-                    member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                end
-                GetNPCByID(ID.npc.TEMENOS_E_GATE[3]):setAnimation(8)
+                dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[3])
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[4]+4 then --Titan
             local crateMask = battlefield:getLocalVar("crateMaskF4")
             if crateMask == 0 then
-                local players = battlefield:getPlayers()
-                for i, member in pairs(players) do
-                    member:messageSpecial(ID.text.GATE_OPEN)
-                    member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                end
-                GetNPCByID(ID.npc.TEMENOS_E_GATE[4]):setAnimation(8)
+                dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[4])
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[5]+4 then --Ramuh
             local crateMask = battlefield:getLocalVar("crateMaskF5")
             if crateMask == 0 then
-                local players = battlefield:getPlayers()
-                for i, member in pairs(players) do
-                    member:messageSpecial(ID.text.GATE_OPEN)
-                    member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                end
-                GetNPCByID(ID.npc.TEMENOS_E_GATE[5]):setAnimation(8)
+                dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[5])
             end
         elseif mobID == ID.mob.TEMENOS_E_MOB[6]+4 then --Leviathan
             local crateMask = battlefield:getLocalVar("crateMaskF6")
             if crateMask == 0 then
-                local players = battlefield:getPlayers()
-                for i, member in pairs(players) do
-                    member:messageSpecial(ID.text.GATE_OPEN)
-                    member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-                end
-                GetNPCByID(ID.npc.TEMENOS_E_GATE[6]):setAnimation(8)
+                dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[6])
             end
         elseif mobID == ID.mob.TEMENOS_C_MOB[2]+9 then --Ifrit (Central Temenos 2nd Floor)
             GetMobByID(ID.mob.TEMENOS_C_MOB[2]):setMod(dsp.mod.FIREDEF, -128)

@@ -2,6 +2,7 @@
 -- Area: Apollyon NW
 --  Mob: Mountain Buffalo
 -----------------------------------
+require("scripts/globals/limbus")
 local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobDeath(mob, player, isKiller)
@@ -10,13 +11,8 @@ function onMobDeath(mob, player, isKiller)
         local battlefield = player:getBattlefield()
         local randomF2 = battlefield:getLocalVar("randomF2")
         if mobID == randomF2 then
-            local players = battlefield:getPlayers()
-            for i, member in pairs(players) do
-                member:messageSpecial(ID.text.GATE_OPEN)
-                member:messageSpecial(ID.text.TIME_LEFT, battlefield:getRemainingTime()/60)
-            end
             battlefield:setLocalVar("randomF3", ID.mob.APOLLYON_NW_MOB[3]+math.random(1,8))
-            GetNPCByID(ID.npc.APOLLYON_NW_PORTAL[2]):setAnimation(8)
+            dsp.limbus.handleDoors(battlefield, true, ID.npc.APOLLYON_NW_PORTAL[2])
         end
     end
 end

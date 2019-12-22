@@ -11,8 +11,8 @@ function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("randomF1", ID.mob.APOLLYON_NW_MOB[1]+math.random(1,8))
     battlefield:setLocalVar("loot", 1)
     SetServerVariable("[NW_Apollyon]Time", battlefield:getTimeLimit()/60)
-    dsp.limbus.hideDoors(battlefield:getID())
-    dsp.limbus.hideArmouryCrates(battlefield:getID())
+    dsp.limbus.handleDoors(battlefield)
+    dsp.limbus.setupArmouryCrates(battlefield:getID())
 end
 
 function onBattlefieldTick(battlefield, tick)
@@ -32,7 +32,7 @@ function onBattlefieldEnter(player, battlefield)
 end
 
 function onBattlefieldDestroy(battlefield)
-    dsp.limbus.hideDoors(battlefield:getID(), true)
+    dsp.limbus.handleDoors(battlefield, true)
     SetServerVariable("[NW_Apollyon]Time", 0)
 end
 
