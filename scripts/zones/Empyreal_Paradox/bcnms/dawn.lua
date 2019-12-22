@@ -12,21 +12,26 @@ require("scripts/globals/missions")
 require("scripts/globals/titles")
 -----------------------------------
 
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+    battlefield:setLocalVar("lootSpawned", 1)
+    local baseID = ID.mob.PROMATHIA_OFFSET + (battlefield:getArea() - 1) * 2
+    local pos = GetMobByID(baseID):getSpawnPos()
+
+    local prishe = battlefield:insertEntity(14166, true, true)
+    prishe:setSpawn(pos.x - 6, pos.y, pos.z - 21.5, 192)
+    prishe:spawn()
+
+    local selhteus = battlefield:insertEntity(14167, true, true)
+    selhteus:setSpawn(pos.x + 10, pos.y, pos.z - 17.5, 172)
+    selhteus:spawn()
+end
+
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 function onBattlefieldRegister(player, battlefield)
-    local baseID = ID.mob.PROMATHIA_OFFSET + (battlefield:getArea() - 1) * 2
-    local pos = GetMobByID(baseID):getSpawnPos()
-
-    local prishe = battlefield:insertEntity(14166, true)
-    prishe:setSpawn(pos.x - 6, pos.y, pos.z - 21.5, 192)
-    prishe:spawn()
-
-    local selhteus = battlefield:insertEntity(14167, true)
-    selhteus:setSpawn(pos.x + 10, pos.y, pos.z - 17.5, 172)
-    selhteus:spawn()
 end
 
 function onBattlefieldEnter(player, battlefield)

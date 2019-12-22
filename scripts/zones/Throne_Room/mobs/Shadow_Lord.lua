@@ -74,6 +74,7 @@ function onMobDeath(mob, player, isKiller)
         player:startEvent(32004);
         player:setCharVar("mobid",mob:getID());
     else
+        mob:getBattlefield():setLocalVar("loot", 0)
         player:addTitle(dsp.title.SHADOW_BANISHER);
     end
     -- reset everything on death

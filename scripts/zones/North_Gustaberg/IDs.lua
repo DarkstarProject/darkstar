@@ -28,13 +28,13 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         SHINING_OBJECT_SLIPS_AWAY     = 7438,  -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7445,  -- You can reach the water from here.
         CONQUEST                      = 7481,  -- You've earned conquest points!
-        PLAYER_OBTAINS_ITEM           = 8069,  -- <name> obtains <item>!
-        UNABLE_TO_OBTAIN_ITEM         = 8070,  -- You were unable to obtain the item.
-        PLAYER_OBTAINS_TEMP_ITEM      = 8071,  -- <name> obtains the temporary item: <item>!
-        ALREADY_POSSESS_TEMP          = 8072,  -- You already possess that temporary item.
-        NO_COMBINATION                = 8077,  -- You were unable to enter a combination.
-        REGIME_REGISTERED             = 10398, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL         = 12471, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        PLAYER_OBTAINS_ITEM           = 8064,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM         = 8065,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM      = 8066,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP          = 8067,  -- You already possess that temporary item.
+        NO_COMBINATION                = 8072,  -- You were unable to enter a combination.
+        REGIME_REGISTERED             = 10393, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL         = 12466, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -70,8 +70,8 @@ zones[dsp.zone.NORTH_GUSTABERG] =
     },
     npc =
     {
-        CASKET_BASE   = 17212022,
-        OVERSEER_BASE = 17212059,
+        CASKET_BASE   = 17212023,
+        OVERSEER_BASE = 17212060,
     },
 }
 
