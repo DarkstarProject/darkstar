@@ -365,26 +365,36 @@ function utils.getSystemStrengthBonus(attacker, defender)
 end;
 
 -------------------------------------------------------
--- Returns a mask of relic stages in players possession
--- Bit:
--- 0  = 75
--- 1  = 80
--- 2  = 85
--- 3  = 90
--- 4  = 95
--- 5  = 99 I
--- 6  = 99 II
--- 7  = 119 I
--- 8  = 119 II
--- 9  = 119 III
--- 10 = 119 III (ammo dispensing)
+-- Returns true if player has any tier of given relic,
+--  if tier is specified, returns true only if player
+--  has that tier
+-- Tier:
+-- 1  = 75
+-- 2  = 80
+-- 3  = 85
+-- 4  = 90
+-- 5  = 95
+-- 6  = 99 I
+-- 7  = 99 II
+-- 8  = 119 I
+-- 9  = 119 II
+-- 10 = 119 III
+-- 11 = 119 III (ammo dispensing)
 -------------------------------------------------------
-function utils.getRelicStages(player, relicID)
-    local stages = 0
-    for i, id in pairs(dsp.relicTiers[relicID]) do
-        if player:hasItem(id) then
-            stages = bit.bor(stages, bit.lshift(1, i - 1))
+function utils.hasRelic(player, relic, tier)
+    if tier ~= nil then
+        if player:hasItem(dsp.relicTiers[relic][tier]) then
+            return true
+        else
+            return false
         end
     end
-    return stages
+
+    for i, itemID in pairs(dsp.relicTiers[relic]) do
+        if player:hasItem(itemID) then
+            return true
+        end
+    end
+
+    return false
 end
