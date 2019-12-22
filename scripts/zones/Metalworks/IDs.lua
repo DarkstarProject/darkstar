@@ -45,6 +45,7 @@ zones[dsp.zone.METALWORKS] =
         DETONATOR_LEARNED           = 9034, -- You have learned the weapon skill Detonator!
         TAKIYAH_CLOSED_DIALOG       = 9968, -- Maybe someday I'll be able to sell goods from Qufim Island... Someday...
         TAKIYAH_OPEN_DIALOG         = 9969, -- Hey, it's your lucky day! I've got a fresh batch of goods straight from the island of Qufim!
+        CELEBRATORY_GOODS           = 10816, -- An assortment of celebratory goods is available for purchase.
         HOMEPOINT_SET               = 11004, -- Home point set!
     },
     mob =

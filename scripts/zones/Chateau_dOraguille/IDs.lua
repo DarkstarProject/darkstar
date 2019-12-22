@@ -19,6 +19,7 @@ zones[dsp.zone.CHATEAU_DORAGUILLE] =
         CONQUEST_BASE           = 6879, -- Tallying conquest results...
         TOMBSTONE               = 7172, -- Here lies the beloved Queen Leaute. May Her Majesty's soul find Paradise.
         SAVAGE_BLADE_LEARNED    = 7940, -- You have learned the weapon skill Savage Blade!
+        CELEBRATORY_GOODS       = 8452, -- An assortment of celebratory goods is available for purchase.
     },
     mob =
     {
