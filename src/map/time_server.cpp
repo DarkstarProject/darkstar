@@ -76,8 +76,15 @@ int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
 
             CVanaTime::getInstance()->lastVHourlyUpdate = tick;
         }
-
     }
+
+    // every irl minute
+    if (tick > (CVanaTime::getInstance()->lastMinute + 60s))
+    {
+        luautils::UpdateDigZones();
+        CVanaTime::getInstance()->lastMinute = tick;
+    }
+
 
     //Midnight
     if (CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
