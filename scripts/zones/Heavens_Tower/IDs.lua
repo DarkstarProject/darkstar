@@ -18,6 +18,7 @@ zones[dsp.zone.HEAVENS_TOWER] =
         GIL_OBTAINED            = 7130, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 7132, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET  = 7366, -- You can't fish here.
+        CELEBRATORY_GOODS       = 9097, -- An assortment of celebratory goods is available for purchase.
     },
     mob =
     {

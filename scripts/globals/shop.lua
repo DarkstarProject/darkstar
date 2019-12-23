@@ -94,6 +94,30 @@ dsp.shop =
     end,
 
     --[[ *******************************************************************************
+        send celebratory chest shop dialog to player
+    ******************************************************************************* --]]
+    celebratory = function(player)
+        local stock =
+        {
+            4167,   30, -- Cracker
+            4168,   30, -- Twinkle Shower
+            4215,   60, -- Popstar
+            4216,   60, -- Brilliant Snow
+            4256,   30, -- Ouka Ranman
+            4169,   30, -- Little Comet
+            5769,  650, -- Popper
+            4170, 1000, -- Wedding Bell
+            5424, 6000, -- Serene Serinette
+            5425, 6000, -- Joyous Serinette
+            4441, 1116, -- Grape Juice
+            4238, 3000, -- Inferno Crystal
+            4240, 3000, -- Cyclone Crystal
+            4241, 3000, -- Terra Crystal
+        }
+        dsp.shop.general(player, stock)
+    end,
+
+    --[[ *******************************************************************************
         stock for guild vendors that are open 24/8
     ******************************************************************************* --]]
     generalGuildStock =
