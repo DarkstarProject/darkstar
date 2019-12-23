@@ -3693,7 +3693,7 @@ inline int32 CLuaBaseEntity::createWornItem(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((uint16)lua_tointeger(L, 1));
 
-    if (slotID != -1)
+    if (slotID != ERROR_SLOTID)
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
         PItem->m_extra[0] = 1;

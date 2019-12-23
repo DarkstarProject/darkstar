@@ -967,13 +967,15 @@ function EventFinishBCNM(player, csid, option)
             local stat = player:getStatusEffect(dsp.effect.BATTLEFIELD)
             local bfid = stat:getPower()
             local item = getItemById(player, bfid)
+            local initiatorId, initiatorName = player:getBattlefield():getInitiator()
+
             if item ~= 0 then
                 -- remove limbus chips
                 if zone == 37 or zone == 38 then
                     player:tradeComplete()
 
                 -- set other traded item to worn
-                elseif player:hasItem(item) then
+                elseif player:hasItem(item) and player:getName() == initiatorName then
                     player:createWornItem(item)
                 end
             end
