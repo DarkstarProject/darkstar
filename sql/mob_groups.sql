@@ -10578,7 +10578,7 @@ INSERT INTO `mob_groups` VALUES (8761,2633,166,'Metallic_Slime',0,128,1664,0,0,2
 
 INSERT INTO `mob_groups` VALUES (1,461,167,'Bloodsucker',960,0,302,0,0,65,68,0);
 INSERT INTO `mob_groups` VALUES (2,38,167,'Acid_Grease',0,128,15,0,0,52,54,0);
-INSERT INTO `mob_groups` VALUES (3,2764,167,'Mousse',0,128,1750,0,0,58,61,0);
+INSERT INTO `mob_groups` VALUES (3,2764,167,'Mousse',0,128,15,0,0,60,68,0);
 INSERT INTO `mob_groups` VALUES (4,1440,167,'Funnel_Bats',960,0,918,0,0,52,55,0);
 INSERT INTO `mob_groups` VALUES (5,1911,167,'Hecatomb_Hound',960,0,1287,0,0,56,59,0);
 INSERT INTO `mob_groups` VALUES (6,4321,167,'Werebat',960,0,2641,0,0,55,59,0);
@@ -10590,7 +10590,7 @@ INSERT INTO `mob_groups` VALUES (11,3597,167,'Shii',0,32,2236,0,0,70,70,0);
 INSERT INTO `mob_groups` VALUES (12,1118,167,'Drexerion_the_Condemned',0,128,707,0,0,72,73,0);
 INSERT INTO `mob_groups` VALUES (13,3125,167,'Phanduron_the_Condemned',0,128,1992,0,0,72,73,0);
 INSERT INTO `mob_groups` VALUES (14,4321,167,'Werebat',330,128,2641,0,0,94,99,0);
-INSERT INTO `mob_groups` VALUES (15,2764,167,'Mousse',330,0,15,0,0,94,97,0);
+INSERT INTO `mob_groups` VALUES (15,2764,167,'Mousse',330,0,567,0,0,58,62,0);
 INSERT INTO `mob_groups` VALUES (16,1900,167,'Haunt',330,0,1283,0,0,96,97,0);
 INSERT INTO `mob_groups` VALUES (17,1471,167,'Garm',330,128,933,0,0,94,97,0);
 INSERT INTO `mob_groups` VALUES (18,2910,167,'Nosferatu',330,0,2882,0,0,97,99,0);
