@@ -5,27 +5,27 @@
 require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
 
-local path =
+local path = -- {X, Y, Z, flags}
 {
     [0] = 
     {
-        200.000,-161.000,197.000,
-        200.000,-161.000,190.000,
+        {200.000, -161.000, 197.000, 0},
+        {200.000, -161.000, 190.000, 0}
     },
     [1] = 
     {
-        197.000,-161.000,200.000,
-        190.000,-161.000,200.000,
+        {197.000, -161.000, 200.000, 0},
+        {190.000, -161.000, 200.000, 0}
     },
     [2] = 
     {
-        200.000,-161.000,203.000,
-        200.000,-161.000,210.000,
+        {200.000, -161.000, 203.000, 0},
+        {200.000, -161.000, 210.000, 0}
     },
     [3] = 
     {
-        203.000,-161.000,200.000,
-        210.000,-161.000,200.000,
+        {203.000, -161.000, 200.000, 0},
+        {210.000, -161.000, 200.000, 0}
     },
 }
 
@@ -34,12 +34,9 @@ function onMobRoam(mob)
         local offset = mob:getID() - ID.mob.TEMENOS_E_MOB[2]
         local pause = mob:getLocalVar("pause")
         if pause < os.time() then
-            local point = mob:getLocalVar("point")+1
-            mob:setLocalVar("point", (point+2)%6)
-            local X = path[offset][point]
-            local Y = path[offset][point+1]
-            local Z = path[offset][point+2]
-            mob:pathTo(X, Y, Z, 0)
+            local point = (mob:getLocalVar("point") % 2)+1
+            mob:setLocalVar("point", point)
+            mob:pathTo(unpack(path[offset][point]))
             mob:setLocalVar("pause", os.time()+5)
         end
     end

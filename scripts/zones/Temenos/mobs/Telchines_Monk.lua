@@ -6,17 +6,17 @@ require("scripts/globals/limbus")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
 
-local path =
+local path = -- {X, Y, Z, flags}
 {
     [4] = 
     {
-        30.000, 80.000, 420.500,
-        10.000, 80.000, 420.500,
+        {30.000, 80.000, 420.500, 0},
+        {10.000, 80.000, 420.500, 0}
     },
     [5] = 
     {
-        70.000, 80.000, 420.500,
-        50.000, 80.000, 420.500,
+        {70.000, 80.000, 420.500, 0},
+        {50.000, 80.000, 420.500, 0}
     },
 }
 
@@ -24,12 +24,9 @@ function onMobRoam(mob)
     local offset = mob:getID() - ID.mob.TEMENOS_N_MOB[3]
     local pause = mob:getLocalVar("pause")
     if pause < os.time() then
-        local point = mob:getLocalVar("point")+1
-        mob:setLocalVar("point", (point+2)%6)
-        local X = path[offset][point]
-        local Y = path[offset][point+1]
-        local Z = path[offset][point+2]
-        mob:pathTo(X, Y, Z, 0)
+        local point = (mob:getLocalVar("point") % 2)+1
+        mob:setLocalVar("point", point)
+        mob:pathTo(unpack(path[offset][point]))
         mob:setLocalVar("pause", os.time()+10)
     end
 end

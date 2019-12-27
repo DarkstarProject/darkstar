@@ -6,54 +6,47 @@ require("scripts/globals/status")
 require("scripts/globals/limbus")
 local ID = require("scripts/zones/Temenos/IDs")
 
-local path =
+local path = -- {X, Y, Z, flags}
 {
     [0] =
     {
-        18.000,80.000,-140.000,
-        8.000,80.000,-140.000,
+        {18.000, 80.000, -140.000, 0},
+        {8.000, 80.000, -140.000, 0}
     },
     [1] = 
     {
-        20.000,80.000,-138.000,
-        20.000,80.000,-128.000,
+        {20.000, 80.000, -138.000, 0},
+        {20.000, 80.000, -128.000, 0}
     },
     [2] = 
     {
-        22.000,80.000,-140.000,
-        32.000,80.000,-140.000,
+        {22.000, 80.000, -140.000, 0},
+        {32.000, 80.000, -140.000, 0}
     },
     [3] = 
     {
-        58.000,80.000,-140.000,
-        48.000,80.000,-140.000,
+        {58.000, 80.000, -140.000, 0},
+        {48.000, 80.000, -140.000, 0}
     },
     [4] = 
     {
-        60.000,80.000,-138.000,
-        60.000,80.000,-128.000,
+        {60.000, 80.000, -138.000, 0},
+        {60.000, 80.000, -128.000, 0}
     },
     [5] = 
     {
-        62.000,80.000,-140.000,
-        72.000,80.000,-140.000,
+        {62.000, 80.000, -140.000, 0},
+        {72.000, 80.000, -140.000, 0}
     },
 }
-
-function onMobSpawn(mob)
-    onMobRoam(mob)
-end
 
 function onMobRoam(mob)
     local offset = mob:getID() - ID.mob.TEMENOS_W_MOB[3]
     local pause = mob:getLocalVar("pause")
     if pause < os.time() then
-        local point = mob:getLocalVar("point")+1
-        mob:setLocalVar("point", (point+2)%6)
-        local X = path[offset][point]
-        local Y = path[offset][point+1]
-        local Z = path[offset][point+2]
-        mob:pathTo(X, Y, Z, 0)
+        local point = (mob:getLocalVar("point") % 2)+1
+        mob:setLocalVar("point", point)
+        mob:pathTo(unpack(path[offset][point]))
         mob:setLocalVar("pause", os.time()+30)
     end
 end
