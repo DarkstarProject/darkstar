@@ -3959,7 +3959,7 @@ INSERT INTO `item_basic` VALUES (4213,0,'icarus_wing','icarus_wing',12,1540,33,0
 INSERT INTO `item_basic` VALUES (4214,0,'pinch_of_lethe_powder','lethe_powder',1,63040,0,1,0);
 INSERT INTO `item_basic` VALUES (4215,0,'popstar','popstar',99,1548,63,0,40);
 INSERT INTO `item_basic` VALUES (4216,0,'brilliant_snow','brilliant_snow',99,1548,63,0,18);
-INSERT INTO `item_basic` VALUES (4217,0,'sparkling_hand','sparkling_hand',99,1548,63,0,28);
+INSERT INTO `item_basic` VALUES (4217,0,'sparkling_hand','sparkling_hand',99,1548,63,0,5);
 INSERT INTO `item_basic` VALUES (4218,0,'air_rider','air_rider',99,1548,63,0,42);
 INSERT INTO `item_basic` VALUES (4219,0,'stone_quiver','stone_quiver',12,1540,15,0,5);
 INSERT INTO `item_basic` VALUES (4220,0,'bone_quiver','bone_quiver',12,1540,15,0,5);
@@ -3992,7 +3992,7 @@ INSERT INTO `item_basic` VALUES (4246,0,'bottle_of_cantarella','cantarella',12,1
 INSERT INTO `item_basic` VALUES (4247,0,'page_from_miratetes_memoirs','miratetes_mem.',1,63044,0,1,0);
 INSERT INTO `item_basic` VALUES (4248,0,'copy_of_ginuvas_battle_theory','ginuvas_theory',1,63044,0,1,0);
 INSERT INTO `item_basic` VALUES (4249,0,'copy_of_schultz_stratagems','s._stratagems',1,63044,0,1,0);
-INSERT INTO `item_basic` VALUES (4250,0,'crackler','crackler',99,1548,63,0,35);
+INSERT INTO `item_basic` VALUES (4250,0,'crackler','crackler',99,1548,63,0,2);
 INSERT INTO `item_basic` VALUES (4251,0,'festive_fan','festive_fan',99,1548,63,0,2);
 INSERT INTO `item_basic` VALUES (4252,0,'summer_fan','summer_fan',99,1548,63,0,2);
 INSERT INTO `item_basic` VALUES (4253,0,'spirit_masque','spirit_masque',99,1548,63,0,2);
