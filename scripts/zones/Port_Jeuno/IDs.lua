@@ -46,6 +46,7 @@ zones[dsp.zone.PORT_JEUNO] =
         DRYEYES_2               = 8163, -- Done deal. Deal is done. You a real sucker--<cough>--I mean, good customer. Come back soon. And don't forget the goods.
         DRYEYES_3               = 8164, -- Hey, you already got <item>. What you tryin' to pull here? Save some for my other customers, eh?
         CHEST_IS_EMPTY          = 8652, -- The chest is empty.
+        KINDLIX_SHOP_DIALOG     = 8671, -- Our fam'ly peddle sky flowers. You want have nice scenery? Send fireworks sky high! It's great feeling. Bwee hee hee.
     },
     mob =
     {
