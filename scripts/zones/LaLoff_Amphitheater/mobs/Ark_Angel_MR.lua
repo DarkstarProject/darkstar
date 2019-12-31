@@ -1,11 +1,21 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel MR
+--  Mob: Ark Angel MR
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
+
+function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.PERFECT_DODGE},
+        },
+    })
+end
 
 function onMobEngaged(mob,target)
     --[[ TODO:

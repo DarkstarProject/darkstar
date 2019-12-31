@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: May Fly
+--  Mob: May Fly
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Mandragora
+--  Mob: Mandragora
 -- Note: PH for Tom Tit Tat
 -----------------------------------
 local ID = require("scripts/zones/West_Sarutabaruta/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.TOM_TIT_TAT_PH, 7, math.random(3600,7200)) -- 1 to 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.TOM_TIT_TAT_PH, 7, math.random(3600,7200)) -- 1 to 2 hours
 end

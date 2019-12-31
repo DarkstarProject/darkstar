@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(OUTLANDS, THE_SAHAGINS_STASH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SEA_SERPENT_STATUE) then
+    if player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_SAHAGINS_STASH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SEA_SERPENT_STATUE) then
         player:startEvent(1)
     end
 end

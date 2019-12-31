@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: La Vaule (S)
---  MOB: Seneschal Imp
+-- Area: La Vaule [S]
+--  Mob: Seneschal Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

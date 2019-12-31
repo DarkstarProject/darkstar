@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Dark Dragon
+--  Mob: Dark Dragon
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 

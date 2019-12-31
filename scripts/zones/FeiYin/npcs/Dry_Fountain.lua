@@ -11,7 +11,7 @@ local ID = require("scripts/zones/FeiYin/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1093,1) and trade:getItemCount() == 1) then -- Trade Antique Coin
             player:startEvent(17);
         end
@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 17) then
         player:tradeComplete();
-        player:setVar("peaceForTheSpiritCS",2);
+        player:setCharVar("peaceForTheSpiritCS",2);
     end
 
 end;

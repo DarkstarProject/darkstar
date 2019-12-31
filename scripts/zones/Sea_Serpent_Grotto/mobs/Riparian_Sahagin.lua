@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Riparian Sahagin
+--  Mob: Riparian Sahagin
 -- Note: PH for Seww the Squidlimbed and Fyuu the Seabellow
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
@@ -15,6 +15,6 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.SEWW_THE_SQUIDLIMBED_PH, 10, 7200) -- 2 hours
-    phOnDespawn(mob, ID.mob.FYUU_THE_SEABELLOW_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.SEWW_THE_SQUIDLIMBED_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.FYUU_THE_SEABELLOW_PH, 10, 7200) -- 2 hours
 end

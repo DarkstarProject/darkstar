@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Goblin Furrier
+--  Mob: Goblin Furrier
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

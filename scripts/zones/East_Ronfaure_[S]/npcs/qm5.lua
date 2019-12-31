@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.STEAMED_RAMS) == QUEST_ACCEPTED) then
         if (player:hasKeyItem(dsp.ki.OXIDIZED_PLATE)) then
             player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         else

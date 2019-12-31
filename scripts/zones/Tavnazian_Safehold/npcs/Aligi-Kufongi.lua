@@ -19,7 +19,7 @@ local titleInfo =
             dsp.title.MONARCH_LINN_PATROL_GUARD,
             dsp.title.SIN_HUNTER_HUNTER,
             dsp.title.DISCIPLE_OF_JUSTICE,
-            dsp.title.DYNAMISTAVNAZIA_INTERLOPER,
+            dsp.title.DYNAMIS_TAVNAZIA_INTERLOPER,
             dsp.title.CONFRONTER_OF_NIGHTMARES,
         },
     },

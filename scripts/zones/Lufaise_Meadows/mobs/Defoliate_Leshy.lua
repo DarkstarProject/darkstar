@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
---  MOB: Defoliate Leshy
+--  Mob: Defoliate Leshy
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

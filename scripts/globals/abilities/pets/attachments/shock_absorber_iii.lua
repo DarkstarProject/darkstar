@@ -2,6 +2,7 @@
 -- Attachment: Shock Absorber III
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:setLocalVar("stoneskin", VanadielTime() + 180)
@@ -19,8 +20,8 @@ function onUnequip(pet)
     pet:removeListener("ATTACHMENT_SHOCK_ABSORBER_III")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

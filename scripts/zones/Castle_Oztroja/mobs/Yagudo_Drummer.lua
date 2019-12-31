@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Drummer
+--  Mob: Yagudo Drummer
 -- Note: PH for Mee Deggi the Punisher
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.MEE_DEGGI_THE_PUNISHER_PH,5,3000) -- 50 minutes
+    dsp.mob.phOnDespawn(mob,ID.mob.MEE_DEGGI_THE_PUNISHER_PH,5,3000) -- 50 minutes
 end

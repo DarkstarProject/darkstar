@@ -70,7 +70,7 @@ enum ROAMFLAG : uint16
 enum MOBTYPE
 {
     MOBTYPE_NORMAL      = 0x00,
-    MOBTYPE_PCSPAWNED   = 0x01,
+    MOBTYPE_0X01        = 0x01, // available for use
     MOBTYPE_NOTORIOUS   = 0x02,
     MOBTYPE_FISHED      = 0x04,
     MOBTYPE_CALLED      = 0x08,
@@ -232,7 +232,7 @@ public:
 
     uint8     m_Element;
     uint8     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
-    uint8     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
+    int16     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
     bool      m_ItemStolen;               // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
     uint16    m_Family;
     uint16    m_MobSkillList;             // Mob skill list defined from mob_pools

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Princeps
+--  Mob: Antican Princeps
 -- Note: PH for Sagittarius X-XIII and Antican Praefectus
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")
@@ -20,6 +20,6 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.SAGITTARIUS_X_XIII_PH,10,14400) -- 4 hours
-    phOnDespawn(mob,ID.mob.ANTICAN_PRAEFECTUS_PH,10,3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.SAGITTARIUS_X_XIII_PH,10,14400) -- 4 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.ANTICAN_PRAEFECTUS_PH,10,3600) -- 1 hour
 end

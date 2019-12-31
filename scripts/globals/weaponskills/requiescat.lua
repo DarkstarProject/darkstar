@@ -22,13 +22,14 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
     params.canCrit = false
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = 0.7 + tp/10000
+    params.atk100 = 0.8; params.atk200 = 0.9; params.atk300 = 1.0;
+    params.formless = true
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.mnd_wsc = 0.7 + (player:getMerit(dsp.merit.REQUIESCAT) / 100)
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
     return tpHits, extraHits, criticalHit, damage
 
 end

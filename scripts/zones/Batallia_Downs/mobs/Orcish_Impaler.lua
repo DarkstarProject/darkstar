@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Impaler
+--  Mob: Orcish Impaler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

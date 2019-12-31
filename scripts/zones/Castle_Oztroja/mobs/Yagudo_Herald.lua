@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Herald
+--  Mob: Yagudo Herald
 -- Note: PH for Quu Domi the Gallant
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.QUU_DOMI_THE_GALLANT_PH,5,3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.QUU_DOMI_THE_GALLANT_PH,5,3600) -- 1 hour
 end

@@ -34,7 +34,7 @@
 *                                                                       *
 ************************************************************************/
 
-CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
+CItemWeapon::CItemWeapon(uint16 id) : CItemEquipment(id)
 {
 	setType(ITEM_WEAPON);
 

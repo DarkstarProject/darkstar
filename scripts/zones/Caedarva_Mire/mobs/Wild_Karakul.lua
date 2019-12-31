@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Wild_Karakul
+--  Mob: Wild Karakul
 -- Note: PH for Peallaidh
 -----------------------------------
 local ID = require("scripts/zones/Caedarva_Mire/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.PEALLAIDH_PH, 5, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.PEALLAIDH_PH, 5, 3600) -- 1 hour
 end

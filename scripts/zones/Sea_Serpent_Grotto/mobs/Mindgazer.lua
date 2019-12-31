@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Mindgazer
+--  Mob: Mindgazer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

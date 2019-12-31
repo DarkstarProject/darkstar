@@ -257,8 +257,10 @@ function npcUtil.giveKeyItem(player, keyitems)
 
     -- give key items to player, with message
     for _, v in pairs(givenKeyItems) do
-        player:addKeyItem(v)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,v)
+        if not player:hasKeyItem(v) then
+            player:addKeyItem(v)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,v)
+        end
     end
     return true
 end
@@ -333,7 +335,7 @@ function npcUtil.completeQuest(player, area, quest, params)
             table.insert(playerVarsToZero, params["var"])
         end
         for _, v in pairs(playerVarsToZero) do
-            player:setVar(v, 0)
+            player:setCharVar(v, 0)
         end
     end
 

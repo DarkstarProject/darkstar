@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Sentient Carafe
+--  Mob: Sentient Carafe
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Pugil
+--  Mob: Pugil
 -- Note: PH for Swamfisk
 -----------------------------------
 local ID = require("scripts/zones/East_Ronfaure/IDs");
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.SWAMFISK_PH,7,math.random(3600,10800)); -- 1 to 3 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.SWAMFISK_PH,7,math.random(3600,10800)); -- 1 to 3 hours
 end;

@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
--- MOB: Nephiyl Pinnacletosser
--- Fight:  Demolition Squad
+--  Mob: Nephiyl Pinnacletosser
+-- BCNM: Demolition Squad
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_GIGA);
-end;
+mixins = {require("scripts/mixins/job_special")}
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

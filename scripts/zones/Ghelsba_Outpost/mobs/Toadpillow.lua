@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Ghelsba outpost
---  MOB: Toadpillow
--- BCNM30
+-- Area: Ghelsba Outpost
+--  Mob: Toadpillow
+-- BCNM: Toadal Recall
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

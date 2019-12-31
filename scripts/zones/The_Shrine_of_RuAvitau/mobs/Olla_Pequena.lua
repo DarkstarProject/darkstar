@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
---  MOB: Olla Pequena
+--  Mob: Olla Pequena
 -----------------------------------
 local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
 require("scripts/globals/settings");

@@ -14,8 +14,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
-    local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
+    local ToBee = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
+    local ToBeeOrNotStatus = player:getCharVar("ToBeeOrNot_var");
 
     if (ToBeeOrNotStatus == 10 and ToBee == QUEST_AVAILABLE) then
         player:startEvent(67); -- Quest Started - He gives you honey
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full
         else
-            player:addQuest(WINDURST,TO_BEE_OR_NOT_TO_BEE);
+            player:addQuest(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
             player:addItem(4370);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 4370); -- Gives player Honey x1
         end
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
         else
-            player:setVar("ToBeeOrNot_var",0);
+            player:setCharVar("ToBeeOrNot_var",0);
             player:addItem(4156,3); -- Mulsum x3
             player:messageSpecial(ID.text.ITEMS_OBTAINED, 4156,3);
             player:needToZone(true);

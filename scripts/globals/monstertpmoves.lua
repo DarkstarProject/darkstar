@@ -11,7 +11,7 @@ require("scripts/globals/msg");
 -- mob types
 -- used in mob:isMobType()
 MOBTYPE_NORMAL            = 0x00;
-MOBTYPE_PCSPAWNED        = 0x01;
+MOBTYPE_0X01             = 0x01;
 MOBTYPE_NOTORIOUS        = 0x02;
 MOBTYPE_FISHED            = 0x04;
 MOBTYPE_CALLED            = 0x08;
@@ -454,7 +454,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,attackType,damageType,shadowbe
     end
 
     --handle pd
-    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.TOO_HIGH) )
             and attackType==dsp.attackType.PHYSICAL) then
         skill:setMsg(dsp.msg.basic.SKILL_MISS);
         return 0;

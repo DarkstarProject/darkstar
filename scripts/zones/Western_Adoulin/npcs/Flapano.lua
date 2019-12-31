@@ -13,11 +13,11 @@ require("scripts/globals/quests");
 require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
-    local exoticDelacacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
+    local exoticDelacacies = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES);
 
     -- ALL THE WAY TO THE BANK
     if (player:hasKeyItem(dsp.ki.TARUTARU_SAUCE_INVOICE) and npcUtil.tradeHas( trade, {{"gil",5600}} )) then
-        local ATWTTB_Paid_Flapano = player:getMaskBit(player:getVar("ATWTTB_Payments"), 2);
+        local ATWTTB_Paid_Flapano = player:getMaskBit(player:getCharVar("ATWTTB_Payments"), 2);
         if (not ATWTTB_Paid_Flapano) then
             player:startEvent(5071);
         end
@@ -33,24 +33,24 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local theWeatherspoonWar = player:getQuestStatus(ADOULIN, THE_WEATHERSPOON_WAR);
-    local exoticDelacacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
+    local theWeatherspoonWar = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_WEATHERSPOON_WAR);
+    local exoticDelacacies = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES);
 
     -- THE WEATHERSPOON WAR
-    if (theWeatherspoonWar == QUEST_ACCEPTED and player:getVar("Weatherspoon_War_Status") == 6) then
+    if (theWeatherspoonWar == QUEST_ACCEPTED and player:getCharVar("Weatherspoon_War_Status") == 6) then
         player:startEvent(191);
-    
+
     -- EXOTIC DELICACIES
     -- Flapano offers his quest every other time the player talks to him
-    elseif (exoticDelacacies ~= QUEST_COMPLETED and player:getVar("Flapano_Odd_Even") == 0) then
+    elseif (exoticDelacacies ~= QUEST_COMPLETED and player:getCharVar("Flapano_Odd_Even") == 0) then
         if (exoticDelicacies == QUEST_AVAILABLE) then
             player:startEvent(2860);
         elseif (exoticDelicacies == QUEST_ACCEPTED) then
             player:startEvent(2863);
         end
 
-        player:setVar("Flapano_Odd_Even", 1);
-    
+        player:setCharVar("Flapano_Odd_Even", 1);
+
     -- SHOP
     else
         player:showText(npc, ID.text.FLAPANO_SHOP_TEXT);
@@ -62,12 +62,12 @@ function onTrigger(player,npc)
             5145, 5600,  -- Fish and Chips
             4423, 300,   -- Apple Juice
             4405, 160,   -- Rice Ball
-            5676, 76475, -- Mushroom Sautee
+            5676, 76475, -- Mushroom Saute
         }
         dsp.shop.general(player, stock);
 
         if (exoticDelicacies ~= QUEST_COMPLETED) then
-            player:setVar("Flapano_Odd_Even", 0);
+            player:setCharVar("Flapano_Odd_Even", 0);
         end
     end
 end;
@@ -80,17 +80,17 @@ function onEventFinish(player,csid,option)
     if (csid == 5071) then
         player:confirmTrade();
         player:setMaskBit("ATWTTB_Payments", 2, true);
-        if (player:isMaskFull(player:getVar("ATWTTB_Payments"), 5)) then
+        if (player:isMaskFull(player:getCharVar("ATWTTB_Payments"), 5)) then
             npcUtil.giveKeyItem(dsp.ki.TARUTARU_SAUCE_RECEIPT);
         end
 
     -- EXOTIC DELICACIES
     elseif (csid == 2860 and option == 1) then
-        player:addQuest(ADOULIN, EXOTIC_DELICACIES);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES);
     elseif (csid == 2861) then
-        if (npcUtil.completeQuest(player, ADOULIN, EXOTIC_DELICACIES, {bayld=500, item=5975, xp=1000})) then
+        if (npcUtil.completeQuest(player, ADOULIN, dsp.quest.id.adoulin.EXOTIC_DELICACIES, {bayld=500, item=5975, xp=1000})) then
             player:confirmTrade();
-            player:setVar("Flapano_Odd_Even", 0);
+            player:setCharVar("Flapano_Odd_Even", 0);
         end
     end
 end;

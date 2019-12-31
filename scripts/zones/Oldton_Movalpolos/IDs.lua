@@ -18,7 +18,8 @@ zones[dsp.zone.OLDTON_MOVALPOLOS] =
         FISHING_MESSAGE_OFFSET  = 7568, -- You can't fish here.
         MINING_IS_POSSIBLE_HERE = 7699, -- Mining is possible here if you have <item>.
         RAKOROK_DIALOGUE        = 7723, -- Nsy pipul. Gattohre! I bisynw!
-        CHEST_UNLOCKED          = 7746, -- You unlock the chest!
+        CHEST_UNLOCKED          = 7747, -- You unlock the chest!
+        COMMON_SENSE_SURVIVAL   = 8105, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -31,8 +32,9 @@ zones[dsp.zone.OLDTON_MOVALPOLOS] =
     },
     npc =
     {
-        OVERSEER_BASE  = 16822509,
-        TREASURE_CHEST = 16822531,
+        SCRAWLED_WRITING = 16822469,
+        OVERSEER_BASE    = 16822509,
+        TREASURE_CHEST   = 16822531,
         MINING =
         {
             16822525,

@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    FistfulOfFury = player:getQuestStatus(JEUNO,FISTFUL_OF_FURY);
+    FistfulOfFury = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.FISTFUL_OF_FURY);
 
     if (FistfulOfFury == QUEST_ACCEPTED and trade:hasItemQty(1012,1) == true and trade:hasItemQty(1013,1) == true and trade:hasItemQty(1014,1) == true and trade:getItemCount() == 3) then
         player:startEvent(213); -- Finish Quest "Fistful of Fury"
@@ -22,10 +22,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    FistfulOfFury = player:getQuestStatus(JEUNO,FISTFUL_OF_FURY);
-    BeatAroundTheBushin = player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN);
+    FistfulOfFury = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.FISTFUL_OF_FURY);
+    BeatAroundTheBushin = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
 
-    if (player:getFameLevel(NORG) >= 3 and FistfulOfFury == QUEST_AVAILABLE and player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS) == QUEST_COMPLETED) then
+    if (player:getFameLevel(NORG) >= 3 and FistfulOfFury == QUEST_AVAILABLE and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS) == QUEST_COMPLETED) then
         player:startEvent(216); -- Start Quest "Fistful of Fury"
     elseif (FistfulOfFury == QUEST_ACCEPTED) then
         player:startEvent(215); -- During Quest "Fistful of Fury"
@@ -44,7 +44,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 216 and option == 1) then
-        player:addQuest(JEUNO,FISTFUL_OF_FURY);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.FISTFUL_OF_FURY);
     elseif (csid == 213) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13202);
@@ -54,9 +54,9 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,13202);
             player:addFame(NORG,125);
             player:tradeComplete();
-            player:completeQuest(JEUNO,FISTFUL_OF_FURY);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.FISTFUL_OF_FURY);
         end
-    elseif (csid == 160 and player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN) == QUEST_AVAILABLE) then
-        player:setVar("BeatAroundTheBushin",1); -- For the next quest "Beat around the Bushin"
+    elseif (csid == 160 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN) == QUEST_AVAILABLE) then
+        player:setCharVar("BeatAroundTheBushin",1); -- For the next quest "Beat around the Bushin"
     end
 end;

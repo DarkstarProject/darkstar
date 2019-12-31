@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Keremet
+--   NM: Keremet
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -22,7 +22,11 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
-        player:setVar("PromathiaStatus",4);
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getCharVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
+        player:setCharVar("PromathiaStatus",4);
     end
 end;
+
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(1200, 1800)) -- 20 to 30 minutes
+end

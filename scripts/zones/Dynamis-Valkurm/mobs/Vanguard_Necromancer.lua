@@ -1,14 +1,13 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Vanguard_Necromancer
+-- Area: Dynamis - Valkurm
+--  Mob: Vanguard Necromancer
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
-require("scripts/globals/status")
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

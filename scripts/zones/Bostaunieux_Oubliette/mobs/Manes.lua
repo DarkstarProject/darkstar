@@ -1,8 +1,8 @@
-----------------------------------
+-----------------------------------
 -- Area: Bostaunieux Oubliette (167)
 --   NM: Manes
 -----------------------------------
-require("scripts/globals/status")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -10,12 +10,7 @@ function onMobInitialize(mob)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    if math.random(1, 100) < 20 or target:hasStatusEffect(dsp.effect.TERROR) then
-        return 0,0,0
-    else
-        target:addStatusEffect(dsp.effect.TERROR, 1, 0, 5)
-        return dsp.subEffect.NONE, 0, dsp.effect.TERROR
-    end
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.TERROR)
 end
 
 function onMobDeath(mob, player, isKiller)

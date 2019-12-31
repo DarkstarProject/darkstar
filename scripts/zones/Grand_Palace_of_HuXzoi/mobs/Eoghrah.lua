@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of Hu'Xzoi
---  MOB: Eo'ghrah
+--  Mob: Eo'ghrah
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

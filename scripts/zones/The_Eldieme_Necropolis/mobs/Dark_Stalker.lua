@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Dark Stalker
+--  Mob: Dark Stalker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

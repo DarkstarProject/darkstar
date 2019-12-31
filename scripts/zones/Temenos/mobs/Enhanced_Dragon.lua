@@ -1,16 +1,8 @@
 -----------------------------------
--- Area: Temenos Central 1floor
--- NPC: Enhanced_Dragon
-
+-- Area: Temenos Central Floor
+--  Mob: Enhanced Dragon
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -19,10 +11,6 @@ function onMobEngaged(mob,target)
      mob:addStatusEffect(dsp.effect.REGEN,50,3,0);
   end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local mobX = mob:getXPos();

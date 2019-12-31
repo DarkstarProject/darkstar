@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Orcish_Bowshooter
+--  Mob: Orcish Bowshooter
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

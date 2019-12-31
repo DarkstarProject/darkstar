@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Swamp Sahagin
+--  Mob: Swamp Sahagin
 -- Note: PH for Pahh the Gullcaller
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.PAHH_THE_GULLCALLER_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.PAHH_THE_GULLCALLER_PH, 10, 7200) -- 2 hours
 end

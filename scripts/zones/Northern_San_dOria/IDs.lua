@@ -17,6 +17,7 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
         ITEM_OBTAINED            = 6596, -- Obtained: <item>.
         GIL_OBTAINED             = 6597, -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6599, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST             = 6600, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL      = 6601, -- You do not have enough gil.
         MOG_LOCKER_OFFSET        = 6829, -- Your Mog Locker lease is valid until <timestamp>, kupo.
         IMAGE_SUPPORT            = 6953, -- Your [fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up [a little/ever so slightly/ever so slightly].
@@ -46,7 +47,13 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
         EMILIA_DIALOG            = 11364, -- Welcome to the Consulate of Jeuno.
         HELAKU_DIALOG            = 11393, -- Leave this building, and you'll see a great fortress to the right. That's Chateau d'Oraguille. And be polite; San d'Orians can be quite touchy.
         KASARORO_DIALOG          = 11432, -- Step right outside, and you'll see a big castle on the left. That's Chateau d'Oraguille. They're a little touchy in there, so mind your manners!
+        PICKPOCKET_AUREGE        = 11461, -- A pickpocket, you say? Come to think of it, I did see a scoundrel skulking about...
+        PICKPOCKET_GUILBERDRIER  = 11463, -- A pickpocket? No, can't say I've seen anyone like that. I'll keep an eye out, though.
+        PICKPOCKET_PEPIGORT      = 11467, -- A pickpocket? Hey, I wonder if you mean that lady running helter-skelter over there just now...
+        PICKPOCKET_GILIPESE      = 11468, -- A pickpocket? I did just see an undignified sort of woman just now. She was running toward Ranperre Gate.
         MAURINNE_DIALOG          = 11469, -- This part of town is so lively, I like watching everybody just go about their business.
+        PICKPOCKET_MAURINNE      = 11470, -- A pickpocket?
+        PICKPOCKET_RODAILLECE    = 11472, -- A pickpocket? Maybe it was that foul-mouthed woman just now. She called me a spoony bard! Unthinkable!
         AIVEDOIR_DIALOG          = 11503, -- That's funny. I could have sworn she asked me to meet her here...
         BERTENONT_DIALOG         = 11505, -- Stars are more beautiful up close. Don't you agree?
         FLYER_REFUSED            = 11517, -- Your flyer is refused.
@@ -93,17 +100,33 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
         BONCORT_MESSAGE          = 13370, -- Boncort looks over curiously for a moment.
         CAPIRIA_MESSAGE          = 13371, -- Capiria looks over curiously for a moment.
         VILLION_MESSAGE          = 13372, -- Villion looks over curiously for a moment.
+<<<<<<< HEAD
         RETRIEVE_DIALOG_ID       = 18112 -- You retrieve <item> from the porter moogle's care.
+=======
+        RETRIEVE_DIALOG_ID       = 18112, -- You retrieve <item> from the porter moogle's care.
+        COMMON_SENSE_SURVIVAL    = 18439, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+>>>>>>> 69fad707717eec6c0ec75c9de76229118cae6ddd
     },
     mob =
     {
     },
     npc =
     {
+<<<<<<< HEAD
         EXPLORER_MOOGLE              = 17723648,
         EPHEMERAL_MOOGLE_WOODWORKING = 17723846,
         EPHEMERAL_MOOGLE_SMITHING    = 17723847
     }
+=======
+        HALLOWEEN_SKINS =
+        {
+            [17723487] = 53, -- Vichuel
+            [17723492] = 52, -- Antonian
+            [17723497] = 51, -- Attarena
+        },
+        EXPLORER_MOOGLE = 17723648,
+    },
+>>>>>>> 69fad707717eec6c0ec75c9de76229118cae6ddd
 }
 
 return zones[dsp.zone.NORTHERN_SAN_DORIA]

@@ -100,17 +100,34 @@ void CAttack::SetCritical(bool value)
     {
         m_damageRatio = battleutils::GetRangedDamageRatio(m_attacker, m_victim, m_isCritical);
     }
-
     else
     {
-        m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
-    }
+        float attBonus = 0.f;
+        if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
+        {
+            if (CStatusEffect* footworkEffect = m_attacker->StatusEffectContainer->GetStatusEffect(EFFECT_FOOTWORK))
+            {
+                attBonus = footworkEffect->GetSubPower() / 256.f; // Mod is out of 256
+            }
+        }
 
+        m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, attBonus);
+    }
 }
 
 /************************************************************************
 *																		*
 *  Sets the guarded flag.												*
+*																		*
+************************************************************************/
+void CAttack::SetGuarded(bool isGuarded)
+{
+    m_isGuarded = isGuarded;
+}
+
+/************************************************************************
+*																		*
+*  Gets the guarded flag.												*
 *																		*
 ************************************************************************/
 bool CAttack::IsGuarded()
@@ -416,7 +433,7 @@ bool CAttack::CheckCounter()
         seiganChance = std::clamp<uint16>(seiganChance, 0, 100);
         seiganChance /= 4;
     }
-    if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(Mod::COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
+    if ((dsprand::GetRandomNumber(100) < std::clamp<uint16>(m_victim->getMod(Mod::COUNTER) + meritCounter, 0, 80) || dsprand::GetRandomNumber(100) < seiganChance) &&
         isFaceing(m_victim->loc.p, m_attacker->loc.p, 40) && dsprand::GetRandomNumber(100) < battleutils::GetHitRate(m_victim, m_attacker))
     {
         m_isCountered = true;
@@ -491,6 +508,12 @@ void CAttack::ProcessDamage()
         m_damage = battleutils::doSoulEaterEffect((CCharEntity*)m_attacker, m_damage);
     }
 
+    // Consume mana
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        m_damage = battleutils::doConsumeManaEffect((CCharEntity*)m_attacker, m_damage);
+    }
+
     // Set attack type to Samba if the attack type is normal.  Don't overwrite other types.  Used for Samba double damage.
     if (m_attackType == PHYSICAL_ATTACK_TYPE::NORMAL && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
     {
@@ -498,7 +521,7 @@ void CAttack::ProcessDamage()
     }
 
     // Get damage multipliers.
-    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[slot], m_damage, m_attackType, slot);
+    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[slot]), m_damage, m_attackType, slot);
 
     // Get critical bonus mods.
     if (m_isCritical)
@@ -521,7 +544,10 @@ void CAttack::ProcessDamage()
     // Try skill up.
     if (m_damage > 0)
     {
-        charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[slot]->getSkillType(), m_victim->GetMLevel());
+        if (auto weapon = dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[slot]))
+        {
+            charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)weapon->getSkillType(), m_victim->GetMLevel());
+        }
 
         if (m_attacker->objtype == TYPE_PET && m_attacker->PMaster && m_attacker->PMaster->objtype == TYPE_PC &&
             static_cast<CPetEntity*>(m_attacker)->getPetType() == PETTYPE_AUTOMATON)

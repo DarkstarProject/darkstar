@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Western_Adoulin
+-- Area: Western Adoulin (256)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------

@@ -17,13 +17,13 @@ end;
 
 function onTrigger(player,npc)
     local toauMission = player:getCurrentMission(TOAU);
-    local beginnings = player:getQuestStatus(AHT_URHGAN,BEGINNINGS);
+    local beginnings = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS);
 
     -- IMMORTAL SENTRIES
-    if (toauMission == IMMORTAL_SENTRIES) then
+    if (toauMission == dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         if (player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE)) then
             player:startEvent(5);
-        elseif (player:getVar("AhtUrganStatus") == 1) then
+        elseif (player:getCharVar("AhtUrganStatus") == 1) then
             player:startEvent(6);
         end;
 
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         end;
 
     -- ASSAULT
-    elseif (toauMission >= PRESIDENT_SALAHEEM) then
+    elseif (toauMission >= dsp.mission.id.toau.PRESIDENT_SALAHEEM) then
         local IPpoint = player:getCurrency("imperial_standing");
         if (player:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS) and player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) == false) then
             player:startEvent(512,50,IPpoint);
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     -- IMMORTAL SENTRIES
     if (csid == 5 and option == 1) then
         player:delKeyItem(dsp.ki.SUPPLIES_PACKAGE);
-        player:setVar("AhtUrganStatus",1);
+        player:setCharVar("AhtUrganStatus",1);
 
     -- BEGINNINGS
     elseif (csid == 8) then

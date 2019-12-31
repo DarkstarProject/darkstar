@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Goblin Reaper
+--  Mob: Goblin Reaper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

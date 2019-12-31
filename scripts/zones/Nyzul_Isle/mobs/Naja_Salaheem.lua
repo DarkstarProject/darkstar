@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle (Path of Darkness)
--- MOB: Naja Salaheem
+--  Mob: Naja Salaheem
 -----------------------------------
 local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/allyassist");

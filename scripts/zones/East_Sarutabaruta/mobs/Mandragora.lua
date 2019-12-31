@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Mandragora
+--  Mob: Mandragora
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

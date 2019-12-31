@@ -22,6 +22,7 @@ zones[dsp.zone.MOUNT_ZHAYOLM] =
         AREA_FULL               = 7478, -- This area is fully occupied. You were unable to enter.
         MEMBER_NO_REQS          = 7482, -- Not all of your party members meet the requirements for this objective. Unable to enter area.
         MEMBER_TOO_FAR          = 7486, -- One or more party members are too far away from the entrance. Unable to enter area.
+        SHED_LEAVES             = 7548, -- The ground is strewn with shed leaves...
         SICKLY_SWEET            = 7563, -- A sickly sweet fragrance pervades the air...
         DRAWS_NEAR              = 7575, -- Something draws near!
         HOMEPOINT_SET           = 8724, -- Home point set!

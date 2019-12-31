@@ -19,14 +19,14 @@ end;
 
 function onTrigger(player,npc)
 
-    theCrimsonTrial = player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL);
-    envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
-    peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
-    peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
+    theCrimsonTrial = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
+    envelopedInDarkness = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS);
+    peaceForTheSpirit = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT);
+    peaceForTheSpiritCS = player:getCharVar("peaceForTheSpiritCS");
     OrcishDriedFood = player:hasKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
 
     if (player:getMainJob() == dsp.job.RDM and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
-        if (player:getVar("has_seen_rdmaf1_quest_already") == 0) then
+        if (player:getCharVar("has_seen_rdmaf1_quest_already") == 0) then
             player:startEvent(70);
         else
             player:startEvent(71);
@@ -58,10 +58,10 @@ function onEventFinish(player,csid,option)
 
     if (csid == 70 or csid == 71) then
         if (csid == 70 and option == 0) then
-            player:setVar("has_seen_rdmaf1_quest_already",1);
+            player:setCharVar("has_seen_rdmaf1_quest_already",1);
         elseif (option == 1) then
-            player:addQuest(SANDORIA,THE_CRIMSON_TRIAL);
-            player:setVar("has_seen_rdmaf1_quest_already",0);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
+            player:setCharVar("has_seen_rdmaf1_quest_already",0);
         end
     elseif (csid == 75) then
         if (player:getFreeSlotsCount() == 0) then
@@ -71,12 +71,12 @@ function onEventFinish(player,csid,option)
             player:addItem(16829);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 16829); -- Fencing Degen
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,THE_CRIMSON_TRIAL);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL);
         end
     elseif (csid == 64) then
-        player:setVar("peaceForTheSpiritCS",1);
+        player:setCharVar("peaceForTheSpiritCS",1);
     elseif (csid == 66) then
-        player:setVar("peaceForTheSpiritCS",3);
+        player:setCharVar("peaceForTheSpiritCS",3);
     end
 
 end;

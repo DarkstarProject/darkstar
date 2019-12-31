@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Evil Eye
+--  Mob: Evil Eye
 -- Note: PH for Shadow Eye
 -----------------------------------
 local ID = require("scripts/zones/Xarcabard/IDs")
@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.SHADOW_EYE_PH, 5, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.SHADOW_EYE_PH, 5, 3600) -- 1 hour
 end

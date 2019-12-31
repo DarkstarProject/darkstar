@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Evil Weapon
+--  Mob: Evil Weapon
 -- Note: PH for Blighting Brand
 -----------------------------------
 local ID = require("scripts/zones/Sauromugue_Champaign/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.BLIGHTING_BRAND_PH, 20, math.random(5400, 7200)) -- 90 to 120 minutes
+    dsp.mob.phOnDespawn(mob, ID.mob.BLIGHTING_BRAND_PH, 20, math.random(5400, 7200)) -- 90 to 120 minutes
 end

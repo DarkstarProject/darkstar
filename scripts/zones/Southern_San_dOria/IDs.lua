@@ -39,7 +39,7 @@ zones[dsp.zone.SOUTHERN_SAN_DORIA] =
         NOKKHI_BAD_ITEM                = 7380, -- I'm real sorry, but there's nothing I can do with those.
         YOU_CANNOT_ENTER_DYNAMIS       = 7414, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7416, -- Players who have not reached level <number> are prohibited from entering Dynamis.
-        UNUSUAL_ARRANGEMENT_BRANCHES   = 7426, -- There is an unusual arrangement of branches here.
+        DYNA_NPC_DEFAULT_MESSAGE       = 7426, -- There is an unusual arrangement of branches here.
         VARCHET_BET_LOST               = 7757, -- You lose your bet of 5 gil.
         VARCHET_KEEP_PROMISE           = 7766, -- As promised, I shall go and see about those woodchippers. Maybe we can play another game later.
         ROSEL_DIALOG                   = 7786, -- Hrmm... Now, this is interesting! It pays to keep an eye on the competition. Thanks for letting me know!
@@ -90,14 +90,22 @@ zones[dsp.zone.SOUTHERN_SAN_DORIA] =
         CLOUD_GOOD_TRADE               = 10109, -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
         CLOUD_BAD_ITEM                 = 10110, -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
         CAPUCINE_SHOP_DIALOG           = 10311, -- Hello! You seem to be working very hard. I'm really thankful! But you needn't rush around so fast. Take your time! I can wait if it makes the job easier for you!
-        TUTORIAL_NPC                   = 13516, -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
-        TEAR_IN_FABRIC_OF_SPACE        = 16487, -- There appears to be a tear in the fabric of space...
+        TUTORIAL_NPC                   = 13517, -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
+        TEAR_IN_FABRIC_OF_SPACE        = 16510, -- There appears to be a tear in the fabric of space...
     },
     mob =
     {
     },
     npc =
     {
+        HALLOWEEN_SKINS =
+        {
+            [17719303] = 47, -- Machielle
+            [17719304] = 50, -- Corua
+            [17719305] = 48, -- Phamelise
+            [17719306] = 46, -- Apairemant
+            [17719493] = 49, -- Pourette
+        },
         LUSIANE  = 17719350,
         ARPETION = 17719409,
     },

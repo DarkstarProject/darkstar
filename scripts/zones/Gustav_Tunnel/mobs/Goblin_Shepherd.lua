@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Shepherd
+--  Mob: Goblin Shepherd
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

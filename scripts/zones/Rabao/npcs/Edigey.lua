@@ -10,7 +10,7 @@ local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    ForgetTheAntidote = player:getQuestStatus(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
+    ForgetTheAntidote = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DONT_FORGET_THE_ANTIDOTE);
 
     if ((ForgetTheAntidote == QUEST_ACCEPTED or ForgetTheAntidote == QUEST_COMPLETED) and trade:hasItemQty(1209,1) and trade:getItemCount() == 1) then
         player:startEvent(4,0,1209);
@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    ForgetTheAntidote = player:getQuestStatus(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
+    ForgetTheAntidote = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DONT_FORGET_THE_ANTIDOTE);
 
     if (ForgetTheAntidote == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 4) then
         player:startEvent(2,0,1209);
@@ -36,15 +36,15 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 2 and option == 1) then
-        player:addQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
-        player:setVar("DontForgetAntidoteVar",1);
-    elseif (csid == 4 and player:getVar("DontForgetAntidoteVar") == 1) then --If completing for the first time
-        player:setVar("DontForgetAntidoteVar",0);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.DONT_FORGET_THE_ANTIDOTE);
+        player:setCharVar("DontForgetAntidoteVar",1);
+    elseif (csid == 4 and player:getCharVar("DontForgetAntidoteVar") == 1) then --If completing for the first time
+        player:setCharVar("DontForgetAntidoteVar",0);
         player:tradeComplete();
         player:addTitle(dsp.title.DESERT_HUNTER);
         player:addItem(16974); -- Dotanuki
         player:messageSpecial(ID.text.ITEM_OBTAINED, 16974);
-        player:completeQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.DONT_FORGET_THE_ANTIDOTE);
         player:addFame(RABAO,60);
     elseif (csid == 4) then --Subsequent completions
         player:tradeComplete();

@@ -16,9 +16,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local inAStew = player:getQuestStatus(WINDURST, IN_A_STEW)
-    local inAStewCS = player:getVar("IASvar")
-    local chocobilious = player:getQuestStatus(WINDURST, CHOCOBILIOUS)
+    local inAStew = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.IN_A_STEW)
+    local inAStewCS = player:getCharVar("IASvar")
+    local chocobilious = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CHOCOBILIOUS)
 
     -- IN A STEW
     if inAStew == QUEST_AVAILABLE and chocobilious == QUEST_COMPLETED and player:getFameLevel(WINDURST) >= 3 then
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         player:startEvent(224) -- Start quest
     elseif chocobilious == QUEST_COMPLETED and player:needToZone() then
         player:startEvent(232) -- Quest complete
-    elseif chocobilious == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 2 then
+    elseif chocobilious == QUEST_ACCEPTED and player:getCharVar("ChocobiliousQuest") == 2 then
         player:startEvent(231) -- Talked to Tapoh
     elseif chocobilious == QUEST_ACCEPTED then
         player:startEvent(225) -- Post quest accepted
@@ -59,17 +59,17 @@ end
 function onEventFinish(player,csid,option)
     -- CHOCOBILIOUS
     if csid == 224 and option == 1 then
-        player:addQuest(WINDURST, CHOCOBILIOUS)
-    elseif csid == 231 and npcUtil.completeQuest(player, WINDURST, CHOCOBILIOUS, {fame=220, gil=1500, var="ChocobiliousQuest"}) then
+        player:addQuest(WINDURST, dsp.quest.id.windurst.CHOCOBILIOUS)
+    elseif csid == 231 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.CHOCOBILIOUS, {fame=220, gil=1500, var="ChocobiliousQuest"}) then
         player:needToZone(true)
 
     -- IN A STEW
     elseif csid == 235 then
-        player:addQuest(WINDURST, IN_A_STEW)
-        player:setVar("IASvar", 1)
-    elseif csid == 239 and npcUtil.completeQuest(player, WINDURST, IN_A_STEW, {fame=50, gil=900, var="IASvar"}) then
+        player:addQuest(WINDURST, dsp.quest.id.windurst.IN_A_STEW)
+        player:setCharVar("IASvar", 1)
+    elseif csid == 239 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.IN_A_STEW, {fame=50, gil=900, var="IASvar"}) then
         player:delKeyItem(dsp.ki.RANPIMONPIS_SPECIAL_STEW)
     elseif csid == 234 and option == 1 then -- start repeat
-        player:setVar("IASvar", 3)
+        player:setCharVar("IASvar", 3)
     end
 end

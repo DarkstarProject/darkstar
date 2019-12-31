@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Damselfly
+--  Mob: Damselfly
 -- Note: Place holder Valkurm Emperor
 -----------------------------------
 local ID = require("scripts/zones/Valkurm_Dunes/IDs");
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.VALKURM_EMPEROR_PH,5,3600); -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.VALKURM_EMPEROR_PH,5,3600); -- 1 hour
 end;

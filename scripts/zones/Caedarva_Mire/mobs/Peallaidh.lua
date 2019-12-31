@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Peallaidh
+--  Mob: Peallaidh
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

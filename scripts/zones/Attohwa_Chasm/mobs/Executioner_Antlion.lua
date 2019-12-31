@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Executioner Antlion
+--  Mob: Executioner Antlion
 -----------------------------------
 mixins = {require("scripts/mixins/families/antlion_ambush_noaggro")}
 -----------------------------------

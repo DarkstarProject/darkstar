@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
---  MOB: Triarius V-VIII
+--  Mob: Triarius V-VIII
 -- Zilart 6 Fight
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};

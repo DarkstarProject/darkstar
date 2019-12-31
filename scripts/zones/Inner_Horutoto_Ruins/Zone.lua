@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Inner_Horutoto_Ruins (192)
+-- Zone: Inner Horutoto Ruins (192)
 --
 -----------------------------------
 local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")
@@ -18,11 +18,13 @@ function onInitialize(zone)
     dsp.treasure.initZone(zone)
 end
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
+
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        player:setPos(-259.996,6.399,242.859,67)
+        player:setPos(-259.996, 6.399, 242.859, 67)
     end
+
     return cs
 end
 
@@ -30,15 +32,15 @@ function onConquestUpdate(zone, updatetype)
     dsp.conq.onConquestUpdate(zone, updatetype)
 end
 
-function onRegionEnter(player,region)
-    local circle= ID.npc.PORTAL_CIRCLE_BASE
-    local red   = GetNPCByID(circle)
-    local white = GetNPCByID(circle+1)
-    local black = GetNPCByID(circle+2)
+function onRegionEnter(player, region)
+    local circle = ID.npc.PORTAL_CIRCLE_BASE
+    local red    = GetNPCByID(circle)
+    local white  = GetNPCByID(circle+1)
+    local black  = GetNPCByID(circle+2)
 
     -- Prevent negatives..
     if region:GetCount() < 0 then
-        region:AddCount( math.abs( region:GetCount() ) )
+        region:AddCount(math.abs(region:GetCount()))
     end
 
     switch (region:GetRegionID()): caseof
@@ -80,11 +82,11 @@ function onRegionEnter(player,region)
 
 end
 
-function onRegionLeave(player,region)
-    local circle= ID.npc.PORTAL_CIRCLE_BASE
-    local red   = GetNPCByID(circle)
-    local white = GetNPCByID(circle+1)
-    local black = GetNPCByID(circle+2)
+function onRegionLeave(player, region)
+    local circle = ID.npc.PORTAL_CIRCLE_BASE
+    local red    = GetNPCByID(circle)
+    local white  = GetNPCByID(circle+1)
+    local black  = GetNPCByID(circle+2)
 
     switch (region:GetRegionID()): caseof
     {
@@ -109,13 +111,13 @@ function onRegionLeave(player,region)
     }
 
     -- Prevent negatives..
-    if (region:GetCount() < 0) then
-        region:AddCount( math.abs( region:GetCount() ) )
+    if region:GetCount() < 0 then
+        region:AddCount(math.abs(region:GetCount()))
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
 end

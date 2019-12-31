@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Ghelsba outpost
---  MOB: Kalamainu
--- BCNM30
+-- Area: Ghelsba Outpost
+--  Mob: Kalamainu
+-- BCNM: Petrifying Pair
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

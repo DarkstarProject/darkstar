@@ -1,26 +1,14 @@
 -----------------------------------
 -- Area: Temenos N T
--- NPC:  Beli
-
+--  Mob: Beli
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
     GetMobByID(16928781):updateEnmity(target);
         GetMobByID(16928782):updateEnmity(target);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
  if (IsMobDead(16928781)==true and IsMobDead(16928782)==true  and IsMobDead(16928783)==true ) then

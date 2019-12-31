@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Hoarder Hare
+--  Mob: Hoarder Hare
 -- Note: PH for Teporingo
 -----------------------------------
 local ID = require("scripts/zones/Dangruf_Wadi/IDs");
@@ -10,5 +10,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.TEPORINGO_PH,20,3600); -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.TEPORINGO_PH,20,3600); -- 1 hour
 end;

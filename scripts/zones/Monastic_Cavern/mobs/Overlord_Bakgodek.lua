@@ -1,14 +1,14 @@
 -----------------------------------
 -- Area: Monastic Cavern
---  MOB: Overlord Bakgodek
+--  Mob: Overlord Bakgodek
 -- TODO: messages should be zone-wide
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Monastic_Cavern/IDs")
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobEngaged(mob,target)
+function onMobEngaged(mob, target)
     mob:showText(mob, ID.text.ORC_KING_ENGAGE)
 end
 

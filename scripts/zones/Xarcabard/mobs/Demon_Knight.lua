@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Demon Knight
+--  Mob: Demon Knight
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

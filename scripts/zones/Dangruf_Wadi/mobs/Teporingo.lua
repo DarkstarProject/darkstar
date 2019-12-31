@@ -1,7 +1,7 @@
-----------------------------------
+-----------------------------------
 -- Area: Dangruf Wadi
---  NM:  Teporingo
+--   NM: Teporingo
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

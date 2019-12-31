@@ -303,14 +303,14 @@ int32 lobbydata_parse(int32 fd)
 
                 const char* fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone, gmlevel \
                                         FROM zone_settings, chars \
-                                        WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
+                                        WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u AND accid = %u;";
                 uint32 ZoneIP = sd->servip;
                 uint16 ZonePort = 54230;
                 uint16 ZoneID = 0;
                 uint16 PrevZone = 0;
                 uint16 gmlevel = 0;
 
-                if (Sql_Query(SqlHandle, fmtQuery, charid) != SQL_ERROR &&
+                if (Sql_Query(SqlHandle, fmtQuery, charid, sd->accid) != SQL_ERROR &&
                     Sql_NumRows(SqlHandle) != 0)
                 {
                     Sql_NextRow(SqlHandle);
@@ -327,49 +327,52 @@ int32 lobbydata_parse(int32 fd)
                     ref<uint32>(ReservePacket, (0x38)) = ZoneIP;
                     ref<uint16>(ReservePacket, (0x3C)) = ZonePort;
                     ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n", ZoneID, ip2str(ntohl(ZoneIP), nullptr), ZonePort, charid);
-                }
-                else
-                {
-                    ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n", ip2str(sd->servip, nullptr), charid);
-                    ref<uint32>(ReservePacket, (0x38)) = sd->servip;  // map-server ip
-                  //ref<uint16>(ReservePacket,(0x3C)) = port;         // map-server port
-                }
 
-                if (maint_config.maint_mode == 0 || gmlevel > 0)
-                {
-                    if (PrevZone == 0)
-                        Sql_Query(SqlHandle, "UPDATE chars SET pos_prevzone = %d WHERE charid = %u;", ZoneID, charid);
-
-                    ref<uint32>(ReservePacket, (0x40)) = sd->servip;                                  // search-server ip
-                    ref<uint16>(ReservePacket, (0x44)) = login_config.search_server_port;             // search-server port
-
-                    memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
-
-                    // необходиму одалять сессию, необработанную игровым сервером
-                    Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0", sd->accid);
-
-                    char session_key[sizeof(key3) * 2 + 1];
-                    bin2hex(session_key, key3, sizeof(key3));
-
-                    fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
-
-                    if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (uint8)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
+                    if (maint_config.maint_mode == 0 || gmlevel > 0)
                     {
-                        //отправляем клиенту сообщение об ошибке
+                        if (PrevZone == 0)
+                            Sql_Query(SqlHandle, "UPDATE chars SET pos_prevzone = %d WHERE charid = %u;", ZoneID, charid);
+
+                        ref<uint32>(ReservePacket, (0x40)) = sd->servip;                                  // search-server ip
+                        ref<uint16>(ReservePacket, (0x44)) = login_config.search_server_port;             // search-server port
+
+                        memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
+
+                        // необходиму одалять сессию, необработанную игровым сервером
+                        Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0", sd->accid);
+
+                        char session_key[sizeof(key3) * 2 + 1];
+                        bin2hex(session_key, key3, sizeof(key3));
+
+                        fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
+
+                        if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (uint8)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
+                        {
+                            //отправляем клиенту сообщение об ошибке
+                            LOBBBY_ERROR_MESSAGE(ReservePacket);
+                            // устанавливаем код ошибки
+                            // Unable to connect to world server. Specified operation failed
+                            ref<uint16>(ReservePacket, 32) = 305;
+                            memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
+                        }
+
+                        fmtQuery = "UPDATE char_stats SET zoning = 2 WHERE charid = %u";
+                        Sql_Query(SqlHandle, fmtQuery, charid);
+                    }
+                    else
+                    {
                         LOBBBY_ERROR_MESSAGE(ReservePacket);
-                        // устанавливаем код ошибки
-                        // Unable to connect to world server. Specified operation failed
-                        ref<uint16>(ReservePacket, 32) = 305;
+                        ref<uint16>(ReservePacket, 32) = 321;
                         memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
                     }
-
-                    fmtQuery = "UPDATE char_stats SET zoning = 2 WHERE charid = %u";
-                    Sql_Query(SqlHandle, fmtQuery, charid);
                 }
                 else
                 {
+                    //either there is no character for this charid/accid, or there is no zone for this char's zone
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
-                    ref<uint16>(ReservePacket, 32) = 321;
+                    // устанавливаем код ошибки
+                    // Unable to connect to world server. Specified operation failed
+                    ref<uint16>(ReservePacket, 32) = 305;
                     memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
                 }
 
@@ -864,8 +867,6 @@ int32 lobby_createchar(login_session_data_t *loginsd, int8 *buf)
 
         CharID = (uint32)Sql_GetUIntData(SqlHandle, 0) + 1;
     }
-
-    CharID = (CharID < 21828 ? 21828 : CharID);
 
     if (lobby_createchar_save(loginsd->accid, CharID, &createchar) == -1)
         return -1;

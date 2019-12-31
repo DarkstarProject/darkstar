@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Tonberry Dismayer
+--  Mob: Tonberry Dismayer
 -- Note: PH for Tonberry Kinq
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
@@ -19,5 +19,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.TONBERRY_KINQ_PH, 10, 21600) -- 6 hours, 10% pop chance
+    dsp.mob.phOnDespawn(mob, ID.mob.TONBERRY_KINQ_PH, 10, 21600) -- 6 hours, 10% pop chance
 end

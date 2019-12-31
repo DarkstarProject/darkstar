@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Brook Sahagin
+--  Mob: Brook Sahagin
 -- Note: PH for Qull the Shellbuster
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.QULL_THE_SHELLBUSTER_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.QULL_THE_SHELLBUSTER_PH, 10, 7200) -- 2 hours
 end

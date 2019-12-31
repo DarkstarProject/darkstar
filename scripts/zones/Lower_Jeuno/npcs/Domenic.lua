@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasCompletedQuest(JEUNO,BEYOND_INFINITY) == true) then
+    if (player:hasCompletedQuest(JEUNO,dsp.quest.id.jeuno.BEYOND_INFINITY) == true) then
         player:startEvent(10115,player:getGil());
     else
         player:startEvent(10116);

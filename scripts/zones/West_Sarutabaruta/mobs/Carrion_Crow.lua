@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Carrion Crow
+--  Mob: Carrion Crow
 -- Note: PH for Nunyenunc
 -----------------------------------
 local ID = require("scripts/zones/West_Sarutabaruta/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.NUNYENUNC_PH, 10, math.random(7200,10800)) -- 2 to 3 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.NUNYENUNC_PH, 10, math.random(7200,10800)) -- 2 to 3 hours
 end

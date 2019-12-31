@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Karugo-Narugo [S]
---  MOB: Rafflesia
+--  Mob: Rafflesia
 -- Note: PH for Kirtimukha
 -----------------------------------
 local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.KIRTIMUKHA_PH, 5, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.KIRTIMUKHA_PH, 5, 3600) -- 1 hour
 end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Gambler
+--  Mob: Goblin Gambler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

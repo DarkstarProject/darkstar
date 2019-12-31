@@ -13,19 +13,19 @@ end
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK)
-    local MissionStatus = player:getVar("MissionStatus")
+    local MissionStatus = player:getCharVar("MissionStatus")
 
     -- Enter the Talekeeper 8-2
-    if currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 4 then
+    if currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 4 then
         player:startEvent(204)
-    elseif currentMission == ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 then
+    elseif currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus > 1 and MissionStatus < 4 then
         player:startEvent(203)
-    elseif currentMission == ENTER_THE_TALEKEEPER and MissionStatus == 0 then
+    elseif currentMission == dsp.mission.id.bastok.ENTER_THE_TALEKEEPER and MissionStatus == 0 then
         player:startEvent(202)
     -- Return of the Talekeeper 6-1
-    elseif currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus > 1 then
+    elseif currentMission == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus > 1 then
         player:startEvent(201)
-    elseif currentMission == RETURN_OF_THE_TALEKEEPER and MissionStatus == 1 then
+    elseif currentMission == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and MissionStatus == 1 then
         player:startEvent(200)
     else
         player:startEvent(108)
@@ -37,11 +37,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 200 then
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
     elseif csid == 202 then
-        player:setVar("Missionstatus", 1)
+        player:setCharVar("Missionstatus", 1)
     elseif csid == 204 then
-        player:setVar("Missionstatus", 5)
+        player:setCharVar("Missionstatus", 5)
         player:delKeyItem(dsp.ki.OLD_PIECE_OF_WOOD)
         player:setPos(23, 0, 4)
     end

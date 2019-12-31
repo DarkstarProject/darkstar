@@ -13,13 +13,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local TheHolyCrest = player:getVar("TheHolyCrest_Event");
+    local TheHolyCrest = player:getCharVar("TheHolyCrest_Event");
 
     if (TheHolyCrest == 2) then
         player:startEvent(65);
     elseif ((TheHolyCrest == 3 and player:hasItem(1159)) or TheHolyCrest == 4) then -- Wyvern Egg
         player:startEvent(62);
-    elseif (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
         player:startEvent(602);
     else
         player:startEvent(601);
@@ -33,10 +33,10 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 65) then
-        player:addQuest(SANDORIA,THE_HOLY_CREST);
-        player:setVar("TheHolyCrest_Event",3);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_HOLY_CREST);
+        player:setCharVar("TheHolyCrest_Event",3);
     elseif (csid == 62 and option == 0) then
-        player:setVar("TheHolyCrest_Event",4);
+        player:setCharVar("TheHolyCrest_Event",4);
     end
 
 end;

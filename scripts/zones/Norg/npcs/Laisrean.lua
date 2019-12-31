@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    Stash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
+    Stash = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.THE_SAHAGINS_STASH);
     mLvl = player:getMainLvl();
     SeaStatue = player:hasKeyItem(dsp.ki.SEA_SERPENT_STATUE);
 
@@ -37,7 +37,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 33 and option == 1) then
-        player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.THE_SAHAGINS_STASH);
     elseif (csid == 35) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4946);
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 4946);
             player:addTitle(dsp.title.TREASUREHOUSE_RANSACKER);
             player:addFame(NORG,75);
-            player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.THE_SAHAGINS_STASH);
         end
     end
 

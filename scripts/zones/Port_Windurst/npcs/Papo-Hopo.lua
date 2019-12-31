@@ -12,12 +12,12 @@ end;
 
 function onTrigger(player,npc)
 
-TruthJusticeOnionWay = player:getQuestStatus(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
-KnowOnesOnions       = player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS);
-InspectorsGadget     = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
-OnionRings           = player:getQuestStatus(WINDURST,ONION_RINGS);
-CryingOverOnions     = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
-ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
+TruthJusticeOnionWay = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+KnowOnesOnions       = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
+InspectorsGadget     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
+OnionRings           = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
+CryingOverOnions     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS);
+ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
 
     if (ThePromise == QUEST_COMPLETED) then
         Message = math.random(0,1)
@@ -32,7 +32,7 @@ ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
         player:startEvent(509);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
-        CryingOverOnionsVar = player:getVar("CryingOverOnions");
+        CryingOverOnionsVar = player:getCharVar("CryingOverOnions");
 
         if (CryingOverOnionsVar >= 1) then
             player:startEvent(508);
@@ -50,7 +50,7 @@ ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
     elseif (KnowOnesOnions == QUEST_COMPLETED) then
         player:startEvent(403);
     elseif (KnowOnesOnions == QUEST_ACCEPTED) then
-        KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
+        KnowOnesOnionsVar  = player:getCharVar("KnowOnesOnions");
 
         if (KnowOnesOnionsVar == 2) then
             player:startEvent(402);

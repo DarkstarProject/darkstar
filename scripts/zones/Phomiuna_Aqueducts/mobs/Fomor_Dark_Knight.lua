@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---  MOB: Fomor Dark Knight
+--  Mob: Fomor Dark Knight
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

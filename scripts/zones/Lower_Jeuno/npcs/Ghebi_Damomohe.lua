@@ -15,27 +15,27 @@ require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) ~= QUEST_COMPLETED and npcUtil.tradeHas(trade, 548) then
+    if player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP) ~= QUEST_COMPLETED and npcUtil.tradeHas(trade, 548) then
         -- Finish Quest: Tenshodo Membership (Invitation)
         player:startEvent(108)
-    elseif player:getCurrentMission(COP) == DARKNESS_NAMED and
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and
            not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and
-           player:getVar("PXPassGetGems") == 1 and
+           player:getCharVar("PXPassGetGems") == 1 and
            (npcUtil.tradeHas(trade, 1692) or npcUtil.tradeHas(trade, 1694) or npcUtil.tradeHas(trade, 1693)) then
         player:startEvent(52, 500 * GIL_RATE)
     end
 end
 
 function onTrigger(player,npc)
-    local GetGems = player:getVar("PXPassGetGems");
+    local GetGems = player:getCharVar("PXPassGetGems");
 
-    if player:getFameLevel(JEUNO) >= 2 and player:getQuestStatus(JEUNO, TENSHODO_MEMBERSHIP) == QUEST_AVAILABLE then
+    if player:getFameLevel(JEUNO) >= 2 and player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP) == QUEST_AVAILABLE then
         -- Start Quest: Tenshodo Membership
         player:startEvent(106, 8)
     elseif player:hasKeyItem(dsp.ki.TENSHODO_APPLICATION_FORM) then
         -- Finish Quest: Tenshodo Membership
         player:startEvent(107)
-    elseif player:getCurrentMission(COP) == DARKNESS_NAMED and not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and GetGems == 0 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.DARKNESS_NAMED and not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and GetGems == 0 then
         -- Mission: Darkness Named
         player:startEvent(54)
     elseif (GetGems == 1) then
@@ -59,15 +59,15 @@ function onEventFinish(player,csid,option)
 
         dsp.shop.general(player, stock, NORG)
     elseif csid == 106 and option == 2 then
-        player:addQuest(JEUNO, TENSHODO_MEMBERSHIP)
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP)
     elseif csid == 107 then
         -- Finish Quest: Tenshodo Membership (Application Form)
-        if npcUtil.completeQuest(player, JEUNO, TENSHODO_MEMBERSHIP, { item=548, title=dsp.title.TENSHODO_MEMBER, keyItem=dsp.ki.TENSHODO_MEMBERS_CARD }) then
+        if npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP, { item=548, title=dsp.title.TENSHODO_MEMBER, keyItem=dsp.ki.TENSHODO_MEMBERS_CARD }) then
             player:delKeyItem(dsp.ki.TENSHODO_APPLICATION_FORM)
         end
     elseif csid == 108 then
         -- Finish Quest: Tenshodo Membership (Invitation)
-        if npcUtil.completeQuest(player, JEUNO, TENSHODO_MEMBERSHIP, { item=548, title=dsp.title.TENSHODO_MEMBER, keyItem=dsp.ki.TENSHODO_MEMBERS_CARD }) then
+        if npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP, { item=548, title=dsp.title.TENSHODO_MEMBER, keyItem=dsp.ki.TENSHODO_MEMBERS_CARD }) then
             player:confirmTrade()
             player:delKeyItem(dsp.ki.TENSHODO_APPLICATION_FORM)
         end
@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
         player:addGil(500 * GIL_RATE)
         player:addKeyItem(dsp.ki.PSOXJA_PASS)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.PSOXJA_PASS)
-        player:setVar("PXPassGetGems",0)
+        player:setCharVar("PXPassGetGems",0)
     elseif csid == 54 then
-        player:setVar("PXPassGetGems",1)
+        player:setCharVar("PXPassGetGems",1)
     end
 end

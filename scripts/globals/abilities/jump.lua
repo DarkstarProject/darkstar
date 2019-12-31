@@ -27,11 +27,13 @@ function onUseAbility(player,target,ability,action)
     end
     params.canCrit = true
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = (player:getMod(dsp.mod.JUMP_ATT_BONUS) + 100) / 100
+    local atkmulti = (player:getMod(dsp.mod.JUMP_ATT_BONUS) + 100) / 100
+    params.atk100 = atkmulti params.atk200 = atkmulti params.atk300 = atkmulti
     params.bonusTP = player:getMod(dsp.mod.JUMP_TP_BONUS)
+    params.hitsHigh = true
 
     local taChar = player:getTrickAttackChar(target)
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, 0, true, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, params, 0, action, true, taChar)
 
     if (tpHits + extraHits > 0) then
         -- Under Spirit Surge, Jump also decreases target defense by 20% for 60 seconds

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Tomb Wolf
+--  Mob: Tomb Wolf
 -- Note: PH for Cwn Cyrff
 -----------------------------------
 local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.CWN_CYRFF_PH, 5, math.random(3600, 14400)) -- 1-4 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.CWN_CYRFF_PH, 5, math.random(3600, 14400)) -- 1-4 hours
 end

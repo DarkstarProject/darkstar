@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13122,1) and trade:getItemCount() == 1) then -- Trade Miner's Pendant
             player:startEvent(232) -- Finish Quest "Ghosts of the Past"
         end
@@ -28,8 +28,8 @@ end
 
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
-    local ghostsOfThePast = player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST)
-    local theFirstMeeting = player:getQuestStatus(BASTOK,THE_FIRST_MEETING)
+    local ghostsOfThePast = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GHOSTS_OF_THE_PAST)
+    local theFirstMeeting = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_FIRST_MEETING)
     local mLvl = player:getMainLvl()
     local mJob = player:getMainJob()
 
@@ -48,7 +48,7 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 231) then
-        player:addQuest(BASTOK,GHOSTS_OF_THE_PAST)
+        player:addQuest(BASTOK,dsp.quest.id.bastok.GHOSTS_OF_THE_PAST)
     elseif (csid == 232) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17478) -- Beat Cesti
@@ -57,11 +57,11 @@ function onEventFinish(player,csid,option)
             player:addItem(17478)
             player:messageSpecial(ID.text.ITEM_OBTAINED,17478) -- Beat Cesti
             player:needToZone(true)
-            player:addFame(BASTOK,AF1_FAME)
-            player:completeQuest(BASTOK,GHOSTS_OF_THE_PAST)
+            player:addFame(BASTOK,20)
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.GHOSTS_OF_THE_PAST)
         end
     elseif (csid == 233) then
-        player:addQuest(BASTOK,THE_FIRST_MEETING)
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_FIRST_MEETING)
     elseif (csid == 234) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14090) -- Temple Gaiters
@@ -70,8 +70,8 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL)
             player:addItem(14090)
             player:messageSpecial(ID.text.ITEM_OBTAINED,14090) -- Temple Gaiters
-            player:addFame(BASTOK,AF2_FAME)
-            player:completeQuest(BASTOK,THE_FIRST_MEETING)
+            player:addFame(BASTOK,40)
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_FIRST_MEETING)
         end
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.ASURAN_FISTS_LEARNED)

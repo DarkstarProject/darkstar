@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Ice Elemental
+--  Mob: Ice Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

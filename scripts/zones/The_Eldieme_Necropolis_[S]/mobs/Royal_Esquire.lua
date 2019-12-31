@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Royal_Esquire
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Royal Esquire
 -----------------------------------
 
 -- -----------------------------------

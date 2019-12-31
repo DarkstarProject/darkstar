@@ -17,10 +17,10 @@ function onTrade(player,npc,trade)
 
     ----- Save The Clock Tower Quest -----
     if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
-        a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
+        a = player:getCharVar("saveTheClockTowerNPCz2"); -- NPC Zone2
         if (a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and
            a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then
-            player:startEvent(50,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+            player:startEvent(50,10 - player:getCharVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
 
@@ -30,8 +30,8 @@ function onTrigger(player,npc)
 
     local hour = VanadielHour();
     local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
-    local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
-    local currCommService = player:getVar("currCommService");
+    local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+    local currCommService = player:getCharVar("currCommService");
     local hasMembershipCard = player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
 
     local allLampsLit = true;
@@ -76,15 +76,15 @@ function onEventUpdate(player,csid,option)
         -- player accepts quest
         -- if nobody else has already been assigned to the quest, including Vhana, give it to this player
 
-        local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+        local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
         local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
         local hour = VanadielHour();
 
         if (playerOnQuestId == 0 and (hour >= 18 or hour < 1)) then
             -- nobody is currently on the quest
             SetServerVariable("[JEUNO]CommService",player:getID());
-            player:addQuest(JEUNO,COMMUNITY_SERVICE);
-            player:setVar("currCommService",1);
+            player:addQuest(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE);
+            player:setCharVar("currCommService",1);
             player:updateEvent(1,doneCommService);
         else
             -- either another player or vasha have been assigned the quest
@@ -96,13 +96,13 @@ end;
 function onEventFinish(player,csid,option)
     -- SAVE THE CLOCKTOWER
     if (csid == 50) then
-        player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
-        player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 256);
+        player:addCharVar("saveTheClockTowerVar", 1);
+        player:addCharVar("saveTheClockTowerNPCz2", 256);
 
     -- COMMUNITY SERVICE
     elseif (csid == 117) then
         local params = {title = dsp.title.TORCHBEARER, var = "currCommService"};
-        if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
             -- first victory
             params.fame = 30;
         else
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
                 params.keyItem = dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD;
             end
         end
-        npcUtil.completeQuest(player, JEUNO, COMMUNITY_SERVICE, params);
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.COMMUNITY_SERVICE, params);
 
     elseif (csid == 118 and option == 1) then
         -- player drops membership card
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 119) then
         -- player fails quest
-        player:setVar("currCommService",0);
+        player:setCharVar("currCommService",0);
 
     end
 end;

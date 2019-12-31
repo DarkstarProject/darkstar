@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
+    local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- HER MAJESTY'S GARDEN (derfland humus)
     if (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
@@ -25,19 +25,19 @@ end;
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
-    local MissionStatus = player:getVar("MissionStatus");
-    local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
-    local circleProgress = player:getVar("circleTime");
-    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
-    local WildcatSandy = player:getVar("WildcatSandy");
-    local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
+    local MissionStatus = player:getCharVar("MissionStatus");
+    local circleOfTime = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
+    local circleProgress = player:getCharVar("circleTime");
+    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
+    local WildcatSandy = player:getCharVar("WildcatSandy");
+    local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
-    if (currentMission == THE_CRYSTAL_SPRING and MissionStatus == 3) then
+    if (currentMission == dsp.mission.id.sandoria.THE_CRYSTAL_SPRING and MissionStatus == 3) then
         player:startEvent(556);
 
     -- LEAUTE'S LAST WISHES (San d'Oria 6-1)
-    elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(dsp.ki.DREAMROSE)) then
+    elseif (currentMission == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(dsp.ki.DREAMROSE)) then
         player:startEvent(111);
 
     -- CIRCLE OF TIME (Bard AF3)
@@ -78,35 +78,35 @@ function onEventFinish(player,csid,option)
 
     -- CIRCLE OF TIME
     elseif (csid == 99 and option == 0) then
-        player:setVar("circleTime",6);
+        player:setCharVar("circleTime",6);
     elseif ((csid == 98 or csid == 99) and option == 1) then
-        player:setVar("circleTime",7);
+        player:setCharVar("circleTime",7);
         player:addKeyItem(dsp.ki.MOON_RING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_RING);
     elseif (csid == 96) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12647);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12647)
-            player:completeQuest(JEUNO,THE_CIRCLE_OF_TIME);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
             player:addTitle(dsp.title.PARAGON_OF_BARD_EXCELLENCE);
-            player:setVar("circleTime",0);
+            player:setCharVar("circleTime",0);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         end;
 
     -- LURE OF THE WILDCAT
     elseif (csid == 561) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",19,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",19,true);
 
     -- HER MAJESTY'S GARDEN
     elseif (csid == 84 and option == 1) then
-        player:addQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
     elseif (csid == 83) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     end;
 end;

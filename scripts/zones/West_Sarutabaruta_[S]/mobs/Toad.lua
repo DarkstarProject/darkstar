@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: West Saurtabaruta (S)
+-- Area: West Sarutabaruta [S]
 --  Mob: Toad
 -- Note: Place holder Ramponneau
 -----------------------------------
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.RAMPONNEAU_PH, 20, 5400) -- 90 minutes
+    dsp.mob.phOnDespawn(mob, ID.mob.RAMPONNEAU_PH, 20, 5400) -- 90 minutes
 end

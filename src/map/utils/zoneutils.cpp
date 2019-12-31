@@ -399,11 +399,11 @@ void LoadMOBList()
                 PMob->SetMJob(Sql_GetIntData(SqlHandle, 15));
                 PMob->SetSJob(Sql_GetIntData(SqlHandle, 16));
 
-                PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
-                PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle, 17));
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setSkillType(Sql_GetIntData(SqlHandle, 17));
                 PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 18);
-                PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
-                PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
+                ((CItemWeapon*)PMob->m_Weapons[SLOT_MAIN])->setBaseDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
 
                 PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 20);
                 PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 21);
@@ -510,6 +510,7 @@ void LoadMOBList()
         {
             luautils::OnMobInitialize(PMob);
             luautils::ApplyMixins(PMob);
+            luautils::ApplyZoneMixins(PMob);
             PMob->saveModifiers();
             PMob->saveMobModifiers();
             PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL;
@@ -532,7 +533,8 @@ void LoadMOBList()
         LEFT JOIN mob_spawn_points ON mob_pets.mob_mobid = mob_spawn_points.mobid \
         LEFT JOIN mob_groups ON mob_spawn_points.groupid = mob_groups.groupid \
         INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
+        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
+        AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
     ret = Sql_Query(SqlHandle, PetQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
@@ -933,7 +935,8 @@ REGIONTYPE GetCurrentRegion(uint16 ZoneID)
             return REGION_THE_THRESHOLD;
         case ZONE_DIORAMA_ABDHALJS_GHELSBA:
         case ZONE_ABDHALJS_ISLE_PURGONORGO:
-        case ZONE_MAQUETTE_ABDHALJS_LEGION:
+        case ZONE_MAQUETTE_ABDHALJS_LEGION_A:
+        case ZONE_MAQUETTE_ABDHALJS_LEGION_B:
             return REGION_ABDHALJS;
         case ZONE_WESTERN_ADOULIN:
         case ZONE_EASTERN_ADOULIN:

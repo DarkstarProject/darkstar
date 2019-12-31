@@ -14,9 +14,9 @@ function onTrade(player,npc,trade)
 
     -- "Flyers for Regine" conditional script
     local count = trade:getItemCount();
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:hasItemQty(532,1) and count == 1) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:hasItemQty(532,1) and count == 1) then
         player:messageSpecial(ID.text.FLYER_REFUSED);
-    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN and count == 1) then -- Trade mini fork of ice
+    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN and count == 1) then -- Trade mini fork of ice
         player:startEvent(734,0,1545,4,20);
     end
 
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialSizeByIce = player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
+    local TrialSizeByIce = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
 
     if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then -- Requires player to be Summoner at least lvl 20
         player:startEvent(733,0,1545,4,20);     --mini tuning fork of ice, zone, level
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 
         if (IceFork) then
             player:startEvent(708); --Dialogue given to remind player to be prepared
-        elseif (IceFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeIce_date")) then
+        elseif (IceFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeIce_date")) then
             player:startEvent(737,0,1545,4,20); -- Need another mini tuning fork
         else
             player:startEvent(758); -- Standard dialog when you loose, and you don't wait 1 real day
@@ -55,8 +55,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1545);
         else
-            player:setVar("TrialSizeIce_date", 0);
-            player:addQuest(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
+            player:setCharVar("TrialSizeIce_date", 0);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE);
             player:addItem(1545);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1545);
         end

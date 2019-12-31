@@ -13,9 +13,9 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
     -- "The Sweetest Things" quest status var
-    local theSweetestThings = player:getQuestStatus(SANDORIA,THE_SWEETEST_THINGS);
+    local theSweetestThings = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
 
     if (theSweetestThings ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(4370,5) and trade:getItemCount() == 5) then
@@ -37,11 +37,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local theSweetestThings = player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS);
+    local theSweetestThings = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
 
     -- "The Sweetest Things" Quest Dialogs
     if (player:getFameLevel(SANDORIA) >= 2 and theSweetestThings == QUEST_AVAILABLE) then
-        theSweetestThingsVar = player:getVar("theSweetestThings");
+        theSweetestThingsVar = player:getCharVar("theSweetestThings");
         if (theSweetestThingsVar == 1) then
             player:startEvent(533);
         elseif (theSweetestThingsVar == 2) then
@@ -64,24 +64,24 @@ function onEventFinish(player,csid,option)
 
     -- "The Sweetest Things" ACCEPTED
     if (csid == 532) then
-        player:setVar("theSweetestThings", 1);
+        player:setCharVar("theSweetestThings", 1);
     elseif (csid == 533) then
         if (option == 0) then
-            player:addQuest(SANDORIA,THE_SWEETEST_THINGS);
-            player:setVar("theSweetestThings", 0);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
+            player:setCharVar("theSweetestThings", 0);
         else
-            player:setVar("theSweetestThings", 2);
+            player:setCharVar("theSweetestThings", 2);
         end
     elseif (csid == 534 and option == 0) then
-        player:addQuest(SANDORIA, THE_SWEETEST_THINGS);
-        player:setVar("theSweetestThings", 0);
+        player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
+        player:setCharVar("theSweetestThings", 0);
     elseif (csid == 535) then
         player:tradeComplete();
         player:addTitle(dsp.title.APIARIST);
         player:addGil(GIL_RATE*400);
-        if (player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_SWEETEST_THINGS) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA, THE_SWEETEST_THINGS);
+            player:completeQuest(SANDORIA, dsp.quest.id.sandoria.THE_SWEETEST_THINGS);
         else
             player:addFame(SANDORIA, 5);
         end

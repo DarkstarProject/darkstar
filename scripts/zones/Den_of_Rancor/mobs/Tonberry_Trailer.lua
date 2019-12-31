@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Trailer
+--  Mob: Tonberry Trailer
 -- Note: PH for Celeste-eyed Tozberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
@@ -16,5 +16,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.CELESTE_EYED_TOZBERRY_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.CELESTE_EYED_TOZBERRY_PH, 10, 7200) -- 2 hours
 end

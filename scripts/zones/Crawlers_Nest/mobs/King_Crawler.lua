@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: King Crawler
+--  Mob: King Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

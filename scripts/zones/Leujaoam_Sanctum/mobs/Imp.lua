@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Leujaoam Sanctum
---  MOB: Imp
+--  Mob: Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

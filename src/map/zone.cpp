@@ -32,6 +32,7 @@
 
 #include <string.h>
 
+#include "battlefield.h"
 #include "enmity_container.h"
 #include "latent_effect_container.h"
 #include "linkshell.h"
@@ -371,7 +372,7 @@ void CZone::LoadZoneSettings()
 
         if (Sql_GetData(SqlHandle, 10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
-            m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
+            m_BattlefieldHandler = new CBattlefieldHandler(this);
         }
         if (m_miscMask & MISC_TREASURE)
         {
@@ -495,7 +496,7 @@ void CZone::SetWeather(WEATHER weather)
     m_Weather = weather;
     m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
 
-    m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
+    m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather, dsprand::GetRandomNumber(4, 28)));
 }
 
 void CZone::UpdateWeather()
@@ -780,7 +781,7 @@ void CZone::ZoneServer(time_point tick, bool check_regions)
 
     if (m_BattlefieldHandler != nullptr)
     {
-        m_BattlefieldHandler->handleBattlefields(tick);
+        m_BattlefieldHandler->HandleBattlefields(tick);
     }
 }
 
@@ -881,6 +882,10 @@ void CZone::CharZoneIn(CCharEntity* PChar)
         PChar->PInstance = nullptr;
     }
 
+    if (m_BattlefieldHandler)
+        if (auto PBattlefield = m_BattlefieldHandler->GetBattlefield(PChar, true))
+            PBattlefield->InsertEntity(PChar, true);
+
     PChar->PLatentEffectContainer->CheckLatentsZone();
 }
 
@@ -937,6 +942,8 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     {
         PChar->PTreasurePool->DelMember(PChar);
     }
+
+    PChar->ClearTrusts(); // trusts don't survive zone lines
 
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);

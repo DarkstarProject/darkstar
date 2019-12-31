@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Signifer
+--  Mob: Antican Signifer
 -- Note: PH for Centurio X-I and Antican Proconsul
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")
@@ -20,6 +20,6 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.CENTURIO_X_I_PH, 10, 9000) -- 2.5 hours
-    phOnDespawn(mob, ID.mob.ANTICAN_PROCONSUL_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.CENTURIO_X_I_PH, 10, 9000) -- 2.5 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.ANTICAN_PROCONSUL_PH, 10, 3600) -- 1 hour
 end

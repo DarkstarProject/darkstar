@@ -1,11 +1,12 @@
-----------------------------------
+-----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Doom Warlock
+--  Mob: Doom Warlock
 -- Note: Place holder Taxim
 -----------------------------------
 local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 require("scripts/globals/regimes")
 require("scripts/globals/mobs");
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 765, 2, dsp.regime.type.GROUNDS)
@@ -14,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.TAXIM_PH,5,7200); -- 2 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.TAXIM_PH,5,7200); -- 2 hours
 end;

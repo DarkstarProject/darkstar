@@ -17,9 +17,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
---    player:delQuest(WINDURST,CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
+--    player:delQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
 -- ======== FOR TESTING ONLY ==========-----
---    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
+--    if (player:getCharVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
 --        rand = math.random(1,3);
 --        if (rand == 1) then
 --            player:addStatusEffect(dsp.effect.MUTE,0,0,100);
@@ -31,18 +31,18 @@ function onTrigger(player,npc)
 --    end
 -- ======== FOR TESTING ONLY ==========-----
 
-    Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);
-    WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
+    Catch = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
+    WonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS);
     if (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(258,0,17053);
     elseif (Catch == 0) then
-        prog = player:getVar("QuestCatchItIfYouCan_var");
+        prog = player:getCharVar("QuestCatchItIfYouCan_var");
         if (prog == 0) then
             player:startEvent(230); -- CATCH IT IF YOU CAN: Before Quest 1
-            player:setVar("QuestCatchItIfYouCan_var",1);
+            player:setCharVar("QuestCatchItIfYouCan_var",1);
         elseif (prog == 1) then
             player:startEvent(253); -- CATCH IT IF YOU CAN: Before Start
-            player:setVar("QuestCatchItIfYouCan_var",2);
+            player:setCharVar("QuestCatchItIfYouCan_var",2);
         elseif (prog == 2) then
             player:startEvent(231); -- CATCH IT IF YOU CAN: Before Quest 2
         end
@@ -70,7 +70,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 231) then
-        player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
     elseif (csid == 246 and option == 0) then
         player:needToZone(true);
         if (player:hasStatusEffect(dsp.effect.MUTE) == true) then
@@ -87,10 +87,10 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         end
 
-        player:setVar("QuestCatchItIfYouCan_var",0);
+        player:setCharVar("QuestCatchItIfYouCan_var",0);
 
-        if (player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
             player:addFame(WINDURST,75);
         else
             player:addFame(WINDURST,8);

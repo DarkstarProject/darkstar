@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Orcish Stonelauncher
+--  Mob: Orcish Stonelauncher
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

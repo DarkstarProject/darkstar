@@ -9,13 +9,13 @@ require("scripts/globals/quests");
 require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) >= QUEST_AVAILABLE and npcUtil.tradeHas(trade, 550)) then
+    if (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_COLD_LIGHT_OF_DAY) >= QUEST_AVAILABLE and npcUtil.tradeHas(trade, 550)) then
         player:startEvent(104);
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(BASTOK, WISH_UPON_A_STAR) == QUEST_ACCEPTED and player:getVar("WishUponAStar_Status") == 1) then -- Quest: Wish Upon a Star
+    if (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.WISH_UPON_A_STAR) == QUEST_ACCEPTED and player:getCharVar("WishUponAStar_Status") == 1) then -- Quest: Wish Upon a Star
         player:startEvent(330);
     else -- Quest: The Cold Light of Day
         player:startEvent(102);
@@ -28,17 +28,17 @@ end;
 function onEventFinish(player,csid,option)
     -- THE COLD LIGHT OF DAY
     if (csid == 102) then
-        if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) == QUEST_AVAILABLE) then
-            player:addQuest(BASTOK, THE_COLD_LIGHT_OF_DAY);
+        if (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_COLD_LIGHT_OF_DAY) == QUEST_AVAILABLE) then
+            player:addQuest(BASTOK, dsp.quest.id.bastok.THE_COLD_LIGHT_OF_DAY);
         end
     elseif (csid == 104) then
-        local fame = player:hasCompletedQuest(BASTOK, THE_COLD_LIGHT_OF_DAY) and 8 or 50;
-        if (npcUtil.completeQuest(player, BASTOK, THE_COLD_LIGHT_OF_DAY, {title=dsp.title.CRAB_CRUSHER, gil=500, fame=fame})) then
+        local fame = player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.THE_COLD_LIGHT_OF_DAY) and 8 or 50;
+        if (npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.THE_COLD_LIGHT_OF_DAY, {title=dsp.title.CRAB_CRUSHER, gil=500, fame=fame})) then
             player:confirmTrade();
         end
         
     -- WISH UPON A STAR
     elseif (csid == 330) then
-        player:setVar("WishUponAStar_Status", 2);
+        player:setCharVar("WishUponAStar_Status", 2);
     end
 end;

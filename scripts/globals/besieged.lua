@@ -60,7 +60,7 @@ dsp.besieged.onEventFinish = function(player, csid, option)
 end
 
 -----------------------------------------------------------------
--- Variable for getNationTeleport and getRegionPoint
+-- Variable for addTeleport and getRegionPoint
 -----------------------------------------------------------------
 LEUJAOAM_ASSAULT_POINT = 0
 MAMOOL_ASSAULT_POINT = 1
@@ -70,20 +70,19 @@ ILRUSI_ASSAULT_POINT = 4
 NYZUL_ISLE_ASSAULT_POINT = 5
 
 dsp.besieged.addRunicPortal = function(player, portal)
-    player:addNationTeleport(dsp.teleport.nation.RUNIC_PORTAL, portal)
+    player:addTeleport(dsp.teleport.type.RUNIC_PORTAL, portal)
 end
 
 dsp.besieged.hasRunicPortal = function(player, portal)
-    local runicPortals = player:getNationTeleport(dsp.teleport.nation.RUNIC_PORTAL)
-    return bit.band(runicPortals, portal) ~= 0
+    return player:hasTeleport(dsp.teleport.type.RUNIC_PORTAL, portal)
 end
 
 dsp.besieged.hasAssaultOrders = function(player)
     local event = 0
     local keyitem = 0
 
-    for i = 0, 5 do
-        local ki = dsp.ki.LEBROS_ASSAULT_ORDERS + i
+    for i = 0, 4 do
+        local ki = dsp.ki.LEUJAOAM_ASSAULT_ORDERS + i
         if player:hasKeyItem(ki) then
             event = 120 + i
             keyitem = ki
@@ -99,11 +98,12 @@ dsp.besieged.getAstralCandescence = function()
     return 1 -- Hardcoded to 1 for now
 end
 
+dsp.besieged.badges = { 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 }
+
 dsp.besieged.getMercenaryRank = function(player)
     local rank = 0
-    local badges = { 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 }
     
-    for _, v in ipairs(badges) do
+    for _, v in ipairs(dsp.besieged.badges) do
         if player:hasKeyItem(v) then
             rank = rank + 1
         end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of Hu'Xzoi
---  MOB: Eo'Zdei
+--  Mob: Eo'zdei
 -- Animation Sub 0 Pot Form
 -- Animation Sub 1 Pot Form (reverse eye position)
 -- Animation Sub 2 Bar Form

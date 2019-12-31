@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor's Avatar
+--  Mob: Fomor's Avatar
 -----------------------------------
 mixins = {require("scripts/mixins/families/avatar")}
 

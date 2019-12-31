@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Nightraider
+--  Mob: Orcish Nightraider
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

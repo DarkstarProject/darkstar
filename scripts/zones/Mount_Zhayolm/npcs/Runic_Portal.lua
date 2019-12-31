@@ -5,19 +5,18 @@
 -- !pos 688.994 -23.960 351.496 61
 -----------------------------------
 local ID = require("scripts/zones/Mount_Zhayolm/IDs")
------------------------------------
+require("scripts/globals/teleports")
 require("scripts/globals/besieged")
 require("scripts/globals/missions")
-require("scripts/globals/teleports")
 -----------------------------------
 
 function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1 then
+    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.IMMORTAL_SENTRIES and player:getCharVar("AhtUrganStatus") == 1 then
         player:startEvent(111)
-    elseif player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES then
+    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
         if dsp.besieged.hasRunicPortal(player, dsp.teleport.runic_portal.HALVUNG) then
             player:startEvent(109)
         else

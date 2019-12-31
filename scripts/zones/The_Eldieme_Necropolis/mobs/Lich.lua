@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Lich
+--  Mob: Lich
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

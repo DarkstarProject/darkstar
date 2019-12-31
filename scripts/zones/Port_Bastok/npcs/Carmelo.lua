@@ -16,14 +16,14 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
-    local SirensTearProgress = player:getVar("SirensTear");
-    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
-    local LoveAndIce = player:getQuestStatus(BASTOK,LOVE_AND_ICE);
-    local LoveAndIceProgress = player:getVar("LoveAndIceProgress");
-    local ATestOfTrueLove = player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE);
-    local ATestOfTrueLoveProgress = player:getVar("ATestOfTrueLoveProgress");
-    local LoversInTheDusk = player:getQuestStatus(BASTOK,LOVERS_IN_THE_DUSK);
+    local SirensTear = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
+    local SirensTearProgress = player:getCharVar("SirensTear");
+    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_STARS_OF_IFRIT);
+    local LoveAndIce = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LOVE_AND_ICE);
+    local LoveAndIceProgress = player:getCharVar("LoveAndIceProgress");
+    local ATestOfTrueLove = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE);
+    local ATestOfTrueLoveProgress = player:getCharVar("ATestOfTrueLoveProgress");
+    local LoversInTheDusk = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LOVERS_IN_THE_DUSK);
 
     if (SirensTear == QUEST_ACCEPTED) then
         player:startEvent(6);
@@ -64,37 +64,37 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 6) then
-        player:setVar("SirensTear",1);
+        player:setCharVar("SirensTear",1);
     elseif (csid == 19) then
-        player:setVar("SirensTear",2);
+        player:setCharVar("SirensTear",2);
     elseif (csid == 185) then
-        player:addQuest(BASTOK,LOVE_AND_ICE);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.LOVE_AND_ICE);
         player:addKeyItem(dsp.ki.CARMELOS_SONG_SHEET);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CARMELOS_SONG_SHEET);
     elseif (csid == 186) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17356);
         else
-            player:setVar("LoveAndIceProgress",0);
+            player:setCharVar("LoveAndIceProgress",0);
             player:needToZone(true);
             player:addTitle(dsp.title.SORROW_DROWNER);
             player:addItem(17356);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17356); -- Lamia Harp
             player:addFame(BASTOK,120);
-            player:completeQuest(BASTOK,LOVE_AND_ICE);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.LOVE_AND_ICE);
         end
     elseif (csid == 270) then
-        player:addQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE);
     elseif (csid == 272) then
-        player:setVar("ATestOfTrueLoveProgress",4);
+        player:setCharVar("ATestOfTrueLoveProgress",4);
         player:needToZone(true);
     elseif (csid == 274) then
-        player:setVar("ATestOfTrueLoveProgress",0);
+        player:setCharVar("ATestOfTrueLoveProgress",0);
         player:needToZone(true);
         player:addFame(BASTOK,120);
-        player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE);
     elseif (csid == 275) then
-        player:addQuest(BASTOK,LOVERS_IN_THE_DUSK);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.LOVERS_IN_THE_DUSK);
         player:addKeyItem(dsp.ki.CHANSON_DE_LIBERTE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHANSON_DE_LIBERTE);
     end

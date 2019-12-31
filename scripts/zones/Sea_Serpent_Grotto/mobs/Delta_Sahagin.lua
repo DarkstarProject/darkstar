@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Delta Sahagin
+--  Mob: Delta Sahagin
 -- Note: PH for Zuug the Shoreleaper
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.ZUUG_THE_SHORELEAPER_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.ZUUG_THE_SHORELEAPER_PH, 10, 7200) -- 2 hours
 end

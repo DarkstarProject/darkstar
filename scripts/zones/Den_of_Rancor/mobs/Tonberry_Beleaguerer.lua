@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Beleaguerer
+--  Mob: Tonberry Beleaguerer
 -- Note: PH for Bistre-hearted Malberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
@@ -16,5 +16,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.BISTRE_HEARTED_MALBERRY_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.BISTRE_HEARTED_MALBERRY_PH, 10, 3600) -- 1 hour
 end

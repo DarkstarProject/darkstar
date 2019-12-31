@@ -15,9 +15,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local WelcometoBastok = player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK);
+    local WelcometoBastok = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.WELCOME_TO_BASTOK);
 
-    if (WelcometoBastok == QUEST_ACCEPTED and player:getVar("WelcometoBastok_Event") ~= 1 and player:getEquipID(dsp.slot.SUB) == 12415) then -- Shell Shield
+    if (WelcometoBastok == QUEST_ACCEPTED and player:getCharVar("WelcometoBastok_Event") ~= 1 and player:getEquipID(dsp.slot.SUB) == 12415) then -- Shell Shield
         player:startEvent(52);
     else
         player:messageSpecial(ID.text.BARTHOLOMEO_DIALOG);
@@ -30,8 +30,8 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    if (csid == 52 and player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK) == QUEST_ACCEPTED) then
-        player:setVar("WelcometoBastok_Event",1)
+    if (csid == 52 and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.WELCOME_TO_BASTOK) == QUEST_ACCEPTED) then
+        player:setCharVar("WelcometoBastok_Event",1)
     end
 
 end;

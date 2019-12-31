@@ -28,7 +28,7 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 #include "../../common/taskmgr.h"
-#include "../items/item_armor.h"
+#include "../items/item_equipment.h"
 #include "../spell.h"
 #include "lua_ability.h"
 #include "lua_baseentity.h"
@@ -64,6 +64,7 @@ class CStatusEffect;
 class CTradeContainer;
 class CItemPuppet;
 class CItemWeapon;
+class CItemFurnishing;
 class CInstance;
 class CWeaponSkill;
 class CZone;
@@ -120,7 +121,7 @@ namespace luautils
     template<class T>
     typename std::enable_if_t<std::is_same<bool, T>::value> pushArg(T arg) { lua_pushboolean(LuaHandle, arg); }
     template<class T>
-    typename std::enable_if_t<std::is_same<nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
+    typename std::enable_if_t<std::is_same<std::nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
 
     void pushFunc(int lua_func, int index = 0);
     void callFunc(int nargs);
@@ -130,7 +131,6 @@ namespace luautils
     int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
     int32 GetNPCByID(lua_State*);                                               // Returns NPC By Id
     int32 GetMobByID(lua_State*);                                               // Returns Mob By Id
-    int32 GetMobIDByJob(lua_State*);                                            // Return mobid by job
     int32 WeekUpdateConquest(lua_State*);
     int32 GetRegionOwner(lua_State*);                                           // узнаем страну, владеющую текущим регионом
     int32 GetRegionInfluence(lua_State*);                                       // Return influence graphics
@@ -186,9 +186,11 @@ namespace luautils
     int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);                  // when player enters a region of a zone
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);                  // when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
+    int32 OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID);
     int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type);                  // hourly conquest update
 
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                     // triggered when user targets npc and clicks action button
+    int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result, uint16 extras); // triggered when game triggers event update during cutscene with extra parameters (battlefield)
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);     // triggered when game triggers event update during cutscene
     int32 OnEventUpdate(CCharEntity* PChar, int8* string);                      // triggered when game triggers event update during cutscene
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);     // triggered when cutscene/event is completed
@@ -219,6 +221,7 @@ namespace luautils
 
     int32 OnMobInitialize(CBaseEntity* PMob);                                     // Used for passive trait
     int32 ApplyMixins(CBaseEntity* PMob);
+    int32 ApplyZoneMixins(CBaseEntity* PMob);
     int32 OnMobSpawn(CBaseEntity* PMob);                                          // triggers on mob spawn
     int32 OnMobRoamAction(CBaseEntity* PMob);                                     // triggers when event mob is ready for a custom roam action
     int32 OnMobRoam(CBaseEntity* PMob);
@@ -232,11 +235,16 @@ namespace luautils
 
     int32 OnPath(CBaseEntity* PEntity);                                           // triggers when a patrol npc finishes its pathfind
 
-    int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PInstance);                 //triggers when enter a bcnm
-    int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PInstance, uint8 LeaveCode);    //triggers when leaving a bcnm
-                                                                                    //Code 1=via Circle 2=warp/dc 3=win 4=lose
-    int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield);                   //triggers when successfully registered a bcnm
-    int32 OnBcnmDestroy(CBattlefield* PBattlefield);                            // triggers when BCNM is destroyed
+    int32 OnBattlefieldHandlerInitialise(CZone* PZone);
+    int32 OnBattlefieldInitialise(CBattlefield* PBattlefield);                    // what to do when initialising battlefield, battlefield:setLocalVar("lootId") here for any which have loot
+    int32 OnBattlefieldTick(CBattlefield* PBattlefield);
+    int32 OnBattlefieldStatusChange(CBattlefield* PBattlefield);
+
+    int32 OnBattlefieldEnter(CCharEntity* PChar, CBattlefield* PBattlefield);        // triggers when enter a bcnm
+    int32 OnBattlefieldLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode); // see battlefield.h BATTLEFIELD_LEAVE_CODE
+
+    int32 OnBattlefieldRegister(CCharEntity* PChar, CBattlefield* PBattlefield);    // triggers when successfully registered a bcnm
+    int32 OnBattlefieldDestroy(CBattlefield* PBattlefield);							// triggers when BCNM is destroyed
 
     int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action);                            // triggers when mob weapon skill is used
     int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);                             // triggers before mob weapon skill is used, returns 0 if the move is valid
@@ -276,6 +284,9 @@ namespace luautils
     bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events
 
     uint16 GetDespoilDebuff(uint16 itemId);                                   // Ask the database for an effectId based on Item despoiled (returns 0 if not in db)
+
+    void OnFurniturePlaced(CCharEntity* PChar, CItemFurnishing* itemId);
+    void OnFurnitureRemoved(CCharEntity* PChar, CItemFurnishing* itemId);
 };
 
 #endif //- _LUAUTILS_H -

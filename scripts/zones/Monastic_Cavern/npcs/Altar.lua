@@ -4,41 +4,37 @@
 -- Involved in Quests: The Circle of Time
 -- !pos 108 -2 -144 150
 -----------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Monastic_Cavern/IDs");
+local ID = require("scripts/zones/Monastic_Cavern/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
+function onTrigger(player, npc)
+    local circleOfTime = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME)
 
-    -- CIRCLE OF TIME (Bard AF3)
-    if (circleOfTime == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.STAR_RING1) and player:hasKeyItem(dsp.ki.MOON_RING)) then
-        if (player:getVar("circleTime") == 7 and GetMobByID(ID.mob.BUGABOO):isDead()) then
-            SpawnMob(ID.mob.BUGABOO):updateClaim(player);
-        elseif (player:getVar("circleTime") == 8) then
-            player:startEvent(3); -- Show final CS
+    if circleOfTime == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.STAR_RING1) and player:hasKeyItem(dsp.ki.MOON_RING) then
+        if player:getCharVar("circleTime") == 7 and npcUtil.popFromQM(player, npc, ID.mob.BUGABOO, {hide = 0}) then
+            -- no further action needed
+        elseif player:getCharVar("circleTime") == 8 then
+            player:startEvent(3)
         else
-            player:messageSpecial(ID.text.ALTAR);
-        end;
-
-    -- DEFAULT DIALOG
+            player:messageSpecial(ID.text.ALTAR)
+        end
     else
-        player:messageSpecial(ID.text.ALTAR);
-    end;
-end;
+        player:messageSpecial(ID.text.ALTAR)
+    end
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-    -- CIRCLE OF TIME
-    if (csid == 3) then
-        player:setVar("circleTime",9); -- After bugaboo is killed, and final CS shows up
-        player:delKeyItem(dsp.ki.MOON_RING);
-        player:delKeyItem(dsp.ki.STAR_RING1);
-    end;
-end;
+function onEventFinish(player, csid, option)
+    if csid == 3 then
+        player:setCharVar("circleTime", 9)
+        player:delKeyItem(dsp.ki.MOON_RING)
+        player:delKeyItem(dsp.ki.STAR_RING1)
+    end
+end

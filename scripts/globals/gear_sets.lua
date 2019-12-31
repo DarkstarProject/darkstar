@@ -6,9 +6,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 local matchtype = {
-    any           = 0,
+    any            = 0,
     earring_weapon = 1,
-    weapon_weapon  = 2
+    weapon_weapon  = 2,
+    ring_armor     = 3
 }
 
 -- placeholder for unknown mod types
@@ -116,14 +117,72 @@ local GearSets =  {
              {id = 110, items = {27649,27789,27929,28072,28209},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.CRITHITRATE, 3, 2, 0}} }, -- Skadi's Attire Set +1: Critical hit rate +3-9%
              {id = 111, items = {27648,27788,27928,28071,28208},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.DOUBLE_ATTACK, 3, 2, 0}} }, -- Ares' Armor Set +1: Double Attack +3-9%
              {id = 112, items = {10315,10598},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.DMGMAGIC, -5, 0, 0}} }, -- Alcedo Cuisses and Gauntlets: Magic damage taken -5%
+             {id = 113, items = {26204,25574,25790,25828,25879,25946}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.SUBTLE_BLOW, 5, 5, 0}} }, -- Sulevia's Armor Set +2: Subtle Blow +5-20 (Requires Sulevia's Ring to activate set effect)
+             {id = 114, items = {26206,25576,25792,25830,25881,25948}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.COUNTER, 4, 4, 0}} }, -- Hizamaru Armor Set +2: Counter +4-16% (Requires Hizamaru Ring to activate set effect)
+             {id = 115, items = {26207,25577,25793,25831,25882,25949}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.REFRESH, 1, 1, 0}} }, -- Inyanga Armor Set +2: Refresh +1-4 (Requires Inyanga Ring to activate set effect)
+             {id = 116, items = {26205,25575,25791,25829,25880,25947}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.REGEN, 3, 3, 0}} }, -- Meghanada Armor Set +2: Regen +3-12 (Requires Megahanada Ring to activate set effect)
+             {id = 117, items = {26208,25578,25794,25832,25883,25950}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.FAST_CAST, 1, 1, 0}} }, -- Jhakri Armor Set +2: Fast Cast +1-4% (Requires Jhakri Ring to activate set effect)
+             {id = 118, items = {26211,25569,25797,25385,25886,25953}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.STR, 8, 8, 0}, {dsp.mod.DEX, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}} }, -- Flamma Armor Set +2 STR/DEX/VIT +8-32 (Requires Flamma Ring to activate set effect)
+             {id = 121, items = {26210,25573,25796,25834,25885,25952}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.DEX, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}, {dsp.mod.CHR, 8, 8, 0}} }, -- Tali'ah Armor Set +2 DEX/VIT/CHR +8-32 (Requires Tali'ah Ring to activate set effect}
+             {id = 124, items = {26212,25570,25798,25836,25887,25954}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.DEX, 8, 8, 0}, {dsp.mod.AGI, 8, 8, 0}, {dsp.mod.CHR, 8, 8, 0}} }, -- Mummu Armor Set +2 DEX/AGI/CHR +8-32 (Requires Mummu Ring to activate set effect)
+             {id = 127, items = {26209,25572,25795,25833,25884,25951}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.STR, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}, {dsp.mod.MND, 8, 8, 0}} }, -- Ayanmo Armor Set +2 STR/VIT/MND +8-32 (Requires Ayanmo Ring to activate set effect)
+             {id = 130, items = {26213,25571,25799,25837,25888,25955}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.VIT, 8, 8, 0}, {dsp.mod.INT, 8, 8, 0}, {dsp.mod.MND, 8, 8, 0}} }, -- Mallquis Armor Set +2 VIT/INT/MND +8-32 (Requires Mallquis Ring to activate set effect)
+             {id = 133, items = {26191,23308,23643,23241,23576,23174,23509,23107,23442,23040,23375}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 WAR
+             {id = 136, items = {26191,23309,23644,23242,23577,23175,23510,23108,23443,23041,23376}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 MNK
+             {id = 139, items = {26085,23310,23645,23243,23578,23176,23511,23109,23444,23042,23377}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 WHM
+             {id = 142, items = {26085,23311,23646,23244,23579,23177,23512,23110,23445,23043,23378}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 BLM
+             {id = 145, items = {26085,23312,23647,23245,23580,23178,23513,23111,23446,23044,23379}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 RDM
+             {id = 148, items = {26191,23313,23648,23246,23581,23179,23514,23112,23447,23045,23380}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 THF
+             {id = 151, items = {26191,23314,23649,23247,23582,23180,23515,23113,23448,23046,23381}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 PLD
+             {id = 154, items = {26191,23315,23650,23248,23583,23181,23516,23114,23449,23047,23382}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 DRK
+             {id = 157, items = {26191,23316,23651,23249,23584,23182,23517,23115,23450,23048,23383}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 BST
+             {id = 160, items = {26085,23317,23652,23250,23585,23183,23518,23116,23451,23049,23384}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 BRD
+             {id = 163, items = {26191,23318,23653,23251,23586,23184,23519,23117,23452,23050,23385}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 RNG
+             {id = 166, items = {26191,23319,23654,23252,23587,23185,23520,23118,23453,23051,23386}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 SAM
+             {id = 169, items = {26191,23320,23655,23253,23588,23186,23521,23119,23454,23052,23387}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 NIN
+             {id = 172, items = {26191,23321,23656,23254,23589,23187,23522,23120,23455,23053,23388}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 DRG
+             {id = 175, items = {26342,23322,23657,23255,23590,23188,23523,23121,23456,23054,23389}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 SMN
+             {id = 178, items = {26085,23323,23658,23256,23591,23189,23524,23122,23457,23055,23390}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 BLU
+             {id = 181, items = {26191,23324,23659,23257,23592,23190,23525,23123,23458,23056,23391}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 COR
+             {id = 184, items = {26191,23325,23660,23258,23593,23191,23526,23124,23459,23057,23392}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 PUP
+             {id = 187, items = {26191,23326,23661,23259,23594,23192,23527,23125,23460,23058,23393}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 DNC (M)
+             {id = 190, items = {26191,23327,23662,23260,23595,23193,23528,23126,23461,23059,23394}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 DNC (F)
+             {id = 193, items = {26085,23328,23663,23261,23596,23194,23529,23127,23462,23060,23395}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 SCH
+             {id = 196, items = {26085,23329,23664,23262,23597,23195,23530,23128,23463,23061,23396}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 GEO
+             {id = 199, items = {26191,23330,23665,23263,23598,23196,23531,23129,23464,23062,23397}, matches = 2, matchType = matchtype.any, mods = {{dsp.mod.ACC, 15, 0, 0},{dsp.mod.RACC, 15, 0, 0},{dsp.mod.MACC, 15, 0, 0}} }, -- AF1 119 +2/3 RUN
         }
+
              -- increment id by (number of mods in previous gearset - 1)
 
 --              {id, {item, ids, in, no, particular, order}, minimum matches required, match type, mods{id, value, modvalue for each additional match, additional whole set bonus}
 
 local HipsterSets = {
     -- stick the ids of sets that need their own handling here e.g. Rubeus
-    {id = 34, hipster = true}
+    {id = 34, hipster = true},
+    -- AF1 119 +2/+3 sets have 6 possible matching slots, but only 4 tiers. Using hipster to enforce a cap on buff level above 5 matches.
+    {id = 133, hipster = true},
+    {id = 136, hipster = true},
+    {id = 139, hipster = true},
+    {id = 142, hipster = true},
+    {id = 145, hipster = true},
+    {id = 148, hipster = true},
+    {id = 151, hipster = true},
+    {id = 154, hipster = true},
+    {id = 157, hipster = true},
+    {id = 160, hipster = true},
+    {id = 163, hipster = true},
+    {id = 166, hipster = true},
+    {id = 169, hipster = true},
+    {id = 172, hipster = true},
+    {id = 175, hipster = true},
+    {id = 178, hipster = true},
+    {id = 181, hipster = true},
+    {id = 184, hipster = true},
+    {id = 187, hipster = true},
+    {id = 190, hipster = true},
+    {id = 193, hipster = true},
+    {id = 196, hipster = true},
+    {id = 199, hipster = true},
 }
 
 ------------------------------------------
@@ -181,6 +240,8 @@ end;
 function FindMatchByType(gearset, gearMatch)
     if (gearset.matchType == matchtype.any) then
         return true;
+    elseif (gearset.matchType == matchtype.ring_armor and (gearMatch[dsp.slot.HEAD+1] ~= nil or gearMatch[dsp.slot.BODY+1] ~= nil or gearMatch[dsp.slot.HANDS+1] ~= nil or gearMatch[dsp.slot.LEGS+1] ~= nil or gearMatch[dsp.slot.FEET+1] ~= nil) and (gearMatch[dsp.slot.RING1+1] ~= nil or gearMatch[dsp.slot.RING2+1] ~= nil)) then
+        return true;
     end
 
     for _, id in ipairs(gearMatch) do
@@ -211,7 +272,6 @@ function ApplyMod(player, gearset, matches)
 
     -- just in case some d00d decides to custom shit up and complain the script is b0rked
     if (addMatches < 0) then
-        printf("shitbag check your code | gearset: %u", gearset.id);
         return;
     end;
 
@@ -255,6 +315,38 @@ function HandleHipsterSet(player, gearset, matches)
         end;
         -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, dsp.mod.FASTCAST, modValue);
         player:addGearSetMod(gearset.id, dsp.mod.FASTCAST, modValue);
+        return;
+    -- AF1 119+2/+3 ACC/RACC/MACC Sets EXCEPT SMN
+    elseif (gearset.id >= 133 and gearset.id <= 199 and gearset.id ~= 175) then
+        local modValue = 0;
+        
+        if (matches == 2) then
+            modValue = 15; -- 2 matches
+        elseif (matches == 3) then
+            modValue = 30; -- 3 matches
+        elseif (matches == 4) then
+            modValue = 45; -- 4 matches
+        elseif (matches >= 5) then
+            modValue = 60; -- 5 or more matches
+        end;
+        player:addGearSetMod(gearset.id, dsp.mod.ACC, modValue);
+        player:addGearSetMod(gearset.id + 1, dsp.mod.RACC, modValue);
+        player:addGearSetMod(gearset.id + 2, dsp.mod.MACC, modValue);
+        return;
+    -- AF1 119 +2/+3 SMN Avatar:ACC/RACC/MACC (unimplemented)
+    elseif (gearset.id == 175) then
+        local modValue = 0;
+        
+        if (matches == 2) then
+            modValue = 15; -- 2 matches
+        elseif (matches == 3) then
+            modValue = 30; -- 3 matches
+        elseif (matches == 4) then
+            modValue = 45; -- 4 matches
+        elseif (matches >= 5) then
+            modValue = 60; -- 5 or more matches
+        end;
+        --Unimplemented method to add pet mods
         return;
     end
 end

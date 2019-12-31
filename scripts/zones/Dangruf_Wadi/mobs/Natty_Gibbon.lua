@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Natty Gibbon
+--  Mob: Natty Gibbon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

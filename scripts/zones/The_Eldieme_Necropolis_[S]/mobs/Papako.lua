@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Papako
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Papako
 -----------------------------------
 
 -- -----------------------------------

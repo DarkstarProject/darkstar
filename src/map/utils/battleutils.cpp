@@ -339,21 +339,19 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    uint8 GetEnmityModDamage(uint8 level)
+    int16 GetEnmityModDamage(int16 level)
     {
-        if (level >= 100) { level = 99; }
-
-        return ((31 * level) / 50) + 6;
+        return level * 31 / 50 + 6;
     }
 
-    uint8 GetEnmityModCure(uint8 level)
+    int16 GetEnmityModCure(int16 level)
     {
         if (level <= 10)
             return level + 10;
         else if (level <= 50)
-            return (20 + (level - 10) / 2);
-        else
-            return (uint8)(40 + (level - 50) * 0.6);
+            return 20 + (level - 10) / 2;
+
+        return (int16)(40 + (level - 50) * 0.6);
     }
 
     /************************************************************************
@@ -500,7 +498,7 @@ namespace battleutils
 
         if (PAttacker->objtype == TYPE_PC)
         {
-            CItemArmor* waist = ((CCharEntity*)PAttacker)->getEquip(SLOT_WAIST);
+            CItemEquipment* waist = ((CCharEntity*)PAttacker)->getEquip(SLOT_WAIST);
             if (waist && waist->getID() == obi[element])
             {
                 obiBonus = true;
@@ -589,7 +587,11 @@ namespace battleutils
                 if (PDefender->objtype == TYPE_PC)
                 {
                     // Check for skillup
-                    uint8 skilltype = PDefender->m_Weapons[SLOT_MAIN]->getSkillType();
+                    uint8 skilltype = 0;
+                    if (auto weapon = dynamic_cast<CItemWeapon*>(PDefender->m_Weapons[SLOT_MAIN]))
+                    {
+                        skilltype = weapon->getSkillType();
+                    }
                     charutils::TrySkillUP((CCharEntity*)PDefender, (SKILLTYPE)skilltype, PAttacker->GetMLevel());
                 }
 
@@ -597,9 +599,9 @@ namespace battleutils
                 bool crit = battleutils::GetCritHitRate(PDefender, PAttacker, true) > dsprand::GetRandomNumber(100);
 
                 // Dmg math.
-                float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0);
+                float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0.f);
                 uint16 dmg = (uint32)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
-                dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), PDefender->m_Weapons[SLOT_MAIN], dmg, PHYSICAL_ATTACK_TYPE::NORMAL, SLOT_MAIN);
+                dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), dynamic_cast<CItemWeapon*>(PDefender->m_Weapons[SLOT_MAIN]), dmg, PHYSICAL_ATTACK_TYPE::NORMAL, SLOT_MAIN);
                 uint16 bonus = dmg * (PDefender->getMod(Mod::RETALIATION) / 100);
                 dmg = dmg + bonus;
 
@@ -713,7 +715,7 @@ namespace battleutils
 
                 for (auto&& slot : {SLOT_SUB, SLOT_BODY, SLOT_LEGS, SLOT_HEAD, SLOT_HANDS, SLOT_FEET})
                 {
-                    CItemArmor* PItem = PCharDef->getEquip(slot);
+                    CItemEquipment* PItem = PCharDef->getEquip(slot);
                     if (PItem)
                     {
                         uint8 chance;
@@ -1613,13 +1615,14 @@ namespace battleutils
         int8 shieldSize = 3;
         int32 base = 0;
         float blockRateMod = (100.0f + PDefender->getMod(Mod::SHIELDBLOCKRATE)) / 100.0f;
-        uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
+        auto weapon = dynamic_cast<CItemWeapon*>(PAttacker->m_Weapons[SLOT_MAIN]);
+        uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(weapon ? weapon->getSkillType() : 0));
         uint16 blockskill = PDefender->GetSkill(SKILL_SHIELD);
 
         if (PDefender->objtype == TYPE_PC)
         {
             CCharEntity* PChar = (CCharEntity*)PDefender;
-            CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
+            CItemEquipment* PItem = (CItemEquipment*)PChar->getEquip(SLOT_SUB);
 
             if (PItem)
                 shieldSize = PItem->getShieldSize();
@@ -1732,7 +1735,9 @@ namespace battleutils
             validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
         }
 
-        if (validWeapon && PDefender->PAI->IsEngaged())
+        bool hasGuardSkillRank = (GetSkillRank(SKILL_GUARD, PDefender->GetMJob()) > 0 || GetSkillRank(SKILL_GUARD, PDefender->GetSJob()) > 0);
+
+        if (validWeapon && hasGuardSkillRank && PDefender->PAI->IsEngaged())
         {
             // assuming this is like parry
             float skill = (float)PDefender->GetSkill(SKILL_GUARD) + PDefender->getMod(Mod::GUARD);
@@ -1762,6 +1767,7 @@ namespace battleutils
 
     int32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE physicalAttackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
     {
+        auto weapon = GetEntityWeapon(PAttacker, (SLOTTYPE)slot);
         giveTPtoAttacker = giveTPtoAttacker && !PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI);
         giveTPtoVictim = giveTPtoVictim && physicalAttackType != PHYSICAL_ATTACK_TYPE::DAKEN;
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
@@ -1784,7 +1790,7 @@ namespace battleutils
         }
         else
         {
-            damageType = (DAMAGETYPE)PAttacker->m_Weapons[slot]->getDmgType();
+            damageType = (DAMAGETYPE)(weapon ? weapon->getDmgType() : 0);
 
             if (isRanged)
             {
@@ -1809,6 +1815,8 @@ namespace battleutils
                     case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(Mod::SLASHRES))) / 1000; break;
                     case DAMAGE_IMPACT:   damage = (damage * (PDefender->getMod(Mod::IMPACTRES))) / 1000; break;
                     case DAMAGE_HTH:      damage = (damage * (PDefender->getMod(Mod::HTHRES))) / 1000; break;
+                    default:
+                        break;
                 }
             }
             else
@@ -1970,20 +1978,21 @@ namespace battleutils
             else
             {
                 int16 delay = PAttacker->GetWeaponDelay(true);
+                auto sub_weapon = dynamic_cast<CItemWeapon*>(PAttacker->m_Weapons[SLOT_SUB]);
 
-                if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
-                    PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-                    PAttacker->m_Weapons[slot]->getSkillType() != SKILL_HAND_TO_HAND)
+                if (sub_weapon && sub_weapon->getDmgType() > 0 &&
+                    sub_weapon->getDmgType() < 4 &&
+                    weapon->getSkillType() != SKILL_HAND_TO_HAND)
                 {
                     delay = delay / 2;
                 }
 
                 float ratio = 1.0f;
 
-                if (PAttacker->m_Weapons[slot]->getSkillType() == SKILL_HAND_TO_HAND)
+                if (weapon->getSkillType() == SKILL_HAND_TO_HAND)
                     ratio = 2.0f;
 
-                baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
+                baseTp = CalculateBaseTP((int16)(delay * 60.0f / 1000.0f / ratio));
             }
 
 
@@ -2028,6 +2037,7 @@ namespace battleutils
 
     int32 TakeWeaponskillDamage(CCharEntity* PAttacker, CBattleEntity* PDefender, int32 damage, ATTACKTYPE attackType, DAMAGETYPE damageType, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier)
     {
+        auto weapon = GetEntityWeapon(PAttacker, (SLOTTYPE)slot);
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
 
         if (damage > 0)
@@ -2116,16 +2126,18 @@ namespace battleutils
             {
                 int16 delay = PAttacker->GetWeaponDelay(true);
 
-                if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
-                    PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-                    PAttacker->m_Weapons[slot]->getSkillType() != SKILL_HAND_TO_HAND)
+                auto sub_weapon = dynamic_cast<CItemWeapon*>(PAttacker->m_Weapons[SLOT_SUB]);
+
+                if (sub_weapon && sub_weapon->getDmgType() > 0 &&
+                    sub_weapon->getDmgType() < 4 &&
+                    weapon->getSkillType() != SKILL_HAND_TO_HAND)
                 {
                     delay /= 2;
                 }
 
                 float ratio = 1.0f;
 
-                if (PAttacker->m_Weapons[slot]->getSkillType() == SKILL_HAND_TO_HAND)
+                if (weapon && weapon->getSkillType() == SKILL_HAND_TO_HAND)
                     ratio = 2.0f;
 
                 baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
@@ -2272,10 +2284,10 @@ namespace battleutils
                 crithitrate += PCharAttacker->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE, PCharAttacker);
 
                 // Add Fencer crit hit rate
-                CItemWeapon* PMain = PCharAttacker->m_Weapons[SLOT_MAIN];
-                CItemWeapon* PSub = PCharAttacker->m_Weapons[SLOT_SUB];
-                if (!PMain->isTwoHanded() && !PMain->isHandToHand() &&
-                    (PSub->getSkillType() == SKILL_NONE || PSub->IsShield()))
+                CItemWeapon* PMain = dynamic_cast<CItemWeapon*>(PCharAttacker->m_Weapons[SLOT_MAIN]);
+                CItemWeapon* PSub = dynamic_cast<CItemWeapon*>(PCharAttacker->m_Weapons[SLOT_SUB]);
+                if (PMain && !PMain->isTwoHanded() && !PMain->isHandToHand() &&
+                    (!PSub || PSub->getSkillType() == SKILL_NONE || PCharAttacker->m_Weapons[SLOT_SUB]->IsShield()))
                 {
                     crithitrate += PCharAttacker->getMod(Mod::FENCER_CRITHITRATE);
                 }
@@ -2312,12 +2324,12 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent)
+    float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, float bonusAttPercent)
     {
         // used to apply a % of attack bonus
         float attPercentBonus = 0;
         if (bonusAttPercent >= 1)
-            attPercentBonus = (float)(PAttacker->ATT() * bonusAttPercent / 100);
+            attPercentBonus = PAttacker->ATT() * bonusAttPercent;
 
         //wholly possible for DEF to be near 0 with the amount of debuffs/effects now.
         float ratio = (float)(PAttacker->ATT() + attPercentBonus) / (float)((PDefender->DEF() == 0) ? 1 : PDefender->DEF());
@@ -2553,6 +2565,9 @@ namespace battleutils
 
     uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
     {
+        if (!PWeapon)
+            return 0;
+
         //checking players weapon hit count
         uint8 num = PWeapon->getHitCount();
 
@@ -3133,7 +3148,7 @@ namespace battleutils
         return damage;
     }
 
-    CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
+    CItemEquipment* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
     {
         DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK2);
 
@@ -3141,28 +3156,13 @@ namespace battleutils
         {
             return (((CCharEntity*)PEntity)->getEquip(Slot));
         }
-        else if (PEntity->objtype == TYPE_NPC)
-        {
-            return nullptr;
-        }
-
         return nullptr;
     }
 
     CItemWeapon* GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot)
     {
         DSP_DEBUG_BREAK_IF(Slot < SLOT_MAIN || Slot > SLOT_AMMO);
-
-        if (PEntity->objtype == TYPE_PC)
-        {
-            return (CItemWeapon*)(((CCharEntity*)PEntity)->getEquip(Slot));
-        }
-        else if (PEntity->objtype == TYPE_NPC)
-        {
-            return (CItemWeapon*)(((CMobEntity*)PEntity)->m_Weapons[Slot]);
-        }
-
-        return nullptr;
+        return dynamic_cast<CItemWeapon*>(((CMobEntity*)PEntity)->m_Weapons[Slot]);
     }
 
     void MakeEntityStandUp(CBattleEntity* PEntity)
@@ -3419,14 +3419,14 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount)
+    void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, int32 amount)
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
         DSP_DEBUG_BREAK_IF(PTarget == nullptr);
 
         for (SpawnIDList_t::const_iterator it = PSource->SpawnMOBList.begin(); it != PSource->SpawnMOBList.end(); ++it)
         {
-            CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+            CMobEntity* PCurrentMob = static_cast<CMobEntity*>(it->second);
 
             if (PCurrentMob->m_HiPCLvl > 0 && PCurrentMob->PEnmityContainer->HasID(PTarget->id))
             {
@@ -3516,7 +3516,16 @@ namespace battleutils
         return damage;
     }
 
-
+    uint16 doConsumeManaEffect(CCharEntity* m_PChar, uint32 damage)
+    {
+        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CONSUME_MANA))
+        {
+            damage += (uint32)(floor(m_PChar->health.mp / 10));
+            m_PChar->health.mp = 0;
+            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CONSUME_MANA);
+        }
+        return damage;
+    }
 
     /************************************************************************
     *                                                                       *
@@ -3600,7 +3609,7 @@ namespace battleutils
             lvl = PChar->GetSLevel();
 
         // Hunters bracers+1 will add an extra shot
-        CItemArmor* PItemHands = PChar->getEquip(SLOT_HANDS);
+        CItemEquipment* PItemHands = PChar->getEquip(SLOT_HANDS);
 
 
         if (PItemHands && PItemHands->getID() == 14900)
@@ -3624,9 +3633,6 @@ namespace battleutils
 
         return shotCount;
     }
-
-
-
 
     /************************************************************************
     *                                                                       *
@@ -3654,22 +3660,23 @@ namespace battleutils
 
 
         // multihit's just multiply jump damage
-        uint16 subType = PAttacker->m_Weapons[SLOT_SUB]->getDmgType();
+        auto sub = dynamic_cast<CItemWeapon*>(PAttacker->m_Weapons[SLOT_SUB]);
         uint8 numattacksLeftHand = 0;
 
         //sub weapon is equipped
-        if ((subType > 0 && subType < 4))
-            numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_SUB]);
+        if (sub && sub->getDmgType() > 0 && sub->getDmgType() < 4)
+            numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, sub);
+
+        auto PWeapon = dynamic_cast<CItemWeapon*>(PAttacker->m_Weapons[SLOT_MAIN]);
 
         //h2h equipped
-        if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND)
-            numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_MAIN]);
+        if (PWeapon && PWeapon->getSkillType() == SKILL_HAND_TO_HAND)
+            numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PWeapon);
 
         // normal multi hit from left hand
-        uint8 numattacksRightHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_MAIN]);
+        uint8 numattacksRightHand = battleutils::CheckMultiHits(PAttacker, PWeapon);
 
 
-        CItemWeapon* PWeapon = PAttacker->m_Weapons[SLOT_MAIN];
         uint8 fstrslot = SLOT_MAIN;
 
         uint8 hitrate = battleutils::GetHitRate(PAttacker, PVictim);
@@ -3686,9 +3693,9 @@ namespace battleutils
                 if (PVictim->isDead())
                     break;
 
-                if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() != SKILL_HAND_TO_HAND && i >= numattacksRightHand)
+                if (PWeapon && PWeapon->getSkillType() != SKILL_HAND_TO_HAND && i >= numattacksRightHand)
                 {
-                    PWeapon = PAttacker->m_Weapons[SLOT_SUB];
+                    PWeapon = dynamic_cast<CItemWeapon*>(PAttacker->m_Weapons[SLOT_SUB]);
                     fstrslot = SLOT_SUB;
                 }
             }
@@ -3700,11 +3707,11 @@ namespace battleutils
                 if (!battleutils::IsAbsorbByShadow(PVictim))
                 {
                     // successful hit, add damage
-                    uint16 AttMultiplerPercent = 0;
+                    float AttMultiplerPercent = 0.f;
 
                     // get jump attack bonus from gear
                     if (PAttacker->objtype == TYPE_PC)
-                        AttMultiplerPercent = PAttacker->getMod(Mod::JUMP_ATT_BONUS);
+                        AttMultiplerPercent = PAttacker->getMod(Mod::JUMP_ATT_BONUS) / 100.f;
 
                     float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent);
                     damageForRound = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PVictim, SLOT_MAIN)) * DamageRatio);
@@ -3712,7 +3719,7 @@ namespace battleutils
                     // bonus applies to jump only, not high jump
                     if (tier == 1)
                     {
-                        float jumpBonus = ((PAttacker->VIT() / (float)256) + 1);
+                        float jumpBonus = 1.f + PAttacker->VIT() / 256.f;
                         damageForRound = (uint16)(damageForRound * jumpBonus);
                     }
 
@@ -4233,7 +4240,7 @@ namespace battleutils
 
     int32 HandleSteamJacket(CBattleEntity* PDefender, int32 damage, int16 damageType)
     {
-        uint32 steamJacketType = PDefender->GetLocalVar("steam_jacket_type");
+        auto steamJacketType = (int16)PDefender->GetLocalVar("steam_jacket_type");
         int16 steamJacketHits = (int16)PDefender->GetLocalVar("steam_jacket_hits");
 
         if (steamJacketType != damageType)
@@ -5386,10 +5393,10 @@ namespace battleutils
                 }
 
                 // Add Fencer TP Bonus
-                CItemWeapon* PMain = PChar->m_Weapons[SLOT_MAIN];
-                CItemWeapon* PSub = PChar->m_Weapons[SLOT_SUB];
-                if (!PMain->isTwoHanded() && !PMain->isHandToHand() &&
-                    (PSub->getSkillType() == SKILL_NONE || PSub->IsShield()))
+                CItemWeapon* PMain = dynamic_cast<CItemWeapon*>(PEntity->m_Weapons[SLOT_MAIN]);
+                CItemWeapon* PSub = dynamic_cast<CItemWeapon*>(PEntity->m_Weapons[SLOT_SUB]);
+                if (PMain && !PMain->isTwoHanded() && !PMain->isHandToHand() &&
+                    (!PSub || PSub->getSkillType() == SKILL_NONE || PEntity->m_Weapons[SLOT_SUB]->IsShield()))
                 {
                     tp += PEntity->getMod(Mod::FENCER_TP_BONUS);
                 }
@@ -5434,7 +5441,7 @@ namespace battleutils
         return 0;
     }
 
-    int32 GetScaledItemModifier(CBattleEntity* PEntity, CItemArmor* PItem, Mod mod)
+    int32 GetScaledItemModifier(CBattleEntity* PEntity, CItemEquipment* PItem, Mod mod)
     {
         if (PEntity->GetMLevel() < PItem->getReqLvl())
         {

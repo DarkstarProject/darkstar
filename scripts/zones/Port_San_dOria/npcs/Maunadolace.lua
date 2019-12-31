@@ -1,21 +1,30 @@
 -----------------------------------
 -- Area: Port San d'Oria
---   NPC: Maunadolace
+--  NPC: Maunadolace
 -- Type: Standard NPC
 -- !pos -22.800 -9.3 -148.645 232
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-----------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED)
+    end
+end
 
-function onTrigger(player,npc)
-    player:startEvent(713);
-end;
+function onTrigger(player, npc)
+    if player:getCharVar("thePickpocket") == 1 then
+        player:showText(npc, ID.text.PICKPOCKET_MAUNADOLACE)
+    else
+        player:startEvent(713)
+    end
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

@@ -14,13 +14,13 @@ end;
 
 function onTrigger(player,npc)
     local ZilartProgress = player:getCurrentMission(ZILART);
-    local ZVar = player:getVar("ZilartStatus");
+    local ZVar = player:getCharVar("ZilartStatus");
 
     if (player:getZPos() < 200) then
-        if (ZilartProgress == THE_GATE_OF_THE_GODS and ZVar == 0) then
+        if (ZilartProgress == dsp.mission.id.zilart.THE_GATE_OF_THE_GODS and ZVar == 0) then
             player:startEvent(3); -- First time.
-        elseif (ZilartProgress ~= 255 and ZilartProgress > THE_GATE_OF_THE_GODS or -- If player has not done any ZM, Progress == 255
-         (ZilartProgress == THE_GATE_OF_THE_GODS and ZVar > 0)) then
+        elseif (ZilartProgress ~= dsp.mission.id.zilart.NONE and ZilartProgress > dsp.mission.id.zilart.THE_GATE_OF_THE_GODS or -- If player has not done any ZM, Progress == 255
+         (ZilartProgress == dsp.mission.id.zilart.THE_GATE_OF_THE_GODS and ZVar > 0)) then
             player:startEvent(10);
         else
             player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
@@ -37,7 +37,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 3) then
-        player:setVar("ZilartStatus",1);
+        player:setCharVar("ZilartStatus",1);
     end
 
 end;

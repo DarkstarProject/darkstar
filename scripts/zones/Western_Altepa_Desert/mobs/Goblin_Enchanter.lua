@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Enchanter
+--  Mob: Goblin Enchanter
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Beadeaux (S)
---  MOB: Gold Quadav
+-- Area: Beadeaux [S]
+--  Mob: Gold Quadav
 -- Note: PH for Da'Dha Hundredmask
 -----------------------------------
 local ID = require("scripts/zones/Beadeaux_[S]/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.DA_DHA_HUNDREDMASK_PH,12,7200); -- 2 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.DA_DHA_HUNDREDMASK_PH,12,7200); -- 2 hours
 end;

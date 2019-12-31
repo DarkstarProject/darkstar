@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
---  MOB: Myxomycete
+--  Mob: Myxomycete
 -- Note: PH for Noble Mold
 -----------------------------------
 local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs")
@@ -13,7 +13,7 @@ function onMobRoam(mob)
     local weather = mob:getWeather()
 
     if weather == dsp.weather.RAIN or weather == dsp.weather.SQUALL then
-        if phOnDespawn(mob, ID.mob.NOBLE_MOLD_PH, 100, math.random(43200, 57600), true) then -- 12 to 16 hours
+        if dsp.mob.phOnDespawn(mob, ID.mob.NOBLE_MOLD_PH, 100, math.random(43200, 57600), true) then -- 12 to 16 hours
             local p = mob:getPos()
             GetMobByID(ID.mob.NOBLE_MOLD):setSpawn(p.x, p.y, p.z, p.rot)
             DespawnMob(mob:getID())

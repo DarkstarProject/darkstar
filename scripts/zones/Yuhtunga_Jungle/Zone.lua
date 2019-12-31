@@ -9,6 +9,7 @@ require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
 require("scripts/globals/helm")
 require("scripts/globals/zone")
+require("scripts/globals/beastmentreasure")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -20,6 +21,12 @@ function onInitialize(zone)
 
     dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+
+    dsp.bmt.updatePeddlestox(dsp.zone.YUHTUNGA_JUNGLE, ID.npc.PEDDLESTOX)
+end
+
+function onGameDay()
+    dsp.bmt.updatePeddlestox(dsp.zone.YUHTUNGA_JUNGLE, ID.npc.PEDDLESTOX)
 end
 
 function onConquestUpdate(zone, updatetype)

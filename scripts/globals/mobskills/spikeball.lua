@@ -1,16 +1,10 @@
 ---------------------------------------------------
 -- Spikeball
--- Additional effect: Poison.
--- Range is 13.5 yalms.
--- Additional Effect: Poison is 3 HP/tick.
--- Poison effect may not always process.
--- Removes all Shadow Images on the target.
+-- Throws a spiky projectile at a single target. Additional effect: Poison
 ---------------------------------------------------
-
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
-
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -18,15 +12,17 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.POISON
-
-    MobStatusEffectMove(mob, target, typeEffect, 3, 3, 160)
-
+    
     local numhits = 1
     local accmod = 1
     local dmgmod = 2.8
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
     target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.PIERCING)
+
+    if dmg > 0 then
+        MobStatusEffectMove(mob, target, dsp.effect.POISON, 3, 3, 160)
+    end
+
     return dmg
 end

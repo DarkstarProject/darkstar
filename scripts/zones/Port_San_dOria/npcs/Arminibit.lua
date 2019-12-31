@@ -9,7 +9,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
+    if (player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_HOLY_CREST) == QUEST_AVAILABLE) then
         player:startEvent(24);
     else
         player:startEvent(587);
@@ -36,7 +36,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 24) then
-        player:setVar("TheHolyCrest_Event",1);
+        player:setCharVar("TheHolyCrest_Event",1);
     end
 
 end;

@@ -217,9 +217,9 @@ enum class Mod
     SMITE                     = 898, // Raises attack when using H2H or 2H weapons (256 scale)
     TACTICAL_GUARD            = 899, // Tp increase when guarding
 
-    HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap) Truncate at decimal, do not round.
-    HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?) Truncate at decimal, do not round.
-    HASTE_GEAR                = 384, // Haste (and Slow) from equipment - 1024 base! (256 cap) Truncate at decimal, do not round.
+    HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 10000 base, 375 = 3.75%
+    HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 10000 base, 375 = 3.75%
+    HASTE_GEAR                = 384, // Haste (and Slow) from equipment - 10000 base, 375 = 3.75%
     SPELLINTERRUPT            = 168, // % Spell Interruption Rate
     MOVE                      = 169, // % Movement Speed
     FASTCAST                  = 170, // Increases Spell Cast Time (TRAIT)
@@ -289,12 +289,16 @@ enum class Mod
     DEATHRES                  = 255, // Used by gear and ATMA that give resistance to instance KO
 
     PARALYZE                  = 257, // Paralyze -- percent chance to proc
-    MIJIN_GAKURE              = 258, // Tracks whether or not you used this ability to die.
+    MIJIN_RERAISE             = 258, // Augments Mijin Gakure
     DUAL_WIELD                = 259, // Percent reduction in dual wield delay.
 
     // Warrior
     DOUBLE_ATTACK             = 288, // Percent chance to proc
     WARCRY_DURATION           = 483, // Warcy duration bonus from gear
+    BERSERK_EFFECT            = 948, // Conqueror Berserk Effect
+    BERSERK_DURATION          = 954, // Berserk Duration
+    AGGRESSOR_DURATION        = 955, // Aggressor Duration
+    DEFENDER_DURATION         = 956, // Defender Duration
 
     // Monk
     BOOST_EFFECT              = 97,  // Boost power in tenths
@@ -302,9 +306,9 @@ enum class Mod
     CHAKRA_REMOVAL            = 124, // Extra statuses removed by Chakra
     SUBTLE_BLOW               = 289, // How much TP to reduce.
     COUNTER                   = 291, // Percent chance to counter
-    KICK_ATTACK               = 292, // Percent chance to kick
+    KICK_ATTACK_RATE          = 292, // Percent chance to kick
     PERFECT_COUNTER_ATT       = 428, // TODO: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
-    FOOTWORK_ATT_BONUS        = 429, // TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+    FOOTWORK_ATT_BONUS        = 429, // Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 25/256 to 38/256)
     COUNTERSTANCE_EFFECT      = 543, // Counterstance effect in percents
     DODGE_EFFECT              = 552, // Dodge effect in percents
     FOCUS_EFFECT              = 561, // Focus effect in percents
@@ -440,6 +444,7 @@ enum class Mod
 
     // Blue Mage
     BLUE_POINTS               = 309, // Tracks extra blue points
+    BLUE_LEARN_CHANCE         = 945, // Additional chance to learn blue magic
 
     // Corsair
     EXP_BONUS                 = 382, //
@@ -544,6 +549,7 @@ enum class Mod
 
     TP_BONUS                  = 345, //
     SAVETP                    = 880, // SAVETP Effect for Miser's Roll / ATMA / Hagakure.
+    CONSERVE_TP               = 944, // Conserve TP trait, random chance between 10 and 200 TP
 
     // Stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
     FIRE_AFFINITY_DMG         = 347, // They're stored separately due to Magian stuff - they can grant different levels of
@@ -576,6 +582,8 @@ enum class Mod
     ADDS_WEAPONSKILL_DYN      = 356, // In Dynamis
 
     STEALTH                   = 358, //
+    SNEAK_DURATION            = 946, // Additional duration in seconds
+    INVISIBLE_DURATION        = 947, // Additional duration in seconds
 
     MAIN_DMG_RATING           = 366, // adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
     SUB_DMG_RATING            = 367, // adds damage rating to off hand weapon
@@ -650,6 +658,14 @@ enum class Mod
     ITEM_SPIKES_TYPE          = 499, // Type spikes an item has
     ITEM_SPIKES_DMG           = 500, // Damage of an items spikes
     ITEM_SPIKES_CHANCE        = 501, // Chance of an items spike proc
+    // ITEM_ADDEFFECT_TYPE       = 431, // 1 = Status Effect/DMG/HP Drain, 2 = MP Drain, 3 = TP Drain, 4 = Dispel, 5 = Self-Buff, 6 = Instant Death
+    // ITEM_SUBEFFECT            = 499, // Animation ID of Spikes and Additional Effects
+    // ITEM_ADDEFFECT_DMG        = 500, // Damage of an items Additional Effect or Spikes
+    // ITEM_ADDEFFECT_CHANCE     = 501, // Chance of an items Additional Effect or Spikes
+    // ITEM_ADDEFFECT_ELEMENT    = 950, // Element of the Additional Effect or Spikes, for resist purposes
+    // ITEM_ADDEFFECT_STATUS     = 951, // Status Effect ID to try to apply via Additional Effect or Spikes
+    // ITEM_ADDEFFECT_POWER      = 952, // Base Power for effect in MOD_ITEM_ADDEFFECT_STATUS
+    // ITEM_ADDEFFECT_DURATION   = 953, // Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
 
     GOV_CLEARS                = 496, // 4% bonus per Grounds of Valor Page clear
 
@@ -761,6 +777,8 @@ enum class Mod
     ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
+    WS_NO_DEPLETE             = 949, // % chance a Weaponskill depletes no TP.
+    WS_DEX_BONUS              = 957, // % bonus to dex_wsc.
 
     EXPERIENCE_RETAINED       = 914, // Experience points retained upon death (this is a percentage)
     CAPACITY_BONUS            = 915, // Capacity point bonus granted
@@ -770,9 +788,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 944, // stuff
-    // SPARE = 945, // stuff
-    // SPARE = 946, // stuff
+    // SPARE = 958, // stuff
+    // SPARE = 959, // stuff
+    // SPARE = 960, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

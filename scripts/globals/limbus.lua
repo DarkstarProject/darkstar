@@ -318,8 +318,8 @@ function LimbusEntrance(player, entrance)
 end
 
 function ResetPlayerLimbusVariable(player)
-    player:setVar("characterLimbusKey", 0)
-    player:setVar("LimbusID", 0)
+    player:setCharVar("characterLimbusKey", 0)
+    player:setCharVar("LimbusID", 0)
 end
 
 function GenerateLimbusKey()
@@ -759,75 +759,57 @@ function ResetKeyForEmptyLimbus(player, instanceID)
         {
             [1290] = function (x)
                 SetServerVariable("[NW_Apollyon]UniqueID", 0)
-                print("[NW_Apollyon]KeyDelete")
             end,
             [1291] = function (x)
                 SetServerVariable("[SW_Apollyon]UniqueID", 0)
-                print("[SW_Apollyon]KeyDelete")
             end,
             [1292] = function (x)
                 SetServerVariable("[NE_Apollyon]UniqueID", 0)
-                print("[NE_Apollyon]KeyDelete")
             end,
             [1293] = function (x)
                 SetServerVariable("[SE_Apollyon]UniqueID", 0)
-                print("[SE_Apollyon]KeyDelete")
             end,
             [1294] = function (x)
                 SetServerVariable("[CS_Apollyon]UniqueID", 0)
-                print("[CS_Apollyon]KeyDelete")
             end,
             [1295] = function (x)
                 SetServerVariable("[CS_Apollyon_II]UniqueID", 0)
-                print("[CS_Apollyon_II]KeyDelete")
             end,
             [1296] = function (x)
                 SetServerVariable("[Central_Apollyon]UniqueID", 0)
-                print("[Central_Apollyon]KeyDelete")
             end,
             [1297] = function (x)
                 SetServerVariable("[Central_Apollyon_II]UniqueID", 0)
-                print("[Central_Apollyon_II]KeyDelete")
             end,
             [1298] = function (x)
                 SetServerVariable("[Temenos_W_Tower]UniqueID", 0)
-                print("[Temenos_W_Tower]KeyDelete")
             end,
             [1299] = function (x)
                 SetServerVariable("[Temenos_N_Tower]UniqueID", 0)
-                print("[Temenos_N_Tower]KeyDelete")
             end,
             [1300] = function (x)
                 SetServerVariable("[Temenos_E_Tower]UniqueID", 0)
-                print("[Temenos_E_Tower]KeyDelete")
             end,
             [1301] = function (x)
                 SetServerVariable("[C_Temenos_Base]UniqueID", 0)
-                print("[C_Temenos_Base]KeyDelete")
             end,
             [1302] = function (x)
                 SetServerVariable("[C_Temenos_Base_II]UniqueID", 0)
-                print("[C_Temenos_Base_II]KeyDelete")
             end,
             [1303] = function (x)
                 SetServerVariable("[C_Temenos_1st]UniqueID", 0)
-                print("[C_Temenos_1st]KeyDelete")
             end,
             [1304] = function (x)
                 SetServerVariable("[C_Temenos_2nd]UniqueID", 0)
-                print("[C_Temenos_2nd]KeyDelete")
             end,
             [1305] = function (x)
                 SetServerVariable("[C_Temenos_3rd]UniqueID", 0)
-                print("[C_Temenos_3rd]KeyDelete")
             end,
             [1306] = function (x)
                 SetServerVariable("[C_Temenos_4th]UniqueID", 0)
-                print("[C_Temenos_4th]KeyDelete")
             end,
             [1307] = function (x)
                 SetServerVariable("[C_Temenos_4th_II]UniqueID", 0)
-                print("[C_Temenos_4th_II]KeyDelete")
             end,
         }
     end
@@ -858,8 +840,8 @@ function GetInstanceRegion(instanceID)
 end
 
 function RegisterLimbusInstance(player, instanceID)
-    local playerLimbusKeyID  = player:getVar("characterLimbusKey")
-    local playerLimbusID  = player:getVar("LimbusID")
+    local playerLimbusKeyID  = player:getCharVar("characterLimbusKey")
+    local playerLimbusID  = player:getCharVar("LimbusID")
     local inst = 0
 
     ResetKeyForEmptyLimbus(player, instanceID)  --  instancekey will be reset if this instance is empty
@@ -871,11 +853,8 @@ function RegisterLimbusInstance(player, instanceID)
     if (playerLimbusID ~= 0) then
         if (GetLimbusKeyFromInstance(playerLimbusID) == 0 and playerLimbusKeyID == 0) then
             inst = player:bcnmRegister(playerLimbusID)    --  Build Limbus
-            printf("Regionfound: %u", inst)
-
             if (inst == GetInstanceRegion(playerLimbusID)) then
                 player:bcnmEnter(playerLimbusID)
-                printf("BCNM_CREATE_WITH_REGION: %u", inst)
             else
                 if (playerLimbusID == 1290 or playerLimbusID == 1291
                 or playerLimbusID == 1294 or playerLimbusID == 1295
@@ -895,8 +874,8 @@ end
 
 function TryTobackOnCurrentLimbus(player)
     local currentlimbus = 0
-    local playerLimbusID = player:getVar("LimbusID")
-    local playerLimbusKeyID = player:getVar("characterLimbusKey")
+    local playerLimbusID = player:getCharVar("LimbusID")
+    local playerLimbusKeyID = player:getCharVar("characterLimbusKey")
     --  print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID)
     if (GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID
     and player:isSpecialBattlefieldEmpty(GetInstanceRegion(playerLimbusID)) == 1) then   --  player deco and back

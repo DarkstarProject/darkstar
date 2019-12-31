@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Death Cap
+--  Mob: Death Cap
 -- Note: PH for Ellyllon
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.ELLYLLON_PH, 10, math.random(7200,10800)) -- 2 to 3 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.ELLYLLON_PH, 10, math.random(7200,10800)) -- 2 to 3 hours
 end

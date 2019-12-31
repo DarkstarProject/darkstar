@@ -28,6 +28,7 @@ zones[dsp.zone.CARPENTERS_LANDING] =
         CRYPTONBERRY_EXECUTOR_2HR  = 7473, -- Through this we ssseek our just reward...
         MYCOPHILE_MUSHROOM         = 7490, -- There is a rotten mushroom here. There are 3 openings in its cap.
         HERCULES_TREE_NOTHING_YET  = 7492, -- There is nothing here yet. Check again in the morning.
+        COMMON_SENSE_SURVIVAL      = 7557, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

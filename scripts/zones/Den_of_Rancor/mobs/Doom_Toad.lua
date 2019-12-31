@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Doom Toad
+--  Mob: Doom Toad
 -- Note: PH for Ogama
 -----------------------------------
 local ID = require("scripts/zones/Den_of_Rancor/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.OGAMA_PH, 5, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.OGAMA_PH, 5, 3600) -- 1 hour
 end

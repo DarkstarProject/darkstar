@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Royal Leech
+--  Mob: Royal Leech
 -- Note: PH for Masan
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.MASAN_PH, 10, 14400) -- 4 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.MASAN_PH, 10, 14400) -- 4 hours
 end

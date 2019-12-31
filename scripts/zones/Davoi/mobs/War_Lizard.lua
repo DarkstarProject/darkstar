@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: War Lizard
+--  Mob: War Lizard
 -- Note: PH for Tigerbane Bakdak
 -----------------------------------
 local ID = require("scripts/zones/Davoi/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.TIGERBANE_BAKDAK_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.TIGERBANE_BAKDAK_PH, 10, 3600) -- 1 hour
 end

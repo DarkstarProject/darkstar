@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local gotItAllProg = player:getVar("gotitallCS")
+    local gotItAllProg = player:getCharVar("gotitallCS")
     if gotItAllProg == 1 or gotItAllProg == 3 then
         player:startEvent(533)
     elseif gotItAllProg == 2 then
@@ -23,7 +23,7 @@ function onTrigger(player,npc)
         player:startEvent(540)
     elseif gotItAllProg == 7 then
         player:startEvent(535)
-    elseif player:getQuestStatus(AHT_URHGAN,GOT_IT_ALL) == QUEST_COMPLETED then
+    elseif player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.GOT_IT_ALL) == QUEST_COMPLETED then
         player:startEvent(530)
     end
 end
@@ -33,6 +33,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 523 then
-        player:setVar("gotitallCS",3)
+        player:setCharVar("gotitallCS",3)
     end
 end

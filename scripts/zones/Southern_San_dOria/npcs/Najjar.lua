@@ -9,7 +9,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("UnderOathCS") == 1) then  -- Quest: Under Oath - PLD AF3
+    if (player:getCharVar("UnderOathCS") == 1) then  -- Quest: Under Oath - PLD AF3
         player:startEvent(16)
     else
         player:startEvent(17);
@@ -33,6 +33,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 16) then
-        player:setVar("UnderOathCS", 2)  -- Quest: Under Oath - PLD AF3
+        player:setCharVar("UnderOathCS", 2)  -- Quest: Under Oath - PLD AF3
     end
 end;

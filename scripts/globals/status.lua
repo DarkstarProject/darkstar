@@ -22,6 +22,7 @@ dsp.zoneMisc =
     COSTUME    = 0x0040, -- Ability to use a Costumes
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
+    AH         = 0x0200, -- Ability to use the auction house
     YELL       = 0x0400, -- Send and receive /yell commands
 }
 
@@ -800,7 +801,7 @@ dsp.effect =
     -- End GoV Prowess fakery
     FIELD_SUPPORT_FOOD       = 789, -- Used by Fov/GoV food buff.
     MARK_OF_SEED             = 790, -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
-    ALL_MISS                 = 791,
+    TOO_HIGH                 = 791, -- Indicates a target is airborne and unable to be hit by normal melee attacks
     SUPER_BUFF               = 792,
     NINJUTSU_ELE_DEBUFF      = 793,
     HEALING                  = 794,
@@ -1104,13 +1105,13 @@ dsp.mod =
     DEATHRES                        = 255,
     AFTERMATH                       = 256,
     PARALYZE                        = 257,
-    MIJIN_GAKURE                    = 258,
+    MIJIN_RERAISE                   = 258,
     DUAL_WIELD                      = 259,
     DOUBLE_ATTACK                   = 288,
     SUBTLE_BLOW                     = 289,
     ENF_MAG_POTENCY                 = 290, -- Increases Enfeebling magic potency %
     COUNTER                         = 291,
-    KICK_ATTACK                     = 292,
+    KICK_ATTACK_RATE                = 292,
     AFFLATUS_SOLACE                 = 293,
     AFFLATUS_MISERY                 = 294,
     CLEAR_MIND                      = 295,
@@ -1130,7 +1131,8 @@ dsp.mod =
     UTSUSEMI                        = 307,
     UTSUSEMI_BONUS                  = 900, -- Extra shadows from gear
     NINJA_TOOL                      = 308,
-    BLUE_POINTS                     = 309,
+    BLUE_POINTS                     = 309, -- Tracks extra blue points
+    BLUE_LEARN_CHANCE               = 945, -- Additional chance to learn blue magic
     DMG_REFLECT                     = 316,
     ROLL_ROGUES                     = 317,
     ROLL_GALLANTS                   = 318,
@@ -1319,7 +1321,6 @@ dsp.mod =
     QUICK_DRAW_MACC                 = 191, -- Quick draw magic accuracy
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
 
-    ADDITIONAL_EFFECT               = 431, -- All additional effects
     ENSPELL_DMG_BONUS               = 432,
 
     FIRE_ABSORB                     = 459, -- Occasionally absorbs fire elemental damage, in percents
@@ -1358,9 +1359,18 @@ dsp.mod =
     RERAISE_II                      = 457, -- Reraise II.
     RERAISE_III                     = 458, -- Reraise III.
 
+    ADDITIONAL_EFFECT               = 431, -- All additional effects
     ITEM_SPIKES_TYPE                = 499, -- Type spikes an item has
     ITEM_SPIKES_DMG                 = 500, -- Damage of an items spikes
     ITEM_SPIKES_CHANCE              = 501, -- Chance of an items spike proc
+    -- ITEM_ADDEFFECT_TYPE     = 431, -- 1 = Status Effect/DMG/HP Drain, 2 = MP Drain, 3 = TP Drain, 4 = Dispel, 5 = Self-Buff, 6 = Instant Death
+    -- ITEM_SUBEFFECT          = 499, -- Animation ID of Spikes and Additional Effects
+    -- ITEM_ADDEFFECT_DMG      = 500, -- Damage of an items Additional Effect or Spikes
+    -- ITEM_ADDEFFECT_CHANCE   = 501, -- Chance of an items Additional Effect or Spikes
+    -- ITEM_ADDEFFECT_ELEMENT  = 950, -- Element of the Additional Effect or Spikes, for resist purposes
+    -- ITEM_ADDEFFECT_STATUS   = 951, -- Status Effect ID to try to apply via Additional Effect or Spikes
+    -- ITEM_ADDEFFECT_POWER    = 952, -- Base Power for effect in MOD_ITEM_ADDEFFECT_STATUS
+    -- ITEM_ADDEFFECT_DURATION = 953, -- Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
 
     FERAL_HOWL_DURATION             = 503, -- +20% duration per merit when wearing augmented Monster Jackcoat +2
     MANEUVER_BONUS                  = 504, -- Maneuver Stat Bonus
@@ -1506,6 +1516,8 @@ dsp.mod =
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
     -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT             = 841, -- Generic (all Weaponskills) damage, first hit only.
+    WS_NO_DEPLETE                   = 949, -- % chance a Weaponskill depletes no TP.
+    WS_DEX_BONUS                    = 957, -- % bonus to dex_wsc.
 
     -- Circle Abilities Extended Duration from AF/AF+1
     HOLY_CIRCLE_DURATION            = 857,
@@ -1521,12 +1533,18 @@ dsp.mod =
     FENCER_TP_BONUS                 = 903, -- TP Bonus to weapon skills from Fencer Trait
     FENCER_CRITHITRATE              = 904, -- Increased Crit chance from Fencer Trait
     SHIELD_DEF_BONUS                = 905, -- Shield Defense Bonus
+    SNEAK_DURATION                  = 946, -- Additional duration in seconds
+    INVISIBLE_DURATION              = 947, -- Additional duration in seconds
+    BERSERK_EFFECT                  = 948, -- Conqueror Berserk Effect
+    BERSERK_DURATION                = 954, -- Berserk Duration
+    AGGRESSOR_DURATION              = 955, -- Aggressor Duration
+    DEFENDER_DURATION               = 956, -- Defender Duration
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 944, -- stuff
-    -- SPARE = 945, -- stuff
-    -- SPARE = 946, -- stuff
+    -- SPARE = 958, -- stuff
+    -- SPARE = 959, -- stuff
+    -- SPARE = 960, -- stuff
 };
 
 dsp.latent =
@@ -2088,7 +2106,7 @@ dsp.attackType =
 -- Damage Type
 ----------------------------------
 
-dsp.damageType = 
+dsp.damageType =
 {
     NONE      = 0,
     PIERCING  = 1,
@@ -2147,10 +2165,10 @@ dsp.mobMod =
     -- 13 Available for use
     SKILL_LIST          = 14, -- uses given mob skill list
     MUG_GIL             = 15, -- amount gil carried for mugging
-    MAIN_2HOUR          = 16, -- give mob its main job two hour, value can maybe be sent to skill [[DEPRICATED, use mixin]]
+    -- 16 Available for use
     NO_DESPAWN          = 17, -- do not despawn when too far from spawn. Gob Diggers have this.
     VAR                 = 18, -- temp var for whatever. Gets cleared on spawn
-    SUB_2HOUR           = 19, -- give mob its sub job two hour (dynamis NM) [[DEPRICATED, use mixin]]
+    -- 19 Available for use
     TP_USE_CHANCE       = 20, -- % chance to use tp
     PET_SPELL_LIST      = 21, -- set pet spell list
     NA_CHANCE           = 22, -- % chance to cast -na
@@ -2163,7 +2181,7 @@ dsp.mobMod =
     ASSIST              = 29, -- mobs will assist me
     SPECIAL_SKILL       = 30, -- give special skill
     ROAM_DISTANCE       = 31, -- distance allowed to roam from spawn
-    MULTI_2HOUR         = 32, -- can use two hour multiple times
+    -- 32 Available for use
     SPECIAL_COOL        = 33, -- cool down for special
     MAGIC_COOL          = 34, -- cool down for magic
     STANDBACK_COOL      = 35, -- cool down time for standing back (casting spell while not in attack range)
@@ -2180,8 +2198,8 @@ dsp.mobMod =
     AUTO_SPIKES         = 46, -- enables additional effect script to process when mob is attacked
     SPAWN_LEASH         = 47, -- forces a mob to not move farther from its spawn than its leash distance
     SHARE_TARGET        = 48, -- mob always targets same target as ID in this var
-    SCRIPTED_2HOUR      = 49, -- disable two hour ability unless called upon by the script [[DEPRICATED, use mixin]]
-    PROC_2HOUR          = 50, -- chance of mob's 2 hour activating 0-100%
+    CHECK_AS_NM         = 49, -- If set, a mob will check as a NM.
+    -- 50 Available for use
     ROAM_TURNS          = 51, -- Maximum amount of turns during a roam
     ROAM_RATE           = 52, -- Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
     BEHAVIOR            = 53, -- Add behaviors to mob
@@ -2197,8 +2215,9 @@ dsp.mobMod =
     ATTACK_SKILL_LIST   = 63, -- skill list to use in place of regular attacks
     CHARMABLE           = 64, -- mob is charmable
     NO_MOVE             = 65, -- Mob will not be able to move
-    MULTI_HIT           = 66, -- Mob will not be able to move
-    NO_AGGRO            = 67  -- If set, mob cannot aggro until unset.
+    MULTI_HIT           = 66, -- Mob will have as many swings as defined.
+    NO_AGGRO            = 67, -- If set, mob cannot aggro until unset.
+    ALLI_HATE           = 68  -- Range around target to add alliance member to enmity list.
 }
 
 ------------------------------------
@@ -2241,7 +2260,7 @@ dsp.jobSpecialAbility =
     -- INVINCIBLE          = 2940,
     BLOOD_WEAPON         = 695,
     BLOOD_WEAPON_MAAT    = 1015,
-    -- BLOOD_WEAPON        = 2249,
+    BLOOD_WEAPON_IXDRK   = 2249,
     SOUL_VOICE           = 696,
     SOUL_VOICE_MAAT      = 1018,
     -- SOUL_VOICE          = 2251,
@@ -2514,10 +2533,9 @@ dsp.behavior =
 dsp.elevator =
 {
     TIMED_AUTOMATIC           = 0,
-    PORT_BASTOK_DRWBRDG       = 2,
-    DAVOI_LIFT                = 3,
-    PALBOROUGH_MINES_LIFT     = 4,
-    FORT_GHELSBA_LIFT         = 5
+    DAVOI_LIFT                = 1,
+    PALBOROUGH_MINES_LIFT     = 2,
+    FORT_GHELSBA_LIFT         = 3
 }
 
 ------------------------------------
@@ -2695,4 +2713,28 @@ dsp.emoteMode =
     ALL = 0,
     TEXT = 1,
     MOTION = 2
+}
+
+------------------------------------
+-- Relic IDs
+------------------------------------
+
+dsp.relic =
+{
+    SPHARAI       = 0,
+    MANDAU        = 1,
+    EXCALIBUR     = 2,
+    RAGNAROK      = 3,
+    GUTTLER       = 4,
+    BRAVURA       = 5,
+    APOCALYPSE    = 6,
+    GUNGNIR       = 7,
+    KIKOKU        = 8,
+    AMANOMURAKUMO = 9,
+    MJOLLNIR      = 10,
+    CLAUSTRUM     = 11,
+    YOICHINOYUMI  = 12,
+    ANNIHILATOR   = 13,
+    GJALLARHORN   = 14,
+    AEGIS         = 15
 }

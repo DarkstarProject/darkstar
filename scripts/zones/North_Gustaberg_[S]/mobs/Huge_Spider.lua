@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg [S]
---  MOB: Huge Spider
+--  Mob: Huge Spider
 -- Note: Place holder for Ankabut
 -----------------------------------
 local ID = require("scripts/zones/North_Gustaberg_[S]/IDs")
@@ -10,5 +10,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.ANKABUT_PH,10,3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.ANKABUT_PH,10,3600) -- 1 hour
 end

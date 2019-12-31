@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Bat Eye
+--  Mob: Bat Eye
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

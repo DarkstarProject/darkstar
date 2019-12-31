@@ -84,7 +84,7 @@ namespace itemutils
         }
         if( (ItemID >= 0x2800) && (ItemID <= 0x3FFF) )
         {
-            return new CItemArmor(ItemID);
+            return new CItemEquipment(ItemID);
         }
         if( (ItemID >= 0x4000) && (ItemID <= 0x5FFF) )
         {
@@ -92,7 +92,7 @@ namespace itemutils
         }
         if( (ItemID >= 0x6000) && (ItemID <= 0x6FFF) )
         {
-            return new CItemArmor(ItemID);
+            return new CItemEquipment(ItemID);
         }
         if( (ItemID >= 0x7000) && (ItemID <= 0x7FFF) )
         {
@@ -138,7 +138,7 @@ namespace itemutils
             }
             if( ((ItemID >= 0x2800) && (ItemID <= 0x3FFF)))
             {
-                return new CItemArmor(*((CItemArmor*)g_pItemList[ItemID]));
+                return new CItemEquipment(*((CItemEquipment*)g_pItemList[ItemID]));
             }
             if( (ItemID >= 0x4000) && (ItemID <= 0x5FFF) )
             {
@@ -146,7 +146,7 @@ namespace itemutils
             }
             if( (ItemID >= 0x6000) && (ItemID <= 0x6FFF) )
             {
-                return new CItemArmor(*((CItemArmor*)g_pItemList[ItemID]));
+                return new CItemEquipment(*((CItemEquipment*)g_pItemList[ItemID]));
             }
             if( (ItemID >= 0x7000) && (ItemID <= 0x7FFF) )
             {
@@ -170,9 +170,9 @@ namespace itemutils
         {
             return new CItemWeapon(*((CItemWeapon*)PItem));
         }
-        if (PItem->isType(ITEM_ARMOR))
+        if (PItem->isType(ITEM_EQUIPMENT))
         {
-            return new CItemArmor(*((CItemArmor*)PItem));
+            return new CItemEquipment(*((CItemEquipment*)PItem));
         }
         if (PItem->isType(ITEM_USABLE))
         {
@@ -321,7 +321,7 @@ namespace itemutils
                 "p.element "        // 38
             "FROM item_basic AS b "
             "LEFT JOIN item_usable AS u USING (itemId) "
-            "LEFT JOIN item_armor  AS a USING (itemId) "
+            "LEFT JOIN item_equipment  AS a USING (itemId) "
             "LEFT JOIN item_weapon AS w USING (itemId) "
             "LEFT JOIN item_furnishing AS f USING (itemId) "
             "LEFT JOIN item_puppet AS p USING (itemId) "
@@ -365,20 +365,20 @@ namespace itemutils
                         ((CItemPuppet*)PItem)->setEquipSlot(Sql_GetUIntData(SqlHandle,37));
                         ((CItemPuppet*)PItem)->setElementSlots(Sql_GetUIntData(SqlHandle,38));
                     }
-                    if (PItem->isType(ITEM_ARMOR))
+                    if (PItem->isType(ITEM_EQUIPMENT))
                     {
-                        ((CItemArmor*)PItem)->setReqLvl(Sql_GetUIntData(SqlHandle, 15));
-                        ((CItemArmor*)PItem)->setILvl(Sql_GetUIntData(SqlHandle,16));
-                        ((CItemArmor*)PItem)->setJobs(Sql_GetUIntData(SqlHandle,17));
-                        ((CItemArmor*)PItem)->setModelId(Sql_GetUIntData(SqlHandle,18));
-                        ((CItemArmor*)PItem)->setShieldSize(Sql_GetUIntData(SqlHandle,19));
-                        ((CItemArmor*)PItem)->setScriptType(Sql_GetUIntData(SqlHandle,20));
-                        ((CItemArmor*)PItem)->setEquipSlotId(Sql_GetUIntData(SqlHandle,21));
-                        ((CItemArmor*)PItem)->setRemoveSlotId(Sql_GetUIntData(SqlHandle,22));
+                        ((CItemEquipment*)PItem)->setReqLvl(Sql_GetUIntData(SqlHandle, 15));
+                        ((CItemEquipment*)PItem)->setILvl(Sql_GetUIntData(SqlHandle,16));
+                        ((CItemEquipment*)PItem)->setJobs(Sql_GetUIntData(SqlHandle,17));
+                        ((CItemEquipment*)PItem)->setModelId(Sql_GetUIntData(SqlHandle,18));
+                        ((CItemEquipment*)PItem)->setShieldSize(Sql_GetUIntData(SqlHandle,19));
+                        ((CItemEquipment*)PItem)->setScriptType(Sql_GetUIntData(SqlHandle,20));
+                        ((CItemEquipment*)PItem)->setEquipSlotId(Sql_GetUIntData(SqlHandle,21));
+                        ((CItemEquipment*)PItem)->setRemoveSlotId(Sql_GetUIntData(SqlHandle,22));
 
-                        if (((CItemArmor*)PItem)->getValidTarget() != 0)
+                        if (((CItemEquipment*)PItem)->getValidTarget() != 0)
                         {
-                            ((CItemArmor*)PItem)->setSubType(ITEM_CHARGED);
+                            ((CItemEquipment*)PItem)->setSubType(ITEM_CHARGED);
                         }
                     }
                     if (PItem->isType(ITEM_WEAPON))
@@ -406,7 +406,7 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -416,14 +416,14 @@ namespace itemutils
                 Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
                 int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
-                    ((CItemArmor*)g_pItemList[ItemID])->addModifier(CModifier(modID,value));
+                    ((CItemEquipment*)g_pItemList[ItemID])->addModifier(CModifier(modID,value));
                 }
             }
         }
 
-        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -434,14 +434,14 @@ namespace itemutils
                 int16 value = (int16)Sql_GetIntData(SqlHandle, 2);
                 PetModType petType = static_cast<PetModType>(Sql_GetIntData(SqlHandle, 3));
 
-                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
-                    ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(CPetModifier(modID, petType, value));
+                    ((CItemEquipment*)g_pItemList[ItemID])->addPetModifier(CPetModifier(modID, petType, value));
                 }
             }
         }
 
-        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+        ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -453,9 +453,9 @@ namespace itemutils
                 uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
                 uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
+                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
                 {
-                    ((CItemArmor*)g_pItemList[ItemID])->addLatent((LATENT)latentId, latentParam, modID, value);
+                    ((CItemEquipment*)g_pItemList[ItemID])->addLatent((LATENT)latentId, latentParam, modID, value);
                 }
             }
         }
@@ -508,35 +508,14 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Handles loot from BCNM chests and other NPCs that drop things into   *
+    *  Handles loot from NPCs that drop things into                         *
     *  the loot pool instead of adding them directly to the inventory       *
     *                                                                       *
     ************************************************************************/
 
     void LoadLootList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
 
-        if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-        {
-            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                uint16 LootID  = (uint16)Sql_GetUIntData(SqlHandle,0);
-
-                if (g_pLootList[LootID] == 0)
-                {
-                    g_pLootList[LootID] = new LootList_t;
-                }
-
-                LootItem_t LootItem;
-
-                LootItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
-                LootItem.Rolls = (uint16)Sql_GetIntData(SqlHandle,2);
-                LootItem.LootGroupId = (uint8)Sql_GetIntData(SqlHandle,3);
-
-                g_pLootList[LootID]->push_back(LootItem);
-            }
-        }
     }
 
     /************************************************************************
@@ -553,7 +532,7 @@ namespace itemutils
 
         PUnarmedItem = new CItemWeapon(0);
 
-        PUnarmedItem->setDmgType(DAMAGE_IMPACT);
+        PUnarmedItem->setDmgType(DAMAGE_NONE);
         PUnarmedItem->setSkillType(SKILL_NONE);
         PUnarmedItem->setDamage(3);
 

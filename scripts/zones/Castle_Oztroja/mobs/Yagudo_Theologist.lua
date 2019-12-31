@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Theologist
+--  Mob: Yagudo Theologist
 -- Note: PH for Moo Ouzi the Swiftblade
 -----------------------------------
 local ID = require("scripts/zones/Castle_Oztroja/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.MOO_OUZI_THE_SWIFTBLADE_PH,5,3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.MOO_OUZI_THE_SWIFTBLADE_PH,5,3600) -- 1 hour
 end

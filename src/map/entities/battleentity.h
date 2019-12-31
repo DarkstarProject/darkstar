@@ -411,6 +411,8 @@ enum IMMUNITY : uint16
     IMMUNITY_POISON = 0x100, // 256
     IMMUNITY_ELEGY = 0x200, // 512
     IMMUNITY_REQUIEM = 0x400, // 1024
+    IMMUNITY_LIGHT_SLEEP = 0x800, // 2048
+    IMMUNITY_DARK_SLEEP = 01000, // 4096
 };
 
 struct apAction_t
@@ -468,7 +470,7 @@ class CParty;
 class CStatusEffectContainer;
 class CPetEntity;
 class CSpell;
-class CItemWeapon;
+class CItemEquipment;
 class CAbilityState;
 class CAttackState;
 class CWeaponSkillState;
@@ -647,7 +649,6 @@ public:
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
     uint16		    m_Immunity;					// Mob immunity
     uint16			m_magicEvasion;		        // store this so it can be removed easily
-    uint8			m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
     time_point  	charmTime;					// to hold the time entity is charmed
@@ -655,7 +656,7 @@ public:
 
     uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
     ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
-    CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
+    CItemEquipment*	    m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
     TraitList_t     TraitList;                  // список постянно активных способностей в виде указателей
 

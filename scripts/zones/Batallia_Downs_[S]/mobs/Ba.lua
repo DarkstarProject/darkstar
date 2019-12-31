@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Batallia Downs (S)
+-- Area: Batallia Downs [S]
 --  Mob: Ba
 -- Note: PH for Habergoass
 -----------------------------------
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.HABERGOASS_PH, 10, 5400) -- 90 minutes
+    dsp.mob.phOnDespawn(mob, ID.mob.HABERGOASS_PH, 10, 5400) -- 90 minutes
 end

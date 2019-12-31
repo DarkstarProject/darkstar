@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Bull Dhalmel
+--  Mob: Bull Dhalmel
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

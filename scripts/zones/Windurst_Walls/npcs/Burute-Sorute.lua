@@ -100,7 +100,7 @@ local titleInfo =
             dsp.title.FUGITIVE_MINISTER_BOUNTY_HUNTER,
             dsp.title.GUIDING_STAR,
             dsp.title.VESTAL_CHAMBERLAIN,
-            dsp.title.DYNAMISWINDURST_INTERLOPER,
+            dsp.title.DYNAMIS_WINDURST_INTERLOPER,
             dsp.title.HEIR_TO_THE_REALM_OF_DREAMS,
         },
     },

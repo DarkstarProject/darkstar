@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Greater Manticore
+--  Mob: Greater Manticore
 -- Note: Place Holder for Frostmane
 -----------------------------------
 local ID = require("scripts/zones/Cape_Teriggan/IDs");
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.FROSTMANE_PH,5,math.random(3600,21600)); -- 1 to 6 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.FROSTMANE_PH,5,math.random(3600,21600)); -- 1 to 6 hours
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Girtab
+--  Mob: Girtab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

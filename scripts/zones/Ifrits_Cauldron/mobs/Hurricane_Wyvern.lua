@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Hurricane Wyvern
+--  Mob: Hurricane Wyvern
 -- Note: PH for Vouivre
 -----------------------------------
 local ID = require("scripts/zones/Ifrits_Cauldron/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.VOUIVRE_PH, 5, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.VOUIVRE_PH, 5, 7200) -- 2 hours
 end

@@ -683,10 +683,6 @@ INSERT INTO `mob_pets` VALUES (17444867, 1, 15);
 INSERT INTO `mob_pets` VALUES (17444872, 1, 15);
 INSERT INTO `mob_pets` VALUES (17444877, 1, 15);
 INSERT INTO `mob_pets` VALUES (17453078, 2, 15);
-INSERT INTO `mob_pets` VALUES (17461402, 1, 15);
-INSERT INTO `mob_pets` VALUES (17461409, 1, 15);
-INSERT INTO `mob_pets` VALUES (17461417, 1, 15);
-INSERT INTO `mob_pets` VALUES (17461421, 1, 15);
 INSERT INTO `mob_pets` VALUES (17506670, 5, 15); -- Kirin's Avatar is offset by 5 (first 4 are the god spawns)
 INSERT INTO `mob_pets` VALUES (17375263, 1, 15);
 INSERT INTO `mob_pets` VALUES (17375265, 1, 15);
@@ -820,9 +816,9 @@ INSERT INTO `mob_pets` VALUES (17346569, 3, 14); -- Orc_s_Wyvern
 -- INSERT INTO `mob_pets` VALUES (17346577, 1, 14); -- Orc_s_Wyvern
 -- INSERT INTO `mob_pets` VALUES (17346583, 1, 14); -- Orc_s_Wyvern
 INSERT INTO `mob_pets` VALUES (17387585, 1, 14); -- Orc_s_Wyvern
--- INSERT INTO `mob_pets` VALUES (17444904, 2, 14); -- Sahagin_s_Wyvern
--- INSERT INTO `mob_pets` VALUES (17444910, 2, 14); -- Sahagin_s_Wyvern
--- INSERT INTO `mob_pets` VALUES (17444916, 2, 14); -- Sahagin_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17444904, 2, 14); -- Sahagin_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17444910, 2, 14); -- Sahagin_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17444916, 2, 14); -- Sahagin_s_Wyvern
 INSERT INTO `mob_pets` VALUES (17465360, 1, 14); -- Maat_s_Wyvern
 INSERT INTO `mob_pets` VALUES (17465362, 1, 14); -- Maat_s_Wyvern
 INSERT INTO `mob_pets` VALUES (17465364, 1, 14); -- Maat_s_Wyvern

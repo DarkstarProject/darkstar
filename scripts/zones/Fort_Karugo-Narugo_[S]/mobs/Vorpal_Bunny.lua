@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Karugo-Narugo [S]
---  MOB: Vorpal Bunny
+--  Mob: Vorpal Bunny
 -- Note: PH for Ratatoskr
 -----------------------------------
 local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.RATATOSKR_PH, 10, 5400) -- 90 minutes
+    dsp.mob.phOnDespawn(mob, ID.mob.RATATOSKR_PH, 10, 5400) -- 90 minutes
 end

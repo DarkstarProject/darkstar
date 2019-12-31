@@ -1,14 +1,13 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Slinkix_Trufflesniff
+-- Area: Dynamis - Beaucedine
+--  Mob: Slinkix Trufflesniff
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
-require("scripts/globals/status")
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_GOBLIN)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

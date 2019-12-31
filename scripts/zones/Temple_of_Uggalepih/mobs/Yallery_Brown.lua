@@ -1,7 +1,6 @@
-----------------------------------
+-----------------------------------
 -- Area: Temple of Uggalepih (159)
 --   NM: Yallery Brown
---   ID: 17428817
 -- Note: Popped by qm9
 -- Involved in Quest: Axe The Competition
 -- !pos 220 -8.11 205.38 159

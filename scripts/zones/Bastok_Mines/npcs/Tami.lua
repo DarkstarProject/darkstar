@@ -10,8 +10,8 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    local groceries = player:getQuestStatus(BASTOK, GROCERIES);
-    local groceriesProgress = player:getVar("Groceries");
+    local groceries = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.GROCERIES);
+    local groceriesProgress = player:getCharVar("Groceries");
 
     -- GROCERIES (trade meat jerky)
     if (groceries == QUEST_ACCEPTED and groceriesProgress == 3 and trade:getItemCount() == 1 and trade:hasItemQty(4376,1)) then
@@ -20,8 +20,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local groceries = player:getQuestStatus(BASTOK, GROCERIES);
-    local groceriesProgress = player:getVar("Groceries");
+    local groceries = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.GROCERIES);
+    local groceriesProgress = player:getCharVar("Groceries");
 
     -- GROCERIES
     if (groceries == QUEST_AVAILABLE or (groceries == QUEST_ACCEPTED and groceriesProgress == 0)) then
@@ -45,20 +45,20 @@ end;
 function onEventFinish(player,csid,option)
     -- GROCERIES
     if (csid == 110) then
-        player:addQuest(BASTOK, GROCERIES);
+        player:addQuest(BASTOK, dsp.quest.id.bastok.GROCERIES);
         player:addKeyItem(dsp.ki.TAMIS_NOTE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TAMIS_NOTE);
-        player:setVar("Groceries", 1);
+        player:setCharVar("Groceries", 1);
     elseif (csid == 112) then
         player:addFame(BASTOK,8);
-        player:setVar("Groceries",0);
+        player:setCharVar("Groceries",0);
         player:addGil(GIL_RATE*10);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10);
     elseif (csid == 113) then
         if (player:getFreeSlotsCount() >= 1) then
             player:tradeComplete();
-            player:setVar("Groceries",0);
-            player:completeQuest(BASTOK,GROCERIES);
+            player:setCharVar("Groceries",0);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.GROCERIES);
             player:addFame(BASTOK,75);
             player:addItem(13594); -- Rabbit Mantle
             player:messageSpecial(ID.text.ITEM_OBTAINED,13594);

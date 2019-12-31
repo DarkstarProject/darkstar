@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Orcish Grappler
+--  Mob: Orcish Grappler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

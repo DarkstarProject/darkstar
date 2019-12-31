@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Port_Bastok/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL) == QUEST_ACCEPTED and player:getVar("OutOfOneShell") == 0) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL) == QUEST_ACCEPTED and player:getCharVar("OutOfOneShell") == 0) then
         if (trade:hasItemQty(17397,3) and trade:getItemCount() == 3) then
             player:startEvent(84);
         end
@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
 
-    OutOfOneShell = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
+    OutOfOneShell = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL);
 
-    if (OutOfOneShell == QUEST_ACCEPTED and player:getVar("OutOfOneShell") == 1) then
+    if (OutOfOneShell == QUEST_ACCEPTED and player:getCharVar("OutOfOneShell") == 1) then
         if (player:needToZone()) then
             player:startEvent(85);
         else
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         player:showText(npc,ID.text.RONAN_DIALOG_1);
     elseif (OutOfOneShell == QUEST_COMPLETED) then
         player:startEvent(89);
-    elseif (player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE) == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 2) then
+    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_QUADAV_S_CURSE) == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 2) then
         player:startEvent(82);
     else
         player:startEvent(37);
@@ -47,19 +47,19 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 82) then
-        player:addQuest(BASTOK,OUT_OF_ONE_S_SHELL);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL);
     elseif (csid == 84) then
         player:needToZone(true);
-        player:setVar("OutOfOneShell",1);
+        player:setCharVar("OutOfOneShell",1);
         player:tradeComplete();
     elseif (csid == 86) then
         if (player:getFreeSlotsCount() >= 1) then
             player:addTitle(dsp.title.SHELL_OUTER);
-            player:setVar("OutOfOneShell",0);
+            player:setCharVar("OutOfOneShell",0);
             player:addItem(12501);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12501);
             player:addFame(BASTOK,120);
-            player:completeQuest(BASTOK,OUT_OF_ONE_S_SHELL);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.OUT_OF_ONE_S_SHELL);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12501);
         end

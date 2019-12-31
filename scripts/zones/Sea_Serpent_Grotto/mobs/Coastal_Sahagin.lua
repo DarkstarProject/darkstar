@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Coastal Sahagin
+--  Mob: Coastal Sahagin
 -- Note: PH for Denn the Orcavoiced
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.DENN_THE_ORCAVOICED_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.DENN_THE_ORCAVOICED_PH, 10, 7200) -- 2 hours
 end

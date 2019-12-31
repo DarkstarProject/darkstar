@@ -17,6 +17,8 @@ zones[dsp.zone.LEBROS_CAVERN] =
         KEYITEM_LOST               = 6392, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL        = 6393, -- You do not have enough gil.
         ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
+        MINE_COUNTDOWN             = 6980, -- <number>...
+        TEMP_ITEM                  = 7210, -- Obtained temporary item: <item>!
         ASSAULT_21_START           = 7367, -- Commencing <assault>! Objective: Remove the obstructions
         ASSAULT_22_START           = 7368, -- Commencing <assault>! Objective: Deliver the provisions
         ASSAULT_23_START           = 7369, -- Commencing <assault>! Objective: Destroy the Troll fugitives
@@ -37,8 +39,38 @@ zones[dsp.zone.LEBROS_CAVERN] =
     },
 
     mob = {
+        -- Escavation Duty
+        [21] =
+        {
+            VOLCANIC_BOMB1   = 17035265,
+            VOLCANIC_BOMB2   = 17035266,
+            VOLCANIC_BOMB3   = 17035267,
+            QIQIRN_CERAMIST1 = 17035268,
+            QIQIRN_VOLCANIS1 = 17035269,
+            VOLCANIC_BOMB4   = 17035270,
+            VOLCANIC_BOMB5   = 17035271,
+            VOLCANIC_BOMB6   = 17035272,
+            QIQIRN_CERAMIST2 = 17035273,
+            QIQIRN_VOLCANIS2 = 17035274,
+            QIQIRN_VOLCANIS3 = 17035275,
+            QIQIRN_CERAMIST3 = 17035276,
+            QIQIRN_CERAMIST4 = 17035277,
+            QIQIRN_CERAMIST5 = 17035278,
+            QIQIRN_VOLCANIS4 = 17035279,
+            VOLCANIC_BOMB7   = 17035280,
+            VOLCANIC_BOMB8   = 17035281,
+            BRITTLE_ROCK1    = 17035282,
+            BRITTLE_ROCK2    = 17035284,
+            BRITTLE_ROCK3    = 17035286,
+            BRITTLE_ROCK4    = 17035288,
+            BRITTLE_ROCK5    = 17035290,
+        },
+        -- Lebros Suplies
+        [22] =
+        {
+        },
         -- Troll Figitives
-        [23] = 
+        [23] =
         {
             TROLL_FUGITIVE1  = 17035310,
             TROLL_FUGITIVE2  = 17035311,
@@ -56,6 +88,18 @@ zones[dsp.zone.LEBROS_CAVERN] =
             TROLL_FUGITIVE14 = 17035323,
             TROLL_FUGITIVE15 = 17035324,
 
+        },
+        -- Evade and Escape
+        [24] =
+        {
+        },
+        -- Siegemaster Assassination
+        [25] =
+        {
+        },
+        -- Apkallu Breeding
+        [26] =
+        {
         },
         -- Wamoura Farm Raid Assault
         [27] =
@@ -75,13 +119,41 @@ zones[dsp.zone.LEBROS_CAVERN] =
             RANCH_WAMOURA13 = 17035376,
             RANCH_WAMOURA14 = 17035377,
             RANCH_WAMOURA15 = 17035378,
+        },
+        -- Egg Conservation
+        [28] =
+        {
+        },
+        -- Operation Black Pearl
+        [29] =
+        {
+        },
+        -- Better Than One
+        [30] =
+        {
         }
     },
 
-    npc = 
+    npc =
     {
         ANCIENT_LOCKBOX = 17035478,
         RUNE_OF_RELEASE = 17035479,
+        _1r8            = 17035512,
+        _1rd            = 17035517,
+        _1rg            = 17035520,
+        _1rm            = 17035526,
+        _1rn            = 17035527,
+        _1rx            = 17035537,
+        _1ry            = 17035538,
+        _1rz            = 17035539,
+        _jr0            = 17035540,
+        _jr1            = 17035541,
+        _jrc            = 17035552,
+        _jre            = 17035554,
+        QIQIRN_MINE1    = 17037312,
+        QIQIRN_MINE2    = 17037313,
+        QIQIRN_MINE3    = 17037314,
+        QIQIRN_MINE4    = 17037315,
     }
 }
 

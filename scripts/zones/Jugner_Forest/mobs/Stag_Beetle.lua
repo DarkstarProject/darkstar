@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Stag Beetle
+--  Mob: Stag Beetle
 -- Note: PH for Panzer Percival
 -----------------------------------
 local ID = require("scripts/zones/Jugner_Forest/IDs")
@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.PANZER_PERCIVAL_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.PANZER_PERCIVAL_PH, 10, 3600) -- 1 hour
 end

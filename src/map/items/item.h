@@ -35,7 +35,7 @@ enum ITEM_TYPE
     ITEM_GENERAL            = 0x01,
     ITEM_USABLE             = 0x02,
     ITEM_PUPPET             = 0x04,
-    ITEM_ARMOR              = 0x08,
+    ITEM_EQUIPMENT          = 0x08,
     ITEM_WEAPON             = 0x10,
     ITEM_CURRENCY           = 0x20,
     ITEM_FURNISHING         = 0x40,

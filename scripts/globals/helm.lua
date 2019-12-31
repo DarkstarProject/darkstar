@@ -6,9 +6,10 @@
 -- https://ffxiclopedia.wikia.com/wiki/Mining
 -----------------------------------
 require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 require("scripts/globals/npc_util")
-require("scripts/globals/settings")
 require("scripts/globals/quests")
+require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/zone")
 -----------------------------------
@@ -1276,28 +1277,26 @@ local helmInfo =
                 },
                 points =
                 {
-                    {-230.764,  38.248,  131.501},
-                    {-179.897,   2.841, -183.614}, -- {R}D-12
-                    {-144.081,  16.047, -177.289},
-                    {-129.569,  38.263,   83.389},
-                    {-109.431,  16.818,   25.500}, -- {R}F-7
-                    {-108.781,  -3.446,   50.634}, -- {R}F-6
-                    {-104.457,  -1.927,  -66.331},
-                    { -98.921,  -1.524,  -16.917},
-                    { -73.008,  -0.541,  -96.456},
-                    { -64.817,  -1.146,   61.395}, -- {R}G-6
-                    { -16.149,  26.090,  137.087},
-                    { -15.084,   4.648,  176.277},
-                    { -10.390,  13.376,   92.300},
-                    {  -3.945,   9.675,   95.107},
-                    {  25.588,   8.467,   96.117},
-                    {  27.931,  -2.754,   50.856},
-                    {  41.822,  -0.888,  -24.337},
-                    {  67.766,  -2.801,   27.572},
-                    {  92.615,  19.226,   -5.734},
-                    {  96.232,  10.479,  227.291},
-                    {  96.820,   8.636,  141.280}, -- {R}K-4
-                    { 139.082,   3.224,  -61.040},
+                    {-230.764,  38.248,  131.501}, -- Map 8 H-8
+                    {-179.897,   2.841, -183.614}, -- Map 7 D-12 -- {R}D-12
+                    {-144.081,  16.047, -177.289}, -- Map 7 E-12
+                    {-129.569,  38.263,   83.389}, -- Map 8 J-9
+                    {-109.431,  16.818,   25.500}, -- Map 7 F-7 -- {R}F-7
+                    {-108.781,  -3.446,   50.634}, -- Map 2 F-6 -- {R}F-6
+                    {-104.457,  -1.927,  -66.331}, -- Map 2 F-9
+                    { -98.921,  -1.524,  -16.917}, -- Map 2 F-8
+                    { -73.008,  -0.541,  -96.456}, -- Map 2 G-10
+                    { -64.817,  -1.146,   61.395}, -- Map 2 G-6 -- {R}G-6
+                    { -15.084,   4.648,  176.277}, -- Map 7 H-3
+                    {  -3.945,   9.675,   95.107}, -- Map 7 H-5
+                    {  25.588,   8.467,   96.117}, -- Map 7 I-5
+                    {  27.931,  -2.754,   50.856}, -- Map 2 I-6
+                    {  41.822,  -0.888,  -24.337}, -- Map 2 J-8
+                    {  67.766,  -2.801,   27.572}, -- Map 2 J-7
+                    {  92.615,  19.226,   -5.734}, -- Map 6 H-11
+                    {  96.232,  10.479,  227.291}, -- Map 6 H-5
+                    {  96.820,   8.636,  141.280}, -- Map 7 K-4 -- {R}K-4
+                    { 139.082,   3.224,  -61.040}, -- Map 1 G-8
                 },
             },
         },
@@ -1308,7 +1307,7 @@ local helmInfo =
 -- colored rocks. do not change this order!
 -------------------------------------------------
 
-local rocks = {769,770,771,772,773,774,776,775}
+local rocks = {769,771,770,772,773,774,776,775}
 
 -------------------------------------------------
 -- local functions
@@ -1401,6 +1400,7 @@ end
 dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
     local info = helmInfo[helmType]
     local zoneId = player:getZoneID()
+    local regionId = player:getCurrentRegion()
 
     if trade:hasItemQty(info.tool, 1) and trade:getItemCount() == 1 then
         -- start event
@@ -1424,7 +1424,7 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
         -- quest stuff
         if
             helmType == dsp.helm.type.HARVESTING and
-            player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and
+            player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.VANISHING_ACT) == QUEST_ACCEPTED and
             not player:hasKeyItem(dsp.ki.RAINBOW_BERRY) and
             broke ~= 1 and
             zoneId == dsp.zone.WAJAOM_WOODLANDS
@@ -1432,6 +1432,31 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
             npcUtil.giveKeyItem(player, dsp.ki.RAINBOW_BERRY)
         end
 
+        local amkChance = 20
+        if 
+            player:getCurrentMission(AMK) == dsp.mission.id.amk.WELCOME_TO_MY_DECREPIT_DOMICILE and
+            broke ~= 1
+        then
+            if
+                helmType == dsp.helm.type.MINING and
+                not player:hasKeyItem(dsp.ki.STURDY_METAL_STRIP) and
+                dsp.expansionRegion.ORIGINAL_ROTZ[regionId] and math.random(100) <= amkChance
+            then
+                npcUtil.giveKeyItem(player, dsp.ki.STURDY_METAL_STRIP)
+            elseif
+                helmType == dsp.helm.type.LOGGING and
+                not player:hasKeyItem(dsp.ki.PIECE_OF_RUGGED_TREE_BARK) and
+                dsp.expansionRegion.ORIGINAL_ROTZ[regionId] and math.random(100) <= amkChance
+            then
+                npcUtil.giveKeyItem(player, dsp.ki.PIECE_OF_RUGGED_TREE_BARK)
+            elseif
+                helmType == dsp.helm.type.HARVESTING and
+                not player:hasKeyItem(dsp.ki.SAVORY_LAMB_ROAST) and
+                dsp.expansionRegion.ORIGINAL_ROTZ[regionId] and math.random(100) <= amkChance
+            then
+                npcUtil.giveKeyItem(player, dsp.ki.SAVORY_LAMB_ROAST)
+            end
+        end
     else
         player:messageSpecial(zones[zoneId].text[info.message], info.tool)
     end

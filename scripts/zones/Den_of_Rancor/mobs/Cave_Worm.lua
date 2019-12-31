@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Cave Worm
+--  Mob: Cave Worm
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

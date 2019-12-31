@@ -34,33 +34,24 @@ require("scripts/globals/keyitems");
     -- 21: Beyond Infinity
 
 function onTrade(player,npc,trade)
-
-    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
-        return;
-    end
-
+    TradeBCNM(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
 
-    -- if (player:hasKeyItem(dsp.ki.MARK_OF_SEED) and player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_II) then
+    -- if (player:hasKeyItem(dsp.ki.MARK_OF_SEED) and player:getCurrentMission(ACP) == dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II) then
         --player:startEvent(5);
     --elseif (EventTriggerBCNM(player,npc)) then
     -- Temp disabled pending fixes for the BCNM mobs.
 
-    if (EventTriggerBCNM(player,npc)) then
-        return;
-    end
-
+    EventTriggerBCNM(player,npc)
 end;
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player,csid,option,extras)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
 
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
+   EventUpdateBCNM(player,csid,option,extras)
 
 end;
 
@@ -73,10 +64,10 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 5) then
-        player:completeMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_II);
-        player:addMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_III);
-    elseif (EventFinishBCNM(player,csid,option)) then
-        return;
+        player:completeMission(ACP,dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_II);
+        player:addMission(ACP,dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III);
+    else
+        EventFinishBCNM(player,csid,option)
     end
 
 end;

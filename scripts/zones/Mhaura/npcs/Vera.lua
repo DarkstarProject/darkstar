@@ -11,10 +11,10 @@ local ID = require("scripts/zones/Mhaura/IDs");
 
 function onTrade(player,npc,trade)
 
-    local questStatus = player:getQuestStatus(OTHER_AREAS_LOG,THE_OLD_LADY);
+    local questStatus = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_OLD_LADY);
 
     if (questStatus == QUEST_ACCEPTED and trade:getItemCount() == 1) then
-        local VeraOldLadyVar = player:getVar("VeraOldLadyVar");
+        local VeraOldLadyVar = player:getCharVar("VeraOldLadyVar");
         if (VeraOldLadyVar == 1 and trade:hasItemQty(542,1)) then
             player:startEvent(135,541);
         elseif (VeraOldLadyVar == 2 and trade:hasItemQty(541,1)) then
@@ -28,14 +28,14 @@ end;
 
 function onTrigger(player,npc)
 
-    local questStatus = player:getQuestStatus(OTHER_AREAS_LOG, THE_OLD_LADY);
+    local questStatus = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_OLD_LADY);
 
-    if (player:getQuestStatus(OTHER_AREAS_LOG, ELDER_MEMORIES) ~= QUEST_AVAILABLE) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ELDER_MEMORIES) ~= QUEST_AVAILABLE) then
         player:startEvent(130);
     elseif (questStatus == QUEST_COMPLETED) then
         player:startEvent(138);
     elseif (questStatus == QUEST_ACCEPTED) then
-        VeraOldLadyVar = player:getVar("VeraOldLadyVar");
+        VeraOldLadyVar = player:getCharVar("VeraOldLadyVar");
         if (VeraOldLadyVar == 1) then
             player:startEvent(132,542);
         elseif (VeraOldLadyVar == 2) then
@@ -61,20 +61,20 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 131 and option == 40) then
-        player:addQuest(OTHER_AREAS_LOG, THE_OLD_LADY);
-        player:setVar("VeraOldLadyVar", 1);
+        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_OLD_LADY);
+        player:setCharVar("VeraOldLadyVar", 1);
     elseif (csid == 135) then
         player:tradeComplete();
-        player:setVar("VeraOldLadyVar", 2);
+        player:setCharVar("VeraOldLadyVar", 2);
     elseif (csid == 136) then
         player:tradeComplete();
-        player:setVar("VeraOldLadyVar", 3);
+        player:setCharVar("VeraOldLadyVar", 3);
     elseif (csid == 137) then
         player:tradeComplete();
         player:unlockJob(0);
-        player:setVar("VeraOldLadyVar", 0);
+        player:setCharVar("VeraOldLadyVar", 0);
         player:messageSpecial(ID.text.SUBJOB_UNLOCKED);
-        player:completeQuest(OTHER_AREAS_LOG,THE_OLD_LADY);
+        player:completeQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_OLD_LADY);
     end
 
 end;

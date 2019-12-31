@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Sabertooth Tiger
+--  Mob: Sabertooth Tiger
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

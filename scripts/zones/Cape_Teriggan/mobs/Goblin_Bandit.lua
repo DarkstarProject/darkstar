@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Bandit
+--  Mob: Goblin Bandit
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

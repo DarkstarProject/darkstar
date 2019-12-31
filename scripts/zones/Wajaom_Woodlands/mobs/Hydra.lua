@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
---  MOB: Hydra
+--  Mob: Hydra
 -- !pos -282 -24 -1 51
 -----------------------------------
 require("scripts/globals/titles");
@@ -40,3 +40,7 @@ function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.HYDRA_HEADHUNTER);
 
 end;
+
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(48, 72) * 3600) -- 48 to 72 hours, in 1 hour windows
+end

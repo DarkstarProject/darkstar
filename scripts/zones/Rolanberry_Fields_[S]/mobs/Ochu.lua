@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields [S]
---  MOB: Ochu
+--  Mob: Ochu
 -- Note: PH for Delicieuse Delphine
 -----------------------------------
 local ID = require("scripts/zones/Rolanberry_Fields_[S]/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.DELICIEUSE_DELPHINE_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.DELICIEUSE_DELPHINE_PH, 10, 3600) -- 1 hour
 end

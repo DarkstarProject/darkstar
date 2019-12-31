@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Riverne - Site B01
---  MOB: Nimbus Hippogryph
+--  Mob: Nimbus Hippogryph
 -- Note: Place holder Imdugud
 -----------------------------------
 local ID = require("scripts/zones/Riverne-Site_B01/IDs");
@@ -10,5 +10,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.IMDUGUD_PH,10,75600); -- 21 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.IMDUGUD_PH,10,75600); -- 21 hours
 end;

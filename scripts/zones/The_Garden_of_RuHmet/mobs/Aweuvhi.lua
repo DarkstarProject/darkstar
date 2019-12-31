@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  NPC: Aw'Euvhi
+--  Mob: Aw'euvhi
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

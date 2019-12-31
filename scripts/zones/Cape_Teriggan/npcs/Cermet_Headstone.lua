@@ -14,8 +14,8 @@ function onTrade(player,npc,trade)
 
     -- WANDERING SOULS
     if (trade:hasItemQty(949,1) and trade:getItemCount() == 1) then
-        if (not player:hasCompletedQuest(OUTLANDS,WANDERING_SOULS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.WIND_FRAGMENT))) then
-             player:addQuest(OUTLANDS,WANDERING_SOULS);
+        if (not player:hasCompletedQuest(OUTLANDS,dsp.quest.id.outlands.WANDERING_SOULS) and (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.WIND_FRAGMENT))) then
+             player:addQuest(OUTLANDS,dsp.quest.id.outlands.WANDERING_SOULS);
              player:startEvent(202,949);
         else
              player:messageSpecial(ID.text.NOTHING_HAPPENS);
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
 
     -- HEADSTONE PILGRIMAGE
-    if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
         if (player:hasKeyItem(dsp.ki.WIND_FRAGMENT)) then
             player:messageSpecial(ID.text.ALREADY_OBTAINED_FRAG,dsp.ki.WIND_FRAGMENT);
         elseif (os.time() >= npc:getLocalVar("cooldown")) then
@@ -47,15 +47,15 @@ function onTrigger(player,npc)
             ) then
                 player:messageSpecial(ID.text.FOUND_ALL_FRAGS,dsp.ki.WIND_FRAGMENT);
                 player:addTitle(dsp.title.BEARER_OF_THE_EIGHT_PRAYERS);
-                player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
-                player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
+                player:completeMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE);
+                player:addMission(ZILART,dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES);
             else
                 player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WIND_FRAGMENT);
             end
         end
 
     -- DEFAULT DIALOGS
-    elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
+    elseif (player:hasCompletedMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE)) then
         player:messageSpecial(ID.text.ZILART_MONUMENT);
     else
         player:messageSpecial(ID.text.CANNOT_REMOVE_FRAG);
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13248); -- Flagellant's Rope
             player:messageSpecial(ID.text.ITEM_OBTAINED,13248);
             player:addTitle(dsp.title.BEARER_OF_BONDS_BEYOND_TIME);
-            player:completeQuest(OUTLANDS,WANDERING_SOULS);
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.WANDERING_SOULS);
         end
     end
 end;

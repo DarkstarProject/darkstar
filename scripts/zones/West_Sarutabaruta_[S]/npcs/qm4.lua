@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SMALL_STARFRUIT) then
+    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SMALL_STARFRUIT) then
         player:addKeyItem(dsp.ki.SMALL_STARFRUIT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SMALL_STARFRUIT)
     end

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Batallia Downs (S)
+-- Area: Batallia Downs [S]
 --  Mob: Smilodon
 -- Note: PH for La Velue
 -----------------------------------
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.LA_VELUE_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.LA_VELUE_PH, 10, 3600) -- 1 hour
 end

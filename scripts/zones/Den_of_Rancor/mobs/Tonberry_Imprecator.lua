@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Imprecator
+--  Mob: Tonberry Imprecator
 -- Note: PH for Carmine-tailed Janberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
@@ -16,5 +16,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.CARMINE_TAILED_JANBERRY_PH, 5, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.CARMINE_TAILED_JANBERRY_PH, 5, 3600) -- 1 hour
 end

@@ -1464,9 +1464,9 @@ INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 362, 1, 255); -- Bindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 366, 1, 255); -- Graviga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
-INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255);  -- Drown
+INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255); -- Drown
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,201,1,255); -- Waterga III
-INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,362,1,255); -- Bindaga
+INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,361,1,255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,214,1,255); -- Flood
 INSERT INTO `mob_spell_lists` VALUES ('Iratham_HP_50to100', 153, 176, 1, 255); -- Firaga 3 (Only used when over 50% HP)
 INSERT INTO `mob_spell_lists` VALUES ('Iratham_HP_50to100', 153, 177, 1, 255); -- Firaga 4 (Only used when over 50% HP)
@@ -2024,7 +2024,36 @@ INSERT INTO `mob_spell_lists` VALUES ('Itzpapalotl',236,177,1,255); -- firaga_iv
 INSERT INTO `mob_spell_lists` VALUES ('Likho',237,175,1,255); -- firaga_ii
 INSERT INTO `mob_spell_lists` VALUES ('Hoar-knuckled_Rimberry',238,324,1,255); -- hyoton_ni
 INSERT INTO `mob_spell_lists` VALUES ('Hoar-knuckled_Rimberry',238,342,1,255); -- jubaku_ni
-
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_85',239,154,1,255); -- aero
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_85',239,184,1,255); -- aeroga
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_85',239,232,1,255); -- bio_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_85',239,274,1,255); -- sleepga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_85',239,252,1,255); -- stun
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_70',240,155,1,255); -- aero_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_70',240,184,1,255); -- aeroga
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_70',240,232,1,255); -- bio_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_70',240,274,1,255); -- sleepga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_70',240,252,1,255); -- stun
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_55',241,156,1,255); -- aero_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_55',241,185,1,255); -- aeroga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_55',241,232,1,255); -- bio_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_55',241,274,1,255); -- sleepga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_55',241,252,1,255); -- stun
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_40',242,157,1,255); -- aero_iv
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_40',242,185,1,255); -- aeroga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_40',242,232,1,255); -- bio_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_40',242,274,1,255); -- sleepga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_40',242,252,1,255); -- stun
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_25',243,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_25',243,186,1,255); -- aeroga_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_25',243,232,1,255); -- bio_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_25',243,274,1,255); -- sleepga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_25',243,252,1,255); -- stun
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_0',244,209,1,255); -- tornado_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_0',244,186,1,255); -- aeroga_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_0',244,232,1,255); -- bio_iii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_0',244,274,1,255); -- sleepga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Dee_Zelko_0',244,252,1,255); -- stun
 INSERT INTO `mob_spell_lists` VALUES ('Bukhis',245,153,1,255); -- blizzard_v
 INSERT INTO `mob_spell_lists` VALUES ('Bukhis',245,182,1,255); -- blizzaga_iv
 INSERT INTO `mob_spell_lists` VALUES ('Bukhis',245,356,1,255); -- paralyga
@@ -2438,7 +2467,6 @@ INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,644,73,255); -- MindBla
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,645,75,255); -- Exuvation
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,646,74,255); -- Magic Hammer
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,647,65,255); -- Zephyr Mantle
-
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,146,1,255); -- Fire 3
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,151,1,255); -- Blizzard 3
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,156,1,255); -- Aero 3
@@ -2451,6 +2479,42 @@ INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,185,1,255); -- Aeraga 2
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,190,1,255); -- Stonaga 2
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,195,1,255); -- Thundaga 2
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,200,1,255); -- Waterga 2
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,242,1,255); -- absorb-acc
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,245,1,255); -- drain
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,247,1,255); -- aspir
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,252,1,255); -- stun
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,266,1,255); -- absorb-str
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,267,1,255); -- absorb-dex
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,268,1,255); -- absorb-vit
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,269,1,255); -- absorb-agi
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,270,1,255); -- absorb-int
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,271,1,255); -- absorb-mnd
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,272,1,255); -- absorb-chr
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,275,1,255); -- absorb-tp
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,277,1,255); -- dread_spikes
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,157,1,255); -- aero 4
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,185,1,255); -- aeroaga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,186,1,255); -- aeroaga_iii
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,359,1,255); -- silencega
+INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,152,1,255); -- blizzard_iv
+INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,181,1,255); -- blizzaga_iii
+INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,144,1,255); -- fire
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,164,1,255); -- thunder
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,266,1,255); -- absorb-str
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,267,1,255); -- absorb-dex
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,268,1,255); -- absorb-vit
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,269,1,255); -- absorb-agi
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,270,1,255); -- absorb-int
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,271,1,255); -- absorb-mnd
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_DRK',304,272,1,255); -- absorb-chr
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,145,1,255); -- fire_ii
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,150,1,255); -- blizzard_ii
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,174,1,255); -- firaga
+INSERT INTO `mob_spell_lists` VALUES ('Ghul-I-Beaban_BLM',305,179,1,255); -- blizzaga
+INSERT INTO `mob_spell_lists` VALUES ('Saa_Doyi_the_Fervid',306,320,1,255); -- katon_ichi
+INSERT INTO `mob_spell_lists` VALUES ('Frost_Flambeau',307,180,1,255); -- blizzaga_ii
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

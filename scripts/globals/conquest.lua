@@ -77,14 +77,21 @@ local outposts =
     [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
     [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
     [dsp.region.TULIA]           = {zone = 130,                                             cp = 0,  lvl = 70, fee = 500},
+    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250},
     [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
-    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250}
 }
 
 local function hasOutpost(player, region)
-    local regionBit = math.pow(2, region + 5)
-    local supplyQuests = player:getNationTeleport(player:getNation())
-    return bit.band(supplyQuests, regionBit) == regionBit
+    local region = region + 5
+    local hasOP = player:hasTeleport(player:getNation(), region)
+    if not hasOP then
+        if UNLOCK_OUTPOST_WARPS == 2 then
+            hasOP = true
+        elseif UNLOCK_OUTPOST_WARPS == 1 then
+            hasOP = region <= dsp.region.ELSHIMOUPLANDS
+        end
+    end
+    return hasOP
 end
 
 local function setHomepointFee(player, guardNation)
@@ -115,7 +122,13 @@ local function getRegionsMask(nation)
 end
 
 local function getAllowedTeleports(player, nation)
-    local allowedTeleports = 0x3F00001F
+    local allowedTeleports = 0x3F40001F -- All outposts set (0 indicates allowed)
+
+    if UNLOCK_OUTPOST_WARPS == 2 then
+        return allowedTeleports -- Allow all outposts
+    elseif UNLOCK_OUTPOST_WARPS == 1 then
+        return 0x3FE0001F -- Allow all outposts except for Tulia and Tavnazia
+    end
     for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
         if not dsp.conquest.canTeleportToOutpost(player, region) then
             allowedTeleports = bit.bor(allowedTeleports, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
@@ -133,7 +146,7 @@ end
 local function suppliesAvailableBitmask(player, nation)
     local mask = 2130706463
 
-    if player:getVar("supplyQuest_started") == vanaDay() then
+    if player:getCharVar("supplyQuest_started") == vanaDay() then
         mask = 4294967295 -- Need to wait 1 vanadiel day
     end
 
@@ -146,7 +159,7 @@ local function suppliesAvailableBitmask(player, nation)
 
     if mask ~= -1 and mask ~= 4294967295 then
         for i = 0, 18 do
-            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, DARKNESS_NAMED)) then
+            if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, dsp.mission.id.cop.DARKNESS_NAMED)) then
                 mask = mask + 2^(i + 5)
             end
         end
@@ -156,8 +169,8 @@ local function suppliesAvailableBitmask(player, nation)
 end
 
 local function areSuppliesRotten(player, npc, guardType)
-    local fresh   = player:getVar("supplyQuest_fresh")
-    local region  = player:getVar("supplyQuest_region")
+    local fresh   = player:getCharVar("supplyQuest_fresh")
+    local region  = player:getCharVar("supplyQuest_region")
     local rotten  = false
     local text    = zones[player:getZoneID()].text
 
@@ -175,9 +188,9 @@ local function areSuppliesRotten(player, npc, guardType)
 
         player:delKeyItem(ki)
         player:messageSpecial(text.KEYITEM_LOST, ki)
-        player:setVar("supplyQuest_started", 0)
-        player:setVar("supplyQuest_region", 0)
-        player:setVar("supplyQuest_fresh", 0)
+        player:setCharVar("supplyQuest_started", 0)
+        player:setCharVar("supplyQuest_region", 0)
+        player:setCharVar("supplyQuest_fresh", 0)
     end
 
     return rotten
@@ -186,7 +199,7 @@ end
 local function canDeliverSupplies(player, guardNation, guardEvent, guardRegion)
     local delivered = false
 
-    local region = player:getVar("supplyQuest_region")
+    local region = player:getCharVar("supplyQuest_region")
     if region == guardRegion and player:hasKeyItem(outposts[region].ki) then
         delivered = true
         player:startEvent(guardEvent, 16, 0, 0, 0, 1, 0, 0, 255) -- "you have brought us supplies!"
@@ -828,7 +841,7 @@ local function canBuyExpRing(player, item)
     end
 
     -- one exp ring per conquest tally
-    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_TIMER") > os.time() then
+    if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getCharVar("CONQUEST_RING_RECHARGE") > os.time() then
         player:messageSpecial(text.CONQUEST + 60, 0, 0, item)
         return false
     end
@@ -960,14 +973,14 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
 
         -- RECHARGE EXP RING
         if not tradeConfirmed and expRings[item] and npcUtil.tradeHas(trade, item) then
-            if BYPASS_EXP_RING_ONE_PER_WEEK == 1 or player:getVar("CONQUEST_RING_RECHARGE") < os.time() then
+            if BYPASS_EXP_RING_ONE_PER_WEEK == 1 or player:getCharVar("CONQUEST_RING_RECHARGE") < os.time() then
                 local ring = expRings[item]
 
                 if player:getCP() >= ring.cp then
                     player:delCP(ring.cp)
                     player:confirmTrade()
                     player:addItem(item)
-                    player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
+                    player:setCharVar("CONQUEST_RING_RECHARGE", getConquestTally())
                     player:showText(npc, mOffset + 58, item, ring.cp, ring.charges) -- "Your ring is now fully recharged."
                 else
                     player:showText(npc, mOffset + 55, item, ring.cp) -- "You do not have the required conquest points to recharge."
@@ -1005,7 +1018,7 @@ dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, g
         local a2 = getExForceAvailable(player, guardNation)
         local a3 = conquestRanking()
         local a4 = suppliesAvailableBitmask(player, guardNation)
-        local a5 = player:getNationTeleport(guardNation)
+        local a5 = player:getTeleport(guardNation)
         local a6 = getArg6(player)
         local a7 = player:getCP()
         local a8 = getExForceReward(player, guardNation)
@@ -1063,7 +1076,7 @@ end
 dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation, guardType, guardRegion)
     local pNation  = player:getNation()
     local pRank    = player:getRank()
-    local sRegion  = player:getVar("supplyQuest_region")
+    local sRegion  = player:getCharVar("supplyQuest_region")
     local sOutpost = outposts[sRegion]
     local mOffset  = zones[player:getZoneID()].text.CONQUEST
 
@@ -1072,6 +1085,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
         player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         player:addStatusEffect(dsp.effect.SIGNET, 0, 0, duration)
+        player:messageSpecial(mOffset + 1) -- "You've received your nation's Signet!"
 
     -- BEGIN SUPPLY RUN
     elseif option >= 65541 and option <= 65565 and guardType <= dsp.conquest.guard.FOREIGN then
@@ -1079,9 +1093,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local outpost = outposts[region]
         if outpost ~= nil then
             npcUtil.giveKeyItem(player, outpost.ki)
-            player:setVar("supplyQuest_started", vanaDay())
-            player:setVar("supplyQuest_region", region)
-            player:setVar("supplyQuest_fresh", getConquestTally())
+            player:setCharVar("supplyQuest_started", vanaDay())
+            player:setCharVar("supplyQuest_region", region)
+            player:setCharVar("supplyQuest_fresh", getConquestTally())
         end
 
     -- FINISH SUPPLY RUN
@@ -1091,16 +1105,18 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         sRegion == guardRegion and
         sOutpost ~= nil and
         player:hasKeyItem(sOutpost.ki) and
-        guardNation == pNation and
-        not hasOutpost(player, sRegion)
+        guardNation == pNation
     then
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
         player:messageSpecial(mOffset) -- "You've earned conquest points!"
-        player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
-        player:setVar("supplyQuest_started", 0)
-        player:setVar("supplyQuest_region", 0)
-        player:setVar("supplyQuest_fresh", 0)
+        player:setCharVar("supplyQuest_started", 0)
+        player:setCharVar("supplyQuest_region", 0)
+        player:setCharVar("supplyQuest_fresh", 0)
+
+        if not player:hasTeleport(guardNation, sRegion + 5) then
+            player:addTeleport(guardNation, sRegion + 5)
+        end
 
     -- SET HOMEPOINT
     elseif option == 4 then
@@ -1156,7 +1172,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         if npcUtil.giveItem(player, stock.item) then
             player:delCP(price)
             if option >= 32933 and option <= 32935 then
-                player:setVar("CONQUEST_RING_TIMER", getConquestTally())
+                player:setCharVar("CONQUEST_RING_RECHARGE", getConquestTally())
             end
         end
     end
@@ -1211,11 +1227,8 @@ dsp.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporter
         local bastokRegions = getRegionsMask(dsp.nation.BASTOK)
         local windyRegions = getRegionsMask(dsp.nation.WINDURST)
         local beastmenRegions = getRegionsMask(dsp.nation.BEASTMEN)
-
         local allowedTeleports = getAllowedTeleports(player, teleporterNation)
-
         local teleporterRegion = dsp.region.SANDORIA + teleporterNation
-
         player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, bit.lshift(1, teleporterRegion), 0, player:getMainLvl(), allowedTeleports)
     else
         local a6 =
@@ -1241,7 +1254,7 @@ dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporter
         -- TELEPORT WITH GIL
         if option >= 5 and option <= 23 then
             local region = option - 5
-            local fee = dsp.conq.outpostFee(player, region)
+            local fee = dsp.conquest.outpostFee(player, region)
 
             if dsp.conquest.canTeleportToOutpost(player, region) and player:delGil(fee) then
                 player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
@@ -1250,7 +1263,7 @@ dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporter
         -- TELEPORT WITH CP
         elseif option >= 1029 and option <= 1047 then
             local region = option - 1029
-            local fee = dsp.conq.outpostFee(player, region)
+            local fee = dsp.conquest.outpostFee(player, region)
 
             if dsp.conquest.canTeleportToOutpost(player, region) and player:getCP() >= fee then
                 player:delCP(fee)

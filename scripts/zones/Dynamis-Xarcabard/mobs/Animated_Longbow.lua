@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Animated Longbow
+-- Area: Dynamis - Xarcabard
+--  Mob: Animated Longbow
 -----------------------------------
 require("scripts/globals/status");
 local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Monastic_Cavern
+-- Area: Monastic Cavern (150)
 -----------------------------------
 require("scripts/globals/zone")
 -----------------------------------
@@ -15,14 +15,15 @@ zones[dsp.zone.MONASTIC_CAVERN] =
         GIL_OBTAINED                 = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY      = 6402, -- There is nothing out of the ordinary here.
+        GEOMAGNETRON_ATTUNED         = 7010, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CONQUEST_BASE                = 7049, -- Tallying conquest results...
         ALTAR                        = 7264, -- This appears to be an altar.
         THE_MAGICITE_GLOWS_OMINOUSLY = 7267, -- The magicite glows ominously.
-        CHEST_UNLOCKED               = 7285, -- You unlock the chest!
-        ORCISH_OVERLORD_ENGAGE       = 7297, -- Intruders? Get outs here! We gots us some adventurers!
-        ORCISH_OVERLORD_DEATH        = 7298, -- Gahahahaha... You fell for our trick. I'm not the big boss. He don't need to be troubled by runty little rarabs like you.
-        ORC_KING_ENGAGE              = 7299, -- Ungh? Who are you?  So, you've come to kill big boss Bakgodek? I'll crush your scrawny bones myself!
-        ORC_KING_DEATH               = 7300, -- Unghh... Foolish children of Altana. Defeating me won't change anything. There will be others from the north...<space>
+        CHEST_UNLOCKED               = 7286, -- You unlock the chest!
+        ORCISH_OVERLORD_ENGAGE       = 7298, -- Intruders? Get outs here! We gots us some adventurers!
+        ORCISH_OVERLORD_DEATH        = 7299, -- Gahahahaha... You fell for our trick. I'm not the big boss. He don't need to be troubled by runty little rarabs like you.
+        ORC_KING_ENGAGE              = 7300, -- Ungh? Who are you?  So, you've come to kill big boss Bakgodek? I'll crush your scrawny bones myself!
+        ORC_KING_DEATH               = 7301, -- Unghh... Foolish children of Altana. Defeating me won't change anything. There will be others from the north...<space>
     },
     mob =
     {

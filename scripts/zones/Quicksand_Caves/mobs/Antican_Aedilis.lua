@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Aedilis
+--  Mob: Antican Aedilis
 -- Note: PH for Antican Tribunus
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")
@@ -20,5 +20,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.ANTICAN_TRIBUNUS_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.ANTICAN_TRIBUNUS_PH, 10, 3600) -- 1 hour
 end

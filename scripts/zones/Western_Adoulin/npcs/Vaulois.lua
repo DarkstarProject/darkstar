@@ -13,8 +13,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Transporting = player:getQuestStatus(ADOULIN, TRANSPORTING);
-    if ((Transporting == QUEST_ACCEPTED) and (player:getVar("Transporting_Status") >= 2)) then
+    local Transporting = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.TRANSPORTING);
+    if ((Transporting == QUEST_ACCEPTED) and (player:getCharVar("Transporting_Status") >= 2)) then
         -- Finishing Quest: 'Transporting'
         player:startEvent(2591);
     elseif ((Transporting == QUEST_AVAILABLE) and (player:getFameLevel(ADOULIN) >= 2)) then
@@ -32,10 +32,10 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2590) then
         -- Starting Quest: 'Transporting'
-        player:addQuest(ADOULIN, TRANSPORTING);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.TRANSPORTING);
     elseif (csid == 2591) then
         -- Finishing Quest: 'Transporting'
-        player:completeQuest(ADOULIN, TRANSPORTING);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.TRANSPORTING);
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 300 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 300 * BAYLD_RATE);

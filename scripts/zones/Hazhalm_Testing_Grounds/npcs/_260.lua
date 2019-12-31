@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == GAZE_OF_THE_SABOTEUR and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.GAZE_OF_THE_SABOTEUR and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(7);
     end
 end;
@@ -24,12 +24,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 7) then
-        player:completeMission(TOAU,GAZE_OF_THE_SABOTEUR);
-        player:setVar("AhtUrganStatus",0);
+        player:completeMission(TOAU,dsp.mission.id.toau.GAZE_OF_THE_SABOTEUR);
+        player:setCharVar("AhtUrganStatus",0);
         player:setTitle(dsp.title.EMISSARY_OF_THE_EMPRESS);
         player:addKeyItem(dsp.ki.LUMINIAN_DAGGER);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LUMINIAN_DAGGER);
-        player:addMission(TOAU,PATH_OF_BLOOD);
+        player:addMission(TOAU,dsp.mission.id.toau.PATH_OF_BLOOD);
     end
 
 end;

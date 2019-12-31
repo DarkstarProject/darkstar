@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Fallen Mage
+--  Mob: Fallen Mage
 -- Note: Place holder Hovering Hotpot
 -----------------------------------
 local ID = require("scripts/zones/Garlaige_Citadel/IDs");
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.HOVERING_HOTPOT_PH,20,math.random(1800,3600)); -- 30 to 60 minutes
+    dsp.mob.phOnDespawn(mob,ID.mob.HOVERING_HOTPOT_PH,20,math.random(1800,3600)); -- 30 to 60 minutes
 end;

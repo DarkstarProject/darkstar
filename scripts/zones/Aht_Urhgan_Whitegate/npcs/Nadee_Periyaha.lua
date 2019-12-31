@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local ratRaceProg = player:getVar("ratraceCS")
+    local ratRaceProg = player:getCharVar("ratraceCS")
     if ratRaceProg == 1 then
         player:startEvent(849)
     elseif ratRaceProg == 2 then
@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 849 then
-        player:setVar("ratraceCS",2)
+        player:setCharVar("ratraceCS",2)
     end
 end

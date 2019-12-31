@@ -17,6 +17,7 @@ zones[dsp.zone.WEST_SARUTABARUTA_S] =
         HARVESTING_IS_POSSIBLE_HERE = 7069, -- Harvesting is possible here if you have <item>.
         FISHING_MESSAGE_OFFSET      = 7076, -- You can't fish here.
         DOOR_OFFSET                 = 7434, -- The door is sealed shut...
+        COMMON_SENSE_SURVIVAL       = 9258, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

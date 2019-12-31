@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Conjurer
+--  Mob: Goblin Conjurer
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

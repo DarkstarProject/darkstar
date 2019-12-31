@@ -10,7 +10,7 @@ end
 
 function onTrigger(player, npc)
     player:startEvent(108)
-    player:setVar("SahaginKeyProgress", 2)
+    player:setCharVar("SahaginKeyProgress", 2)
 end
 
 function onEventUpdate(player, csid, option)

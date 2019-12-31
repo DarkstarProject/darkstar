@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Hawker
+--  Mob: Hawker
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

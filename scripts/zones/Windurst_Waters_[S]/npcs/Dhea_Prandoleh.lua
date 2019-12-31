@@ -13,16 +13,19 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCampaignAllegiance() > 0 and player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS) == QUEST_AVAILABLE then
+    if player:getCampaignAllegiance() > 0 and player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_AVAILABLE then
         player:startEvent(128)
-    elseif player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS) == QUEST_ACCEPTED then
+    elseif player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_ACCEPTED then
         player:startEvent(160)
-    elseif player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS) == QUEST_COMPLETED and player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_AVAILABLE then
+    elseif
+        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_COMPLETED and
+        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_AVAILABLE
+    then
         player:startEvent(135)
-    elseif player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED then
-        if player:getVar("TigressStrikesProg") < 3 then
+    elseif player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_ACCEPTED then
+        if player:getCharVar("TigressStrikesProg") < 3 then
             player:startEvent(131)
-        elseif player:getVar("TigressStrikesProg") == 3 then
+        elseif player:getCharVar("TigressStrikesProg") == 3 then
             player:startEvent(134)
         end
     else
@@ -35,13 +38,13 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 128 then
-        player:addQuest(CRYSTAL_WAR, THE_TIGRESS_STIRS)
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS)
     elseif csid == 133 then
-        player:addQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES)
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES)
     elseif csid == 134 then
         player:addItem(139)
         player:messageSpecial(ID.text.ITEM_OBTAINED, 139)
-        player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES)
+        player:completeQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES)
         player:needToZone(true)
         player:addTitle(dsp.title.AJIDOMARUJIDOS_MINDER)
     end

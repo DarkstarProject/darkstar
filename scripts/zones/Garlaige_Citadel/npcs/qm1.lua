@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local AltanaSorrow = player:getQuestStatus(BASTOK,ALTANA_S_SORROW);
+    local AltanaSorrow = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.ALTANA_S_SORROW);
     local VirnageLetter = player:hasKeyItem(dsp.ki.LETTER_FROM_VIRNAGE);
     local DivinePaint = player:hasKeyItem(dsp.ki.BUCKET_OF_DIVINE_PAINT);
 

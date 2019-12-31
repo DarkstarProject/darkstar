@@ -4,19 +4,19 @@
 -- Note: PH for Overlord Bakgodek
 -- TODO: messages should be zone-wide
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Monastic_Cavern/IDs")
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
     -- the quest version of this NM doesn't drop gil
-    if (mob:getID() >= ID.mob.UNDERSTANDING_OVERLORD_OFFSET) then
+    if mob:getID() >= ID.mob.UNDERSTANDING_OVERLORD_OFFSET then
         mob:setMobMod(dsp.mobMod.GIL_MAX, -1)
     end
 end
 
-function onMobEngaged(mob,target)
+function onMobEngaged(mob, target)
     mob:showText(mob, ID.text.ORCISH_OVERLORD_ENGAGE)
 end
 
@@ -34,7 +34,7 @@ function onMobDespawn(mob)
         local hqId = mob:getID() + 1
         local ToD = GetServerVariable("[POP]Overlord_Bakgodek")
         local kills = GetServerVariable("[PH]Overlord_Bakgodek")
-        local popNow = (math.random(1,5) == 3 or kills > 6)
+        local popNow = (math.random(1, 5) == 3 or kills > 6)
 
         if os.time() > ToD and popNow then
             DisallowRespawn(nqId, true)

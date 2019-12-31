@@ -11,15 +11,15 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(BASTOK,THE_BARE_BONES) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 880) then
+    if player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_BARE_BONES) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 880) then
         player:startEvent(258)
     end
 end
 
 function onTrigger(player,npc)
-    if player:getVar("BeatAroundTheBushin") == 3 then
+    if player:getCharVar("BeatAroundTheBushin") == 3 then
         player:startEvent(342)
-    elseif player:getQuestStatus(BASTOK,THE_BARE_BONES) == QUEST_AVAILABLE then
+    elseif player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_BARE_BONES) == QUEST_AVAILABLE then
         player:startEvent(256)
     else
         player:startEvent(255)
@@ -31,11 +31,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 342 then
-        player:setVar("BeatAroundTheBushin",4)
+        player:setCharVar("BeatAroundTheBushin",4)
     elseif csid == 256 then
-        player:addQuest(BASTOK,THE_BARE_BONES)
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_BARE_BONES)
     elseif csid == 258 then
-        if (npcUtil.completeQuest(player, BASTOK, THE_BARE_BONES, {keyItem = dsp.ki.MAP_OF_THE_DANGRUF_WADI, fame = 60})) then
+        if (npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.THE_BARE_BONES, {keyItem = dsp.ki.MAP_OF_THE_DANGRUF_WADI, fame = 60})) then
             player:confirmTrade()
         end
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Spring Sahagin
+--  Mob: Spring Sahagin
 -- Note: PH for Wuur the Sandcomber
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.WUUR_THE_SANDCOMBER_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.WUUR_THE_SANDCOMBER_PH, 10, 7200) -- 2 hours
 end

@@ -1,21 +1,32 @@
 -----------------------------------
 -- Area: Al'Taieu
---  NM:  Jailer of Prudence
--- IDs: 16912846, 16912847
+--   NM: Jailer of Prudence
 -- AnimationSubs: 0 - Normal, 3 - Mouth Open
--- Wiki: http://ffxiclopedia.wikia.com/wiki/Jailer_of_Prudence
 -----------------------------------
 local ID = require("scripts/zones/AlTaieu/IDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
-    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
     mob:setMobMod(dsp.mobMod.NO_DROPS, 1);
 end;
 
 function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {
+                id = dsp.jsa.PERFECT_DODGE,
+                cooldown = 120, -- "Both can use Perfect Dodge multiple times, and will do so almost incessantly." (guessing a 2 minute cooldown)
+                hpp = 95,
+                endCode = function(mob)
+                    mob:addStatusEffectEx(dsp.effect.FLEE, 0, 100, 0, 30) -- "Jailer of Prudence will however gain Flee speed during Perfect Dodge."
+                end,
+            },
+        },
+    })
+
     mob:AnimationSub(0); -- Mouth closed
     mob:addStatusEffectEx(dsp.effect.FLEE,0,100,0,60);
     mob:setMod(dsp.mod.TRIPLE_ATTACK, 20);

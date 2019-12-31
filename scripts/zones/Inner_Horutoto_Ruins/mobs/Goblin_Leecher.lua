@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -- Note: PH for Slendlix Spindlethumb
 -----------------------------------
 local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.SLENDLIX_SPINDLETHUMB_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.SLENDLIX_SPINDLETHUMB_PH, 10, 3600) -- 1 hour
 end

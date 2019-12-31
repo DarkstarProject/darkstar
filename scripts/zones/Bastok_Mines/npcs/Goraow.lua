@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Bastok_Mines/IDs");
 
 function onTrade(player,npc,trade)
 
-    local Vengeful = player:getQuestStatus(BASTOK, VENGEFUL_WRATH);
+    local Vengeful = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.VENGEFUL_WRATH);
 
     if (Vengeful ~= QUEST_AVAILABLE) then
         QuadavHelm = trade:hasItemQty(501,1);
@@ -24,12 +24,12 @@ end;
 
 function onTrigger(player,npc)
 
-    local Vengeful = player:getQuestStatus(BASTOK,VENGEFUL_WRATH);
+    local Vengeful = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.VENGEFUL_WRATH);
     local Fame = player:getFameLevel(BASTOK);
 
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,16) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,16) == false) then
         player:startEvent(506);
     elseif (Vengeful == QUEST_AVAILABLE and Fame >= 3) then
         player:startEvent(106);
@@ -46,9 +46,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 106) then
-        player:addQuest(BASTOK, VENGEFUL_WRATH);
+        player:addQuest(BASTOK, dsp.quest.id.bastok.VENGEFUL_WRATH);
     elseif (csid == 107) then
-        Vengeful = player:getQuestStatus(BASTOK, VENGEFUL_WRATH);
+        Vengeful = player:getQuestStatus(BASTOK, dsp.quest.id.bastok.VENGEFUL_WRATH);
         if (Vengeful == QUEST_ACCEPTED) then
             player:addTitle(dsp.title.AVENGER);
             player:addFame(BASTOK,120);
@@ -58,8 +58,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addGil(GIL_RATE*900);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*900);
-        player:completeQuest(BASTOK, VENGEFUL_WRATH); -- for save fame
+        player:completeQuest(BASTOK, dsp.quest.id.bastok.VENGEFUL_WRATH); -- for save fame
     elseif (csid == 506) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",16,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",16,true);
     end
 end;

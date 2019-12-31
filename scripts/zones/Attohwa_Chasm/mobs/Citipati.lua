@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Citipati
+--  Mob: Citipati
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

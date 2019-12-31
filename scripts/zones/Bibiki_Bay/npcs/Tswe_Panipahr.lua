@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
             player:delGil(500);
             player:addKeyItem(dsp.ki.MANACLIPPER_MULTITICKET);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MANACLIPPER_MULTITICKET);
-            player:setVar("Manaclipper_Ticket",10);
+            player:setCharVar("Manaclipper_Ticket",10);
         end
     end
 end;

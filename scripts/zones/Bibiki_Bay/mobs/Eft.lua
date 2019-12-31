@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bibiki Bay
---  MOB: Eft
+--  Mob: Eft
 -- Note: PH for Intulo
 -----------------------------------
 local ID = require("scripts/zones/Bibiki_Bay/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.INTULO_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.INTULO_PH, 10, 3600) -- 1 hour
 end

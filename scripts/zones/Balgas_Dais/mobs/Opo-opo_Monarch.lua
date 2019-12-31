@@ -1,9 +1,10 @@
 -----------------------------------
 -- Area: Balga's Dais
--- MOB: Opo-opo Monarch
--- BCNM Fight: Royal Succession
+--  Mob: Opo-opo Monarch
+-- BCNM: Royal Succession
 -----------------------------------
 require("scripts/globals/status");
+-----------------------------------
 
 function onMobFight (mob,target)
     local partner = (mob:getID() + 1);

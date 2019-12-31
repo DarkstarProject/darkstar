@@ -55,7 +55,6 @@ CBattleEntity::CBattleEntity()
 
     m_mjob = JOB_WAR;
     m_sjob = JOB_WAR;
-    m_enmityRange = 25;
 
     m_magicEvasion = 0;
 
@@ -113,7 +112,7 @@ bool CBattleEntity::isInDynamis()
 
 bool CBattleEntity::isInAssault()
 {
-    if (loc.zone != nullptr) 
+    if (loc.zone != nullptr)
     {
         return loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED && (loc.zone->GetRegionID() >= REGION_WEST_AHT_URHGAN && loc.zone->GetRegionID() <= REGION_ALZADAAL);
     }
@@ -247,39 +246,43 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     {
         return 1700;
     }
-    uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  Mod::DELAY is ignored for now.
-    uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(Mod::DELAY);
-    if (m_Weapons[SLOT_MAIN]->isHandToHand())
+    uint16 WeaponDelay = 9999;
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]))
     {
-        WeaponDelay -= getMod(Mod::MARTIAL_ARTS) * 1000 / 60;
-    }
-    else if (m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
-             m_Weapons[SLOT_SUB]->getDmgType() < 4)
-    {
-        MinimumDelay += m_Weapons[SLOT_SUB]->getDelay();
-        WeaponDelay += m_Weapons[SLOT_SUB]->getDelay();
-        //apply dual wield delay reduction
-        WeaponDelay = (uint16)(WeaponDelay * ((100.0f - getMod(Mod::DUAL_WIELD)) / 100.0f));
-    }
+        uint16 MinimumDelay = weapon->getDelay(); // Track base delay.  We will need this later.  Mod::DELAY is ignored for now.
+        WeaponDelay = weapon->getDelay() - getMod(Mod::DELAY);
+        if (weapon->isHandToHand())
+        {
+            WeaponDelay -= getMod(Mod::MARTIAL_ARTS) * 1000 / 60;
+        }
+        else if (auto subweapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_SUB]); subweapon && subweapon->getDmgType() > 0 &&
+            subweapon->getDmgType() < 4)
+        {
+            MinimumDelay += subweapon->getDelay();
+            WeaponDelay += subweapon->getDelay();
+            //apply dual wield delay reduction
+            WeaponDelay = (uint16)(WeaponDelay * ((100.0f - getMod(Mod::DUAL_WIELD)) / 100.0f));
+        }
 
-    //apply haste and delay reductions that don't affect tp
-    if (!tp)
-    {
-        // Cap haste at appropriate levels.
-        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -10000, 4375); // 43.75% cap -- handle 100% slow for weakness
-        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -2500, 2500); // 25% cap
-        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -2500, 2500); // 25%
+        //apply haste and delay reductions that don't affect tp
+        if (!tp)
+        {
+            // Cap haste at appropriate levels.
+            int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -10000, 4375); // 43.75% cap -- handle 100% slow for weakness
+            int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -2500, 2500); // 25% cap
+            int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -2500, 2500); // 25%
 
-        // Divide by float to get a more accurate reduction, then use int16 cast to truncate
-        WeaponDelay -= (int16)(WeaponDelay * (hasteMagic + hasteAbility + hasteGear) / 10000.f);
+            // Divide by float to get a more accurate reduction, then use int16 cast to truncate
+            WeaponDelay -= (int16)(WeaponDelay * (hasteMagic + hasteAbility + hasteGear) / 10000.f);
+        }
+        WeaponDelay = (uint16)(WeaponDelay * ((100.0f + getMod(Mod::DELAYP)) / 100.0f));
+
+        // Global delay reduction cap of "about 80%" being enforced.
+        // This should be enforced on -delay equipment, martial arts, dual wield, and haste, hence MinimumDelay * 0.2.
+        // TODO: Could be converted to value/1024 if the exact cap is ever determined.
+        MinimumDelay -= (uint16)(MinimumDelay * 0.8);
+        WeaponDelay = (WeaponDelay < MinimumDelay) ? MinimumDelay : WeaponDelay;
     }
-    WeaponDelay = (uint16)(WeaponDelay * ((100.0f + getMod(Mod::DELAYP)) / 100.0f));
-
-    // Global delay reduction cap of "about 80%" being enforced.
-    // This should be enforced on -delay equipment, martial arts, dual wield, and haste, hence MinimumDelay * 0.2.
-    // TODO: Could be converted to value/1024 if the exact cap is ever determined.
-    MinimumDelay -= (uint16)(MinimumDelay * 0.8);
-    WeaponDelay = (WeaponDelay < MinimumDelay) ? MinimumDelay : WeaponDelay;
     return WeaponDelay;
 }
 
@@ -328,106 +331,96 @@ int16 CBattleEntity::GetAmmoDelay()
 
 uint16 CBattleEntity::GetMainWeaponDmg()
 {
-    if (m_Weapons[SLOT_MAIN])
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]))
     {
-        if ((m_Weapons[SLOT_MAIN]->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
+        if ((weapon->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
         {
-            uint16 dmg = m_Weapons[SLOT_MAIN]->getDamage();
+            uint16 dmg = weapon->getDamage();
             dmg *= GetMLevel() * 3;
             dmg /= 4;
-            dmg /= m_Weapons[SLOT_MAIN]->getReqLvl();
+            dmg /= weapon->getReqLvl();
             return dmg + getMod(Mod::MAIN_DMG_RATING);
         }
         else
-            return m_Weapons[SLOT_MAIN]->getDamage() + getMod(Mod::MAIN_DMG_RATING);
+            return weapon->getDamage() + getMod(Mod::MAIN_DMG_RATING);
     }
-    //Unhandled Scenario
-    DSP_DEBUG_BREAK_IF(true);
     return 0;
 }
 
 uint16 CBattleEntity::GetSubWeaponDmg()
 {
-    if (m_Weapons[SLOT_SUB])
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_SUB]))
     {
-        if ((m_Weapons[SLOT_SUB]->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
+        if ((weapon->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
         {
-            uint16 dmg = m_Weapons[SLOT_SUB]->getDamage();
+            uint16 dmg = weapon->getDamage();
             dmg *= GetMLevel() * 3;
             dmg /= 4;
-            dmg /= m_Weapons[SLOT_SUB]->getReqLvl();
+            dmg /= weapon->getReqLvl();
             return dmg + getMod(Mod::SUB_DMG_RATING);
         }
         else
-            return m_Weapons[SLOT_SUB]->getDamage() + getMod(Mod::SUB_DMG_RATING);
+            return weapon->getDamage() + getMod(Mod::SUB_DMG_RATING);
     }
-    //Unhandled Scenario
-    DSP_DEBUG_BREAK_IF(true);
     return 0;
 }
 
 uint16 CBattleEntity::GetRangedWeaponDmg()
 {
     uint16 dmg = 0;
-    if (m_Weapons[SLOT_RANGED])
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_RANGED]))
     {
-        if ((m_Weapons[SLOT_RANGED]->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
+        if ((weapon->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
         {
-            uint16 scaleddmg = m_Weapons[SLOT_RANGED]->getDamage();
+            uint16 scaleddmg = weapon->getDamage();
             scaleddmg *= GetMLevel() * 3;
             scaleddmg /= 4;
-            scaleddmg /= m_Weapons[SLOT_RANGED]->getReqLvl();
+            scaleddmg /= weapon->getReqLvl();
             dmg += scaleddmg;
         }
         else
-            dmg += m_Weapons[SLOT_RANGED]->getDamage();
+            dmg += weapon->getDamage();
     }
-    if (m_Weapons[SLOT_AMMO])
+    if (auto ammo = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_AMMO]))
     {
-        if ((m_Weapons[SLOT_AMMO]->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
+        if ((ammo->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
         {
-            uint16 scaleddmg = m_Weapons[SLOT_AMMO]->getDamage();
+            uint16 scaleddmg = ammo->getDamage();
             scaleddmg *= GetMLevel() * 3;
             scaleddmg /= 4;
-            scaleddmg /= m_Weapons[SLOT_AMMO]->getReqLvl();
+            scaleddmg /= ammo->getReqLvl();
             dmg += scaleddmg;
         }
         else
-            dmg += m_Weapons[SLOT_AMMO]->getDamage();
+            dmg += ammo->getDamage();
     }
     return dmg + getMod(Mod::RANGED_DMG_RATING);
 }
 
 uint16 CBattleEntity::GetMainWeaponRank()
 {
-    if (m_Weapons[SLOT_MAIN])
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]))
     {
-        return (m_Weapons[SLOT_MAIN]->getDamage() + getMod(Mod::MAIN_DMG_RANK)) / 9;
+        return (weapon->getDamage() + getMod(Mod::MAIN_DMG_RANK)) / 9;
     }
-    //Unhandled Scenario
-    DSP_DEBUG_BREAK_IF(true);
     return 0;
 }
 
 uint16 CBattleEntity::GetSubWeaponRank()
 {
-    if (m_Weapons[SLOT_SUB])
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_SUB]))
     {
-        return (m_Weapons[SLOT_SUB]->getDamage() + getMod(Mod::SUB_DMG_RANK)) / 9;
+        return (weapon->getDamage() + getMod(Mod::SUB_DMG_RANK)) / 9;
     }
-    //Unhandled Scenario
-    DSP_DEBUG_BREAK_IF(true);
     return 0;
 }
 
 uint16 CBattleEntity::GetRangedWeaponRank()
 {
-    if (m_Weapons[SLOT_RANGED])
+    if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_RANGED]))
     {
-        return (m_Weapons[SLOT_RANGED]->getDamage() + getMod(Mod::RANGED_DMG_RANK)) / 9;
+        return (weapon->getDamage() + getMod(Mod::RANGED_DMG_RANK)) / 9;
     }
-    //Unhandled Scenario
-    DSP_DEBUG_BREAK_IF(true);
     return 0;
 }
 
@@ -575,7 +568,8 @@ uint16 CBattleEntity::ATT()
 {
     //TODO: consider which weapon!
     int32 ATT = 8 + m_modStat[Mod::ATT];
-    if (m_Weapons[SLOT_MAIN]->isTwoHanded())
+    auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]);
+    if (weapon && weapon->isTwoHanded())
     {
         ATT += (STR() * 3) / 4;
     }
@@ -589,12 +583,15 @@ uint16 CBattleEntity::ATT()
 
     if (this->objtype & TYPE_PC)
     {
-        ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
-
-        // Smite applies when using 2H or H2H weapons
-        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->isHandToHand())
+        if (weapon)
         {
-            ATT += static_cast<int32>(ATT * this->getMod(Mod::SMITE) / 256.f); // Divide smite value by 256
+            ATT += GetSkill(weapon->getSkillType()) + weapon->getILvlSkill();
+
+            // Smite applies when using 2H or H2H weapons
+            if (weapon->isTwoHanded() || weapon->isHandToHand())
+            {
+                ATT += static_cast<int32>(ATT * this->getMod(Mod::SMITE) / 256.f); // Divide smite value by 256
+            }
         }
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
@@ -643,27 +640,39 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
         uint16 iLvlSkill = 0;
         if (attackNumber == 0)
         {
-            skill = m_Weapons[SLOT_MAIN]->getSkillType();
-            iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
-            if (skill == SKILL_NONE && GetSkill(SKILL_HAND_TO_HAND) > 0)
-                skill = SKILL_HAND_TO_HAND;
+            if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]))
+            {
+                skill = weapon->getSkillType();
+                iLvlSkill = weapon->getILvlSkill();
+                if (skill == SKILL_NONE && GetSkill(SKILL_HAND_TO_HAND) > 0)
+                    skill = SKILL_HAND_TO_HAND;
+            }
         }
         else if (attackNumber == 1)
         {
-            skill = m_Weapons[SLOT_SUB]->getSkillType();
-            iLvlSkill = m_Weapons[SLOT_SUB]->getILvlSkill();
-            if (skill == SKILL_NONE && GetSkill(SKILL_HAND_TO_HAND) > 0 &&
-                (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_NONE || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND))
-                skill = SKILL_HAND_TO_HAND;
+            if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_SUB]))
+            {
+                skill = weapon->getSkillType();
+                iLvlSkill = weapon->getILvlSkill();
+                if (skill == SKILL_NONE && GetSkill(SKILL_HAND_TO_HAND) > 0)
+                    if (auto main_weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]);
+                        main_weapon && main_weapon->getSkillType() == SKILL_NONE || main_weapon->getSkillType() == SKILL_HAND_TO_HAND)
+                    {
+                        skill = SKILL_HAND_TO_HAND;
+                    }
+            }
         }
         else if (attackNumber == 2)
         {
-            iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
+            if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]))
+            {
+                iLvlSkill = weapon->getILvlSkill();
+            }
             skill = SKILL_HAND_TO_HAND;
         }
         int16 ACC = GetSkill(skill) + iLvlSkill;
         ACC = (ACC > 200 ? (int16)(((ACC - 200) * 0.9) + 200) : ACC);
-        if (m_Weapons[SLOT_MAIN]->isTwoHanded() == true)
+        if (auto weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]); weapon && weapon->isTwoHanded() == true)
         {
             ACC += (int16)(DEX() * 0.75);
         }
@@ -736,7 +745,7 @@ JOBTYPE CBattleEntity::GetSJob()
 
 uint8 CBattleEntity::GetSLevel()
 {
-    if (StatusEffectContainer->HasStatusEffect(EFFECT_OBLIVISCENCE)) { return 0; }
+    if (StatusEffectContainer->HasStatusEffect({ EFFECT_OBLIVISCENCE, EFFECT_SJ_RESTRICTION })) { return 0; }
     return m_slvl;
 }
 
@@ -1267,8 +1276,10 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
         }
 
-        // TODO: this is really hacky and should eventually be moved into lua
-        if (PSpell->canHitShadow() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
+        // TODO: this is really hacky and should eventually be moved into lua, and spellFlags should probably be in the spells table..
+        if (PSpell->canHitShadow() && aoeType == SPELLAOE_NONE
+            && battleutils::IsAbsorbByShadow(PTarget)
+            && !(PSpell->getFlag() & SPELLFLAG_IGNORE_SHADOWS))
         {
             // take shadow
             msg = 31;
@@ -1284,7 +1295,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)
                 StatusEffectContainer->DelStatusEffect(EFFECT_SABOTEUR);
 
-            // remove effects from damage
+            // Remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
@@ -1306,7 +1317,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             }
         }
 
-        if (actionTarget.animation == 122 && msg == 283) // teleport spells don't target unqualified members
+        if (actionTarget.animation == 122 && msg == 283) // Teleport spells don't target unqualified members
         {
             actionList.actionTargets.pop_back();
             continue;
@@ -1483,18 +1494,19 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                     else
                     {
                         int16 naturalh2hDMG = 0;
-                        if (PTarget->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND || (PTarget->objtype == TYPE_MOB && PTarget->GetMJob() == JOB_MNK))
+                        if (auto targ_weapon = dynamic_cast<CItemWeapon*>(PTarget->m_Weapons[SLOT_MAIN]); targ_weapon && targ_weapon->getSkillType() == SKILL_HAND_TO_HAND || (PTarget->objtype == TYPE_MOB && PTarget->GetMJob() == JOB_MNK))
                         {
                             naturalh2hDMG = (int16)((PTarget->GetSkill(SKILL_HAND_TO_HAND) * 0.11f) + 3);
                         }
 
-                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0);
+                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0.f);
                         auto damage = (int32)((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
                         actionTarget.spikesParam = battleutils::TakePhysicalDamage(PTarget, this, attack.GetAttackType(), damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
                         actionTarget.spikesMessage = 33;
                         if (PTarget->objtype == TYPE_PC)
                         {
-                            uint8 skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_HAND_TO_HAND : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                            auto targ_weapon = dynamic_cast<CItemWeapon*>(PTarget->m_Weapons[SLOT_MAIN]);
+                            uint8 skilltype = (targ_weapon == nullptr ? SKILL_HAND_TO_HAND : targ_weapon->getSkillType());
                             charutils::TrySkillUP((CCharEntity*)PTarget, (SKILLTYPE)skilltype, GetMLevel());
                         } // In case the Automaton can counter
                         else if (PTarget->objtype == TYPE_PET && PTarget->PMaster && PTarget->PMaster->objtype == TYPE_PC &&
@@ -1541,6 +1553,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (CStatusEffect* PFeintEffect = StatusEffectContainer->GetStatusEffect(EFFECT_FEINT))
                 {
                     PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30));
+                    StatusEffectContainer->DelStatusEffect(EFFECT_FEINT);
                 }
 
                 // Process damage.

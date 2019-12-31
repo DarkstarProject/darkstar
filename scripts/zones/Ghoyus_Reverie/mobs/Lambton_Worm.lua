@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: BCNM
---  MOB: Lambton Worm
+-- Area: Ghoyu's Reverie
+--  Mob: Lambton Worm
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------

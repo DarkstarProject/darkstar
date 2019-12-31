@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg [S]
---  MOB: Coppercap
+--  Mob: Coppercap
 -- Note: PH for Gloomanita
 -----------------------------------
 local ID = require("scripts/zones/North_Gustaberg_[S]/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.GLOOMANITA_PH,10,3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.GLOOMANITA_PH,10,3600) -- 1 hour
 end

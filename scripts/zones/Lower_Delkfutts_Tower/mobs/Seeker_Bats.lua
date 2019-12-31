@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Seeker Bats
+--  Mob: Seeker Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------
@@ -11,4 +11,4 @@ function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 779, 1, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 780, 1, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 781, 1, dsp.regime.type.GROUNDS)
-end;
+end

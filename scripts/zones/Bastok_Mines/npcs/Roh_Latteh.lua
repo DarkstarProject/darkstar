@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Bastok_Mines/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) ~= QUEST_AVAILABLE and player:getVar("MomTheAdventurer_Event") == 1) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MOM_THE_ADVENTURER) ~= QUEST_AVAILABLE and player:getCharVar("MomTheAdventurer_Event") == 1) then
         if (trade:hasItemQty(13454,1) and trade:getItemCount() == 1) then -- Trade Copper Ring
             player:startEvent(95);
         end
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
     local HasPainting = player:hasKeyItem(dsp.ki.PAINTING_OF_A_WINDMILL);
 
-    if (player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_ACCEPTED and HasPainting == true) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_ACCEPTED and HasPainting == true) then
         player:startEvent(96);
     else
         player:startEvent(29);
@@ -40,13 +40,13 @@ function onEventFinish(player,csid,option)
     if (csid == 95) then
         player:addKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.LETTER_FROM_ROH_LATTEH);
-        player:setVar("MomTheAdventurer_Event",2);
+        player:setCharVar("MomTheAdventurer_Event",2);
         player:tradeComplete();
     elseif (csid == 96) then
         local freeInventory = player:getFreeSlotsCount();
 
         if (freeInventory > 0) then
-            player:completeQuest(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_SIGNPOST_MARKS_THE_SPOT);
             player:delKeyItem(dsp.ki.PAINTING_OF_A_WINDMILL);
             player:addTitle(dsp.title.TREASURE_SCAVENGER);
             player:addFame(BASTOK,50);

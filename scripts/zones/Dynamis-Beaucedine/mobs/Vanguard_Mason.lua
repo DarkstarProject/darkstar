@@ -1,14 +1,19 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Vanguard_Mason
+-- Area: Dynamis - Beaucedine
+--  Mob: Vanguard Mason
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
-require("scripts/globals/status")
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
+local ID = require("scripts/zones/Dynamis-Beaucedine/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_QUADAV)
-end
 
 function onMobDeath(mob, player, isKiller)
+end
+
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.GUKHU_DUKESNIPER_PH, 10, 1200) -- 20 minutes
 end

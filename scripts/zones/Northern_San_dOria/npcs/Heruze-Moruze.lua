@@ -11,7 +11,7 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     currentMission = player:getCurrentMission(pNation);
 
     if (pNation == dsp.nation.WINDURST) then
-        if (currentMission == THE_THREE_KINGDOMS and player:getVar("MissionStatus") == 1) then
+        if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS and player:getCharVar("MissionStatus") == 1) then
             player:startEvent(582);
         else
             player:startEvent(554);
@@ -44,7 +44,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 582) then
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     end
 
 end;

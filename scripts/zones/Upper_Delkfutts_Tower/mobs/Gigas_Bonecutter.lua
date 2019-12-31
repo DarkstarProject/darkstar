@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Bonecutter
+--  Mob: Gigas Bonecutter
 -- Note: PH for Enkelados
 -----------------------------------
 local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.ENKELADOS_PH, 5, 1) -- no cooldown
+    dsp.mob.phOnDespawn(mob, ID.mob.ENKELADOS_PH, 5, 1) -- no cooldown
 end

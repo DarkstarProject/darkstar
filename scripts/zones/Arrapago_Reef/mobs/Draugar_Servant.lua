@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Draugar Servant
+--  Mob: Draugar Servant
 -- Note: PH for Bloody Bones
 -----------------------------------
 local ID = require("scripts/zones/Arrapago_Reef/IDs")
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.BLOODY_BONES_PH, 5, 75600) -- 21 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.BLOODY_BONES_PH, 5, 75600) -- 21 hours
 end

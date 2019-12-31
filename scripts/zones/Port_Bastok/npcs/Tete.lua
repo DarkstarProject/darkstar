@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(BASTOK,THE_WISDOM_OF_ELDERS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_WISDOM_OF_ELDERS) == QUEST_ACCEPTED) then
         player:startEvent(175);
     else
         player:startEvent(35);
@@ -26,7 +26,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 175) then
-        player:setVar("TheWisdomVar",2);
+        player:setCharVar("TheWisdomVar",2);
     end
 
 end;

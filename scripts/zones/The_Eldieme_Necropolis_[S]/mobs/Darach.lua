@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Darach
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Darach
 -----------------------------------
 
 -- -----------------------------------

@@ -27,7 +27,7 @@
 #include <vector>
 
 #include "../items/item.h"
-#include "../items/item_armor.h"
+#include "../items/item_equipment.h"
 #include "../items/item_currency.h"
 #include "../items/item_fish.h"
 #include "../items/item_furnishing.h"
@@ -53,9 +53,9 @@ enum DROP_TYPE
 struct DropItem_t
 {
     DropItem_t(uint8 DropType, uint16 ItemID, uint16 DropRate);
+    uint8 DropType;
     uint16 ItemID;
     uint16 DropRate;
-    uint8 DropType;
 };
 
 struct DropGroup_t

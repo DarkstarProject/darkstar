@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Secutor
+--  Mob: Antican Secutor
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

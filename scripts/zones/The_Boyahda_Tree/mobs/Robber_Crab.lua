@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Robber Crab
+--  Mob: Robber Crab
 -- Note: PH for Aquarius
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.AQUARIUS_PH, 5, 1) -- can repop instantly
+    dsp.mob.phOnDespawn(mob, ID.mob.AQUARIUS_PH, 5, 1) -- can repop instantly
 end

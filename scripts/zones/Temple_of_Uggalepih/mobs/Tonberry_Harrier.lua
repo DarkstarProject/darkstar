@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Tonberry Harrier
+--  Mob: Tonberry Harrier
 -- Note: PH for Sozu Terberry
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
@@ -19,5 +19,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.SOZU_TERBERRY_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.SOZU_TERBERRY_PH, 10, 3600) -- 1 hour
 end

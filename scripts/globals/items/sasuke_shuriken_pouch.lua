@@ -3,11 +3,13 @@
 -- Sasu. Sh. Pouch
 -- A small leather pouch made for storing sasuke shuriken.
 -----------------------------------------
+require("scripts/globals/msg")
+-----------------------------------------
 
 function onItemCheck(target)
     local result = 0
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
     return result
 end

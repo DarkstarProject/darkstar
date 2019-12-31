@@ -17,6 +17,11 @@ zones[dsp.zone.CAEDARVA_MIRE] =
         KEYITEM_OBTAINED         = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6402, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET   = 7049, -- You can't fish here.
+        MOVE_CLOSER              = 7309, -- You must move closer.
+        IMPERIAL_CONTROL         = 7310, -- This gate guards an area under Imperial control.
+        STAGING_POINT_AZOUPH     = 7311, -- Azouph Isle Staging Point.
+        STAGING_POINT_DVUCCA     = 7314, -- Dvucca Isle Staging Point.
+        CANNOT_LEAVE             = 7320, -- You cannot leave this area while in the possession of <keyitem>.
         RESPONSE                 = 7329, -- There is no response...
         LOGGING_IS_POSSIBLE_HERE = 7343, -- Logging is possible here if you have <item>.
         CANNOT_ENTER             = 7463, -- You cannot enter at this time. Please wait a while before trying again.
@@ -26,6 +31,7 @@ zones[dsp.zone.CAEDARVA_MIRE] =
         JAZARAATS_HEADSTONE      = 7524, -- The name Sir Jazaraat is engraved on the headstone...
         SEAPRINCES_TOMBSTONE     = 8048, -- It appears to be the grave of a great soul to an age long past.
         HOMEPOINT_SET            = 8974, -- Home point set!
+        COMMON_SENSE_SURVIVAL    = 9054, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

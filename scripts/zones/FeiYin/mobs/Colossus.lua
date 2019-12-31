@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Colossus
+--  Mob: Colossus
 -- Note: PH for Goliath
 -----------------------------------
 local ID = require("scripts/zones/FeiYin/IDs")
@@ -20,5 +20,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.GOLIATH_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.GOLIATH_PH, 10, 3600) -- 1 hour
 end

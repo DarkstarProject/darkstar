@@ -16,8 +16,8 @@ function onTrigger(player,npc)
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-    if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),64) == false) then
+    hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
+    if ((hatstatus == 1  or player:getCharVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getCharVar("QuestHatInHand_var")),64) == false) then
         player:startEvent(54); -- Show Off Hat
     else
         player:startEvent(421); -- Standard Conversation
@@ -29,7 +29,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 54) then  -- Show Off Hat
-        player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+64);
-        player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+        player:addCharVar("QuestHatInHand_var", 64);
+        player:addCharVar("QuestHatInHand_count", 1);
     end
 end;

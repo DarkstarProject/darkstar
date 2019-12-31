@@ -15,8 +15,8 @@ end;
 
 function onTrigger(player,npc)
     realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    starttime = player:getVar("MissionaryMan_date");
-    MissionaryManVar = player:getVar("MissionaryManVar");
+    starttime = player:getCharVar("MissionaryMan_date");
+    MissionaryManVar = player:getCharVar("MissionaryManVar");
 
     if (MissionaryManVar == 2) then
         player:startEvent(698,0,1146); -- Start statue creation
@@ -36,14 +36,14 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 698) then
-        player:setVar("MissionaryManVar",3);
-        player:setVar("MissionaryMan_date", os.date("%j")); -- %M for next minute, %j for next day
+        player:setCharVar("MissionaryManVar",3);
+        player:setCharVar("MissionaryMan_date", os.date("%j")); -- %M for next minute, %j for next day
         player:delKeyItem(dsp.ki.RAUTEINOTS_PARCEL);
         player:needToZone(true);
 
     elseif (csid == 700) then
-        player:setVar("MissionaryManVar",4);
-        player:setVar("MissionaryMan_date", 0);
+        player:setCharVar("MissionaryManVar",4);
+        player:setCharVar("MissionaryMan_date", 0);
         player:addKeyItem(dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
     end

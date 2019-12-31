@@ -781,12 +781,12 @@ void CMobEntity::DropItems(CCharEntity* PChar)
     if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && (DropList->Items.size() || DropList->Groups.size()))
     {
         //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-        uint8 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-        uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
+        int16 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
+        int16 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
 
         for (const DropGroup_t& group : DropList->Groups)
         {
-            for (uint8 roll = 0; roll < maxRolls; ++roll)
+            for (int16 roll = 0; roll < maxRolls; ++roll)
             {
                 //Determine if this group should drop an item
                 if (group.GroupRate > 0 && dsprand::GetRandomNumber(1000) < group.GroupRate * map_config.drop_rate_multiplier + bonus)
@@ -812,7 +812,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
         for (const DropItem_t& item : DropList->Items)
         {
-            for (uint8 roll = 0; roll < maxRolls; ++roll)
+            for (int16 roll = 0; roll < maxRolls; ++roll)
             {
                 if (item.DropRate > 0 && dsprand::GetRandomNumber(1000) < item.DropRate * map_config.drop_rate_multiplier + bonus)
                 {
@@ -837,7 +837,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
     if (validZone && charutils::GetRealExp(PChar->GetMLevel(), GetMLevel()) > 0)
     {
-        if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64) ||
+        if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetRegionOwner(PChar->loc.zone->GetRegionID()) <= 2) ||
             (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && PChar->loc.zone->GetRegionID() >= 28 && PChar->loc.zone->GetRegionID() <= 32) ||
             (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
             m_Element > 0 && dsprand::GetRandomNumber(100) < 20) // Need to move to CRYSTAL_CHANCE constant
@@ -950,6 +950,27 @@ void CMobEntity::OnEngage(CAttackState& state)
 {
     CBattleEntity::OnEngage(state);
     luautils::OnMobEngaged(this, state.GetTarget());
+    unsigned int range = this->getMobMod(MOBMOD_ALLI_HATE);
+    if (range != 0)
+    {
+        CBaseEntity* PTarget = state.GetTarget();
+        CBaseEntity* PPet = nullptr;
+        if (PTarget->objtype == TYPE_PET)
+        {
+            PPet = state.GetTarget();
+            PTarget = ((CPetEntity*)PTarget)->PMaster;
+        }
+        if (PTarget->objtype == TYPE_PC)
+        {
+            ((CCharEntity*)PTarget)->ForAlliance([this, PTarget, range](CBattleEntity* PMember)
+            {
+                auto currentDistance = distance(PMember->loc.p, PTarget->loc.p);
+                if (currentDistance < range)
+                    this->PEnmityContainer->AddBaseEnmity(PMember);
+            });
+            this->PEnmityContainer->UpdateEnmity((PPet ? (CBattleEntity*)PPet : (CBattleEntity*)PTarget), 0, 1); // Set VE so target doesn't change
+        }
+    }
 
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }

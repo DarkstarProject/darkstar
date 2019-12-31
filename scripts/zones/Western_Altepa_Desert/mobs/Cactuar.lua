@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Cactuar
+--  Mob: Cactuar
 -- Note: Place holder for Cactuar_Cantautor
 -----------------------------------
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.CACTUAR_CANTAUTOR_PH, 5, math.random(3600,43200)) -- 1 to 12 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.CACTUAR_CANTAUTOR_PH, 5, math.random(3600,43200)) -- 1 to 12 hours
 end
