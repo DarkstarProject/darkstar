@@ -3,6 +3,7 @@
 --  Mob: Temenos Aern
 -----------------------------------
 require("scripts/globals/limbus")
+require("scripts/globals/zone")
 mixins =
 {
     require("scripts/mixins/families/aern"),
@@ -25,18 +26,19 @@ function onMobDespawn(mob)
         local mobZ = mob:getZPos()
         local killer = mob:getLocalVar("killer")
         
-        switch (mobID): caseof {
+        switch (mobID): caseof
+        {
             [ID.mob.TEMENOS_C_MOB[5]+19] = function()
-                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, dsp.zone.TEMENOS)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+20] = function()
-                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, dsp.zone.TEMENOS)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+29] = function()
-                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, dsp.zone.TEMENOS)
             end,
             [ID.mob.TEMENOS_C_MOB[5]+30] = function()
-                dsp.limbus.extendTimeLimit(battlefield, 5, 37)
+                dsp.limbus.extendTimeLimit(battlefield, 5, dsp.zone.TEMENOS)
             end,
         }
         local leftAern=0

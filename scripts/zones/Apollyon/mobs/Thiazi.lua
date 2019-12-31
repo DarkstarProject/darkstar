@@ -19,6 +19,7 @@ function onMobDeath(mob, player, isKiller)
         elseif randomF2+1 == mobID then
             battlefield:setLocalVar("portalTriggerF3", ID.mob.APOLLYON_NE_MOB[3])
             battlefield:setLocalVar("itemF3", ID.mob.APOLLYON_NE_MOB[3]+1)
+            local players = battlefield:getPlayers()
             if #players > 6 then
                 for i = 5, 9 do
                     GetMobByID(ID.mob.APOLLYON_NE_MOB[3]+i):spawn()

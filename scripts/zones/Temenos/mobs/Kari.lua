@@ -3,15 +3,16 @@
 --  Mob: Kari
 -----------------------------------
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
-
-local path = -- {X, Y, Z, flags}
+local flags = dsp.path.flag.WALLHACK
+local path =
 {
-    {185.000, -82.000, 465.000, 10},
-    {215.000, -82.000, 465.000, 10},
-    {215.000, -82.000, 495.500, 10},
-    {185.000, -82.000, 495.000, 10}
+    {185.000, -82.000, 465.000},
+    {215.000, -82.000, 465.000},
+    {215.000, -82.000, 495.500},
+    {185.000, -82.000, 495.000}
 }
 
 function onMobRoam(mob)
@@ -19,7 +20,7 @@ function onMobRoam(mob)
     if pause < os.time() then
         local point = (mob:getLocalVar("point") % 4)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[point]))
+        mob:pathTo(path[point][1], path[point][2], path[point][3], flags)
         mob:setLocalVar("pause", os.time()+15)
     end
 end

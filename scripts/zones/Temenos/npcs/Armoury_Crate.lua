@@ -4,6 +4,7 @@
 -----------------------------------
 require("scripts/globals/battlefield")
 require("scripts/globals/limbus")
+require("scripts/globals/zone")
 local ID = require("scripts/zones/Temenos/IDs")
 
 local loot =
@@ -1279,7 +1280,7 @@ function onTrigger(player, npc)
                                 elseif model == 961 then
                                     dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    dsp.limbus.extendTimeLimit(battlefield, 15, 37)
+                                    dsp.limbus.extendTimeLimit(battlefield, 15, dsp.zone.TEMENOS)
                                 end
                             end
                         end
@@ -1303,7 +1304,7 @@ function onTrigger(player, npc)
                                 elseif model == 961 then
                                     dsp.limbus.handleLootRolls(battlefield, loot[bfid][i], nil, npc)
                                 elseif model == 962 then
-                                    dsp.limbus.extendTimeLimit(battlefield, 15, 37)
+                                    dsp.limbus.extendTimeLimit(battlefield, 15, dsp.zone.TEMENOS)
                                 end
                             end
                         end
@@ -1322,16 +1323,17 @@ function onTrigger(player, npc)
                         for j = 0, 3 do
                             if crateID == ID.npc.TEMENOS_E_CRATE[i]+j then
                                 if GetMobByID(ID.mob.TEMENOS_E_MOB[i]+4):isDead() then
+                                    battlefield:setLocalVar("crateOpenedF"..i, 1)
                                     if model ~= 961 or not (mask > 7 and spawnMimic) then
                                         if j ~= 0 then GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]):setStatus(dsp.status.DISAPPEAR) end
                                         if j ~= 1 then GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+1):setStatus(dsp.status.DISAPPEAR) end
                                         if j ~= 2 then GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+2):setStatus(dsp.status.DISAPPEAR) end
                                         if j ~= 3 then GetNPCByID(ID.npc.TEMENOS_E_CRATE[i]+3):setStatus(dsp.status.DISAPPEAR) end
                                     end
-                                    DespawnMob(ID.mob.TEMENOS_E_MOB[i])
-                                    DespawnMob(ID.mob.TEMENOS_E_MOB[i]+1)
-                                    DespawnMob(ID.mob.TEMENOS_E_MOB[i]+2)
-                                    DespawnMob(ID.mob.TEMENOS_E_MOB[i]+3)
+                                    if GetMobByID(ID.mob.TEMENOS_E_MOB[i]):isAlive() then DespawnMob(ID.mob.TEMENOS_E_MOB[i]) end
+                                    if GetMobByID(ID.mob.TEMENOS_E_MOB[i]+1):isAlive() then DespawnMob(ID.mob.TEMENOS_E_MOB[i]+1) end
+                                    if GetMobByID(ID.mob.TEMENOS_E_MOB[i]+2):isAlive() then DespawnMob(ID.mob.TEMENOS_E_MOB[i]+2) end
+                                    if GetMobByID(ID.mob.TEMENOS_E_MOB[i]+3):isAlive() then DespawnMob(ID.mob.TEMENOS_E_MOB[i]+3) end
                                     if model == 960 then
                                         dsp.battlefield.HealPlayers(battlefield)
                                         dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[i])
@@ -1346,7 +1348,7 @@ function onTrigger(player, npc)
                                             dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[i])
                                         end
                                     elseif model == 962 then
-                                        dsp.limbus.extendTimeLimit(battlefield, 15, 37)
+                                        dsp.limbus.extendTimeLimit(battlefield, 15, dsp.zone.TEMENOS)
                                         dsp.limbus.handleDoors(battlefield, true, ID.npc.TEMENOS_E_GATE[i])
                                     end
                                 else

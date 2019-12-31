@@ -3,8 +3,13 @@
 --  Mob: Air Elemental
 -----------------------------------
 require("scripts/globals/limbus")
------------------------------------
 local ID = require("scripts/zones/Apollyon/IDs")
+
+function onMobEngaged(mob, target)
+    GetMobByID(ID.mob.APOLLYON_SW_MOB[4]):updateEnmity(target)
+    GetMobByID(ID.mob.APOLLYON_SW_MOB[4]+8):updateEnmity(target)
+    GetMobByID(ID.mob.APOLLYON_SW_MOB[4]+16):updateEnmity(target)
+end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then

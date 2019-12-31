@@ -792,19 +792,10 @@ void SetupLimbusMob(CMobEntity* PMob)
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
     PMob->setMobMod(MOBMOD_EXP_BONUS, -100);
     PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, 1);
-
-    // Battlefield mobs don't drop gil
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
-
-    // never despawn
     PMob->SetDespawnTime(0s);
-    // do not roam around
-    PMob->m_roamFlags |= ROAMFLAG_EVENT;
-    PMob->m_maxRoamDistance = 0.5f;
-
     PMob->setMobMod(MOBMOD_ALLI_HATE, 200);
-
 }
 
 void SetupDynamisMob(CMobEntity* PMob)

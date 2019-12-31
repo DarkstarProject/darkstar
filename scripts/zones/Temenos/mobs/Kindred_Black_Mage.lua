@@ -3,30 +3,31 @@
 --  Mob: Kindred Black Mage
 -----------------------------------
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
-
-local path = -- {X, Y, Z, flags}
+local flags = dsp.path.flag.WALLHACK + dsp.path.flag.RUN
+local path =
 {
     [5] = 
     {
-        {-148.860, -80.000, 427.000, 11},
-        {-91.860, -80.000, 427.000, 11}
+        {-148.860, -80.000, 427.000},
+        {-91.860, -80.000, 427.000}
     },
     [6] = 
     {
-        {-148.860, -80.000, 430.000, 11},
-        {-91.860, -80.000, 430.000, 11}
+        {-148.860, -80.000, 430.000},
+        {-91.860, -80.000, 430.000}
     },
     [7] = 
     {
-        {-91.860, -80.000, 410.000, 11},
-        {-148.860, -80.000, 410.000, 11}
+        {-91.860, -80.000, 410.000},
+        {-148.860, -80.000, 410.000}
     },
     [8] = 
     {
-        {-91.860, -80.000, 413.000, 11},
-        {-148.860, -80.000, 413.000, 11}
+        {-91.860, -80.000, 413.000},
+        {-148.860, -80.000, 413.000}
     },
 }
 
@@ -36,7 +37,7 @@ function onMobRoam(mob)
     if pause < os.time() then
         local point = (mob:getLocalVar("point") % 2)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[offset][point]))
+        mob:pathTo(path[offset][point][1], path[offset][point][2], path[offset][point][3], flags)
         mob:setLocalVar("pause", os.time()+10)
     end
 end

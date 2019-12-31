@@ -4,7 +4,6 @@
 -----------------------------------
 require("scripts/globals/titles")
 require("scripts/globals/mobs")
------------------------------------
 local ID = require("scripts/zones/Apollyon/IDs")
 
 function onMobInitialize(mob)

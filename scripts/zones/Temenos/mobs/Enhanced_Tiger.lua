@@ -4,19 +4,20 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 local ID = require("scripts/zones/Temenos/IDs")
-
-local path = -- {X, Y, Z, flags}
+local flags = dsp.path.flag.NONE
+local path =
 {
     [2] = 
     {
-        {377.635, 74.000, -100.000, 0},
-        {343.635, 68.000, -100.000, 0}
+        {377.635, 74.000, -100.000},
+        {343.635, 68.000, -100.000}
     },
     [6] = 
     {
-        {340.000, 74.000, -137.500, 0},
-        {340.000, 68.000, -103.500, 0}
+        {340.000, 74.000, -137.500},
+        {340.000, 68.000, -103.500}
     },
 
 }
@@ -27,7 +28,7 @@ function onMobRoam(mob)
     if pause < os.time() and (offset == 2 or offset == 6) then
         local point = (mob:getLocalVar("point") % 2)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[offset][point]))
+        mob:pathTo(path[offset][point][1], path[offset][point][2], path[offset][point][3], flags)
         mob:setLocalVar("pause", os.time()+20)
     end
 end
@@ -38,7 +39,7 @@ function onMobDeath(mob, player, isKiller)
         local mobY = mob:getYPos()
         local mobZ = mob:getZPos()
         local mobID = mob:getID()
-        local spawn = math.random(0,1) == 1
+        local spawn = math.random(4) == 1
 
         if GetNPCByID(ID.npc.TEMENOS_W_GATE[1]):getAnimation() == dsp.animation.CLOSE_DOOR then
             dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.TEMENOS_W_GATE[1])

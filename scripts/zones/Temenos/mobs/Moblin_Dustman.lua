@@ -3,30 +3,32 @@
 --  Mob: Moblin Dustman
 -----------------------------------
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
+local flags = dsp.path.flag.NONE
 
-local path = -- {X, Y, Z, flags}
+local path =
 {
     [2] = 
     {
-        {340.000, 67.500, 456.000, 0},
-        {340.000, 67.500, 436.000, 0}
+        {340.000, 67.500, 456.000},
+        {340.000, 67.500, 436.000}
     },
     [3] = 
     {
-        {344.000, 68.000, 460.000, 0},
-        {364.000, 68.000, 460.000, 0}
+        {344.000, 68.000, 460.000},
+        {364.000, 68.000, 460.000}
     },
     [4] = 
     {
-        {370.210, 74.000, 432.008, 0},
-        {370.210, 74.000, 408.226, 0}
+        {370.210, 74.000, 432.008},
+        {370.210, 74.000, 408.226}
     },
     [5] = 
     {
-        {375.210, 74.000, 408.226, 0},
-        {375.210, 74.000, 432.008, 0}
+        {375.210, 74.000, 408.226},
+        {375.210, 74.000, 432.008}
     },
 }
 
@@ -36,7 +38,7 @@ function onMobRoam(mob)
     if pause < os.time() then
         local point = (mob:getLocalVar("point") % 2)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[offset][point]))
+        mob:pathTo(path[offset][point][1], path[offset][point][2], path[offset][point][3], flags)
         mob:setLocalVar("pause", os.time()+10)
     end
 end

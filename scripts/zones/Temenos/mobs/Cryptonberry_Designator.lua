@@ -4,25 +4,26 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
-
-local path = -- {X, Y, Z, flags}
+local flags = dsp.path.flag.NONE
+local path =
 {
     [3] = 
     {
-        {-456.000, -80.000, 419.500, 0},
-        {-424.000, -80.000, 419.500, 0}
+        {-456.000, -80.000, 419.500},
+        {-424.000, -80.000, 419.500}
     },
     [7] = 
     {
-        {-459.500, -80.000, 416.000, 0},
-        {-459.500, -80.000, 408.000, 0}
+        {-459.500, -80.000, 416.000},
+        {-459.500, -80.000, 408.000}
     },
     [11] = 
     {
-        {-420.500, -80.000, 416.000, 0},
-        {-420.500, -80.000, 408.000, 0}
+        {-420.500, -80.000, 416.000},
+        {-420.500, -80.000, 408.000}
     },
 }
 
@@ -32,7 +33,7 @@ function onMobRoam(mob)
     if pause < os.time() then
         local point = (mob:getLocalVar("point") % 2)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[offset][point]))
+        mob:pathTo(path[offset][point][1], path[offset][point][2], path[offset][point][3], flags)
         if offset == 3 then
             mob:setLocalVar("pause", os.time()+30)
         else

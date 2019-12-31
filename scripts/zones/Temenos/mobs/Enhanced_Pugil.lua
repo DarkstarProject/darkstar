@@ -15,7 +15,7 @@ function onMobDeath(mob, player, isKiller)
         local mobY = mob:getYPos()
         local mobZ = mob:getZPos()
         local mobID = mob:getID()
-        local spawn = math.random(0,1) == 1
+        local spawn = math.random(3) == 1
 
         if GetNPCByID(ID.npc.TEMENOS_W_GATE[6]):getAnimation() == dsp.animation.CLOSE_DOOR then
             dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.TEMENOS_W_GATE[6])

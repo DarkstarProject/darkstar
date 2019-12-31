@@ -3,7 +3,24 @@
 --  Mob: Goobbue Harvester
 -----------------------------------
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 local ID = require("scripts/zones/Apollyon/IDs")
+local flags = dsp.path.flag.NONE
+local path =
+{
+    {424.271, 0.000, 22.975},
+    {496.692, 0.000, 22.934}
+}
+
+function onMobRoam(mob)
+    local pause = mob:getLocalVar("pause")
+    if pause < os.time() then
+        local point = (mob:getLocalVar("point") % 2)+1
+        mob:setLocalVar("point", point)
+        mob:pathTo(path[point][1], path[point][2], path[point][3], flags)
+        mob:setLocalVar("pause", os.time()+40)
+    end
+end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then

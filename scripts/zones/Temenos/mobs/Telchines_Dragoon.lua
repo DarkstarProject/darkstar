@@ -3,13 +3,14 @@
 --  Mob: Telchines Dragoon
 -----------------------------------
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Temenos/IDs")
-
-local path = -- {X, Y, Z, flags}
+local flags = dsp.path.flag.NONE
+local path =
 {
-    {50.000, 80.000, 419.500, 0},
-    {30.000, 80.000, 419.500, 0}
+    {50.000, 80.000, 419.500},
+    {30.000, 80.000, 419.500}
 }
 
 function onMobRoam(mob)
@@ -17,7 +18,7 @@ function onMobRoam(mob)
     if pause < os.time() then
         local point = (mob:getLocalVar("point") % 2)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[point]))
+        mob:pathTo(path[point][1], path[point][2], path[point][3], flags)
         mob:setLocalVar("pause", os.time()+10)
     end
 end

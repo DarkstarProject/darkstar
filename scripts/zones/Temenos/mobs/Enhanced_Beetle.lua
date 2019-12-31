@@ -4,39 +4,40 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 local ID = require("scripts/zones/Temenos/IDs")
-
-local path = -- {X, Y, Z, flags}
+local flags = dsp.path.flag.NONE
+local path =
 {
     [0] =
     {
-        {18.000, 80.000, -140.000, 0},
-        {8.000, 80.000, -140.000, 0}
+        {18.000, 80.000, -140.000},
+        {8.000, 80.000, -140.000}
     },
     [1] = 
     {
-        {20.000, 80.000, -138.000, 0},
-        {20.000, 80.000, -128.000, 0}
+        {20.000, 80.000, -138.000},
+        {20.000, 80.000, -128.000}
     },
     [2] = 
     {
-        {22.000, 80.000, -140.000, 0},
-        {32.000, 80.000, -140.000, 0}
+        {22.000, 80.000, -140.000},
+        {32.000, 80.000, -140.000}
     },
     [3] = 
     {
-        {58.000, 80.000, -140.000, 0},
-        {48.000, 80.000, -140.000, 0}
+        {58.000, 80.000, -140.000},
+        {48.000, 80.000, -140.000}
     },
     [4] = 
     {
-        {60.000, 80.000, -138.000, 0},
-        {60.000, 80.000, -128.000, 0}
+        {60.000, 80.000, -138.000},
+        {60.000, 80.000, -128.000}
     },
     [5] = 
     {
-        {62.000, 80.000, -140.000, 0},
-        {72.000, 80.000, -140.000, 0}
+        {62.000, 80.000, -140.000},
+        {72.000, 80.000, -140.000}
     },
 }
 
@@ -46,7 +47,7 @@ function onMobRoam(mob)
     if pause < os.time() then
         local point = (mob:getLocalVar("point") % 2)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[offset][point]))
+        mob:pathTo(path[offset][point][1], path[offset][point][2], path[offset][point][3], flags)
         mob:setLocalVar("pause", os.time()+30)
     end
 end
@@ -57,7 +58,7 @@ function onMobDeath(mob, player, isKiller)
         local mobY = mob:getYPos()
         local mobZ = mob:getZPos()
         local mobID = mob:getID()
-        local spawn = math.random(0,1) == 1
+        local spawn = math.random(3) == 1
 
         if GetNPCByID(ID.npc.TEMENOS_W_GATE[3]):getAnimation() == dsp.animation.CLOSE_DOOR then
             dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.TEMENOS_W_GATE[3])

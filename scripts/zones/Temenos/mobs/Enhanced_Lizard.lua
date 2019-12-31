@@ -4,54 +4,55 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/limbus")
+require("scripts/globals/pathfind")
 local ID = require("scripts/zones/Temenos/IDs")
-
-local path = -- {X, Y, Z, flags}
+local flags = dsp.path.flag.NONE
+local path =
 {
     [0] =
     {
-        {-87.000, -80.000, -150.500, 0},
-        {-153.000, -80.000, -150.500, 0}
+        {-87.000, -80.000, -150.500},
+        {-153.000, -80.000, -150.500}
     },
     [1] = 
     {
-        {-150.000, -80.000, -147.000, 0},
-        {-130.000, -80.000, -147.000, 0}
+        {-150.000, -80.000, -147.000},
+        {-130.000, -80.000, -147.000}
     },
     [2] = 
     {
-        {-90.000, -80.000, -147.000, 0},
-        {-110.000, -80.000, -147.000, 0}
+        {-90.000, -80.000, -147.000},
+        {-110.000, -80.000, -147.000}
     },
     [3] = 
     {
-        {-153.000, -80.000, -142.000, 0},
-        {-87.000, -80.000, -142.000, 0}
+        {-153.000, -80.000, -142.000},
+        {-87.000, -80.000, -142.000}
     },
     [4] = 
     {
-        {-87.000, -80.000, -138.000, 0},
-        {-153.000, -80.000, -138.000, 0}
+        {-87.000, -80.000, -138.000},
+        {-153.000, -80.000, -138.000}
     },
     [5] = 
     {
-        {-111.960, -80.000, -140.000, 0},
-        {-127.960, -80.000, -140.000, 0}
+        {-111.960, -80.000, -140.000},
+        {-127.960, -80.000, -140.000}
     },
     [6] = 
     {
-        {-150.000, -80.000, -133.000, 0},
-        {-130.000, -80.000, -133.000, 0}
+        {-150.000, -80.000, -133.000},
+        {-130.000, -80.000, -133.000}
     },
     [7] = 
     {
-        {-90.000, -80.000, -133.000, 0},
-        {-110.000, -80.000, -133.000, 0}
+        {-90.000, -80.000, -133.000},
+        {-110.000, -80.000, -133.000}
     },
     [8] = 
     {
-        {-153.000, -80.000, -129.500, 0},
-        {-87.000, -80.000, -129.500, 0}
+        {-153.000, -80.000, -129.500},
+        {-87.000, -80.000, -129.500}
     },
 }
 
@@ -61,7 +62,7 @@ function onMobRoam(mob)
     if pause < os.time() then
         local point = (mob:getLocalVar("point") % 2)+1
         mob:setLocalVar("point", point)
-        mob:pathTo(unpack(path[offset][point]))
+        mob:pathTo(path[offset][point][1], path[offset][point][2], path[offset][point][3], flags)
         if offset == 5 then
             mob:setLocalVar("pause", os.time()+10)
         elseif offset == 1 or offset == 2 or offset == 6 or offset == 7 then
@@ -78,7 +79,7 @@ function onMobDeath(mob, player, isKiller)
         local mobY = mob:getYPos()
         local mobZ = mob:getZPos()
         local mobID = mob:getID()
-        local spawn = math.random(0,1) == 1
+        local spawn = math.random(4) == 1
 
         if GetNPCByID(ID.npc.TEMENOS_W_GATE[4]):getAnimation() == dsp.animation.CLOSE_DOOR then
             dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.TEMENOS_W_GATE[4])

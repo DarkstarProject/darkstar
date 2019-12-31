@@ -12,7 +12,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then
-        if GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[3]):getAnimation() ~= dsp.animation.CLOSE_DOOR then
+        if GetNPCByID(ID.npc.APOLLYON_SW_PORTAL[3]):getAnimation() ~= dsp.animation.OPEN_DOOR then
             dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.APOLLYON_SW_PORTAL[3])
         end
     end

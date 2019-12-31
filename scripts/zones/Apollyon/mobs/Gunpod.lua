@@ -77,7 +77,6 @@ local loot =
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then
-        local players = player:getBattlefield():getPlayers()
         local random = math.random(1, 4)
         for i = 1, #loot[random] do
             local lootGroup = loot[random][i]
@@ -91,7 +90,7 @@ function onMobDeath(mob, player, isKiller)
                     max = max - entry.droprate
                     if roll > max then
                         if entry.itemid ~= 0 then
-                            players[1]:addTreasure(entry.itemid, mob)
+                            player:addTreasure(entry.itemid, mob)
                         end
                         break
                     end
