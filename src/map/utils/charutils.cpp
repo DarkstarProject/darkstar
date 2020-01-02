@@ -102,7 +102,9 @@ This file is part of DarkStar-server source code.
 *                                                                       *
 ************************************************************************/
 
-std::array<std::array<uint16, 20>, 50> g_ExpTable;
+// Number of rows in the exp table
+static constexpr int32 ExpTableRowCount = 54;
+std::array<std::array<uint16, 20>, ExpTableRowCount> g_ExpTable;
 std::array<uint16, 100> g_ExpPerLevel;
 
 /************************************************************************
@@ -3045,13 +3047,13 @@ namespace charutils
         const char* fmtQuery = "SELECT r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20 "
             "FROM exp_table "
             "ORDER BY level ASC "
-            "LIMIT 50";
+            "LIMIT %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery);
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, ExpTableRowCount);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-            for (uint32 x = 0; x < 50 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+            for (uint32 x = 0; x < ExpTableRowCount && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
             {
                 for (uint32 y = 0; y < 20; ++y)
                 {
@@ -3084,11 +3086,11 @@ namespace charutils
 
     uint32 GetRealExp(uint8 charlvl, uint8 moblvl)
     {
-        int32 levelDif = moblvl - charlvl + 34;
+        int32 levelDif = moblvl - charlvl + 38;
 
         if ((charlvl > 0) && (charlvl < 100))
         {
-            return g_ExpTable[std::clamp(levelDif, 0, 49)][(charlvl - 1) / 5];
+            return g_ExpTable[std::clamp(levelDif, 0, ExpTableRowCount - 1)][(charlvl - 1) / 5];
         }
         return 0;
     }
