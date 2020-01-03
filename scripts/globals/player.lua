@@ -123,6 +123,8 @@ local function CharCreate(player)
     player:addItem(536) -- adventurer coupon
     player:addTitle(dsp.title.NEW_ADVENTURER)
     player:setCharVar("MoghouseExplication", 1) -- needs Moghouse intro
+    player:setCharVar("spokeKindlix", 1) -- Kindlix introduction
+    player:setCharVar("spokePyropox", 1) -- Pyropox introduction
     player:setNewPlayer(true) -- apply new player flag
 end
 
