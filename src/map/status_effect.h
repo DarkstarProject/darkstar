@@ -47,7 +47,7 @@ enum EFFECTFLAG
     EFFECTFLAG_DISPELABLE       = 0x0001,
     EFFECTFLAG_ERASABLE         = 0x0002,
     EFFECTFLAG_ATTACK           = 0x0004,   // исчезает при нанесении урона
-
+    EFFECTFLAG_EMPATHY          = 0X0008,   // effect can be copied to wyvern by use of merited Spirit Link
     EFFECTFLAG_DAMAGE           = 0x0010,   // исчезает при получении урона
     EFFECTFLAG_DEATH            = 0x0020,   // исчезает при смерти
     EFFECTFLAG_MAGIC_BEGIN      = 0x0040,   // исчезает перед началом чтения заклинания
