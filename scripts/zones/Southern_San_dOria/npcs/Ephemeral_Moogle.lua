@@ -11,14 +11,15 @@ local triggerEvent = 3549
 local tradeEvent = 3550
 
 function onTrade(player, npc, trade)
-    dsp.ephemeral.onTrade(player, trade, tradeEvent)
+    dsp.ephemeral.onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    dsp.ephemeral.onTrigger(player, triggerEvent)
+    dsp.ephemeral.onTrigger(player, npc)
 end
 
 function onEventUpdate(player, csid, option)
+    dsp.ephemeral.onEventUpdate(player)
 end
 
 function onEventFinish(player, csid, option)

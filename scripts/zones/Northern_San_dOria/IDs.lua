@@ -100,33 +100,24 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
         BONCORT_MESSAGE          = 13370, -- Boncort looks over curiously for a moment.
         CAPIRIA_MESSAGE          = 13371, -- Capiria looks over curiously for a moment.
         VILLION_MESSAGE          = 13372, -- Villion looks over curiously for a moment.
-<<<<<<< HEAD
-        RETRIEVE_DIALOG_ID       = 18112 -- You retrieve <item> from the porter moogle's care.
-=======
         RETRIEVE_DIALOG_ID       = 18112, -- You retrieve <item> from the porter moogle's care.
         COMMON_SENSE_SURVIVAL    = 18439, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
->>>>>>> 69fad707717eec6c0ec75c9de76229118cae6ddd
     },
     mob =
     {
     },
     npc =
     {
-<<<<<<< HEAD
-        EXPLORER_MOOGLE              = 17723648,
-        EPHEMERAL_MOOGLE_WOODWORKING = 17723846,
-        EPHEMERAL_MOOGLE_SMITHING    = 17723847
-    }
-=======
         HALLOWEEN_SKINS =
         {
             [17723487] = 53, -- Vichuel
             [17723492] = 52, -- Antonian
             [17723497] = 51, -- Attarena
         },
-        EXPLORER_MOOGLE = 17723648,
+        EXPLORER_MOOGLE              = 17723648,
+        EPHEMERAL_MOOGLE_WOODWORKING = 17723846,
+        EPHEMERAL_MOOGLE_SMITHING    = 17723847,
     },
->>>>>>> 69fad707717eec6c0ec75c9de76229118cae6ddd
 }
 
 return zones[dsp.zone.NORTHERN_SAN_DORIA]
