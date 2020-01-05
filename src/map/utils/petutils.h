@@ -68,12 +68,12 @@ class CTrustEntity;
 
 namespace petutils
 {
-	void LoadPetList();
-	void FreePetList();
+    void LoadPetList();
+    void FreePetList();
     void LoadTrustList();
     void FreeTrustList();
 
-	void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
+    void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID);
     void SpawnTrust(CCharEntity * PMaster, uint32 TrustID);
     void DetachPet(CBattleEntity* PMaster);
