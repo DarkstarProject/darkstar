@@ -4722,13 +4722,22 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                 // Calculate main /check message
                 int32 MessageValue = 64; // Default Too Weak
-                if      (baseExp >= 400) MessageValue = 71; // Incredibly Tough
+                //Aurora Check Mobs Fix
+                /*if      (baseExp >= 400) MessageValue = 71; // Incredibly Tough
                 else if (baseExp >= 350) MessageValue = 70; // Very Tough
                 else if (baseExp >= 220) MessageValue = 69; // Tough
                 else if (baseExp == 200) MessageValue = 68; // Even Match
                 else if (baseExp >= 160) MessageValue = 67; // Decent Challenge
                 else if (baseExp >= 60)  MessageValue = 66; // Easy Prey
-                else if (baseExp >= 15)  MessageValue = 65; // Incredibly Easy Prey
+                else if (baseExp >= 15)  MessageValue = 65;*/ // Incredibly Easy Prey
+                if (baseExp >= 320) MessageValue = 71; // Incredibly Tough
+                else if (baseExp >= 280) MessageValue = 70; // Very Tough
+                else if (baseExp >= 120) MessageValue = 69; // Tough
+                else if (baseExp == 100) MessageValue = 68; // Even Match
+                else if (baseExp >= 61) MessageValue = 67; // Decent Challenge
+                else if (baseExp >= 15)  MessageValue = 66; // Easy Prey
+                else if (baseExp >= 1)  MessageValue = 65; // Incredibly Easy Prey
+                //Aurora End Check Mobs Fix
 
                 // Calculate +/- message
                 uint16 MessageID = 174; // Default even def/eva

@@ -99,7 +99,7 @@ local loot =
             {itemid =  4715, droprate =  200}, -- scroll_of_reprisal
             {itemid =  4868, droprate =  200}, -- scroll_of_dispel
             {itemid =  5070, droprate =  200}, -- scroll_of_magic_finale
-            {itemid =  4947, droprate =  200}, -- gscroll_of_utsusemi_nin_belt
+            {itemid =  4947, droprate =  200}, -- scroll_of_utsusemi_ni
         },
         {
             {itemid =     0, droprate =  775}, -- nothing
@@ -169,12 +169,12 @@ local loot =
             {itemid = 14204, droprate =  125}, -- river_gaiters
         },
         {
-            {itemid = 17472, droprate =   43}, -- cross-counters
-            {itemid =   801, droprate =   10}, -- chrysoberyl
+            -- {itemid = 17472, droprate =   43}, -- cross-counters
+            {itemid =   801, droprate =   28}, -- chrysoberyl
             {itemid =   784, droprate =   94}, -- jadeite
             {itemid =   803, droprate =  113}, -- sunstone
             {itemid =   805, droprate =   75}, -- zircon
-            {itemid =   478, droprate =   10}, -- clear_chip
+            {itemid =   478, droprate =   25}, -- clear_chip
             {itemid =   474, droprate =   38}, -- red_chip
             {itemid =   476, droprate =   38}, -- yellow_chip
             {itemid =   745, droprate =  151}, -- gold_ingot
@@ -201,10 +201,10 @@ local loot =
             {itemid =  5005, droprate =  358}, -- scroll_of_valor_minuet_iv
             {itemid =  4749, droprate =  264}, -- scroll_of_reraise_ii
         },
-        {
-            {itemid =     0, droprate =  957}, -- nothing
-            {itemid = 17187, droprate =   43}, -- eurytos_bow
-        },
+        -- {
+        --     {itemid =     0, droprate =  957}, -- nothing
+        --     {itemid = 17187, droprate =   43}, -- eurytos_bow
+        -- },
         {
             {itemid =     0, droprate =  582}, -- nothing
             {itemid =   653, droprate =  302}, -- mythril_ingot

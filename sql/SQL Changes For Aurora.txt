@@ -1,0 +1,124 @@
+-- Run in SQL Database to change more than one thing at once
+
+update `item_basic` set `BaseSell` = '100' where `BaseSell` > '101' and `aH` = '51'; -- Reduce Fish Prices over 100 to 100
+
+delete from `mob_spawn_points` where `mobid` = 17707013; -- Remove Boat Aggro Mobs Temporary
+delete from `mob_spawn_points` where `mobid` = 17707019; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17707020; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17707021; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17707022; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17707023; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17707024; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17707025; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17711109; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17711115; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17711116; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17711117; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17711118; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17711119; -- Remove Boat Aggro Mobs
+delete from `mob_spawn_points` where `mobid` = 17711120; -- Remove Boat Aggro Mobs
+
+update `abilities_charges` set `chargeTime` = '90' where `job` = '9'; -- Increase BST Ready Recharge to 90 Temporary Need to find a better way to increase duration of ready
+
+update `mob_spawn_points` set `groupid` = '21' where `groupid` = '13' and `mobname` = 'Covin_Bat'; -- To Battle Bat
+update `mob_spawn_points` set `groupid` = '23' where `groupid` = '26' and `mobname` = 'Snaggletooth_Peapuk'; -- To Darter
+update `mob_spawn_points` set `groupid` = '22' where `groupid` = '25' and `mobname` = 'Mourning_Crawler'; -- To Processionaire
+update `mob_spawn_points` set `groupid` = '21' where `groupid` = '27' and `mobname` = 'Viseclaw'; -- To Steelshell
+update `mob_spawn_points` set `groupid` = '31' where `groupid` = '22' and `mobname` = 'Kuftal_Delver'; -- To Kuftal Digger
+update `mob_spawn_points` set `groupid` = '18' where `groupid` = '23' and `mobname` = 'Machairodus'; -- To Ovinnik
+update `mob_spawn_points` set `groupid` = '8984' where `groupid` = '3' and `mobname` = 'Colliery_Bat'; -- To Mouse Bat
+update `mob_spawn_points` set `groupid` = '8987' where `groupid` = '2' and `mobname` = 'Burrower_Worm'; -- To Tunnel Worm
+update `mob_spawn_points` set `groupid` = '5' where `groupid` = '4' and `mobname` = 'Soot_Crab'; -- To River Crab
+update `mob_spawn_points` set `groupid` = '8983' where `groupid` = '6' and `mobname` = 'Veindigger_Leech'; -- To Leech
+update `mob_spawn_points` set `groupid` = '4' where `groupid` = '18' and `mobname` = 'Wurdalak'; -- To Funnel Bats
+update `mob_spawn_points` set `groupid` = '6' where `groupid` = '14' and `mobname` = 'Blind_Bat'; -- To Werebat
+update `mob_spawn_points` set `groupid` = '9' where `groupid` = '15' and `mobname` = 'Panna_Cotta'; -- To Dark Aspic
+update `mob_spawn_points` set `groupid` = '7' where `groupid` = '16' and `mobname` = 'Nachtmahr'; -- To Haunt
+update `mob_spawn_points` set `groupid` = '5' where `groupid` = '17' and `mobname` = 'Dabilla'; -- To Hecatomb Hound
+update `mob_spawn_points` set `groupid` = '2' where `groupid` = '16' and `mobname` = 'Wekufe'; -- To Revenants
+update `mob_spawn_points` set `groupid` = '8' where `groupid` = '17' and `mobname` = 'Sentient_Carafe'; -- To Clockwork Pods
+update `mob_spawn_points` set `groupid` = '4' where `groupid` = '18' and `mobname` = 'Balayang'; -- To Vampire Bats
+update `mob_spawn_points` set `groupid` = '30' where `groupid` = '20' and `mobname` = 'Boulder_Eater'; -- To Antares
+update `mob_spawn_points` set `groupid` = '26' where `groupid` = '21' and `mobname` = 'Pygmytoise'; -- To Typhoon Wyvern
+update `mob_spawn_points` set `groupid` = '26' where `groupid` = '35' and `mobname` = 'Warden_Beetle'; -- To Chamber Beetle
+update `mob_spawn_points` set `groupid` = '28' where `groupid` = '29' and `mobname` = 'Kaboom'; -- To Hellmine
+update `mob_spawn_points` set `groupid` = '9' where `groupid` = '15' and `mobname` = 'Fortalice_Bats'; -- To Citadel Bats
+update `mob_spawn_points` set `groupid` = '36' where `groupid` = '40' and `mobname` = 'Donjon_Bat'; -- To Funnel Bats
+update `mob_spawn_points` set `groupid` = '13' where `groupid` = '16' and `mobname` = 'King_Crawler'; -- To Soldier Crawler
+update `mob_spawn_points` set `groupid` = '29' where `groupid` = '17' and `mobname` = 'Vespo'; -- To Soul Stinger
+update `mob_spawn_points` set `groupid` = '14' where `groupid` = '18' and `mobname` = 'Dancing_Jewel'; -- To Hornfly
+update `mob_spawn_points` set `groupid` = '15' where `groupid` = '19' and `mobname` = 'Olid_Funguar'; -- To Exoray
+update `mob_spawn_points` set `groupid` = '22' where `groupid` = '23' and `mobname` = 'Accursed_Soldier'; -- To Wight
+update `mob_spawn_points` set `groupid` = '22' where `groupid` = '24' and `mobname` = 'Accursed_Sorcerer'; -- To Wight
+update `mob_spawn_points` set `groupid` = '34' where `groupid` = '25' and `mobname` = 'Madfly'; -- To Gallinipper
+update `mob_spawn_points` set `groupid` = '34' where `groupid` = '26' and `mobname` = 'Rockmill'; -- To Amphisbaena
+update `mob_spawn_points` set `groupid` = '9563' where `groupid` = '19' and `mobname` = 'Goblin_Brigand'; -- To Goblin Mugger
+update `mob_spawn_points` set `groupid` = '13' where `groupid` = '20' and `mobname` = 'Goblin_Headsman'; -- To Goblin Butcher
+update `mob_spawn_points` set `groupid` = '9562' where `groupid` = '21' and `mobname` = 'Goblin_Healer'; -- To Goblin Leecher
+update `mob_spawn_points` set `groupid` = '9557' where `groupid` = '22' and `mobname` = 'Witchetty_Grub'; -- To Giant Grub
+update `mob_spawn_points` set `groupid` = '9572' where `groupid` = '23' and `mobname` = 'Couloir_Leech'; -- To Stickpin
+update `mob_spawn_points` set `groupid` = '14' where `groupid` = '24' and `mobname` = 'Prim_Pika'; -- To Wadi Hare
+update `mob_spawn_points` set `groupid` = '14' where `groupid` = '25' and `mobname` = 'Natty_Gibbon'; -- To Wadi Hare
+update `mob_spawn_points` set `groupid` = '9570' where `groupid` = '26' and `mobname` = 'Trimmer'; -- To Snipper
+update `mob_spawn_points` set `groupid` = '15' where `groupid` = '27' and `mobname` = 'Fume_Lizzard'; -- To Steam Lizzard
+update `mob_spawn_points` set `groupid` = '9561' where `groupid` = '28' and `mobname` = 'Goblin_Conjurer'; -- To Goblin Gambler
+update `mob_spawn_points` set `groupid` = '12' where `groupid` = '29' and `mobname` = 'Goblin_Bladesmith'; -- To Goblin Tinkerer
+update `mob_spawn_points` set `groupid` = '11' where `groupid` = '30' and `mobname` = 'Goblin_Bushwhacker'; -- To Goblin Ambusher
+update `mob_spawn_points` set `groupid` = '13' where `groupid` = '18' and `mobname` = 'Lacerator'; -- To Clipper
+update `mob_spawn_points` set `groupid` = '6' where `groupid` = '19' and `mobname` = 'Spool_Leech'; -- To Thread Leech
+update `mob_spawn_points` set `groupid` = '8748' where `groupid` = '20' and `mobname` = 'Hovering_Oculus'; -- To Floating Eye
+update `mob_spawn_points` set `groupid` = '12' where `groupid` = '21' and `mobname` = 'Bilesucker'; -- To Stirge
+update `mob_spawn_points` set `groupid` = '8755' where `groupid` = '22' and `mobname` = 'Goblin_Hoodoo'; -- To Goblin Shaman
+update `mob_spawn_points` set `groupid` = '8756' where `groupid` = '23' and `mobname` = 'Goblin_Artificer'; -- To Goblin Smithy
+update `mob_spawn_points` set `groupid` = '8750' where `groupid` = '24' and `mobname` = 'Goblin_Tanner'; -- To Goblin Furrier
+update `mob_spawn_points` set `groupid` = '8754' where `groupid` = '25' and `mobname` = 'Goblin_Chaser'; -- To Goblin Pathfinder
+update `mob_spawn_points` set `groupid` = '9585' where `groupid` = '6' and `mobname` = 'Troika_Bats'; -- To Bat Batalion
+update `mob_spawn_points` set `groupid` = '9586' where `groupid` = '7' and `mobname` = 'Deathwatch_Beetle'; -- To Battue Bats
+update `mob_spawn_points` set `groupid` = '9593' where `groupid` = '8' and `mobname` = 'Goblin_Flesher'; -- To Beady Beetle
+update `mob_spawn_points` set `groupid` = '9598' where `groupid` = '9' and `mobname` = 'Goblin_Metallurgist'; -- To Goblin Butcher
+update `mob_spawn_points` set `groupid` = '18' where `groupid` = '10' and `mobname` = 'Goblin_Lurcher'; -- To Goblin Mugger
+update `mob_spawn_points` set `groupid` = '26' where `groupid` = '11' and `mobname` = 'Skinnymalinks'; -- To Wendigowar
+update `mob_spawn_points` set `groupid` = '27' where `groupid` = '12' and `mobname` = 'Skinnymajinx'; -- To Wendigoblm
+update `mob_spawn_points` set `groupid` = '21' where `groupid` = '13' and `mobname` = 'Coven_Bats'; -- To battle bats
+update `mob_spawn_points` set `groupid` = '9592' where `groupid` = '14' and `mobname` = 'Goblin_Trailblazer'; -- To goblin ambusher
+update `mob_spawn_points` set `groupid` = '4' where `groupid` = '8' and `mobname` = 'Fetor_Bats'; -- To Stink Bats
+update `mob_spawn_points` set `groupid` = '10' where `groupid` = '9' and `mobname` = 'Fuligo'; -- To Black Slime
+update `mob_spawn_points` set `groupid` = '12' where `groupid` = '14' and `mobname` = 'Thorn_Bat'; -- To Combat
+update `mob_spawn_points` set `groupid` = '21' where `groupid` = '18' and `mobname` = 'Buds_Bunny'; -- To Vorpal Bunny
+update `mob_spawn_points` set `groupid` = '3' where `groupid` = '19' and `mobname` = 'Bilis_Leech'; -- To Poison Leech
+update `mob_spawn_points` set `groupid` = '38' where `groupid` = '24' and `mobname` = 'Swagger_Spruce'; -- To Slash Pine
+update `mob_spawn_points` set `groupid` = '29' where `groupid` = '25' and `mobname` = 'Targe_Beetle'; -- To Goliath Beetle
+update `mob_spawn_points` set `groupid` = '32' where `mobid` = '17567928'; -- To Stroper Chyme
+update `mob_spawn_points` set `groupid` = '32' where `mobid` = '17567855'; -- To Stroper Chyme
+update `mob_spawn_points` set `groupid` = '42' where `groupid` = '15' and `mobname` = 'Hellbound_Warrior'; -- To Tomb Warrior
+update `mob_spawn_points` set `groupid` = '43' where `groupid` = '16' and `mobname` = 'Hellbound_Warlock'; -- To Tomb Mage
+update `mob_spawn_points` set `groupid` = '29' where `groupid` = '32' and `mobname` = 'Nekros_Hound'; -- To Tomb Wolf
+update `mob_spawn_points` set `groupid` = '19' where `groupid` = '21' and `mobname` = 'Blackwater_Pugil'; -- To Stygian Pugil
+update `mob_spawn_points` set `groupid` = '12' where `groupid` = '22' and `mobname` = 'Plunderer_Crab'; -- To Scavenger Crab
+update `mob_spawn_points` set `groupid` = '30' where `groupid` = '25' and `mobname` = 'Deviling_bats'; -- To Impish Impish Bats
+update `mob_spawn_points` set `groupid` = '13' where `groupid` = '26' and `mobname` = 'Sodden_Bones'; -- To Fleshcraver
+update `mob_spawn_points` set `groupid` = '14' where `groupid` = '27' and `mobname` = 'Drowned_Bones'; -- To Mindcraver
+update `mob_spawn_points` set `groupid` = '38' where `groupid` = '28' and `mobname` = 'Starborer'; -- To Starmite
+update `mob_spawn_points` set `groupid` = '8820' where `groupid` = '29' and `mobname` = 'Rapier_Scorpion'; -- To Cutlass Scorpion
+update `mob_spawn_points` set `groupid` = '23' where `groupid` = '32' and `mobname` = 'Poroggo_Excavator'; -- To Mousse
+update `mob_spawn_points` set `groupid` = '17' where `groupid` = '33' and `mobname` = 'Flume_Toad'; -- To Bouncing Ball
+update `mob_spawn_points` set `groupid` = '17' where `groupid` = '18' and `mobname` = 'Bleeder_Leech'; -- To Poison Leech
+update `mob_spawn_points` set `groupid` = '25' where `groupid` = '21' and `mobname` = 'Chaser_Bats'; -- To Seeker Bats
+update `mob_spawn_points` set `groupid` = '24' where `groupid` = '23' and `mobname` = 'Warren_Bat'; -- To Ancient Bats
+update `mob_spawn_points` set `groupid` = '32' where `groupid` = '22' and `mobname` = 'Crypterpillar'; -- To Caterchipillar
+update `mob_spawn_points` set `groupid` = '11' where `groupid` = '23' and `mobname` = 'Aura_Sculpture'; -- To Aura Statue
+update `mob_groups` set `minLevel` = '73' where `groupid` = '19' and `zoneid` = '178'; -- Changed Baelfyr min level for 75 content
+update `mob_groups` set `maxLevel` = '74' where `groupid` = '19' and `zoneid` = '178'; -- Changed Baelfyr min level for 75 content
+update `mob_groups` set `minLevel` = '73' where `groupid` = '22' and `zoneid` = '178'; -- Changed Byrgen min level for 75 content
+update `mob_groups` set `maxLevel` = '74' where `groupid` = '22' and `zoneid` = '178'; -- Changed Byrgen min level for 75 content
+update `mob_groups` set `minLevel` = '73' where `groupid` = '20' and `zoneid` = '178'; -- Changed Gefyrst min level for 75 content
+update `mob_groups` set `maxLevel` = '74' where `groupid` = '20' and `zoneid` = '178'; -- Changed Gefyrst min level for 75 content
+update `mob_groups` set `minLevel` = '73' where `groupid` = '21' and `zoneid` = '178'; -- Changed Ungeweder min level for 75 content
+update `mob_groups` set `maxLevel` = '74' where `groupid` = '21' and `zoneid` = '178'; -- Changed Ungeweder min level for 75 content
+update `mob_spawn_points` set `groupid` = '30' where `groupid` = '31' and `mobname` = 'Babaulas'; -- To Wyvern
+update `mob_spawn_points` set `groupid` = '30' where `groupid` = '32' and `mobname` = 'Boribaba'; -- To Wyvern
+update `mob_spawn_points` set `groupid` = '11' where `groupid` = '44' and `mobname` = 'Aqueduct_Spider'; -- To Diremite
+update `mob_spawn_points` set `groupid` = '2' where `groupid` = '41' and `mobname` = 'Aqueduct_Spider'; -- To Greater Gaylas
+update `mob_spawn_points` set `groupid` = '7' where `groupid` = '9' and `mobname` = 'Blazedrake'; -- To Ignidrake
+update `mob_spawn_points` set `groupid` = '8' where `groupid` = '13' and `mobname` = 'Darner'; -- To Hawker
+

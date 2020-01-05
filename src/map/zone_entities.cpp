@@ -413,7 +413,9 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
             CMobController* PController = static_cast<CMobController*>(PCurrentMob->PAI->GetController());
 
-            bool validAggro = expGain > 50 || PChar->isSitting() || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
+            //Aurora Fix Easy Prey Aggro (1 Line)
+            //bool validAggro = expGain > 50 || PChar->isSitting() || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
+            bool validAggro = expGain > 14 || PChar->isSitting() || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
 
             if (validAggro && PController->CanAggroTarget(PChar))
             {

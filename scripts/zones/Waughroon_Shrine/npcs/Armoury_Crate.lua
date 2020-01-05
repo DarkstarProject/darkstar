@@ -258,9 +258,9 @@ local loot =
     -- KSNM The Hills are Alive
     [76] =
     {
-        {
-            {itemid =  3343, droprate = 1000}, -- Blue Pondweed
-        },
+        -- {
+        --     {itemid =  3343, droprate = 1000}, -- Blue Pondweed
+        -- },
         {
             {itemid = 18047, droprate =  188}, -- Havoc Scythe
             {itemid = 17939, droprate =   27}, -- Kriegsbeil
@@ -282,8 +282,8 @@ local loot =
         {
             {itemid =   683, droprate =  446}, -- Adaman Chain
             {itemid =   908, droprate =  420}, -- Adamantoise Shell
-            {itemid =  1312, droprate =   71}, -- Piece Of Angel Skin
-            {itemid = 14080, droprate =   26}, -- Strider Boots
+            {itemid =  1312, droprate =   97}, -- Piece Of Angel Skin
+            -- {itemid = 14080, droprate =   26}, -- Strider Boots
         },
         {
             {itemid =   887, droprate =  116}, -- Coral Fragment
@@ -471,8 +471,8 @@ local loot =
         },
         {
             {itemid =     0, droprate =  932}, -- Nothing
-            {itemid = 17440, droprate =   13}, -- Kraken Club
-            {itemid = 15185, droprate =   55}, -- Walkure Mask
+            -- {itemid = 17440, droprate =   13}, -- Kraken Club
+            {itemid = 15185, droprate =   68}, -- Walkure Mask
         },
     },
 
@@ -480,9 +480,9 @@ local loot =
     [81] =
     {
         {
-            {itemid = 1473, droprate = 813}, -- High-quality Scorpion Shell
-            {itemid = 13552, droprate = 55}, -- Serket Ring
-            {itemid = 901, droprate = 123}, -- Venomous Claw
+            {itemid = 1473, droprate = 800}, -- High-quality Scorpion Shell
+            -- {itemid = 13552, droprate = 55}, -- Serket Ring
+            {itemid = 901, droprate = 200}, -- Venomous Claw
         },
         {
             {itemid = 17207, droprate = 216}, -- Expunger

@@ -281,10 +281,10 @@ local loot =
         {
             {itemid = 1601, droprate = 1000},-- Mannequin Head
         },
-        {
-            {itemid = 0, droprate = 636},    -- Nothing
-            {itemid = 12486, droprate = 364},-- Emperor Hairpin
-        },
+        -- {
+        --     {itemid = 0, droprate = 636},    -- Nothing
+        --     {itemid = 12486, droprate = 364},-- Emperor Hairpin
+        -- },
         {
             {itemid = 12400, droprate = 175},-- Ashigaru Targe
             {itemid = 12399, droprate = 175},-- Beaters Aspis
@@ -342,9 +342,9 @@ local loot =
             {itemid = 722, droprate = 141},   -- Divine Log
         },
         {
-            {itemid = 860, droprate = 535},   -- Behemoth Hide
-            {itemid = 883, droprate = 366},   -- Behemoth Horn
-            {itemid = 17108, droprate = 48},  -- Healing Staff
+            {itemid = 860, droprate = 500},   -- Behemoth Hide
+            {itemid = 883, droprate = 500},   -- Behemoth Horn
+            -- {itemid = 17108, droprate = 48},  -- Healing Staff
         },
         {
             {itemid = 902, droprate = 99},    -- Demon Horn
@@ -375,9 +375,9 @@ local loot =
             {itemid = 4205, droprate = 141},  -- Agility Potion
             {itemid = 4203, droprate = 113},  -- Vitality Potion
         },
-        {
-            {itemid = 3341, droprate = 1000}, -- Beastly Shank
-        },
+        -- {
+        --     {itemid = 3341, droprate = 1000}, -- Beastly Shank
+        -- },
         {
             {itemid = 4209, droprate = 169},  -- Mind Potion
             {itemid = 4207, droprate = 70},   -- Intelligence Potion
@@ -428,10 +428,10 @@ local loot =
     -- BCNM Under Observation
     [12] =
     {
-        {
-            {itemid = 0, droprate = 910},    -- Nothing
-            {itemid = 13056, droprate = 90}, -- Peacock Charm
-        },
+        -- {
+        --     {itemid = 0, droprate = 910},    -- Nothing
+        --     {itemid = 13056, droprate = 90}, -- Peacock Charm
+        -- },
         {
             {itemid = 0, droprate = 467},    -- Nothing
             {itemid = 18086, droprate = 48}, -- Behourd Lance
@@ -664,10 +664,10 @@ local loot =
             {itemid = 17589, droprate = 174},-- Thyrsusstab
         },
         {
-            {itemid = 13402, droprate = 101},-- Cassie Earring
+            -- {itemid = 13402, droprate = 101},-- Cassie Earring
             {itemid = 19027, droprate = 43}, -- Claymore Grip
-            {itemid = 920, droprate = 275},  -- Malboro Vine
-            {itemid = 1013, droprate = 275}, -- Morbolger Vine
+            {itemid = 920, droprate = 325},  -- Malboro Vine
+            {itemid = 1013, droprate = 326}, -- Morbolger Vine
             {itemid = 19025, droprate = 203},-- Pole Grip
             {itemid = 19026, droprate = 116},-- Spear Strap
         },

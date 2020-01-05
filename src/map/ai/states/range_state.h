@@ -40,7 +40,9 @@ protected:
     virtual bool CanInterrupt() override { return true; }
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
-    bool CanUseRangedAttack(CBattleEntity* PTarget);
+    //Tonberry/Aurora Runaway Fix (1 Line)
+    //bool CanUseRangedAttack(CBattleEntity* PTarget);
+    bool CanUseRangedAttack(CBattleEntity* PTarget, uint8 range);
 
 private:
     CCharEntity* const m_PEntity;

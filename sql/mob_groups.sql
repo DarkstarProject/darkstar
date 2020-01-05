@@ -12860,7 +12860,7 @@ INSERT INTO `mob_groups` VALUES (7,3127,220,'Phantom',0,128,1993,0,0,22,25,0);
 INSERT INTO `mob_groups` VALUES (8,3912,220,'Thunder_Elemental',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (9,4309,220,'Water_Elemental',0,128,2629,0,0,27,29,0);
 INSERT INTO `mob_groups` VALUES (10,3522,220,'Sea_Horror',0,128,2186,0,0,60,62,0);
-INSERT INTO `mob_groups` VALUES (11,1213,220,'Enagakure',0,129,1993,0,0,55,55,0);
+INSERT INTO `mob_groups` VALUES (11,1213,220,'Enagakure',0,128,1993,0,0,55,55,0); -- Aurora Change Spawn Type from 129 to 128
 
 -- ------------------------------------------------------------
 -- Ship_bound_for_Mhaura (Zone 221)
@@ -12905,7 +12905,7 @@ INSERT INTO `mob_groups` VALUES (8,5878,227,'Crossbones',300,0,537,0,0,28,31,0);
 INSERT INTO `mob_groups` VALUES (9,844,227,'Crossbones',300,0,537,0,0,28,31,0);
 INSERT INTO `mob_groups` VALUES (10,3605,227,'Ship_Wight',300,0,0,0,0,36,39,0);
 INSERT INTO `mob_groups` VALUES (11,428,227,'Blackbeard',0,128,282,0,0,67,68,0);
-INSERT INTO `mob_groups` VALUES (12,1213,227,'Enagakure',0,128,0,0,0,55,55,0);
+INSERT INTO `mob_groups` VALUES (12,1213,227,'Enagakure',0,128,0,0,0,55,55,0); -- Aurora Change Spawn Type from 129 to 128
 
 -- ------------------------------------------------------------
 -- Ship_bound_for_Mhaura_Pirates (Zone 228)

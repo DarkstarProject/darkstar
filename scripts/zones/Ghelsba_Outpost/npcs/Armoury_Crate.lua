@@ -57,10 +57,10 @@ local loot =
         {
             {itemid = 852, droprate = 1000}, -- Lizard Skin
         },
-        {
-            {itemid =     0, droprate =  900}, -- nothing
-            {itemid = 13014, droprate =  100}, -- leaping_boots
-        },
+        -- {
+        --     {itemid =     0, droprate =  900}, -- nothing
+        --     {itemid = 13014, droprate =  100}, -- leaping_boots
+        -- },
         {
             {itemid = 15282, droprate =   50}, -- Katana Obi
             {itemid = 15275, droprate =   75}, -- Rapier Belt

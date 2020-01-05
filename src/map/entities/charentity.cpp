@@ -610,6 +610,16 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
+    //Aurora Anti-PL: Enables spells being unable to target outside alliance PCs
+    if ((targetFlags & TARGET_PLAYER_ALLIANCE) &&
+        ((PParty && PInitiator->PParty->m_PAlliance == PParty->m_PAlliance) ||
+        (PInitiator->PMaster && PInitiator->PMaster->PParty->m_PAlliance == PParty->m_PAlliance)) &&
+        PInitiator != this)
+    {
+        return true;
+    }
+    //Aurora End Anti-PL
+
     return false;
 }
 

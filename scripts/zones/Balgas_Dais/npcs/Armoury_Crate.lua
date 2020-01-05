@@ -73,11 +73,11 @@ local loot =
         },
         {
             {itemid =     0, droprate =  250}, -- nothing
-            {itemid = 13054, droprate =  100}, -- fuma_kyahan
-            {itemid = 13555, droprate =  200}, -- peace_ring
-            {itemid = 13624, droprate =  200}, -- enhancing_mantle
-            {itemid = 13236, droprate =  150}, -- master_belt
-            {itemid = 13952, droprate =  100}, -- ochiudos_kote
+            -- {itemid = 13054, droprate =  100}, -- fuma_kyahan
+            {itemid = 13555, droprate =  250}, -- peace_ring
+            {itemid = 13624, droprate =  250}, -- enhancing_mantle
+            {itemid = 13236, droprate =  250}, -- master_belt
+            -- {itemid = 13952, droprate =  100}, -- ochiudos_kote
         },
         {
             {itemid =     0, droprate =  850}, -- nothing
@@ -359,9 +359,9 @@ local loot =
     -- KSNM Early Bird Catches the Wyrm
     [107] =
     {
-        {
-            {itemid = 3339, droprate = 1000},-- Jug Of Honey Wine
-        },
+        -- {
+        --     {itemid = 3339, droprate = 1000},-- Jug Of Honey Wine
+        -- },
         {
             {itemid = 1441, droprate = 312}, -- Libation Abjuration
             {itemid = 17694, droprate = 182},-- Guespiere
@@ -389,8 +389,8 @@ local loot =
         {
             {itemid = 4486, droprate = 522}, -- Dragon Heart
             {itemid = 4272, droprate = 346}, -- Slice Of Dragon Meat
-            {itemid = 17928, droprate = 82}, -- Juggernaut
-            {itemid = 13189, droprate = 59}, -- Speed Belt
+            {itemid = 17928, droprate = 141}, -- Juggernaut
+            -- {itemid = 13189, droprate = 59}, -- Speed Belt
         },
         {
             {itemid = 887, droprate = 32},   -- Coral Fragment

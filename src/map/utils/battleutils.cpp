@@ -1035,7 +1035,10 @@ namespace battleutils
                 if (daze == EFFECT_DRAIN_DAZE)
                 {
                     uint16 multiplier = (uint16)(3 + (5.5f * power - 1));
-                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    //Aurora Gimp Samba (1 Line)
+                    //int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 600 + 1);
+
 
                     // vary damage based on lvl diff
                     int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;

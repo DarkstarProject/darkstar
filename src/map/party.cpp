@@ -48,6 +48,7 @@
 #include "packets/party_effects.h"
 #include "packets/party_member_update.h"
 #include "packets/message_basic.h"
+#include "packets/chat_message.h"
 
 //should have brace-or-equal initializers when MSVC supports it
 struct CParty::partyInfo_t
@@ -952,6 +953,18 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
         {
             CCharEntity* PChar = (CCharEntity*)PEntity;
             //enable level sync
+
+            //Aurora Server Max level sync GAP set to 25
+            for (uint8 i = 0; i < members.size(); ++i)
+            {
+                if (members.at(i)->GetMLevel() > PEntity->GetMLevel() + 25)
+                {
+                    ((CCharEntity*)GetLeader())->pushPacket(new CChatMessagePacket((CCharEntity*)GetLeader(), MESSAGE_SYSTEM_1, "Party members must be within a 25 level range of the sync target.", "Server"));
+                    return;
+                }
+            }
+            //Aurora End Level Sync Gap
+
             if (PChar->GetMLevel() < 10)
             {
                 ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 10, 541));

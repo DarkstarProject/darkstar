@@ -17,7 +17,7 @@ function onItemUse(target)
     local bane = target:getStatusEffect(dsp.effect.BANE)
     local power = 33 + target:getMod(dsp.mod.ENHANCES_HOLYWATER)
 
-    if (target:hasStatusEffect(dsp.effect.DOOM) and power > math.random(1, 100)) then
+    if (target:hasStatusEffect(dsp.effect.DOOM)) then
         target:delStatusEffect(dsp.effect.DOOM)
         target:messageBasic(dsp.msg.basic.NARROWLY_ESCAPE)
     elseif (curse ~= nil and curse2 ~= nil and bane ~= nil) then

@@ -215,7 +215,9 @@ int32 CBattleEntity::GetMaxMP()
 
 uint8 CBattleEntity::GetSpeed()
 {
-    return (isMounted() ? 40 + map_config.speed_mod : std::clamp<uint16>(speed * (100 + getMod(Mod::MOVE)) / 100, std::numeric_limits<uint8>::min(), std::numeric_limits<uint8>::max()));
+    //Aurora Increase Chocobo Speed (1 Line)
+    //return (isMounted() ? 40 + map_config.speed_mod : std::clamp<uint16>(speed * (100 + getMod(Mod::MOVE)) / 100, std::numeric_limits<uint8>::min(), std::numeric_limits<uint8>::max()));
+    return (isMounted() ? 80 + map_config.speed_mod : std::clamp<uint16>(speed * (100 + getMod(Mod::MOVE)) / 100, std::numeric_limits<uint8>::min(), std::numeric_limits<uint8>::max()));
 }
 
 bool CBattleEntity::CanRest()
@@ -312,7 +314,9 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
     }
     else if (PAmmo)
     {
-        delay += PAmmo->getDelay() / 2;
+        //Aurora Ranged Delay Fix??? Testing still Ranged attacks seem too quick, why is that 2 there? shouldnt it just add the ammo to delay? also should it add before hastecheck?
+        //delay += PAmmo->getDelay() / 2;
+        delay += PAmmo->getDelay();
     }
     return delay;
 }

@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     local power = 25*((100+bonus)/100) -- This 25 is temp until the skill calculation is in.
 
     spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
-    if (target:hasStatusEffect(dsp.effect.DOOM) and power > math.random(1, 100)) then
+    if (target:hasStatusEffect(dsp.effect.DOOM)) then
         -- remove doom
         final = dsp.effect.DOOM
         target:delStatusEffect(dsp.effect.DOOM)
