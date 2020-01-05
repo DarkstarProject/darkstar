@@ -63,25 +63,25 @@ This file is part of DarkStar-server source code.
 
 struct Pet_t
 {
-    look_t		look;		// внешний вид
-    string_t	name;		// имя
-    ECOSYSTEM	EcoSystem;	// эко-система
+    look_t      look;		// внешний вид
+    string_t    name;		// имя
+    ECOSYSTEM   EcoSystem;	// эко-система
 
-    uint8		minLevel;	// минимально-возможный  уровень
-    uint8		maxLevel;	// максимально-возможный уровень
+    uint8       minLevel;	// минимально-возможный  уровень
+    uint8       maxLevel;	// максимально-возможный уровень
 
     uint8       name_prefix;
-    uint8		size;		// размер модели
-    uint16		m_Family;
-    uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
+    uint8       size;		// размер модели
+    uint16      m_Family;
+    uint32      time;		// время существования (будет использоваться для задания длительности статус эффекта)
 
-    uint8		mJob;
-    uint8		m_Element;
+    uint8       mJob;
+    uint8       m_Element;
     float       HPscale;                             // HP boost percentage
     float       MPscale;                             // MP boost percentage
 
     uint16      cmbDelay;
-    uint8 		speed;
+    uint8       speed;
     // stat ranks
     uint8       strRank;
     uint8       dexRank;
@@ -131,26 +131,26 @@ std::vector<Pet_t*> g_PPetList;
 
 struct TrustSpell_ID
 {
-    uint16 spellID;
+    uint32 spellID;
 };
 
 std::vector<TrustSpell_ID*> g_PTrustIDList;
 
 struct Trust_t
 {
-    uint16      trustID;
-    look_t      look;		// appearance data
-    string_t    name;		// name string
-    ECOSYSTEM   EcoSystem;	// ecosystem
+    uint32      trustID;
+    look_t      look;       // appearance data
+    string_t    name;       // name string
+    ECOSYSTEM   EcoSystem;  // ecosystem
 
     uint8       name_prefix;
-    uint8       size;		// размер модели
+    uint8       size;       // размер модели
     uint16      m_Family;
 
     uint8       mJob;
     uint8       sJob;
-    float       HPscale;                             // HP boost percentage
-    float       MPscale;                             // MP boost percentage
+    float       HPscale;    // HP boost percentage
+    float       MPscale;    // MP boost percentage
 
     uint16      cmbDelay;
     uint8       speed;
@@ -334,15 +334,16 @@ namespace petutils
             {
                 TrustSpell_ID* trustID = new TrustSpell_ID();
 
-                trustID->spellID = (uint16)Sql_GetIntData(SqlHandle, 0);
+                trustID->spellID = (uint32)Sql_GetIntData(SqlHandle, 0);
 
                 g_PTrustIDList.push_back(trustID);
             }
         }
 
-        for (size_t i = 0; i < g_PTrustIDList.size(); ++i)
+        uint32 index = 0;
+        for (index; index < g_PTrustIDList.size(); index++)
         {
-            QueryTrust(g_PTrustIDList.at(i)->spellID);
+            QueryTrust(g_PTrustIDList.at(index)->spellID);
         }
     }
 
@@ -1932,17 +1933,17 @@ namespace petutils
 
         DSP_DEBUG_BREAK_IF(TrustID < 896 || (TrustID > 998 && TrustID < 1003) || TrustID > 1023);
         CTrustEntity* PTrust = new CTrustEntity(PMaster);
+        Trust_t* trustData = new Trust_t();
 
-        auto index = 0;
-        for (size_t i = 0; i < g_PTrustList.size(); i++)
+        uint32 index = 0;
+        for (index; index < g_PTrustList.size(); index++)
         {
-            if (g_PTrustList.at(i)->trustID == TrustID)
+            if (g_PTrustList.at(index)->trustID == TrustID)
             {
-                index = i;
+                trustData = g_PTrustList.at(index);
+                break;
             }
         }
-
-        Trust_t* trustData = g_PTrustList.at(index);
 
         PTrust->loc = PMaster->loc;
         PTrust->m_OwnerID.id = PMaster->id;
