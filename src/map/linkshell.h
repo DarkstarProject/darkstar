@@ -47,8 +47,10 @@ public:
 
     uint32      getID();
     uint16      getColor();
+    uint8       getPostRights();
 
     void        setColor(uint16 color);
+    void        setPostRights(uint8 postrights); // Updates lsmes privilege and writes to db
 
     const int8* getName();
 	void		setName(int8* name);
@@ -57,13 +59,15 @@ public:
     void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
     bool        DelMember(CCharEntity* PChar);
 
-    void        RemoveMemberByName(int8* MemberName);
+    void        BreakLinkshell(int8* lsname, bool gm);
+    void        RemoveMemberByName(int8* MemberName, uint8 kickerRank);
 	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
 
     void        PushPacket(uint32 senderID, CBasicPacket* packet);
     void        PushLinkshellMessage(CCharEntity* PChar, bool ls1);
 
     std::vector<CCharEntity*> members; // список участников linkshell
+    uint8       m_postRights;
 
 private:
 
@@ -82,6 +86,7 @@ private:
 namespace linkshell
 {
     CLinkshell* LoadLinkshell(uint32 id);
+    void UnloadLinkshell(uint32 id);
 
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
