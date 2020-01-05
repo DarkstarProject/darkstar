@@ -332,9 +332,9 @@ namespace petutils
             }
         }
 
-        for each (uint32 id in g_PTrustIDList)
+        for (size_t i = 0; i < g_PTrustIDList.size(); i++)
         {
-            QueryTrust(id);
+            QueryTrust(g_PTrustIDList.at(i));
         }
     }
 
