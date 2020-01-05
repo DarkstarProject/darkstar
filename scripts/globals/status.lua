@@ -839,6 +839,7 @@ dsp.effectFlag =
     DISPELABLE      = 0x0001,
     ERASABLE        = 0x0002,
     ATTACK          = 0x0004,
+    EMPATHY         = 0x0008,
     DAMAGE          = 0x0010,
     DEATH           = 0x0020,
     MAGIC_BEGIN     = 0x0040,
