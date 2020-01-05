@@ -129,6 +129,13 @@ struct Pet_t
 
 std::vector<Pet_t*> g_PPetList;
 
+struct TrustSpell_ID
+{
+    uint16 spellID;
+};
+
+std::vector<TrustSpell_ID*> g_PTrustIDList;
+
 struct Trust_t
 {
     uint16      trustID;
@@ -191,7 +198,6 @@ struct Trust_t
     int16 darkres;
 };
 
-std::vector<uint32> g_PTrustIDList;
 std::vector<Trust_t*> g_PTrustList;
 
 namespace petutils
@@ -326,15 +332,17 @@ namespace petutils
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint32 TrustID = (uint16)Sql_GetIntData(SqlHandle, 0);
+                TrustSpell_ID* trustID = new TrustSpell_ID();
 
-                g_PTrustIDList.push_back(TrustID);
+                trustID->spellID = (uint16)Sql_GetIntData(SqlHandle, 0);
+
+                g_PTrustIDList.push_back(trustID);
             }
         }
 
-        for (size_t i = 0; i < g_PTrustIDList.size(); i++)
+        for (size_t i = 0; i < g_PTrustIDList.size(); ++i)
         {
-            QueryTrust(g_PTrustIDList.at(i));
+            QueryTrust(g_PTrustIDList.at(i)->spellID);
         }
     }
 
