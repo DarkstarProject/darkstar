@@ -226,8 +226,6 @@ public:
     uint16			  m_mkeCurrent;					// current mission of A Moogle Kupo d'Etat
     uint16			  m_asaCurrent;					// current mission of A Shantotto Ascension
 
-    // TODO: half of this array should be stored in char_vars, and not here, because this information is not displayed in the client interface and the server does not perform any operations with them
-
     //currency_t        m_currency;                 // conquest points, imperial standing points etc
     Teleport_t	      teleport;					    // Outposts, Runic Portals, Homepoints, Survival Guides, Maws, etc
 

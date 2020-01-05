@@ -1,7 +1,7 @@
 -----------------------------------------
--- Spell: Kupipi
+-- Trust: Kupipi
 -----------------------------------------
-require("scripts/globals/trust");
+require("scripts/globals/trust")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -9,8 +9,6 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    -- Todo: put Trusts's spawn in dialog here or in entity script?
-    -- Todo: automate entity spawn in core for trust spells?
     caster:spawnTrust(898)
     return 0
 end
