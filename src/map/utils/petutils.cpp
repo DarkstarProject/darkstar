@@ -83,19 +83,19 @@ struct Pet_t
     uint16      cmbDelay;
     uint8 		speed;
     // stat ranks
-    uint8        strRank;
-    uint8        dexRank;
-    uint8        vitRank;
-    uint8        agiRank;
-    uint8        intRank;
-    uint8        mndRank;
-    uint8        chrRank;
-    uint8        attRank;
-    uint8        defRank;
-    uint8        evaRank;
-    uint8        accRank;
+    uint8       strRank;
+    uint8       dexRank;
+    uint8       vitRank;
+    uint8       agiRank;
+    uint8       intRank;
+    uint8       mndRank;
+    uint8       chrRank;
+    uint8       attRank;
+    uint8       defRank;
+    uint8       evaRank;
+    uint8       accRank;
 
-    uint16       m_MobSkillList;
+    uint16      m_MobSkillList;
 
     // magic stuff
     bool hasSpellScript;
@@ -132,35 +132,35 @@ std::vector<Pet_t*> g_PPetList;
 struct Trust_t
 {
     uint16      trustID;
-    look_t		look;		// appearance data
-    string_t	name;		// name string
-    ECOSYSTEM	EcoSystem;	// ecosystem
+    look_t      look;		// appearance data
+    string_t    name;		// name string
+    ECOSYSTEM   EcoSystem;	// ecosystem
 
     uint8       name_prefix;
-    uint8		size;		// размер модели
-    uint16		m_Family;
+    uint8       size;		// размер модели
+    uint16      m_Family;
 
-    uint8		mJob;
-    uint8		sJob;
+    uint8       mJob;
+    uint8       sJob;
     float       HPscale;                             // HP boost percentage
     float       MPscale;                             // MP boost percentage
 
     uint16      cmbDelay;
-    uint8 		speed;
+    uint8       speed;
     // stat ranks
-    uint8        strRank;
-    uint8        dexRank;
-    uint8        vitRank;
-    uint8        agiRank;
-    uint8        intRank;
-    uint8        mndRank;
-    uint8        chrRank;
-    uint8        attRank;
-    uint8        defRank;
-    uint8        evaRank;
-    uint8        accRank;
+    uint8       strRank;
+    uint8       dexRank;
+    uint8       vitRank;
+    uint8       agiRank;
+    uint8       intRank;
+    uint8       mndRank;
+    uint8       chrRank;
+    uint8       attRank;
+    uint8       defRank;
+    uint8       evaRank;
+    uint8       accRank;
 
-    uint16       m_MobSkillList;
+    uint16      m_MobSkillList;
 
     // magic stuff
     bool hasSpellScript;
