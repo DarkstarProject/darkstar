@@ -1,7 +1,7 @@
 -----------------------------------------
 -- Trust: Shantotto II
 -----------------------------------------
-require("scripts/globals/trust")
+require("scripts/globals/status")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

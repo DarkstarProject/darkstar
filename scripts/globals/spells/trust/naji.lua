@@ -1,7 +1,7 @@
 -----------------------------------------
 -- Trust: Naji
 -----------------------------------------
-require("scripts/globals/trust")
+require("scripts/globals/status")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
