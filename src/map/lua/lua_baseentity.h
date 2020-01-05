@@ -192,6 +192,7 @@ public:
     int32 createShop(lua_State*);            // Prepare the container for work of shop ??
     int32 addShopItem(lua_State*);           // Adds item to shop container (16 max)
     int32 getCurrentGPItem(lua_State*);      // Gets current GP item id and max points
+    int32 breakLinkshell(lua_State*);        // Breaks all pearls/sacks
 
     // Trading
     int32 getContainerSize(lua_State*);      // Gets the current capacity of a container

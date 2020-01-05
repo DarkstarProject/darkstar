@@ -909,6 +909,10 @@ namespace charutils
 
                     if (PItem->isType(ITEM_LINKSHELL))
                     {
+                        if (static_cast<CItemLinkshell*>(PItem)->GetLSType() == 0)
+                        {
+                            static_cast<CItemLinkshell*>(PItem)->SetLSType((LSTYPE)(PItem->getID() - 0x200));
+                        }
                         int8 EncodedString[16];
                         EncodeStringLinkshell(Sql_GetData(SqlHandle, 5), EncodedString);
                         PItem->setSignature(EncodedString);
@@ -994,13 +998,14 @@ namespace charutils
                 {
                     uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
                     uint8 equipSlot = Sql_GetUIntData(SqlHandle, 1);
-                    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+                    uint8 LocationID = Sql_GetUIntData(SqlHandle, 2);
+                    CItem* PItem = PChar->getStorage(LocationID)->GetItem(SlotID);
 
                     if ((PItem != nullptr) && PItem->isType(ITEM_LINKSHELL))
                     {
                         PItem->setSubType(ITEM_LOCKED);
                         PChar->equip[equipSlot] = SlotID;
-                        PChar->equipLoc[equipSlot] = LOC_INVENTORY;
+                        PChar->equipLoc[equipSlot] = LocationID;
                         if (equipSlot == SLOT_LINK1)
                             PLinkshell1 = (CItemLinkshell*)PItem;
                         else if (equipSlot == SLOT_LINK2)
@@ -1134,7 +1139,7 @@ namespace charutils
             PItem->setSubType(ITEM_LOCKED);
 
             PChar->nameflags.flags |= FLAG_LINKSHELL;
-            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK1]));
+            PChar->pushPacket(new CInventoryItemPacket(PItem, PChar->equipLoc[SLOT_LINK1], PChar->equip[SLOT_LINK1]));
             PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
             PChar->pushPacket(new CLinkshellEquipPacket(PChar, 1));
         }
@@ -1148,7 +1153,7 @@ namespace charutils
         {
             PItem->setSubType(ITEM_LOCKED);
 
-            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK2]));
+            PChar->pushPacket(new CInventoryItemPacket(PItem, PChar->equipLoc[SLOT_LINK2], PChar->equip[SLOT_LINK2]));
             PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
             PChar->pushPacket(new CLinkshellEquipPacket(PChar, 2));
         }
