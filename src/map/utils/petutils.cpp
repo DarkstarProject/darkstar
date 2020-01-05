@@ -59,6 +59,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/message_standard.h"
 #include "../packets/pet_sync.h"
 #include "../packets/trust_sync.h"
+#include "../ai/controllers/trust_controller.h"
 
 struct Pet_t
 {
@@ -127,6 +128,71 @@ struct Pet_t
 };
 
 std::vector<Pet_t*> g_PPetList;
+
+struct Trust_t
+{
+    uint16      trustID;
+    look_t		look;		// appearance data
+    string_t	name;		// name string
+    ECOSYSTEM	EcoSystem;	// ecosystem
+
+    uint8       name_prefix;
+    uint8		size;		// размер модели
+    uint16		m_Family;
+
+    uint8		mJob;
+    uint8		sJob;
+    float       HPscale;                             // HP boost percentage
+    float       MPscale;                             // MP boost percentage
+
+    uint16      cmbDelay;
+    uint8 		speed;
+    // stat ranks
+    uint8        strRank;
+    uint8        dexRank;
+    uint8        vitRank;
+    uint8        agiRank;
+    uint8        intRank;
+    uint8        mndRank;
+    uint8        chrRank;
+    uint8        attRank;
+    uint8        defRank;
+    uint8        evaRank;
+    uint8        accRank;
+
+    uint16       m_MobSkillList;
+
+    // magic stuff
+    bool hasSpellScript;
+    uint16 spellList;
+
+    // resists
+    int16 slashres;
+    int16 pierceres;
+    int16 hthres;
+    int16 impactres;
+
+    int16 firedef;
+    int16 icedef;
+    int16 winddef;
+    int16 earthdef;
+    int16 thunderdef;
+    int16 waterdef;
+    int16 lightdef;
+    int16 darkdef;
+
+    int16 fireres;
+    int16 iceres;
+    int16 windres;
+    int16 earthres;
+    int16 thunderres;
+    int16 waterres;
+    int16 lightres;
+    int16 darkres;
+};
+
+std::vector<uint32> g_PTrustIDList;
+std::vector<Trust_t*> g_PTrustList;
 
 namespace petutils
 {
@@ -246,6 +312,132 @@ namespace petutils
         }
     }
 
+    void LoadTrustList()
+    {
+        FreeTrustList();
+
+        const char* Query =
+            "SELECT \
+                 spell_list.spellid, mob_pools.poolid \
+                 FROM spell_list, mob_pools \
+                 WHERE spell_list.spellid >= 896 AND mob_pools.poolid = (spell_list.spellid+5000) ORDER BY spell_list.spellid";
+
+        if (Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                uint32 TrustID = (uint16)Sql_GetIntData(SqlHandle, 0);
+
+                g_PTrustIDList.push_back(TrustID);
+            }
+        }
+
+        for each (uint32 id in g_PTrustIDList)
+        {
+            QueryTrust(id);
+        }
+    }
+
+    void QueryTrust(uint32 TrustID)
+    {
+        const char* Query =
+            "SELECT \
+                mob_pools.name,\
+                modelid,\
+                mobsize,\
+                systemid,\
+                mob_pools.familyid,\
+                mob_pools.mJob,\
+                mob_pools.sJob,\
+                (mob_family_system.HP / 100), \
+                (mob_family_system.MP / 100), \
+                mob_family_system.speed, \
+                mob_family_system.STR, \
+                mob_family_system.DEX, \
+                mob_family_system.VIT, \
+                mob_family_system.AGI, \
+                mob_family_system.INT, \
+                mob_family_system.MND, \
+                mob_family_system.CHR, \
+                mob_family_system.DEF, \
+                mob_family_system.ATT, \
+                mob_family_system.ACC, \
+                mob_family_system.EVA, \
+                hasSpellScript, spellList, \
+                Slash, Pierce, H2H, Impact, \
+                Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, \
+                cmbDelay, name_prefix, mob_pools.skill_list_id, \
+                spell_list.spellid, mob_pools.behavior \
+                FROM spell_list, mob_pools, mob_family_system WHERE spell_list.spellid = %u \
+                AND (spell_list.spellid+5000) = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid ORDER BY spell_list.spellid";
+
+        uint32 ret = Sql_Query(SqlHandle, Query, TrustID);
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                Trust_t* trust = new Trust_t();
+
+                trust->trustID = TrustID;
+                trust->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
+                memcpy(&trust->look, Sql_GetData(SqlHandle, 1), 20);
+
+                trust->size = Sql_GetUIntData(SqlHandle, 2);
+                trust->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 3);
+                trust->m_Family = (uint16)Sql_GetIntData(SqlHandle, 4);
+                trust->mJob = (uint8)Sql_GetIntData(SqlHandle, 5);
+                trust->sJob = (uint8)Sql_GetIntData(SqlHandle, 6);
+                trust->HPscale = Sql_GetFloatData(SqlHandle, 7);
+                trust->MPscale = Sql_GetFloatData(SqlHandle, 8);
+                trust->speed = (uint8)Sql_GetIntData(SqlHandle, 9);
+                trust->strRank = (uint8)Sql_GetIntData(SqlHandle, 10);
+                trust->dexRank = (uint8)Sql_GetIntData(SqlHandle, 11);
+                trust->vitRank = (uint8)Sql_GetIntData(SqlHandle, 12);
+                trust->agiRank = (uint8)Sql_GetIntData(SqlHandle, 13);
+                trust->intRank = (uint8)Sql_GetIntData(SqlHandle, 14);
+                trust->mndRank = (uint8)Sql_GetIntData(SqlHandle, 15);
+                trust->chrRank = (uint8)Sql_GetIntData(SqlHandle, 16);
+                trust->defRank = (uint8)Sql_GetIntData(SqlHandle, 17);
+                trust->attRank = (uint8)Sql_GetIntData(SqlHandle, 18);
+                trust->accRank = (uint8)Sql_GetIntData(SqlHandle, 19);
+                trust->evaRank = (uint8)Sql_GetIntData(SqlHandle, 20);
+                trust->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 21);
+                trust->spellList = (uint16)Sql_GetIntData(SqlHandle, 22);
+
+                // resistances
+                trust->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 23) * 1000);
+                trust->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 24) * 1000);
+                trust->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 25) * 1000);
+                trust->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
+
+                trust->firedef = 0;
+                trust->icedef = 0;
+                trust->winddef = 0;
+                trust->earthdef = 0;
+                trust->thunderdef = 0;
+                trust->waterdef = 0;
+                trust->lightdef = 0;
+                trust->darkdef = 0;
+
+                trust->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 27) - 1) * -100);
+                trust->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 28) - 1) * -100);
+                trust->windres = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -100);
+                trust->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
+                trust->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
+                trust->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
+                trust->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
+                trust->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
+
+                trust->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 35);
+                trust->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 36);
+                trust->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 37);
+
+                g_PTrustList.push_back(trust);
+            }
+        }
+    }
+
     /************************************************************************
     *																		*
     *  Освобождаем список прототипов питомцев								*
@@ -259,6 +451,11 @@ namespace petutils
             delete *g_PPetList.begin();
             g_PPetList.erase(g_PPetList.begin());
         }
+    }
+
+    void FreeTrustList()
+    {
+        g_PTrustIDList.clear();
     }
 
     void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget)
@@ -1075,7 +1272,7 @@ namespace petutils
         //       It'd probably be "good enough" to use the name as a heuristic, looking for "II" (this catches 99% of them).
         for (auto PTrust : PMaster->PTrusts)
         {
-            if (PTrust->m_PetID == TrustID)
+            if (PTrust->m_TrustID == TrustID)
             {
                 PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustSame));
                 return;
@@ -1090,7 +1287,7 @@ namespace petutils
         }
 
         CTrustEntity* PTrust = LoadTrust(PMaster, TrustID);
-        PMaster->PTrusts.insert(PMaster->PTrusts.begin(), PTrust);
+        PMaster->PTrusts.insert(PMaster->PTrusts.end(), PTrust);
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PTrust);
         PMaster->loc.zone->InsertPET(PTrust);
         PMaster->PParty->ReloadParty();
@@ -1724,27 +1921,38 @@ namespace petutils
 
     CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
     {
-        DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
+
+        DSP_DEBUG_BREAK_IF(TrustID < 896 || (TrustID > 998 && TrustID < 1003) || TrustID > 1023);
         CTrustEntity* PTrust = new CTrustEntity(PMaster);
+
+        auto index = 0;
+        for (size_t i = 0; i < g_PTrustList.size(); i++)
+        {
+            if (g_PTrustList.at(i)->trustID == TrustID)
+            {
+                index = i;
+            }
+        }
+
+        Trust_t* trustData = g_PTrustList.at(index);
+
         PTrust->loc = PMaster->loc;
         PTrust->m_OwnerID.id = PMaster->id;
         PTrust->m_OwnerID.targid = PMaster->targid;
 
         // spawn me randomly around master
-        PTrust->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, (float)M_PI);
-        Pet_t* trust = g_PPetList.at(TrustID);
-        PTrust->look = trust->look;
-        PTrust->name = trust->name;
-        PTrust->m_name_prefix = trust->name_prefix;
-        PTrust->m_Family = trust->m_Family;
-        PTrust->m_MobSkillList = trust->m_MobSkillList;
-        PTrust->SetMJob(trust->mJob);
-        PTrust->SetSJob(trust->mJob); // TODO: This may not be true for some trusts
-        PTrust->m_Element = trust->m_Element;
-        PTrust->m_PetID = TrustID;
+        PTrust->loc.p = nearPosition(PMaster->loc.p, CTrustController::RoamDistance, (float)M_PI);
+        PTrust->look = trustData->look;
+        PTrust->name = trustData->name;
+        PTrust->m_name_prefix = trustData->name_prefix;
+        PTrust->m_Family = trustData->m_Family;
+        PTrust->m_MobSkillList = trustData->m_MobSkillList;
+        PTrust->SetMJob(trustData->mJob);
+        PTrust->SetSJob(trustData->sJob); // TODO: This may not be true for some trusts
+        PTrust->m_TrustID = TrustID;
         PTrust->status = STATUS_NORMAL;
-        PTrust->m_ModelSize = trust->size;
-        PTrust->m_EcoSystem = trust->EcoSystem;
+        PTrust->m_ModelSize = trustData->size;
+        PTrust->m_EcoSystem = trustData->EcoSystem;
 
         // assume level matches master
         PTrust->SetMLevel(PMaster->GetMLevel());

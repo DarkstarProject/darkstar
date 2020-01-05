@@ -32,22 +32,26 @@ class CTrustEntity;
 class CTrustController : public CController
 {
 public:
+
     CTrustController(CCharEntity*, CTrustEntity*);
+    CBattleEntity* PTarget{ nullptr };
     virtual ~CTrustController();
+    static constexpr float RoamDistance{ 5.5f };
+    virtual void DoCombatTick(time_point tick);
+    virtual void DoRoamTick(time_point tick);
+
+protected:
 
     virtual void Tick(time_point) override;
     virtual void Despawn() override;
-
     virtual bool Cast(uint16 targid, SpellID spellid) override { return false; }
     virtual bool ChangeTarget(uint16 targid) override { return false; }
     virtual bool WeaponSkill(uint16 targid, uint16 wsid) override { return false; }
-
     virtual bool Ability(uint16 targid, uint16 abilityid) override { return false; }
 
 private:
-    static constexpr float RoamDistance{ 2.1f };
-    void DoCombatTick(time_point tick);
-    void DoRoamTick(time_point tick);
+
+
 };
 
 #endif // _TRUSTCONTROLLER

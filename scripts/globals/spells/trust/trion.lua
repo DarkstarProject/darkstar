@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Shantotto
+-- Spell: Trion
 -----------------------------------------
 require("scripts/globals/trust");
 -----------------------------------------
@@ -11,6 +11,6 @@ end
 function onSpellCast(caster,target,spell)
     -- Todo: put Trusts's spawn in dialog here or in entity script?
     -- Todo: automate entity spawn in core for trust spells?
-    caster:spawnTrust(896)
+    caster:spawnTrust(905)
     return 0
 end

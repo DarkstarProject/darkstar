@@ -32,8 +32,8 @@ class CTrustEntity : public CMobEntity
 public:
     CTrustEntity(CCharEntity*);
 	~CTrustEntity();
-	uint8 m_Element;
-	uint32 m_PetID;
+	uint32 m_TrustID;
+    uint16 m_PartyPosition;
 
     virtual void PostTick() override;
     virtual void FadeOut() override;
