@@ -3925,9 +3925,9 @@ INSERT INTO `item_basic` VALUES (4179,0,'new_years_gift','new_years_gift',1,6305
 INSERT INTO `item_basic` VALUES (4180,0,'new_years_gift','new_years_gift',1,63056,0,1,0);
 INSERT INTO `item_basic` VALUES (4181,0,'scroll_of_instant_warp','instant_warp',1,63068,0,1,0);
 INSERT INTO `item_basic` VALUES (4182,0,'scroll_of_instant_reraise','instant_reraise',1,63060,0,1,0);
-INSERT INTO `item_basic` VALUES (4183,0,'konron_hassen','konron_hassen',99,1548,63,0,22);
-INSERT INTO `item_basic` VALUES (4184,0,'kongou_inaho','kongou_inaho',99,1548,63,0,25);
-INSERT INTO `item_basic` VALUES (4185,0,'meifu_goma','meifu_goma',99,1548,63,0,37);
+INSERT INTO `item_basic` VALUES (4183,0,'konron_hassen','konron_hassen',99,1548,63,0,12);
+INSERT INTO `item_basic` VALUES (4184,0,'kongou_inaho','kongou_inaho',99,1548,63,0,6);
+INSERT INTO `item_basic` VALUES (4185,0,'meifu_goma','meifu_goma',99,1548,63,0,3);
 INSERT INTO `item_basic` VALUES (4186,0,'airborne','airborne',99,1548,63,0,78);
 INSERT INTO `item_basic` VALUES (4187,0,'bastok_mines_gate_glyph','bas._mines_glyph',1,63064,0,1,0);
 INSERT INTO `item_basic` VALUES (4188,0,'bastok_markets_gate_glyph','bas._mrk._glyph',1,63064,0,1,0);
@@ -3998,7 +3998,7 @@ INSERT INTO `item_basic` VALUES (4252,0,'summer_fan','summer_fan',99,1548,63,0,2
 INSERT INTO `item_basic` VALUES (4253,0,'spirit_masque','spirit_masque',99,1548,63,0,2);
 INSERT INTO `item_basic` VALUES (4254,0,'megalixir','megalixir',1,63040,0,1,0);
 INSERT INTO `item_basic` VALUES (4255,0,'pinch_of_mana_powder','mana_powder',1,63040,0,1,0);
-INSERT INTO `item_basic` VALUES (4256,0,'ouka_ranman','ouka_ranman',99,1548,63,0,27);
+INSERT INTO `item_basic` VALUES (4256,0,'ouka_ranman','ouka_ranman',99,1548,63,0,5);
 INSERT INTO `item_basic` VALUES (4257,0,'papillion','papillion',99,1548,63,0,63);
 INSERT INTO `item_basic` VALUES (4258,0,'red_drop','red_drop',1,46660,0,1,0);
 INSERT INTO `item_basic` VALUES (4259,0,'clear_drop','clear_drop',1,46660,0,1,0);
@@ -5186,7 +5186,7 @@ INSERT INTO `item_basic` VALUES (5528,0,'triumvirate_crag_tincture','e._tincture
 INSERT INTO `item_basic` VALUES (5529,0,'saliferous_spring_tincture','e._tincture_(sas)',1,58964,0,1,0);
 INSERT INTO `item_basic` VALUES (5530,0,'ripple_prominence_tincture','e._tincture_(pr)',1,58964,0,1,0);
 INSERT INTO `item_basic` VALUES (5531,0,'slice_of_lucerewe_meat','lucerewe_meat',12,1548,59,0,0);
-INSERT INTO `item_basic` VALUES (5532,0,'ichinintousen_koma','ichinin._koma',99,1548,63,0,0);
+INSERT INTO `item_basic` VALUES (5532,0,'ichinintousen_koma','ichinin._koma',99,1548,63,0,4);
 INSERT INTO `item_basic` VALUES (5534,0,'apkallufa','apkallufa',1,1544,51,0,1000);
 INSERT INTO `item_basic` VALUES (5535,0,'deademoiselle','deademoiselle',12,1544,51,0,100);
 INSERT INTO `item_basic` VALUES (5536,0,'yorchete','yorchete',12,1544,51,0,100);
@@ -5532,10 +5532,10 @@ INSERT INTO `item_basic` VALUES (5877,0,'phial_of_terror_screen','terror_screen'
 INSERT INTO `item_basic` VALUES (5878,0,'phial_of_amnesia_screen','amnesia_screen',1,63040,0,1,0);
 INSERT INTO `item_basic` VALUES (5879,0,'phial_of_doom_screen','doom_screen',1,63040,0,1,0);
 INSERT INTO `item_basic` VALUES (5880,0,'phial_of_poison_screen','poison_screen',1,63040,0,1,0);
-INSERT INTO `item_basic` VALUES (5881,0,'shisai_kaboku','shisai_kaboku',99,1548,63,0,4);
+INSERT INTO `item_basic` VALUES (5881,0,'shisai_kaboku','shisai_kaboku',99,1548,63,0,25);
 INSERT INTO `item_basic` VALUES (5882,0,'marine_bliss','marine_bliss',99,1548,63,0,6);
 INSERT INTO `item_basic` VALUES (5883,0,'falling_star','falling_star',99,1548,63,0,3);
-INSERT INTO `item_basic` VALUES (5884,0,'rengedama','rengedama',99,1548,63,0,0);
+INSERT INTO `item_basic` VALUES (5884,0,'rengedama','rengedama',99,1548,63,0,25);
 INSERT INTO `item_basic` VALUES (5885,0,'saltena','saltena',12,1548,56,0,100);
 INSERT INTO `item_basic` VALUES (5886,0,'elshena','elshena',12,1548,56,0,105);
 INSERT INTO `item_basic` VALUES (5887,0,'montagna','montagna',12,1548,56,0,0);
@@ -5908,7 +5908,7 @@ INSERT INTO `item_basic` VALUES (6264,0,'frayed_sack_of_horror_+1','frayed_sack_
 INSERT INTO `item_basic` VALUES (6265,0,'toolbag_(ranka)','toolbag_(ranka)',12,1540,49,0,0);
 INSERT INTO `item_basic` VALUES (6266,0,'toolbag_(furu)','toolbag_(furu)',12,1540,49,0,0);
 INSERT INTO `item_basic` VALUES (6267,0,'aged_box_(bayld)','aged_box_(bayld)',99,13912,0,0,0);
-INSERT INTO `item_basic` VALUES (6268,0,'komanezumi','komanezumi',99,1548,63,0,0);
+INSERT INTO `item_basic` VALUES (6268,0,'komanezumi','komanezumi',99,1548,63,0,35);
 INSERT INTO `item_basic` VALUES (6269,0,'eminent_quiver','eminent_quiver',12,30292,0,0,0);
 INSERT INTO `item_basic` VALUES (6270,0,'eminent_bolt_quiver','em._bolt_quiver',12,30292,0,0,0);
 INSERT INTO `item_basic` VALUES (6271,0,'eminent_bullet_pouch','em._bul._pouch',12,30292,0,0,0);
