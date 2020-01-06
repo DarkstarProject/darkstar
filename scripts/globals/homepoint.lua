@@ -147,7 +147,7 @@ local selection =
 local travelType = dsp.teleport.type.HOMEPOINT
 
 local function getCost (from, to, key)
-    
+
     if HPs[from].group == HPs[to].group and HPs[to].group ~= 0 then
         return 0
     else
@@ -173,17 +173,6 @@ local function goToHP(player, choice, index)
 end
 
 dsp.homepoint.onTrigger = function(player, csid, index)
-
-    if HOMEPOINT_HEAL == 1 then -- Settings.lua Homepoint Heal enabled
-        player:addHP(player:getMaxHP())
-        player:addMP(player:getMaxMP())
-    end
-
-    if not HOMEPOINT_TELEPORT == 1 then -- Settings.lua Homepoints disabled
-        player:startEvent(csid, 0, 0, 0, 0, 0, player:getGil(), 4095, index)
-        return
-    end
-
     local hpBit  = index % 32
     local hpSet  = math.floor(index / 32)
     local menu   = player:getTeleportMenu(travelType)
