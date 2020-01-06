@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Southern San d'Oria
+-- Area: Bastok Mines
 --  NPC: Ephemeral Moogle
 -- Type: Crystal Strage NPC
--- !pos -185.750 -2.000 -3.860 230
+-- !pos 118.870 2.020 4.290 234
 -----------------------------------
 require("scripts/globals/ephemeral")
 

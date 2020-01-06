@@ -1,8 +1,9 @@
 -----------------------------------
--- Area: Southern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Ephemeral Moogle
 -- Type: Crystal Strage NPC
--- !pos -185.750 -2.000 -3.860 230
+-- !pos -176.090 12.000 268.910 231 - Carpenter's Guild
+-- !pos -186.440 12.000 140.310 231 - Blacksmith's Guild
 -----------------------------------
 require("scripts/globals/ephemeral")
 

@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Southern San d'Oria
+-- Area: Winurst Waters
 --  NPC: Ephemeral Moogle
 -- Type: Crystal Strage NPC
--- !pos -185.750 -2.000 -3.860 230
+-- !pos -117.250 -2.000 60.890 238
 -----------------------------------
 require("scripts/globals/ephemeral")
 
