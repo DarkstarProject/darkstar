@@ -256,7 +256,7 @@ local abcShop =
 local COSMO_READY = 2147483649 -- BITMASK for the purchase
 
 local function getCosmoCleanseTime(player)
-    local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 60 * 60
+    local cosmoWaitTime = player:hasKeyItem(dsp.ki.RHAPSODY_IN_MAUVE) and 3600 or 72000
     local lastCosmoTime = player:getCharVar("Cosmo_Cleanse_TIME")
 
     if lastCosmoTime ~= 0 then
