@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Ice_Elemental
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Ice Elemental
 -----------------------------------
 
 -- -----------------------------------

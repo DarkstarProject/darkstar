@@ -12,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     local visitant = 0
-    local prevtime = player:getVar("Abyssea_Time")
+    local prevtime = player:getCharVar("Abyssea_Time")
     local STONES = getTravStonesTotal(player)
     local SOJOURN = getAbyssiteTotal(player,"SOJOURN")
 
@@ -30,7 +30,7 @@ end
 function onEventFinish(player,csid,option)
     local SOJOURN = getAbyssiteTotal(player,"SOJOURN")
     local duration = 0
-    local prevtime = player:getVar("Abyssea_Time") -- Gets reduced by Visitants "on tic".
+    local prevtime = player:getCharVar("Abyssea_Time") -- Gets reduced by Visitants "on tic".
 
     if prevtime > 7200 then
         prevtime = 7200
@@ -46,11 +46,11 @@ function onEventFinish(player,csid,option)
             player:addStatusEffect(dsp.effect.VISITANT,0,0,0,0,0) -- using 0 should cause an infinate duration.
         elseif option == 2 then -- Use no stones, use previous remaining time
             player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
-            player:setVar("Abyssea_Time",duration)
+            player:setCharVar("Abyssea_Time",duration)
         elseif option == 65538 then -- Use 1 stone
             duration = (duration + 1800) * VISITANT_BONUS
             player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
-            player:setVar("Abyssea_Time",duration)
+            player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,1)
         elseif option == 65539 then -- Use 1 stone
             player:PrintToPlayer( "Not implemented yet, sorry!" )
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
         elseif option == 131074 then -- Use 2 stone
             duration = (duration + 3600) * VISITANT_BONUS
             player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
-            player:setVar("Abyssea_Time",duration)
+            player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,2)
         elseif option == 131075 then -- Use 2 stone
             player:PrintToPlayer( "Not implemented yet, sorry!" )
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         elseif option == 196610 then -- Use 3 stone
             duration = (duration + 5400) * VISITANT_BONUS
             player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
-            player:setVar("Abyssea_Time",duration)
+            player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,3)
         elseif option == 196611 then -- Use 3 stone
             player:PrintToPlayer( "Not implemented yet, sorry!" )
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
         elseif option == 262146 then -- Use 4 stone
             duration = (duration + 7200) * VISITANT_BONUS
             player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
-            player:setVar("Abyssea_Time",duration)
+            player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,4)
         end
     end

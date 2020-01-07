@@ -8,31 +8,35 @@ require("scripts/globals/quests");
 
 local loot =
 {
-    -- ENM: Like the Wind (Wiki showed ???% for droprate, these are guesses based on other ENMs)
+    -- ENM: Like the Wind
     [673] =
     {
         {
-            {itemid = 1763, droprate = 342},  -- Viridian Urushi
-            {itemid = 1769, droprate = 268},  -- Square of Galateia (26.8% Drop Rate)
-            {itemid = 1764, droprate = 266},  -- Kejusu Satin
+            {itemid =     0, droprate =  140}, -- nothing
+            {itemid =  1763, droprate =  310}, -- Viridian Urushi
+            {itemid =  1769, droprate =  241}, -- Square of Galateia
+            {itemid =  1764, droprate =  310}, -- Kejusu Satin
         },
         {
-            {itemid = 1842, droprate = 56},   -- Cloud Evoker (5.6% Drop Rate)
+            {itemid =     0, droprate =  862}, -- nothing
+            {itemid =  1842, droprate =  138}, -- Cloud Evoker
         },
         {
-            {itemid = 17946, droprate = 92},  -- Maneater
-            {itemid = 18358, droprate = 63},  -- Wagh Baghnakhs
-            {itemid = 16976, droprate = 82},  -- Onimaru
-            {itemid = 4990, droprate = 121},  -- Army's Paeon V
+            {itemid =     0, droprate =  380}, -- nothing
+            {itemid = 17946, droprate =  138}, -- Maneater
+            {itemid = 18358, droprate =  172}, -- Wagh Baghnakhs
+            {itemid = 16976, droprate =  138}, -- Onimaru
+            {itemid =  4990, droprate =  172}, -- Army's Paeon V
         },
         {
-            {itemid = 17946, droprate = 92},  -- Maneater
-            {itemid = 18358, droprate = 63},  -- Wagh Baghnakhs
-            {itemid = 16976, droprate = 82},  -- Onimaru
-            {itemid = 4990, droprate = 121},  -- Army's Paeon V
+            {itemid =     0, droprate =  380}, -- nothing
+            {itemid = 17946, droprate =  138}, -- Maneater
+            {itemid = 18358, droprate =  172}, -- Wagh Baghnakhs
+            {itemid = 16976, droprate =  138}, -- Onimaru
+            {itemid =  4990, droprate =  172}, -- Army's Paeon V
         },
     },
-			
+
     -- ENM: Sheep in Antlion's Clothing
     [674] =
     {
@@ -52,7 +56,7 @@ local loot =
             {itemid = 13109, droprate = 121}, -- Harmonia's Torque
         },
     },
-		
+
     -- ENM: Shell We Dance?
     [675] =
     {
@@ -77,7 +81,7 @@ local loot =
             {itemid = 4990, droprate = 238},  -- Scroll of Army's Paeon V
         },
     },
-	
+
     -- ENM: Totentanz (Wiki did not have groupings or droprates, these values are guesses based on other ENMs)
     [676] =
     {

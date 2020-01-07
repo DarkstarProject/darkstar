@@ -27,9 +27,10 @@ zones[dsp.zone.TAVNAZIAN_SAFEHOLD] =
         ITEM_DELIVERY_DIALOG           = 10915, -- I can send your items to anywhere in Vana'diel!
         HOMEPOINT_SET                  = 10918, -- Home point set!
         YOU_CANNOT_ENTER_DYNAMIS       = 11828, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
-        MYSTERIOUS_VOICE               = 11829, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
+        DYNA_NPC_DEFAULT_MESSAGE       = 11829, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 11830, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         RETRIEVE_DIALOG_ID             = 12253, -- You retrieve <item> from the porter moogle's care.
+        COMMON_SENSE_SURVIVAL          = 13327, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

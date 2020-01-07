@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local TOMATH = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON);
     local Fertile_Ground = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.FERTILE_GROUND);
     local Wayward_Waypoints = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.WAYWARD_WAYPOINTS);
-    Wayward_Waypoints = (Wayward_Waypoints == QUEST_ACCEPTED) and (player:getVar("WW_Need_Shipilolo") > 0)
+    Wayward_Waypoints = (Wayward_Waypoints == QUEST_ACCEPTED) and (player:getCharVar("WW_Need_Shipilolo") > 0)
     local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local SOA_Mission = player:getCurrentMission(SOA);
 
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         elseif (Wayward_Waypoints and (not player:hasKeyItem(dsp.ki.WAYPOINT_RECALIBRATION_KIT))) then
             -- Progresses Quest: 'Wayward Waypoints'
             player:startEvent(79);
-        elseif ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 5)) then
+        elseif ((ACSP == QUEST_ACCEPTED) and (player:getCharVar("ACSP_NPCs_Visited") == 5)) then
             -- Progresses Quest: 'A Certain Substitute Patrolman'
             player:startEvent(2557);
         else
@@ -62,9 +62,9 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X);
     elseif (csid == 79) then
         player:addKeyItem(dsp.ki.WAYPOINT_RECALIBRATION_KIT);
-        player:setVar("WW_Need_Shipilolo", 0);
+        player:setCharVar("WW_Need_Shipilolo", 0);
     elseif (csid == 2557) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
-        player:setVar("ACSP_NPCs_Visited", 6);
+        player:setCharVar("ACSP_NPCs_Visited", 6);
     end
 end;

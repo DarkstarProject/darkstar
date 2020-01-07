@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Caa_Xaza_the_Madpiercer
+-- Area: Dynamis - Beaucedine
+--  Mob: Caa Xaza the Madpiercer
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1449)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

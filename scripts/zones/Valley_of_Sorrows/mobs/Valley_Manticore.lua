@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
---  MOB: Valley Manticore
+--  Mob: Valley Manticore
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

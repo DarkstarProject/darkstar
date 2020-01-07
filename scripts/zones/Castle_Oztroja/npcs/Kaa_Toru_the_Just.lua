@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(45,0,200);
     else
         player:startEvent(46);
@@ -32,7 +32,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.HOLY_ONES_OATH);
             player:addItem(13134); -- Ashura Necklace
             player:messageSpecial(ID.text.ITEM_OBTAINED,13134);
-            player:setVar("MissionStatus",3);
+            player:setCharVar("MissionStatus",3);
         end
     end
 end;

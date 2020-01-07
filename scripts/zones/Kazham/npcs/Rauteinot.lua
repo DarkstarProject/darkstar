@@ -12,14 +12,14 @@ local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getVar("MissionaryManVar") == 1 and trade:hasItemQty(1146,1) == true and trade:getItemCount() == 1) then
+    if (player:getCharVar("MissionaryManVar") == 1 and trade:hasItemQty(1146,1) == true and trade:getItemCount() == 1) then
         player:startEvent(139); -- Trading elshimo marble
     end
 end;
 
 function onTrigger(player,npc)
     MissionaryMan = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.MISSIONARY_MAN);
-    MissionaryManVar = player:getVar("MissionaryManVar");
+    MissionaryManVar = player:getCharVar("MissionaryManVar");
 
     if (MissionaryMan == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 3) then
         player:startEvent(137,0,1146); -- Start quest "Missionary Man"
@@ -43,9 +43,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 137 and option == 1) then
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.MISSIONARY_MAN);
-        player:setVar("MissionaryManVar",1);
+        player:setCharVar("MissionaryManVar",1);
     elseif (csid == 139) then
-        player:setVar("MissionaryManVar",2);
+        player:setCharVar("MissionaryManVar",2);
         player:addKeyItem(dsp.ki.RAUTEINOTS_PARCEL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RAUTEINOTS_PARCEL);
         player:tradeComplete();
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4728);
         else
-            player:setVar("MissionaryManVar",0);
+            player:setCharVar("MissionaryManVar",0);
             player:delKeyItem(dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
             player:addItem(4728);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4728);

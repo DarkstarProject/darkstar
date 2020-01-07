@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Bilis Leech
+--  Mob: Bilis Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

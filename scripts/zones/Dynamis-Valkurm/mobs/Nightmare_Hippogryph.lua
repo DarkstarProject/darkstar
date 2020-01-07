@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Nightmare Hippogryph
+-- Area: Dynamis - Valkurm
+--  Mob: Nightmare Hippogryph
 -----------------------------------
 mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------

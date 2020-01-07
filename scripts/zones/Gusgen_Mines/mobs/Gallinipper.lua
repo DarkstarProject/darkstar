@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Gallinipper
+--  Mob: Gallinipper
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

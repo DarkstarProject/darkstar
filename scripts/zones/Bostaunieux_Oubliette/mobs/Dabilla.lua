@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Dabilla
+--  Mob: Dabilla
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

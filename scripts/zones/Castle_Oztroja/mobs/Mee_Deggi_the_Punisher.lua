@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---   NM: Mee_Deggi_the_Punisher
+--   NM: Mee Deggi the Punisher
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

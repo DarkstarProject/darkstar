@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Riverne - Site B01
---  MOB: Nimbus Hippogryph
+--  Mob: Nimbus Hippogryph
 -- Note: Place holder Imdugud
 -----------------------------------
 local ID = require("scripts/zones/Riverne-Site_B01/IDs");

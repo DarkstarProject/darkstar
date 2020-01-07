@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and player:getVar("ECO_WARRIOR_ACTIVE") == 238 then
+    if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.ECO_WARRIOR) ~= QUEST_AVAILABLE and player:getCharVar("ECO_WARRIOR_ACTIVE") == 238 then
         if player:hasKeyItem(dsp.ki.INDIGESTED_MEAT) then
             player:startEvent(65) -- After NM's dead
         elseif not player:hasStatusEffect(dsp.effect.LEVEL_RESTRICTION) then
@@ -33,7 +33,7 @@ function onEventFinish(player, csid, option)
     if csid == 62 and option == 1 then
         player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 20, 0, 0)
     elseif csid == 65 then
-        player:setVar("ECOR_WAR_WIN-NMs_killed", 0)
+        player:setCharVar("ECOR_WAR_WIN-NMs_killed", 0)
         player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION)
     elseif csid == 64 then
         player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION)

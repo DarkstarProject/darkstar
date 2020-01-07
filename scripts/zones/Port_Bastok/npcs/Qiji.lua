@@ -11,9 +11,9 @@ local ID = require("scripts/zones/Port_Bastok/IDs");
 function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(12497,1) and trade:getItemCount() == 1) then -- Trade Brass Hairpin
-        if (player:getVar("ForevertoHold_Event") == 1) then
+        if (player:getCharVar("ForevertoHold_Event") == 1) then
             player:startEvent(124);
-            player:setVar("ForevertoHold_Event",2);
+            player:setCharVar("ForevertoHold_Event",2);
         end
     end
 
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 
     if (player:getFameLevel(BASTOK) >= 2 and ForevertoHold == QUEST_AVAILABLE) then
         player:startEvent(123);
-    elseif (ForevertoHold == QUEST_ACCEPTED and player:getVar("ForevertoHold_Event") == 3) then
+    elseif (ForevertoHold == QUEST_ACCEPTED and player:getCharVar("ForevertoHold_Event") == 3) then
         player:startEvent(126);
     else
         player:startEvent(33);
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 123) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.FOREVER_TO_HOLD);
-        player:setVar("ForevertoHold_Event",1);
+        player:setCharVar("ForevertoHold_Event",1);
     elseif (csid == 126) then
         player:addTitle(dsp.title.QIJIS_FRIEND);
         player:addGil(GIL_RATE*300);

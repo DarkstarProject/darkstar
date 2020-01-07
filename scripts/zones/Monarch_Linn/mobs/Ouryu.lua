@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monarch Linn
---  MOB: Ouryu
+--  Mob: Ouryu
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------
@@ -13,7 +13,7 @@ end;
 function onMobFight(mob,target)
 
     local bf = mob:getBattlefield()
-    if bf:getBcnmID() == 961 and mob:getHPP() < 30 then
+    if bf:getID() == 961 and mob:getHPP() < 30 then
         bf:win()
         return
     end

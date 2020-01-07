@@ -15,15 +15,15 @@ end
 function onTrigger(player,npc)
     if
         player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.RETURN_OF_THE_TALEKEEPER and
-        player:getVar("MissionStatus") == 2 and
+        player:getCharVar("MissionStatus") == 2 and
         not player:hasKeyItem(dsp.ki.ALTEPA_MOONPEBBLE)
     then
         if not GetMobByID(ID.mob.EASTERN_SPHINX):isSpawned() and not GetMobByID(ID.mob.WESTERN_SPHINX):isSpawned() then
-            if player:getVar("Mission6-1MobKilled") > 0 then
+            if player:getCharVar("Mission6-1MobKilled") > 0 then
                 player:addKeyItem(dsp.ki.ALTEPA_MOONPEBBLE)
                 player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ALTEPA_MOONPEBBLE)
-                player:setVar("Mission6-1MobKilled", 0)
-                player:setVar("MissionStatus", 3)
+                player:setCharVar("Mission6-1MobKilled", 0)
+                player:setCharVar("MissionStatus", 3)
             else
                 SpawnMob(ID.mob.EASTERN_SPHINX)
                 SpawnMob(ID.mob.WESTERN_SPHINX)

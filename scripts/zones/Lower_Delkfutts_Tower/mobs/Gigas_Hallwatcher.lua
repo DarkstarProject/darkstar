@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Gigas Hallwatcher
+--  Mob: Gigas Hallwatcher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

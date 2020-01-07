@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs (105)
---  MOB: Ahtu
+--  Mob: Ahtu
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

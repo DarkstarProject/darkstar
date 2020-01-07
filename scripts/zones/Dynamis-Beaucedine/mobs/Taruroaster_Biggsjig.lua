@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Taruroaster_Biggsjig
+-- Area: Dynamis - Beaucedine
+--  Mob: Taruroaster Biggsjig
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1452)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

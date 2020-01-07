@@ -17,7 +17,7 @@ function onMobSpawn(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1 then
-        player:setVar("Mission7-1MobKilled", 1)
+    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getCharVar("MissionStatus") == 1 then
+        player:setCharVar("Mission7-1MobKilled", 1)
     end
 end

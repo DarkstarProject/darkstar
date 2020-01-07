@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     local Order_Up = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ORDER_UP);
-    local Order_Marjoirelle = player:getMaskBit(player:getVar("Order_Up_NPCs"), 8);
+    local Order_Marjoirelle = player:getMaskBit(player:getCharVar("Order_Up_NPCs"), 8);
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Marjoirelle)) then
         -- Progresses Quest: 'Order Up'

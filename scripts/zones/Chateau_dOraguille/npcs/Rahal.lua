@@ -15,13 +15,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local CrestProgress = player:getVar("TheHolyCrest_Event");
+    local CrestProgress = player:getCharVar("TheHolyCrest_Event");
     local RemedyKI = player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY);
     local Stalker_Quest = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
-    local StalkerProgress = player:getVar("KnightStalker_Progress");
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local StalkerProgress = player:getCharVar("KnightStalker_Progress");
+    local WildcatSandy = player:getCharVar("WildcatSandy");
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,17) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,17) == false) then
         player:startEvent(559);
     -- Need to speak with Rahal to get Dragon Curse Remedy
     elseif (CrestProgress == 5 and RemedyKI == false) then
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         player:startEvent(122); -- Reminder to go to Gelsba
      -- Completed AF2, AF3 available, and currently on DRG.  No level check, since they cleared AF2.
     elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS) == QUEST_COMPLETED and Stalker_Quest == QUEST_AVAILABLE and player:getMainJob() == dsp.job.DRG) then
-        if (player:getVar("KnightStalker_Declined") == 0) then
+        if (player:getCharVar("KnightStalker_Declined") == 0) then
             player:startEvent(121); -- Start AF3
         else
             player:startEvent(120); -- Short version if they previously declined
@@ -47,12 +47,12 @@ function onTrigger(player,npc)
                 player:startEvent(110); -- To the south with you
             end
         end
-    elseif (player:getVar("KnightStalker_Option2") == 1) then
+    elseif (player:getCharVar("KnightStalker_Option2") == 1) then
         player:startEvent(118); -- Optional CS after Knight Stalker
         -- Mission 8-2 San dOria --
-    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getCharVar("MissionStatus") == 1) then
         player:startEvent(106)
-    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(107);
     else
         player:startEvent(529); -- standard dialogue
@@ -69,27 +69,27 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.DRAGON_CURSE_REMEDY);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DRAGON_CURSE_REMEDY);
     elseif (csid == 559) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",17,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",17,true);
     elseif (csid == 121) then
         if (option == 1) then
             player:addQuest(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
         else
-            player:setVar("KnightStalker_Declined",1);
+            player:setCharVar("KnightStalker_Declined",1);
         end
     elseif (csid == 120 and option == 1) then
         player:addQuest(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER);
-        player:setVar("KnightStalker_Declined",0);
+        player:setCharVar("KnightStalker_Declined",0);
     elseif (csid == 78) then
-        player:setVar("KnightStalker_Progress",2);
+        player:setCharVar("KnightStalker_Progress",2);
     elseif (csid == 110) then
-        player:setVar("KnightStalker_Progress",4);
+        player:setCharVar("KnightStalker_Progress",4);
     elseif (csid == 118) then
-        player:setVar("KnightStalker_Option2",0);
+        player:setCharVar("KnightStalker_Option2",0);
     elseif (csid == 106) then
         if (player:hasKeyItem(dsp.ki.CRYSTAL_DOWSER)) then
             player:delKeyItem(dsp.ki.CRYSTAL_DOWSER); -- To prevent them getting a message about already having the keyitem
         else
-            player:setVar("MissionStatus",2);
+            player:setCharVar("MissionStatus",2);
             player:addKeyItem(dsp.ki.CRYSTAL_DOWSER);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
         end

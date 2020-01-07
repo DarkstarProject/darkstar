@@ -15,7 +15,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_RESCUE_DRILL) then
-        local MissionStatus = player:getVar("MissionStatus");
+        local MissionStatus = player:getCharVar("MissionStatus");
 
         if (MissionStatus == 4) then
             player:startEvent(108);
@@ -44,12 +44,12 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 108) then
-        player:setVar("MissionStatus",5);
+        player:setCharVar("MissionStatus",5);
     elseif (csid == 115) then
         player:addKeyItem(dsp.ki.RESCUE_TRAINING_CERTIFICATE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RESCUE_TRAINING_CERTIFICATE);
-        player:setVar("theRescueDrillRandomNPC",0);
-        player:setVar("MissionStatus",11);
+        player:setCharVar("theRescueDrillRandomNPC",0);
+        player:setCharVar("MissionStatus",11);
     end
 
 end;

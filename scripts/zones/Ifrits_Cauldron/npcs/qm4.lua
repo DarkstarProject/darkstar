@@ -9,13 +9,13 @@ require("scripts/globals/missions")
 require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
     -- Adaman Ore: spawn Salamander and Magma for The Pirate's Cove
     if (
         player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_PIRATE_S_COVE and
-        player:getVar("MissionStatus") == 2 and
+        player:getCharVar("MissionStatus") == 2 and
         npcUtil.tradeHas(trade, 646) and
-        npcUtil.popFromQM(player, npc, {ID.mob.PIRATES_COVE_NMS, ID.mob.PIRATES_COVE_NMS + 1}, {claim=false})
+        npcUtil.popFromQM(player, npc, {ID.mob.PIRATES_COVE_NMS, ID.mob.PIRATES_COVE_NMS + 1}, {claim = false})
     ) then
         player:confirmTrade()
         GetMobByID(ID.mob.PIRATES_COVE_NMS):lookAt(player:getPos()) -- Salamander
@@ -23,12 +23,12 @@ function onTrade(player,npc,trade)
     end
 end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
 end

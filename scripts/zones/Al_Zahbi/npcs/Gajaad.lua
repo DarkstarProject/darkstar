@@ -8,13 +8,13 @@ local ID = require("scripts/zones/Al_Zahbi/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local walahraCoinCount = player:getVar("walahraCoinCount")
+    local walahraCoinCount = player:getCharVar("walahraCoinCount")
     local TradeCount = trade:getItemQty(2184)
 
     if TradeCount > 0 and TradeCount == trade:getItemCount() then
         if walahraCoinCount + TradeCount >= 1000 then -- give player turban, donated over 1000
             if player:addItem(15270) then
-                player:setVar("walahraCoinCount", walahraCoinCount - (1000 - TradeCount))
+                player:setCharVar("walahraCoinCount", walahraCoinCount - (1000 - TradeCount))
                 player:tradeComplete()
                 player:messageSpecial(ID.text.ITEM_OBTAINED,15270)
                 player:startEvent(102, 2184, 0, TradeCount)
@@ -24,13 +24,13 @@ function onTrade(player,npc,trade)
         else -- turning in less than the amount needed to finish the quest
             if TradeCount >= 100 then -- give bonus walahra water - only one water per trade, regardless of the amount.
                 player:tradeComplete()
-                player:setVar("walahraCoinCount", walahraCoinCount + TradeCount)
+                player:setCharVar("walahraCoinCount", walahraCoinCount + TradeCount)
                 player:addItem(5354)
                 player:messageSpecial(ID.text.ITEM_OBTAINED,5354)
                 player:startEvent(102, 2184, 0, TradeCount)
             else
                 player:tradeComplete()
-                player:setVar("walahraCoinCount", walahraCoinCount + TradeCount)
+                player:setCharVar("walahraCoinCount", walahraCoinCount + TradeCount)
                 player:startEvent(102, 2184, 0, TradeCount)
             end
         end

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Beadeaux (S)
---  MOB: Seneschal Imp
+-- Area: Beadeaux [S]
+--  Mob: Seneschal Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

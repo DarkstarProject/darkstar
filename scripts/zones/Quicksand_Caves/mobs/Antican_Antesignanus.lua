@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Antesiganus
+--  Mob: Antican Antesignanus
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

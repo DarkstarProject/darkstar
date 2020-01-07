@@ -10,7 +10,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==5) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getCharVar("PromathiaStatus")==5) then
         player:startEvent(204);
     end
 end;
@@ -26,6 +26,6 @@ function onEventFinish(player,csid,option)
     if (csid==204) then
         player:completeMission(COP,dsp.mission.id.cop.WHEN_ANGELS_FALL);
         player:addMission(COP,dsp.mission.id.cop.DAWN);
-        player:setVar("PromathiaStatus",0);
+        player:setCharVar("PromathiaStatus",0);
     end
 end;

@@ -1,17 +1,19 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Vanguard_Constable
+-- Area: Dynamis - Buburimu
+--  Mob: Vanguard Constable
 -----------------------------------
 mixins =
 {
     require("scripts/mixins/dynamis_beastmen"),
     require("scripts/mixins/job_special")
 }
+local ID = require("scripts/zones/Dynamis-Buburimu/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1455)
+function onMobDeath(mob, player, isKiller)
 end
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.GIBHE_FLESHEATER_PH, 10, 1200) -- 20 minutes
 end

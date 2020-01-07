@@ -9,10 +9,10 @@ require("scripts/globals/homepoint")
 local hpEvent = 8700
 local hpIndex = 52
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     dsp.homepoint.onTrigger(player, hpEvent, hpIndex)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     dsp.homepoint.onEventFinish(player, csid, option, hpEvent)
 end

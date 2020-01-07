@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T
---  NPC: Telchines_Dragoon
+--  Mob: Kindred Black Mage
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

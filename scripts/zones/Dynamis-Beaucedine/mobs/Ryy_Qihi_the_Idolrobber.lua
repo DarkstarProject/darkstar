@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Ryy_Qihi_the_Idolrobber
+-- Area: Dynamis - Beaucedine
+--  Mob: Ryy Qihi the Idolrobber
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1449)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

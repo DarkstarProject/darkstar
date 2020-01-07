@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Full Moon Fountain
---  MOB: Ajido-Marujido
+--  Mob: Ajido-Marujido
 -- Ally during Windurst Mission 9-2
 -----------------------------------
 local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
@@ -11,7 +11,7 @@ require("scripts/globals/magic")
 function onMobInitialize(mob)
     mob:setMod(dsp.mod.REFRESH, 1)
     mob:setMobMod(dsp.mobMod.TELEPORT_CD, 30)
-end;
+end
 
 function onMobSpawn(mob)
     mob:addListener("MAGIC_START", "MAGIC_MSG", function(mob, spell, action)
@@ -29,7 +29,7 @@ function onMobRoam(mob)
     local wait = mob:getLocalVar("wait")
     if wait > 40 then
         -- pick a random living target from the two enemies
-        local inst = mob:getBattlefield():getBattlefieldNumber()
+        local inst = mob:getBattlefield():getArea()
         local instOffset = ID.mob.MOON_READING_OFFSET + (6 * (inst - 1))
         local target = GetMobByID(instOffset + math.random(4,5))
         if not target:isDead() then

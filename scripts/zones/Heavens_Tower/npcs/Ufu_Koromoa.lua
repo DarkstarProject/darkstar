@@ -7,27 +7,29 @@
 require("scripts/globals/missions")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
+    local pNation = player:getNation()
+    local currentMission = player:getCurrentMission(pNation)
+    local missionStatus = player:getCharVar("MissionStatus")
 
-    local pNation = player:getNation();
-    local currentMission = player:getCurrentMission(pNation);
-    local MissionStatus = player:getVar("MissionStatus");
-    
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 3) or (player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING)) then
-        player:startEvent(402);
+    if
+        (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and missionStatus >= 3) or
+        player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING)
+    then
+        player:startEvent(402)
     else
-        player:startEvent(94);
+        player:startEvent(94)
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-    if (csid == 402) then
-        player:setVar("HighEsteem",0);
+function onEventFinish(player, csid, option)
+    if csid == 402 then
+        player:setCharVar("HighEsteem", 0)
     end
-end;
+end

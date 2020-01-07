@@ -17,10 +17,10 @@ end;
 function onTrigger(player,npc)
 
     local ANewDawn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_NEW_DAWN);
-    local ANewDawnEvent = player:getVar("ANewDawn_Event");
+    local ANewDawnEvent = player:getCharVar("ANewDawn_Event");
     local ScatteredIntoShadow = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW);
 
-    local SaveMySon = player:getVar("SaveMySon_Event");
+    local SaveMySon = player:getCharVar("SaveMySon_Event");
 
     local ChocobosWounds = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
 
@@ -62,7 +62,7 @@ function onTrigger(player,npc)
     -- Chocobos Wounds
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(64);
-    elseif (player:getVar("ChocobosWounds_Event") > 3) then
+    elseif (player:getCharVar("ChocobosWounds_Event") > 3) then
         player:startEvent(63);
 
     -- Standard Dialogue?, Probably Wrong
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 13110);
             player:addGil(GIL_RATE*2100);
             player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*2100);
-            player:setVar("SaveMySon_Event",2);
+            player:setCharVar("SaveMySon_Event",2);
             player:needToZone(true);
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.SAVE_MY_SON);
@@ -96,18 +96,18 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13110);
         end
     elseif (csid == 132) then
-        player:setVar("SaveMySon_Event",0);
+        player:setCharVar("SaveMySon_Event",0);
     elseif (csid == 5) then
-        player:setVar("ANewDawn_Event",1);
+        player:setCharVar("ANewDawn_Event",1);
         if (option == 1) then
             player:addQuest(JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN);
-            player:setVar("ANewDawn_Event",2);
+            player:setCharVar("ANewDawn_Event",2);
         end
     elseif (csid == 4 and option == 1) then
         player:addQuest(JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN);
-        player:setVar("ANewDawn_Event",2);
+        player:setCharVar("ANewDawn_Event",2);
     elseif (csid == 0) then
-        player:setVar("ANewDawn_Event",0);
+        player:setCharVar("ANewDawn_Event",0);
     end
 
 end;

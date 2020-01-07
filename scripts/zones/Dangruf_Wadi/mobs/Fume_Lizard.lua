@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Fume Lizard
+--  Mob: Fume Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

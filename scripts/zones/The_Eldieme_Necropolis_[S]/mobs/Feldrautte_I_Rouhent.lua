@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Feldrautte_I_Rouhent
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Feldrautte I Rouhent
 -----------------------------------
 
 -- -----------------------------------

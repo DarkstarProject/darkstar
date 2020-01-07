@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Blackwater Pugil
+-- Area: Toraimarai Canal
+--  Mob: Blackwater Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

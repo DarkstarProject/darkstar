@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Earth Elemental
+--  Mob: Earth Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

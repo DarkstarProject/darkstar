@@ -32,7 +32,7 @@ ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
         player:startEvent(509);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
-        CryingOverOnionsVar = player:getVar("CryingOverOnions");
+        CryingOverOnionsVar = player:getCharVar("CryingOverOnions");
 
         if (CryingOverOnionsVar >= 1) then
             player:startEvent(508);
@@ -50,7 +50,7 @@ ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
     elseif (KnowOnesOnions == QUEST_COMPLETED) then
         player:startEvent(403);
     elseif (KnowOnesOnions == QUEST_ACCEPTED) then
-        KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
+        KnowOnesOnionsVar  = player:getCharVar("KnowOnesOnions");
 
         if (KnowOnesOnionsVar == 2) then
             player:startEvent(402);

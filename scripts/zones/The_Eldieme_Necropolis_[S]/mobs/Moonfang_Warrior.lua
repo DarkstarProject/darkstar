@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Moonfang_Warrior
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Moonfang Warrior
 -----------------------------------
 
 -- -----------------------------------

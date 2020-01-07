@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12640); -- Healer's Briault
         else
             player:addTitle(dsp.title.PARAGON_OF_WHITE_MAGE_EXCELLENCE);
-            player:setVar("pieujesDecisionCS",0);
+            player:setCharVar("pieujesDecisionCS",0);
             player:addItem(12640);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12640); -- Healer's Briault
             player:tradeComplete();

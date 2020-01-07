@@ -1,41 +1,20 @@
 -----------------------------------
 -- Area: Apollyon NE
--- NPC:  Troglodyte Dhalmel
-
+--  Mob: Troglodyte Dhalmel
 -----------------------------------
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-
-end;
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
  local mobID = mob:getID();
- -- print(mobID);
       local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
- 
- 
+
+
   if (IsMobDead(16933115)==true and
      IsMobDead(16933116)==true and
      IsMobDead(16933117)==true and

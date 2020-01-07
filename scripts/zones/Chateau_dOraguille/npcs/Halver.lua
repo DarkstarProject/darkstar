@@ -17,32 +17,32 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    --print(player:getVar("MissionStatus"))
+    --print(player:getCharVar("MissionStatus"))
     local pNation = player:getNation()
     local currentMission = player:getCurrentMission(pNation)
-    local WildcatSandy = player:getVar("WildcatSandy")
-    local MissionStatus = player:getVar("MissionStatus")
+    local WildcatSandy = player:getCharVar("WildcatSandy")
+    local MissionStatus = player:getCharVar("MissionStatus")
 
     -- Lure of the Wildcat San d'Oria
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
         player:startEvent(558)
     -- Blackmail quest
     elseif (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE)) then
         player:startEvent(549)
-        player:setVar("BlackMailQuest",1)
+        player:setCharVar("BlackMailQuest",1)
         player:delKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE)
     -- San D'Oria Flag check
-    elseif (player:getVar("Flagsando") == 1) then
+    elseif (player:getCharVar("Flagsando") == 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,181)
         else
-            player:setVar("Flagsando",0)
+            player:setCharVar("Flagsando",0)
             player:addItem(181)
             player:messageSpecial(ID.text.ITEM_OBTAINED,181)
         end
     elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.CONFESSIONS_OF_ROYALTY and player:hasKeyItem(dsp.ki.RAILLEFALS_LETTER)) then
         player:startEvent(564)
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getCharVar("AhtUrganStatus") == 0) then
         player:startEvent(565)
     elseif (pNation == dsp.nation.SANDORIA) then
         -- Mission San D'Oria 9-2 The Heir to the Light
@@ -140,57 +140,57 @@ function onEventFinish(player,csid,option)
 
     if (csid == 501) then
         player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY_SANDORIA)
-        player:setVar("MissionStatus",4)
+        player:setCharVar("MissionStatus",4)
     elseif (csid == 503) then
-        player:setVar("MissionStatus",9)
+        player:setCharVar("MissionStatus",9)
     elseif (csid == 508) then
-        player:setVar("MissionStatus",2)
+        player:setCharVar("MissionStatus",2)
     elseif (csid == 505) then
-        player:setVar("MissionStatus",2)
+        player:setCharVar("MissionStatus",2)
         player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA)
     elseif (csid == 502) then
-        player:setVar("MissionStatus",4)
+        player:setCharVar("MissionStatus",4)
     elseif (csid == 558) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",16,true)
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",16,true)
     elseif (csid == 504) then
-        player:setVar("MissionStatus",9)
+        player:setCharVar("MissionStatus",9)
     elseif (csid == 546) then
-        player:setVar("MissionStatus",1)
+        player:setCharVar("MissionStatus",1)
     elseif (csid == 507 or csid == 534 or csid == 548) then
         finishMissionTimeline(player,3,csid,option)
     elseif (csid == 533) then
         player:addKeyItem(dsp.ki.NEW_FEIYIN_SEAL)
-        player:setVar("MissionStatus",10)
+        player:setCharVar("MissionStatus",10)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL)
     elseif (csid == 25) then
-        player:setVar("MissionStatus",1)
+        player:setCharVar("MissionStatus",1)
     elseif (csid == 22) then
-        player:setVar("MissionStatus",4)
+        player:setCharVar("MissionStatus",4)
     elseif (csid == 9) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,181)
-            player:setVar("Flagsando",1)
+            player:setCharVar("Flagsando",1)
         else
             player:addItem(181)
             player:messageSpecial(ID.text.ITEM_OBTAINED,181)
         end
-        player:setVar("MissionStatus",0)
+        player:setCharVar("MissionStatus",0)
         player:completeMission(SANDORIA,dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT)
         player:setRank(10)
         player:addGil(100000)
         player:messageSpecial(ID.text.GIL_OBTAINED,100000)
         player:setTitle(dsp.title.SAN_DORIAN_ROYAL_HEIR)
-        player:setVar("SandoEpilogue",1)
+        player:setCharVar("SandoEpilogue",1)
     elseif (csid == 58) then
-        player:setVar("MissionStatus",2)
+        player:setCharVar("MissionStatus",2)
     elseif (csid == 102) then
         finishMissionTimeline(player,3,csid,option)
-        player:setVar("Wait1DayM8-1_date", os.date("%j"))
+        player:setCharVar("Wait1DayM8-1_date", os.date("%j"))
     elseif (csid == 564 and option == 1) then
         player:completeMission(TOAU,dsp.mission.id.toau.CONFESSIONS_OF_ROYALTY)
         player:addMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS)
         player:delKeyItem(dsp.ki.RAILLEFALS_LETTER)
-        player:setVar("AhtUrganStatus", 1)
+        player:setCharVar("AhtUrganStatus", 1)
     end
 end

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Qufim
---  MOB: Vanguard_Defender
+-- Area: Dynamis - Qufim
+--  Mob: Vanguard Defender
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1455)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

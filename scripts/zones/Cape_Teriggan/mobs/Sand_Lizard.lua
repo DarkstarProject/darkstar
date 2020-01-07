@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Sand Lizard
+--  Mob: Sand Lizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

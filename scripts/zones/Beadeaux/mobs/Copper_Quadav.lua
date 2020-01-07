@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beadeaux
---  MOB: Copper Quadav
+--  Mob: Copper Quadav
 -- Note: PH for Da'Dha Hundredmask
 -- Involved in Mission 3-1 (Bastok)
 -----------------------------------
@@ -10,10 +10,10 @@ require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS) then
-        local missionStatus = player:getVar("MissionStatus");
+        local missionStatus = player:getCharVar("MissionStatus");
 
         if (missionStatus > 1 and missionStatus < 22) then
-            player:setVar("MissionStatus", missionStatus + 1)
+            player:setCharVar("MissionStatus", missionStatus + 1)
         end
     end
 end;

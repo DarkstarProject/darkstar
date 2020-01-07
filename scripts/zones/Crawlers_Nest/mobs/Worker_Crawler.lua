@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Worker Crawler
+--  Mob: Worker Crawler
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

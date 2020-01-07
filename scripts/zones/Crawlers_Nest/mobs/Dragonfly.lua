@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Dragonfly
+--  Mob: Dragonfly
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

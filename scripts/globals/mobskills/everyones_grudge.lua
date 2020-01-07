@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
     if target:getID() > 100000 then
         realDmg = power * math.random(30, 100)
     else
-        realDmg = power * target:getVar("EVERYONES_GRUDGE_KILLS") -- Damage is 5 times the amount you have killed
+        realDmg = power * target:getCharVar("EVERYONES_GRUDGE_KILLS") -- Damage is 5 times the amount you have killed
         if mob:isNM() then
             realDmg = realDmg * 10 -- sets the multiplier to 50 for NM's
         end

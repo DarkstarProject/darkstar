@@ -20,6 +20,7 @@ zones[dsp.zone.SOUTHERN_SAN_DORIA_S] =
         ITEM_DELIVERY_DIALOG    = 11210, -- If'n ye have goods tae deliver, then Nembet be yer man!
         ALLIED_SIGIL            = 12911, -- You have received the Allied Sigil!
         RETRIEVE_DIALOG_ID      = 15574, -- You retrieve <item> from the porter moogle's care.
+        COMMON_SENSE_SURVIVAL   = 15648, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

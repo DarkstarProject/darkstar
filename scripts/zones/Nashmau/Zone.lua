@@ -16,7 +16,7 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == dsp.zone.ARRAPAGO_REEF and player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 3) then
+        if (prevZone == dsp.zone.ARRAPAGO_REEF and player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:getCharVar("AhtUrganStatus") == 3) then
             cs = 281;
             player:setPos(-13,2,-62,194);
         elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU) then
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0,-2,0,0,59);
     elseif (csid == 281) then
         player:completeMission(TOAU,dsp.mission.id.toau.THE_BLACK_COFFIN);
-        player:setVar("AhtUrganStatus", 0)
-        player:addMission(TOAU,dsp.mission.id.toau.GHOSTS_OF_THE_PAST_TOAU);
+        player:setCharVar("AhtUrganStatus", 0)
+        player:addMission(TOAU,dsp.mission.id.toau.GHOSTS_OF_THE_PAST);
     end
 end;

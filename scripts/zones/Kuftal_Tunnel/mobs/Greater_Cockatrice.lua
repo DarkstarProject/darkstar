@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Greater Cockatrice
+--  Mob: Greater Cockatrice
 -- Note: Place Holder for Pelican
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs")

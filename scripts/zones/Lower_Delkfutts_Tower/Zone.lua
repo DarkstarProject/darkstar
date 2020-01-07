@@ -25,7 +25,7 @@ function onZoneIn(player, prevZone)
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         player:setPos(460.022, -1.77, -103.442, 188)
     end
-    if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") <= 1 then
+    if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getCharVar("ZilartStatus") <= 1 then
         cs = 15
     elseif ENABLE_COP == 1 and prevZone == dsp.zone.QUFIM_ISLAND and player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_FLAMES_BECKON then
         cs = 22
@@ -40,11 +40,11 @@ function onRegionEnter(player, region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)
-            player:setVar("option", 1)
+            player:setCharVar("option", 1)
             player:startEvent(4)
         end,
         [2] = function (x)
-            player:setVar("option", 2)
+            player:setCharVar("option", 2)
             player:startEvent(4)
         end,
     }
@@ -58,16 +58,16 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 15 then
-        player:setVar("ZilartStatus", 2)
+        player:setCharVar("ZilartStatus", 2)
     elseif csid == 4 and option == 1 then
-        if player:getVar("option") == 1 then
+        if player:getCharVar("option") == 1 then
             player:setPos(-28, -48, 80, 111, 157)
         else
             player:setPos(-51, -48, -40, 246, 157)
         end
-        player:setVar("option", 0)
+        player:setCharVar("option", 0)
     elseif csid == 4 and (option == 0 or option >= 3) then
-        player:setVar("option", 0)
+        player:setCharVar("option", 0)
     elseif csid == 22 then
         player:startEvent(36)
     elseif csid == 34 then
@@ -82,6 +82,6 @@ function onEventFinish(player, csid, option)
     elseif csid == 39 then
         player:completeMission(COP, dsp.mission.id.cop.ANCIENT_FLAMES_BECKON)
         player:addMission(COP, dsp.mission.id.cop.THE_RITES_OF_LIFE)
-        player:setVar("COP1", 1)
+        player:setCharVar("COP1", 1)
     end
 end

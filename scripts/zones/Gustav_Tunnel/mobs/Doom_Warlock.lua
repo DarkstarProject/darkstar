@@ -1,11 +1,12 @@
-----------------------------------
+-----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Doom Warlock
+--  Mob: Doom Warlock
 -- Note: Place holder Taxim
 -----------------------------------
 local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 require("scripts/globals/regimes")
 require("scripts/globals/mobs");
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 765, 2, dsp.regime.type.GROUNDS)

@@ -8,6 +8,6 @@ require("scripts/globals/quests")
 
 function onMobDeath(mob, player, isKiller)
     if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.MOONDROP) then
-        player:setVar("Searching_AgasKilled", 1)
+        player:setCharVar("Searching_AgasKilled", 1)
     end
 end

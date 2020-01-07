@@ -25,11 +25,11 @@ end;
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
-    local MissionStatus = player:getVar("MissionStatus");
+    local MissionStatus = player:getCharVar("MissionStatus");
     local circleOfTime = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
-    local circleProgress = player:getVar("circleTime");
-    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
-    local WildcatSandy = player:getVar("WildcatSandy");
+    local circleProgress = player:getCharVar("circleTime");
+    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
+    local WildcatSandy = player:getCharVar("WildcatSandy");
     local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
@@ -78,9 +78,9 @@ function onEventFinish(player,csid,option)
 
     -- CIRCLE OF TIME
     elseif (csid == 99 and option == 0) then
-        player:setVar("circleTime",6);
+        player:setCharVar("circleTime",6);
     elseif ((csid == 98 or csid == 99) and option == 1) then
-        player:setVar("circleTime",7);
+        player:setCharVar("circleTime",7);
         player:addKeyItem(dsp.ki.MOON_RING);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_RING);
     elseif (csid == 96) then
@@ -89,14 +89,14 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,12647)
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
             player:addTitle(dsp.title.PARAGON_OF_BARD_EXCELLENCE);
-            player:setVar("circleTime",0);
+            player:setCharVar("circleTime",0);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         end;
 
     -- LURE OF THE WILDCAT
     elseif (csid == 561) then
-        player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",19,true);
+        player:setMaskBit(player:getCharVar("WildcatSandy"),"WildcatSandy",19,true);
 
     -- HER MAJESTY'S GARDEN
     elseif (csid == 84 and option == 1) then

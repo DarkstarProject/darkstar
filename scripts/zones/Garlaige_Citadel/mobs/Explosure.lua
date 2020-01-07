@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Explosure
+--  Mob: Explosure
 -- Note: PH for Hazmat
 -----------------------------------
 local ID = require("scripts/zones/Garlaige_Citadel/IDs")

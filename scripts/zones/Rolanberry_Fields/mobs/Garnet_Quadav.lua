@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Garnet Quadav
+--  Mob: Garnet Quadav
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

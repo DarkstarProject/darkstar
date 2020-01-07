@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
---  MOB: Goblintrap
+--  Mob: Goblintrap
 -- Note: Goblintrap NM
 -- !pos 168 0 -440 81
 -----------------------------------

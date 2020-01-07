@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Jeuno
---  MOB: Vanguard_Tinkerer
+-- Area: Dynamis - Jeuno
+--  Mob: Vanguard Tinkerer
 -----------------------------------
 mixins =
 {
@@ -8,9 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

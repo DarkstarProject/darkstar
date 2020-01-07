@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Wolf Clan Warmachine
+--  Mob: Wolf Clan Warmachine
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

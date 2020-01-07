@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Canyon Rarab
+--  Mob: Canyon Rarab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Demon Wizard
+--  Mob: Demon Wizard
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

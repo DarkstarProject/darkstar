@@ -56,6 +56,6 @@ function onTrigger(player, arg1, arg2)
     if (targ == "server") then
         player:PrintToPlayer(string.format("Server variable '%s' : %u ", varName, GetServerVariable(varName)));
     else
-        player:PrintToPlayer(string.format("%s's variable '%s' : %u", targ:getName(), varName, targ:getVar(varName)));
+        player:PrintToPlayer(string.format("%s's variable '%s' : %u", targ:getName(), varName, targ:getCharVar(varName)));
     end
 end

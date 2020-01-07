@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Draklix_Scalecrust
+-- Area: Dynamis - Beaucedine
+--  Mob: Draklix Scalecrust
 -----------------------------------
 mixins =
 {
@@ -8,9 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

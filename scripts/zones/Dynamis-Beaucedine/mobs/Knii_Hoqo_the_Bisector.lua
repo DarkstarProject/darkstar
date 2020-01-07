@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Knii_Hoqo_the_Bisector
+-- Area: Dynamis - Beaucedine
+--  Mob: Knii Hoqo the Bisector
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1449)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

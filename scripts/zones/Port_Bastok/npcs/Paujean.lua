@@ -26,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
     local SilenceOfTheRams = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local WildcatBastok = player:getCharVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
         player:startEvent(355);
     elseif (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
         player:startEvent(195);
@@ -55,6 +55,6 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.ITEM_OBTAINED,13201);
         player:addTitle(dsp.title.PURPLE_BELT);
     elseif (csid == 355) then
-        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",2,true);
+        player:setMaskBit(player:getCharVar("WildcatBastok"),"WildcatBastok",2,true);
     end
 end;

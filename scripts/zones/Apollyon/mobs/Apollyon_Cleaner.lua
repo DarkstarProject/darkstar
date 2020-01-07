@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE
---  NPC: Apollyon Cleaner
-
+--  Mob: Apollyon Cleaner
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

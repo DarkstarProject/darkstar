@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Mouse Bat
+--  Mob: Mouse Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

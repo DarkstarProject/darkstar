@@ -9,7 +9,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrigger(player,npc)
-    local missionProgress = player:getVar("COP_Tenzen_s_Path")
+    local missionProgress = player:getCharVar("COP_Tenzen_s_Path")
     if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and missionProgress == 5) then
         player:startEvent(0);
     elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and (missionProgress == 6 or missionProgress == 7) and player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE) == false) then
@@ -27,6 +27,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 0) then
-        player:setVar("COP_Tenzen_s_Path",6);
+        player:setCharVar("COP_Tenzen_s_Path",6);
     end
 end;

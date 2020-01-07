@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Ancient Bat
+--  Mob: Ancient Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

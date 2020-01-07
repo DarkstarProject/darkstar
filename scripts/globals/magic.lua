@@ -41,7 +41,7 @@ dsp.magic.spellGroup =
     NINJUTSU  = 4,
     SUMMONING = 5,
     WHITE     = 6,
-};
+}
 
 ------------------------------------
 -- Spell AOE IDs
@@ -64,10 +64,11 @@ dsp.magic.aoe =
 
 dsp.magic.spellFlag =
 {
-    NONE          = 0x00,
-    HIT_ALL       = 0x01, -- Hit all targets in range regardless of party
-    WIPE_SHADOWS  = 0x02, -- Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
-};
+    NONE           = 0x00,
+    HIT_ALL        = 0x01, -- Hit all targets in range regardless of party
+    WIPE_SHADOWS   = 0x02, -- Wipe shadows even if single target and miss/resist (example: "Maiden's Virelai")
+    IGNORE_SHADOWS = 0x04  -- Ignore shadows and hit player anyways (example: Mobs "Death" spell)
+}
 
 ------------------------------------
 -- Tables by element
@@ -1131,16 +1132,16 @@ function doElementalNuke(caster, spell, target, spellParams)
         local I = spellParams.I; -- Inflection point
         local cap = I * 2 + V; -- Base damage soft cap
 
-        if dINT < 0 then 
+        if dINT < 0 then
             -- If dINT is a negative value the tier multiplier is always 1
             DMG = V + dINT;
 
             -- Check/ set lower limit of 0 damage for negative dINT
             if DMG < 1 then
                 return 0;
-            end			
+            end
 
-        elseif dINT < I then 
+        elseif dINT < I then
              -- If dINT > 0 but below inflection point I
             DMG = V + dINT * M;
 
@@ -1151,8 +1152,8 @@ function doElementalNuke(caster, spell, target, spellParams)
 
         -- Check/ set damage soft cap
         if DMG > cap then
-            DMG = cap; 
-        end	
+            DMG = cap;
+        end
 
     else
         local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!

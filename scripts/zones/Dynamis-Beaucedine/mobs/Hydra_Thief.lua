@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Hydra_Thief
+-- Area: Dynamis - Beaucedine
+--  Mob: Hydra Thief
 -----------------------------------
 mixins =
 {
@@ -8,9 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

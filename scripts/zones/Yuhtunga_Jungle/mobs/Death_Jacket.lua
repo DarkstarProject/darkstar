@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Death Jacket
+--  Mob: Death Jacket
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

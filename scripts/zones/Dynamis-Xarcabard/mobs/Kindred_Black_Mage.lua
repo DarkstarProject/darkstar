@@ -1,16 +1,19 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Kindred_Black_Mage
+-- Area: Dynamis - Xarcabard
+--  Mob: Kindred Black Mage
 -----------------------------------
 mixins =
 {
     require("scripts/mixins/dynamis_beastmen"),
     require("scripts/mixins/job_special")
 }
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
 
-function onMobSpawn(mob)
+function onMobDeath(mob, player, isKiller)
 end
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.MARQUIS_ORIAS_PH, 10, 1200) -- 20 minutes
 end

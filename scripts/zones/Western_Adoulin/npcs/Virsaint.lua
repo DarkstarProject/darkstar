@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
-    if ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 4)) then
+    if ((ACSP == QUEST_ACCEPTED) and (player:getCharVar("ACSP_NPCs_Visited") == 4)) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
         player:startEvent(2556);
     else
@@ -28,6 +28,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2556) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
-        player:setVar("ACSP_NPCs_Visited", 5);
+        player:setCharVar("ACSP_NPCs_Visited", 5);
     end
 end;

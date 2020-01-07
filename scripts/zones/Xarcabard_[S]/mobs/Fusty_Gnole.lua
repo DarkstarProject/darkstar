@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Xarcabard [S]
---  MOB: Fusty Gnole
+--  Mob: Fusty Gnole
 -----------------------------------
-
-mixins = { require("scripts/mixins/families/gnole") }
+mixins = {require("scripts/mixins/families/gnole")}
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end

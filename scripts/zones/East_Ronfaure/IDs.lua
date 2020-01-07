@@ -10,7 +10,7 @@ zones[dsp.zone.EAST_RONFAURE] =
 {
     text =
     {
-        NOTHING_HAPPENS          = 141, -- Nothing happens...
+        NOTHING_HAPPENS          = 141,  -- Nothing happens...
         ITEM_CANNOT_BE_OBTAINED  = 6404, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED            = 6410, -- Obtained: <item>.
         GIL_OBTAINED             = 6411, -- Obtained <number> gil.
@@ -25,7 +25,12 @@ zones[dsp.zone.EAST_RONFAURE] =
         CHEVAL_RIVER_WATER       = 7436, -- You fill your waterskin with water from the river. You now have <item>.
         BLESSED_WATERSKIN        = 7455, -- To get water, trade the waterskin you hold with the river.
         LOGGING_IS_POSSIBLE_HERE = 7486, -- Logging is possible here if you have <item>.
-        REGIME_REGISTERED        = 9870, -- New training regime registered!
+        PLAYER_OBTAINS_ITEM      = 7497, -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM    = 7498, -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM = 7499, -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP     = 7500, -- You already possess that temporary item.
+        NO_COMBINATION           = 7505, -- You were unable to enter a combination.
+        REGIME_REGISTERED        = 9865, -- New training regime registered!
     },
     mob =
     {
@@ -48,14 +53,15 @@ zones[dsp.zone.EAST_RONFAURE] =
     },
     npc =
     {
+        CASKET_BASE = 17191482,
         LOGGING =
         {
-            17191529,
             17191530,
             17191531,
             17191532,
             17191533,
             17191534,
+            17191535,
         },
     },
 }

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Mercenary
+--  Mob: Goblin Mercenary
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

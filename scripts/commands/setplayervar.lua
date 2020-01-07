@@ -41,6 +41,6 @@ function onTrigger(player, target, variable, value)
         return;
     end
 
-    targ:setVar(variable, value);
+    targ:setCharVar(variable, value);
     player:PrintToPlayer( string.format( "Set %s's variable '%s' to %i.", targ:getName(), variable, value ) );
 end

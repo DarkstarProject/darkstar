@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Orcish Gladiator
+--  Mob: Orcish Gladiator
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
 

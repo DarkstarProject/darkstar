@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     local TCCOM = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_CURIOUS_CASE_OF_MELVIEN);
     local TCCOM_Need_KI = player:hasKeyItem(dsp.ki.MELVIENS_TURN) and (not player:hasKeyItem(dsp.ki.MELVIENS_DEATH))
     local Order_Up = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ORDER_UP);
-    local Order_Mastan = player:getMaskBit(player:getVar("Order_Up_NPCs"), 11);
+    local Order_Mastan = player:getMaskBit(player:getCharVar("Order_Up_NPCs"), 11);
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Mastan)) then
         -- Progresses Quest: 'Order Up'

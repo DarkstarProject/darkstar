@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Shaman
+--  Mob: Goblin Shaman
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

@@ -30,14 +30,14 @@ function onTrigger(player,npc)
     local RubbishDay = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RUBBISH_DAY);
     local NeverToReturn = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
     local JFame = player:getFameLevel(JEUNO);
-    local SearchingForWords_prereq = player:getVar("QuestSearchRightWords_prereq");
+    local SearchingForWords_prereq = player:getCharVar("QuestSearchRightWords_prereq");
 
 
     if (JFame >= 2 and YourCrystalBall == QUEST_AVAILABLE) then
         player:startEvent(194); -- Start "Your Crystal Ball" quest
 
-    elseif (JFame >= 5 and YourCrystalBall == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN) == QUEST_AVAILABLE and player:getVar("QuestNeverToReturn_day") ~= VanadielDayOfTheYear()) then
-        prog = player:getVar("QuestNeverToReturn_prog");
+    elseif (JFame >= 5 and YourCrystalBall == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN) == QUEST_AVAILABLE and player:getCharVar("QuestNeverToReturn_day") ~= VanadielDayOfTheYear()) then
+        prog = player:getCharVar("QuestNeverToReturn_prog");
         if (prog <= 2) then
             fortune = math.random(1,99);
             player:startEvent(204,fortune); -- Required to get fortune read 3x on 3 diff game days before quest is kicked off
@@ -49,13 +49,13 @@ function onTrigger(player,npc)
     elseif (SearchingForWords_prereq == 1) then
         player:startEvent(38);
 
-    elseif (player:getVar("QuestSearchRightWords_denied") == 1) then
+    elseif (player:getCharVar("QuestSearchRightWords_denied") == 1) then
         player:startEvent(36);
 
     elseif (SearchingForTheRightWords == QUEST_ACCEPTED) then
         player:startEvent(39);
 
-    elseif (player:getVar("SearchingForRightWords_postcs") == -2) then
+    elseif (player:getCharVar("SearchingForRightWords_postcs") == -2) then
         player:startEvent(154);
 
     elseif (SearchingForTheRightWords == QUEST_COMPLETED) then --final state, after all quests complete
@@ -83,12 +83,12 @@ function onEventFinish(player,csid,option)
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.YOUR_CRYSTAL_BALL);
     elseif (csid == 204 and option == 0) then
-        player:addVar("QuestNeverToReturn_prog", 1);  -- Keep track of how many times the players fortune has been read
-        player:setVar("QuestNeverToReturn_day", VanadielDayOfTheYear()); -- new vanadiel day
+        player:addCharVar("QuestNeverToReturn_prog", 1);  -- Keep track of how many times the players fortune has been read
+        player:setCharVar("QuestNeverToReturn_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 202 and option == 0) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
-        player:setVar("QuestNeverToReturn_prog", 0);
-        player:setVar("QuestNeverToReturn_day", 0);
+        player:setCharVar("QuestNeverToReturn_prog", 0);
+        player:setCharVar("QuestNeverToReturn_day", 0);
     elseif (csid == 203) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13477);
@@ -102,8 +102,8 @@ function onEventFinish(player,csid,option)
             player:completeQuest(JEUNO,dsp.quest.id.jeuno.NEVER_TO_RETURN);
         end
     elseif (csid == 17) then
-        player:setVar("QuestSearchRightWords_prereq", 1);
+        player:setCharVar("QuestSearchRightWords_prereq", 1);
     elseif (csid == 154) then
-        player:setVar("SearchingForRightWords_postcs", -1);
+        player:setCharVar("SearchingForRightWords_postcs", -1);
     end
 end;

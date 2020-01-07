@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Clan_Longtooth_Pillager
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Clan Longtooth Pillager
 -----------------------------------
 
 -- -----------------------------------

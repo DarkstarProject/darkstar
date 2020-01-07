@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Alchemist
+--  Mob: Goblin Alchemist
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

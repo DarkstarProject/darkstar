@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Trench Antlion
+--  Mob: Trench Antlion
 -- Note: PH for Ambusher Antlion
 -----------------------------------
 mixins = {require("scripts/mixins/families/antlion_ambush")}

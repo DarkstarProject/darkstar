@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Bounty Hunter
+--  Mob: Goblin Bounty Hunter
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

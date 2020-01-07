@@ -61,7 +61,7 @@ dsp.mission.id =
         INFILTRATE_DAVOI        = 10, -- ± --
         THE_CRYSTAL_SPRING      = 11, -- ± --
         APPOINTMENT_TO_JEUNO    = 12, -- ± --
-        MAGICITE_SAN_D_ORIA     = 13, -- ± --
+        MAGICITE                = 13, -- ± --
         THE_RUINS_OF_FEI_YIN    = 14, -- ± --
         THE_SHADOW_LORD         = 15, -- ± --
         LEAUTE_S_LAST_WISHES    = 16, -- ± --
@@ -92,8 +92,8 @@ dsp.mission.id =
         THE_EMISSARY_WINDURST2    = 9,  -- ± --
         THE_FOUR_MUSKETEERS       = 10, -- ± --
         TO_THE_FORSAKEN_MINES     = 11, -- ± --
-        JEUNO_MISSION             = 12, -- ± --
-        MAGICITE_BASTOK           = 13, -- ± --
+        JEUNO                     = 12, -- ± --
+        MAGICITE                  = 13, -- ± --
         DARKNESS_RISING           = 14, -- ± --
         XARCABARD_LAND_OF_TRUTHS  = 15, -- ± --
         RETURN_OF_THE_TALEKEEPER  = 16, -- ± --
@@ -256,7 +256,7 @@ dsp.mission.id =
         LOST_KINGDOM            = 12,
         THE_DOLPHIN_CREST       = 13,
         THE_BLACK_COFFIN        = 14,
-        GHOSTS_OF_THE_PAST_TOAU = 15,
+        GHOSTS_OF_THE_PAST      = 15,
         GUESTS_OF_THE_EMPIRE    = 16,
         PASSING_GLORY           = 17,
         SWEETS_FOR_THE_SOUL     = 18,
@@ -376,11 +376,11 @@ dsp.mission.id =
     -----------------------------------
     [dsp.mission.area[dsp.mission.log_id.AMK]] =
     {
-        A_MOOGLE_KUPO_DETAT                 = 0,
-        DRENCHED_IT_BEGAN_WITH_A_RAINDROP   = 1,
-        HASTEN_IN_A_JAM_IN_JEUNO            = 2,
-        WELCOME_TO_MY_DECREPIT_DOMICILE     = 3,
-        CURSES_A_HORRIFICALLY_HARROWING_HEX = 4,
+        A_MOOGLE_KUPO_DETAT                 = 0,  -- ± --
+        DRENCHED_IT_BEGAN_WITH_A_RAINDROP   = 1,  -- ± --
+        HASTEN_IN_A_JAM_IN_JEUNO            = 2,  -- ± --
+        WELCOME_TO_MY_DECREPIT_DOMICILE     = 3,  -- ± --
+        CURSES_A_HORRIFICALLY_HARROWING_HEX = 4,  -- ± --
         AN_ERRAND_THE_PROFESSORS_PRICE      = 5,
         SHOCK_ARRANT_ABUSE_OF_AUTHORITY     = 6,
         LENDER_BEWARE_READ_THE_FINE_PRINT   = 7,
@@ -421,14 +421,14 @@ dsp.mission.id =
     [dsp.mission.area[dsp.mission.log_id.SOA]] =
     {
         -- THE_SACRED_CITY_OF_ADOULIN   =  -- Category
-        RUMORS_FROM_THE_WEST            = 0,
-        THE_GEOMAGNETRON                = 1,
-        ONWARD_TO_ADOULIN               = 3,
-        HEARTWINGS_AND_THE_KINDHEARTED  = 5,
-        PIONEER_REGISTRATION            = 6,
-        LIFE_ON_THE_FRONTIER            = 7,
-        MEETING_OF_THE_MINDS            = 8,
-        ARCIELA_APPEARS_AGAIN           = 9,
+        RUMORS_FROM_THE_WEST            = 0,   -- ± --
+        THE_GEOMAGNETRON                = 1,   -- ± --
+        ONWARD_TO_ADOULIN               = 3,   -- ± --
+        HEARTWINGS_AND_THE_KINDHEARTED  = 5,   -- ± --
+        PIONEER_REGISTRATION            = 6,   -- ± --
+        LIFE_ON_THE_FRONTIER            = 7,   -- ± --
+        MEETING_OF_THE_MINDS            = 8,   -- ± --
+        ARCIELA_APPEARS_AGAIN           = 9,   -- ± --
         -- THE_ANCIENT_PACT             =  -- Category
         BUILDING_PROSPECTS              = 11,
         THE_LIGHT_SHINING_IN_YOUR_EYES  = 12,
@@ -619,7 +619,7 @@ dsp.mission.id =
         NO_TIME_LIKE_THE_FUTURE         = 180,
         SIN                             = 184,
         PENANCE                         = 188,
-        VESSEL_OF_LIGHT_ROV             = 190,
+        VESSEL_OF_LIGHT                 = 190,
         THE_LIFESTREAM_OF_REISENJIMA    = 192,
         FROM_WEST_TO_EAST               = 194,
         GOOD_THINGS_COME_IN_THREES      = 196,
@@ -924,7 +924,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
                 -- 8-1
                 first_mission = first_mission + 1048576;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
+            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getCharVar("Mission8-1Completed") == 1) then
                 -- 8-2
                 first_mission = first_mission + 2097152;
             end
@@ -933,7 +933,7 @@ function getMissionMask(player)
             if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
                 -- 9-1
                 first_mission = first_mission + 4194304;
-            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
+            elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getCharVar("Cutscenes_8-2") == 2) then
                 -- 9-2
                 first_mission = first_mission + 8388608;
 
@@ -982,7 +982,7 @@ function getMissionMask(player)
                     -- 3-2 Repeatable & Skippable
                     repeat_mission = repeat_mission + 2048;
                 end
-                if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.JEUNO_MISSION) == false and getMissionRankPoints(player,12) == 1) then
+                if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.JEUNO) == false and getMissionRankPoints(player,12) == 1) then
                     -- 3-3
                     first_mission = first_mission + 4096;
                 end
@@ -1039,7 +1039,7 @@ function getMissionMask(player)
         end
     end
 
-    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
+    if (player:getCurrentMission(nation) == dsp.mission.id.sandoria.THE_RUINS_OF_FEI_YIN and player:getCharVar("MissionStatus") == 8) then
         mission_mask = 2147483647 - 16384;
     else
         mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
@@ -1134,7 +1134,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- missionid, {Guard1CS,option}, {Guard2CS,option}, {NPC1 CS,option}, {NPC2 CS,option}, {{function,value},...},
     --  1: player:addMission(nation,mission);
     --  2: player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-    --  3: player:setVar(variablename,value);
+    --  3: player:setCharVar(variablename,value);
     --  4: player:tradeComplete();
     --  5: player:addRankPoints(number);
     --  6: player:setRankPoints(0);
@@ -1145,7 +1145,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- 11: player:setRank(number);
     -- 12: player:completeMission(nation,mission);
     -- 13: player:addTitle(number);
-    -- 14: player:setVar("MissionStatus",value);
+    -- 14: player:setCharVar("MissionStatus",value);
 
     if (nation == dsp.nation.SANDORIA) then
         if ((csid == 1009 or csid == 2009) and option ~= 1073741824 and option ~= 31) then
@@ -1187,7 +1187,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 15,{0,0},      {0,0},     {61,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}},                             -- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
                 16,{0,0},      {0,0},     {111,0},{0,0},{{14,0},{9,268},{10,270},{12}},                                 -- MISSION 6-1 (Finish (Chalvatot))
                 17,{1034,0},{1033,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}},                                -- MISSION 6-2 (Finish (Guard))
-                18,{0,0},      {0,0},     {7,0},{0,0},{{14,1}},                                                     -- MISSION 7-1 (setVar("MissionStatus",1) (Door: Papal Chambers))
+                18,{0,0},      {0,0},     {7,0},{0,0},{{14,1}},                                                     -- MISSION 7-1 (setCharVar("MissionStatus",1) (Door: Papal Chambers))
                 18,{0,0},      {0,0},     {8,0},{0,0},{{14,0},{9,283},{5,1000},{12}},                                 -- MISSION 7-1 (Finish (Door: Papal Chambers))
                 19,{1044,0},{1043,0},{0,0},{0,0},{{14,0},{6},{3,"SecretWeaponStatus",0},{9,284},{11,8},{8,60000},{12}}, -- MISSION 7-2 (Finish)
                 20,{0,0},      {0,0},     {102,0},{0,0},{{14,0},{9,288},{5,800},{12}},                                    -- MISSION 8-1 (Finish)
@@ -1273,7 +1273,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 switch (messList[1]) : caseof {
                     [1] = function (x) if (messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
                     [2] = function (x) player:messageSpecial(zones[player:getZoneID()].text.YOU_ACCEPT_THE_MISSION); end,
-                    [3] = function (x) player:setVar(messList[2],messList[3]); end,
+                    [3] = function (x) player:setCharVar(messList[2],messList[3]); end,
                     [4] = function (x) player:tradeComplete(); end,
                     [5] = function (x) if ((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,
                     [6] = function (x) player:setRankPoints(0); end,
@@ -1284,7 +1284,7 @@ function finishMissionTimeline(player,guard,csid,option)
                     [11] = function (x) player:setRank(messList[2]); end,
                     [12] = function (x) player:completeMission(nation,timeline[cs]); end,
                     [13] = function (x) player:addTitle(messList[2]); end,
-                    [14] = function (x) player:setVar("MissionStatus",messList[2]); end,
+                    [14] = function (x) player:setCharVar("MissionStatus",messList[2]); end,
                 }
             end
         end

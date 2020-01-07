@@ -19,7 +19,11 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount()
 
     if wsQuestEvent ~= nil then
-        player:startEvent(wsQuestEvent)
+        if wsQuestEvent == 448 then
+            player:startEvent(wsQuestEvent, nil, nil, dsp.keyItem.ANNALS_OF_TRUTH)
+        else
+            player:startEvent(wsQuestEvent)
+        end
 
     -- Curses Foiled Again!
     elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1) == QUEST_ACCEPTED) then
@@ -43,19 +47,24 @@ function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
     local foiledAgain = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1)
     local CFA2 = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2)
-    local CFAtimer = player:getVar("CursesFoiledAgain")
+    local CFAtimer = player:getCharVar("CursesFoiledAgain")
     local FoiledAGolem = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM)
-    local golemdelivery = player:getVar("foiledagolemdeliverycomplete")
-    local WildcatWindurst = player:getVar("WildcatWindurst")
+    local golemdelivery = player:getCharVar("foiledagolemdeliverycomplete")
+    local WildcatWindurst = player:getCharVar("WildcatWindurst")
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 7) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getCharVar("MissionStatus") == 7) then
         player:startEvent(397,0,0,0,282)
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
         player:startEvent(498)
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) == QUEST_ACCEPTED and player:getCharVar("ClassReunionProgress") == 3) then
         player:startEvent(409) -- she mentions that Sunny-Pabonny left for San d'Oria
+
+    -- AMK
+    elseif player:getCurrentMission(AMK) == dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX then
+        player:startEvent(506)
+
     -------------------------------------------------------
     -- Curses Foiled Again!
     elseif (foiledAgain == QUEST_AVAILABLE) then
@@ -65,8 +74,8 @@ function onTrigger(player,npc)
     elseif (foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and CFAtimer == 0) then
         local cDay = VanadielDayOfTheYear()
         local cYear = VanadielYear()
-        local dFinished = player:getVar("CursesFoiledAgainDay")
-        local yFinished = player:getVar("CursesFoiledAgainYear")
+        local dFinished = player:getCharVar("CursesFoiledAgainDay")
+        local yFinished = player:getCharVar("CursesFoiledAgainYear")
 
         -- player:PrintToPlayer("Vana Day and year:  "..cDay..", "..cYear)
         -- player:PrintToPlayer("Database Day and year:  "..dFinished..", "..yFinished)
@@ -102,7 +111,7 @@ function onTrigger(player,npc)
 
     elseif (CFA2 == QUEST_COMPLETED) then
         player:startEvent(184)     -- New standard dialog after CFA2
-    elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) and player:getVar("ShantottoCS") == 1) then
+    elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING) and player:getCharVar("ShantottoCS") == 1) then
         player:startEvent(399,0,0,282)
     else
         player:startEvent(164)
@@ -115,8 +124,8 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17081)
         else
             player:tradeComplete()
-            player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear())
-            player:setVar("CursesFoiledAgainYear",VanadielYear())
+            player:setCharVar("CursesFoiledAgainDay",VanadielDayOfTheYear())
+            player:setCharVar("CursesFoiledAgainYear",VanadielYear())
             player:addFame(WINDURST,80)
             player:addItem(17081)
             player:messageSpecial(ID.text.ITEM_OBTAINED,17081)
@@ -126,15 +135,15 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_1)
 
     elseif (csid == 179) then
-        player:setVar("CursesFoiledAgainDayFinished",0)
-        player:setVar("CursesFoiledAgainYearFinished",0)
-        player:setVar("CursesFoiledAgainDay",0)
-        player:setVar("CursesFoiledAgainYear",0)
-        player:setVar("CursesFoiledAgain",1) -- Used to acknowledge that the two days have passed, Use this to initiate next quest
+        player:setCharVar("CursesFoiledAgainDayFinished",0)
+        player:setCharVar("CursesFoiledAgainYearFinished",0)
+        player:setCharVar("CursesFoiledAgainDay",0)
+        player:setCharVar("CursesFoiledAgainYear",0)
+        player:setCharVar("CursesFoiledAgain",1) -- Used to acknowledge that the two days have passed, Use this to initiate next quest
         player:needToZone(true)
 
     elseif (csid == 180 and option == 3) then
-        player:setVar("CursesFoiledAgain",0)
+        player:setCharVar("CursesFoiledAgain",0)
         player:addQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_AGAIN_2)
         player:setTitle(dsp.title.TARUTARU_MURDER_SUSPECT)
 
@@ -163,22 +172,27 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4870)
         else
             player:completeQuest(WINDURST,dsp.quest.id.windurst.CURSES_FOILED_A_GOLEM)
-            player:setVar("foiledagolemdeliverycomplete",0)
+            player:setCharVar("foiledagolemdeliverycomplete",0)
             player:addItem(4870)
             player:messageSpecial(ID.text.ITEM_OBTAINED,4870)
             player:setTitle(dsp.title.DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH)
             player:addFame(WINDURST,120)
         end
     elseif (csid == 409) then
-        player:setVar("ClassReunionProgress",4)
+        player:setCharVar("ClassReunionProgress",4)
     elseif (csid == 498) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true)
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",6,true)
     elseif (csid == 397) then
         player:addKeyItem(dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
-        player:setVar("MissionStatus",8)
+        player:setCharVar("MissionStatus",8)
     elseif (csid == 399) then
-        player:setVar("ShantottoCS",0)
+        player:setCharVar("ShantottoCS",0)
+
+    elseif csid == 506 then
+        player:completeMission(AMK,dsp.mission.id.amk.CURSES_A_HORRIFICALLY_HARROWING_HEX)
+        player:addMission(AMK,dsp.mission.id.amk.AN_ERRAND_THE_PROFESSORS_PRICE)
+
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.RETRIBUTION_LEARNED)
     end

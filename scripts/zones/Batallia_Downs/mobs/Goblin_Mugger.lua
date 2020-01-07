@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Goblin Mugger
+--  Mob: Goblin Mugger
 -----------------------------------
 require("scripts/globals/regimes")
 require("scripts/globals/settings");

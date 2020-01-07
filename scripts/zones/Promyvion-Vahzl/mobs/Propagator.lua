@@ -1,12 +1,12 @@
 -----------------------------------
--- Area: Promyvion vahzl
+-- Area: Promyvion - Vahzl
 --   NM: Propagator
 -----------------------------------
 require("scripts/globals/missions")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") == 1 then
-        player:setVar("PromathiaStatus", 2)
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus") == 1 then
+        player:setCharVar("PromathiaStatus", 2)
     end
 end

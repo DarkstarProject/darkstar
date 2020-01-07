@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Vegnix Greenthumb
+--  Mob: Vegnix Greenthumb
 -----------------------------------
 local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");

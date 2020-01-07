@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Sulfur Scorpion
+--  Mob: Sulfur Scorpion
 -- Note: PH for Tyrannic Turrok
 -----------------------------------
 local ID = require("scripts/zones/Ifrits_Cauldron/IDs")

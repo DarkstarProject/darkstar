@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: GaFho_Venomtouch
+-- Area: Dynamis - Beaucedine
+--  Mob: GaFho Venomtouch
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1455)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

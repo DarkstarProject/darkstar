@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Valkurm
---  MOB: Vanguard_Pitfighter
+-- Area: Dynamis - Valkurm
+--  Mob: Vanguard Pitfighter
 -----------------------------------
 mixins =
 {

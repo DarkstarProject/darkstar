@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Fire Elemental
+--  Mob: Fire Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

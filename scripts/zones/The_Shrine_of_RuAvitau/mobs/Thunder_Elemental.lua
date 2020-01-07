@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Thunder Elemental
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Thunder Elemental
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

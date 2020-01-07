@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Hati
+--  Mob: Hati
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

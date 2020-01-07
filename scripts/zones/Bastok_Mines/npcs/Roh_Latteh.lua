@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Bastok_Mines/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MOM_THE_ADVENTURER) ~= QUEST_AVAILABLE and player:getVar("MomTheAdventurer_Event") == 1) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.MOM_THE_ADVENTURER) ~= QUEST_AVAILABLE and player:getCharVar("MomTheAdventurer_Event") == 1) then
         if (trade:hasItemQty(13454,1) and trade:getItemCount() == 1) then -- Trade Copper Ring
             player:startEvent(95);
         end
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
     if (csid == 95) then
         player:addKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.LETTER_FROM_ROH_LATTEH);
-        player:setVar("MomTheAdventurer_Event",2);
+        player:setCharVar("MomTheAdventurer_Event",2);
         player:tradeComplete();
     elseif (csid == 96) then
         local freeInventory = player:getFreeSlotsCount();

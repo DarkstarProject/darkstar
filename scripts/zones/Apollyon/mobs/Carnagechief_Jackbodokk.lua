@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon CS
---  MOB: Carnagechief_Jackbodokk
+--  Mob: Carnagechief Jackbodokk
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------
@@ -37,16 +37,16 @@ function onMobFight(mob,target)
     end
 
     if (instancetime < 13) then
-        if (GetMobByID(16933144):isAlive()) then  
+        if (GetMobByID(16933144):isAlive()) then
             GetMobByID(16933144):updateEnmity(target);
-        elseif (GetMobByID(16933137):isAlive()) then 
+        elseif (GetMobByID(16933137):isAlive()) then
             GetMobByID(16933137):updateEnmity(target);
         end
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if ( ( GetMobByID(16933144):isAlive() or GetMobByID(16933137):isAlive() ) and alreadyReceived(player,1,Central_Temenos_2nd_Floor) == false) then          
+    if ( ( GetMobByID(16933144):isAlive() or GetMobByID(16933137):isAlive() ) and alreadyReceived(player,1,Central_Temenos_2nd_Floor) == false) then
         player:addTimeToBattlefield(Central_Temenos_2nd_Floor,5);
         addLimbusList(player,1,Central_Temenos_2nd_Floor);
     end

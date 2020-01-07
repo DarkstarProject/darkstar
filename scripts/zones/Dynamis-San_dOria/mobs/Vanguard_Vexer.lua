@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  NPC: Vanguard Vexer
+-- Area: Dynamis - San d'Oria
+--  Mob: Vanguard Vexer
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1452)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

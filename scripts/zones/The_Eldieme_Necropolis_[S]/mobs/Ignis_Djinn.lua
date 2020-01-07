@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Ignis_Djinn
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Ignis Djinn
 -----------------------------------
 
 -- -----------------------------------

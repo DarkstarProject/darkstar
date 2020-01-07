@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("theSandCharmVar") == 1) then
+    if (player:getCharVar("theSandCharmVar") == 1) then
         player:startEvent(123); -- During quest "The Sand Charm" - 1st dialog
     else
         player:startEvent(121); -- Standard dialog
@@ -23,6 +23,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 123) then
-        player:setVar("theSandCharmVar",2);
+        player:setCharVar("theSandCharmVar",2);
     end
 end;

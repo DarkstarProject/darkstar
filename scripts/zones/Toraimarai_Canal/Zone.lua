@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- Zone: Toraimarai_Canal (169)
+-- Zone: Toraimarai Canal (169)
 --
 -----------------------------------
 local ID = require("scripts/zones/Toraimarai_Canal/IDs")

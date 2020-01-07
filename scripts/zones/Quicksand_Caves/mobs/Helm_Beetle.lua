@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Helm Beetle
+--  Mob: Helm Beetle
 -- Note: PH for Diamond Daig
 -----------------------------------
 local ID = require("scripts/zones/Quicksand_Caves/IDs")

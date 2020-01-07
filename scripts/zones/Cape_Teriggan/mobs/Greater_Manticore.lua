@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Greater Manticore
+--  Mob: Greater Manticore
 -- Note: Place Holder for Frostmane
 -----------------------------------
 local ID = require("scripts/zones/Cape_Teriggan/IDs");

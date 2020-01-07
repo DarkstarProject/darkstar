@@ -43,15 +43,15 @@ Bastok Mines (Clockwise, starting at Ore Street, upper floor to lower floor)
 ]]--
 
 function onTrade(player,npc,trade)
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(379);
     end
 end;
 
 function onTrigger(player,npc)
-    local LureBastok = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK);
-    local WildcatBastok = player:getVar("WildcatBastok");
+    local LureBastok = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT);
+    local WildcatBastok = player:getCharVar("WildcatBastok");
     if (LureBastok ~= 2 and ENABLE_TOAU == 1) then
         if (LureBastok == 0) then
             player:startEvent(357);
@@ -76,14 +76,14 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 357) then
-        player:addQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK);
-        player:setVar("WildcatBastok",0);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT);
+        player:setCharVar("WildcatBastok",0);
         player:addKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BLUE_SENTINEL_BADGE);
     elseif (csid == 360) then
-        player:completeQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT);
         player:addFame(BASTOK,150);
-        player:setVar("WildcatBastok",0);
+        player:setCharVar("WildcatBastok",0);
         player:delKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.BLUE_INVITATION_CARD);
         player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.BLUE_SENTINEL_BADGE);

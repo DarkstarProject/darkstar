@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Votary
+--  Mob: Yagudo Votary
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---   Mob: Febrenard_C_Brunnaut
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Febrenard C Brunnaut
 -----------------------------------
 
 -- -----------------------------------

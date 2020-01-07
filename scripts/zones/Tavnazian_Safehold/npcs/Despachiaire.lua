@@ -11,13 +11,13 @@ end;
 
 function onTrigger(player,npc)
     local currentCOPMission = player:getCurrentMission(COP);
-    local LouverancePathStatut = player:getVar("COP_Louverance_s_Path");
+    local LouverancePathStatut = player:getCharVar("COP_Louverance_s_Path");
 
-    if (currentCOPMission  == dsp.mission.id.cop.THE_LOST_CITY and player:getVar("PromathiaStatus") == 0) then
+    if (currentCOPMission  == dsp.mission.id.cop.THE_LOST_CITY and player:getCharVar("PromathiaStatus") == 0) then
         player:startEvent(102);
-    elseif (currentCOPMission  == dsp.mission.id.cop.SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1) then
+    elseif (currentCOPMission  == dsp.mission.id.cop.SHELTERING_DOUBT and player:getCharVar("PromathiaStatus") == 1) then
         player:startEvent(108);
-    elseif (currentCOPMission  == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Despachaire") == 0) then
+    elseif (currentCOPMission  == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("COP_optional_CS_Despachaire") == 0) then
         player:startEvent(117); --117
     elseif (currentCOPMission  == dsp.mission.id.cop.THREE_PATHS and LouverancePathStatut == 0) then
         player:startEvent(118);
@@ -61,11 +61,11 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 102 or csid == 108) then
-        player:setVar("PromathiaStatus",2);
+        player:setCharVar("PromathiaStatus",2);
     elseif (csid == 117) then
-        player:setVar("COP_optional_CS_Despachaire",1);
+        player:setCharVar("COP_optional_CS_Despachaire",1);
     elseif (csid == 118) then
-        player:setVar("COP_Louverance_s_Path",1);
+        player:setCharVar("COP_Louverance_s_Path",1);
     end
 
 end;

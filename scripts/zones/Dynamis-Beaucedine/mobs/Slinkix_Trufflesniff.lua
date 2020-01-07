@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Slinkix_Trufflesniff
+-- Area: Dynamis - Beaucedine
+--  Mob: Slinkix Trufflesniff
 -----------------------------------
 mixins =
 {

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Aura Gear
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Aura Gear
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

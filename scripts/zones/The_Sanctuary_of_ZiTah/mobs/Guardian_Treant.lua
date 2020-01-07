@@ -5,5 +5,5 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:setVar("ForgeYourDestiny_killed", 1)
+    player:setCharVar("ForgeYourDestiny_killed", 1)
 end

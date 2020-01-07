@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Mandragora
+--  Mob: Mandragora
 -- Note: PH for Tom Tit Tat
 -----------------------------------
 local ID = require("scripts/zones/West_Sarutabaruta/IDs")

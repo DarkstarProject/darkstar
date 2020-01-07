@@ -510,6 +510,7 @@ void LoadMOBList()
         {
             luautils::OnMobInitialize(PMob);
             luautils::ApplyMixins(PMob);
+            luautils::ApplyZoneMixins(PMob);
             PMob->saveModifiers();
             PMob->saveMobModifiers();
             PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL;
@@ -934,7 +935,8 @@ REGIONTYPE GetCurrentRegion(uint16 ZoneID)
             return REGION_THE_THRESHOLD;
         case ZONE_DIORAMA_ABDHALJS_GHELSBA:
         case ZONE_ABDHALJS_ISLE_PURGONORGO:
-        case ZONE_MAQUETTE_ABDHALJS_LEGION:
+        case ZONE_MAQUETTE_ABDHALJS_LEGION_A:
+        case ZONE_MAQUETTE_ABDHALJS_LEGION_B:
             return REGION_ABDHALJS;
         case ZONE_WESTERN_ADOULIN:
         case ZONE_EASTERN_ADOULIN:

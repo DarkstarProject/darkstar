@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Dark Aspic
+-- Area: Toraimarai Canal
+--  Mob: Dark Aspic
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

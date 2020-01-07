@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Steelhide_Protector
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Steelhide Protector
 -----------------------------------
 
 -- -----------------------------------

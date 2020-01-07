@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Ambusher Antlion
+--  Mob: Ambusher Antlion
 -----------------------------------
 mixins = {require("scripts/mixins/families/antlion_ambush")}
 -----------------------------------

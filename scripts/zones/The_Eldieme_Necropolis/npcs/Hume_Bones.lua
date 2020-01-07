@@ -12,8 +12,8 @@ require("scripts/globals/quests")
 function onTrade(player,npc,trade)
     if
         player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES) == QUEST_ACCEPTED and
-        player:getVar("BlueRibbonBluesProg") >= 3 and
-        player:getVar("Lich_C_Magnus_Died") == 0 and
+        player:getCharVar("BlueRibbonBluesProg") >= 3 and
+        player:getCharVar("Lich_C_Magnus_Died") == 0 and
         npcUtil.tradeHas(trade, 13569) and
         npcUtil.popFromQM(player, npc, ID.mob.LICH_C_MAGNUS, {hide = 0})
     then
@@ -23,9 +23,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getVar("Lich_C_Magnus_Died") == 1 and not player:hasItem(12521) then
+    if player:getCharVar("Lich_C_Magnus_Died") == 1 and not player:hasItem(12521) then
         if npcUtil.giveItem(player, 12521) then
-            player:setVar("Lich_C_Magnus_Died", 0)
+            player:setCharVar("Lich_C_Magnus_Died", 0)
         end
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

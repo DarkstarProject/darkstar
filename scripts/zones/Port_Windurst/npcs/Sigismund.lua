@@ -24,9 +24,9 @@ function onTrigger(player,npc)
         player:startEvent(196,0,546); -- Quest Start
     elseif (starstatus == QUEST_ACCEPTED) then
         player:startEvent(197,0,546); -- Quest Reminder
-    elseif (starstatus == QUEST_COMPLETED and player:getVar("QuestCatchAFallingStar_prog") > 0) then
+    elseif (starstatus == QUEST_COMPLETED and player:getCharVar("QuestCatchAFallingStar_prog") > 0) then
         player:startEvent(200); -- After Quest
-        player:setVar("QuestCatchAFallingStar_prog",0)
+        player:setCharVar("QuestCatchAFallingStar_prog",0)
     else
         player:startEvent(357);
     end
@@ -44,6 +44,6 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,75);
         player:addItem(12316);
         player:messageSpecial(ID.text.ITEM_OBTAINED,12316);
-        player:setVar("QuestCatchAFallingStar_prog",2);
+        player:setCharVar("QuestCatchAFallingStar_prog",2);
     end
 end;

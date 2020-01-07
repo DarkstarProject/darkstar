@@ -18,6 +18,7 @@ zones[dsp.zone.FORT_KARUGO_NARUGO_S] =
         SPONDULIX_SHOP_DIALOG    = 7204, -- Spondulix comes all the way from Boodlix's Emporium to help Tarutaru and Mithra. I can help you, too! You have gil, no?
         LOGGING_IS_POSSIBLE_HERE = 7671, -- Logging is possible here if you have <item>.
         ITEM_DELIVERY_DIALOG     = 8110, -- Deliveries! We're open for business!
+        COMMON_SENSE_SURVIVAL    = 9189, -- It appears that you have arrived at a new survival guide provided by the Servicemen's Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

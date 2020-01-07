@@ -15,7 +15,7 @@ function onTrigger(player, npc)
     local currentTime = VanadielHour()
 
     if currentTime >= 22 or currentTime <= 4 then
-        if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON) == QUEST_ACCEPTED and player:getVar("SaveMySon_Event") == 0 then
+        if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SAVE_MY_SON) == QUEST_ACCEPTED and player:getCharVar("SaveMySon_Event") == 0 then
             player:startEvent(0)
         else
             player:messageSpecial(ID.text.NOW_THAT_NIGHT_HAS_FALLEN)
@@ -30,6 +30,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 0 then
-        player:setVar("SaveMySon_Event", 1)
+        player:setCharVar("SaveMySon_Event", 1)
     end
 end

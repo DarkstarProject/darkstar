@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(player:getNation()) == 15 and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(6);
     elseif (EventTriggerBCNM(player,npc)) then
         return 1;
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 6) then
-        player:setVar("MissionStatus",3);
+        player:setCharVar("MissionStatus",3);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

@@ -14,10 +14,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 1) then
         player:addKeyItem(dsp.ki.FIGURE_OF_TITAN);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FIGURE_OF_TITAN);
-        player:setVar("MissionStatus",2);
+        player:setCharVar("MissionStatus",2);
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end

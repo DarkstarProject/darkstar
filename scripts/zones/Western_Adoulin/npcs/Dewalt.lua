@@ -14,18 +14,18 @@ end;
 function onTrigger(player,npc)
     local DELM = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.DONT_EVER_LEAF_ME);
     local FOOL = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.FLAVORS_OF_OUR_LIVES);
-    if ((DELM == QUEST_ACCEPTED) and (player:getVar("DELM_Dewalt_Branch") < 1)) then
+    if ((DELM == QUEST_ACCEPTED) and (player:getCharVar("DELM_Dewalt_Branch") < 1)) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
         player:startEvent(5013);
-    elseif ((FOOL == QUEST_ACCEPTED) and ((player:getVar("FOOL_Status") == 1) or (player:getVar("FOOL_Status") == 2)))  then
-        if (player:getVar("FOOL_Status") == 1) then
+    elseif ((FOOL == QUEST_ACCEPTED) and ((player:getCharVar("FOOL_Status") == 1) or (player:getCharVar("FOOL_Status") == 2)))  then
+        if (player:getCharVar("FOOL_Status") == 1) then
             -- Progresses Quest: 'Flavors of Our Lives'
             player:startEvent(85);
         else
             -- Reminds player of hint for Quest: 'Flavors of Our Lives'
             player:startEvent(105);
         end
-    elseif ((DELM == QUEST_ACCEPTED) and (player:getVar("DELM_Dewalt_Branch") < 2)) then
+    elseif ((DELM == QUEST_ACCEPTED) and (player:getCharVar("DELM_Dewalt_Branch") < 2)) then
         -- Reminds player of hint for Quest: 'Dont Ever Leaf Me'
         player:startEvent(5014);
     else
@@ -40,9 +40,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 5013) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
-        player:setVar("DELM_Dewalt_Branch", 1);
+        player:setCharVar("DELM_Dewalt_Branch", 1);
     elseif (csid == 85) then
         -- Progresses Quest: 'Flavors of Our Lives'
-        player:setVar("FOOL_Status", 3);
+        player:setCharVar("FOOL_Status", 3);
     end
 end;

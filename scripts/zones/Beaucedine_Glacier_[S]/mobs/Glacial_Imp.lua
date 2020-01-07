@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Beaucedine Glacier (S)
---  MOB: Glacial Imp
+-- Area: Beaucedine Glacier [S]
+--  Mob: Glacial Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

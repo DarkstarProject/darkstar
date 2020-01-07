@@ -17,8 +17,9 @@ zones[dsp.zone.MAMOOK] =
         KEYITEM_OBTAINED         = 6391, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET   = 7049, -- You can't fish here.
         LOGGING_IS_POSSIBLE_HERE = 7534, -- Logging is possible here if you have <item>.
-        SICKLY_SWEET             = 8661, -- A sickly sweet fragrance pervades the air...
-        DRAWS_NEAR               = 8665, -- Something draws near!
+        SICKLY_SWEET             = 8662, -- A sickly sweet fragrance pervades the air...
+        DRAWS_NEAR               = 8666, -- Something draws near!
+        COMMON_SENSE_SURVIVAL    = 9537, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

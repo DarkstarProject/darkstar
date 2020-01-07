@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---   Mob: Royal_Palliator
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Royal Palliator
 -----------------------------------
 
 -- -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
---  MOB: Jaded Jody
+--  Mob: Jaded Jody
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

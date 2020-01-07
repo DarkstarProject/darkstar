@@ -29,7 +29,7 @@ function onZoneIn(player,prevZone)
         player:setPos(274,-82,-62 ,180);
 
     elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS) then
-        if (player:getVar("cspromy3") == 1) then
+        if (player:getCharVar("cspromy3") == 1) then
             if (prevZone == dsp.zone.LA_THEINE_PLATEAU) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
                     cs = 155;
@@ -55,25 +55,25 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x) -- Holla
-            player:setVar("option",1);
+            player:setCharVar("option",1);
             player:startEvent(103);
         end,
         [2] = function (x) -- Mea
-            player:setVar("option",1);
+            player:setCharVar("option",1);
             player:startEvent(104);
         end,
         [3] = function (x) -- Dem
-            player:setVar("option",1);
+            player:setCharVar("option",1);
             player:startEvent(105);
         end,
         [4] = function (x)
-            player:setVar("option",2);
+            player:setCharVar("option",2);
             player:startEvent(103);
         end,
         [5] = function (x)
-            if (player:getVar("MeaChipRegistration") == 1) then
+            if (player:getCharVar("MeaChipRegistration") == 1) then
                 local Rand = math.random(1,100);
-                if (Rand <= 95 or player:getVar("LastSkyWarpMea") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
+                if (Rand <= 95 or player:getCharVar("LastSkyWarpMea") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
                     player:startEvent(161); -- To Sky
                 else
                     player:startEvent(169); -- Chip Breaks!
@@ -83,9 +83,9 @@ function onRegionEnter(player,region)
             end
         end,
         [6] = function (x)
-            if (player:getVar("HollaChipRegistration") == 1) then
+            if (player:getCharVar("HollaChipRegistration") == 1) then
                 local Rand = math.random(1,100);
-                if (Rand <= 95 or player:getVar("LastSkyWarpHolla") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
+                if (Rand <= 95 or player:getCharVar("LastSkyWarpHolla") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
                     player:startEvent(161); -- To Sky
                 else
                     player:startEvent(170); -- Chip Breaks!
@@ -95,9 +95,9 @@ function onRegionEnter(player,region)
             end
         end,
         [7] = function (x)
-            if (player:getVar("DemChipRegistration") == 1) then
+            if (player:getCharVar("DemChipRegistration") == 1) then
                 local Rand = math.random(1,100);
-                if (Rand <= 95 or player:getVar("LastSkyWarpDem") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
+                if (Rand <= 95 or player:getCharVar("LastSkyWarpDem") ~= tonumber(os.date("%j"))) then -- 5% Chance chip breaks
                     player:startEvent(161); -- To Sky
                 else
                     player:startEvent(171); -- Chip Breaks!
@@ -124,8 +124,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 105 and option == 1) then
         player:setPos(139.974, 19.103, 219.989, 128, 108);     -- To Konschtat Highlands {R}
     elseif (csid == 155) then
-        player:setVar("cspromy3",0)
-        player:setVar("cslastpromy",1)
+        player:setCharVar("cspromy3",0)
+        player:setCharVar("cslastpromy",1)
         if (not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
             -- print("shouldbezonedtodem")
             player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
@@ -137,21 +137,21 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 161 and option == 1) then
         if (player:getPreviousZone() == dsp.zone.LA_THEINE_PLATEAU) then -- Holla
-            player:setVar("LastSkyWarpHolla", tonumber(os.date("%j")));
+            player:setCharVar("LastSkyWarpHolla", tonumber(os.date("%j")));
         elseif (player:getPreviousZone() == dsp.zone.KONSCHTAT_HIGHLANDS) then -- Dem
-            player:setVar("LastSkyWarpDem", tonumber(os.date("%j")));
+            player:setCharVar("LastSkyWarpDem", tonumber(os.date("%j")));
         elseif (player:getPreviousZone() == dsp.zone.TAHRONGI_CANYON) then -- Mea
-            player:setVar("LastSkyWarpMea", tonumber(os.date("%j")));
+            player:setCharVar("LastSkyWarpMea", tonumber(os.date("%j")));
         end
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 169 and option == 1) then
-        player:setVar("MeaChipRegistration",0);
+        player:setCharVar("MeaChipRegistration",0);
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 170 and option == 1) then
-        player:setVar("HollaChipRegistration",0);
+        player:setCharVar("HollaChipRegistration",0);
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 171 and option == 1) then
-        player:setVar("DemChipRegistration",0);
+        player:setCharVar("DemChipRegistration",0);
         dsp.teleport.to(player, dsp.teleport.id.SKY);
     end
 end;

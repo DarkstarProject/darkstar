@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  NM:  Blubbery Bulge
+--   NM: Blubbery Bulge
 -- Involved in Quest: The Miraculous Dale
 -----------------------------------
 

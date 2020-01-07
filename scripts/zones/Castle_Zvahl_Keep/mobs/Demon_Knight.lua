@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Demon_Knight
+--  Mob: Demon Knight
 -- Note: PH for Count Bifrons
 -----------------------------------
 local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");

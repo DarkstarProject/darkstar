@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields (110)
---  HMN: Simurgh
+--  HNM: Simurgh
 -----------------------------------
 mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/titles")

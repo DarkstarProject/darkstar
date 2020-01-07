@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Castle Oztroja (S)
+-- Area: Castle Oztroja [S]
 --   NM: Maa Illmu the Bestower
 -- TODO:
 --  Test what spells it casts at what HPP.

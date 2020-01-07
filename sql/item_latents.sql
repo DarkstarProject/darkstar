@@ -31,6 +31,8 @@ INSERT INTO `item_latents` VALUES(10293, 26, 50, 50, 31);   -- Rng. Acc.+50
 INSERT INTO `item_latents` VALUES(10293, 30, 50, 50, 31);   -- Mag. Acc.+50
 -- INSERT INTO `item_latents` VALUES(10293, ??, -1, 50, 31); -- Initiate and below: Likelihood of synthesis material loss -1%
 
+INSERT INTO `item_latents` VALUES(10670, 68, 10, 13, 58);  -- WAR AF2 +2 Body Reduces evasion penalty by 10 if Aggressor Active
+
 INSERT INTO `item_latents` VALUES(10679, 8, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10679, 9, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10679, 10, 10, 10, 0);
@@ -38,6 +40,7 @@ INSERT INTO `item_latents` VALUES(10679, 11, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10719, 12, 10, 11, 0);
 INSERT INTO `item_latents` VALUES(10719, 13, 10, 11, 0);
 INSERT INTO `item_latents` VALUES(10719, 14, 10, 11, 0);
+INSERT INTO `item_latents` VALUES(10730, 63, 10, 13, 56);  -- WAR AF2 +2 Feet Reduces defense penalty by 10% if Berserk Active
 
 -- -------------------------------------------------------
 -- Abyss Sollerets +2
@@ -1255,7 +1258,7 @@ INSERT INTO `item_latents` VALUES(14448, 10, 6, 1, 71);     -- VIT+6 when HP >71
 -- Unicorn Harness +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14449, 10, 7, 1, 71);     -- VIT+7 when HP >71%
-
+INSERT INTO `item_latents` VALUES(14500, 68, 10, 13, 58);  -- WAR AF2 +1 Body Reduces evasion penalty by 10 if Aggressor Active
 INSERT INTO `item_latents` VALUES(14509, 8, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(14509, 9, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(14509, 10, 8, 10, 0);
@@ -1416,6 +1419,8 @@ INSERT INTO `item_latents` VALUES(15069, 385, 200, 48, 0);  -- Augments "Shield 
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15084, 110, 10, 26, 1);   -- Nighttime: Parry +10
 
+INSERT INTO `item_latents` VALUES(15087, 68, 10, 13, 58);  -- WAR AF2 Body Reduces evasion penalty by 10 if Aggressor Active
+
 INSERT INTO `item_latents` VALUES(15096, 8, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 9, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 10, 8, 10, 0);
@@ -1442,6 +1447,8 @@ INSERT INTO `item_latents` VALUES(15126, 14, 8, 11, 0);
 -- Koga Hakama
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15129, 68, 10, 26, 1);    -- Nighttime: EVA +10
+
+INSERT INTO `item_latents` VALUES(15132, 63, 10, 13, 56);  -- WAR AF2 Feet Reduces defense penalty by 10% if Berserk Active
 
 -- -------------------------------------------------------
 -- Abyss Sollerets
@@ -1702,6 +1709,8 @@ INSERT INTO `item_latents` VALUES(15589, 14, 8, 11, 0);
 -- Koga Hakama +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15592, 68, 12, 26, 2);    -- Dusk - Dawn: EVA +12
+
+INSERT INTO `item_latents` VALUES(15665, 63, 10, 13, 56);  -- WAR AF2 +1 Feet Reduces defense penalty by 10% if Berserk Active
 
 -- -------------------------------------------------------
 -- Abyss Sollerets +1
@@ -3226,6 +3235,11 @@ INSERT INTO `item_latents` VALUES(22118, 174, 5, 13, 198);  -- Venery Bow: Minue
 INSERT INTO `item_latents` VALUES(22118, 944, 5, 13, 198);  -- Venery Bow: Minuet: "Conserve TP"+5
 -- INSERT INTO `item_latents` VALUES(22120, 24, ??, ??, 0); -- Imati: Unity Ranking: Ranged Attack+20~30
 -- INSERT INTO `item_latents` VALUES(22121, 24, ??, ??, 0); -- Imati +1: Unity Ranking: Ranged Attack+20~30
+-- INSERT INTO `item_latents` VALUES(22143, ??, 500, ??, ??); -- Fomalhaut: "TP Bonus"+500 (only applied to Marksmanship weapon skills)
+-- INSERT INTO `item_latents` VALUES(22147, 26, 10, ??, 0); -- Scout's Crossbow: (D): Ranged Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22147, 30, 10, ??, 0); -- Scout's Crossbow: (D): Magic Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22148, 26, 10, ??, 0); -- Arke Crossbow: (D): Ranged Accuracy+10
+-- INSERT INTO `item_latents` VALUES(22148, 30, 10, ??, 0); -- Arke Crossbow: (D): Magic Accuracy+10
 -- INSERT INTO `item_latents` VALUES(22254, 8, ??, ??, 0);  -- Seething Bomblet: Unity ranking: STR+1～5
 -- INSERT INTO `item_latents` VALUES(22255, 8, ??, ??, 0);  -- Seething Bomblet +1: Unity ranking: STR+1～5
 -- INSERT INTO `item_latents` VALUES(22266, 288, ??, ??, 0); -- Antitail: Unity Ranking: "Double Attack"+1~3%
@@ -3236,12 +3250,48 @@ INSERT INTO `item_latents` VALUES(22118, 944, 5, 13, 198);  -- Venery Bow: Minue
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(23320, 169, 25, 26, 2);   -- Dusk to dawn: Movement speed +25%
 
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 1);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (FIRE)
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 2);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (EARTH)
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 3);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (WATER)
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 4);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (WIND)
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 5);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (ICE)
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 6);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (THUNDER)
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 7);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (LIGHT)
+INSERT INTO `item_latents` VALUES(23350, 399, 17, 52, 8);   -- Pedagogy Loafers+2: Weather: Enhances Celerity and Alacrity Effect +17% (DARK)
+
+INSERT INTO `item_latents` VALUES(23532, 518, 15, 13, 57); -- WAR AF2 119 +3 Hands Defender Shield Rate +15
 -- -------------------------------------------------------
 -- Hachiya Kyahan +3
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(23655, 169, 25, 26, 2);   -- Dusk to dawn: Movement speed +25%
 
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 1);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (FIRE)
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 2);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (EARTH)
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 3);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (WATER)
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 4);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (WIND)
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 5);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (ICE)
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 6);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (THUNDER)
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 7);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (LIGHT)
+INSERT INTO `item_latents` VALUES(23685, 399, 18, 52, 8);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (DARK)
 INSERT INTO `item_latents` VALUES(27342, 63, 10, 13, 64);   -- Fallen's Sollerets, "Last Resort"+1
 INSERT INTO `item_latents` VALUES(27343, 63, 10, 13, 64);   -- Fallen's Sollerets +1, "Last Resort"+1
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 1);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (FIRE)
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 2);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (EARTH)
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 3);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (WATER)
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 4);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (WIND)
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 5);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (ICE)
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 6);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (THUNDER)
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 7);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (LIGHT)
+INSERT INTO `item_latents` VALUES(27366, 399, 15, 52, 8);   -- Pedagogy Loafers: Weather: Enhances Celerity and Alacrity Effect +15% (DARK)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 1);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (FIRE)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 2);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (EARTH)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 3);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (WATER)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 4);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (WIND)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 5);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (ICE)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 6);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (THUNDER)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 7);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (LIGHT)
+INSERT INTO `item_latents` VALUES(27367, 399, 16, 52, 8);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (DARK)
 INSERT INTO `item_latents` VALUES(28235, 169, 25, 26, 2);   -- Hachiya Kyahan: Dusk to dawn: Movement speed +25%
 INSERT INTO `item_latents` VALUES(28256, 169, 25, 26, 2);   -- Hachiya Kyahan +1: Dusk to dawn: Movement speed +25%
+
+INSERT INTO `item_latents` VALUES(23917, 518, 10, 13, 57); -- WAR AF2 119 +2 Hands Defender Shield Rate +10

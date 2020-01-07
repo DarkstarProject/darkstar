@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE) == QUEST_ACCEPTED and player:getVar("ChocoboOnTheLoose") < 2) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHOCOBO_ON_THE_LOOSE) == QUEST_ACCEPTED and player:getCharVar("ChocoboOnTheLoose") < 2) then
         player:startEvent(209);
     else
         player:messageSpecial(ID.text.CHOCOBO_TRACKS);
@@ -25,6 +25,6 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 209) then
-        player:setVar("ChocoboOnTheLoose",2);
+        player:setCharVar("ChocoboOnTheLoose",2);
     end
 end;

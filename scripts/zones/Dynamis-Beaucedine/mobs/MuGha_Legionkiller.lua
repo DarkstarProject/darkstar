@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: MuGha_Legionkiller
+-- Area: Dynamis - Beaucedine
+--  Mob: MuGha Legionkiller
 -----------------------------------
 mixins =
 {
@@ -8,10 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("dynamis_currency", 1455)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

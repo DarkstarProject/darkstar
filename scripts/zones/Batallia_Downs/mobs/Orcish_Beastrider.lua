@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Beastrider
+--  Mob: Orcish Beastrider
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: River Crab
+--  Mob: River Crab
 -- Note: PH for Duke Decapod
 -----------------------------------
 require("scripts/globals/regimes")

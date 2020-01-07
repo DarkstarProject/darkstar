@@ -32,7 +32,7 @@ function onZoneIn(player,prevZone)
         else
             player:setPos(610.542,-28.547,356.247,122);
         end
-    elseif (player:getVar("threemenandaclosetCS") == 2 and prevZone == dsp.zone.AHT_URHGAN_WHITEGATE) then
+    elseif (player:getCharVar("threemenandaclosetCS") == 2 and prevZone == dsp.zone.AHT_URHGAN_WHITEGATE) then
         cs = 510;
     end
     return cs;
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     -- printf("Finish CSID: %u",csid);
     -- printf("Finish RESULT: %u",option);
     if (csid == 510) then
-        player:setVar("threemenandaclosetCS",3);
+        player:setCharVar("threemenandaclosetCS",3);
     elseif (csid == 11) then
         player:startEvent(21);
     elseif (csid == 21) then
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 22) then
         player:completeMission(TOAU,dsp.mission.id.toau.UNRAVELING_REASON);
         player:setTitle(dsp.title.ENDYMION_PARATROOPER);
-        player:setVar("TOAUM40_STARTDAY", 0);
+        player:setCharVar("TOAUM40_STARTDAY", 0);
         player:addMission(TOAU,dsp.mission.id.toau.LIGHT_OF_JUDGMENT);
     end
 end;

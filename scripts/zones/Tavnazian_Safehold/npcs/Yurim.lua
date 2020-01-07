@@ -58,7 +58,7 @@ local nosTrades =
 
 function onTrade(player,npc,trade)
     local nameOfScience  = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.IN_THE_NAME_OF_SCIENCE)
-    local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
+    local itemInProgress = player:getCharVar("NAME_OF_SCIENCE_target")
     
     if itemInProgress > 0 and npcUtil.tradeHas(trade, nosTrades[itemInProgress].organs) then
         player:setLocalVar("NAME_OF_SCIENCE_complete", itemInProgress)
@@ -68,7 +68,7 @@ function onTrade(player,npc,trade)
     elseif (nameOfScience == QUEST_ACCEPTED or nameOfScience == QUEST_COMPLETED) and itemInProgress == 0 then
         for k, v in pairs(nosTrades) do
             if npcUtil.tradeHas(trade, v.base) then
-                player:setVar("NAME_OF_SCIENCE_target", k)
+                player:setCharVar("NAME_OF_SCIENCE_target", k)
                 player:startEvent(526, unpack(v.base))
                 break
             end
@@ -80,7 +80,7 @@ function onTrigger(player,npc)
     -- IN THE NAME OF SCIENCE
     if player:hasCompletedMission(COP, dsp.mission.id.cop.THE_WARRIOR_S_PATH) then
         local nameOfScience  = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.IN_THE_NAME_OF_SCIENCE)
-        local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
+        local itemInProgress = player:getCharVar("NAME_OF_SCIENCE_target")
 
         if nameOfScience == QUEST_AVAILABLE then
             player:startEvent(524, obi, earring, gorget)
@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 526 then
         player:confirmTrade()
     elseif csid == 529 then
-        local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
+        local itemInProgress = player:getCharVar("NAME_OF_SCIENCE_target")
         local itemComplete   = player:getLocalVar("NAME_OF_SCIENCE_complete")
         
         if itemComplete > 0 and itemInProgress == itemComplete then

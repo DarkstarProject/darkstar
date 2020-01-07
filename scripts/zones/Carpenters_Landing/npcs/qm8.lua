@@ -13,10 +13,10 @@ end
 
 function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP)
-    local k1 = player:getVar("Cryptonberry_Assassins-1_KILL")
-    local k2 = player:getVar("Cryptonberry_Assassins-2_KILL")
-    local k3 = player:getVar("Cryptonberry_Assassins-3_KILL")
-    local executorKill = player:getVar("Cryptonberry_Executor_KILL")
+    local k1 = player:getCharVar("Cryptonberry_Assassins-1_KILL")
+    local k2 = player:getCharVar("Cryptonberry_Assassins-2_KILL")
+    local k3 = player:getCharVar("Cryptonberry_Assassins-3_KILL")
+    local executorKill = player:getCharVar("Cryptonberry_Executor_KILL")
     local executor = GetMobByID(ID.mob.CRYPTONBERRY_EXECUTOR)
     
     if cop == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and (k1 * k2 * k3 * executorKill) == 1 then
@@ -43,9 +43,9 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 37 then
-        player:setVar("Cryptonberry_Executor_KILL", 2)
-        player:setVar("Cryptonberry_Assassins-1_KILL", 0)
-        player:setVar("Cryptonberry_Assassins-2_KILL", 0)
-        player:setVar("Cryptonberry_Assassins-3_KILL", 0)
+        player:setCharVar("Cryptonberry_Executor_KILL", 2)
+        player:setCharVar("Cryptonberry_Assassins-1_KILL", 0)
+        player:setCharVar("Cryptonberry_Assassins-2_KILL", 0)
+        player:setCharVar("Cryptonberry_Assassins-3_KILL", 0)
     end
 end

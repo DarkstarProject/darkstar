@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Poison Leech
+--  Mob: Poison Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

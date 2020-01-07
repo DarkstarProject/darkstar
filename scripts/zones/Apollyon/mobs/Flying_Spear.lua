@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
---  NPC: Flying_Spear
+--  Mob: Flying Spear
 -----------------------------------
 require("scripts/globals/limbus");
 -----------------------------------

@@ -12,9 +12,9 @@ end;
 function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP);
     
-    if (cop == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and not GetMobByID(ID.mob.DALHAM):isSpawned() and player:getVar("COP_Dalham_KILL") == 0) then
+    if (cop == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and not GetMobByID(ID.mob.DALHAM):isSpawned() and player:getCharVar("COP_Dalham_KILL") == 0) then
         SpawnMob(ID.mob.DALHAM):updateClaim(player);
-    elseif (cop == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:getVar("COP_Dalham_KILL") == 1) then
+    elseif (cop == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:getCharVar("COP_Dalham_KILL") == 1) then
         player:startEvent(41);
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
@@ -26,6 +26,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 41) then
-        player:setVar("COP_Dalham_KILL",2);
+        player:setCharVar("COP_Dalham_KILL",2);
     end
 end;

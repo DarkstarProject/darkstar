@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Killing Weapon
+--  Mob: Killing Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

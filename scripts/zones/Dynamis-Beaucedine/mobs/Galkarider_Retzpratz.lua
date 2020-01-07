@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Galkarider_Retzpratz
+-- Area: Dynamis - Beaucedine
+--  Mob: Galkarider Retzpratz
 -----------------------------------
 mixins =
 {
@@ -8,11 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_ORC)
-    mob:setLocalVar("dynamis_currency", 1452)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

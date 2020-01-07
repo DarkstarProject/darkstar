@@ -10,25 +10,31 @@ zones[dsp.zone.XARCABARD] =
 {
     text =
     {
-        NOTHING_HAPPENS                = 119, -- Nothing happens...
-        ITEM_CANNOT_BE_OBTAINED        = 6395, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED                  = 6401, -- Obtained: <item>.
-        GIL_OBTAINED                   = 6402, -- Obtained <number> gil.
-        KEYITEM_OBTAINED               = 6404, -- Obtained key item: <keyitem>.
-        KEYITEM_LOST                   = 6405, -- Lost key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY        = 6415, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE                  = 7062, -- Tallying conquest results...
-        BEASTMEN_BANNER                = 7141, -- There was a curse on the beastmen's banner!
-        ALREADY_OBTAINED_TELE          = 7371, -- You already possess the gate crystal for this telepoint.
-        CONQUEST                       = 7384, -- You've earned conquest points!
-        ONLY_SHARDS                    = 7717, -- Only shards of ice lie upon the ground.
-        BLOCKS_OF_ICE                  = 7718, -- You can hear blocks of ice moving from deep within the cave.
-        PERENNIAL_SNOW_DEFAULT         = 7719, -- How many millennia has this snow been here, hidden from the rays of the sun?
-        PERENNIAL_SNOW_WAIT            = 7721, -- The <keyitem> you buried is not yet purified.
-        YOU_CANNOT_ENTER_DYNAMIS       = 7848, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
-        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7850, -- Players who have not reached level <number> are prohibited from entering Dynamis.
-        UNUSUAL_ARRANGEMENT_OF_PEBBLES = 7861, -- There is an unusual arrangement of pebbles here.
-        REGIME_REGISTERED              = 10351, -- New training regime registered!
+        NOTHING_HAPPENS                = 119,   -- Nothing happens...
+        ITEM_CANNOT_BE_OBTAINED        = 6395,  -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                  = 6401,  -- Obtained: <item>.
+        GIL_OBTAINED                   = 6402,  -- Obtained <number> gil.
+        KEYITEM_OBTAINED               = 6404,  -- Obtained key item: <keyitem>.
+        KEYITEM_LOST                   = 6405,  -- Lost key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY        = 6415,  -- There is nothing out of the ordinary here.
+        CONQUEST_BASE                  = 7062,  -- Tallying conquest results...
+        BEASTMEN_BANNER                = 7141,  -- There was a curse on the beastmen's banner!
+        ALREADY_OBTAINED_TELE          = 7371,  -- You already possess the gate crystal for this telepoint.
+        CONQUEST                       = 7384,  -- You've earned conquest points!
+        ONLY_SHARDS                    = 7717,  -- Only shards of ice lie upon the ground.
+        BLOCKS_OF_ICE                  = 7718,  -- You can hear blocks of ice moving from deep within the cave.
+        PERENNIAL_SNOW_DEFAULT         = 7719,  -- How many millennia has this snow been here, hidden from the rays of the sun?
+        PERENNIAL_SNOW_WAIT            = 7721,  -- The <keyitem> you buried is not yet purified.
+        YOU_CANNOT_ENTER_DYNAMIS       = 7843,  -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
+        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7845,  -- Players who have not reached level <number> are prohibited from entering Dynamis.
+        DYNA_NPC_DEFAULT_MESSAGE       = 7856,  -- There is an unusual arrangement of pebbles here.
+        PLAYER_OBTAINS_ITEM            = 8160,  -- <name> obtains <item>!
+        UNABLE_TO_OBTAIN_ITEM          = 8161,  -- You were unable to obtain the item.
+        PLAYER_OBTAINS_TEMP_ITEM       = 8162,  -- <name> obtains the temporary item: <item>!
+        ALREADY_POSSESS_TEMP           = 8163,  -- You already possess that temporary item.
+        NO_COMBINATION                 = 8168,  -- You were unable to enter a combination.
+        REGIME_REGISTERED              = 10346, -- New training regime registered!
+        COMMON_SENSE_SURVIVAL          = 11528, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -64,10 +70,11 @@ zones[dsp.zone.XARCABARD] =
     },
     npc =
     {
-        OVERSEER_BASE      = 17236289,
-        BOREAL_TIGER_QM    = 17236307,
-        BOREAL_COEURL_QM   = 17236308,
-        BOREAL_HOUND_QM    = 17236309,
+        CASKET_BASE        = 17236255,
+        OVERSEER_BASE      = 17236290,
+        BOREAL_TIGER_QM    = 17236308,
+        BOREAL_COEURL_QM   = 17236309,
+        BOREAL_HOUND_QM    = 17236310,
     },
 }
 

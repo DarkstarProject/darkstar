@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Jelly
+--  Mob: Jelly
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

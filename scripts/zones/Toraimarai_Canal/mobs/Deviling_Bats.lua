@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Toraimorai Canal
---  MOB: Deviling Bat
+-- Area: Toraimarai Canal
+--  Mob: Deviling Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

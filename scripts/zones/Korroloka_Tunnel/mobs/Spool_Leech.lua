@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Spool Leech
+--  Mob: Spool Leech
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

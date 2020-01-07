@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Norg/IDs");
 
 function onTrade(player,npc,trade)
 
-    local questItem = player:getVar("ForgeYourDestiny_Event");
+    local questItem = player:getCharVar("ForgeYourDestiny_Event");
     local checkItem = testflag(tonumber(questItem),0x02);
 
     if (checkItem == true) then
@@ -38,13 +38,13 @@ end;
 
 function onTrigger(player,npc)
 
-    local swordTimer = player:getVar("ForgeYourDestiny_timer")
+    local swordTimer = player:getCharVar("ForgeYourDestiny_timer")
 
     if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and swordTimer == 0) then
         if (player:hasItem(1153)) then
             player:startEvent(48,1153); -- Sacred Branch
         elseif (player:hasItem(1198) == false) then
-            local questItem = player:getVar("ForgeYourDestiny_Event");
+            local questItem = player:getCharVar("ForgeYourDestiny_Event");
             local checkItem = testflag(tonumber(questItem),0x02);
 
             if (checkItem == false) then
@@ -67,13 +67,13 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    local questItem = player:getVar("ForgeYourDestiny_Event");
+    local questItem = player:getCharVar("ForgeYourDestiny_Event");
 
     if (csid == 40) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1198);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 1198); -- Sacred Sprig
-            player:setVar("ForgeYourDestiny_Event",questItem + 0x02);
+            player:setCharVar("ForgeYourDestiny_Event",questItem + 0x02);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end

@@ -31,6 +31,7 @@ zones[dsp.zone.CAEDARVA_MIRE] =
         JAZARAATS_HEADSTONE      = 7524, -- The name Sir Jazaraat is engraved on the headstone...
         SEAPRINCES_TOMBSTONE     = 8048, -- It appears to be the grave of a great soul to an age long past.
         HOMEPOINT_SET            = 8974, -- Home point set!
+        COMMON_SENSE_SURVIVAL    = 9054, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

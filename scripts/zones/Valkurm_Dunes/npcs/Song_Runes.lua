@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
     -- PATH OF THE BARD (Bard Flag)
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PATH_OF_THE_BARD) == QUEST_AVAILABLE and player:getVar("PathOfTheBard_Event") == 1) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PATH_OF_THE_BARD) == QUEST_AVAILABLE and player:getCharVar("PathOfTheBard_Event") == 1) then
         player:startEvent(2);
 
     -- DEFAULT DIALOG
@@ -35,7 +35,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.WANDERING_MINSTREL);
         player:unlockJob(dsp.job.BRD); -- Bard
         player:messageSpecial(ID.text.UNLOCK_BARD);  --You can now become a bard!
-        player:setVar("PathOfTheBard_Event",0);
+        player:setCharVar("PathOfTheBard_Event",0);
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,dsp.quest.id.jeuno.PATH_OF_THE_BARD);
     end

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Clan_Reaper_Grunt
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Clan Reaper Grunt
 -----------------------------------
 
 -- -----------------------------------

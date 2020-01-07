@@ -198,8 +198,18 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
         case EFFECT_SLEEP:
         case EFFECT_SLEEP_II:
         case EFFECT_LULLABY:
-            if (m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
+        {
+            if (m_POwner->hasImmunity(IMMUNITY_SLEEP))
+                return false;
+
+            uint16 subPower = PStatusEffect->GetSubPower();
+            if (subPower == ELEMENT_LIGHT && m_POwner->hasImmunity(IMMUNITY_LIGHT_SLEEP))
+                return false;
+            if (subPower == ELEMENT_DARK && m_POwner->hasImmunity(IMMUNITY_DARK_SLEEP))
+                return false;
+
             break;
+        }
         case EFFECT_WEIGHT:
             if (m_POwner->hasImmunity(IMMUNITY_GRAVITY)) return false;
             break;
@@ -1365,7 +1375,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
         auto realduration = std::chrono::milliseconds(PStatusEffect->GetDuration()) +
             PStatusEffect->GetStartTime() - server_clock::now();
 
-        if (realduration > 0s)
+        if (realduration > 0s || PStatusEffect->GetDuration() == 0)
         {
             const char* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier, flags, timestamp) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u);";
 

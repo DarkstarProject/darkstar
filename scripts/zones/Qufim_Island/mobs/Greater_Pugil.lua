@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Greater Pugil
+--  Mob: Greater Pugil
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

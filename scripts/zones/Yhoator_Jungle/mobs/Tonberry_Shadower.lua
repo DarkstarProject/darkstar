@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Tonberry Shadower
+--  Mob: Tonberry Shadower
 -- Note: PH for Hoar-knuckled Rimberry
 -----------------------------------
 local ID = require("scripts/zones/Yhoator_Jungle/IDs")

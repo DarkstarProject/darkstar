@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Toraimorai Canal
+-- Area: Toraimarai Canal
 --   NM: Konjac
 -----------------------------------
 require("scripts/globals/mobs")

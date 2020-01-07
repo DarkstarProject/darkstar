@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Witchetty Grub
+--  Mob: Witchetty Grub
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

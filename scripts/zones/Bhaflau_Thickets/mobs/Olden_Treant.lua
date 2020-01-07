@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  MOB: Olden Treant
+--  Mob: Olden Treant
 -- Note: Place holder Emergent Elm
 -----------------------------------
 local ID = require("scripts/zones/Bhaflau_Thickets/IDs");

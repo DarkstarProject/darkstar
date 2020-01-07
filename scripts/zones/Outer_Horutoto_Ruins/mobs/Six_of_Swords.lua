@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Outer Horutoto
---  MOB: Six of Swords
+-- Area: Outer Horutoto Ruins
+--  Mob: Six of Swords
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

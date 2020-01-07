@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Hippomaritimus
+--  Mob: Hippomaritimus
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

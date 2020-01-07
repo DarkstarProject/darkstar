@@ -45,15 +45,15 @@ Port Windurst (West to East)
 ]]--
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, {{"gil", 300}}) and player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
+    if npcUtil.tradeHas(trade, {{"gil", 300}}) and player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(794)
     end
 end
 
 function onTrigger(player,npc)
-    local lureWindurst = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST)
-    local wildcatWindurst = player:getVar("WildcatWindurst")
+    local lureWindurst = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT)
+    local wildcatWindurst = player:getCharVar("WildcatWindurst")
     
     if lureWindurst ~= QUEST_COMPLETED and ENABLE_TOAU == 1 then
         if lureWindurst == QUEST_AVAILABLE then
@@ -79,10 +79,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 736 then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST)
-        player:setVar("WildcatWindurst", 0)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT)
+        player:setCharVar("WildcatWindurst", 0)
         npcUtil.giveKeyItem(player, dsp.ki.GREEN_SENTINEL_BADGE)
-    elseif csid == 739 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST, {fame=150, keyItem=dsp.ki.GREEN_INVITATION_CARD, var="WildcatWindurst"}) then
+    elseif csid == 739 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT, {fame=150, keyItem=dsp.ki.GREEN_INVITATION_CARD, var="WildcatWindurst"}) then
         player:delKeyItem(dsp.ki.GREEN_SENTINEL_BADGE)
         player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.GREEN_SENTINEL_BADGE)
     elseif csid == 794 then

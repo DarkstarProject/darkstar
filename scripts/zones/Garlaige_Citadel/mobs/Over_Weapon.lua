@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Over Weapon
+--  Mob: Over Weapon
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

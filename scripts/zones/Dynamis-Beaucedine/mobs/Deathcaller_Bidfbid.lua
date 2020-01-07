@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Deathcaller_Bidfbid
+-- Area: Dynamis - Beaucedine
+--  Mob: Deathcaller Bidfbid
 -----------------------------------
 mixins =
 {
@@ -8,11 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
-    mob:setLocalVar("dynamis_currency", 1452)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

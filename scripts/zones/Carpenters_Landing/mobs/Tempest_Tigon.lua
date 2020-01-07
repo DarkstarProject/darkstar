@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---   NM: Tempest Tigron
+--   NM: Tempest Tigon
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

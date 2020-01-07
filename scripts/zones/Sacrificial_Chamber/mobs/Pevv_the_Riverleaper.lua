@@ -1,23 +1,23 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Pevv the Riverleaper
+--  Mob: Pevv the Riverleaper
 -- BCNM: Amphibian Assault
 -----------------------------------
-require("scripts/globals/status");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
 -----------------------------------
 
-function onMobFight(mob,target)
+function onMobFight(mob, target)
     -- spawn pet wyvern and assign it a target
-    local mobId = mob:getID();
-    local pet = GetMobByID(mobId + 2);
-    if (not pet:isSpawned()) then
-        SpawnMob(mobId + 2):updateEnmity(target);
-    elseif (pet:getCurrentAction() == dsp.act.ROAMING) then
-        pet:updateEnmity(target);
+    local mobId = mob:getID()
+    local pet = GetMobByID(mobId + 2)
+    if not pet:isSpawned() then
+        SpawnMob(mobId + 2):updateEnmity(target)
+    elseif pet:getCurrentAction() == dsp.act.ROAMING then
+        pet:updateEnmity(target)
     end
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-    -- despawn pet wyvern
-    DespawnMob(mob:getID() + 2);
-end;
+    DespawnMob(mob:getID() + 2)
+end

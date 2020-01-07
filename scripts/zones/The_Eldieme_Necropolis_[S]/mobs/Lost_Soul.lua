@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---  MOB: Lost_Soul
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Lost Soul
 -----------------------------------
 
 -- -----------------------------------

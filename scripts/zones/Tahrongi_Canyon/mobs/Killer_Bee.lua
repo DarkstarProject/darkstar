@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Killer Bee
+--  Mob: Killer Bee
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

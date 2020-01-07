@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     -- BLADE OF DEATH: Chaosbringer
     elseif (
         player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED and
-        player:getVar("ChaosbringerKills") >= 200 and
+        player:getCharVar("ChaosbringerKills") >= 200 and
         npcUtil.tradeHas(trade, 16607)
     ) then
         player:startEvent(10);

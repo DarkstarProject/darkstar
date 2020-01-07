@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     local TrialLog = player:hasKeyItem(dsp.ki.MAGIAN_TRIAL_LOG);
     if (player:getMainLvl() < 30) then
         player:startEvent(10151);
-    elseif (player:getVar("MetGreenMagianMog") == 0 and LearnerLog == false) then
+    elseif (player:getCharVar("MetGreenMagianMog") == 0 and LearnerLog == false) then
         if (TrialLog == false) then
             player:startEvent(10160, 0);
         else
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGIAN_LEARNERS_LOG);
             player:addKeyItem(dsp.ki.MAGIAN_LEARNERS_LOG);
         end
-        player:setVar("MetGreenMagianMog",1);
+        player:setCharVar("MetGreenMagianMog",1);
     --elseif
         --
     end

@@ -20,16 +20,16 @@ function onTrigger(player,npc)
 
     local hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
     local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
-    local WildcatWindurst = player:getVar("WildcatWindurst");
+    local WildcatWindurst = player:getCharVar("WildcatWindurst");
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==4) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status")==4) then
         player:startEvent(873);
-    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,14) == false) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,14) == false) then
         player:startEvent(939);
-    elseif ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
+    elseif ((hatstatus == 1  or player:getCharVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getCharVar("QuestHatInHand_var")),16) == false) then
         player:startEvent(60); -- Show Off Hat
     elseif (MakingHeadlines == 1) then
-        local prog = player:getVar("QuestMakingHeadlines_var");
+        local prog = player:getCharVar("QuestMakingHeadlines_var");
         --  Variable to track if player has talked to 4 NPCs and a door
         --  1 = Kyume
         -- 2 = Yujuju
@@ -56,16 +56,16 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 668) then
-        prog = player:getVar("QuestMakingHeadlines_var");
+        prog = player:getCharVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WATERS_SCOOP);
-        player:setVar("QuestMakingHeadlines_var",prog+1);
+        player:setCharVar("QuestMakingHeadlines_var",prog+1);
     elseif (csid == 60) then  -- Show Off Hat
-        player:addVar("QuestHatInHand_var", 16);
-        player:addVar("QuestHatInHand_count", 1);
+        player:addCharVar("QuestHatInHand_var", 16);
+        player:addCharVar("QuestHatInHand_count", 1);
     elseif (csid == 873) then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",5);
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",5);
     elseif (csid == 939) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",14,true);
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",14,true);
     end
 end;

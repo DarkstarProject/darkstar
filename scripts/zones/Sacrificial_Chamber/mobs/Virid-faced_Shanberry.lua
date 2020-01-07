@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Virid-faced_Shanberry
+--  Mob: Virid-faced Shanberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 mixins =

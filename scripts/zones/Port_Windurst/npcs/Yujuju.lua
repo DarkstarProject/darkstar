@@ -19,14 +19,14 @@ function onTrigger(player,npc)
     end
 
     local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
-    local WildcatWindurst = player:getVar("WildcatWindurst");
+    local WildcatWindurst = player:getCharVar("WildcatWindurst");
 
-    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,19) == false) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,19) == false) then
         player:startEvent(621);
-    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==9) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status")==9) then
         player:startEvent(592);--COP event
     elseif (MakingHeadlines == 1) then
-        local prog = player:getVar("QuestMakingHeadlines_var");
+        local prog = player:getCharVar("QuestMakingHeadlines_var");
         --  Variable to track if player has talked to 4 NPCs and a door
         --  1 = Kyume
         -- 2 = Yujuju
@@ -48,13 +48,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 314) then
-        prog = player:getVar("QuestMakingHeadlines_var");
+        prog = player:getCharVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.PORT_WINDURST_SCOOP);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PORT_WINDURST_SCOOP);
-        player:setVar("QuestMakingHeadlines_var",prog+2);
+        player:setCharVar("QuestMakingHeadlines_var",prog+2);
     elseif (csid == 592)    then
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",10);
+        player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",10);
     elseif (csid == 621) then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",19,true);
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",19,true);
     end
 end;

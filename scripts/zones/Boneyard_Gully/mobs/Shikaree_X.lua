@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Boneyard_Gully
--- Name: Shikaree X
+--  Mob: Shikaree X
 -----------------------------------
 
 function onMobEngaged(mob,target)

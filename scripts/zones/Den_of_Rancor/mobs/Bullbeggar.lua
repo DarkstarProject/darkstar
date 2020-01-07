@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Bullbeggar
+--  Mob: Bullbeggar
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

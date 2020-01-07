@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Sand Crab
+--  Mob: Sand Crab
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

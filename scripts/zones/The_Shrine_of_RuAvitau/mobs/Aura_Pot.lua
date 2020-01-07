@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Shrine of Ru'Avitau
---  MOB: Aura Pot
+-- Area: The Shrine of Ru'Avitau
+--  Mob: Aura Pot
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

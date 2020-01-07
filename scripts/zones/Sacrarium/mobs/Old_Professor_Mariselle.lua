@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Old Professor Mariselle
+--  Mob: Old Professor Mariselle
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -43,8 +43,8 @@ function onMobDeath(mob, player, isKiller)
         end
     end
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
-        player:setVar("PromathiaStatus",4);
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and player:getCharVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
+        player:setCharVar("PromathiaStatus",4);
     end
 
     -- Set random variable for determining Old Prof. Mariselle's next spawn location

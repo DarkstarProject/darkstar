@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
---  MOB: Magmatic Eruca
+--  Mob: Magmatic Eruca
 -- Note: Place Holder Energetic Eruca
 -----------------------------------
 local ID = require("scripts/zones/Mount_Zhayolm/IDs")

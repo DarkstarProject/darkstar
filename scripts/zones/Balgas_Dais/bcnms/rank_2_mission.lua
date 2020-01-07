@@ -41,7 +41,7 @@ function onEventFinish(player, csid, option)
         if player:hasKeyItem(dsp.ki.DARK_KEY) then
             player:delKeyItem(dsp.ki.DARK_KEY)
             npcUtil.giveKeyItem(player, dsp.ki.KINDRED_CREST)
-            player:setVar("MissionStatus", 9)
+            player:setCharVar("MissionStatus", 9)
         end
     end
 end

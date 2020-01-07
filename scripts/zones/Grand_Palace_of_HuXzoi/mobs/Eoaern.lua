@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of Hu'Xzoi
---  MOB: Eo'Aern
+--  Mob: Eo'aern
 -----------------------------------
 mixins = {require("scripts/mixins/families/aern")}
 -----------------------------------

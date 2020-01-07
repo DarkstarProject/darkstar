@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---   NM: Cryptonberry_Assassin
+--   NM: Cryptonberry Assassin
 -- !pos 120.615 -5.457 -390.133 2
 -----------------------------------
 local ID = require("scripts/zones/Carpenters_Landing/IDs")
@@ -41,8 +41,8 @@ function onMobRoam(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") < 2 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:getCharVar("Cryptonberry_Executor_KILL") < 2 then
         local offset = mob:getID() - ID.mob.CRYPTONBERRY_EXECUTOR
-        player:setVar(string.format("Cryptonberry_Assassins-%i_KILL", offset), 1)
+        player:setCharVar(string.format("Cryptonberry_Assassins-%i_KILL", offset), 1)
     end
 end

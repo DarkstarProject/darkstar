@@ -78,7 +78,7 @@ local HQCrystals = {
 
 function isGuildMember(player,guild)
 
-    local guildOK = player:getVar("Guild_Member");
+    local guildOK = player:getCharVar("Guild_Member");
     local bit = {};
 
     for i = 12,1,-1 do
@@ -101,7 +101,7 @@ end;
 -----------------------------------
 
 function signupGuild(player, nbr)
-    player:addVar("Guild_Member", nbr)
+    player:addCharVar("Guild_Member", nbr)
 end;
 
 -----------------------------------
@@ -173,8 +173,8 @@ function tradeTestItem(player,npc,trade,craftID)
         trade:getItemCount() == 1) then
         newRank = player:getSkillRank(craftID) + 1;
         player:tradeComplete();
-        if player:getVar('[GUILD]currentGuild') == guildID + 1 then
-            player:setVar('[GUILD]daily_points',-1);
+        if player:getCharVar('[GUILD]currentGuild') == guildID + 1 then
+            player:setCharVar('[GUILD]daily_points',-1);
         end
     end
 
@@ -222,7 +222,7 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
         end
     end
 
-    player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
+    player:startEvent(csid, player:getCurrency(currency), player:getCharVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
 end
 
 function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
@@ -231,14 +231,14 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
     local text = zones[player:getZoneID()].text
 
     if (bit.tobit(option) == -1 and rank >= 3) then
-        local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
-        player:setVar('[GUILD]currentGuild',guildID + 1);
+        local oldGuild = player:getCharVar('[GUILD]currentGuild') - 1;
+        player:setCharVar('[GUILD]currentGuild',guildID + 1);
 
         if (oldGuild == -1) then
             player:messageSpecial(text.GUILD_NEW_CONTRACT, guildID);
         else
             player:messageSpecial(text.GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
-            player:setVar('[GUILD]daily_points',-1);
+            player:setCharVar('[GUILD]daily_points',-1);
         end
     elseif (category == 3) then -- keyitem
         local ki = keyitems[bit.band(bit.rshift(option, 5), 15) - 1];
@@ -296,7 +296,7 @@ function unionRepresentativeTrade(player, npc, trade, csid, guildID)
     local gpItem, remainingPoints = player:getCurrentGPItem(guildID)
     local text = zones[player:getZoneID()].text
 
-    if (player:getVar('[GUILD]currentGuild') - 1 == guildID) then
+    if (player:getCharVar('[GUILD]currentGuild') - 1 == guildID) then
         if remainingPoints == 0 then
             player:messageText(npc, text.NO_MORE_GP_ELIGIBLE)
         else

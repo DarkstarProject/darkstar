@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Ogre Bat
+--  Mob: Ogre Bat
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

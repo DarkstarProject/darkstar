@@ -12,8 +12,8 @@ end
 
 function onTrigger(player,npc)
     if
-        player:getVar("theTalekeeperGiftCS") == 3 and
-        player:getVar("theTalekeepersGiftKilledNM") < 3 and
+        player:getCharVar("theTalekeeperGiftCS") == 3 and
+        player:getCharVar("theTalekeepersGiftKilledNM") < 3 and
         not GetMobByID(ID.mob.TALEKEEPERS_GIFT_OFFSET + 0):isSpawned() and
         not GetMobByID(ID.mob.TALEKEEPERS_GIFT_OFFSET + 1):isSpawned() and
         not GetMobByID(ID.mob.TALEKEEPERS_GIFT_OFFSET + 2):isSpawned()

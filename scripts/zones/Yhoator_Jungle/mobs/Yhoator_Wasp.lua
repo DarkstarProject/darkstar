@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Yhoator Wasp
+--  Mob: Yhoator Wasp
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

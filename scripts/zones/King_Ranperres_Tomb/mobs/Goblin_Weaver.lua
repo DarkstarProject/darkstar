@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Goblin Weaver
+--  Mob: Goblin Weaver
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bibiki Bay
---  MOB: Jagil
+--  Mob: Jagil
 -- Note: PH for Serra
 -----------------------------------
 local ID = require("scripts/zones/Bibiki_Bay/IDs")

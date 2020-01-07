@@ -32,17 +32,17 @@ function onTrigger(player,npc)
 -- "Father and Son" Event Dialogs
     if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FATHER_AND_SON) == QUEST_ACCEPTED) then
         player:startEvent(542);
-    elseif (player:getVar("aBoysDreamCS") == 2) then
+    elseif (player:getCharVar("aBoysDreamCS") == 2) then
         player:startEvent(50);
-    elseif (player:getVar("aBoysDreamCS") >= 7) then
+    elseif (player:getCharVar("aBoysDreamCS") >= 7) then
         player:startEvent(32);
-    elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)) then
+    elseif (player:getCharVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)) then
         player:startEvent(77);
-    elseif (player:getVar("UnderOathCS") == 5) then
+    elseif (player:getCharVar("UnderOathCS") == 5) then
         player:startEvent(79);
-    elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
+    elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getCharVar("UnderOathCS") == 6) then
         player:startEvent(51);
-    elseif (player:getVar("UnderOathCS") == 8) then
+    elseif (player:getCharVar("UnderOathCS") == 8) then
         player:startEvent(19);
     else
         player:startEvent(76);
@@ -55,13 +55,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 542) then
-        player:setVar("QuestfatherAndSonVar",1);
+        player:setCharVar("QuestfatherAndSonVar",1);
     elseif (csid == 50) then
-        player:setVar("aBoysDreamCS",3);
-    elseif (csid == 32 and player:getVar("aBoysDreamCS") == 7) then
-        player:setVar("aBoysDreamCS",8);
+        player:setCharVar("aBoysDreamCS",3);
+    elseif (csid == 32 and player:getCharVar("aBoysDreamCS") == 7) then
+        player:setCharVar("aBoysDreamCS",8);
     elseif (csid == 77) then
-        player:setVar("UnderOathCS",5)
+        player:setCharVar("UnderOathCS",5)
     end
 end;
 ------- used in expansions

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Beadeaux (S)
---  MOB: Gold Quadav
+-- Area: Beadeaux [S]
+--  Mob: Gold Quadav
 -- Note: PH for Da'Dha Hundredmask
 -----------------------------------
 local ID = require("scripts/zones/Beadeaux_[S]/IDs")

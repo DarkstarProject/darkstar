@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Darter
+--  Mob: Darter
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

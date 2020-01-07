@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus (145)
---  MOB: Yagudo_Mendicant
+--  Mob: Yagudo Mendicant
 -----------------------------------
 local ID = require("scripts/zones/Giddeus/IDs");
 require("scripts/globals/mobs");

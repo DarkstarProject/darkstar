@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
---  NPC: Zlatorog
-
+--  Mob: Zlatorog
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

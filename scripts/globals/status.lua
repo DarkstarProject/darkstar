@@ -839,6 +839,7 @@ dsp.effectFlag =
     DISPELABLE      = 0x0001,
     ERASABLE        = 0x0002,
     ATTACK          = 0x0004,
+    EMPATHY         = 0x0008,
     DAMAGE          = 0x0010,
     DEATH           = 0x0020,
     MAGIC_BEGIN     = 0x0040,
@@ -1105,7 +1106,7 @@ dsp.mod =
     DEATHRES                        = 255,
     AFTERMATH                       = 256,
     PARALYZE                        = 257,
-    MIJIN_GAKURE                    = 258,
+    MIJIN_RERAISE                   = 258,
     DUAL_WIELD                      = 259,
     DOUBLE_ATTACK                   = 288,
     SUBTLE_BLOW                     = 289,
@@ -1513,6 +1514,7 @@ dsp.mod =
     -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT             = 841, -- Generic (all Weaponskills) damage, first hit only.
     WS_NO_DEPLETE                   = 949, -- % chance a Weaponskill depletes no TP.
+    WS_DEX_BONUS                    = 957, -- % bonus to dex_wsc.
 
     -- Circle Abilities Extended Duration from AF/AF+1
     HOLY_CIRCLE_DURATION            = 857,
@@ -1531,12 +1533,15 @@ dsp.mod =
     SNEAK_DURATION                  = 946, -- Additional duration in seconds
     INVISIBLE_DURATION              = 947, -- Additional duration in seconds
     BERSERK_EFFECT                  = 948, -- Conqueror Berserk Effect
+    BERSERK_DURATION                = 954, -- Berserk Duration
+    AGGRESSOR_DURATION              = 955, -- Aggressor Duration
+    DEFENDER_DURATION               = 956, -- Defender Duration
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 954, -- stuff
-    -- SPARE = 955, -- stuff
-    -- SPARE = 956, -- stuff
+    -- SPARE = 958, -- stuff
+    -- SPARE = 959, -- stuff
+    -- SPARE = 960, -- stuff
 };
 
 dsp.latent =
@@ -2208,7 +2213,8 @@ dsp.mobMod =
     CHARMABLE           = 64, -- mob is charmable
     NO_MOVE             = 65, -- Mob will not be able to move
     MULTI_HIT           = 66, -- Mob will have as many swings as defined.
-    NO_AGGRO            = 67  -- If set, mob cannot aggro until unset.
+    NO_AGGRO            = 67, -- If set, mob cannot aggro until unset.
+    ALLI_HATE           = 68  -- Range around target to add alliance member to enmity list.
 }
 
 ------------------------------------
@@ -2704,4 +2710,28 @@ dsp.emoteMode =
     ALL = 0,
     TEXT = 1,
     MOTION = 2
+}
+
+------------------------------------
+-- Relic IDs
+------------------------------------
+
+dsp.relic =
+{
+    SPHARAI       = 0,
+    MANDAU        = 1,
+    EXCALIBUR     = 2,
+    RAGNAROK      = 3,
+    GUTTLER       = 4,
+    BRAVURA       = 5,
+    APOCALYPSE    = 6,
+    GUNGNIR       = 7,
+    KIKOKU        = 8,
+    AMANOMURAKUMO = 9,
+    MJOLLNIR      = 10,
+    CLAUSTRUM     = 11,
+    YOICHINOYUMI  = 12,
+    ANNIHILATOR   = 13,
+    GJALLARHORN   = 14,
+    AEGIS         = 15
 }

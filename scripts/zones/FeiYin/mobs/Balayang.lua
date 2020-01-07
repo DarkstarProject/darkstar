@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Balayang
+--  Mob: Balayang
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

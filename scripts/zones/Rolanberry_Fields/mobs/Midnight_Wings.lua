@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Midnight Wings
+--  Mob: Midnight Wings
 -- Note: PH for Black Triple Stars
 -----------------------------------
 local ID = require("scripts/zones/Rolanberry_Fields/IDs")

@@ -28,6 +28,6 @@ function onEventFinish(player,csid,option)
 
     if (csid == 329) then -- Quest: Wish Upon a Star
         player:addQuest(BASTOK, dsp.quest.id.bastok.WISH_UPON_A_STAR);
-        player:setVar("WishUponAStar_Status", 1);
+        player:setCharVar("WishUponAStar_Status", 1);
     end
 end;

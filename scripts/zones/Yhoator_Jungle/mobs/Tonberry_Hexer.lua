@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Tonberry Hexer
+--  Mob: Tonberry Hexer
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
 require("scripts/globals/regimes")

@@ -28,21 +28,21 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local missionStatus = player:getVar("MissionStatus")
-    local wildcatWindurst = player:getVar("WildcatWindurst")
+    local missionStatus = player:getCharVar("MissionStatus")
+    local wildcatWindurst = player:getCharVar("WildcatWindurst")
     local mihgosAmigo = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MIHGO_S_AMIGO)
     local tenshodoShowdown = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_TENSHODO_SHOWDOWN)
-    local tenshodoShowdownCS = player:getVar("theTenshodoShowdownCS")
+    local tenshodoShowdownCS = player:getCharVar("theTenshodoShowdownCS")
     local rockRacketeer = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ROCK_RACKETEER)
-    local rockRacketeerCS = player:getVar("rockracketeer_sold")
+    local rockRacketeerCS = player:getCharVar("rockracketeer_sold")
     local thickAsThieves = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
-    local thickAsThievesCS = player:getVar("thickAsThievesCS")
-    local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS")
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
+    local thickAsThievesCS = player:getCharVar("thickAsThievesCS")
+    local thickAsThievesGrapplingCS = player:getCharVar("thickAsThievesGrapplingCS")
+    local thickAsThievesGamblingCS = player:getCharVar("thickAsThievesGamblingCS")
     local hittingTheMarquisate = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HITTING_THE_MARQUISATE)
-    local hittingTheMarquisateYatnielCS = player:getVar("hittingTheMarquisateYatnielCS")
-    local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS")
-    local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS")
+    local hittingTheMarquisateYatnielCS = player:getCharVar("hittingTheMarquisateYatnielCS")
+    local hittingTheMarquisateHagainCS = player:getCharVar("hittingTheMarquisateHagainCS")
+    local hittingTheMarquisateNanaaCS = player:getCharVar("hittingTheMarquisateNanaaCS")
     local job = player:getMainJob()
     local lvl = player:getMainLvl()
 
@@ -59,11 +59,11 @@ function onTrigger(player,npc)
         end
 
     -- LURE OF THE WILDCAT (WINDURST)
-    elseif player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,4) then
+    elseif player:getQuestStatus(WINDURST, dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(wildcatWindurst,4) then
         player:startEvent(732)
 
     -- CRYING OVER ONIONS
-    elseif player:getVar("CryingOverOnions") == 1 then
+    elseif player:getCharVar("CryingOverOnions") == 1 then
         player:startEvent(598)
 
     -- THE TENSHODO SHOWDOWN
@@ -133,28 +133,28 @@ function onEventFinish(player,csid,option)
     -- WINDURST 2-1: LOST FOR WORDS
     if csid == 165 and option == 1 then
         npcUtil.giveKeyItem(player, dsp.ki.LAPIS_MONOCLE)
-        player:setVar("MissionStatus", 2)
+        player:setCharVar("MissionStatus", 2)
     elseif csid == 169 then
-        player:setVar("MissionStatus", 4)
-        player:setVar("MissionStatus_randfoss", 0)
+        player:setCharVar("MissionStatus", 4)
+        player:setCharVar("MissionStatus_randfoss", 0)
         player:delKeyItem(dsp.ki.LAPIS_MONOCLE)
         player:delKeyItem(dsp.ki.LAPIS_CORAL)
         npcUtil.giveKeyItem(player, dsp.ki.HIDEOUT_KEY)
 
     -- LURE OF THE WILDCAT (WINDURST)
     elseif csid == 732 then
-        player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",4,true)
+        player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",4,true)
 
     -- THE TENSHODO SHOWDOWN
     elseif (csid == 496) then
         player:addQuest(WINDURST,dsp.quest.id.windurst.THE_TENSHODO_SHOWDOWN)
-        player:setVar("theTenshodoShowdownCS",1)
+        player:setCharVar("theTenshodoShowdownCS",1)
         npcUtil.giveKeyItem(player, dsp.ki.LETTER_FROM_THE_TENSHODO)
 
     -- THICK AS THIEVES
     elseif (csid == 504 and option == 1) then  -- start quest "as thick as thieves"
         player:addQuest(WINDURST,dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
-        player:setVar("thickAsThievesCS",1)
+        player:setCharVar("thickAsThievesCS",1)
         npcUtil.giveKeyItem(player, {dsp.ki.GANG_WHEREABOUTS_NOTE, dsp.ki.FIRST_FORGED_ENVELOPE, dsp.ki.SECOND_FORGED_ENVELOPE})
     elseif (csid == 508 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.AS_THICK_AS_THIEVES, {item=12514, var={"thickAsThievesCS", "thickAsThievesGrapplingCS", "thickAsThievesGamblingCS"}})) then
         player:delKeyItem(dsp.ki.GANG_WHEREABOUTS_NOTE)
@@ -164,13 +164,13 @@ function onEventFinish(player,csid,option)
     -- HITTING THE MARQUISATE
     elseif csid == 512 then
         player:addQuest(WINDURST, dsp.quest.id.windurst.HITTING_THE_MARQUISATE)
-        player:setVar("hittingTheMarquisateYatnielCS", 1)
-        player:setVar("hittingTheMarquisateHagainCS", 1)
+        player:setCharVar("hittingTheMarquisateYatnielCS", 1)
+        player:setCharVar("hittingTheMarquisateHagainCS", 1)
         npcUtil.giveKeyItem(player, dsp.ki.CAT_BURGLARS_NOTE)
     elseif csid == 516 then
-        player:setVar("hittingTheMarquisateNanaaCS", 1)
-        player:setVar("hittingTheMarquisateYatnielCS", 0)
-        player:setVar("hittingTheMarquisateHagainCS", 0)
+        player:setCharVar("hittingTheMarquisateNanaaCS", 1)
+        player:setCharVar("hittingTheMarquisateYatnielCS", 0)
+        player:setCharVar("hittingTheMarquisateHagainCS", 0)
 
     -- ROCK RACKETEER
     elseif csid == 93 then
@@ -178,7 +178,7 @@ function onEventFinish(player,csid,option)
         npcUtil.giveKeyItem(player, dsp.ki.SHARP_GRAY_STONE)
     elseif csid == 98 then
         player:delGil(10*GIL_RATE)
-        player:setVar("rockracketeer_sold", 3)
+        player:setCharVar("rockracketeer_sold", 3)
 
     -- MIHGO'S AMIGO
     elseif csid == 80 or csid == 81 then

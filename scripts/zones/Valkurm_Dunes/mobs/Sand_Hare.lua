@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Sand Hare
+--  Mob: Sand Hare
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

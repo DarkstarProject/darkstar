@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---   NM: Yaa_Haqa_the_Profane
+--   NM: Yaa Haqa the Profane
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

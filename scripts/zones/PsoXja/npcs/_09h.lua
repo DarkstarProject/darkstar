@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 9) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Tenzen_s_Path") == 9) then
         player:startEvent(5);
     else
         player:messageSpecial(ID.text.DOOR_LOCKED);
@@ -24,6 +24,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 5) then
-        player:setVar("COP_Tenzen_s_Path",10);
+        player:setCharVar("COP_Tenzen_s_Path",10);
     end
 end;

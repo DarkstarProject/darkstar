@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 
         if (WindFork) then
             player:startEvent(68); -- Dialogue given to remind player to be prepared
-        elseif (WindFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeWind_date")) then
+        elseif (WindFork == false and tonumber(os.date("%j")) ~= player:getCharVar("TrialSizeWind_date")) then
             player:startEvent(112,0,1546,3,20); -- Need another mini tuning fork
         else
             player:startEvent(114); -- Standard dialog when you loose, and you don't wait 1 real day

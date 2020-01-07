@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Lumbering Lambert
+--  Mob: Lumbering Lambert
 -----------------------------------
 local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 -----------------------------------

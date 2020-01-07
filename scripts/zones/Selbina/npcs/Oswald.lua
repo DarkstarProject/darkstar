@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     theGift      = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_GIFT)
     theRealGift  = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_REAL_GIFT)
 
-    if player:getVar("underTheSeaVar") == 1 then
+    if player:getCharVar("underTheSeaVar") == 1 then
         player:startEvent(32) -- During quest "Under the sea" - 1st dialog
     elseif player:hasKeyItem(dsp.ki.ETCHED_RING) then
         player:startEvent(37) -- Finish quest "Under the sea"
@@ -52,7 +52,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 32 then
-        player:setVar("underTheSeaVar", 2)
+        player:setCharVar("underTheSeaVar", 2)
     elseif csid == 37 and npcUtil.completeQuest(player, OTHER_AREAS_LOG, dsp.quest.id.otherAreas.UNDER_THE_SEA, {item = 13335, fame_area = SELBINA, title = dsp.title.LIL_CUPID, var = "underTheSeaVar"}) then
         player:delKeyItem(dsp.ki.ETCHED_RING)
     elseif csid == 70 and option == 50 then

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Werebat
+--  Mob: Werebat
 -- Note: PH for Arioch
 -----------------------------------
 local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs")

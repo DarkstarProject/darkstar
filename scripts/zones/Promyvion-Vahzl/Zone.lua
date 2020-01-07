@@ -21,7 +21,7 @@ function onZoneIn(player, prevZone)
         player:setPos(-14.744, 0.036, -119.736, 1) -- To Floor 1 {R}
     end
 
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") == 0 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getCharVar("PromathiaStatus") == 0 then
         cs = 50
     end
 
@@ -46,7 +46,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 50 then
-        player:setVar("PromathiaStatus", 1)
+        player:setCharVar("PromathiaStatus", 1)
     elseif csid == 45 and option == 1 then
         player:setPos(-379.947, 48.045, 334.059, 192, 9) -- To Pso'Xja {R}
     end

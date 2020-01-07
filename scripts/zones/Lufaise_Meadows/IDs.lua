@@ -25,6 +25,7 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
         MURDEROUS_PRESENCE          = 7736, -- Wait, you sense a murderous presence...!
         YOU_CAN_SEE_FOR_MALMS       = 7737, -- You can see for malms in every direction.
         SPINE_CHILLING_PRESENCE     = 7739, -- You sense a spine-chilling presence!
+        COMMON_SENSE_SURVIVAL       = 8734, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {

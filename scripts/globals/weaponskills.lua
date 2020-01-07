@@ -83,6 +83,11 @@ function calculateRawWSDmg(attacker, target, wsID, tp, action, wsParams, calcPar
         end
     end
 
+    -- Check for and apply WS_DEX_BONUS
+    if (attacker:getMod(dsp.mod.WS_DEX_BONUS) > 0) then
+        wsParams.dex_wsc = wsParams.dex_wsc + (attacker:getMod(dsp.mod.WS_DEX_BONUS)*.01)
+    end
+
     local wsMods = calcParams.fSTR +
         (attacker:getStat(dsp.mod.STR) * wsParams.str_wsc + attacker:getStat(dsp.mod.DEX) * wsParams.dex_wsc +
          attacker:getStat(dsp.mod.VIT) * wsParams.vit_wsc + attacker:getStat(dsp.mod.AGI) * wsParams.agi_wsc +
@@ -371,6 +376,11 @@ function doMagicWeaponskill(attacker, target, wsID, wsParams, tp, action, primar
 
     -- Magic-based WSes never miss, so we don't need to worry about calculating a miss, only if a shadow absorbed it.
     if not shadowAbsorb(target) then
+
+        -- Check for and apply WS_DEX_BONUS
+        if (attacker:getMod(dsp.mod.WS_DEX_BONUS) > 0) then
+             wsParams.dex_wsc = wsParams.dex_wsc + (attacker:getMod(dsp.mod.WS_DEX_BONUS) * 0.01)
+        end
 
         dmg = attacker:getMainLvl() + 2 + (attacker:getStat(dsp.mod.STR) * wsParams.str_wsc + attacker:getStat(dsp.mod.DEX) * wsParams.dex_wsc +
              attacker:getStat(dsp.mod.VIT) * wsParams.vit_wsc + attacker:getStat(dsp.mod.AGI) * wsParams.agi_wsc +

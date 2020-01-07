@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Mummy
+--  Mob: Mummy
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

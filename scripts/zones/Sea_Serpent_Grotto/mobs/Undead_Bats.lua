@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Undead Bats
+--  Mob: Undead Bats
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

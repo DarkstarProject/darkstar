@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Leecher
+--  Mob: Goblin Leecher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

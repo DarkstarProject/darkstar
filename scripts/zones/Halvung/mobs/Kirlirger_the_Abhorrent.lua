@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
---  MOB: Kirlirger the Abhorrent
+--  Mob: Kirlirger the Abhorrent
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 -----------------------------------

@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  MOB: Aw_aern PH (Ix'Aern DRK and DRG)
+--  Mob: Aw'aern
+-- Note: PH for Ix'Aern DRK and DRG
 -----------------------------------
 local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 -----------------------------------

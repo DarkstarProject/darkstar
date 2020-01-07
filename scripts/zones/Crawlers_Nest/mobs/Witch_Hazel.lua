@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Witch Hazel
+--  Mob: Witch Hazel
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

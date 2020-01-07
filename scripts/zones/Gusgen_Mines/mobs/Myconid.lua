@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Myconid
+--  Mob: Myconid
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------

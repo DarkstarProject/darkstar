@@ -1,8 +1,12 @@
 -----------------------------------
--- Area: Dynamis Buburimu
---  MOB: Gosspix_Blabberlips
+-- Area: Dynamis - Buburimu
+--  Mob: Gosspix Blabberlips
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

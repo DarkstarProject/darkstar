@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: The Eldieme Necropolis (S) (175)
---   Mob: Royal_Knight
+-- Area: The Eldieme Necropolis [S] (175)
+--  Mob: Royal Knight
 -----------------------------------
 
 -- -----------------------------------

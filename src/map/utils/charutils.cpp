@@ -102,7 +102,9 @@ This file is part of DarkStar-server source code.
 *                                                                       *
 ************************************************************************/
 
-std::array<std::array<uint16, 20>, 50> g_ExpTable;
+// Number of rows in the exp table
+static constexpr int32 ExpTableRowCount = 54;
+std::array<std::array<uint16, 20>, ExpTableRowCount> g_ExpTable;
 std::array<uint16, 100> g_ExpPerLevel;
 
 /************************************************************************
@@ -741,9 +743,8 @@ namespace charutils
             }
         }
 
-        fmtQuery = "SELECT sandoria_supply, bastok_supply, windurst_supply, "
-            "runic_portal, maw, past_sandoria_tp, "
-            "past_bastok_tp, past_windurst_tp "
+        fmtQuery = "SELECT outpost_sandy, outpost_bastok, outpost_windy, runic_portal, maw, "
+            "campaign_sandy, campaign_bastok, campaign_windy, homepoints, survivals "
             "FROM char_unlocks "
             "WHERE charid = %u;";
 
@@ -753,14 +754,24 @@ namespace charutils
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->nationtp.sandoria = Sql_GetUIntData(SqlHandle, 0);
-            PChar->nationtp.bastok = Sql_GetUIntData(SqlHandle, 1);
-            PChar->nationtp.windurst = Sql_GetUIntData(SqlHandle, 2);
-            PChar->nationtp.ahturhgan = Sql_GetUIntData(SqlHandle, 3);
-            PChar->nationtp.maw = Sql_GetUIntData(SqlHandle, 4);
-            PChar->nationtp.pastsandoria = Sql_GetUIntData(SqlHandle, 5);
-            PChar->nationtp.pastbastok = Sql_GetUIntData(SqlHandle, 6);
-            PChar->nationtp.pastwindurst = Sql_GetUIntData(SqlHandle, 7);
+            PChar->teleport.outpostSandy   = Sql_GetUIntData(SqlHandle, 0);
+            PChar->teleport.outpostBastok  = Sql_GetUIntData(SqlHandle, 1);
+            PChar->teleport.outpostWindy   = Sql_GetUIntData(SqlHandle, 2);
+            PChar->teleport.runicPortal    = Sql_GetUIntData(SqlHandle, 3);
+            PChar->teleport.pastMaw        = Sql_GetUIntData(SqlHandle, 4);
+            PChar->teleport.campaignSandy  = Sql_GetUIntData(SqlHandle, 5);
+            PChar->teleport.campaignBastok = Sql_GetUIntData(SqlHandle, 6);
+            PChar->teleport.campaignWindy  = Sql_GetUIntData(SqlHandle, 7);
+
+            size_t length = 0;
+            char* buf = nullptr;
+            Sql_GetData(SqlHandle, 8, &buf, &length);
+            memcpy(&PChar->teleport.homepoint, buf, (length > sizeof(PChar->teleport.homepoint) ? sizeof(PChar->teleport.homepoint) : length));
+
+            length = 0;
+            buf = nullptr;
+            Sql_GetData(SqlHandle, 9, &buf, &length);
+            memcpy(&PChar->teleport.survival, buf, (length > sizeof(PChar->teleport.survival) ? sizeof(PChar->teleport.survival) : length));
         }
 
         PChar->PMeritPoints = new CMeritPoints(PChar);
@@ -2310,7 +2321,7 @@ namespace charutils
 
         //add in melee ws
         PItem = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_MAIN));
-        uint8 skill = PItem ? PItem->getSkillType() : 0;
+        uint8 skill = PItem ? PItem->getSkillType() : SKILL_HAND_TO_HAND;
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
@@ -3036,13 +3047,13 @@ namespace charutils
         const char* fmtQuery = "SELECT r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20 "
             "FROM exp_table "
             "ORDER BY level ASC "
-            "LIMIT 50";
+            "LIMIT %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery);
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, ExpTableRowCount);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-            for (uint32 x = 0; x < 50 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+            for (uint32 x = 0; x < ExpTableRowCount && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
             {
                 for (uint32 y = 0; y < 20; ++y)
                 {
@@ -3075,11 +3086,11 @@ namespace charutils
 
     uint32 GetRealExp(uint8 charlvl, uint8 moblvl)
     {
-        int32 levelDif = moblvl - charlvl + 34;
+        int32 levelDif = moblvl - charlvl + 38;
 
         if ((charlvl > 0) && (charlvl < 100))
         {
-            return g_ExpTable[std::clamp(levelDif, 0, 49)][(charlvl - 1) / 5];
+            return g_ExpTable[std::clamp(levelDif, 0, ExpTableRowCount - 1)][(charlvl - 1) / 5];
         }
         return 0;
     }
@@ -4354,29 +4365,72 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Nation teleports, etc.                                               *
+    *  Save Teleports - Homepoints, outposts, maws, etc                     *
     *                                                                       *
     ************************************************************************/
 
-    void SaveCharUnlocks(CCharEntity* PChar)
+    void SaveTeleport(CCharEntity* PChar, uint8 type)
     {
-        const char* Query = "UPDATE char_unlocks "
-            "SET sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, "
-            "runic_portal = %u, maw = %u, past_sandoria_tp = %u, "
-            "past_bastok_tp = %u, past_windurst_tp = %u "
-            "WHERE charid = %u;";
+        const char* column = "";
+        uint32 value = 0;
 
-        Sql_Query(SqlHandle,
-            Query,
-            PChar->nationtp.sandoria,
-            PChar->nationtp.bastok,
-            PChar->nationtp.windurst,
-            PChar->nationtp.ahturhgan,
-            PChar->nationtp.maw,
-            PChar->nationtp.pastsandoria,
-            PChar->nationtp.pastbastok,
-            PChar->nationtp.pastwindurst,
-            PChar->id);
+        switch(type)
+        {
+            case TELEPORT_OUTPOST_SANDY:
+                column = "outpost_sandy";
+                value  = PChar->teleport.outpostSandy;
+                break;
+            case TELEPORT_OUTPOST_BASTOK:
+                column = "outpost_bastok";
+                value  = PChar->teleport.outpostBastok;
+                break;
+            case TELEPORT_OUTPOST_WINDY:
+                column = "outpost_windy";
+                value  = PChar->teleport.outpostWindy;
+                break;
+            case TELEPORT_RUNIC_PORTAL:
+                column = "runic_portal";
+                value  = PChar->teleport.runicPortal;
+                break;
+            case TELEPORT_PAST_MAW:
+                column = "maw";
+                value  = PChar->teleport.pastMaw;
+                break;
+            case TELEPORT_CAMPAIGN_SANDY:
+                column = "campaign_sandy";
+                value  = PChar->teleport.campaignSandy;
+                break;
+            case TELEPORT_CAMPAIGN_BASTOK:
+                column = "campaign_bastok";
+                value  = PChar->teleport.campaignBastok;
+                break;
+            case TELEPORT_CAMPAIGN_WINDY:
+                column = "campaign_windy";
+                value  = PChar->teleport.campaignWindy;
+                break;
+            case TELEPORT_HOMEPOINT:
+            {
+                char buf[sizeof(PChar->teleport.homepoint) * 2 + 1];
+                Sql_EscapeStringLen(SqlHandle, buf, (const char*)&PChar->teleport.homepoint, sizeof(PChar->teleport.homepoint));
+                const char* query = "UPDATE char_unlocks SET homepoints = '%s' WHERE charid = %u;";
+                Sql_Query(SqlHandle, query, buf, PChar->id);
+                return;
+            }
+            case TELEPORT_SURVIVAL:
+            {
+                char buf[sizeof(PChar->teleport.survival) * 2 + 1];
+                Sql_EscapeStringLen(SqlHandle, buf, (const char*)&PChar->teleport.survival, sizeof(PChar->teleport.survival));
+                const char* query = "UPDATE char_unlocks SET survivals = '%s' WHERE charid = %u;";
+                Sql_Query(SqlHandle, query, buf, PChar->id);
+                return;
+            }
+            default: 
+                ShowError("charutils:SaveTeleport : Unknown type parameter.");
+                return;
+        }
+
+        const char* query = "UPDATE char_unlocks SET %s = %u WHERE charid = %u;";
+        Sql_Query(SqlHandle, query, column, value, PChar->id);
     }
 
     float  AddExpBonus(CCharEntity* PChar, float exp)
@@ -4952,7 +5006,7 @@ namespace charutils
         return false;
     }
 
-    int32 GetVar(CCharEntity* PChar, const char* var)
+    int32 GetCharVar(CCharEntity* PChar, const char* var)
     {
         const char* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
 

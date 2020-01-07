@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     if (wsQuestEvent ~= nil) then
         player:startEvent(wsQuestEvent)
     elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
-        if (player:getVar("AyameAndKaede_Event") == 3) then
+        if (player:getCharVar("AyameAndKaede_Event") == 3) then
             player:startEvent(95) -- During Quest "Ayame and Kaede"
         else
             player:startEvent(94)
@@ -46,11 +46,11 @@ function onTrigger(player,npc)
         player:startEvent(134) -- Finish Quest "20 in Pirate Years"
     elseif (twentyInPirateYears == QUEST_COMPLETED and illTakeTheBigBox == QUEST_AVAILABLE and mJob == dsp.job.NIN and mLvl >= 50 and player:needToZone() == false) then
         player:startEvent(135) -- Start Quest "I'll Take the Big Box"
-    elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE and mJob == dsp.job.NIN) then
+    elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE) then
         player:startEvent(136) -- Start Quest "True Will"
-    elseif (player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) and player:getVar("trueWillCS") == 0) then
+    elseif (player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) and player:getCharVar("trueWillCS") == 0) then
         player:startEvent(137)
-    elseif (player:getVar("trueWillCS") == 1) then
+    elseif (player:getCharVar("trueWillCS") == 1) then
         player:startEvent(138)
     else
         player:startEvent(94)
@@ -63,10 +63,10 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.SEALED_DAGGER)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SEALED_DAGGER)
         player:delKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL)
-        player:setVar("AyameAndKaede_Event", 4)
+        player:setCharVar("AyameAndKaede_Event", 4)
     elseif (csid == 133) then
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.TWENTY_IN_PIRATE_YEARS)
-        player:setVar("twentyInPirateYearsCS",1)
+        player:setCharVar("twentyInPirateYearsCS",1)
     elseif (csid == 134) then
         if (player:getFreeSlotsCount() <= 1) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17771)
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 17771) -- Anju
             player:messageSpecial(ID.text.ITEM_OBTAINED, 17772) -- Zushio
             player:needToZone()
-            player:setVar("twentyInPirateYearsCS",0)
+            player:setCharVar("twentyInPirateYearsCS",0)
             player:addFame(NORG,30)
             player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TWENTY_IN_PIRATE_YEARS)
         end
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 136) then
         player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL)
     elseif (csid == 137) then
-        player:setVar("trueWillCS",1)
+        player:setCharVar("trueWillCS",1)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLADE_KU_LEARNED)
     end

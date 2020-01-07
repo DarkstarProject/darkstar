@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
     Mission = player:getCurrentMission(player:getNation());
-    MissionStatus = player:getVar("MissionStatus");
+    MissionStatus = player:getCharVar("MissionStatus");
 
     if (Mission == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK and MissionStatus == 3 or
        Mission == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 and MissionStatus == 8) then
@@ -37,10 +37,10 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 355) then
-        if (player:getVar("MissionStatus") == 3) then
-            player:setVar("MissionStatus",4);
+        if (player:getCharVar("MissionStatus") == 3) then
+            player:setCharVar("MissionStatus",4);
         else
-            player:setVar("MissionStatus",9);
+            player:setCharVar("MissionStatus",9);
         end
     end
 

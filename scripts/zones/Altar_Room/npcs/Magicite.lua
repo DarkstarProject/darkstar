@@ -4,36 +4,37 @@
 -- Involved in Mission: Magicite
 -- !pos -344 25 43 152
 -----------------------------------
-require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Altar_Room/IDs");
+require("scripts/globals/keyitems")
+local ID = require("scripts/zones/Altar_Room/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (player:getCurrentMission(player:getNation()) == 13 and player:hasKeyItem(dsp.ki.MAGICITE_ORASTONE) == false) then
-        if (player:getVar("MissionStatus") < 4) then
-            player:startEvent(44,1); -- play Lion part of the CS (this is first magicite)
+    if player:getCurrentMission(player:getNation()) == 13 and not player:hasKeyItem(dsp.ki.MAGICITE_ORASTONE) then
+        if player:getCharVar("Magicite") == 2 then
+            player:startEvent(44,152,3,1743,3) -- play Lion part of the CS (this is last magicite)
         else
-            player:startEvent(44); -- don't play Lion part of the CS
+            player:startEvent(44) -- don't play Lion part of the CS
         end
     else
-        player:messageSpecial(ID.text.THE_MAGICITE_GLOWS_OMINOUSLY);
+        player:messageSpecial(ID.text.THE_MAGICITE_GLOWS_OMINOUSLY)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-
-    if (csid == 44) then
-        player:setVar("MissionStatus",4);
-        player:addKeyItem(dsp.ki.MAGICITE_ORASTONE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICITE_ORASTONE);
+    if csid == 44 then
+        if player:getCharVar("Magicite") == 2 then
+            player:setCharVar("Magicite",0)
+        else
+            player:setCharVar("Magicite",player:getCharVar("Magicite")+1)
+        end
+        player:setCharVar("MissionStatus",4)
+        player:addKeyItem(dsp.ki.MAGICITE_ORASTONE)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICITE_ORASTONE)
     end
-
-end;
+end

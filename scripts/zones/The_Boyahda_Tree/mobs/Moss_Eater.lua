@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Moss Eater
+--  Mob: Moss Eater
 -- Note: PH for Unut
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs")

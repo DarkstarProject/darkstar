@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Ambusher
+--  Mob: Goblin Ambusher
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------
