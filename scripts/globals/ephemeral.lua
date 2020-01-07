@@ -24,13 +24,13 @@ local crystalData =
 local moogles =
 {
     [17719927] = { triggerEvent = 3549, tradeEvent = 3550 }, -- South Sandy - Leatherworking
-    [17723846] = { triggerEvent = 913, tradeEvent = 915 }, -- North Sandy - Woodworking
-    [17723847] = { triggerEvent = 914, tradeEvent = 916 }, -- North Sandy - Smithing
-    [17740167] = { triggerEvent = 617, tradeEvent = 618 }, -- Bastok Markets - Goldsmith
-    [17736015] = { triggerEvent = 617, tradeEvent = 618 }, -- Bastok Mines - Alchemy
+    [17723846] = { triggerEvent = 913, tradeEvent = 915 },   -- North Sandy - Woodworking
+    [17723847] = { triggerEvent = 914, tradeEvent = 916 },   -- North Sandy - Smithing
+    [17740167] = { triggerEvent = 617, tradeEvent = 618 },   -- Bastok Markets - Goldsmith
+    [17736015] = { triggerEvent = 617, tradeEvent = 618 },   -- Bastok Mines - Alchemy
     [17752531] = { triggerEvent = 1098, tradeEvent = 1099 }, -- Windurst Waters - Cooking
-    [17764826] = { triggerEvent = 895, tradeEvent = 897 }, -- Windurst Woods - Boneworking
-    [17764827] = { triggerEvent = 896, tradeEvent = 898 }, -- Windurst Woods - Clothcraft
+    [17764826] = { triggerEvent = 895, tradeEvent = 897 },   -- Windurst Woods - Boneworking
+    [17764827] = { triggerEvent = 896, tradeEvent = 898 },   -- Windurst Woods - Clothcraft
 }
 
 function getCrystalTotals(player)
