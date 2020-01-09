@@ -420,6 +420,9 @@ namespace battleutils
         if (Tier == 1)
         {
             damage = PAttacker->getMod(Mod::ENSPELL_DMG) + PAttacker->getMod(Mod::ENSPELL_DMG_BONUS);
+            auto PChar = dynamic_cast<CCharEntity *>(PAttacker);
+            if (PChar)
+                damage += PChar->PMeritPoints->GetMeritValue(MERIT_ENSPELL_DAMAGE, PChar);
         }
         else if (Tier == 2)
         {
@@ -446,6 +449,10 @@ namespace battleutils
                 damage = PAttacker->getMod(Mod::ENSPELL_DMG) - 1;
             }
             damage += PAttacker->getMod(Mod::ENSPELL_DMG_BONUS);
+
+            auto PChar = dynamic_cast<CCharEntity *>(PAttacker);
+            if (PChar)
+                damage += PChar->PMeritPoints->GetMeritValue(MERIT_ENSPELL_DAMAGE, PChar) * 2;
         }
         else if (Tier == 3) //enlight or endark
         {

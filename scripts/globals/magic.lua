@@ -443,6 +443,12 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
         bonusAcc = bonusAcc + affinityBonus + elementBonus;
     end
 
+    magicacc = magicacc + caster:getMerit(dsp.merit.MAGIC_ACCURACY)
+
+    if caster:getMainJob() == dsp.job.NIN and caster:getMainLvl() >= 75 then
+        magicacc = magicacc + caster:getMerit(dsp.merit.NIN_MAGIC_ACCURACY)
+    end
+
     -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
     local magiceva = target:getMod(dsp.mod.MEVA) + resMod;
 
@@ -1312,6 +1318,9 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         -- Gear mods
         duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
 
+        -- prior according to bg-wiki
+        duration = duration + caster:getMerit(dsp.merit.ENHANCING_MAGIC_DURATION)
+
         -- Default is true
         useComposure = useComposure or (useComposure == nill and true)
 
@@ -1328,6 +1337,9 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
             duration = duration * 2
         end
+
+        -- After Saboteur according to bg-wiki
+        duration = duration + caster:getMerit(dsp.merit.ENFEEBLING_MAGIC_DURATION)
     end
 
     return math.floor(duration)
