@@ -445,9 +445,7 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
 
     magicacc = magicacc + caster:getMerit(dsp.merit.MAGIC_ACCURACY)
 
-    if caster:getMainJob() == dsp.job.NIN and caster:getMainLvl() >= 75 then
-        magicacc = magicacc + caster:getMerit(dsp.merit.NIN_MAGIC_ACCURACY)
-    end
+    magicacc = magicacc + caster:getMerit(dsp.merit.NIN_MAGIC_ACCURACY)
 
     -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
     local magiceva = target:getMod(dsp.mod.MEVA) + resMod;
@@ -748,8 +746,12 @@ function calculateMagicBurst(caster, spell, target, params)
     end
 
     -- Obtain first multiplier from gear, atma and job traits
-    -- Add in bonus from BLM AMII merits (minimum 0, maximum 0.12 with 5/5 merits)
     modburst = modburst + (caster:getMod(dsp.mod.MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
+
+    if caster:isBehind(target) and caster:hasStatusEffect(dsp.effect.INNIN) then
+        modburst = modburst + (caster:getMerit(dsp.merit.INNIN_EFFECT)/100)
+    end
+
     -- Cap bonuses from first multiplier at 40% or 1.4
     if (modburst > 1.4) then
         modburst = 1.4;
@@ -864,6 +866,10 @@ function addBonuses(caster, spell, target, dmg, params)
         end
     else
         local mab = caster:getMod(dsp.mod.MATT) + params.bonusmab;
+
+        if spell:getSkillType() == dsp.skill.NINJUTSU then
+            mab = mab + caster:getMerit(dsp.merit.NIN_MAGIC_BONUS)
+        end
 
         local mab_crit = caster:getMod(dsp.mod.MAGIC_CRITHITRATE);
         if ( math.random(1,100) < mab_crit ) then
