@@ -609,7 +609,10 @@ end;
 function handleAfflatusMisery(caster, spell, dmg)
     if (caster:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then
         local misery = caster:getMod(dsp.mod.AFFLATUS_MISERY);
-        local miseryMax = caster:getMaxHP() / 4;
+        -- According to BGWiki Caps at 300 magic damage.
+        local miseryMax = 300
+
+        miseryMax = miseryMax * (1 - caster:getMerit(dsp.merit.ANIMUS_MISERY)/100)
 
         -- BGwiki puts the boost capping at 200% bonus at 1/4th max HP.
         if (misery > miseryMax) then
