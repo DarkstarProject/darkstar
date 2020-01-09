@@ -93,9 +93,9 @@ struct MeritCategoryInfo_t
 static const MeritCategoryInfo_t meritCatInfo[] =
 {
     {3,45,0},  //MCATEGORY_HP_MP
-    {7,60,1},  //MCATEGORY_ATTRIBUTES
-    {19,112,2}, //MCATEGORY_COMBAT
-    {14,80,4}, //MCATEGORY_MAGIC
+    {7,105,1},  //MCATEGORY_ATTRIBUTES
+    {19,152,2}, //MCATEGORY_COMBAT
+    {14,112,4}, //MCATEGORY_MAGIC
     {5,10,5},  //MCATEGORY_OTHERS
 
     {5,10,6},  //MCATEGORY_WAR_1
@@ -129,17 +129,17 @@ static const MeritCategoryInfo_t meritCatInfo[] =
 
     {4,10,7},  //MCATEGORY_WAR_2
     {4,10,7},  //MCATEGORY_MNK_2
-    {4,10,7},  //MCATEGORY_WHM_2
-    {6,10,7},  //MCATEGORY_BLM_2
-    {6,10,7},  //MCATEGORY_RDM_2
+    {6,10,7},  //MCATEGORY_WHM_2
+    {12,10,7},  //MCATEGORY_BLM_2
+    {12,10,7},  //MCATEGORY_RDM_2
     {4,10,7},  //MCATEGORY_THF_2
     {4,10,7},  //MCATEGORY_PLD_2
     {4,10,7},  //MCATEGORY_DRK_2
     {4,10,7},  //MCATEGORY_BST_2
-    {4,10,7},  //MCATEGORY_BRD_2
+    {6,10,7},  //MCATEGORY_BRD_2
     {4,10,7},  //MCATEGORY_RNG_2
     {4,10,7},  //MCATEGORY_SAM_2
-    {8,10,7},  //MCATEGORY_NIN_2
+    {12,10,7},  //MCATEGORY_NIN_2
     {4,10,7},  //MCATEGORY_DRG_2
     {6,10,7},  //MCATEGORY_SMN_2
     {4,10,7},  //MCATEGORY_BLU_2

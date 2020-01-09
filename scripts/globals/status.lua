@@ -1913,6 +1913,8 @@ dsp.merit =
     DEVOTION                    = MCATEGORY_WHM_2 + 0x02,
     PROTECTRA_V                 = MCATEGORY_WHM_2 + 0x04,
     SHELLRA_V                   = MCATEGORY_WHM_2 + 0x06,
+    ANIMUS_SOLACE               = MCATEGORY_WHM_2 + 0x08,
+    ANIMUS_MISERY               = MCATEGORY_WHM_2 + 0x0A,
 
     -- BLM 2
     FLARE_II                    = MCATEGORY_BLM_2 + 0x00,
@@ -1921,6 +1923,12 @@ dsp.merit =
     QUAKE_II                    = MCATEGORY_BLM_2 + 0x06,
     BURST_II                    = MCATEGORY_BLM_2 + 0x08,
     FLOOD_II                    = MCATEGORY_BLM_2 + 0x0A,
+    ANCIENT_MAGIC_ATK_BONUS     = MCATEGORY_BLM_2 + 0x0C,
+    ANCIENT_MAGIC_BURST_DMG     = MCATEGORY_BLM_2 + 0x0E,
+    ELEMENTAL_MAGIC_ACCURACY    = MCATEGORY_BLM_2 + 0x10,
+    ELEMENTAL_DEBUFF_DURATION   = MCATEGORY_BLM_2 + 0x12,
+    ELEMENTAL_DEBUFF_EFFECT     = MCATEGORY_BLM_2 + 0x14,
+    ASPIR_ABSORPTION_AMOUNT     = MCATEGORY_BLM_2 + 0x16,
 
     -- RDM 2
     DIA_III                     = MCATEGORY_RDM_2 + 0x00,
@@ -1929,6 +1937,12 @@ dsp.merit =
     PHALANX_II                  = MCATEGORY_RDM_2 + 0x06,
     BIO_III                     = MCATEGORY_RDM_2 + 0x08,
     BLIND_II                    = MCATEGORY_RDM_2 + 0x0A,
+    ENFEEBLING_MAGIC_DURATION   = MCATEGORY_RDM_2 + 0x0C,
+    MAGIC_ACCURACY              = MCATEGORY_RDM_2 + 0x0E,
+    ENHANCING_MAGIC_DURATION    = MCATEGORY_RDM_2 + 0x10,
+    IMMUNOBREAK_CHANCE          = MCATEGORY_RDM_2 + 0x12,
+    ENSPELL_DAMAGE              = MCATEGORY_RDM_2 + 0x14,
+    ACCURACY                    = MCATEGORY_RDM_2 + 0x16,
 
     -- THF 2
     ASSASSINS_CHARGE            = MCATEGORY_THF_2 + 0x00,
@@ -1959,6 +1973,8 @@ dsp.merit =
     TROUBADOUR                  = MCATEGORY_BRD_2 + 0x02,
     FOE_SIRVENTE                = MCATEGORY_BRD_2 + 0x04,
     ADVENTURERS_DIRGE           = MCATEGORY_BRD_2 + 0x06,
+    CON_ANIMA                   = MCATEGORY_BRD_2 + 0x08,
+    CON_BRIO                    = MCATEGORY_BRD_2 + 0x0A,
 
     -- RNG 2
     STEALTH_SHOT                = MCATEGORY_RNG_2 + 0x00,
@@ -1981,6 +1997,10 @@ dsp.merit =
     DOTON_SAN                   = MCATEGORY_NIN_2 + 0x0A,
     RAITON_SAN                  = MCATEGORY_NIN_2 + 0x0C,
     SUITON_SAN                  = MCATEGORY_NIN_2 + 0x0E,
+    YONIN_EFFECT                = MCATEGORY_NIN_2 + 0x10,
+    INNIN_EFFECT                = MCATEGORY_NIN_2 + 0x12,
+    NIN_MAGIC_ACCURACY          = MCATEGORY_NIN_2 + 0x14,
+    NIN_MAGIC_BONUS             = MCATEGORY_NIN_2 + 0x16,
 
     -- DRG 2
     DEEP_BREATHING              = MCATEGORY_DRG_2 + 0x00,
