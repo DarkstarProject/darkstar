@@ -16,6 +16,8 @@ zones[dsp.zone.CASTLE_ZVAHL_KEEP] =
         GIL_OBTAINED            = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
         CHEST_UNLOCKED          = 7223, -- You unlock the chest!
+        ITEMS_ITEMS_LA_LA       = 7232, -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        GOBLIN_SLIPPED_AWAY     = 7238, -- The Goblin slipped away when you were not looking...
         HOMEPOINT_SET           = 7281, -- Home point set!
     },
     mob =

@@ -23,6 +23,8 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
         FIND_NOTHING             = 7245,  -- You dig and you dig, but find nothing.
         NOTHING_FOUND            = 7488,  -- You find nothing.
         CONQUEST                 = 7900,  -- You've earned conquest points!
+        ITEMS_ITEMS_LA_LA        = 8274,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        GOBLIN_SLIPPED_AWAY      = 8279,  -- The Goblin slipped away when you were not looking...
         PLAYER_OBTAINS_ITEM      = 8337,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 8338,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 8339,  -- <name> obtains the temporary item: <item>!
@@ -52,8 +54,8 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
     },
     npc =
     {
-        CASKET_BASE   = 17265219,
-        OVERSEER_BASE = 17265271,
+        CASKET_BASE   = 17265218,
+        OVERSEER_BASE = 17265270,
     },
 }
 
