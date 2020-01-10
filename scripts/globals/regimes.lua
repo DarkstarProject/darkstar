@@ -1138,15 +1138,14 @@ dsp.regime.bookOnEventFinish = function(player, option, regimeType)
             local power = 0
 
             if mLvl < 37 then
-                power = 24
+                power = 9
             elseif mLvl < 57 then
-                power = 36
+                power = 14
             elseif mLvl < 68 then
-                power = 48
+                power = 19
             else
-                power = 56
+                power = 22
             end
-
             player:delStatusEffectSilent(dsp.effect.SHELL)
             player:addStatusEffect(dsp.effect.SHELL, power, 0, 1800)
 
