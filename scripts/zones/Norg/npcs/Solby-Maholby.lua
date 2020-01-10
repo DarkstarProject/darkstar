@@ -21,6 +21,12 @@ function onTrigger(player,npc)
         4968, 133000,    -- Scroll of Migawa: Ichi
         4970, 140319,    -- Scroll of Gekka: Ichi
         4971, 140319,    -- Scroll of Yain: Ichi
+        4930, 119250,    -- Scroll of Katon: San
+        4933, 119250,    -- Scroll of Hyoton: San
+        4936, 119250,    -- Scroll of Huton: San
+        4939, 119250,    -- Scroll of Doton: San
+        4942, 119250,    -- Scroll of Raiton: San
+        4945, 119250,    -- Scroll of Suiton: San
     }
 
     player:showText(npc, ID.text.SOLBYMAHOLBY_SHOP_DIALOG)
