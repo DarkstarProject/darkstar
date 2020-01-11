@@ -97,6 +97,14 @@ CREATE TABLE `char_points` (
   `kupofried_corundums` int(10) unsigned NOT NULL DEFAULT '0',
   `imprimaturs` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `pheromone_sacks` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `fire_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `ice_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `wind_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `earth_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `lightning_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `water_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `light_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `dark_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
 
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
