@@ -681,6 +681,9 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
             ACC += (int16)(DEX() * 0.5);
         }
         ACC = (ACC + m_modStat[Mod::ACC] + offsetAccuracy);
+        auto PChar = dynamic_cast<CCharEntity *>(this);
+        if (PChar)
+            ACC += PChar->PMeritPoints->GetMeritValue(MERIT_ACCURACY, PChar);
         ACC = ACC + std::min<int16>((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
         return std::max<int16>(0, ACC);
     }

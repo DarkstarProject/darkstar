@@ -420,6 +420,9 @@ namespace battleutils
         if (Tier == 1)
         {
             damage = PAttacker->getMod(Mod::ENSPELL_DMG) + PAttacker->getMod(Mod::ENSPELL_DMG_BONUS);
+            auto PChar = dynamic_cast<CCharEntity *>(PAttacker);
+            if (PChar)
+                damage += PChar->PMeritPoints->GetMeritValue(MERIT_ENSPELL_DAMAGE, PChar);
         }
         else if (Tier == 2)
         {
@@ -446,6 +449,10 @@ namespace battleutils
                 damage = PAttacker->getMod(Mod::ENSPELL_DMG) - 1;
             }
             damage += PAttacker->getMod(Mod::ENSPELL_DMG_BONUS);
+
+            auto PChar = dynamic_cast<CCharEntity *>(PAttacker);
+            if (PChar)
+                damage += PChar->PMeritPoints->GetMeritValue(MERIT_ENSPELL_DAMAGE, PChar) * 2;
         }
         else if (Tier == 3) //enlight or endark
         {
@@ -3089,6 +3096,14 @@ namespace battleutils
             * (100 + PAttacker->getMod(Mod::SKILLCHAINBONUS)) / 100
             * (100 + PAttacker->getMod(Mod::SKILLCHAINDMG)) / 100);
 
+        auto PChar = dynamic_cast<CCharEntity *>(PAttacker);
+        if (PChar && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INNIN))
+        {
+            auto angle = PDefender->loc.p.rotation - getangle(PDefender->loc.p, PChar->loc.p);
+            // assuming default tolerance of 42 from lua_baseentity.cpp
+            if (angle > 86 && angle < 170)
+                damage = (int32)(damage * (1.f + PChar->PMeritPoints->GetMeritValue(MERIT_INNIN_EFFECT, PChar)/100.f));
+        }
         damage = damage * (1000 - resistance) / 1000;
         damage = MagicDmgTaken(PDefender, damage, appliedEle);
         if (damage > 0)

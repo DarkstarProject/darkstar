@@ -443,6 +443,10 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
         bonusAcc = bonusAcc + affinityBonus + elementBonus;
     end
 
+    magicacc = magicacc + caster:getMerit(dsp.merit.MAGIC_ACCURACY)
+
+    magicacc = magicacc + caster:getMerit(dsp.merit.NIN_MAGIC_ACCURACY)
+
     -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
     local magiceva = target:getMod(dsp.mod.MEVA) + resMod;
 
@@ -555,8 +559,6 @@ function getSpellBonusAcc(caster, target, spell, params)
     local spellGroup = spell:getSpellGroup();
     local element = spell:getElement();
 
-    params.AMIIaccBonus = params.AMIIaccBonus or 0
-
     if caster:hasStatusEffect(dsp.effect.ALTRUISM) and spellGroup == dsp.magic.spellGroup.WHITE then
         magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effect.ALTRUISM):getPower();
     end
@@ -566,9 +568,6 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
-
-    --add acc for BLM AMII spells
-    magicAccBonus = magicAccBonus + params.AMIIaccBonus;
 
     --add acc for skillchains
     if (skillchainTier > 0) then
@@ -580,6 +579,11 @@ function getSpellBonusAcc(caster, target, spell, params)
         if caster:hasStatusEffect(dsp.effect.KLIMAFORM) and (castersWeather == dsp.magic.singleWeatherStrong[element] or castersWeather == dsp.magic.doubleWeatherStrong[element]) then
             magicAccBonus = magicAccBonus + 15
         end
+    end
+
+    --add for blm elemental magic merits
+    if skill == dsp.skill.ELEMENTAL_MAGIC then
+        magicAccBonus = magicAccBonus + caster:getMerit(dsp.merit.ELEMENTAL_MAGIC_ACCURACY)
     end
 
     --Add acc for dark seal
@@ -603,7 +607,10 @@ end;
 function handleAfflatusMisery(caster, spell, dmg)
     if (caster:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then
         local misery = caster:getMod(dsp.mod.AFFLATUS_MISERY);
-        local miseryMax = caster:getMaxHP() / 4;
+        -- According to BGWiki Caps at 300 magic damage.
+        local miseryMax = 300
+
+        miseryMax = miseryMax * (1 - caster:getMerit(dsp.merit.ANIMUS_MISERY)/100)
 
         -- BGwiki puts the boost capping at 200% bonus at 1/4th max HP.
         if (misery > miseryMax) then
@@ -739,8 +746,11 @@ function calculateMagicBurst(caster, spell, target, params)
     end
 
     -- Obtain first multiplier from gear, atma and job traits
-    -- Add in bonus from BLM AMII merits (minimum 0, maximum 0.12 with 5/5 merits)
     modburst = modburst + (caster:getMod(dsp.mod.MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
+
+    if caster:isBehind(target) and caster:hasStatusEffect(dsp.effect.INNIN) then
+        modburst = modburst + (caster:getMerit(dsp.merit.INNIN_EFFECT)/100)
+    end
 
     -- Cap bonuses from first multiplier at 40% or 1.4
     if (modburst > 1.4) then
@@ -785,7 +795,6 @@ function addBonuses(caster, spell, target, dmg, params)
     dmg = math.floor(dmg * affinityBonus);
 
     params.bonusmab = params.bonusmab or 0
-    params.AMIIaccBonus = params.AMIIaccBonus or 0
     params.AMIIburstBonus = params.AMIIburstBonus or 0
 
     local magicDefense = getElementalDamageReduction(target, ele);
@@ -848,12 +857,19 @@ function addBonuses(caster, spell, target, dmg, params)
 
     dmg = math.floor(dmg * burst);
     local mabbonus = 0;
+    local spellId = spell:getID();
 
-    if (spell:getID() >= 245 and spell:getID() <= 248) then -- Drain/Aspir (II)
+    if (spellId >= 245 and spellId <= 248) then -- Drain/Aspir (II)
         mabbonus = 1 + caster:getMod(dsp.mod.ENH_DRAIN_ASPIR)/100;
-        -- print(mabbonus);
+        if spellId == 247 or spellId == 248 then
+            mabbonus = mabbonus + caster:getMerit(dsp.merit.ASPIR_ABSORPTION_AMOUNT)/100
+        end
     else
         local mab = caster:getMod(dsp.mod.MATT) + params.bonusmab;
+
+        if spell:getSkillType() == dsp.skill.NINJUTSU then
+            mab = mab + caster:getMerit(dsp.merit.NIN_MAGIC_BONUS)
+        end
 
         local mab_crit = caster:getMod(dsp.mod.MAGIC_CRITHITRATE);
         if ( math.random(1,100) < mab_crit ) then
@@ -1158,7 +1174,6 @@ function doElementalNuke(caster, spell, target, spellParams)
     else
         local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
         local resistBonus = spellParams.resistBonus;
-        local AMIIaccBonus = spellParams.AMIIaccBonus;
         local mDMG = caster:getMod(dsp.mod.MAGIC_DAMAGE);
 
         --[[
@@ -1199,7 +1214,6 @@ function doElementalNuke(caster, spell, target, spellParams)
     params.attribute = dsp.mod.INT;
     params.skillType = dsp.skill.ELEMENTAL_MAGIC;
     params.resistBonus = resistBonus;
-    params.AMIIaccBonus = AMIIaccBonus;
 
     local resist = applyResistance(caster, target, spell, params);
 
@@ -1313,6 +1327,9 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         -- Gear mods
         duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
 
+        -- prior according to bg-wiki
+        duration = duration + caster:getMerit(dsp.merit.ENHANCING_MAGIC_DURATION)
+
         -- Default is true
         useComposure = useComposure or (useComposure == nill and true)
 
@@ -1329,6 +1346,9 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
             duration = duration * 2
         end
+
+        -- After Saboteur according to bg-wiki
+        duration = duration + caster:getMerit(dsp.merit.ENFEEBLING_MAGIC_DURATION)
     end
 
     return math.floor(duration)
