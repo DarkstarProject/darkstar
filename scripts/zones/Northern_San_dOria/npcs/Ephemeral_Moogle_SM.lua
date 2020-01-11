@@ -7,12 +7,16 @@
 -----------------------------------
 require("scripts/globals/ephemeral")
 
+local triggerEvent = 914
+local tradeEvent = 916
+local failEvent = 917
+
 function onTrade(player, npc, trade)
-    dsp.ephemeral.onTrade(player, npc, trade)
+    dsp.ephemeral.onTrade(player, trade, tradeEvent, failEvent)
 end
 
 function onTrigger(player, npc)
-    dsp.ephemeral.onTrigger(player, npc)
+    dsp.ephemeral.onTrigger(player, triggerEvent)
 end
 
 function onEventUpdate(player, csid, option)
@@ -20,5 +24,5 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    dsp.ephemeral.onEventFinish(player, csid, option)
+    dsp.ephemeral.onEventFinish(player, option, csid == tradeEvent)
 end

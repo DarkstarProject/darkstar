@@ -8,6 +8,10 @@ dsp = dsp or {}
 
 dsp.ephemeral = {}
 
+-- Cap per crystal type that can be stored. Retail/Default is 5000
+local CrystalCap = 5000
+
+-- Information for currency storage and event params
 local crystalData =
 {
     { crystal = 4096, cluster = 4104, tradeparam = 1, eventparam = 1, offset = 0, name = "fire_crystals" }, -- Fire Crystal
@@ -20,19 +24,6 @@ local crystalData =
     { crystal = 4103, cluster = 4111, tradeparam = 8, eventparam = 4, offset = 16, name = "dark_crystals" }, -- Dark Crystal
 }
 
--- NOTE: Moogle IDs need to match npc_list ref table
-local moogles =
-{
-    [17719927] = { triggerEvent = 3549, tradeEvent = 3550 }, -- South Sandy - Leatherworking
-    [17723846] = { triggerEvent = 913, tradeEvent = 915 },   -- North Sandy - Woodworking
-    [17723847] = { triggerEvent = 914, tradeEvent = 916 },   -- North Sandy - Smithing
-    [17740167] = { triggerEvent = 617, tradeEvent = 618 },   -- Bastok Markets - Goldsmith
-    [17736015] = { triggerEvent = 617, tradeEvent = 618 },   -- Bastok Mines - Alchemy
-    [17752531] = { triggerEvent = 1098, tradeEvent = 1099 }, -- Windurst Waters - Cooking
-    [17764826] = { triggerEvent = 895, tradeEvent = 897 },   -- Windurst Woods - Boneworking
-    [17764827] = { triggerEvent = 896, tradeEvent = 898 },   -- Windurst Woods - Clothcraft
-}
-
 function getCrystalTotals(player)
     local params = { 0, 0, 0, 0 }
     for _, v in pairs(crystalData) do
@@ -41,18 +32,29 @@ function getCrystalTotals(player)
     return params
 end
 
-dsp.ephemeral.onTrade = function(player, npc, trade)
+dsp.ephemeral.onTrade = function(player, trade, successEvent, failEvent)
     local params = { 0, 0, 0, 0, 0, 0, 0, 0 }
     local success = false
     for _, v in pairs(crystalData) do
         if npcUtil.tradeHas(trade, v.crystal) or npcUtil.tradeHas(trade, v.cluster) then
-            -- Count normal crystals and confirm
-            local qty = trade:getItemQty(v.crystal)
-            if qty > 0 then trade:confirmItem(v.crystal, qty) end
+            -- Check how far from crystal cap we are
+            local currentCount = math.min(player:getCurrency(v.name), CrystalCap) -- In case there is a db discrepancy
+            local diff = CrystalCap - currentCount
 
-            -- Count clusters and confirm
+            -- Count clusters and subtract any that won't fit
             local hqQty = trade:getItemQty(v.cluster)
+            local hqToCrystal = math.min(hqQty * 12, math.floor(diff / 12))
+            hqQty = math.floor(hqToCrystal / 12)
+            diff = math.max(diff - hqQty * 12, 0)
+
+            -- Confirm the clusters in the trade
             if hqQty > 0 then trade:confirmItem(v.cluster, hqQty) end
+            
+            -- Count normal crystals and and subtract any that won't fit
+            local qty = math.min(trade:getItemQty(v.crystal), diff)
+
+            -- Confirm the crystals in the trade
+            if qty > 0 then trade:confirmItem(v.crystal, qty) end
 
             -- Calculate the params
             params[v.tradeparam] = bit.bor(hqQty, bit.lshift(qty, 16))
@@ -61,36 +63,40 @@ dsp.ephemeral.onTrade = function(player, npc, trade)
             local total = qty + hqQty * 12
             player:addCurrency(v.name, total)
 
-            -- Found something valid in the trade
-            success = true
+            -- Make sure we flag success if any of the crystals can be traded
+            if (qty > 0) or (hqQty > 0) then
+                success = true
+            end
         end
     end
 
     if success then
-        local moogleID = npc:getID()
-        player:startEvent(moogles[moogleID].tradeEvent, unpack(params))
+        player:startEvent(successEvent, unpack(params))
+    else
+        player:startEvent(failEvent)
     end
 end
 
-dsp.ephemeral.onTrigger = function(player, npc)
+dsp.ephemeral.onTrigger = function(player, event)
     local moogleID = npc:getID()
-    player:startEvent(moogles[moogleID].triggerEvent, unpack(getCrystalTotals(player)))
+    player:startEvent(event, unpack(getCrystalTotals(player)))
 end
 
 dsp.ephemeral.onEventUpdate = function(player)
     player:updateEvent(unpack(getCrystalTotals(player)))
 end
 
-dsp.ephemeral.onEventFinish = function(player, csid, option)
+dsp.ephemeral.onEventFinish = function(player, option, wasTrade)
     -- Early out if the player cancelled the menu
-    if option == 0x40000000 then
+    if not wasTrade and bit.band(option, 0xF) == 0 then
         return
     end
 
-    -- Loop through and figure out if this was a trade or a trigger
-    for _, v in pairs(moogles) do
-        if csid == v.triggerEvent then -- Give player the number of requested crystals
-            -- Grab the crystal type and quantities
+    if wasTrade then
+        -- Confirm trade
+        player:confirmTrade()
+    else
+        -- Grab the crystal type and quantities
             local index = bit.band(bit.rshift(option, 16), 0xFF)
             local quantity = bit.band(option, 0xFFFF)
             local crystals = quantity % 12
@@ -119,8 +125,10 @@ dsp.ephemeral.onEventFinish = function(player, csid, option)
             local totalToRemove = 0
 
             -- Clusters first
-            if npcUtil.giveItem(player, { { crystalData[index].cluster, clusters } }) then
-                totalToRemove = clusters * 12
+            if clusters > 0 then
+                if npcUtil.giveItem(player, { { crystalData[index].cluster, clusters } }) then
+                    totalToRemove = clusters * 12
+                end
             end
 
             -- Then Crystals
@@ -134,12 +142,5 @@ dsp.ephemeral.onEventFinish = function(player, csid, option)
             if totalToRemove > 0 then
                 player:delCurrency(crystalData[index].name, totalToRemove)
             end
-
-            break
-        elseif csid == v.tradeEvent then
-            -- Add crystals to the database
-            player:confirmTrade()
-            break
-        end
     end
 end

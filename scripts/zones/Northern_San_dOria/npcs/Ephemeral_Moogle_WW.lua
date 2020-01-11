@@ -1,14 +1,15 @@
 -----------------------------------
--- Area: Bastok Mines
+-- Area: Northern San d'Oria
 --  NPC: Ephemeral Moogle
 -- Type: Crystal Strage NPC
--- !pos 118.870 2.020 4.290 234
+-- !pos -176.090 12.000 268.910 231 - Carpenter's Guild
+-- !pos -186.440 12.000 140.310 231 - Blacksmith's Guild
 -----------------------------------
 require("scripts/globals/ephemeral")
 
-local triggerEvent = 617
-local tradeEvent = 618
-local failEvent = 619
+local triggerEvent = 913
+local tradeEvent = 915
+local failEvent = 917
 
 function onTrade(player, npc, trade)
     dsp.ephemeral.onTrade(player, trade, tradeEvent, failEvent)

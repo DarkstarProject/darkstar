@@ -1,14 +1,15 @@
 -----------------------------------
--- Area: Bastok Mines
+-- Area: Winurst Wood
 --  NPC: Ephemeral Moogle
 -- Type: Crystal Strage NPC
--- !pos 118.870 2.020 4.290 234
+-- !pos -10.500 -5.250 -143.400 241 - Boneworker's Guild
+-- !pos -34.840 -1.250 -114.490 241 - Weaver's Guild
 -----------------------------------
 require("scripts/globals/ephemeral")
 
-local triggerEvent = 617
-local tradeEvent = 618
-local failEvent = 619
+local triggerEvent = 896
+local tradeEvent = 898
+local failEvent = 900
 
 function onTrade(player, npc, trade)
     dsp.ephemeral.onTrade(player, trade, tradeEvent, failEvent)
