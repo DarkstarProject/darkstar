@@ -115,8 +115,6 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
             [17723497] = 51, -- Attarena
         },
         EXPLORER_MOOGLE              = 17723648,
-        EPHEMERAL_MOOGLE_WOODWORKING = 17723846,
-        EPHEMERAL_MOOGLE_SMITHING    = 17723847,
     },
 }
 
