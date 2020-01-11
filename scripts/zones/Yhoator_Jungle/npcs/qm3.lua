@@ -15,7 +15,8 @@ end
 
 function onTrigger(player,npc)
     if player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) then
-        if player:getCharVar("trueWillKilledNM") > 0 then
+        local mobsStillUp = GetMobByID(ID.mob.KAPPA_AKUSO):isSpawned() or GetMobByID(ID.mob.KAPPA_BONZE):isSpawned() or GetMobByID(ID.mob.KAPPA_BIWA)
+        if not mobsStillUp and player:getCharVar("trueWillKilledNM") > 0 then
             npcUtil.giveKeyItem(player, dsp.ki.OLD_TRICK_BOX)
             player:setCharVar("trueWillKilledNM", 0)
         else
