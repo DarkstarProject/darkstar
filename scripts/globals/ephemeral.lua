@@ -79,7 +79,6 @@ dsp.ephemeral.onTrade = function(player, trade, successEvent, failEvent)
 end
 
 dsp.ephemeral.onTrigger = function(player, event)
-    local moogleID = npc:getID()
     player:startEvent(event, unpack(getCrystalTotals(player)))
 end
 
