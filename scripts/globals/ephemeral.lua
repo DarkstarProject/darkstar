@@ -24,7 +24,8 @@ local crystalData =
     { crystal = 4103, cluster = 4111, tradeparam = 8, eventparam = 4, offset = 16, name = "dark_crystals" }, -- Dark Crystal
 }
 
-function getCrystalTotals(player)
+-- Helper function for getting crystal counts as params
+local getCrystalTotals = function(player)
     local params = { 0, 0, 0, 0 }
     for _, v in pairs(crystalData) do
         params[v.eventparam] = bit.bor(params[v.eventparam], bit.lshift(player:getCurrency(v.name), v.offset))
