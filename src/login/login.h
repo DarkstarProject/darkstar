@@ -36,8 +36,6 @@
 
 #include "login_session.h"
 
-extern lan_config_t lan_config;
-
 struct login_config_t
 {
     uint16 login_auth_port;         // authentication port of login server ->  54231
