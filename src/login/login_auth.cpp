@@ -314,7 +314,7 @@ int32 login_parse(int32 fd)
 
                 // Packet expects a single password parameter no longer than
                 // 16 bytes.
-                int32_t size = session[fd]->rdata.size();
+                size_t size = session[fd]->rdata.size();
                 if (size == 0 || size > 16)
                 {
                     session[fd]->wdata.resize(1);
