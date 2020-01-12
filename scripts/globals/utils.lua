@@ -383,11 +383,7 @@ end;
 -------------------------------------------------------
 function utils.hasRelic(player, relic, tier)
     if tier ~= nil then
-        if player:hasItem(dsp.relicTiers[relic][tier]) then
-            return true
-        else
-            return false
-        end
+        return player:hasItem(dsp.relicTiers[relic][tier])
     end
 
     for i, itemID in pairs(dsp.relicTiers[relic]) do
