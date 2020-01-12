@@ -52,7 +52,6 @@ const char* LOGIN_CONF_FILENAME = nullptr;
 const char* VERSION_INFO_FILENAME = nullptr;
 const char* MAINT_CONF_FILENAME = nullptr;
 
-//lan_config_t   lan_config;        // lan settings
 login_config_t login_config;    //main settings
 version_info_t version_info;
 maint_config_t maint_config;

@@ -291,21 +291,6 @@ unsigned char a[]={ \
 			0x00, 0x00, 0x00, 0x00\
 		}
 
-#define LAN_CONFIG_NAME "conf/lan_config.conf"
-
-struct lan_config_t
-{
-	uint32 uiLoginLanIP;
-	uint16 usLoginLanPort;
-
-	uint32 uiMapLanIP;
-	uint16 usMapLanPort;
-
-	uint32 wait_time;
-	uint8  connect_try_num;
-};
-
-
 class char_mini
 {
 public:
