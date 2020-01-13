@@ -29,8 +29,8 @@
 
 CCurrencyPacket1::CCurrencyPacket1(CCharEntity* PChar)
 {
-	this->type = 0x13;
-	this->size = 0x6F;
+	this->id(0x113);
+	this->length(252);
 
     const char* query = "SELECT sandoria_cp, bastok_cp, windurst_cp, beastman_seal, kindred_seal, kindred_crest, \
                         high_kindred_crest, sacred_kindred_crest, ancient_beastcoin, valor_point, scyld, \
@@ -44,7 +44,8 @@ CCurrencyPacket1::CCurrencyPacket1(CCharEntity* PChar)
                         nyzul_isle_assault_point, zeni_point, jetton, therion_ichor, allied_notes, cruor, resistance_credit, \
                         dominion_note, fifth_echelon_trophy, fourth_echelon_trophy, third_echelon_trophy, second_echelon_trophy, \
                         first_echelon_trophy, cave_points, id_tags, op_credits, traverser_stones, voidstones, kupofried_corundums, \
-                        pheromone_sacks FROM char_points WHERE charid = %d";
+                        pheromone_sacks, fire_crystals, ice_crystals, wind_crystals, earth_crystals, lightning_crystals, \
+                        water_crystals, light_crystals, dark_crystals FROM char_points WHERE charid = %d";
 
     int ret = Sql_Query(SqlHandle, query, PChar->id);
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -137,5 +138,15 @@ CCurrencyPacket1::CCurrencyPacket1(CCharEntity* PChar)
         ref<uint32>(0xC8) = Sql_GetIntData(SqlHandle, 68);
 
         ref<uint8>(0xCC) = Sql_GetUIntData(SqlHandle, 69);
+
+        // Crystal storage
+        ref<uint16>(0xE8) = Sql_GetUIntData(SqlHandle, 70); // Fire Crystals
+        ref<uint16>(0xEA) = Sql_GetUIntData(SqlHandle, 71); // Ice Crystals
+        ref<uint16>(0xEC) = Sql_GetUIntData(SqlHandle, 72); // Wind Crystals
+        ref<uint16>(0xEE) = Sql_GetUIntData(SqlHandle, 73); // Earth Crystals
+        ref<uint16>(0xF0) = Sql_GetUIntData(SqlHandle, 74); // Lightning Crystals
+        ref<uint16>(0xF2) = Sql_GetUIntData(SqlHandle, 75); // Water Crystals
+        ref<uint16>(0xF4) = Sql_GetUIntData(SqlHandle, 76); // Light Crystals
+        ref<uint16>(0xF6) = Sql_GetUIntData(SqlHandle, 77); // Dark Crystals
     }
 }
