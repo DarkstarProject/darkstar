@@ -35,6 +35,23 @@ class CMobEntity;
 class CMeritPoints;
 class CAbility;
 
+/**
+ * @enum EMobDifficulty
+ * @brief Order matters for /check message packet
+ */
+enum class EMobDifficulty : uint8
+{
+    TooWeak = 0,
+    IncredibyEasyPrey,
+    EasyPrey,
+    DecentChallenge,
+    EvenMatch,
+    Tough,
+    VeryTough,
+    IncrediblyTough,
+    MAX
+};
+
 namespace charutils
 {
 
@@ -53,14 +70,16 @@ namespace charutils
 
     void	SetLevelRestriction(CCharEntity* PChar, uint8 lvl);
 
-    uint32	GetExpNEXTLevel(uint8 charlvl);
+    EMobDifficulty CheckMob(uint8 charlvl, uint8 moblvl);
+
     uint32	GetRealExp(uint8 charlvl, uint8 moblvl);
+    uint32	GetExpNEXTLevel(uint8 charlvl);
 
     void	DelExperiencePoints(CCharEntity* PChar, float retainpct, uint16 forcedXpLoss);
     void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
     void	DistributeGil(CCharEntity* PChar, CMobEntity* PMob);
     void	DistributeItem(CCharEntity* PChar, CBaseEntity* PEntity, uint16 itemid, uint16 droprate);
-    void	AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp = 0, bool isexpchain = false);
+    void	AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, EMobDifficulty mobCheck = EMobDifficulty::TooWeak, bool isexpchain = false);
 
     void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl);
     void	BuildingCharSkillsTable(CCharEntity* PChar);

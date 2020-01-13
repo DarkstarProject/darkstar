@@ -893,7 +893,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         }
                     }
                     // check for ws points
-                    if (charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel()) > 0)
+                    if (charutils::CheckMob(this->GetMLevel(), PTarget->GetMLevel()) > EMobDifficulty::TooWeak)
                     {
                         charutils::AddWeaponSkillPoints(this, damslot, wspoints);
                     }
