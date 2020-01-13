@@ -72,8 +72,8 @@ zones[dsp.zone.NORTH_GUSTABERG] =
     },
     npc =
     {
-        CASKET_BASE   = 17212022,
-        OVERSEER_BASE = 17212059,
+        CASKET_BASE   = 17212023,
+        OVERSEER_BASE = 17212060,
     },
 }
 
