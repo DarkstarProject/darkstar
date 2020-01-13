@@ -986,7 +986,8 @@ bool IsMiddleLandsShip(uint16 ZoneID) {
 
 CONTINENTTYPE GetCurrentContinent(uint16 ZoneID)
 {
-    if IsMiddleLandsShip(ZoneID) {
+    if (IsMiddleLandsShip(ZoneID))
+    {
         return THE_MIDDLE_LANDS;
     }
 
