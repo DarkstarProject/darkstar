@@ -3423,23 +3423,23 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
             lua_pushboolean(L, 1);
             return 1;
         }
+
         uint16 id = (uint16)lua_tointeger(L, -1);
         lua_getfield(L, 1, "quantity");
-        uint32 quantity = (uint32)lua_tointeger(L, -1);
+        int32 quantity = (int32)lua_tointeger(L, -1);
         if (quantity == 0) quantity = 1;
         lua_pop(L, 2);
 
-        if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
+        while  (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && quantity > 0)
         {
-            CItem* PItem = itemutils::GetItem(id);
-
-            if (PItem != nullptr)
+            if (CItem* PItem = itemutils::GetItem(id))
             {
                 PItem->setQuantity(quantity);
+                quantity -= PItem->getStackSize();
 
                 lua_getfield(L, 1, "silent");
                 bool silent = false;
-                if (!lua_isnil(L,-1))
+                if (!lua_isnil(L, -1))
                 {
                     silent = lua_toboolean(L, -1);
                 }
@@ -3458,11 +3458,11 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                     uint16 trial = (uint16)lua_tointeger(L, -1);
                     if (trial != 0) ((CItemEquipment*)PItem)->setTrialNumber(trial);
                     lua_getfield(L, 1, "augments");
-                    if (lua_istable(L,-1))
+                    if (lua_istable(L, -1))
                     {
                         auto table = lua_gettop(L);
                         lua_pushnil(L);
-                        while (lua_next(L,table) != 0)
+                        while (lua_next(L, table) != 0)
                         {
                             uint16 augid = (uint16)lua_tointeger(L, -2);
                             uint8 augval = (uint8)lua_tointeger(L, -1);
@@ -3473,14 +3473,14 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                     lua_pop(L, 2);
                 }
                 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silent);
+                if (SlotID == ERROR_SLOTID)
+                    break;
             }
             else
             {
                 ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, id);
             }
         }
-        lua_pushboolean(L, (SlotID != ERROR_SLOTID));
-        return 1;
     }
     else
     {
@@ -3494,7 +3494,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
         bool silence = false;
         uint16 itemID = (uint16)lua_tointeger(L, 1);
-        uint32 quantity = 1;
+        int32 quantity = 1;
         uint16 augment0 = 0; uint8 augment0val = 0;
         uint16 augment1 = 0; uint8 augment1val = 0;
         uint16 augment2 = 0; uint8 augment2val = 0;
@@ -3502,12 +3502,12 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
         uint16 trialNumber = 0;
 
         if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
-            silence = (uint32)lua_toboolean(L, 2);
+            silence = lua_toboolean(L, 2);
         else if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
         {
-            quantity = (uint32)lua_tointeger(L, 2);
+            quantity = (int32)lua_tointeger(L, 2);
             if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
-                silence = (uint32)lua_toboolean(L, 3);
+                silence = lua_toboolean(L, 3);
         }
 
         if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
@@ -3530,13 +3530,12 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
         if (!lua_isnil(L, 11) && lua_isnumber(L, 11))
             trialNumber = (uint16)lua_tointeger(L, 11);
 
-        if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && quantity != 0)
+        while (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && quantity > 0)
         {
-            CItem* PItem = itemutils::GetItem(itemID);
-
-            if (PItem != nullptr)
+            if (CItem* PItem = itemutils::GetItem(itemID))
             {
                 PItem->setQuantity(quantity);
+                quantity -= PItem->getStackSize();
 
                 if (PItem->isType(ITEM_EQUIPMENT))
                 {
@@ -3547,16 +3546,19 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                     if (trialNumber != 0) ((CItemEquipment*)PItem)->setTrialNumber(trialNumber);
                 }
                 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silence);
+
+                // Paranoid check
+                if (SlotID == ERROR_SLOTID)
+                    break;
             }
             else
             {
                 ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
             }
         }
-        lua_pushboolean(L, (SlotID != ERROR_SLOTID));
-        return 1;
     }
-    lua_pushboolean(L, false);
+
+    lua_pushboolean(L, (SlotID != ERROR_SLOTID));
     return 1;
 }
 
@@ -3691,7 +3693,7 @@ inline int32 CLuaBaseEntity::createWornItem(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((uint16)lua_tointeger(L, 1));
 
-    if (slotID != -1)
+    if (slotID != ERROR_SLOTID)
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
         PItem->m_extra[0] = 1;

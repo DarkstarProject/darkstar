@@ -44,6 +44,14 @@ function onTrigger(player,npc)
         4812,  71250,    -- Scroll of Flare
         4814,  52500,    -- Scroll of Freeze
         4820,  63750,    -- Scroll of Burst
+        4813, 119180,    -- Scroll of Flare II
+        4815, 119180,    -- Scroll of Freeze II
+        4817, 119180,    -- Scroll of Tornado II
+        4819, 119180,    -- Scroll of Quake II
+        4821, 119180,    -- Scroll of Burst II
+        4823, 119180,    -- Scroll of Flood II
+        4840, 139125,    -- Scroll of Bio III
+        4884, 139125,    -- Scroll of Blind II
     }
 
     player:showText(npc, ID.text.SUSU_SHOP_DIALOG)

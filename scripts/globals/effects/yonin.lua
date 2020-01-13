@@ -10,6 +10,11 @@ function onEffectGain(target,effect) --power=30 initially, subpower=20 for enmit
     target:addMod(tpz.mod.ACC,-effect:getPower())
     target:addMod(tpz.mod.NINJA_TOOL,effect:getPower())
     target:addMod(tpz.mod.ENMITY,effect:getSubPower())
+
+    local yoninMerits = target:getMerit(tpz.merit.YONIN_EFFECT)
+    if yoninMerits ~= 0 then
+        target:addMod(tpz.mod.HP, yoninMerits)
+    end
 end
 
 function onEffectTick(target,effect)
@@ -28,4 +33,9 @@ function onEffectLose(target,effect)
     target:delMod(tpz.mod.ACC,-effect:getPower())
     target:delMod(tpz.mod.NINJA_TOOL,effect:getPower())
     target:delMod(tpz.mod.ENMITY,effect:getSubPower())
+
+    local yoninMerits = target:getMerit(tpz.merit.YONIN_EFFECT)
+    if yoninMerits ~= 0 then
+        target:delMod(tpz.mod.HP, yoninMerits)
+    end
 end

@@ -43,31 +43,31 @@ function onTrade(player,npc,trade)
 -------- Trading Cracked BCNM Orbs or checking where you can bring the Orb  ------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(1551,1) and NumberItem == 1) then
-        if (player:getCharVar("CloudyOrbIsCracked") == 1) then
+        if (player:hasWornItem(1551)) then
             player:startEvent(22); -- Cloudy Orb is Cracked
         else
             player:startEvent(5);  -- Cloudy Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1552,1) and NumberItem == 1) then
-        if (player:getCharVar("SkyOrbIsCracked") == 1) then
+        if (player:hasWornItem(1552)) then
             player:startEvent(22); -- Sky Orb is Cracked
         else
             player:startEvent(9); -- Sky Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1131,1) and NumberItem == 1) then
-        if (player:getCharVar("StarOrbIsCracked") == 1) then
+        if (player:hasWornItem(1131)) then
             player:startEvent(22); -- Star Orb is Cracked
         else
             player:startEvent(9); -- Star Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1177,1) and NumberItem == 1) then
-        if (player:getCharVar("CometOrbIsCracked") == 1) then
+        if (player:hasWornItem(1177)) then
             player:startEvent(22); -- Comet Orb is Cracked
         else
             player:startEvent(9); -- Comet Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1130,1) and NumberItem == 1) then
-        if (player:getCharVar("MoonOrbIsCracked") == 1) then
+        if (player:hasWornItem(1130)) then
             player:startEvent(22); -- Moon Orb is Cracked
         else
             player:startEvent(9); -- Moon Orb is ok, List where you can take the orb.
@@ -76,25 +76,25 @@ function onTrade(player,npc,trade)
 -------- Trading Cracked KSNM Orbs or checking where you can bring the Orb -------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(1180,1) and NumberItem == 1) then
-        if (player:getCharVar("AtroposOrbIsCracked") == 1) then
+        if (player:hasWornItem(1180)) then
             player:startEvent(22); -- Atropos Orb is Cracked
         else
             player:startEvent(9); -- Atropos Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1175,1) and NumberItem == 1) then
-        if (player:getCharVar("ClothoOrbIsCracked") == 1) then
+        if (player:hasWornItem(1175)) then
             player:startEvent(22); -- Clotho Orb is Cracked
         else
             player:startEvent(9); -- Clotho Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1178,1) and NumberItem == 1) then
-        if (player:getCharVar("LachesisOrbIsCracked") == 1) then
+        if (player:hasWornItem(1178)) then
             player:startEvent(22) -- Lachesis Orb is Cracked
         else
             player:startEvent(9); -- Lachesis Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1553,1) and NumberItem == 1) then
-        if (player:getCharVar("ThemisOrbIsCracked") == 1) then
+        if (player:hasWornItem(1553)) then
             player:startEvent(22); -- Themis Orb is Cracked
         else
             player:startEvent(11); -- Themis Orb is ok, List where you can take the orb.
@@ -103,13 +103,13 @@ function onTrade(player,npc,trade)
 -------- Trading Cracked KCNM Orbs or checking where you can bring the Orb -------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(3351,1) and NumberItem == 1) then
-        if (player:getCharVar("PhobosOrbIsCracked") == 1) then
+        if (player:hasWornItem(3351)) then
             player:startEvent(22); -- Phobos Orb is Cracked
         else
             player:startEvent(11); -- Phobos Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(3352,1) and NumberItem == 1) then
-        if (player:getCharVar("DeimosOrbIsCracked") == 1) then
+        if (player:hasWornItem(3352)) then
             player:startEvent(22); -- Deimos Orb is Cracked
         else
             player:startEvent(11); -- Deimos Orb is ok, List where you can take the orb.
@@ -118,13 +118,13 @@ function onTrade(player,npc,trade)
 -------- Trading Cracked HKCNM Orbs or checking where you can bring the Orb ------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(3454,1) and NumberItem == 1) then
-        if (player:getCharVar("ZelosOrbIsCracked") == 1) then
+        if (player:hasWornItem(3454)) then
             player:startEvent(22); -- Zelos Orb is Cracked
         else
             player:startEvent(11); -- Zelos Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(3455,1) and NumberItem == 1) then
-        if (player:getCharVar("BiaOrbIsCracked") == 1) then
+        if (player:hasWornItem(3455)) then
             player:startEvent(22); -- Bia Orb is Cracked
         else
             player:startEvent(11); -- Bia Orb is ok, List where you can take the orb.
@@ -133,13 +133,13 @@ function onTrade(player,npc,trade)
 -------- Trading Cracked SKCNM Orbs or checking where you can bring the Orb ------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(4062,1) and NumberItem == 1) then
-        if (player:getCharVar("MicrocosmicOrbIsCracked") == 1) then
+        if (player:hasWornItem(4062)) then
             player:startEvent(22); -- Microcosmic Orb is Cracked
         else
             player:startEvent(11); -- Microcosmic Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(4063,1) and NumberItem == 1) then
-        if (player:getCharVar("MacrocosmicOrbIsCracked") == 1) then
+        if (player:hasWornItem(4063)) then
             player:startEvent(22); -- Macrocosmic Orb is Cracked
         else
             player:startEvent(11); -- Macrocosmic Orb is ok, List where you can take the orb.

@@ -147,7 +147,7 @@ local selection =
 local travelType = tpz.teleport.type.HOMEPOINT
 
 local function getCost (from, to, key)
-    
+
     if HPs[from].group == HPs[to].group and HPs[to].group ~= 0 then
         return 0
     else
