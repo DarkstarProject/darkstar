@@ -962,8 +962,34 @@ REGIONTYPE GetCurrentRegion(uint16 ZoneID)
 *                                                                       *
 ************************************************************************/
 
+bool IsMiddleLandsShip(uint16 ZoneID) {
+    switch (ZoneID)
+    {
+        case ZONE_SHIP_BOUND_FOR_SELBINA:
+        case ZONE_SHIP_BOUND_FOR_MHAURA:
+        case ZONE_SHIP_BOUND_FOR_SELBINA_PIRATES:
+        case ZONE_SHIP_BOUND_FOR_MHAURA_PIRATES:
+        case ZONE_SAN_DORIA_JEUNO_AIRSHIP:
+        case ZONE_BASTOK_JEUNO_AIRSHIP:
+        case ZONE_WINDURST_JEUNO_AIRSHIP:
+        case ZONE_KAZHAM_JEUNO_AIRSHIP:
+            return true;
+    }
+    return false;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 CONTINENTTYPE GetCurrentContinent(uint16 ZoneID)
 {
+    if IsMiddleLandsShip(ZoneID) {
+        return THE_MIDDLE_LANDS;
+    }
+
     return GetCurrentRegion(ZoneID) != REGION_UNKNOWN ? THE_MIDDLE_LANDS : OTHER_AREAS;
 }
 
