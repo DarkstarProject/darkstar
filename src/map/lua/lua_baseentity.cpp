@@ -6699,7 +6699,7 @@ inline int32 CLuaBaseEntity::addExp(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    charutils::AddExperiencePoints(false, (CCharEntity*)m_PBaseEntity, m_PBaseEntity, (uint32)lua_tointeger(L, 1), 0, false);
+    charutils::AddExperiencePoints(false, (CCharEntity*)m_PBaseEntity, m_PBaseEntity, (uint32)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -8928,7 +8928,7 @@ inline int32 CLuaBaseEntity::checkKillCredit(lua_State *L)
     int maxDiff = (!lua_isnil(L, 2) && lua_isnumber(L, 2)) ? (int)lua_tonumber(L, 2) : 15;
     float range = (!lua_isnil(L, 3) && lua_isnumber(L, 3)) ? (float)lua_tonumber(L, 3) : 100;
 
-    if (charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel()) && distance(PMob->loc.p, PChar->loc.p) < range && lvlDiff < maxDiff)
+    if (charutils::CheckMob(PMob->m_HiPCLvl, PMob->GetMLevel()) > EMobDifficulty::TooWeak && distance(PMob->loc.p, PChar->loc.p) < range && lvlDiff < maxDiff)
     {
         if (PChar->PParty && PChar->PParty->GetSyncTarget())
         {

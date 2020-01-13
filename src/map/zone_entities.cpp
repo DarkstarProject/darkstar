@@ -394,36 +394,31 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
         float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
 
-        if (PCurrentMob->status != STATUS_DISAPPEAR &&
-            CurrentDistance < 50)
+        if (PCurrentMob->status != STATUS_DISAPPEAR && CurrentDistance < 50)
         {
-            if (MOB == PChar->SpawnMOBList.end() ||
-                PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first))
+            if (MOB == PChar->SpawnMOBList.end() || PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first))
             {
                 PChar->SpawnMOBList.insert(MOB, SpawnIDList_t::value_type(PCurrentMob->id, PCurrentMob));
                 PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_SPAWN, UPDATE_ALL_MOB));
             }
 
-            if (PChar->isDead() || PChar->nameflags.flags & FLAG_GM || PCurrentMob->PMaster != nullptr)
+            if (PChar->isDead() || PChar->nameflags.flags & FLAG_GM || PCurrentMob->PMaster)
                 continue;
 
             // проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
 
-            uint16 expGain = (uint16)charutils::GetRealExp(PChar->GetMLevel(), PCurrentMob->GetMLevel());
+            const EMobDifficulty mobCheck = charutils::CheckMob(PChar->GetMLevel(), PCurrentMob->GetMLevel());
 
             CMobController* PController = static_cast<CMobController*>(PCurrentMob->PAI->GetController());
 
-            bool validAggro = expGain > 50 || PChar->isSitting() || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
+            bool validAggro = mobCheck > EMobDifficulty::TooWeak || PChar->isSitting() || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
 
             if (validAggro && PController->CanAggroTarget(PChar))
-            {
                 PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-            }
         }
         else
         {
-            if (MOB != PChar->SpawnMOBList.end() &&
-                !(PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first)))
+            if (MOB != PChar->SpawnMOBList.end() && !(PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first)))
             {
                 PChar->SpawnMOBList.erase(MOB);
                 PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_DESPAWN, UPDATE_NONE));

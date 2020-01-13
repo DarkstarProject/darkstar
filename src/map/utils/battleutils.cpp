@@ -3821,65 +3821,69 @@ namespace battleutils
         //Tough             1.5 Minutes
         //VT                1 minute    guess
         //IT                30 seconds  guess
-
         uint32 CharmTime = 0;
 
         // player charming mob
-        if (PVictim->objtype == TYPE_MOB && PCharmer->objtype == TYPE_PC)
+        CMobEntity* PMob = dynamic_cast<CMobEntity*>(PVictim);
+        if (PMob && PCharmer->objtype == TYPE_PC)
         {
             // cannot charm NM
-            if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS) {
+            if (PMob->m_Type & MOBTYPE_NOTORIOUS)
                 return;
-            }
 
-            //Bind uncharmable mobs for 5 seconds
-            if ( ((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 ||  PVictim->PMaster != nullptr) {
-                PVictim->StatusEffectContainer->AddStatusEffect(
-                    new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, dsprand::GetRandomNumber(1, 5)));
+            // Bind uncharmable mobs for 5 seconds
+            if (!PMob->getMobMod(MOBMOD_CHARMABLE) ||  PMob->PMaster)
+            {
+                PVictim->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, dsprand::GetRandomNumber(1, 5)));
                 return;
             }
 
             // mob is charmable
-            uint16 baseExp = charutils::GetRealExp(PCharmer->GetMLevel(), PVictim->GetMLevel());
-
-            if (baseExp >= 400) {//IT
-                CharmTime = 22500;
-            }
-            else if (baseExp >= 240) {//VT
-                CharmTime = 45000;
-            }
-            else if (baseExp >= 120) {//T
-                CharmTime = 90000;
-            }
-            else if (baseExp == 100) {//EM
-                CharmTime = 180000;
-            }
-            else if (baseExp >= 75) {//DC
-                CharmTime = 600000;
-            }
-            else if (baseExp >= 15) {//EP
-                CharmTime = 1200000;
-            }
-            else if (baseExp == 0) {//TW
+            const EMobDifficulty mobCheck = charutils::CheckMob(PCharmer->GetMLevel(), PVictim->GetMLevel());
+            switch (mobCheck)
+            {
+            case EMobDifficulty::TooWeak:
                 CharmTime = 1800000;
+                break;
+
+            case EMobDifficulty::IncredibyEasyPrey:
+            case EMobDifficulty::EasyPrey:
+                CharmTime = 1200000;
+                break;
+
+            case EMobDifficulty::DecentChallenge:
+                CharmTime = 600000;
+                break;
+
+            case EMobDifficulty::EvenMatch:
+                CharmTime = 180000;
+                break;
+
+            case EMobDifficulty::Tough:
+                CharmTime = 90000;
+                break;
+
+            case EMobDifficulty::VeryTough:
+                CharmTime = 45000;
+                break;
+
+            case EMobDifficulty::IncrediblyTough:
+                CharmTime = 22500;
+                break;
             }
 
             //apply charm time extension from gear
             uint16 charmModValue = (PCharmer->getMod(Mod::CHARM_TIME));
             // adds 5% increase
-            auto extraCharmTime = (uint32)(CharmTime * (charmModValue * 0.5f) / 10);
+            uint32 extraCharmTime = (uint32)(CharmTime * (charmModValue * 0.5f) / 10.f);
             CharmTime += extraCharmTime;
 
             //randomize charm time if > EM
-            if (baseExp > 100)
-            {
+            if (mobCheck > EMobDifficulty::EvenMatch)
                 CharmTime = (uint32)(CharmTime * dsprand::GetRandomNumber(0.75f, 1.25f));
-            }
 
-            if (TryCharm(PCharmer, PVictim) == false)
-            {
+            if (!TryCharm(PCharmer, PVictim))
                 return;
-            }
         }
 
         applyCharm(PCharmer, PVictim, std::chrono::milliseconds(CharmTime));
@@ -3972,23 +3976,19 @@ namespace battleutils
         //  75 with a BST SJ Lvl 75 will not - this player has bst leveled to 75 and is using it as SJ
         //---------------------------------------------------------
 
-        float charmChance = 0.0f;
-
-        if (PCharmer == nullptr || PTarget == nullptr)
-            return charmChance;
+        // Paranoid check
+        if (!PCharmer || !PTarget)
+            return 0.f;
 
         // Can the target even be charmed?
-        auto PTargetAsMob = dynamic_cast<CMobEntity*>(PTarget);
+        CMobEntity* PTargetAsMob = dynamic_cast<CMobEntity*>(PTarget);
         if (PTargetAsMob)
         {
-            if (PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS ||
-                PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) == 0 ||
-                PTargetAsMob->PMaster != nullptr)
-            {
-                // 0% chance to charm an NM, non-charmable mob, or pet
-                return charmChance;
-            }
+            // Cannot charm NMs, pets, or other non-charmable mobs
+            if (PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS || !PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) || PTargetAsMob->PMaster)
+                return 0.f;
         }
+
 
         uint8 charmerLvl = PCharmer->GetMLevel();
         uint8 targetLvl = PTarget->GetMLevel();
@@ -3996,78 +3996,70 @@ namespace battleutils
         //printf("Charmer = %s, Lvl. %u\n", PCharmer->name.c_str(), charmerLvl);
         //printf("Target = %s, Lvl. %u\n", PTarget->name.c_str(), targetLvl);
 
-        uint32 base = 0;
-        uint16 baseExp = charutils::GetRealExp(charmerLvl, targetLvl);
+        EMobDifficulty mobCheck = charutils::CheckMob(charmerLvl, targetLvl);
+        float charmChance = 0.f;
 
-        //printf("baseExp = %u\n", baseExp);
-        if (baseExp >= 400) // IT
-            base = 90;
-        else if (baseExp >= 240) // VT
-            base = 75;
-        else if (baseExp >= 120) // T
-            base = 60;
-        else if (baseExp == 100) // EM
-            base = 40;
-        else if (baseExp >= 75) // DC
-            base = 30;
-        else if (baseExp >= 15) // EP
-            base = 20;
-        else if (baseExp == 0) // TW
-            base = 10;
+        switch (mobCheck)
+        {
+        case EMobDifficulty::TooWeak:
+            charmChance = 90.f;
+            break;
+        case EMobDifficulty::IncredibyEasyPrey:
+        case EMobDifficulty::EasyPrey:
+            charmChance = 75.f;
+            break;
+        case EMobDifficulty::DecentChallenge:
+            charmChance = 60.f;
+            break;
+        case EMobDifficulty::EvenMatch:
+            charmChance = 40.f;
+            break;
+        case EMobDifficulty::Tough:
+            charmChance = 30.f;
+            break;
+        case EMobDifficulty::VeryTough:
+            charmChance = 20.f;
+            break;
+        case EMobDifficulty::IncrediblyTough:
+            charmChance = 10.f;
+            break;
+        }
 
         uint8 charmerBSTlevel = 0;
 
-        if (PCharmer->objtype == TYPE_PC)
+        if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PCharmer))
         {
-            uint8 charmerBRDlevel = static_cast<CCharEntity*>(PCharmer)->jobs.job[JOB_BRD];
-            charmerBSTlevel = static_cast<CCharEntity*>(PCharmer)->jobs.job[JOB_BST];
+            uint8 charmerBRDlevel = PChar->jobs.job[JOB_BRD];
+            charmerBSTlevel = PChar->jobs.job[JOB_BST];
             if (PCharmer->GetMJob() == JOB_BRD && charmerBRDlevel > charmerBSTlevel)
-            {
                 charmerBSTlevel = charmerBRDlevel;
-            }
-            if (charmerBSTlevel > charmerLvl)
-            {
-                charmerBSTlevel = charmerLvl;
-            }
+
+            charmerBSTlevel = std::min(charmerBSTlevel, charmerLvl);
         }
         else if (PCharmer->objtype == TYPE_MOB)
         {
             charmerBSTlevel = charmerLvl;
         }
 
-        //printf("base = %u\n", base);
-        charmChance = (float)base;
+        // FIXME: Level and CHR ratios are complete guesses
+        const float levelRatio = (targetLvl - charmerBSTlevel) / 100.f;
+        charmChance *= (1.f + levelRatio);
 
-        float levelRatio = float(targetLvl) / charmerBSTlevel;
-        charmChance *= levelRatio;
-        //printf("levelRatio = %f\n", levelRatio);
-
-        float chrRatio = float(PTarget->CHR()) / PCharmer->CHR();
-        charmChance *= chrRatio;
-        //printf("chrRatio = %f\n", chrRatio);
+        const float chrRatio = (PTarget->CHR() - PCharmer->CHR()) / 100.f;
+        charmChance *= (1.f + chrRatio);
 
         // Retail doesn't take light/apollo into account for Gauge
         if (includeCharmAffinityAndChanceMods)
         {
             // NQ elemental staves have 2 affinity, HQ have 3 affinity. Boost is 10/15% respectively so multiply by 5.
-            float charmAffintyMods = 5.f * (PCharmer->getMod(Mod::LIGHT_AFFINITY_ACC));
-            float charmChanceMods = PCharmer->getMod(Mod::CHARM_CHANCE);
+            const float charmAffintyMods = PCharmer->getMod(Mod::LIGHT_AFFINITY_ACC) * 5.f;
+            const float charmChanceMods = (float)PCharmer->getMod(Mod::CHARM_CHANCE);
 
-            charmChance *= ((float)((100.0f - charmChanceMods - charmAffintyMods) / 100.0f));
+            charmChance *= (1.f + (charmChanceMods + charmAffintyMods) / 100.0f);
         }
 
         // Cap chance at 95%
-        if (charmChance < 5)
-            charmChance = 5;
-
-        charmChance = 100 - charmChance;
-
-        if (charmChance < 0)
-            charmChance = 0;
-        else if (charmChance > 100)
-            charmChance = 100;
-
-        return charmChance;
+        return std::clamp(charmChance, 0.f, 95.f);
     }
 
     /************************************************************************
@@ -4078,12 +4070,7 @@ namespace battleutils
 
     bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
     {
-        float charmChance = GetCharmChance(PCharmer, PVictim);
-
-        if (charmChance >= dsprand::GetRandomNumber(100))
-            return true;
-
-        return false;
+        return GetCharmChance(PCharmer, PVictim) >= dsprand::GetRandomNumber(100.f);
     }
 
     void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
@@ -4362,43 +4349,39 @@ namespace battleutils
         {
             uint16 BindBreakChance = 0; // 0-1000 (100.0%) scale. Maybe change to a float later..
             uint16 LvDiffByExp = charutils::GetRealExp(PAttacker->GetMLevel(), PDefender->GetMLevel()); // This is temp.
+            EMobDifficulty mobCheck = charutils::CheckMob(PAttacker->GetMLevel(), PDefender->GetMLevel());
 
             // Todo: replace with an actual calculated value based on level difference. Not it, Bro!
             // This entire block of conditionals should not exist. Lv diff really shouldn't be handled at the exp check level either.
             // It might not even be in sync with the check values the entire way from lv 1 to lv 99 for all we know.
-            if (LvDiffByExp >= 400) // IT
+            switch (mobCheck)
             {
-                BindBreakChance = 999;
-            }
-            else if (LvDiffByExp >= 240) // VT
-            {
-                BindBreakChance = 990;
-            }
-            else if (LvDiffByExp >= 120) // T
-            {
-                BindBreakChance = 750;
-            }
-            else if (LvDiffByExp == 100) // EM
-            {
-                BindBreakChance = 300; // Should probably be higher.
-            }
-            else if (LvDiffByExp >= 75) // DC
-            {
-                BindBreakChance = 150; // Should probably be higher.
-            }
-            else if (LvDiffByExp >= 15) // EP
-            {
+            case EMobDifficulty::TooWeak:
+            case EMobDifficulty::IncredibyEasyPrey:
+                BindBreakChance = 10;
+                break;
+
+            case EMobDifficulty::EasyPrey:
+            case EMobDifficulty::DecentChallenge:
                 BindBreakChance = 150;
-            }
-            else if (LvDiffByExp < 15) // Everything weaker than EP, including both TW and that tier we don't have implimented.
-            {
-                BindBreakChance = 10; // Should probably be higher than 1% and I know darn well it ain't zero.
+                break;
+
+            case EMobDifficulty::EvenMatch:
+                BindBreakChance = 300;
+                break;
+
+            case EMobDifficulty::Tough:
+                BindBreakChance = 750;
+                break;
+
+            case EMobDifficulty::VeryTough:
+            case EMobDifficulty::IncrediblyTough:
+                BindBreakChance = 990;
+                break;
             }
 
             if (BindBreakChance > dsprand::GetRandomNumber(1000))
-            {
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
-            }
         }
     }
 

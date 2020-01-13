@@ -4713,22 +4713,17 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-                uint32 baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
+                uint8 mobLvl = PTarget->GetMLevel();
+                EMobDifficulty mobCheck = charutils::CheckMob(PChar->GetMLevel(), mobLvl);
+
+                // Calculate main /check message (64 is Too Weak)
+                int32 MessageValue = 64 + (uint8)mobCheck;
+
+                // Grab mob and player stats for extra messaging
                 uint16 charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
                 uint16 charAtt = PChar->ATT();
-                uint8 mobLvl = PTarget->GetMLevel();
                 uint16 mobEva = PTarget->EVA();
                 uint16 mobDef = PTarget->DEF();
-
-                // Calculate main /check message
-                int32 MessageValue = 64; // Default Too Weak
-                if      (baseExp >= 400) MessageValue = 71; // Incredibly Tough
-                else if (baseExp >= 350) MessageValue = 70; // Very Tough
-                else if (baseExp >= 220) MessageValue = 69; // Tough
-                else if (baseExp == 200) MessageValue = 68; // Even Match
-                else if (baseExp >= 160) MessageValue = 67; // Decent Challenge
-                else if (baseExp >= 60)  MessageValue = 66; // Easy Prey
-                else if (baseExp >= 15)  MessageValue = 65; // Incredibly Easy Prey
 
                 // Calculate +/- message
                 uint16 MessageID = 174; // Default even def/eva
