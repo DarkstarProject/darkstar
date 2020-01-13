@@ -4070,7 +4070,7 @@ namespace battleutils
 
     bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
     {
-        return GetCharmChance(PCharmer, PVictim) >= dsprand::GetRandomNumber(100.f);
+        return GetCharmChance(PCharmer, PVictim) > dsprand::GetRandomNumber(100.f);
     }
 
     void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
