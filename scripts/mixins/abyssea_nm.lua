@@ -48,20 +48,22 @@ g_mixins.abyssea_nm = function(mob)
 
     mob:addListener("DEATH", "ABYSSEA_KI_DISTRIBUTION", function(mob, killer)
         --TODO: message
-        local ki1 = mob:getLocalVar("ABYSSEA_PKI_DROP")
-        local ki2 = mob:getLocalVar("ABYSSEA_TKI_DROP")
-        if ki1 ~= 0 or ki2 ~= 0 then
-            for _,player in killer:getAlliance() do
-                local chance = 100 - ((mob:getLocalVar("abyssea_red_proc_count") - 1) * 10)
-                if mob:getLocalVar("abyssea_red_proc_count") == 0 then
-                    chance = 10
-                end
-                if math.random(0,99) < chance then
-                    if ki1 ~= 0 then
-                        player:addKeyItem(ki1)
+        if killer then
+            local ki1 = mob:getLocalVar("ABYSSEA_PKI_DROP")
+            local ki2 = mob:getLocalVar("ABYSSEA_TKI_DROP")
+            if ki1 ~= 0 or ki2 ~= 0 then
+                for _,player in killer:getAlliance() do
+                    local chance = 100 - ((mob:getLocalVar("abyssea_red_proc_count") - 1) * 10)
+                    if mob:getLocalVar("abyssea_red_proc_count") == 0 then
+                        chance = 10
                     end
-                    if ki2 ~= 0 then
-                        player:addKeyItem(ki2)
+                    if math.random(0,99) < chance then
+                        if ki1 ~= 0 then
+                            player:addKeyItem(ki1)
+                        end
+                        if ki2 ~= 0 then
+                            player:addKeyItem(ki2)
+                        end
                     end
                 end
             end
