@@ -17,6 +17,7 @@ zones[dsp.zone.HEAVENS_TOWER] =
         ITEM_OBTAINED           = 7129, -- Obtained: <item>.
         GIL_OBTAINED            = 7130, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 7132, -- Obtained key item: <keyitem>.
+        NOT_HAVE_ENOUGH_GIL     = 7134, -- You do not have enough gil.
         FISHING_MESSAGE_OFFSET  = 7366, -- You can't fish here.
         CELEBRATORY_GOODS       = 9097, -- An assortment of celebratory goods is available for purchase.
     },
