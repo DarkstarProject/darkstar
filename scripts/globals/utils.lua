@@ -364,94 +364,33 @@ function utils.getSystemStrengthBonus(attacker, defender)
     return 0;
 end;
 
-local relics =
-{
-    [dsp.relic.SPHARAI] =
-    {
-        18264, 18265, 18637, 18651, 18665, 19746, 19839, 20480, 20481, 21509
-    },
-    [dsp.relic.MANDAU] =
-    {
-        18270, 18271, 18638, 18652, 18666, 19747, 19840, 20555, 20556, 20583
-    },
-    [dsp.relic.EXCALIBUR] = 
-    {
-        18276, 18277, 18639, 18653, 18667, 19748, 19841, 20645, 20646, 20685
-    },
-    [dsp.relic.RAGNAROK] =
-    {
-        18282, 18283, 18640, 18654, 18668, 19749, 19842, 20745, 20746, 21683
-    },
-    [dsp.relic.GUTTLER] = 
-    {
-        18288, 18289, 18641, 18655, 18669, 19750, 19843, 20790, 20791, 21750
-    },
-    [dsp.relic.BRAVURA] =
-    {
-        18294, 18295, 18642, 18656, 18670, 19751, 19844, 20835, 20836, 21756
-    },
-    [dsp.relic.APOCALYPSE] =
-    {
-        18306, 18307, 18644, 18658, 18672, 19753, 19846, 20880, 20881, 21808
-    },
-    [dsp.relic.GUNGNIR] =
-    {
-        18300, 18301, 18643, 18657, 18671, 19752, 19845, 20925, 20926, 21857
-    },
-    [dsp.relic.KIKOKU] =
-    {
-        18312, 18313, 18645, 18659, 18673, 19754, 19847, 20970, 20971, 21906
-    },
-    [dsp.relic.AMANOMURAKUMO] =
-    {
-        18318, 18319, 18646, 18660, 18674, 19755, 19848, 21015, 21016, 21954
-    },
-    [dsp.relic.MJOLLNIR] =
-    {
-        18324, 18325, 18647, 18661, 18675, 19756, 19849, 21060, 21061, 21077
-    },
-    [dsp.relic.CLAUSTRUM] =
-    {
-        18330, 18331, 18648, 18662, 18676, 19757, 19850, 21135, 21136, 22060
-    },
-    [dsp.relic.YOICHINOYUMI] =
-    {
-        18348, 18349, 18650, 18664, 18678, 19759, 19852, 21210, 21211, 22129, 22115
-    },
-    [dsp.relic.ANNIHILATOR] =
-    {
-        18336, 18337, 18649, 18663, 18677, 19758, 19851, 21260, 21261, 22140, 21267
-    },
-    [dsp.relic.GJALLARHORN] =
-    {
-        18342, 18577, 18578, 18579, 18580, 18572, 18840
-    },
-    [dsp.relic.AEGIS] =
-    {
-        15070, 16195, 16196, 16197, 16198, 11927, 16200
-    },
-}
 -------------------------------------------------------
--- Returns a mask of relic stages in players possession
--- Bit:
--- 0  = 75
--- 1  = 80
--- 2  = 85
--- 3  = 90
--- 4  = 95
--- 5  = 99 I
--- 6  = 99 II
--- 7  = 119 I
--- 8  = 119 II
--- 9  = 119 III
--- 10 = 119 III (ammo dispensing)
+-- Returns true if player has any tier of given relic,
+--  if tier is specified, returns true only if player
+--  has that tier
+-- Tier:
+-- 1  = 75
+-- 2  = 80
+-- 3  = 85
+-- 4  = 90
+-- 5  = 95
+-- 6  = 99 I
+-- 7  = 99 II
+-- 8  = 119 I
+-- 9  = 119 II
+-- 10 = 119 III
+-- 11 = 119 III (ammo dispensing)
 -------------------------------------------------------
-function utils.getRelicStages(player, relic)
-    local stages = 0
-    for i, id in pairs(relics[relic]) do
-        if player:hasItem(id) then
-            stages = bit.bor(stages, bit.lshift(1, i - 1))
+function utils.hasRelic(player, relic, tier)
+    if tier ~= nil then
+        return player:hasItem(dsp.relicTiers[relic][tier])
+    end
+
+    for i, itemID in pairs(dsp.relicTiers[relic]) do
+        if player:hasItem(itemID) then
+            return true
         end
     end
-    return stages
+
+    return false
 end
