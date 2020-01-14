@@ -1179,8 +1179,10 @@ void CBattleEntity::Spawn()
 
 void CBattleEntity::Die()
 {
-    auto PKiller {GetEntity(m_OwnerID.targid)};
-    PAI->EventHandler.triggerListener("DEATH", this, PKiller);
+    if (CBaseEntity* PKiller = GetEntity(m_OwnerID.targid))
+        PAI->EventHandler.triggerListener("DEATH", this, PKiller);
+    else
+        PAI->EventHandler.triggerListener("DEATH", this);
     SetBattleTargetID(0);
 }
 
