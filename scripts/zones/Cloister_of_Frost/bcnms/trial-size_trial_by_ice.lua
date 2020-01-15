@@ -20,7 +20,7 @@ end
 function onBattlefieldLeave(player, battlefield, leavecode)
     if leavecode == dsp.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
-        local arg8 = (player:getQuestStatus(SANDORIA, dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_COMPLETED) and 1 or 0
+        local arg8 = (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_COMPLETED) and 1 or 0
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), arg8)
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:setCharVar("TrialSizeIce_date", tonumber(os.date("%j"))) -- If you lose, you need to wait 1 real day
