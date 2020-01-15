@@ -1259,6 +1259,12 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
         reward = math.floor(reward * avgCapLevel / avgMobLevel)
     end
 
+    --[[
+        This whole thing needs to die and be redone. The prowess effects do not all have the samestack cap of 11.
+        The one for casket rate caps at 5 stacks for example. see https://ffxiclopedia.fandom.com/wiki/Grounds_of_Valor#Prowesses
+        Additionaly forget this if/elseif crap this needs a table.
+        It was ok back when it was only 3 effects but to get all of them this needs changed.
+    ]]
     -- prowess buffs from completing Grounds regimes
     if regimeType == dsp.regime.type.GROUNDS then
         local prowess = math.random(dsp.effect.PROWESS_CASKET_RATE, dsp.effect.PROWESS_KILLER)

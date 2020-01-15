@@ -4542,25 +4542,27 @@ local function dropChance(player)
     -----------------------------------------------------------------------------------------
     -- NOTES: 10% base drop rate.
     -- Super Kupowers(Myriad Mystery Boxes) adds 10% drop rate to the base rate.
-    -- GoV Prowess Increased Treasure Casket Discovery adds 5% per level (max 5 levels)
-    -- for a total of 25% increase. -- NOTE this needs to be confirmed!
+    -- GoV Prowess Increased Treasure Casket Discovery adds 1% per level (max 5 levels)
+    -- This should be max 5 levels but its 11 right now - Teo says the regimes global needs fixing
     -----------------------------------------------------------------------------------------
-    --local kupowerMMBEffect    = player:getStatusEffect(dsp.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES)  -- Super Kupowers Myriad Mystery Boxes not implimented yet.
+    local baseCasketRate      = 10 -- 1 power = 1%
     local casketProwessEffect = player:getStatusEffect(dsp.effect.PROWESS_CASKET_RATE)
     local kupowersMMBPower    = 0
     local prowessCasketsPower = 0
 
-    --if player:hasStatusEffect(dsp.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES) then                       -- Super Kupowers Myriad Mystery Boxes not implimented yet.
-    --     kupowersMMBPower = kupowerMMBEffect:getPower()
-    --end
+    --[[ Super Kupowers Myriad Mystery Boxes not implimented yet.
+    if player:hasStatusEffect(dsp.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES) then
+        local kupowerMMBEffect = player:getStatusEffect(dsp.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES)
+        kupowersMMBPower = kupowerMMBEffect:getPower()
+    end
+    ]]
 
     if player:hasStatusEffect(dsp.effect.PROWESS_CASKET_RATE) then
         prowessCasketsPower = casketProwessEffect:getPower()
     end
 
-    local rand = math.random()
-
-    if rand < utils.clamp(CASKET_DROP_RATE + kupowersMMBPower + prowessCasketsPower, 0, 1) then
+    local rand = math.random(100)
+    if rand < (baseCasketRate + kupowersMMBPower + prowessCasketsPower) then
         return true
     end
 
