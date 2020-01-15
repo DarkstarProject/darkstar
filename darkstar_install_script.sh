@@ -48,16 +48,16 @@ if [ "${RUN_CHOICE}" == "1" ]; then
     git clone --recursive https://github.com/DarkstarProject/darkstar/ /opt/darkstar
   fi
   cd /opt/darkstar || exit
-  sh autogen.sh
+  sh autogen.sh || exit
   if [ "${OS}" == "debian" ] || [ "${OS}" == "raspbian" ]; then
     printf "\nRunning Debian or Raspbian Install\n"
     apt-get -y install libmariadb-dev-compat
-    ./configure CXXFLAGS=" -pthread"
+    ./configure CXXFLAGS=" -pthread" || exit
   else
     printf "\nRunning Default Install\n"
-    ./configure
+    ./configure || exit
   fi
-  make -j4
+  make -j4 || exit
   chown -R "${DARKSTAR_USER}":root /opt/darkstar/
   printf "\nEnter the MySQL root password\nDefault: No password\n"
   mysql -h "localhost" -u "root" -p -e "CREATE USER '${DARKSTAR_USER}'@'localhost' IDENTIFIED BY '${DARKSTAR_PASSWORD}';CREATE DATABASE dspdb;USE dspdb;GRANT ALL PRIVILEGES ON dspdb.* TO '${DARKSTAR_USER}'@'localhost';"
@@ -157,7 +157,7 @@ if [ "${RUN_CHOICE}" == "3" ] || [ "${RUN_CHOICE}" == "2" ]; then
   systemctl restart darkstar-game
   systemctl restart darkstar-search
 elif [ "${RUN_CHOICE}" == "4" ]; then
-  printf "\nShutting Down & Disabling Darkstar Server\n\n"
+  printf "\nShutting Down Darkstar Server & Disabling Auto Start\n\n"
   systemctl disable darkstar-connect
   systemctl disable darkstar-game
   systemctl disable darkstar-search
@@ -165,7 +165,7 @@ elif [ "${RUN_CHOICE}" == "4" ]; then
   systemctl stop darkstar-game
   systemctl stop darkstar-search
 elif [ "${RUN_CHOICE}" == "5" ] || [ "${RUN_CHOICE}" == "1" ]; then
-  printf "\nStarting & Enabling Darkstar Server\n\n"
+  printf "\nStarting Darkstar Server & Enabling Auto Start\n\n"
   systemctl enable darkstar-connect
   systemctl enable darkstar-game
   systemctl enable darkstar-search
