@@ -4538,7 +4538,7 @@ end
 ---------------------------------------------------------------------------------------------
 -- Desc: Drop rate check, calculates all drop rate modifiers.
 ---------------------------------------------------------------------------------------------
-local function dropChance(player)
+local function canDropCasket(player)
     -----------------------------------------------------------------------------------------
     -- NOTES: 10% base drop rate.
     -- Super Kupowers(Myriad Mystery Boxes) adds 10% drop rate to the base rate.
@@ -4633,7 +4633,6 @@ local function setCasketData(player, x, y, z, r, npc, partyID, mobLvl)
         if chestStyle == 966 then
             npc:setLocalVar("[caskets]ATTEMPTS", attempts)
             npc:setLocalVar("[caskets]CORRECT_NUM", correctNum)
-            printf("Correct Number: %s", correctNum)
             npc:setLocalVar("[caskets]FAILED_ATEMPTS", 0)
             npc:setLocalVar("[caskets]LOCKED", 1)
             npc:setLocalVar("[caskets]LOOT_TYPE", 2)
@@ -5040,7 +5039,7 @@ dsp.caskets.spawnCasket = function (mob, player, x, y, z, r)
        return
     end
 
-    if dropChance(player) then
+    if canDropCasket(player) then
        setCasketData(player, x, y, z, r, npc, chestOwner, mob:getMainLvl())
     end
 end
