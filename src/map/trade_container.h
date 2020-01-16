@@ -70,7 +70,7 @@ public:
 	void	setItemID(uint8 slotID, uint16 itemID);
 	void	setInvSlotID(uint8 slotID, uint8 invSlotID);
 	void	setQuantity(uint8 slotID, uint32 quantity);
-	bool	setConfirmedStatus(uint8 slotID, uint8 amount);
+    bool    setConfirmedStatus(uint8 slotID, uint32 amount);
 	void	setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item = nullptr);
     void    setSize(uint8 size);
 
@@ -86,7 +86,7 @@ private:
     std::vector<uint8>	    m_slotID;
     std::vector<uint16>	    m_itemID;
     std::vector<uint32>	    m_quantity;
-    std::vector<uint8>	    m_confirmed;
+    std::vector<uint32>     m_confirmed;
 };
 
 #endif
