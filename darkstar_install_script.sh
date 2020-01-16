@@ -38,10 +38,14 @@ if [ "${RUN_CHOICE}" == "1" ]; then
   echo
   read -r -p "'${DARKSTAR_USER}' User's Password: " DARKSTAR_PASSWORD
   OS=$(awk '/^ID=/' /etc/os-release | sed 's/ID=//')
-  printf "\nDetected OS: %s" "${OS}"
+  printf "\nDetected OS: %s\n\nInstalling Dependencies, please wait ...\n\n" "${OS}"
+  add-apt-repository universe > /dev/null 2>&1
+  add-apt-repository multiverse > /dev/null 2>&1
   # shellcheck disable=SC2086
-  apt-get update && apt-get -y install ${APT_GET_INSTALL_ONE} ${APT_GET_INSTALL_TWO}
-  adduser "${DARKSTAR_USER}" --gecos "Darkstar Server" --disabled-password
+  apt-get -qq update && apt-get -qq install ${APT_GET_INSTALL_ONE} ${APT_GET_INSTALL_TWO} || exit
+  echo
+  adduser "${DARKSTAR_USER}" --gecos "Darkstar Server" --disabled-password || exit
+  echo
   if [[ ${GIT_VERSION} == "1" ]]; then
     git clone --branch stable --recursive https://github.com/DarkstarProject/darkstar/ /opt/darkstar
   else
@@ -147,6 +151,7 @@ if [ "${RUN_CHOICE}" == "1" ] || [ "${RUN_CHOICE}" == "2" ]; then
     printf "\nEnter the MySQL root password\nDefault: No password\n"
     mysql -h "localhost" -u "root" -p -e "USE dspdb;UPDATE zone_settings SET zoneip = '${DARKSTAR_IP}';"
   fi
+  clear
   printf "\nYou now need to update the SQL username and password in 3 configuration files.\n"
   printf "Everything else is optional. Each file will be opened automatically one after the other.\n"
   printf "nano is used to edit files.\nPress CTRL+X when done, then follow instructions, making sure to save changes.\n\n"
