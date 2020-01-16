@@ -116,3 +116,8 @@ Clang-Format is also an option for C++
   ```
   insert into table_name
   ```
+  
+  #### SQL Migrations for Schema changes
+  
+  * Going forward all smea changes shoudl be acompanied by a migration script. This doesn't need to be a full blown Python script for the trivial stuff, but some basic instruction and an ALTERA TABLE statement at a minimum.
+  
