@@ -147,6 +147,10 @@ if [ "${RUN_CHOICE}" == "1" ] || [ "${RUN_CHOICE}" == "2" ]; then
     printf "\nEnter the MySQL root password\nDefault: No password\n"
     mysql -h "localhost" -u "root" -p -e "USE dspdb;UPDATE zone_settings SET zoneip = '${DARKSTAR_IP}';"
   fi
+  printf "\nYou now need to update the SQL username and password in 3 configuration files.\n"
+  printf "Everything else is optional. Each file will be opened automatically one after the other.\n"
+  printf "nano is used to edit files.\nPress CTRL+X when done, then follow instructions, making sure to save changes.\n\n"
+  read -rsp "Press any key to begin editing configuration files" -n 1
   nano ${INSTALL_DIR}/conf/login_darkstar.conf
   nano ${INSTALL_DIR}/conf/map_darkstar.conf
   nano ${INSTALL_DIR}/conf/search_server.conf
