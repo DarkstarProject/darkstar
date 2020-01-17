@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include <set>
 #include <functional>
 #include <memory>
+#include <vector>
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
