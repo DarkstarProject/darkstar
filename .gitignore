@@ -126,9 +126,9 @@ UpgradeLog*.XML
 *.app
 
 # Generated executables
-/topaz-connect
-/topaz-game
-/topaz-search
+/topaz_connect
+/topaz_game
+/topaz_search
 
 # Generated files, mostly autotools-related
 .deps

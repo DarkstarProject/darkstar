@@ -1,5 +1,5 @@
 #!/bin/bash
-for line in `grep -e "Cl.*Include=\"\." win32/vcxproj/topaz-game*proj | tr -d " \"\" \"\/\>\r" | cut -c25- | sed 's:\\\:\/:g' `; do echo -n "${line} \\"; echo; done > game.sources
+for line in `grep -e "Cl.*Include=\"\." win32/vcxproj/topaz_game*proj | tr -d " \"\" \"\/\>\r" | cut -c25- | sed 's:\\\:\/:g' `; do echo -n "${line} \\"; echo; done > game.sources
 
 echo SRC_COMMON = \\ > sources.am
 cat game.sources | grep src/common/ | sed '$s/.$//' >> sources.am
@@ -9,13 +9,13 @@ echo SRC_MAP = \\ >> sources.am
 cat game.sources | grep src/map/ | sed '$s/.$//' >> sources.am
 echo "" >> sources.am
 
-for line in `grep -e "Cl.*Include=\"\." win32/vcxproj/topaz-connect*proj | tr -d " \"\/\>\r" | cut -c25- | sed 's:\\\:\/:g' `; do echo -n "${line} \\"; echo; done > connect.sources
+for line in `grep -e "Cl.*Include=\"\." win32/vcxproj/topaz_connect*proj | tr -d " \"\/\>\r" | cut -c25- | sed 's:\\\:\/:g' `; do echo -n "${line} \\"; echo; done > connect.sources
 
 echo SRC_LOGIN = \\ >> sources.am
 cat connect.sources | grep src/login/ | sed '$s/.$//' >> sources.am
 echo "" >> sources.am
 
-for line in `grep -e "Cl.*Include=\"\." win32/vcxproj/topaz-search*proj | tr -d " \"\/\>\r" | cut -c25- | sed 's:\\\:\/:g' `; do echo -n "${line} \\"; echo; done > search.sources
+for line in `grep -e "Cl.*Include=\"\." win32/vcxproj/topaz_search*proj | tr -d " \"\/\>\r" | cut -c25- | sed 's:\\\:\/:g' `; do echo -n "${line} \\"; echo; done > search.sources
 
 echo SRC_SEARCH_COMMON = \\ >> sources.am
 cat search.sources | grep src/common/ | sed '$s/.$//' >> sources.am

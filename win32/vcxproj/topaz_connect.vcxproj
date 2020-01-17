@@ -67,7 +67,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>topaz-connectserver</RootNamespace>
+    <RootNamespace>topaz_connectserver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

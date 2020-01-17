@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 16 2019
+# Visual Studio Version 16
 VisualStudioVersion = 16.3.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "topaz-connect", "vcxproj\topaz-connect.vcxproj", "{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "topaz_connect", "vcxproj\topaz_connect.vcxproj", "{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "topaz-game", "vcxproj\topaz-game.vcxproj", "{89A19910-84DB-454D-9C7F-0A47A293867B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "topaz_game", "vcxproj\topaz_game.vcxproj", "{89A19910-84DB-454D-9C7F-0A47A293867B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "topaz-search", "vcxproj\topaz-search.vcxproj", "{5C763F9B-F332-434F-9EE6-B64B15E1E520}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "topaz_search", "vcxproj\topaz_search.vcxproj", "{5C763F9B-F332-434F-9EE6-B64B15E1E520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

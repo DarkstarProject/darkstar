@@ -14,7 +14,7 @@ else()
     set(resource "../../win32/vcxproj/gameserver.rc")
 endif()
 
-add_executable(topaz-game
+add_executable(topaz_game
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
     ../common/detour/DetourAlloc.cpp
@@ -35,14 +35,14 @@ add_executable(topaz-game
     ${resource}
 )
 
-set_target_properties(topaz-game PROPERTIES OUTPUT_NAME topaz-game${spacer}${platform_suffix})
+set_target_properties(topaz_game PROPERTIES OUTPUT_NAME topaz_game${spacer}${platform_suffix})
 
 if(UNIX)
-    target_include_directories(topaz-game PRIVATE
+    target_include_directories(topaz_game PRIVATE
         ${MYSQLCLIENT_INCLUDE_DIRS}
         ${LUAJIT_INCLUDE_DIRS}
     )
-    target_link_libraries(topaz-game
+    target_link_libraries(topaz_game
         ${MYSQLCLIENT_LIBRARIES}
         ${ZMQ_LIBRARIES}
         ${LUAJIT_LIBRARIES}
@@ -50,17 +50,17 @@ if(UNIX)
     )
 
     if(APPLE)
-        target_link_options(topaz-game PUBLIC -pagezero_size 10000 -image_base 100000000)
+        target_link_options(topaz_game PUBLIC -pagezero_size 10000 -image_base 100000000)
     endif()
 else()
-    target_include_directories(topaz-game PRIVATE
+    target_include_directories(topaz_game PRIVATE
         ../common
         ../../win32/external
         ../../win32/external/mysql
         ../../win32/external/zmq
     )
 
-    target_link_libraries(topaz-game
+    target_link_libraries(topaz_game
         libmariadb${platform_suffix}
         lua51${spacer}${platform_suffix}
         libzmq${lib_debug}${spacer}${platform_suffix}
