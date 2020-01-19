@@ -30,13 +30,11 @@ local points =
 
 function onTrade(player,npc,trade)
     local coney
-    local newMoon = IsMoonNew()
-    local fullMoon = IsMoonFull()
     local currentPoint = npc:getLocalVar("currentPoint")
 
-    if newMoon then
+    if IsMoonNew() then
         coney = ID.mob.BLACK_CONEY
-    elseif fullMoon then
+    elseif IsMoonFull() then
         coney = ID.mob.WHITE_CONEY
     end
 
@@ -87,13 +85,11 @@ local function moveFootprint(npc)
 end
 
 function onTimeTrigger(npc, triggerID)
-    local newMoon = IsMoonNew()
-    local fullMoon = IsMoonFull()
     local isSpawned = GetMobByID(ID.mob.WHITE_CONEY):isSpawned() or GetMobByID(ID.mob.BLACK_CONEY):isSpawned()
     local activeTime = npc:getLocalVar("activeTime")
 
     if not isSpawned then
-        if newMoon or fullMoon then
+        if IsMoonFull() or IsMoonNew() then
             if activeTime == 0 then
                 npc:setLocalVar("activeTime",os.time()+math.random(60*9,60*15)) -- moon phase just changed, i'm active in 9 to 15 mins from now
             elseif os.time() > activeTime then
