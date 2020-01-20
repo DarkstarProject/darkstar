@@ -61,11 +61,10 @@ end
 -- https://ffxiclopedia.fandom.com/wiki/Black_Coney
 -- The Rabbit Footprint is located at (K-11) in the wooded area, and moves around every 7-10 seconds between various spots in that locale.
 -- It will spawn 9-15 minutes after the New Moon phase starts and will last until the end of the phase.
--- NOTE: i think 7-10 seconds is WAY too fast, through testing on a GM character with 255 speed i can't even get a carrot into the trade menu before it moves so i used a much higher number
 
 local function moveFootprint(npc)
 
-    -- triggers every 38.4 seconds (16 vana minutes)
+    -- triggers every 9.6 seconds (4 vana minutes)
 
     local currentPoint = npc:getLocalVar("currentPoint")
     local nextPoint = math.random(1,17)

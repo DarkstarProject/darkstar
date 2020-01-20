@@ -14,7 +14,7 @@ require("scripts/globals/zone");
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.JORMUNGAND);
     GetMobByID(ID.mob.JORMUNGAND):setRespawnTime(math.random(86400, 259200));
-    GetNPCByID(ID.npc.RABBIT_FOOTPRINT):addPeriodicTrigger(0,16,0) -- 16 vanadiel minutes roughly equals 38.4 earth seconds
+    GetNPCByID(ID.npc.RABBIT_FOOTPRINT):addPeriodicTrigger(0,4,0) -- 4 vanadiel minutes roughly equals 9.6 earth seconds
 end;
 
 function onConquestUpdate(zone, updatetype)
