@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
@@ -3449,3 +3449,4 @@ INSERT INTO `mob_skill_lists` VALUES ('Nargun',1005,677); -- Thunder Break
 INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1952);
 INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1956);
 INSERT INTO `mob_skill_lists` VALUES ('Ankabut',1007,704);
+INSERT INTO `mob_skill_lists` VALUES ('White_Coney',1008,323); -- only Wild Carrot

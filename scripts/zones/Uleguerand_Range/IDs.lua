@@ -44,10 +44,13 @@ zones[dsp.zone.ULEGUERAND_RANGE] =
         },
         JORMUNGAND  = 16797969,
         GEUSH_URVAN = 16798078,
+        WHITE_CONEY = 16798079,
+        BLACK_CONEY = 16798080,
     },
     npc =
     {
         WATERFALL = 16798112,
+        RABBIT_FOOTPRINT = 16798100,
     },
 }
 
