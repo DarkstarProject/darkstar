@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -77,12 +77,7 @@ CMessageStandardPacket::CMessageStandardPacket(uint32 param0, uint32 param1, uin
 	this->size += (strlen((char*)data+(0x0D)) >> 1) & 0xFE;
 }
 
-/************************************************************************
-*																		*
-*  Используется только для 0x58-го сообщения (/diceroll) 				*
-*																		*
-************************************************************************/
-
+// Only used with MsgStd::DiceRoll (/random)
 CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, MsgStd MessageID)
 {
 	this->type = 0x09;
