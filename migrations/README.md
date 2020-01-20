@@ -5,17 +5,15 @@ This folder contains scripts to migrate your database data to a newer format.
 For example the spells column in the chars table has been separated into 
 a new table, so a migration script has been created to do this for you.
 
-These scripts are mostly python, though we may occasionaly include a pure sql script here.
-
 First you'll need python and mysqldb installed on your computer.
 
 ## Setup
 
 ## Installing Python
 
-The older scripts require Python 2.7+
+The older scripts required Python 2.7+
 
-Newer python scripts require 3.4+
+Going forward new python scripts require 3.4+
 
 For Windows user, download the installation file here https://www.python.org/downloads/
 
