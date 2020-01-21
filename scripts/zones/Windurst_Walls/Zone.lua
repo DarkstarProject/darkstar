@@ -31,6 +31,8 @@ function onZoneIn(player,prevZone)
         cs = 510;
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") == 4) then
         cs = 443;
+    elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
+        cs = 30035
     end
 
     return cs;
@@ -76,5 +78,8 @@ function onEventFinish(player,csid,option)
         player:addItem(183);
         player:messageSpecial(ID.text.ITEM_OBTAINED,183);
         player:addTitle(dsp.title.VESTAL_CHAMBERLAIN);
+    elseif csid == 30035 then
+        player:completeMission(ROV, dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL)
+        player:addMission(ROV, dsp.mission.id.rov.RESONACE)
     end
 end;
