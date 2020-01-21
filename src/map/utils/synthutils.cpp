@@ -312,7 +312,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
                     hqtier = 4;
 
                 if(hqtier < finalhqtier)
-                    finalhqtier = hqtier; //set var to limit possible hq
+                    finalhqtier = hqtier; //set var to limit possible hq if needed
             }
             else
             {
@@ -363,11 +363,11 @@ uint8 calcSynthResult(CCharEntity* PChar)
         }
     }
 
-    if(random <= success) // It has gone through the cycle without breaking
+    if(result != SYNTHESIS_FAIL) // It has gone though the cycle without breaking
     {
-        random = dsprand::GetRandomNumber(1.); // Random for HQ
+        double random = dsprand::GetRandomNumber(1.); // Random for HQ
 
-        switch(finalhqtier)
+        switch(finalhqtier) // check var to see if we have any chance at HQ
         {
             case 4:  chance = 0.5; break;      // 1 in 2
             case 3:  chance = 0.25; break;     // 1 in 4
