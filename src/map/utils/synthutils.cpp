@@ -285,6 +285,8 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
     double success = 0;
     double chance  = 0;
+    double random = dsprand::GetRandomNumber(1.);
+
     double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
     uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
     uint8  crystalElement = PChar->CraftContainer->getType();
@@ -316,7 +318,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
             }
             else
             {
-                success = 0.95 - (synthDiff / 10) - (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
+                success = 0.95 - (synthDiff / 10);
                 canHQ = false;
                 if(success < 0.05)
                     success = 0.05;
@@ -333,7 +335,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
             if(!canSynthesizeHQ(PChar,skillID))
             {
                 success += 0.01; //the crafting rings that block HQ synthesis all also increase their respective craft's success rate by 1%
-                canHQ = false; //assuming here that if a crafting ring is used matching a recipe's subsynth, overall HQ will still be blocked
+                canHQ = false;   //assuming here that if a crafting ring is used matching a recipe's subsynth, overall HQ will still be blocked
             }
 
             if(success > 0.99)
@@ -347,12 +349,11 @@ uint8 calcSynthResult(CCharEntity* PChar)
                 success = 0.99;
             }
 
-            double random = dsprand::GetRandomNumber(1.);
             #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
             #endif
 
-            if(random > success) // Synthesis broke
+            if(random >= success) // Synthesis broke
             {
                 // keep the skill, because of which the synthesis failed.
                 // use the slotID of the crystal cell, because it was removed at the beginning of the synthesis
@@ -363,17 +364,15 @@ uint8 calcSynthResult(CCharEntity* PChar)
         }
     }
 
-    if(result != SYNTHESIS_FAIL) // It has gone though the cycle without breaking
+    if(result != SYNTHESIS_FAIL) // It has gone through the cycle without breaking
     {
-        double random = dsprand::GetRandomNumber(1.); // Random for HQ
-
-        switch(finalhqtier) // check var to see if we have any chance at HQ
+        switch(finalhqtier)
         {
-            case 4:  chance = 0.5; break;      // 1 in 2
-            case 3:  chance = 0.25; break;     // 1 in 4
-            case 2:  chance = 0.0625; break;   // 1 in 16
+            case 4:  chance = 0.5;      break; // 1 in 2
+            case 3:  chance = 0.25;     break; // 1 in 4
+            case 2:  chance = 0.0625;   break; // 1 in 16
             case 1:  chance = 0.015625; break; // 1 in 64
-            default: chance = 0.000; break;
+            default: chance = 0.000;    break;
         }
 
         int16 modSynthHqRate = PChar->getMod(Mod::SYNTH_HQ_RATE);
@@ -422,7 +421,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
         }
         else
             result = SYNTHESIS_SUCCESS;
-    } // end if cycle completed
+    }
 
     // the result of the synthesis is written in the quantity field of the crystal cell.
     PChar->CraftContainer->setQuantity(0, result);
