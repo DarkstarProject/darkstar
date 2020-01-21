@@ -2734,7 +2734,7 @@ namespace charutils
                 }
                 MaxSkill = MaxSkill * 10;
 
-                if(hasKeyItem(PChar, 2884)) // Rhapsody in White
+                if (hasKeyItem(PChar, 2884)) // Rhapsody in White
                 {
                     SkillAmount *= 2;
                 }
