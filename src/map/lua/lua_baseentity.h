@@ -573,6 +573,7 @@ public:
     int32 getWSSkillchainProp(lua_State* L);    // returns weapon skill's skillchain properties (up to 3)
 
     int32 takeWeaponskillDamage(lua_State* L);
+    int32 takeSpellDamage(lua_State* L);
 
     // Pets and Automations
     int32 spawnPet(lua_State*);              // Calls Pet
