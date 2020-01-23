@@ -21,6 +21,10 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
+    if ENABLE_ROV and player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
+        cs = 30035
+    end
+
     -- FIRST LOGIN (START CS)
     if (player:getPlaytime(false) == 0) then
         if (OPENING_CUTSCENE_ENABLE == 1) then
@@ -79,5 +83,8 @@ function onEventFinish(player,csid,option)
         player:setCharVar("MissionStatus", 3);
         player:setCharVar("ghoo_talk", 0);
         player:setCharVar("laa_talk", 0);
+    elseif csid == 30035 then
+        player:completeMission(ROV, dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL)
+        player:addMission(ROV, dsp.mission.id.rov.RESONACE)
     end
 end;

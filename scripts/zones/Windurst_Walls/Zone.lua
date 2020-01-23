@@ -18,6 +18,11 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
+
+    if ENABLE_ROV and player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
+        cs = 30035
+    end
+    
     -- MOG HOUSE EXIT
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         position = math.random(1,5) - 123;
@@ -31,8 +36,6 @@ function onZoneIn(player,prevZone)
         cs = 510;
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") == 4) then
         cs = 443;
-    elseif ENABLE_ROV and player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
-        cs = 30035
     end
 
     return cs;

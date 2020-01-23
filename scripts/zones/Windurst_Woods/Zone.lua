@@ -19,6 +19,10 @@ end
 function onZoneIn(player,prevZone)
     local cs = -1
 
+    if ENABLE_ROV and player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
+        cs = 30035
+    end
+
     -- SOA 1-1 Optional CS
     if 
         ENABLE_SOA and 
@@ -68,5 +72,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.HOMEPOINT_SET)
     elseif csid == 839 then
         player:setCharVar("SOA_1_CS3", 1)
+    elseif csid == 30035 then
+        player:completeMission(ROV, dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL)
+        player:addMission(ROV, dsp.mission.id.rov.RESONACE)
     end
 end
