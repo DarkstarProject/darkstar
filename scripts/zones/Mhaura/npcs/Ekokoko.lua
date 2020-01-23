@@ -19,6 +19,12 @@ function onTrade(player,npc,trade)
             player:addKeyItem(dsp.ki.SOMBER_STONE);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
+    elseif
+        player:getCurrentMission(ROV) == dsp.mission.id.rov.SET_FREE and 
+        npcUtil.tradeHas(trade,{{9083, 3}}) and 
+        player:getVar("RhapsodiesStatus") == 0
+    then
+        player:startEvent(370)
     end
 
 end;
@@ -36,4 +42,9 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-end;
+    if csid == 370 then
+        player:confirmTrade()
+        player:completeMission(ROV, dsp.mission.id.rov.SET_FREE)
+        player:addMission(ROV, dsp.mission.id.rov.THE_BEGINNING)
+    end
+end

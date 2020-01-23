@@ -31,6 +31,11 @@ end
 function onZoneIn(player,prevZone)
     local cs = -1
     local currentday = tonumber(os.date("%j"))
+
+    if player:getCurrentMission(ROV) == dsp.mission.id.rov.RESONACE then
+        cs = 370
+    end
+
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         if prevZone == dsp.zone.SHIP_BOUND_FOR_MHAURA or prevZone == dsp.zone.OPEN_SEA_ROUTE_TO_MHAURA or prevZone == dsp.zone.SHIP_BOUND_FOR_MHAURA_PIRATES then
             cs = 202
@@ -39,9 +44,11 @@ function onZoneIn(player,prevZone)
             player:setPos(0.003,-6.252,117.971,65)
         end
     end
+
     if player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getCharVar("PromathiaStatus")==3 and player:getCharVar("Promathia_kill_day") ~= currentday and player:getCharVar("COP_shikarees_story")== 0 then
         cs = 322
     end
+
     return cs
 end
 
@@ -81,5 +88,10 @@ function onEventFinish(player,csid,option)
         end
     elseif csid == 322 then
         player:setCharVar("COP_shikarees_story",1)
+    elseif csid == 370 then
+        -- Flag ROV 1-3 Mhuara Route (0)
+        player:setVar("RhapsodiesStatus", 0)
+        player:completeMission(ROV, dsp.mission.id.rov.RESONACE)
+        player:addMission(ROV, dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS)
     end
 end

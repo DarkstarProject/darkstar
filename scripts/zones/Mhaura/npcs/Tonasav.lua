@@ -10,7 +10,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_BEGINNING and player:getVar("ROV") == 0 then
+    if player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_BEGINNING and player:getVar("RhapsodiesStatus") == 0 then
         player:startEvent(371)
     else
         player:startEvent(372)

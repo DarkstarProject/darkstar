@@ -64,9 +64,9 @@ function onEventFinish(player,csid,option)
     elseif csid == 1101 and npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX, {item = 14226, fame_area = NORG, var = {"Enagakure_Killed", "illTakeTheBigBoxCS"}}) then
         player:delKeyItem(dsp.ki.SEANCE_STAFF)
     elseif csid == 176 then
-        -- Flag ROV Selbina Route (1)
-        player:setVar("ROV", 1)
-        player:completeMission(ROV,dsp.mission.id.rov.RESONACE)
-        player:addMission(ROV,dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS)
+        -- Flag ROV 1-3 Selbina Route (1)
+        player:setVar("RhapsodiesStatus", 1)
+        player:completeMission(ROV, dsp.mission.id.rov.RESONACE)
+        player:addMission(ROV, dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS)
     end
 end

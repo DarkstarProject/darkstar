@@ -44,7 +44,7 @@ function onEventFinish(player, csid, option)
     elseif csid == 913 and option == 0 then
         player:setPos(280.066, -80.635, -67.096, 191, 14) -- To Hall of Transference {R}
     elseif csid == 41 then
-        player:completeMission(ROV,dsp.mission.id.rov.THE_PATH_UNTRAVELED)
-        player:addMission(ROV,dsp.mission.id.rov.AT_THE_HEAVENS_DOOR)
+        player:completeMission(ROV, dsp.mission.id.rov.THE_PATH_UNTRAVELED)
+        player:addMission(ROV, dsp.mission.id.rov.AT_THE_HEAVENS_DOOR)
     end
 end

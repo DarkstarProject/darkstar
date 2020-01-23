@@ -4,6 +4,7 @@
 -- !pos 97 -7 -12 252
 -----------------------------------
 require("scripts/globals/missions");
+require("scripts/globals/npc_util")
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -15,6 +16,7 @@ function onTrigger(player,npc)
     local ZilartMission = player:getCurrentMission(ZILART);
     local currentMission = player:getCurrentMission(BASTOK);
     local ZilartStatus = player:getCharVar("ZilartStatus");
+    local RhapsodiesMission = player:getCurrentMission(ROV)
 
     -- Checked here to be fair to new players
     local DMEarrings = 0;
@@ -34,6 +36,10 @@ function onTrigger(player,npc)
         player:startEvent(98); -- Bastok Mission 6-2
     elseif (ZilartMission == dsp.mission.id.zilart.THE_SEALED_SHRINE and ZilartStatus == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then
         player:startEvent(172);
+    elseif RhapsodiesMission == dsp.mission.id.rov.THE_BEGINNING then
+        player:startEvent(276)
+    elseif RhapsodiesMission == dsp.mission.id.rov.FLAMES_OF_PRAYER then
+        player:startEvent(278)
     else
         player:startEvent(5);
     end
@@ -63,6 +69,15 @@ function onEventFinish(player,csid,option)
         player:setCharVar("MissionStatus",2);
     elseif (csid == 172 and bit.band(option, 0x40000000) == 0) then
         player:setCharVar("ZilartStatus",1);
+    elseif csid == 276 then
+        -- Clear 1-3 flag
+        player:setVar("RhapsodiesStatus", 0)
+        player:completeMission(ROV, dsp.mission.id.rov.THE_BEGINNING)
+        player:addMission(ROV, dsp.mission.id.rov.FLAMES_OF_PRAYER)
+    elseif csid == 278 then
+        npcUtil.giveKeyItem(player, dsp.ki.RHAPSODY_IN_WHITE)
+        player:completeMission(ROV, dsp.mission.id.rov.FLAMES_OF_PRAYER)
+        player:addMission(ROV, dsp.mission.id.rov.THE_PATH_UNTRAVELED)
     end
 
 end;
