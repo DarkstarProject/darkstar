@@ -3,6 +3,7 @@
 --  NPC: Oaken door (Gilgamesh's room)
 -- !pos 97 -7 -12 252
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/missions");
 require("scripts/globals/npc_util")
 require("scripts/globals/settings");
@@ -40,6 +41,10 @@ function onTrigger(player,npc)
         player:startEvent(276)
     elseif RhapsodiesMission == dsp.mission.id.rov.FLAMES_OF_PRAYER then
         player:startEvent(278)
+    elseif RhapsodiesMission == dsp.mission.id.rov.WHAT_LIES_BEYOND then
+        player:startEvent(279)
+    elseif RhapsodiesMission == dsp.mission.id.rov.VOLTO_OSCURO then -- TODO: ROV Check for Tenzen https://www.bg-wiki.com/bg/Rhapsodies_of_Vanadiel_Mission_1-18
+        player:startEvent(284)
     else
         player:startEvent(5);
     end
@@ -78,6 +83,13 @@ function onEventFinish(player,csid,option)
         npcUtil.giveKeyItem(player, dsp.ki.RHAPSODY_IN_WHITE)
         player:completeMission(ROV, dsp.mission.id.rov.FLAMES_OF_PRAYER)
         player:addMission(ROV, dsp.mission.id.rov.THE_PATH_UNTRAVELED)
+    elseif csid == 279 then
+        player:completeMission(ROV, dsp.mission.id.rov.WHAT_LIES_BEYOND)
+        player:addMission(ROV, dsp.mission.id.rov.THE_TIES_THAT_BIND)
+    elseif csid == 284 then
+        -- You will be given a Cipher: Zeid II
+        player:completeMission(ROV, dsp.mission.id.rov.VOLTO_OSCURO)
+        player:addMission(ROV, dsp.mission.id.rov.RING_MY_BELL)
     end
 
 end;

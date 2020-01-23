@@ -21,6 +21,8 @@ function onZoneIn(player,prevZone)
 
     if ENABLE_ROV and player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
         cs = 30035
+    elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.FATES_CALL and player:getRank() >= 6 then
+        cs = 30036
     end
     
     -- MOG HOUSE EXIT
@@ -84,5 +86,8 @@ function onEventFinish(player,csid,option)
     elseif csid == 30035 then
         player:completeMission(ROV, dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL)
         player:addMission(ROV, dsp.mission.id.rov.RESONACE)
+    elseif csid == 30036 then
+        player:completeMission(ROV, dsp.mission.id.rov.FATES_CALL)
+        player:addMission(ROV, dsp.mission.id.rov.WHAT_LIES_BEYOND)
     end
 end;

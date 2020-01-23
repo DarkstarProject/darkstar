@@ -3,8 +3,10 @@
 --  NPC: Shattered Telepoint
 -- !pos 334 19 -60 102
 -----------------------------------
-require("scripts/globals/missions");
-local ID = require("scripts/zones/La_Theine_Plateau/IDs");
+local ID = require("scripts/zones/La_Theine_Plateau/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,7 +28,9 @@ function onTrigger(player,npc)
         player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_PATH_UNTRAVELED and 
         player:getFameLevel(player:getNation()) >= 3
     then
-        player:startEvent(14)    
+        player:startEvent(14)
+    elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.A_LAND_AFTER_TIME then
+        player:startEvent(15) 
     else
         player:messageSpecial(ID.text.TELEPOINT_HAS_BEEN_SHATTERED);
     end
@@ -47,6 +51,10 @@ function onEventFinish(player,csid,option)
     elseif csid == 14 then
         player:completeMission(ROV, dsp.mission.id.rov.THE_PATH_UNTRAVELED)
         player:addMission(ROV, dsp.mission.id.rov.AT_THE_HEAVENS_DOOR)
+    elseif csid == 15 then
+        npcUtil.giveKeyItem(player, dsp.ki.RHAPSODY_IN_UMBER)
+        player:completeMission(ROV, dsp.mission.id.rov.A_LAND_AFTER_TIME)
+        player:addMission(ROV, dsp.mission.id.rov.FATES_CALL)
     end
 
 end;

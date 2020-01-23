@@ -4,6 +4,7 @@
 -- !pos -204.531 -20.027 75.318
 -----------------------------------
 require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
@@ -14,7 +15,7 @@ function onTrigger(player, npc)
         player:startEvent(63)
     elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_LIONS_ROAR then
         player:startEvent(64)
-    elseif player:getCurrentMission(ROV) >= dsp.mission.id.rov.EDDIES_OF_DESPAIR_I then
+    elseif player:getCurrentMission(ROV) >= dsp.mission.id.rov.SET_FREE then
         player:startEvent(65)
     end
 end
