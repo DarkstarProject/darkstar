@@ -14,7 +14,7 @@ function onTrigger(player,npc)
     if player:getCurrentMission(ROV) == dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS and player:getCharVar("RhapsodiesStatus") == 0 then
         player:startEvent(369)
     else
-        player:startEvent(50)
+        player:startEvent(50) -- ROV Cap argument is F900, but doesn't enable the option
     end
 end;
 

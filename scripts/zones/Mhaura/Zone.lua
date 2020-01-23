@@ -33,7 +33,7 @@ function onZoneIn(player,prevZone)
     local currentday = tonumber(os.date("%j"))
 
     if player:getCurrentMission(ROV) == dsp.mission.id.rov.RESONACE and player:getCharVar("RhapsodiesStatus") == 0 then
-        cs = 370
+        cs = 368
     end
 
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         end
     elseif csid == 322 then
         player:setCharVar("COP_shikarees_story",1)
-    elseif csid == 370 then
+    elseif csid == 368 then
         -- Flag ROV 1-3 Mhuara Route (0)
         player:setCharVar("RhapsodiesStatus", 0)
         player:completeMission(ROV, dsp.mission.id.rov.RESONACE)
