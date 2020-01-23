@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:setCharVar("ZilartStatus",1);
     elseif csid == 276 then
         -- Clear 1-3 flag
-        player:setVar("RhapsodiesStatus", 0)
+        player:setCharVar("RhapsodiesStatus", 0)
         player:completeMission(ROV, dsp.mission.id.rov.THE_BEGINNING)
         player:addMission(ROV, dsp.mission.id.rov.FLAMES_OF_PRAYER)
     elseif csid == 278 then

@@ -36,7 +36,7 @@ function onZoneIn(player,prevZone)
         cs = 1101
     end
 
-    if player:getCurrentMission(ROV) == dsp.mission.id.rov.RESONACE then
+    if player:getCurrentMission(ROV) == dsp.mission.id.rov.RESONACE and player:getCharVar("RhapsodiesStatus") == 0 then
         cs = 176
     end
 
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SEANCE_STAFF)
     elseif csid == 176 then
         -- Flag ROV 1-3 Selbina Route (1)
-        player:setVar("RhapsodiesStatus", 1)
+        player:setCharVar("RhapsodiesStatus", 1)
         player:completeMission(ROV, dsp.mission.id.rov.RESONACE)
         player:addMission(ROV, dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS)
     end

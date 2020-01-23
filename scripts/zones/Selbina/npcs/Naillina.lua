@@ -11,7 +11,7 @@ end
 
 function onTrigger(player,npc)
     -- TODO This is meant to be an additional menu option
-    if player:getCurrentMission(ROV) == dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS and player:getVar("RhapsodiesStatus") == 1 then
+    if player:getCurrentMission(ROV) == dsp.mission.id.rov.EMISSARY_FROM_THE_SEAS and player:getCharVar("RhapsodiesStatus") == 1 then
         player:startEvent(177)
     else
         player:startEvent(14)

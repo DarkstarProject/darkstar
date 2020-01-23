@@ -65,7 +65,7 @@ function onTrade(player,npc,trade)
     if  
         player:getCurrentMission(ROV) == dsp.mission.id.rov.SET_FREE and 
         npcUtil.tradeHas(trade,{{9082, 3}}) and 
-        player:getVar("RhapsodiesStatus") == 1 
+        player:getCharVar("RhapsodiesStatus") == 1 
     then
         player:startEvent(178)
     end
