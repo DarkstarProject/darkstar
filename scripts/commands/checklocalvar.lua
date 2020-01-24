@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: checklocalvar <varName> <player/mob/npc> <ID>
+-- func: checklocalvar <varName> {'player'/'mob'/'npc'} {name/ID}
 -- desc: checks player or npc local variable and returns result value.
 ---------------------------------------------------------------------------------------------------
 
@@ -7,64 +7,52 @@ cmdprops =
 {
     permission = 1,
     parameters = "sss"
-};
+}
 
 function error(player, msg)
-    player:PrintToPlayer(msg);
-    player:PrintToPlayer("!checklocalvar <variable name> optional <player/mob/npc> optional <ID>");
-end;
+    player:PrintToPlayer(msg)
+    player:PrintToPlayer("!checklocalvar <variable name> {'player', 'mob', or 'npc'} {name or ID}")
+end
 
 function onTrigger(player, arg1, arg2, arg3)
-    local zone = player:getZoneID()
+    local zone = player:getZone()
     local varName = arg1
-    local entity = arg2
     local targ = arg3
 
-    if (arg2 == nil) then
-        targ = player:getCursorTarget()
-        if targ == nil then
-            error(player, "no target")
-            return
-        end
-    end
-
-    if (varName == nil) then
-        error(player, "You must provide a variable name.");
-        return;
-    end
-
-    if arg2 ~= nil and arg3 == nil then
-        error(player, "no ID given for target")
+    if varName == nil then
+        error(player, "You must provide a variable name.")
         return
     end
 
-    if zone == 55 or zone == 56 or zone == 60 or zone == 63 or zone == 66 or zone == 69 or (zone >= 73 and zone<= 77) then
-        local instance = player:getInstance()
-        if entity == 'npc' then
-            targ = instance:getEntity(bit.band(arg3, 0xFFF), dsp.objType.NPC)
-        elseif entity == 'mob' then
-            targ = instance:getEntity(bit.band(arg3, 0xFFF), dsp.objType.MOB)
-        elseif entity == 'player' then
+    if arg2 == nil then
+        targ = player:getCursorTarget()
+    elseif arg3 ~= nil then
+        local entity_type = string.upper(arg2)
+        if (entity_type == 'NPC') or (entity_type == 'MOB') then
+            arg3 = tonumber(arg3)
+            if zone:getType() == tpz.zoneType.INSTANCED then
+                local instance = player:getInstance()
+                targ = instance:getEntity(bit.band(arg3, 0xFFF), tpz.objType[entity_type])
+            elseif entity_type == 'NPC' then
+                targ = GetNPCByID(arg3)
+            else
+                targ = GetMobByID(arg3)
+            end
+        elseif entity_type == 'PLAYER' then
             targ = GetPlayerByName(arg3)
-        end
-        if targ == nil then
-            error(player, "Target is invalid")
+        else
+            error(player, "Invalid entity type.")
             return
         end
-        player:PrintToPlayer(string.format("%s's variable '%s' : %i", targ:getName(), varName, targ:getLocalVar(varName)));
     else
-        if entity == 'npc' then
-            targ = GetNPCByID(arg3)
-        elseif entity == 'mob' then
-            targ = GetMobByID(arg3)
-        elseif entity == 'player' then
-            targ = GetPlayerByName(arg3)
-        end
-        if targ == nil then
-            error(player, "Target is invalid")
-            return
-        end
-
-        player:PrintToPlayer(string.format("%s's variable '%s' : %i", targ:getName(), varName, targ:getLocalVar(varName)));
+        error(player, "Need to specify a target.")
+        return
     end
-end 
+
+    if targ == nil then
+        error(player, "Invalid target.")
+        return
+    end
+
+    player:PrintToPlayer(string.format("%s's variable '%s' : %i", targ:getName(), varName, targ:getLocalVar(varName)))
+end

@@ -152,6 +152,13 @@ inline int32 CLuaZone::getRegionID(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaZone::getType(lua_State* L)
+{
+    TPZ_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+    lua_pushinteger(L, m_pLuaZone->GetType());
+    return 1;
+}
+
 inline int32 CLuaZone::getBattlefieldByInitiator(lua_State* L)
 {
     TPZ_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
@@ -186,6 +193,7 @@ Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
     LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),
     LUNAR_DECLARE_METHOD(CLuaZone,getID),
     LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),
+    LUNAR_DECLARE_METHOD(CLuaZone,getType),
     LUNAR_DECLARE_METHOD(CLuaZone,getBattlefieldByInitiator),
     LUNAR_DECLARE_METHOD(CLuaZone,battlefieldsFull),
     {nullptr,nullptr}
