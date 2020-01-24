@@ -1631,7 +1631,10 @@ CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags
         }
         else if (static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
         {
-            return PTarget;
+            if (PTarget->isAlive() || (validTargetFlags & TARGET_PLAYER_DEAD) != 0)
+                return PTarget;
+            else
+                errMsg = std::make_unique<CMessageBasicPacket>(this, this, 0, 0, MSGBASIC_CANNOT_ON_THAT_TARG);
         }
         else
         {
