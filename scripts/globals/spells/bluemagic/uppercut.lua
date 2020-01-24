@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.tpmod = TPMOD_ATTACK
-        params.dmgtype = DMGTYPE_H2H
+        params.dmgtype = dsp.damageType.HTH
         params.scattr = SC_LIQUEFACTION
         params.scattr2 = SC_IMPACTION
         params.numhits = 1

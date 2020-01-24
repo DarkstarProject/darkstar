@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
     local params = {}
     -- Todo: determine if these param values are retail
         params.tpmod = TPMOD_DAMAGE
-        params.dmgtype = DMGTYPE_SLASH
+        params.dmgtype = dsp.damageType.SLASHING
         params.scattr = SC_DETONATION
         params.numhits = 1
         params.multiplier = 1.875
