@@ -3825,13 +3825,9 @@ namespace battleutils
         // player charming mob
         if (PVictim->objtype == TYPE_MOB && PCharmer->objtype == TYPE_PC)
         {
-            // cannot charm NM
-            if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS) {
-                return;
-            }
-
-            //Bind uncharmable mobs for 5 seconds
-            if ( ((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 ||  PVictim->PMaster != nullptr) {
+            //Bind uncharmable mobs and NMs for 1 to 5 seconds
+            if ( ((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 || ((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS ||  PVictim->PMaster != nullptr)
+            {
                 PVictim->StatusEffectContainer->AddStatusEffect(
                     new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, tpzrand::GetRandomNumber(1, 5)));
                 return;
