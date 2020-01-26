@@ -21,7 +21,7 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if ENABLE_ROV and player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
+    if ENABLE_ROV == 1 and player:getCurrentMission(ROV) == dsp.mission.id.rov.RHAPSODIES_OF_VANADIEL and player:getMainLvl()>=3 then
         cs = 30035
     end
 
