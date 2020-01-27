@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Waoud
 -- Standard Info NPC
--- Involved in quests: An Empty Vessel (BLU flag), Beginnings (BLU AF1)
+-- Involved in quests: An Empty Vessel (BLU flag), Beginnings (BLU AF1), Omens (BLU AF2)
 -- !pos 65 -6 -78 50
 -----------------------------------
 require("scripts/globals/settings")
@@ -29,6 +29,7 @@ function onTrigger(player,npc)
     local anEmptyVesselProgress = player:getCharVar("AnEmptyVesselProgress")
     local divinationReady = vanaDay() > player:getCharVar("LastDivinationDay")
     local beginnings = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS)
+    local omens = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.OMENS)
 
     -- AN EMPTY VESSEL
     if ENABLE_TOAU == 1 and anEmptyVessel == QUEST_AVAILABLE and anEmptyVesselProgress <= 1 and player:getMainLvl() >= ADVANCED_JOB_LEVEL then
@@ -53,7 +54,7 @@ function onTrigger(player,npc)
 
     -- BEGINNINGS
     elseif anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES
-            and player:getMainJob() == dsp.job.BLU and player:getMainLvl() >= ADVANCED_JOB_LEVEL then
+            and player:getMainJob() == dsp.job.BLU and player:getMainLvl() >= 40 then
         if not divinationReady then
             player:startEvent(63)
         elseif player:needToZone() then
@@ -71,6 +72,24 @@ function onTrigger(player,npc)
             player:startEvent(707) -- reward immortal's scimitar
         else
             player:startEvent(706,player:getGil()) -- clue about the five staging points, costs you 1000 gil
+        end
+
+    -- OMENS
+    elseif beginnings == QUEST_COMPLETED and omens == QUEST_AVAILABLE and player:getMainJob() == dsp.job.BLU and player:getMainLvl() >= 50 then
+        if not divinationReady then
+            player:startEvent(63)
+        elseif player:needToZone() then
+            player:startEvent(78,player:getGil()) -- dummy questions, costs you 1000 gil
+        else
+            player:startEvent(710) -- start AF2 quest
+        end
+    elseif omens == QUEST_ACCEPTED then
+        if player:getCharVar("BluAf2CS") == 1 then
+            player:startEvent(711,player:getGil()) -- clue about bcnm location, costs you 1000 gil
+        elseif player:getCharVar("BluAf2CS") == 2 then
+            player:startEvent(712) -- gives keyitem to claim armour piece
+        elseif player:getCharVar("BluAf2CS") == 3 then
+            player:startEvent(713,player:getGil()) -- clue about location of armour piece, costs you 1000 gil
         end
 
     -- DEFAULT DIALOG
@@ -158,5 +177,19 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.PAY_DIVINATION) -- You pay 1000 gil for the divination.
     elseif csid == 707 then
         npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.BEGINNINGS, {item=17717})
+
+    -- OMENS
+    elseif csid == 710 then
+        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.OMENS)
+        player:setCharVar("BluAf2CS",1)
+    elseif csid == 711 and option == 1 then
+        player:delGil(1000)
+        player:messageSpecial(ID.text.PAY_DIVINATION) -- You pay 1000 gil for the divination.
+    elseif csid == 712 then
+        npcUtil.giveKeyItem(player, dsp.ki.SEALED_IMMORTAL_ENVELOPE)
+        player:setCharVar("BluAf2CS",3)
+    elseif csid == 713 and option == 1 then
+        player:delGil(1000)
+        player:messageSpecial(ID.text.PAY_DIVINATION) -- You pay 1000 gil for the divination.
     end
 end
