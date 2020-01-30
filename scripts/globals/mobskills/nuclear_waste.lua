@@ -1,7 +1,6 @@
 ---------------------------------------------------
--- Equalizer
--- AoE damage (~600-800),
---
+--  Nuclear Waste
+--  Description: Reduces elemental resistances by 50 to players in range.
 ---------------------------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/status")
@@ -18,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
     local mobhp = mob:getHPP()
     local phase = mob:getLocalVar("battlePhase")
 
-    if ((skillList == 729 and phase >= 2 and phase <= 3) or (mobhp < 40 and mobhp > 20 and skillList == 728)) then
+    if ((skillList == 729 and phase >= 1 and phase <= 2) or (skillList == 728 and mobhp < 70 and mobhp >= 40)) then
         if mob:getLocalVar("nuclearWaste") == 0 then
             return 0
         end
@@ -28,12 +27,9 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 2
-    local accmod = 1
-    local dmgmod = 2
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
-
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
-    return dmg
+    mob:setLocalVar("nuclearWaste", 1)
+    local typeEffect = dsp.effect.ELEMENTALRES_DOWN
+    target:addStatusEffectEx(dsp.effect.ELEMENTALRES_DOWN, 0, 50, 0, 60)
+    skill:setMsg(msg)
+    return typeEffect
 end

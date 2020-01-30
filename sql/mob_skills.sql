@@ -1088,7 +1088,7 @@ INSERT INTO `mob_skills` VALUES (1264,949,'turbofan',4,10.0,2000,1500,4,0,0,0,0,
 INSERT INTO `mob_skills` VALUES (1265,950,'smoke_discharger',4,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1266,951,'high-tension_discharger',4,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1267,952,'hydro_canon',4,10.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1268,953,'nuclear_waste',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1268,953,'nuclear_waste',1,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1269,954,'chemical_bomb',0,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1270,955,'particle_shield',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1271,1015,'empty_cutter',0,7.0,2000,1500,4,0,0,0,0,0,0);
@@ -1364,7 +1364,7 @@ INSERT INTO `mob_skills` VALUES (1537,929,'discharger',0,7.0,2000,1500,1,0,0,0,0
 INSERT INTO `mob_skills` VALUES (1538,930,'ion_efflux',4,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1539,1123,'rear_lasers',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1539,931,'rear_lasers',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1540,1081,'citadel_buster',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1540,1081,'citadel_buster',2,20.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1541,1285,'blighted_gloom',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1542,1133,'trample',1,15.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1543,1134,'tempest_wing',4,15.0,2000,1500,4,0,0,0,0,0,0);
