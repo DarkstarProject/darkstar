@@ -1,26 +1,12 @@
 require("scripts/globals/status")
 require("scripts/globals/magic")
 
--- The type of spell.
-SPELLTYPE_PHYSICAL = 0;
-SPELLTYPE_MAGICAL = 1;
-SPELLTYPE_RANGED = 2;
-SPELLTYPE_BREATH = 3;
-SPELLTYPE_DRAIN = 4;
-SPELLTYPE_SPECIAL = 5;
-
 -- The TP modifier
 TPMOD_NONE = 0;
 TPMOD_CRITICAL = 1;
 TPMOD_DAMAGE = 2;
 TPMOD_ACC = 3;
 TPMOD_ATTACK = 4;
-
--- The damage type for the spell
-DMGTYPE_BLUNT = 0;
-DMGTYPE_PIERCE = 1;
-DMGTYPE_SLASH = 2;
-DMGTYPE_H2H = 3;
 
 -- The SC the spell makes
 SC_IMPACTION = 0;
@@ -244,7 +230,8 @@ function BlueFinalAdjustments(caster, target, spell, dmg, params)
     -- handling stoneskin
     dmg = utils.stoneskin(target, dmg)
 
-    target:takeSpellDamage(caster, spell, dmg, dsp.attackType.PHYSICAL, params.dmgType or dsp.damageType.NONE)
+    local damageType = params.dmgType or dsp.damageType.NONE
+    target:takeSpellDamage(caster, spell, dmg, dsp.attackType.PHYSICAL, damageType)
     target:updateEnmityFromDamage(caster,dmg)
     target:handleAfflatusMiseryDamage(dmg)
     -- TP has already been dealt with.
