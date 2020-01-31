@@ -20,11 +20,11 @@ end
 function onBattlefieldEnter(player, battlefield)
     local mobOffset = (battlefield:getArea() - 1) * 7  -- offset to spawn correct mob depending on battlefieldNumber
     local players = battlefield:getPlayers()
-    if #players ==  4 then GetMobByID(17039375 + mobOffset):spawn(); end
-    if #players ==  8 then GetMobByID(17039376 + mobOffset):spawn(); end
-    if #players == 12 then GetMobByID(17039377 + mobOffset):spawn(); end
-    if #players == 14 then GetMobByID(17039378 + mobOffset):spawn(); end
-    if #players == 16 then GetMobByID(17039379 + mobOffset):spawn(); end
+    if #players ==  4 then GetMobByID(ID.mob.IMMORTAL_FLAN2 + mobOffset):spawn(); end
+    if #players ==  8 then GetMobByID(ID.mob.IMMORTAL_FLAN3 + mobOffset):spawn(); end
+    if #players == 12 then GetMobByID(ID.mob.IMMORTAL_FLAN4 + mobOffset):spawn(); end
+    if #players == 14 then GetMobByID(ID.mob.IMMORTAL_FLAN5 + mobOffset):spawn(); end
+    if #players == 16 then GetMobByID(ID.mob.IMMORTAL_FLAN6 + mobOffset):spawn(); end
 end
 
 function onBattlefieldLeave(player, battlefield, leavecode)
@@ -40,7 +40,7 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    if csid == 32001 then
+    if csid == 32001 and BluAF2CS == 1 then
         player:setCharVar("BluAf2CS",2)
     end
 end
