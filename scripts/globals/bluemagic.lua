@@ -216,12 +216,12 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local magicAttack = 1.0;
     local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
     magicAttack = math.floor(D * multTargetReduction);
-    
+
     local rparams = {};
     rparams.diff = dStat;
     rparams.skillType = dsp.skill.BLUE_MAGIC;
     magicAttack = math.floor(magicAttack * applyResistance(caster, target, spell, rparams));
-    
+
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
     caster:delStatusEffectSilent(dsp.effect.BURST_AFFINITY);
@@ -231,25 +231,25 @@ end;
 
 function BlueFinalAdjustments(caster, target, spell, dmg, params)
     if (dmg < 0) then
-        dmg = 0;
+        dmg = 0
     end
 
-    dmg = dmg * BLUE_POWER;
+    dmg = dmg * BLUE_POWER
 
-    dmg = dmg - target:getMod(dsp.mod.PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX)
     if (dmg < 0) then
-        dmg = 0;
+        dmg = 0
     end
 
     -- handling stoneskin
-    dmg = utils.stoneskin(target, dmg);
+    dmg = utils.stoneskin(target, dmg)
 
-    target:takeDamage(dmg, caster, dsp.attackType.PHYSICAL, params.dmgType or dsp.damageType.NONE);
-    target:updateEnmityFromDamage(caster,dmg);
-    target:handleAfflatusMiseryDamage(dmg);
+    target:takeSpellDamage(caster, spell, dmg, dsp.attackType.PHYSICAL, params.dmgType or dsp.damageType.NONE)
+    target:updateEnmityFromDamage(caster,dmg)
+    target:handleAfflatusMiseryDamage(dmg)
     -- TP has already been dealt with.
-    return dmg;
-end;
+    return dmg
+end
 
 ------------------------------
 -- Utility functions below ---

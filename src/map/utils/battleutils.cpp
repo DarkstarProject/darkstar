@@ -2185,6 +2185,32 @@ namespace battleutils
         return damage;
     }
 
+
+    /************************************************************************
+    *                                                                       *
+    *  Handles Damage from Spells (dmg type reductions calced in lua)       *
+    *                                                                       *
+    ************************************************************************/
+
+    int32 TakeSpellDamage(CBattleEntity* PDefender, CCharEntity* PAttacker, CSpell* PSpell, int32 damage, ATTACKTYPE attackType, DAMAGETYPE damageType)
+    {
+        PDefender->takeDamage(damage, PAttacker, attackType, damageType);
+
+        // Remove effects from damage
+        if (PSpell->canTargetEnemy() && damage > 0 && PSpell->dealsDamage())
+        {
+            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            // Check for bind breaking
+            BindBreakCheck(PAttacker, PDefender);
+
+            // Do we get TP for damaging spells?
+            int16 tp = battleutils::CalculateSpellTP(PAttacker, PSpell);
+            PAttacker->addTP(tp);
+        }
+
+        return damage;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Calculate Probability attack will hit (20% min cap - 95% max cap)    *
