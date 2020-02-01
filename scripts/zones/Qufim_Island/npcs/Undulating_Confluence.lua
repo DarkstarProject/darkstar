@@ -16,10 +16,7 @@ function onTrigger(player, npc)
     if player:getCurrentMission(ROV) == dsp.mission.id.rov.AT_THE_HEAVENS_DOOR then
         player:startEvent(63)
     elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_LIONS_ROAR then
-        dsp.confrontation.start(player, npc, ID.mob.OPHIOTAURUS, function(player)
-            player:completeMission(ROV, dsp.mission.id.rov.THE_LIONS_ROAR)
-            player:addMission(ROV, dsp.mission.id.rov.EDDIES_OF_DESPAIR_I)
-        end)
+        dsp.confrontation.start(player, npc, ID.mob.OPHIOTAURUS)
     elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.EDDIES_OF_DESPAIR_I then
         player:startEvent(64)
     elseif player:getCurrentMission(ROV) >= dsp.mission.id.rov.SET_FREE then

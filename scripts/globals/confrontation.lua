@@ -8,7 +8,7 @@ require("scripts/globals/zone")
 dsp = dsp or {}
 dsp.confrontation = dsp.confrontation or {}
 
-dsp.confrontation.start = function(player, npc, mobId, onWinFunc)
+dsp.confrontation.start = function(player, npc, mobId)
     local mobs = {}
     if type(mobId) == "number" then
         table.insert(mobs, mobId)
@@ -38,25 +38,21 @@ dsp.confrontation.start = function(player, npc, mobId, onWinFunc)
         mob:addStatusEffect(dsp.effect.CONFRONTATION, player:getID(), 0, 0)
 
         local myId = mob:getID()
-        mob:addListener("DESPAWN", "CON_"..myId, function(m)
-            m:removeListener("CON_"..myId)
+        mob:addListener("DEATH", "CON_"..myId, function(mob, player)
+            mob:removeListener("CON_"..myId)
 
             for _, v in pairs(mobs) do
                 if v:isAlive() then
                     return false
                 end
             end
-            -- TODO: Fire mob death logic func here
+
+            local party = player:getParty()
+            for _, member in ipairs(party) do
+                member:delStatusEffect(dsp.effect.CONFRONTATION)
+            end
         end)
     end
-    
-    npcUtil.popFromQM(player, npc, mobId, { look=true, hide=0 })
 
-    -- TODO: Tie these correctly to mob death
-    if type(onWinFunc) == "function" then
-        onWinFunc(player)
-    end
-    for _, member in ipairs(party) do
-        member:delStatusEffect(dsp.effect.CONFRONTATION, player:getID(), 0, 0)
-    end
+    npcUtil.popFromQM(player, npc, mobId, { look=true, hide=0 })
 end
