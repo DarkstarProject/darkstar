@@ -29,7 +29,12 @@ end
 function onMobWeaponSkill(target, mob, skill)
     mob:setLocalVar("nuclearWaste", 1)
     local typeEffect = dsp.effect.ELEMENTALRES_DOWN
-    target:addStatusEffectEx(dsp.effect.ELEMENTALRES_DOWN, 0, 50, 0, 60)
-    skill:setMsg(msg)
+    local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),0,0);
+    if (resist >= 0.25) then
+        target:addStatusEffectEx(typeEffect, 0, 50, 0, 60)
+        skill:setMsg(dsp.msg.basic.NONE)
+    else
+        skill:setMsg(dsp.msg.basic.SKILL_MISS)
+    end
     return typeEffect
 end
