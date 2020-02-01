@@ -1180,8 +1180,10 @@ void CBattleEntity::Spawn()
 
 void CBattleEntity::Die()
 {
-    auto PKiller {GetEntity(m_OwnerID.targid)};
-    PAI->EventHandler.triggerListener("DEATH", this, PKiller);
+    if (CBaseEntity* PKiller = GetEntity(m_OwnerID.targid))
+        PAI->EventHandler.triggerListener("DEATH", this, PKiller);
+    else
+        PAI->EventHandler.triggerListener("DEATH", this);
     SetBattleTargetID(0);
 }
 
@@ -1295,18 +1297,6 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             // Remove Saboteur
             if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)
                 StatusEffectContainer->DelStatusEffect(EFFECT_SABOTEUR);
-
-            // Remove effects from damage
-            if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())
-            {
-                PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-                // Check for bind breaking
-                battleutils::BindBreakCheck(this, PTarget);
-
-                // Do we get TP for damaging spells?
-                int16 tp = battleutils::CalculateSpellTP(this, PSpell);
-                addTP(tp);
-            }
 
             if (msg == 0)
             {

@@ -101,7 +101,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 ************************************************************************/
 
 // Number of rows in the exp table
-static constexpr int32 ExpTableRowCount = 54;
+static constexpr int32 ExpTableRowCount = 60;
 std::array<std::array<uint16, 20>, ExpTableRowCount> g_ExpTable;
 std::array<uint16, 100> g_ExpPerLevel;
 
@@ -113,7 +113,6 @@ std::array<uint16, 100> g_ExpPerLevel;
 
 namespace charutils
 {
-
     /************************************************************************
     *                                                                       *
     *  Расчет характеристик персонажей                                      *
@@ -3078,18 +3077,37 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
+    *  Returns mob difficulty according to level difference                 *
+    *                                                                       *
+    ************************************************************************/
+    EMobDifficulty CheckMob(uint8 charlvl, uint8 moblvl)
+    {
+        uint32 baseExp = GetRealExp(charlvl, moblvl);
+
+        if (baseExp >= 400) return EMobDifficulty::IncrediblyTough;
+        if (baseExp >= 350) return EMobDifficulty::VeryTough;
+        if (baseExp >= 220) return EMobDifficulty::Tough;
+        if (baseExp >= 200) return EMobDifficulty::EvenMatch;
+        if (baseExp >= 160) return EMobDifficulty::DecentChallenge;
+        if (baseExp >= 60) return EMobDifficulty::EasyPrey;
+        if (baseExp >= 14) return EMobDifficulty::IncredibyEasyPrey;
+
+        return EMobDifficulty::TooWeak;
+    }
+
+    /************************************************************************
+    *                                                                       *
     *  Узнаем реальное количество опыта, который персонаж получит с цели    *
     *                                                                       *
     ************************************************************************/
 
     uint32 GetRealExp(uint8 charlvl, uint8 moblvl)
     {
-        int32 levelDif = moblvl - charlvl + 38;
+        const int32 levelDif = moblvl - charlvl + 44;
 
         if ((charlvl > 0) && (charlvl < 100))
-        {
             return g_ExpTable[std::clamp(levelDif, 0, ExpTableRowCount - 1)][(charlvl - 1) / 5];
-        }
+
         return 0;
     }
 
@@ -3200,19 +3218,20 @@ namespace charutils
         uint8 minlevel = 0, maxlevel = PChar->GetMLevel();
         REGIONTYPE region = PChar->loc.zone->GetRegionID();
 
-        if (PChar->PParty != nullptr)
+        if (PChar->PParty)
         {
-            if (PChar->PParty->GetSyncTarget() != nullptr)
+            if (PChar->PParty->GetSyncTarget())
             {
                 if (distance(PMob->loc.p, PChar->PParty->GetSyncTarget()->loc.p) >= 100 || PChar->PParty->GetSyncTarget()->health.hp == 0)
                 {
                     PChar->ForParty([&PMob](CBattleEntity* PMember) {
                         if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
                         {
-                            auto PChar = static_cast<CCharEntity*>(PMember);
-                            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 545));
+                            if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PMember))
+                                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 545));
                         }
                     });
+
                     return;
                 }
             }
@@ -3237,36 +3256,39 @@ namespace charutils
             }
         });
 
-        PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
-            auto PMember = static_cast<CCharEntity*>(PPartyMember);
-            if (PMember->isDead()) { return; }
-            uint32 baseexp = 0;
-            auto exp = 0.f;
-            float monsterbonus = 1.0f;
+        PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember)
+        {
+            CCharEntity* PMember = dynamic_cast<CCharEntity*>(PPartyMember);
+            if (!PMember || PMember->isDead())
+                return;
+
+            maxlevel = std::max(maxlevel, PMob->m_HiPCLvl);
+
             bool chainactive = false;
-            if (PMob->m_HiPCLvl > maxlevel) maxlevel = PMob->m_HiPCLvl;
-            baseexp = GetRealExp(maxlevel, PMob->GetMLevel());
-            if (baseexp != 0)
+
+            const uint8 moblevel = PMob->GetMLevel();
+            const uint8 memberlevel = PMember->GetMLevel();
+
+            EMobDifficulty mobCheck = CheckMob(maxlevel, moblevel);
+            float exp = (float)GetRealExp(maxlevel, moblevel);
+
+            if (mobCheck > EMobDifficulty::TooWeak)
             {
                 if (PMember->getZone() == PMob->getZone())
                 {
                     if (map_config.exp_party_gap_penalties == 1)
                     {
-                        if (maxlevel > 50 || maxlevel > (PMember->GetMLevel() + 7))
+                        if (maxlevel > 50 || maxlevel > (memberlevel + 7))
                         {
-                            exp = (float)baseexp*(float)((float)(PMember->GetMLevel()) / (float)(maxlevel));
+                            exp *= memberlevel / (float)maxlevel;
                         }
                         else
                         {
-                            exp = (float)baseexp*(float)((float)(GetExpNEXTLevel(PMember->GetMLevel())) / (float)(GetExpNEXTLevel(maxlevel)));
+                            exp *= GetExpNEXTLevel(memberlevel) / (float)GetExpNEXTLevel(maxlevel);
                         }
                     }
-                    else
-                    {
-                        exp = (float)baseexp;
-                    }
 
-                    if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && (region >= 0 && region <= 22))
+                    if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && region >= 0 && region <= 22)
                     {
                         switch (pcinzone)
                         {
@@ -3279,7 +3301,7 @@ namespace charutils
                             default: exp *= (1.8f / pcinzone); break;
                         }
                     }
-                    else if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && (region >= 28 && region <= 32))
+                    else if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && region >= 28 && region <= 32)
                     {
                         switch (pcinzone)
                         {
@@ -3309,21 +3331,22 @@ namespace charutils
 
                     if (PMob->getMobMod(MOBMOD_EXP_BONUS))
                     {
-                        monsterbonus = 1 + (float)PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.0f;
+                        const float monsterbonus = 1.f + PMob->getMobMod(MOBMOD_EXP_BONUS) / 100.f;
                         exp *= monsterbonus;
                     }
 
+                    // Per monster caps pulled from: https://ffxiclopedia.fandom.com/wiki/Experience_Points
                     if (PMember->GetMLevel() <= 50)
                     {
-                        if (exp > 200) exp = 200;
+                        exp = std::fmin(exp, 400.f);
                     }
                     else if (PMember->GetMLevel() <= 60)
                     {
-                        if (exp > 250) exp = 250;
+                        exp = std::fmin(exp, 500.f);
                     }
-                    else if (exp > 300)
+                    else
                     {
-                        exp = 300;
+                        exp = std::fmin(exp, 600.f);
                     }
 
                     if (PMember->expChain.chainTime > gettick() || PMember->expChain.chainTime == 0)
@@ -3349,7 +3372,6 @@ namespace charutils
                         else if (PMember->GetMLevel() <= 50) PMember->expChain.chainTime = gettick() + 250000;
                         else if (PMember->GetMLevel() <= 60) PMember->expChain.chainTime = gettick() + 300000;
                         else PMember->expChain.chainTime = gettick() + 360000;
-                        chainactive = false;
                         PMember->expChain.chainNumber = 1;
                     }
 
@@ -3446,14 +3468,14 @@ namespace charutils
                     }
 
                     // pet or companion exp penalty needs to be added here
-
                     if (distance(PMember->loc.p, PMob->loc.p) > 100)
                     {
                         PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, 0, 0, 37));
                         return;
                     }
+
                     exp = charutils::AddExpBonus(PMember, exp);
-                    charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, baseexp, chainactive);
+                    charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, mobCheck, chainactive);
                 }
             }
         });
@@ -3563,7 +3585,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp, bool isexpchain)
+    void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, EMobDifficulty mobCheck, bool isexpchain)
     {
         if (PChar->isDead())
             return;
@@ -3584,9 +3606,9 @@ namespace charutils
             onLimitMode = true;
 
         // exp added from raise shouldn't display a message. Don't need a message for zero exp either
-        if (!expFromRaise && exp != 0)
+        if (!expFromRaise && exp > 0)
         {
-            if (baseexp >= 100 && isexpchain)
+            if (mobCheck >= EMobDifficulty::EvenMatch && isexpchain)
             {
                 if (PChar->expChain.chainNumber != 0)
                 {
@@ -3617,7 +3639,7 @@ namespace charutils
             }
         }
 
-        if (onLimitMode == true)
+        if (onLimitMode)
         {
             //add limit points
             if (PChar->PMeritPoints->AddLimitPoints(exp))
@@ -3675,7 +3697,7 @@ namespace charutils
         PChar->PAI->EventHandler.triggerListener("EXPERIENCE_POINTS", PChar, exp);
 
         // Player levels up
-        if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
+        if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && !onLimitMode)
         {
             if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai)
             {
@@ -3755,10 +3777,7 @@ namespace charutils
         PChar->pushPacket(new CCharStatsPacket(PChar));
 
         if (onLimitMode)
-        {
             PChar->pushPacket(new CMenuMeritPacket(PChar));
-        }
-
     }
 
     /************************************************************************
