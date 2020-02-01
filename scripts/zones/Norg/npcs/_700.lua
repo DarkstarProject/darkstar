@@ -4,9 +4,9 @@
 -- !pos 97 -7 -12 252
 -----------------------------------
 require("scripts/globals/keyitems")
-require("scripts/globals/missions");
+require("scripts/globals/missions")
 require("scripts/globals/npc_util")
-require("scripts/globals/settings");
+require("scripts/globals/settings")
 -----------------------------------
 
 function onTrade(player,npc,trade)
