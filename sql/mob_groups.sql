@@ -8309,6 +8309,7 @@ INSERT INTO `mob_groups` VALUES (44,2496,126,'Malefic_Fencer',0,128,0,0,0,32,32,
 INSERT INTO `mob_groups` VALUES (45,3531,126,'Seed_Mandragora',0,128,0,0,0,32,32,0);
 INSERT INTO `mob_groups` VALUES (46,4694,126,'Kaggen',0,128,0,0,9999,95,96,0);
 INSERT INTO `mob_groups` VALUES (47,1642,126,'Goblin_Bounty_Hunter',0,0,1031,0,0,32,36,0);
+INSERT INTO `mob_groups` VALUES (48,6097,126,'Ophiotaurus',0,128,0,0,0,43,43,0);
 INSERT INTO `mob_groups` VALUES (6802,1027,126,'Diabolos',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (6835,3584,126,'Shantotto',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (6839,4249,126,'Volker',0,0,0,0,0,0,0,0);
