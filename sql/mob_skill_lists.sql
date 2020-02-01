@@ -3450,3 +3450,9 @@ INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1952);
 INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1956);
 INSERT INTO `mob_skill_lists` VALUES ('Ankabut',1007,704);
 INSERT INTO `mob_skill_lists` VALUES ('White_Coney',1008,323); -- only Wild Carrot
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2925); -- Bonebreaking Barrage
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2923); -- Calcifying Claw
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2924); -- Divesting Stampede
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,3506); -- Hellfire Arrow
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,3507); -- Incensed Pummel
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2922); -- Soulshattering Roar

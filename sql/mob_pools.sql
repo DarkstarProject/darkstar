@@ -6136,7 +6136,35 @@ INSERT INTO `mob_pools` VALUES (6093,'Arch_Angra_Mainyu','Arch_Angra_Mainyu',4,0
 INSERT INTO `mob_pools` VALUES (6094,'Taquede','Taquede',359,0x0500010200000000000000000000000000000000,2,14,7,240,100,0,1,1,1,2,513,32,983,157,0,0,0,1,0,359);
 INSERT INTO `mob_pools` VALUES (6095,'Mountain_Worm','Mountain_Worm',258,0x0000AA0100000000000000000000000000000000,4,5,7,240,100,0,0,0,1,2,0,0,337,135,0,0,9,1,64,258); -- NM
 INSERT INTO `mob_pools` VALUES (6096,'Frost_Flambeau','Frost_Flambeau',232,0x0000160100000000000000000000000000000000,4,1,7,240,100,0,1,0,0,2,17,0,601,131,0,0,307,1,0,232);
-INSERT INTO `mob_pools` VALUES (6097,'Ophiotaurus','Ophiotaurus',459,0x00006A0B00000000000000000000000000000000,1,1,7,200,100,0,1,1,1,0,0,0,7,135,4,0,0,0,0,459);
+INSERT INTO `mob_pools` VALUES (6097,'Ophiotaurus','Ophiotaurus',459,0x00006A0B00000000000000000000000000000000,1,1,7,200,100,0,1,1,1,0,0,0,1,129,4,0,0,1,0,1009);
+
+/*	
+  `poolid` int(10) unsigned NOT NULL,	
+  `name` varchar(24) DEFAULT NULL,	
+  `packet_name` varchar(24) DEFAULT NULL,	
+  `familyid` smallint(4) unsigned NOT NULL DEFAULT '0',	
+  `modelid` binary(20) NOT NULL,	
+  `mJob` tinyint(2) unsigned NOT NULL DEFAULT '1',	
+  `sJob` tinyint(2) unsigned NOT NULL DEFAULT '1',	
+  `cmbSkill` tinyint(2) unsigned NOT NULL DEFAULT '1',	
+  `cmbDelay` smallint(3) unsigned NOT NULL DEFAULT '240',	
+  `cmbDmgMult` smallint(4) unsigned NOT NULL DEFAULT '100',	
+  `behavior` smallint(5) unsigned NOT NULL DEFAULT '0',	
+  `aggro` tinyint(1) unsigned NOT NULL DEFAULT '0',	
+  `true_detection` tinyint(1) unsigned NOT NULL DEFAULT '0',	
+  `links` tinyint(1) unsigned NOT NULL DEFAULT '0',	
+  `mobType` smallint(5) unsigned NOT NULL DEFAULT '0',	
+  `immunity` int(10) NOT NULL DEFAULT '0',	
+  `name_prefix` tinyint(4) unsigned NOT NULL DEFAULT '0',	
+  `flag` int(11) unsigned NOT NULL DEFAULT '0',	
+  `entityFlags` int(11) unsigned NOT NULL DEFAULT '0',	
+  `animationsub` tinyint(1) NOT NULL DEFAULT '0',	
+  `hasSpellScript` tinyint(1) unsigned NOT NULL DEFAULT '0',	
+  `spellList` smallint(4) NOT NULL DEFAULT '0',	
+  `namevis` tinyint(4) NOT NULL DEFAULT '1',	
+  `roamflag` smallint(3) unsigned NOT NULL DEFAULT '0',	
+  `skill_list_id` smallint(5) unsigned NOT NULL DEFAULT '0',	
+*/
 
 /*!40000 ALTER TABLE `mob_pools` ENABLE KEYS */;
 UNLOCK TABLES;
