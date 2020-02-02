@@ -18,8 +18,7 @@ function onTrigger(player, npc)
     elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_LOST_AVATAR and player:getCharVar("RhapsodiesStatus") == 1 then
         player:startEvent(213)
     elseif player:getCurrentMission(ROV) == dsp.mission.id.rov.THE_LOST_AVATAR then
-        player:PrintToPlayer("Siren Fight")
-        -- Print sense of foreboding message
+        player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
         npcUtil.popFromQM(player, npc, ID.mob.SIREN, { look=true, hide=0 })
     end
 end
