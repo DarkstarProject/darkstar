@@ -128,6 +128,8 @@ public:
     int32 addPeriodicTrigger(lua_State* L);  // Adds a periodic trigger to the NPC that allows time based scripting
     int32 showNPC(lua_State*);               // Show an NPC
     int32 hideNPC(lua_State*);               // hide an NPC
+	int32 despawnNPC(lua_State* L);
+	int32 releaseAllFromNPC(lua_State* L);
     int32 updateNPCHideTime(lua_State*);     // Updates the length of time a NPC remains hidden, if shorter than the original hide time.
 
     int32 getWeather(lua_State*);            // Get Weather condition

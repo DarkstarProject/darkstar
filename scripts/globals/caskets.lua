@@ -55,7 +55,7 @@ local casketInfo =
         112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123,
         124, 125, 126, 127, 128, 130, 153, 157, 158, 159, 160, 166,
         167, 169, 172, 173, 174, 176, 177, 178, 184, 190, 191, 192,
-        193, 194, 195, 196, 197, 198, 204, 205, 207, 212, 213
+        193, 194, 195, 196, 197, 198, 204, 205, 208, 212, 213
     },
     cs =
     {
@@ -4340,6 +4340,64 @@ local casketItems =
             { 725, 16265}, -- Wivre Gorget
         }
     },
+    [dsp.zone.QUICKSAND_CAVES] =
+    {
+        regionalItems = {10949}, -- Smithy's Torque
+        temps =
+        {
+        ----------------------------------
+        --| Weight | Item ID |   Name  |--
+        ----------------------------------
+            {1060, 4117}, -- Hi-Potion +1
+            { 700, 4118}, -- Hi-Potion +2
+            { 230, 4119}, -- Hi-Potion +3
+            {1020, 4133}, -- Hi-Ether +1
+            { 800, 4134}, -- Hi-Ether +2
+            { 240, 4135}, -- Hi-Ether +3
+            { 900, 4145}, -- Elixir
+            { 820, 4148}, -- Antidote
+            { 730, 4150}, -- Eye Drops
+            { 850, 4151}, -- Echo Drops
+            { 650, 4155}, -- Remedy
+            {1020, 4164}, -- Prism Powder
+            { 940, 4165}, -- Silent Oil
+            { 420, 4202}, -- Daedalus Wing
+            { 220, 4206}, -- Catholicon
+            { 430, 4302}, -- Pamama au Lait
+            { 620, 4424}, -- Melon Juice
+        },
+        items =
+        {
+        ----------------------------------
+        --| Weight | Item ID |   Name  |--
+        ----------------------------------
+            { 230,   645}, -- Darksteel Ore
+            { 850,   702}, -- Ebony Log
+            { 560,   737}, -- Gold Ore
+            { 520,   823}, -- Gold Thread
+            { 840,   843}, -- G. Bird Plume
+            {1250,   844}, -- Phoenix Feather
+            {2900,   888}, -- Sea Shell
+            {2500,  1155}, -- Iron Sand
+            {1900,  1213}, -- Dst. Bolt Heads
+            {2100,  1443}, -- Dried Mugwort
+            { 240,  3309}, -- Barrage Turbine
+            {1700,  3434}, -- Cobalt Cell
+            { 650,  3435}, -- Rubicund Cell
+            {1230,  3437}, -- Jade Cell
+            {5000,  4117}, -- Hi-Potion +1
+            {4400,  4120}, -- X-Potion
+            { 600,  4121}, -- X-Potion +1
+            {4800,  4133}, -- Hi-Ether +1
+            { 790,  4141}, -- Pro-Ether +1
+            { 310,  4449}, -- Reishi Mushroom
+            { 430,  5164}, -- Ground Wasabi
+            { 625, 12829}, -- Beak Trousers
+            { 365, 12683}, -- Darksteel Mufflers
+            { 295, 12811}, -- Dst. Breeches
+            { 680, 12740}, -- Silk Mitts
+        }
+    },
     [dsp.zone.GUSTAV_TUNNEL] =
     {
         regionalItems = {10955, 11041}, -- Culinarian's Torque | Liminus Earring
@@ -4590,9 +4648,8 @@ end
 -- Desc: Despawn a chest and reset its local var's
 ----------------------------------------------------------------------------------
 local function removeChest(npc)
-    npc:AnimationSub(0)
-    npc:setStatus(dsp.status.DISAPPEAR)
-    npc:setLocalVar("[caskets]SPAWNSTATUS", casketInfo.spawnStatus.DESPAWNED)
+    npc:despawnNPC()
+    npc:releaseAllFromNPC()
 end
 
 ---------------------------------------------------------------------------------------------
@@ -4646,12 +4703,13 @@ local function setCasketData(player, x, y, z, r, npc, partyID, mobLvl)
         npc:setLocalVar("[caskets]SPAWNTIME", os.time())
         npc:setPos(x, y, z, r)
         npc:setStatus(dsp.status.NORMAL)
-        npc:entityAnimationPacket("deru")
+        --npc:entityAnimationPacket("deru")
         npc:setModelId(chestStyle)
         sendChestDropMessage(player)
         -------------------------------------------------------
         -- Despawn chest after 3 Mins
         -------------------------------------------------------
+        -- npc:showNPC(180)
         npc:timer(180000, function(npc)
             removeChest(npc)
         end)
@@ -5255,11 +5313,11 @@ dsp.caskets.onEventFinish = function(player, csid, option, npc)
                             splitNumbers[1],
                             splitNumbers[1] +1,
                             splitNumbers[1] +2, 0)
-                    elseif tonumber(splitNumbers[2]) == 9 then
+                    elseif tonumber(splitNumbers[1]) == 9 then
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.FIRST_DIGIT_IS,
-                            splitNumbers[2] -2,
-                            splitNumbers[2] -1,
-                            splitNumbers[2], 0)
+                            splitNumbers[1] -2,
+                            splitNumbers[1] -1,
+                            splitNumbers[1], 0)
                     else
                         player:messageSpecial(baseMessage + casketInfo.messageOffset.FIRST_DIGIT_IS,
                             splitNumbers[1] -1,
