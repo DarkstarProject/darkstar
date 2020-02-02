@@ -1,26 +1,12 @@
 require("scripts/globals/status")
 require("scripts/globals/magic")
 
--- The type of spell.
-SPELLTYPE_PHYSICAL = 0;
-SPELLTYPE_MAGICAL = 1;
-SPELLTYPE_RANGED = 2;
-SPELLTYPE_BREATH = 3;
-SPELLTYPE_DRAIN = 4;
-SPELLTYPE_SPECIAL = 5;
-
 -- The TP modifier
 TPMOD_NONE = 0;
 TPMOD_CRITICAL = 1;
 TPMOD_DAMAGE = 2;
 TPMOD_ACC = 3;
 TPMOD_ATTACK = 4;
-
--- The damage type for the spell
-DMGTYPE_BLUNT = 0;
-DMGTYPE_PIERCE = 1;
-DMGTYPE_SLASH = 2;
-DMGTYPE_H2H = 3;
 
 -- The SC the spell makes
 SC_IMPACTION = 0;
@@ -216,12 +202,12 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local magicAttack = 1.0;
     local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
     magicAttack = math.floor(D * multTargetReduction);
-    
+
     local rparams = {};
     rparams.diff = dStat;
     rparams.skillType = dsp.skill.BLUE_MAGIC;
     magicAttack = math.floor(magicAttack * applyResistance(caster, target, spell, rparams));
-    
+
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
     caster:delStatusEffectSilent(dsp.effect.BURST_AFFINITY);
@@ -231,25 +217,26 @@ end;
 
 function BlueFinalAdjustments(caster, target, spell, dmg, params)
     if (dmg < 0) then
-        dmg = 0;
+        dmg = 0
     end
 
-    dmg = dmg * BLUE_POWER;
+    dmg = dmg * BLUE_POWER
 
-    dmg = dmg - target:getMod(dsp.mod.PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX)
     if (dmg < 0) then
-        dmg = 0;
+        dmg = 0
     end
 
     -- handling stoneskin
-    dmg = utils.stoneskin(target, dmg);
+    dmg = utils.stoneskin(target, dmg)
 
-    target:takeDamage(dmg, caster, dsp.attackType.PHYSICAL, params.dmgType or dsp.damageType.NONE);
-    target:updateEnmityFromDamage(caster,dmg);
-    target:handleAfflatusMiseryDamage(dmg);
+    local damageType = params.dmgType or dsp.damageType.NONE
+    target:takeSpellDamage(caster, spell, dmg, dsp.attackType.PHYSICAL, damageType)
+    target:updateEnmityFromDamage(caster,dmg)
+    target:handleAfflatusMiseryDamage(dmg)
     -- TP has already been dealt with.
-    return dmg;
-end;
+    return dmg
+end
 
 ------------------------------
 -- Utility functions below ---

@@ -60,6 +60,11 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
         throw CStateInitException(std::move(m_errorMsg));
     }
 
+    if (PTarget->objtype != TYPE_PC && (m_PSpell->getZoneMisc() & MISC_TRACTOR) != 0)
+    {
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_CANNOT_ON_THAT_TARG));
+    }
+
     auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, PTarget, GetSpell());
     if (errorMsg)
     {

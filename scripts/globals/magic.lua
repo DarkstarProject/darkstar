@@ -635,66 +635,66 @@ end;
 
     -- handle multiple targets
     if (caster:isSpellAoE(spell:getID())) then
-        local total = spell:getTotalTargets();
+        local total = spell:getTotalTargets()
 
         if (total > 9) then
             -- ga spells on 10+ targets = 0.4
-            dmg = dmg * 0.4;
+            dmg = dmg * 0.4
         elseif (total > 1) then
             -- -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
-            dmg = dmg * (0.9 - 0.05 * total);
+            dmg = dmg * (0.9 - 0.05 * total)
         end
 
         -- kill shadows
-        -- target:delStatusEffect(dsp.effect.COPY_IMAGE);
-        -- target:delStatusEffect(dsp.effect.BLINK);
+        -- target:delStatusEffect(dsp.effect.COPY_IMAGE)
+        -- target:delStatusEffect(dsp.effect.BLINK)
     else
         -- this logic will eventually be moved here
-        -- dmg = utils.takeShadows(target, dmg, 1);
+        -- dmg = utils.takeShadows(target, dmg, 1)
 
         -- if (dmg == 0) then
-            -- spell:setMsg(dsp.msg.basic.SHADOW_ABSORB);
-            -- return 1;
+            -- spell:setMsg(dsp.msg.basic.SHADOW_ABSORB)
+            -- return 1
         -- end
     end
 
-    local skill = spell:getSkillType();
+    local skill = spell:getSkillType()
     if (skill == dsp.skill.ELEMENTAL_MAGIC) then
-        dmg = dmg * ELEMENTAL_POWER;
+        dmg = dmg * ELEMENTAL_POWER
     elseif (skill == dsp.skill.DARK_MAGIC) then
-        dmg = dmg * DARK_POWER;
+        dmg = dmg * DARK_POWER
     elseif (skill == dsp.skill.NINJUTSU) then
-        dmg = dmg * NINJUTSU_POWER;
+        dmg = dmg * NINJUTSU_POWER
     elseif (skill == dsp.skill.DIVINE_MAGIC) then
-        dmg = dmg * DIVINE_POWER;
+        dmg = dmg * DIVINE_POWER
     end
 
-    dmg = target:magicDmgTaken(dmg);
+    dmg = target:magicDmgTaken(dmg)
 
     if (dmg > 0) then
-        dmg = dmg - target:getMod(dsp.mod.PHALANX);
-        dmg = utils.clamp(dmg, 0, 99999);
+        dmg = dmg - target:getMod(dsp.mod.PHALANX)
+        dmg = utils.clamp(dmg, 0, 99999)
     end
 
     --handling stoneskin
-    dmg = utils.stoneskin(target, dmg);
-    dmg = utils.clamp(dmg, -99999, 99999);
+    dmg = utils.stoneskin(target, dmg)
+    dmg = utils.clamp(dmg, -99999, 99999)
 
     if (dmg < 0) then
-        dmg = target:addHP(-dmg);
-        spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP);
+        dmg = target:addHP(-dmg)
+        spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP)
     else
-        target:takeDamage(dmg, caster, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL + spell:getElement());
-        target:handleAfflatusMiseryDamage(dmg);
-        target:updateEnmityFromDamage(caster,dmg);
+        target:takeSpellDamage(caster, spell, dmg, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL + spell:getElement())
+        target:handleAfflatusMiseryDamage(dmg)
+        target:updateEnmityFromDamage(caster,dmg)
         -- Only add TP if the target is a mob
         if (target:getObjType() ~= dsp.objType.PC) then
-            target:addTP(100);
+            target:addTP(100)
         end
     end
 
-    return dmg;
- end;
+    return dmg
+ end
 
 function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
     --Handles target's HP adjustment and returns SIGNED dmg (negative values on absorb)
