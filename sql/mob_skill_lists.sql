@@ -3456,3 +3456,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2924); -- Divesting Sta
 INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,3506); -- Hellfire Arrow
 INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,3507); -- Incensed Pummel
 INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2922); -- Soulshattering Roar
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3511); -- Lunatic Voice
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3514); -- Hysteric Assault
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3513); -- Entice
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3512); -- Sonic Buffet
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3515); -- Clarsach Call

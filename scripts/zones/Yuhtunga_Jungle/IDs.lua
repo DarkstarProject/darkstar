@@ -55,7 +55,7 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         ROSE_GARDEN_PH          = 17281356,
         ROSE_GARDEN             = 17281357,
         VOLUPTUOUS_VILMA        = 17281358,
-        SIREN                   = 17281676,
+        SIREN                   = 17281547,
     },
     npc =
     {
