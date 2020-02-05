@@ -1540,12 +1540,15 @@ dsp.mod =
     BERSERK_DURATION                = 954, -- Berserk Duration
     AGGRESSOR_DURATION              = 955, -- Aggressor Duration
     DEFENDER_DURATION               = 956, -- Defender Duration
+    ROV_EXP_MOD                     = 958, -- ROV Experience Gain Modifier
+    ROV_SKILL_MOD                   = 959, -- ROV Skill Point Gain Modifier
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 958, -- stuff
-    -- SPARE = 959, -- stuff
+
     -- SPARE = 960, -- stuff
+    -- SPARE = 961, -- stuff
+    -- SPARE = 962, -- stuff
 };
 
 dsp.latent =

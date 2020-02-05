@@ -2734,11 +2734,6 @@ namespace charutils
                 }
                 MaxSkill = MaxSkill * 10;
 
-                if (hasKeyItem(PChar, 2884)) // Rhapsody in White
-                {
-                    SkillAmount *= 2;
-                }
-
                 // Do skill amount multiplier (Will only be applied if default setting is changed)
                 if (map_config.skillup_amount_multiplier > 1)
                 {
@@ -2748,6 +2743,9 @@ namespace charutils
                         SkillAmount = 9;
                     }
                 }
+
+                // Apply ROV Skill Gain Mod
+                SkillAmount *= 1.0 + PChar->getMod(Mod::ROV_SKILL_MOD);
 
                 if (SkillAmount + CurSkill >= MaxSkill)
                 {
@@ -3482,6 +3480,10 @@ namespace charutils
                     }
 
                     exp = charutils::AddExpBonus(PMember, exp);
+
+                    // Apply ROV Exp Mod
+                    exp *= 1.0 + PChar->getMod(Mod::ROV_EXP_MOD);
+
                     charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, mobCheck, chainactive);
                 }
             }
@@ -4481,11 +4483,6 @@ namespace charutils
             exp = 0;
         else
             exp = exp + bonus;
-
-        if (hasKeyItem(PChar, 2884)) // Rhapsody in White
-        {
-            exp *= 1.3f;
-        }
 
         return exp;
     }

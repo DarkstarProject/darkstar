@@ -1,4 +1,5 @@
 require("scripts/globals/missions")
+require("scripts/globals/status")
 ------------------------------------
 
 dsp = dsp or {}
@@ -86,4 +87,22 @@ function dsp.rhapsodies.params(player, expansion)
     local RhapsodiesStatus = player:getCharVar("RhapsodiesStatus")
 
     return { 0, 0, 0, 0, 0, 1 }
+end
+
+function dsp.rhapsodies.applyRhapsodyInWhiteBonuses(player)
+    -- https://ffxiclopedia.fandom.com/wiki/Rhapsody_in_White
+
+    -- 30% bonus to experience and limit points gains
+    player:addMod(dsp.mod.ROV_EXP_MOD, 0.3)
+
+    -- 100% increase to combat and magic skill gains
+    player:addMod(dsp.mod.ROV_SKILL_MOD, 1.0)
+
+    -- Allows an additional alter ego to be called forth at once.
+    -- 80% reduction in gil consumed by home points
+
+    -- Addition of items for sale by Curio Vendor Moogles located in the three nations
+
+    -- Reduces the amount of gil and tabs consumed by Survival Guides
+    -- Reduces the amount of tabs required for the following effects.
 end

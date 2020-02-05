@@ -6,6 +6,7 @@
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
+require("scripts/globals/rhapsodies")
 require("scripts/globals/settings")
 -----------------------------------
 
@@ -81,6 +82,7 @@ function onEventFinish(player,csid,option)
         player:addMission(ROV, dsp.mission.id.rov.FLAMES_OF_PRAYER)
     elseif csid == 278 then
         npcUtil.giveKeyItem(player, dsp.ki.RHAPSODY_IN_WHITE)
+        dsp.rhapsodies.applyRhapsodyInWhiteBonuses(player)
         player:completeMission(ROV, dsp.mission.id.rov.FLAMES_OF_PRAYER)
         player:addMission(ROV, dsp.mission.id.rov.THE_PATH_UNTRAVELED)
     elseif csid == 279 then
