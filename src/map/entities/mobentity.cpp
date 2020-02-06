@@ -669,6 +669,17 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             PTarget->PAI->EventHandler.triggerListener("WEAPONSKILL_TAKE", PTarget, this, PSkill->getID(), state.GetSpentTP(), &action);
         }
 
+        if (objtype == TYPE_PET && PMaster && PMaster->objtype == TYPE_PC )
+        {
+            auto mob = dynamic_cast<CMobEntity *>(PTarget);
+            if (mob && !mob->CalledForHelp())
+            {
+                mob->m_OwnerID.id = PMaster->id;
+                mob->m_OwnerID.targid = PMaster->targid;
+                mob->updatemask |= UPDATE_STATUS; //This can go here because we only wanna call the updatemask if this happens
+            }
+        }
+
         if (msg == 0)
         {
             msg = PSkill->getMsg();
