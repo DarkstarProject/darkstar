@@ -215,6 +215,7 @@ public:
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
 
     std::vector<CTrustEntity*> PTrusts; // Active trusts
+    CBattleEntity*	PClaimedMob;
 
 
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически

@@ -185,6 +185,7 @@ CCharEntity::CCharEntity()
     PWideScanTarget = nullptr;
 
     PAutomaton = nullptr;
+    PClaimedMob = nullptr;
     PRecastContainer = std::make_unique<CCharRecastContainer>(this);
     PLatentEffectContainer = new CLatentEffectContainer(this);
 
@@ -633,6 +634,25 @@ void CCharEntity::OnEngage(CAttackState& state)
 
 void CCharEntity::OnDisengage(CAttackState& state)
 {
+    if (PClaimedMob != nullptr && PClaimedMob->health.hp > 0
+        && PClaimedMob->m_OwnerID.id == id)
+    { // if we currently own a mob
+        bool found = false;
+        static_cast<CBattleEntity*>(this)->ForAlliance([this, &found](CBattleEntity* PMember){
+            CCharEntity* member = (CCharEntity*)PMember;
+            if (member != this && !found && member->PClaimedMob == PClaimedMob)
+            { // check if we can pass claim to someone else
+                found = true;
+                battleutils::ClaimMob(PClaimedMob, PMember);
+            }
+        });
+        if (!found)
+        { // if mob didn't pass to someone else, unclaim it
+            PClaimedMob->m_OwnerID.clean();
+            PClaimedMob->updatemask |= UPDATE_STATUS;
+        }
+    }
+    PClaimedMob = nullptr;
     CBattleEntity::OnDisengage(state);
     if (state.HasErrorMsg())
     {
@@ -899,6 +919,10 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     }
                 }
             }
+        }
+        if (PBattleTarget->health.hp > 0)
+        {
+            battleutils::ClaimMob(PBattleTarget, this);
         }
     }
     else
@@ -1659,6 +1683,7 @@ void CCharEntity::Die()
     else
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
 
+    this->PClaimedMob = nullptr;
     Die(death_duration);
     SetDeathTimestamp((uint32)time(nullptr));
 

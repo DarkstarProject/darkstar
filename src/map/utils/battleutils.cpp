@@ -1900,32 +1900,7 @@ namespace battleutils
         if (damage < 0)
             damage = -corrected;
 
-        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
-        if (PAttacker->PMaster != nullptr)
-        {
-            if (!PMob || !PMob->CalledForHelp())
-            {
-                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
-            }
-            PDefender->updatemask |= UPDATE_STATUS;
-        }
-        else
-        {
-            if (PAttacker->objtype == TYPE_MOB && PAttacker->PMaster == nullptr)
-            {
-                //uncharmed mob still attacking another mob - dont allow 2 mobs to go purple
-            }
-            else
-            {
-                if (!PMob || !PMob->CalledForHelp())
-                {
-                    PDefender->m_OwnerID.id = PAttacker->id;
-                    PDefender->m_OwnerID.targid = PAttacker->targid;
-                }
-                PDefender->updatemask |= UPDATE_STATUS;
-            }
-        }
+        battleutils::ClaimMob(PDefender, PAttacker);
 
         if (damage > 0)
         {
@@ -2065,28 +2040,7 @@ namespace battleutils
         if (damage < 0)
             damage = -corrected;
 
-        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
-        if (PDefender->objtype == TYPE_MOB)
-        {
-            if (PAttacker->PMaster != nullptr)
-            {
-                if (!PMob || !PMob->CalledForHelp())
-                {
-                    PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-                    PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
-                }
-                PDefender->updatemask |= UPDATE_STATUS;
-            }
-            else
-            {
-                if (!PMob || !PMob->CalledForHelp())
-                {
-                    PDefender->m_OwnerID.id = PAttacker->id;
-                    PDefender->m_OwnerID.targid = PAttacker->targid;
-                }
-                PDefender->updatemask |= UPDATE_STATUS;
-            }
-        }
+        battleutils::ClaimMob(PDefender, PAttacker);
 
         int16 standbyTp = 0;
 
@@ -3142,23 +3096,7 @@ namespace battleutils
 
         PDefender->takeDamage(damage, PAttacker, ATTACK_SPECIAL, appliedEle == ELEMENT_NONE ? DAMAGE_NONE : (DAMAGETYPE)(DAMAGE_ELEMENTAL + appliedEle));
 
-        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
-        if (PAttacker->PMaster != nullptr)
-        {
-            if (!PMob || !PMob->CalledForHelp())
-            {
-                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
-            }
-        }
-        else
-        {
-            if (!PMob || !PMob->CalledForHelp())
-            {
-                PDefender->m_OwnerID.id = PAttacker->id;
-                PDefender->m_OwnerID.targid = PAttacker->targid;
-            }
-        }
+        battleutils::ClaimMob(PDefender, PAttacker);
         PDefender->updatemask |= UPDATE_STATUS;
 
         PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
@@ -3945,6 +3883,10 @@ namespace battleutils
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
             ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
             ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
+            PCharmer->ForAlliance([&PVictim](CBattleEntity* PMember){
+                if (static_cast<CCharEntity*>(PMember)->PClaimedMob == PVictim)
+                    static_cast<CCharEntity*>(PMember)->PClaimedMob = nullptr;
+            });
             ((CMobEntity*)PVictim)->m_OwnerID.clean();
             PVictim->updatemask |= UPDATE_STATUS;
         }
@@ -3957,6 +3899,27 @@ namespace battleutils
             }
             PVictim->PAI->SetController(std::make_unique<CPlayerCharmController>(static_cast<CCharEntity*>(PVictim)));
 
+            CCharEntity* victim = static_cast<CCharEntity*>(PVictim);
+            if (victim->PClaimedMob != nullptr && victim->PClaimedMob->health.hp > 0
+                && victim->PClaimedMob->m_OwnerID.id == victim->id)
+            { // if we currently own a mob
+                bool found = false;
+                PVictim->ForAlliance([&victim, &found](CBattleEntity* PMember){
+                    CCharEntity* member = (CCharEntity*)PMember;
+                    if (member != victim && !found && member->PClaimedMob == victim->PClaimedMob)
+                    { // check if we can pass claim to someone else
+                        found = true;
+                        battleutils::ClaimMob(victim->PClaimedMob, PMember);
+                    }
+                });
+                if (!found)
+                { // if mob didn't pass to someone else, unclaim it
+                    victim->PClaimedMob->m_OwnerID.clean();
+                    victim->PClaimedMob->updatemask |= UPDATE_STATUS;
+                }
+            }
+
+            victim->PClaimedMob = nullptr;
             PVictim->PMaster = PCharmer;
             PVictim->updatemask |= UPDATE_ALL_CHAR;
         }
@@ -4106,11 +4069,11 @@ namespace battleutils
             CMobEntity* mob = (CMobEntity*)PDefender;
 
             mob->PEnmityContainer->UpdateEnmity(PAttacker, 0, 0);
-            if (PAttacker->objtype != TYPE_PC) {
-                if (PAttacker->PMaster != nullptr)
+            if (PAttacker->objtype != TYPE_PC)
+            {
+                if (PAttacker->PMaster != nullptr && PAttacker->PMaster->objtype == TYPE_PC)
                 {
-                    // claim by master
-                    PAttacker = PAttacker->PMaster;
+                    PAttacker = PAttacker->PMaster; // claim by master
                 }
                 else
                 {
@@ -4120,6 +4083,7 @@ namespace battleutils
 
             if (PAttacker)
             {
+                CCharEntity* attacker = (CCharEntity*)PAttacker;
                 if (mob->m_HiPCLvl < PAttacker->GetMLevel())
                 {
                     mob->m_HiPCLvl = PAttacker->GetMLevel();
@@ -4127,10 +4091,39 @@ namespace battleutils
 
                 if (!mob->CalledForHelp())
                 {
-                    mob->m_OwnerID.id = PAttacker->id;
-                    mob->m_OwnerID.targid = PAttacker->targid;
+                    if (battleutils::HasClaim(PAttacker, PDefender))
+                    { // mob is currently claimed by your alliance, update ownership
+                        mob->m_OwnerID.id = PAttacker->id;
+                        mob->m_OwnerID.targid = PAttacker->targid;
+                        attacker->PClaimedMob = PDefender;
+                        mob->updatemask |= UPDATE_STATUS;
+                    }
+                    else
+                    { // mob is unclaimed
+                        PAttacker->ForAlliance([&PAttacker, &PDefender, &mob, &attacker](CBattleEntity* PMember){
+                            if (mob->PEnmityContainer->GetHighestEnmity() == PMember || mob->PEnmityContainer->GetHighestEnmity() == PMember->PPet)
+                            { // someone in your alliance is top of hate list, claim for your alliance
+                                mob->m_OwnerID.id = PAttacker->id;
+                                mob->m_OwnerID.targid = PAttacker->targid;
+                                if (PDefender->health.hp > 0)
+                                { // ignore killing blow
+                                    PAttacker->ForAlliance([&PAttacker, &PDefender](CBattleEntity* PMember2){
+                                        CCharEntity* member = (CCharEntity*)PMember2;
+                                        if (member->getZone() == PAttacker->getZone() && member->PClaimedMob && member->PClaimedMob != PDefender
+                                            && member->PClaimedMob->health.hp > 0 && member->PClaimedMob->m_OwnerID.id == member->id)
+                                        { // unclaim any other living mobs owned by alliance members in zone
+                                            member->PClaimedMob->m_OwnerID.clean();
+                                            member->PClaimedMob->updatemask |= UPDATE_STATUS;
+                                            member->PClaimedMob = nullptr;
+                                        }
+                                    });
+                                    mob->updatemask |= UPDATE_STATUS;
+                                    attacker->PClaimedMob = PDefender;
+                                }
+                            }
+                        });
+                    }
                 }
-                mob->updatemask |= UPDATE_STATUS;
             }
         }
     }
@@ -5010,8 +5003,7 @@ namespace battleutils
             PMaster = PEntity->PMaster;
         }
 
-        if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == PMaster->id || PTarget->objtype == TYPE_PC ||
-                PTarget->objtype == TYPE_PET)
+        if (PTarget->m_OwnerID.id == PMaster->id)
         {
             return true;
         }
@@ -5019,11 +5011,11 @@ namespace battleutils
         bool found = false;
 
         PMaster->ForAlliance([&PTarget, &found](CBattleEntity* PChar){
-                if (PChar->id == PTarget->m_OwnerID.id)
-                {
-                    found = true;
-                }
-                });
+            if (PChar->id == PTarget->m_OwnerID.id)
+            {
+                found = true;
+            }
+        });
 
         return found;
     }

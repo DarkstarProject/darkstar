@@ -669,17 +669,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             PTarget->PAI->EventHandler.triggerListener("WEAPONSKILL_TAKE", PTarget, this, PSkill->getID(), state.GetSpentTP(), &action);
         }
 
-        if (objtype == TYPE_PET && PMaster && PMaster->objtype == TYPE_PC )
-        {
-            auto mob = dynamic_cast<CMobEntity *>(PTarget);
-            if (mob && !mob->CalledForHelp())
-            {
-                mob->m_OwnerID.id = PMaster->id;
-                mob->m_OwnerID.targid = PMaster->targid;
-                mob->updatemask |= UPDATE_STATUS; //This can go here because we only wanna call the updatemask if this happens
-            }
-        }
-
+        battleutils::ClaimMob(PTarget, this);
         if (msg == 0)
         {
             msg = PSkill->getMsg();
@@ -733,6 +723,11 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             }
         }
         PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    }
+    PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+    if (PTarget->health.hp > 0)
+    {
+        battleutils::ClaimMob(PTarget, this);
     }
 }
 
@@ -1027,6 +1022,7 @@ void CMobEntity::Die()
                 loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
 
             DistributeRewards();
+            m_OwnerID.clean();
         }
     }));
     if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)

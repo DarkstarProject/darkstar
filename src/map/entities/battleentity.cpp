@@ -1183,9 +1183,20 @@ void CBattleEntity::Spawn()
 void CBattleEntity::Die()
 {
     if (CBaseEntity* PKiller = GetEntity(m_OwnerID.targid))
+    {
+        static_cast<CBattleEntity*>(PKiller)->ForAlliance([this](CBattleEntity* PMember){
+            CCharEntity* member = (CCharEntity*)PMember;
+            if (member->PClaimedMob == this)
+            {
+                member->PClaimedMob = nullptr;
+            }
+        });
         PAI->EventHandler.triggerListener("DEATH", this, PKiller);
+    }
     else
+    {
         PAI->EventHandler.triggerListener("DEATH", this);
+    }
     SetBattleTargetID(0);
 }
 
@@ -1324,6 +1335,10 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             luautils::OnMagicHit(this, PTarget, PSpell);
         }
+    }
+    if ((!(PSpell->isHeal()) || PSpell->tookEffect()) && PActionTarget->health.hp > 0)
+    {
+        battleutils::ClaimMob(PActionTarget, this);
     }
 
     // TODO: Pixies will probably break here, once they're added.
