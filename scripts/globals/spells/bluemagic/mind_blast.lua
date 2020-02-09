@@ -23,6 +23,7 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
+    params.damageType = dsp.damageType.LIGHTNING
     params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
     params.attribute = dsp.mod.INT
     params.skillType = dsp.skill.BLUE_MAGIC

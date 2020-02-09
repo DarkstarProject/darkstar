@@ -23,6 +23,7 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
+        params.damageType = dsp.damageType.WATER
         params.multiplier = 1.83
         params.tMultiplier = 2.0
         params.duppercap = 69
