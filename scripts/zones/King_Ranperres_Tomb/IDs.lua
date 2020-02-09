@@ -15,6 +15,7 @@ zones[tpz.zone.KING_RANPERRES_TOMB] =
         ITEM_OBTAINED            = 6547,  -- Obtained: <item>.
         GIL_OBTAINED             = 6548,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6550,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6576,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED     = 7169,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CHEST_UNLOCKED           = 7279,  -- You unlock the chest!
         HEAVY_DOOR               = 7307,  -- It is a solid stone door.

@@ -18,6 +18,7 @@ zones[tpz.zone.VALLEY_OF_SORROWS] =
         ITEMS_OBTAINED             = 6397,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
         AURA_THREATENS             = 6406,  -- An aura of irrepressible might threatens to overwhelm you...
+        FELLOW_MESSAGE_OFFSET      = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE              = 7049,  -- Tallying conquest results...
         SOMETHING_BURRIED          = 7308,  -- It looks like something was buried here.
         PLAYER_OBTAINS_ITEM        = 7498,  -- <name> obtains <item>!

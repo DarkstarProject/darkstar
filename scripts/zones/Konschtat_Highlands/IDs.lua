@@ -16,6 +16,7 @@ zones[tpz.zone.KONSCHTAT_HIGHLANDS] =
         GIL_OBTAINED                 = 6389,  -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6391,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY      = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET        = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE                = 7049,  -- Tallying conquest results...
         ALREADY_OBTAINED_TELE        = 7208,  -- You already possess the gate crystal for this telepoint.
         DIG_THROW_AWAY               = 7225,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.

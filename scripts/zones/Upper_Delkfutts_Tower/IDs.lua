@@ -15,6 +15,7 @@ zones[tpz.zone.UPPER_DELKFUTTS_TOWER] =
         ITEM_OBTAINED            = 6423,  -- Obtained: <item>.
         GIL_OBTAINED             = 6424,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6426,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6452,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET   = 7084,  -- You can't fish here.
         CONQUEST_BASE            = 7184,  -- Tallying conquest results...
         CHEST_UNLOCKED           = 7351,  -- You unlock the chest!

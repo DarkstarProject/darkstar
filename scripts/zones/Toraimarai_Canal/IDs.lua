@@ -15,6 +15,7 @@ zones[tpz.zone.TORAIMARAI_CANAL] =
         ITEM_OBTAINED            = 6434,  -- Obtained: <item>.
         GIL_OBTAINED             = 6435,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6437,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6463,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED     = 7056,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CONQUEST_BASE            = 7095,  -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET   = 7254,  -- You can't fish here.

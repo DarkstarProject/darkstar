@@ -16,6 +16,7 @@ zones[tpz.zone.CASTLE_ZVAHL_KEEP] =
         GIL_OBTAINED            = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY = 6561, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET   = 6576, -- I'm ready. I suppose.
         CHEST_UNLOCKED          = 7223, -- You unlock the chest!
         ITEMS_ITEMS_LA_LA       = 7232, -- You can hear a strange voice... "Items, Items, la la la la la~♪"
         GOBLIN_SLIPPED_AWAY     = 7238, -- The Goblin slipped away when you were not looking...

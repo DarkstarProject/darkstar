@@ -17,6 +17,7 @@ zones[tpz.zone.CARPENTERS_LANDING] =
         KEYITEM_OBTAINED           = 6391, -- Obtained key item: <keyitem>.
         ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY    = 6402, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET      = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE              = 7049, -- Tallying conquest results...
         CRYPTONBERRY_FALLEN_TREE   = 7246, -- A tree has fallen here...
         CRYPTONBERRY_EXECUTOR_POP  = 7247, -- You feel a wave of hatred wash over you!

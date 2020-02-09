@@ -16,6 +16,7 @@ zones[tpz.zone.GIDDEUS] =
         KEYITEM_OBTAINED            = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY     = 6402, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING         = 6403, -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET       = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE               = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET      = 7208, -- You can't fish here.
         SPRING_FILL_UP              = 7354, -- You fill your flask with water.

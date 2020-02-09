@@ -17,6 +17,7 @@ zones[tpz.zone.THE_ELDIEME_NECROPOLIS] =
         KEYITEM_OBTAINED                 = 6550,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY          = 6561,  -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING              = 6562,  -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET            = 6576,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED             = 7169,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         DEVICE_NOT_WORKING               = 7318,  -- The device is not working.
         SYS_OVERLOAD                     = 7327,  -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
@@ -33,6 +34,9 @@ zones[tpz.zone.THE_ELDIEME_NECROPOLIS] =
         CHEST_UNLOCKED                   = 7402,  -- You unlock the chest!
         SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7412,  -- The <item> emits a putrid odor and burns up. Your attempt this time has failed...
         SARCOPHAGUS_CANNOT_BE_OPENED     = 7429,  -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
+        SEEMS_TO_BE_THE_END              = 7557,  -- That seems to be the end of it.
+        GIRL_BACK_TO_JEUNO               = 7569,  -- I'll take the little girl back to Jeuno.
+        NOT_TIME_TO_SEARCH               = 7581,  -- Now doesn't seem to be the time to search here.
         PLAYER_OBTAINS_ITEM              = 7588,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM            = 7589,  -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM         = 7590,  -- <name> obtains the temporary item: <item>!
@@ -57,6 +61,7 @@ zones[tpz.zone.THE_ELDIEME_NECROPOLIS] =
         TROMBE              = 17576269,
         MIMIC               = 17576270,
         APPARATUS_ELEMENTAL = 17576271,
+        NAMORODO            = 17576272,
     },
     npc =
     {

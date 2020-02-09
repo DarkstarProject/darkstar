@@ -20,6 +20,7 @@ zones[tpz.zone.BEAUCEDINE_GLACIER] =
         KEYITEM_LOST                    = 6573,  -- Lost key item: <keyitem>.
         ITEMS_OBTAINED                  = 6578,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY         = 6583,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET           = 6598,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET          = 7230,  -- You can't fish here.
         CONQUEST                        = 7483,  -- You've earned conquest points!
         YOU_CANNOT_ENTER_DYNAMIS        = 7863,  -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).

@@ -19,6 +19,7 @@ zones[tpz.zone.THE_SANCTUARY_OF_ZITAH] =
         ITEMS_OBTAINED             = 6397,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING        = 6403,  -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET      = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE              = 7049,  -- Tallying conquest results...
         BEASTMEN_BANNER            = 7130,  -- There is a beastmen's banner.
         CONQUEST                   = 7217,  -- You've earned conquest points!

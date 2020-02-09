@@ -16,6 +16,7 @@ zones[tpz.zone.ULEGUERAND_RANGE] =
         GIL_OBTAINED            = 6402, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6404, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY = 6415, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET   = 6430, -- I'm ready. I suppose.
         CONQUEST_BASE           = 7062, -- Tallying conquest results...
         SOMETHING_GLITTERING    = 7333, -- You see something glittering beneath the surface of the ice.
         WHAT_LIES_BENEATH       = 7334, -- There are many cold <item> scattered around the area. Could someone be trying to melt the ice to retrieve what lies beneath?

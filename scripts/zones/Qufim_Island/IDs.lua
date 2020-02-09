@@ -16,6 +16,7 @@ zones[tpz.zone.QUFIM_ISLAND] =
         KEYITEM_OBTAINED               = 6391,  -- Obtained key item: <keyitem>.
         KEYITEM_LOST                   = 6392,  -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY        = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET          = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE                  = 7049,  -- Tallying conquest results...
         BEASTMEN_BANNER                = 7130,  -- There is a beastmen's banner.
         FISHING_MESSAGE_OFFSET         = 7208,  -- You can't fish here.
