@@ -13,6 +13,7 @@
 -----------------------------------------
 require("scripts/globals/bluemagic")
 require("scripts/globals/magic")
+require("scripts/globals/status")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -25,6 +26,7 @@ function onSpellCast(caster,target,spell)
         multi = multi + 1.50
     end
     local params = {}
+    params.damageType = tpz.damageType.WATER
     params.attribute = tpz.mod.INT
     params.skillType = tpz.skill.BLUE_MAGIC
     params.effect = tpz.effect.NONE

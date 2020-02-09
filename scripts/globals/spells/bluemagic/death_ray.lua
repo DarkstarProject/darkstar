@@ -28,6 +28,7 @@ function onSpellCast(caster,target,spell)
     if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         multi = multi + 2.0
     end
+        params.damageType = tpz.damageType.DARK
         params.multiplier = multi
         params.tMultiplier = 1.0
         params.duppercap = 51

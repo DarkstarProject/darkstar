@@ -26,6 +26,7 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
+        params.damageType = tpz.damageType.WATER
         params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
         params.attribute = tpz.mod.INT
         params.skillType = tpz.skill.BLUE_MAGIC

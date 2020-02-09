@@ -36,6 +36,7 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster, target, spell, params)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
+        params.damageType = tpz.damageType.ICE
         params.multiplier = 2.25
         params.tMultiplier = 1.0
         params.duppercap = 69
