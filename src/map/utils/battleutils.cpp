@@ -4072,8 +4072,8 @@ namespace battleutils
             if (PAttacker->objtype != TYPE_PC)
             {
                 if (PAttacker->PMaster != nullptr && PAttacker->PMaster->objtype == TYPE_PC)
-                {
-                    PAttacker = PAttacker->PMaster; // claim by master
+                { // claim by master
+                    PAttacker = PAttacker->PMaster;
                 }
                 else
                 {
@@ -4084,6 +4084,13 @@ namespace battleutils
             if (PAttacker)
             {
                 CCharEntity* attacker = (CCharEntity*)PAttacker;
+                if (attacker->PClaimedMob && attacker->PClaimedMob != PDefender
+                    && attacker->PClaimedMob->health.hp > 0 && attacker->PClaimedMob->m_OwnerID.id == attacker->id)
+                { // unclaim any other living mobs owned by attacker
+                    attacker->PClaimedMob->m_OwnerID.clean();
+                    attacker->PClaimedMob->updatemask |= UPDATE_STATUS;
+                    attacker->PClaimedMob = nullptr;
+                }
                 if (mob->m_HiPCLvl < PAttacker->GetMLevel())
                 {
                     mob->m_HiPCLvl = PAttacker->GetMLevel();
@@ -4107,16 +4114,6 @@ namespace battleutils
                                 mob->m_OwnerID.targid = PAttacker->targid;
                                 if (PDefender->health.hp > 0)
                                 { // ignore killing blow
-                                    PAttacker->ForAlliance([&PAttacker, &PDefender](CBattleEntity* PMember2){
-                                        CCharEntity* member = (CCharEntity*)PMember2;
-                                        if (member->getZone() == PAttacker->getZone() && member->PClaimedMob && member->PClaimedMob != PDefender
-                                            && member->PClaimedMob->health.hp > 0 && member->PClaimedMob->m_OwnerID.id == member->id)
-                                        { // unclaim any other living mobs owned by alliance members in zone
-                                            member->PClaimedMob->m_OwnerID.clean();
-                                            member->PClaimedMob->updatemask |= UPDATE_STATUS;
-                                            member->PClaimedMob = nullptr;
-                                        }
-                                    });
                                     mob->updatemask |= UPDATE_STATUS;
                                     attacker->PClaimedMob = PDefender;
                                 }
