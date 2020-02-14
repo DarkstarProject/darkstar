@@ -47,7 +47,7 @@ function onTrigger(player, npc)
     elseif offset == player:getCharVar("TheRequiemRandom") - 1 then
         if player:getCharVar("TheRequiemYumKilled") == 1 then
             player:startEvent(46)
-        elseif player:getCharVar("TheRequiemAlreadyPoped") == 1 and npcUtil.popFromQM(player, npc, {ID.mob.YUM_KIMIL, ID.mob.YUM_KIMIL + 1, ID.mob.YUM_KIMIL + 2}, {hide = 0}) then
+        elseif player:getCharVar("TheRequiemAlreadyPoped") == 1 and npcUtil.popFromQM(player, npc, {ID.mob.YUM_KIMIL, ID.mob.YUM_KIMIL + 1, ID.mob.YUM_KIMIL + 2}, {claim = false, hide = 0}) then
             player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
         else
             player:messageSpecial(ID.text.SARCOPHAGUS_CANNOT_BE_OPENED)
