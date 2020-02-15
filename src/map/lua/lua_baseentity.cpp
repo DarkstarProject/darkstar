@@ -3555,6 +3555,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
             else
             {
                 ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
+                break;
             }
         }
     }
