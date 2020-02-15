@@ -21,6 +21,7 @@ zones[tpz.zone.NORTH_GUSTABERG] =
         KEYITEM_LOST                  = 6573,  -- Lost key item: <keyitem>.
         ITEMS_OBTAINED                = 6578,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY       = 6583,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET         = 6598,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET        = 7230,  -- You can't fish here.
         DIG_THROW_AWAY                = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                  = 7245,  -- You dig and you dig, but find nothing.

@@ -891,7 +891,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         }
                     }
                     // check for ws points
-                    if (charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel()) > 0)
+                    if (charutils::CheckMob(this->GetMLevel(), PTarget->GetMLevel()) > EMobDifficulty::TooWeak)
                     {
                         charutils::AddWeaponSkillPoints(this, damslot, wspoints);
                     }
@@ -1629,7 +1629,14 @@ CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags
         }
         else if (static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
         {
-            return PTarget;
+            if (PTarget->isAlive() || (validTargetFlags & TARGET_PLAYER_DEAD) != 0)
+            {
+                return PTarget;
+            }
+            else
+            {
+                errMsg = std::make_unique<CMessageBasicPacket>(this, this, 0, 0, MSGBASIC_CANNOT_ON_THAT_TARG);
+            }
         }
         else
         {

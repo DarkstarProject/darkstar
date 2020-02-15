@@ -3479,6 +3479,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
             else
             {
                 ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, id);
+                break;
             }
         }
     }
@@ -6699,7 +6700,7 @@ inline int32 CLuaBaseEntity::addExp(lua_State *L)
 
     TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    charutils::AddExperiencePoints(false, (CCharEntity*)m_PBaseEntity, m_PBaseEntity, (uint32)lua_tointeger(L, 1), 0, false);
+    charutils::AddExperiencePoints(false, (CCharEntity*)m_PBaseEntity, m_PBaseEntity, (uint32)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -8928,7 +8929,7 @@ inline int32 CLuaBaseEntity::checkKillCredit(lua_State *L)
     int maxDiff = (!lua_isnil(L, 2) && lua_isnumber(L, 2)) ? (int)lua_tonumber(L, 2) : 15;
     float range = (!lua_isnil(L, 3) && lua_isnumber(L, 3)) ? (float)lua_tonumber(L, 3) : 100;
 
-    if (charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel()) && distance(PMob->loc.p, PChar->loc.p) < range && lvlDiff < maxDiff)
+    if (charutils::CheckMob(PMob->m_HiPCLvl, PMob->GetMLevel()) > EMobDifficulty::TooWeak && distance(PMob->loc.p, PChar->loc.p) < range && lvlDiff < maxDiff)
     {
         if (PChar->PParty && PChar->PParty->GetSyncTarget())
         {
@@ -11756,6 +11757,33 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
 }
 
 /************************************************************************
+*  Function: int32 TakeSpellDamage()
+*  Purpose : Calls Battle Utils to calculate final spell damage against a foe
+*  Example : target:takeSpellDamage(caster, spell, finaldmg, attackType, damageType)
+*  Notes   : Global function of same name in bluemagic.lua, calls this member function from within
+************************************************************************/
+
+int32 CLuaBaseEntity::takeSpellDamage(lua_State* L)
+{
+    TPZ_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isuserdata(L, 2));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 4));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 5));
+
+
+    auto PChar = static_cast<CCharEntity*>(Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity);
+    auto PSpell = Lunar<CLuaSpell>::check(L, 2)->GetSpell();
+    auto damage = (int32)lua_tointeger(L, 3);
+    ATTACKTYPE attackType = (ATTACKTYPE)lua_tointeger(L, 4);
+    DAMAGETYPE damageType = (DAMAGETYPE)lua_tointeger(L, 5);
+
+    lua_pushinteger(L, (lua_Integer)battleutils::TakeSpellDamage(static_cast<CBattleEntity*>(m_PBaseEntity), PChar, PSpell, damage, attackType, damageType));
+    return 1;
+}
+
+/************************************************************************
 *  Function: spawnPet()
 *  Purpose : Spawns a pet if a few correct conditions are met
 *  Example : caster:spawnPet(PET_CARBUNCLE)
@@ -14437,6 +14465,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWSSkillchainProp),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeSpellDamage),
 
     // Pets and Automations
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),

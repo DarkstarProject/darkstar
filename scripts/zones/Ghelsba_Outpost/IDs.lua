@@ -12,11 +12,14 @@ zones[tpz.zone.GHELSBA_OUTPOST] =
     {
         CONQUEST_BASE                    = 0, -- Tallying conquest results...
         YOU_CANNOT_ENTER_THE_BATTLEFIELD = 161, -- You cannot enter the battlefield at present. Please wait a little longer.
+        UNABLE_TO_PROTECT                = 218, -- You were unable to protect the special character. Now leaving the battlefield.
         ITEM_CANNOT_BE_OBTAINED          = 6912, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED                    = 6918, -- Obtained: <item>.
         GIL_OBTAINED                     = 6919, -- Obtained <number> gil.
         KEYITEM_OBTAINED                 = 6921, -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET            = 6947, -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET           = 7579, -- You can't fish here.
+        HUT_DOOR                         = 7713, -- This looks like an orcish dwelling. The door is firmly shut.
         LOGGING_IS_POSSIBLE_HERE         = 7740, -- Logging is possible here if you have <item>.
         YOU_CAN_NOW_BECOME_A_DRAGOON     = 7780, -- You can now become a dragoon!
     },
@@ -33,6 +36,7 @@ zones[tpz.zone.GHELSBA_OUTPOST] =
             [17350806] = 17350826, -- 75.988 -0.084 382.437
             [17350824] = 17350826, -- 82.000 -0.500 366.000
         },
+        CARRION_DRAGON = 17350941,
     },
     npc =
     {

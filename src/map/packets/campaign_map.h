@@ -19,8 +19,8 @@
 ===========================================================================
 */
 
-#ifndef _CCAMPAINGPACKET_H
-#define _CCAMPAINGPACKET_H
+#ifndef _CCAMPAIGNPACKET_H
+#define _CCAMPAIGNPACKET_H
 
 #include "../../common/cbasetypes.h"
 
@@ -34,11 +34,11 @@
 
 class CCharEntity;
 
-class CCampaingPacket : public CBasicPacket
+class CCampaignPacket : public CBasicPacket
 {
 public:
 
-	CCampaingPacket(CCharEntity* PChar, uint8 number);
+	CCampaignPacket(CCharEntity* PChar, uint8 number);
 };
 
 #endif

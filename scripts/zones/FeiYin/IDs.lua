@@ -17,6 +17,7 @@ zones[tpz.zone.FEIYIN] =
         KEYITEM_OBTAINED                   = 6570,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY            = 6581,  -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING                = 6582,  -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET              = 6596,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET             = 7228,  -- You can't fish here.
         CHEST_UNLOCKED                     = 7359,  -- You unlock the chest!
         SOFTLY_SHIMMERING_LIGHT            = 7485,  -- You see a softly shimmering light...

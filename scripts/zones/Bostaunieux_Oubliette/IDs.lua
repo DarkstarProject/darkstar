@@ -16,6 +16,7 @@ zones[tpz.zone.BOSTAUNIEUX_OUBLIETTE] =
         GIL_OBTAINED             = 6548,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6550,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6561,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET    = 6576,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
         CHUMIA_DIALOG            = 7308,  -- Welcome to Bostaunieux Oubliette...
         SEEMS_LOCKED             = 7310,  -- It seems to be locked.

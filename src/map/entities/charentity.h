@@ -202,7 +202,7 @@ public:
     questlog_t				m_questLog[MAX_QUESTAREA];		// список всех квестов
     missionlog_t			m_missionLog[MAX_MISSIONAREA];	// список миссий
     assaultlog_t			m_assaultLog;					// список assault миссий
-    campaignlog_t			m_campaignLog;					// список campaing миссий
+    campaignlog_t			m_campaignLog;					// список campaign миссий
     uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
     PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
     void					setPetZoningInfo();				// set pet zoning info (when zoning and logging out)

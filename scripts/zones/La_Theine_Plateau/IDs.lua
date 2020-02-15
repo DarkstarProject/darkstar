@@ -15,6 +15,7 @@ zones[tpz.zone.LA_THEINE_PLATEAU] =
         ITEM_OBTAINED                = 6388,  -- Obtained: <item>.
         GIL_OBTAINED                 = 6389,  -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6391,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET        = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE                = 7049,  -- Tallying conquest results...
         ALREADY_OBTAINED_TELE        = 7208,  -- You already possess the gate crystal for this telepoint.
         FISHING_MESSAGE_OFFSET       = 7212,  -- You can't fish here.

@@ -17,6 +17,7 @@ zones[tpz.zone.INNER_HORUTOTO_RUINS] =
         ITEM_OBTAINED             = 6557,  -- Obtained: <item>.
         GIL_OBTAINED              = 6558,  -- Obtained <number> gil.
         KEYITEM_OBTAINED          = 6560,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET     = 6586,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED      = 7179,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         NOT_BROKEN_ORB            = 7234,  -- The Mana Orb in this receptacle is not broken.
         EXAMINED_RECEPTACLE       = 7235,  -- You have already examined this receptacle.

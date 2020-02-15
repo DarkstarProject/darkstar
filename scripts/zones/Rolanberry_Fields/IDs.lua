@@ -16,6 +16,7 @@ zones[tpz.zone.ROLANBERRY_FIELDS] =
         GIL_OBTAINED             = 6411,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6413,  -- Obtained key item: <keyitem>.
         NOT_ENOUGH_GIL           = 6415,  -- You do not have enough gil.
+        FELLOW_MESSAGE_OFFSET    = 6439,  -- I'm ready. I suppose.
         CONQUEST_BASE            = 7071,  -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET   = 7230,  -- You can't fish here.
         DIG_THROW_AWAY           = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.

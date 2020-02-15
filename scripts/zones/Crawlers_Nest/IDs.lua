@@ -19,6 +19,7 @@ zones[tpz.zone.CRAWLERS_NEST] =
         GIL_OBTAINED                  = 6579,  -- Obtained <number> gil.
         KEYITEM_OBTAINED              = 6581,  -- Obtained key item: <keyitem>.
         SENSE_OF_FOREBODING           = 6593,  -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET         = 6607,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED          = 7200,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         CHEST_UNLOCKED                = 7252,  -- You unlock the chest!
         SOMEONE_HAS_BEEN_DIGGING_HERE = 7260,  -- Someone has been digging here.

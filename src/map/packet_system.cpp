@@ -76,7 +76,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "packets/bazaar_message.h"
 #include "packets/bazaar_purchase.h"
 #include "packets/blacklist.h"
-#include "packets/campaing_map.h"
+#include "packets/campaign_map.h"
 #include "packets/char.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
@@ -2653,15 +2653,15 @@ void SmallPacket0x059(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
-*  Map Update (Conquest, Besieged, Campaing)                            *
+*  Map Update (Conquest, Besieged, Campaign)                            *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     PChar->pushPacket(new CConquestPacket(PChar));
-    PChar->pushPacket(new CCampaingPacket(PChar, 0));
-    PChar->pushPacket(new CCampaingPacket(PChar, 1));
+    PChar->pushPacket(new CCampaignPacket(PChar, 0));
+    PChar->pushPacket(new CCampaignPacket(PChar, 1));
 
     // May Require Sending of 0x0F
     //    PChar->pushPacket(new CStopDownloadingPacket(PChar));
@@ -4711,22 +4711,17 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-                uint32 baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
+                uint8 mobLvl = PTarget->GetMLevel();
+                EMobDifficulty mobCheck = charutils::CheckMob(PChar->GetMLevel(), mobLvl);
+
+                // Calculate main /check message (64 is Too Weak)
+                int32 MessageValue = 64 + (uint8)mobCheck;
+
+                // Grab mob and player stats for extra messaging
                 uint16 charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
                 uint16 charAtt = PChar->ATT();
-                uint8 mobLvl = PTarget->GetMLevel();
                 uint16 mobEva = PTarget->EVA();
                 uint16 mobDef = PTarget->DEF();
-
-                // Calculate main /check message
-                int32 MessageValue = 64; // Default Too Weak
-                if      (baseExp >= 400) MessageValue = 71; // Incredibly Tough
-                else if (baseExp >= 350) MessageValue = 70; // Very Tough
-                else if (baseExp >= 220) MessageValue = 69; // Tough
-                else if (baseExp == 200) MessageValue = 68; // Even Match
-                else if (baseExp >= 160) MessageValue = 67; // Decent Challenge
-                else if (baseExp >= 60)  MessageValue = 66; // Easy Prey
-                else if (baseExp >= 15)  MessageValue = 65; // Incredibly Easy Prey
 
                 // Calculate +/- message
                 uint16 MessageID = 174; // Default even def/eva

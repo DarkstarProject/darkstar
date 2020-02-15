@@ -17,6 +17,7 @@ zones[tpz.zone.WEST_SARUTABARUTA] =
         KEYITEM_OBTAINED            = 6391,  -- Obtained key item: <keyitem>.
         KEYITEM_LOST                = 6392,  -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY     = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET       = 6417,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET      = 7049,  -- You can't fish here.
         DIG_THROW_AWAY              = 7062,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                = 7064,  -- You dig and you dig, but find nothing.

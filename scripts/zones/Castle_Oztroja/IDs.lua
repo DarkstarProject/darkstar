@@ -28,6 +28,7 @@ zones[tpz.zone.CASTLE_OZTROJA] =
         ITEMS_OBTAINED                     = 6582, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY            = 6587, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING                = 6588, -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET              = 6602, -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET             = 7253, -- You can't fish here.
         CHEST_UNLOCKED                     = 7424, -- You unlock the chest!
         YAGUDO_AVATAR_ENGAGE               = 7445, -- Kahk-ka-ka... You filthy, dim-witted heretics! You have damned yourselves by coming here.
