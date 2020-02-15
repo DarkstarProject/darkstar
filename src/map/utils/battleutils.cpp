@@ -2221,8 +2221,10 @@ namespace battleutils
     uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, int8 offsetAccuracy) //subWeaponAttack is for calculating acc of dual wielded sub weapon
     {
         int32 hitrate = 75;
+        uint8 playerRotation = PAttacker->loc.p.rotation;
+        uint8 mobRotation = PDefender->loc.p.rotation;
 
-        if (PAttacker->objtype == TYPE_PC && ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && (abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23 || PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))) ||
+        if (PAttacker->objtype == TYPE_PC && ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && (abs(mobRotation - playerRotation) < 23 || (abs(mobRotation - playerRotation) >= 232 && 256 - abs(mobRotation - playerRotation) < 23) || PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))) ||
             (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && battleutils::getAvailableTrickAttackChar(PAttacker, PDefender))))
         {
             hitrate = 100; //attack with SA active or TA/Assassin cannot miss
@@ -2296,8 +2298,10 @@ namespace battleutils
         }
         else if (PAttacker->objtype == TYPE_PC && (!ignoreSneakTrickAttack) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
         {
+            uint8 playerRotation = PAttacker->loc.p.rotation;
+            uint8 mobRotation = PDefender->loc.p.rotation;
 
-            if (abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23 || PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
+            if (abs(mobRotation - playerRotation) < 23 || (abs(mobRotation - playerRotation) >= 232 && 256 - abs(mobRotation - playerRotation) < 23) || PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
             {
                 crithitrate = 100;
             }
