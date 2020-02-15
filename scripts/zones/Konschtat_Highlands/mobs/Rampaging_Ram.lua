@@ -7,6 +7,9 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+	if (player:getCharVar("TutorialProgress") == 7) then
+		player:setCharVar("TutorialProgress",8)
+	end
 end
 
 function onMobDespawn(mob)

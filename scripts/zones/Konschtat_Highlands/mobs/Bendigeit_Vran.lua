@@ -22,6 +22,9 @@ function onAdditionalEffect(mob, target, damage)
 end
 
 function onMobDeath(mob, player, isKiller)
+	if (player:getCharVar("TutorialProgress") == 7) then
+		player:setCharVar("TutorialProgress",8)
+	end
 end
 
 function onMobDespawn(mob)
