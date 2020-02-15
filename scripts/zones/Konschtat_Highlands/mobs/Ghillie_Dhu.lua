@@ -39,9 +39,9 @@ end
 function onMobDeath(mob, player, isKiller)
     -- I think he still counts for the FoV page? Most NM's do not though.
     tpz.regime.checkRegime(player, mob, 81, 1, tpz.regime.type.FIELDS)
-	if (player:getCharVar("TutorialProgress") == 7) then
-		player:setCharVar("TutorialProgress",8)
-	end
+    if player:getCharVar("TutorialProgress") == 7 then
+        player:setCharVar("TutorialProgress", 8)
+    end
 end
 
 function onMobDespawn(mob)

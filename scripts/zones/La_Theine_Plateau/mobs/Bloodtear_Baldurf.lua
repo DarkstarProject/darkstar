@@ -23,7 +23,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(tpz.title.THE_HORNSPLITTER)
-    if (player:getCharVar("TutorialProgress") == 7) then
-		player:setCharVar("TutorialProgress",8)
-	end
+    if player:getCharVar("TutorialProgress") == 7 then
+        player:setCharVar("TutorialProgress", 8)
+    end
 end
