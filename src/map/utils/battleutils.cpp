@@ -3852,7 +3852,7 @@ namespace battleutils
         if (PMob && PCharmer->objtype == TYPE_PC)
         {
             //Bind uncharmable mobs and NMs for 1 to 5 seconds
-            if ( ((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 || ((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS ||  PVictim->PMaster != nullptr)
+            if (((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 || (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS && ((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE)) == 0 ||  PVictim->PMaster != nullptr)
             {
                 PVictim->StatusEffectContainer->AddStatusEffect(
                     new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, tpzrand::GetRandomNumber(1, 5)));
@@ -4006,7 +4006,7 @@ namespace battleutils
         if (PTargetAsMob)
         {
             // Cannot charm NMs, pets, or other non-charmable mobs
-            if (PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS || !PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) || PTargetAsMob->PMaster)
+            if ((PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS && !PTargetAsMob->getMobMod(MOBMOD_CHARMABLE)) || !PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) || PTargetAsMob->PMaster)
                 return 0.f;
         }
 
