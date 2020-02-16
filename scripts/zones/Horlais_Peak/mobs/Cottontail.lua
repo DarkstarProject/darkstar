@@ -7,14 +7,12 @@
 require("scripts/globals/status")
 
 function onMobInitialize(mob)
-   mob:setMobMod(tpz.mobMod.NO_DROPS, 1) -- works
-   
-end;
+    mob:setMobMod(tpz.mobMod.NO_DROPS, 1)
+end
 
 function onMobSpawn(mob) 
  	mob:setMobMod(tpz.mobMod.CHARMABLE, 1)
- 	--mob:addMod(tpz.effect.ACCURACY_BOOST,1)--bunnies should be fairly accurate on the nm, but are not.
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
