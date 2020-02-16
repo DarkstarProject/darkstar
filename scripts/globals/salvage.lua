@@ -1,6 +1,5 @@
 -----------------------------------
--- Item Utilities
--- desc: Common functionality for Items
+-- Salvage Global Functions
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/zone")
