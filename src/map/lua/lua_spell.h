@@ -58,6 +58,7 @@ public:
     int32 getSkillType(lua_State*);
     int32 getSpellGroup(lua_State*);
     int32 getFlag(lua_State*);
+    int32 canUseMisc(lua_State*);
     int32 castTime(lua_State*);
 };
 
