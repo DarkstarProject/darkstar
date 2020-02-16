@@ -12,32 +12,84 @@ local loot =
     [1] =
     {
         {
-            {itemid = 13553, droprate =  500}, -- blitz_ring
-            {itemid = 13554, droprate =  500}, -- aegis_ring
+            {itemid = 13553, droprate = 150}, -- blitz Ring
+            {itemid = 0,     droprate = 850}, -- Nothing
         },
         {
-            {itemid =     0, droprate =  600}, -- nothing
-            {itemid = 13238, droprate =  200}, -- druids_rope
-            {itemid = 13625, droprate =  200}, -- tundra_mantle
+            {itemid = 13554, droprate = 300}, -- aegis Ring
+            {itemid = 13625, droprate = 200}, -- tundra mantle
+            {itemid = 13238, droprate = 200}, -- druids rope
+            {itemid = 0,     droprate = 300}, -- Nothing
         },
         {
-            {itemid =     0, droprate =  500}, -- nothing
-            {itemid =   788, droprate =  250}, -- pearl
-            {itemid =   792, droprate =  250}, -- peridot
+            {itemid = 4896, droprate = 145}, -- firespirit
+            {itemid = 4751, droprate = 165}, -- erase
+            {itemid = 4714, droprate = 140}, -- phalanx
+            {itemid = 4874, droprate = 123}, -- absorb-str
+            {itemid = 788,  droprate =  94}, -- peridot
+            {itemid = 792,  droprate =  94}, -- pearl
+            {itemid = 772,  droprate =  13}, -- green rock
+            {itemid = 811,  droprate =  53}, -- ametrine
+            {itemid = 748,  droprate =  70}, -- gold beastcoin
+            {itemid = 749,  droprate =  50}, -- mythril beastcoin
+            {itemid = 771,  droprate =  53}, -- yellow rock
+            {itemid = 0,    droprate =   0}, -- nothing
         },
         {
-            {itemid =     0, droprate =  900}, -- nothing
-            {itemid =  4174, droprate =  100}, -- vile_elixir
+            {itemid = 4751, droprate = 125}, -- erase
+            {itemid = 4714, droprate = 110}, -- phalanx
+            {itemid = 4874, droprate = 104}, -- absorb-str
+            {itemid = 788,  droprate =  94}, -- peridot
+            {itemid = 792,  droprate =  94}, -- pearl
+            {itemid = 772,  droprate =  53}, -- green rock
+            {itemid = 811,  droprate =  73}, -- ametrine
+            {itemid = 748,  droprate =  70}, -- gold beastcoin
+            {itemid = 749,  droprate =  70}, -- mythril beastcoin
+            {itemid = 771,  droprate =  73}, -- yellow rock
+            {itemid = 0,    droprate =  94}, -- nothing
         },
         {
-            {itemid =     0, droprate =  125}, -- nothing
-            {itemid =  4717, droprate =  125}, -- scroll_of_refresh
-            {itemid =  4896, droprate =  125}, -- fire_spirit_pact
-            {itemid =  4751, droprate =  125}, -- scroll_of_erase
-            {itemid =  4874, droprate =  125}, -- scroll_of_absorb-str
-            {itemid =  4714, droprate =  125}, -- scroll_of_phalanx
-            {itemid =  4858, droprate =  125}, -- scroll_of_ice_spikes
-            {itemid =  4947, droprate =  125}, -- scroll_of_utsusemi_ni
+            {itemid = 4896, droprate = 174}, -- firespirit
+            {itemid = 4751, droprate =  16}, -- vile elixir
+            {itemid = 4714, droprate = 114}, -- icespikes
+            {itemid = 4874, droprate = 174}, -- refresh
+            {itemid = 4947, droprate = 138}, -- utsusemi ni
+            {itemid = 772,  droprate =  18}, -- green rock
+            {itemid = 775,  droprate =  18}, -- black rock
+            {itemid = 770,  droprate =  17}, -- blue rock
+            {itemid = 769,  droprate =  16}, -- red rock
+            {itemid = 774,  droprate =  16}, -- purple rock
+            {itemid = 776,  droprate =  16}, -- white rock
+            {itemid = 771,  droprate =  17}, -- yellow rock
+            {itemid = 773,  droprate =  17}, -- translucent rock
+            {itemid = 4172, droprate =  21}, -- reraiser
+            {itemid = 699,  droprate =  22}, -- oak log
+            {itemid = 701,  droprate =  18}, -- rosewood log
+            {itemid = 748,  droprate = 120}, -- gold beastcoin
+            {itemid = 749,  droprate = 102}, -- mythril beastcoin
+            {itemid = 792,  droprate =  21}, -- pearl
+            {itemid = 798,  droprate =  23}, -- Turquoise
+            {itemid = 808,  droprate =  19}, -- Goshenite
+            {itemid = 793,  droprate =  18}, -- Black pearl
+            {itemid = 815,  droprate =  17}, -- sphene
+            {itemid = 790,  droprate =  20}, -- garnet
+            {itemid = 811,  droprate =  18}, -- ametrine
+            {itemid = 0,    droprate =   0}, -- nothing
+        },
+        {
+            {itemid = 4714, droprate = 87}, -- icespikes
+            {itemid = 4874, droprate = 75}, -- refresh
+            {itemid = 4947, droprate = 75}, -- utsusemi ni
+            {itemid =  699, droprate = 80}, -- oak log
+            {itemid =  701, droprate = 97}, -- rosewood log
+            {itemid =  792, droprate = 86}, -- pearl
+            {itemid =  798, droprate = 88}, -- Turquoise
+            {itemid =  808, droprate = 79}, -- Goshenite
+            {itemid =  793, droprate = 93}, -- Black pearl
+            {itemid =  815, droprate = 79}, -- sphene
+            {itemid =  790, droprate = 71}, -- garnet
+            {itemid =  811, droprate = 90}, -- ametrine  
+            {itemid =    0, droprate =  0}, -- nothing
         },
     },
 
