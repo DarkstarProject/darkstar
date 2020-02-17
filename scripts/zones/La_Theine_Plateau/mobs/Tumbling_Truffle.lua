@@ -3,10 +3,9 @@
 --  Mob: Tumbling Truffle
 -----------------------------------
 require("scripts/globals/regimes")
+require("scripts/quests/tutorial")
 
 function onMobDeath(mob, player, isKiller)
     tpz.regime.checkRegime(player, mob, 71, 2, tpz.regime.type.FIELDS)
-    if player:getCharVar("TutorialProgress") == 7 then
-        player:setCharVar("TutorialProgress", 8)
-    end
+    tpz.tutorial.onMobDeath(player)
 end;

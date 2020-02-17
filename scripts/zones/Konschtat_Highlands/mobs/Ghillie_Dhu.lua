@@ -6,6 +6,7 @@ require("scripts/globals/regimes")
 require("scripts/globals/status")
 require("scripts/globals/utils")
 require("scripts/globals/mobs")
+require("scripts/quests/tutorial")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -39,9 +40,7 @@ end
 function onMobDeath(mob, player, isKiller)
     -- I think he still counts for the FoV page? Most NM's do not though.
     tpz.regime.checkRegime(player, mob, 81, 1, tpz.regime.type.FIELDS)
-    if player:getCharVar("TutorialProgress") == 7 then
-        player:setCharVar("TutorialProgress", 8)
-    end
+    tpz.tutorial.onMobDeath(player)
 end
 
 function onMobDespawn(mob)

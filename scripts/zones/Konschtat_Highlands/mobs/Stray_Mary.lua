@@ -3,11 +3,10 @@
 --   NM: Stray Mary
 -----------------------------------
 require("scripts/globals/titles")
+require("scripts/quests/tutorial")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(tpz.title.MARYS_GUIDE)
-    if player:getCharVar("TutorialProgress") == 7 then
-        player:setCharVar("TutorialProgress", 8)
-    end
+    tpz.tutorial.onMobDeath(player)
 end

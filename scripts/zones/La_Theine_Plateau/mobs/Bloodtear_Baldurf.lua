@@ -5,6 +5,7 @@
 mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
 require("scripts/globals/titles")
+require("scripts/quests/tutorial")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -23,7 +24,5 @@ end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(tpz.title.THE_HORNSPLITTER)
-    if player:getCharVar("TutorialProgress") == 7 then
-        player:setCharVar("TutorialProgress", 8)
-    end
+    tpz.tutorial.onMobDeath(player)
 end

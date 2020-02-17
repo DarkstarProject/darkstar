@@ -4,6 +4,7 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/mobs")
+require("scripts/quests/tutorial")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -22,9 +23,7 @@ function onAdditionalEffect(mob, target, damage)
 end
 
 function onMobDeath(mob, player, isKiller)
-    if player:getCharVar("TutorialProgress") == 7 then
-        player:setCharVar("TutorialProgress", 8)
-    end
+    tpz.tutorial.onMobDeath(player)
 end
 
 function onMobDespawn(mob)
