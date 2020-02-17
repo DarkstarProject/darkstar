@@ -7,7 +7,7 @@ require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    if not spell:canUseMisc(tpz.zoneMisc.TRACTOR) or target:isMob() then
+    if target:isMob() then -- Because Prishe in CoP mission
         return tpz.msg.basic.CANNOT_ON_THAT_TARG
     end
 
