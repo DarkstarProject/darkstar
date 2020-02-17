@@ -32,7 +32,7 @@ tpz.tutorial.onTrigger = function(player, npc, npc_event_offset, nation_offset)
             end
         elseif stage == 4 then
             local isSkilled = false
-            for i = 1, 12 do
+            for i = tpz.skill.HAND_TO_HAND, tpz.skill.STAFF do
                 if player:getSkillLevel(i) >= 5 then
                     isSkilled = true
                     break
@@ -83,7 +83,7 @@ tpz.tutorial.onEventFinish = function(player, csid, option, npc_event_offset, na
     if csid == npc_event_offset then
         player:setCharVar("TutorialProgress", 2)
     elseif csid == (npc_event_offset + 2) then
-        if npcUtil.giveItem(player, {4376, 6}) then
+        if npcUtil.giveItem(player, {{4376, 6}}) then
             player:setCharVar("TutorialProgress", 3)
         end
     elseif csid == (npc_event_offset + 4) then
@@ -93,8 +93,7 @@ tpz.tutorial.onEventFinish = function(player, csid, option, npc_event_offset, na
             player:setCharVar("TutorialProgress", 5)
         end
     elseif csid == (npc_event_offset + 8) then
-        player:addKeyItem(tpz.ki.CONQUEST_PROMOTION_VOUCHER)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.CONQUEST_PROMOTION_VOUCHER)
+        npcUtil.giveKeyItem(player, tpz.ki.CONQUEST_PROMOTION_VOUCHER)
         player:setCharVar("TutorialProgress", 7)
     elseif csid == (npc_event_offset + 10) then
         if npcUtil.giveItem(player, 16003) then
@@ -104,11 +103,10 @@ tpz.tutorial.onEventFinish = function(player, csid, option, npc_event_offset, na
         player:addExp(1200 * EXP_RATE)
         player:setCharVar("TutorialProgress", 10)
     elseif csid == (npc_event_offset + 14) then
-        player:addGil(1000 * GIL_RATE)
-        player:messageSpecial(ID.text.GIL_OBTAINED, 1000)
+        npcUtil.giveCurrency(player, 'gil', 1000)
         player:setCharVar("TutorialProgress", 11)
     elseif csid == (npc_event_offset + 16) then
-        if npcUtil.giveItem(player, {1789, 3}) then
+        if npcUtil.giveItem(player, {{1789, 3}}) then
             player:addExp(2500 * EXP_RATE)
             player:setCharVar("TutorialProgress", 0)
         end
