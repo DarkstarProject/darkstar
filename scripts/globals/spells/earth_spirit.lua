@@ -9,7 +9,7 @@ require("scripts/globals/msg")
 require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster, target, spell)
     local result = 0
     if (caster:hasPet()) then
         result = tpz.msg.basic.ALREADY_HAS_A_PET
@@ -21,8 +21,18 @@ function onMagicCastingCheck(caster,target,spell)
     return result
 end
 
-function onSpellCast(caster,target,spell)
+function onSpellCast(caster, target, spell)
+    local effect = tpz.effect.DEBILITATION
+
     caster:spawnPet(tpz.pet.id.EARTH_SPIRIT)
+
+    if caster:hasStatusEffect(effect) then
+        local pet = caster:getPet()
+        local statusEffect = caster:getStatusEffect(effect)
+        local power = statusEffect:getPower()
+        local duration = math.floor(statusEffect:getTimeRemaining()/1000)
+        pet:addStatusEffectEx(effect, effect, power, 0, duration)
+    end
 
     return 0
 end
