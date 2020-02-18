@@ -198,16 +198,6 @@ inline int32 CLuaSpell::getFlag(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaSpell::canUseMisc(lua_State *L)
-{
-    TPZ_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
-    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    auto misc = lua_tointeger(L, 1);
-    lua_pushboolean(L, (m_PLuaSpell->getZoneMisc() & misc) == misc);
-    return 1;
-}
-
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -232,7 +222,6 @@ Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
     LUNAR_DECLARE_METHOD(CLuaSpell,getID),
     LUNAR_DECLARE_METHOD(CLuaSpell,getSpellGroup),
     LUNAR_DECLARE_METHOD(CLuaSpell,getFlag),
-    LUNAR_DECLARE_METHOD(CLuaSpell,canUseMisc),
     LUNAR_DECLARE_METHOD(CLuaSpell,castTime),
     {nullptr,nullptr}
 };
