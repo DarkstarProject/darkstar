@@ -38,7 +38,7 @@ function onTrigger(player, npc)
         local aNewDawnEvent = player:getCharVar("ANewDawn_Event")
 
         if aNewDawnEvent == 4 then
-            npcUtil.popFromQM(player, npc, {ID.mob.STURM, ID.mob.TAIFUN, ID.mob.TROMBE}, {hide = 0})
+            npcUtil.popFromQM(player, npc, {ID.mob.STURM, ID.mob.TAIFUN, ID.mob.TROMBE}, {claim = false, hide = 0})
         elseif aNewDawnEvent == 5 then
             player:startEvent(45)
         end
