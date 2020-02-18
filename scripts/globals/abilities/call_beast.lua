@@ -23,21 +23,9 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onUseAbility(player, target, ability)
-    local id = player:getWeaponSubSkillType(tpz.slot.AMMO)
-    local effect = tpz.effect.DEBILITATION
-
     if id == 0 then
         printf("WARNING: jugpet id is ZERO\n")
     end
-
-    player:spawnPet(id)
+    tpz.pet.spawnPet(player, player:getWeaponSubSkillType(tpz.slot.AMMO))
     player:removeAmmo()
-
-    if player:hasStatusEffect(effect) then
-        local pet = player:getPet()
-        local statusEffect = player:getStatusEffect(effect)
-        local power = statusEffect:getPower()
-        local duration = math.floor(statusEffect:getTimeRemaining()/1000)
-        pet:addStatusEffectEx(effect, effect, power, 0, duration)
-    end
 end

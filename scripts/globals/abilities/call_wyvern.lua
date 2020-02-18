@@ -25,15 +25,5 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onUseAbility(player, target, ability)
-    local effect = tpz.effect.DEBILITATION
-
-    player:spawnPet(tpz.pet.id.WYVERN)
-
-    if player:hasStatusEffect(effect) then
-        local pet = player:getPet()
-        local statusEffect = player:getStatusEffect(effect)
-        local power = statusEffect:getPower()
-        local duration = math.floor(statusEffect:getTimeRemaining()/1000)
-        pet:addStatusEffectEx(effect, effect, power, 0, duration)
-    end
+    tpz.pet.spawnPet(player, tpz.pet.id.WYVERN)
 end
