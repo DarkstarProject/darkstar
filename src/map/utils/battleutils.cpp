@@ -4063,10 +4063,10 @@ namespace battleutils
         }
 
         // FIXME: Level and CHR ratios are complete guesses
-        const float levelRatio = (targetLvl - charmerBSTlevel) / 100.f;
+        const float levelRatio = (charmerBSTlevel - targetLvl) / 100.f;
         charmChance *= (1.f + levelRatio);
 
-        const float chrRatio = (PTarget->CHR() - PCharmer->CHR()) / 100.f;
+        const float chrRatio = (PCharmer->CHR() - PTarget->CHR()) / 100.f;
         charmChance *= (1.f + chrRatio);
 
         // Retail doesn't take light/apollo into account for Gauge
