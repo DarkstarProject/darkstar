@@ -173,5 +173,3 @@ cmake_install.cmake
 
 # ignore servers
 *-server
-
-version.info
