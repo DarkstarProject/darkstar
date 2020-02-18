@@ -3092,7 +3092,7 @@ namespace charutils
         if (baseExp >= 200) return EMobDifficulty::EvenMatch;
         if (baseExp >= 160) return EMobDifficulty::DecentChallenge;
         if (baseExp >= 60) return EMobDifficulty::EasyPrey;
-        if (baseExp >= 14) return EMobDifficulty::IncredibyEasyPrey;
+        if (baseExp >= 14) return EMobDifficulty::IncrediblyEasyPrey;
 
         return EMobDifficulty::TooWeak;
     }
