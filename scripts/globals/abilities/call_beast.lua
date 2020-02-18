@@ -23,9 +23,6 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onUseAbility(player, target, ability)
-    if id == 0 then
-        printf("WARNING: jugpet id is ZERO\n")
-    end
     tpz.pet.spawnPet(player, player:getWeaponSubSkillType(tpz.slot.AMMO))
     player:removeAmmo()
 end
