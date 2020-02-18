@@ -877,6 +877,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 
     if (m_zoneType != ZONETYPE_DUNGEON_INSTANCED)
     {
+        charutils::ClearTempItems(PChar);
         PChar->PInstance = nullptr;
     }
 
