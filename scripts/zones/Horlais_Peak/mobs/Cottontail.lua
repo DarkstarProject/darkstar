@@ -3,8 +3,8 @@
 --  Mob: Cottontail
 -- BCNM: Tails of Woe
 -----------------------------------
-
 require("scripts/globals/status")
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(tpz.mobMod.NO_DROPS, 1)
