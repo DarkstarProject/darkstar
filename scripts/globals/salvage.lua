@@ -7,21 +7,21 @@ require("scripts/globals/zone")
 salvageUtil = {}
 -----------------------------------
 
-function salvageUtil.onCellItemCheck(target, effect, count)
+function salvageUtil.onCellItemCheck(target, effect, value)
     local statusEffect = target:getStatusEffect(effect)
     if statusEffect then
         local power = statusEffect:getPower()
-        if bit.band(power, count) > 0 then
+        if bit.band(power, value) > 0 then
             return 0
         end
     end
     return 55
 end
 
-function salvageUtil.onCellItemUse(target, effect, count, offset)
+function salvageUtil.onCellItemUse(target, effect, value, offset)
     local statusEffect = target:getStatusEffect(effect)
     local power = statusEffect:getPower()
-    local newpower = bit.band(power, bit.bnot(count))
+    local newpower = bit.band(power, bit.bnot(value))
     local pet = target:getPet()
     
     target:delStatusEffectSilent(effect)
