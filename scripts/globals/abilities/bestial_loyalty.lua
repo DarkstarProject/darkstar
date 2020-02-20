@@ -1,8 +1,8 @@
 -----------------------------------
--- Ability: Call Beast
--- Calls a beast to fight by your side.
+-- Ability: Bestial Loyalty
+-- Calls a beast to fight by your side without consuming bait
 -- Obtained: Beastmaster Level 23
--- Recast Time: 5:00
+-- Recast Time: 20:00
 -- Duration: Dependent on jug pet used.
 -----------------------------------
 require("scripts/globals/common")
@@ -24,5 +24,4 @@ end
 
 function onUseAbility(player, target, ability)
     tpz.pet.spawnPet(player, player:getWeaponSubSkillType(tpz.slot.AMMO))
-    player:removeAmmo()
 end
