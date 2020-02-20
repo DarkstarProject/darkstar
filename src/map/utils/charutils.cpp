@@ -3259,7 +3259,7 @@ namespace charutils
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember)
         {
             CCharEntity* PMember = dynamic_cast<CCharEntity*>(PPartyMember);
-            if (!PMember || PMember->isDead())
+            if (!PMember || PMember->isDead() || PMember->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
                 return;
 
             maxlevel = std::max(maxlevel, PMob->m_HiPCLvl);
