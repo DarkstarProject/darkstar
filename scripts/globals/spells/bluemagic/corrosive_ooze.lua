@@ -28,6 +28,7 @@ function onSpellCast(caster,target,spell)
     if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         multi = multi + 0.50
     end
+        params.damageType = tpz.damageType.WATER
         params.multiplier = multi
         params.tMultiplier = 2.0
         params.duppercap = 69

@@ -23,6 +23,7 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
+        params.damageType = tpz.damageType.WIND
         params.multiplier = 2.775
         params.tMultiplier = 2.912
         params.duppercap = 58
