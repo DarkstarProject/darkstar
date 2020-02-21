@@ -19,10 +19,10 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
     -- MOG HOUSE EXIT
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         position = math.random(1,5) - 123;
         player:setPos(-257.5,-5.05,position,0);
-        if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
+        if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
             cs = 30004;
         end
         player:setCharVar("PlayerMainJob",0);

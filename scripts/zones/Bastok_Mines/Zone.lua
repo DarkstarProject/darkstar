@@ -35,7 +35,7 @@ function onZoneIn(player,prevZone)
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         position = math.random(1, 5) - 75
         player:setPos(116, 0.99, position, 127)
-        if player:getMainJob() ~= player:getCharVar("PlayerMainJob") then
+        if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
             cs = 30004
         end
         player:setCharVar("PlayerMainJob", 0)

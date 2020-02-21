@@ -20,10 +20,10 @@ function onZoneIn(player,prevZone)
     local cs = -1
 
     -- SOA 1-1 Optional CS
-    if 
-        ENABLE_SOA and 
-        player:getCurrentMission(SOA) == tpz.mission.id.soa.RUMORS_FROM_THE_WEST and 
-        player:getCharVar("SOA_1_CS3") == 0 
+    if
+        ENABLE_SOA and
+        player:getCurrentMission(SOA) == tpz.mission.id.soa.RUMORS_FROM_THE_WEST and
+        player:getCharVar("SOA_1_CS3") == 0
     then
         cs = 839
     end
@@ -41,7 +41,7 @@ function onZoneIn(player,prevZone)
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         position = math.random(1,5) + 37
         player:setPos(-138,-10,position,0)
-        if player:getMainJob() ~= player:getCharVar("PlayerMainJob") then
+        if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
             cs = 30004
         end
         player:setCharVar("PlayerMainJob",0)
