@@ -16,7 +16,7 @@ function onInitialize(zone)
     tpz.chocobo.initZone(zone)
 end
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
 
     -- SOA 1-1 Optional CS
@@ -33,18 +33,18 @@ function onZoneIn(player,prevZone)
         if OPENING_CUTSCENE_ENABLE == 1 then
             cs = 367
         end
-        player:setPos(0,0,-50,0)
+        player:setPos(0, 0, -50, 0)
         player:setHomePoint()
     end
 
     -- MOG HOUSE EXIT
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        position = math.random(1,5) + 37
-        player:setPos(-138,-10,position,0)
+        position = math.random(1, 5) + 37
+        player:setPos(-138, -10, position, 0)
         if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
             cs = 30004
         end
-        player:setCharVar("PlayerMainJob",0)
+        player:setCharVar("PlayerMainJob", 0)
     end
 
     return cs
@@ -54,15 +54,15 @@ function onConquestUpdate(zone, updatetype)
     tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
-function onRegionEnter(player,region)
+function onRegionEnter(player, region)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 367 then
-        player:messageSpecial(ID.text.ITEM_OBTAINED,536)
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 536)
     elseif csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)

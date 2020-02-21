@@ -19,27 +19,27 @@ function onInitialize(zone)
     tpz.chocobo.initZone(zone)
 end
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
 
     local month = tonumber(os.date("%m"))
     local day = tonumber(os.date("%d"))
     -- Retail start/end dates vary, I am going with Dec 5th through Jan 5th.
     if (month == 12 and day >= 5) or (month == 1 and day <= 5) then
-        player:ChangeMusic(0,239)
-        player:ChangeMusic(1,239)
+        player:ChangeMusic(0, 239)
+        player:ChangeMusic(1, 239)
         -- No need for an 'else' to change it back outside these dates as a re-zone will handle that.
     end
 
     -- MOG HOUSE EXIT
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        player:setPos(41.2,-5, 84,85)
+        player:setPos(41.2, -5, 84, 85)
         if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
             cs = 30004
         end
-        player:setCharVar("PlayerMainJob",0)
+        player:setCharVar("PlayerMainJob", 0)
     elseif player:getCurrentMission(COP) == tpz.mission.id.cop.TENDING_AGED_WOUNDS and player:getCharVar("PromathiaStatus") == 0 then
-        player:setCharVar("PromathiaStatus",1)
+        player:setCharVar("PromathiaStatus", 1)
         cs = 70
     elseif ENABLE_ACP == 1 and player:getCurrentMission(ACP) == tpz.mission.id.acp.A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10 then
         cs = 10094
@@ -52,7 +52,7 @@ function onConquestUpdate(zone, updatetype)
     tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
-function onRegionEnter(player,region)
+function onRegionEnter(player, region)
     if region:GetRegionID() == 1 then
         if player:getCurrentMission(ZILART) == tpz.mission.id.zilart.AWAKENING and player:getCharVar("ZilartStatus") < 2 then
             player:startEvent(20)
@@ -68,7 +68,7 @@ function onGameHour(zone)
     -- Community Service Quest
     -- 7AM: it's daytime. turn off all the lights
     if VanadielHour == 7 then
-        for i=0,11 do
+        for i=0, 11 do
             local lamp = GetNPCByID(ID.npc.STREETLAMP_OFFSET + i)
             lamp:setAnimation(tpz.anim.CLOSE_DOOR)
         end
@@ -76,7 +76,7 @@ function onGameHour(zone)
     -- 8PM: make quest available
     -- notify anyone in zone with membership card that zauko is recruiting
     elseif VanadielHour == 18 then
-        SetServerVariable("[JEUNO]CommService",0)
+        SetServerVariable("[JEUNO]CommService", 0)
         local players = zone:getPlayers()
         for name, player in pairs(players) do
             if player:hasKeyItem(tpz.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD then
@@ -101,23 +101,23 @@ function onGameHour(zone)
             npc:setStatus(0)
             npc:initNpcAi()
             npc:setPos(tpz.path.first(LOWER_JEUNO.lampPath))
-            npc:pathThrough(tpz.path.fromStart(LOWER_JEUNO.lampPath), bit.bor(tpz.path.flag.RUN,tpz.path.flag.WALLHACK))
+            npc:pathThrough(tpz.path.fromStart(LOWER_JEUNO.lampPath), bit.bor(tpz.path.flag.RUN, tpz.path.flag.WALLHACK))
         end
 
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
     elseif csid == 20 then
         player:addCharVar("ZilartStatus", 2)
     elseif csid == 10094 then
-        player:completeMission(ACP,tpz.mission.id.acp.A_CRYSTALLINE_PROPHECY)
-        player:addMission(ACP,tpz.mission.id.acp.THE_ECHO_AWAKENS)
+        player:completeMission(ACP, tpz.mission.id.acp.A_CRYSTALLINE_PROPHECY)
+        player:addMission(ACP, tpz.mission.id.acp.THE_ECHO_AWAKENS)
     end
 end

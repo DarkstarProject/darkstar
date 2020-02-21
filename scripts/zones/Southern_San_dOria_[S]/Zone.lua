@@ -15,7 +15,7 @@ function onInitialize(zone)
     tpz.chocobo.initZone(zone)
 end
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
     if prevZone == tpz.zone.EAST_RONFAURE_S then
         if player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getCharVar("KnotQuiteThere") == 2 then
@@ -31,26 +31,26 @@ function onZoneIn(player,prevZone)
     end
     -- MOG HOUSE EXIT
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        player:setPos(161,-2,161,94)
+        player:setPos(161, -2, 161, 94)
         if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
             cs = 30004
         end
-        player:setCharVar("PlayerMainJob",0)
+        player:setCharVar("PlayerMainJob", 0)
     end
     return cs
 end
 
-function onRegionEnter(player,region)
+function onRegionEnter(player, region)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 62 then
-        player:setCharVar("KnotQuiteThere",3)
+        player:setCharVar("KnotQuiteThere", 3)
     elseif csid == 65 then
-        player:setCharVar("DownwardHelix",1)
+        player:setCharVar("DownwardHelix", 1)
     elseif csid == 67 then
         player:completeMission(WOTG, tpz.mission.id.wotg.CAIT_SITH)
         player:addMission(WOTG, tpz.mission.id.wotg.THE_QUEEN_OF_THE_DANCE)
