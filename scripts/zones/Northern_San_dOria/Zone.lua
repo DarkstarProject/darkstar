@@ -38,8 +38,8 @@ function onZoneIn(player,prevZone)
     end
 
     -- FIRST LOGIN (START CS)
-    if (player:getPlaytime(false) == 0) then
-        if (OPENING_CUTSCENE_ENABLE == 1) then
+    if player:getPlaytime(false) == 0 then
+        if OPENING_CUTSCENE_ENABLE == 1 then
             cs = 535
         end
         player:setPos(0,0,-11,191)
@@ -54,16 +54,16 @@ function onZoneIn(player,prevZone)
         player:setCharVar("PlayerMainJob",0)
     end
     -- RDM AF3 CS
-    if (player:getCharVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
+    if player:getCharVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1 then
         cs = 49
-    elseif (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
+    elseif player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("EMERALD_WATERS_Status") == 1 then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
         player:setCharVar("EMERALD_WATERS_Status",2)
         cs = 14
-    elseif (currentMission == tpz.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
+    elseif currentMission == tpz.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 0 then
         cs = 1
-    elseif (currentMission == tpz.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
+    elseif currentMission == tpz.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 4 then
         cs = 0
-    elseif (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getCharVar("Wait1DayM8-1_date")) then
+    elseif player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getCharVar("Wait1DayM8-1_date") then
         cs = 16
     end
     return cs
@@ -79,7 +79,7 @@ function onRegionEnter(player,region)
         [1] = function (x)  -- Chateau d'Oraguille access
         pNation = player:getNation()
         currentMission = player:getCurrentMission(pNation)
-            if ((pNation == 0 and player:getRank() >= 2) or (pNation > 0 and player:hasCompletedMission(pNation,5) == 1) or (currentMission >= 5 and currentMission <= 9) or (player:getRank() >= 3)) then
+            if (pNation == 0 and player:getRank() >= 2) or (pNation > 0 and player:hasCompletedMission(pNation,5) == 1) or (currentMission >= 5 and currentMission <= 9) or (player:getRank() >= 3) then
                 player:startEvent(569)
             else
                 player:startEvent(568)
@@ -95,20 +95,20 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if (csid == 535) then
+    if csid == 535 then
         player:messageSpecial(ID.text.ITEM_OBTAINED,536) -- adventurer coupon
-    elseif (csid == 1) then
+    elseif csid == 1 then
         player:setCharVar("MissionStatus",1)
-    elseif (csid == 0) then
+    elseif csid == 0 then
         player:setCharVar("MissionStatus",5)
-    elseif (csid == 30004 and option == 0) then
+    elseif csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
-    elseif (csid == 569) then
+    elseif csid == 569 then
         player:setPos(0,0,-13,192,233)
-    elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, tpz.quest.id.sandoria.PEACE_FOR_THE_SPIRIT, {item = 12513, fame = 60, title = tpz.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
+    elseif csid == 49 and npcUtil.completeQuest(player, SANDORIA, tpz.quest.id.sandoria.PEACE_FOR_THE_SPIRIT, {item = 12513, fame = 60, title = tpz.title.PARAGON_OF_RED_MAGE_EXCELLENCE}) then
         player:setCharVar("peaceForTheSpiritCS",0)
-    elseif (csid == 16) then
+    elseif csid == 16 then
         player:setCharVar("Wait1DayM8-1_date",0)
         player:setCharVar("Mission8-1Completed",1)
     elseif csid == 878 then

@@ -20,8 +20,8 @@ end
 function onZoneIn(player,prevZone)
     local cs = -1
     -- FIRST LOGIN (START CS)
-    if (player:getPlaytime(false) == 0) then
-        if (OPENING_CUTSCENE_ENABLE == 1) then
+    if player:getPlaytime(false) == 0 then
+        if OPENING_CUTSCENE_ENABLE == 1 then
             cs = 503
         end
         player:setPos(-96,1,-40,224)
@@ -44,7 +44,7 @@ end
 
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID()
-    if (regionID==1 and player:getCurrentMission(COP) == tpz.mission.id.cop.DAWN and player:getCharVar("COP_louverance_story")== 2) then
+    if regionID==1 and player:getCurrentMission(COP) == tpz.mission.id.cop.DAWN and player:getCharVar("COP_louverance_story")== 2 then
         player:startEvent(758)
     end
 end
@@ -56,12 +56,12 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if (csid == 503) then
+    if csid == 503 then
         player:messageSpecial(ID.text.ITEM_OBTAINED,536)
-    elseif (csid == 30004 and option == 0) then
+    elseif csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
-    elseif (csid == 758) then
+    elseif csid == 758 then
         player:setCharVar("COP_louverance_story",3)
     end
 end

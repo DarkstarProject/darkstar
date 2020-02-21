@@ -27,8 +27,8 @@ function onZoneIn(player,prevZone)
     end
 
     -- FIRST LOGIN (START CS)
-    if (player:getPlaytime(false) == 0) then
-        if (OPENING_CUTSCENE_ENABLE == 1) then
+    if player:getPlaytime(false) == 0 then
+        if OPENING_CUTSCENE_ENABLE == 1 then
             --cs = 0
         end
         player:setPos(-280,-12,-91,15)
@@ -57,7 +57,7 @@ end
 
 function onGameDay()
     -- Removes daily the bit mask that tracks the treats traded for Harvest Festival.
-    if (isHalloweenEnabled() ~= 0) then
+    if isHalloweenEnabled() ~= 0 then
         clearVarFromAll("harvestFestTreats")
         clearVarFromAll("harvestFestTreats2")
     end
@@ -68,9 +68,9 @@ end
 
 function onEventFinish(player,csid,option)
 
-    if (csid == 0) then
+    if csid == 0 then
         player:messageSpecial(ID.text.ITEM_OBTAINED,536)
-    elseif (csid == 30004 and option == 0) then
+    elseif csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
     elseif csid == 22 then

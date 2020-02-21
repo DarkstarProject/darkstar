@@ -22,8 +22,8 @@ function onZoneIn(player,prevZone)
     local cs = -1
 
     -- FIRST LOGIN (START CS)
-    if (player:getPlaytime(false) == 0) then
-        if (OPENING_CUTSCENE_ENABLE == 1) then
+    if player:getPlaytime(false) == 0 then
+        if OPENING_CUTSCENE_ENABLE == 1 then
             cs = 531
         end
         player:setPos(-40,-5,80,64)
@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
         player:setCharVar("PlayerMainJob",0)
     end
 
-    if (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 1) then -- COP MEMORIES_OF_A_MAIDEN--3-3B: Windurst Route
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 1 then -- COP MEMORIES_OF_A_MAIDEN--3-3B: Windurst Route
         player:setCharVar("MEMORIES_OF_A_MAIDEN_Status",2)
         cs = 871
     end
@@ -58,7 +58,7 @@ function onRegionEnter(player,region)
     {
         [1] = function (x)  -- Windurst Mission 1-3, final cutscene with Leepe-Hoppe
             -- If we're on Windurst Mission 1-3
-            if (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_PRICE_OF_PEACE and player:getCharVar("MissionStatus") == 2) then
+            if player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_PRICE_OF_PEACE and player:getCharVar("MissionStatus") == 2 then
                 player:startEvent(146)
             end
         end,
@@ -70,12 +70,12 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if (csid == 531) then
+    if csid == 531 then
         player:messageSpecial(ID.text.ITEM_OBTAINED, 536)
-    elseif (csid == 30004 and option == 0) then
+    elseif csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
-    elseif (csid == 146) then -- Returned from Giddeus, Windurst 1-3
+    elseif csid == 146 then -- Returned from Giddeus, Windurst 1-3
         player:setCharVar("MissionStatus", 3)
         player:setCharVar("ghoo_talk", 0)
         player:setCharVar("laa_talk", 0)

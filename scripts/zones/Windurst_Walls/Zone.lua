@@ -26,10 +26,10 @@ function onZoneIn(player,prevZone)
             cs = 30004
         end
         player:setCharVar("PlayerMainJob",0)
-    elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == tpz.mission.id.asa.A_SHANTOTTO_ASCENSION
-        and (prevZone == tpz.zone.WINDURST_WATERS or prevZone == tpz.zone.WINDURST_WOODS) and player:getMainLvl()>=10) then
+    elseif ENABLE_ASA == 1 and player:getCurrentMission(ASA) == tpz.mission.id.asa.A_SHANTOTTO_ASCENSION
+        and (prevZone == tpz.zone.WINDURST_WATERS or prevZone == tpz.zone.WINDURST_WOODS) and player:getMainLvl()>=10 then
         cs = 510
-    elseif (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") == 4) then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.MOON_READING and player:getCharVar("MissionStatus") == 4 then
         cs = 443
     end
 
@@ -56,18 +56,18 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if (csid == 86) then
+    if csid == 86 then
         player:setPos(0,0,-22.40,192,242)
-    elseif (csid == 30004 and option == 0) then
+    elseif csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
-    elseif (csid == 510) then
+    elseif csid == 510 then
         player:startEvent(514)
-    elseif (csid == 514) then
+    elseif csid == 514 then
         player:completeMission(ASA,tpz.mission.id.asa.A_SHANTOTTO_ASCENSION)
         player:addMission(ASA,tpz.mission.id.asa.BURGEONING_DREAD)
         player:setCharVar("ASA_Status",0)
-    elseif (csid == 443) then
+    elseif csid == 443 then
         player:completeMission(WINDURST,tpz.mission.id.windurst.MOON_READING)
         player:setCharVar("MissionStatus",0)
         player:setRank(10)

@@ -18,14 +18,14 @@ function onZoneIn(player,prevZone)
     local month = tonumber(os.date("%m"))
     local day = tonumber(os.date("%d"))
     -- Retail start/end dates vary, I am going with Dec 5th through Jan 5th.
-    if ((month == 12 and day >= 5) or (month == 1 and day <= 5)) then
+    if (month == 12 and day >= 5) or (month == 1 and day <= 5) then
         player:ChangeMusic(0,239)
         player:ChangeMusic(1,239)
         -- No need for an 'else' to change it back outside these dates as a re-zone will handle that.
     end
 
     -- COP mission 1-1
-    if (player:getCurrentMission(COP) == tpz.mission.id.cop.THE_RITES_OF_LIFE and player:getCharVar("PromathiaStatus") == 0) then
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.THE_RITES_OF_LIFE and player:getCharVar("PromathiaStatus") == 0 then
         cs = 2
     -- MOG HOUSE EXIT
     elseif player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
@@ -50,10 +50,10 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if (csid == 30004 and option == 0) then
+    if csid == 30004 and option == 0 then
         player:setHomePoint()
         player:messageSpecial(ID.text.HOMEPOINT_SET)
-    elseif (csid == 2) then
+    elseif csid == 2 then
         player:setCharVar("PromathiaStatus",1)
     end
 end
