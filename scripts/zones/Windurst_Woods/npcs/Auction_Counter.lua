@@ -1,13 +1,14 @@
 -----------------------------------
 -- Area: Windurst Woods
 --  NPC: Auction Counter
--- Working 100%
 -----------------------------------
+require("scripts/quests/tutorial")
 
 function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
+    tpz.tutorial.onAuctionTrigger(player)
     player:sendMenu(3)
 end
 

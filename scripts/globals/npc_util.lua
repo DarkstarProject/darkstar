@@ -233,6 +233,55 @@ function npcUtil.giveItem(player, items)
 end
 
 --[[ *******************************************************************************
+    Give currency to a player.
+    Message is displayed showing currency obtained.
+
+    Examples of valid parameters:
+        gil, 500
+        bayld, 1000
+******************************************************************************* --]]
+function npcUtil.giveCurrency(player, currency, amount)
+    local ID = zones[player:getZoneID()]
+
+    if (not type(currency) == "string") or (not type(amount) == "number") then
+        print(string.format("ERROR: invalid parameter given to npcUtil.giveCurrency in zone %s.", player:getZoneName()))
+        return false
+    end
+
+    currency = string.lower(currency)
+
+    local currency_types =
+    {
+        ["gil"]   = {"GIL_OBTAINED", GIL_RATE},
+        ["bayld"] = {"BAYLD_OBTAINED", BAYLD_RATE}
+    }
+
+    local currency_type = currency_types[currency]
+
+    if not currency_type then
+        print(string.format("ERROR: invalid currency '%s' given to npcUtil.giveCurrency in zone %s.", currency, player:getZoneName()))
+        return false
+    end
+
+    local message_id = ID.text[currency_type[1]]
+    if not message_id then
+        print(string.format("ERROR: no message ID defined for currency '%s' given to npcUtil.giveCurrency in zone %s.", currency, player:getZoneName()))
+        return false
+    end
+
+    amount = amount * currency_type[2]
+
+    if currency == "gil" then
+        player:addGil(amount)
+    else
+        player:addCurrency(currency, amount)
+    end
+    player:messageSpecial(message_id, amount)
+
+    return true
+end
+
+--[[ *******************************************************************************
     Give key item(s) to player.
     Message is displayed showing key items obtained.
 
