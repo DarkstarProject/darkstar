@@ -43,6 +43,7 @@
 #include "../instance.h"
 #include "../item_container.h"
 #include "../latent_effect_container.h"
+#include "../linkshell.h"
 #include "../map.h"
 #include "../message.h"
 #include "../mob_modifier.h"
@@ -3829,6 +3830,44 @@ inline int32 CLuaBaseEntity::getCurrentGPItem(lua_State* L)
     lua_pushinteger(L, GPItem.second);
 
     return 2;
+}
+
+/************************************************************************
+*  Function: breakLinkshell()
+*  Purpose : Breaks linkshell and all pearls/sacks
+*  Example : player:breakLinkshell(LSname)
+*  Notes   : Used by GMs to break a linkshell
+************************************************************************/
+
+inline int32 CLuaBaseEntity::breakLinkshell(lua_State* L)
+{
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    auto lsname = lua_tostring(L, 1);
+    bool found = false;
+
+    int32 ret = Sql_Query(SqlHandle, "SELECT broken, linkshellid FROM linkshells WHERE name = '%s'", lsname);
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        uint8 broken = Sql_GetUIntData(SqlHandle,0);
+        if (broken)
+        {
+            lua_pushboolean(L, true);
+            return 1;
+        }
+        uint32 lsid = Sql_GetUIntData(SqlHandle,1);
+        CLinkshell* PLinkshell = linkshell::GetLinkshell(lsid);
+        if (!PLinkshell)
+            PLinkshell = linkshell::LoadLinkshell(lsid);
+        int8 EncodedName[16];
+        EncodeStringLinkshell((int8*)lsname, EncodedName);
+        PLinkshell->BreakLinkshell(EncodedName, true);
+        linkshell::UnloadLinkshell(lsid);
+        found = true;
+    }
+
+    lua_pushboolean(L, found);
+    return 1;
 }
 
 /************************************************************************
@@ -14085,6 +14124,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createShop),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addShopItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentGPItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,breakLinkshell),
 
     // Trading
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
