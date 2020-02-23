@@ -3,10 +3,10 @@
 -- ABILITIES
 --
 -----------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
-tpz = tpz or {};
+tpz = tpz or {}
 
 tpz.jobAbility =
 {
@@ -428,8 +428,8 @@ tpz.jobAbility =
     CHAOTIC_STRIKE     = 614,
     THUNDERSTORM       = 615,
     JUDGMENT_BOLT      = 616,
-};
-tpz.ja = tpz.jobAbility;
+}
+tpz.ja = tpz.jobAbility
 
 tpz.reaction =
 {
@@ -440,7 +440,7 @@ tpz.reaction =
     HIT      = 0x08,
     EVADE    = 0x09,
     GUARD    = 0x14,
-};
+}
 
 tpz.specEffect =
 {
@@ -450,11 +450,11 @@ tpz.specEffect =
     RAISE          = 0x11,
     RECOIL         = 0x20,
     CRITICAL_HIT   = 0x22,
-};
+}
 
 function corsairSetup(caster, ability, action, effect, job)
-    local roll = math.random(1,6);
-    caster:delStatusEffectSilent(tpz.effect.DOUBLE_UP_CHANCE);
+    local roll = math.random(1,6)
+    caster:delStatusEffectSilent(tpz.effect.DOUBLE_UP_CHANCE)
     caster:addStatusEffectEx(tpz.effect.DOUBLE_UP_CHANCE,
                              tpz.effect.DOUBLE_UP_CHANCE,
                              roll,
@@ -463,9 +463,9 @@ function corsairSetup(caster, ability, action, effect, job)
                              ability:getID(),
                              effect,
                              job,
-                             true);
-    caster:setLocalVar("corsairRollTotal", roll);
-    action:speceffect(caster:getID(), roll);
+                             true)
+    caster:setLocalVar("corsairRollTotal", roll)
+    action:speceffect(caster:getID(), roll)
     if (checkForElevenRoll(caster)) then
         action:recast(action:recast()/2)
     end
@@ -474,16 +474,16 @@ function corsairSetup(caster, ability, action, effect, job)
 end
 
 function atMaxCorsairBusts(caster)
-    local numBusts = caster:numBustEffects();
-    return (numBusts >= 2 and caster:getMainJob() == tpz.job.COR) or (numBusts >= 1 and caster:getMainJob() ~= tpz.job.COR);
+    local numBusts = caster:numBustEffects()
+    return (numBusts >= 2 and caster:getMainJob() == tpz.job.COR) or (numBusts >= 1 and caster:getMainJob() ~= tpz.job.COR)
 end
 
 function checkForJobBonus(caster, job)
     local jobBonus = 0
     if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(tpz.mod.JOB_BONUS_CHANCE)) then
-        jobBonus = 1;
+        jobBonus = 1
     end
-    caster:setLocalVar("corsairRollBonus", jobBonus);
+    caster:setLocalVar("corsairRollBonus", jobBonus)
 end
 
 function checkForElevenRoll(caster)
@@ -503,87 +503,87 @@ function checkForElevenRoll(caster)
 end
 
 function phantombuffMultiple(caster) -- Check for tpz.mod.PHANTOM_ROLL Value and apply non-stack logic.
-    local phantomValue = caster:getMod(tpz.mod.PHANTOM_ROLL);
-    local phantombuffValue = 0;
+    local phantomValue = caster:getMod(tpz.mod.PHANTOM_ROLL)
+    local phantombuffValue = 0
     if (phantomValue == 3) then
-        phantombuffMultiplier = 3;
+        phantombuffMultiplier = 3
     elseif ((phantomValue == 5) or (phantomValue == 8)) then
-        phantombuffMultiplier = 5;
+        phantombuffMultiplier = 5
     elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
-        phantombuffMultiplier = 7;
+        phantombuffMultiplier = 7
     else
-        phantombuffMultiplier = 0;
+        phantombuffMultiplier = 0
     end
 
-    return phantombuffMultiplier;
+    return phantombuffMultiplier
 end
 
 function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
     -- physical attack missed, skip rest
     local msg = skill:getMsg()
     if (msg == 158 or msg == 188 or msg == 31 or msg == 30) then
-        return 0;
+        return 0
     end
 
     --handle pd
     if ((target:hasStatusEffect(tpz.effect.PERFECT_DODGE) or target:hasStatusEffect(tpz.effect.TOO_HIGH) )
             and skilltype == tpz.attackType.PHYSICAL) then
-        skill:setMsg(tpz.msg.basic.JA_MISS_2);
-        return 0;
+        skill:setMsg(tpz.msg.basic.JA_MISS_2)
+        return 0
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(tpz.msg.basic.USES_JA_TAKE_DAMAGE);
+    skill:setMsg(tpz.msg.basic.USES_JA_TAKE_DAMAGE)
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 
-        dmg = utils.takeShadows(target, dmg, shadowbehav);
+        dmg = utils.takeShadows(target, dmg, shadowbehav)
 
         -- dealt zero damage, so shadows took hit
         if (dmg == 0) then
-            skill:setMsg(tpz.msg.basic.SHADOW_ABSORB);
-            return shadowbehav;
+            skill:setMsg(tpz.msg.basic.SHADOW_ABSORB)
+            return shadowbehav
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(tpz.effect.COPY_IMAGE);
-        target:delStatusEffect(tpz.effect.BLINK);
-        target:delStatusEffect(tpz.effect.THIRD_EYE);
+        target:delStatusEffect(tpz.effect.COPY_IMAGE)
+        target:delStatusEffect(tpz.effect.BLINK)
+        target:delStatusEffect(tpz.effect.THIRD_EYE)
     end
 
     --handle Third Eye using shadowbehav as a guide
     if (skilltype == tpz.attackType.PHYSICAL and utils.thirdeye(target)) then
-        skill:setMsg(tpz.msg.basic.ANTICIPATE);
-        return 0;
+        skill:setMsg(tpz.msg.basic.ANTICIPATE)
+        return 0
     end
 
     if (skilltype == tpz.attackType.PHYSICAL) then
-        dmg = target:physicalDmgTaken(dmg, skillparam);
+        dmg = target:physicalDmgTaken(dmg, skillparam)
     elseif (skilltype == tpz.attackType.MAGICAL) then
-        dmg = target:magicDmgTaken(dmg);
+        dmg = target:magicDmgTaken(dmg)
     elseif (skilltype == tpz.attackType.BREATH) then
-        dmg = target:breathDmgTaken(dmg);
+        dmg = target:breathDmgTaken(dmg)
     elseif (skilltype == tpz.attackType.RANGED) then
-        dmg = target:rangedDmgTaken(dmg);
+        dmg = target:rangedDmgTaken(dmg)
     end
 
     --handling phalanx
-    dmg = dmg - target:getMod(tpz.mod.PHALANX);
+    dmg = dmg - target:getMod(tpz.mod.PHALANX)
 
     if (dmg < 0) then
-        return 0;
+        return 0
     end
 
-    dmg = utils.stoneskin(target, dmg);
+    dmg = utils.stoneskin(target, dmg)
 
     if (dmg > 0) then
-        target:wakeUp();
-        target:updateEnmityFromDamage(mob,dmg);
+        target:wakeUp()
+        target:updateEnmityFromDamage(mob,dmg)
     end
 
-    return dmg;
+    return dmg
 end
 
 
@@ -607,7 +607,7 @@ function takeAbilityDamage(defender, attacker, params, primary, finaldmg, attack
     end
     local targetTPMult = params.targetTPMult or 1
     finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, attackType, damageType, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
-    local enmityEntity = taChar or attacker;
+    local enmityEntity = taChar or attacker
     if (params.overrideCE and params.overrideVE) then
         defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
     else
@@ -615,5 +615,5 @@ function takeAbilityDamage(defender, attacker, params, primary, finaldmg, attack
         defender:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
     end
 
-    return finaldmg;
+    return finaldmg
 end

@@ -20,7 +20,7 @@ function onEffectLose(target,effect)
         pet:leaveBattlefield(1)
     end
     target:setLocalVar("[battlefield]area", 0)
-end;
+end
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid)

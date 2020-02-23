@@ -684,40 +684,40 @@ end
 --------------------------------------------------
 
 function getDynamisMapList(player)
-    local bitmask = 0;
+    local bitmask = 0
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_SANDORIA) == true) then
-        bitmask = bitmask + 2;
+        bitmask = bitmask + 2
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_BASTOK) == true) then
-        bitmask = bitmask + 4;
+        bitmask = bitmask + 4
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_WINDURST) == true) then
-        bitmask = bitmask + 8;
+        bitmask = bitmask + 8
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_JEUNO) == true) then
-        bitmask = bitmask + 16;
+        bitmask = bitmask + 16
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_BEAUCEDINE) == true) then
-        bitmask = bitmask + 32;
+        bitmask = bitmask + 32
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_XARCABARD) == true) then
-        bitmask = bitmask + 64;
+        bitmask = bitmask + 64
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_VALKURM) == true) then
-        bitmask = bitmask + 128;
+        bitmask = bitmask + 128
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_BUBURIMU) == true) then
-        bitmask = bitmask + 256;
+        bitmask = bitmask + 256
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_QUFIM) == true) then
-        bitmask = bitmask + 512;
+        bitmask = bitmask + 512
     end
     if (player:hasKeyItem(tpz.ki.MAP_OF_DYNAMIS_TAVNAZIA) == true) then
-        bitmask = bitmask + 1024;
+        bitmask = bitmask + 1024
     end
 
-    return bitmask;
-end;
+    return bitmask
+end
 
 -- todo: fix these to use tables
 function dynamis.getExtensions(player)

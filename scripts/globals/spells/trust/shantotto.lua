@@ -1,7 +1,7 @@
 -----------------------------------------
 -- Spell: Shantotto
 -----------------------------------------
--- require("scripts/globals/trust");
+-- require("scripts/globals/trust")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

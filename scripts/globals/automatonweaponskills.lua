@@ -1,10 +1,10 @@
 -- Uses a mixture of mob and player WS formulas
-require("scripts/globals/weaponskills");
-require("scripts/globals/magicburst");
-require("scripts/globals/status");
-require("scripts/globals/utils");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/weaponskills")
+require("scripts/globals/magicburst")
+require("scripts/globals/status")
+require("scripts/globals/utils")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick, accBonus, weaponType, weaponDamage
@@ -159,29 +159,29 @@ function doAutoRangedWeaponskill(attacker, target, wsID, wsParams, tp, primaryMs
 end
 
 function getAutoHitRate(attacker,defender,capHitRate,bonus,melee)
-    local acc = (melee and attacker:getACC() or attacker:getRACC()) + (bonus or 0);
-    local eva = defender:getEVA();
+    local acc = (melee and attacker:getACC() or attacker:getRACC()) + (bonus or 0)
+    local eva = defender:getEVA()
 
-    local levelbonus = 0;
+    local levelbonus = 0
     if (attacker:getMainLvl() > defender:getMainLvl()) then
-        levelbonus = 2 * (attacker:getMainLvl() - defender:getMainLvl());
+        levelbonus = 2 * (attacker:getMainLvl() - defender:getMainLvl())
     end
 
-    local hitrate = acc - eva + levelbonus + 75;
-    hitrate = hitrate/100;
+    local hitrate = acc - eva + levelbonus + 75
+    hitrate = hitrate/100
 
     -- Applying hitrate caps
     if (capHitRate) then -- this isn't capped for when acc varies with tp, as more penalties are due
-        hitrate = utils.clamp(hitrate, 0.2, 0.95);
+        hitrate = utils.clamp(hitrate, 0.2, 0.95)
     end
-    return hitrate;
-end;
+    return hitrate
+end
 
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function getAutocRatio(attacker, defender, params, ignoredDef, melee)
     local cratio = (melee and attacker:getStat(tpz.mod.ATT) or attacker:getRATT()) * params.atkmulti / (defender:getStat(tpz.mod.DEF) - ignoredDef)
 
-    local levelbonus = 0;
+    local levelbonus = 0
     if attacker:getMainLvl() > defender:getMainLvl() then
         levelbonus = 0.05 * (attacker:getMainLvl() - defender:getMainLvl())
     end
@@ -237,9 +237,9 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
         elseif 0.5 <= cratio and cratio <= 0.7 then
             pdifmax = 1
         elseif 0.7 < cratio and cratio <= 1.2 then
-            pdifmax = cratio + 0.3;
+            pdifmax = cratio + 0.3
         elseif 1.2 < cratio and cratio <= 1.5 then
-            pdifmax = cratio * 0.25 + cratio;
+            pdifmax = cratio * 0.25 + cratio
         elseif 1.5 < cratio and cratio <= 2.625 then
             pdifmax = cratio + 0.375
         elseif 2.625 < cratio and cratio <= 3.25 then
@@ -260,7 +260,7 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
             pdifmin = cratio - 0.375
         end
 
-        local critbonus = attacker:getMod(tpz.mod.CRIT_DMG_INCREASE) - defender:getMod(tpz.mod.CRIT_DEF_BONUS);
+        local critbonus = attacker:getMod(tpz.mod.CRIT_DMG_INCREASE) - defender:getMod(tpz.mod.CRIT_DEF_BONUS)
         critbonus = utils.clamp(critbonus, 0, 100)
         pdifcrit[1] = pdifmin * (100 + critbonus) / 100
         pdifcrit[2] = pdifmax * (100 + critbonus) / 100
@@ -292,7 +292,7 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
         pdifmin = pdifmin * 1.25
         pdifmax = pdifmax * 1.25
 
-        local critbonus = attacker:getMod(tpz.mod.CRIT_DMG_INCREASE) - defender:getMod(tpz.mod.CRIT_DEF_BONUS);
+        local critbonus = attacker:getMod(tpz.mod.CRIT_DMG_INCREASE) - defender:getMod(tpz.mod.CRIT_DEF_BONUS)
         critbonus = utils.clamp(critbonus, 0, 100)
         pdifcrit[1] = pdifmin * (100 + critbonus) / 100
         pdifcrit[2] = pdifmax * (100 + critbonus) / 100

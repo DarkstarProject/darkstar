@@ -2,10 +2,10 @@
 -- Porter Moogle Utilities
 -- desc: Common functionality for Porter Moogles.
 -----------------------------------
-require("scripts/globals/common");
+require("scripts/globals/common")
 
 -- Item IDs for all of the slips.
-local slipIds = { 29312, 29313, 29314, 29315, 29316, 29317, 29318, 29319, 29320, 29321, 29322, 29323, 29324, 29325, 29326, 29327, 29328, 29329, 29330, 29331, 29332, 29333, 29334, 29335, 29336, 29337, 29338, 29339 };
+local slipIds = { 29312, 29313, 29314, 29315, 29316, 29317, 29318, 29319, 29320, 29321, 29322, 29323, 29324, 29325, 29326, 29327, 29328, 29329, 29330, 29331, 29332, 29333, 29334, 29335, 29336, 29337, 29338, 29339 }
 
 -- Item IDs for the items stored on each slip. Zero-based index in the table represents the bit indicating if the slip has the item stored.
 local slipItems = {
@@ -37,13 +37,13 @@ local slipItems = {
     [slipIds[26]] = { 23063, 23130, 23197, 23264, 23331, 23064, 23131, 23198, 23265, 23332, 23065, 23132, 23199, 23266, 23333, 23066, 23133, 23200, 23267, 23334, 23067, 23134, 23201, 23268, 23335, 23068, 23135, 23202, 23269, 23336, 23069, 23136, 23203, 23270, 23337, 23070, 23137, 23204, 23271, 23338, 23071, 23138, 23205, 23272, 23339, 23072, 23139, 23206, 23273, 23340, 23073, 23140, 23207, 23274, 23341, 23074, 23141, 23208, 23275, 23342, 23075, 23142, 23209, 23276, 23343, 23076, 23143, 23210, 23277, 23344, 23077, 23144, 23211, 23278, 23345, 23078, 23145, 23212, 23279, 23346, 23079, 23146, 23213, 23280, 23347, 23080, 23147, 23214, 23281, 23348, 23081, 23148, 23215, 23282, 23349, 23082, 23149, 23216, 23283, 23350, 23083, 23150, 23217, 23284, 23351, 23084, 23151, 23218, 23285, 23352 },
     [slipIds[27]] = { 23398, 23465, 23532, 23599, 23666, 23399, 23466, 23533, 23600, 23667, 23400, 23467, 23534, 23601, 23668, 23401, 23468, 23535, 23602, 23669, 23402, 23469, 23536, 23603, 23670, 23403, 23470, 23537, 23604, 23671, 23404, 23471, 23538, 23605, 23672, 23405, 23472, 23539, 23606, 23673, 23406, 23473, 23540, 23607, 23674, 23407, 23474, 23541, 23608, 23675, 23408, 23475, 23542, 23609, 23676, 23409, 23476, 23543, 23610, 23677, 23410, 23477, 23544, 23611, 23678, 23411, 23478, 23545, 23612, 23679, 23412, 23479, 23546, 23613, 23680, 23413, 23480, 23547, 23614, 23681, 23414, 23481, 23548, 23615, 23682, 23415, 23482, 23549, 23616, 23683, 23416, 23483, 23550, 23617, 23684, 23417, 23484, 23551, 23618, 23685, 23418, 23485, 23552, 23619, 23686, 23419, 23486, 23553, 23620, 23687 },
     [slipIds[28]] = { 21515, 21561, 21617, 21670, 21718, 21775, 21826, 21879, 21918, 21971, 22027, 22082, 22108, 22214, 21516, 21562, 21618, 21671, 21719, 21776, 21827, 21880, 21919, 21972, 22028, 22083, 22109, 22215, 21517, 21563, 21619, 21672, 21720, 21777, 21828, 21881, 21920, 21973, 22029, 22084, 22110, 22216, 21518, 21564, 21620, 21673, 21721, 21778, 21829, 21882, 21921, 21974, 22030, 22085, 22111, 22217, 21519, 21565, 21621, 21674, 21722, 21779, 21830, 21883, 21922, 21975, 22031, 22086, 22112, 22218 }
-};
+}
 
 ----------------------------------------------------------------------
 -- desc : Checks if the supplied item is a Moogle Storage Slip.
 ----------------------------------------------------------------------
 local function isSlip(itemId)
-    return (slipItems[itemId] ~= nil);
+    return (slipItems[itemId] ~= nil)
 end
 
 ----------------------------------------------------------------------
@@ -52,35 +52,35 @@ end
 local function isStorableOn(slipId, itemId)
     for _, id in ipairs(slipItems[slipId]) do
         if (id == itemId) then
-            return true;
+            return true
         end
     end
     
-    printf('Item %s is not storable on %s', itemId, slipId);
-    return false;
+    printf('Item %s is not storable on %s', itemId, slipId)
+    return false
 end
 
 ----------------------------------------------------------------------
 -- desc : Gets IDs of retrievable items from the extra data on a slip.
 ----------------------------------------------------------------------
 local function getItemsOnSlip(extra, slipId)
-    local slip = slipItems[slipId];
+    local slip = slipItems[slipId]
     
-    local itemsOnSlip = {};
-    local x = 1;
+    local itemsOnSlip = {}
+    local x = 1
     for k,v in ipairs(slip) do
-        local byte = extra[math.floor((k - 1) / 8) + 1];
+        local byte = extra[math.floor((k - 1) / 8) + 1]
         if byte < 0 then
-            byte = byte + 256;
+            byte = byte + 256
         end
                 
         if (bit.band(bit.rshift(byte, (k - 1) % 8), 1) ~= 0) then
-            itemsOnSlip[x] = v;
-            x = x + 1;
+            itemsOnSlip[x] = v
+            x = x + 1
         end
     end
     
-    return itemsOnSlip;
+    return itemsOnSlip
 end
 
 ----------------------------------------------------------------------
@@ -99,22 +99,22 @@ end
 -- desc : Converts the 8 bit extra data into 32 bit params for events.
 ----------------------------------------------------------------------
 local function int8ToInt32(extra)
-    local params = {};
-    local int32 = '';
+    local params = {}
+    local int32 = ''
     
     for k,v in ipairs(extra) do
-        int32 = string.format('%02x%s', v, int32);
+        int32 = string.format('%02x%s', v, int32)
         if (k % 4 == 0) then
-            params[#params + 1] = tonumber(int32, 16);
-            int32 = '';
+            params[#params + 1] = tonumber(int32, 16)
+            int32 = ''
         end
     end
     
     if (int32 ~= '') then
-        params[#params + 1] = tonumber(int32, 16);
+        params[#params + 1] = tonumber(int32, 16)
     end
     
-    return params;
+    return params
 end
 
 ----------------------------------------------------------------------
@@ -123,23 +123,23 @@ end
 --        storable items.
 ----------------------------------------------------------------------
 local function getSlipId(trade)
-    local slipId = 0;
-    local slips = 0;
+    local slipId = 0
+    local slips = 0
     
     for _, itemId in ipairs(slipIds) do
         if (trade:hasItemQty(itemId, 1)) then
-            slips = slips + 1;
+            slips = slips + 1
             if (slipId == 0) then
-                slipId = itemId;
+                slipId = itemId
             end
         end
     end
     
     if (slips == trade:getItemCount() and slips > 1) then
-        slipId = 0;
+        slipId = 0
     end
     
-    return slipId, slips;
+    return slipId, slips
 end
 
 ----------------------------------------------------------------------
@@ -147,18 +147,18 @@ end
 --        slip in the trade window.
 ----------------------------------------------------------------------
 local function getStorableItems(player, trade, slipId)
-    local storableItemIds = { };
+    local storableItemIds = { }
     
     for i = 0, 7 do
-        local slotItemId = trade:getItemId(i);
+        local slotItemId = trade:getItemId(i)
         if (slotItemId ~= 0 and isSlip(slotItemId) ~= true and player:hasItem(slotItemId)) then
             if (isStorableOn(slipId, slotItemId)) then
-                storableItemIds[#storableItemIds+1] = slotItemId;
+                storableItemIds[#storableItemIds+1] = slotItemId
             end
         end
     end
     
-    return storableItemIds;
+    return storableItemIds
 end
 
 ----------------------------------------------------------------------
@@ -167,40 +167,40 @@ end
 ----------------------------------------------------------------------
 local function storeItems(player, storableItemIds, slipId, e)
     if (#storableItemIds > 0) then
-        local param0 = 0;
-        local param1 = 0;
+        local param0 = 0
+        local param1 = 0
         if (#storableItemIds == 1) then
-            param0 = storableItemIds[1];
-            param1 = 0;
+            param0 = storableItemIds[1]
+            param1 = 0
         else
-            param0 = #storableItemIds;
-            param1 = 1;
+            param0 = #storableItemIds
+            param1 = 1
         end
         
         -- idk
-        local extra = { };
+        local extra = { }
         for i = 0, 23 do
-            extra[i] = 0;
+            extra[i] = 0
         end
         
         for k, v in ipairs(slipItems[slipId]) do
             if find(storableItemIds, v) ~= nil then
-                local bitmask = extra[math.floor((k - 1) / 8)];
+                local bitmask = extra[math.floor((k - 1) / 8)]
                 if bitmask < 0 then
-                    bitmask = bitmask + 256;
+                    bitmask = bitmask + 256
                 end
-                extra[math.floor((k - 1) / 8)] = bit.bor(bitmask, bit.lshift(1, (k - 1) % 8));
+                extra[math.floor((k - 1) / 8)] = bit.bor(bitmask, bit.lshift(1, (k - 1) % 8))
             end
         end
         
-        local result = player:storeWithPorterMoogle(slipId, extra, storableItemIds);
+        local result = player:storeWithPorterMoogle(slipId, extra, storableItemIds)
         
         if (result == 0) then
-            player:startEvent(e.STORE_EVENT_ID, param0, param1);
+            player:startEvent(e.STORE_EVENT_ID, param0, param1)
         elseif (result == 1) then
-            player:startEvent(e.ALREADY_STORED_ID);
+            player:startEvent(e.ALREADY_STORED_ID)
         elseif (result == 2) then
-            player:startEvent(e.MAGIAN_TRIAL_ID);
+            player:startEvent(e.MAGIAN_TRIAL_ID)
         end
     end
 end
@@ -210,7 +210,7 @@ end
 --        is index 0, Storage Slip 2 is index 1, etc).
 ----------------------------------------------------------------------
 local function getSlipIndex(slipId)
-    return find(slipIds, slipId) - 1;
+    return find(slipIds, slipId) - 1
 end
 
 ----------------------------------------------------------------------
@@ -218,12 +218,12 @@ end
 --        retrieval event.
 ----------------------------------------------------------------------
 local function startRetrieveProcess(player, eventId, slipId)
-    local extra = player:getRetrievableItemsForSlip(slipId);
-    local params = int8ToInt32(extra);
-    local slipIndex = getSlipIndex(slipId);
+    local extra = player:getRetrievableItemsForSlip(slipId)
+    local params = int8ToInt32(extra)
+    local slipIndex = getSlipIndex(slipId)
     
-    player:setLocalVar('slipId', slipId);
-    player:startEvent(eventId, params[1], params[2], params[3], params[4], params[5], params[6], nil, slipIndex);
+    player:setLocalVar('slipId', slipId)
+    player:startEvent(eventId, params[1], params[2], params[3], params[4], params[5], params[6], nil, slipIndex)
 end
 
 ----------------------------------------------------------------------
@@ -231,15 +231,15 @@ end
 --        supplied in the trade.
 ----------------------------------------------------------------------
 function porterMoogleTrade(player, trade, e)
-    local slipId, slipCount = getSlipId(trade);
-    if (slipId == 0 or slipCount > 1) then return; end;
+    local slipId, slipCount = getSlipId(trade)
+    if (slipId == 0 or slipCount > 1) then return end
     
-    local storableItemIds = getStorableItems(player, trade, slipId);
+    local storableItemIds = getStorableItems(player, trade, slipId)
     
     if (#storableItemIds > 0) then
-        storeItems(player, storableItemIds, slipId, e);
+        storeItems(player, storableItemIds, slipId, e)
     else
-        startRetrieveProcess(player, e.RETRIEVE_EVENT_ID, slipId);
+        startRetrieveProcess(player, e.RETRIEVE_EVENT_ID, slipId)
     end
 end
 
@@ -249,30 +249,30 @@ end
 --        updates the user's event data.
 ----------------------------------------------------------------------
 function porterEventUpdate(player, csid, option, RETRIEVE_EVENT_ID)
-    local slipId = player:getLocalVar('slipId');
+    local slipId = player:getLocalVar('slipId')
     if (csid == RETRIEVE_EVENT_ID and slipId ~= 0 and slipId ~= nil) then
-        local extra = player:getRetrievableItemsForSlip(slipId);
-        local itemsOnSlip = getItemsOnSlip(extra, slipId);
-        local retrievedItemId = itemsOnSlip[option + 1];
+        local extra = player:getRetrievableItemsForSlip(slipId)
+        local itemsOnSlip = getItemsOnSlip(extra, slipId)
+        local retrievedItemId = itemsOnSlip[option + 1]
         
         if (player:hasItem(retrievedItemId) or player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, retrievedItemId);
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, retrievedItemId)
         else
-            local k = find(slipItems[slipId], retrievedItemId);
-            local extraId = math.floor((k - 1) / 8);
-            local bitmask = extra[extraId + 1];
+            local k = find(slipItems[slipId], retrievedItemId)
+            local extraId = math.floor((k - 1) / 8)
+            local bitmask = extra[extraId + 1]
             if bitmask < 0 then
-                bitmask = bitmask + 256;
+                bitmask = bitmask + 256
             end
-            bitmask = bit.band(bitmask, bit.bnot(bit.lshift(1, (k - 1) % 8)));
-            extra[extraId + 1] = bitmask;
+            bitmask = bit.band(bitmask, bit.bnot(bit.lshift(1, (k - 1) % 8)))
+            extra[extraId + 1] = bitmask
 
-            player:retrieveItemFromSlip(slipId, retrievedItemId, extraId, bitmask);
-            player:messageSpecial(zones[player:getZoneID()].text.RETRIEVE_DIALOG_ID, retrievedItemId, nil, nil, retrievedItemId, false);
+            player:retrieveItemFromSlip(slipId, retrievedItemId, extraId, bitmask)
+            player:messageSpecial(zones[player:getZoneID()].text.RETRIEVE_DIALOG_ID, retrievedItemId, nil, nil, retrievedItemId, false)
         end
         
-        local params = int8ToInt32(extra);
-        player:updateEvent(params[1], params[2], params[3], params[4], params[5], params[6], slipId);
+        local params = int8ToInt32(extra)
+        player:updateEvent(params[1], params[2], params[3], params[4], params[5], params[6], slipId)
     end
 end
 
@@ -282,21 +282,21 @@ end
 function porterEventFinish(player, csid, option, TALK_EVENT_ID)
     if (csid == TALK_EVENT_ID and option < 1000) then
         -- This is just because hilarious.
-        option = math.floor(option / 16) + (option % 16);
-        local hasItem = player:hasItem(slipIds[option]);
+        option = math.floor(option / 16) + (option % 16)
+        local hasItem = player:hasItem(slipIds[option])
         if (hasItem or player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, slipIds[option]);
-            return;
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, slipIds[option])
+            return
         end
 
         if (player:delGil(1000)) then
-            player:addItem(slipIds[option]);
-            player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, slipIds[option]);
+            player:addItem(slipIds[option])
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, slipIds[option])
         else
-            player:messageSpecial(zones[player:getZoneID()].text.NOT_HAVE_ENOUGH_GIL, slipIds[option]);
-            return;
+            player:messageSpecial(zones[player:getZoneID()].text.NOT_HAVE_ENOUGH_GIL, slipIds[option])
+            return
         end
     else
-        player:setLocalVar('slipId', 0);
+        player:setLocalVar('slipId', 0)
     end
 end

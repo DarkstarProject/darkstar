@@ -2,7 +2,7 @@
 -- Gear sets
 -- Allows the use of gear sets with modifiers
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------
 
 local matchtype = {
@@ -13,13 +13,13 @@ local matchtype = {
 }
 
 -- placeholder for unknown mod types
-local MOD_UNKNOWN = 0;
+local MOD_UNKNOWN = 0
 
 -- apparently these are static, so i'll leave them here
-local extraDamageChance = 35;
-local extraAttackChance = 25;
-local nullDamageChance = 15;
-local instantCastChance = 15;
+local extraDamageChance = 35
+local extraAttackChance = 25
+local nullDamageChance = 15
+local instantCastChance = 15
 
 
 --              {id, {item, ids, in, no, particular, order}, minimum matches required, match type, mods{id, value, modvalue for each additional match, additional whole set bonus}
@@ -189,44 +189,44 @@ local HipsterSets = {
 -- Checks for gear sets present on a player
 -------------------------------------------
 function checkForGearSet(player)
-    -- print("---Removed existing gear set mods!---\n");
-    player:clearGearSetMods();
+    -- print("---Removed existing gear set mods!---\n")
+    player:clearGearSetMods()
 
     -- cause we dont want hundreds of function calls
-    local equip = {};
+    local equip = {}
     for slot = 0, tpz.MAX_SLOTID do
-        equip[slot+1] = player:getEquipID(slot);
+        equip[slot+1] = player:getEquipID(slot)
     end
 
     for index, gearset in pairs(GearSets) do
-        local matches = 0;
+        local matches = 0
         if (player:hasGearSetMod(gearset.id) == false) then
-            local slot = 0;
-            local gearMatch = {};
+            local slot = 0
+            local gearMatch = {}
 
             for _, id in pairs(gearset.items) do
                 for slot = 1, tpz.MAX_SLOTID do
-                    local equipId = equip[slot];
+                    local equipId = equip[slot]
 
                     -- check the item matches
                     if (equipId == id) then
-                        matches = matches + 1;
-                        gearMatch[slot] = equipId;
-                        break;
+                        matches = matches + 1
+                        gearMatch[slot] = equipId
+                        break
                     end
-                end;
+                end
             end
 
             -- doesnt count as a match if the same item is in both slots
             if (gearMatch[tpz.slot.EAR1+1] == gearMatch[tpz.slot.EAR2+1] and gearMatch[tpz.slot.EAR1+1] ~= nil) then
-                matches = matches - 1;
-            end;
+                matches = matches - 1
+            end
             if (gearMatch[tpz.slot.RING1+1] == gearMatch[tpz.slot.RING2+1] and gearMatch[tpz.slot.RING1+1] ~= nil) then
-                matches = matches - 1;
-            end;
+                matches = matches - 1
+            end
             if (gearMatch[tpz.slot.MAIN+1] == gearMatch[tpz.slot.SUB+1] and gearMatch[tpz.slot.MAIN+1] ~= nil) then
-                matches = matches - 1;
-            end;
+                matches = matches - 1
+            end
 
             if (matches >= gearset.matches) then
                 if (FindMatchByType(gearset, gearMatch) == true) then
@@ -235,25 +235,25 @@ function checkForGearSet(player)
             end
         end
     end
-end;
+end
 
 function FindMatchByType(gearset, gearMatch)
     if (gearset.matchType == matchtype.any) then
-        return true;
+        return true
     elseif (gearset.matchType == matchtype.ring_armor and (gearMatch[tpz.slot.HEAD+1] ~= nil or gearMatch[tpz.slot.BODY+1] ~= nil or gearMatch[tpz.slot.HANDS+1] ~= nil or gearMatch[tpz.slot.LEGS+1] ~= nil or gearMatch[tpz.slot.FEET+1] ~= nil) and (gearMatch[tpz.slot.RING1+1] ~= nil or gearMatch[tpz.slot.RING2+1] ~= nil)) then
-        return true;
+        return true
     end
 
     for _, id in ipairs(gearMatch) do
         if (gearset.matchType == matchtype.earring_weapon and (gearMatch[tpz.slot.MAIN+1] ~= nil or gearMatch[tpz.slot.SUB+1] ~= nil) and (gearMatch[tpz.slot.EAR1+1] ~= nil or gearMatch[tpz.slot.EAR2+1] ~= nil)) then
-            return true;
+            return true
         elseif (gearset.matchType == matchtype.weapon_weapon and (gearMatch[tpz.slot.MAIN+1] ~= nil and gearMatch[tpz.slot.SUB+1] ~= nil)) then
-            return true;
+            return true
         end
     end
 
-    return false;
-end;
+    return false
+end
 
 ---------------------------------------
 -- Applys a gear set mod
@@ -262,92 +262,92 @@ function ApplyMod(player, gearset, matches)
 
     for _, set in pairs(HipsterSets) do
         if (set.id == gearset.id) then
-            HandleHipsterSet(player, gearset, matches);
-            return;
+            HandleHipsterSet(player, gearset, matches)
+            return
         end
     end
 
     -- find any additional matches
-    local addMatches = matches - gearset.matches;
+    local addMatches = matches - gearset.matches
 
     -- just in case some d00d decides to custom shit up and complain the script is b0rked
     if (addMatches < 0) then
-        return;
-    end;
+        return
+    end
 
-    local i = 0;
+    local i = 0
     for _, mod in pairs(gearset.mods) do
-        local modId = mod[1];
-        local modValue = mod[2];
+        local modId = mod[1]
+        local modValue = mod[2]
 
         -- value/multiplier for additional pieces
-        local addMatchValue = mod[3];
+        local addMatchValue = mod[3]
 
         -- additional bonus for complete set
-        local addSetBonus = 0;
+        local addSetBonus = 0
 
         -- cause we need all pieces to form a complete set
         if (matches == #gearset.items) then
-            addSetBonus = mod[4];
-        end;
+            addSetBonus = mod[4]
+        end
 
         -- add bonus mods per piece
         if (addMatches ~= 0 and addMatchValue ~= 0) then
-            modValue = modValue + (addMatchValue * addMatches);
+            modValue = modValue + (addMatchValue * addMatches)
         end
-        -- printf("gearset: %u, mod: %u, value %u", gearset.id, modId, modValue + addSetBonus);
-        player:addGearSetMod(gearset.id + i, modId, modValue + addSetBonus);
-        i = i + 1;
+        -- printf("gearset: %u, mod: %u, value %u", gearset.id, modId, modValue + addSetBonus)
+        player:addGearSetMod(gearset.id + i, modId, modValue + addSetBonus)
+        i = i + 1
     end
-    -- print("Gear set! Mod applied: ModNameId:" .. modNameId .. " ModId:" .. modId .. " Value:" .. modValue .. "\n");
-end;
+    -- print("Gear set! Mod applied: ModNameId:" .. modNameId .. " ModId:" .. modId .. " Value:" .. modValue .. "\n")
+end
 
 -- fkin hipsters
 function HandleHipsterSet(player, gearset, matches)
     -- Rubeus Armor Set
     if (gearset.id == 34) then
-        local modValue = 0;
+        local modValue = 0
 
         if (matches > 1 and matches < 4) then
-            modValue = 4; -- 2 or 3 pieces
+            modValue = 4 -- 2 or 3 pieces
         elseif (matches > 3) then
-            modValue = 10; -- 4 or 5 pieces
-        end;
-        -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, tpz.mod.FASTCAST, modValue);
-        player:addGearSetMod(gearset.id, tpz.mod.FASTCAST, modValue);
-        return;
+            modValue = 10 -- 4 or 5 pieces
+        end
+        -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, tpz.mod.FASTCAST, modValue)
+        player:addGearSetMod(gearset.id, tpz.mod.FASTCAST, modValue)
+        return
     -- AF1 119+2/+3 ACC/RACC/MACC Sets EXCEPT SMN
     elseif (gearset.id >= 133 and gearset.id <= 199 and gearset.id ~= 175) then
-        local modValue = 0;
+        local modValue = 0
         
         if (matches == 2) then
-            modValue = 15; -- 2 matches
+            modValue = 15 -- 2 matches
         elseif (matches == 3) then
-            modValue = 30; -- 3 matches
+            modValue = 30 -- 3 matches
         elseif (matches == 4) then
-            modValue = 45; -- 4 matches
+            modValue = 45 -- 4 matches
         elseif (matches >= 5) then
-            modValue = 60; -- 5 or more matches
-        end;
-        player:addGearSetMod(gearset.id, tpz.mod.ACC, modValue);
-        player:addGearSetMod(gearset.id + 1, tpz.mod.RACC, modValue);
-        player:addGearSetMod(gearset.id + 2, tpz.mod.MACC, modValue);
-        return;
+            modValue = 60 -- 5 or more matches
+        end
+        player:addGearSetMod(gearset.id, tpz.mod.ACC, modValue)
+        player:addGearSetMod(gearset.id + 1, tpz.mod.RACC, modValue)
+        player:addGearSetMod(gearset.id + 2, tpz.mod.MACC, modValue)
+        return
     -- AF1 119 +2/+3 SMN Avatar:ACC/RACC/MACC (unimplemented)
     elseif (gearset.id == 175) then
-        local modValue = 0;
+        local modValue = 0
         
         if (matches == 2) then
-            modValue = 15; -- 2 matches
+            modValue = 15 -- 2 matches
         elseif (matches == 3) then
-            modValue = 30; -- 3 matches
+            modValue = 30 -- 3 matches
         elseif (matches == 4) then
-            modValue = 45; -- 4 matches
+            modValue = 45 -- 4 matches
         elseif (matches >= 5) then
-            modValue = 60; -- 5 or more matches
-        end;
+            modValue = 60 -- 5 or more matches
+        end
         --Unimplemented method to add pet mods
-        return;
+        return
     end
 end
 
