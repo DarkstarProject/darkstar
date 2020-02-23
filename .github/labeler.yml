@@ -1,1 +1,2 @@
+# Applies the label 'new' when any file has been changed
 new: *
