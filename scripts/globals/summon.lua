@@ -26,7 +26,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod,dmgmo
     -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
     local critrate = (avatar:getStat(tpz.mod.DEX) - target:getStat(tpz.mod.AGI)) * 0.005 -- assumes +0.5% crit rate per 1 dDEX
     critrate = critrate + avatar:getMod(tpz.mod.CRITHITRATE) / 100
-    critrate = utils.clamp(critrate, 0.05, 0.2);
+    critrate = utils.clamp(critrate, 0.05, 0.2)
 
     -- Applying pDIF
     if ratio <= 1 then

@@ -1546,7 +1546,7 @@ tpz.mod =
     -- SPARE = 958, -- stuff
     -- SPARE = 959, -- stuff
     -- SPARE = 960, -- stuff
-};
+}
 
 tpz.latent =
 {

@@ -890,7 +890,7 @@ tpz.caskets.onEventFinish = function(player, csid, option, npc)
     -- Basic chest var's
     ------------------------------------------------------------------
     local npc               = player:getEventTarget()
-    local chestId           = npc:getID();
+    local chestId           = npc:getID()
     local spawnStatus       = npc:getLocalVar("[caskets]SPAWNSTATUS")
     local locked            = npc:getLocalVar("[caskets]LOCKED")
     local lootType          = npc:getLocalVar("[caskets]LOOT_TYPE")

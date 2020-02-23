@@ -117,15 +117,15 @@ function tpz.battlefield.SendTimePrompts(battlefield, players)
     players = players or battlefield:getPlayers()
 
     if lastTimeUpdate == 0 and remainingTime < 600 then
-        message = 600;
+        message = 600
     elseif lastTimeUpdate == 600 and remainingTime < 300 then
-        message = 300;
+        message = 300
     elseif lastTimeUpdate == 300 and remainingTime < 60 then
-        message = 60;
+        message = 60
     elseif lastTimeUpdate == 60 and remainingTime < 30 then
-        message = 30;
+        message = 30
     elseif lastTimeUpdate == 30 and remainingTime < 10 then
-        message = 10;
+        message = 10
     end
 
     if message ~= 0 then
