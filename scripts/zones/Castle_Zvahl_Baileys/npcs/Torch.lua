@@ -31,7 +31,6 @@ function onTrigger(player,npc)
     then
         player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
         GetMobByID(ID.mob.DARK_SPARK):setLocalVar("fromTorch", offset)
-        player:setCharVar("BorghertzSparkKilled", 0)
 
     -- default dialog
     else
