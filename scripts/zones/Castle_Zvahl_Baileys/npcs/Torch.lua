@@ -13,10 +13,10 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.TORCH_OFFSET
+    local offset = npc:getID() - ID.npc.TORCH_OFFSET + 1
 
     -- killed Dark Spark and clicked same torch used to spawn
-    if player:getCharVar("BorghertzSparkKilled") == 1 and GetMobByID(ID.mob.DARK_SPARK):getLocalVar("fromTorch") == offset then
+    if player:getCharVar("BorghertzSparkKilled") == offset then
         npcUtil.giveKeyItem(player, tpz.ki.SHADOW_FLAMES)
         player:setCharVar("BorghertzSparkKilled", 0)
         player:setCharVar("BorghertzCS", 0)
