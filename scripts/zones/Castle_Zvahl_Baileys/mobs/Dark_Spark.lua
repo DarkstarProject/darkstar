@@ -14,6 +14,6 @@ function onMobDeath(mob, player, isKiller)
         not player:hasKeyItem(tpz.ki.SHADOW_FLAMES) and
         player:getCharVar("BorghertzCS") >= 2
     then
-        player:setCharVar("BorghertzSparkKilled", mob:getLocalVar("fromTorch"))
+        player:setCharVar("BorghertzSparkKilled", 1)
     end
 end
