@@ -39,7 +39,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
     if damage > 0 then
-        if not target:hasStatusEffect(tpz.effect.ATTACK_DOWN) then
+        if not target:hasStatusEffect(tpz.effect.DEFENSE_DOWN) then
             local duration = tp / 1000 * 20 * applyResistanceAddEffect(player, target, tpz.magic.ele.WIND, 0)
             target:addStatusEffect(tpz.effect.DEFENSE_DOWN, 19, 0, duration)
         end
