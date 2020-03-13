@@ -31,7 +31,7 @@ end
 
 function onUseAbility(player, target, ability)
     if target:isPC() then
-        target:addStatusEffect(tpz.effect.BIND, 0, 0, math.random(1,5))
+        ability:setMsg(tpz.msg.basic.NO_EFFECT)
     else
         local Tamed = false
 
