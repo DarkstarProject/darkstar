@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.tpmod = TPMOD_DAMAGE
-        params.dmgtype = dsp.damageType.HTH
+        params.damageType = tpz.damageType.BLUNT
         params.scattr = SC_FUSION
         params.numhits = 1
         params.multiplier = 1.75
@@ -40,7 +40,7 @@ function onSpellCast(caster,target,spell)
         params.int_wsc = 0.0
         params.mnd_wsc = 0.0
         params.chr_wsc = 0.0
-        params.offcratiomod = caster:getStat(dsp.mod.DEF)
+        params.offcratiomod = caster:getStat(tpz.mod.DEF)
     damage = BluePhysicalSpell(caster, target, spell, params)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 

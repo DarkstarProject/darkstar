@@ -13,5 +13,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(dsp.effect.MIKAGE,0,0,45)
+    target:addStatusEffect(tpz.effect.MIKAGE,0,0,45)
 end

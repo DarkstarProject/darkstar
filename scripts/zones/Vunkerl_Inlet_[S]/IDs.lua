@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.VUNKERL_INLET_S] =
+zones[tpz.zone.VUNKERL_INLET_S] =
 {
     text =
     {
@@ -32,4 +32,4 @@ zones[dsp.zone.VUNKERL_INLET_S] =
     },
 }
 
-return zones[dsp.zone.VUNKERL_INLET_S]
+return zones[tpz.zone.VUNKERL_INLET_S]

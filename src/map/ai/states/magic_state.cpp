@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -58,11 +56,6 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
     if (!CanCastSpell(PTarget))
     {
         throw CStateInitException(std::move(m_errorMsg));
-    }
-
-    if (PTarget->objtype != TYPE_PC && (m_PSpell->getZoneMisc() & MISC_TRACTOR) != 0)
-    {
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_CANNOT_ON_THAT_TARG));
     }
 
     auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, PTarget, GetSpell());
@@ -258,9 +251,9 @@ void CMagicState::SpendCost()
         // conserve mp
         int16 rate = m_PEntity->getMod(Mod::CONSERVE_MP);
 
-        if (dsprand::GetRandomNumber(100) < rate)
+        if (tpzrand::GetRandomNumber(100) < rate)
         {
-            cost = (int16)(cost * (dsprand::GetRandomNumber(8.f, 16.f) / 16.0f));
+            cost = (int16)(cost * (tpzrand::GetRandomNumber(8.f, 16.f) / 16.0f));
         }
 
         m_PEntity->addMP(-cost);

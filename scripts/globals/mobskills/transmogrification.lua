@@ -19,8 +19,8 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    MobBuffMove(mob, dsp.effect.PHYSICAL_SHIELD, 2, 0, 30)
-    skill:setMsg(dsp.msg.basic.NONE)
+    MobBuffMove(mob, tpz.effect.PHYSICAL_SHIELD, 2, 0, 30)
+    skill:setMsg(tpz.msg.basic.NONE)
 
     return 0
 end

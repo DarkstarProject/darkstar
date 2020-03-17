@@ -8,11 +8,11 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     if (target:getMP() == target:getMaxMP()) then
-        return dsp.msg.basic.ITEM_UNABLE_TO_USE
+        return tpz.msg.basic.ITEM_UNABLE_TO_USE
     end
     return 0
 end
 
 function onItemUse(target)
-    target:messageBasic(dsp.msg.basic.RECOVERS_MP,0,target:addMP(30*ITEM_POWER))
+    target:messageBasic(tpz.msg.basic.RECOVERS_MP,0,target:addMP(30*ITEM_POWER))
 end

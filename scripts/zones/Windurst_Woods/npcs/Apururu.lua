@@ -14,24 +14,24 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
     -- THE KIND CARDIAN
-    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_KIND_CARDIAN) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 969) then
+    if player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.THE_KIND_CARDIAN) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 969) then
         player:startEvent(397)
 
     -- CAN CARDIANS CRY?
-    elseif player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CAN_CARDIANS_CRY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 551) then
+    elseif player:getQuestStatus(WINDURST, tpz.quest.id.windurst.CAN_CARDIANS_CRY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 551) then
         player:startEvent(325, 0, 20000, 5000)
     end
 end
 
 function onTrigger(player,npc)
     local missionStatus = player:getCharVar("MissionStatus")
-    local kindCardian = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_KIND_CARDIAN)
+    local kindCardian = player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.THE_KIND_CARDIAN)
     local kindCardianCS = player:getCharVar("theKindCardianVar")
-    local allNewC3000 = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_3000)
-    local canCardiansCry = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CAN_CARDIANS_CRY)
+    local allNewC3000 = player:getQuestStatus(WINDURST, tpz.quest.id.windurst.THE_ALL_NEW_C_3000)
+    local canCardiansCry = player:getQuestStatus(WINDURST, tpz.quest.id.windurst.CAN_CARDIANS_CRY)
 
     -- WINDURST 1-2: THE HEART OF THE MATTER
-    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER then
+    if player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_HEART_OF_THE_MATTER then
         if missionStatus == 0 then
             player:startEvent(137)
         elseif missionStatus < 4 then
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         end
 
     -- WINDURST 8-2: THE JESTER WHO'D BE KING
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.THE_JESTER_WHO_D_BE_KING then
         if missionStatus == 0 then
             player:startEvent(588)
         elseif missionStatus == 2 then
@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         end
 
     -- WINDURST 9-1: DOLL OF THE DEAD
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.DOLL_OF_THE_DEAD then
         if missionStatus == 0 then
             player:startEvent(619)
         elseif missionStatus == 3 then
@@ -103,12 +103,12 @@ function onEventFinish(player,csid,option)
 
         npcUtil.giveKeyItem(player,
             {
-                dsp.ki.FIRST_DARK_MANA_ORB,
-                dsp.ki.SECOND_DARK_MANA_ORB,
-                dsp.ki.THIRD_DARK_MANA_ORB,
-                dsp.ki.FOURTH_DARK_MANA_ORB,
-                dsp.ki.FIFTH_DARK_MANA_ORB,
-                dsp.ki.SIXTH_DARK_MANA_ORB
+                tpz.ki.FIRST_DARK_MANA_ORB,
+                tpz.ki.SECOND_DARK_MANA_ORB,
+                tpz.ki.THIRD_DARK_MANA_ORB,
+                tpz.ki.FOURTH_DARK_MANA_ORB,
+                tpz.ki.FIFTH_DARK_MANA_ORB,
+                tpz.ki.SIXTH_DARK_MANA_ORB
             }
         )
 
@@ -128,17 +128,17 @@ function onEventFinish(player,csid,option)
         player:setCharVar("MissionStatus_orb5", 0)
         player:setCharVar("MissionStatus_orb6", 0)
 
-        player:delKeyItem(dsp.ki.FIRST_GLOWING_MANA_ORB) -- Remove the glowing orb key items
-        player:delKeyItem(dsp.ki.SECOND_GLOWING_MANA_ORB)
-        player:delKeyItem(dsp.ki.THIRD_GLOWING_MANA_ORB)
-        player:delKeyItem(dsp.ki.FOURTH_GLOWING_MANA_ORB)
-        player:delKeyItem(dsp.ki.FIFTH_GLOWING_MANA_ORB)
-        player:delKeyItem(dsp.ki.SIXTH_GLOWING_MANA_ORB)
+        player:delKeyItem(tpz.ki.FIRST_GLOWING_MANA_ORB) -- Remove the glowing orb key items
+        player:delKeyItem(tpz.ki.SECOND_GLOWING_MANA_ORB)
+        player:delKeyItem(tpz.ki.THIRD_GLOWING_MANA_ORB)
+        player:delKeyItem(tpz.ki.FOURTH_GLOWING_MANA_ORB)
+        player:delKeyItem(tpz.ki.FIFTH_GLOWING_MANA_ORB)
+        player:delKeyItem(tpz.ki.SIXTH_GLOWING_MANA_ORB)
 
     -- WINDURST 8-2: THE JESTER WHO'D BE KING
     elseif csid == 588 then
         player:setCharVar("MissionStatus", 1)
-        npcUtil.giveKeyItem(player, dsp.ki.MANUSTERY_RING)
+        npcUtil.giveKeyItem(player, tpz.ki.MANUSTERY_RING)
     elseif csid == 601 then
         player:setCharVar("MissionStatus", 3)
     elseif csid == 590 then
@@ -156,22 +156,22 @@ function onEventFinish(player,csid,option)
         player:setCharVar("MissionStatus", 4)
     elseif csid == 621 then
         player:setCharVar("MissionStatus", 7)
-        player:messageSpecial(ID.text.KEYITEM_LOST, dsp.ki.LETTER_FROM_ZONPAZIPPA)
-        player:delKeyItem(dsp.ki.LETTER_FROM_ZONPAZIPPA)
+        player:messageSpecial(ID.text.KEYITEM_LOST, tpz.ki.LETTER_FROM_ZONPAZIPPA)
+        player:delKeyItem(tpz.ki.LETTER_FROM_ZONPAZIPPA)
 
     -- THE KIND CARDIAN
     elseif csid == 392 and option == 1 then
         player:setCharVar("theKindCardianVar", 1)
     elseif csid == 397 then
-        player:delKeyItem(dsp.ki.TWO_OF_SWORDS)
+        player:delKeyItem(tpz.ki.TWO_OF_SWORDS)
         player:setCharVar("theKindCardianVar", 2)
         player:addFame(WINDURST, 30)
         player:confirmTrade()
 
     -- CAN CARDIANS CRY?
     elseif csid == 319 then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.CAN_CARDIANS_CRY)
-    elseif csid == 325 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.CAN_CARDIANS_CRY, {gil=5000}) then
+        player:addQuest(WINDURST,tpz.quest.id.windurst.CAN_CARDIANS_CRY)
+    elseif csid == 325 and npcUtil.completeQuest(player, WINDURST, tpz.quest.id.windurst.CAN_CARDIANS_CRY, {gil=5000}) then
         player:confirmTrade()
     end
 end

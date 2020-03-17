@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effect.PROWESS : Increased combat and magic skill gain
+-- tpz.effect.PROWESS : Increased combat and magic skill gain
 --
 -----------------------------------
 

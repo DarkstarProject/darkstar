@@ -8,12 +8,12 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.MULTI_HIT, 6)
-    mob:setMod(dsp.mod.BINDRES, 20)
-    mob:setMod(dsp.mod.BLINDRES, 20)
-    mob:setMod(dsp.mod.SLEEPRES, 20)
-    mob:setMod(dsp.mod.LULLABYRES, 20)
-    mob:setMod(dsp.mod.GRAVITYRES, 20)
+    mob:setMobMod(tpz.mobMod.MULTI_HIT, 6)
+    mob:setMod(tpz.mod.BINDRES, 20)
+    mob:setMod(tpz.mod.BLINDRES, 20)
+    mob:setMod(tpz.mod.SLEEPRES, 20)
+    mob:setMod(tpz.mod.LULLABYRES, 20)
+    mob:setMod(tpz.mod.GRAVITYRES, 20)
 end
 
 function onMobSpawn(mob)
@@ -28,19 +28,19 @@ end
 
 function removeTentacle(mob, tentacles)
     if tentacles > 0 then
-        mob:setMobMod(dsp.mobMod.MULTI_HIT, tentacles)
+        mob:setMobMod(tpz.mobMod.MULTI_HIT, tentacles)
         mob:messageText(mob,ID.text.ONE_TENTACLE_WOUNDED, false)
     else
         mob:messageText(mob,ID.text.ALL_TENTACLES_WOUNDED, false)
         mob:SetMobSkillAttack(704) -- replace melee attack with special Ink Jet attack
     end
-    mob:addMod(dsp.mod.ATT, 50)
-    mob:addMod(dsp.mod.REGAIN, 50)
-    mob:addMod(dsp.mod.BINDRES, 10)
-    mob:addMod(dsp.mod.BLINDRES, 10)
-    mob:addMod(dsp.mod.SLEEPRES, 10)
-    mob:addMod(dsp.mod.LULLABYRES, 10)
-    mob:addMod(dsp.mod.GRAVITYRES, 10)
+    mob:addMod(tpz.mod.ATT, 50)
+    mob:addMod(tpz.mod.REGAIN, 50)
+    mob:addMod(tpz.mod.BINDRES, 10)
+    mob:addMod(tpz.mod.BLINDRES, 10)
+    mob:addMod(tpz.mod.SLEEPRES, 10)
+    mob:addMod(tpz.mod.LULLABYRES, 10)
+    mob:addMod(tpz.mod.GRAVITYRES, 10)
 end
 
 function onMobFight(mob,target)

@@ -25,19 +25,19 @@ function onMobWeaponSkill(target, mob, skill)
     duration = 60
 
     isEnfeeble = true
-    typeEffect = dsp.effect.NAME
-    statmod = dsp.mod.INT
+    typeEffect = tpz.effect.NAME
+    statmod = tpz.mod.INT
 
     resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod)
     if (resist > 0.2) then
         if (target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS)
+            skill:setMsg(tpz.msg.basic.SKILL_ENFEEB_IS)
             target:addStatusEffect(typeEffect,power,tic,duration)
         else
-            skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
+            skill:setMsg(tpz.msg.basic.SKILL_NO_EFFECT)
         end
     else
-        skill:setMsg(dsp.msg.basic.SKILL_MISS)
+        skill:setMsg(tpz.msg.basic.SKILL_MISS)
     end
     return typeEffect
     ]]

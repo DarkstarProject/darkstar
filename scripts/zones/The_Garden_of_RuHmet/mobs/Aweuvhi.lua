@@ -30,26 +30,26 @@ function onMobFight(mob)
         -- When in an open state, damage taken by the Euvhi is doubled. Inflicting a large amount of damage to an Euvhi in an open state will cause it to close.
         -- Make everything do double
         if (mob:AnimationSub() == 2) then
-            mob:setMod(dsp.mod.HTHRES,2000);
-            mob:setMod(dsp.mod.SLASHRES,2000);
-            mob:setMod(dsp.mod.PIERCERES,2000);
-            mob:setMod(dsp.mod.IMPACTRES,2000);
-            for n =1,#dsp.magic.resistMod,1 do
-                mob:setMod(dsp.magic.resistMod[n],2000);
+            mob:setMod(tpz.mod.HTHRES,2000);
+            mob:setMod(tpz.mod.SLASHRES,2000);
+            mob:setMod(tpz.mod.PIERCERES,2000);
+            mob:setMod(tpz.mod.IMPACTRES,2000);
+            for n =1,#tpz.magic.resistMod,1 do
+                mob:setMod(tpz.magic.resistMod[n],2000);
             end
-            for n =1,#dsp.magic.defenseMod,1 do
-                mob:setMod(dsp.magic.defenseMod[n],-1000);
+            for n =1,#tpz.magic.defenseMod,1 do
+                mob:setMod(tpz.magic.defenseMod[n],-1000);
             end
         else -- Reset all damage types
-            mob:setMod(dsp.mod.HTHRES,1000);
-            mob:setMod(dsp.mod.SLASHRES,1000);
-            mob:setMod(dsp.mod.PIERCERES,1000);
-            mob:setMod(dsp.mod.IMPACTRES,1000);
-            for n =1,#dsp.magic.resistMod,1 do
-                mob:setMod(dsp.magic.resistMod[n],1000);
+            mob:setMod(tpz.mod.HTHRES,1000);
+            mob:setMod(tpz.mod.SLASHRES,1000);
+            mob:setMod(tpz.mod.PIERCERES,1000);
+            mob:setMod(tpz.mod.IMPACTRES,1000);
+            for n =1,#tpz.magic.resistMod,1 do
+                mob:setMod(tpz.magic.resistMod[n],1000);
             end
-            for n =1,#dsp.magic.defenseMod,1 do
-                mob:setMod(dsp.magic.defenseMod[n],1000);
+            for n =1,#tpz.magic.defenseMod,1 do
+                mob:setMod(tpz.magic.defenseMod[n],1000);
             end
         end
     end

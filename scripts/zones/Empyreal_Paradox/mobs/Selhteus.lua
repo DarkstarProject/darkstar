@@ -9,7 +9,7 @@ local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.REGAIN, 50)
+    mob:addMod(tpz.mod.REGAIN, 50)
     mob:SetAutoAttackEnabled(false)
 end
 

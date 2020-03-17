@@ -11,27 +11,27 @@ require("scripts/globals/keyitems")
 
 local keyitems = {
     [0] = {
-        id = dsp.ki.CLOTH_PURIFICATION,
+        id = tpz.ki.CLOTH_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = dsp.ki.CLOTH_ENSORCELLMENT,
+        id = tpz.ki.CLOTH_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = dsp.ki.SPINNING,
+        id = tpz.ki.SPINNING,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = dsp.ki.FLETCHING,
+        id = tpz.ki.FLETCHING,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = dsp.ki.WAY_OF_THE_WEAVER,
+        id = tpz.ki.WAY_OF_THE_WEAVER,
         rank = 9,
         cost = 20000
     }

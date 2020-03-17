@@ -13,15 +13,15 @@ function onTrigger(player,npc)
     local currentCOPMission = player:getCurrentMission(COP);
     local LouverancePathStatut = player:getCharVar("COP_Louverance_s_Path");
 
-    if (currentCOPMission  == dsp.mission.id.cop.THE_LOST_CITY and player:getCharVar("PromathiaStatus") == 0) then
+    if (currentCOPMission  == tpz.mission.id.cop.THE_LOST_CITY and player:getCharVar("PromathiaStatus") == 0) then
         player:startEvent(102);
-    elseif (currentCOPMission  == dsp.mission.id.cop.SHELTERING_DOUBT and player:getCharVar("PromathiaStatus") == 1) then
+    elseif (currentCOPMission  == tpz.mission.id.cop.SHELTERING_DOUBT and player:getCharVar("PromathiaStatus") == 1) then
         player:startEvent(108);
-    elseif (currentCOPMission  == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("COP_optional_CS_Despachaire") == 0) then
+    elseif (currentCOPMission  == tpz.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getCharVar("COP_optional_CS_Despachaire") == 0) then
         player:startEvent(117); --117
-    elseif (currentCOPMission  == dsp.mission.id.cop.THREE_PATHS and LouverancePathStatut == 0) then
+    elseif (currentCOPMission  == tpz.mission.id.cop.THREE_PATHS and LouverancePathStatut == 0) then
         player:startEvent(118);
-    elseif (currentCOPMission  == dsp.mission.id.cop.THREE_PATHS and LouverancePathStatut == 1 ) then
+    elseif (currentCOPMission  == tpz.mission.id.cop.THREE_PATHS and LouverancePathStatut == 1 ) then
         player:startEvent(134);
     else
         player:startEvent(106);

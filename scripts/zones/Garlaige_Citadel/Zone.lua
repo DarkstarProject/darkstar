@@ -35,7 +35,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.SERKET);
     GetMobByID(ID.mob.SERKET):setRespawnTime(math.random(900, 10800));
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -49,7 +49,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -58,12 +58,12 @@ function onRegionEnter(player,region)
     local gateId = ID.npc.BANISHING_GATE_OFFSET + (9 * leverSet);  -- the ID of the related gate
 
     -- if all levers are down, open gate for 30 seconds
-    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + regionId):setAnimation(dsp.anim.OPEN_DOOR);
+    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + regionId):setAnimation(tpz.anim.OPEN_DOOR);
     if (
-        GetNPCByID(gateId + 1):getAnimation() == dsp.anim.OPEN_DOOR and
-        GetNPCByID(gateId + 2):getAnimation() == dsp.anim.OPEN_DOOR and
-        GetNPCByID(gateId + 3):getAnimation() == dsp.anim.OPEN_DOOR and
-        GetNPCByID(gateId + 4):getAnimation() == dsp.anim.OPEN_DOOR
+        GetNPCByID(gateId + 1):getAnimation() == tpz.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 2):getAnimation() == tpz.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 3):getAnimation() == tpz.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 4):getAnimation() == tpz.anim.OPEN_DOOR
     ) then
         player:messageSpecial(ID.text.BANISHING_GATES + leverSet);
         GetNPCByID(gateId):openDoor(30);
@@ -72,7 +72,7 @@ function onRegionEnter(player,region)
 end;
 
 function onRegionLeave(player,region)
-    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + region:GetRegionID()):setAnimation(dsp.anim.CLOSE_DOOR);
+    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + region:GetRegionID()):setAnimation(tpz.anim.CLOSE_DOOR);
 end;
 
 function onEventUpdate(player,csid,option)

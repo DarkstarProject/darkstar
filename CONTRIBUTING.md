@@ -1,19 +1,22 @@
 # Issue Report Contributions:
 
-* Issues will be closed without being looked into if the following information is missing (unless its not applicable).
-* Client version (type `/ver` in game)
-* Branch name \(such as [stable](https://github.com/DarkstarProject/darkstar/tree/stable) or [master](https://github.com/DarkstarProject/darkstar/tree/master))
-
+* Bug reports will only be accepted if they occur on [master](https://github.com/project-topaz/topaz/tree/master)
+* If an issue involves incorrect NPCs or text, please include your client version (type `/ver` in game)
+* Unimplemented feature requests must be _retail behavior_, and adequetly cover everything about that feature which is missing.
 
 ----
 
 # Pull Request Contributions:
 
-All contributions must be done through pull requests to the darkstar repository.  We unfortunately don't have time to take fixes from Discord or the forums to apply ourselves.  If you need help with making a pull request, there is a GitHub guide on how to do so.  If you still need help after consulting the guide, you can ask for help in Discord and we will be happy to help you.
+**By submitting a pull request to Project Topaz, you agree to our [Limited Contributor License Agreement](https://github.com/project-topaz/topaz/tree/master/CONTRIBUTOR_AGREEMENT.md)**
 
-After a pull request is made, if a developer leaves feedback for you to change, you must fix it for your pull request to be merged.  We cannot merge incomplete or misformatted code, and (like before) we don't really have time to fix these ourselves.
+All contributions must be done through pull requests to the Topaz repository.  We don't take fixes from Discord to apply ourselves.  If you need help with making a pull request, there is a GitHub guide on how to do so.  If you still need help after consulting the guide, you can ask for help in Discord and we will be happy to help you.
 
-Unfortunately, the team is small enough that we can't fix or open pull requests for others, or we would have no time to do anything else.
+We prefer submitting early and often, over monolithic and once. If you're implementing a complex feature, please try to submit PRs as you get each smaller functional aspect working (use your best judgment on what counts as a useful PR). This way we can help make sure you're on the right track before you sink a lot of time into implementations we might want done in a different way.
+
+Please try to leave your PR alone after submission, unless it's to fix bugs you've noticed, or if we've requested changes. If you're still pushing commits after opening the PR, it makes it hard for reviewers to know when you're "finished" and if it's "safe" to begin their reviews.
+
+After a pull request is made, if a staff member leaves feedback for you to change, you must either fix or address it for your pull request to be merged.
 
 # Style Guide
 
@@ -65,7 +68,7 @@ Clang-Format is also an option for C++
 ### Lua
 
 * Unix (LF) line ends
-* Curly braces go on a newline unless empty.
+* Curly braces go on a newline unless empty, or opening a lambda.
 * Our lua functions are typically lowerCamelCased, with few exceptions (just FYI).
 * No parentheses unless needed to clarify order of operations.
 * No semicolons unless multiple statements on a single line.

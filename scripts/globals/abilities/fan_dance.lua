@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.FAN_DANCE,90,0,300)
+    player:addStatusEffect(tpz.effect.FAN_DANCE,90,0,300)
 end

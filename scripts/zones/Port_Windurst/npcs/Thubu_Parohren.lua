@@ -10,21 +10,21 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,dsp.skill.FISHING);
+    local newRank = tradeTestItem(player,npc,trade,tpz.skill.FISHING);
 
     if (newRank ~= 0) then
-        player:setSkillRank(dsp.skill.FISHING,newRank);
+        player:setSkillRank(tpz.skill.FISHING,newRank);
         player:startEvent(10010,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(dsp.skill.FISHING);
-    local testItem = getTestItem(player,npc,dsp.skill.FISHING);
+    local craftSkill = player:getSkillLevel(tpz.skill.FISHING);
+    local testItem = getTestItem(player,npc,tpz.skill.FISHING);
     local guildMember = isGuildMember(player,5);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,dsp.skill.FISHING) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,tpz.skill.FISHING) == 1) then getNewRank = 100; end
 
     player:startEvent(10009,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;

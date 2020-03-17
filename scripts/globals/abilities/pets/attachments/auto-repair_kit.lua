@@ -8,27 +8,27 @@ require("scripts/globals/status")
 function onEquip(pet)
     -- We do not have support to do a fraction of a percent so we rounded
     local frame = pet:getAutomatonFrame()
-    if frame == dsp.frames.HARLEQUIN then
-        pet:addMod(dsp.mod.HPP, 5)
-    elseif frame == dsp.frames.VALOREDGE then
-        pet:addMod(dsp.mod.HPP, 4)
-    elseif frame == dsp.frames.SHARPSHOT then
-        pet:addMod(dsp.mod.HPP, 6)
-    elseif frame == dsp.frames.STORMWAKER then
-        pet:addMod(dsp.mod.HPP, 7)
+    if frame == tpz.frames.HARLEQUIN then
+        pet:addMod(tpz.mod.HPP, 5)
+    elseif frame == tpz.frames.VALOREDGE then
+        pet:addMod(tpz.mod.HPP, 4)
+    elseif frame == tpz.frames.SHARPSHOT then
+        pet:addMod(tpz.mod.HPP, 6)
+    elseif frame == tpz.frames.STORMWAKER then
+        pet:addMod(tpz.mod.HPP, 7)
     end
 end
 
 function onUnequip(pet)
     local frame = pet:getAutomatonFrame()
-    if frame == dsp.frames.HARLEQUIN then
-        pet:delMod(dsp.mod.HPP, 5)
-    elseif frame == dsp.frames.VALOREDGE then
-        pet:delMod(dsp.mod.HPP, 4)
-    elseif frame == dsp.frames.SHARPSHOT then
-        pet:delMod(dsp.mod.HPP, 6)
-    elseif frame == dsp.frames.STORMWAKER then
-        pet:delMod(dsp.mod.HPP, 7)
+    if frame == tpz.frames.HARLEQUIN then
+        pet:delMod(tpz.mod.HPP, 5)
+    elseif frame == tpz.frames.VALOREDGE then
+        pet:delMod(tpz.mod.HPP, 4)
+    elseif frame == tpz.frames.SHARPSHOT then
+        pet:delMod(tpz.mod.HPP, 6)
+    elseif frame == tpz.frames.STORMWAKER then
+        pet:delMod(tpz.mod.HPP, 7)
     end
 end
 
@@ -45,5 +45,5 @@ function onUpdate(pet, maneuvers)
     if maneuvers > 0 then
         power = math.floor(maneuvers + (pet:getMaxHP() * (0.125 * maneuvers) / 100))
     end
-    updateModPerformance(pet, dsp.mod.REGEN, 'autorepair_kit_mod', power)
+    updateModPerformance(pet, tpz.mod.REGEN, 'autorepair_kit_mod', power)
 end

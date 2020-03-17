@@ -11,11 +11,11 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    MobBuffMove(mob, dsp.effect.MEIKYO_SHISUI, 1, 0, 30)
+    MobBuffMove(mob, tpz.effect.MEIKYO_SHISUI, 1, 0, 30)
 
-    skill:setMsg(dsp.msg.basic.USES)
+    skill:setMsg(tpz.msg.basic.USES)
 
     mob:addTP(3000)
 
-    return dsp.effect.MEIKYO_SHISUI
+    return tpz.effect.MEIKYO_SHISUI
 end

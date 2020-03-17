@@ -7,7 +7,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.UDMGMAGIC, -100)
+    mob:addMod(tpz.mod.UDMGMAGIC, -100)
 end
 
 function onMobDeath(mob, player, isKiller)

@@ -26,7 +26,7 @@ function onMobFight(mob,target)
     end
 
     -- make sure pet has a target
-    if caretaker:getCurrentAction() == dsp.act.ROAMING then
+    if caretaker:getCurrentAction() == tpz.act.ROAMING then
         caretaker:updateEnmity(target)
     end
 end
@@ -42,7 +42,7 @@ function onMobDisengage(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 743, 1, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 743, 1, tpz.regime.type.GROUNDS)
 end
 
 function onMobDespawn(mob)

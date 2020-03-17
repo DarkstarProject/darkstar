@@ -2,7 +2,7 @@
 -- Skill: Final Heaven
 -- H2H weapon skill
 -- Skill Level N/A
--- Additional effect: temporarily enhances Subtle Blow dsp.effect.
+-- Additional effect: temporarily enhances Subtle Blow tpz.effect.
 -- Mods : VIT:60%
 -- 100%TP     200%TP     300%TP
 -- 3.0x        3.0x    3.0x
@@ -41,7 +41,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     -- Apply aftermath
     if damage > 0 then
-        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.MAIN, dsp.aftermath.type.RELIC)
+        tpz.aftermath.addStatusEffect(player, tp, tpz.slot.MAIN, tpz.aftermath.type.RELIC)
     end
 
     return tpHits, extraHits, criticalHit, damage

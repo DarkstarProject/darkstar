@@ -13,11 +13,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onZoneIn( player, prevZone)
@@ -29,7 +29,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 3;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
         cs = 5;
     end
 
@@ -37,7 +37,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)
@@ -65,9 +65,9 @@ end;
 
 function onZoneWeatherChange(weather)
     local qm1 = GetNPCByID(ID.npc.SUNSAND_QM); -- Quest: An Empty Vessel
-    if (weather == dsp.weather.DUST_STORM) then
-        qm1:setStatus(dsp.status.NORMAL);
+    if (weather == tpz.weather.DUST_STORM) then
+        qm1:setStatus(tpz.status.NORMAL);
     else
-        qm1:setStatus(dsp.status.DISAPPEAR);
+        qm1:setStatus(tpz.status.DISAPPEAR);
     end
 end;

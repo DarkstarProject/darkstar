@@ -10,7 +10,7 @@ require("scripts/globals/status")
 function onMobFight(mob,target)
     mob:SetAutoAttackEnabled(false)
     mob:SetMobAbilityEnabled(false)
-    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 6)
+    mob:setMobMod(tpz.mobMod.MAGIC_COOL, 6)
 end
 
 function onMobDeath(mob, player, isKiller)

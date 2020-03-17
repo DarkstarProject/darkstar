@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.HALVUNG] =
+zones[tpz.zone.HALVUNG] =
 {
     text =
     {
@@ -41,4 +41,4 @@ zones[dsp.zone.HALVUNG] =
     },
 }
 
-return zones[dsp.zone.HALVUNG]
+return zones[tpz.zone.HALVUNG]

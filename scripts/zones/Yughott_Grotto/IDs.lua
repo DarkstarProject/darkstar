@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.YUGHOTT_GROTTO] =
+zones[tpz.zone.YUGHOTT_GROTTO] =
 {
     text =
     {
@@ -15,6 +15,7 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
         ITEM_OBTAINED           = 6547, -- Obtained: <item>.
         GIL_OBTAINED            = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET   = 6576, -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED    = 7169, -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
         CHEST_UNLOCKED          = 7334, -- You unlock the chest!
@@ -47,4 +48,4 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
     },
 }
 
-return zones[dsp.zone.YUGHOTT_GROTTO]
+return zones[tpz.zone.YUGHOTT_GROTTO]

@@ -11,8 +11,8 @@ require("scripts/globals/utils")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getWeaponSubSkillType(dsp.slot.RANGED) == 10 and
-        not player:hasStatusEffect(dsp.effect.OVERLOAD) and
+    if (player:getWeaponSubSkillType(tpz.slot.RANGED) == 10 and
+        not player:hasStatusEffect(tpz.effect.OVERLOAD) and
         player:getPet()) then
         return 0,0
     else
@@ -27,26 +27,26 @@ function onUseAbility(player,target,ability)
         burden = 15
     end
 
-    local overload = target:addBurden(dsp.magic.ele.DARK-1, burden)
+    local overload = target:addBurden(tpz.magic.ele.DARK-1, burden)
 
     if (overload ~= 0 and
-        (player:getMod(dsp.mod.PREVENT_OVERLOAD) > 0 or player:getPet():getMod(dsp.mod.PREVENT_OVERLOAD) > 0) and
-        player:delStatusEffectSilent(dsp.effect.WATER_MANEUVER)) then
+        (player:getMod(tpz.mod.PREVENT_OVERLOAD) > 0 or player:getPet():getMod(tpz.mod.PREVENT_OVERLOAD) > 0) and
+        player:delStatusEffectSilent(tpz.effect.WATER_MANEUVER)) then
         overload = 0
     end
 
     if (overload ~= 0) then
         target:removeAllManeuvers()
-        target:addStatusEffect(dsp.effect.OVERLOAD, 0, 0, overload)
+        target:addStatusEffect(tpz.effect.OVERLOAD, 0, 0, overload)
     else
         if (target:getActiveManeuvers() == 3) then
             target:removeOldestManeuver()
         end
 
         local dur = player:getPet():getLocalVar("MANEUVER_DURATION")
-        target:addStatusEffect(dsp.effect.DARK_MANEUVER, 0, 0, utils.clamp(dur,60,300))
+        target:addStatusEffect(tpz.effect.DARK_MANEUVER, 0, 0, utils.clamp(dur,60,300))
 
     end
 
-    return dsp.effect.DARK_MANEUVER
+    return tpz.effect.DARK_MANEUVER
 end

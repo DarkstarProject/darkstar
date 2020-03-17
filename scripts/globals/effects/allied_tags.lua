@@ -15,6 +15,6 @@ end
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effect.ALLIED_TAGS)
+        target:getPet():delStatusEffect(tpz.effect.ALLIED_TAGS)
     end
 end

@@ -3,13 +3,13 @@
 --
 -- Contains readable values for Weaponskill IDs
 ------------------------------------
-dsp = dsp or {}
+tpz = tpz or {}
 
 ------------------------------------
 -- Weaponskill IDs
 ------------------------------------
 
-dsp.weaponskill =
+tpz.weaponskill =
 {
     ------------------------------------
     -- H2H
@@ -274,13 +274,13 @@ dsp.weaponskill =
     WILDFIRE            = 220,
     LAST_STAND          = 221,
 }
-dsp.ws = dsp.weaponskill
+tpz.ws = tpz.weaponskill
 
 ------------------------------------
 -- Weaponskill Unlock IDs
 ------------------------------------
 
-dsp.ws_unlock = 
+tpz.ws_unlock = 
 {
     ASURAN_FISTS        = 1,
     EVISCERATION        = 2,

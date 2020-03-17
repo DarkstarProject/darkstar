@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.BIND
+    local typeEffect = tpz.effect.BIND
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30))
 
     if (mob:getPool() == 1318) then -- if the pool ID == Feeler Antlion ID

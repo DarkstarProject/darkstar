@@ -30,7 +30,7 @@ function onMobFight(mob, target)
     -- make sure minions have a target
     for i = ID.mob.EXPERIMENTAL_LAMIA + 1, ID.mob.EXPERIMENTAL_LAMIA + 3 do
         local minion = GetMobByID(i)
-        if minion:getCurrentAction() == dsp.act.ROAMING then
+        if minion:getCurrentAction() == tpz.act.ROAMING then
             minion:updateEnmity(target)
         end
     end

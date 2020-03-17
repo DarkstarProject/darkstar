@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.EVERBLOOM_HOLLOW] =
+zones[tpz.zone.EVERBLOOM_HOLLOW] =
 {
     text =
     {
@@ -23,4 +23,4 @@ zones[dsp.zone.EVERBLOOM_HOLLOW] =
     },
 }
 
-return zones[dsp.zone.EVERBLOOM_HOLLOW]
+return zones[tpz.zone.EVERBLOOM_HOLLOW]

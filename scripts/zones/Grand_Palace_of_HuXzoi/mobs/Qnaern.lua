@@ -11,12 +11,12 @@ require("scripts/globals/status")
 function onMobSpawn(mob)
     local mJob = mob:getMainJob()
 
-    if mJob == dsp.job.RDM then
-        mob:setMod(dsp.mod.FASTCAST, 15)
-        dsp.mix.jobSpecial.config(mob, {specials = {{id = dsp.jsa.CHAINSPELL, hpp = math.random(90, 95), cooldown = 120}}})
-    elseif mJob == dsp.job.WHM then
-        mob:setMod(dsp.mod.REGEN, 3)
-        dsp.mix.jobSpecial.config(mob, {specials = {{id = dsp.jsa.BENEDICTION, hpp = math.random(20, 40), cooldown = 120}}})
+    if mJob == tpz.job.RDM then
+        mob:setMod(tpz.mod.FASTCAST, 15)
+        tpz.mix.jobSpecial.config(mob, {specials = {{id = tpz.jsa.CHAINSPELL, hpp = math.random(90, 95), cooldown = 120}}})
+    elseif mJob == tpz.job.WHM then
+        mob:setMod(tpz.mod.REGEN, 3)
+        tpz.mix.jobSpecial.config(mob, {specials = {{id = tpz.jsa.BENEDICTION, hpp = math.random(20, 40), cooldown = 120}}})
     end
 end
 

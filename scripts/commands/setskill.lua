@@ -27,8 +27,8 @@ function onTrigger(player, skillName, skillLV, target)
     end
 
 
-    local skillID = tonumber(skillName) or dsp.skill[string.upper(skillName)]
-    local targ;
+    local skillID = tonumber(skillName) or tpz.skill[string.upper(skillName)]
+    local targ
 
     if skillID == nil or skillID == 0 or (skillID > 12 and skillID < 25)
     or skillID == 46 or skillID == 47 or skillID > 57 then

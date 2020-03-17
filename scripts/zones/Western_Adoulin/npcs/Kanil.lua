@@ -22,7 +22,7 @@ function onTrigger(player,npc)
         5299, 148,    -- Salsa
         1523, 316,    -- Apple Mint
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

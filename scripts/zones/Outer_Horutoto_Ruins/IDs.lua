@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
+zones[tpz.zone.OUTER_HORUTOTO_RUINS] =
 {
     text =
     {
@@ -19,6 +19,7 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
         ITEM_OBTAINED            = 6593,  -- Obtained: <item>.
         GIL_OBTAINED             = 6594,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6596,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6622,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED     = 7215,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         DOOR_FIRMLY_SHUT         = 7254,  -- The door is firmly shut.
         ALL_G_ORBS_ENERGIZED     = 7257,  -- The six Mana Orbs have been successfully energized with magic!
@@ -60,4 +61,4 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
     },
 }
 
-return zones[dsp.zone.OUTER_HORUTOTO_RUINS]
+return zones[tpz.zone.OUTER_HORUTOTO_RUINS]

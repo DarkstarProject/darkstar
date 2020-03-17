@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc,ID.text.QUESSE_SHOP_DIALOG)
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST)
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST)
 end
 
 function onEventUpdate(player,csid,option)

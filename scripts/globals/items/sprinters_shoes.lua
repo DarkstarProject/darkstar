@@ -11,6 +11,6 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.QUICKENING, 10, 0, 3600)
-    target:messageBasic(dsp.msg.basic.GAINS_EFFECT_OF_STATUS, dsp.effect.QUICKENING)
+    target:addStatusEffect(tpz.effect.QUICKENING, 10, 0, 3600)
+    target:messageBasic(tpz.msg.basic.GAINS_EFFECT_OF_STATUS, tpz.effect.QUICKENING)
 end

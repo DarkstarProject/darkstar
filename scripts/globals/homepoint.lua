@@ -2,8 +2,8 @@ require("scripts/globals/settings")
 require("scripts/globals/teleports")
 ------------------------------------
 
-dsp = dsp or {}
-dsp.homepoint = dsp.homepoint or {}
+tpz = tpz or {}
+tpz.homepoint = tpz.homepoint or {}
 
 local HPs =
 {
@@ -144,7 +144,7 @@ local selection =
     SHOW_MENU        = 8
 }
 
-local travelType = dsp.teleport.type.HOMEPOINT
+local travelType = tpz.teleport.type.HOMEPOINT
 
 local function getCost (from, to, key)
 
@@ -159,7 +159,7 @@ end
 local function goToHP(player, choice, index)
 
     local origin = player:getLocalVar("originIndex")
-    local hasKI  = player:hasKeyItem(dsp.ki.RHAPSODY_IN_WHITE)
+    local hasKI  = player:hasKeyItem(tpz.ki.RHAPSODY_IN_WHITE)
 
     if choice == selection.SAME_ZONE then
         -- For zones like Sky and Uleguerand Range, this will force gil deletion
@@ -172,7 +172,18 @@ local function goToHP(player, choice, index)
 
 end
 
-dsp.homepoint.onTrigger = function(player, csid, index)
+tpz.homepoint.onTrigger = function(player, csid, index)
+
+    if HOMEPOINT_HEAL == 1 then -- Settings.lua Homepoint Heal enabled
+        player:addHP(player:getMaxHP())
+        player:addMP(player:getMaxMP())
+    end
+
+    if not HOMEPOINT_TELEPORT == 1 then -- Settings.lua Homepoints disabled
+        player:startEvent(csid, 0, 0, 0, 0, 0, player:getGil(), 4095, index)
+        return
+    end
+
     local hpBit  = index % 32
     local hpSet  = math.floor(index / 32)
     local menu   = player:getTeleportMenu(travelType)
@@ -189,7 +200,7 @@ dsp.homepoint.onTrigger = function(player, csid, index)
 
 end
 
-dsp.homepoint.onEventUpdate = function(player, csid, option)
+tpz.homepoint.onEventUpdate = function(player, csid, option)
 
     local choice = bit.band(option, 0xFF)
     local favs = player:getTeleportMenu(travelType)
@@ -236,7 +247,7 @@ dsp.homepoint.onEventUpdate = function(player, csid, option)
 
 end
 
-dsp.homepoint.onEventFinish = function(player, csid, option, event)
+tpz.homepoint.onEventFinish = function(player, csid, option, event)
 
     if csid == event then
         choice = bit.band(option, 0xFF)

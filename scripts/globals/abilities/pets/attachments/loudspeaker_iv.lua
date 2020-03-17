@@ -10,7 +10,7 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_iv_matt', 0)
+    updateModPerformance(pet, tpz.mod.MATT, 'loudspeaker_iv_matt', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
@@ -23,12 +23,12 @@ end
 
 function onUpdate(pet, maneuvers)
     if maneuvers == 0 then
-        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_iv_matt', 30)
+        updateModPerformance(pet, tpz.mod.MATT, 'loudspeaker_iv_matt', 30)
     elseif maneuvers == 1 then
-        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_iv_matt', 40)
+        updateModPerformance(pet, tpz.mod.MATT, 'loudspeaker_iv_matt', 40)
     elseif maneuvers == 2 then
-        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_iv_matt', 50)
+        updateModPerformance(pet, tpz.mod.MATT, 'loudspeaker_iv_matt', 50)
     elseif maneuvers == 3 then
-        updateModPerformance(pet, dsp.mod.MATT, 'loudspeaker_iv_matt', 60)
+        updateModPerformance(pet, tpz.mod.MATT, 'loudspeaker_iv_matt', 60)
     end
 end

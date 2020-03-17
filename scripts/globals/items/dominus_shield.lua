@@ -16,5 +16,5 @@ function onItemUse(target)
         mpHeal = dif
     end
     target:addMP(mpHeal)
-    target:messageBasic(dsp.msg.basic.RECOVERS_MP,0,mpHeal)
+    target:messageBasic(tpz.msg.basic.RECOVERS_MP,0,mpHeal)
 end

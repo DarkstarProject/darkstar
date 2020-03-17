@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.LAST_RESORT, 0, 0, 180)
+    player:addStatusEffect(tpz.effect.LAST_RESORT, 0, 0, 180)
 end

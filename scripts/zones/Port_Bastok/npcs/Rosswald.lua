@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.ZULKHEIM) ~= dsp.nation.BASTOK then
+    if GetRegionOwner(tpz.region.ZULKHEIM) ~= tpz.nation.BASTOK then
         player:showText(npc, ID.text.ROSSWALD_CLOSED_DIALOG)
     else
         local stock =
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ID.text.ROSSWALD_OPEN_DIALOG)
-        dsp.shop.general(player, stock, BASTOK)
+        tpz.shop.general(player, stock, BASTOK)
     end
 end
 

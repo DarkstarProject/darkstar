@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -137,7 +135,7 @@ uint8 CItemContainer::AddSize(int8 size)
 
 uint8 CItemContainer::InsertItem(CItem* PItem)
 {
-	DSP_DEBUG_BREAK_IF(PItem == nullptr);
+	TPZ_DEBUG_BREAK_IF(PItem == nullptr);
 
 	for (uint8 SlotID = 1; SlotID <= m_size; ++SlotID) 
 	{

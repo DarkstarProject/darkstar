@@ -8,7 +8,7 @@ require("scripts/globals/status")
 
 function reraiseGhul(mob, reraises, target)
     mob:setLocalVar("RERAISES", reraises)
-    mob:setMod(dsp.mod.ATT, 25 * reraises)
+    mob:setMod(tpz.mod.ATT, 25 * reraises)
     mob:setHP(mob:getMaxHP() * (1 - (0.10 * reraises)))
     mob:resetAI()
     mob:stun(3000)
@@ -29,7 +29,7 @@ function onMobInitialize(mob)
         -- spawn second form (BLM)
         if reraises == 3 then
             mob:timer(9000, function(mob)
-                mob:setStatus(dsp.status.DISAPPEAR)
+                mob:setStatus(tpz.status.DISAPPEAR)
                 local finalMobId = mobId + 1
                 local finalMob = GetMobByID(finalMobId)
                 finalMob:setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos())

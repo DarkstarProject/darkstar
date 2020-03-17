@@ -8,15 +8,15 @@ mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:addMod(dsp.mod.SLEEPRES, 150)
-    mob:addMod(dsp.mod.SILENCERES, 150)
+    mob:addMod(tpz.mod.SLEEPRES, 150)
+    mob:addMod(tpz.mod.SILENCERES, 150)
 end
 
 function onMobFight(mob,target)
-    if (mob:hasStatusEffect(dsp.effect.AZURE_LORE))then
-		mob:setMobMod(dsp.mobMod.MAGIC_COOL, 0)
+    if (mob:hasStatusEffect(tpz.effect.AZURE_LORE))then
+		mob:setMobMod(tpz.mobMod.MAGIC_COOL, 0)
     else
-        mob:setMobMod(dsp.mobMod.MAGIC_COOL, 20)
+        mob:setMobMod(tpz.mobMod.MAGIC_COOL, 20)
 	end
 end
 

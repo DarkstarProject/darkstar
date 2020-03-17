@@ -9,11 +9,11 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onTrigger(player,npc)
-    if not player:hasKeyItem(dsp.ki.OLD_RING) then
-        player:addKeyItem(dsp.ki.OLD_RING)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.OLD_RING)
+    if not player:hasKeyItem(tpz.ki.OLD_RING) then
+        player:addKeyItem(tpz.ki.OLD_RING)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.OLD_RING)
     end
-    if npc:getAnimation() == dsp.anim.CLOSE_DOOR then
+    if npc:getAnimation() == tpz.anim.CLOSE_DOOR then
         npc:openDoor()
     end
 end

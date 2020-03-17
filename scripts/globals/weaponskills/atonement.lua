@@ -40,10 +40,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local attack =
     {
-        ['type'] = dsp.attackType.BREATH,
-        ['slot'] = dsp.slot.MAIN,
-        ['weaponType'] = player:getWeaponSkillType(dsp.slot.MAIN),
-        ['damageType'] = dsp.damageType.ELEMENTAL
+        ['type'] = tpz.attackType.BREATH,
+        ['slot'] = tpz.slot.MAIN,
+        ['weaponType'] = player:getWeaponSkillType(tpz.slot.MAIN),
+        ['damageType'] = tpz.damageType.ELEMENTAL
     }
     local calcParams =
     {
@@ -56,7 +56,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage = 0
 
-    if target:getObjType() ~= dsp.objType.MOB then -- this isn't correct but might as well use what was originally here if someone uses this on a non-mob
+    if target:getObjType() ~= tpz.objType.MOB then -- this isn't correct but might as well use what was originally here if someone uses this on a non-mob
         if USE_ADOULIN_WEAPON_SKILL_CHANGES then
             params.ftp100 = 1 params.ftp200 = 1.5 params.ftp300 = 2.0
         end
@@ -79,8 +79,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
         dmg = utils.clamp(dmg, 0, player:getMainLvl() * 10) -- Damage is capped to player's level * 10, before WS damage mods
         damage = target:breathDmgTaken(dmg)
-        if player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0 then
-            damage = damage * (100 + player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID)) / 100
+        if player:getMod(tpz.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0 then
+            damage = damage * (100 + player:getMod(tpz.mod.WEAPONSKILL_DAMAGE_BASE + wsID)) / 100
         end
         damage = damage * WEAPON_SKILL_POWER
         calcParams.finalDmg = damage
@@ -100,7 +100,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     -- Apply aftermath
     if damage > 0 then
-        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.MAIN, dsp.aftermath.type.MYTHIC)
+        tpz.aftermath.addStatusEffect(player, tp, tpz.slot.MAIN, tpz.aftermath.type.MYTHIC)
     end
 
     return calcParams.tpHitsLanded, calcParams.extraHitsLanded, calcParams.criticalHit, damage

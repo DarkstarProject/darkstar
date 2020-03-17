@@ -8,5 +8,5 @@ require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Gustav_Tunnel/IDs")
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.evisceration,player,ID.mob.BARONIAL_BAT)
+    tpz.wsquest.handleQmTrigger(tpz.wsquest.evisceration,player,ID.mob.BARONIAL_BAT)
 end

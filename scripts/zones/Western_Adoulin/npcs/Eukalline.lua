@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         6093, 703800, -- Scroll of Indi-Fade
         6131, 709716, -- Scroll of Indi-Haste
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

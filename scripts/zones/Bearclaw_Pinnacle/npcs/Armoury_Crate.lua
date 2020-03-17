@@ -139,7 +139,7 @@ end
 function onTrigger(player,npc)
     local battlefield = player:getBattlefield()
     if battlefield then
-        dsp.battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
+        tpz.battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
     end
 end
 

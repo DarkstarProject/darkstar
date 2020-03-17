@@ -13,8 +13,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local onwardToAdoulin = player:getCurrentMission(SOA) == dsp.mission.id.soa.ONWARD_TO_ADOULIN
-    local adoulinAccess = player:getCurrentMission(SOA) > dsp.mission.id.soa.ONWARD_TO_ADOULIN
+    local onwardToAdoulin = player:getCurrentMission(SOA) == tpz.mission.id.soa.ONWARD_TO_ADOULIN
+    local adoulinAccess = player:getCurrentMission(SOA) > tpz.mission.id.soa.ONWARD_TO_ADOULIN
 
     if onwardToAdoulin then
         player:startEvent(10120)
@@ -30,6 +30,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10120 and option == 1 then -- teleport
-        player:setPos(172, 0.3, -21, 211, dsp.zone.CEIZAK_BATTLEGROUNDS)
+        player:setPos(172, 0.3, -21, 211, tpz.zone.CEIZAK_BATTLEGROUNDS)
     end
 end

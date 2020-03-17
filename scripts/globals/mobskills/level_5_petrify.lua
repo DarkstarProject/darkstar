@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PETRIFICATION
+    local typeEffect = tpz.effect.PETRIFICATION
     if (target:getMainLvl()%5 == 0) then
 
 
@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, power))
 
     else
-        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT) -- no effect
+        skill:setMsg(tpz.msg.basic.SKILL_NO_EFFECT) -- no effect
     end
 
     return typeEffect

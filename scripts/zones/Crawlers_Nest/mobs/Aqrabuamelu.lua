@@ -8,13 +8,13 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.AUTO_SPIKES, 1)
-    mob:addStatusEffect(dsp.effect.ICE_SPIKES, 45, 0, 0)
-    mob:getStatusEffect(dsp.effect.ICE_SPIKES):setFlag(dsp.effectFlag.DEATH)
+    mob:setMobMod(tpz.mobMod.AUTO_SPIKES, 1)
+    mob:addStatusEffect(tpz.effect.ICE_SPIKES, 45, 0, 0)
+    mob:getStatusEffect(tpz.effect.ICE_SPIKES):setFlag(tpz.effectFlag.DEATH)
 end
 
 function onSpikesDamage(mob, target, damage)
-    local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local INT_diff = mob:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
 
     if INT_diff > 20 then
         INT_diff = 20 + (INT_diff - 20) * 0.5 -- INT above 20 is half as effective.
@@ -24,16 +24,16 @@ function onSpikesDamage(mob, target, damage)
     local params = {}
     params.bonusmab = 0
     params.includemab = false
-    dmg = addBonusesAbility(mob, dsp.magic.ele.ICE, target, dmg, params)
-    dmg = dmg * applyResistanceAddEffect(mob, target, dsp.magic.ele.ICE, 0)
-    dmg = adjustForTarget(target, dmg, dsp.magic.ele.ICE)
-    dmg = finalMagicNonSpellAdjustments(mob, target, dsp.magic.ele.ICE, dmg)
+    dmg = addBonusesAbility(mob, tpz.magic.ele.ICE, target, dmg, params)
+    dmg = dmg * applyResistanceAddEffect(mob, target, tpz.magic.ele.ICE, 0)
+    dmg = adjustForTarget(target, dmg, tpz.magic.ele.ICE)
+    dmg = finalMagicNonSpellAdjustments(mob, target, tpz.magic.ele.ICE, dmg)
 
     if dmg < 0 then
         dmg = 0
     end
 
-    return dsp.subEffect.ICE_SPIKES, dsp.msg.basic.SPIKES_EFFECT_DMG, dmg
+    return tpz.subEffect.ICE_SPIKES, tpz.msg.basic.SPIKES_EFFECT_DMG, dmg
 
 end
 

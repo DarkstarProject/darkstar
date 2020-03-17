@@ -14,10 +14,10 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and
+        player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.WRITTEN_IN_THE_STARS and
         player:getCharVar("MissionStatus") == 1
     then
-        player:startEvent(41, 0, dsp.ki.CHARM_OF_LIGHT)
+        player:startEvent(41, 0, tpz.ki.CHARM_OF_LIGHT)
     else
         player:messageSpecial(ID.text.DOOR_FIRMLY_CLOSED)
     end
@@ -31,6 +31,6 @@ end
 function onEventFinish(player, csid, option)
     if csid == 41 then
         player:setCharVar("MissionStatus", 2)
-        player:delKeyItem(dsp.ki.CHARM_OF_LIGHT)
+        player:delKeyItem(tpz.ki.CHARM_OF_LIGHT)
     end
 end

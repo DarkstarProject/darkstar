@@ -14,8 +14,8 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local power = 45 + player:getMod(dsp.mod.COUNTERSTANCE_EFFECT)
+    local power = 45 + player:getMod(tpz.mod.COUNTERSTANCE_EFFECT)
 
-    target:delStatusEffect(dsp.effect.COUNTERSTANCE) --if not found this will do nothing
-    target:addStatusEffect(dsp.effect.COUNTERSTANCE,power,0,300)
+    target:delStatusEffect(tpz.effect.COUNTERSTANCE) --if not found this will do nothing
+    target:addStatusEffect(tpz.effect.COUNTERSTANCE,power,0,300)
 end

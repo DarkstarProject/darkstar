@@ -13,6 +13,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local duration = 30 + player:getMod(dsp.mod.FLEE_DURATION)
-    player:addStatusEffect(dsp.effect.FLEE,100,0,duration)
+    local duration = 30 + player:getMod(tpz.mod.FLEE_DURATION)
+    player:addStatusEffect(tpz.effect.FLEE,100,0,duration)
 end

@@ -24,13 +24,13 @@ function onZoneIn(player,prevZone)
         player:setHomePoint();
     end
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == dsp.zone.WINDURST_JEUNO_AIRSHIP) then
+        if (prevZone == tpz.zone.WINDURST_JEUNO_AIRSHIP) then
             cs = 10004;
             player:setPos(228.000, -3.000, 76.000, 160);
         else
             position = math.random(1,5) + 195;
             player:setPos(position,-15.56,258,65);
-            if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
+            if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
                 cs = 30004;
             end
             player:setCharVar("PlayerMainJob",0);
@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onTransportEvent(player,transport)

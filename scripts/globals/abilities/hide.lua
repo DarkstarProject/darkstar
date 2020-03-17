@@ -15,6 +15,6 @@ end
 
 function onUseAbility(player,target,ability)
     local duration = math.random(30, 300)
-    duration = duration * (1 + player:getMod(dsp.mod.HIDE_DURATION)/100)
-    player:addStatusEffect(dsp.effect.HIDE, 1, 0, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER))
+    duration = duration * (1 + player:getMod(tpz.mod.HIDE_DURATION)/100)
+    player:addStatusEffect(tpz.effect.HIDE, 1, 0, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER))
 end

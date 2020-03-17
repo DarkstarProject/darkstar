@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BIBIKI_BAY] =
+zones[tpz.zone.BIBIKI_BAY] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.BIBIKI_BAY] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         YOU_OBTAIN              = 6397, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET   = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         POHKA_SHOP_DIALOG       = 7220, -- Hey buddy, need a rod? I've got loads of state-of-the-art, top-of-the-line, high quality rods right here waitin' fer ya! Whaddya say?
         MEP_NHAPOPOLUKO_DIALOG  = 7222, -- Welcome! Fishermen's Guild representative, at your service!
@@ -61,4 +62,4 @@ zones[dsp.zone.BIBIKI_BAY] =
     },
 }
 
-return zones[dsp.zone.BIBIKI_BAY]
+return zones[tpz.zone.BIBIKI_BAY]

@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCharVar("Lakeside_Minuet_Progress") == 3 and not player:hasKeyItem(dsp.ki.STARDUST_PEBBLE) then
+    if player:getCharVar("Lakeside_Minuet_Progress") == 3 and not player:hasKeyItem(tpz.ki.STARDUST_PEBBLE) then
         player:startEvent(100)
     elseif player:getCharVar("roadToDivadomCS") == 2 then
         player:startEvent(106)
@@ -25,7 +25,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 100 then
-        npcUtil.giveKeyItem(player, dsp.ki.STARDUST_PEBBLE)
+        npcUtil.giveKeyItem(player, tpz.ki.STARDUST_PEBBLE)
     elseif csid == 106 then
         player:setCharVar("roadToDivadomCS", 3)
     elseif csid == 107 then

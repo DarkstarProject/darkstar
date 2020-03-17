@@ -43,33 +43,33 @@ local path =
 }
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.REGEN, 5) -- "Has a minor Auto Regen effect"
+    mob:setMod(tpz.mod.REGEN, 5) -- "Has a minor Auto Regen effect"
 end
 
 function onMobSpawn(mob)
-    mob:setStatus(dsp.status.INVISIBLE)
+    mob:setStatus(tpz.status.INVISIBLE)
     onMobRoam(mob)
 end
 
 function onPath(mob)
-    dsp.path.patrol(mob, path, dsp.path.flag.RUN)
+    tpz.path.patrol(mob, path, tpz.path.flag.RUN)
 end
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if not mob:isFollowingPath() then
-        mob:pathThrough(dsp.path.first(path), dsp.path.flag.RUN)
+        mob:pathThrough(tpz.path.first(path), tpz.path.flag.RUN)
     end
 end
 
 function onMobEngaged(mob,target)
-    mob:setStatus(dsp.status.UPDATE)
+    mob:setStatus(tpz.status.UPDATE)
 end
 
 function onMobDisengage(mob)
-    mob:setStatus(dsp.status.INVISIBLE)
+    mob:setStatus(tpz.status.INVISIBLE)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 119, 2, dsp.regime.type.FIELDS)
+    tpz.regime.checkRegime(player, mob, 119, 2, tpz.regime.type.FIELDS)
 end

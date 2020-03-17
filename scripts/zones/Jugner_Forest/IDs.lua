@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.JUGNER_FOREST] =
+zones[tpz.zone.JUGNER_FOREST] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.JUGNER_FOREST] =
         GIL_OBTAINED             = 6411,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6413,  -- Obtained key item: <keyitem>.
         KEYITEM_LOST             = 6414,  -- Lost key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6439,  -- I'm ready. I suppose.
         CONQUEST_BASE            = 7071,  -- Tallying conquest results...
         BEASTMEN_BANNER          = 7152,  -- There is a beastmen's banner.
         FISHING_MESSAGE_OFFSET   = 7704,  -- You can't fish here.
@@ -65,4 +66,4 @@ zones[dsp.zone.JUGNER_FOREST] =
     },
 }
 
-return zones[dsp.zone.JUGNER_FOREST]
+return zones[tpz.zone.JUGNER_FOREST]

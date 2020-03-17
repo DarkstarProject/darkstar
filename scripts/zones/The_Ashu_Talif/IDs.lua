@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.THE_ASHU_TALIF] =
+zones[tpz.zone.THE_ASHU_TALIF] =
 {
     text = {
         ITEM_CANNOT_BE_OBTAINED    = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
@@ -71,4 +71,4 @@ zones[dsp.zone.THE_ASHU_TALIF] =
     },
 }
 
-return zones[dsp.zone.THE_ASHU_TALIF]
+return zones[tpz.zone.THE_ASHU_TALIF]

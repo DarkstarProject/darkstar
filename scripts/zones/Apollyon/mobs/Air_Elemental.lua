@@ -63,7 +63,7 @@ function onMobDespawn(mob)
 
   if (correctelement==true and IselementalDayAreDead() == true) then
        GetNPCByID(16932864+313):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+313):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16932864+313):setStatus(tpz.status.NORMAL);
   end
 
 end;

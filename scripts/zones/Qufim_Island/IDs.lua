@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.QUFIM_ISLAND] =
+zones[tpz.zone.QUFIM_ISLAND] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.QUFIM_ISLAND] =
         KEYITEM_OBTAINED               = 6391,  -- Obtained key item: <keyitem>.
         KEYITEM_LOST                   = 6392,  -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY        = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET          = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE                  = 7049,  -- Tallying conquest results...
         BEASTMEN_BANNER                = 7130,  -- There is a beastmen's banner.
         FISHING_MESSAGE_OFFSET         = 7208,  -- You can't fish here.
@@ -33,7 +34,7 @@ zones[dsp.zone.QUFIM_ISLAND] =
         ALREADY_POSSESS_TEMP           = 8047,  -- You already possess that temporary item.
         NO_COMBINATION                 = 8052,  -- You were unable to enter a combination.
         REGIME_REGISTERED              = 10328, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL          = 12650, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL          = 12653, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -59,4 +60,4 @@ zones[dsp.zone.QUFIM_ISLAND] =
     },
 }
 
-return zones[dsp.zone.QUFIM_ISLAND]
+return zones[tpz.zone.QUFIM_ISLAND]

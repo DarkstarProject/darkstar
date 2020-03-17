@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local merits = player:getMerit(dsp.merit.WARRIORS_CHARGE)
-    player:addStatusEffect(dsp.effect.WARRIOR_S_CHARGE,merits-5,0,60)
+    local merits = player:getMerit(tpz.merit.WARRIORS_CHARGE)
+    player:addStatusEffect(tpz.effect.WARRIOR_S_CHARGE,merits-5,0,60)
 end

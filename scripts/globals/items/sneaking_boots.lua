@@ -10,6 +10,6 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:delStatusEffect(dsp.effect.SNEAK)
-    target:addStatusEffect(dsp.effect.SNEAK, 1, 0, math.floor(180 * SNEAK_INVIS_DURATION_MULTIPLIER))
+    target:delStatusEffect(tpz.effect.SNEAK)
+    target:addStatusEffect(tpz.effect.SNEAK, 1, 0, math.floor(180 * SNEAK_INVIS_DURATION_MULTIPLIER))
 end

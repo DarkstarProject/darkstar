@@ -10,14 +10,14 @@ require("scripts/globals/status")
 -- todo: when mimics a spell will cast the next tier spell
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 300)
 end
 
 function onMobSpawn(mob)
     mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
     mob:setLocalVar("changeTime",150)
     mob:setLocalVar("useWise", math.random(25,50))
-    mob:addMod(dsp.mod.UFASTCAST,150)
+    mob:addMod(tpz.mod.UFASTCAST,150)
 end
 
 function onMobFight(mob, target)
@@ -26,7 +26,7 @@ function onMobFight(mob, target)
     local spell = mob:getLocalVar("COPY_SPELL")
     local changeTime = mob:getLocalVar("changeTime")
 
-    if spell > 0 and mob:hasStatusEffect(dsp.effect.SILENCE) == false then
+    if spell > 0 and mob:hasStatusEffect(tpz.effect.SILENCE) == false then
         if delay >= 3 then
             mob:castSpell(spell)
             mob:setLocalVar("COPY_SPELL", 0)

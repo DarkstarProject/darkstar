@@ -11,7 +11,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onZoneIn(player, prevZone)
@@ -19,7 +19,7 @@ function onZoneIn(player, prevZone)
 
     local UnbridledPassionCS = player:getCharVar("unbridledPassion")
 
-    if prevZone == dsp.zone.DYNAMIS_XARCABARD then -- warp player to a correct position after dynamis
+    if prevZone == tpz.zone.DYNAMIS_XARCABARD then -- warp player to a correct position after dynamis
         player:setPos(569.312, -0.098, -270.158, 90)
     end
 
@@ -27,14 +27,14 @@ function onZoneIn(player, prevZone)
         player:setPos(-136.287, -23.268, 137.302, 91)
     end
 
-    if not player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and player:getRank() >= 6 and player:getMainLvl() >= 65 and bit.band(player:getCharVar("Dynamis_Status"), 1) == 0 then
+    if not player:hasKeyItem(tpz.ki.VIAL_OF_SHROUDED_SAND) and player:getRank() >= 6 and player:getMainLvl() >= 65 and bit.band(player:getCharVar("Dynamis_Status"), 1) == 0 then
         player:setCharVar("Dynamis_Status", 1)
         cs = 13
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 9
     elseif UnbridledPassionCS == 3 then
         cs = 4
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 11
     end
 
@@ -42,7 +42,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)
@@ -52,7 +52,7 @@ function onEventUpdate(player, csid, option)
     if csid == 9 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 11 then
-        if player:getPreviousZone() == dsp.zone.BEAUCEDINE_GLACIER then
+        if player:getPreviousZone() == tpz.zone.BEAUCEDINE_GLACIER then
             player:updateEvent(0, 0, 0, 0, 0, 2)
         else
             player:updateEvent(0, 0, 0, 0, 0, 3)

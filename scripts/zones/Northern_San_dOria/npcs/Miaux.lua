@@ -16,16 +16,16 @@ end;
 
 function onTrigger(player,npc)
 
-    local aCraftsmansWork = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
+    local aCraftsmansWork = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
     local Quotas_Status = player:getCharVar("ChasingQuotas_Progress");
 
-    if (player:getMainJob() == dsp.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
+    if (player:getMainJob() == tpz.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
         if (player:getCharVar("has_seen_drgaf1_quest_already") == 0) then
             player:startEvent(73);
         else -- If player has seen the big cut scene, give them a smaller one.
             player:startEvent(71);
         end
-    elseif (aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ALTEPA_POLISHING_STONE) == false) then
+    elseif (aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.ALTEPA_POLISHING_STONE) == false) then
         player:startEvent(69);
     elseif (aCraftsmansWork == QUEST_ACCEPTED) then
             player:startEvent(70);
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
     if (csid == 73 and option == 0) then -- first part of long CS -- declines questgiver
         player:setCharVar("has_seen_drgaf1_quest_already",1);
     elseif ((csid == 73 or csid == 71) and option == 1) then
-        player:addQuest(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
+        player:addQuest(SANDORIA,tpz.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
         player:setCharVar("has_seen_drgaf1_quest_already",0);
         player:setCharVar("aCraftsmanWork",1);
     elseif (csid == 70) then -- This is only if player has Altepa Polishing Stone
@@ -57,15 +57,15 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
         else
             player:setCharVar("aCraftsmanWork",0);
-            player:delKeyItem(dsp.ki.ALTEPA_POLISHING_STONE);
+            player:delKeyItem(tpz.ki.ALTEPA_POLISHING_STONE);
             player:addItem(16887);
             player:messageSpecial(ID.text.ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
             player:addFame(SANDORIA,20);
-            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
+            player:completeQuest(SANDORIA,tpz.quest.id.sandoria.A_CRAFTSMAN_S_WORK);
         end
     elseif (csid == 67) then
-        player:addKeyItem(dsp.ki.SHINY_EARRING);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHINY_EARRING);
+        player:addKeyItem(tpz.ki.SHINY_EARRING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.SHINY_EARRING);
         player:setCharVar("ChasingQuotas_Progress",3);
     end
 

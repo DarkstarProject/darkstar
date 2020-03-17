@@ -14,8 +14,8 @@ mixins =
 require("scripts/globals/status")
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.MDEF, 60)
-    mob:addMod(dsp.mod.DEF, 60)
+    mob:addMod(tpz.mod.MDEF, 60)
+    mob:addMod(tpz.mod.DEF, 60)
     mob:AnimationSub(0)
 end
 

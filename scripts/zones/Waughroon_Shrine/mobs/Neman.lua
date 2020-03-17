@@ -7,11 +7,11 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.SLEEPRES, 50)
+    mob:setMod(tpz.mod.SLEEPRES, 50)
 end
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.CHARMABLE, 1)
+    mob:setMobMod(tpz.mobMod.CHARMABLE, 1)
 end
 
 function onMobDeath(mob, player, isKiller)

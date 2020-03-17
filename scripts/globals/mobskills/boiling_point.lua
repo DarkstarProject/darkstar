@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.MAGIC_DEF_DOWN
+    local typeEffect = tpz.effect.MAGIC_DEF_DOWN
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 180))
     return typeEffect
 end

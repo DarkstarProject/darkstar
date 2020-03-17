@@ -9,13 +9,13 @@ mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
             {
-                id = dsp.jsa.MIGHTY_STRIKES,
+                id = tpz.jsa.MIGHTY_STRIKES,
                 endCode = function(mob)
-                    mob:addMod(dsp.mod.ATT, 200)
+                    mob:addMod(tpz.mod.ATT, 200)
                 end,
             },
         },

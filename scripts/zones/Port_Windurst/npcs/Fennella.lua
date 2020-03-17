@@ -10,22 +10,22 @@ local ID = require("scripts/zones/Port_Windurst/IDs");
 
 local keyitems = {
     [0] = {
-        id = dsp.ki.FROG_FISHING,
+        id = tpz.ki.FROG_FISHING,
         rank = 3,
         cost = 30000
     },
     [1] = {
-        id = dsp.ki.SERPENT_RUMORS,
+        id = tpz.ki.SERPENT_RUMORS,
         rank = 8,
         cost = 95000
     },
     [2] = {
-        id = dsp.ki.MOOCHING,
+        id = tpz.ki.MOOCHING,
         rank = 9,
         cost = 115000
     },
     [3] = {
-        id = dsp.ki.ANGLERS_ALMANAC,
+        id = tpz.ki.ANGLERS_ALMANAC,
         rank = 9,
         cost = 20000
     }

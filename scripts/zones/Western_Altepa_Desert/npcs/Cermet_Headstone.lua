@@ -12,29 +12,29 @@ require("scripts/globals/titles")
 
 local function hasAllFragments(player)
     return
-        player:hasKeyItem(dsp.ki.FIRE_FRAGMENT) and
-        player:hasKeyItem(dsp.ki.WATER_FRAGMENT) and
-        player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) and
-        player:hasKeyItem(dsp.ki.WIND_FRAGMENT) and
-        player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT) and
-        player:hasKeyItem(dsp.ki.ICE_FRAGMENT) and
-        player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT) and
-        player:hasKeyItem(dsp.ki.DARK_FRAGMENT)
+        player:hasKeyItem(tpz.ki.FIRE_FRAGMENT) and
+        player:hasKeyItem(tpz.ki.WATER_FRAGMENT) and
+        player:hasKeyItem(tpz.ki.EARTH_FRAGMENT) and
+        player:hasKeyItem(tpz.ki.WIND_FRAGMENT) and
+        player:hasKeyItem(tpz.ki.LIGHTNING_FRAGMENT) and
+        player:hasKeyItem(tpz.ki.ICE_FRAGMENT) and
+        player:hasKeyItem(tpz.ki.LIGHT_FRAGMENT) and
+        player:hasKeyItem(tpz.ki.DARK_FRAGMENT)
 end
 
 function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE then
-        if not player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) then
-            player:startEvent(200,dsp.ki.EARTH_FRAGMENT)
+    if player:getCurrentMission(ZILART) == tpz.mission.id.zilart.HEADSTONE_PILGRIMAGE then
+        if not player:hasKeyItem(tpz.ki.EARTH_FRAGMENT) then
+            player:startEvent(200,tpz.ki.EARTH_FRAGMENT)
         elseif hasAllFragments(player) then
             player:messageSpecial(ID.text.ALREADY_HAVE_ALL_FRAGS)
-        elseif player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) then
-            player:messageSpecial(ID.text.ALREADY_OBTAINED_FRAG, dsp.ki.EARTH_FRAGMENT)
+        elseif player:hasKeyItem(tpz.ki.EARTH_FRAGMENT) then
+            player:messageSpecial(ID.text.ALREADY_OBTAINED_FRAG, tpz.ki.EARTH_FRAGMENT)
         end
-    elseif player:hasCompletedMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
+    elseif player:hasCompletedMission(ZILART,tpz.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
         player:messageSpecial(ID.text.ZILART_MONUMENT)
     else
         player:messageSpecial(ID.text.CANNOT_REMOVE_FRAG)
@@ -46,16 +46,16 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 200 and option == 1 then
-        player:addKeyItem(dsp.ki.EARTH_FRAGMENT)
+        player:addKeyItem(tpz.ki.EARTH_FRAGMENT)
 
         -- Check and see if all fragments have been found (no need to check earth and dark frag)
         if hasAllFragments(player) then
-            player:messageSpecial(ID.text.FOUND_ALL_FRAGS, dsp.ki.EARTH_FRAGMENT)
-            player:addTitle(dsp.title.BEARER_OF_THE_EIGHT_PRAYERS)
-            player:completeMission(ZILART, dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE)
-            player:addMission(ZILART, dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES)
+            player:messageSpecial(ID.text.FOUND_ALL_FRAGS, tpz.ki.EARTH_FRAGMENT)
+            player:addTitle(tpz.title.BEARER_OF_THE_EIGHT_PRAYERS)
+            player:completeMission(ZILART, tpz.mission.id.zilart.HEADSTONE_PILGRIMAGE)
+            player:addMission(ZILART, tpz.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES)
         else
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.EARTH_FRAGMENT)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.EARTH_FRAGMENT)
         end
     end
 end

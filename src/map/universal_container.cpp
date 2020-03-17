@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -116,7 +114,7 @@ UCONTAINERTYPE CUContainer::GetType()
 
 void CUContainer::SetType(UCONTAINERTYPE Type)
 {
-	DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
+	TPZ_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
 
 	m_ContainerType = Type;
 }

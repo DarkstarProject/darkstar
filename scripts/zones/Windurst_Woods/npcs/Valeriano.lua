@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         5059, 28520, -- Scroll of Water Carol II
         4996,123880  -- Scroll of Mage's Ballad III
     }
-    dsp.shop.general(player, stock, WINDURST)
+    tpz.shop.general(player, stock, WINDURST)
 end
 
 function onEventUpdate(player,csid,option)

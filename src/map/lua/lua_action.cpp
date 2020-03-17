@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -45,7 +43,7 @@ CLuaAction::CLuaAction(action_t* Action)
 
 int32 CLuaAction::ID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -90,7 +88,7 @@ int32 CLuaAction::actionID(lua_State* L)
 
 inline int32 CLuaAction::param(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -112,7 +110,7 @@ inline int32 CLuaAction::param(lua_State* L)
 
 inline int32 CLuaAction::messageID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -134,7 +132,7 @@ inline int32 CLuaAction::messageID(lua_State* L)
 
 int32 CLuaAction::animation(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -156,7 +154,7 @@ int32 CLuaAction::animation(lua_State* L)
 
 int32 CLuaAction::speceffect(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -178,7 +176,7 @@ int32 CLuaAction::speceffect(lua_State* L)
 
 int32 CLuaAction::reaction(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -200,7 +198,7 @@ int32 CLuaAction::reaction(lua_State* L)
 
 inline int32 CLuaAction::additionalEffect(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -222,7 +220,7 @@ inline int32 CLuaAction::additionalEffect(lua_State* L)
 
 inline int32 CLuaAction::addEffectParam(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))
@@ -245,7 +243,7 @@ inline int32 CLuaAction::addEffectParam(lua_State* L)
 
 int32 CLuaAction::addEffectMessage(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
     {
         if (actionList.ActionTargetID == lua_tointeger(L, 1))

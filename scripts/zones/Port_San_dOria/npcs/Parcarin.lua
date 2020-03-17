@@ -9,13 +9,13 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(player:getCharVar("WildcatSandy"), 13) then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(player:getCharVar("WildcatSandy"), 13) then
         player:startEvent(747)
     elseif player:getCharVar("thePickpocket") == 1 then
         player:showText(npc, ID.text.PICKPOCKET_PARCARIN)

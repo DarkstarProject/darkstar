@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.CHAMBER_OF_ORACLES] =
+zones[tpz.zone.CHAMBER_OF_ORACLES] =
 {
     text =
     {
@@ -36,4 +36,4 @@ zones[dsp.zone.CHAMBER_OF_ORACLES] =
     },
 }
 
-return zones[dsp.zone.CHAMBER_OF_ORACLES]
+return zones[tpz.zone.CHAMBER_OF_ORACLES]

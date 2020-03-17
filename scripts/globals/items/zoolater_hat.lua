@@ -13,8 +13,8 @@ end
 function onItemUse(target)
     local pet = target:getPet()
     if (pet) then
-        pet:addStatusEffect(dsp.effect.REGAIN, 15, 3, 15)
+        pet:addStatusEffect(tpz.effect.REGAIN, 15, 3, 15)
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

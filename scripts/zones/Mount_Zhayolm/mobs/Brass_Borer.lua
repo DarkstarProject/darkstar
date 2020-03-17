@@ -8,7 +8,7 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 300)
 end
 
 function onMobSpawn(mob)
@@ -16,7 +16,7 @@ function onMobSpawn(mob)
     mob:setLocalVar("formTime", os.time() + math.random(43, 47))
     mob:setLocalVar("defUp", math.random(25, 50))
     mob:setLocalVar("DEF", math.random(3, 5))
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
 end
 
 function onMobRoam(mob)
@@ -24,11 +24,11 @@ function onMobRoam(mob)
 
     if mob:AnimationSub() == 0 and os.time() > roamTime then
         mob:AnimationSub(1)
-        mob:addMod(dsp.mod.MDEF, 10)
+        mob:addMod(tpz.mod.MDEF, 10)
         mob:setLocalVar("formTime", os.time() + math.random(43, 47))
     elseif mob:AnimationSub() == 1 and os.time() > roamTime then
         mob:AnimationSub(0)
-        mob:delMod(dsp.mod.MDEF, 10)
+        mob:delMod(tpz.mod.MDEF, 10)
         mob:setLocalVar("formTime", os.time() + math.random(43, 47))
     end
 end
@@ -38,11 +38,11 @@ function onMobFight(mob, target)
 
     if mob:AnimationSub() == 0 and os.time() > fightTime then
         mob:AnimationSub(1)
-        mob:addMod(dsp.mod.MDEF, 10)
+        mob:addMod(tpz.mod.MDEF, 10)
         mob:setLocalVar("formTime", os.time() + math.random(43, 47))
     elseif mob:AnimationSub() == 1 and os.time() > fightTime then
         mob:AnimationSub(0)
-        mob:delMod(dsp.mod.MDEF, 10)
+        mob:delMod(tpz.mod.MDEF, 10)
         mob:setLocalVar("formTime", os.time() + math.random(43, 47))
     end
 
@@ -56,7 +56,7 @@ function onMobFight(mob, target)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENFIRE)
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.ENFIRE)
 end
 
 function onMobDeath(mob)

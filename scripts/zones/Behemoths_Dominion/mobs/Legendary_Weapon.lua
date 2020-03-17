@@ -12,7 +12,7 @@ function onMobDisengage(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 102, 2, dsp.regime.type.FIELDS)
+    tpz.regime.checkRegime(player, mob, 102, 2, tpz.regime.type.FIELDS)
     if (isKiller and GetMobByID(ID.mob.ANCIENT_WEAPON):isDead()) then
         GetNPCByID(ID.npc.CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
     end

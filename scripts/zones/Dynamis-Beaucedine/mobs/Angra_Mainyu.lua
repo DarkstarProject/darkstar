@@ -21,7 +21,7 @@ function onMobFight(mob, target)
     local mobId = mob:getID()
     for i = mobId + 1, mobId + 4 do
         local pet = GetMobByID(i)
-        if pet:isSpawned() and pet:getCurrentAction() == dsp.act.ROAMING then
+        if pet:isSpawned() and pet:getCurrentAction() == tpz.act.ROAMING then
             pet:updateEnmity(target)
         end
     end

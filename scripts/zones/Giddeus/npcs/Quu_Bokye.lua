@@ -48,8 +48,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 58) then
         player:tradeComplete();
         player:setCharVar("EARLY_BIRD_TRACK_BOOK",2);
-        player:addKeyItem(dsp.ki.ART_FOR_EVERYONE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ART_FOR_EVERYONE);
+        player:addKeyItem(tpz.ki.ART_FOR_EVERYONE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.ART_FOR_EVERYONE);
     end
 
 end;

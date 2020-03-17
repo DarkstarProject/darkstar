@@ -17,8 +17,8 @@ function spawnSaplings()
 end
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
-    mob:setMobMod(dsp.mobMod.DRAW_IN, 1)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 180)
+    mob:setMobMod(tpz.mobMod.DRAW_IN, 1)
 
     local saplingsRespawn = math.random(1800, 3600) -- 30 to 60 minutes
     mob:timer(saplingsRespawn * 1000, function(mob) spawnSaplings() end)
@@ -30,7 +30,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("wasKilled", 1)
-    player:addTitle(dsp.title.MON_CHERRY)
+    player:addTitle(tpz.title.MON_CHERRY)
 end
 
 function onMobDespawn(mob)

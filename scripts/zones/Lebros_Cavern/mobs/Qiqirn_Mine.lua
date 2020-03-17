@@ -9,7 +9,7 @@ require("scripts/globals/status")
 function onMobSpawn(mob)
     local instance = mob:getInstance()
     local players = instance:getChars()
-    mob:setMobMod(dsp.mobMod.NO_MOVE, 1)
+    mob:setMobMod(tpz.mobMod.NO_MOVE, 1)
     mob:SetAutoAttackEnabled(false)
     
     for i,v in pairs(players) do
@@ -37,13 +37,13 @@ function onMobWeaponSkill(target, mob, skill)
 
     if skill:getID() == 1838 then
         if (pos.x == 178 and pos.y == -40 and pos.z == 376) then
-            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK1, 0xFFF), dsp.objType.MOB):setHP(0)
+            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK1, 0xFFF), tpz.objType.MOB):setHP(0)
         elseif (pos.x == 258 and pos.y == -30 and pos.z == 213) then
-            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK3, 0xFFF), dsp.objType.MOB):setHP(0)
+            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK3, 0xFFF), tpz.objType.MOB):setHP(0)
         elseif (pos.x == 303 and pos.y == -30 and pos.z == 341) then
-            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK4, 0xFFF), dsp.objType.MOB):setHP(0)
+            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK4, 0xFFF), tpz.objType.MOB):setHP(0)
         elseif (pos.x == 338 and pos.y == -30 and pos.z == 296) then
-            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK5, 0xFFF), dsp.objType.MOB):setHP(0)
+            instance:getEntity(bit.band(ID.mob[21].BRITTLE_ROCK5, 0xFFF), tpz.objType.MOB):setHP(0)
         end
     end
 end

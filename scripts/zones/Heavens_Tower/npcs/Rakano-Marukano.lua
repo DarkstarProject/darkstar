@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local newNation = dsp.nation.WINDURST
+    local newNation = tpz.nation.WINDURST
     local oldNation = player:getNation()
     local rank = getNationRank(newNation)
 
@@ -44,7 +44,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 10002 and option == 1 then
-        local newNation = dsp.nation.WINDURST
+        local newNation = tpz.nation.WINDURST
         local rank = getNationRank(newNation)
         local cost = 0
 

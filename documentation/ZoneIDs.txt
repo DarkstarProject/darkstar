@@ -1,10 +1,8 @@
 ﻿
-DSproject
-
 Список известных зон
 List of known zones
 
-    0 -  00 - Tech Demo Area (Formerly used as Residential Area in DSP)
+    0 -  00 - Tech Demo Area
     1 -  01 - Phanauet Channel
     2 -  02 - Carpenters' Landing
     3 -  03 - Manaclipper

@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.VALDEAUNIA) ~= dsp.nation.WINDURST then
+    if GetRegionOwner(tpz.region.VALDEAUNIA) ~= tpz.nation.WINDURST then
         player:showText(npc, ID.text.ZOREEN_CLOSED_DIALOG)
     else
         local stock =
@@ -21,7 +21,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ID.text.ZOREEN_OPEN_DIALOG)
-        dsp.shop.general(player, stock, WINDURST)
+        tpz.shop.general(player, stock, WINDURST)
     end
 end
 

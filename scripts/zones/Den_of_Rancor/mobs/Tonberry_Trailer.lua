@@ -10,11 +10,11 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 798, 1, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 799, 2, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 800, 2, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 798, 1, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 799, 2, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 800, 2, tpz.regime.type.GROUNDS)
 end
 
 function onMobDespawn(mob)
-    dsp.mob.phOnDespawn(mob, ID.mob.CELESTE_EYED_TOZBERRY_PH, 10, 7200) -- 2 hours
+    tpz.mob.phOnDespawn(mob, ID.mob.CELESTE_EYED_TOZBERRY_PH, 10, 7200) -- 2 hours
 end

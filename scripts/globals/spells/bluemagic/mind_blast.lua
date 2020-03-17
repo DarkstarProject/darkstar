@@ -23,9 +23,10 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
-    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.damageType = tpz.damageType.LIGHTNING
+    params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 1.0
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     params.multiplier = 7.08
@@ -43,12 +44,12 @@ function onSpellCast(caster,target,spell)
     local damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
-    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
+    if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         params.multiplier = params.multiplier + 0.50
     end
 
     if (damage > 0 and resist > 0.3) then
-        local typeEffect = dsp.effect.PARALYSIS
+        local typeEffect = tpz.effect.PARALYSIS
         target:addStatusEffect(typeEffect,20,0,getBlueEffectDuration(caster,resist,typeEffect)) -- https://www.bg-wiki.com/bg/Mind_Blast says 20%
     end
 

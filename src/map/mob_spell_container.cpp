@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -114,7 +112,7 @@ bool CMobSpellContainer::HasMPSpells() const
 std::optional<SpellID> CMobSpellContainer::GetAggroSpell()
 {
     // high chance to return ga spell
-    if(HasGaSpells() && dsprand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
+    if(HasGaSpells() && tpzrand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
         return GetGaSpell();
     }
 
@@ -125,12 +123,12 @@ std::optional<SpellID> CMobSpellContainer::GetAggroSpell()
 std::optional<SpellID> CMobSpellContainer::GetSpell()
 {
     // prioritize curing if health low enough
-    if(HasHealSpells() && m_PMob->GetHPP() <= m_PMob->getMobMod(MOBMOD_HP_HEAL_CHANCE) && dsprand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_HEAL_CHANCE)){
+    if(HasHealSpells() && m_PMob->GetHPP() <= m_PMob->getMobMod(MOBMOD_HP_HEAL_CHANCE) && tpzrand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_HEAL_CHANCE)){
         return GetHealSpell();
     }
 
     // almost always use na if I can
-    if(HasNaSpells() && dsprand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_NA_CHANCE)){
+    if(HasNaSpells() && tpzrand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_NA_CHANCE)){
         // will return -1 if no proper na spell exists
         auto naSpell = GetNaSpell();
         if(naSpell){
@@ -139,11 +137,11 @@ std::optional<SpellID> CMobSpellContainer::GetSpell()
     }
 
     // try ga spell
-    if(HasGaSpells() && dsprand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
+    if(HasGaSpells() && tpzrand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
         return GetGaSpell();
     }
 
-    if(HasBuffSpells() && dsprand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_BUFF_CHANCE)){
+    if(HasBuffSpells() && tpzrand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_BUFF_CHANCE)){
         return GetBuffSpell();
     }
 
@@ -178,28 +176,28 @@ std::optional<SpellID> CMobSpellContainer::GetGaSpell()
 {
     if(m_gaList.empty()) return {};
 
-    return m_gaList[dsprand::GetRandomNumber(m_gaList.size())];
+    return m_gaList[tpzrand::GetRandomNumber(m_gaList.size())];
 }
 
 std::optional<SpellID> CMobSpellContainer::GetDamageSpell()
 {
     if(m_damageList.empty()) return {};
 
-    return m_damageList[dsprand::GetRandomNumber(m_damageList.size())];
+    return m_damageList[tpzrand::GetRandomNumber(m_damageList.size())];
 }
 
 std::optional<SpellID> CMobSpellContainer::GetBuffSpell()
 {
     if(m_buffList.empty()) return {};
 
-    return m_buffList[dsprand::GetRandomNumber(m_buffList.size())];
+    return m_buffList[tpzrand::GetRandomNumber(m_buffList.size())];
 }
 
 std::optional<SpellID> CMobSpellContainer::GetHealSpell()
 {
     if(m_PMob->m_EcoSystem == SYSTEM_UNDEAD || m_healList.empty()) return {};
 
-    return m_healList[dsprand::GetRandomNumber(m_healList.size())];
+    return m_healList[tpzrand::GetRandomNumber(m_healList.size())];
 }
 
 std::optional<SpellID> CMobSpellContainer::GetNaSpell()

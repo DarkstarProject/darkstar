@@ -6,6 +6,6 @@ require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 614, 2, dsp.regime.type.GROUNDS)
-    dsp.regime.checkRegime(player, mob, 615, 2, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 614, 2, tpz.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 615, 2, tpz.regime.type.GROUNDS)
 end

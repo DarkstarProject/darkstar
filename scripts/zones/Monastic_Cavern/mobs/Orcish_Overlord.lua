@@ -12,7 +12,7 @@ require("scripts/globals/status")
 function onMobInitialize(mob)
     -- the quest version of this NM doesn't drop gil
     if mob:getID() >= ID.mob.UNDERSTANDING_OVERLORD_OFFSET then
-        mob:setMobMod(dsp.mobMod.GIL_MAX, -1)
+        mob:setMobMod(tpz.mobMod.GIL_MAX, -1)
     end
 end
 

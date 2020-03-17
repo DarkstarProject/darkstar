@@ -15,7 +15,7 @@ function onTrigger(player, npc)
     local MissionStatus = player:getCharVar("MissionStatus")
 
     if
-        currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and
+        currentMission == tpz.mission.id.sandoria.RANPERRE_S_FINAL_REST and
         MissionStatus == 1 and
         not GetMobByID(ID.mob.CORRUPTED_YORGOS):isSpawned() and
         not GetMobByID(ID.mob.CORRUPTED_SOFFEIL):isSpawned() and
@@ -29,13 +29,13 @@ function onTrigger(player, npc)
             SpawnMob(ID.mob.CORRUPTED_SOFFEIL)
             SpawnMob(ID.mob.CORRUPTED_ULBRIG)
         end
-    elseif currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 2 then
+    elseif currentMission == tpz.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 2 then
         player:startEvent(6)
-    elseif currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 3 then
+    elseif currentMission == tpz.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 3 then
         player:startEvent(7)
-    elseif currentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 8 then
+    elseif currentMission == tpz.mission.id.sandoria.RANPERRE_S_FINAL_REST and MissionStatus == 8 then
         player:startEvent(5)
-    elseif currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 6 then
+    elseif currentMission == tpz.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 6 then
         player:startEvent(14)
     else
         player:messageSpecial(ID.text.HEAVY_DOOR)

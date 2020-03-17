@@ -18,19 +18,19 @@ function onMobDeath(mob, player, isKiller)
          -- 100 a 106 inclut (Temenos -Northern Tower )
         [16928885] = function (x)
            GetNPCByID(16928768+277):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+277):setStatus(dsp.status.NORMAL);
+           GetNPCByID(16928768+277):setStatus(tpz.status.NORMAL);
         end    ,
         [16928886] = function (x)
            GetNPCByID(16928768+190):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+190):setStatus(dsp.status.NORMAL);
+           GetNPCByID(16928768+190):setStatus(tpz.status.NORMAL);
         end    ,
         [16928887] = function (x)
            GetNPCByID(16928768+127):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+127):setStatus(dsp.status.NORMAL);
+           GetNPCByID(16928768+127):setStatus(tpz.status.NORMAL);
         end    ,
         [16928888] = function (x)
            GetNPCByID(16928768+69):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+69):setStatus(dsp.status.NORMAL);
+           GetNPCByID(16928768+69):setStatus(tpz.status.NORMAL);
         end    ,
         [16929038] = function (x)
            if (IsMobDead(16929033)==false) then

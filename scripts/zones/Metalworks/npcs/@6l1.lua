@@ -12,7 +12,7 @@ require("scripts/globals/status")
 function onSpawn(npc)
     local elevator =
     {
-        id = dsp.elevator.TIMED_AUTOMATIC,
+        id = tpz.elevator.TIMED_AUTOMATIC,
         lowerDoor = npc:getID() -1,
         upperDoor = npc:getID() -2,
         elevator = npc:getID(),

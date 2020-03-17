@@ -13,8 +13,8 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.REQUIEM_FOR_THE_DEPARTED) == QUEST_ACCEPTED then
-        if player:hasKeyItem(dsp.ki.SHEAF_OF_HANDMADE_INCENSE) then
+    if player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.REQUIEM_FOR_THE_DEPARTED) == QUEST_ACCEPTED then
+        if player:hasKeyItem(tpz.ki.SHEAF_OF_HANDMADE_INCENSE) then
             player:startEvent(233) -- standard dialogue after receiving KI
         else
             player:startEvent(234) -- to receive KI
@@ -29,6 +29,6 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 234 then
-        npcUtil.giveKeyItem(player, dsp.ki.SHEAF_OF_HANDMADE_INCENSE)
+        npcUtil.giveKeyItem(player, tpz.ki.SHEAF_OF_HANDMADE_INCENSE)
     end
 end

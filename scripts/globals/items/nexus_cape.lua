@@ -8,7 +8,7 @@ require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = dsp.msg.basic.ITEM_UNABLE_TO_USE -- Default is fail.
+    local result = tpz.msg.basic.ITEM_UNABLE_TO_USE -- Default is fail.
     local leader = target:getPartyLeader()
     -- In a party and we were able to find the leader
     -- (currently fails in cross map server situations)
@@ -35,5 +35,5 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.LEADER,0,1)
+    target:addStatusEffectEx(tpz.effect.TELEPORT,0,tpz.teleport.id.LEADER,0,1)
 end

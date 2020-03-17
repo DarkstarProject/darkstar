@@ -17,7 +17,7 @@ function onTrigger(player,npc)
     local STONES = getTravStonesTotal(player)
     local SOJOURN = getAbyssiteTotal(player,SOJOURN)
 
-    if player:hasStatusEffect(dsp.effect.VISITANT) then
+    if player:hasStatusEffect(tpz.effect.VISITANT) then
         visitant = 60
     end
 
@@ -43,11 +43,11 @@ function onEventFinish(player,csid,option)
 
     if csid == 2001 then
         if option == 2 then -- Use no stones, use previous remaining time
-            player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
+            player:addStatusEffect(tpz.effect.VISITANT,0,3,duration,0,0)
             player:setCharVar("Abyssea_Time",duration)
         elseif option == 65538 then -- Use 1 stone
             duration = (duration + 1800) * VISITANT_BONUS
-            player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
+            player:addStatusEffect(tpz.effect.VISITANT,0,3,duration,0,0)
             player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,1)
         elseif option == 65539 then -- Use 1 stone
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
             -- Todo: extend time
         elseif option == 131074 then -- Use 2 stone
             duration = (duration + 3600) * VISITANT_BONUS
-            player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
+            player:addStatusEffect(tpz.effect.VISITANT,0,3,duration,0,0)
             player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,2)
         elseif option == 131075 then -- Use 2 stone
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
             -- Todo: extend time
         elseif option == 196610 then -- Use 3 stone
             duration = (duration + 5400) * VISITANT_BONUS
-            player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
+            player:addStatusEffect(tpz.effect.VISITANT,0,3,duration,0,0)
             player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,3)
         elseif option == 196611 then -- Use 3 stone
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
             -- Todo: extend time
         elseif option == 262146 then -- Use 4 stone
             duration = (duration + 7200) * VISITANT_BONUS
-            player:addStatusEffect(dsp.effect.VISITANT,0,3,duration,0,0)
+            player:addStatusEffect(tpz.effect.VISITANT,0,3,duration,0,0)
             player:setCharVar("Abyssea_Time",duration)
             spendTravStones(player,4)
         end

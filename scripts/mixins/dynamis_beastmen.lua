@@ -8,21 +8,21 @@ g_mixins = g_mixins or {}
 
 g_mixins.dynamis_beastmen = function(mob)
     local procjobs = {
-        [dsp.job.WAR] = "ws",
-        [dsp.job.MNK] = "ja",
-        [dsp.job.WHM] = "ma",
-        [dsp.job.BLM] = "ma",
-        [dsp.job.RDM] = "ma",
-        [dsp.job.THF] = "ja",
-        [dsp.job.PLD] = "ws",
-        [dsp.job.DRK] = "ws",
-        [dsp.job.BST] = "ja",
-        [dsp.job.BRD] = "ma",
-        [dsp.job.RNG] = "ja",
-        [dsp.job.SAM] = "ws",
-        [dsp.job.NIN] = "ja",
-        [dsp.job.DRG] = "ws",
-        [dsp.job.SMN] = "ma"
+        [tpz.job.WAR] = "ws",
+        [tpz.job.MNK] = "ja",
+        [tpz.job.WHM] = "ma",
+        [tpz.job.BLM] = "ma",
+        [tpz.job.RDM] = "ma",
+        [tpz.job.THF] = "ja",
+        [tpz.job.PLD] = "ws",
+        [tpz.job.DRK] = "ws",
+        [tpz.job.BST] = "ja",
+        [tpz.job.BRD] = "ma",
+        [tpz.job.RNG] = "ja",
+        [tpz.job.SAM] = "ws",
+        [tpz.job.NIN] = "ja",
+        [tpz.job.DRG] = "ws",
+        [tpz.job.SMN] = "ma"
     }
 
     local familyCurrency =

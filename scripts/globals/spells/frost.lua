@@ -14,27 +14,27 @@ end
 
 function onSpellCast(caster,target,spell)
 
-    if (target:getStatusEffect(dsp.effect.BURN) ~= nil) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
+    if (target:getStatusEffect(tpz.effect.BURN) ~= nil) then
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT) -- no effect
     else
-        local dINT = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT)
+        local dINT = caster:getStat(tpz.mod.INT)-target:getStat(tpz.mod.INT)
         local params = {}
         params.diff = nil
-        params.attribute = dsp.mod.INT
+        params.attribute = tpz.mod.INT
         params.skillType = 36
         params.bonus = 0
         params.effect = nil
         local resist = applyResistance(caster, target, spell, params)
         if (resist <= 0.125) then
-            spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+            spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
         else
-            if (target:getStatusEffect(dsp.effect.CHOKE) ~= nil) then
-                target:delStatusEffect(dsp.effect.CHOKE)
+            if (target:getStatusEffect(tpz.effect.CHOKE) ~= nil) then
+                target:delStatusEffect(tpz.effect.CHOKE)
             end
-            local sINT = caster:getStat(dsp.mod.INT)
+            local sINT = caster:getStat(tpz.mod.INT)
             local DOT = getElementalDebuffDOT(sINT)
             local DOTp = 0
-            local effect = target:getStatusEffect(dsp.effect.FROST)
+            local effect = target:getStatusEffect(tpz.effect.FROST)
             local noeffect = false
             if (effect ~= nil) then
                 if (effect:getPower() >= DOT) then
@@ -42,24 +42,24 @@ function onSpellCast(caster,target,spell)
                 end
             end
             if (noeffect) then
-                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
+                spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT) -- no effect
             else
                 if (effect ~= nil) then
-                    target:delStatusEffect(dsp.effect.FROST)
+                    target:delStatusEffect(tpz.effect.FROST)
                 end
-                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
+                spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB)
                 local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist)
-                duration = duration + caster:getMerit(dsp.merit.ELEMENTAL_DEBUFF_DURATION)
+                duration = duration + caster:getMerit(tpz.merit.ELEMENTAL_DEBUFF_DURATION)
 
-                local mbonus = caster:getMerit(dsp.merit.ELEMENTAL_DEBUFF_EFFECT)
+                local mbonus = caster:getMerit(tpz.merit.ELEMENTAL_DEBUFF_EFFECT)
                 DOT = DOT + mbonus/2 -- Damage
                 DOTp = DOTp + mbonus -- Stat Enfeeb
 
-                target:addStatusEffect(dsp.effect.FROST,DOT, 3, duration, dsp.effect.FROST, DOTp)
+                target:addStatusEffect(tpz.effect.FROST,DOT, 3, duration, tpz.effect.FROST, DOTp)
             end
         end
     end
 
-    return dsp.effect.FROST
+    return tpz.effect.FROST
 
 end

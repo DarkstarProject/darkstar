@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
+    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
     local itemID = trade:getItemId();
     local itemList =
     {
@@ -45,10 +45,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
+    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
 
     if (player:getFameLevel(WINDURST) >= 2) then
-        if (player:hasKeyItem(dsp.ki.CHOCOBO_LICENSE)) then
+        if (player:hasKeyItem(tpz.ki.CHOCOBO_LICENSE)) then
             if (QuestStatus ~= QUEST_AVAILABLE) then
                 player:startEvent(103);
             elseif (QuestStatus == QUEST_AVAILABLE) then
@@ -66,17 +66,17 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
+    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
     local payout = player:getCharVar("ANTIQUE_PAYOUT");
 
     if (csid == 101) then
-        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
+        player:addQuest(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
     elseif (csid == 102) then
         player:tradeComplete();
         player:addFame(WINDURST,10);
         player:addGil(payout);
         player:messageSpecial(ID.text.GIL_OBTAINED,payout);
-        player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
+        player:completeQuest(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.ORLANDO_S_ANTIQUES);
         player:setCharVar("ANTIQUE_PAYOUT", 0);
         player:setLocalVar("OrlandoRepeat", 0);
     elseif (csid == 103) then

@@ -13,10 +13,10 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) then
+    if player:getCurrentMission(TOAU) == tpz.mission.id.toau.THE_BLACK_COFFIN and player:hasKeyItem(tpz.ki.EPHRAMADIAN_GOLD_COIN) then
         player:setLocalVar("theblackcoffinfight",1)
         player:startEvent(221, 53, -6, 0, 99, 6, 0)
-    elseif player:hasKeyItem(dsp.ki.LIFE_FLOAT) and player:getCharVar("AgainstAllOdds") == 2 then
+    elseif player:hasKeyItem(tpz.ki.LIFE_FLOAT) and player:getCharVar("AgainstAllOdds") == 2 then
         player:setLocalVar("againstalloddsfight",1)
         player:startEvent(221, 54, -9, 0, 99, 6, 0)
     else
@@ -30,7 +30,7 @@ function onEventUpdate(player,csid,option,target)
     if player:getLocalVar("theblackcoffinfight") == 1 then
         if party ~= nil then
             for i,v in ipairs(party) do
-                if not v:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) then
+                if not v:hasKeyItem(tpz.ki.EPHRAMADIAN_GOLD_COIN) then
                     player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                     player:instanceEntry(target,1)
                     return

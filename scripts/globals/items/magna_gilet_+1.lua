@@ -15,5 +15,5 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    dsp.teleport.to(target, dsp.teleport.id.PURGONORGO)
+    tpz.teleport.to(target, tpz.teleport.id.PURGONORGO)
 end

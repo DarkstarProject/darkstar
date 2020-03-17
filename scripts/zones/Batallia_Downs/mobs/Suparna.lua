@@ -9,7 +9,7 @@ require("scripts/globals/missions");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 180);
 end;
 
 function onMobSpawn(mob)
@@ -17,7 +17,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 3
+    if (player:getCurrentMission(SANDORIA) == tpz.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 3
         and GetMobByID(ID.mob.SUPARNA):isDead() and GetMobByID(ID.mob.SUPARNA_FLEDGLING):isDead()
     ) then
         player:setCharVar("Mission9-1Kills", 1);

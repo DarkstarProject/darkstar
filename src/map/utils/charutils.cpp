@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -911,6 +909,10 @@ namespace charutils
 
                     if (PItem->isType(ITEM_LINKSHELL))
                     {
+                        if (static_cast<CItemLinkshell*>(PItem)->GetLSType() == 0)
+                        {
+                            static_cast<CItemLinkshell*>(PItem)->SetLSType((LSTYPE)(PItem->getID() - 0x200));
+                        }
                         int8 EncodedString[16];
                         EncodeStringLinkshell(Sql_GetData(SqlHandle, 5), EncodedString);
                         PItem->setSignature(EncodedString);
@@ -996,13 +998,14 @@ namespace charutils
                 {
                     uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
                     uint8 equipSlot = Sql_GetUIntData(SqlHandle, 1);
-                    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+                    uint8 LocationID = Sql_GetUIntData(SqlHandle, 2);
+                    CItem* PItem = PChar->getStorage(LocationID)->GetItem(SlotID);
 
                     if ((PItem != nullptr) && PItem->isType(ITEM_LINKSHELL))
                     {
                         PItem->setSubType(ITEM_LOCKED);
                         PChar->equip[equipSlot] = SlotID;
-                        PChar->equipLoc[equipSlot] = LOC_INVENTORY;
+                        PChar->equipLoc[equipSlot] = LocationID;
                         if (equipSlot == SLOT_LINK1)
                             PLinkshell1 = (CItemLinkshell*)PItem;
                         else if (equipSlot == SLOT_LINK2)
@@ -1136,7 +1139,7 @@ namespace charutils
             PItem->setSubType(ITEM_LOCKED);
 
             PChar->nameflags.flags |= FLAG_LINKSHELL;
-            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK1]));
+            PChar->pushPacket(new CInventoryItemPacket(PItem, PChar->equipLoc[SLOT_LINK1], PChar->equip[SLOT_LINK1]));
             PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
             PChar->pushPacket(new CLinkshellEquipPacket(PChar, 1));
         }
@@ -1150,7 +1153,7 @@ namespace charutils
         {
             PItem->setSubType(ITEM_LOCKED);
 
-            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK2]));
+            PChar->pushPacket(new CInventoryItemPacket(PItem, PChar->equipLoc[SLOT_LINK2], PChar->equip[SLOT_LINK2]));
             PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
             PChar->pushPacket(new CLinkshellEquipPacket(PChar, 2));
         }
@@ -1453,7 +1456,7 @@ namespace charutils
 
     bool CanTrade(CCharEntity* PChar, CCharEntity* PTarget)
     {
-        if ((PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() + PTarget->UContainer->GetItemsCount()) < PChar->UContainer->GetItemsCount())
+        if (PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PChar->UContainer->GetItemsCount())
         {
             ShowDebug(CL_CYAN"Unable to trade, %s doesn't have enough inventory space\n" CL_RESET, PTarget->GetName());
             return false;
@@ -2351,7 +2354,7 @@ namespace charutils
     }
 
     void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID) {
-        DSP_DEBUG_BREAK_IF(PPet == nullptr || PChar == nullptr);
+        TPZ_DEBUG_BREAK_IF(PPet == nullptr || PChar == nullptr);
 
         memset(&PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
 
@@ -2678,7 +2681,7 @@ namespace charutils
     {
 
         // This usually happens after a crash
-        DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);   // выход за пределы допустимых умений
+        TPZ_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);   // выход за пределы допустимых умений
 
         if ((PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000))
         {
@@ -2688,7 +2691,7 @@ namespace charutils
             int16  Diff = MaxSkill - CurSkill / 10;
             double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
 
-            double random = dsprand::GetRandomNumber(1.);
+            double random = tpzrand::GetRandomNumber(1.);
 
             if (SkillUpChance > 0.5)
             {
@@ -2715,7 +2718,7 @@ namespace charutils
 
                 for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
                 {
-                    random = dsprand::GetRandomNumber(1.);
+                    random = tpzrand::GetRandomNumber(1.);
 
                     switch (tier)
                     {
@@ -3092,7 +3095,7 @@ namespace charutils
         if (baseExp >= 200) return EMobDifficulty::EvenMatch;
         if (baseExp >= 160) return EMobDifficulty::DecentChallenge;
         if (baseExp >= 60) return EMobDifficulty::EasyPrey;
-        if (baseExp >= 14) return EMobDifficulty::IncredibyEasyPrey;
+        if (baseExp >= 14) return EMobDifficulty::IncrediblyEasyPrey;
 
         return EMobDifficulty::TooWeak;
     }
@@ -3199,7 +3202,7 @@ namespace charutils
         }
         while (tries < maxTries)
         {
-            if (droprate > 0 && dsprand::GetRandomNumber(1000) < droprate * map_config.drop_rate_multiplier + bonus)
+            if (droprate > 0 && tpzrand::GetRandomNumber(1000) < droprate * map_config.drop_rate_multiplier + bonus)
             {
                 PChar->PTreasurePool->AddItem(itemid, PEntity);
                 break;
@@ -3492,8 +3495,8 @@ namespace charutils
     ************************************************************************/
     void DelExperiencePoints(CCharEntity* PChar, float retainPercent, uint16 forcedXpLoss)
     {
-        DSP_DEBUG_BREAK_IF(retainPercent > 1.0f || retainPercent < 0.0f);
-        DSP_DEBUG_BREAK_IF(map_config.exp_loss_level > 99 || map_config.exp_loss_level < 1);
+        TPZ_DEBUG_BREAK_IF(retainPercent > 1.0f || retainPercent < 0.0f);
+        TPZ_DEBUG_BREAK_IF(map_config.exp_loss_level > 99 || map_config.exp_loss_level < 1);
 
         if (PChar->GetMLevel() < map_config.exp_loss_level && forcedXpLoss == 0)
         {
@@ -4269,7 +4272,7 @@ namespace charutils
 
     void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
     {
-        DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
+        TPZ_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
         const char* fmtQuery;
 
@@ -4317,7 +4320,7 @@ namespace charutils
 
     void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
     {
-        DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
+        TPZ_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
         const char* Query;
 
@@ -4362,7 +4365,7 @@ namespace charutils
 
     void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
     {
-        DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
+        TPZ_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
 
         const char* Query =
             "INSERT INTO char_skills "
@@ -4526,7 +4529,7 @@ namespace charutils
 
         uint8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
 
-        DSP_DEBUG_BREAK_IF(element > 7);
+        TPZ_DEBUG_BREAK_IF(element > 7);
 
         reduction = reduction + PChar->getMod(strong[element]);
 
@@ -4936,7 +4939,7 @@ namespace charutils
             case 2:
                 return "windurst_cp";
             default:
-                DSP_DEBUG_BREAK_IF(true);
+                TPZ_DEBUG_BREAK_IF(true);
                 return nullptr;
         }
     }

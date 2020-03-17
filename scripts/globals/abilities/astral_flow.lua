@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.ASTRAL_FLOW,1,0,180)
+    player:addStatusEffect(tpz.effect.ASTRAL_FLOW,1,0,180)
 
-    return dsp.effect.ASTRAL_FLOW
+    return tpz.effect.ASTRAL_FLOW
 end

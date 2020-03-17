@@ -16,8 +16,8 @@ end
 
 function onTrigger(player,npc)
     if
-        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.LOST_IN_TRANSLOCATION) == QUEST_ACCEPTED
-        and not player:hasKeyItem(dsp.ki.MIDDLE_MAP_PIECE)
+        player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.LOST_IN_TRANSLOCATION) == QUEST_ACCEPTED
+        and not player:hasKeyItem(tpz.ki.MIDDLE_MAP_PIECE)
     then
         player:startEvent(4)
     else
@@ -30,6 +30,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 4 then
-        npcUtil.giveKeyItem(player, dsp.ki.MIDDLE_MAP_PIECE)
+        npcUtil.giveKeyItem(player, tpz.ki.MIDDLE_MAP_PIECE)
     end
 end

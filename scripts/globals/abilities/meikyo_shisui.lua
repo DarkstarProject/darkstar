@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.MEIKYO_SHISUI,1,0,30)
+    player:addStatusEffect(tpz.effect.MEIKYO_SHISUI,1,0,30)
     player:addTP(3000)
 end

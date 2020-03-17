@@ -14,14 +14,14 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
+    local sayItWithAHandbag = player:getQuestStatus(CRYSTAL_WAR, tpz.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
     local sayItWithAHandbagCS = player:getCharVar("sayItWithAHandbagCS")
 
     if sayItWithAHandbag == QUEST_COMPLETED then
         player:startEvent(175)
-    elseif player:hasKeyItem(dsp.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
+    elseif player:hasKeyItem(tpz.ki.REPAIRED_HANDBAG) and sayItWithAHandbagCS == 4 then
         player:startEvent(174)
-    elseif player:hasKeyItem(dsp.ki.TORN_PATCHES_OF_LEATHER) or sayItWithAHandbagCS == 3 then
+    elseif player:hasKeyItem(tpz.ki.TORN_PATCHES_OF_LEATHER) or sayItWithAHandbagCS == 3 then
         player:startEvent(173)
     elseif sayItWithAHandbag == QUEST_ACCEPTED and sayItWithAHandbagCS == 1 then
         player:startEvent(172)
@@ -37,16 +37,16 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 174 then -- Option doesn't matter as NPC will take key item if yes or no
-        if npcUtil.completeQuest(player, CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG, {
+        if npcUtil.completeQuest(player, CRYSTAL_WAR, tpz.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG, {
             item = 19110, -- Trainee's Needle
             var = "sayItWithAHandbagCS"
         }) then
-            player:delKeyItem(dsp.ki.REPAIRED_HANDBAG)
+            player:delKeyItem(tpz.ki.REPAIRED_HANDBAG)
             player:setCharVar("sayItWithAHandbagBonusCS", 1)
         end
     elseif csid == 172 then
-        npcUtil.giveKeyItem(player, dsp.ki.TORN_PATCHES_OF_LEATHER)
+        npcUtil.giveKeyItem(player, tpz.ki.TORN_PATCHES_OF_LEATHER)
     elseif csid == 169 then
-        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
+        player:addQuest(CRYSTAL_WAR, tpz.quest.id.crystalWar.SAY_IT_WITH_A_HANDBAG)
     end
 end 

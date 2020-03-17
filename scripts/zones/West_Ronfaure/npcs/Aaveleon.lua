@@ -9,7 +9,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_SENTRY_S_PERIL) == QUEST_ACCEPTED then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.A_SENTRY_S_PERIL) == QUEST_ACCEPTED then
         if npcUtil.tradeHas(trade, 600) then
             player:startEvent(100)
         else

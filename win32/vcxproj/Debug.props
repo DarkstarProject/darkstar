@@ -15,7 +15,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)'=='DSGame-server'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)'=='topaz_game'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -29,7 +29,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='DSGame-server|Win32'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz_game|Win32'">
     <Link>
       <AdditionalDependencies>libmariadb.lib;lua51.lib;libzmq-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
@@ -40,7 +40,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='DSGame-server|x64'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz_game|x64'">
     <Link>
       <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;libzmq-d_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
@@ -49,7 +49,7 @@
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)'=='DSConnect-server'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)'=='topaz_connect'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -58,7 +58,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='DSConnect-server|Win32'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz_connect|Win32'">
     <Link>
       <AdditionalDependencies>libmariadb.lib;libzmq.lib;WS2_32.Lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
@@ -66,7 +66,7 @@
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='DSConnect-server|x64'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz_connect|x64'">
     <Link>
       <AdditionalDependencies>libmariadb64.lib;libzmq-d_64.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib64</AdditionalLibraryDirectories>
@@ -74,7 +74,7 @@
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)'=='DSSearch-server'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)'=='topaz_search'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -83,7 +83,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='DSSearch-server|Win32'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz_search|Win32'">
     <Link>
       <AdditionalDependencies>libmariadb.lib;WS2_32.Lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
@@ -91,7 +91,7 @@
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='DSSearch-server|x64'">
+  <ItemDefinitionGroup Condition="'$(ProjectName)|$(Platform)'=='topaz_search|x64'">
     <Link>
       <AdditionalDependencies>libmariadb64.lib;WS2_32.Lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib64</AdditionalLibraryDirectories>

@@ -1,6 +1,6 @@
 -----------------------------------
 --
---      dsp.effect.ETUDE
+--      tpz.effect.ETUDE
 --
 -----------------------------------
 require("scripts/globals/status")

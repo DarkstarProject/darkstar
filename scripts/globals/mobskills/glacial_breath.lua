@@ -14,7 +14,7 @@ require("scripts/globals/utils")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON)) then
+    if (mob:hasStatusEffect(tpz.effect.BLOOD_WEAPON)) then
         return 1
     elseif (target:isBehind(mob, 48) == true) then
         return 1
@@ -26,15 +26,15 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, dsp.magic.ele.ICE, 1400)
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, tpz.magic.ele.ICE, 1400)
     local angle = mob:getAngle(target)
 
     angle = mob:getRotPos() - angle
     dmgmod = dmgmod * ((128-math.abs(angle))/128)
     dmgmod = utils.clamp(dmgmod, 50, 1600)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,tpz.attackType.BREATH,tpz.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
 
-    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.ICE)
+    target:takeDamage(dmg, mob, tpz.attackType.BREATH, tpz.damageType.ICE)
     return dmg
 end

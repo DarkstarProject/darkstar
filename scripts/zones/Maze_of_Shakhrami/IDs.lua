@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
+zones[tpz.zone.MAZE_OF_SHAKHRAMI] =
 {
     text =
     {
@@ -15,6 +15,7 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
         GIL_OBTAINED             = 6389,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6391,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET    = 6417,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED     = 7010,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         FOSSIL_EXTRACTED         = 7049,  -- A large fossil has been excavated from here.
         NOTHING_FOSSIL           = 7050,  -- It looks like a rock with fossils embedded in it. Nothing out of the ordinary.
@@ -24,7 +25,7 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
         YOU_LOST_THE             = 7264,  -- You lost the <item>.
         CHEST_UNLOCKED           = 7355,  -- You unlock the chest!
         MINING_IS_POSSIBLE_HERE  = 7363,  -- Mining is possible here if you have <item>.
-        ITEMS_ITEMS_LA_LA        = 7373,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        ITEMS_ITEMS_LA_LA        = 7373,  -- You can hear a strange voice... Items, items, la la la la la
         GOBLIN_SLIPPED_AWAY      = 7379,  -- The Goblin slipped away when you were not looking...
         PLAYER_OBTAINS_ITEM      = 8263,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 8264,  -- You were unable to obtain the item.
@@ -65,4 +66,4 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
     },
 }
 
-return zones[dsp.zone.MAZE_OF_SHAKHRAMI]
+return zones[tpz.zone.MAZE_OF_SHAKHRAMI]

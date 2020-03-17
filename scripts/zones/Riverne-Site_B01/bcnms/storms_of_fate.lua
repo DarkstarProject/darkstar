@@ -13,22 +13,22 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
-    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+    tpz.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 function onBattlefieldRegister(player, battlefield)
 end
 
 function onBattlefieldEnter(player, battlefield)
-    player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION) -- can't be capped at 50 for this fight !
+    player:delStatusEffect(tpz.effect.LEVEL_RESTRICTION) -- can't be capped at 50 for this fight !
 end
 
 function onBattlefieldLeave(player, battlefield, leavecode)
-    if leavecode == dsp.battlefield.leaveCode.WON then
+    if leavecode == tpz.battlefield.leaveCode.WON then
         local name, clearTime, partySize = battlefield:getRecord()
-        local arg8 = (player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_COMPLETED) and 1 or 0
+        local arg8 = (player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.STORMS_OF_FATE) == QUEST_COMPLETED) and 1 or 0
         player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), arg8)
-    elseif leavecode == dsp.battlefield.leaveCode.LOST then
+    elseif leavecode == tpz.battlefield.leaveCode.LOST then
         player:startEvent(32002)
     end
 end
@@ -38,14 +38,14 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 32001 then
-        if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getCharVar('StormsOfFate') == 2 then
-            player:addKeyItem(dsp.ki.WHISPER_OF_THE_WYRMKING)
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.WHISPER_OF_THE_WYRMKING)
+        if player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getCharVar('StormsOfFate') == 2 then
+            player:addKeyItem(tpz.ki.WHISPER_OF_THE_WYRMKING)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.WHISPER_OF_THE_WYRMKING)
             player:setCharVar('StormsOfFate', 3)
-            player:addTitle(dsp.title.CONQUEROR_OF_FATE)
+            player:addTitle(tpz.title.CONQUEROR_OF_FATE)
         end
         if ENABLE_COP_ZONE_CAP == 1 then
-            player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 50, 0, 0)
+            player:addStatusEffect(tpz.effect.LEVEL_RESTRICTION, 50, 0, 0)
         end
     end
 end

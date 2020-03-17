@@ -19,7 +19,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local heal = target:getMaxHP() - target:getHP()
 
-    skill:setMsg(dsp.msg.basic.SELF_HEAL)
+    skill:setMsg(tpz.msg.basic.SELF_HEAL)
 
     target:addHP(heal)
     target:wakeUp()

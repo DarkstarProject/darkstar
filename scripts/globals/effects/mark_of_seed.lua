@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effect.MARK_OF_SEED
+-- tpz.effect.MARK_OF_SEED
 --
 --  DO NOT try to use this anywhere else but Fei'Yin!
 -----------------------------------
@@ -29,7 +29,7 @@ function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-    if (target:hasKeyItem(dsp.ki.MARK_OF_SEED) == false and player:hasKeyItem(dsp.ki.AZURE_KEY) == false) then
+    if (target:hasKeyItem(tpz.ki.MARK_OF_SEED) == false and player:hasKeyItem(tpz.ki.AZURE_KEY) == false) then
         target:messageSpecial(ID.text.MARK_OF_SEED_HAS_VANISHED)
     end
     target:setCharVar("SEED_AFTERGLOW_TIMER",0)

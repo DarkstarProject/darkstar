@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.NORTH_GUSTABERG] =
+zones[tpz.zone.NORTH_GUSTABERG] =
 {
     text =
     {
@@ -21,6 +21,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         KEYITEM_LOST                  = 6573,  -- Lost key item: <keyitem>.
         ITEMS_OBTAINED                = 6578,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY       = 6583,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET         = 6598,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET        = 7230,  -- You can't fish here.
         DIG_THROW_AWAY                = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                  = 7245,  -- You dig and you dig, but find nothing.
@@ -28,7 +29,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         SHINING_OBJECT_SLIPS_AWAY     = 7438,  -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7445,  -- You can reach the water from here.
         CONQUEST                      = 7481,  -- You've earned conquest points!
-        ITEMS_ITEMS_LA_LA             = 7833,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        ITEMS_ITEMS_LA_LA             = 7833,  -- You can hear a strange voice... Items, items, la la la la la
         GOBLIN_SLIPPED_AWAY           = 7839,  -- The Goblin slipped away when you were not looking...
         PLAYER_OBTAINS_ITEM           = 8064,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM         = 8065,  -- You were unable to obtain the item.
@@ -77,4 +78,4 @@ zones[dsp.zone.NORTH_GUSTABERG] =
     },
 }
 
-return zones[dsp.zone.NORTH_GUSTABERG]
+return zones[tpz.zone.NORTH_GUSTABERG]

@@ -22,16 +22,16 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, dsp.magic.ele.LIGHT, 1600)
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, tpz.magic.ele.LIGHT, 1600)
     local dis = ((mob:checkDistance(target)*2) / 20)
 
     dmgmod = dmgmod * dis
     dmgmod = utils.clamp(dmgmod, 50, 1600)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.LIGHT,MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,tpz.attackType.BREATH,tpz.damageType.LIGHT,MOBPARAM_IGNORE_SHADOWS)
 
-    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.DEFENSE_DOWN, 25, 0, 60)
+    MobPhysicalStatusEffectMove(mob, target, skill, tpz.effect.DEFENSE_DOWN, 25, 0, 60)
 
-    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.LIGHT)
+    target:takeDamage(dmg, mob, tpz.attackType.BREATH, tpz.damageType.LIGHT)
     return dmg
 end

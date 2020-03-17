@@ -14,17 +14,17 @@ end
 function onTrigger(player,npc)
     local pNation = player:getNation()
 
-    if pNation == dsp.nation.SANDORIA then
+    if pNation == tpz.nation.SANDORIA then
         local currentMission = player:getCurrentMission(pNation)
         local MissionStatus = player:getCharVar("MissionStatus")
 
-        if currentMission == dsp.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 6 then
+        if currentMission == tpz.mission.id.sandoria.APPOINTMENT_TO_JEUNO and MissionStatus == 6 then
             player:startEvent(39)
         elseif player:getRank() == 4 and
-            currentMission == dsp.mission.id.sandoria.NONE and
+            currentMission == tpz.mission.id.sandoria.NONE and
             getMissionRankPoints(player,13) == 1
         then
-            if player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
+            if player:hasKeyItem(tpz.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
                 player:startEvent(130,1)
             else
                 player:startEvent(130)
@@ -49,9 +49,9 @@ function onEventFinish(player,csid,option)
         finishMissionTimeline(player,3,csid,option)
     elseif csid == 130 and option == 1 then
         player:setCharVar("MissionStatus",1)
-        if not player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
-            player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)
+        if not player:hasKeyItem(tpz.ki.ARCHDUCAL_AUDIENCE_PERMIT) then
+            player:addKeyItem(tpz.ki.ARCHDUCAL_AUDIENCE_PERMIT)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.ARCHDUCAL_AUDIENCE_PERMIT)
         end
     end
 end

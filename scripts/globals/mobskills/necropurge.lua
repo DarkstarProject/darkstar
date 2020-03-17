@@ -35,10 +35,10 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 10
     local dmgmod = 2
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.BLUNT,info.hitslanded)
 
-    MobStatusEffectMove(mob, target, dsp.effect.CURSE_I, 1, 0, 60)
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    MobStatusEffectMove(mob, target, tpz.effect.CURSE_I, 1, 0, 60)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
 
     return dmg
 end

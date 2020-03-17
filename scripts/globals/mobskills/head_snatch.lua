@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
         dmg = 0
     end
 
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.NONE)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.NONE)
     return dmg
 end

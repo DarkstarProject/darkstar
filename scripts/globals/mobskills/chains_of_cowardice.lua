@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
     for i,v in pairs(targets) do
         if (v.entity:isPC()) then
             local race = v.entity:getRace()
-            if (race == dsp.race.TARU_M or race == dsp.race.TARU_F) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) then
+            if (race == tpz.race.TARU_M or race == tpz.race.TARU_F) and not v.entity:hasKeyItem(tpz.ki.LIGHT_OF_HOLLA) then
                 mob:showText(mob, ID.text.PROMATHIA_TEXT + 2)
                 return 0
             end
@@ -25,14 +25,14 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.TERROR
+    local typeEffect = tpz.effect.TERROR
     local power = 30
     local duration = 30
 
-    if target:isPC() and ((target:getRace() == dsp.race.TARU_M or target:getRace() == dsp.race.TARU_F) and not target:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)) then
+    if target:isPC() and ((target:getRace() == tpz.race.TARU_M or target:getRace() == tpz.race.TARU_F) and not target:hasKeyItem(tpz.ki.LIGHT_OF_HOLLA)) then
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration))
     else
-        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
+        skill:setMsg(tpz.msg.basic.SKILL_NO_EFFECT)
     end
 
     return typeEffect

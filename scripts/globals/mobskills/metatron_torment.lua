@@ -23,15 +23,15 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2.5
     
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,3,3,3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.SLASHING,info.hitslanded)
     
     local duration = 60
-    local typeEffect = dsp.effect.DEFENSE_DOWN
+    local typeEffect = tpz.effect.DEFENSE_DOWN
     local power = 19
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration)
     
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.SLASHING)
     return dmg
     
 end

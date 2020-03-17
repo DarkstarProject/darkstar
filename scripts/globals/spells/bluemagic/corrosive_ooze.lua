@@ -25,9 +25,10 @@ function onSpellCast(caster,target,spell)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 2.125
-    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
+    if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) then
         multi = multi + 0.50
     end
+        params.damageType = tpz.damageType.WATER
         params.multiplier = multi
         params.tMultiplier = 2.0
         params.duppercap = 69
@@ -43,17 +44,17 @@ function onSpellCast(caster,target,spell)
 
     local params = {}
 
-    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
 
-    params.attribute = dsp.mod.INT
+    params.attribute = tpz.mod.INT
 
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.skillType = tpz.skill.BLUE_MAGIC
 
     params.bonus = 1.0
 
     local resist = applyResistance(caster, target, spell, params)
-    local typeEffectOne = dsp.effect.DEFENSE_DOWN
-    local typeEffectTwo = dsp.effect.ATTACK_DOWN
+    local typeEffectOne = tpz.effect.DEFENSE_DOWN
+    local typeEffectTwo = tpz.effect.ATTACK_DOWN
     local duration = 60
 
     if (damage > 0 and resist > 0.3) then

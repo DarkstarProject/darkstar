@@ -35,13 +35,13 @@ function onInitialize(zone)
     zone:registerRegion(33,-297,6,415,-295,8,417);   -- E-7 (Map 6)
     zone:registerRegion(34,-137,6,-177,-135,8,-175); -- G-7 (Map 8)
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 
     npcUtil.UpdateNPCSpawnPoint(ID.npc.ANTICAN_TAG_QM, 60, 120, ID.npc.ANTICAN_TAG_POSITIONS, "[POP]Antican_Tag");
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -54,9 +54,9 @@ end;
 
 function getWeight(player)
     local race = player:getRace()
-    if race == dsp.race.GALKA then
+    if race == tpz.race.GALKA then
         return 3
-    elseif race == dsp.race.TARU_M or race == dsp.race.TARU_F then
+    elseif race == tpz.race.TARU_M or race == tpz.race.TARU_F then
         return 1
     else
         return 2
@@ -96,9 +96,9 @@ function onRegionEnter(player,region)
         totalWeight = totalWeight + getWeight(player);
         plate:setLocalVar("weight", totalWeight);
 
-        if (player:hasKeyItem(dsp.ki.LOADSTONE) or totalWeight >= 3) then
+        if (player:hasKeyItem(tpz.ki.LOADSTONE) or totalWeight >= 3) then
             door:openDoor(15); -- open door with a 15 second time delay.
-            plate:setAnimation(dsp.anim.OPEN_DOOR); -- this is supposed to light up the platform but it's not working. Tried other values too.
+            plate:setAnimation(tpz.anim.OPEN_DOOR); -- this is supposed to light up the platform but it's not working. Tried other values too.
         end
     end
 end;
@@ -114,8 +114,8 @@ function onRegionLeave(player,region)
         totalWeight = totalWeight - getWeight(player);
         plate:setLocalVar("weight", totalWeight);
 
-        if (plate:getAnimation() == dsp.anim.OPEN_DOOR and totalWeight < 3) then
-            plate:setAnimation(dsp.anim.CLOSE_DOOR);
+        if (plate:getAnimation() == tpz.anim.OPEN_DOOR and totalWeight < 3) then
+            plate:setAnimation(tpz.anim.CLOSE_DOOR);
         end
     end
 end;

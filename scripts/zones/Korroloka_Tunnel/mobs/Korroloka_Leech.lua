@@ -9,7 +9,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 180)
 end
 
 function onMobSpawn(mob)
@@ -21,7 +21,7 @@ function onMobDeath(mob, player, isKiller)
         GetMobByID(ID.mob.KORROLOKA_LEECH_I):isDead() and
         GetMobByID(ID.mob.KORROLOKA_LEECH_II):isDead() and
         GetMobByID(ID.mob.KORROLOKA_LEECH_III):isDead() and
-        player:getQuestStatus(BASTOK, dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED and
+        player:getQuestStatus(BASTOK, tpz.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED and
         player:getCharVar("AyameAndKaede_Event") == 2
     then
         player:setCharVar("KorrolokaLeeches_Killed", 1)

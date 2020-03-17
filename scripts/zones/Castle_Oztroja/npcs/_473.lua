@@ -9,7 +9,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onTrigger(player,npc)
-    if npc:getAnimation() == dsp.anim.CLOSE_DOOR then
+    if npc:getAnimation() == tpz.anim.CLOSE_DOOR then
         player:messageSpecial(ID.text.ITS_LOCKED)
     end
 end

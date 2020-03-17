@@ -16,6 +16,6 @@ function onMobDeath(mob, player, isKiller)
         end
     end
 
-    player:addTitle(dsp.title.WARCHIEF_WRECKER);
+    player:addTitle(tpz.title.WARCHIEF_WRECKER);
 
 end;

@@ -22,10 +22,10 @@ end;
 function onZoneWeatherChange(weather)
     local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS); -- Indescript Markings
     if (npc ~= nil) then
-        if (weather == dsp.weather.FOG or weather == dsp.weather.THUNDER) then
-            npc:setStatus(dsp.status.DISAPPEAR);
+        if (weather == tpz.weather.FOG or weather == tpz.weather.THUNDER) then
+            npc:setStatus(tpz.status.DISAPPEAR);
         elseif (VanadielHour() >= 16 or VanadielHour() <= 6) then
-            npc:setStatus(dsp.status.NORMAL);
+            npc:setStatus(tpz.status.NORMAL);
         end
     end
 end;
@@ -34,10 +34,10 @@ function onGameHour(zone)
     local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS); -- Indescript Markings
     if (npc ~= nil) then
         if (VanadielHour() == 16) then
-            npc:setStatus(dsp.status.DISAPPEAR);
+            npc:setStatus(tpz.status.DISAPPEAR);
         end
         if (VanadielHour() == 6) then
-            npc:setStatus(dsp.status.NORMAL);
+            npc:setStatus(tpz.status.NORMAL);
         end
     end
 end;

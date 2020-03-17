@@ -25,19 +25,19 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == dsp.zone.SAN_DORIA_JEUNO_AIRSHIP) then
+        if (prevZone == tpz.zone.SAN_DORIA_JEUNO_AIRSHIP) then
             cs = 702;
             player:setPos(-1.000, 0.000, 44.000, 0);
         else
             player:setPos(80,-16,-135,165);
-            if (player:getMainJob() ~= player:getCharVar("PlayerMainJob")) then
+            if player:getMainJob() ~= player:getCharVar("PlayerMainJob") and player:getGMLevel() == 0 then
                 cs = 30004;
             end
             player:setCharVar("PlayerMainJob",0);
         end
     end
 
-    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Ulmia_s_Path") == 1) then
+    if (player:getCurrentMission(COP) == tpz.mission.id.cop.THREE_PATHS and player:getCharVar("COP_Ulmia_s_Path") == 1) then
         cs =4;
     end
 
@@ -45,7 +45,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onTransportEvent(player,transport)

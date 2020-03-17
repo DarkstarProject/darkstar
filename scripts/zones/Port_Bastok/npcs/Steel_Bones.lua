@@ -15,8 +15,8 @@ end
 
 function onTrigger(player,npc)
 
-    local GuestofHauteur = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GUEST_OF_HAUTEUR)
-    local itemEquipped = player:getEquipID(dsp.slot.MAIN)
+    local GuestofHauteur = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.GUEST_OF_HAUTEUR)
+    local itemEquipped = player:getEquipID(tpz.slot.MAIN)
 
     if GuestofHauteur == QUEST_ACCEPTED and player:getCharVar("GuestofHauteur_Event") ~= 1 and (itemEquipped == 17045 or itemEquipped == 17426) then -- Maul / Replica Maul
         player:startEvent(57)
@@ -32,8 +32,8 @@ function onEventFinish(player,csid,option)
 
     if csid == 57 then
         player:setCharVar("GuestofHauteur_Event",1)
-        player:addKeyItem(dsp.ki.LETTERS_FROM_DOMIEN)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTERS_FROM_DOMIEN)
+        player:addKeyItem(tpz.ki.LETTERS_FROM_DOMIEN)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.LETTERS_FROM_DOMIEN)
     end
 
 end

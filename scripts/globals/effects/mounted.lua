@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effect.MOUNTED
+-- tpz.effect.MOUNTED
 --
 -----------------------------------
 require("scripts/globals/status")
@@ -12,10 +12,10 @@ function onEffectGain(target,effect)
 
     if effect:getPower() == 0 then
         target:ChangeMusic(4,212)
-        target:setAnimation(dsp.anim.CHOCOBO)
+        target:setAnimation(tpz.anim.CHOCOBO)
     else
         target:ChangeMusic(4,84)
-        target:setAnimation(dsp.anim.MOUNT)
+        target:setAnimation(tpz.anim.MOUNT)
     end
 end
 
@@ -23,5 +23,5 @@ function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-    target:setAnimation(dsp.anim.NONE)
+    target:setAnimation(tpz.anim.NONE)
 end

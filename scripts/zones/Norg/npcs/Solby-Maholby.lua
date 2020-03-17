@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc, ID.text.SOLBYMAHOLBY_SHOP_DIALOG)
-    dsp.shop.general(player, stock)
+    tpz.shop.general(player, stock)
 end
 
 function onEventUpdate(player,csid,option)

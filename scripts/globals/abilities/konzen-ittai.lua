@@ -13,19 +13,19 @@ require("scripts/globals/msg")
 
 function onAbilityCheck(player,target,ability)
     if (player:getAnimation() ~= 1) then
-        return dsp.msg.basic.REQUIRES_COMBAT,0
+        return tpz.msg.basic.REQUIRES_COMBAT,0
     else
         return 0,0
     end
 end
 
 function onUseAbility(player,target,ability,action)
-    if (not target:hasStatusEffect(dsp.effect.CHAINBOUND, 0) and not target:hasStatusEffect(dsp.effect.SKILLCHAIN, 0)) then
-        target:addStatusEffectEx(dsp.effect.CHAINBOUND, 0, 2, 0, 5, 0, 1)
+    if (not target:hasStatusEffect(tpz.effect.CHAINBOUND, 0) and not target:hasStatusEffect(tpz.effect.SKILLCHAIN, 0)) then
+        target:addStatusEffectEx(tpz.effect.CHAINBOUND, 0, 2, 0, 5, 0, 1)
     else
-        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT)
+        ability:setMsg(tpz.msg.basic.JA_NO_EFFECT)
     end
-    local skill = player:getWeaponSkillType(dsp.slot.MAIN)
+    local skill = player:getWeaponSkillType(tpz.slot.MAIN)
     local anim = 36
     if skill <= 1 then
         anim = 37

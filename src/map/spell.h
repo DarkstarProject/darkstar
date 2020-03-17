@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -847,7 +845,7 @@ private:
     uint8       m_job[MAX_JOBTYPE]{};                      // job
     uint8       m_ValidTarget {};                          // target pc/npc/both
     SPELLGROUP  m_spellGroup {SPELLGROUP_NONE};            // spellgroup
-    uint16      m_zoneMisc {};                             // условия чтения заклинаний в зонах
+    uint16      m_zoneMisc {};                             // spellcasting conditions
     uint8       m_AOE {};                                  // aoe or single target spell
     uint16      m_base {};                                 // spell base damage
     float       m_multiplier {};                           // multiplier for upper tier spells

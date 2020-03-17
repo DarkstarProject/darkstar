@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -49,7 +47,7 @@
 #include "synthutils.h"
 #include "zoneutils.h"
 
-//#define _DSP_SYNTH_DEBUG_MESSAGES_ // включаем отладочные сообщения
+//#define _TPZ_SYNTH_DEBUG_MESSAGES_ // включаем отладочные сообщения
 
 namespace synthutils
 {
@@ -110,7 +108,7 @@ bool isRightRecipe(CCharEntity* PChar)
         {
             // в девятую ячейку записываем id рецепта
             PChar->CraftContainer->setItem(9, Sql_GetUIntData(SqlHandle,0),0xFF,0);
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Recipe matches ID %u.\n" CL_RESET, PChar->CraftContainer->getItemID(9));
             #endif
 
@@ -131,13 +129,13 @@ bool isRightRecipe(CCharEntity* PChar)
                 // skill записываем в поле quantity ячеек 9-16
                 PChar->CraftContainer->setQuantity(skillID-40, skillValue);
 
-                #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
                 ShowDebug(CL_CYAN"Current skill = %u, Recipe skill = %u\n" CL_RESET, currentSkill, skillValue*10);
                 #endif
                 if (currentSkill < (skillValue*10 - 150))
                 {
                     PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_NOSKILL));
-                    #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                    #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
                     ShowDebug(CL_CYAN"Not enough skill. Synth aborted.\n" CL_RESET);
                     #endif
                     return false;
@@ -148,7 +146,7 @@ bool isRightRecipe(CCharEntity* PChar)
     }
 
     PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_BADRECIPE));
-    #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+    #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
     ShowDebug(CL_CYAN"Recipe not found. Synth aborted.\n" CL_RESET);
     ShowDebug(CL_CYAN"Ingredient1 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(1));
     ShowDebug(CL_CYAN"Ingredient2 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(2));
@@ -237,7 +235,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
         }
     }
 
-    #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+    #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
     ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
     ShowDebug(CL_CYAN"Day = %i\n" CL_RESET, WeekDay);
     ShowDebug(CL_CYAN"Moon = %g\n" CL_RESET, MoonPhase);
@@ -352,7 +350,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
                 if(success < 0.05)
                     success = 0.05;
 
-                #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
                 ShowDebug(CL_CYAN"SkillID %u: difficulty > 0\n" CL_RESET, skillID);
                 #endif
             }
@@ -378,8 +376,8 @@ uint8 calcSynthResult(CCharEntity* PChar)
                 success = 0.99;
             }
 
-            double random = dsprand::GetRandomNumber(1.);
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            double random = tpzrand::GetRandomNumber(1.);
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
             #endif
 
@@ -387,7 +385,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
             {
                 if(mainID == skillID)
                 {
-                    random = dsprand::GetRandomNumber(1.);
+                    random = tpzrand::GetRandomNumber(1.);
 
                     switch(hqtier)
                     {
@@ -426,13 +424,13 @@ uint8 calcSynthResult(CCharEntity* PChar)
                         chance = std::clamp(chance, 0., 0.500);
                     }
 
-                    #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                    #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
                     ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %g Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
                     #endif
 
                     if (random < chance && canHQ)
                     {
-                        random = dsprand::GetRandomNumber(0, 16);
+                        random = tpzrand::GetRandomNumber(0, 16);
 
                         if (random == 0)
                             result = SYNTHESIS_HQ3;
@@ -462,31 +460,31 @@ uint8 calcSynthResult(CCharEntity* PChar)
     {
         case SYNTHESIS_FAIL:
             result = RESULT_FAIL;
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Synth failed.\n" CL_RESET);
             #endif
             break;
         case SYNTHESIS_SUCCESS:
             result = RESULT_SUCCESS;
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Synth success.\n" CL_RESET);
             #endif
             break;
         case SYNTHESIS_HQ:
             result = RESULT_HQ;
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Synth HQ.\n" CL_RESET);
             #endif
             break;
         case SYNTHESIS_HQ2:
             result = RESULT_HQ;
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Synth HQ2.\n" CL_RESET);
             #endif
             break;
         case SYNTHESIS_HQ3:
             result = RESULT_HQ;
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Synth HQ3.\n" CL_RESET);
             #endif
             break;
@@ -534,8 +532,8 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
             skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));      // результат синтеза хранится в quantity нулевой ячейки
 
-            double random = dsprand::GetRandomNumber(1.);
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            double random = tpzrand::GetRandomNumber(1.);
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n" CL_RESET, skillUpChance, random);
             #endif
 
@@ -558,8 +556,8 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
                 for(uint8 i = 0; i < 4; i ++)
                 {
-                    random = dsprand::GetRandomNumber(1.);
-                    #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                    random = tpzrand::GetRandomNumber(1.);
+                    #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
                     ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n" CL_RESET, satier, random);
                     #endif
 
@@ -653,8 +651,8 @@ int32 doSynthFail(CCharEntity* PChar)
         if (slotID != 8)
             nextSlotID = PChar->CraftContainer->getInvSlotID(slotID+1);
 
-        random = dsprand::GetRandomNumber(1.);
-        #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+        random = tpzrand::GetRandomNumber(1.);
+        #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
         ShowDebug(CL_CYAN"Lost Item: %g  Random: %g\n" CL_RESET, lostItem, random);
         #endif
 
@@ -677,7 +675,7 @@ int32 doSynthFail(CCharEntity* PChar)
 
                 if(lostCount > 0)
                 {
-                    #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                    #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
                     ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET, lostCount, invSlotID);
                     #endif
 
@@ -842,7 +840,7 @@ int32 doSynthResult(CCharEntity* PChar)
         if (animationDuration < 5s)
         {
             // Attempted cheating - Did not spend enough time doing the synth animation.
-            #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+            #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
             ShowDebug(CL_CYAN"Caught player cheating by injecting synth done packet.\n");
             #endif
             // Check whether the cheat type action requires us to actively block the cheating attempt
@@ -893,7 +891,7 @@ int32 doSynthResult(CCharEntity* PChar)
             {
                 if (invSlotID != 0xFF)
                 {
-                    #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+                    #ifdef _TPZ_SYNTH_DEBUG_MESSAGES_
                     ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET,removeCount,invSlotID);
                     #endif
                     auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);

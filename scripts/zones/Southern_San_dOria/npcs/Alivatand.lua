@@ -11,22 +11,22 @@ require("scripts/globals/quests");
 
 local keyitems = {
     [0] = {
-        id = dsp.ki.LEATHER_PURIFICATION,
+        id = tpz.ki.LEATHER_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = dsp.ki.LEATHER_ENSORCELLMENT,
+        id = tpz.ki.LEATHER_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = dsp.ki.TANNING,
+        id = tpz.ki.TANNING,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = dsp.ki.WAY_OF_THE_TANNER,
+        id = tpz.ki.WAY_OF_THE_TANNER,
         rank = 9,
         cost = 20000
     }
@@ -77,7 +77,7 @@ local items = {
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);

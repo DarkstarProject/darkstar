@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.DANGRUF_WADI] =
+zones[tpz.zone.DANGRUF_WADI] =
 {
     text =
     {
@@ -15,6 +15,7 @@ zones[dsp.zone.DANGRUF_WADI] =
         ITEM_OBTAINED            = 6547,  -- Obtained: <item>.
         GIL_OBTAINED             = 6548,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6550,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6576,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED     = 7169,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
         DEVICE_NOT_WORKING       = 7322,  -- The device is not working.
@@ -61,4 +62,4 @@ zones[dsp.zone.DANGRUF_WADI] =
     },
 }
 
-return zones[dsp.zone.DANGRUF_WADI]
+return zones[tpz.zone.DANGRUF_WADI]

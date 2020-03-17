@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local ChocobosWounds = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
+    local ChocobosWounds = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.CHOCOBO_S_WOUNDS);
 
     if (ChocobosWounds == 0) then
         player:startEvent(62);
@@ -57,12 +57,12 @@ end;
 
 function onTrigger(player,npc)
 
-    local ChocobosWounds = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
+    local ChocobosWounds = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.CHOCOBO_S_WOUNDS);
 
-    if (ChocobosWounds == QUEST_COMPLETED and player:hasKeyItem(dsp.ki.CHOCOBO_LICENSE) == false) then
+    if (ChocobosWounds == QUEST_COMPLETED and player:hasKeyItem(tpz.ki.CHOCOBO_LICENSE) == false) then
         -- this is a quick hack to let people get their license if it was lost
-        player:addKeyItem(dsp.ki.CHOCOBO_LICENSE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CHOCOBO_LICENSE);
+        player:addKeyItem(tpz.ki.CHOCOBO_LICENSE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.CHOCOBO_LICENSE);
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(62);
     elseif (ChocobosWounds == QUEST_ACCEPTED) then
@@ -113,13 +113,13 @@ function onEventFinish(player,csid,option)
         player:setCharVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
     elseif (csid == 64) then
-        player:addKeyItem(dsp.ki.CHOCOBO_LICENSE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CHOCOBO_LICENSE);
-        player:addTitle(dsp.title.CHOCOBO_TRAINER);
+        player:addKeyItem(tpz.ki.CHOCOBO_LICENSE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.CHOCOBO_LICENSE);
+        player:addTitle(tpz.title.CHOCOBO_TRAINER);
         player:setCharVar("ChocobosWounds_Event", 0);
         player:setCharVar("ChocobosWounds_Min", 0);
         player:addFame(JEUNO,30);
         player:tradeComplete();
-        player:completeQuest(JEUNO,dsp.quest.id.jeuno.CHOCOBO_S_WOUNDS);
+        player:completeQuest(JEUNO,tpz.quest.id.jeuno.CHOCOBO_S_WOUNDS);
     end
 end;

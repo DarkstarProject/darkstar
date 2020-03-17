@@ -13,16 +13,16 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.GA_CHANCE, 50)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(tpz.mobMod.GA_CHANCE, 50)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
 end
 
 function onMobSpawn(mob)
-    mob:addMod(dsp.mod.MEVA, 95)
-    mob:addMod(dsp.mod.MDEF, 30)
-    mob:addMod(dsp.mod.SILENCERES, 20)
-    mob:addMod(dsp.mod.GRAVITYRES, 20)
-    mob:addMod(dsp.mod.LULLABYRES, 30)
+    mob:addMod(tpz.mod.MEVA, 95)
+    mob:addMod(tpz.mod.MDEF, 30)
+    mob:addMod(tpz.mod.SILENCERES, 20)
+    mob:addMod(tpz.mod.GRAVITYRES, 20)
+    mob:addMod(tpz.mod.LULLABYRES, 30)
     mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
 end
 
@@ -52,30 +52,30 @@ function onMobFight(mob, target)
 
     if useChainspell then
         mob:useMobAbility(692) -- Chainspell
-        mob:setMobMod(dsp.mobMod.GA_CHANCE, 100)
+        mob:setMobMod(tpz.mobMod.GA_CHANCE, 100)
     end
 
     -- Spams TP moves and -ga spells
-    if mob:hasStatusEffect(dsp.effect.CHAINSPELL) then
+    if mob:hasStatusEffect(tpz.effect.CHAINSPELL) then
         mob:setTP(2000)
     else
-        if mob:getMobMod(dsp.mobMod.GA_CHANCE) == 100 then
-            mob:setMobMod(dsp.mobMod.GA_CHANCE, 50)
+        if mob:getMobMod(tpz.mobMod.GA_CHANCE) == 100 then
+            mob:setMobMod(tpz.mobMod.GA_CHANCE, 50)
         end
     end
 
     -- Regens 1% of his HP a tick with Blaze Spikes on
-    if mob:hasStatusEffect(dsp.effect.BLAZE_SPIKES) then
-        mob:setMod(dsp.mod.REGEN, math.floor(mob:getMaxHP()/100))
+    if mob:hasStatusEffect(tpz.effect.BLAZE_SPIKES) then
+        mob:setMod(tpz.mod.REGEN, math.floor(mob:getMaxHP()/100))
     else
-        if mob:getMod(dsp.mod.REGEN) > 0 then
-            mob:setMod(dsp.mod.REGEN, 0)
+        if mob:getMod(tpz.mod.REGEN) > 0 then
+            mob:setMod(tpz.mod.REGEN, 0)
         end
     end
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.POISON, {chance = 40, power = 50})
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.POISON, {chance = 40, power = 50})
 end
 
 function onMobDeath(mob, player, isKiller)

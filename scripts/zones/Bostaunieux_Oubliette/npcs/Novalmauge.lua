@@ -24,25 +24,25 @@ local path =
     44.533886, -23.947662, 19.926519
 }
 
-local wsQuest = dsp.wsquest.spiral_hell
+local wsQuest = tpz.wsquest.spiral_hell
 
 function onSpawn(npc)
     npc:initNpcAi()
-    npc:setPos(dsp.path.first(path))
+    npc:setPos(tpz.path.first(path))
     onPath(npc)
 end
 
 function onPath(npc)
-    dsp.path.patrol(npc, path)
+    tpz.path.patrol(npc, path)
 end
 
 function onTrade(player, npc, trade)
-    local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest, player, trade)
+    local wsQuestEvent = tpz.wsquest.getTradeEvent(wsQuest, player, trade)
 
     if player:getCharVar("troubleAtTheSluiceVar") == 2 and npcUtil.tradeHas(trade, 959) then -- Dahlia
         player:startEvent(17)
         npc:wait()
-    elseif player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 930) then -- Beastman Blood
+    elseif player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.THE_RUMOR) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 930) then -- Beastman Blood
         player:startEvent(12)
         npc:wait()
     elseif wsQuestEvent ~= nil then
@@ -52,11 +52,11 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest, player)
-    local troubleAtTheSluice = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE)
+    local wsQuestEvent = tpz.wsquest.getTriggerEvent(wsQuest, player)
+    local troubleAtTheSluice = player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.TROUBLE_AT_THE_SLUICE)
     local troubleAtTheSluiceStat = player:getCharVar("troubleAtTheSluiceVar")
     local theHolyCrestStat = player:getCharVar("TheHolyCrest_Event")
-    local theRumor = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR)
+    local theRumor = player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.THE_RUMOR)
 
     npc:wait()
 
@@ -92,21 +92,21 @@ function onEventFinish(player, csid, option, npc)
         player:setCharVar("TheHolyCrest_Event", 2)
     elseif csid == 7 then
         player:setCharVar("theHolyCrestCheck", 1)
-    elseif csid == 12 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.THE_RUMOR, {item = 4853}) then
+    elseif csid == 12 and npcUtil.completeQuest(player, SANDORIA, tpz.quest.id.sandoria.THE_RUMOR, {item = 4853}) then
         player:confirmTrade()
     elseif csid == 13 and option == 1 then
-        player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR)
+        player:addQuest(SANDORIA, tpz.quest.id.sandoria.THE_RUMOR)
     elseif csid == 14 then
         player:setCharVar("theHolyCrestCheck", 0)
     elseif csid == 15 then
         player:setCharVar("troubleAtTheSluiceVar", 2)
     elseif csid == 17 then
-        npcUtil.giveKeyItem(player, dsp.ki.NEUTRALIZER)
+        npcUtil.giveKeyItem(player, tpz.ki.NEUTRALIZER)
         player:setCharVar("troubleAtTheSluiceVar", 0)
         player:setCharVar("theHolyCrestCheck", 0)
         player:confirmTrade()
     else
-        dsp.wsquest.handleEventFinish(wsQuest, player, csid, option, ID.text.SPIRAL_HELL_LEARNED)
+        tpz.wsquest.handleEventFinish(wsQuest, player, csid, option, ID.text.SPIRAL_HELL_LEARNED)
     end
 
     npc:wait(0)

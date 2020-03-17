@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Order_Up = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ORDER_UP);
+    local Order_Up = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.ORDER_UP);
     local Order_Marjoirelle = player:getMaskBit(player:getCharVar("Order_Up_NPCs"), 8);
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Marjoirelle)) then

@@ -7,7 +7,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.ABYSSEA_MISAREAUX] =
+zones[tpz.zone.ABYSSEA_MISAREAUX] =
 {
     text =
     {
@@ -38,20 +38,20 @@ zones[dsp.zone.ABYSSEA_MISAREAUX] =
             --  [17662565] = {'qm10',      {3095},                                                                                     {}, 17662473}, -- Nonno
             --  [17662566] = {'qm11',      {3096},                                                                                     {}, 17662474}, -- Tuskertrap
             --  [17662567] = {'qm12',      {3097},                                                                                     {}, 17662475}, -- Npfundlwa
-            --  [17662568] = {'qm13',          {},                             {dsp.ki.GLISTENING_OROBON_LIVER,dsp.ki.DOFFED_POROGGO_HAT}, 17662476}, -- Cirein-Croin
-            --  [17662569] = {'qm14',          {},          {dsp.ki.JAGGED_APKALLU_BEAK,dsp.ki.CLIPPED_BIRD_WING,dsp.ki.BLOODIED_BAT_FUR}, 17662477}, -- Amhuluk
-            --  [17662570] = {'qm15',          {}, {dsp.ki.BLOODSTAINED_BUGARD_FANG,dsp.ki.GNARLED_LIZARD_NAIL,dsp.ki.MOLTED_PEISTE_SKIN}, 17662478}, -- Sobek
-            --  [17662571] = {'qm16',          {},                           {dsp.ki.BLAZING_CLUSTER_SOUL,dsp.ki.SCALDING_IRONCLAD_SPIKE}, 17662479}, -- Ironclad Pulverizor
-            --  [17662572] = {'qm17',          {},                             {dsp.ki.GLISTENING_OROBON_LIVER,dsp.ki.DOFFED_POROGGO_HAT}, 17662481}, -- Cirein-Croin
-            --  [17662573] = {'qm18',          {},          {dsp.ki.JAGGED_APKALLU_BEAK,dsp.ki.CLIPPED_BIRD_WING,dsp.ki.BLOODIED_BAT_FUR}, 17662482}, -- Amhuluk
-            --  [17662574] = {'qm19',          {}, {dsp.ki.BLOODSTAINED_BUGARD_FANG,dsp.ki.GNARLED_LIZARD_NAIL,dsp.ki.MOLTED_PEISTE_SKIN}, 17662483}, -- Sobek
-            --  [17662575] = {'qm20',          {},                           {dsp.ki.BLAZING_CLUSTER_SOUL,dsp.ki.SCALDING_IRONCLAD_SPIKE}, 17662484}, -- Ironclad Pulverizor
-            --  [17662576] = {'qm21',          {},                             {dsp.ki.GLISTENING_OROBON_LIVER,dsp.ki.DOFFED_POROGGO_HAT}, 17662486}, -- Cirein-Croin
-            --  [17662577] = {'qm22',          {},          {dsp.ki.JAGGED_APKALLU_BEAK,dsp.ki.CLIPPED_BIRD_WING,dsp.ki.BLOODIED_BAT_FUR}, 17662487}, -- Amhuluk
-            --  [17662578] = {'qm23',          {}, {dsp.ki.BLOODSTAINED_BUGARD_FANG,dsp.ki.GNARLED_LIZARD_NAIL,dsp.ki.MOLTED_PEISTE_SKIN}, 17662488}, -- Sobek
-            --  [17662579] = {'qm24',          {},                           {dsp.ki.BLAZING_CLUSTER_SOUL,dsp.ki.SCALDING_IRONCLAD_SPIKE}, 17662489}, -- Ironclad Pulverizor
+            --  [17662568] = {'qm13',          {},                             {tpz.ki.GLISTENING_OROBON_LIVER,tpz.ki.DOFFED_POROGGO_HAT}, 17662476}, -- Cirein-Croin
+            --  [17662569] = {'qm14',          {},          {tpz.ki.JAGGED_APKALLU_BEAK,tpz.ki.CLIPPED_BIRD_WING,tpz.ki.BLOODIED_BAT_FUR}, 17662477}, -- Amhuluk
+            --  [17662570] = {'qm15',          {}, {tpz.ki.BLOODSTAINED_BUGARD_FANG,tpz.ki.GNARLED_LIZARD_NAIL,tpz.ki.MOLTED_PEISTE_SKIN}, 17662478}, -- Sobek
+            --  [17662571] = {'qm16',          {},                           {tpz.ki.BLAZING_CLUSTER_SOUL,tpz.ki.SCALDING_IRONCLAD_SPIKE}, 17662479}, -- Ironclad Pulverizor
+            --  [17662572] = {'qm17',          {},                             {tpz.ki.GLISTENING_OROBON_LIVER,tpz.ki.DOFFED_POROGGO_HAT}, 17662481}, -- Cirein-Croin
+            --  [17662573] = {'qm18',          {},          {tpz.ki.JAGGED_APKALLU_BEAK,tpz.ki.CLIPPED_BIRD_WING,tpz.ki.BLOODIED_BAT_FUR}, 17662482}, -- Amhuluk
+            --  [17662574] = {'qm19',          {}, {tpz.ki.BLOODSTAINED_BUGARD_FANG,tpz.ki.GNARLED_LIZARD_NAIL,tpz.ki.MOLTED_PEISTE_SKIN}, 17662483}, -- Sobek
+            --  [17662575] = {'qm20',          {},                           {tpz.ki.BLAZING_CLUSTER_SOUL,tpz.ki.SCALDING_IRONCLAD_SPIKE}, 17662484}, -- Ironclad Pulverizor
+            --  [17662576] = {'qm21',          {},                             {tpz.ki.GLISTENING_OROBON_LIVER,tpz.ki.DOFFED_POROGGO_HAT}, 17662486}, -- Cirein-Croin
+            --  [17662577] = {'qm22',          {},          {tpz.ki.JAGGED_APKALLU_BEAK,tpz.ki.CLIPPED_BIRD_WING,tpz.ki.BLOODIED_BAT_FUR}, 17662487}, -- Amhuluk
+            --  [17662578] = {'qm23',          {}, {tpz.ki.BLOODSTAINED_BUGARD_FANG,tpz.ki.GNARLED_LIZARD_NAIL,tpz.ki.MOLTED_PEISTE_SKIN}, 17662488}, -- Sobek
+            --  [17662579] = {'qm24',          {},                           {tpz.ki.BLAZING_CLUSTER_SOUL,tpz.ki.SCALDING_IRONCLAD_SPIKE}, 17662489}, -- Ironclad Pulverizor
         },
     },
 }
 
-return zones[dsp.zone.ABYSSEA_MISAREAUX]
+return zones[tpz.zone.ABYSSEA_MISAREAUX]

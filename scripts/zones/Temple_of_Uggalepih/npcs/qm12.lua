@@ -12,10 +12,10 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.LIGHTBRINGER and player:getCharVar("MissionStatus") == 3 then
+    if player:getCurrentMission(SANDORIA) == tpz.mission.id.sandoria.LIGHTBRINGER and player:getCharVar("MissionStatus") == 3 then
         player:setCharVar("MissionStatus", 4)
-        player:addKeyItem(dsp.ki.PIECE_OF_A_BROKEN_KEY2)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.PIECE_OF_A_BROKEN_KEY2)
+        player:addKeyItem(tpz.ki.PIECE_OF_A_BROKEN_KEY2)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.PIECE_OF_A_BROKEN_KEY2)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end

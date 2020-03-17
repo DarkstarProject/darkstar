@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.TENSHODO_MEMBERS_CARD)) then
+    if (player:hasKeyItem(tpz.ki.TENSHODO_MEMBERS_CARD)) then
         if (player:sendGuild(60421,9,23,7)) then
             player:showText(npc, ID.text.ACHIKA_SHOP_DIALOG);
         end

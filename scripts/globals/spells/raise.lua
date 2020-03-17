@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
             target:addMP(target:getMaxMP())
         end
     end
-    spell:setMsg(dsp.msg.basic.MAGIC_CASTS_ON)
+    spell:setMsg(tpz.msg.basic.MAGIC_CASTS_ON)
 
     return 1
 end

@@ -23,6 +23,7 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
+    params.damageType = tpz.damageType.FIRE
     params.multiplier = 1.375
     params.tMultiplier = 1.0
     params.duppercap = 30
@@ -37,14 +38,14 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
     local params = {}
-    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 1.0
     local resist = applyResistance(caster, target, spell, params)
 
     if (damage > 0 and resist > 0.125) then
-        local typeEffect = dsp.effect.BIND
+        local typeEffect = tpz.effect.BIND
         target:delStatusEffect(typeEffect) -- Wiki says it can overwrite itself or other binds
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect))
     end

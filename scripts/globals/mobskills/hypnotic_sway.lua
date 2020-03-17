@@ -14,8 +14,8 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local message = dsp.msg.basic.SKILL_MISS
-    local typeEffect = dsp.effect.AMNESIA
+    local message = tpz.msg.basic.SKILL_MISS
+    local typeEffect = tpz.effect.AMNESIA
     local power = 1
     local duration = 60
 

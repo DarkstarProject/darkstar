@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BEADEAUX] =
+zones[tpz.zone.BEADEAUX] =
 {
     text =
     {
@@ -17,11 +17,12 @@ zones[dsp.zone.BEADEAUX] =
         NOT_ENOUGH_GIL                   = 6393, -- You do not have enough gil.
         ITEMS_OBTAINED                   = 6397, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY          = 6402, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET            = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE                    = 7049, -- Tallying conquest results...
         LOCKED_DOOR_QUADAV_HAS_KEY       = 7212, -- It is locked tight, but has what looks like a keyhole. Maybe one of the Quadav here has the key.
         YOU_CAN_NOW_BECOME_A_DARK_KNIGHT = 7349, -- You can now become a dark knight!
         CHEST_UNLOCKED                   = 7360, -- You unlock the chest!
-        COMMON_SENSE_SURVIVAL            = 7784, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL            = 7787, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -54,4 +55,4 @@ zones[dsp.zone.BEADEAUX] =
     },
 }
 
-return zones[dsp.zone.BEADEAUX]
+return zones[tpz.zone.BEADEAUX]

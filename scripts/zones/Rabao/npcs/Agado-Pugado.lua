@@ -16,15 +16,15 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialByWind = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
-    local WhisperOfGales = player:hasKeyItem(dsp.ki.WHISPER_OF_GALES);
+    local TrialByWind = player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.TRIAL_BY_WIND);
+    local WhisperOfGales = player:hasKeyItem(tpz.ki.WHISPER_OF_GALES);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CARBUNCLE_DEBACLE);
+    local CarbuncleDebacle = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.CARBUNCLE_DEBACLE);
     local CarbuncleDebacleProgress = player:getCharVar("CarbuncleDebacleProgress");
 
     ---------------------------------------------------------------------
     -- Carbuncle Debacle
-    if (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 5 and player:hasKeyItem(dsp.ki.DAZEBREAKER_CHARM) == true) then
+    if (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 5 and player:hasKeyItem(tpz.ki.DAZEBREAKER_CHARM) == true) then
         player:startEvent(86); -- get the wind pendulum, lets go to Cloister of Gales
     elseif (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 6) then
         if (player:hasItem(1174) == false) then
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     -- Trial by Wind
     elseif ((TrialByWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 5) or (TrialByWind == QUEST_COMPLETED and realday ~= player:getCharVar("TrialByWind_date"))) then
         player:startEvent(66,0,331); -- Start and restart quest "Trial by Wind"
-    elseif (TrialByWind == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND) == false and WhisperOfGales == false) then
+    elseif (TrialByWind == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.TUNING_FORK_OF_WIND) == false and WhisperOfGales == false) then
         player:startEvent(107,0,331); -- Defeat against Avatar : Need new Fork
     elseif (TrialByWind == QUEST_ACCEPTED and WhisperOfGales == false) then
         player:startEvent(67,0,331,3);
@@ -60,16 +60,16 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 66 and option == 1) then
-        if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND) == QUEST_COMPLETED) then
-            player:delQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
+        if (player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.TRIAL_BY_WIND) == QUEST_COMPLETED) then
+            player:delQuest(OUTLANDS,tpz.quest.id.outlands.TRIAL_BY_WIND);
         end
-        player:addQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
+        player:addQuest(OUTLANDS,tpz.quest.id.outlands.TRIAL_BY_WIND);
         player:setCharVar("TrialByWind_date", 0);
-        player:addKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_WIND);
+        player:addKeyItem(tpz.ki.TUNING_FORK_OF_WIND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TUNING_FORK_OF_WIND);
     elseif (csid == 107) then
-        player:addKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_WIND);
+        player:addKeyItem(tpz.ki.TUNING_FORK_OF_WIND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.TUNING_FORK_OF_WIND);
     elseif (csid == 69) then
         item = 0;
         if (option == 1) then item = 17627;         -- Garuda's Dagger
@@ -91,11 +91,11 @@ function onEventFinish(player,csid,option)
                 player:addItem(item);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
             end
-            player:addTitle(dsp.title.HEIR_OF_THE_GREAT_WIND);
-            player:delKeyItem(dsp.ki.WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
+            player:addTitle(tpz.title.HEIR_OF_THE_GREAT_WIND);
+            player:delKeyItem(tpz.ki.WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
             player:setCharVar("TrialByWind_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(RABAO,30);
-            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_BY_WIND);
+            player:completeQuest(OUTLANDS,tpz.quest.id.outlands.TRIAL_BY_WIND);
         end
     elseif (csid == 86 or csid == 87) then
         if (player:getFreeSlotsCount() ~= 0) then

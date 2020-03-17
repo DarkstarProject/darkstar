@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    func.papyrusQmOnTrigger(player, dsp.ki.ANCIENT_PAPYRUS_SHRED1)
+    func.papyrusQmOnTrigger(player, tpz.ki.ANCIENT_PAPYRUS_SHRED1)
 end
 
 function onEventUpdate(player, csid, option)

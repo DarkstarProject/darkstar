@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effect.MANAFONT
+--     tpz.effect.MANAFONT
 --
 -----------------------------------
 require("scripts/globals/status")

@@ -8,11 +8,11 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
+    mob:setMobMod(tpz.mobMod.DRAW_IN, 1);
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.SERKET_BREAKER);
+    player:addTitle(tpz.title.SERKET_BREAKER);
 end;
 
 function onMobDespawn(mob)

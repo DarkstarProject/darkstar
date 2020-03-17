@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de données: `tpzdb`
 --
 
 -- --------------------------------------------------------
@@ -2852,7 +2852,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Toppling_Tuber',828,310); -- queazyshroom
 INSERT INTO `mob_skill_lists` VALUES ('Toppling_Tuber',828,311); -- numbshroom
 -- INSERT INTO `mob_skill_lists` VALUES ('Toppling_Tuber',828,2607); -- agaricus
 INSERT INTO `mob_skill_lists` VALUES ('Trudging_Thomas',829,266); -- ram charge
--- INSERT INTO `mob_skill_lists` VALUES ('Trudging_Thomas',829,0); -- Doom Bleat missing from mob_skills.sql in DSP -- Doom Bleat which is roughly 50% HP down. HP down effect can be erased
+-- INSERT INTO `mob_skill_lists` VALUES ('Trudging_Thomas',829,0); -- Doom Bleat missing from mob_skills.sql in Topaz -- Doom Bleat which is roughly 50% HP down. HP down effect can be erased
 INSERT INTO `mob_skill_lists` VALUES ('Abas',830,515); -- toxic spit
 INSERT INTO `mob_skill_lists` VALUES ('Adze',831,2158); -- insipid nip
 INSERT INTO `mob_skill_lists` VALUES ('Adze',831,2159); -- pandemic nip
@@ -3000,13 +3000,13 @@ INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',875,842); -- burning strike
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',875,845); -- fire_iv (bloodpact)
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',875,846); -- flaming_crush
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',875,847); -- meteor_strike
--- INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',875,0); -- crimson _howl not in dsp database at all
+-- INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',875,0); -- crimson _howl not in tpz database at all
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_post50',876,842); -- burning strike
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_post50',876,845); -- fire_iv (bloodpact)
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_post50',876,846); -- flaming_crush
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_post50',876,847); -- meteor_strike
 INSERT INTO `mob_skill_lists` VALUES ('Tejas_post50',876,913); -- inferno
--- INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',876,0); -- crimson _howl not in dsp database at all
+-- INSERT INTO `mob_skill_lists` VALUES ('Tejas_Pre50',876,0); -- crimson _howl not in tpz database at all
 INSERT INTO `mob_skill_lists` VALUES ('Titlacauan',877,530); -- Memento_Mori
 INSERT INTO `mob_skill_lists` VALUES ('Titlacauan',877,531); -- Silence_Seal
 INSERT INTO `mob_skill_lists` VALUES ('Titlacauan',877,533); -- danse macambre
@@ -3180,7 +3180,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Rakshas',926,273); -- Claw Cyclone
 -- INSERT INTO `mob_skill_lists` VALUES ('Rakshas',926,2207); -- Disorienting_Waul
 INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2437); -- Aqua_Blast
 INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2439); -- Hydro Wave
--- INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2439); -- Hydro Blast not in DSP/Custom skill list http://ffxi.gamerescape.com/wiki/Hydro_Blast
+-- INSERT INTO `mob_skill_lists` VALUES ('Sedna',927,2439); -- Hydro Blast not in Topaz/Custom skill list http://ffxi.gamerescape.com/wiki/Hydro_Blast
 INSERT INTO `mob_skill_lists` VALUES ('Seps',928,1720); -- Wind Shear
 INSERT INTO `mob_skill_lists` VALUES ('Seps',928,1721); -- Obfuscate
 INSERT INTO `mob_skill_lists` VALUES ('Seps',928,1723); -- Ill Wind
@@ -3450,3 +3450,14 @@ INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1952);
 INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1956);
 INSERT INTO `mob_skill_lists` VALUES ('Ankabut',1007,704);
 INSERT INTO `mob_skill_lists` VALUES ('White_Coney',1008,323); -- only Wild Carrot
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2922); -- Soulshattering Roar
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2923); -- Calcifying Claw
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2924); -- Divesting Stampede
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,2925); -- Bonebreaking Barrage
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,3506); -- Hellfire Arrow
+INSERT INTO `mob_skill_lists` VALUES ('Ophiotaurus',1009,3507); -- Incensed Pummel
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3511); -- Lunatic Voice
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3512); -- Sonic Buffet
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3513); -- Entice
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3514); -- Hysteric Assault
+INSERT INTO `mob_skill_lists` VALUES ('Siren',1010,3515); -- Clarsach Call

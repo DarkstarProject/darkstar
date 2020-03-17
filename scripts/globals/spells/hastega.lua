@@ -13,15 +13,15 @@ end
 function onSpellCast(caster, target, spell)
     local duration = 180
 
-    if caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
+    if caster:hasStatusEffect(tpz.effect.COMPOSURE) and caster:getID() == target:getID() then
        duration = duration * 3
     end
 
     local power = 150 -- 15%
 
-    if not target:addStatusEffect(dsp.effect.HASTE, power, 0, duration) then
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+    if not target:addStatusEffect(tpz.effect.HASTE, power, 0, duration) then
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
 
-    return dsp.effect.HASTE
+    return tpz.effect.HASTE
 end

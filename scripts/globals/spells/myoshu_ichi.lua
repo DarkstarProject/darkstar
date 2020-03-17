@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effect.SUBTLE_BLOW_PLUS
+    local effect = tpz.effect.SUBTLE_BLOW_PLUS
     caster:addStatusEffect(effect,10,0,180)
     return effect
 end

@@ -20,14 +20,14 @@ function onZoneIn(player,prevZone)
 end
 
 function afterZoneIn(player)
-    if player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK) then
+    if player:hasKeyItem(tpz.ki.MESSAGE_TO_JEUNO_BASTOK) then
         player:ChangeMusic(0,161)   --  Despair
         player:ChangeMusic(1,161)   --  Despair
     end
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player,region)

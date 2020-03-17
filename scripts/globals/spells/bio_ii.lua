@@ -14,16 +14,16 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local basedmg = caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 4
+    local basedmg = caster:getSkillLevel(tpz.skill.DARK_MAGIC) / 4
     local params = {}
     params.dmg = basedmg
     params.multiplier = 2
-    params.skillType = dsp.skill.DARK_MAGIC
-    params.attribute = dsp.mod.INT
+    params.skillType = tpz.skill.DARK_MAGIC
+    params.attribute = tpz.mod.INT
     params.hasMultipleTargetReduction = false
-    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT)
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.DARK_MAGIC
+    params.diff = caster:getStat(tpz.mod.INT)-target:getStat(tpz.mod.INT)
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.DARK_MAGIC
     params.bonus = 1.0
 
     -- Calculate raw damage
@@ -45,19 +45,19 @@ function onSpellCast(caster,target,spell)
     local duration = 120
 
     -- Check for Dia
-    local dia = target:getStatusEffect(dsp.effect.DIA)
+    local dia = target:getStatusEffect(tpz.effect.DIA)
 
     -- Calculate DoT effect (rough, though fairly accurate)
-    local dotdmg = 3 + math.floor(caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 60)
+    local dotdmg = 3 + math.floor(caster:getSkillLevel(tpz.skill.DARK_MAGIC) / 60)
 
     -- Do it!
-    target:addStatusEffect(dsp.effect.BIO, dotdmg, 3, duration, 0, 15, 2)
-    spell:setMsg(dsp.msg.basic.MAGIC_DMG)
+    target:addStatusEffect(tpz.effect.BIO, dotdmg, 3, duration, 0, 15, 2)
+    spell:setMsg(tpz.msg.basic.MAGIC_DMG)
 
     -- Try to kill same tier Dia (default behavior)
     if DIA_OVERWRITE == 1 and dia ~= nil then
         if dia:getPower() <= 2 then
-            target:delStatusEffect(dsp.effect.DIA)
+            target:delStatusEffect(tpz.effect.DIA)
         end
     end
 

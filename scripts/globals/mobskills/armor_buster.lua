@@ -19,11 +19,11 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.WEIGHT
+    local typeEffect = tpz.effect.WEIGHT
     local dmgmod = 2.5
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.WATER,dmgmod,TP_MAB_BONUS,1)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.WATER,MOBPARAM_IGNORE_SHADOWS)
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,tpz.magic.ele.WATER,dmgmod,TP_MAB_BONUS,1)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.MAGICAL,tpz.damageType.WATER,MOBPARAM_IGNORE_SHADOWS)
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 20, 3, 45)
-    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.WATER)
+    target:takeDamage(dmg, mob, tpz.attackType.MAGICAL, tpz.damageType.WATER)
     return dmg
 end

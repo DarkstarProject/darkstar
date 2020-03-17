@@ -2,9 +2,9 @@
 import mysql.connector as mariadb
 
 # Change with correct info ##
-sqlusername = "darkstar"    #
+sqlusername = "topaz"       #
 sqlpassword = "password"    #
-sqldatabase = "dspdb"       #
+sqldatabase = "tpzdb"       #
 #############################
 
 

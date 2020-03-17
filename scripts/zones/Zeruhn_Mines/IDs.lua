@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.ZERUHN_MINES] =
+zones[tpz.zone.ZERUHN_MINES] =
 {
     text =
     {
@@ -15,6 +15,7 @@ zones[dsp.zone.ZERUHN_MINES] =
         ITEM_OBTAINED            = 6547,  -- Obtained: <item>.
         GIL_OBTAINED             = 6548,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6550,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6576,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
         MAKARIM_DIALOG_I         = 7315,  -- Be careful on your way out. Remember, you should give my report to Naji, one of the Mythril Musketeers on post at the President's Office.
         ZELMAN_CANT_RUN_AROUND   = 7340,  -- I can't run around doing everything she tells me to--I have my dignity to uphold!
@@ -45,4 +46,4 @@ zones[dsp.zone.ZERUHN_MINES] =
     },
 }
 
-return zones[dsp.zone.ZERUHN_MINES]
+return zones[tpz.zone.ZERUHN_MINES]

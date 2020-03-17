@@ -13,16 +13,16 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and
+        player:getCurrentMission(COP) == tpz.mission.id.cop.THREE_PATHS and
         player:getCharVar("COP_Tenzen_s_Path") == 6 and
-        player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE) and
+        player:hasKeyItem(tpz.ki.DELKFUTT_RECOGNITION_DEVICE) and
         npcUtil.popFromQM(player, npc, ID.mob.DISASTER_IDOL, {hide = 0})
     then
         -- no further action
     elseif
-        player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and
+        player:getCurrentMission(COP) == tpz.mission.id.cop.THREE_PATHS and
         player:getCharVar("COP_Tenzen_s_Path") == 7 and
-        player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE)
+        player:hasKeyItem(tpz.ki.DELKFUTT_RECOGNITION_DEVICE)
     then
         player:startEvent(25)
     end

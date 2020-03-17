@@ -12,14 +12,14 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 45)
-    local highest = automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE)
+    automaton:addRecast(tpz.recast.ABILITY, skill:getID(), 45)
+    local highest = automaton:getSkillLevel(tpz.skill.AUTOMATON_MELEE)
     local highestskill = 22
-    if automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED) > highest then
+    if automaton:getSkillLevel(tpz.skill.AUTOMATON_RANGED) > highest then
         highestskill = 23
-        highest = automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED)
+        highest = automaton:getSkillLevel(tpz.skill.AUTOMATON_RANGED)
     end
-    if automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC) > highest then
+    if automaton:getSkillLevel(tpz.skill.AUTOMATON_MAGIC) > highest then
         highestskill = 24
     end
 
@@ -27,14 +27,14 @@ function onPetAbility(target, automaton, skill, master, action)
     local duration = 12 * resist
 
     if resist > 0.0625 then
-        if target:addStatusEffect(dsp.effect.FLASH, 200, 0, duration) then
-            skill:setMsg(dsp.msg.basic.SKILL_ENFEEB)
+        if target:addStatusEffect(tpz.effect.FLASH, 200, 0, duration) then
+            skill:setMsg(tpz.msg.basic.SKILL_ENFEEB)
         else
-            skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
+            skill:setMsg(tpz.msg.basic.SKILL_NO_EFFECT)
         end
     else
-        skill:setMsg(dsp.msg.basic.RESIST)
+        skill:setMsg(tpz.msg.basic.RESIST)
     end
 
-    return dsp.effect.FLASH
+    return tpz.effect.FLASH
 end

@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
+zones[tpz.zone.KONSCHTAT_HIGHLANDS] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
         GIL_OBTAINED                 = 6389,  -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6391,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY      = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET        = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE                = 7049,  -- Tallying conquest results...
         ALREADY_OBTAINED_TELE        = 7208,  -- You already possess the gate crystal for this telepoint.
         DIG_THROW_AWAY               = 7225,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
@@ -32,7 +33,7 @@ zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
         ALREADY_POSSESS_TEMP         = 7597,  -- You already possess that temporary item.
         NO_COMBINATION               = 7602,  -- You were unable to enter a combination.
         REGIME_REGISTERED            = 9780,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL        = 11903, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL        = 11906, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -64,4 +65,4 @@ zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
     },
 }
 
-return zones[dsp.zone.KONSCHTAT_HIGHLANDS]
+return zones[tpz.zone.KONSCHTAT_HIGHLANDS]

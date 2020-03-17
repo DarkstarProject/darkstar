@@ -9,12 +9,12 @@ require("scripts/globals/zone")
 -----------------------------------------
 
 function onItemCheck(target)
-    if target:getZoneID() == dsp.zone.NYZUL_ISLE then
+    if target:getZoneID() == tpz.zone.NYZUL_ISLE then
         return 0
     end
     return 56
 end
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.ALZADAAL,0,1)
+    target:addStatusEffectEx(tpz.effect.TELEPORT,0,tpz.teleport.id.ALZADAAL,0,1)
 end

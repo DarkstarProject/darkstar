@@ -9,7 +9,7 @@ require("scripts/globals/magic")
 -----------------------------------
 
 function onSpawn(npc)
-    npcUtil.castingAnimation(npc, dsp.magic.spellGroup.BLACK, 10)
+    npcUtil.castingAnimation(npc, tpz.magic.spellGroup.BLACK, 10)
 end
 
 function onTrade(player,npc,trade)

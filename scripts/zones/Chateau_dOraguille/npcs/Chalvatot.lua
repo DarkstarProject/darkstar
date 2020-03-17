@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
+    local herMajestysGarden = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- HER MAJESTY'S GARDEN (derfland humus)
     if (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
@@ -26,18 +26,18 @@ end;
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getCharVar("MissionStatus");
-    local circleOfTime = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
+    local circleOfTime = player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.THE_CIRCLE_OF_TIME);
     local circleProgress = player:getCharVar("circleTime");
-    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
+    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.LURE_OF_THE_WILDCAT);
     local WildcatSandy = player:getCharVar("WildcatSandy");
-    local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
+    local herMajestysGarden = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
-    if (currentMission == dsp.mission.id.sandoria.THE_CRYSTAL_SPRING and MissionStatus == 3) then
+    if (currentMission == tpz.mission.id.sandoria.THE_CRYSTAL_SPRING and MissionStatus == 3) then
         player:startEvent(556);
 
     -- LEAUTE'S LAST WISHES (San d'Oria 6-1)
-    elseif (currentMission == dsp.mission.id.sandoria.LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(dsp.ki.DREAMROSE)) then
+    elseif (currentMission == tpz.mission.id.sandoria.LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(tpz.ki.DREAMROSE)) then
         player:startEvent(111);
 
     -- CIRCLE OF TIME (Bard AF3)
@@ -81,14 +81,14 @@ function onEventFinish(player,csid,option)
         player:setCharVar("circleTime",6);
     elseif ((csid == 98 or csid == 99) and option == 1) then
         player:setCharVar("circleTime",7);
-        player:addKeyItem(dsp.ki.MOON_RING);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_RING);
+        player:addKeyItem(tpz.ki.MOON_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.MOON_RING);
     elseif (csid == 96) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12647);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12647)
-            player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
-            player:addTitle(dsp.title.PARAGON_OF_BARD_EXCELLENCE);
+            player:completeQuest(JEUNO,tpz.quest.id.jeuno.THE_CIRCLE_OF_TIME);
+            player:addTitle(tpz.title.PARAGON_OF_BARD_EXCELLENCE);
             player:setCharVar("circleTime",0);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
@@ -100,13 +100,13 @@ function onEventFinish(player,csid,option)
 
     -- HER MAJESTY'S GARDEN
     elseif (csid == 84 and option == 1) then
-        player:addQuest(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
+        player:addQuest(SANDORIA,tpz.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
     elseif (csid == 83) then
         player:tradeComplete();
-        player:addKeyItem(dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
+        player:addKeyItem(tpz.ki.MAP_OF_THE_NORTHLANDS_AREA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.MAP_OF_THE_NORTHLANDS_AREA);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
+        player:completeQuest(SANDORIA,tpz.quest.id.sandoria.HER_MAJESTY_S_GARDEN);
 
     end;
 end;

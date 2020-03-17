@@ -11,14 +11,14 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effect.INHIBIT_TP
+    local effect = tpz.effect.INHIBIT_TP
     -- Base Stats
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local dINT = (caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT))
     --Duration Calculation
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.NINJUTSU
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.NINJUTSU
     params.bonus = 0
     params.effect = nil
     local resist = applyResistance(caster, target, spell, params)
@@ -36,20 +36,20 @@ function onSpellCast(caster,target,spell)
                 if (inhibit_tp:getPower() < power) then
                     target:delStatusEffect(effect)
                     target:addStatusEffect(effect,power,0,duration)
-                    spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
+                    spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB)
                 else
                     -- no effect
-                    spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+                    spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
                 end
             else
                 target:addStatusEffect(effect,power,0,duration)
-                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
+                spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB)
             end
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+            spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST_2)
     end
 
     return effect

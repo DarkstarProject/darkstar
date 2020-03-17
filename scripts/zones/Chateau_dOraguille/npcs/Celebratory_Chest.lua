@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    dsp.shop.celebratory(player)
+    tpz.shop.celebratory(player)
     player:messageSpecial(ID.text.CELEBRATORY_GOODS)
 end
 

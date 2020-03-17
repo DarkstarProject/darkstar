@@ -8,7 +8,7 @@ require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.helm.initZone(zone, dsp.helm.type.MINING)
+    tpz.helm.initZone(zone, tpz.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

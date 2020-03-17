@@ -11,29 +11,29 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effect.DARK_ARTS) or player:hasStatusEffect(dsp.effect.ADDENDUM_BLACK) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
+    if player:hasStatusEffect(tpz.effect.DARK_ARTS) or player:hasStatusEffect(tpz.effect.ADDENDUM_BLACK) then
+        return tpz.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
     return 0,0
 end
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(dsp.effect.LIGHT_ARTS)
-    player:delStatusEffect(dsp.effect.ADDENDUM_WHITE)
-    player:delStatusEffect(dsp.effect.PENURY)
-    player:delStatusEffect(dsp.effect.CELERITY)
-    player:delStatusEffect(dsp.effect.ACCESSION)
-    player:delStatusEffect(dsp.effect.RAPTURE)
-    player:delStatusEffect(dsp.effect.ALTRUISM)
-    player:delStatusEffect(dsp.effect.TRANQUILITY)
-    player:delStatusEffect(dsp.effect.PERPETUANCE)
+    player:delStatusEffectSilent(tpz.effect.LIGHT_ARTS)
+    player:delStatusEffect(tpz.effect.ADDENDUM_WHITE)
+    player:delStatusEffect(tpz.effect.PENURY)
+    player:delStatusEffect(tpz.effect.CELERITY)
+    player:delStatusEffect(tpz.effect.ACCESSION)
+    player:delStatusEffect(tpz.effect.RAPTURE)
+    player:delStatusEffect(tpz.effect.ALTRUISM)
+    player:delStatusEffect(tpz.effect.TRANQUILITY)
+    player:delStatusEffect(tpz.effect.PERPETUANCE)
 
     local helixbonus = 0
-    if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == tpz.job.SCH and player:getMainLvl() >= 20) then
         helixbonus = math.floor(player:getMainLvl() / 4)
     end
 
-    player:addStatusEffect(dsp.effect.DARK_ARTS,1,0,7200,0,helixbonus)
+    player:addStatusEffect(tpz.effect.DARK_ARTS,1,0,7200,0,helixbonus)
 
-    return dsp.effect.DARK_ARTS
+    return tpz.effect.DARK_ARTS
 end

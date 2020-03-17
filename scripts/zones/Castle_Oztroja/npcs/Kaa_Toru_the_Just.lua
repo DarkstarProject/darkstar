@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION and player:getCharVar("MissionStatus") == 2) then
+    if (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.SAINTLY_INVITATION and player:getCharVar("MissionStatus") == 2) then
         player:startEvent(45,0,200);
     else
         player:startEvent(46);
@@ -27,9 +27,9 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13134);
         else
-            player:delKeyItem(dsp.ki.HOLY_ONES_INVITATION);
-            player:addKeyItem(dsp.ki.HOLY_ONES_OATH);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.HOLY_ONES_OATH);
+            player:delKeyItem(tpz.ki.HOLY_ONES_INVITATION);
+            player:addKeyItem(tpz.ki.HOLY_ONES_OATH);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.HOLY_ONES_OATH);
             player:addItem(13134); -- Ashura Necklace
             player:messageSpecial(ID.text.ITEM_OBTAINED,13134);
             player:setCharVar("MissionStatus",3);

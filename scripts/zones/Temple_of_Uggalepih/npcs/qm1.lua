@@ -13,7 +13,7 @@ end
 function onTrigger(player, npc)
     if not player:hasItem(1266) then
         if npcUtil.giveItem(player, 1266) then -- Tonberry Rattle
-            npc:setStatus(dsp.status.DISAPPEAR)
+            npc:setStatus(tpz.status.DISAPPEAR)
             npc:updateNPCHideTime(7200) -- 2 hours
             -- TODO: ??? reappears at new position
         end

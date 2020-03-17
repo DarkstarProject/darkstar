@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.ARAGONEU);
-    if (RegionOwner ~= dsp.nation.WINDURST) then
+    local RegionOwner = GetRegionOwner(tpz.region.ARAGONEU);
+    if (RegionOwner ~= tpz.nation.WINDURST) then
         player:showText(npc,ID.text.MAQUMOLPIH_CLOSED_DIALOG);
     else
         player:showText(npc,ID.text.MAQUMOLPIH_OPEN_DIALOG);
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             4505,   92,  -- Sunflower Seeds
             841,    36   -- Yagudo Feather
         }
-        dsp.shop.general(player, stock, WINDURST);
+        tpz.shop.general(player, stock, WINDURST);
 
     end
 

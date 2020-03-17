@@ -12,12 +12,12 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    if (not target:hasStatusEffect(dsp.effect.INVISIBLE)) then
-        target:addStatusEffect(dsp.effect.INVISIBLE, 0, 10, math.floor(420 * SNEAK_INVIS_DURATION_MULTIPLIER))
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
+    if (not target:hasStatusEffect(tpz.effect.INVISIBLE)) then
+        target:addStatusEffect(tpz.effect.INVISIBLE, 0, 10, math.floor(420 * SNEAK_INVIS_DURATION_MULTIPLIER))
+        spell:setMsg(tpz.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no dsp.effect.
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT) -- no tpz.effect.
     end
 
-    return dsp.effect.INVISIBLE
+    return tpz.effect.INVISIBLE
 end

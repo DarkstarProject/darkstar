@@ -8,7 +8,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.DYNAMIS_SAN_DORIA] =
+zones[tpz.zone.DYNAMIS_SAN_DORIA] =
 {
     text =
     {
@@ -29,11 +29,11 @@ zones[dsp.zone.DYNAMIS_SAN_DORIA] =
     {
         TIME_EXTENSION =
         {
-            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = 17535026},
-            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 17535057},
-            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17535139},
-            {minutes = 15, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17535131},
-            {minutes = 15, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17535128},
+            {minutes = 10, ki = tpz.ki.CRIMSON_GRANULES_OF_TIME,   mob = 17535026},
+            {minutes = 10, ki = tpz.ki.AZURE_GRANULES_OF_TIME,     mob = 17535057},
+            {minutes = 10, ki = tpz.ki.AMBER_GRANULES_OF_TIME,     mob = 17535139},
+            {minutes = 15, ki = tpz.ki.ALABASTER_GRANULES_OF_TIME, mob = 17535131},
+            {minutes = 15, ki = tpz.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17535128},
         },
         REFILL_STATUE =
         {
@@ -86,4 +86,4 @@ zones[dsp.zone.DYNAMIS_SAN_DORIA] =
     },
 }
 
-return zones[dsp.zone.DYNAMIS_SAN_DORIA]
+return zones[tpz.zone.DYNAMIS_SAN_DORIA]

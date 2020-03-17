@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BEAUCEDINE_GLACIER] =
+zones[tpz.zone.BEAUCEDINE_GLACIER] =
 {
     text =
     {
@@ -20,6 +20,7 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
         KEYITEM_LOST                    = 6573,  -- Lost key item: <keyitem>.
         ITEMS_OBTAINED                  = 6578,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY         = 6583,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET           = 6598,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET          = 7230,  -- You can't fish here.
         CONQUEST                        = 7483,  -- You've earned conquest points!
         YOU_CANNOT_ENTER_DYNAMIS        = 7863,  -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
@@ -31,7 +32,7 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
         ALREADY_POSSESS_TEMP            = 8561,  -- You already possess that temporary item.
         NO_COMBINATION                  = 8566,  -- You were unable to enter a combination.
         REGIME_REGISTERED               = 10744, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL           = 12767, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL           = 12770, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -59,4 +60,4 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
     },
 }
 
-return zones[dsp.zone.BEAUCEDINE_GLACIER]
+return zones[tpz.zone.BEAUCEDINE_GLACIER]

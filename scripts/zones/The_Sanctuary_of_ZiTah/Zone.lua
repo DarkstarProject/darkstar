@@ -12,17 +12,17 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
     GetMobByID(ID.mob.NOBLE_MOLD):setLocalVar("pop", os.time() + math.random(43200, 57600)) -- 12 to 16 hr
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onZoneIn(player, prevZone)
@@ -34,7 +34,7 @@ function onZoneIn(player, prevZone)
 
     if triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 2
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 4
     end
 
@@ -48,9 +48,9 @@ function onEventUpdate(player, csid, option)
     if csid == 2 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 4 then
-        if player:getPreviousZone() == dsp.zone.THE_BOYAHDA_TREE then
+        if player:getPreviousZone() == tpz.zone.THE_BOYAHDA_TREE then
             player:updateEvent(0, 0, 0, 0, 0, 7)
-        elseif player:getPreviousZone() == dsp.zone.MERIPHATAUD_MOUNTAINS then
+        elseif player:getPreviousZone() == tpz.zone.MERIPHATAUD_MOUNTAINS then
             player:updateEvent(0, 0, 0, 0, 0, 1)
         end
     end

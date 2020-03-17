@@ -7,7 +7,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 300)
 end
 
 function onMobSpawn(mob)
@@ -15,7 +15,7 @@ function onMobSpawn(mob)
     mob:setLocalVar("BreakChance", 5)
 end
 
-function onCriticalHit(mob, player)
+function onCriticalHit(mob, attacker)
     if math.random(100) <= mob:getLocalVar("BreakChance") then
         local animationSub = mob:AnimationSub()
         if animationSub == 4 then

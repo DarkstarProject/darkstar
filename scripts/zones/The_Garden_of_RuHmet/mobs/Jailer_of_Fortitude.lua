@@ -10,10 +10,10 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.INVINCIBLE, cooldown = 180, hpp = math.random(90, 95)}, -- "Has access to Invincible, which it may use several times."
+            {id = tpz.jsa.INVINCIBLE, cooldown = 180, hpp = math.random(90, 95)}, -- "Has access to Invincible, which it may use several times."
         },
     })
 
@@ -33,7 +33,7 @@ function onMobFight(mob, target)
     end;
 
     if (not GetMobByID(ID.mob.KFGHRAH_WHM):isDead() or not GetMobByID(ID.mob.KFGHRAH_BLM):isDead()) then -- check for kf'ghrah
-        if (spell > 0 and not mob:hasStatusEffect(dsp.effect.SILENCE)) then
+        if (spell > 0 and not mob:hasStatusEffect(tpz.effect.SILENCE)) then
             if (delay >= 3) then
                 mob:castSpell(spell);
                 mob:setLocalVar("COPY_SPELL", 0);
@@ -46,7 +46,7 @@ function onMobFight(mob, target)
 end;
 
 function onMagicHit(caster,target,spell)
-    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= dsp.magic.spellGroup.BLUE ) then
+    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= tpz.magic.spellGroup.BLUE ) then
         -- Handle mimicked spells
         target:setLocalVar("COPY_SPELL", spell:getID());
         target:setLocalVar("LAST_CAST", target:getBattleTime());

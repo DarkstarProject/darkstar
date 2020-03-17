@@ -20,7 +20,7 @@ require("scripts/globals/status")
 function onSpawn(npc)
     local elevator =
     {
-        id = dsp.elevator.FORT_GHELSBA_LIFT,
+        id = tpz.elevator.FORT_GHELSBA_LIFT,
         lowerDoor = npc:getID() +1,
         upperDoor = npc:getID() +2,
         elevator = npc:getID(),

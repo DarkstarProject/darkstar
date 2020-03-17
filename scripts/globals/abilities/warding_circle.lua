@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local duration = 180 + player:getMod(dsp.mod.WARDING_CIRCLE_DURATION)
-    target:addStatusEffect(dsp.effect.WARDING_CIRCLE,15,0,duration)
+    local duration = 180 + player:getMod(tpz.mod.WARDING_CIRCLE_DURATION)
+    target:addStatusEffect(tpz.effect.WARDING_CIRCLE,15,0,duration)
 end

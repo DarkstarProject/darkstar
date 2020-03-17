@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.NORVALLEN) ~= dsp.nation.WINDURST then
+    if GetRegionOwner(tpz.region.NORVALLEN) ~= tpz.nation.WINDURST then
         player:showText(npc, ID.text.POSSORUHBINI_CLOSED_DIALOG)
     else
         local stock =
@@ -23,7 +23,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ID.text.POSSORUHBINI_OPEN_DIALOG)
-        dsp.shop.general(player, stock, WINDURST)
+        tpz.shop.general(player, stock, WINDURST)
     end
 end
 

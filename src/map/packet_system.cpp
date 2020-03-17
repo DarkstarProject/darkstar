@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -78,7 +76,7 @@ This file is part of DarkStar-server source code.
 #include "packets/bazaar_message.h"
 #include "packets/bazaar_purchase.h"
 #include "packets/blacklist.h"
-#include "packets/campaing_map.h"
+#include "packets/campaign_map.h"
 #include "packets/char.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
@@ -308,11 +306,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
 
-    if (!PChar->loc.zoning)
-    {
-        charutils::ClearTempItems(PChar);
-    }
-
     PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }
 
@@ -498,8 +491,8 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         // On zone change, only sending a version message if mismatch
-        if ((bool)Sql_GetUIntData(SqlHandle, 0))
-            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version. Please refrain from posting issues on DSP bugtracker."));
+        //if ((bool)Sql_GetUIntData(SqlHandle, 0))
+            //PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version."));
     }
     return;
 }
@@ -906,7 +899,7 @@ void SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     // 0 - world pass, 2 - gold world pass; +1 - purchase
 
-    PChar->pushPacket(new CWorldPassPacket(data.ref<uint8>(0x04) & 1 ? (uint32)dsprand::GetRandomNumber(9999999999) : 0));
+    PChar->pushPacket(new CWorldPassPacket(data.ref<uint8>(0x04) & 1 ? (uint32)tpzrand::GetRandomNumber(9999999999) : 0));
     return;
 }
 
@@ -940,10 +933,22 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PItem != nullptr && !PItem->isSubType(ITEM_LOCKED))
     {
         uint16 ItemID = PItem->getID();
+        // Break linkshell if the main shell was disposed of.
+        CItemLinkshell* ItemLinkshell = dynamic_cast<CItemLinkshell*>(PItem);
+        if (ItemLinkshell && ItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
+        {
+            uint32 lsid = ItemLinkshell->GetLSID();
+            CLinkshell* PLinkshell = linkshell::GetLinkshell(lsid);
+            if (!PLinkshell)
+            {
+                PLinkshell = linkshell::LoadLinkshell(lsid);
+            }
+            PLinkshell->BreakLinkshell((int8*)PLinkshell->getName(), false);
+            linkshell::UnloadLinkshell(lsid);
+        }
 
         if (charutils::UpdateItem(PChar, container, slotID, -quantity) != 0)
         {
-            // TODO: Break linkshell if the main shell was disposed of.
             // ShowNotice(CL_CYAN"Player %s DROPPING itemID %u (quantity: %u)\n" CL_RESET, PChar->GetName(), ItemID, quantity);
             PChar->pushPacket(new CMessageStandardPacket(nullptr, ItemID, quantity, MsgStd::ThrowAway));
             PChar->pushPacket(new CInventoryFinishPacket());
@@ -1495,7 +1500,7 @@ void SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (!PChar->PTreasurePool->HasLottedItem(PChar, SlotID))
         {
-            PChar->PTreasurePool->LotItem(PChar, SlotID,dsprand::GetRandomNumber(1,1000)); //1 ~ 998+1
+            PChar->PTreasurePool->LotItem(PChar, SlotID,tpzrand::GetRandomNumber(1,1000)); //1 ~ 998+1
         }
     }
 }
@@ -1551,9 +1556,9 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         if ((bool)Sql_GetUIntData(SqlHandle, 0))
-            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version. Please refrain from posting issues on DSP bugtracker."));
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version."));
         else
-            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Report bugs at DSP bugtracker if server admin confirms the bug occurs on stock DSP."));
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Report bugs on Topaz bugtracker if server admin confirms the bug occurs on stock Topaz."));
     }
     return;
 }
@@ -2490,7 +2495,10 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 containerID = data.ref<uint8>(0x06);     // container id
 
     if (containerID != LOC_INVENTORY && containerID != LOC_WARDROBE && containerID != LOC_WARDROBE2 && containerID != LOC_WARDROBE3 && containerID != LOC_WARDROBE4)
-        return;
+        if (equipSlotID != 16 && equipSlotID != 17)
+            return;
+        else if (containerID != LOC_MOGSATCHEL && containerID != LOC_MOGSACK && containerID != LOC_MOGCASE)
+            return;
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
@@ -2655,15 +2663,15 @@ void SmallPacket0x059(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
-*  Map Update (Conquest, Besieged, Campaing)                            *
+*  Map Update (Conquest, Besieged, Campaign)                            *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     PChar->pushPacket(new CConquestPacket(PChar));
-    PChar->pushPacket(new CCampaingPacket(PChar, 0));
-    PChar->pushPacket(new CCampaingPacket(PChar, 1));
+    PChar->pushPacket(new CCampaignPacket(PChar, 0));
+    PChar->pushPacket(new CCampaignPacket(PChar, 1));
 
     // May Require Sending of 0x0F
     //    PChar->pushPacket(new CStopDownloadingPacket(PChar));
@@ -3870,7 +3878,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0A2(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 diceroll = dsprand::GetRandomNumber(1000);
+    uint16 diceroll = tpzrand::GetRandomNumber(1000);
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, MsgStd::DiceRoll));
     return;
@@ -4296,6 +4304,7 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PItemLinkPearl->setQuantity(1);
             memcpy(PItemLinkPearl->m_extra, PItemLinkshell->m_extra, 24);
+            PItemLinkPearl->SetLSType(LSTYPE_LINKPEARL);
             charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
         }
     }
@@ -4311,10 +4320,10 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint8 SlotID = data.ref<uint8>(0x06);
+    uint8 LocationID = data.ref<uint8>(0x07);
     uint8 action = data.ref<uint8>(0x08);
     uint8 lsNum = data.ref<uint8>(0x1B);
-
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LocationID)->GetItem(SlotID);
 
     if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
@@ -4338,8 +4347,9 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (PItemLinkshell == nullptr)
                     return;
                 PItemLinkshell->setQuantity(1);
-                PChar->getStorage(LOC_INVENTORY)->InsertItem(PItemLinkshell, SlotID);
+                PChar->getStorage(LocationID)->InsertItem(PItemLinkshell, SlotID);
                 PItemLinkshell->SetLSID(LinkshellID);
+                PItemLinkshell->SetLSType(LSTYPE_LINKSHELL);
                 PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
                 PItemLinkshell->SetLSColor(LinkshellColor);
 
@@ -4351,7 +4361,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (Sql_Query(SqlHandle, Query, DecodedName, extra, PChar->id, SlotID) != SQL_ERROR &&
                     Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
+                    PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LocationID, SlotID));
                 }
             }
             else
@@ -4393,9 +4403,22 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             break;
             case 1: // equip linkshell
             {
-                if (PItemLinkshell->GetLSID() == 0) // linkshell no exists, item is unusable
+                auto ret = Sql_Query(SqlHandle, "SELECT broken FROM linkshells WHERE linkshellid = %u LIMIT 1", PItemLinkshell->GetLSID());
+                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0) == 1)
+                { // if the linkshell has been broken, break the item
+                    PItemLinkshell->SetLSType(LSTYPE_BROKEN);
+                    char extra[sizeof(PItemLinkshell->m_extra) * 2 + 1];
+                    Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItemLinkshell->m_extra, sizeof(PItemLinkshell->m_extra));
+                    const char* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+                    Sql_Query(SqlHandle, Query, extra, PChar->id, PItemLinkshell->getLocationID(), PItemLinkshell->getSlotID());
+                    PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, PItemLinkshell->getLocationID(), PItemLinkshell->getSlotID()));
+                    PChar->pushPacket(new CInventoryFinishPacket());
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 110)); // That linkshell group no longer exists. This item is unusable.
+                    return;
+                }
+                if (PItemLinkshell->GetLSID() == 0)
                 {
-                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 110));
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 110)); // That linkshell group no longer exists. This item is unusable.
                     return;
                 }
                 if (OldLinkshell != nullptr) // switching linkshell group
@@ -4415,7 +4438,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PItemLinkshell->setSubType(ITEM_LOCKED);
 
                 PChar->equip[slot] = SlotID;
-                PChar->equipLoc[slot] = LOC_INVENTORY;
+                PChar->equipLoc[slot] = LocationID;
                 if (lsNum == 1)
                 {
                     PChar->nameflags.flags |= FLAG_LINKSHELL;
@@ -4430,7 +4453,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             charutils::SaveCharEquip(PChar);
 
             PChar->pushPacket(new CLinkshellEquipPacket(PChar, lsNum));
-            PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
+            PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LocationID, SlotID));
         }
         PChar->pushPacket(new CInventoryFinishPacket());
         PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -4876,15 +4899,29 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         switch (data.ref<uint8>(0x04) & 0xF0)
         {
-        case 0x20: // Establish right to change the message..
+        case 0x20: // Establish right to change the message.
         {
-            // TODO: ....
+            if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
+            {
+                switch (data.ref<uint8>(0x05))
+                {
+                case 0x00:
+                    PChar->PLinkshell1->setPostRights(LSTYPE_LINKSHELL);
+                break;
+                case 0x04:
+                    PChar->PLinkshell1->setPostRights(LSTYPE_PEARLSACK);
+                break;
+                case 0x08:
+                    PChar->PLinkshell1->setPostRights(LSTYPE_LINKPEARL);
+                break;
+                }
+                return;     
+            }
         }
         break;
         case 0x40: // Change Message
         {
-            if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL ||
-                PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
+            if (static_cast<uint8>(PItemLinkshell->GetLSType()) <= PChar->PLinkshell1->m_postRights)
             {
                 PChar->PLinkshell1->setMessage(data[16], PChar->GetName());
                 return;
@@ -4893,7 +4930,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         break;
         }
     }
-    PChar->pushPacket(new CLinkshellMessagePacket(nullptr, nullptr, nullptr, 0, 1)); // you are not authorized to this action
+    PChar->pushPacket(new CMessageSystemPacket(0, 0, 158)); // You do not have access to those linkshell commands.
     return;
 }
 
@@ -5696,8 +5733,8 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    DSP_DEBUG_BREAK_IF(PChar->BazaarID.id != 0);
-    DSP_DEBUG_BREAK_IF(PChar->BazaarID.targid != 0);
+    TPZ_DEBUG_BREAK_IF(PChar->BazaarID.id != 0);
+    TPZ_DEBUG_BREAK_IF(PChar->BazaarID.targid != 0);
 
     uint32 charid = data.ref<uint32>(0x04);
 

@@ -9,16 +9,16 @@ require("scripts/globals/missions")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180) -- 3 minutes
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 180) -- 3 minutes
 end
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         delay = 180,
         specials =
         {
             {
-                id = dsp.jsa.MIJIN_GAKURE,
+                id = tpz.jsa.MIJIN_GAKURE,
                 hpp = 100,
                 begCode = function(mob)
                     mob:messageText(mob, ID.text.CRYPTONBERRY_EXECUTOR_2HR)
@@ -40,7 +40,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     mob:messageText(mob, ID.text.CRYPTONBERRY_EXECUTOR_DIE)
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.CALM_BEFORE_THE_STORM and player:getCharVar("Cryptonberry_Executor_KILL") < 2 then
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.CALM_BEFORE_THE_STORM and player:getCharVar("Cryptonberry_Executor_KILL") < 2 then
         player:setCharVar("Cryptonberry_Executor_KILL", 1)
     end
 end

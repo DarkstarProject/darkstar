@@ -11,10 +11,10 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.BLOOD_WEAPON, hpp = math.random(20, 50)},
+            {id = tpz.jsa.BLOOD_WEAPON, hpp = math.random(20, 50)},
         },
     })
 end

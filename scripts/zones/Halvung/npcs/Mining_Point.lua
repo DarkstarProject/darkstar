@@ -6,11 +6,11 @@ require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.MINING, 210)
+    tpz.helm.onTrade(player, npc, trade, tpz.helm.type.MINING, 210)
 end
 
 function onTrigger(player,npc)
-    dsp.helm.onTrigger(player, dsp.helm.type.MINING)
+    tpz.helm.onTrigger(player, tpz.helm.type.MINING)
 end
 
 function onEventUpdate(player,csid,option)

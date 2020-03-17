@@ -12,9 +12,9 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 180)
-    local maneuvers = master:countEffect(dsp.effect.EARTH_MANEUVER)
-    local pMod = math.max(automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE), automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED), automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC))
+    automaton:addRecast(tpz.recast.ABILITY, skill:getID(), 180)
+    local maneuvers = master:countEffect(tpz.effect.EARTH_MANEUVER)
+    local pMod = math.max(automaton:getSkillLevel(tpz.skill.AUTOMATON_MELEE), automaton:getSkillLevel(tpz.skill.AUTOMATON_RANGED), automaton:getSkillLevel(tpz.skill.AUTOMATON_MAGIC))
     local duration = 180
     local amount = 200
     local bonus = 0
@@ -46,11 +46,11 @@ function onPetAbility(target, automaton, skill, master, action)
     end
     amount = amount + math.floor(bonus)
 
-    if target:addStatusEffect(dsp.effect.STONESKIN, amount, 0, duration, 0, 0, 4) then
-        skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
+    if target:addStatusEffect(tpz.effect.STONESKIN, amount, 0, duration, 0, 0, 4) then
+        skill:setMsg(tpz.msg.basic.SKILL_GAIN_EFFECT)
     else
-        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
+        skill:setMsg(tpz.msg.basic.SKILL_NO_EFFECT)
     end
 
-    return dsp.effect.STONESKIN
+    return tpz.effect.STONESKIN
 end

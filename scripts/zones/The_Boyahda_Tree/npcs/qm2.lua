@@ -21,10 +21,10 @@ function onTrigger(player,npc)
     local correctTime = zoneHour >= 19 or zoneHour < 4 or (zoneHour == 4 and zoneMinute == 0)
 
     if not GetMobByID(ID.mob.AGAS):isSpawned() then
-        if player:hasKeyItem(dsp.ki.MOONDROP) then
+        if player:hasKeyItem(tpz.ki.MOONDROP) then
             player:messageSpecial(ID.text.CAN_SEE_SKY)
 
-        elseif player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS) == QUEST_ACCEPTED then
+        elseif player:getQuestStatus(JEUNO, tpz.quest.id.jeuno.SEARCHING_FOR_THE_RIGHT_WORDS) == QUEST_ACCEPTED then
 
             if IsMoonNew() or not correctTime then
                 player:messageSpecial(ID.text.CANNOT_SEE_MOON)
@@ -48,8 +48,8 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 14 then
-        player:addKeyItem(dsp.ki.MOONDROP)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MOONDROP)
+        player:addKeyItem(tpz.ki.MOONDROP)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.MOONDROP)
         player:setCharVar("Searching_AgasKilled", 0)
     end
 end

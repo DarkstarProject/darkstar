@@ -20,44 +20,44 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = dsp.msg.basic.IS_FULL
+    if (target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD)) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6342)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,3600,6342)
 end
 
 function onEffectGain(target, effect)
-    target:addMod(dsp.mod.HP, 30);
-    target:addMod(dsp.mod.VIT, 4);
-    target:addMod(dsp.mod.FOOD_ACCP, 11);
-    target:addMod(dsp.mod.FOOD_ACC_CAP, 54);
-    target:addMod(dsp.mod.FOOD_RACCP, 11);
-    target:addMod(dsp.mod.FOOD_RACC_CAP, 54);
-    target:addPetMod(dsp.mod.HP, 30);
-    target:addPetMod(dsp.mod.VIT, 4);
-    target:addPetMod(dsp.mod.FOOD_ACCP, 11);
-    target:addPetMod(dsp.mod.FOOD_ACC_CAP, 81);
-    target:addPetMod(dsp.mod.FOOD_RACCP, 11);
-    target:addPetMod(dsp.mod.FOOD_RACC_CAP, 81);
-    target:addPetMod(dsp.mod.HASTE_GEAR, 400);
-end;
+    target:addMod(tpz.mod.HP, 30)
+    target:addMod(tpz.mod.VIT, 4)
+    target:addMod(tpz.mod.FOOD_ACCP, 11)
+    target:addMod(tpz.mod.FOOD_ACC_CAP, 54)
+    target:addMod(tpz.mod.FOOD_RACCP, 11)
+    target:addMod(tpz.mod.FOOD_RACC_CAP, 54)
+    target:addPetMod(tpz.mod.HP, 30)
+    target:addPetMod(tpz.mod.VIT, 4)
+    target:addPetMod(tpz.mod.FOOD_ACCP, 11)
+    target:addPetMod(tpz.mod.FOOD_ACC_CAP, 81)
+    target:addPetMod(tpz.mod.FOOD_RACCP, 11)
+    target:addPetMod(tpz.mod.FOOD_RACC_CAP, 81)
+    target:addPetMod(tpz.mod.HASTE_GEAR, 400)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.HP, 30);
-    target:delMod(dsp.mod.VIT, 4);
-    target:delMod(dsp.mod.FOOD_ACCP, 11);
-    target:delMod(dsp.mod.FOOD_ACC_CAP, 54);
-    target:delMod(dsp.mod.FOOD_RACCP, 11);
-    target:delMod(dsp.mod.FOOD_RACC_CAP, 54);
-    target:delPetMod(dsp.mod.HP, 30);
-    target:delPetMod(dsp.mod.VIT, 4);
-    target:delPetMod(dsp.mod.FOOD_ACCP, 11);
-    target:delPetMod(dsp.mod.FOOD_ACC_CAP, 81);
-    target:delPetMod(dsp.mod.FOOD_RACCP, 11);
-    target:delPetMod(dsp.mod.FOOD_RACC_CAP, 81);
-    target:delPetMod(dsp.mod.HASTE_GEAR, 400);
-end;
+    target:delMod(tpz.mod.HP, 30)
+    target:delMod(tpz.mod.VIT, 4)
+    target:delMod(tpz.mod.FOOD_ACCP, 11)
+    target:delMod(tpz.mod.FOOD_ACC_CAP, 54)
+    target:delMod(tpz.mod.FOOD_RACCP, 11)
+    target:delMod(tpz.mod.FOOD_RACC_CAP, 54)
+    target:delPetMod(tpz.mod.HP, 30)
+    target:delPetMod(tpz.mod.VIT, 4)
+    target:delPetMod(tpz.mod.FOOD_ACCP, 11)
+    target:delPetMod(tpz.mod.FOOD_ACC_CAP, 81)
+    target:delPetMod(tpz.mod.FOOD_RACCP, 11)
+    target:delPetMod(tpz.mod.FOOD_RACC_CAP, 81)
+    target:delPetMod(tpz.mod.HASTE_GEAR, 400)
+end

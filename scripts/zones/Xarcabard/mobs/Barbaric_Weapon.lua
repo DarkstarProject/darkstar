@@ -7,7 +7,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.STORETP, 50) -- "Possesses extremely high Store TP."
+    mob:setMod(tpz.mod.STORETP, 50) -- "Possesses extremely high Store TP."
 end
 
 function onMobDeath(mob, player, isKiller)

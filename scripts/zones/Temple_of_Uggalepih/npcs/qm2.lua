@@ -13,7 +13,7 @@ end
 function onTrigger(player, npc)
     if not player:hasItem(1183) then
         if npcUtil.giveItem(player, 1183) then -- Uggalepih Offering
-            npc:setStatus(dsp.status.DISAPPEAR)
+            npc:setStatus(tpz.status.DISAPPEAR)
             npc:updateNPCHideTime(math.random(900, 7200)) -- 15 minutes to 2 hours
             -- TODO: ??? reappears at new position
         end

@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.ROLANBERRY_FIELDS] =
+zones[tpz.zone.ROLANBERRY_FIELDS] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
         GIL_OBTAINED             = 6411,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6413,  -- Obtained key item: <keyitem>.
         NOT_ENOUGH_GIL           = 6415,  -- You do not have enough gil.
+        FELLOW_MESSAGE_OFFSET    = 6439,  -- I'm ready. I suppose.
         CONQUEST_BASE            = 7071,  -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET   = 7230,  -- You can't fish here.
         DIG_THROW_AWAY           = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
@@ -29,7 +30,7 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
         REGIME_REGISTERED        = 9767,  -- New training regime registered!
         AWAIT_YOUR_CHALLENGE     = 12165, -- We await your challenge, traveler.
         LACK_LEGION_POINTS       = 12202, -- It would seem that you lack the necessary amount of Legion points.
-        COMMON_SENSE_SURVIVAL    = 12256, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL    = 12259, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -58,4 +59,4 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
     },
 }
 
-return zones[dsp.zone.ROLANBERRY_FIELDS]
+return zones[tpz.zone.ROLANBERRY_FIELDS]

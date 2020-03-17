@@ -24,8 +24,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.ftp100 = 2 params.ftp200 = 2 params.ftp300 = 2
     params.str_wsc = 0.0 params.dex_wsc = 0.0 params.vit_wsc = 0.0 params.agi_wsc = 0.0 params.int_wsc = 0.0
     params.mnd_wsc = 0.4 params.chr_wsc = 0.0
-    params.ele = dsp.magic.ele.LIGHT
-    params.skill = dsp.skill.STAFF
+    params.ele = tpz.magic.ele.LIGHT
+    params.skill = tpz.skill.STAFF
     params.includemab = true
 
     if USE_ADOULIN_WEAPON_SKILL_CHANGES then
@@ -35,13 +35,13 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, action, primary)
     if damage > 0 then
-        if not target:hasStatusEffect(dsp.effect.DEFENSE_DOWN) then
-            local duration = (30 + tp / 1000 * 30) * applyResistanceAddEffect(player, target, dsp.magic.ele.WIND, 0)
-            target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 12.5, 0, duration)
+        if not target:hasStatusEffect(tpz.effect.DEFENSE_DOWN) then
+            local duration = (30 + tp / 1000 * 30) * applyResistanceAddEffect(player, target, tpz.magic.ele.WIND, 0)
+            target:addStatusEffect(tpz.effect.DEFENSE_DOWN, 12.5, 0, duration)
         end
 
         -- Apply Aftermath
-        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.MAIN, dsp.aftermath.type.MYTHIC)
+        tpz.aftermath.addStatusEffect(player, tp, tpz.slot.MAIN, tpz.aftermath.type.MYTHIC)
     end
 
     return tpHits, extraHits, criticalHit, damage

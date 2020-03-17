@@ -3,11 +3,13 @@
 --   NM: Forger
 -----------------------------------
 require("scripts/globals/status")
+require("scripts/quests/tutorial")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 300)
 end
 
 function onMobDeath(mob, player, isKiller)
+    tpz.tutorial.onMobDeath(player)
 end

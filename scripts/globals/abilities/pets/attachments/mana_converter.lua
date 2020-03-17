@@ -7,7 +7,7 @@ require("scripts/globals/status")
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_MANA_CONVERTER", function(automaton, target)
         local master = automaton:getMaster()
-        local maneuvers = master and master:countEffect(dsp.effect.DARK_MANEUVER) or 0
+        local maneuvers = master and master:countEffect(tpz.effect.DARK_MANEUVER) or 0
         local mpthreshold = -1
         if maneuvers == 1 then
             mpthreshold = 40

@@ -20,38 +20,38 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = dsp.msg.basic.IS_FULL
+    if (target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD)) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,5674)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,3600,5674)
 end
 
 function onEffectGain(target, effect)
-    target:addMod(dsp.mod.HP, 50)
-    target:addMod(dsp.mod.MP, 50)
-    target:addMod(dsp.mod.STR, 4)
-    target:addMod(dsp.mod.DEX, 4)
-    target:addMod(dsp.mod.VIT, 4)
-    target:addMod(dsp.mod.AGI, 4)
-    target:addMod(dsp.mod.INT, 4)
-    target:addMod(dsp.mod.MND, 4)
-    target:addMod(dsp.mod.CHR, 4)
-    target:addMod(dsp.mod.MPHEAL, 2)
+    target:addMod(tpz.mod.HP, 50)
+    target:addMod(tpz.mod.MP, 50)
+    target:addMod(tpz.mod.STR, 4)
+    target:addMod(tpz.mod.DEX, 4)
+    target:addMod(tpz.mod.VIT, 4)
+    target:addMod(tpz.mod.AGI, 4)
+    target:addMod(tpz.mod.INT, 4)
+    target:addMod(tpz.mod.MND, 4)
+    target:addMod(tpz.mod.CHR, 4)
+    target:addMod(tpz.mod.MPHEAL, 2)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.HP, 50)
-    target:delMod(dsp.mod.MP, 50)
-    target:delMod(dsp.mod.STR, 4)
-    target:delMod(dsp.mod.DEX, 4)
-    target:delMod(dsp.mod.VIT, 4)
-    target:delMod(dsp.mod.AGI, 4)
-    target:delMod(dsp.mod.INT, 4)
-    target:delMod(dsp.mod.MND, 4)
-    target:delMod(dsp.mod.CHR, 4)
-    target:delMod(dsp.mod.MPHEAL, 2)
+    target:delMod(tpz.mod.HP, 50)
+    target:delMod(tpz.mod.MP, 50)
+    target:delMod(tpz.mod.STR, 4)
+    target:delMod(tpz.mod.DEX, 4)
+    target:delMod(tpz.mod.VIT, 4)
+    target:delMod(tpz.mod.AGI, 4)
+    target:delMod(tpz.mod.INT, 4)
+    target:delMod(tpz.mod.MND, 4)
+    target:delMod(tpz.mod.CHR, 4)
+    target:delMod(tpz.mod.MPHEAL, 2)
 end

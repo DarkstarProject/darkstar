@@ -17,6 +17,6 @@ function onMobWeaponSkill(target, mob, skill)
     target:addMP(target:getMaxMP() - target:getMP())
     target:addTP(3000 - target:getTP())
 
-    skill:setMsg(dsp.msg.basic.SELF_HEAL)
+    skill:setMsg(tpz.msg.basic.SELF_HEAL)
     return hp
 end

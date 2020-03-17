@@ -13,18 +13,18 @@ require("scripts/globals/beastmentreasure")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.KING_VINEGARROON)
     GetMobByID(ID.mob.KING_VINEGARROON):setRespawnTime(math.random(900, 10800))
 
-    dsp.bmt.updatePeddlestox(dsp.zone.YUHTUNGA_JUNGLE, ID.npc.PEDDLESTOX)
+    tpz.bmt.updatePeddlestox(tpz.zone.YUHTUNGA_JUNGLE, ID.npc.PEDDLESTOX)
 end
 
 function onGameDay()
-    dsp.bmt.updatePeddlestox(dsp.zone.WESTERN_ALTEPA_DESERT, ID.npc.PEDDLESTOX)
+    tpz.bmt.updatePeddlestox(tpz.zone.WESTERN_ALTEPA_DESERT, ID.npc.PEDDLESTOX)
 end
 
 function onZoneIn(player, prevZone)
@@ -42,7 +42,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)
@@ -63,9 +63,9 @@ end
 function onZoneWeatherChange(weather)
     local KV = GetMobByID(ID.mob.KING_VINEGARROON)
 
-    if KV:getCurrentAction() == dsp.act.DESPAWN and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM) then
+    if KV:getCurrentAction() == tpz.act.DESPAWN and (weather == tpz.weather.DUST_STORM or weather == tpz.weather.SAND_STORM) then
         KV:spawn()
-    elseif KV:getCurrentAction() == dsp.act.ROAMING and weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM then
+    elseif KV:getCurrentAction() == tpz.act.ROAMING and weather ~= tpz.weather.DUST_STORM and weather ~= tpz.weather.SAND_STORM then
         DespawnMob(ID.mob.KING_VINEGARROON)
     end
 end

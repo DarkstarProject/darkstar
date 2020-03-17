@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -35,7 +33,7 @@
 
 CCharRecastContainer::CCharRecastContainer(CCharEntity* PChar) : CRecastContainer(PChar), m_PChar(PChar)
 {
-    DSP_DEBUG_BREAK_IF(m_PChar == nullptr || m_PChar->objtype != TYPE_PC);
+    TPZ_DEBUG_BREAK_IF(m_PChar == nullptr || m_PChar->objtype != TYPE_PC);
 }
 
 
@@ -144,7 +142,7 @@ RecastList_t* CCharRecastContainer::GetRecastList(RECASTTYPE type)
         case RECAST_LOOT:    return &RecastLootList;
     }
     //Unhandled Scenario
-    DSP_DEBUG_BREAK_IF(true);
+    TPZ_DEBUG_BREAK_IF(true);
     return nullptr;
 }
 

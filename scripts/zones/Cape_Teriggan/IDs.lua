@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.CAPE_TERIGGAN] =
+zones[tpz.zone.CAPE_TERIGGAN] =
 {
     text =
     {
@@ -19,6 +19,7 @@ zones[dsp.zone.CAPE_TERIGGAN] =
         KEYITEM_LOST               = 6392,  -- Lost key item: <keyitem>.
         ITEMS_OBTAINED             = 6397,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET      = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE              = 7049,  -- Tallying conquest results...
         BEASTMEN_BANNER            = 7130,  -- There is a beastmen's banner.
         CONQUEST                   = 7217,  -- You've earned conquest points!
@@ -59,4 +60,4 @@ zones[dsp.zone.CAPE_TERIGGAN] =
     },
 }
 
-return zones[dsp.zone.CAPE_TERIGGAN]
+return zones[tpz.zone.CAPE_TERIGGAN]

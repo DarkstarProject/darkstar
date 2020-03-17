@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.SHELL
+    local typeEffect = tpz.effect.SHELL
     local power = 50
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, 180))

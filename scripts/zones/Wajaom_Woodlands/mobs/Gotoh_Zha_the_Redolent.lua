@@ -29,15 +29,15 @@ require("scripts/globals/status")
 --    Should onCriticalHit count WS crit hits if regular WS hits do not count?
 -----------------------------------
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 300)
 end
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.MANAFONT, hpp = math.random(66, 95)},
-            {id = dsp.jsa.BENEDICTION, hpp = 0},
+            {id = tpz.jsa.MANAFONT, hpp = math.random(66, 95)},
+            {id = tpz.jsa.BENEDICTION, hpp = 0},
         },
     })
 
@@ -50,11 +50,11 @@ function onMobFight(mob, target)
         mob:setLocalVar("jobChanged", 1)
         mob:setSpellList(297) -- Set WHM spell list.
         -- set new JSA parameters
-        dsp.mix.jobSpecial.config(mob, {
+        tpz.mix.jobSpecial.config(mob, {
             specials =
             {
-                {id = dsp.jsa.MANAFONT, hpp = 0},
-                {id = dsp.jsa.BENEDICTION, hpp = math.random(25, 50)},
+                {id = tpz.jsa.MANAFONT, hpp = 0},
+                {id = tpz.jsa.BENEDICTION, hpp = math.random(25, 50)},
             },
         })
     end

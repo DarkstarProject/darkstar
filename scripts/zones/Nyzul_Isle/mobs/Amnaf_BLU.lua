@@ -12,7 +12,7 @@ function onMobSpawn(mob)
     -- Stage 2 Adjustments
     if (instance:getProgress() >= 10) then
         -- Don't let Amnaf wander back to the original spawn position
-        mob:setMobMod(dsp.mobMod.NO_MOVE, 1);
+        mob:setMobMod(tpz.mobMod.NO_MOVE, 1);
 
         -- Stage 2 starts at 50%
         local hp = mob:getHP();
@@ -38,7 +38,7 @@ end;
 
 function onMobEngaged(mob,target)
     -- Relax movement lock
-    mob:setMobMod(dsp.mobMod.NO_MOVE, 0);
+    mob:setMobMod(tpz.mobMod.NO_MOVE, 0);
 
     -- Stage AI flags
     local form = mob:getLocalVar("SegmentChanged");

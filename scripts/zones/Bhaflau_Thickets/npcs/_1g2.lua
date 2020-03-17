@@ -13,11 +13,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)) then
+    if (player:hasKeyItem(tpz.ki.MAMOOL_JA_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault()
         local recommendedLevel = getRecommendedAssaultLevel(assaultid)
         local armband = 0
-        if (player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND)) then
+        if (player:hasKeyItem(tpz.ki.ASSAULT_ARMBAND)) then
             armband = 1
         end
         player:startEvent(505, assaultid, -4, 0, recommendedLevel, 1, armband)
@@ -47,7 +47,7 @@ function onEventUpdate(player,csid,option,target)
 
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            if (not (v:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
+            if (not (v:hasKeyItem(tpz.ki.MAMOOL_JA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                 player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                 player:instanceEntry(target,1)
                 return
@@ -76,8 +76,8 @@ function onInstanceCreated(player,target,instance)
         player:setCharVar("AssaultCap", 0)
         player:setInstance(instance)
         player:instanceEntry(target,4)
-        player:delKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)
-        player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)
+        player:delKeyItem(tpz.ki.MAMOOL_JA_ASSAULT_ORDERS)
+        player:delKeyItem(tpz.ki.ASSAULT_ARMBAND)
 
         local party = player:getParty()
         if (party ~= nil) then
@@ -85,7 +85,7 @@ function onInstanceCreated(player,target,instance)
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance)
                     v:startEvent(108, 1)
-                    v:delKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)
+                    v:delKeyItem(tpz.ki.MAMOOL_JA_ASSAULT_ORDERS)
                 end
             end
         end

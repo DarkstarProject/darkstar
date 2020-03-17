@@ -10,37 +10,37 @@ require("scripts/globals/crafting");
 
 local keyitems = {
     [0] = {
-        id = dsp.ki.ANIMA_SYNTHESIS,
+        id = tpz.ki.ANIMA_SYNTHESIS,
         rank = 3,
         cost = 20000
     },
     [1] = {
-        id = dsp.ki.ALCHEMIC_PURIFICATION,
+        id = tpz.ki.ALCHEMIC_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = dsp.ki.ALCHEMIC_ENSORCELLMENT,
+        id = tpz.ki.ALCHEMIC_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [3] = {
-        id = dsp.ki.TRITURATION,
+        id = tpz.ki.TRITURATION,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = dsp.ki.CONCOCTION,
+        id = tpz.ki.CONCOCTION,
         rank = 3,
         cost = 20000
     },
     [5] = {
-        id = dsp.ki.IATROCHEMISTRY,
+        id = tpz.ki.IATROCHEMISTRY,
         rank = 3,
         cost = 10000
     },
     [6] = {
-        id = dsp.ki.WAY_OF_THE_ALCHEMIST,
+        id = tpz.ki.WAY_OF_THE_ALCHEMIST,
         rank = 9,
         cost = 20000
     }

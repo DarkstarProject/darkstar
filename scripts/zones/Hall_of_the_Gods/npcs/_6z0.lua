@@ -14,10 +14,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.CERULEAN_CRYSTAL) == false) then
+    if (player:hasKeyItem(tpz.ki.CERULEAN_CRYSTAL) == false) then
         player:startEvent(1);
     else
-        if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
+        if (player:getCurrentMission(ZILART) == tpz.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
             player:startEvent(4); -- Zilart CS.
         else
             player:startEvent(2);
@@ -31,14 +31,14 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    if (csid == 1 and player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_TEMPLE_OF_DESOLATION) then
-        player:addTitle(dsp.title.SEALER_OF_THE_PORTAL_OF_THE_GODS);
-        player:completeMission(ZILART,dsp.mission.id.zilart.THE_TEMPLE_OF_DESOLATION);
-        player:addMission(ZILART,dsp.mission.id.zilart.THE_HALL_OF_THE_GODS);
+    if (csid == 1 and player:getCurrentMission(ZILART) == tpz.mission.id.zilart.THE_TEMPLE_OF_DESOLATION) then
+        player:addTitle(tpz.title.SEALER_OF_THE_PORTAL_OF_THE_GODS);
+        player:completeMission(ZILART,tpz.mission.id.zilart.THE_TEMPLE_OF_DESOLATION);
+        player:addMission(ZILART,tpz.mission.id.zilart.THE_HALL_OF_THE_GODS);
     elseif (csid == 4) then
         player:setCharVar("ZilartStatus",0);
-        player:completeMission(ZILART,dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL);
-        player:addMission(ZILART,dsp.mission.id.zilart.THE_GATE_OF_THE_GODS);
+        player:completeMission(ZILART,tpz.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL);
+        player:addMission(ZILART,tpz.mission.id.zilart.THE_GATE_OF_THE_GODS);
     end
 
 end;

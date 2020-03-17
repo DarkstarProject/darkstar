@@ -3,9 +3,9 @@
 -- NPC PATH WALKING
 --
 ------------------------------------
-dsp = dsp or {}
+tpz = tpz or {}
 
-dsp.path =
+tpz.path =
 {
     flag =
     {
@@ -37,7 +37,7 @@ dsp.path =
 
     -- returns first point in given path
     first = function(points)
-        return dsp.path.get(points, 1)
+        return tpz.path.get(points, 1)
     end,
 
     -- are two points the same?
@@ -47,14 +47,14 @@ dsp.path =
 
     -- returns last point in given path
     last = function(points)
-        local length = dsp.path.length(points)
-        return dsp.path.get(points, length)
+        local length = tpz.path.length(points)
+        return tpz.path.get(points, length)
     end,
 
     -- returns random point from given path
     random = function(points)
-        local length = dsp.path.length(points)
-        return dsp.path.get(points, math.random(length))
+        local length = tpz.path.length(points)
+        return tpz.path.get(points, math.random(length))
     end,
 
     -- returns the start path without the first element
@@ -62,13 +62,13 @@ dsp.path =
         start = start or 1
         local t2 = {}
         local maxLength = 50
-        local length = dsp.path.length(points)
+        local length = tpz.path.length(points)
         local count = 1
         local pos = start + 1
         local index = 1
 
         while pos <= length and count <= maxLength do
-            local pt = dsp.path.get(points, pos)
+            local pt = tpz.path.get(points, pos)
 
             t2[index] = pt[1]
             t2[index+1] = pt[2]
@@ -86,12 +86,12 @@ dsp.path =
     fromEnd = function(points, start)
         start = start or 1
         local t2 = {}
-        local length = dsp.path.length(points)
+        local length = tpz.path.length(points)
         start = length - start
         local index = 1
 
         for i = start, 1, -1 do
-            local pt = dsp.path.get(points, i)
+            local pt = tpz.path.get(points, i)
 
             t2[index] = pt[1]
             t2[index+1] = pt[2]
@@ -109,16 +109,16 @@ dsp.path =
 
     -- continusly run the path
     patrol = function(npc, points, flags)
-        if npc:atPoint(dsp.path.first(points)) or npc:atPoint(dsp.path.last(points)) then
-            npc:pathThrough(dsp.path.fromStart(points), flags)
+        if npc:atPoint(tpz.path.first(points)) or npc:atPoint(tpz.path.last(points)) then
+            npc:pathThrough(tpz.path.fromStart(points), flags)
         else
-            local length = dsp.path.length(points)
+            local length = tpz.path.length(points)
             local currentLength = 0
             local i = 51
 
             while(i <= length) do
-                if npc:atPoint(dsp.path.get(points, i)) then
-                    npc:pathThrough(dsp.path.fromStart(points, i), flags)
+                if npc:atPoint(tpz.path.get(points, i)) then
+                    npc:pathThrough(tpz.path.fromStart(points, i), flags)
                     break
                 end
 

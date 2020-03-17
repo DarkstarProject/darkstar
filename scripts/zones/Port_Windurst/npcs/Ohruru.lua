@@ -17,22 +17,22 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
---    player:delQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
+--    player:delQuest(WINDURST,tpz.quest.id.windurst.CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
 -- ======== FOR TESTING ONLY ==========-----
---    if (player:getCharVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
+--    if (player:getCharVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(tpz.effect.MUTE) == false and player:hasStatusEffect(tpz.effect.BANE) == false and player:hasStatusEffect(tpz.effect.PLAGUE) == false) then
 --        rand = math.random(1,3);
 --        if (rand == 1) then
---            player:addStatusEffect(dsp.effect.MUTE,0,0,100);
+--            player:addStatusEffect(tpz.effect.MUTE,0,0,100);
 --        elseif (rand == 2) then
---            player:addStatusEffect(dsp.effect.BANE,0,0,100);
+--            player:addStatusEffect(tpz.effect.BANE,0,0,100);
 --        elseif (rand == 3) then
---            player:addStatusEffect(dsp.effect.PLAGUE,0,0,100);
+--            player:addStatusEffect(tpz.effect.PLAGUE,0,0,100);
 --        end
 --    end
 -- ======== FOR TESTING ONLY ==========-----
 
-    Catch = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
-    WonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS);
+    Catch = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
+    WonderWands = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.WONDER_WANDS);
     if (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(258,0,17053);
     elseif (Catch == 0) then
@@ -47,11 +47,11 @@ function onTrigger(player,npc)
             player:startEvent(231); -- CATCH IT IF YOU CAN: Before Quest 2
         end
 
-    elseif (Catch >= 1 and (player:hasStatusEffect(dsp.effect.MUTE) == true or player:hasStatusEffect(dsp.effect.BANE) == true or player:hasStatusEffect(dsp.effect.PLAGUE) == true)) then
+    elseif (Catch >= 1 and (player:hasStatusEffect(tpz.effect.MUTE) == true or player:hasStatusEffect(tpz.effect.BANE) == true or player:hasStatusEffect(tpz.effect.PLAGUE) == true)) then
         player:startEvent(246); -- CATCH IT IF YOU CAN: Quest Turn In 1
     elseif (Catch >= 1 and player:needToZone()) then
         player:startEvent(255); -- CATCH IT IF YOU CAN: After Quest
-    elseif (Catch == 1 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
+    elseif (Catch == 1 and player:hasStatusEffect(tpz.effect.MUTE) == false and player:hasStatusEffect(tpz.effect.BANE) == false and player:hasStatusEffect(tpz.effect.PLAGUE) == false) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(248); -- CATCH IT IF YOU CAN: During Quest 1
@@ -70,27 +70,27 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 231) then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
+        player:addQuest(WINDURST,tpz.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
     elseif (csid == 246 and option == 0) then
         player:needToZone(true);
-        if (player:hasStatusEffect(dsp.effect.MUTE) == true) then
-            player:delStatusEffect(dsp.effect.MUTE);
+        if (player:hasStatusEffect(tpz.effect.MUTE) == true) then
+            player:delStatusEffect(tpz.effect.MUTE);
             player:addGil(GIL_RATE*1000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1000);
-        elseif (player:hasStatusEffect(dsp.effect.BANE) == true) then
-            player:delStatusEffect(dsp.effect.BANE);
+        elseif (player:hasStatusEffect(tpz.effect.BANE) == true) then
+            player:delStatusEffect(tpz.effect.BANE);
             player:addGil(GIL_RATE*1200);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1200);
-        elseif (player:hasStatusEffect(dsp.effect.PLAGUE) == true) then
-            player:delStatusEffect(dsp.effect.PLAGUE);
+        elseif (player:hasStatusEffect(tpz.effect.PLAGUE) == true) then
+            player:delStatusEffect(tpz.effect.PLAGUE);
             player:addGil(GIL_RATE*1500);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         end
 
         player:setCharVar("QuestCatchItIfYouCan_var",0);
 
-        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
+        if (player:getQuestStatus(WINDURST,tpz.quest.id.windurst.CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
             player:addFame(WINDURST,75);
         else
             player:addFame(WINDURST,8);

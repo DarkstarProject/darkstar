@@ -11,13 +11,13 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(dsp.effect.REGEN)) then
-        if (target:getEquipID(dsp.slot.BODY) == 14520) then -- Dream Robe +1
-            target:addStatusEffect(dsp.effect.REGEN,1,3,150)
+    if (not target:hasStatusEffect(tpz.effect.REGEN)) then
+        if (target:getEquipID(tpz.slot.BODY) == 14520) then -- Dream Robe +1
+            target:addStatusEffect(tpz.effect.REGEN,1,3,150)
         else
-            target:addStatusEffect(dsp.effect.REGEN,1,3,120)
+            target:addStatusEffect(tpz.effect.REGEN,1,3,120)
         end
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end

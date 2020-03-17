@@ -11,12 +11,12 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if not target:isZoneVisited(dsp.zone.BASTOK_MINES) then
-        result = dsp.msg.basic.ITEM_UNABLE_TO_USE_2
+    if not target:isZoneVisited(tpz.zone.BASTOK_MINES) then
+        result = tpz.msg.basic.ITEM_UNABLE_TO_USE_2
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.CHOCO_BASTOK,0,4)
+    target:addStatusEffectEx(tpz.effect.TELEPORT,0,tpz.teleport.id.CHOCO_BASTOK,0,4)
 end

@@ -22,11 +22,11 @@ local chance =
 }
 
 function onAdditionalEffect(player, target, damage)
-    if math.random(100) <= chance[player:getEquipID(dsp.slot.MAIN)] then
+    if math.random(100) <= chance[player:getEquipID(tpz.slot.MAIN)] then
         local drain = math.floor(damage * math.random(10, 20) / 100)
         player:addMP(drain)
 
-        return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, drain
+        return tpz.subEffect.MP_DRAIN, tpz.msg.basic.ADD_EFFECT_MP_DRAIN, drain
     end
 
     return 0, 0, 0

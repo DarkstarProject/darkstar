@@ -17,10 +17,10 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES)
+    local MakingHeadlines = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.MAKING_HEADLINES)
     local WildcatWindurst = player:getCharVar("WildcatWindurst")
 
-    if player:getQuestStatus(WINDURST,dsp.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(WildcatWindurst,3) then
+    if player:getQuestStatus(WINDURST,tpz.quest.id.windurst.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and not player:getMaskBit(WildcatWindurst,3) then
         player:startEvent(731)
     elseif MakingHeadlines == 1 then
         local prog = player:getCharVar("QuestMakingHeadlines_var")
@@ -58,8 +58,8 @@ end
 function onEventFinish(player,csid,option)
     if csid == 381 then
         local prog = player:getCharVar("QuestMakingHeadlines_var")
-        player:addKeyItem(dsp.ki.WINDURST_WOODS_SCOOP)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WOODS_SCOOP)
+        player:addKeyItem(tpz.ki.WINDURST_WOODS_SCOOP)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.WINDURST_WOODS_SCOOP)
         player:setCharVar("QuestMakingHeadlines_var",prog+8)
     elseif csid == 731 then
         player:setMaskBit(player:getCharVar("WildcatWindurst"),"WildcatWindurst",3,true)

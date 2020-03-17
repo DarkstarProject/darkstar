@@ -19,12 +19,12 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
     LA_THEINE_PLATEAU.moveFallenEgg();
-    dsp.chocobo.initZone(zone)
+    tpz.chocobo.initZone(zone)
 end;
 
 function onZoneIn( player, prevZone)
@@ -36,9 +36,9 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 123;
-    elseif (prevZone == dsp.zone.ORDELLES_CAVES and player:getCharVar("darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
+    elseif (prevZone == tpz.zone.ORDELLES_CAVES and player:getCharVar("darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 122;
-    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") ==1) then
         cs = 125;
     end
 
@@ -46,7 +46,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)
@@ -64,7 +64,7 @@ function onEventFinish( player, csid, option)
     if (csid == 123) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 122) then
-        npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.DARK_PUPPET, {item=14096, fame=40, var="darkPuppetCS"}); -- Chaos Sollerets
+        npcUtil.completeQuest(player, BASTOK, tpz.quest.id.bastok.DARK_PUPPET, {item=14096, fame=40, var="darkPuppetCS"}); -- Chaos Sollerets
     end
 end;
 
@@ -73,10 +73,10 @@ function onZoneWeatherChange(weather)
     local TOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
-    if (I_Can_Hear_a_Rainbow == 1 and weather ~= dsp.weather.RAIN and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.CLOSE_DOOR) then
-        rainbow:setAnimation(dsp.anim.OPEN_DOOR);
-    elseif (I_Can_Hear_a_Rainbow == 1 and weather == dsp.weather.RAIN and rainbow:getAnimation() == dsp.anim.OPEN_DOOR) then
-        rainbow:setAnimation(dsp.anim.CLOSE_DOOR);
+    if (I_Can_Hear_a_Rainbow == 1 and weather ~= tpz.weather.RAIN and TOTD >= tpz.time.DAWN and TOTD <= tpz.time.EVENING and rainbow:getAnimation() == tpz.anim.CLOSE_DOOR) then
+        rainbow:setAnimation(tpz.anim.OPEN_DOOR);
+    elseif (I_Can_Hear_a_Rainbow == 1 and weather == tpz.weather.RAIN and rainbow:getAnimation() == tpz.anim.OPEN_DOOR) then
+        rainbow:setAnimation(tpz.anim.CLOSE_DOOR);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
 end;
@@ -85,10 +85,10 @@ function onTOTDChange(TOTD)
     local rainbow = GetNPCByID(ID.npc.RAINBOW);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
-    if (I_Can_Hear_a_Rainbow == 1 and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.CLOSE_DOOR) then
-        rainbow:setAnimation(dsp.anim.OPEN_DOOR);
-    elseif (I_Can_Hear_a_Rainbow == 1 and TOTD < dsp.time.DAWN or TOTD > dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.OPEN_DOOR) then
-        rainbow:setAnimation(dsp.anim.CLOSE_DOOR);
+    if (I_Can_Hear_a_Rainbow == 1 and TOTD >= tpz.time.DAWN and TOTD <= tpz.time.EVENING and rainbow:getAnimation() == tpz.anim.CLOSE_DOOR) then
+        rainbow:setAnimation(tpz.anim.OPEN_DOOR);
+    elseif (I_Can_Hear_a_Rainbow == 1 and TOTD < tpz.time.DAWN or TOTD > tpz.time.EVENING and rainbow:getAnimation() == tpz.anim.OPEN_DOOR) then
+        rainbow:setAnimation(tpz.anim.CLOSE_DOOR);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
 end;

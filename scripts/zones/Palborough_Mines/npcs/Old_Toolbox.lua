@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TOOLBOX) then
+    if player:getQuestStatus(BASTOK, tpz.quest.id.bastok.THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and not player:hasKeyItem(tpz.ki.OLD_TOOLBOX) then
         player:startEvent(23)
     else
         player:startEvent(22)
@@ -20,7 +20,7 @@ end
 
 function onEventUpdate(player, csid, option)
     if csid == 23 and option == 0 then
-        player:addKeyItem(dsp.ki.OLD_TOOLBOX)
+        player:addKeyItem(tpz.ki.OLD_TOOLBOX)
     end
 end
 

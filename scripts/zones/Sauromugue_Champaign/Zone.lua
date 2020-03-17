@@ -12,7 +12,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
@@ -29,7 +29,7 @@ function onZoneIn( player, prevZone)
 
     if triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 3
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 5
     end
 
@@ -37,7 +37,7 @@ function onZoneIn( player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)
@@ -47,11 +47,11 @@ function onEventUpdate(player, csid, option)
     if csid == 3 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 5 then
-        if player:getPreviousZone() == dsp.zone.GARLAIGE_CITADEL then
+        if player:getPreviousZone() == tpz.zone.GARLAIGE_CITADEL then
             player:updateEvent(0, 0, 0, 0, 0, 2)
-        elseif player:getPreviousZone() == dsp.zone.MERIPHATAUD_MOUNTAINS then
+        elseif player:getPreviousZone() == tpz.zone.MERIPHATAUD_MOUNTAINS then
             player:updateEvent(0, 0, 0, 0, 0, 4)
-        elseif player:getPreviousZone() == dsp.zone.ROLANBERRY_FIELDS or player:getPreviousZone() == dsp.zone.PORT_JEUNO then
+        elseif player:getPreviousZone() == tpz.zone.ROLANBERRY_FIELDS or player:getPreviousZone() == tpz.zone.PORT_JEUNO then
             player:updateEvent(0, 0, 0, 0, 0, 3)
         end
     end

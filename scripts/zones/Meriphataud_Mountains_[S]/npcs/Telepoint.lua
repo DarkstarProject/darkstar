@@ -12,8 +12,8 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if not player:hasKeyItem(dsp.ki.MERIPHATAUD_GATE_CRYSTAL) then
-        npcUtil.giveKeyItem(player, dsp.ki.MERIPHATAUD_GATE_CRYSTAL)
+    if not player:hasKeyItem(tpz.ki.MERIPHATAUD_GATE_CRYSTAL) then
+        npcUtil.giveKeyItem(player, tpz.ki.MERIPHATAUD_GATE_CRYSTAL)
     else
         player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE)
     end

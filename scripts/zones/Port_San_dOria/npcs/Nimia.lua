@@ -10,13 +10,13 @@ require("scripts/globals/quests")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.ELSHIMOLOWLANDS) ~= dsp.nation.SANDORIA then
+    if GetRegionOwner(tpz.region.ELSHIMOLOWLANDS) ~= tpz.nation.SANDORIA then
         player:showText(npc, ID.text.NIMIA_CLOSED_DIALOG)
     else
         local stock =
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ID.text.NIMIA_OPEN_DIALOG)
-        dsp.shop.general(player, stock, SANDORIA)
+        tpz.shop.general(player, stock, SANDORIA)
     end
 end
 

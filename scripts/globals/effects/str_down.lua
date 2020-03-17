@@ -1,16 +1,16 @@
 -----------------------------------
 --
---     dsp.effect.STR_DOWN
+--     tpz.effect.STR_DOWN
 --
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    if ((target:getStat(dsp.mod.STR) - effect:getPower()) < 0) then
-        effect:setPower(target:getStat(dsp.mod.STR))
+    if ((target:getStat(tpz.mod.STR) - effect:getPower()) < 0) then
+        effect:setPower(target:getStat(tpz.mod.STR))
     end
-    target:addMod(dsp.mod.STR,-effect:getPower())
+    target:addMod(tpz.mod.STR,-effect:getPower())
 end
 
 function onEffectTick(target,effect)
@@ -18,13 +18,13 @@ function onEffectTick(target,effect)
     local downSTR_effect_size = effect:getPower()
     if (downSTR_effect_size > 0) then
         effect:setPower(downSTR_effect_size - 1)
-        target:delMod(dsp.mod.STR,-1)
+        target:delMod(tpz.mod.STR,-1)
     end
 end
 
 function onEffectLose(target,effect)
     local downSTR_effect_size = effect:getPower()
     if (downSTR_effect_size > 0) then
-        target:delMod(dsp.mod.STR,-downSTR_effect_size)
+        target:delMod(tpz.mod.STR,-downSTR_effect_size)
     end
 end

@@ -18,13 +18,13 @@ function onMobWeaponSkill(target, mob, skill)
 
     local totaldamage = 0
     local damage = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3)
-    totaldamage = MobFinalAdjustments(damage.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,numhits)
+    totaldamage = MobFinalAdjustments(damage.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.PIERCING,numhits)
 
     if (damage.hitslanded > 0) then
-        target:addStatusEffect(dsp.effect.PARALYSIS, 50, 0, 90)
+        target:addStatusEffect(tpz.effect.PARALYSIS, 50, 0, 90)
     end
 
-    target:takeDamage(totaldamage, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
+    target:takeDamage(totaldamage, mob, tpz.attackType.PHYSICAL, tpz.damageType.PIERCING)
 
     return totaldamage
 

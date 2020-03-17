@@ -7,5 +7,5 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.DREAD_DRAGON_SLAYER);
+    player:addTitle(tpz.title.DREAD_DRAGON_SLAYER);
 end;

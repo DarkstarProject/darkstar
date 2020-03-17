@@ -12,7 +12,7 @@ require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
     -- ALL THE WAY TO THE BANK
-    if (player:hasKeyItem(dsp.ki.TARUTARU_SAUCE_INVOICE)) then
+    if (player:hasKeyItem(tpz.ki.TARUTARU_SAUCE_INVOICE)) then
         local ATWTTB_Paid_Defliaa = player:getMaskBit(player:getCharVar("ATWTTB_Payments"), 0);
         if (not ATWTTB_Paid_Defliaa and npcUtil.tradeHas( trade, {{"gil",19440}} )) then
             player:startEvent(5069);
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         4356, 200,    -- White Bread
         5686, 800,    -- Cheese Sandwich
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade();
         player:setMaskBit("ATWTTB_Payments", 0, true);
         if (player:isMaskFull(player:getCharVar("ATWTTB_Payments"), 5)) then
-            npcUtil.giveKeyItem(player, dsp.ki.TARUTARU_SAUCE_RECEIPT);
+            npcUtil.giveKeyItem(player, tpz.ki.TARUTARU_SAUCE_RECEIPT);
         end
     end
 end;

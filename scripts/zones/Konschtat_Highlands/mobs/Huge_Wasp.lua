@@ -3,9 +3,11 @@
 --  Mob: Huge Wasp
 -----------------------------------
 require("scripts/globals/regimes")
+require("scripts/quests/tutorial")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 81, 2, dsp.regime.type.FIELDS)
-    dsp.regime.checkRegime(player, mob, 82, 1, dsp.regime.type.FIELDS)
+    tpz.regime.checkRegime(player, mob, 81, 2, tpz.regime.type.FIELDS)
+    tpz.regime.checkRegime(player, mob, 82, 1, tpz.regime.type.FIELDS)
+    tpz.tutorial.onMobDeath(player)
 end

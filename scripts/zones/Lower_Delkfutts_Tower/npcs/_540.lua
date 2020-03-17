@@ -13,7 +13,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if
-        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.A_NEW_JOURNEY and
+        player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.A_NEW_JOURNEY and
         player:getCharVar("MissionStatus") == 2 and
         npcUtil.tradeHas(trade, 549) -- Delkfutt Key
     then
@@ -24,9 +24,9 @@ end
 function onTrigger(player, npc)
     local currentMission = player:getCurrentMission(WINDURST)
 
-    if currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and player:getCharVar("MissionStatus") == 2 and not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+    if currentMission == tpz.mission.id.windurst.A_NEW_JOURNEY and player:getCharVar("MissionStatus") == 2 and not player:hasKeyItem(tpz.ki.DELKFUTT_KEY) then
         player:messageSpecial(ID.text.THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY)
-    elseif currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and player:getCharVar("MissionStatus") == 2 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+    elseif currentMission == tpz.mission.id.windurst.A_NEW_JOURNEY and player:getCharVar("MissionStatus") == 2 and player:hasKeyItem(tpz.ki.DELKFUTT_KEY) then
         player:startEvent(2)
     else
         player:messageSpecial(ID.text.DOOR_FIRMLY_SHUT)
@@ -40,8 +40,8 @@ function onEventFinish(player, csid, option)
     if csid == 2 then
         player:setCharVar("MissionStatus", 3)
 
-        if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
-            npcUtil.giveKeyItem(player, dsp.ki.DELKFUTT_KEY)
+        if not player:hasKeyItem(tpz.ki.DELKFUTT_KEY) then
+            npcUtil.giveKeyItem(player, tpz.ki.DELKFUTT_KEY)
             player:confirmTrade()
         end
     end

@@ -10,7 +10,7 @@ require("scripts/globals/quests")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         12856,  172, 3,    -- Slops
     }
 
-    local rank = getNationRank(dsp.nation.SANDORIA)
+    local rank = getNationRank(tpz.nation.SANDORIA)
 
     if rank ~= 1 then
         table.insert(stock,1022)    -- Thief's Tools
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
     end
 
     player:showText(npc, ID.text.OSTALIE_SHOP_DIALOG)
-    dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
+    tpz.shop.nation(player, stock, tpz.nation.SANDORIA)
 end
 
 function onEventUpdate(player,csid,option)

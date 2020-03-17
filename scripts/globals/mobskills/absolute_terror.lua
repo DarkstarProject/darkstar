@@ -8,13 +8,13 @@ require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(dsp.effect.MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(tpz.effect.MIGHTY_STRIKES)) then
         return 1
-    elseif (mob:hasStatusEffect(dsp.effect.SUPER_BUFF)) then
+    elseif (mob:hasStatusEffect(tpz.effect.SUPER_BUFF)) then
         return 1
-    elseif (mob:hasStatusEffect(dsp.effect.INVINCIBLE)) then
+    elseif (mob:hasStatusEffect(tpz.effect.INVINCIBLE)) then
         return 1
-    elseif (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON)) then
+    elseif (mob:hasStatusEffect(tpz.effect.BLOOD_WEAPON)) then
         return 1
     elseif (target:isBehind(mob, 48) == true) then
         return 1
@@ -25,7 +25,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.TERROR
+    local typeEffect = tpz.effect.TERROR
     local power = 30
     -- Three minutes is WAY too long, especially on Wyrms. Reduced to Wiki's definition of 'long time'. Reference: http://wiki.ffxiclopedia.org/wiki/Absolute_Terror
     local duration = 30

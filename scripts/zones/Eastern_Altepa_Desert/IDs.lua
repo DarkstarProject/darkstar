@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
+zones[tpz.zone.EASTERN_ALTEPA_DESERT] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
         KEYITEM_LOST             = 6392,  -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING      = 6403,  -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET    = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE            = 7049,  -- Tallying conquest results...
         BEASTMEN_BANNER          = 7130,  -- There is a beastmen's banner.
         CONQUEST                 = 7217,  -- You've earned conquest points!
@@ -56,4 +57,4 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
     },
 }
 
-return zones[dsp.zone.EASTERN_ALTEPA_DESERT]
+return zones[tpz.zone.EASTERN_ALTEPA_DESERT]

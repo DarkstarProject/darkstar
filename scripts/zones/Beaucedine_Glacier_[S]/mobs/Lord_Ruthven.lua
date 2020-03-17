@@ -6,5 +6,5 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.RUTHVEN_ENTOMBER)
+    player:addTitle(tpz.title.RUTHVEN_ENTOMBER)
 end

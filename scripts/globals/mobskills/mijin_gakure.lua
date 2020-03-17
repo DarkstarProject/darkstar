@@ -15,14 +15,14 @@ function onMobWeaponSkill(target, mob, skill)
     local basePower = (mob:getFamily() == 335) and 4 or 6 -- Maat has a weaker (4) Mijin than usual (6)
     local power = hpmod * 10 + basePower
     local baseDmg = mob:getWeaponDmg() * power
-    local info = MobMagicalMove(mob, target, skill, baseDmg, dsp.magic.ele.NONE, dmgmod, TP_MAB_BONUS, 1)
-    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL, MOBPARAM_IGNORE_SHADOWS)
+    local info = MobMagicalMove(mob, target, skill, baseDmg, tpz.magic.ele.NONE, dmgmod, TP_MAB_BONUS, 1)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, tpz.attackType.MAGICAL, tpz.damageType.ELEMENTAL, MOBPARAM_IGNORE_SHADOWS)
 
     if mob:isInDynamis() then -- dynamis mobs will kill themselves, other mobs might not
         mob:setHP(0)
     end
 
-    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.ELEMENTAL)
+    target:takeDamage(dmg, mob, tpz.attackType.MAGICAL, tpz.damageType.ELEMENTAL)
 
     return dmg
 end

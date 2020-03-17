@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.NEWTON_MOVALPOLOS] =
+zones[tpz.zone.NEWTON_MOVALPOLOS] =
 {
     text =
     {
@@ -14,6 +14,7 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
         ITEM_OBTAINED           = 6388, -- Obtained: <item>.
         GIL_OBTAINED            = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET   = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         COME_CLOSER             = 7230, -- H0000! C0mE cL0SEr! C0mE cL0SEr! CAn'T TrAdE fr0m S0 fAr AwAy!
         MINING_IS_POSSIBLE_HERE = 7238, -- Mining is possible here if you have <item>.
@@ -45,4 +46,4 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
     },
 }
 
-return zones[dsp.zone.NEWTON_MOVALPOLOS]
+return zones[tpz.zone.NEWTON_MOVALPOLOS]

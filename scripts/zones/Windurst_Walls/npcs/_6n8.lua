@@ -16,7 +16,7 @@ function onTrigger(player,npc)
     Z = player:getZPos();
 
     if ((X >= 1.51 and X <= 9.49) and (Z >= 273.1 and Z <= 281)) then
-        if player:hasKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE) then
+        if player:hasKeyItem(tpz.ki.RHINOSTERY_CERTIFICATE) then
             player:startEvent(401);
         else
             player:startEvent(264);

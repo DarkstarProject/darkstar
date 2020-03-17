@@ -13,28 +13,28 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
-        result = dsp.msg.basic.IS_FULL
+    if target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,4465)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,10800,4465)
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.DEX, -4)
-    target:addMod(dsp.mod.FOOD_ATTP, 16)
-    target:addMod(dsp.mod.FOOD_ATT_CAP, 80)
-    target:addMod(dsp.mod.FOOD_RATTP, 16)
-    target:addMod(dsp.mod.FOOD_RATT_CAP, 80)
+    target:addMod(tpz.mod.DEX, -4)
+    target:addMod(tpz.mod.FOOD_ATTP, 16)
+    target:addMod(tpz.mod.FOOD_ATT_CAP, 80)
+    target:addMod(tpz.mod.FOOD_RATTP, 16)
+    target:addMod(tpz.mod.FOOD_RATT_CAP, 80)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.DEX, -4)
-    target:delMod(dsp.mod.FOOD_ATTP, 16)
-    target:delMod(dsp.mod.FOOD_ATT_CAP, 80)
-    target:delMod(dsp.mod.FOOD_RATTP, 16)
-    target:delMod(dsp.mod.FOOD_RATT_CAP, 80)
+    target:delMod(tpz.mod.DEX, -4)
+    target:delMod(tpz.mod.FOOD_ATTP, 16)
+    target:delMod(tpz.mod.FOOD_ATT_CAP, 80)
+    target:delMod(tpz.mod.FOOD_RATTP, 16)
+    target:delMod(tpz.mod.FOOD_RATT_CAP, 80)
 end

@@ -17,8 +17,8 @@ end
 
 function onUseAbility(player,target,ability)
     local baseDuration = 120
-    local durationMultiplier = 1.0 + utils.clamp(player:getMod(dsp.mod.JIG_DURATION), 0, 50) / 100
+    local durationMultiplier = 1.0 + utils.clamp(player:getMod(tpz.mod.JIG_DURATION), 0, 50) / 100
     local finalDuration = math.floor(baseDuration * durationMultiplier)
     
-    player:addStatusEffect(dsp.effect.QUICKENING,20,0,finalDuration)
+    player:addStatusEffect(tpz.effect.QUICKENING,20,0,finalDuration)
 end

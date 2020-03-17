@@ -12,8 +12,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.STEAMED_RAMS) == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER)) then
+    if (player:getQuestStatus(CRYSTAL_WAR,tpz.quest.id.crystalWar.STEAMED_RAMS) == QUEST_ACCEPTED) then
+        if (player:hasKeyItem(tpz.ki.PIECE_OF_SHATTERED_LUMBER)) then
             player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         else
             player:startEvent(2);
@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
     if (csid == 2) then
-        player:addKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PIECE_OF_SHATTERED_LUMBER);
+        player:addKeyItem(tpz.ki.PIECE_OF_SHATTERED_LUMBER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.PIECE_OF_SHATTERED_LUMBER);
     end
 end;

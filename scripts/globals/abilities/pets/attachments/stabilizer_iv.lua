@@ -10,7 +10,7 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    updateModPerformance(pet, dsp.mod.ACC, 'stabilizer_iv_mod', 0)
+    updateModPerformance(pet, tpz.mod.ACC, 'stabilizer_iv_mod', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
@@ -23,12 +23,12 @@ end
 
 function onUpdate(pet, maneuvers)
     if maneuvers == 0 then
-        updateModPerformance(pet, dsp.mod.ACC, 'stabilizer_iv_mod', 30)
+        updateModPerformance(pet, tpz.mod.ACC, 'stabilizer_iv_mod', 30)
     elseif maneuvers == 1 then
-        updateModPerformance(pet, dsp.mod.ACC, 'stabilizer_iv_mod', 40)
+        updateModPerformance(pet, tpz.mod.ACC, 'stabilizer_iv_mod', 40)
     elseif maneuvers == 2 then
-        updateModPerformance(pet, dsp.mod.ACC, 'stabilizer_iv_mod', 55)
+        updateModPerformance(pet, tpz.mod.ACC, 'stabilizer_iv_mod', 55)
     elseif maneuvers == 3 then
-        updateModPerformance(pet, dsp.mod.ACC, 'stabilizer_iv_mod', 70)
+        updateModPerformance(pet, tpz.mod.ACC, 'stabilizer_iv_mod', 70)
     end
 end

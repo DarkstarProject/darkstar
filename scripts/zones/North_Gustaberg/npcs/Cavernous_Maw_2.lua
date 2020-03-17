@@ -17,8 +17,8 @@ function onTrigger(player, npc)
     if ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30 then
         if
             getTravStonesTotal(player) >= 1 and
-            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED and
-            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.AN_ULCEROUS_URAGNITE) == QUEST_AVAILABLE
+            player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED and
+            player:getQuestStatus(ABYSSEA, tpz.quest.id.abyssea.AN_ULCEROUS_URAGNITE) == QUEST_AVAILABLE
         then
             player:startEvent(0)
         else
@@ -34,7 +34,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 0 then
-        player:addQuest(ABYSSEA, dsp.quest.id.abyssea.AN_ULCEROUS_URAGNITE)
+        player:addQuest(ABYSSEA, tpz.quest.id.abyssea.AN_ULCEROUS_URAGNITE)
     elseif csid == 1 then
         -- Killed Amphitrite
     elseif csid == 908 and option == 1 then

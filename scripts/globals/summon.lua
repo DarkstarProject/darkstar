@@ -5,8 +5,8 @@ require("scripts/globals/msg")
 
 function getSummoningSkillOverCap(avatar)
     local summoner = avatar:getMaster()
-    local summoningSkill = summoner:getSkillLevel(dsp.skill.SUMMONING_MAGIC)
-    local maxSkill = summoner:getMaxSkillLevel(avatar:getMainLvl(), dsp.job.SMN, dsp.skill.SUMMONING_MAGIC)
+    local summoningSkill = summoner:getSkillLevel(tpz.skill.SUMMONING_MAGIC)
+    local maxSkill = summoner:getMaxSkillLevel(avatar:getMainLvl(), tpz.job.SMN, tpz.skill.SUMMONING_MAGIC)
     return math.max(summoningSkill - maxSkill, 0)
 end
 
@@ -17,16 +17,16 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod,dmgmo
     local acc = avatar:getACC() + utils.clamp(getSummoningSkillOverCap(avatar), 0, 200)
     local eva = target:getEVA()
     local dmg = avatar:getWeaponDmg()
-    local minFstr, maxFstr = avatarFSTR(avatar:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT))
-    local ratio = avatar:getStat(dsp.mod.ATT) / target:getStat(dsp.mod.DEF)
+    local minFstr, maxFstr = avatarFSTR(avatar:getStat(tpz.mod.STR), target:getStat(tpz.mod.VIT))
+    local ratio = avatar:getStat(tpz.mod.ATT) / target:getStat(tpz.mod.DEF)
 
     -- Note: Avatars do not have any level correction. This is why they are so good on Wyrms! // https://kegsay.livejournal.com/tag/smn!
     local hitrate = utils.clamp(acc - eva, 20, 95)
 
     -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-    local critrate = (avatar:getStat(dsp.mod.DEX) - target:getStat(dsp.mod.AGI)) * 0.005 -- assumes +0.5% crit rate per 1 dDEX
-    critrate = critrate + avatar:getMod(dsp.mod.CRITHITRATE) / 100
-    critrate = utils.clamp(critrate, 0.05, 0.2);
+    local critrate = (avatar:getStat(tpz.mod.DEX) - target:getStat(tpz.mod.AGI)) * 0.005 -- assumes +0.5% crit rate per 1 dDEX
+    critrate = critrate + avatar:getMod(tpz.mod.CRITHITRATE) / 100
+    critrate = utils.clamp(critrate, 0.05, 0.2)
 
     -- Applying pDIF
     if ratio <= 1 then
@@ -71,7 +71,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod,dmgmo
     if hitslanded == 0 or finaldmg == 0 then
         finaldmg = 0
         hitslanded = 0
-        skill:setMsg(dsp.msg.basic.SKILL_MISS)
+        skill:setMsg(tpz.msg.basic.SKILL_MISS)
 
     -- some hits hit
     else
@@ -108,64 +108,64 @@ end
 function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 
     -- physical attack missed, skip rest
-    if skilltype == dsp.attackType.PHYSICAL and dmg == 0 then
+    if skilltype == tpz.attackType.PHYSICAL and dmg == 0 then
         return 0
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(dsp.msg.basic.DAMAGE)
+    skill:setMsg(tpz.msg.basic.DAMAGE)
 
     --Handle shadows depending on shadow behaviour / skilltype
     if shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS then --remove 'shadowbehav' shadows.
-        targShadows = target:getMod(dsp.mod.UTSUSEMI)
-        shadowType = dsp.mod.UTSUSEMI
+        targShadows = target:getMod(tpz.mod.UTSUSEMI)
+        shadowType = tpz.mod.UTSUSEMI
         if targShadows == 0 then --try blink, as utsusemi always overwrites blink this is okay
-            targShadows = target:getMod(dsp.mod.BLINK)
-            shadowType = dsp.mod.BLINK
+            targShadows = target:getMod(tpz.mod.BLINK)
+            shadowType = tpz.mod.BLINK
         end
 
         if targShadows > 0 then
         -- Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
             if targShadows >= shadowbehav then --no damage, just suck the shadows
-                skill:setMsg(dsp.msg.basic.SHADOW_ABSORB)
+                skill:setMsg(tpz.msg.basic.SHADOW_ABSORB)
                 target:setMod(shadowType, targShadows - shadowbehav)
-                if shadowType == dsp.mod.UTSUSEMI then --update icon
-                    effect = target:getStatusEffect(dsp.effect.COPY_IMAGE)
+                if shadowType == tpz.mod.UTSUSEMI then --update icon
+                    effect = target:getStatusEffect(tpz.effect.COPY_IMAGE)
                     if effect ~= nil then
                         if targShadows - shadowbehav == 0 then
-                            target:delStatusEffect(dsp.effect.COPY_IMAGE)
-                            target:delStatusEffect(dsp.effect.BLINK)
+                            target:delStatusEffect(tpz.effect.COPY_IMAGE)
+                            target:delStatusEffect(tpz.effect.BLINK)
                         elseif targShadows - shadowbehav == 1 then
-                            effect:setIcon(dsp.effect.COPY_IMAGE)
+                            effect:setIcon(tpz.effect.COPY_IMAGE)
                         elseif targShadows - shadowbehav == 2 then
-                            effect:setIcon(dsp.effect.COPY_IMAGE_2)
+                            effect:setIcon(tpz.effect.COPY_IMAGE_2)
                         elseif targShadows - shadowbehav == 3 then
-                            effect:setIcon(dsp.effect.COPY_IMAGE_3)
+                            effect:setIcon(tpz.effect.COPY_IMAGE_3)
                         end
                     end
                 end
                 return shadowbehav
             else -- less shadows than this move will take, remove all and factor damage down
                 dmg = dmg * (shadowbehav - targShadows) / shadowbehav
-                target:setMod(dsp.mod.UTSUSEMI, 0)
-                target:setMod(dsp.mod.BLINK, 0)
-                target:delStatusEffect(dsp.effect.COPY_IMAGE)
-                target:delStatusEffect(dsp.effect.BLINK)
+                target:setMod(tpz.mod.UTSUSEMI, 0)
+                target:setMod(tpz.mod.BLINK, 0)
+                target:delStatusEffect(tpz.effect.COPY_IMAGE)
+                target:delStatusEffect(tpz.effect.BLINK)
             end
         end
     elseif shadowbehav == MOBPARAM_WIPE_SHADOWS then --take em all!
-        target:setMod(dsp.mod.UTSUSEMI, 0)
-        target:setMod(dsp.mod.BLINK, 0)
-        target:delStatusEffect(dsp.effect.COPY_IMAGE)
-        target:delStatusEffect(dsp.effect.BLINK)
+        target:setMod(tpz.mod.UTSUSEMI, 0)
+        target:setMod(tpz.mod.BLINK, 0)
+        target:delStatusEffect(tpz.effect.COPY_IMAGE)
+        target:delStatusEffect(tpz.effect.BLINK)
     end
 
     -- handle Third Eye using shadowbehav as a guide
-    teye = target:getStatusEffect(dsp.effect.THIRD_EYE)
-    if teye ~= nil and skilltype == dsp.attackType.PHYSICAL then --T.Eye only procs when active with PHYSICAL stuff
+    teye = target:getStatusEffect(tpz.effect.THIRD_EYE)
+    if teye ~= nil and skilltype == tpz.attackType.PHYSICAL then --T.Eye only procs when active with PHYSICAL stuff
         if shadowbehav == MOBPARAM_WIPE_SHADOWS then --e.g. aoe moves
-            target:delStatusEffect(dsp.effect.THIRD_EYE)
+            target:delStatusEffect(tpz.effect.THIRD_EYE)
         elseif shadowbehav ~= MOBPARAM_IGNORE_SHADOWS then --it can be absorbed by shadows
             --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
             --chance of anticipate based on previous successful anticipates.
@@ -173,50 +173,50 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
             if prevAnt == 0 then
                 --100% proc
                 teye:setPower(1)
-                skill:setMsg(dsp.msg.basic.ANTICIPATE)
+                skill:setMsg(tpz.msg.basic.ANTICIPATE)
                 return 0
             end
             if math.random() * 10 < 8 - prevAnt then
                 --anticipated!
                 teye:setPower(prevAnt+1)
-                skill:setMsg(dsp.msg.basic.ANTICIPATE)
+                skill:setMsg(tpz.msg.basic.ANTICIPATE)
                 return 0
             end
-            target:delStatusEffect(dsp.effect.THIRD_EYE)
+            target:delStatusEffect(tpz.effect.THIRD_EYE)
         end
     end
 
     --TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
-    if skilltype == dsp.attackType.PHYSICAL and target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD) then
+    if skilltype == tpz.attackType.PHYSICAL and target:hasStatusEffect(tpz.effect.PHYSICAL_SHIELD) then
         return 0
     end
 
-    if skilltype == dsp.attackType.RANGED and target:hasStatusEffect(dsp.effect.ARROW_SHIELD) then
+    if skilltype == tpz.attackType.RANGED and target:hasStatusEffect(tpz.effect.ARROW_SHIELD) then
         return 0
     end
 
     -- handle elemental resistence
-    if skilltype == dsp.attackType.MAGICAL and target:hasStatusEffect(dsp.effect.MAGIC_SHIELD) then
+    if skilltype == tpz.attackType.MAGICAL and target:hasStatusEffect(tpz.effect.MAGIC_SHIELD) then
         return 0
     end
 
     -- handling phalanx
-    dmg = dmg - target:getMod(dsp.mod.PHALANX)
+    dmg = dmg - target:getMod(tpz.mod.PHALANX)
     if dmg < 0 then
         return 0
     end
 
     --handle invincible
-    if target:hasStatusEffect(dsp.effect.INVINCIBLE) and skilltype == dsp.attackType.PHYSICAL then
+    if target:hasStatusEffect(tpz.effect.INVINCIBLE) and skilltype == tpz.attackType.PHYSICAL then
         return 0
     end
     -- handle pd
-    if target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.TOO_HIGH) and skilltype == dsp.attackType.PHYSICAL then
+    if target:hasStatusEffect(tpz.effect.PERFECT_DODGE) or target:hasStatusEffect(tpz.effect.TOO_HIGH) and skilltype == tpz.attackType.PHYSICAL then
         return 0
     end
 
     -- Calculate Blood Pact Damage before stoneskin
-    dmg = dmg + dmg * mob:getMod(dsp.mod.BP_DAMAGE) / 100
+    dmg = dmg + dmg * mob:getMod(tpz.mod.BP_DAMAGE) / 100
 
     -- handling stoneskin
     dmg = utils.stoneskin(target, dmg)
@@ -228,7 +228,7 @@ end
 -- used to stop tp move status effects
 function AvatarPhysicalHit(skill, dmg)
     -- if message is not the default. Then there was a miss, shadow taken etc
-    return skill:getMsg() == dsp.msg.basic.DAMAGE
+    return skill:getMsg() == tpz.msg.basic.DAMAGE
 end
 
 function avatarFTP(tp,ftp1,ftp2,ftp3)
@@ -248,8 +248,8 @@ end
 function avatarMiniFightCheck(caster)
     local result = 0
     local bcnmid
-    if caster:hasStatusEffect(dsp.effect.BATTLEFIELD) then
-        bcnmid = caster:getStatusEffect(dsp.effect.BATTLEFIELD):getPower()
+    if caster:hasStatusEffect(tpz.effect.BATTLEFIELD) then
+        bcnmid = caster:getStatusEffect(tpz.effect.BATTLEFIELD):getPower()
         if bcnmid == 418 or bcnmid == 609 or bcnmid == 450 or bcnmid == 482 or bcnmid == 545 or bcnmid == 578 then -- Mini Avatar Fights
             result = 40 -- Cannot use <spell> in this area.
         end

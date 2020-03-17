@@ -7,13 +7,13 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
-    mob:addMod(dsp.mod.SLEEPRES, 20)
-    mob:addMod(dsp.mod.BINDRES, 20)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
+    mob:addMod(tpz.mod.SLEEPRES, 20)
+    mob:addMod(tpz.mod.BINDRES, 20)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.SLOW, {power = 1500, duration = math.random(15, 25)})
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.SLOW, {power = 1500, duration = math.random(15, 25)})
 end
 
 function onMobDeath(mob, player, isKiller)

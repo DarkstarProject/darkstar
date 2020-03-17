@@ -29,5 +29,5 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc, ID.text.ZAIRA_SHOP_DIALOG)
-    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+    tpz.shop.nation(player, stock, tpz.nation.BASTOK)
 end

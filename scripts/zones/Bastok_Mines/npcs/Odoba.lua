@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local guildRank = player:getSkillRank(dsp.skill.ALCHEMY)
-    local stock = dsp.shop.generalGuildStock[guild.alchemy]
-    dsp.shop.generalGuild(player, stock, guildRank)
+    local guildRank = player:getSkillRank(tpz.skill.ALCHEMY)
+    local stock = tpz.shop.generalGuildStock[guild.alchemy]
+    tpz.shop.generalGuild(player, stock, guildRank)
     player:showText(npc,ID.text.ODOBA_SHOP_DIALOG)
 end
 

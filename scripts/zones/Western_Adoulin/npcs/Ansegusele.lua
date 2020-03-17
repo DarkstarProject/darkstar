@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         4389, 32, -- San D'Or. Carrot
         630, 96, -- Ogre Pumpkin
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

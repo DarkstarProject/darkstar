@@ -18,9 +18,9 @@ function onTrigger(player,npc)
     local Z = player:getZPos();
 
     if ((X > 251.6 and X < 263.6) and (Z < 219.7 and Z > 207.7)) then
-        if (player:hasKeyItem(dsp.ki.SCROLL_OF_TREASURE) == true) then
+        if (player:hasKeyItem(tpz.ki.SCROLL_OF_TREASURE) == true) then
             player:startEvent(20);
-            player:delKeyItem(dsp.ki.SCROLL_OF_TREASURE);
+            player:delKeyItem(tpz.ki.SCROLL_OF_TREASURE);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         else

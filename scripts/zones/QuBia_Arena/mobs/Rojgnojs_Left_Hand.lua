@@ -8,7 +8,7 @@ require("scripts/globals/status")
 local ID = require("scripts/zones/QuBia_Arena/IDs")
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.SLEEPRES,50)
+    mob:addMod(tpz.mod.SLEEPRES,50)
 end
 
 function onMobDeath(mob, player, isKiller)

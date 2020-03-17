@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.ATTOHWA_CHASM] =
+zones[tpz.zone.ATTOHWA_CHASM] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.ATTOHWA_CHASM] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         KEYITEM_LOST            = 6392, -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET   = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         MINING_IS_POSSIBLE_HERE = 7208, -- Mining is possible here if you have <item>.
         GASPONIA_POISON         = 7328, -- The poison of the Gasponia has begun to spread through your body.
@@ -54,4 +55,4 @@ zones[dsp.zone.ATTOHWA_CHASM] =
     },
 }
 
-return zones[dsp.zone.ATTOHWA_CHASM]
+return zones[tpz.zone.ATTOHWA_CHASM]

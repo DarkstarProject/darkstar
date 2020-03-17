@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.FEIYIN] =
+zones[tpz.zone.FEIYIN] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.FEIYIN] =
         KEYITEM_OBTAINED                   = 6570,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY            = 6581,  -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING                = 6582,  -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET              = 6596,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET             = 7228,  -- You can't fish here.
         CHEST_UNLOCKED                     = 7359,  -- You unlock the chest!
         SOFTLY_SHIMMERING_LIGHT            = 7485,  -- You see a softly shimmering light...
@@ -35,7 +36,7 @@ zones[dsp.zone.FEIYIN] =
         ALREADY_POSSESS_TEMP               = 7510,  -- You already possess that temporary item.
         NO_COMBINATION                     = 7515,  -- You were unable to enter a combination.
         REGIME_REGISTERED                  = 9593,  -- New training regime registered!
-        HOMEPOINT_SET                      = 10689, -- Home point set!
+        HOMEPOINT_SET                      = 10692, -- Home point set!
     },
     mob =
     {
@@ -79,4 +80,4 @@ zones[dsp.zone.FEIYIN] =
     },
 }
 
-return zones[dsp.zone.FEIYIN]
+return zones[tpz.zone.FEIYIN]

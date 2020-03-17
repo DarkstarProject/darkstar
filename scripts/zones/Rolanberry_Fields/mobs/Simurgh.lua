@@ -7,7 +7,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.SIMURGH_POACHER)
+    player:addTitle(tpz.title.SIMURGH_POACHER)
 end
 
 function onMobDespawn(mob)

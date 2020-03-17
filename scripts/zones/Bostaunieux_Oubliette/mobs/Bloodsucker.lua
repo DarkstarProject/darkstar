@@ -11,16 +11,16 @@ require("scripts/globals/mobs")
 
 function onMobInitialize(mob)
     if mob:getID() == ID.mob.BLOODSUCKER then
-        mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1) -- "Has an Additional Effect of Drain on normal attacks"
+        mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1) -- "Has an Additional Effect of Drain on normal attacks"
     end
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.HP_DRAIN)
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.HP_DRAIN)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 613, 1, dsp.regime.type.GROUNDS)
+    tpz.regime.checkRegime(player, mob, 613, 1, tpz.regime.type.GROUNDS)
 end
 
 function onMobDespawn(mob)

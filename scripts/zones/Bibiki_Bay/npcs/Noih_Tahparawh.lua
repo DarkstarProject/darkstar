@@ -7,14 +7,14 @@
 require("scripts/globals/manaclipper")
 -----------------------------------
 
-local timekeeperLocation = dsp.manaclipper.location.PURGONORGO_ISLE
+local timekeeperLocation = tpz.manaclipper.location.PURGONORGO_ISLE
 local timekeeperEventId = 19
 
 function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    dsp.manaclipper.timekeeperOnTrigger(player, timekeeperLocation, timekeeperEventId)
+    tpz.manaclipper.timekeeperOnTrigger(player, timekeeperLocation, timekeeperEventId)
 end
 
 function onEventUpdate(player,csid,option)

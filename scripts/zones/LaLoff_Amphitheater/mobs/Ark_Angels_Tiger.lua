@@ -12,7 +12,7 @@ function onMobEngaged(mob,target)
 
     for member = mobid-2, mobid+5 do
         local m = GetMobByID(member)
-        if m:getCurrentAction() == dsp.act.ROAMING then
+        if m:getCurrentAction() == tpz.act.ROAMING then
             m:updateEnmity(target)
         end
     end

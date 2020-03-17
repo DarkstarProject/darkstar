@@ -14,15 +14,15 @@ end
 function onTrigger(player,npc)
     local pNation = player:getNation()
 
-    if pNation == dsp.nation.WINDURST then
+    if pNation == tpz.nation.WINDURST then
         local currentMission = player:getCurrentMission(pNation)
         local MissionStatus = player:getCharVar("MissionStatus")
 
-        if currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 1 then
+        if currentMission == tpz.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 1 then
             player:startEvent(43)
-        elseif currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 2 then
+        elseif currentMission == tpz.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 2 then
             player:startEvent(68)
-        elseif currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 3 then
+        elseif currentMission == tpz.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 3 then
             player:startEvent(141)
         elseif player:getRank() == 4 and MissionStatus == 0 then
             if getMissionRankPoints(player,13) == 1 then
@@ -30,20 +30,20 @@ function onTrigger(player,npc)
             else
                 player:startEvent(54)
             end
-        elseif currentMission == dsp.mission.id.windurst.MAGICITE and MissionStatus == 1 then
+        elseif currentMission == tpz.mission.id.windurst.MAGICITE and MissionStatus == 1 then
             player:startEvent(134)
-        elseif currentMission == dsp.mission.id.windurst.MAGICITE and MissionStatus <= 5 then
+        elseif currentMission == tpz.mission.id.windurst.MAGICITE and MissionStatus <= 5 then
             player:startEvent(137)
-        elseif currentMission == dsp.mission.id.windurst.MAGICITE and MissionStatus == 6 then
+        elseif currentMission == tpz.mission.id.windurst.MAGICITE and MissionStatus == 6 then
             player:startEvent(37)
-        elseif player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST) then
+        elseif player:hasKeyItem(tpz.ki.MESSAGE_TO_JEUNO_WINDURST) then
             player:startEvent(57)
         else
             player:startEvent(103)
         end
-    elseif pNation == dsp.nation.SANDORIA then
+    elseif pNation == tpz.nation.SANDORIA then
         player:startEvent(52)
-    elseif pNation == dsp.nation.BASTOK then
+    elseif pNation == tpz.nation.BASTOK then
         player:startEvent(51)
     end
 end
@@ -54,7 +54,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 43 then
         player:setCharVar("MissionStatus",2)
-        player:delKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR)
+        player:delKeyItem(tpz.ki.LETTER_TO_THE_AMBASSADOR)
     elseif csid == 141 then
         player:setCharVar("MissionStatus",4)
     elseif csid == 37 then

@@ -25,7 +25,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 214 then
-        npcUtil.giveKeyItem(player, dsp.ki.ANTIQUE_AUTOMATON)
+        npcUtil.giveKeyItem(player, tpz.ki.ANTIQUE_AUTOMATON)
         player:setCharVar("NoStringsAttachedProgress", 4)
     end
 end

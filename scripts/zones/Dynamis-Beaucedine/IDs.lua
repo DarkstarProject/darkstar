@@ -8,7 +8,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.DYNAMIS_BEAUCEDINE] =
+zones[tpz.zone.DYNAMIS_BEAUCEDINE] =
 {
     text =
     {
@@ -28,11 +28,11 @@ zones[dsp.zone.DYNAMIS_BEAUCEDINE] =
     {
         TIME_EXTENSION =
         {
-            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = 17326207},
-            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 17326279},
-            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17326353},
-            {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17326468},
-            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = {17326742, 17326748, 17326754, 17326760, 17326765, 17326771}},
+            {minutes = 10, ki = tpz.ki.CRIMSON_GRANULES_OF_TIME,   mob = 17326207},
+            {minutes = 10, ki = tpz.ki.AZURE_GRANULES_OF_TIME,     mob = 17326279},
+            {minutes = 10, ki = tpz.ki.AMBER_GRANULES_OF_TIME,     mob = 17326353},
+            {minutes = 10, ki = tpz.ki.ALABASTER_GRANULES_OF_TIME, mob = 17326468},
+            {minutes = 20, ki = tpz.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = {17326742, 17326748, 17326754, 17326760, 17326765, 17326771}},
         },
         REFILL_STATUE =
         {
@@ -156,4 +156,4 @@ zones[dsp.zone.DYNAMIS_BEAUCEDINE] =
     },
 }
 
-return zones[dsp.zone.DYNAMIS_BEAUCEDINE]
+return zones[tpz.zone.DYNAMIS_BEAUCEDINE]

@@ -15,13 +15,13 @@ end;
 
 function onTrigger(player,npc)
     if (OldSchoolG1 == false) then
-        if (player:hasItem(1090) == false and player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT1) == false
-        and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
-            player:addKeyItem(dsp.ki.BOMB_COAL_FRAGMENT1);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOMB_COAL_FRAGMENT1);
+        if (player:hasItem(1090) == false and player:hasKeyItem(tpz.ki.BOMB_COAL_FRAGMENT1) == false
+        and player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
+            player:addKeyItem(tpz.ki.BOMB_COAL_FRAGMENT1);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.BOMB_COAL_FRAGMENT1);
         end
 
-        if (player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT1) and player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT2) and player:hasKeyItem(dsp.ki.BOMB_COAL_FRAGMENT3)) then
+        if (player:hasKeyItem(tpz.ki.BOMB_COAL_FRAGMENT1) and player:hasKeyItem(tpz.ki.BOMB_COAL_FRAGMENT2) and player:hasKeyItem(tpz.ki.BOMB_COAL_FRAGMENT3)) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(1090, 1);
                 player:messageSpecial(ID.text.ITEM_OBTAINED, 1090);
@@ -31,9 +31,9 @@ function onTrigger(player,npc)
         end
 
         if (player:hasItem(1090)) then
-            player:delKeyItem(dsp.ki.BOMB_COAL_FRAGMENT1);
-            player:delKeyItem(dsp.ki.BOMB_COAL_FRAGMENT2);
-            player:delKeyItem(dsp.ki.BOMB_COAL_FRAGMENT3);
+            player:delKeyItem(tpz.ki.BOMB_COAL_FRAGMENT1);
+            player:delKeyItem(tpz.ki.BOMB_COAL_FRAGMENT2);
+            player:delKeyItem(tpz.ki.BOMB_COAL_FRAGMENT3);
         end
     end
 end;

@@ -29,7 +29,7 @@ function onPath(npc)
         -- once a pathThrough begins, there doesn't seem to be a clean way to stop onPath
         -- from being called forever.
 
-        if (npc:atPoint(dsp.path.get(LOWER_JEUNO.lampPath,48))) then
+        if (npc:atPoint(tpz.path.get(LOWER_JEUNO.lampPath,48))) then
             npc:clearPath();
             npc:setStatus(2);
 
@@ -38,11 +38,11 @@ function onPath(npc)
 
         else
             for i, v in ipairs(LOWER_JEUNO.lampPoints) do
-                local lampPos = dsp.path.get(LOWER_JEUNO.lampPath,v);
+                local lampPos = tpz.path.get(LOWER_JEUNO.lampPath,v);
                 if (npc:atPoint(lampPos)) then
                     -- Vhana is at a lamp (she reaches them in reverse order)
                     local lampId = ID.npc.STREETLAMP_OFFSET + (12 - i);
-                    GetNPCByID(lampId):setAnimation(dsp.anim.OPEN_DOOR);
+                    GetNPCByID(lampId):setAnimation(tpz.anim.OPEN_DOOR);
                     break;
                 end
             end

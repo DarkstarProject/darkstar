@@ -12,12 +12,12 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if os.time() - player:getCharVar("SquiresTestII") <= 60 and not player:hasKeyItem(dsp.ki.STALACTITE_DEW) then
+    if os.time() - player:getCharVar("SquiresTestII") <= 60 and not player:hasKeyItem(tpz.ki.STALACTITE_DEW) then
         player:messageSpecial(ID.text.A_SQUIRE_S_TEST_II_DIALOG_II)
-        player:addKeyItem(dsp.ki.STALACTITE_DEW)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.STALACTITE_DEW)
+        player:addKeyItem(tpz.ki.STALACTITE_DEW)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.STALACTITE_DEW)
         player:setCharVar("SquiresTestII", 0)
-    elseif player:hasKeyItem(dsp.ki.STALACTITE_DEW) then
+    elseif player:hasKeyItem(tpz.ki.STALACTITE_DEW) then
         player:messageSpecial(ID.text.A_SQUIRE_S_TEST_II_DIALOG_III)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)

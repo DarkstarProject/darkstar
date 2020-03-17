@@ -8,10 +8,10 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.SOUL_VOICE, cooldown = 200, hpp = 95},
+            {id = tpz.jsa.SOUL_VOICE, cooldown = 200, hpp = 95},
         },
     })
 end

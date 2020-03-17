@@ -8,8 +8,8 @@ mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:addMod(dsp.mod.SLEEPRES, 150)
-    mob:addMod(dsp.mod.SILENCERES, 150)
+    mob:addMod(tpz.mod.SLEEPRES, 150)
+    mob:addMod(tpz.mod.SILENCERES, 150)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         -- Vorpal Blade
         if skillId == 40 then

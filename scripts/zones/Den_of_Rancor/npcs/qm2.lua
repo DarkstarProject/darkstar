@@ -8,5 +8,5 @@ require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Den_of_Rancor/IDs")
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.spiral_hell,player,ID.mob.MOKUMOKUREN)
+    tpz.wsquest.handleQmTrigger(tpz.wsquest.spiral_hell,player,ID.mob.MOKUMOKUREN)
 end

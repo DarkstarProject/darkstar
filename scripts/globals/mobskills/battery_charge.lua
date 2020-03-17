@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.REFRESH
+    local typeEffect = tpz.effect.REFRESH
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 3, 3, 300))
 

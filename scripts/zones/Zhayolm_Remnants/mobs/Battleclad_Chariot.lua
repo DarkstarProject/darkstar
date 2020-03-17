@@ -6,5 +6,5 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.STAR_CHARIOTEER)
+    player:addTitle(tpz.title.STAR_CHARIOTEER)
 end

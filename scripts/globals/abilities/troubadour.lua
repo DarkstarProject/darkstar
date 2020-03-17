@@ -15,5 +15,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(dsp.effect.TROUBADOUR,0,0,60)
+    player:addStatusEffect(tpz.effect.TROUBADOUR,0,0,60)
 end

@@ -3,10 +3,10 @@
 -----------------------------------
 require("scripts/globals/npc_util")
 
-dsp = dsp or {}
-dsp.matrimonialcoffer = dsp.matrimonialcoffer or {}
+tpz = tpz or {}
+tpz.matrimonialcoffer = tpz.matrimonialcoffer or {}
 
-function dsp.matrimonialcoffer.startEvent(player)
+function tpz.matrimonialcoffer.startEvent(player)
     local playerGender = player:getGender()
     if playerGender == 1 then
         player:startEvent(2000, playerGender, 200000, 15848, 100000, player:getGil())   -- Male Dialog
@@ -15,7 +15,7 @@ function dsp.matrimonialcoffer.startEvent(player)
     end
 end
 
-function dsp.matrimonialcoffer.finishEvent(player, csid, option)
+function tpz.matrimonialcoffer.finishEvent(player, csid, option)
     local zone = player:getZoneID()
     local ID = zones[zone]
     local playerGender = player:getGender()

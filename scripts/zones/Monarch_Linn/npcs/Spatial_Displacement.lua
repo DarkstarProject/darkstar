@@ -23,9 +23,9 @@ function onTrigger(player,npc)
     local Z = player:getZPos();
 
     if (X > 12.934 and X < 24.934) then
-        if (player:getPreviousZone() == dsp.zone.RIVERNE_SITE_A01) then
+        if (player:getPreviousZone() == tpz.zone.RIVERNE_SITE_A01) then
             player:startEvent(11); -- To Riv Site A
-        elseif (player:getPreviousZone() == dsp.zone.RIVERNE_SITE_B01) then
+        elseif (player:getPreviousZone() == tpz.zone.RIVERNE_SITE_B01) then
             player:startEvent(10); -- To Riv Site B
         end
     elseif ((X > -524.521 and X < -512.521) or (X > 75.524 and X < 87.524) or (X > 675.271 and X < 687.271)) then

@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.VELOCITY_SHOT,1,0,7200)
+    player:addStatusEffect(tpz.effect.VELOCITY_SHOT,1,0,7200)
 end

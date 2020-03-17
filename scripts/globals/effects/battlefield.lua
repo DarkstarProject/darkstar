@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effect.BATTLEFIELD
+-- tpz.effect.BATTLEFIELD
 --
 -----------------------------------
 
@@ -16,11 +16,11 @@ end
 function onEffectLose(target,effect)
     local pet = target:getPet()
     if pet then
-        pet:delStatusEffect(dsp.effect.BATTLEFIELD)
+        pet:delStatusEffect(tpz.effect.BATTLEFIELD)
         pet:leaveBattlefield(1)
     end
     target:setLocalVar("[battlefield]area", 0)
-end;
+end
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid)

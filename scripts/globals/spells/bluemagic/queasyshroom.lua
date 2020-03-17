@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.tpmod = TPMOD_CRITICAL
-        params.dmgtype = dsp.damageType.PIERCING
+        params.damageType = tpz.damageType.PIERCING
         params.scattr = SC_DARK
         params.numhits = 1
         params.multiplier = 1.25
@@ -47,8 +47,8 @@ function onSpellCast(caster,target,spell)
     local chance = math.random()
 
     if (damage > 0 and chance > 10) then
-        target:delStatusEffect(dsp.effect.POISON)
-        target:addStatusEffect(dsp.effect.POISON,3,0,getBlueEffectDuration(caster,resist,dsp.effect.POISON))
+        target:delStatusEffect(tpz.effect.POISON)
+        target:addStatusEffect(tpz.effect.POISON,3,0,getBlueEffectDuration(caster,resist,tpz.effect.POISON))
     end
 
     return damage

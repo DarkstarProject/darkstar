@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -362,7 +360,7 @@ namespace battleutils
 
     CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
     {
-        DSP_DEBUG_BREAK_IF(WSkillID >= MAX_WEAPONSKILL_ID);
+        TPZ_DEBUG_BREAK_IF(WSkillID >= MAX_WEAPONSKILL_ID);
         if (WSkillID >= MAX_WEAPONSKILL_ID)
         {
             return nullptr;
@@ -379,7 +377,7 @@ namespace battleutils
 
     const std::list<CWeaponSkill*>& GetWeaponSkills(uint8 skill)
     {
-        DSP_DEBUG_BREAK_IF(skill >= MAX_SKILLTYPE);
+        TPZ_DEBUG_BREAK_IF(skill >= MAX_SKILLTYPE);
 
         return g_PWeaponSkillsList[skill];
     }
@@ -491,7 +489,7 @@ namespace battleutils
         double quart = pow(half, 2);
         double eighth = pow(half, 3);
         double sixteenth = pow(half, 4);
-        double resvar = dsprand::GetRandomNumber(1.);
+        double resvar = tpzrand::GetRandomNumber(1.);
 
         // Determine resist based on which thresholds have been crossed.
         if (resvar <= sixteenth)
@@ -514,19 +512,19 @@ namespace battleutils
         else
         {
             // mobs random multiplier
-            dBonus += dsprand::GetRandomNumber(100) / 1000.0f;
+            dBonus += tpzrand::GetRandomNumber(100) / 1000.0f;
         }
-        if (WeekDay == strongDay[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
+        if (WeekDay == strongDay[element] && (obiBonus || tpzrand::GetRandomNumber(100) < 33))
             dBonus += 0.1f;
-        else if (WeekDay == weakDay[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
+        else if (WeekDay == weakDay[element] && (obiBonus || tpzrand::GetRandomNumber(100) < 33))
             dBonus -= 0.1f;
-        if (weather == strongWeatherSingle[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
+        if (weather == strongWeatherSingle[element] && (obiBonus || tpzrand::GetRandomNumber(100) < 33))
             dBonus += 0.1f;
-        else if (weather == strongWeatherDouble[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
+        else if (weather == strongWeatherDouble[element] && (obiBonus || tpzrand::GetRandomNumber(100) < 33))
             dBonus += 0.25f;
-        else if (weather == weakWeatherSingle[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
+        else if (weather == weakWeatherSingle[element] && (obiBonus || tpzrand::GetRandomNumber(100) < 33))
             dBonus -= 0.1f;
-        else if (weather == weakWeatherDouble[element] && (obiBonus || dsprand::GetRandomNumber(100) < 33))
+        else if (weather == weakWeatherDouble[element] && (obiBonus || tpzrand::GetRandomNumber(100) < 33))
             dBonus -= 0.25f;
 
         damage = (int32)(damage * resist);
@@ -576,7 +574,7 @@ namespace battleutils
 
         // Handle Retaliation
         if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION) && PDefender->PAI->IsEngaged()
-            && battleutils::GetHitRate(PDefender, PAttacker) / 2 > dsprand::GetRandomNumber(100)
+            && battleutils::GetHitRate(PDefender, PAttacker) / 2 > tpzrand::GetRandomNumber(100)
             && isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
         {
             // Retaliation rate is based on player acc vs mob evasion. Missed retaliations do not even display in log.
@@ -603,7 +601,7 @@ namespace battleutils
                 }
 
                 // Check if crit
-                bool crit = battleutils::GetCritHitRate(PDefender, PAttacker, true) > dsprand::GetRandomNumber(100);
+                bool crit = battleutils::GetCritHitRate(PDefender, PAttacker, true) > tpzrand::GetRandomNumber(100);
 
                 // Dmg math.
                 float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0.f);
@@ -759,7 +757,7 @@ namespace battleutils
     {
         int lvlDiff = std::clamp((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
 
-        if (dsprand::GetRandomNumber(100) < chance + lvlDiff)
+        if (tpzrand::GetRandomNumber(100) < chance + lvlDiff)
         {
             // spikes landed
             if (spikesType == SUBEFFECT_CURSE_SPIKES)
@@ -770,7 +768,7 @@ namespace battleutils
             else
             {
                 auto ratio = std::clamp<uint8>(damage / 4, 1, 255);
-                Action->spikesParam = HandleStoneskin(PAttacker, damage - dsprand::GetRandomNumber<uint16>(ratio) + dsprand::GetRandomNumber<uint16>(ratio));
+                Action->spikesParam = HandleStoneskin(PAttacker, damage - tpzrand::GetRandomNumber<uint16>(ratio) + tpzrand::GetRandomNumber<uint16>(ratio));
                 PAttacker->takeDamage(Action->spikesParam, PDefender, ATTACK_MAGICAL, GetSpikesDamageType(spikesType));
             }
 
@@ -803,7 +801,7 @@ namespace battleutils
             }
             case SUBEFFECT_ICE_SPIKES:
             {
-                if (dsprand::GetRandomNumber(100) < 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
+                if (tpzrand::GetRandomNumber(100) < 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
                 }
@@ -811,7 +809,7 @@ namespace battleutils
             }
             case SUBEFFECT_SHOCK_SPIKES:
             {
-                if (dsprand::GetRandomNumber(100) < 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
+                if (tpzrand::GetRandomNumber(100) < 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
                 }
@@ -885,7 +883,7 @@ namespace battleutils
 
         // Enspell overwrites weapon effects
         if (PAttacker->getMod(Mod::ENSPELL) > 0 && (PAttacker->getMod(Mod::ENSPELL_CHANCE) == 0 ||
-            PAttacker->getMod(Mod::ENSPELL_CHANCE) > dsprand::GetRandomNumber(100)))
+            PAttacker->getMod(Mod::ENSPELL_CHANCE) > tpzrand::GetRandomNumber(100)))
         {
             SUBEFFECT subeffects[8] = { SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE, SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
                 SUBEFFECT_WATER_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_LIGHTNING_DAMAGE };
@@ -1042,7 +1040,7 @@ namespace battleutils
                 if (daze == EFFECT_DRAIN_DAZE)
                 {
                     uint16 multiplier = (uint16)(3 + (5.5f * power - 1));
-                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    int8 Samba = tpzrand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     // vary damage based on lvl diff
                     int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
@@ -1078,7 +1076,7 @@ namespace battleutils
                 else if (daze == EFFECT_ASPIR_DAZE)
                 {
                     uint16 multiplier = 1 + (2 * power - 1);
-                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    int8 Samba = tpzrand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
@@ -1476,7 +1474,7 @@ namespace battleutils
         maxPdif = std::clamp<float>(maxPdif, 0, 3);
 
         //return random number between the two
-        float pdif = dsprand::GetRandomNumber(minPdif, maxPdif);
+        float pdif = tpzrand::GetRandomNumber(minPdif, maxPdif);
 
         if (isCritical)
         {
@@ -1571,7 +1569,7 @@ namespace battleutils
 
         float interruptRate = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(Mod::SPELLINTERRUPT))) / 100.0f));
         check *= interruptRate;
-        uint8 chance = dsprand::GetRandomNumber(100);
+        uint8 chance = tpzrand::GetRandomNumber(100);
 
         // caps, always give a 1% chance of interrupt
         if (check < 1) {
@@ -2448,7 +2446,7 @@ namespace battleutils
             cRatioMin = cRatio - 0.375f;
         }
 
-        float pDIF = dsprand::GetRandomNumber(cRatioMin, cRatioMax);
+        float pDIF = tpzrand::GetRandomNumber(cRatioMin, cRatioMax);
 
         if (isCritical)
         {
@@ -2458,7 +2456,7 @@ namespace battleutils
         }
 
         //x1.00 ~ x1.05 final multiplier, giving max value 3*1.05 -> 3.15
-        return pDIF * dsprand::GetRandomNumber(1.f, 1.05f);
+        return pDIF * tpzrand::GetRandomNumber(1.f, 1.05f);
     }
 
     /************************************************************************
@@ -2537,7 +2535,7 @@ namespace battleutils
 
     uint8 getHitCount(uint8 hits)
     {
-        uint8 distribution = dsprand::GetRandomNumber(100);
+        uint8 distribution = tpzrand::GetRandomNumber(100);
         uint8 num = 1;
 
         switch (hits)
@@ -2633,15 +2631,15 @@ namespace battleutils
         doubleAttack = std::clamp<int16>(doubleAttack, 0, 100);
         tripleAttack = std::clamp<int16>(tripleAttack, 0, 100);
 
-        if (dsprand::GetRandomNumber(100) < quadAttack)
+        if (tpzrand::GetRandomNumber(100) < quadAttack)
         {
             num += 3;
         }
-        else if (dsprand::GetRandomNumber(100) < tripleAttack)
+        else if (tpzrand::GetRandomNumber(100) < tripleAttack)
         {
             num += 2;
         }
-        else if (dsprand::GetRandomNumber(100) < doubleAttack)
+        else if (tpzrand::GetRandomNumber(100) < doubleAttack)
         {
             num += 1;
         }
@@ -2655,7 +2653,7 @@ namespace battleutils
                 if (PEntity->objtype == TYPE_PC)
                     zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
 
-                if (dsprand::GetRandomNumber(100) < (zanshin / 4))
+                if (tpzrand::GetRandomNumber(100) < (zanshin / 4))
                     num++;
             }
         }
@@ -2670,7 +2668,7 @@ namespace battleutils
 
     bool IsParalyzed(CBattleEntity* PAttacker)
     {
-        return (dsprand::GetRandomNumber(100) < std::clamp(PAttacker->getMod(Mod::PARALYZE) - PAttacker->getMod(Mod::PARALYZERES), 0, 100));
+        return (tpzrand::GetRandomNumber(100) < std::clamp(PAttacker->getMod(Mod::PARALYZE) - PAttacker->getMod(Mod::PARALYZERES), 0, 100));
     }
 
     /************************************************************************
@@ -2689,7 +2687,7 @@ namespace battleutils
             Shadow = PDefender->getMod(Mod::BLINK);
             modShadow = Mod::BLINK;
             //random chance, assume 80% proc
-            if (dsprand::GetRandomNumber(100) < 20)
+            if (tpzrand::GetRandomNumber(100) < 20)
             {
                 return false;
             }
@@ -2777,7 +2775,7 @@ namespace battleutils
             KillerEffect += PDoubtEffect->GetPower();
         }
 
-        return (dsprand::GetRandomNumber(100) < KillerEffect);
+        return (tpzrand::GetRandomNumber(100) < KillerEffect);
     }
 
     /************************************************************************
@@ -2789,7 +2787,7 @@ namespace battleutils
 
     uint8 GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain)
     {
-        DSP_DEBUG_BREAK_IF(skillchain < SC_NONE || skillchain > SC_DARKNESS_II);
+        TPZ_DEBUG_BREAK_IF(skillchain < SC_NONE || skillchain > SC_DARKNESS_II);
 
         static const uint8 effects[] = {
             SUBEFFECT_NONE,          // SC_NONE
@@ -2816,7 +2814,7 @@ namespace battleutils
 
     uint8 GetSkillchainTier(SKILLCHAIN_ELEMENT skillchain)
     {
-        DSP_DEBUG_BREAK_IF(skillchain < SC_NONE || skillchain > SC_DARKNESS_II);
+        TPZ_DEBUG_BREAK_IF(skillchain < SC_NONE || skillchain > SC_DARKNESS_II);
 
         static const uint8 tiers[] = {
             0, // SC_NONE
@@ -2952,7 +2950,7 @@ namespace battleutils
             // Previous effect exists
             else if (PSCEffect && PSCEffect->GetTier() == 0)
             {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
+                TPZ_DEBUG_BREAK_IF(!PSCEffect->GetPower());
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
@@ -3063,7 +3061,7 @@ namespace battleutils
                 break;
 
             default:
-                DSP_DEBUG_BREAK_IF(true);
+                TPZ_DEBUG_BREAK_IF(true);
                 return 0;
                 break;
         }
@@ -3103,8 +3101,8 @@ namespace battleutils
 
     int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage, CBattleEntity* taChar)
     {
-        DSP_DEBUG_BREAK_IF(PAttacker == nullptr);
-        DSP_DEBUG_BREAK_IF(PDefender == nullptr);
+        TPZ_DEBUG_BREAK_IF(PAttacker == nullptr);
+        TPZ_DEBUG_BREAK_IF(PDefender == nullptr);
 
         CStatusEffect* PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
 
@@ -3115,7 +3113,7 @@ namespace battleutils
         ELEMENT appliedEle = ELEMENT_NONE;
         int16 resistance = GetSkillchainMinimumResistance(skillchain, PDefender, &appliedEle);
 
-        DSP_DEBUG_BREAK_IF(chainLevel <= 0 || chainLevel > 4 || chainCount <= 0 || chainCount > 5);
+        TPZ_DEBUG_BREAK_IF(chainLevel <= 0 || chainLevel > 4 || chainCount <= 0 || chainCount > 5);
 
         // Skill chain damage = (Closing Damage)
         //                      × (Skill chain Level/Number from Table)
@@ -3198,7 +3196,7 @@ namespace battleutils
 
     CItemEquipment* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
     {
-        DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK2);
+        TPZ_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK2);
 
         if (PEntity->objtype == TYPE_PC)
         {
@@ -3209,13 +3207,13 @@ namespace battleutils
 
     CItemWeapon* GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot)
     {
-        DSP_DEBUG_BREAK_IF(Slot < SLOT_MAIN || Slot > SLOT_AMMO);
+        TPZ_DEBUG_BREAK_IF(Slot < SLOT_MAIN || Slot > SLOT_AMMO);
         return dynamic_cast<CItemWeapon*>(((CMobEntity*)PEntity)->m_Weapons[Slot]);
     }
 
     void MakeEntityStandUp(CBattleEntity* PEntity)
     {
-        DSP_DEBUG_BREAK_IF(PEntity == nullptr);
+        TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
 
         if (PEntity->objtype == TYPE_PC)
         {
@@ -3237,7 +3235,7 @@ namespace battleutils
 
     bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
     {
-        DSP_DEBUG_BREAK_IF(PEntity == nullptr || PSpell == nullptr);
+        TPZ_DEBUG_BREAK_IF(PEntity == nullptr || PSpell == nullptr);
 
         if (PEntity->objtype == TYPE_PC)
         {
@@ -3318,7 +3316,7 @@ namespace battleutils
 
                 uint16 chance = (PChar->getMod(Mod::NINJA_TOOL) + meritBonus);
 
-                if (ConsumeTool && dsprand::GetRandomNumber(100) > chance)
+                if (ConsumeTool && tpzrand::GetRandomNumber(100) > chance)
                 {
                     charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
                     PChar->pushPacket(new CInventoryFinishPacket());
@@ -3469,8 +3467,8 @@ namespace battleutils
 
     void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, int32 amount)
     {
-        DSP_DEBUG_BREAK_IF(PSource == nullptr);
-        DSP_DEBUG_BREAK_IF(PTarget == nullptr);
+        TPZ_DEBUG_BREAK_IF(PSource == nullptr);
+        TPZ_DEBUG_BREAK_IF(PTarget == nullptr);
 
         for (SpawnIDList_t::const_iterator it = PSource->SpawnMOBList.begin(); it != PSource->SpawnMOBList.end(); ++it)
         {
@@ -3487,7 +3485,7 @@ namespace battleutils
 
     void GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE)
     {
-        DSP_DEBUG_BREAK_IF(PSource == nullptr);
+        TPZ_DEBUG_BREAK_IF(PSource == nullptr);
 
         CCharEntity* PIterSource = nullptr;
 
@@ -3748,7 +3746,7 @@ namespace battleutils
                 }
             }
 
-            if (dsprand::GetRandomNumber(100) < hitrate)
+            if (tpzrand::GetRandomNumber(100) < hitrate)
             {
 
                 // attack hit, try to be absorbed by shadow
@@ -3860,14 +3858,11 @@ namespace battleutils
         CMobEntity* PMob = dynamic_cast<CMobEntity*>(PVictim);
         if (PMob && PCharmer->objtype == TYPE_PC)
         {
-            // cannot charm NM
-            if (PMob->m_Type & MOBTYPE_NOTORIOUS)
-                return;
-
-            // Bind uncharmable mobs for 5 seconds
-            if (!PMob->getMobMod(MOBMOD_CHARMABLE) ||  PMob->PMaster)
+            //Bind uncharmable mobs and pets for 1 to 5 seconds
+            if (((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0  ||  PVictim->PMaster != nullptr)
             {
-                PVictim->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, dsprand::GetRandomNumber(1, 5)));
+                PVictim->StatusEffectContainer->AddStatusEffect(
+                    new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, tpzrand::GetRandomNumber(1, 5)));
                 return;
             }
 
@@ -3879,7 +3874,7 @@ namespace battleutils
                 CharmTime = 1800000;
                 break;
 
-            case EMobDifficulty::IncredibyEasyPrey:
+            case EMobDifficulty::IncrediblyEasyPrey:
             case EMobDifficulty::EasyPrey:
                 CharmTime = 1200000;
                 break;
@@ -3913,7 +3908,7 @@ namespace battleutils
 
             //randomize charm time if > EM
             if (mobCheck > EMobDifficulty::EvenMatch)
-                CharmTime = (uint32)(CharmTime * dsprand::GetRandomNumber(0.75f, 1.25f));
+                CharmTime = (uint32)(CharmTime * tpzrand::GetRandomNumber(0.75f, 1.25f));
 
             if (!TryCharm(PCharmer, PVictim))
                 return;
@@ -4017,8 +4012,8 @@ namespace battleutils
         CMobEntity* PTargetAsMob = dynamic_cast<CMobEntity*>(PTarget);
         if (PTargetAsMob)
         {
-            // Cannot charm NMs, pets, or other non-charmable mobs
-            if (PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS || !PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) || PTargetAsMob->PMaster)
+            // Cannot charm pets, or other non-charmable mobs
+            if (!PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) || PTargetAsMob->PMaster)
                 return 0.f;
         }
 
@@ -4037,7 +4032,7 @@ namespace battleutils
         case EMobDifficulty::TooWeak:
             charmChance = 90.f;
             break;
-        case EMobDifficulty::IncredibyEasyPrey:
+        case EMobDifficulty::IncrediblyEasyPrey:
         case EMobDifficulty::EasyPrey:
             charmChance = 75.f;
             break;
@@ -4075,10 +4070,10 @@ namespace battleutils
         }
 
         // FIXME: Level and CHR ratios are complete guesses
-        const float levelRatio = (targetLvl - charmerBSTlevel) / 100.f;
+        const float levelRatio = (charmerBSTlevel - targetLvl) / 100.f;
         charmChance *= (1.f + levelRatio);
 
-        const float chrRatio = (PTarget->CHR() - PCharmer->CHR()) / 100.f;
+        const float chrRatio = (PCharmer->CHR() - PTarget->CHR()) / 100.f;
         charmChance *= (1.f + chrRatio);
 
         // Retail doesn't take light/apollo into account for Gauge
@@ -4103,7 +4098,7 @@ namespace battleutils
 
     bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
     {
-        return GetCharmChance(PCharmer, PVictim) > dsprand::GetRandomNumber(100.f);
+        return GetCharmChance(PCharmer, PVictim) > tpzrand::GetRandomNumber(100.f);
     }
 
     void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
@@ -4154,7 +4149,7 @@ namespace battleutils
         resist = std::clamp(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
         damage = (int32)(damage * resist);
 
-        if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE))
+        if (tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE))
             damage = -damage;
         else
         {
@@ -4185,12 +4180,12 @@ namespace battleutils
         if (damage > 0 && PDefender->objtype == TYPE_PET && PDefender->getMod(Mod::AUTO_STEAM_JACKET) > 1)
             damage = HandleSteamJacket(PDefender, damage, 5);
 
-        if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
-            (element && dsprand::GetRandomNumber(100) < PDefender->getMod(absorb[element - 1])) ||
-            dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::MAGIC_ABSORB))
+        if (tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
+            (element && tpzrand::GetRandomNumber(100) < PDefender->getMod(absorb[element - 1])) ||
+            tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::MAGIC_ABSORB))
             damage = -damage;
-        else if ((element && dsprand::GetRandomNumber(100) < PDefender->getMod(nullarray[element - 1])) ||
-            dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::MAGIC_NULL))
+        else if ((element && tpzrand::GetRandomNumber(100) < PDefender->getMod(nullarray[element - 1])) ||
+            tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::MAGIC_NULL))
             damage = 0;
         else
         {
@@ -4221,10 +4216,10 @@ namespace battleutils
         if (damage > 0 && PDefender->objtype == TYPE_PET && PDefender->getMod(Mod::AUTO_EQUALIZER) > 0)
             damage -= (int32)(damage / float(PDefender->GetMaxHP()) * (PDefender->getMod(Mod::AUTO_EQUALIZER) / 100.0f));
 
-        if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
-            dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::PHYS_ABSORB))
+        if (tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
+            tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::PHYS_ABSORB))
             damage = -damage;
-        else if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::NULL_PHYSICAL_DAMAGE))
+        else if (tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::NULL_PHYSICAL_DAMAGE))
             damage = 0;
         else
         {
@@ -4256,10 +4251,10 @@ namespace battleutils
             damage -= (int32)(damage / float(PDefender->GetMaxHP()) * (PDefender->getMod(Mod::AUTO_EQUALIZER) / 100.0f));
         }
 
-        if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
-            dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::PHYS_ABSORB))
+        if (tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
+            tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::PHYS_ABSORB))
             damage = -damage;
-        else if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::NULL_PHYSICAL_DAMAGE))
+        else if (tpzrand::GetRandomNumber(100) < PDefender->getMod(Mod::NULL_PHYSICAL_DAMAGE))
             damage = 0;
         else
         {
@@ -4390,7 +4385,7 @@ namespace battleutils
             switch (mobCheck)
             {
             case EMobDifficulty::TooWeak:
-            case EMobDifficulty::IncredibyEasyPrey:
+            case EMobDifficulty::IncrediblyEasyPrey:
                 BindBreakChance = 10;
                 break;
 
@@ -4413,7 +4408,7 @@ namespace battleutils
                 break;
             }
 
-            if (BindBreakChance > dsprand::GetRandomNumber(1000))
+            if (BindBreakChance > tpzrand::GetRandomNumber(1000))
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
         }
     }
@@ -4790,7 +4785,7 @@ namespace battleutils
         }
 
         // Restore some abilities (Randomly select some abilities?)
-        auto RecastsToDelete = dsprand::GetRandomNumber(TotalRecasts == 0 ? 1 : TotalRecasts);
+        auto RecastsToDelete = tpzrand::GetRandomNumber(TotalRecasts == 0 ? 1 : TotalRecasts);
 
         // Restore at least 1 ability (unless none are on recast)
         RecastsToDelete = TotalRecasts == 0 ? 0 : RecastsToDelete == 0 ? 1 : RecastsToDelete;
@@ -5009,7 +5004,7 @@ namespace battleutils
 
     bool HasClaim(CBattleEntity* PEntity, CBattleEntity* PTarget)
     {
-        DSP_DEBUG_BREAK_IF(PTarget == nullptr);
+        TPZ_DEBUG_BREAK_IF(PTarget == nullptr);
         CBattleEntity* PMaster = PEntity;
 
         if (PEntity->PMaster != nullptr)
@@ -5045,7 +5040,7 @@ namespace battleutils
 
         // Check Quick Magic procs
         int16 quickMagicRate = PEntity->getMod(Mod::QUICK_MAGIC);
-        if (dsprand::GetRandomNumber(100) < quickMagicRate)
+        if (tpzrand::GetRandomNumber(100) < quickMagicRate)
         {
             PMagicState->SetInstantCast(true);
             return 0;
@@ -5124,7 +5119,7 @@ namespace battleutils
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
             {
                 if (PEntity->objtype == TYPE_PC &&
-                    dsprand::GetRandomNumber(100) < ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)PEntity) - 25)
+                    tpzrand::GetRandomNumber(100) < ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_NIGHTINGALE, (CCharEntity*)PEntity) - 25)
                 {
                     return 0;
                 }
@@ -5223,7 +5218,7 @@ namespace battleutils
                 cost += (int16)(base * (PEntity->getMod(Mod::WHITE_MAGIC_COST) / 100.0f));
             }
         }
-        if (dsprand::GetRandomNumber(100) < (PEntity->getMod(Mod::NO_SPELL_MP_DEPLETION)))
+        if (tpzrand::GetRandomNumber(100) < (PEntity->getMod(Mod::NO_SPELL_MP_DEPLETION)))
         {
             cost = 0;
         }

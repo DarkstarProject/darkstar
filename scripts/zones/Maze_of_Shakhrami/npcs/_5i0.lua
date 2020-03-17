@@ -14,7 +14,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local efao = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.EQUIPPED_FOR_ALL_OCCASIONS)
+    local efao = player:getQuestStatus(AHT_URHGAN, tpz.quest.id.ahtUrhgan.EQUIPPED_FOR_ALL_OCCASIONS)
     local efaoStat = player:getCharVar("EquippedforAllOccasions")
 
     if efao == QUEST_ACCEPTED and efaoStat == 1 and npcUtil.popFromQM(player, npc, ID.mob.LOST_SOUL, {hide = 0}) then
@@ -29,7 +29,7 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 66 then
-        npcUtil.giveKeyItem(player, dsp.ki.WHEEL_LOCK_TRIGGER)
+        npcUtil.giveKeyItem(player, tpz.ki.WHEEL_LOCK_TRIGGER)
         player:setCharVar("EquippedforAllOccasions", 3)
     end
 end

@@ -11,18 +11,18 @@ require("scripts/globals/quests")
 local eventId = 862
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
 
 function onTrigger(player,npc)
-    dsp.teleport.explorerMoogleOnTrigger(player, eventId)
+    tpz.teleport.explorerMoogleOnTrigger(player, eventId)
 end
 
 function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    dsp.teleport.explorerMoogleOnEventFinish(player, csid, option, eventId)
+    tpz.teleport.explorerMoogleOnEventFinish(player, csid, option, eventId)
 end

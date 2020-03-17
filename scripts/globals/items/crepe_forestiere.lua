@@ -14,28 +14,28 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
-        result = dsp.msg.basic.IS_FULL
+    if target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5774)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,1800,5774)
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.MND, 2)
-    target:addMod(dsp.mod.FOOD_MPP, 10)
-    target:addMod(dsp.mod.FOOD_MP_CAP, 35)
-    target:addMod(dsp.mod.MACC, 15)
-    target:addMod(dsp.mod.MDEF, 6)
+    target:addMod(tpz.mod.MND, 2)
+    target:addMod(tpz.mod.FOOD_MPP, 10)
+    target:addMod(tpz.mod.FOOD_MP_CAP, 35)
+    target:addMod(tpz.mod.MACC, 15)
+    target:addMod(tpz.mod.MDEF, 6)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.MND, 2)
-    target:delMod(dsp.mod.FOOD_MPP, 10)
-    target:delMod(dsp.mod.FOOD_MP_CAP, 35)
-    target:delMod(dsp.mod.MACC, 15)
-    target:delMod(dsp.mod.MDEF, 6)
+    target:delMod(tpz.mod.MND, 2)
+    target:delMod(tpz.mod.FOOD_MPP, 10)
+    target:delMod(tpz.mod.FOOD_MP_CAP, 35)
+    target:delMod(tpz.mod.MACC, 15)
+    target:delMod(tpz.mod.MDEF, 6)
 end

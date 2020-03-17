@@ -23,11 +23,11 @@ function onTrigger(player,npc)
     local currentAssault = player:getCurrentAssault()
     local haveimperialIDtag
 
-    if player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") == 0 then
+    if player:getCurrentMission(TOAU) == tpz.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") == 0 then
         player:startEvent(269,0,0,0,0,0,0,0,0,0)
-    elseif player:getCurrentMission(TOAU) <= dsp.mission.id.toau.IMMORTAL_SENTRIES or player:getMainLvl() <= 49 then
+    elseif player:getCurrentMission(TOAU) <= tpz.mission.id.toau.IMMORTAL_SENTRIES or player:getMainLvl() <= 49 then
         player:startEvent(270)
-    elseif currentAssault ~= 0 and dsp.besieged.hasAssaultOrders(player) == 0 then
+    elseif currentAssault ~= 0 and tpz.besieged.hasAssaultOrders(player) == 0 then
         if player:getCharVar("AssaultComplete") == 1 then
             player:messageText(player,ID.text.RYTAAL_MISSION_COMPLETE)
             player:completeAssault(currentAssault)
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
             player:addAssault(0)
         end
         player:setCharVar("AssaultComplete",0)
-    elseif player:getCurrentMission(TOAU) > dsp.mission.id.toau.PRESIDENT_SALAHEEM or (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") >= 1) then
+    elseif player:getCurrentMission(TOAU) > tpz.mission.id.toau.PRESIDENT_SALAHEEM or (player:getCurrentMission(TOAU) == tpz.mission.id.toau.PRESIDENT_SALAHEEM and player:getCharVar("AhtUrganStatus") >= 1) then
         if lastIDtag == 0 then -- first time you get the tag
             tagCount = 1
             player:setCurrency("id_tags", tagCount)
@@ -50,12 +50,12 @@ function onTrigger(player,npc)
             player:setCharVar("LAST_IMPERIAL_TAG",currentday)
         end
 
-        if player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) then
+        if player:hasKeyItem(tpz.ki.IMPERIAL_ARMY_ID_TAG) then
             haveimperialIDtag = 1
         else
             haveimperialIDtag = 0
         end
-        player:startEvent(268,dsp.ki.IMPERIAL_ARMY_ID_TAG,tagCount,currentAssault,haveimperialIDtag)
+        player:startEvent(268,tpz.ki.IMPERIAL_ARMY_ID_TAG,tagCount,currentAssault,haveimperialIDtag)
     end
 end
 
@@ -69,24 +69,24 @@ function onEventFinish(player,csid,option)
 
     if csid == 269 then
         player:setCharVar("AhtUrganStatus",1)
-    elseif csid == 268 and option == 1 and player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0 then
-        npcUtil.giveKeyItem(player, dsp.ki.IMPERIAL_ARMY_ID_TAG)
+    elseif csid == 268 and option == 1 and player:hasKeyItem(tpz.ki.IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0 then
+        npcUtil.giveKeyItem(player, tpz.ki.IMPERIAL_ARMY_ID_TAG)
         player:setCurrency("id_tags", tagCount - 1)
-    elseif csid == 268 and option == 2 and player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) == false and dsp.besieged.hasAssaultOrders(player) ~= 0 then
-        if player:hasKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS) then
-            player:delKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS)
-        elseif player:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS) then
-            player:delKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)
-        elseif player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS) then
-            player:delKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS)
-        elseif player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS) then
-            player:delKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS)
-        elseif player:hasKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS ) then
-            player:delKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS)
-        elseif player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) then
-            player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)
+    elseif csid == 268 and option == 2 and player:hasKeyItem(tpz.ki.IMPERIAL_ARMY_ID_TAG) == false and tpz.besieged.hasAssaultOrders(player) ~= 0 then
+        if player:hasKeyItem(tpz.ki.LEUJAOAM_ASSAULT_ORDERS) then
+            player:delKeyItem(tpz.ki.LEUJAOAM_ASSAULT_ORDERS)
+        elseif player:hasKeyItem(tpz.ki.MAMOOL_JA_ASSAULT_ORDERS) then
+            player:delKeyItem(tpz.ki.MAMOOL_JA_ASSAULT_ORDERS)
+        elseif player:hasKeyItem(tpz.ki.LEBROS_ASSAULT_ORDERS) then
+            player:delKeyItem(tpz.ki.LEBROS_ASSAULT_ORDERS)
+        elseif player:hasKeyItem(tpz.ki.PERIQIA_ASSAULT_ORDERS) then
+            player:delKeyItem(tpz.ki.PERIQIA_ASSAULT_ORDERS)
+        elseif player:hasKeyItem(tpz.ki.ILRUSI_ASSAULT_ORDERS ) then
+            player:delKeyItem(tpz.ki.ILRUSI_ASSAULT_ORDERS)
+        elseif player:hasKeyItem(tpz.ki.NYZUL_ISLE_ASSAULT_ORDERS) then
+            player:delKeyItem(tpz.ki.NYZUL_ISLE_ASSAULT_ORDERS)
         end
-        npcUtil.giveKeyItem(player, dsp.ki.IMPERIAL_ARMY_ID_TAG)
+        npcUtil.giveKeyItem(player, tpz.ki.IMPERIAL_ARMY_ID_TAG)
         player:delAssault(currentAssault)
     end
 

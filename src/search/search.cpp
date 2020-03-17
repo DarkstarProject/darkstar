@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -83,7 +81,7 @@ int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask);
 
 
 const char* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
-const char* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
+const char* LOGIN_CONF_FILENAME = "./conf/login.conf";
 
 void TCPComm(SOCKET socket);
 
@@ -258,7 +256,7 @@ int32 main(int32 argc, char **argv)
     }
 
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
-    ShowMessage(CL_WHITE"DSSearch-server\n\n");
+    ShowMessage(CL_WHITE"topaz_search\n\n");
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
     if (search_config.expire_auctions == 1) {
         ShowMessage(CL_GREEN"AH task to return items older than %u days is running\n" CL_RESET, search_config.expire_days);
@@ -317,7 +315,7 @@ int32 main(int32 argc, char **argv)
 
 /************************************************************************
 *                                                                       *
-*  DSSearch-Server default config                                       *
+*  topaz_search default config                                       *
 *                                                                       *
 ************************************************************************/
 
@@ -326,7 +324,7 @@ void search_config_default()
     search_config.mysql_host = "127.0.0.1";
     search_config.mysql_login = "root";
     search_config.mysql_password = "root";
-    search_config.mysql_database = "dspdb";
+    search_config.mysql_database = "tpzdb";
     search_config.mysql_port = 3306;
     search_config.expire_auctions = 1;
     search_config.expire_days = 3;
@@ -335,7 +333,7 @@ void search_config_default()
 
 /************************************************************************
 *                                                                       *
-*  DSSearch-Server config                                               *
+*  topaz_search config                                               *
 *                                                                       *
 ************************************************************************/
 
@@ -408,7 +406,7 @@ void search_config_read(const int8* file)
 
 /************************************************************************
 *                                                                       *
-*  login_darkstar                                                       *
+*  login_topaz                                                          *
 *                                                                       *
 ************************************************************************/
 
@@ -420,7 +418,7 @@ void login_config_default()
 
 /************************************************************************
 *                                                                       *
-*  login_darkstar                                                       *
+*  login_topaz                                                          *
 *                                                                       *
 ************************************************************************/
 

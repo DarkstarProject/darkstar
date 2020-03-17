@@ -29,7 +29,7 @@ function onMobFight(mob, target)
     -- reduce regen after nine Xzomits and Hpemdes are killed
     if mob:getLocalVar("JoL_Regen_Reduction") == 0 and mob:getLocalVar("JoL_Qn_xzomit_Killed") >= 9 and mob:getLocalVar("JoL_Qn_hpemde_Killed") >= 9 then
         mob:setLocalVar("JoL_Regen_Reduction", 1)
-        mob:addMod(dsp.mod.REGEN, -260)
+        mob:addMod(tpz.mod.REGEN, -260)
     end
 
     -- spawn minions in 2.5 minute intervals

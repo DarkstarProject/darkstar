@@ -36,7 +36,7 @@ local ZoneID =
 }
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 570) then
+    if player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 570) then
         local tablets = player:getCharVar("anExplorer-ClayTablets")
         local currtab = player:getCharVar("anExplorer-CurrentTablet")
 
@@ -63,12 +63,12 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
-    local signedInBlood = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
+    local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
+    local signedInBlood = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.SIGNED_IN_BLOOD)
     local signedInBloodStat = player:getCharVar("SIGNED_IN_BLOOD_Prog")
 
     -- SIGNED IN BLOOD (will only activate if An Explorer's Footsteps is not active, or if it is completed)
-    if signedInBlood == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TORN_OUT_PAGES) and anExplorersFootsteps ~= QUEST_ACCEPTED and signedInBloodStat == 2 then
+    if signedInBlood == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.TORN_OUT_PAGES) and anExplorersFootsteps ~= QUEST_ACCEPTED and signedInBloodStat == 2 then
         player:startEvent(1106)
     elseif signedInBlood == QUEST_ACCEPTED and signedInBloodStat == 1 and anExplorersFootsteps ~= QUEST_ACCEPTED then
         player:startEvent(1104)
@@ -118,7 +118,7 @@ function onEventFinish(player,csid,option)
 
     -- AN EXPLORER'S FOOTSTEPS
     elseif csid == 40 and option ~= 0 and npcUtil.giveItem(player, 571) then
-        player:addQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
+        player:addQuest(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
         player:setCharVar("anExplorer-ClayTablets", 0)
     elseif csid == 42 and option == 100 and npcUtil.giveItem(player, 571) then
         player:setCharVar("anExplorer-CurrentTablet", 0)
@@ -139,7 +139,7 @@ function onEventFinish(player,csid,option)
         end
 
         if csid == 47 then
-            player:completeQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
+            player:completeQuest(OTHER_AREAS_LOG, tpz.quest.id.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
             player:setCharVar("anExplorer-ClayTablets", 0)
         end
 
@@ -150,7 +150,7 @@ function onEventFinish(player,csid,option)
         end
 
         if (tablets % (2 * 0x7fff)) >= 0x7fff then
-            npcUtil.giveKeyItem(player, dsp.ki.MAP_OF_THE_CRAWLERS_NEST)
+            npcUtil.giveKeyItem(player, tpz.ki.MAP_OF_THE_CRAWLERS_NEST)
         end
     end
 end

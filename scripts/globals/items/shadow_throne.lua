@@ -7,16 +7,16 @@ require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/msg")
 
-local keyItemId = dsp.ki.SHADOW_THRONE
+local keyItemId = tpz.ki.SHADOW_THRONE
 
 function onItemCheck(target)
     if target:hasKeyItem(keyItemId) then
-        return dsp.msg.basic.ALREADY_HAVE_KEY_ITEM,0,keyItemId
+        return tpz.msg.basic.ALREADY_HAVE_KEY_ITEM,0,keyItemId
     end
     return 0
 end
 
 function onItemUse(target)
     target:addKeyItem(keyItemId)
-    target:messageBasic(dsp.basic.OBTAINED_KEY_ITEM,6410,keyItemId)
+    target:messageBasic(tpz.basic.OBTAINED_KEY_ITEM,6410,keyItemId)
 end

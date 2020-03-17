@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -28,7 +26,7 @@
 #include <iostream>
 #include <fstream>
 #include "../common/utils.h"
-#include "../common/dsprand.h"
+#include "../common/tpzrand.h"
 
 const int8 CNavMesh::ERROR_NEARESTPOLY;
 
@@ -334,7 +332,7 @@ std::pair<int16, position_t> CNavMesh::findRandomPosition(const position_t& star
         return std::make_pair(ERROR_NEARESTPOLY, position_t{});
     }
 
-    status = m_navMeshQuery.findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return dsprand::GetRandomNumber(1.f); }, &randomRef, randomPt);
+    status = m_navMeshQuery.findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return tpzrand::GetRandomNumber(1.f); }, &randomRef, randomPt);
 
     if (dtStatusFailed(status))
     {

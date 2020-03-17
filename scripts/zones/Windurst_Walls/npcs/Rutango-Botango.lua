@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ToBee = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
+    local ToBee = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
     local ToBeeOrNotStatus = player:getCharVar("ToBeeOrNot_var");
 
     if (ToBeeOrNotStatus == 10) then

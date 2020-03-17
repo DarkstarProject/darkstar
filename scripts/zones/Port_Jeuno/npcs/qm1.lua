@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    OldGauntlets = player:hasKeyItem(dsp.ki.OLD_GAUNTLETS);
-    ShadowFlames = player:hasKeyItem(dsp.ki.SHADOW_FLAMES);
+    OldGauntlets = player:hasKeyItem(tpz.ki.OLD_GAUNTLETS);
+    ShadowFlames = player:hasKeyItem(tpz.ki.SHADOW_FLAMES);
     BorghertzCS = player:getCharVar("BorghertzCS");
 
     if (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 1) then
@@ -35,15 +35,15 @@ function onEventFinish(player,csid,option)
     if (csid == 20 and option == 1) then
         player:setCharVar("BorghertzCS",2);
     elseif (csid == 48) then
-        NumQuest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS + player:getCharVar("BorghertzAlreadyActiveWithJob") - 1;
+        NumQuest = tpz.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS + player:getCharVar("BorghertzAlreadyActiveWithJob") - 1;
         NumHands = 13960 + player:getCharVar("BorghertzAlreadyActiveWithJob");
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,NumHands);
         else
             player:addItem(NumHands);
             player:messageSpecial(ID.text.ITEM_OBTAINED,NumHands);
-            player:delKeyItem(dsp.ki.OLD_GAUNTLETS);
-            player:delKeyItem(dsp.ki.SHADOW_FLAMES);
+            player:delKeyItem(tpz.ki.OLD_GAUNTLETS);
+            player:delKeyItem(tpz.ki.SHADOW_FLAMES);
             player:setCharVar("BorghertzCS",0);
             player:setCharVar("BorghertzAlreadyActiveWithJob",0);
             player:addFame(JEUNO,30);

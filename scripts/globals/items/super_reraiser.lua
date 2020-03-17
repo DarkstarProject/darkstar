@@ -12,6 +12,6 @@ end
 
 function onItemUse(target)
     local duration = 3600
-    target:delStatusEffect(dsp.effect.RERAISE)
-    target:addStatusEffect(dsp.effect.RERAISE,3,0,duration)
+    target:delStatusEffect(tpz.effect.RERAISE)
+    target:addStatusEffect(tpz.effect.RERAISE,3,0,duration)
 end

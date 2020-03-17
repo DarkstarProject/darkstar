@@ -11,14 +11,14 @@ require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effect.APOGEE) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
+    if player:hasStatusEffect(tpz.effect.APOGEE) then
+        return tpz.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
     return 0,0
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.APOGEE,1,0,60)
+    player:addStatusEffect(tpz.effect.APOGEE,1,0,60)
 
-    return dsp.effect.APOGEE
+    return tpz.effect.APOGEE
 end

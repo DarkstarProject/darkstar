@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -115,7 +113,7 @@ void SavePlayTime()
 
 CZone* GetZone(uint16 ZoneID)
 {
-    DSP_DEBUG_BREAK_IF(ZoneID >= MAX_ZONEID);
+    TPZ_DEBUG_BREAK_IF(ZoneID >= MAX_ZONEID);
     if (auto PZone = g_PZoneList.find(ZoneID); PZone != g_PZoneList.end())
     {
         return PZone->second;
@@ -969,7 +967,7 @@ CONTINENTTYPE GetCurrentContinent(uint16 ZoneID)
 
 int GetWeatherElement(WEATHER weather)
 {
-    DSP_DEBUG_BREAK_IF(weather >= MAX_WEATHER_ID);
+    TPZ_DEBUG_BREAK_IF(weather >= MAX_WEATHER_ID);
 
     static uint8 Element[] =
     {

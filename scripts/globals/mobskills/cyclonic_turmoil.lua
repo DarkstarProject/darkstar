@@ -16,26 +16,26 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,dsp.magic.ele.WIND,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.WIND,MOBPARAM_WIPE_SHADOWS)
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,tpz.magic.ele.WIND,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.MAGICAL,tpz.damageType.WIND,MOBPARAM_WIPE_SHADOWS)
     local dispel1 = target:dispelStatusEffect()
     local dispel2 = target:dispelStatusEffect()
     local total = 0
 
-    if (dispel1 ~= dsp.effect.NONE) then
+    if (dispel1 ~= tpz.effect.NONE) then
         total = total+1
     end
 
-    if (dispel2 ~= dsp.effect.NONE) then
+    if (dispel2 ~= tpz.effect.NONE) then
         total = total+1
     end
 
-    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.WIND)
+    target:takeDamage(dmg, mob, tpz.attackType.MAGICAL, tpz.damageType.WIND)
 
     if (total == 0) then
         return dmg
     else
-        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM)
+        skill:setMsg(tpz.msg.basic.DISAPPEAR_NUM)
         return total
     end
 end

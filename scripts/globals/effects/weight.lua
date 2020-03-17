@@ -1,18 +1,18 @@
 -----------------------------------
 --
---     dsp.effect.WEIGHT
+--     tpz.effect.WEIGHT
 --
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target, effect)
-    target:addMod(dsp.mod.MOVE, -effect:getPower())
+    target:addMod(tpz.mod.MOVE, -effect:getPower())
 end
 
 function onEffectTick(target, effect)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.MOVE, -effect:getPower())
+    target:delMod(tpz.mod.MOVE, -effect:getPower())
 end

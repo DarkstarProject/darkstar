@@ -14,6 +14,6 @@ end
 
 function onUseAbility(player, target, ability)
     local kickDmg = 20 + player:getWeaponDmg()
-    local kickAttPercent = 25 + player:getMod(dsp.mod.FOOTWORK_ATT_BONUS)
-    player:addStatusEffect(dsp.effect.FOOTWORK, kickDmg, 0, 60, 0, kickAttPercent)
+    local kickAttPercent = 25 + player:getMod(tpz.mod.FOOTWORK_ATT_BONUS)
+    player:addStatusEffect(tpz.effect.FOOTWORK, kickDmg, 0, 60, 0, kickAttPercent)
 end

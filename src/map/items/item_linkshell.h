@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -42,8 +40,7 @@ enum LSTYPE : uint8
     LSTYPE_LINKSHELL,
     LSTYPE_PEARLSACK,
     LSTYPE_LINKPEARL,
-    LSTYPE_RIPPED_PERLSACK,
-    LSTYPE_BROKEN_LINKSHELL,
+    LSTYPE_BROKEN,
 };
 
 class CItemLinkshell : public CItem
@@ -61,6 +58,7 @@ public:
 	void		SetLSColor(uint16 color);	
     virtual const int8* getSignature();
     virtual void setSignature(int8* signature);
+    void        SetLSType(LSTYPE value);
 	
 private:
 

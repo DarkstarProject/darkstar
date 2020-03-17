@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -52,10 +50,10 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
     if (charutils::hasTrait(m_PEntity, TRAIT_RAPID_SHOT))
     {
         auto chance {m_PEntity->getMod(Mod::RAPID_SHOT) + m_PEntity->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PEntity)};
-        if (dsprand::GetRandomNumber(100) < chance)
+        if (tpzrand::GetRandomNumber(100) < chance)
         {
             //reduce delay by 10%-50%
-            delay = (int16)(delay * (10 - dsprand::GetRandomNumber(1, 6)) / 10.f);
+            delay = (int16)(delay * (10 - tpzrand::GetRandomNumber(1, 6)) / 10.f);
             m_rapidShot = true;
         }
     }

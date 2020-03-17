@@ -1,15 +1,15 @@
 -----------------------------------
 --
--- dsp.effect.SENTINEL
+-- tpz.effect.SENTINEL
 --
 -----------------------------------
 require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.UDMGPHYS,-effect:getPower())
-    target:addMod(dsp.mod.ENMITY, 100)
-    target:addMod(dsp.mod.ENMITY_LOSS_REDUCTION, effect:getSubPower())
+    target:addMod(tpz.mod.UDMGPHYS,-effect:getPower())
+    target:addMod(tpz.mod.ENMITY, 100)
+    target:addMod(tpz.mod.ENMITY_LOSS_REDUCTION, effect:getSubPower())
 end
 
 function onEffectTick(target,effect)
@@ -25,12 +25,12 @@ function onEffectTick(target,effect)
          decayby = 8
       end
       effect:setPower(power-decayby)
-      target:delMod(dsp.mod.UDMGPHYS,-decayby)
+      target:delMod(tpz.mod.UDMGPHYS,-decayby)
    end
 end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.UDMGPHYS,-effect:getPower())
-    target:delMod(dsp.mod.ENMITY, 100)
-    target:delMod(dsp.mod.ENMITY_LOSS_REDUCTION, effect:getSubPower())
+    target:delMod(tpz.mod.UDMGPHYS,-effect:getPower())
+    target:delMod(tpz.mod.ENMITY, 100)
+    target:delMod(tpz.mod.ENMITY_LOSS_REDUCTION, effect:getSubPower())
 end

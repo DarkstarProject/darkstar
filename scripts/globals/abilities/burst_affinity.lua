@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(dsp.effect.BURST_AFFINITY,1,0,30)
+    player:addStatusEffect(tpz.effect.BURST_AFFINITY,1,0,30)
 
-    return dsp.effect.BURST_AFFINITY
+    return tpz.effect.BURST_AFFINITY
 end

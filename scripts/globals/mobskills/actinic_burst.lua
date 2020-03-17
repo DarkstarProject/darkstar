@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.FLASH
+    local typeEffect = tpz.effect.FLASH
     local power = 200
     local duration = 20
 

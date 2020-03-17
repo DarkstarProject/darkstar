@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -49,6 +47,7 @@ public:
     int32 getPlayers(lua_State*);
     int32 getID(lua_State*);
     int32 getRegionID(lua_State*);
+    int32 getType(lua_State*);
     int32 getBattlefieldByInitiator(lua_State*);
     int32 battlefieldsFull(lua_State*);
 };

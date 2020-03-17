@@ -13,8 +13,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.STEAMED_RAMS) == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(dsp.ki.CHARRED_PROPELLER)) then
+    if (player:getQuestStatus(CRYSTAL_WAR,tpz.quest.id.crystalWar.STEAMED_RAMS) == QUEST_ACCEPTED) then
+        if (player:hasKeyItem(tpz.ki.CHARRED_PROPELLER)) then
             player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         else
             player:startEvent(1);
@@ -31,7 +31,7 @@ function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
     if (csid == 1) then
-        player:addKeyItem(dsp.ki.CHARRED_PROPELLER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHARRED_PROPELLER);
+        player:addKeyItem(tpz.ki.CHARRED_PROPELLER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.CHARRED_PROPELLER);
     end
 end;

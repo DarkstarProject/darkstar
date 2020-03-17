@@ -11,17 +11,17 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ROYAL_PUPPETEER and player:getCharVar("AhtUrganStatus") == 1 and trade:hasItemQty(2307,1)) then
+    if (player:getCurrentMission(TOAU) == tpz.mission.id.toau.ROYAL_PUPPETEER and player:getCharVar("AhtUrganStatus") == 1 and trade:hasItemQty(2307,1)) then
         player:startEvent(279);
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ROYAL_PUPPETEER and player:getCharVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == tpz.mission.id.toau.ROYAL_PUPPETEER and player:getCharVar("AhtUrganStatus") == 0) then
         player:startEvent(277);
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ROYAL_PUPPETEER and player:getCharVar("AhtUrganStatus") == 1) then
+    elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.ROYAL_PUPPETEER and player:getCharVar("AhtUrganStatus") == 1) then
         player:startEvent(278);
-    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.LOST_KINGDOM) then
+    elseif (player:getCurrentMission(TOAU) == tpz.mission.id.toau.LOST_KINGDOM) then
         player:startEvent(280);
     else
         player:startEvent(275);
@@ -37,9 +37,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 279 and player:getCharVar("AhtUrganStatus") == 1) then
         player:setCharVar("AhtUrganStatus",0);
         player:tradeComplete();
-        player:addKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIAL_OF_SPECTRAL_SCENT);
-        player:completeMission(TOAU,dsp.mission.id.toau.ROYAL_PUPPETEER);
-        player:addMission(TOAU,dsp.mission.id.toau.LOST_KINGDOM);
+        player:addKeyItem(tpz.ki.VIAL_OF_SPECTRAL_SCENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.VIAL_OF_SPECTRAL_SCENT);
+        player:completeMission(TOAU,tpz.mission.id.toau.ROYAL_PUPPETEER);
+        player:addMission(TOAU,tpz.mission.id.toau.LOST_KINGDOM);
     end
 end;

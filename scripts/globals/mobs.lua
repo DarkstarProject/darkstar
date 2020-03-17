@@ -10,8 +10,8 @@ require("scripts/globals/zone")
 require("scripts/globals/msg")
 -----------------------------------
 
-dsp = dsp or {}
-dsp.mob = dsp.mob or {}
+tpz = tpz or {}
+tpz.mob = tpz.mob or {}
 
 -- onMobDeathEx is called from the core
 function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
@@ -19,8 +19,8 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
     if isKiller then
         -- DRK quest - Blade Of Darkness
         if
-            (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED or player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED) and
-            player:getEquipID(dsp.slot.MAIN) == 16607 and
+            (player:getQuestStatus(BASTOK, tpz.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED or player:getQuestStatus(BASTOK, tpz.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED) and
+            player:getEquipID(tpz.slot.MAIN) == 16607 and
             player:getCharVar("ChaosbringerKills") < 200 and
             not isWeaponSkillKill
         then
@@ -29,10 +29,10 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
     end
 
     -- Things that happen to any player in the party/alliance
-    if player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.A_TESTING_TIME then
+    if player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.A_TESTING_TIME then
         if
-            (player:getZoneID() == dsp.zone.BUBURIMU_PENINSULA and player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.A_TESTING_TIME)) or
-            (player:getZoneID() == dsp.zone.TAHRONGI_CANYON and not player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.A_TESTING_TIME))
+            (player:getZoneID() == tpz.zone.BUBURIMU_PENINSULA and player:hasCompletedMission(WINDURST, tpz.mission.id.windurst.A_TESTING_TIME)) or
+            (player:getZoneID() == tpz.zone.TAHRONGI_CANYON and not player:hasCompletedMission(WINDURST, tpz.mission.id.windurst.A_TESTING_TIME))
         then
             player:addCharVar("testingTime_crea_count", 1)
         end
@@ -56,7 +56,7 @@ local function lotteryPrimed(phList)
 end
 
 -- potential lottery placeholder was killed
-dsp.mob.phOnDespawn = function(ph, phList, chance, cooldown, immediate)
+tpz.mob.phOnDespawn = function(ph, phList, chance, cooldown, immediate)
     if type(immediate) ~= "boolean" then immediate = false end
 
     local phId = ph:getID()
@@ -96,7 +96,7 @@ end
 -- mob additional melee effects
 -------------------------------------------------
 
-dsp.mob.additionalEffect =
+tpz.mob.additionalEffect =
 {
     BLIND      = 0,
     CURSE      = 1,
@@ -121,255 +121,255 @@ dsp.mob.additionalEffect =
     TERROR     = 20,
     TP_DRAIN   = 21,
 }
-dsp.mob.ae = dsp.mob.additionalEffect
+tpz.mob.ae = tpz.mob.additionalEffect
 
 local additionalEffects =
 {
-    [dsp.mob.ae.BLIND] =
+    [tpz.mob.ae.BLIND] =
     {
         chance = 25,
-        ele = dsp.magic.ele.DARK,
-        sub = dsp.subEffect.BLIND,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.DARK,
+        sub = tpz.subEffect.BLIND,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.BLINDNESS,
+        eff = tpz.effect.BLINDNESS,
         power = 20,
         duration = 30,
         minDuration = 1,
         maxDuration = 45,
     },
-    [dsp.mob.ae.CURSE] =
+    [tpz.mob.ae.CURSE] =
     {
         chance = 20,
-        ele = dsp.magic.ele.DARK,
-        sub = dsp.subEffect.CURSE,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.DARK,
+        sub = tpz.subEffect.CURSE,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.CURSE_I,
+        eff = tpz.effect.CURSE_I,
         power = 50,
         duration = 300,
         minDuration = 1,
         maxDuration = 300,
     },
-    [dsp.mob.ae.ENAERO] =
+    [tpz.mob.ae.ENAERO] =
     {
-        ele = dsp.magic.ele.WIND,
-        sub = dsp.subEffect.WIND_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.WIND,
+        sub = tpz.subEffect.WIND_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.ENBLIZZARD] =
+    [tpz.mob.ae.ENBLIZZARD] =
     {
-        ele = dsp.magic.ele.ICE,
-        sub = dsp.subEffect.ICE_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.ICE,
+        sub = tpz.subEffect.ICE_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.ENDARK] =
+    [tpz.mob.ae.ENDARK] =
     {
-        ele = dsp.magic.ele.DARK,
-        sub = dsp.subEffect.DARKNESS_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.DARK,
+        sub = tpz.subEffect.DARKNESS_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.ENFIRE] =
+    [tpz.mob.ae.ENFIRE] =
     {
-        ele = dsp.magic.ele.FIRE,
-        sub = dsp.subEffect.FIRE_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.FIRE,
+        sub = tpz.subEffect.FIRE_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.ENLIGHT] =
+    [tpz.mob.ae.ENLIGHT] =
     {
-        ele = dsp.magic.ele.LIGHT,
-        sub = dsp.subEffect.LIGHT_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.LIGHT,
+        sub = tpz.subEffect.LIGHT_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.ENSTONE] =
+    [tpz.mob.ae.ENSTONE] =
     {
-        ele = dsp.magic.ele.EARTH,
-        sub = dsp.subEffect.EARTH_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.EARTH,
+        sub = tpz.subEffect.EARTH_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.ENTHUNDER] =
+    [tpz.mob.ae.ENTHUNDER] =
     {
-        ele = dsp.magic.ele.LIGHTNING,
-        sub = dsp.subEffect.LIGHTNING_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.LIGHTNING,
+        sub = tpz.subEffect.LIGHTNING_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.ENWATER] =
+    [tpz.mob.ae.ENWATER] =
     {
-        ele = dsp.magic.ele.WATER,
-        sub = dsp.subEffect.WATER_DAMAGE,
-        msg = dsp.msg.basic.ADD_EFFECT_DMG,
-        negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.WATER,
+        sub = tpz.subEffect.WATER_DAMAGE,
+        msg = tpz.msg.basic.ADD_EFFECT_DMG,
+        negMsg = tpz.msg.basic.ADD_EFFECT_HEAL,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
     },
-    [dsp.mob.ae.EVA_DOWN] =
+    [tpz.mob.ae.EVA_DOWN] =
     {
         chance = 25,
-        ele = dsp.magic.ele.ICE,
-        sub = dsp.subEffect.EVASION_DOWN,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.ICE,
+        sub = tpz.subEffect.EVASION_DOWN,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.EVASION_DOWN,
+        eff = tpz.effect.EVASION_DOWN,
         power = 25,
         duration = 30,
         minDuration = 1,
         maxDuration = 60,
     },
-    [dsp.mob.ae.HP_DRAIN] =
+    [tpz.mob.ae.HP_DRAIN] =
     {
         chance = 10,
-        ele = dsp.magic.ele.DARK,
-        sub = dsp.subEffect.HP_DRAIN,
-        msg = dsp.msg.basic.ADD_EFFECT_HP_DRAIN,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.DARK,
+        sub = tpz.subEffect.HP_DRAIN,
+        msg = tpz.msg.basic.ADD_EFFECT_HP_DRAIN,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
         code = function(mob, target, power) mob:addHP(power) end,
     },
-    [dsp.mob.ae.MP_DRAIN] =
+    [tpz.mob.ae.MP_DRAIN] =
     {
         chance = 10,
-        ele = dsp.magic.ele.DARK,
-        sub = dsp.subEffect.MP_DRAIN,
-        msg = dsp.msg.basic.ADD_EFFECT_MP_DRAIN,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.DARK,
+        sub = tpz.subEffect.MP_DRAIN,
+        msg = tpz.msg.basic.ADD_EFFECT_MP_DRAIN,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
-        code = function(mob, target, power) local mp = math.min(power, target:getMP()); target:delMP(mp); mob:addMP(mp) end,
+        code = function(mob, target, power) local mp = math.min(power, target:getMP()) target:delMP(mp) mob:addMP(mp) end,
     },
-    [dsp.mob.ae.PARALYZE] =
+    [tpz.mob.ae.PARALYZE] =
     {
         chance = 25,
-        ele = dsp.magic.ele.ICE,
-        sub = dsp.subEffect.PARALYSIS,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.ICE,
+        sub = tpz.subEffect.PARALYSIS,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.PARALYSIS,
+        eff = tpz.effect.PARALYSIS,
         power = 20,
         duration = 30,
         minDuration = 1,
         maxDuration = 60,
     },
-    [dsp.mob.ae.PETRIFY] =
+    [tpz.mob.ae.PETRIFY] =
     {
         chance = 20,
-        ele = dsp.magic.ele.EARTH,
-        sub = dsp.subEffect.PETRIFY,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.EARTH,
+        sub = tpz.subEffect.PETRIFY,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.PETRIFICATION,
+        eff = tpz.effect.PETRIFICATION,
         power = 1,
         duration = 30,
         minDuration = 1,
         maxDuration = 45,
     },
-    [dsp.mob.ae.PLAGUE] =
+    [tpz.mob.ae.PLAGUE] =
     {
         chance = 25,
-        ele = dsp.magic.ele.WATER,
-        sub = dsp.subEffect.PLAGUE,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.WATER,
+        sub = tpz.subEffect.PLAGUE,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.PLAGUE,
+        eff = tpz.effect.PLAGUE,
         power = 1,
         duration = 60,
         minDuration = 1,
         maxDuration = 60,
     },
-    [dsp.mob.ae.POISON] =
+    [tpz.mob.ae.POISON] =
     {
         chance = 25,
-        ele = dsp.magic.ele.WATER,
-        sub = dsp.subEffect.POISON,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.WATER,
+        sub = tpz.subEffect.POISON,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.POISON,
+        eff = tpz.effect.POISON,
         power = 1,
         duration = 30,
         minDuration = 1,
         maxDuration = 30,
         tick = 3,
     },
-    [dsp.mob.ae.SILENCE] =
+    [tpz.mob.ae.SILENCE] =
     {
         chance = 25,
-        ele = dsp.magic.ele.WIND,
-        sub = dsp.subEffect.SILENCE,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.WIND,
+        sub = tpz.subEffect.SILENCE,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.SILENCE,
+        eff = tpz.effect.SILENCE,
         power = 1,
         duration = 30,
         minDuration = 1,
         maxDuration = 30,
     },
-    [dsp.mob.ae.SLOW] =
+    [tpz.mob.ae.SLOW] =
     {
         chance = 25,
-        ele = dsp.magic.ele.EARTH,
-        sub = dsp.subEffect.DEFENSE_DOWN,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.EARTH,
+        sub = tpz.subEffect.DEFENSE_DOWN,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.SLOW,
+        eff = tpz.effect.SLOW,
         power = 1000,
         duration = 30,
         minDuration = 1,
         maxDuration = 45,
     },
-    [dsp.mob.ae.STUN] =
+    [tpz.mob.ae.STUN] =
     {
         chance = 20,
-        ele = dsp.magic.ele.LIGHTNING,
-        sub = dsp.subEffect.STUN,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        ele = tpz.magic.ele.LIGHTNING,
+        sub = tpz.subEffect.STUN,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.STUN,
+        eff = tpz.effect.STUN,
         duration = 5,
     },
-    [dsp.mob.ae.TERROR] =
+    [tpz.mob.ae.TERROR] =
     {
         chance = 20,
-        sub = dsp.subEffect.PARALYSIS,
-        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        sub = tpz.subEffect.PARALYSIS,
+        msg = tpz.msg.basic.ADD_EFFECT_STATUS,
         applyEffect = true,
-        eff = dsp.effect.TERROR,
+        eff = tpz.effect.TERROR,
         duration = 5,
         code = function(mob, target, power) mob:resetEnmity(target) end,
     },
-    [dsp.mob.ae.TP_DRAIN] =
+    [tpz.mob.ae.TP_DRAIN] =
     {
         chance = 25,
-        ele = dsp.magic.ele.DARK,
-        sub = dsp.subEffect.TP_DRAIN,
-        msg = dsp.msg.basic.ADD_EFFECT_TP_DRAIN,
-        mod = dsp.mod.INT,
+        ele = tpz.magic.ele.DARK,
+        sub = tpz.subEffect.TP_DRAIN,
+        msg = tpz.msg.basic.ADD_EFFECT_TP_DRAIN,
+        mod = tpz.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
-        code = function(mob, target, power) local tp = math.min(power, target:getTP()); target:delTP(tp); mob:addTP(tp) end,
+        code = function(mob, target, power) local tp = math.min(power, target:getTP()) target:delTP(tp) mob:addTP(tp) end,
     },
 }
 
 --[[
     mob, target, and damage are passed from core into mob script's onAdditionalEffect
-    effect should be of type dsp.mob.additionalEffect (see above)
+    effect should be of type tpz.mob.additionalEffect (see above)
     params is a table that can contain any of:
         chance: percent chance that effect procs on hit (default 20)
         power: power of effect
@@ -377,7 +377,7 @@ local additionalEffects =
         code: additional code that will run when effect procs, of form function(mob, target, power)
     params will override effect's default settings
 --]]
-dsp.mob.onAddEffect = function(mob, target, damage, effect, params)
+tpz.mob.onAddEffect = function(mob, target, damage, effect, params)
     if type(params) ~= "table" then params = {} end
 
     local ae = additionalEffects[effect]

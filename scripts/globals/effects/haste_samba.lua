@@ -1,6 +1,6 @@
  -----------------------------------
 --
--- dsp.effect.HASTE_SAMBA
+-- tpz.effect.HASTE_SAMBA
 --
 -----------------------------------
 require("scripts/globals/status")

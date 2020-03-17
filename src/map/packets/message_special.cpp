@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -43,7 +41,7 @@ CMessageSpecialPacket::CMessageSpecialPacket(
 	this->type = 0x2A;
 	this->size = 0x10;
 
-	//DSP_DEBUG_BREAK_IF(PEntity == nullptr);
+	//TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
 
 	ref<uint32>(0x04) = PEntity->id;
 

@@ -13,20 +13,20 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.COOKING_IMAGERY) == true) then
+    if (target:hasStatusEffect(tpz.effect.COOKING_IMAGERY) == true) then
         result = 243
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.COOKING_IMAGERY,3,0,120)
+    target:addStatusEffect(tpz.effect.COOKING_IMAGERY,3,0,120)
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.COOK, 1)
+    target:addMod(tpz.mod.COOK, 1)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.COOK, 1)
+    target:delMod(tpz.mod.COOK, 1)
 end

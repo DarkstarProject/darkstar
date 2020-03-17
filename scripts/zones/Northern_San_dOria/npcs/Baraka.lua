@@ -13,9 +13,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
+    if (player:getCurrentMission(BASTOK) ~= tpz.mission.id.bastok.NONE) then
         local missionStatus = player:getCharVar("MissionStatus");
-        if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY) then
+        if (player:getCurrentMission(BASTOK) == tpz.mission.id.bastok.THE_EMISSARY) then
             if (missionStatus == 1) then
                 player:startEvent(581);
             elseif (missionStatus == 2) then
@@ -27,9 +27,9 @@ function onTrigger(player,npc)
     else
         local pNation = player:getNation();
 
-        if (pNation == dsp.nation.SANDORIA) then
+        if (pNation == tpz.nation.SANDORIA) then
             player:startEvent(580);
-        elseif (pNation == dsp.nation.WINDURST) then
+        elseif (pNation == tpz.nation.WINDURST) then
             player:startEvent(579);
         else
             player:startEvent(539);
@@ -45,10 +45,10 @@ function onEventFinish(player,csid,option)
     if (csid == 581) then
         -- This cs should only play if you visit San d'Oria first
         -- If you visit Windurst first you will encounter Lion in Heaven's Tower instead
-        if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY
+        if (player:getCurrentMission(BASTOK) == tpz.mission.id.bastok.THE_EMISSARY
         and player:getCharVar("MissionStatus") < 2) then
             player:setCharVar("MissionStatus",2);
-            player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
+            player:delKeyItem(tpz.ki.LETTER_TO_THE_CONSULS_BASTOK);
         end
     end
 end;

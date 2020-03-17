@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.KUZOTZ)
-    if RegionOwner ~= dsp.nation.WINDURST then
+    local RegionOwner = GetRegionOwner(tpz.region.KUZOTZ)
+    if RegionOwner ~= tpz.nation.WINDURST then
         player:showText(npc,ID.text.NHOBI_ZALKIA_CLOSED_DIALOG)
     else
         player:showText(npc,ID.text.NHOBI_ZALKIA_OPEN_DIALOG)
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
             4412,  299,  -- Thundermelon
             4491,  184   -- Watermelon
         }
-        dsp.shop.general(player, stock, WINDURST)
+        tpz.shop.general(player, stock, WINDURST)
     end
 end
 

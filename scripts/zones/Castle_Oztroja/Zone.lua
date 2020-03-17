@@ -17,7 +17,7 @@ function onInitialize(zone)
     CASTLE_OZTROJA.pickNewCombo() -- update combination for brass door on floor 2
     CASTLE_OZTROJA.pickNewPassword() -- update password for trap door on floor 4
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)
@@ -29,7 +29,7 @@ function onZoneIn(player,prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player,region)

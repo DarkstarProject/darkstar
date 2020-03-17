@@ -22,18 +22,18 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    local cryingOverOnions  = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS)
-    local wildCard          = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WILD_CARD)
-    local hatInHand         = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND)
+    local cryingOverOnions  = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.CRYING_OVER_ONIONS)
+    local wildCard          = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.WILD_CARD)
+    local hatInHand         = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.HAT_IN_HAND)
 
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 5 then
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.THE_ROAD_FORKS and player:getCharVar("MEMORIES_OF_A_MAIDEN_Status") == 5 then
         player:startEvent(874) -- COP event
     elseif (hatInHand == QUEST_ACCEPTED or player:getCharVar("QuestHatInHand_var2") == 1) and not testflag(player:getCharVar("QuestHatInHand_var"), 2) then
         player:startEvent(59) -- Show Off Hat
     elseif wildCard == QUEST_COMPLETED then
         player:startEvent(783)
     elseif wildCard == QUEST_ACCEPTED then
-        if player:getCharVar("WildCard") == 3 and not player:hasKeyItem(dsp.ki.JOKER_CARD) then
+        if player:getCharVar("WildCard") == 3 and not player:hasKeyItem(tpz.ki.JOKER_CARD) then
             player:startEvent(782)
         else
             player:startEvent(781)
@@ -69,17 +69,17 @@ function onEventFinish(player,csid,option)
     elseif csid == 775 and npcUtil.giveItem(player, 13136) then
         player:confirmTrade()
         player:setCharVar("CryingOverOnions", 2)
-    elseif csid == 776 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.CRYING_OVER_ONIONS, {fame=120, var="CryingOverOnions"}) then
+    elseif csid == 776 and npcUtil.completeQuest(player, WINDURST, tpz.quest.id.windurst.CRYING_OVER_ONIONS, {fame=120, var="CryingOverOnions"}) then
         player:needToZone(true)
     elseif csid == 780 then
-        player:addQuest(WINDURST, dsp.quest.id.windurst.WILD_CARD)
-    elseif csid == 782 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.WILD_CARD, {title=dsp.title.DREAM_DWELLER, fame=135, var="WildCard"}) then
+        player:addQuest(WINDURST, tpz.quest.id.windurst.WILD_CARD)
+    elseif csid == 782 and npcUtil.completeQuest(player, WINDURST, tpz.quest.id.windurst.WILD_CARD, {title=tpz.title.DREAM_DWELLER, fame=135, var="WildCard"}) then
         player:needToZone(true)
     elseif csid == 59 then -- Show Off Hat
         player:addCharVar("QuestHatInHand_var", 2)
         player:addCharVar("QuestHatInHand_count", 1)
     elseif csid == 874 then
         player:setCharVar("MEMORIES_OF_A_MAIDEN_Status", 6)
-        npcUtil.giveKeyItem(player, dsp.ki.CRACKED_MIMEO_MIRROR)
+        npcUtil.giveKeyItem(player, tpz.ki.CRACKED_MIMEO_MIRROR)
     end
 end

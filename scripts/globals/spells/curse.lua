@@ -13,7 +13,7 @@ end
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
-    dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    dINT = (caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT))
 
     power = 50
 
@@ -21,21 +21,21 @@ function onSpellCast(caster,target,spell)
     duration = 300
     local params = {}
     params.diff = nil
-    params.attribute = dsp.mod.INT
+    params.attribute = tpz.mod.INT
     params.skillType = 35
     params.bonus = 0
-    params.effect = dsp.effect.CURSE_I
+    params.effect = tpz.effect.CURSE_I
     duration = duration * applyResistanceEffect(caster, target, spell, params)
 
     if (duration >= 150) then --Do it!
-        if (target:addStatusEffect(dsp.effect.CURSE_I,power,0,duration)) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+        if (target:addStatusEffect(tpz.effect.CURSE_I,power,0,duration)) then
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
 
-    return dsp.effect.CURSE_I
+    return tpz.effect.CURSE_I
 end

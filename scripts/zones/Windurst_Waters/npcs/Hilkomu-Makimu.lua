@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         4758, 22356,3,     --Scroll of Blizzard II
         4773, 28520,3      --Scroll of Thunder II
     }
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST);
 end;
 
 function onEventUpdate(player,csid,option)

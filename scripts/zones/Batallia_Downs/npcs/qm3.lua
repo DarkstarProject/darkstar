@@ -9,7 +9,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 3
+    if (player:getCurrentMission(SANDORIA) == tpz.mission.id.sandoria.BREAKING_BARRIERS and player:getCharVar("MissionStatus") == 3
         and not GetMobByID(ID.mob.SUPARNA):isSpawned() and not GetMobByID(ID.mob.SUPARNA_FLEDGLING):isSpawned()) then
         if (player:getCharVar("Mission9-1Kills") > 0) then
             player:startEvent(904);
@@ -30,8 +30,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 904) then
-        player:addKeyItem(dsp.ki.FIGURE_OF_LEVIATHAN);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FIGURE_OF_LEVIATHAN);
+        player:addKeyItem(tpz.ki.FIGURE_OF_LEVIATHAN);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.FIGURE_OF_LEVIATHAN);
         player:setCharVar("MissionStatus",4);
         player:setCharVar("Mission9-1Kills",0);
     end

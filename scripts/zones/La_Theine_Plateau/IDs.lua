@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.LA_THEINE_PLATEAU] =
+zones[tpz.zone.LA_THEINE_PLATEAU] =
 {
     text =
     {
@@ -15,6 +15,7 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         ITEM_OBTAINED                = 6388,  -- Obtained: <item>.
         GIL_OBTAINED                 = 6389,  -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6391,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET        = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE                = 7049,  -- Tallying conquest results...
         ALREADY_OBTAINED_TELE        = 7208,  -- You already possess the gate crystal for this telepoint.
         FISHING_MESSAGE_OFFSET       = 7212,  -- You can't fish here.
@@ -32,7 +33,7 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         ALREADY_HAVE_ALL_FRAGS       = 7585,  -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
         FOUND_ALL_FRAGS              = 7586,  -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT              = 7587,  -- It is an ancient Zilart monument.
-        ITEMS_ITEMS_LA_LA            = 7732,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        ITEMS_ITEMS_LA_LA            = 7732,  -- You can hear a strange voice... Items, items, la la la la la
         GOBLIN_SLIPPED_AWAY          = 7738,  -- The Goblin slipped away when you were not looking...
         TELEPOINT_HAS_BEEN_SHATTERED = 7748,  -- The telepoint has been shattered into a thousand pieces...
         BROKEN_EGG                   = 7819,  -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
@@ -43,7 +44,7 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         ALREADY_POSSESS_TEMP         = 7902,  -- You already possess that temporary item.
         NO_COMBINATION               = 7907,  -- You were unable to enter a combination.
         REGIME_REGISTERED            = 10118, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL        = 12323, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL        = 12326, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -74,4 +75,4 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
     },
 }
 
-return zones[dsp.zone.LA_THEINE_PLATEAU]
+return zones[tpz.zone.LA_THEINE_PLATEAU]

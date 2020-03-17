@@ -14,9 +14,9 @@ end;
 
 function onTrigger(player,npc)
 
-    PastPerfect = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.PAST_PERFECT);
+    PastPerfect = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.PAST_PERFECT);
 
-    if (PastPerfect == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TATTERED_MISSION_ORDERS)) then
+    if (PastPerfect == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.TATTERED_MISSION_ORDERS)) then
         player:startEvent(131);
     elseif (player:getFameLevel(BASTOK) >= 2 and player:getCharVar("PastPerfectVar") == 2) then
         player:startEvent(130);
@@ -38,17 +38,17 @@ function onEventFinish(player,csid,option)
     if (csid == 104 and player:getCharVar("PastPerfectVar") == 0) then
         player:setCharVar("PastPerfectVar",1);
     elseif (csid == 130) then
-        player:addQuest(BASTOK,dsp.quest.id.bastok.PAST_PERFECT);
+        player:addQuest(BASTOK,tpz.quest.id.bastok.PAST_PERFECT);
     elseif (csid == 131) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12560);
         else
             if (player:addItem(12560)) then
-                player:delKeyItem(dsp.ki.TATTERED_MISSION_ORDERS);
+                player:delKeyItem(tpz.ki.TATTERED_MISSION_ORDERS);
                 player:setCharVar("PastPerfectVar",0);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,12560);
                 player:addFame(BASTOK,110);
-                player:completeQuest(BASTOK,dsp.quest.id.bastok.PAST_PERFECT);
+                player:completeQuest(BASTOK,tpz.quest.id.bastok.PAST_PERFECT);
             end
         end
     end

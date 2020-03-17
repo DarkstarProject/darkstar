@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         17336,   5, 3,     --Crossbow Bolt
     }
 
-    local rank = getNationRank(dsp.nation.BASTOK)
+    local rank = getNationRank(tpz.nation.BASTOK)
 
     if (rank ~= 1) then
         table.insert(stock, 1022)    --Thief's Tools
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
     end
 
     player:showText(npc, ID.text.BOYTZ_SHOP_DIALOG)
-    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+    tpz.shop.nation(player, stock, tpz.nation.BASTOK)
 end
 
 function onEventUpdate(player,csid,option)

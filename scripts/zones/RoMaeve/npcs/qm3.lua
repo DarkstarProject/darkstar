@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:hasKeyItem(dsp.ki.MOONGATE_PASS) then
+    if player:hasKeyItem(tpz.ki.MOONGATE_PASS) then
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     else
         local moongateQMLocations =
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             { 151.779, 4.719,  68.553},
             {-134.518, 4.000, 106.042}
         }
-        npcUtil.giveKeyItem(player, dsp.ki.MOONGATE_PASS)
+        npcUtil.giveKeyItem(player, tpz.ki.MOONGATE_PASS)
         npc:hideNPC(1800)
         local newPosition = npcUtil.pickNewPosition(npc:getID(), moongateQMLocations, true)
         npc:setPos(newPosition.x, newPosition.y, newPosition.z)

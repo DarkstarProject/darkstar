@@ -13,16 +13,16 @@ end
 function onItemUse(target)
     local power = 1
     local duration = 1800
-    if (target:hasStatusEffect(dsp.effect.RERAISE)) then
-        local effect = target:getStatusEffect(dsp.effect.RERAISE)
+    if (target:hasStatusEffect(tpz.effect.RERAISE)) then
+        local effect = target:getStatusEffect(tpz.effect.RERAISE)
         local oPower = effect:getPower()
         if (oPower > power) then
-            target:messageBasic(dsp.msg.basic.NO_EFFECT)
+            target:messageBasic(tpz.msg.basic.NO_EFFECT)
         else
-            target:delStatusEffect(dsp.effect.RERAISE)
-            target:addStatusEffect(dsp.effect.RERAISE,power,0,duration)
+            target:delStatusEffect(tpz.effect.RERAISE)
+            target:addStatusEffect(tpz.effect.RERAISE,power,0,duration)
         end
     else
-        target:addStatusEffect(dsp.effect.RERAISE,power,0,duration)
+        target:addStatusEffect(tpz.effect.RERAISE,power,0,duration)
     end
 end

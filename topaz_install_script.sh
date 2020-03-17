@@ -9,24 +9,24 @@ fi
 # Static script Options
 APT_GET_INSTALL_ONE="nano git mariadb-client mariadb-server libmariadb-dev libmariadbclient-dev libssl-dev"
 APT_GET_INSTALL_TWO="luajit lua5.1 liblua5.1-dev libzmq3-dev autoconf pkg-config gcc build-essential"
-INSTALL_DIR="/opt/darkstar"
+INSTALL_DIR="/opt/topaz"
 # User set options (These are replaced by user input later in the script)
-DARKSTAR_USER="darkstar"
-DARKSTAR_PASSWORD="darkstar"
-DARKSTAR_IP="127.0.0.1"
+TOPAZ_USER="topaz"
+TOPAZ_PASSWORD="topaz"
+TOPAZ_IP="127.0.0.1"
 # Start of Script
 clear
-printf "This script will install Darkstar's FFXI Private Server."
+printf "This script will install Project Topaz."
 printf "\nSupported Operating Systems: Debian, Ubuntu, Raspbian\n\n"
-printf "1. Install Darkstar & Dependencies\n"
+printf "1. Install Topaz & Dependencies\n"
 printf "2. Update Configurations Only\n"
-printf "3. Restart Darkstar Server\n"
-printf "4. Shutdown Darkstar Server & Disable Auto Start\n"
-printf "5. Start Darkstar Server & Enable Auto Start\n"
+printf "3. Restart Topaz Server\n"
+printf "4. Shutdown Topaz Server & Disable Auto Start\n"
+printf "5. Start Topaz Server & Enable Auto Start\n"
 printf "6. Exit\n\n"
 read -p "Please enter the number of one of the above Options: " -n 1 -r RUN_CHOICE
 if [ "${RUN_CHOICE}" == "1" ]; then
-  if [ -f /opt/darkstar/dsgame ]; then
+  if [ -f /opt/topaz/topaz_game ]; then
     printf "\n\nPrevious install detected - Upgrades are not supported\nExiting script\n"
     exit
   fi
@@ -34,9 +34,9 @@ if [ "${RUN_CHOICE}" == "1" ]; then
   printf "2. Development Version\n\n"
   read -p "Would you like to install the Stable or Development versions?: " -n 1 -r GIT_VERSION
   printf "\n\nEnter a username for running the server and logging into the SQL database.\n"
-  read -r -p "Username: " DARKSTAR_USER
+  read -r -p "Username: " TOPAZ_USER
   echo
-  read -r -p "'${DARKSTAR_USER}' User's Password: " DARKSTAR_PASSWORD
+  read -r -p "'${TOPAZ_USER}' User's Password: " TOPAZ_PASSWORD
   OS=$(awk '/^ID=/' /etc/os-release | sed 's/ID=//')
   printf "\nDetected OS: %s\n\nInstalling Dependencies, please wait ...\n\n" "${OS}"
   add-apt-repository universe > /dev/null 2>&1
@@ -44,14 +44,14 @@ if [ "${RUN_CHOICE}" == "1" ]; then
   # shellcheck disable=SC2086
   apt-get -qq update && apt-get -qq install ${APT_GET_INSTALL_ONE} ${APT_GET_INSTALL_TWO} || exit
   echo
-  adduser "${DARKSTAR_USER}" --gecos "Darkstar Server" --disabled-password || exit
+  adduser "${TOPAZ_USER}" --gecos "Topaz Server" --disabled-password || exit
   echo
   if [[ ${GIT_VERSION} == "1" ]]; then
-    git clone --branch stable --recursive https://github.com/DarkstarProject/darkstar/ /opt/darkstar
+    git clone --branch stable --recursive https://github.com/project-topaz/topaz/ /opt/topaz
   else
-    git clone --recursive https://github.com/DarkstarProject/darkstar/ /opt/darkstar
+    git clone --recursive https://github.com/project-topaz/topaz/ /opt/topaz
   fi
-  cd /opt/darkstar || exit
+  cd /opt/topaz || exit
   sh autogen.sh || exit
   if [ "${OS}" == "debian" ] || [ "${OS}" == "raspbian" ]; then
     printf "\nRunning Debian or Raspbian Install\n"
@@ -62,21 +62,21 @@ if [ "${RUN_CHOICE}" == "1" ]; then
     ./configure || exit
   fi
   make -j4 || exit
-  chown -R "${DARKSTAR_USER}":root /opt/darkstar/
+  chown -R "${TOPAZ_USER}":root /opt/topaz/
   printf "\nEnter the MySQL root password\nDefault: No password\n"
-  mysql -h "localhost" -u "root" -p -e "CREATE USER '${DARKSTAR_USER}'@'localhost' IDENTIFIED BY '${DARKSTAR_PASSWORD}';CREATE DATABASE dspdb;USE dspdb;GRANT ALL PRIVILEGES ON dspdb.* TO '${DARKSTAR_USER}'@'localhost';"
+  mysql -h "localhost" -u "root" -p -e "CREATE USER '${TOPAZ_USER}'@'localhost' IDENTIFIED BY '${TOPAZ_PASSWORD}';CREATE DATABASE tpzdb;USE tpzdb;GRANT ALL PRIVILEGES ON tpzdb.* TO '${TOPAZ_USER}'@'localhost';"
   printf "\n"
   cd ${INSTALL_DIR}/sql || exit
   for SQL_FILE in *.sql
     do
       echo -n "Importing $SQL_FILE into the database..."
-      mysql dspdb -u "${DARKSTAR_USER}" "-p${DARKSTAR_PASSWORD}" < "$SQL_FILE" && echo "Success"
+      mysql tpzdb -u "${TOPAZ_USER}" "-p${TOPAZ_PASSWORD}" < "$SQL_FILE" && echo "Success"
     done
   cd ..
   # Systemd service files to be written
-  SYSTEMD_SERVICE_DSCONNECT="""
+  SYSTEMD_SERVICE_TOPAZ_CONNECT="""
 [Unit]
-Description=Darkstar Final Fantasy XI - DS Connect
+Description=topaz Final Fantasy XI - Topaz Connect
 Wants=network.target
 StartLimitIntervalSec=120
 StartLimitBurst=5
@@ -85,17 +85,17 @@ StartLimitBurst=5
 Type=simple
 Restart=always
 RestartSec=5
-User=${DARKSTAR_USER}
-Group=${DARKSTAR_USER}
-WorkingDirectory=/opt/darkstar
-ExecStart=/opt/darkstar/dsconnect
+User=${TOPAZ_USER}
+Group=${TOPAZ_USER}
+WorkingDirectory=/opt/topaz
+ExecStart=/opt/topaz/topaz_connect
 
 [Install]
 WantedBy=multi-user.target
 """
-  SYSTEMD_SERVICE_DSGAME="""
+  SYSTEMD_SERVICE_TOPAZ_GAME="""
 [Unit]
-Description=Darkstar Final Fantasy XI - DS Game
+Description=topaz Final Fantasy XI - Topaz Game
 Wants=network.target
 StartLimitIntervalSec=120
 StartLimitBurst=5
@@ -104,17 +104,17 @@ StartLimitBurst=5
 Type=simple
 Restart=always
 RestartSec=5
-User=${DARKSTAR_USER}
-Group=${DARKSTAR_USER}
-WorkingDirectory=/opt/darkstar
-ExecStart=/opt/darkstar/dsgame
+User=${TOPAZ_USER}
+Group=${TOPAZ_USER}
+WorkingDirectory=/opt/topaz
+ExecStart=/opt/topaz/topaz_game
 
 [Install]
 WantedBy=multi-user.target
 """
-  SYSTEMD_SERVICE_DSSEARCH="""
+  SYSTEMD_SERVICE_TOPAZ_SEARCH="""
 [Unit]
-Description=Darkstar Final Fantasy XI - DS Search
+Description=topaz Final Fantasy XI - Topaz Search
 Wants=network.target
 StartLimitIntervalSec=120
 StartLimitBurst=5
@@ -123,64 +123,64 @@ StartLimitBurst=5
 Type=simple
 Restart=always
 RestartSec=5
-User=${DARKSTAR_USER}
-Group=${DARKSTAR_USER}
-WorkingDirectory=/opt/darkstar
-ExecStart=/opt/darkstar/dssearch
+User=${TOPAZ_USER}
+Group=${TOPAZ_USER}
+WorkingDirectory=/opt/topaz
+ExecStart=/opt/topaz/topaz_search
 
 [Install]
 WantedBy=multi-user.target
 """
-  printf "%s" "${SYSTEMD_SERVICE_DSCONNECT}" > /etc/systemd/system/darkstar-connect.service
-  printf "%s" "${SYSTEMD_SERVICE_DSGAME}" > /etc/systemd/system/darkstar-game.service
-  printf "%s" "${SYSTEMD_SERVICE_DSSEARCH}" > /etc/systemd/system/darkstar-search.service
-  chmod 755 /etc/systemd/system/darkstar*
+  printf "%s" "${SYSTEMD_SERVICE_TOPAZ_CONNECT}" > /etc/systemd/system/topaz_connect.service
+  printf "%s" "${SYSTEMD_SERVICE_TOPAZ_GAME}" > /etc/systemd/system/topaz_game.service
+  printf "%s" "${SYSTEMD_SERVICE_TOPAZ_SEARCH}" > /etc/systemd/system/topaz_search.service
+  chmod 755 /etc/systemd/system/topaz*
   systemctl daemon-reload
   printf "\n\nInstallation Complete\n"
 fi
-chmod 775 /opt/darkstar -R 2>/dev/null
+chmod 775 /opt/topaz -R 2>/dev/null
 echo
 if [ "${RUN_CHOICE}" == "1" ] || [ "${RUN_CHOICE}" == "2" ]; then
-  read -p "Would you like to update the Darkstar FFXI zone IP? (Y/N) " -n 1 -r ZONEIP
+  read -p "Would you like to update the topaz FFXI zone IP? (Y/N) " -n 1 -r ZONEIP
   echo
   if [[ ${ZONEIP} =~ ^[Yy]$ ]]; then
     printf "\nYour current systems IPv4 Address are as follows\n"
     ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
     echo
-    read -r -p "Enter the IP address you wish to use with this Server: " DARKSTAR_IP
+    read -r -p "Enter the IP address you wish to use with this Server: " TOPAZ_IP
     printf "\nEnter the MySQL root password\nDefault: No password\n"
-    mysql -h "localhost" -u "root" -p -e "USE dspdb;UPDATE zone_settings SET zoneip = '${DARKSTAR_IP}';"
+    mysql -h "localhost" -u "root" -p -e "USE tpzdb;UPDATE zone_settings SET zoneip = '${TOPAZ_IP}';"
   fi
   clear
   printf "\nYou now need to update the SQL username and password in 3 configuration files.\n"
   printf "Everything else is optional. Each file will be opened automatically one after the other.\n"
   printf "nano is used to edit files.\nPress CTRL+X when done, then follow instructions, making sure to save changes.\n\n"
   read -rsp "Press any key to begin editing configuration files" -n 1
-  nano ${INSTALL_DIR}/conf/login_darkstar.conf
-  nano ${INSTALL_DIR}/conf/map_darkstar.conf
+  nano ${INSTALL_DIR}/conf/login.conf
+  nano ${INSTALL_DIR}/conf/map.conf
   nano ${INSTALL_DIR}/conf/search_server.conf
 fi
 if [ "${RUN_CHOICE}" == "3" ] || [ "${RUN_CHOICE}" == "2" ]; then
-  printf "\nRestarting Darkstar Server\n"
-  systemctl restart darkstar-connect
-  systemctl restart darkstar-game
-  systemctl restart darkstar-search
+  printf "\nRestarting Topaz Server\n"
+  systemctl restart topaz_connect
+  systemctl restart topaz_game
+  systemctl restart topaz_search
 elif [ "${RUN_CHOICE}" == "4" ]; then
-  printf "\nShutting Down Darkstar Server & Disabling Auto Start\n\n"
-  systemctl disable darkstar-connect
-  systemctl disable darkstar-game
-  systemctl disable darkstar-search
-  systemctl stop darkstar-connect
-  systemctl stop darkstar-game
-  systemctl stop darkstar-search
+  printf "\nShutting Down topaz Server & Disabling Auto Start\n\n"
+  systemctl disable topaz_connect
+  systemctl disable topaz_game
+  systemctl disable topaz_search
+  systemctl stop topaz_connect
+  systemctl stop topaz_game
+  systemctl stop topaz_search
 elif [ "${RUN_CHOICE}" == "5" ] || [ "${RUN_CHOICE}" == "1" ]; then
-  printf "\nStarting Darkstar Server & Enabling Auto Start\n\n"
-  systemctl enable darkstar-connect
-  systemctl enable darkstar-game
-  systemctl enable darkstar-search
-  systemctl start darkstar-connect
-  systemctl start darkstar-game
-  systemctl start darkstar-search
+  printf "\nStarting topaz Server & Enabling Auto Start\n\n"
+  systemctl enable topaz_connect
+  systemctl enable topaz_game
+  systemctl enable topaz_search
+  systemctl start topaz_connect
+  systemctl start topaz_game
+  systemctl start topaz_search
 else
   printf "\nExiting\n"
   exit

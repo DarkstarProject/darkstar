@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BEHEMOTHS_DOMINION] =
+zones[tpz.zone.BEHEMOTHS_DOMINION] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.BEHEMOTHS_DOMINION] =
         NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING      = 6403,  -- You are suddenly overcome with a sense of foreboding...
         IRREPRESSIBLE_MIGHT      = 6406,  -- An aura of irrepressible might threatens to overwhelm you...
+        FELLOW_MESSAGE_OFFSET    = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE            = 7049,  -- Tallying conquest results...
         SOMETHING_BETTER         = 7315,  -- Don't you have something better to do right now?
         CANNOT_REMOVE_FRAG       = 7318,  -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
@@ -29,7 +30,7 @@ zones[dsp.zone.BEHEMOTHS_DOMINION] =
         ALREADY_POSSESS_TEMP     = 7346,  -- You already possess that temporary item.
         NO_COMBINATION           = 7351,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9529,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 11524, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL    = 11527, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -47,4 +48,4 @@ zones[dsp.zone.BEHEMOTHS_DOMINION] =
     },
 }
 
-return zones[dsp.zone.BEHEMOTHS_DOMINION]
+return zones[tpz.zone.BEHEMOTHS_DOMINION]

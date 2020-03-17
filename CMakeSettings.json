@@ -1,5 +1,4 @@
 {
-  // See https://go.microsoft.com//fwlink//?linkid=834763 for more information about this file.
   "environments": [
     {
       "BuildDir": "${workspaceRoot}\\build\\${name}",
@@ -9,7 +8,7 @@
   "configurations": [
     {
       "name": "x86-Debug",
-      "generator": "Visual Studio 15 2017",
+      "generator": "Visual Studio 16 2019",
       "configurationType": "Debug",
       "inheritEnvironments": [ "msvc_x86" ],
       "buildRoot": "${env.BuildDir}",
@@ -20,7 +19,7 @@
     },
     {
       "name": "x86-Release",
-      "generator": "Visual Studio 15 2017",
+      "generator": "Visual Studio 16 2019",
       "configurationType": "Release",
       "inheritEnvironments": [ "msvc_x86" ],
       "buildRoot": "${env.BuildDir}",
@@ -31,7 +30,7 @@
     },
     {
       "name": "x64-Debug",
-      "generator": "Visual Studio 15 2017 Win64",
+      "generator": "Visual Studio 16 2019 Win64",
       "configurationType": "Debug",
       "inheritEnvironments": [ "msvc_x64" ],
       "buildRoot": "${env.BuildDir}",
@@ -42,7 +41,7 @@
     },
     {
       "name": "x64-Release",
-      "generator": "Visual Studio 15 2017 Win64",
+      "generator": "Visual Studio 16 2019 Win64",
       "configurationType": "Release",
       "inheritEnvironments": [ "msvc_x64" ],
       "buildRoot": "${env.BuildDir}",
@@ -50,6 +49,10 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "-v:detailed",
       "ctestCommandArgs": ""
+    },
+    {
+      "name": "topaz",
+      "cacheRoot": "C:\\Games\\FFXI\\Topaz\\build\\x86-Debug"
     }
   ]
 }

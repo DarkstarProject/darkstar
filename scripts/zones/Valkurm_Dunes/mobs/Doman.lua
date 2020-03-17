@@ -8,7 +8,7 @@ require("scripts/globals/keyitems");
 
 function onMobDeath(mob, player, isKiller)
 
-    if (player:hasKeyItem(dsp.ki.YOMOTSU_HIRASAKA)) then
+    if (player:hasKeyItem(tpz.ki.YOMOTSU_HIRASAKA)) then
         player:addCharVar("OkuriNMKilled", 1);
     end
 

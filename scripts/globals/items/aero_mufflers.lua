@@ -9,6 +9,6 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    local effect = dsp.effect.ENAERO
+    local effect = tpz.effect.ENAERO
     doEnspell(target,target,nil,effect)
 end

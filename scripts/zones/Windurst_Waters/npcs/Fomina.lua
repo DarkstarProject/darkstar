@@ -13,8 +13,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.ELSHIMOLOWLANDS);
-    if (RegionOwner ~= dsp.nation.WINDURST) then
+    local RegionOwner = GetRegionOwner(tpz.region.ELSHIMOLOWLANDS);
+    if (RegionOwner ~= tpz.nation.WINDURST) then
         player:showText(npc,ID.text.FOMINA_CLOSED_DIALOG);
     else
         player:showText(npc,ID.text.FOMINA_OPEN_DIALOG);
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             632,    110,  -- Kukuru Bean
             1411,  1656   -- Phalaenopsis
         }
-        dsp.shop.general(player, stock, WINDURST);
+        tpz.shop.general(player, stock, WINDURST);
 
     end
 

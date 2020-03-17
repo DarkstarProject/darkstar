@@ -7,17 +7,17 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.UFASTCAST, 30);
+    mob:addMod(tpz.mod.UFASTCAST, 30);
 end;
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         between = 30,
         specials =
         {
-            {id = dsp.jsa.BLOOD_WEAPON},
+            {id = tpz.jsa.BLOOD_WEAPON},
             {
-                id = dsp.jsa.MANAFONT,
+                id = tpz.jsa.MANAFONT,
                 endCode = function(mob) -- "Uses Manafont and ... Will cast Sleepga followed by Meteor."
                     mob:castSpell(273) -- sleepga
                     mob:castSpell(218) -- meteor
@@ -32,7 +32,7 @@ function onMobEngaged(mob,target)
 
     for member = mobid-5, mobid+2 do
         local m = GetMobByID(member)
-        if m:getCurrentAction() == dsp.act.ROAMING then
+        if m:getCurrentAction() == tpz.act.ROAMING then
             m:updateEnmity(target)
         end
     end
@@ -40,16 +40,16 @@ end;
 
 function onMobFight(mob,target)
 
-    if (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),dsp.behavior.STANDBACK) > 0) then
-        mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.STANDBACK)))
-        mob:setMobMod(dsp.mobMod.TELEPORT_TYPE,0);
-        mob:setMobMod(dsp.mobMod.SPAWN_LEASH,0);
+    if (mob:hasStatusEffect(tpz.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),tpz.behavior.STANDBACK) > 0) then
+        mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(tpz.behavior.STANDBACK)))
+        mob:setMobMod(tpz.mobMod.TELEPORT_TYPE,0);
+        mob:setMobMod(tpz.mobMod.SPAWN_LEASH,0);
         mob:setSpellList(0);
     end
-    if (not mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),dsp.behavior.STANDBACK) == 0) then
-        mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.STANDBACK))
-        mob:setMobMod(dsp.mobMod.TELEPORT_TYPE,1);
-        mob:setMobMod(dsp.mobMod.SPAWN_LEASH,22);
+    if (not mob:hasStatusEffect(tpz.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),tpz.behavior.STANDBACK) == 0) then
+        mob:setBehaviour(bit.bor(mob:getBehaviour(), tpz.behavior.STANDBACK))
+        mob:setMobMod(tpz.mobMod.TELEPORT_TYPE,1);
+        mob:setMobMod(tpz.mobMod.SPAWN_LEASH,22);
         mob:setSpellList(39);
     end
 end;

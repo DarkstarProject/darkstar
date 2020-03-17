@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.CASTLE_OZTROJA] =
+zones[tpz.zone.CASTLE_OZTROJA] =
 {
     text =
     {
@@ -28,13 +28,14 @@ zones[dsp.zone.CASTLE_OZTROJA] =
         ITEMS_OBTAINED                     = 6582, -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY            = 6587, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING                = 6588, -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET              = 6602, -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET             = 7253, -- You can't fish here.
         CHEST_UNLOCKED                     = 7424, -- You unlock the chest!
         YAGUDO_AVATAR_ENGAGE               = 7445, -- Kahk-ka-ka... You filthy, dim-witted heretics! You have damned yourselves by coming here.
         YAGUDO_AVATAR_DEATH                = 7446, -- Our lord, Tzee Xicu the Manifest!  Even should our bodies be crushed and broken, may our souls endure into eternity...
         YAGUDO_KING_ENGAGE                 = 7447, -- You are not here as sacrifices, are you? Could you possibly be committing this affront in the face of a deity?  Very well, I will personally mete out your divine punishment, kyah!
         YAGUDO_KING_DEATH                  = 7448, -- You have...bested me... However, I...am...a god... I will never die...never rot...never fade...never...
-        COMMON_SENSE_SURVIVAL              = 8293, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL              = 8296, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -91,4 +92,4 @@ zones[dsp.zone.CASTLE_OZTROJA] =
     },
 }
 
-return zones[dsp.zone.CASTLE_OZTROJA]
+return zones[tpz.zone.CASTLE_OZTROJA]

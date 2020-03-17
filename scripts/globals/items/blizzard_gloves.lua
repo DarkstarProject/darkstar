@@ -9,6 +9,6 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    local effect = dsp.effect.ENBLIZZARD
+    local effect = tpz.effect.ENBLIZZARD
     doEnspell(target,target,nil,effect)
 end

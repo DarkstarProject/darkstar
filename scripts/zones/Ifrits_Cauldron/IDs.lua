@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.IFRITS_CAULDRON] =
+zones[tpz.zone.IFRITS_CAULDRON] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         KEYITEM_OBTAINED           = 6391,  -- Obtained key item: <keyitem>.
         ITEMS_OBTAINED             = 6397,  -- You obtain <number> <item>!
         NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET      = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE              = 7049,  -- Tallying conquest results...
         ALTAR_COMPLETED            = 7238,  -- You have already made an offering today.
         ALTAR_INSPECT              = 7239,  -- This looks like the altar where offerings are to be placed.
@@ -91,4 +92,4 @@ zones[dsp.zone.IFRITS_CAULDRON] =
     },
 }
 
-return zones[dsp.zone.IFRITS_CAULDRON]
+return zones[tpz.zone.IFRITS_CAULDRON]

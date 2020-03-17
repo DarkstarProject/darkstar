@@ -12,8 +12,8 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if not player:hasKeyItem(dsp.ki.JUGNER_GATE_CRYSTAL) then
-        npcUtil.giveKeyItem(player, dsp.ki.JUGNER_GATE_CRYSTAL)
+    if not player:hasKeyItem(tpz.ki.JUGNER_GATE_CRYSTAL) then
+        npcUtil.giveKeyItem(player, tpz.ki.JUGNER_GATE_CRYSTAL)
     else
         player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE)
     end

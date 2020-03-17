@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Port_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM) == false) then
+    if (player:hasKeyItem(tpz.ki.AIRSHIP_PASS_FOR_KAZHAM) == false) then
         if (trade:hasItemQty(1024,1) == true and trade:hasItemQty(1025,1) == true and trade:hasItemQty(1026,1) == true and
            trade:getGil() == 0 and trade:getItemCount() == 3) then
             player:startEvent(301); -- Ending quest "Kazham Airship Pass"
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM) == false) then
+    if (player:hasKeyItem(tpz.ki.AIRSHIP_PASS_FOR_KAZHAM) == false) then
         player:startEvent(300);
     end
 end;
@@ -30,7 +30,7 @@ end;
 function onEventUpdate(player,csid,option)
     if (csid == 300) then
         if (player:delGil(148000)) then
-            player:addKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
+            player:addKeyItem(tpz.ki.AIRSHIP_PASS_FOR_KAZHAM);
             player:updateEvent(0,1);
         end
     end
@@ -38,12 +38,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 300) then
-        if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM) == true) then
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
+        if (player:hasKeyItem(tpz.ki.AIRSHIP_PASS_FOR_KAZHAM) == true) then
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.AIRSHIP_PASS_FOR_KAZHAM);
         end
     elseif (csid == 301) then
-        player:addKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
+        player:addKeyItem(tpz.ki.AIRSHIP_PASS_FOR_KAZHAM);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.AIRSHIP_PASS_FOR_KAZHAM);
         player:tradeComplete();
     end
 end;

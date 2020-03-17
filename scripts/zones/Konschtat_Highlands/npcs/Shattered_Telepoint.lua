@@ -12,11 +12,11 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") == 1 then
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") == 1 then
         player:startEvent(913, 0, 0, 1) -- first time in promy -> have you made your preparations cs
     elseif
-        player:getCurrentMission(COP) == dsp.mission.id.cop.THE_MOTHERCRYSTALS and
-        (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))
+        player:getCurrentMission(COP) == tpz.mission.id.cop.THE_MOTHERCRYSTALS and
+        (player:hasKeyItem(tpz.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(tpz.ki.LIGHT_OF_MEA))
     then
         if player:getCharVar("cspromy2") == 1 then
             player:startEvent(912)  -- cs you get nearing second promyvion
@@ -24,9 +24,9 @@ function onTrigger(player, npc)
             player:startEvent(913)
         end
     elseif
-        player:getCurrentMission(COP) > dsp.mission.id.cop.THE_MOTHERCRYSTALS or
-        player:hasCompletedMission(COP, dsp.mission.id.cop.THE_LAST_VERSE) or
-        (player:getCurrentMission(COP) == dsp.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") > 1)
+        player:getCurrentMission(COP) > tpz.mission.id.cop.THE_MOTHERCRYSTALS or
+        player:hasCompletedMission(COP, tpz.mission.id.cop.THE_LAST_VERSE) or
+        (player:getCurrentMission(COP) == tpz.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") > 1)
     then
         player:startEvent(913) -- normal cs (third promyvion and each entrance after having that promyvion visited or mission completed)
     else

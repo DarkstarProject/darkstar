@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         player:startEvent(348)
     else
         player:showText(npc, ID.text.KINDLIX_SHOP_DIALOG)
-        dsp.shop.general(player, stock)
+        tpz.shop.general(player, stock)
     end
 end
 
@@ -45,7 +45,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 348 and option == 0 then
-        dsp.shop.general(player, stock)
+        tpz.shop.general(player, stock)
         player:setCharVar("spokeKindlix", 0)
     end
 end

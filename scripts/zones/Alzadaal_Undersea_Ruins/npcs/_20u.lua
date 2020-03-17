@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:hasKeyItem(dsp.ki.REMNANTS_PERMIT) then
+    if player:hasKeyItem(tpz.ki.REMNANTS_PERMIT) then
         local mask = -2
         -- salvage2 NYI
         --[[if player:getMainLvl() >= 96 then
@@ -36,7 +36,7 @@ function onEventUpdate(player,csid,option,target)
 
     if party ~= nil then
         for i,v in ipairs(party) do
-            if not v:hasKeyItem(dsp.ki.REMNANTS_PERMIT) then
+            if not v:hasKeyItem(tpz.ki.REMNANTS_PERMIT) then
                 player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                 player:instanceEntry(target,1)
                 return
@@ -66,7 +66,7 @@ function onInstanceCreated(player,target,instance)
     if (instance) then
         player:setInstance(instance)
         player:instanceEntry(target,4)
-        player:delKeyItem(dsp.ki.REMNANTS_PERMIT)
+        player:delKeyItem(tpz.ki.REMNANTS_PERMIT)
 
         local party = player:getParty()
         if party ~= nil then
@@ -74,7 +74,7 @@ function onInstanceCreated(player,target,instance)
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance)
                     v:startEvent(116, 8)
-                    v:delKeyItem(dsp.ki.REMNANTS_PERMIT)
+                    v:delKeyItem(tpz.ki.REMNANTS_PERMIT)
                     v:setLocalVar("SalvageArrapago", 1)
                 end
             end

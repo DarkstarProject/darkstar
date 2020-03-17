@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BATALLIA_DOWNS] =
+zones[tpz.zone.BATALLIA_DOWNS] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.BATALLIA_DOWNS] =
         GIL_OBTAINED             = 6411,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6413,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6424,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET    = 6439,  -- I'm ready. I suppose.
         CONQUEST_BASE            = 7071,  -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET   = 7230,  -- You can't fish here.
         DIG_THROW_AWAY           = 7243,  -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
@@ -27,7 +28,7 @@ zones[dsp.zone.BATALLIA_DOWNS] =
         ALREADY_POSSESS_TEMP     = 7693,  -- You already possess that temporary item.
         NO_COMBINATION           = 7698,  -- You were unable to enter a combination.
         REGIME_REGISTERED        = 9976,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 12829, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL    = 12832, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -55,4 +56,4 @@ zones[dsp.zone.BATALLIA_DOWNS] =
     },
 }
 
-return zones[dsp.zone.BATALLIA_DOWNS]
+return zones[tpz.zone.BATALLIA_DOWNS]

@@ -18,9 +18,9 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.HUNDRED_FISTS
+    local typeEffect = tpz.effect.HUNDRED_FISTS
     MobBuffMove(mob, typeEffect, 1, 0, 45)
     mob:setLocalVar("BracerMode", 2)
-    skill:setMsg(dsp.msg.basic.USES)
+    skill:setMsg(tpz.msg.basic.USES)
     return typeEffect
 end

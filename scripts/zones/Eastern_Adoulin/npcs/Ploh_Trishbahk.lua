@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local meetingOfTheMinds = player:getCurrentMission(SOA) == dsp.mission.id.soa.MEETING_OF_THE_MINDS
+    local meetingOfTheMinds = player:getCurrentMission(SOA) == tpz.mission.id.soa.MEETING_OF_THE_MINDS
     local dinnerTime = VanadielHour() >= 15 and VanadielHour() <= 22
 
     if meetingOfTheMinds then
@@ -27,9 +27,9 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 1500 then
-        player:delKeyItem(dsp.ki.DINNER_INVITATION)
+        player:delKeyItem(tpz.ki.DINNER_INVITATION)
 
-        player:completeMission(SOA,dsp.mission.id.soa.MEETING_OF_THE_MINDS)
-        player:addMission(SOA,dsp.mission.id.soa.ARCIELA_APPEARS_AGAIN)
+        player:completeMission(SOA,tpz.mission.id.soa.MEETING_OF_THE_MINDS)
+        player:addMission(SOA,tpz.mission.id.soa.ARCIELA_APPEARS_AGAIN)
     end
 end

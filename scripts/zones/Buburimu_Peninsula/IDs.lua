@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BUBURIMU_PENINSULA] =
+zones[tpz.zone.BUBURIMU_PENINSULA] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
         GIL_OBTAINED                   = 6424,  -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6426,  -- Obtained key item: <keyitem>.
         KEYITEM_LOST                   = 6427,  -- Lost key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET          = 6452,  -- I'm ready. I suppose.
         CONQUEST_BASE                  = 7084,  -- Tallying conquest results...
         BEASTMEN_BANNER                = 7165,  -- There is a beastmen's banner.
         FIVEOFSPADES_DIALOG            = 7243,  -- GiMmefIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol!
@@ -78,4 +79,4 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
     },
 }
 
-return zones[dsp.zone.BUBURIMU_PENINSULA]
+return zones[tpz.zone.BUBURIMU_PENINSULA]

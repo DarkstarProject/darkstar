@@ -13,7 +13,7 @@ require("scripts/globals/missions");
 
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= dsp.nation.WINDURST) then
+    if (player:getNation() ~= tpz.nation.WINDURST) then
         player:startEvent(87); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);
@@ -21,25 +21,25 @@ function onTrigger(player,npc)
         pRank = player:getRank();
         cs, p, offset = getMissionOffset(player,4,CurrentMission,MissionStatus);
 
-        if (CurrentMission <= dsp.mission.id.windurst.THE_SHADOW_AWAITS and (cs ~= 0 or offset ~= 0 or (CurrentMission == dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and offset == 0))) then
+        if (CurrentMission <= tpz.mission.id.windurst.THE_SHADOW_AWAITS and (cs ~= 0 or offset ~= 0 or (CurrentMission == tpz.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT and offset == 0))) then
             if (cs == 0) then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
-        elseif (CurrentMission ~= dsp.mission.id.windurst.NONE) then
+        elseif (CurrentMission ~= tpz.mission.id.windurst.NONE) then
             player:startEvent(91);
-        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
+        elseif (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
             player:startEvent(96);
-        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER) == false) then
+        elseif (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_HEART_OF_THE_MATTER) == false) then
             player:startEvent(106);
-        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_PRICE_OF_PEACE) == false) then
+        elseif (player:hasCompletedMission(WINDURST,tpz.mission.id.windurst.THE_PRICE_OF_PEACE) == false) then
             player:startEvent(111);
-        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
+        elseif (player:hasKeyItem(tpz.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(150);
         else
             flagMission, repeatMission = getMissionMask(player);
-            player:startEvent(93,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
+            player:startEvent(93,flagMission,0,0,0,tpz.ki.STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
 
@@ -53,10 +53,10 @@ function onEventFinish(player,csid,option)
     finishMissionTimeline(player,4,csid,option);
 
     if (csid == 96 and option == 1) then
-        player:addTitle(dsp.title.HEAVENS_TOWER_GATEHOUSE_RECRUIT);
+        player:addTitle(tpz.title.HEAVENS_TOWER_GATEHOUSE_RECRUIT);
     elseif (csid == 93 and (option == 12 or option == 15)) then
-        player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+        player:addKeyItem(tpz.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.STAR_CRESTED_SUMMONS);
     end
 
 end;

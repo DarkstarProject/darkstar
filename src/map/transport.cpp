@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -115,7 +113,7 @@ void Elevator_t::closeDoor(CNpcEntity* npc)
 
 void CTransportHandler::InitializeTransport()
 {
-    DSP_DEBUG_BREAK_IF(townZoneList.size() != 0);
+    TPZ_DEBUG_BREAK_IF(townZoneList.size() != 0);
 
     const char* fmtQuery = "SELECT id, transport, door, dock_x, dock_y, dock_z, dock_rot, \
                             boundary, zone, anim_arrive, anim_depart, time_offset, time_interval, \
@@ -386,7 +384,7 @@ void CTransportHandler::insertElevator(Elevator_t elevator)
 
         if (PElevator->Elevator->GetName() == elevator.Elevator->GetName() && PElevator->zoneID == elevator.zoneID)
         {
-            DSP_DEBUG_BREAK_IF(true);
+            TPZ_DEBUG_BREAK_IF(true);
         }
     }
 

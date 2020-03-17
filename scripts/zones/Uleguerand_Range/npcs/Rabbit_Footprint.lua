@@ -77,7 +77,7 @@ local function moveFootprint(npc)
 
     local nextPointLoc = points[nextPoint]
     npc:setLocalVar("currentPoint",nextPoint)
-    npc:setStatus(dsp.status.NORMAL)
+    npc:setStatus(tpz.status.NORMAL)
     npcUtil.queueMove(npc, nextPointLoc, 1000)
 end
 
@@ -96,7 +96,7 @@ function onTimeTrigger(npc, triggerID)
         else
             npc:setLocalVar("activeTime", 0)
             npc:setLocalVar("currentPoint", 0)
-            npc:setStatus(dsp.status.DISAPPEAR)
+            npc:setStatus(tpz.status.DISAPPEAR)
         end
     end
 end

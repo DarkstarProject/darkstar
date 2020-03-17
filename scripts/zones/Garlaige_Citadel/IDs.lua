@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.GARLAIGE_CITADEL] =
+zones[tpz.zone.GARLAIGE_CITADEL] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         KEYITEM_OBTAINED            = 6550,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY     = 6561,  -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING         = 6562,  -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET       = 6576,  -- I'm ready. I suppose.
         GEOMAGNETRON_ATTUNED        = 7169,  -- Your <keyitem> has been attuned to a geomagnetic fount in the corresponding locale.
         DEVICE_NOT_WORKING          = 7233,  -- The device is not working.
         SYS_OVERLOAD                = 7242,  -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
@@ -30,7 +31,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         PRESENCE_FROM_CEILING       = 7295,  -- You sense a presence from in the ceiling.
         HEAT_FROM_CEILING           = 7296,  -- You feel a terrible heat from the ceiling.
         CHEST_UNLOCKED              = 7326,  -- You unlock the chest!
-        ITEMS_ITEMS_LA_LA           = 7453,  -- You can hear a strange voice...“Items, items, la la la la la～♪”
+        ITEMS_ITEMS_LA_LA           = 7453,  -- You can hear a strange voice... Items, items, la la la la la
         GOBLIN_SLIPPED_AWAY         = 7459,  -- The Goblin slipped away when you were not looking...
         PLAYER_OBTAINS_ITEM         = 7519,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM       = 7520,  -- You were unable to obtain the item.
@@ -38,7 +39,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         ALREADY_POSSESS_TEMP        = 7522,  -- You already possess that temporary item.
         NO_COMBINATION              = 7527,  -- You were unable to enter a combination.
         REGIME_REGISTERED           = 9605,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL       = 11553, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL       = 11556, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -69,4 +70,4 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
     },
 }
 
-return zones[dsp.zone.GARLAIGE_CITADEL]
+return zones[tpz.zone.GARLAIGE_CITADEL]

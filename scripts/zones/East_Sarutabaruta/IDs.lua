@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.EAST_SARUTABARUTA] =
+zones[tpz.zone.EAST_SARUTABARUTA] =
 {
     text =
     {
@@ -14,6 +14,7 @@ zones[dsp.zone.EAST_SARUTABARUTA] =
         ITEM_OBTAINED            = 6388, -- Obtained: <item>.
         GIL_OBTAINED             = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6391, -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET    = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE            = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET   = 7208, -- You can't fish here.
         DIG_THROW_AWAY           = 7221, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
@@ -51,4 +52,4 @@ zones[dsp.zone.EAST_SARUTABARUTA] =
     },
 }
 
-return zones[dsp.zone.EAST_SARUTABARUTA]
+return zones[tpz.zone.EAST_SARUTABARUTA]

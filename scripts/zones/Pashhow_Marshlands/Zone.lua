@@ -12,14 +12,14 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.BOWHO_WARMONGER)
     GetMobByID(ID.mob.BOWHO_WARMONGER):setRespawnTime(75600 + math.random(600, 900)) -- 21 hours, plus 10 to 15 min
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onZoneIn(player, prevZone)
@@ -29,7 +29,7 @@ function onZoneIn(player, prevZone)
         player:setPos(547.841, 23.192, 696.323, 136)
     end
 
-    if prevZone == dsp.zone.BEADEAUX and player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FOUR_MUSKETEERS then
+    if prevZone == tpz.zone.BEADEAUX and player:getCurrentMission(BASTOK) == tpz.mission.id.bastok.THE_FOUR_MUSKETEERS then
         local missionStatus = player:getCharVar("MissionStatus")
 
         if missionStatus > 0 and missionStatus < 22 then
@@ -39,7 +39,7 @@ function onZoneIn(player, prevZone)
         end
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 13
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 15
     end
 
@@ -47,7 +47,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)

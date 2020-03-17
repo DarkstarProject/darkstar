@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Scaredycats = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.SCAREDYCATS);
+    local Scaredycats = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.SCAREDYCATS);
     local Scaredycats_Status = player:getCharVar("Scaredycats_Status");
     if ((Scaredycats_Status < 1) and (Scaredycats == QUEST_AVAILABLE)) then
         -- Dialogue before seeing the initial walk-in CS with Bilp, Eamonn, and Lhe.
@@ -41,6 +41,6 @@ function onEventFinish(player,csid,option)
     if ((csid == 5024) and (option == 1)) then
         -- Starts Quest: 'Scaredy-Cats', after first refusal.
         player:setCharVar("Scaredycats_Status", 2);
-        player:addQuest(ADOULIN, dsp.quest.id.adoulin.SCAREDYCATS);
+        player:addQuest(ADOULIN, tpz.quest.id.adoulin.SCAREDYCATS);
     end
 end;

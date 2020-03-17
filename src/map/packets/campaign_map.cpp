@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -25,7 +23,7 @@
 
 #include <string.h>
 
-#include "campaing_map.h"
+#include "campaign_map.h"
 
     uint8 packet0[] = {
 							0x02, 0x01, 0xC4, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -57,7 +55,7 @@
 	0xFA, 0xE8, 0x13, 0x00, 0xAE, 0x8F, 0x3E, 0xC3, 0x00, 0x00, 0x00, 0xFA, 0xFA, 0xE8, 0x13, 0x00, 
 	0x8E, 0x3E, 0xFA, 0x00, 0x00, 0x00, 0x00, 0xFA, 0xE8, 0xA3, 0x3F, 0x00};
 
-CCampaingPacket::CCampaingPacket(CCharEntity * PChar, uint8 number) 
+CCampaignPacket::CCampaignPacket(CCharEntity * PChar, uint8 number) 
 {
 	this->type = 0x71; 
 	this->size = 0x66; 

@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         92,   905,3,     --Tarutaru Stool
         110,  4744,3      --White Jar
     }
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST);
 
 end;
 

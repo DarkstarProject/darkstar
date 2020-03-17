@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         4493,   184,3,     --Windurstian Tea
         4555,  1711,3      --Windurst Salad
     }
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST);
 
 end;
 

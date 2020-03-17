@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         4509,    10,3,     --Distilled Water
         4538,   846,3      --Roast Pipira
     }
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST);
 
 end;
 

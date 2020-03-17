@@ -20,38 +20,38 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     local result = 0
-    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
-        result = dsp.msg.basic.IS_FULL
+    if target:hasStatusEffect(tpz.effect.FOOD) or target:hasStatusEffect(tpz.effect.FIELD_SUPPORT_FOOD) then
+        result = tpz.msg.basic.IS_FULL
     end
     return result
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5166)
+    target:addStatusEffect(tpz.effect.FOOD,0,0,1800,5166)
 end
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.MP, 10)
-    target:addMod(dsp.mod.STR, 5)
-    target:addMod(dsp.mod.AGI, 1)
-    target:addMod(dsp.mod.INT, -2)
-    target:addMod(dsp.mod.HPHEAL, 1)
-    target:addMod(dsp.mod.FOOD_ATTP, 20)
-    target:addMod(dsp.mod.FOOD_ATT_CAP, 75)
-    target:addMod(dsp.mod.FOOD_RATTP, 20)
-    target:addMod(dsp.mod.FOOD_RATT_CAP, 75)
-    target:addMod(dsp.mod.STUNRES, 4)
+    target:addMod(tpz.mod.MP, 10)
+    target:addMod(tpz.mod.STR, 5)
+    target:addMod(tpz.mod.AGI, 1)
+    target:addMod(tpz.mod.INT, -2)
+    target:addMod(tpz.mod.HPHEAL, 1)
+    target:addMod(tpz.mod.FOOD_ATTP, 20)
+    target:addMod(tpz.mod.FOOD_ATT_CAP, 75)
+    target:addMod(tpz.mod.FOOD_RATTP, 20)
+    target:addMod(tpz.mod.FOOD_RATT_CAP, 75)
+    target:addMod(tpz.mod.STUNRES, 4)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.MP, 10)
-    target:delMod(dsp.mod.STR, 5)
-    target:delMod(dsp.mod.AGI, 1)
-    target:delMod(dsp.mod.INT, -2)
-    target:delMod(dsp.mod.HPHEAL, 1)
-    target:delMod(dsp.mod.FOOD_ATTP, 20)
-    target:delMod(dsp.mod.FOOD_ATT_CAP, 75)
-    target:delMod(dsp.mod.FOOD_RATTP, 20)
-    target:delMod(dsp.mod.FOOD_RATT_CAP, 75)
-    target:delMod(dsp.mod.STUNRES, 4)
+    target:delMod(tpz.mod.MP, 10)
+    target:delMod(tpz.mod.STR, 5)
+    target:delMod(tpz.mod.AGI, 1)
+    target:delMod(tpz.mod.INT, -2)
+    target:delMod(tpz.mod.HPHEAL, 1)
+    target:delMod(tpz.mod.FOOD_ATTP, 20)
+    target:delMod(tpz.mod.FOOD_ATT_CAP, 75)
+    target:delMod(tpz.mod.FOOD_RATTP, 20)
+    target:delMod(tpz.mod.FOOD_RATT_CAP, 75)
+    target:delMod(tpz.mod.STUNRES, 4)
 end

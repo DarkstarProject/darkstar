@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -37,7 +35,7 @@ CGuildMenuSellUpdatePacket::CGuildMenuSellUpdatePacket(CCharEntity* PChar, uint8
     this->type = 0x84;
     this->size = 0x04;
 
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
 
     ref<uint16>(0x04) = itemID;
     ref<uint8>(0x06) = stock;

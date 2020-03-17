@@ -6,12 +6,14 @@
 local ID = require("scripts/zones/Tahrongi_Canyon/IDs")
 require("scripts/globals/regimes")
 require("scripts/globals/mobs")
+require("scripts/quests/tutorial")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 96, 2, dsp.regime.type.FIELDS)
+    tpz.regime.checkRegime(player, mob, 96, 2, tpz.regime.type.FIELDS)
+    tpz.tutorial.onMobDeath(player)
 end
 
 function onMobDespawn(mob)
-    dsp.mob.phOnDespawn(mob, ID.mob.SERPOPARD_ISHTAR_PH, 10, 3600) -- 1 hour
+    tpz.mob.phOnDespawn(mob, ID.mob.SERPOPARD_ISHTAR_PH, 10, 3600) -- 1 hour
 end

@@ -16,13 +16,13 @@ function onInitialize(zone)
         zone:registerRegion(k,unpack(v["coords"]));
     end
 
-    dsp.treasure.initZone(zone)
+    tpz.treasure.initZone(zone)
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    tpz.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(333.017,-44.896,-458.35,164);
     end
-    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.THE_GATE_OF_THE_GODS and player:getCharVar("ZilartStatus") == 1) then
+    if (player:getCurrentMission(ZILART) == tpz.mission.id.zilart.THE_GATE_OF_THE_GODS and player:getCharVar("ZilartStatus") == 1) then
         cs = 51;
     end
 
@@ -46,7 +46,7 @@ function onRegionEnter(player,region)
             player:startEvent(42);
         else
             title = player:getTitle();
-            if (title == dsp.title.WARRIOR_OF_THE_CRYSTAL) then
+            if (title == tpz.title.WARRIOR_OF_THE_CRYSTAL) then
                 player:startEvent(41,title);
             else
                 player:startEvent(43,title);
@@ -54,7 +54,7 @@ function onRegionEnter(player,region)
         end
 
     elseif (p["portal"] ~= nil) then -- blue portal
-        if (GetNPCByID(p["portal"]):getAnimation() == dsp.anim.OPEN_DOOR) then
+        if (GetNPCByID(p["portal"]):getAnimation() == tpz.anim.OPEN_DOOR) then
             player:startEvent(p["event"]);
         end
 
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
         player:setCharVar("skyShortcut",1);
     elseif (csid == 51) then
         player:setCharVar("ZilartStatus",0);
-        player:completeMission(ZILART,dsp.mission.id.zilart.THE_GATE_OF_THE_GODS);
-        player:addMission(ZILART,dsp.mission.id.zilart.ARK_ANGELS);
+        player:completeMission(ZILART,tpz.mission.id.zilart.THE_GATE_OF_THE_GODS);
+        player:addMission(ZILART,tpz.mission.id.zilart.ARK_ANGELS);
     end
 end;

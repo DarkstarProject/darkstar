@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.mod.SPELLINTERRUPT
+-- tpz.mod.SPELLINTERRUPT
 --
 -----------------------------------
 require("scripts/globals/status")

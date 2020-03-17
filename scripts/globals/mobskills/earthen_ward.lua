@@ -12,11 +12,11 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.STONESKIN
+    local typeEffect = tpz.effect.STONESKIN
     local base = mob:getMainLvl()*2 + 50
 
     skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 180))
 
-    return dsp.effect.STONESKIN
+    return tpz.effect.STONESKIN
 
 end

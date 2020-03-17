@@ -6,11 +6,11 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.AUTO_SCHURZEN, 1)
+    pet:addMod(tpz.mod.AUTO_SCHURZEN, 1)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.AUTO_SCHURZEN, 1)
+    pet:delMod(tpz.mod.AUTO_SCHURZEN, 1)
 end
 
 function onManeuverGain(pet, maneuvers)

@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc, ID.text.ALBINIE_SHOP_DIALOG)
-    dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
+    tpz.shop.nation(player, stock, tpz.nation.SANDORIA)
 end
 
 function onEventUpdate(player,csid,option)

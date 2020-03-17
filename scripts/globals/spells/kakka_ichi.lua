@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effect.STORE_TP
+    local effect = tpz.effect.STORE_TP
     caster:addStatusEffect(effect,10,0,180)
     return effect
 end

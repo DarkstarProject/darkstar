@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.LOWER_DELKFUTTS_TOWER] =
+zones[tpz.zone.LOWER_DELKFUTTS_TOWER] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.LOWER_DELKFUTTS_TOWER] =
         ITEM_OBTAINED                    = 6577,  -- Obtained: <item>.
         GIL_OBTAINED                     = 6578,  -- Obtained <number> gil.
         KEYITEM_OBTAINED                 = 6580,  -- Obtained key item: <keyitem>.
+        FELLOW_MESSAGE_OFFSET            = 6606,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET           = 7238,  -- You can't fish here.
         PLAYER_OBTAINS_ITEM              = 8621,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM            = 8622,  -- You were unable to obtain the item.
@@ -24,7 +25,7 @@ zones[dsp.zone.LOWER_DELKFUTTS_TOWER] =
         ALREADY_POSSESS_TEMP             = 8624,  -- You already possess that temporary item.
         NO_COMBINATION                   = 8629,  -- You were unable to enter a combination.
         REGIME_REGISTERED                = 10707, -- New training regime registered!
-        COMMON_SENSE_SURVIVAL            = 11761, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL            = 11764, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
     },
     mob =
     {
@@ -50,4 +51,4 @@ zones[dsp.zone.LOWER_DELKFUTTS_TOWER] =
     },
 }
 
-return zones[dsp.zone.LOWER_DELKFUTTS_TOWER]
+return zones[tpz.zone.LOWER_DELKFUTTS_TOWER]

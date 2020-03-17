@@ -13,11 +13,11 @@ end
 
 function onSpellCast(caster, target, spell)
     -- Pull base stats.
-    local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
+    local dMND = caster:getStat(tpz.mod.MND) - target:getStat(tpz.mod.MND)
 
     -- Base evasion reduction is determend by enfeebling skill
     -- Caps at -25 evasion at 125 skill
-    local basePotency = utils.clamp(math.floor(caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 5), 0, 25)
+    local basePotency = utils.clamp(math.floor(caster:getSkillLevel(tpz.skill.ENFEEBLING_MAGIC) / 5), 0, 25)
 
     -- dMND is tacked on after
     -- Min cap: 0 at 0 dMND
@@ -29,19 +29,19 @@ function onSpellCast(caster, target, spell)
     local duration = calculateDuration(120, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     local params = {}
     params.diff = dMND
-    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.skillType = tpz.skill.ENFEEBLING_MAGIC
     params.bonus = 0
-    params.effect = dsp.effect.EVASION_DOWN
+    params.effect = tpz.effect.EVASION_DOWN
     local resist = applyResistanceEffect(caster, target, spell, params)
 
     if resist >= 0.5 then -- Do it!
         if target:addStatusEffect(params.effect, power, 0, duration * resist) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
 
     return params.effect

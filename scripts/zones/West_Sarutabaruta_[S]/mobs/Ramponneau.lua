@@ -6,9 +6,9 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
-    mob:addStatusEffect(dsp.effect.SHOCK_SPIKES, 10, 0, 0)
-    mob:getStatusEffect(dsp.effect.SHOCK_SPIKES):setFlag(dsp.effectFlag.DEATH)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
+    mob:addStatusEffect(tpz.effect.SHOCK_SPIKES, 10, 0, 0)
+    mob:getStatusEffect(tpz.effect.SHOCK_SPIKES):setFlag(tpz.effectFlag.DEATH)
 end
 
 function onMobFight(mob,target)
@@ -16,7 +16,7 @@ function onMobFight(mob,target)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENBLIZZARD)
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.ENBLIZZARD)
 end
 
 function onMobDeath(mob, player, isKiller)

@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.EVA, -12)
+    target:addMod(tpz.mod.EVA, -12)
 end
 
 function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.EVA, -12)
+    target:delMod(tpz.mod.EVA, -12)
 end

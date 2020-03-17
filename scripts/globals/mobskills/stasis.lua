@@ -18,9 +18,9 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local shadows = MOBPARAM_1_SHADOW
-    local dmg = MobFinalAdjustments(10,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,shadows)
+    local dmg = MobFinalAdjustments(10,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.BLUNT,shadows)
 
-    local typeEffect = dsp.effect.PARALYSIS
+    local typeEffect = tpz.effect.PARALYSIS
 
         mob:resetEnmity(target)
 

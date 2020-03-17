@@ -8,7 +8,7 @@ require("scripts/globals/status")
 -- Todo: Pups can make it change frames, Overload causes Rage
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+    mob:setMobMod(tpz.mobMod.IDLE_DESPAWN, 300)
 end
 
 function onMobSpawn(mob)

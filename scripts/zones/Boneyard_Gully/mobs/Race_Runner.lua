@@ -24,12 +24,12 @@ function onMobSpawn(mob)
 end
 
 function onMobRoamAction(mob)
-    dsp.path.patrol(mob, path, dsp.path.flag.REVERSE)
+    tpz.path.patrol(mob, path, tpz.path.flag.REVERSE)
 end
 
 function onMobRoam(mob)
     if not mob:isFollowingPath() then
-        mob:pathThrough(dsp.path.first(path))
+        mob:pathThrough(tpz.path.first(path))
     end
 end
 

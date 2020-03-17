@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local merits = player:getMerit(dsp.merit.DARK_SEAL)
-    player:addStatusEffect(dsp.effect.DARK_SEAL,merits,0,60)
+    local merits = player:getMerit(tpz.merit.DARK_SEAL)
+    player:addStatusEffect(tpz.effect.DARK_SEAL,merits,0,60)
 end

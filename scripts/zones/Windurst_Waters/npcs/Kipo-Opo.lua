@@ -14,11 +14,11 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,4);
-    local SkillLevel = player:getSkillLevel(dsp.skill.COOKING);
-    local Cost = getAdvImageSupportCost(player,dsp.skill.COOKING);
+    local SkillLevel = player:getSkillLevel(tpz.skill.COOKING);
+    local Cost = getAdvImageSupportCost(player,tpz.skill.COOKING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(dsp.effect.COOKING_IMAGERY) == false) then
+        if (player:hasStatusEffect(tpz.effect.COOKING_IMAGERY) == false) then
             player:startEvent(10015,Cost,SkillLevel,0,495,player:getGil(),0,0,0); -- p1 = skill level
         else
             player:startEvent(10015,Cost,SkillLevel,0,495,player:getGil(),28589,0,0);
@@ -32,11 +32,11 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    local Cost = getAdvImageSupportCost(player,dsp.skill.COOKING);
+    local Cost = getAdvImageSupportCost(player,tpz.skill.COOKING);
 
     if (csid == 10015 and option == 1) then
         player:delGil(Cost);
         player:messageSpecial(ID.text.COOKING_SUPPORT,0,8,0);
-        player:addStatusEffect(dsp.effect.COOKING_IMAGERY,3,0,480);
+        player:addStatusEffect(tpz.effect.COOKING_IMAGERY,3,0,480);
     end
 end;

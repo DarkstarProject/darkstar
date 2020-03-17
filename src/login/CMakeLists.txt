@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(darkstar)
+project(topaz)
 
 add_definitions(
     -DdsTCPSERV
@@ -15,7 +15,7 @@ else()
 endif()
 
 
-add_executable(DSConnect-server
+add_executable(topaz_connect
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
     ../common/kernel.cpp
@@ -30,27 +30,27 @@ add_executable(DSConnect-server
     ${resource}
 )
 
-set_target_properties(DSConnect-server PROPERTIES OUTPUT_NAME DSConnect-server${spacer}${platform_suffix})
+set_target_properties(topaz_connect PROPERTIES OUTPUT_NAME topaz_connect${spacer}${platform_suffix})
 
 if(UNIX)
-    target_include_directories(DSConnect-server PRIVATE
+    target_include_directories(topaz_connect PRIVATE
         ${MYSQLCLIENT_INCLUDE_DIRS}
     )
 
-    target_link_libraries(DSConnect-server
+    target_link_libraries(topaz_connect
         ${MYSQLCLIENT_LIBRARIES}
         ${ZMQ_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
     )
 else()
-    target_include_directories(DSConnect-server PRIVATE
+    target_include_directories(topaz_connect PRIVATE
         ../common
         ../../win32/external
         ../../win32/external/mysql
         ../../win32/external/zmq
     )
 
-    target_link_libraries(DSConnect-server
+    target_link_libraries(topaz_connect
         libmariadb${platform_suffix}
         libzmq${lib_debug}${spacer}${platform_suffix}
         WS2_32

@@ -8,7 +8,7 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
 end
 
 function onMobDrawIn(mob, target)
@@ -17,17 +17,17 @@ function onMobDrawIn(mob, target)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PETRIFY, {chance = 100})
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.PETRIFY, {chance = 100})
 end
 
 function onMobDisengage(mob, weather)
-    if weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM then
+    if weather ~= tpz.weather.DUST_STORM and weather ~= tpz.weather.SAND_STORM then
         DespawnMob(mob:getID())
     end
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.VINEGAR_EVAPORATOR)
+    player:addTitle(tpz.title.VINEGAR_EVAPORATOR)
 end
 
 function onMobDespawn(mob)

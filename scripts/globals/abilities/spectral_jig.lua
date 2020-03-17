@@ -18,15 +18,15 @@ end
 
 function onUseAbility(player,target,ability)
     local baseDuration = 180
-    local durationMultiplier = 1.0 + utils.clamp(player:getMod(dsp.mod.JIG_DURATION), 0, 50) / 100
+    local durationMultiplier = 1.0 + utils.clamp(player:getMod(tpz.mod.JIG_DURATION), 0, 50) / 100
     local finalDuration = math.floor(baseDuration * durationMultiplier * SNEAK_INVIS_DURATION_MULTIPLIER)
 
-    if (player:hasStatusEffect(dsp.effect.SNEAK) == false) then
-        player:addStatusEffect(dsp.effect.SNEAK,0,10,finalDuration)
-        player:addStatusEffect(dsp.effect.INVISIBLE,0,10,finalDuration)
-        ability:setMsg(dsp.msg.basic.SPECTRAL_JIG) -- Gains the effect of sneak and invisible
+    if (player:hasStatusEffect(tpz.effect.SNEAK) == false) then
+        player:addStatusEffect(tpz.effect.SNEAK,0,10,finalDuration)
+        player:addStatusEffect(tpz.effect.INVISIBLE,0,10,finalDuration)
+        ability:setMsg(tpz.msg.basic.SPECTRAL_JIG) -- Gains the effect of sneak and invisible
     else
-        ability:setMsg(dsp.msg.basic.NO_EFFECT) -- no effect on player.
+        ability:setMsg(tpz.msg.basic.NO_EFFECT) -- no effect on player.
     end
 
     return 1

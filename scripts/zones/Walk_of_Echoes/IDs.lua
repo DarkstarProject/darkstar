@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.WALK_OF_ECHOES] =
+zones[tpz.zone.WALK_OF_ECHOES] =
 {
     text =
     {
@@ -23,4 +23,4 @@ zones[dsp.zone.WALK_OF_ECHOES] =
     },
 }
 
-return zones[dsp.zone.WALK_OF_ECHOES]
+return zones[tpz.zone.WALK_OF_ECHOES]

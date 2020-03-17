@@ -12,12 +12,12 @@
     defined(__THUMBEB__) || \
     defined(__AARCH64EB__) || \
     defined(_MIBSEB) || defined(__MIBSEB) || defined(__MIBSEB__)
-#   define DSP_BIG_ENDIAN 1
+#   define TPZ_BIG_ENDIAN 1
 #else
-#   define DSP_BIG_ENDIAN 0
+#   define TPZ_BIG_ENDIAN 0
 #endif
 
-#if DSP_BIG_ENDIAN
+#if TPZ_BIG_ENDIAN
 #   if defined(__clang__) || (__GNUC__ >= 4 && __GNUC_MINOR__ >= 3 && !defined(__MINGW32__) && !defined(__MINGW64__))
 #       define bswap16 __builtin_bswap16
 #       define bswap32 __builtin_bswap32
@@ -57,7 +57,7 @@ static struct zlib zlib;
 
 static void swap32_if_be(uint32 *v, const size_t memb)
 {
-#if DSP_BIG_ENDIAN
+#if TPZ_BIG_ENDIAN
     for (size_t i = 0; i < memb; ++i)
         v[i] = bswap32(v[i]);
 #else

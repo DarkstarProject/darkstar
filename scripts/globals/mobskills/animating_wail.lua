@@ -20,7 +20,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local power = 1500
     local duration = 300
-    local typeEffect = dsp.effect.HASTE
+    local typeEffect = tpz.effect.HASTE
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration))
     return typeEffect

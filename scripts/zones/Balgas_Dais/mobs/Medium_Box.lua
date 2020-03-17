@@ -9,7 +9,7 @@ require("scripts/globals/status")
 function replaceWithCrate(mob)
     local crate = GetNPCByID(mob:getID() + 2)
     crate:teleport(mob:getPos(), mob:getRotPos())
-    crate:setStatus(dsp.status.NORMAL)
+    crate:setStatus(tpz.status.NORMAL)
 end
 
 function onMobEngaged (mob, target)
@@ -19,7 +19,7 @@ function onMobEngaged (mob, target)
     if small:getLocalVar("engaged") == 0 then
         small:setLocalVar("engaged", 1)
 
-        mob:setMobMod(dsp.mobMod.DRAW_IN, 1)
+        mob:setMobMod(tpz.mobMod.DRAW_IN, 1)
         DespawnMob(mobId - 1)
         DespawnMob(mobId + 1)
 

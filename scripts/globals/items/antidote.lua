@@ -12,8 +12,8 @@ end
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(dsp.effect.POISON) == true) then
-        target:delStatusEffect(dsp.effect.POISON)
+    if (target:hasStatusEffect(tpz.effect.POISON) == true) then
+        target:delStatusEffect(tpz.effect.POISON)
     end
 end
 

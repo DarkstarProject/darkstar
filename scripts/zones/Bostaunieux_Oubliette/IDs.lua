@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
+zones[tpz.zone.BOSTAUNIEUX_OUBLIETTE] =
 {
     text =
     {
@@ -16,15 +16,16 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
         GIL_OBTAINED             = 6548,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6550,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6561,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET    = 6576,  -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
         CHUMIA_DIALOG            = 7308,  -- Welcome to Bostaunieux Oubliette...
         SEEMS_LOCKED             = 7310,  -- It seems to be locked.
         SPIRAL_HELL_LEARNED      = 7417,  -- You have learned the weapon skill Spiral Hell!
         SENSE_OMINOUS_PRESENCE   = 7418,  -- You sense an ominous presence...
-        ITEMS_ITEMS_LA_LA        = 7421,  -- You can hear a strange voice... "Items, Items, la la la la la~♪"
+        ITEMS_ITEMS_LA_LA        = 7421,  -- You can hear a strange voice... Items, items, la la la la la
         GOBLIN_SLIPPED_AWAY      = 7427,  -- The Goblin slipped away when you were not looking...
         REGIME_REGISTERED        = 9532,  -- New training regime registered!
-        COMMON_SENSE_SURVIVAL    = 10622, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+        COMMON_SENSE_SURVIVAL    = 10625, -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
         PLAYER_OBTAINS_ITEM      = 10584, -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 10585, -- You were unable to obtain the item.
         PLAYER_OBTAINS_TEMP_ITEM = 10586, -- <name> obtains the temporary item: <item>!
@@ -69,4 +70,4 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
     },
 }
 
-return zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE]
+return zones[tpz.zone.BOSTAUNIEUX_OUBLIETTE]

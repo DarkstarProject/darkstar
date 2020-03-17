@@ -6,16 +6,17 @@ import unnamed_flags
 import char_unlock_table_columns
 import HP_masks_to_blobs
 import crystal_storage
+import broken_linkshells
 
 credentials = {}
 db = None
 cur = None
 
 def connect():
-    print("Loading conf/map_darkstar.conf")
+    print("Loading conf/map.conf")
 
     # Grab mysql credentials
-    filename = "../conf/map_darkstar.conf"
+    filename = "../conf/map.conf"
 
     global credentials
     global db
@@ -78,6 +79,7 @@ def run_all_migrations():
     run_migration(char_unlock_table_columns)
     run_migration(HP_masks_to_blobs)
     run_migration(crystal_storage)
+    run_migration(broken_linkshells)
     close()
 
     print("Finished running all migrations")

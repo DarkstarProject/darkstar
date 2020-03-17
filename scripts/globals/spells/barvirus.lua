@@ -10,5 +10,5 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    return applyBarstatus(dsp.effect.BARVIRUS,caster,target,spell)
+    return applyBarstatus(tpz.effect.BARVIRUS,caster,target,spell)
 end

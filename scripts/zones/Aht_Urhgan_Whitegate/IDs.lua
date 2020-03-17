@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.AHT_URHGAN_WHITEGATE] =
+zones[tpz.zone.AHT_URHGAN_WHITEGATE] =
 {
     text =
     {
@@ -67,4 +67,4 @@ zones[dsp.zone.AHT_URHGAN_WHITEGATE] =
     },
 }
 
-return zones[dsp.zone.AHT_URHGAN_WHITEGATE]
+return zones[tpz.zone.AHT_URHGAN_WHITEGATE]

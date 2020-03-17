@@ -10,7 +10,7 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effect.ENFIRE_II
+    local effect = tpz.effect.ENFIRE_II
     doEnspell(caster,target,spell,effect)
     return effect
 end

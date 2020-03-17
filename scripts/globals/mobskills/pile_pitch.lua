@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
     -- skillList 727 = Proto-Omega
     -- skillList 728 = Ultima
     -- skillList 729 = Proto-Ultima
-    local skillList = mob:getMobMod(dsp.mobMod.SKILL_LIST)
+    local skillList = mob:getMobMod(tpz.mobMod.SKILL_LIST)
     local mobhp = mob:getHPP()
 
     if ((skillList == 54 and mobhp < 26) or (skillList == 727 and mob:AnimationSub() == 1)) then
@@ -29,7 +29,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local targetCurrentHP = target:getHP()
     local hpset = target:getMaxHP() * 0.05
-    local typeEffect = dsp.effect.BIND
+    local typeEffect = tpz.effect.BIND
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30)
 
     if (targetCurrentHP > hpset) then
@@ -38,6 +38,6 @@ function onMobWeaponSkill(target, mob, skill)
         dmg = 0
     end
 
-    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.NONE)
+    target:takeDamage(dmg, mob, tpz.attackType.MAGICAL, tpz.damageType.NONE)
     return dmg
 end

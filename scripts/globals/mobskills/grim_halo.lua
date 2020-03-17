@@ -10,7 +10,7 @@ require("scripts/globals/status")
 
 function onMobSkillCheck(target,mob,skill)
     local job = mob:getMainJob()
-    if (job == dsp.job.WAR or job == dsp.job.BLM or job == dsp.job.DRK or job == dsp.job.SAM or job == dsp.job.DRG or job == dsp.job.SMN) then
+    if (job == tpz.job.WAR or job == tpz.job.BLM or job == tpz.job.DRK or job == tpz.job.SAM or job == tpz.job.DRG or job == tpz.job.SMN) then
         return 0
     end
     return 1
@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 2.5
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,info.hitslanded)
-    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.PHYSICAL,tpz.damageType.BLUNT,info.hitslanded)
+    target:takeDamage(dmg, mob, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
     return dmg
 end

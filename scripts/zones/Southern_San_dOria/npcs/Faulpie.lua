@@ -11,23 +11,23 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,dsp.skill.LEATHERCRAFT);
+    local newRank = tradeTestItem(player,npc,trade,tpz.skill.LEATHERCRAFT);
 
     if (newRank ~= 0) then
-        player:setSkillRank(dsp.skill.LEATHERCRAFT,newRank);
+        player:setSkillRank(tpz.skill.LEATHERCRAFT,newRank);
         player:startEvent(649,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(dsp.skill.LEATHERCRAFT);
-    local testItem = getTestItem(player,npc,dsp.skill.LEATHERCRAFT);
+    local craftSkill = player:getSkillLevel(tpz.skill.LEATHERCRAFT);
+    local testItem = getTestItem(player,npc,tpz.skill.LEATHERCRAFT);
     local guildMember = isGuildMember(player,7);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,dsp.skill.LEATHERCRAFT) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,tpz.skill.LEATHERCRAFT) == 1) then getNewRank = 100; end
 
-    if (player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
+    if (player:getCurrentMission(ASA) == tpz.mission.id.asa.THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
         getNewRank ~= 100) then
         local item = 0;
         local asaStatus = player:getCharVar("ASA_Status");

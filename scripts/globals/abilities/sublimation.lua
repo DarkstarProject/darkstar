@@ -17,8 +17,8 @@ end
 
 function onUseAbility(player,target,ability)
 
-    local sublimationComplete = player:getStatusEffect(dsp.effect.SUBLIMATION_COMPLETE)
-    local sublimationCharging = player:getStatusEffect(dsp.effect.SUBLIMATION_ACTIVATED)
+    local sublimationComplete = player:getStatusEffect(tpz.effect.SUBLIMATION_COMPLETE)
+    local sublimationCharging = player:getStatusEffect(tpz.effect.SUBLIMATION_ACTIVATED)
     local mp = 0
 
     if sublimationComplete ~= nil then
@@ -29,8 +29,8 @@ function onUseAbility(player,target,ability)
             mp = maxmp - currmp
         end
         player:addMP(mp)
-        player:delStatusEffectSilent(dsp.effect.SUBLIMATION_COMPLETE)
-        ability:setMsg(dsp.msg.basic.JA_RECOVERS_MP)
+        player:delStatusEffectSilent(tpz.effect.SUBLIMATION_COMPLETE)
+        ability:setMsg(tpz.msg.basic.JA_RECOVERS_MP)
     elseif sublimationCharging ~= nil then
         mp = sublimationCharging:getPower()
         local maxmp = player:getMaxMP()
@@ -39,15 +39,15 @@ function onUseAbility(player,target,ability)
             mp = maxmp - currmp
         end
         player:addMP(mp)
-        player:delStatusEffectSilent(dsp.effect.SUBLIMATION_ACTIVATED)
-        ability:setMsg(dsp.msg.basic.JA_RECOVERS_MP)
+        player:delStatusEffectSilent(tpz.effect.SUBLIMATION_ACTIVATED)
+        ability:setMsg(tpz.msg.basic.JA_RECOVERS_MP)
     else
-        local refresh = player:getStatusEffect(dsp.effect.REFRESH)
+        local refresh = player:getStatusEffect(tpz.effect.REFRESH)
         if refresh == nil or refresh:getSubPower() < 3 then
-            player:delStatusEffect(dsp.effect.REFRESH)
-            player:addStatusEffect(dsp.effect.SUBLIMATION_ACTIVATED,0,3,7200)
+            player:delStatusEffect(tpz.effect.REFRESH)
+            player:addStatusEffect(tpz.effect.SUBLIMATION_ACTIVATED,0,3,7200)
         else
-            ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2)
+            ability:setMsg(tpz.msg.basic.JA_NO_EFFECT_2)
         end
     end
     return mp

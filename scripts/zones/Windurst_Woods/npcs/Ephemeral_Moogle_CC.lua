@@ -12,17 +12,17 @@ local tradeEvent = 898
 local failEvent = 900
 
 function onTrade(player, npc, trade)
-    dsp.ephemeral.onTrade(player, trade, tradeEvent, failEvent)
+    tpz.ephemeral.onTrade(player, trade, tradeEvent, failEvent)
 end
 
 function onTrigger(player, npc)
-    dsp.ephemeral.onTrigger(player, triggerEvent)
+    tpz.ephemeral.onTrigger(player, triggerEvent)
 end
 
 function onEventUpdate(player, csid, option)
-    dsp.ephemeral.onEventUpdate(player)
+    tpz.ephemeral.onEventUpdate(player)
 end
 
 function onEventFinish(player, csid, option)
-    dsp.ephemeral.onEventFinish(player, option, csid == tradeEvent)
+    tpz.ephemeral.onEventFinish(player, option, csid == tradeEvent)
 end

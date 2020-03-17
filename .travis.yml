@@ -30,7 +30,7 @@ install:
 before_script:
   - g++ --version
   - python3 ./tools/price_checker.py
-  - mysql -u root -e 'create database dspdb_test;'
+  - mysql -u root -e 'create database tpzdb_test;'
   - sh travis_sql.sh
   - sh travis_lua.sh
 

@@ -13,10 +13,10 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local legendary = player:hasTitle(dsp.title.LEGENDARY_LEGIONNAIRE) and 1 or 0
+    local legendary = player:hasTitle(tpz.title.LEGENDARY_LEGIONNAIRE) and 1 or 0
     local capacity =
-        (player:hasKeyItem(dsp.ki.LEGION_TOME_PAGE_MINIMUS) and 1 or 0) +
-        (player:hasKeyItem(dsp.ki.LEGION_TOME_PAGE_MAXIMUS) and 2 or 0)
+        (player:hasKeyItem(tpz.ki.LEGION_TOME_PAGE_MINIMUS) and 1 or 0) +
+        (player:hasKeyItem(tpz.ki.LEGION_TOME_PAGE_MAXIMUS) and 2 or 0)
 
     player:startEvent(8008, 0, legendary, capacity)
 end

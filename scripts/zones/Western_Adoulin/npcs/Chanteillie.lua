@@ -12,8 +12,8 @@ require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    local DNGITL = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.DO_NOT_GO_INTO_THE_LIGHT);
-    local VVC = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.VEGETABLE_VEGETABLE_CRISIS);
+    local DNGITL = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.DO_NOT_GO_INTO_THE_LIGHT);
+    local VVC = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.VEGETABLE_VEGETABLE_CRISIS);
 
     -- DO NOT GO INTO THE LIGHT (Urunday Lumber, Damascus Ingot, Fire Crystal)
     if (DNGITL == QUEST_ACCEPTED and player:getCharVar("DNGITL_Status") == 3 and npcUtil.tradeHas(trade, {3927, 658, 4096})) then
@@ -26,11 +26,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local DNGITL = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.DO_NOT_GO_INTO_THE_LIGHT);
-    local VVC = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.VEGETABLE_VEGETABLE_CRISIS);
+    local DNGITL = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.DO_NOT_GO_INTO_THE_LIGHT);
+    local VVC = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.VEGETABLE_VEGETABLE_CRISIS);
 
     -- DO NOT GO INTO THE LIGHT
-    if (DNGITL == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.INVENTORS_COALITION_PICKAXE)) then
+    if (DNGITL == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.INVENTORS_COALITION_PICKAXE)) then
         player:startEvent(5077);
 
     -- VEGETABLE VEGETABLE CRISIS
@@ -38,7 +38,7 @@ function onTrigger(player,npc)
         player:startEvent(5088);
 
     -- STANDARD DIALOGS
-    elseif (player:getCurrentMission(SOA) >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
+    elseif (player:getCurrentMission(SOA) >= tpz.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         player:startEvent(588); -- Standard dialogue
     else
         player:startEvent(531); -- Dialogue prior to joining colonization effort
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     -- DO NOT GO INTO THE LIGHT
     if (csid == 5076) then
         player:confirmTrade();
-        npcUtil.giveKeyItem(player, dsp.ki.INVENTORS_COALITION_PICKAXE);
+        npcUtil.giveKeyItem(player, tpz.ki.INVENTORS_COALITION_PICKAXE);
         player:setCharVar("DNGITL_Status", 0);
 
     -- VEGETABLE VEGETABLE CRISIS

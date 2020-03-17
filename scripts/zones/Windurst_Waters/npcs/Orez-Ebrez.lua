@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         12448,   151,3,     --Bronze Cap
         12449,  1471,3      --Brass Cap
     }
-    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
+    tpz.shop.nation(player, stock, tpz.nation.WINDURST);
 
 end;
 

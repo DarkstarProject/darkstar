@@ -14,13 +14,13 @@ function onTrade(player, npc, trade)
             player:confirmTrade()
         end
     else
-        dsp.helm.onTrade(player, npc, trade, dsp.helm.type.EXCAVATION, 60)
+        tpz.helm.onTrade(player, npc, trade, tpz.helm.type.EXCAVATION, 60)
     end
 
 end
 
 function onTrigger(player, npc)
-    dsp.helm.onTrigger(player, dsp.helm.type.EXCAVATION)
+    tpz.helm.onTrigger(player, tpz.helm.type.EXCAVATION)
 end
 
 function onEventUpdate(player, csid, option)

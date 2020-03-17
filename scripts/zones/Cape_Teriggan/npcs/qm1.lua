@@ -8,5 +8,5 @@ require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Cape_Teriggan/IDs")
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.empyreal_arrow,player,ID.mob.STOLAS)
+    tpz.wsquest.handleQmTrigger(tpz.wsquest.empyreal_arrow,player,ID.mob.STOLAS)
 end

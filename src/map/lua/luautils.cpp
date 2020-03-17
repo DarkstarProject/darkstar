@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -313,16 +311,16 @@ namespace luautils
         switch (lua_gettop(L))
         {
         case 0:
-            lua_pushnumber(L, dsprand::GetRandomNumber(1.));
+            lua_pushnumber(L, tpzrand::GetRandomNumber(1.));
             break;
         case 1:
             luaL_checkinteger(L, 1);
-            lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(1, lua_tointeger(L, 1) + 1));
+            lua_pushinteger(L, tpzrand::GetRandomNumber<lua_Integer>(1, lua_tointeger(L, 1) + 1));
             break;
         default:
             luaL_checkinteger(L, 1);
             luaL_checkinteger(L, 2);
-            lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(lua_tointeger(L, 1), lua_tointeger(L, 2) + 1));
+            lua_pushinteger(L, tpzrand::GetRandomNumber<lua_Integer>(lua_tointeger(L, 1), lua_tointeger(L, 2) + 1));
             break;
         }
         return 1;
@@ -449,7 +447,7 @@ namespace luautils
 
     int32 GetRegionOwner(lua_State* L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
         lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L, 1)));
         return 1;
@@ -457,7 +455,7 @@ namespace luautils
 
     int32 GetRegionInfluence(lua_State* L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
         lua_pushinteger(L, conquest::GetInfluenceGraphics((REGIONTYPE)lua_tointeger(L, 1)));
         return 1;
@@ -471,7 +469,7 @@ namespace luautils
 
     int32 getNationRank(lua_State* L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
         uint8 balance = conquest::GetBalance();
         switch (lua_tointeger(L, 1))
@@ -530,11 +528,11 @@ namespace luautils
             return -1;
         }
 
-        lua_getglobal(LuaHandle, "dsp");
+        lua_getglobal(LuaHandle, "tpz");
         if (lua_isnil(LuaHandle, -1))
         {
             lua_pop(LuaHandle, 1);
-            ShowError("luautils::SetRegionalConquestOverseers: undefined global dsp\n");
+            ShowError("luautils::SetRegionalConquestOverseers: undefined global tpz\n");
             return -1;
         }
 
@@ -542,7 +540,7 @@ namespace luautils
         if (lua_isnil(LuaHandle, -1))
         {
             lua_pop(LuaHandle, 2);
-            ShowError("luautils::SetRegionalConquestOverseers: undefined field dsp.conquest\n");
+            ShowError("luautils::SetRegionalConquestOverseers: undefined field tpz.conquest\n");
             return -1;
         }
 
@@ -550,7 +548,7 @@ namespace luautils
         if (lua_isnil(LuaHandle, -1))
         {
             lua_pop(LuaHandle, 3);
-            ShowError("luautils::SetRegionalConquestOverseers: undefined procedure dsp.conquest.setRegionalConquestOverseers\n");
+            ShowError("luautils::SetRegionalConquestOverseers: undefined procedure tpz.conquest.setRegionalConquestOverseers\n");
             return -1;
         }
 
@@ -1046,7 +1044,7 @@ namespace luautils
 
     int32 GetMobAction(lua_State* L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
         uint32 mobid = (uint32)lua_tointeger(L, -1);
 
@@ -1685,7 +1683,7 @@ namespace luautils
 
     int32 OnNpcSpawn(CBaseEntity* PNpc)
     {
-        DSP_DEBUG_BREAK_IF(PNpc == nullptr);
+        TPZ_DEBUG_BREAK_IF(PNpc == nullptr);
 
         lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
 
@@ -2091,7 +2089,7 @@ namespace luautils
 
     int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
     {
-        DSP_DEBUG_BREAK_IF(PSpell == nullptr);
+        TPZ_DEBUG_BREAK_IF(PSpell == nullptr);
 
         lua_prepscript(
             PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
@@ -2160,7 +2158,7 @@ namespace luautils
 
     std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
     {
-        DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
+        TPZ_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
 
@@ -2200,7 +2198,7 @@ namespace luautils
 
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
     {
-        DSP_DEBUG_BREAK_IF(PSpell == nullptr);
+        TPZ_DEBUG_BREAK_IF(PSpell == nullptr);
 
         PTarget->PAI->EventHandler.triggerListener("MAGIC_TAKE", PTarget, PCaster, PSpell);
 
@@ -2240,9 +2238,9 @@ namespace luautils
 
     int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
-        DSP_DEBUG_BREAK_IF(PAttacker == nullptr);
-        DSP_DEBUG_BREAK_IF(PWeaponskill == NULL);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PAttacker == nullptr);
+        TPZ_DEBUG_BREAK_IF(PWeaponskill == NULL);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2279,7 +2277,7 @@ namespace luautils
 
     int32 OnMobInitialize(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2303,7 +2301,7 @@ namespace luautils
 
     int32 ApplyMixins(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
 
         if (PMob->objtype == TYPE_MOB)
         {
@@ -2363,7 +2361,7 @@ namespace luautils
 
     int32 ApplyZoneMixins(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
 
         if (PMob->objtype == TYPE_MOB)
         {
@@ -2484,7 +2482,7 @@ namespace luautils
 
     int32 OnPath(CBaseEntity* PEntity)
     {
-        DSP_DEBUG_BREAK_IF(PEntity == nullptr);
+        TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
 
         if (PEntity->objtype != TYPE_PC)
         {
@@ -2510,7 +2508,7 @@ namespace luautils
 
     int32 OnBattlefieldHandlerInitialise(CZone* PZone)
     {
-        DSP_DEBUG_BREAK_IF(PZone == nullptr);
+        TPZ_DEBUG_BREAK_IF(PZone == nullptr);
 
         lua_prepscript("scripts/globals/battlefield.lua");
 
@@ -2538,7 +2536,7 @@ namespace luautils
 
     int32 OnBattlefieldInitialise(CBattlefield* PBattlefield)
     {
-        DSP_DEBUG_BREAK_IF(PBattlefield == nullptr);
+        TPZ_DEBUG_BREAK_IF(PBattlefield == nullptr);
 
         lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PBattlefield->GetZone()->GetName(), PBattlefield->GetName().c_str());
 
@@ -2560,7 +2558,7 @@ namespace luautils
 
     int32 OnBattlefieldTick(CBattlefield* PBattlefield)
     {
-        DSP_DEBUG_BREAK_IF(PBattlefield == nullptr);
+        TPZ_DEBUG_BREAK_IF(PBattlefield == nullptr);
 
         lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PBattlefield->GetZone()->GetName(), PBattlefield->GetName().c_str());
 
@@ -2584,7 +2582,7 @@ namespace luautils
 
     int32 OnBattlefieldStatusChange(CBattlefield* PBattlefield)
     {
-        DSP_DEBUG_BREAK_IF(PBattlefield == nullptr);
+        TPZ_DEBUG_BREAK_IF(PBattlefield == nullptr);
 
         lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PBattlefield->GetZone()->GetName(), PBattlefield->GetName().c_str());
 
@@ -2613,7 +2611,7 @@ namespace luautils
 
     int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
     {
-        DSP_DEBUG_BREAK_IF(PTarget == nullptr || PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PTarget == nullptr || PMob == nullptr);
 
         CLuaBaseEntity LuaMobEntity(PMob);
         CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -2654,7 +2652,7 @@ namespace luautils
 
     int32 OnMobDisengage(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
 
         uint8 weather = PMob->loc.zone->GetWeather();
 
@@ -2683,7 +2681,7 @@ namespace luautils
 
     int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget)
     {
-        DSP_DEBUG_BREAK_IF(PTarget == nullptr || PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PTarget == nullptr || PMob == nullptr);
 
         CLuaBaseEntity LuaMobEntity(PMob);
         CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -2723,8 +2721,8 @@ namespace luautils
 
     int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
-        DSP_DEBUG_BREAK_IF(PTarget == nullptr || PTarget->objtype == TYPE_NPC);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PTarget == nullptr || PTarget->objtype == TYPE_NPC);
 
         CLuaBaseEntity LuaMobEntity(PMob);
         CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -2750,13 +2748,13 @@ namespace luautils
         return 0;
     }
 
-    int32 OnCriticalHit(CBattleEntity* PMob)
+    int32 OnCriticalHit(CBattleEntity* PMob, CBattleEntity* PAttacker)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
 
-            CLuaBaseEntity LuaMobEntity(PMob);
+        CLuaBaseEntity LuaMobEntity(PMob);
+        CLuaBaseEntity LuaKillerEntity(PAttacker);
 
-        PMob->PAI->EventHandler.triggerListener("CRITICAL_TAKE", PMob);
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
         if (prepFile(File, "onCriticalHit"))
@@ -2765,8 +2763,12 @@ namespace luautils
         }
 
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+        if (PAttacker)
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+        else
+            lua_pushnil(LuaHandle);
 
-        if (lua_pcall(LuaHandle, 1, 0, 0))
+        if (lua_pcall(LuaHandle, 2, 0, 0))
         {
             ShowError("luautils::onCriticalHit: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
@@ -2784,7 +2786,7 @@ namespace luautils
 
     int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
 
         CCharEntity* PChar = dynamic_cast<CCharEntity*>(PKiller);
 
@@ -2929,7 +2931,7 @@ namespace luautils
 
     int32 OnMobSpawn(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
 
         int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
@@ -2954,7 +2956,7 @@ namespace luautils
 
     int32 OnMobRoamAction(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
 
             CLuaBaseEntity LuaMobEntity(PMob);
 
@@ -2985,7 +2987,7 @@ namespace luautils
 
     int32 OnMobRoam(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr || PMob->objtype != TYPE_MOB)
 
             CLuaBaseEntity LuaMobEntity(PMob);
 
@@ -3016,7 +3018,7 @@ namespace luautils
 
     int32 OnMobDespawn(CBaseEntity* PMob)
     {
-        DSP_DEBUG_BREAK_IF(PMob == nullptr);
+        TPZ_DEBUG_BREAK_IF(PMob == nullptr);
 
         int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
@@ -3186,9 +3188,9 @@ namespace luautils
 
         if (criticalHit == true)
         {
-            CBattleEntity* PTarget = (CBattleEntity*)PMob;
-            luautils::OnCriticalHit(PTarget);
+            luautils::OnCriticalHit((CBattleEntity*)PMob, (CBattleEntity*)PChar);
         }
+
         lua_pop(LuaHandle, 4);
         return std::make_tuple(dmg, tpHitsLanded, extraHitsLanded);
     }
@@ -3364,7 +3366,7 @@ namespace luautils
 
     int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget)
     {
-        DSP_DEBUG_BREAK_IF(PAbility == nullptr);
+        TPZ_DEBUG_BREAK_IF(PAbility == nullptr);
 
         char filePath[40] = "scripts/globals/abilities/%s.lua";
 
@@ -3529,7 +3531,7 @@ namespace luautils
 
     int32 clearVarFromAll(lua_State *L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isstring(L, -1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isstring(L, -1));
 
         const char* varname = lua_tostring(L, -1);
 
@@ -3587,7 +3589,7 @@ namespace luautils
 
     void AfterInstanceRegister(CBaseEntity* PChar)
     {
-        DSP_DEBUG_BREAK_IF(!PChar->PInstance);
+        TPZ_DEBUG_BREAK_IF(!PChar->PInstance);
 
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
 
@@ -3841,7 +3843,7 @@ namespace luautils
 
     int32 StartElevator(lua_State* L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
         uint32 ElevatorID = (uint32)lua_tointeger(L, -1);
         CTransportHandler::getInstance()->startElevator(ElevatorID);
@@ -3857,7 +3859,7 @@ namespace luautils
 
     int32 GetServerVariable(lua_State *L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isstring(L, -1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isstring(L, -1));
 
         int32 value = 0;
 
@@ -3881,8 +3883,8 @@ namespace luautils
 
     int32 SetServerVariable(lua_State *L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isstring(L, -2));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isstring(L, -2));
 
         const char* name = lua_tostring(L, -2);
         int32 value = (int32)lua_tointeger(L, -1);
@@ -4160,7 +4162,7 @@ namespace luautils
                 int32 ret = Sql_Query(SqlHandle, "SELECT count(mobid) FROM `nm_spawn_points` where mobid=%u", mobid);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0) > 0)
                 {
-                    r = dsprand::GetRandomNumber(Sql_GetUIntData(SqlHandle, 0));
+                    r = tpzrand::GetRandomNumber(Sql_GetUIntData(SqlHandle, 0));
                 }
                 else
                 {
@@ -4171,7 +4173,7 @@ namespace luautils
                 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    PMob->m_SpawnPoint.rotation = dsprand::GetRandomNumber(256);
+                    PMob->m_SpawnPoint.rotation = tpzrand::GetRandomNumber(256);
                     PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle, 0);
                     PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle, 1);
                     PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle, 2);
@@ -4200,7 +4202,7 @@ namespace luautils
 
     int32 GetMobRespawnTime(lua_State* L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
         uint32 mobid = (uint32)lua_tointeger(L, -1);
         CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
@@ -4330,9 +4332,9 @@ namespace luautils
 
     inline int32 nearLocation(lua_State* L)
     {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+        TPZ_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
 
         position_t center;
         lua_getfield(L, 1, "x");

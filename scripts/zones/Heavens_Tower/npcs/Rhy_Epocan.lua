@@ -14,15 +14,15 @@ function onTrigger(player, npc)
     local currentMission = player:getCurrentMission(WINDURST)
     local missionStatus = player:getCharVar("MissionStatus")
 
-    if currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and missionStatus == 1 then
+    if currentMission == tpz.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and missionStatus == 1 then
         player:startEvent(107)
-    elseif currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and missionStatus == 2 then
+    elseif currentMission == tpz.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and missionStatus == 2 then
         player:startEvent(108)
-    elseif currentMission == dsp.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and missionStatus == 4 then
+    elseif currentMission == tpz.mission.id.windurst.TO_EACH_HIS_OWN_RIGHT and missionStatus == 4 then
         player:startEvent(114)
     elseif
-        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and
-        (missionStatus >= 3 or player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING))
+        player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.MOON_READING and
+        (missionStatus >= 3 or player:hasCompletedMission(WINDURST, tpz.mission.id.windurst.MOON_READING))
     then
         player:startEvent(405)
     else

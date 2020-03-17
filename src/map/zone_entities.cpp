@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -166,8 +164,8 @@ void CZoneEntities::InsertPET(CBaseEntity* PPet)
 
 void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_MOB);
+    TPZ_DEBUG_BREAK_IF(PEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(PEntity->objtype != TYPE_MOB);
 
     CMobEntity* PMob = (CMobEntity*)PEntity;
 
@@ -285,8 +283,8 @@ void CZoneEntities::WeatherChange(WEATHER weather)
 
 void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 {
-    DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->loc.zone != m_zone);
+    TPZ_DEBUG_BREAK_IF(PChar == nullptr);
+    TPZ_DEBUG_BREAK_IF(PChar->loc.zone != m_zone);
 
     //remove pets
     if (PChar->PPet != nullptr)

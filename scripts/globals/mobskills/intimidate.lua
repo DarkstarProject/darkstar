@@ -12,7 +12,7 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.SLOW
+    local typeEffect = tpz.effect.SLOW
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 1250, 0, 120))
     return typeEffect

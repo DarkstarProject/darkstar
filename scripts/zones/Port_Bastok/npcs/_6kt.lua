@@ -40,18 +40,18 @@ function onTimeTrigger(npc, triggerID)
             end
         end
         
-        bridge:updateToEntireZone(dsp.status.NORMAL, dsp.animation.CLOSE_DOOR, true)
-        upperDoor:setAnimation(dsp.animation.CLOSE_DOOR)
-        npc:setAnimation(dsp.animation.CLOSE_DOOR)
+        bridge:updateToEntireZone(tpz.status.NORMAL, tpz.animation.CLOSE_DOOR, true)
+        upperDoor:setAnimation(tpz.animation.CLOSE_DOOR)
+        npc:setAnimation(tpz.animation.CLOSE_DOOR)
 
     elseif (triggerID == 1 or triggerID == 3) then
         --drawbridge needs to close
-        bridge:updateToEntireZone(dsp.status.NORMAL, dsp.animation.OPEN_DOOR, true)
+        bridge:updateToEntireZone(tpz.status.NORMAL, tpz.animation.OPEN_DOOR, true)
         
     elseif (triggerID == 4 or triggerID == 5) then
         --drawbridge has finished closing, reopen entry to walkers
-        upperDoor:setAnimation(dsp.animation.OPEN_DOOR)
-        npc:setAnimation(dsp.animation.OPEN_DOOR)
+        upperDoor:setAnimation(tpz.animation.OPEN_DOOR)
+        npc:setAnimation(tpz.animation.OPEN_DOOR)
     end
 
 end

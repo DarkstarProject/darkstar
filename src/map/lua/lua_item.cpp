@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -50,7 +48,7 @@ CLuaItem::CLuaItem(CItem* PItem)
 
 inline int32 CLuaItem::getID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getID());
     return 1;
@@ -58,7 +56,7 @@ inline int32 CLuaItem::getID(lua_State* L)
 
 inline int32 CLuaItem::getSubID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getSubID());
     return 1;
@@ -66,7 +64,7 @@ inline int32 CLuaItem::getSubID(lua_State* L)
 
 inline int32 CLuaItem::getFlag(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getFlag());
     return 1;
@@ -74,7 +72,7 @@ inline int32 CLuaItem::getFlag(lua_State* L)
 
 inline int32 CLuaItem::getAHCat(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getAHCat());
     return 1;
@@ -82,7 +80,7 @@ inline int32 CLuaItem::getAHCat(lua_State* L)
 
 inline int32 CLuaItem::getQuantity(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getQuantity());
     return 1;
@@ -90,7 +88,7 @@ inline int32 CLuaItem::getQuantity(lua_State* L)
 
 inline int32 CLuaItem::getLocationID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getLocationID());
     return 1;
@@ -98,7 +96,7 @@ inline int32 CLuaItem::getLocationID(lua_State* L)
 
 inline int32 CLuaItem::getSlotID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->getSlotID());
     return 1;
@@ -106,7 +104,7 @@ inline int32 CLuaItem::getSlotID(lua_State* L)
 
 inline int32 CLuaItem::getWornItem(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushinteger(L, m_PLuaItem->m_extra[0]);
     return 1;
@@ -114,8 +112,8 @@ inline int32 CLuaItem::getWornItem(lua_State* L)
 
 inline int32 CLuaItem::isType(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     auto type = (uint8)lua_tointeger(L, 1);
 
@@ -125,8 +123,8 @@ inline int32 CLuaItem::isType(lua_State* L)
 
 inline int32 CLuaItem::isSubType(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     auto subtype = (uint8)lua_tointeger(L, 1);
 
@@ -136,7 +134,7 @@ inline int32 CLuaItem::isSubType(lua_State* L)
 
 inline int32 CLuaItem::getName(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushstring(L, (const char*)m_PLuaItem->getName());
     return 1;
@@ -144,8 +142,8 @@ inline int32 CLuaItem::getName(lua_State* L)
 
 inline int32 CLuaItem::getMod(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
@@ -157,9 +155,9 @@ inline int32 CLuaItem::getMod(lua_State* L)
 
 inline int32 CLuaItem::addMod(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
@@ -172,9 +170,9 @@ inline int32 CLuaItem::addMod(lua_State* L)
 
 inline int32 CLuaItem::delMod(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
@@ -187,8 +185,8 @@ inline int32 CLuaItem::delMod(lua_State* L)
 
 inline int32 CLuaItem::getAugment(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CItemEquipment* PItem = (CItemEquipment*)m_PLuaItem;
 
@@ -205,7 +203,7 @@ inline int32 CLuaItem::getAugment(lua_State* L)
 
 inline int32 CLuaItem::getSkillType(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     auto PItem = dynamic_cast<CItemWeapon*>(m_PLuaItem);
 
@@ -219,7 +217,7 @@ inline int32 CLuaItem::getSkillType(lua_State* L)
 
 inline int32 CLuaItem::getWeaponskillPoints(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     auto PItem = dynamic_cast<CItemWeapon*>(m_PLuaItem);
 
@@ -233,7 +231,7 @@ inline int32 CLuaItem::getWeaponskillPoints(lua_State* L)
 
 inline int32 CLuaItem::isTwoHanded(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     if (CItemWeapon* PWeapon = dynamic_cast<CItemWeapon*>(m_PLuaItem))
     {
@@ -250,7 +248,7 @@ inline int32 CLuaItem::isTwoHanded(lua_State* L)
 
 inline int32 CLuaItem::isHandToHand(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     if (CItemWeapon* PWeapon = dynamic_cast<CItemWeapon*>(m_PLuaItem))
     {
@@ -267,7 +265,7 @@ inline int32 CLuaItem::isHandToHand(lua_State* L)
 
 inline int32 CLuaItem::isShield(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     if (CItemEquipment* PArmor = dynamic_cast<CItemEquipment*>(m_PLuaItem))
     {

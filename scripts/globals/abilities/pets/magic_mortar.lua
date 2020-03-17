@@ -9,7 +9,7 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(dsp.effect.LIGHT_MANEUVER)
+    return master:countEffect(tpz.effect.LIGHT_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
@@ -30,7 +30,7 @@ function onPetAbility(target, automaton, skill, master, action)
     end
 
     local hpdamage = (automaton:getMaxHP() - automaton:getHP()) * ftp
-    local skilldamage = automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE) * ftp
+    local skilldamage = automaton:getSkillLevel(tpz.skill.AUTOMATON_MELEE) * ftp
     local damage = (hpdamage > skilldamage) and hpdamage or skilldamage
 
     if damage > 0 then
@@ -38,6 +38,6 @@ function onPetAbility(target, automaton, skill, master, action)
        automaton:addTP(80)
     end
 
-    target:takeDamage(damage, pet, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
+    target:takeDamage(damage, pet, tpz.attackType.MAGICAL, tpz.damageType.LIGHT)
     return damage
 end

@@ -13,13 +13,13 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local power = 12.5 + (0.10 * player:getMod(dsp.mod.BOOST_EFFECT))
+    local power = 12.5 + (0.10 * player:getMod(tpz.mod.BOOST_EFFECT))
 
-    if (player:hasStatusEffect(dsp.effect.BOOST) == true) then
-        local effect = player:getStatusEffect(dsp.effect.BOOST)
+    if (player:hasStatusEffect(tpz.effect.BOOST) == true) then
+        local effect = player:getStatusEffect(tpz.effect.BOOST)
         effect:setPower(effect:getPower() + power)
-        player:addMod(dsp.mod.ATTP,power)
+        player:addMod(tpz.mod.ATTP,power)
     else
-        player:addStatusEffect(dsp.effect.BOOST,power,1,180)
+        player:addStatusEffect(tpz.effect.BOOST,power,1,180)
     end
 end

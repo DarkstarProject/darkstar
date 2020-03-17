@@ -10,7 +10,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.chocobo.initZone(zone)
+    tpz.chocobo.initZone(zone)
 end
 
 function onZoneIn(player, prevZone)
@@ -29,19 +29,19 @@ end
 function onZoneWeatherChange(weather)
     local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS_OFFSET + 1) -- Indescript Markings (BOOTS)
     if npc then
-        if weather == dsp.weather.RAIN or weather == dsp.weather.THUNDER then
-            npc:setStatus(dsp.status.DISAPPEAR)
+        if weather == tpz.weather.RAIN or weather == tpz.weather.THUNDER then
+            npc:setStatus(tpz.status.DISAPPEAR)
         else
-            npc:setStatus(dsp.status.NORMAL)
+            npc:setStatus(tpz.status.NORMAL)
         end
     end
 
     npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS_OFFSET + 2) -- Indescript Markings (BODY)
     if npc then
-        if weather == dsp.weather.RAIN then
-            npc:setStatus(dsp.status.DISAPPEAR)
+        if weather == tpz.weather.RAIN then
+            npc:setStatus(tpz.status.DISAPPEAR)
         else
-            npc:setStatus(dsp.status.NORMAL)
+            npc:setStatus(tpz.status.NORMAL)
         end
     end
 end

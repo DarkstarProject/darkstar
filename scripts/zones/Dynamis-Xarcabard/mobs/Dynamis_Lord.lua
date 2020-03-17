@@ -11,14 +11,14 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         between = 60,
         specials =
         {
-            {id = dsp.jsa.HUNDRED_FISTS, hpp = 95},
-            {id = dsp.jsa.MIGHTY_STRIKES, hpp = 95},
-            {id = dsp.jsa.BLOOD_WEAPON, hpp = 95},
-            {id = dsp.jsa.CHAINSPELL, hpp = 95},
+            {id = tpz.jsa.HUNDRED_FISTS, hpp = 95},
+            {id = tpz.jsa.MIGHTY_STRIKES, hpp = 95},
+            {id = tpz.jsa.BLOOD_WEAPON, hpp = 95},
+            {id = tpz.jsa.CHAINSPELL, hpp = 95},
         },
     })
 end
@@ -36,7 +36,7 @@ function onMobFight(mob, target)
             pet:updateEnmity(target)
         end
 
-        if pet:getCurrentAction() == dsp.act.ROAMING then
+        if pet:getCurrentAction() == tpz.act.ROAMING then
             pet:updateEnmity(target)
         end
     end
@@ -44,7 +44,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     dynamis.megaBossOnDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.LIFTER_OF_SHADOWS)
+    player:addTitle(tpz.title.LIFTER_OF_SHADOWS)
     if isKiller then
         DespawnMob(ID.mob.YING)
         DespawnMob(ID.mob.YING + 1)

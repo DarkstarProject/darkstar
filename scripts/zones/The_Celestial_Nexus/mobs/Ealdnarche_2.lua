@@ -10,14 +10,14 @@ require("scripts/globals/magic")
 
 function onMobInitialize(mob)
     -- 60% fast cast, -75% physical damage taken, 10tp/tick regain, no standback
-    mob:addMod(dsp.mod.UFASTCAST, 60)
-    mob:addMod(dsp.mod.UDMGPHYS, -75)
-    mob:addMod(dsp.mod.REGAIN, 100)
-    mob:setMobMod(dsp.mobMod.HP_STANDBACK,-1)
+    mob:addMod(tpz.mod.UFASTCAST, 60)
+    mob:addMod(tpz.mod.UDMGPHYS, -75)
+    mob:addMod(tpz.mod.REGAIN, 100)
+    mob:setMobMod(tpz.mobMod.HP_STANDBACK,-1)
 end
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.GA_CHANCE,25)
+    mob:setMobMod(tpz.mobMod.GA_CHANCE,25)
 end
 
 function onMobDeath(mob, player, isKiller)

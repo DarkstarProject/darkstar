@@ -14,13 +14,13 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local HealingTheLand = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.HEALING_THE_LAND);
+    local HealingTheLand = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.HEALING_THE_LAND);
 
-    if (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEAL_OF_BANISHING) == true) then
-        player:delKeyItem(dsp.ki.SEAL_OF_BANISHING);
-        player:messageSpecial(ID.text.FOUND_LOCATION_SEAL, dsp.ki.SEAL_OF_BANISHING);
-    elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEAL_OF_BANISHING) == false) then
-        player:messageSpecial(ID.text.IS_ON_THIS_SEAL, dsp.ki.SEAL_OF_BANISHING);
+    if (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.SEAL_OF_BANISHING) == true) then
+        player:delKeyItem(tpz.ki.SEAL_OF_BANISHING);
+        player:messageSpecial(ID.text.FOUND_LOCATION_SEAL, tpz.ki.SEAL_OF_BANISHING);
+    elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.SEAL_OF_BANISHING) == false) then
+        player:messageSpecial(ID.text.IS_ON_THIS_SEAL, tpz.ki.SEAL_OF_BANISHING);
     else
         player:messageSpecial(ID.text.LETTERS_IS_WRITTEN_HERE);
     end

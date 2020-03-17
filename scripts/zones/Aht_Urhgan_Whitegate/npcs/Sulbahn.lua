@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 
     if guildMember == 1 then
         if npcUtil.tradeHas(trade,2184) then
-            if player:hasStatusEffect(dsp.effect.ALCHEMY_IMAGERY) == false then
+            if player:hasStatusEffect(tpz.effect.ALCHEMY_IMAGERY) == false then
                 player:confirmTrade()
                 player:startEvent(637,17160,1,19405,21215,30030,0,7,0)
             else
@@ -27,7 +27,7 @@ end
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,1)
-    local SkillLevel = player:getSkillLevel(dsp.skill.ALCHEMY)
+    local SkillLevel = player:getSkillLevel(tpz.skill.ALCHEMY)
 
     if guildMember == 1 then
         player:startEvent(636,2,SkillLevel,0,511,0,0,7,2184)
@@ -42,6 +42,6 @@ end
 function onEventFinish(player,csid,option)
     if csid == 637 then
         player:messageSpecial(ID.text.IMAGE_SUPPORT,0,7,0)
-        player:addStatusEffect(dsp.effect.ALCHEMY_IMAGERY,3,0,480)
+        player:addStatusEffect(tpz.effect.ALCHEMY_IMAGERY,3,0,480)
     end
 end

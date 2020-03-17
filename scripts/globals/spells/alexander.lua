@@ -10,20 +10,20 @@ require("scripts/globals/status")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    if (not caster:canUseMisc(dsp.zoneMisc.PET)) then
-        return dsp.msg.basic.CANT_BE_USED_IN_AREA
-    elseif (not caster:hasStatusEffect(dsp.effect.ASTRAL_FLOW)) then
-        return 581
+    if (not caster:canUseMisc(tpz.zoneMisc.PET)) then
+        return tpz.msg.basic.CANT_BE_USED_IN_AREA
+    elseif (not caster:hasStatusEffect(tpz.effect.ASTRAL_FLOW)) then
+        return tpz.msg.basic.MAGIC_MUST_ASTRAL_FLOW
     elseif (caster:hasPet()) then
-        return dsp.msg.basic.ALREADY_HAS_A_PET
-    elseif (caster:getObjType() == dsp.objType.PC) then
+        return tpz.msg.basic.ALREADY_HAS_A_PET
+    elseif (caster:getObjType() == tpz.objType.PC) then
         return avatarMiniFightCheck(caster)
     end
     return 0
 end
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(dsp.pet.id.ALEXANDER)
+    caster:spawnPet(tpz.pet.id.ALEXANDER)
 
     return 0
 end

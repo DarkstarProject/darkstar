@@ -20,9 +20,9 @@ function onMobFight(mob,target)
                 mob:SetMagicCastingEnabled(true);
             end
             if (phase == 4) then -- add Regain in final phase
-                if (mob:hasStatusEffect(dsp.effect.REGAIN) == false) then
-                    mob:addStatusEffect(dsp.effect.REGAIN,7,3,0);
-                    mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH);
+                if (mob:hasStatusEffect(tpz.effect.REGAIN) == false) then
+                    mob:addStatusEffect(tpz.effect.REGAIN,7,3,0);
+                    mob:getStatusEffect(tpz.effect.REGAIN):setFlag(tpz.effectFlag.DEATH);
                 end
             end
             mob:setLocalVar("battlePhase", phase); -- incrementing the phase here instead of in the Dissipation skill because stunning it prevents use.
@@ -31,8 +31,8 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.TEMENOS_LIBERATOR);
+    player:addTitle(tpz.title.TEMENOS_LIBERATOR);
     GetNPCByID(16928768+79):setPos(-559,5,-357);
-    GetNPCByID(16928768+79):setStatus(dsp.status.NORMAL);
-    GetNPCByID(16928768+474):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16928768+79):setStatus(tpz.status.NORMAL);
+    GetNPCByID(16928768+474):setStatus(tpz.status.NORMAL);
 end;

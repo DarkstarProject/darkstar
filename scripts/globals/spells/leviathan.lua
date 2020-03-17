@@ -8,19 +8,18 @@ require("scripts/globals/msg")
 require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-    if (not caster:canUseMisc(dsp.zoneMisc.PET)) then
-        return dsp.msg.basic.CANT_BE_USED_IN_AREA
+function onMagicCastingCheck(caster, target, spell)
+    if (not caster:canUseMisc(tpz.zoneMisc.PET)) then
+        return tpz.msg.basic.CANT_BE_USED_IN_AREA
     elseif (caster:hasPet()) then
-        return dsp.msg.basic.ALREADY_HAS_A_PET
-    elseif (caster:getObjType() == dsp.objType.PC) then
+        return tpz.msg.basic.ALREADY_HAS_A_PET
+    elseif (caster:getObjType() == tpz.objType.PC) then
         return avatarMiniFightCheck(caster)
     end
     return 0
 end
 
-function onSpellCast(caster,target,spell)
-    caster:spawnPet(dsp.pet.id.LEVIATHAN)
-
+function onSpellCast(caster, target, spell)
+    tpz.pet.spawnPet(caster, tpz.pet.id.LEVIATHAN)
     return 0
 end

@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
+zones[tpz.zone.TEMPLE_OF_UGGALEPIH] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         GIL_OBTAINED               = 6389,  -- Obtained <number> gil.
         KEYITEM_OBTAINED           = 6391,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY    = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET      = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE              = 7049,  -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET     = 7208,  -- You can't fish here.
         CHEST_UNLOCKED             = 7316,  -- You unlock the chest!
@@ -87,4 +88,4 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
     },
 }
 
-return zones[dsp.zone.TEMPLE_OF_UGGALEPIH]
+return zones[tpz.zone.TEMPLE_OF_UGGALEPIH]

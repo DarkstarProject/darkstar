@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -27,10 +27,10 @@ end;
 function onTrigger(player,npc)
 
     -- "Rosel the Armorer" quest status var
-    RoselTheArmorer = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.ROSEL_THE_ARMORER);
+    RoselTheArmorer = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.ROSEL_THE_ARMORER);
 
     -- "Rosel the Armorer" - turn in reciept to prince
-    if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.RECEIPT_FOR_THE_PRINCE)) then
+    if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.RECEIPT_FOR_THE_PRINCE)) then
         player:startEvent(507);
     else
         player:showText(npc,ID.text.GUILERME_DIALOG);
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
     -- "Rosel the Armorer", give receipt to NPC:Guilerme
     if (csid == 507) then
-        player:delKeyItem(dsp.ki.RECEIPT_FOR_THE_PRINCE);
+        player:delKeyItem(tpz.ki.RECEIPT_FOR_THE_PRINCE);
     end;
 
 end;

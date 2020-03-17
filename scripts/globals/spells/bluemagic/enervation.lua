@@ -23,12 +23,12 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local typeEffectOne = dsp.effect.DEFENSE_DOWN
-    local typeEffectTwo = dsp.effect.MAGIC_DEF_DOWN
+    local typeEffectOne = tpz.effect.DEFENSE_DOWN
+    local typeEffectTwo = tpz.effect.MAGIC_DEF_DOWN
     local params = {}
-    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
-    params.attribute = dsp.mod.INT
-    params.skillType = dsp.skill.BLUE_MAGIC
+    params.diff = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
+    params.attribute = tpz.mod.INT
+    params.skillType = tpz.skill.BLUE_MAGIC
     params.bonus = 1.0
     local resist = applyResistance(caster, target, spell, params)
     local duration = 30 * resist
@@ -36,18 +36,18 @@ function onSpellCast(caster,target,spell)
 
     if (resist >= 0.5) then
         if (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then -- the def/mag def down does not overwrite the same debuff from any other source
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT) -- no effect
         elseif (target:hasStatusEffect(typeEffectOne)) then
             target:addStatusEffect(typeEffectTwo,8,0,duration)
             returnEffect = typeEffectTwo
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         elseif (target:hasStatusEffect(typeEffectTwo)) then
             target:addStatusEffect(typeEffectOne,10,0,duration)
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
             target:addStatusEffect(typeEffectOne,10,0,duration)
             target:addStatusEffect(typeEffectTwo,8,0,duration)
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         end
     end
 

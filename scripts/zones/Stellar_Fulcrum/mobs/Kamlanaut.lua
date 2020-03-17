@@ -25,15 +25,15 @@ function onMobFight(mob, target)
             newelement = math.random(1,6);
         end
         if (element ~= 0) then
-            mob:delMod(dsp.magic.absorbMod[element], 100);
+            mob:delMod(tpz.magic.absorbMod[element], 100);
         end
         mob:useMobAbility(blades[newelement]);
-        mob:addMod(dsp.magic.absorbMod[newelement], 100);
+        mob:addMod(tpz.magic.absorbMod[newelement], 100);
         mob:setLocalVar("changeTime", mob:getBattleTime() + math.random(1,3)*15);
         mob:setLocalVar("element", newelement);
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.DESTROYER_OF_ANTIQUITY);
+    player:addTitle(tpz.title.DESTROYER_OF_ANTIQUITY);
 end;

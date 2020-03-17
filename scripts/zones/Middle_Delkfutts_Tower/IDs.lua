@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.MIDDLE_DELKFUTTS_TOWER] =
+zones[tpz.zone.MIDDLE_DELKFUTTS_TOWER] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.MIDDLE_DELKFUTTS_TOWER] =
         KEYITEM_OBTAINED         = 6554, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6565, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING      = 6566, -- You are suddenly overcome with a sense of foreboding...
+        FELLOW_MESSAGE_OFFSET    = 6580, -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET   = 7212, -- You can't fish here.
         CHEST_UNLOCKED           = 7320, -- You unlock the chest!
         PLAYER_OBTAINS_ITEM      = 7368, -- <name> obtains <item>!
@@ -71,4 +72,4 @@ zones[dsp.zone.MIDDLE_DELKFUTTS_TOWER] =
     },
 }
 
-return zones[dsp.zone.MIDDLE_DELKFUTTS_TOWER]
+return zones[tpz.zone.MIDDLE_DELKFUTTS_TOWER]

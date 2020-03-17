@@ -14,7 +14,7 @@ end
 function onTrigger(player, npc)
     --player:startEvent(131) -- Same job
     --player:startEvent(133) -- Same race
-    local intermedTmwrk = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.INTRODUCTION_TO_TEAMWORK)
+    local intermedTmwrk = player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.INTRODUCTION_TO_TEAMWORK)
     local sFame = player:getFameLevel(SANDORIA)
 
     if intermedTmwrk == QUEST_AVAILABLE and sFame >= 2 then

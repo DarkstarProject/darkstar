@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
+    local FoodForThought = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.FOOD_FOR_THOUGHT);
     local KenapaFood = player:getCharVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
 
     if (FoodForThought == QUEST_ACCEPTED) then
@@ -36,11 +36,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local OvernightDelivery = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
-    local FoodForThought = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
-    local SayFlowers = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SAY_IT_WITH_FLOWERS);
+    local OvernightDelivery = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.OVERNIGHT_DELIVERY);
+    local FoodForThought = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.FOOD_FOR_THOUGHT);
+    local SayFlowers = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getCharVar("FLOWER_PROGRESS"); -- Variable to track progress of Say It with Flowers.
-    local hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
+    local hatstatus = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.HAT_IN_HAND);
     local KenapaFood = player:getCharVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
     local KenapaOvernight = player:getCharVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
     local KenapaOvernightDay = player:getCharVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
@@ -98,7 +98,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(336); -- Restart the quest from the beginning
         end
-    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_BAG) == false) then
+    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.SMALL_BAG) == false) then
         if (KenapaOvernight == 4) then
             player:startEvent(340); -- Reminder for Overnight Delivery #1
         elseif (KenapaOvernight == 5) then
@@ -108,7 +108,7 @@ function onTrigger(player,npc)
         elseif (KenapaOvernight == 7) then
             player:startEvent(343); -- Reminder for Overnight Delivery #4
         end
-    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_BAG) == true and (HourOfTheDay <= 6 or HourOfTheDay >= 18)) then
+    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.SMALL_BAG) == true and (HourOfTheDay <= 6 or HourOfTheDay >= 18)) then
         if (VanadielDayOfTheYear() == KenapaOvernightDay and (KenapaOvernightHour <= 24 or KenapaOvernightHour < 6)) then
             player:startEvent(348); -- Brought the key item back inside the time frame; got the item and returned it on the same day
         elseif (VanadielDayOfTheYear() == KenapaOvernightDay + 1 and KenapaOvernightHour <= 24) then
@@ -116,7 +116,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(346); -- Failed to return in time
         end
-    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_BAG) == true and HourOfTheDay > 6) then
+    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(tpz.ki.SMALL_BAG) == true and HourOfTheDay > 6) then
         player:startEvent(346); -- Failed to return in time
     elseif (OvernightDelivery == QUEST_COMPLETED) then
         rand = math.random(1,2);
@@ -143,8 +143,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addGil(GIL_RATE*120);
         if (player:getCharVar("Kerutoto_Food_var") == 2 and player:getCharVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.FOOD_FOR_THOUGHT);
-            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.FOOD_FOR_THOUGHT);
+            player:addTitle(tpz.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);
             player:needToZone(true);
             player:setCharVar("Kerutoto_Food_var",0);          -- ------------------------------------------
@@ -164,7 +164,7 @@ function onEventFinish(player,csid,option)
         player:setCharVar("Kenapa_Overnight_var",3);
     elseif (csid == 339) then
         if (option == 0) then
-            player:addQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
+            player:addQuest(WINDURST,tpz.quest.id.windurst.OVERNIGHT_DELIVERY);
             player:setCharVar("Kenapa_Overnight_var",4);
         else
             player:setCharVar("Kenapa_Overnight_var",0);
@@ -178,16 +178,16 @@ function onEventFinish(player,csid,option)
     elseif (csid == 343) then
         player:setCharVar("Kenapa_Overnight_var",4); -- Begin reminder sequence
     elseif (csid == 346) then
-        player:delQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
-        player:delKeyItem(dsp.ki.SMALL_BAG);
+        player:delQuest(WINDURST,tpz.quest.id.windurst.OVERNIGHT_DELIVERY);
+        player:delKeyItem(tpz.ki.SMALL_BAG);
         player:setCharVar("Kenapa_Overnight_Hour_var",0);
         player:setCharVar("Kenapa_Overnight_var",256);
     elseif (csid == 348) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(12590);
-            player:delKeyItem(dsp.ki.SMALL_BAG);
+            player:delKeyItem(tpz.ki.SMALL_BAG);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12590);
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.OVERNIGHT_DELIVERY);
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.OVERNIGHT_DELIVERY);
             player:addFame(WINDURST,100);
             player:needToZone(true);
             player:setCharVar("Kenapa_Overnight_var",0);

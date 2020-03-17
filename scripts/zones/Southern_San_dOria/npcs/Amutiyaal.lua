@@ -44,13 +44,13 @@ Chateau d'Oraguille (East to West)
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.LURE_OF_THE_WILDCAT) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > tpz.mission.id.toau.IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(881);
     end
@@ -59,7 +59,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local LureSandy = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
+    local LureSandy = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.LURE_OF_THE_WILDCAT);
     local WildcatSandy = player:getCharVar("WildcatSandy");
 
     if (LureSandy ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
@@ -74,7 +74,7 @@ function onTrigger(player,npc)
                 player:startEvent(814);
             end
         end
-    elseif (player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM) then
+    elseif (player:getCurrentMission(TOAU) >= tpz.mission.id.toau.PRESIDENT_SALAHEEM) then
         player:startEvent(880);
     else
         player:startEvent(816);
@@ -86,20 +86,20 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 812) then
-        player:addQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
+        player:addQuest(SANDORIA,tpz.quest.id.sandoria.LURE_OF_THE_WILDCAT);
         player:setCharVar("WildcatSandy",0);
-        player:addKeyItem(dsp.ki.RED_SENTINEL_BADGE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
+        player:addKeyItem(tpz.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.RED_SENTINEL_BADGE);
     elseif (csid == 815) then
-        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT);
+        player:completeQuest(SANDORIA,tpz.quest.id.sandoria.LURE_OF_THE_WILDCAT);
         player:addFame(SANDORIA,150);
         player:setCharVar("WildcatSandy",0);
-        player:delKeyItem(dsp.ki.RED_SENTINEL_BADGE);
-        player:addKeyItem(dsp.ki.RED_INVITATION_CARD);
-        player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.RED_SENTINEL_BADGE);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_INVITATION_CARD);
+        player:delKeyItem(tpz.ki.RED_SENTINEL_BADGE);
+        player:addKeyItem(tpz.ki.RED_INVITATION_CARD);
+        player:messageSpecial(ID.text.KEYITEM_LOST,tpz.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.RED_INVITATION_CARD);
     elseif (csid == 881) then
         player:tradeComplete();
-        dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
+        tpz.teleport.to(player, tpz.teleport.id.WHITEGATE);
     end
 end;

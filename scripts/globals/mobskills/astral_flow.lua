@@ -20,7 +20,7 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(dsp.msg.basic.USES)
+    skill:setMsg(tpz.msg.basic.USES)
     local mobID = mob:getID()
     local avatar = 0
 
@@ -35,5 +35,5 @@ function onMobWeaponSkill(target, mob, skill)
         SpawnMob(avatar):updateEnmity(mob:getTarget())
     end
 
-    return dsp.effect.ASTRAL_FLOW
+    return tpz.effect.ASTRAL_FLOW
 end

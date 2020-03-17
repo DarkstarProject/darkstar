@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -83,7 +81,7 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 	this->type = 0x09;
 	this->size = 0x18;
 
-	//DSP_DEBUG_BREAK_IF(MessageID != 0x58);
+	//TPZ_DEBUG_BREAK_IF(MessageID != 0x58);
 
 	ref<uint16>(0x0A) = static_cast<uint16>(MessageID);
 

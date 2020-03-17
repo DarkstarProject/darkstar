@@ -4,9 +4,9 @@
 require("scripts/globals/npc_util")
 ----------------------------------------------
 
-dsp = dsp or {}
+tpz = tpz or {}
 
-dsp.ephemeral = {}
+tpz.ephemeral = {}
 
 -- Cap per crystal type that can be stored. Retail/Default is 5000
 local CrystalCap = 5000
@@ -33,7 +33,7 @@ local getCrystalTotals = function(player)
     return params
 end
 
-dsp.ephemeral.onTrade = function(player, trade, successEvent, failEvent)
+tpz.ephemeral.onTrade = function(player, trade, successEvent, failEvent)
     local params = { 0, 0, 0, 0, 0, 0, 0, 0 }
     local success = false
     for _, v in pairs(crystalData) do
@@ -78,15 +78,15 @@ dsp.ephemeral.onTrade = function(player, trade, successEvent, failEvent)
     end
 end
 
-dsp.ephemeral.onTrigger = function(player, event)
+tpz.ephemeral.onTrigger = function(player, event)
     player:startEvent(event, unpack(getCrystalTotals(player)))
 end
 
-dsp.ephemeral.onEventUpdate = function(player)
+tpz.ephemeral.onEventUpdate = function(player)
     player:updateEvent(unpack(getCrystalTotals(player)))
 end
 
-dsp.ephemeral.onEventFinish = function(player, option, wasTrade)
+tpz.ephemeral.onEventFinish = function(player, option, wasTrade)
     -- Early out if the player cancelled the menu
     if not wasTrade and bit.band(option, 0xF) == 0 then
         return

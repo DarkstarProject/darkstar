@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.HUNDRED_FISTS,1,0,45)
+    player:addStatusEffect(tpz.effect.HUNDRED_FISTS,1,0,45)
 end

@@ -6,10 +6,10 @@ mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.MIJIN_GAKURE, hpp = math.random(10, 15)},
+            {id = tpz.jsa.MIJIN_GAKURE, hpp = math.random(10, 15)},
         },
     })
 end

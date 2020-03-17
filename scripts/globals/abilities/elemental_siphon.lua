@@ -18,7 +18,7 @@ function onAbilityCheck(player,target,ability)
     if (pet >= 0 and pet <= 7) then -- spirits
         return 0,0
     else
-        return dsp.msg.basic.UNABLE_TO_USE_JA,0
+        return tpz.msg.basic.UNABLE_TO_USE_JA,0
     end
 end
 
@@ -38,8 +38,8 @@ function onUseAbility(player,target,ability)
         spiritEle = 3
     end
 
-    local pEquipMods = player:getMod(dsp.mod.ENHANCES_ELEMENTAL_SIPHON)
-    local basePower = player:getSkillLevel(dsp.skill.SUMMONING_MAGIC) + pEquipMods - 50
+    local pEquipMods = player:getMod(tpz.mod.ENHANCES_ELEMENTAL_SIPHON)
+    local basePower = player:getSkillLevel(tpz.skill.SUMMONING_MAGIC) + pEquipMods - 50
     if (basePower < 0) then -- skill your summoning magic you lazy bastard !
         basePower = 0
     end
@@ -48,19 +48,19 @@ function onUseAbility(player,target,ability)
     local weather = player:getWeather()
 
     -- Day bonus/penalty
-    if (dayElement == dsp.magic.dayStrong[spiritEle]) then
+    if (dayElement == tpz.magic.dayStrong[spiritEle]) then
         weatherDayBonus = weatherDayBonus + 0.1
-    elseif (dayElement == dsp.magic.dayWeak[spiritEle]) then
+    elseif (dayElement == tpz.magic.dayWeak[spiritEle]) then
         weatherDayBonus = weatherDayBonus - 0.1
     end
     -- Weather bonus/penalty
-    if (weather == dsp.magic.singleWeatherStrong[spiritEle]) then
+    if (weather == tpz.magic.singleWeatherStrong[spiritEle]) then
         weatherDayBonus = weatherDayBonus + 0.1
-    elseif (weather == dsp.magic.singleWeatherWeak[spiritEle]) then
+    elseif (weather == tpz.magic.singleWeatherWeak[spiritEle]) then
         weatherDayBonus = weatherDayBonus - 0.1
-    elseif (weather == dsp.magic.doubleWeatherStrong[spiritEle]) then
+    elseif (weather == tpz.magic.doubleWeatherStrong[spiritEle]) then
         weatherDayBonus = weatherDayBonus + 0.25
-    elseif (weather == dsp.magic.doubleWeatherWeak[spiritEle]) then
+    elseif (weather == tpz.magic.doubleWeatherWeak[spiritEle]) then
         weatherDayBonus = weatherDayBonus - 0.25
     end
 

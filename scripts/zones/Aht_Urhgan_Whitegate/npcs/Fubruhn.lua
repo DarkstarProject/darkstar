@@ -48,7 +48,7 @@ function onTrade(player,npc,trade)
     local numBronze = trade:getItemQty(2184)
     local numMythril = trade:getItemQty(2186)
     local numGold = trade:getItemQty(2187)
-    if player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM then
+    if player:getCurrentMission(TOAU) >= tpz.mission.id.toau.PRESIDENT_SALAHEEM then
         if numBronze > 0 and numMythril == 0 and numGold == 0 then
             if addMogLockerExpiryTime(player, numBronze) then
                 -- remove bronze
@@ -59,25 +59,25 @@ function onTrade(player,npc,trade)
             end
         elseif numGold > 0 or numMythril > 0 then
             -- see if we can expand the size
-            local slotSize = player:getContainerSize(dsp.inv.MOGLOCKER)
+            local slotSize = player:getContainerSize(tpz.inv.MOGLOCKER)
             if slotSize == 30 and numMythril == 4 and numGold == 0 then
-                player:changeContainerSize(dsp.inv.MOGLOCKER, 10)
+                player:changeContainerSize(tpz.inv.MOGLOCKER, 10)
                 player:tradeComplete()
                 player:startEvent(602,0,0,0,40)
             elseif slotSize == 40 and numMythril == 0 and numGold == 2 then
-                player:changeContainerSize(dsp.inv.MOGLOCKER, 10)
+                player:changeContainerSize(tpz.inv.MOGLOCKER, 10)
                 player:tradeComplete()
                 player:startEvent(602,0,0,0,50)
             elseif slotSize == 50 and numMythril == 0 and numGold == 3 then
-                player:changeContainerSize(dsp.inv.MOGLOCKER, 10)
+                player:changeContainerSize(tpz.inv.MOGLOCKER, 10)
                 player:tradeComplete()
                 player:startEvent(602,0,0,0,60)
             elseif slotSize == 60 and numMythril == 0 and numGold == 5 then
-                player:changeContainerSize(dsp.inv.MOGLOCKER, 10)
+                player:changeContainerSize(tpz.inv.MOGLOCKER, 10)
                 player:tradeComplete()
                 player:startEvent(602,0,0,0,70)
             elseif slotSize == 70 and numMythril == 0 and numGold == 10 then
-                player:changeContainerSize(dsp.inv.MOGLOCKER, 10)
+                player:changeContainerSize(tpz.inv.MOGLOCKER, 10)
                 player:tradeComplete()
                 player:startEvent(602,0,0,0,80)
             end
@@ -90,7 +90,7 @@ function onTrigger(player,npc)
     -- if < mission 2 then
     --      player:startEvent(600)
     -- else
-    if player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM then
+    if player:getCurrentMission(TOAU) >= tpz.mission.id.toau.PRESIDENT_SALAHEEM then
         local accessType = getMogLockerAccessType(player)
         local mogLockerExpiryTimestamp = getMogLockerExpiryTimestamp(player)
 
@@ -101,8 +101,8 @@ function onTrigger(player,npc)
             accessType = setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALLAREAS)
         end
         player:startEvent(600,mogLockerExpiryTimestamp,accessType,
-        MOGLOCKER_ALZAHBI_VALID_DAYS,player:getContainerSize(dsp.inv.MOGLOCKER),
-        getNumberOfCoinsToUpgradeSize(player:getContainerSize(dsp.inv.MOGLOCKER)),2,3,
+        MOGLOCKER_ALZAHBI_VALID_DAYS,player:getContainerSize(tpz.inv.MOGLOCKER),
+        getNumberOfCoinsToUpgradeSize(player:getContainerSize(tpz.inv.MOGLOCKER)),2,3,
         MOGLOCKER_ALLAREAS_VALID_DAYS)
     else
         player:startEvent(600)

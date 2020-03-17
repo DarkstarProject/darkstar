@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.BERSERK
+    local typeEffect = tpz.effect.BERSERK
     skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 180))
     return typeEffect
 end

@@ -22,10 +22,10 @@ function onAdditionalEffect(player,target,damage)
             duration = duration - (target:getMainLvl() - player:getMainLvl())
         end
         duration = utils.clamp(duration,1,25)
-        duration = duration * applyResistanceAddEffect(player,target,dsp.magic.ele.LIGHT,0)
-        if (not target:hasStatusEffect(dsp.effect.SLEEP_I)) then
-            target:addStatusEffect(dsp.effect.SLEEP_I, 1, 0, duration)
+        duration = duration * applyResistanceAddEffect(player,target,tpz.magic.ele.LIGHT,0)
+        if (not target:hasStatusEffect(tpz.effect.SLEEP_I)) then
+            target:addStatusEffect(tpz.effect.SLEEP_I, 1, 0, duration)
         end
-        return dsp.subEffect.SLEEP, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.SLEEP_I
+        return tpz.subEffect.SLEEP, tpz.msg.basic.ADD_EFFECT_STATUS, tpz.effect.SLEEP_I
     end
 end

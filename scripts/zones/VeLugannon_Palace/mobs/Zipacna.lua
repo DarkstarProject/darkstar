@@ -90,13 +90,13 @@ function onMobSpawn(mob)
 end;
 
 function onPath(mob)
-    dsp.path.patrol(mob, path, dsp.path.flag.RUN);
+    tpz.path.patrol(mob, path, tpz.path.flag.RUN);
 end;
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if (mob:isFollowingPath() == false) then
-        mob:pathThrough(dsp.path.first(path), dsp.path.flag.RUN);
+        mob:pathThrough(tpz.path.first(path), tpz.path.flag.RUN);
     end
 end;
 

@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Norg/IDs");
 
 function onTrade(player,npc,trade)
 
-    ShiningLeggings = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
+    ShiningLeggings = player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
     Legging = trade:getItemQty(14117);
 
     if (Legging > 0 and Legging == trade:getItemCount()) then
@@ -37,7 +37,7 @@ end;
 
 function onTrigger(player,npc)
 
-    ShiningLeggings = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
+    ShiningLeggings = player:getQuestStatus(OUTLANDS,tpz.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
 
     if (ShiningLeggings == QUEST_AVAILABLE and  player:getFameLevel(NORG) >= 3) then
         player:startEvent(127); -- Start Like Shining Leggings
@@ -55,15 +55,15 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 127) then
-        player:addQuest(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
+        player:addQuest(OUTLANDS,tpz.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
     elseif (csid == 129) then
         player:tradeComplete();
         player:addItem(4958); -- Scroll of Dokumori: Ichi
         player:messageSpecial(ID.text.ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
         player:addFame(NORG,100);
-        player:addTitle(dsp.title.LOOKS_GOOD_IN_LEGGINGS);
+        player:addTitle(tpz.title.LOOKS_GOOD_IN_LEGGINGS);
         player:setCharVar("shiningLeggings_nb",0);
-        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
+        player:completeQuest(OUTLANDS,tpz.quest.id.outlands.LIKE_A_SHINING_LEGGINGS);
     end
 
 end;

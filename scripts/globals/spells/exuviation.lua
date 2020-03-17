@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Exuviation
--- Restores HP and removes one detrimental magic dsp.effect.
+-- Restores HP and removes one detrimental magic tpz.effect.
 -- Can be used with Diffusion.
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
 
     local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true)
 
-    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
+    final = final + (final * (target:getMod(tpz.mod.CURE_POTENCY_RCVD)/100))
     local diff = (target:getMaxHP() - target:getHP())
     if (final > diff) then
         final = diff

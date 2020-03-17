@@ -9,8 +9,8 @@ local ID = require("scripts/zones/The_Ashu_Talif/IDs")
 
 function afterInstanceRegister(player)
     local instance = player:getInstance()
-    player:messageSpecial(ID.text.FADES_INTO_NOTHINGNESS, dsp.ki.LIFE_FLOAT)
-    player:delKeyItem(dsp.ki.LIFE_FLOAT)
+    player:messageSpecial(ID.text.FADES_INTO_NOTHINGNESS, tpz.ki.LIFE_FLOAT)
+    player:delKeyItem(tpz.ki.LIFE_FLOAT)
     player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit())
 end
 

@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.KOLSHUSHU);
-    if (RegionOwner ~= dsp.nation.WINDURST) then
+    local RegionOwner = GetRegionOwner(tpz.region.KOLSHUSHU);
+    if (RegionOwner ~= tpz.nation.WINDURST) then
         player:showText(npc,ID.text.AHYEEKIH_CLOSED_DIALOG);
     else
         player:showText(npc,ID.text.AHYEEKIH_OPEN_DIALOG);
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             614,     72,  -- Mhaura Garlic
             4445,    40   -- Yagudo Cherry
         }
-        dsp.shop.general(player, stock, WINDURST);
+        tpz.shop.general(player, stock, WINDURST);
 
     end
 

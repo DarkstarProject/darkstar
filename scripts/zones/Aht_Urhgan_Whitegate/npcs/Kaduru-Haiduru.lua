@@ -77,9 +77,9 @@ function onEventFinish(player, csid, option)
         elseif option == 2 then   -- Nation of Allegiance
             local nationDestination = 
             {
-                [dsp.nation.SANDORIA] = {110,   0,  -7, 175, 231},
-                [dsp.nation.BASTOK  ] = { 90,   0, -67, 248, 234},
-                [dsp.nation.WINDURST] = {192, -12, 218,  60, 240}
+                [tpz.nation.SANDORIA] = {110,   0,  -7, 175, 231},
+                [tpz.nation.BASTOK  ] = { 90,   0, -67, 248, 234},
+                [tpz.nation.WINDURST] = {192, -12, 218,  60, 240}
             }
             player:setPos(unpack(nationDestination[player:getNation()]))
         end

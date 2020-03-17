@@ -15,8 +15,8 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.ORCISH_HUT_KEY)) then
-        if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SAVE_THE_CHILDREN)) then
+    if (player:hasKeyItem(tpz.ki.ORCISH_HUT_KEY)) then
+        if (player:hasCompletedMission(SANDORIA,tpz.mission.id.sandoria.SAVE_THE_CHILDREN)) then
             player:startEvent(3);
         else
             player:startEvent(55);
@@ -34,7 +34,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 3 or csid == 55) then
-        player:delKeyItem(dsp.ki.ORCISH_HUT_KEY);
+        player:delKeyItem(tpz.ki.ORCISH_HUT_KEY);
         player:setCharVar("MissionStatus",4);
     else
         if (EventFinishBCNM(player,csid,option)) then

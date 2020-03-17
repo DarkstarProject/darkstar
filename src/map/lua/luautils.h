@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -229,7 +227,7 @@ namespace luautils
     int32 OnMobDisengage(CBaseEntity* PMob);                                      // triggers on mob disengaging (no more targets)
     int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget);
     int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);                    // Сalled every 3 sec when a player fight monster
-    int32 OnCriticalHit(CBattleEntity* PTarget);
+    int32 OnCriticalHit(CBattleEntity* PMob, CBattleEntity* PAttacker);
     int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);                    // triggers on mob death
     int32 OnMobDespawn(CBaseEntity* PMob);                                        // triggers on mob despawn (death not assured)
 

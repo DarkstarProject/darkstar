@@ -9,5 +9,5 @@ require("scripts/globals/wsquest")
 -----------------------------------
 
 function onTrigger(player, npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.asuran_fists, player, ID.mob.BODACH)
+    tpz.wsquest.handleQmTrigger(tpz.wsquest.asuran_fists, player, ID.mob.BODACH)
 end

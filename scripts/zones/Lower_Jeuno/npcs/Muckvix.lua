@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:hasKeyItem(dsp.ki.SILVER_BELL) and not player:hasKeyItem(dsp.ki.YAGUDO_TORCH) then
+    if player:hasKeyItem(tpz.ki.SILVER_BELL) and not player:hasKeyItem(tpz.ki.YAGUDO_TORCH) then
         if player:getCharVar("YagudoTorchCS") == 1 then
             player:startEvent(184)
         else
@@ -28,8 +28,8 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 184 then
-        player:addKeyItem(dsp.ki.YAGUDO_TORCH)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.YAGUDO_TORCH)
+        player:addKeyItem(tpz.ki.YAGUDO_TORCH)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.YAGUDO_TORCH)
         player:setCharVar("YagudoTorchCS",0)
         player:setCharVar("FickblixCS",1)
     end

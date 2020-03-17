@@ -9,7 +9,7 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(dsp.effect.WIND_MANEUVER)
+    return master:countEffect(tpz.effect.WIND_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
@@ -36,8 +36,8 @@ function onPetAbility(target, automaton, skill, master, action)
 
     if damage > 0 then
         local bonusduration = 1 + 0.00033 * (skill:getTP() - 1000)
-        if not target:hasStatusEffect(dsp.effect.DEFENSE_DOWN) then
-            target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 15, 0, 90*bonusduration)
+        if not target:hasStatusEffect(tpz.effect.DEFENSE_DOWN) then
+            target:addStatusEffect(tpz.effect.DEFENSE_DOWN, 15, 0, 90*bonusduration)
         end
     end
 

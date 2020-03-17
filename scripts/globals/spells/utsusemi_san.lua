@@ -10,17 +10,17 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = target:getStatusEffect(dsp.effect.COPY_IMAGE)
+    local effect = target:getStatusEffect(tpz.effect.COPY_IMAGE)
     
     -- Get extras shadows
-    local numShadows = 5 + target:getMod(dsp.mod.UTSUSEMI_BONUS)
+    local numShadows = 5 + target:getMod(tpz.mod.UTSUSEMI_BONUS)
     
     if (effect == nil or effect:getPower() <= 3) then
-        target:addStatusEffectEx(dsp.effect.COPY_IMAGE, dsp.effect.COPY_IMAGE_4, numShadows, 0, 900, 0, numShadows)
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
+        target:addStatusEffectEx(tpz.effect.COPY_IMAGE, tpz.effect.COPY_IMAGE_4, numShadows, 0, 900, 0, numShadows)
+        spell:setMsg(tpz.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
     end
     
-    return dsp.effect.COPY_IMAGE
+    return tpz.effect.COPY_IMAGE
 end

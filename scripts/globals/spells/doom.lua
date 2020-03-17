@@ -12,12 +12,12 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effect.DOOM
+    local effect = tpz.effect.DOOM
     if (target:hasStatusEffect(effect) == false) then
-        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB) -- gains effect
+        spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB) -- gains effect
         target:addStatusEffect(effect,10,3,30)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
+        spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT) -- no effect
     end
 
     return effect

@@ -1,4 +1,4 @@
-Migrating DSPDB Database
+Migrating Database
 ========================
 
 This folder contains python scripts to migrate your database data to a newer
@@ -29,7 +29,7 @@ For Ubuntu, `sudo apt-get install python-mysqldb`.
 
 ## Running Migrations
 
-Go into the `darkstar/migrations` directory and execute the `migrate.py` file.
+Go into the `topaz/migrations` directory and execute the `migrate.py` file.
 
 From the command line: `python migrate.py`
 

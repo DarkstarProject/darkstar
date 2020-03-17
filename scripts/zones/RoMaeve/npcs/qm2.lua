@@ -14,9 +14,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_FINAL_IMAGE and player:getCharVar("MissionStatus") == 1 then
+    if player:getCurrentMission(BASTOK) == tpz.mission.id.bastok.THE_FINAL_IMAGE and player:getCharVar("MissionStatus") == 1 then
         if player:getCharVar("Mission7-1MobKilled") == 1 then
-            npcUtil.giveKeyItem(player, dsp.ki.REINFORCED_CERMET)
+            npcUtil.giveKeyItem(player, tpz.ki.REINFORCED_CERMET)
             player:setCharVar("Mission7-1MobKilled", 0)
             player:setCharVar("MissionStatus", 2)
         elseif npcUtil.popFromQM(player, npc, {ID.mob.MOKKURKALFI_I, ID.mob.MOKKURKALFI_II}, {claim=false, look=true, radius=2}) then

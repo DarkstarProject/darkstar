@@ -7,7 +7,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.SLEEPRES, 75)
+    mob:setMod(tpz.mod.SLEEPRES, 75)
 end
 
 function onMobDeath(mob, player, isKiller)

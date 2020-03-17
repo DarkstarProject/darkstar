@@ -8,7 +8,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.EVA, 50)
+    mob:setMod(tpz.mod.EVA, 50)
 end
 
 function onMobDeath(mob, player, isKiller)

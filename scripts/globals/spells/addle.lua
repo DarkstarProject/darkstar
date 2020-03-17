@@ -16,7 +16,7 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
+    local dMND = caster:getStat(tpz.mod.MND) - target:getStat(tpz.mod.MND)
 
     -- Spell casting increase
     local power = calculatePotency(30, spell:getSkillType(), caster, target)
@@ -29,19 +29,19 @@ function onSpellCast(caster, target, spell)
 
     local params = {}
     params.diff = dMND
-    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.skillType = tpz.skill.ENFEEBLING_MAGIC
     params.bonus = 0
-    params.effect = dsp.effect.ADDLE
+    params.effect = tpz.effect.ADDLE
     local resist = applyResistanceEffect(caster, target, spell, params)
 
     if resist >= 0.5 then -- Do it!
         if target:addStatusEffect(params.effect, power, 0, duration * resist, 0, subPower) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+            spell:setMsg(tpz.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            spell:setMsg(tpz.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+        spell:setMsg(tpz.msg.basic.MAGIC_RESIST)
     end
 
     return params.effect

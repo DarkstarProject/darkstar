@@ -8,7 +8,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.DYNAMIS_BUBURIMU] =
+zones[tpz.zone.DYNAMIS_BUBURIMU] =
 {
     text =
     {
@@ -28,11 +28,11 @@ zones[dsp.zone.DYNAMIS_BUBURIMU] =
     {
         TIME_EXTENSION =
         {
-            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = {16941121, 16941138}},
-            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = {16941156, 16941174}},
-            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = {16941193, 16941211}},
-            {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = {16941071, 16941086, 16941101}},
-            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = {16941384, 16941398, 16941414, 16941428, 16941443, 16941458, 16941474, 16941488}},
+            {minutes = 10, ki = tpz.ki.CRIMSON_GRANULES_OF_TIME,   mob = {16941121, 16941138}},
+            {minutes = 10, ki = tpz.ki.AZURE_GRANULES_OF_TIME,     mob = {16941156, 16941174}},
+            {minutes = 10, ki = tpz.ki.AMBER_GRANULES_OF_TIME,     mob = {16941193, 16941211}},
+            {minutes = 10, ki = tpz.ki.ALABASTER_GRANULES_OF_TIME, mob = {16941071, 16941086, 16941101}},
+            {minutes = 20, ki = tpz.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = {16941384, 16941398, 16941414, 16941428, 16941443, 16941458, 16941474, 16941488}},
         },
         REFILL_STATUE =
         {
@@ -159,4 +159,4 @@ zones[dsp.zone.DYNAMIS_BUBURIMU] =
     },
 }
 
-return zones[dsp.zone.DYNAMIS_BUBURIMU]
+return zones[tpz.zone.DYNAMIS_BUBURIMU]

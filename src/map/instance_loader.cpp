@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/
 
-This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -38,7 +36,7 @@ This file is part of DarkStar-server source code.
 
 CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester)
 {
-    DSP_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
+    TPZ_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
     requester = PRequester;
     zone = PZone;
@@ -114,7 +112,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, detects, \
 		mob_family_system.charmable \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
-		INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
+        INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid and mob_groups.zoneid=((mob_spawn_points.mobid>>12)&0xFFF) \
 		INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE instanceid = %u AND NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";

@@ -6,7 +6,7 @@ require("scripts/globals/promyvion")
 -----------------------------------
 
 function onMobSpawn(mob)
-    dsp.promyvion.strayOnSpawn(mob)
+    tpz.promyvion.strayOnSpawn(mob)
 end
 
 function onMobDeath(mob, player, isKiller)

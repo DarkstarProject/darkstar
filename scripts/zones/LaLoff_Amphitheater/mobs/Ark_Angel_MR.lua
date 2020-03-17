@@ -9,10 +9,10 @@ require("scripts/globals/status");
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
 
 function onMobSpawn(mob)
-    dsp.mix.jobSpecial.config(mob, {
+    tpz.mix.jobSpecial.config(mob, {
         specials =
         {
-            {id = dsp.jsa.PERFECT_DODGE},
+            {id = tpz.jsa.PERFECT_DODGE},
         },
     })
 end
@@ -28,7 +28,7 @@ function onMobEngaged(mob,target)
 
     for member = mobid-1, mobid+6 do
         local m = GetMobByID(member)
-        if m:getCurrentAction() == dsp.act.ROAMING then
+        if m:getCurrentAction() == tpz.act.ROAMING then
             m:updateEnmity(target)
         end
     end

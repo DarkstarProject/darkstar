@@ -18,8 +18,8 @@ local ID = require("scripts/zones/Port_Windurst/IDs");
 
 function onTrade(player,npc,trade)
 
-TruthJusticeOnionWay = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
-KnowOnesOnions       = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
+TruthJusticeOnionWay = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+KnowOnesOnions       = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.KNOW_ONE_S_ONIONS);
 
     if (KnowOnesOnions == QUEST_ACCEPTED) then
         count = trade:getItemCount();
@@ -41,13 +41,13 @@ end;
 
 function onTrigger(player,npc)
 
-TruthJusticeOnionWay = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
-KnowOnesOnions       = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
-InspectorsGadget     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
-OnionRings           = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
-CryingOverOnions     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS);
-WildCard   = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WILD_CARD);
-ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
+TruthJusticeOnionWay = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+KnowOnesOnions       = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.KNOW_ONE_S_ONIONS);
+InspectorsGadget     = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.INSPECTOR_S_GADGET);
+OnionRings           = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.ONION_RINGS);
+CryingOverOnions     = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.CRYING_OVER_ONIONS);
+WildCard   = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.WILD_CARD);
+ThePromise = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.THE_PROMISE);
 NeedToZone = player:needToZone();
 Level      = player:getMainLvl();
 Fame       = player:getFameLevel(WINDURST);
@@ -55,7 +55,7 @@ Fame       = player:getFameLevel(WINDURST);
     if (ThePromise == QUEST_COMPLETED) then
         player:startEvent(544);
     elseif (ThePromise == QUEST_ACCEPTED) then
-        InvisibleManSticker = player:hasKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
+        InvisibleManSticker = player:hasKeyItem(tpz.ki.INVISIBLE_MAN_STICKER);
 
         if (InvisibleManSticker == true) then
             ThePromiseCS_Seen = player:getCharVar("ThePromiseCS_Seen");
@@ -64,9 +64,9 @@ Fame       = player:getFameLevel(WINDURST);
                 FreeSlots = player:getFreeSlotsCount();
 
                 if (FreeSlots >= 1) then
-                    player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
+                    player:completeQuest(WINDURST,tpz.quest.id.windurst.THE_PROMISE);
                     player:addFame(WINDURST,150);
-                    player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
+                    player:delKeyItem(tpz.ki.INVISIBLE_MAN_STICKER);
                     player:addItem(13135);
                     player:messageSpecial(ID.text.ITEM_OBTAINED,13135);
                     player:setCharVar("ThePromise",0);
@@ -75,13 +75,13 @@ Fame       = player:getFameLevel(WINDURST);
                     player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13135);
                 end
             else
-                player:startEvent(522,0,dsp.ki.INVISIBLE_MAN_STICKER);
+                player:startEvent(522,0,tpz.ki.INVISIBLE_MAN_STICKER);
             end
         else
             player:startEvent(514);
         end
     elseif (WildCard == QUEST_COMPLETED) then
-        player:startEvent(513,0,dsp.ki.INVISIBLE_MAN_STICKER);
+        player:startEvent(513,0,tpz.ki.INVISIBLE_MAN_STICKER);
     elseif (WildCard == QUEST_ACCEPTED) then
         WildCardVar = player:getCharVar("WildCard");
 
@@ -109,7 +109,7 @@ Fame       = player:getFameLevel(WINDURST);
             player:startEvent(440);
         end
     elseif (OnionRings == QUEST_ACCEPTED) then
-        OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
+        OldRing = player:hasKeyItem(tpz.ki.OLD_RING);
 
         if (OldRing == true) then
             OnionRingsTime = player:getCharVar("OnionRingsTime");
@@ -123,15 +123,15 @@ Fame       = player:getFameLevel(WINDURST);
         end
     elseif (InspectorsGadget == QUEST_COMPLETED) then
         if (NeedToZone == false and Fame >= 3) then
-            OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
+            OldRing = player:hasKeyItem(tpz.ki.OLD_RING);
 
             if (OldRing == true) then
                 OnionRingsVar = player:getCharVar("OnionRings");
 
                 if (OnionRingsVar == 1) then
-                    player:startEvent(430,0,dsp.ki.OLD_RING);
+                    player:startEvent(430,0,tpz.ki.OLD_RING);
                 else
-                    player:startEvent(432,0,dsp.ki.OLD_RING);
+                    player:startEvent(432,0,tpz.ki.OLD_RING);
                 end
             else
                 player:startEvent(429);
@@ -140,7 +140,7 @@ Fame       = player:getFameLevel(WINDURST);
             player:startEvent(422);
         end
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
-        FakeMoustache = player:hasKeyItem(dsp.ki.FAKE_MOUSTACHE);
+        FakeMoustache = player:hasKeyItem(tpz.ki.FAKE_MOUSTACHE);
 
         if (FakeMoustache == true) then
             player:startEvent(421);
@@ -192,14 +192,14 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 368 and option == 0) then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+        player:addQuest(WINDURST,tpz.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
     elseif (csid == 378) then
         FreeSlots = player:getFreeSlotsCount();
 
         if (FreeSlots >= 1) then
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
             player:addFame(WINDURST,75);
-            player:addTitle(dsp.title.STAR_ONION_BRIGADE_MEMBER);
+            player:addTitle(tpz.title.STAR_ONION_BRIGADE_MEMBER);
             player:tradeComplete();
             player:addItem(13093);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13093);
@@ -208,7 +208,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.FULL_INVENTORY_AFTER_TRADE,13093);
         end
     elseif (csid == 391) then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
+        player:addQuest(WINDURST,tpz.quest.id.windurst.KNOW_ONE_S_ONIONS);
     elseif (csid == 398) then
         FreeSlots = player:getFreeSlotsCount();
 
@@ -224,21 +224,21 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.FULL_INVENTORY_AFTER_TRADE,4857);
         end
     elseif (csid == 386 or csid == 400) then
-        player:completeQuest(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
+        player:completeQuest(WINDURST,tpz.quest.id.windurst.KNOW_ONE_S_ONIONS);
         player:addFame(WINDURST,80);
-        player:addTitle(dsp.title.SOB_SUPER_HERO);
+        player:addTitle(tpz.title.SOB_SUPER_HERO);
         player:setCharVar("KnowOnesOnions",0);
         player:setCharVar("KnowOnesOnionsTime",0);
         player:needToZone(true);
     elseif (csid == 413 and option == 0) then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
+        player:addQuest(WINDURST,tpz.quest.id.windurst.INSPECTOR_S_GADGET);
     elseif (csid == 421) then
         FreeSlots = player:getFreeSlotsCount();
 
         if (FreeSlots >= 1) then
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.INSPECTOR_S_GADGET);
             player:addFame(WINDURST,90);
-            player:addTitle(dsp.title.FAKEMOUSTACHED_INVESTIGATOR);
+            player:addTitle(tpz.title.FAKEMOUSTACHED_INVESTIGATOR);
             player:addItem(13204);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13204);
             player:needToZone(true);
@@ -248,19 +248,19 @@ function onEventFinish(player,csid,option)
     elseif (csid == 429) then
         player:setCharVar("OnionRings",1);
     elseif (csid == 430) then
-        OnionRings = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
+        OnionRings = player:getQuestStatus(WINDURST,tpz.quest.id.windurst.ONION_RINGS);
 
         if (OnionRings == QUEST_AVAILABLE) then
             CurrentTime = os.time();
 
-            player:addQuest(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
+            player:addQuest(WINDURST,tpz.quest.id.windurst.ONION_RINGS);
             player:setCharVar("OnionRingsTime", CurrentTime + 86400);
         end
     elseif (csid == 432 or csid == 433) then
-        player:completeQuest(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
+        player:completeQuest(WINDURST,tpz.quest.id.windurst.ONION_RINGS);
         player:addFame(WINDURST,100);
-        player:addTitle(dsp.title.STAR_ONION_BRIGADIER);
-        player:delKeyItem(dsp.ki.OLD_RING);
+        player:addTitle(tpz.title.STAR_ONION_BRIGADIER);
+        player:delKeyItem(tpz.ki.OLD_RING);
         player:setCharVar("OnionRingsTime",0);
         player:needToZone(true);
     elseif (csid == 440) then
@@ -279,18 +279,18 @@ function onEventFinish(player,csid,option)
             end
         end
     elseif (csid == 496) then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS);
+        player:addQuest(WINDURST,tpz.quest.id.windurst.CRYING_OVER_ONIONS);
     elseif (csid == 497) then
         player:setCharVar("CryingOverOnions",3);
     elseif (csid == 513) then
-        player:addQuest(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
+        player:addQuest(WINDURST,tpz.quest.id.windurst.THE_PROMISE);
     elseif (csid == 522) then
         FreeSlots = player:getFreeSlotsCount();
 
         if (FreeSlots >= 1) then
-            player:completeQuest(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
+            player:completeQuest(WINDURST,tpz.quest.id.windurst.THE_PROMISE);
             player:addFame(WINDURST,150);
-            player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
+            player:delKeyItem(tpz.ki.INVISIBLE_MAN_STICKER);
             player:addItem(13135);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13135);
             player:setCharVar("ThePromise",0);

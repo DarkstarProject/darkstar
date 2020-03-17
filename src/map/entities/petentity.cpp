@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -99,7 +97,7 @@ std::string CPetEntity::GetScriptName()
 
 WYVERNTYPE CPetEntity::getWyvernType()
 {
-  DSP_DEBUG_BREAK_IF(PMaster == nullptr);
+  TPZ_DEBUG_BREAK_IF(PMaster == nullptr);
 
   switch(PMaster->GetSJob())
   {

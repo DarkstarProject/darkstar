@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.tpmod = TPMOD_ACC
-        params.dmgtype = dsp.damageType.PIERCING
+        params.damageType = tpz.damageType.PIERCING
         params.scattr = SC_DISTORTION
         params.numhits = 5
         params.multiplier = 1.5
@@ -43,11 +43,11 @@ function onSpellCast(caster,target,spell)
     damage = BluePhysicalSpell(caster, target, spell, params)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
-    poison = target:getStatusEffect(dsp.effect.POISON)
+    poison = target:getStatusEffect(tpz.effect.POISON)
     local chance = math.random()
     if (chance < 0.95 and poison == nil) then
         local power = (caster:getMainLvl()/5) + 3 -- from http://wiki.ffxiclopedia.org/wiki/Disseverment
-        target:addStatusEffect(dsp.effect.POISON,power,3,180) -- for 180secs
+        target:addStatusEffect(tpz.effect.POISON,power,3,180) -- for 180secs
     end
 
     return damage

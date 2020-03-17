@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effect.DEDICATION
+-- tpz.effect.DEDICATION
 --
 -----------------------------------
 require("scripts/globals/status")

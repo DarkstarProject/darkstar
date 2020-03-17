@@ -126,9 +126,9 @@ UpgradeLog*.XML
 *.app
 
 # Generated executables
-/dsconnect
-/dsgame
-/dssearch
+/topaz_connect
+/topaz_game
+/topaz_search
 
 # Generated files, mostly autotools-related
 .deps
@@ -154,13 +154,13 @@ src/common/stamp-h1
 
 navmeshes/*.nav
 tags
-log/DSP.leaks
+log/tpz.leaks
 
 #Lua Developement Tools project files
 .metadata/**
 .project
 .vs
-/win32/.vs/darkstar/v15
+/win32/.vs/topaz/v15
 
 #VS Code
 .vscode

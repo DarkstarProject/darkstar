@@ -13,11 +13,11 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local olduumQuest = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.OLDUUM)
+    local olduumQuest = player:getQuestStatus(AHT_URHGAN, tpz.quest.id.ahtUrhgan.OLDUUM)
     local ringCheck = player:hasItem(2217)
     if olduumQuest == QUEST_AVAILABLE then
         player:startEvent(4)
-    elseif player:hasKeyItem(dsp.ki.ELECTROLOCOMOTIVE) or player:hasKeyItem(dsp.ki.ELECTROPOT) or player:hasKeyItem(dsp.ki.ELECTROCELL) and ringCheck == false then
+    elseif player:hasKeyItem(tpz.ki.ELECTROLOCOMOTIVE) or player:hasKeyItem(tpz.ki.ELECTROPOT) or player:hasKeyItem(tpz.ki.ELECTROCELL) and ringCheck == false then
         if olduumQuest == QUEST_ACCEPTED then
             player:startEvent(6)
         else
@@ -37,19 +37,19 @@ end
 function onEventFinish(player,csid,option)
 
     if csid == 4 then
-        player:addKeyItem(dsp.ki.DKHAAYAS_RESEARCH_JOURNAL)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DKHAAYAS_RESEARCH_JOURNAL)
-        player:addQuest(AHT_URHGAN, dsp.quest.id.ahtUrhgan.OLDUUM)
+        player:addKeyItem(tpz.ki.DKHAAYAS_RESEARCH_JOURNAL)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.DKHAAYAS_RESEARCH_JOURNAL)
+        player:addQuest(AHT_URHGAN, tpz.quest.id.ahtUrhgan.OLDUUM)
     elseif csid == 6 or csid == 8 then
         if player:getFreeSlotsCount() >= 1 then
             player:addItem(2217)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 2217)
-            player:delKeyItem(dsp.ki.DKHAAYAS_RESEARCH_JOURNAL)
-            player:delKeyItem(dsp.ki.ELECTROLOCOMOTIVE)
-            player:delKeyItem(dsp.ki.ELECTROPOT)
-            player:delKeyItem(dsp.ki.ELECTROCELL)
+            player:delKeyItem(tpz.ki.DKHAAYAS_RESEARCH_JOURNAL)
+            player:delKeyItem(tpz.ki.ELECTROLOCOMOTIVE)
+            player:delKeyItem(tpz.ki.ELECTROPOT)
+            player:delKeyItem(tpz.ki.ELECTROCELL)
             if csid == 6 then
-                player:completeQuest(AHT_URHGAN, dsp.quest.id.ahtUrhgan.OLDUUM)
+                player:completeQuest(AHT_URHGAN, tpz.quest.id.ahtUrhgan.OLDUUM)
             end
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2217)

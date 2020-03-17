@@ -16,7 +16,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+    if player:hasKeyItem(tpz.ki.DELKFUTT_KEY) then
         player:startEvent(16)
     else
         player:startEvent(10) -- door is firmly shut
@@ -28,8 +28,8 @@ end
 
 function onEventFinish(player, csid, option, npc)
     if csid == 16 and option == 1 then
-        if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
-            npcUtil.giveKeyItem(player, dsp.ki.DELKFUTT_KEY)
+        if not player:hasKeyItem(tpz.ki.DELKFUTT_KEY) then
+            npcUtil.giveKeyItem(player, tpz.ki.DELKFUTT_KEY)
             player:confirmTrade()
         end
     end

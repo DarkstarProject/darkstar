@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.BRAND_OF_DAWN)==false) then
+    if (player:hasKeyItem(tpz.ki.BRAND_OF_DAWN)==false) then
         player:startEvent(110);
     end
 
@@ -23,7 +23,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 110 and option==1) then
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BRAND_OF_DAWN);
-        player:addKeyItem(dsp.ki.BRAND_OF_DAWN);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.BRAND_OF_DAWN);
+        player:addKeyItem(tpz.ki.BRAND_OF_DAWN);
     end
 end;

@@ -8,7 +8,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.DYNAMIS_XARCABARD] =
+zones[tpz.zone.DYNAMIS_XARCABARD] =
 {
     text =
     {
@@ -45,11 +45,11 @@ zones[dsp.zone.DYNAMIS_XARCABARD] =
     {
         TIME_EXTENSION =
         {
-            {minutes = 10, ki = dsp.ki.CRIMSON_GRANULES_OF_TIME,   mob = 17330531},
-            {minutes = 10, ki = dsp.ki.AZURE_GRANULES_OF_TIME,     mob = 17330532},
-            {minutes = 10, ki = dsp.ki.AMBER_GRANULES_OF_TIME,     mob = 17330533},
-            {minutes = 10, ki = dsp.ki.ALABASTER_GRANULES_OF_TIME, mob = 17330534},
-            {minutes = 20, ki = dsp.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17330535},
+            {minutes = 10, ki = tpz.ki.CRIMSON_GRANULES_OF_TIME,   mob = 17330531},
+            {minutes = 10, ki = tpz.ki.AZURE_GRANULES_OF_TIME,     mob = 17330532},
+            {minutes = 10, ki = tpz.ki.AMBER_GRANULES_OF_TIME,     mob = 17330533},
+            {minutes = 10, ki = tpz.ki.ALABASTER_GRANULES_OF_TIME, mob = 17330534},
+            {minutes = 20, ki = tpz.ki.OBSIDIAN_GRANULES_OF_TIME,  mob = 17330535},
         },
         REFILL_STATUE =
         {
@@ -140,4 +140,4 @@ zones[dsp.zone.DYNAMIS_XARCABARD] =
     },
 }
 
-return zones[dsp.zone.DYNAMIS_XARCABARD]
+return zones[tpz.zone.DYNAMIS_XARCABARD]

@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.ki.BRAND_OF_TWILIGHT)==false) then
+    if (player:hasKeyItem(tpz.ki.BRAND_OF_TWILIGHT)==false) then
         player:startEvent(111);
     end
 
@@ -23,7 +23,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 111 and option==1) then
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BRAND_OF_TWILIGHT);
-        player:addKeyItem(dsp.ki.BRAND_OF_TWILIGHT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.BRAND_OF_TWILIGHT);
+        player:addKeyItem(tpz.ki.BRAND_OF_TWILIGHT);
     end
 end;

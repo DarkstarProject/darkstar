@@ -21,18 +21,18 @@ function onMobWeaponSkill(target, mob, skill)
     local blinded = false
     local bio = false
 
-    blinded = MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 20, 0, 120)
-    bio = MobStatusEffectMove(mob, target, dsp.effect.BIO, 39, 0, 120)
+    blinded = MobStatusEffectMove(mob, target, tpz.effect.BLINDNESS, 20, 0, 120)
+    bio = MobStatusEffectMove(mob, target, tpz.effect.BIO, 39, 0, 120)
 
-    skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS)
+    skill:setMsg(tpz.msg.basic.SKILL_ENFEEB_IS)
 
     -- display blind first, else bio
-    if (blinded == dsp.msg.basic.SKILL_ENFEEB_IS) then
-        typeEffect = dsp.effect.BLINDNESS
-    elseif (bio == dsp.msg.basic.SKILL_ENFEEB_IS) then
-        typeEffect = dsp.effect.BIO
+    if (blinded == tpz.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = tpz.effect.BLINDNESS
+    elseif (bio == tpz.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = tpz.effect.BIO
     else
-        skill:setMsg(dsp.msg.basic.SKILL_MISS)
+        skill:setMsg(tpz.msg.basic.SKILL_MISS)
     end
 
     return typeEffect

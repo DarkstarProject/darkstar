@@ -6,5 +6,5 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.YILBEGAN_HIDEFLAYER);
+    player:addTitle(tpz.title.YILBEGAN_HIDEFLAYER);
 end;

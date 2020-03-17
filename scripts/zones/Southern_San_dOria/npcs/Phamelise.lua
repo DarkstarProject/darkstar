@@ -12,7 +12,7 @@ require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, tpz.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         player:messageSpecial(ID.text.FLYER_REFUSED)
     else
         onHalloweenTrade(player, trade, npc)
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.ZULKHEIM) ~= dsp.nation.SANDORIA then
+    if GetRegionOwner(tpz.region.ZULKHEIM) ~= tpz.nation.SANDORIA then
         player:showText(npc, ID.text.PHAMELISE_CLOSED_DIALOG)
     else
         local stock =
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ID.text.PHAMELISE_OPEN_DIALOG)
-        dsp.shop.general(player, stock, SANDORIA)
+        tpz.shop.general(player, stock, SANDORIA)
     end
 end
 

@@ -14,11 +14,11 @@ end
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,3)
-    local SkillCap = getCraftSkillCap(player,dsp.skill.CLOTHCRAFT)
-    local SkillLevel = player:getSkillLevel(dsp.skill.CLOTHCRAFT)
+    local SkillCap = getCraftSkillCap(player,tpz.skill.CLOTHCRAFT)
+    local SkillLevel = player:getSkillLevel(tpz.skill.CLOTHCRAFT)
 
     if guildMember == 1 then
-        if not player:hasStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY) then
+        if not player:hasStatusEffect(tpz.effect.CLOTHCRAFT_IMAGERY) then
             player:startEvent(10014,SkillCap,SkillLevel,1,511,player:getGil(),0,4095,0) -- p1 = skill level
         else
             player:startEvent(10014,SkillCap,SkillLevel,1,511,player:getGil(),7101,4095,0)
@@ -34,6 +34,6 @@ end
 function onEventFinish(player,csid,option)
     if csid == 10014 and option == 1 then
         player:messageSpecial(ID.text.IMAGE_SUPPORT,0,4,1)
-        player:addStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY,1,0,120)
+        player:addStatusEffect(tpz.effect.CLOTHCRAFT_IMAGERY,1,0,120)
     end
 end

@@ -3,9 +3,9 @@
 --  KEYITEMS IDS
 --
 ---------------------------------------------
-dsp = dsp or {}
+tpz = tpz or {}
 
-dsp.keyItem =
+tpz.keyItem =
 {
     ZERUHN_REPORT                            = 1,
     PALBOROUGH_MINES_LOGS                    = 2,
@@ -1954,8 +1954,8 @@ dsp.keyItem =
     MAGUS_ATTIRE_CLAIM_SLIP                  = 1964,
     CORSAIRS_ATTIRE_CLAIM_SLIP               = 1965,
     PUPPETRY_ATTIRE_CLAIM_SLIP               = 1966,
-    DANCERS_ATTIRE_CLAIM_SLIP                = 1967,
-    DANCERS_ATTIRE_CLAIM_SLIP                = 1968,
+    DANCERS_ATTIRE_CLAIM_SLIP_M              = 1967,
+    DANCERS_ATTIRE_CLAIM_SLIP_F              = 1968,
     SCHOLARS_ATTIRE_CLAIM_SLIP               = 1969,
     AMIR_ARMOR_CLAIM_SLIP                    = 1970,
     PAHLUWAN_ARMOR_CLAIM_SLIP                = 1971,
@@ -3001,4 +3001,4 @@ dsp.keyItem =
     REASSEMBLING_TECHNIQUE                   = 3154,
     EMPTY_HOURGLASS                          = 3156,
 }
-dsp.ki = dsp.keyItem
+tpz.ki = tpz.keyItem

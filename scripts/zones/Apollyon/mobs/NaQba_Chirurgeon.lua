@@ -6,7 +6,7 @@ require("scripts/globals/limbus");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+    mob:setMobMod(tpz.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobEngaged(mob,target)
@@ -14,9 +14,9 @@ function onMobEngaged(mob,target)
     local X = mob:getXPos();
     local Y = mob:getYPos();
     local Z = mob:getZPos();
-    SpawnMob(16933139):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-    SpawnMob(16933140):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-    SpawnMob(16933138):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+    SpawnMob(16933139):setMobMod(tpz.mobMod.SUPERLINK, mob:getShortID());
+    SpawnMob(16933140):setMobMod(tpz.mobMod.SUPERLINK, mob:getShortID());
+    SpawnMob(16933138):setMobMod(tpz.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobFight(mob,target)
@@ -28,9 +28,9 @@ function onMobFight(mob,target)
     local instancetime = target:getBattlefieldTimeLeft(Central_Temenos_2nd_Floor);
 
     if (lifepourcent < 50 and GetNPCByID(16933246):getAnimation() == 8) then
-        SpawnMob(16933142):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-        SpawnMob(16933143):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-        SpawnMob(16933141):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+        SpawnMob(16933142):setMobMod(tpz.mobMod.SUPERLINK, mob:getShortID());
+        SpawnMob(16933143):setMobMod(tpz.mobMod.SUPERLINK, mob:getShortID());
+        SpawnMob(16933141):setMobMod(tpz.mobMod.SUPERLINK, mob:getShortID());
         GetNPCByID(16933246):setAnimation(9);
     end
 

@@ -59,7 +59,7 @@ function onTrigger(player,npc)
 
     local WildcatJeuno = player:getCharVar("WildcatJeuno");
 
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,12) == false) then
+    if (player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.LURE_OF_THE_WILDCAT) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,12) == false) then
         player:startEvent(10056);
     elseif (player:getContainerSize(0) < 80) then
         local pFame = player:getFameLevel(JEUNO);
@@ -90,9 +90,9 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 73) then
         if (gobbieBag == 5) then
-            player:addTitle(dsp.title.GREEDALOX);
+            player:addTitle(tpz.title.GREEDALOX);
         elseif (gobbieBag == 10) then
-            player:addTitle(dsp.title.GRAND_GREEDALOX);
+            player:addTitle(tpz.title.GRAND_GREEDALOX);
         end
 
         player:changeContainerSize(0,5);

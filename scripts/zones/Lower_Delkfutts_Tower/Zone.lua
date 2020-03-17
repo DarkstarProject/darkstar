@@ -16,7 +16,7 @@ function onInitialize(zone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onZoneIn(player, prevZone)
@@ -25,11 +25,11 @@ function onZoneIn(player, prevZone)
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         player:setPos(460.022, -1.77, -103.442, 188)
     end
-    if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getCharVar("ZilartStatus") <= 1 then
+    if player:getCurrentMission(ZILART) == tpz.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getCharVar("ZilartStatus") <= 1 then
         cs = 15
-    elseif ENABLE_COP == 1 and prevZone == dsp.zone.QUFIM_ISLAND and player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_FLAMES_BECKON then
+    elseif ENABLE_COP == 1 and prevZone == tpz.zone.QUFIM_ISLAND and player:getCurrentMission(COP) == tpz.mission.id.cop.ANCIENT_FLAMES_BECKON then
         cs = 22
-    elseif player:getCurrentMission(ACP) == dsp.mission.id.acp.BORN_OF_HER_NIGHTMARES and prevZone == dsp.zone.QUFIM_ISLAND then
+    elseif player:getCurrentMission(ACP) == tpz.mission.id.acp.BORN_OF_HER_NIGHTMARES and prevZone == tpz.zone.QUFIM_ISLAND then
         cs = 34
     end
 
@@ -71,8 +71,8 @@ function onEventFinish(player, csid, option)
     elseif csid == 22 then
         player:startEvent(36)
     elseif csid == 34 then
-        player:completeMission(ACP, dsp.mission.id.acp.BORN_OF_HER_NIGHTMARES)
-        player:addMission(ACP, dsp.mission.id.acp.BANISHING_THE_ECHO)
+        player:completeMission(ACP, tpz.mission.id.acp.BORN_OF_HER_NIGHTMARES)
+        player:addMission(ACP, tpz.mission.id.acp.BANISHING_THE_ECHO)
     elseif csid == 36 then
         player:startEvent(37)
     elseif csid == 37 then
@@ -80,8 +80,8 @@ function onEventFinish(player, csid, option)
     elseif csid == 38 then
         player:startEvent(39)
     elseif csid == 39 then
-        player:completeMission(COP, dsp.mission.id.cop.ANCIENT_FLAMES_BECKON)
-        player:addMission(COP, dsp.mission.id.cop.THE_RITES_OF_LIFE)
+        player:completeMission(COP, tpz.mission.id.cop.ANCIENT_FLAMES_BECKON)
+        player:addMission(COP, tpz.mission.id.cop.THE_RITES_OF_LIFE)
         player:setCharVar("COP1", 1)
     end
 end

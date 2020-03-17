@@ -22,7 +22,7 @@ function onUseAbility(player,target,ability)
         target:lowerEnmity(player, 99)
     end
 
-    ability:setMsg(dsp.msg.basic.NONE)
+    ability:setMsg(tpz.msg.basic.NONE)
 
     -- Prevent the player from performing actions while in the air
     player:queue(0, function(player)
@@ -31,7 +31,7 @@ function onUseAbility(player,target,ability)
 
     -- If the Dragoon's wyvern is out and alive, tell it to use Super Climb
     local wyvern = player:getPet()
-    if (wyvern ~= nil and player:getPetID() == dsp.pet.id.WYVERN and wyvern:getHP() > 0) then
+    if (wyvern ~= nil and player:getPetID() == tpz.pet.id.WYVERN and wyvern:getHP() > 0) then
         wyvern:useJobAbility(636, wyvern)
     end
 

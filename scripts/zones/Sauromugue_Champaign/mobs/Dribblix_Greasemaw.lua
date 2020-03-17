@@ -7,8 +7,8 @@ require("scripts/globals/keyitems")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if not player:hasKeyItem(dsp.ki.SEEDSPALL_VIRIDIS) and not player:hasKeyItem(dsp.ki.VIRIDIAN_KEY) then
-        player:addKeyItem(dsp.ki.SEEDSPALL_VIRIDIS)
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SEEDSPALL_VIRIDIS)
+    if not player:hasKeyItem(tpz.ki.SEEDSPALL_VIRIDIS) and not player:hasKeyItem(tpz.ki.VIRIDIAN_KEY) then
+        player:addKeyItem(tpz.ki.SEEDSPALL_VIRIDIS)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.SEEDSPALL_VIRIDIS)
     end
 end

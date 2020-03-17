@@ -5,16 +5,16 @@
 -----------------------------------
 require("scripts/globals/status")
 function onEffectGain(target, effect)
-    target:addMod(dsp.mod.STR, effect:getPower())
-    target:addMod(dsp.mod.HASTE_ABILITY, 1000)
-    target:addMod(dsp.mod.ACC, 10)
+    target:addMod(tpz.mod.STR, effect:getPower())
+    target:addMod(tpz.mod.HASTE_ABILITY, 1000)
+    target:addMod(tpz.mod.ACC, 10)
 end
 
 function onEffectTick(target, effect)
 end
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.STR, effect:getPower())
-    target:delMod(dsp.mod.HASTE_ABILITY, 1000)
-    target:delMod(dsp.mod.ACC, 10)
+    target:delMod(tpz.mod.STR, effect:getPower())
+    target:delMod(tpz.mod.HASTE_ABILITY, 1000)
+    target:delMod(tpz.mod.ACC, 10)
 end

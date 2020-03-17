@@ -15,11 +15,11 @@ end
 function onUseAbility(player,target,ability)
    -- Whether feet have to be equipped before using ability, or if they can be swapped in
    -- is disputed.  Source used: http://wiki.bluegartr.com/bg/Sentinel
-    local power = 90 + player:getMod(dsp.mod.SENTINEL_EFFECT)
+    local power = 90 + player:getMod(tpz.mod.SENTINEL_EFFECT)
 
-    local guardian = player:getMerit(dsp.merit.GUARDIAN)
+    local guardian = player:getMerit(tpz.merit.GUARDIAN)
 
    -- Sent as positive power because UINTs, man.
-   player:addStatusEffect(dsp.effect.SENTINEL,power,3,30,0,guardian)
+   player:addStatusEffect(tpz.effect.SENTINEL,power,3,30,0,guardian)
 
 end

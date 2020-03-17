@@ -11,9 +11,9 @@ require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
-    local distantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
-    local fatherFigure = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FATHER_FIGURE);
+    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
+    local distantLoyalties = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.DISTANT_LOYALTIES);
+    local fatherFigure = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.FATHER_FIGURE);
 
     -- THE ELVAAN GOLDSMITH
     if (theElvaanGoldsmith >= QUEST_ACCEPTED and npcUtil.tradeHas(trade, 648)) then
@@ -30,10 +30,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
-    local distantLoyalties = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.DISTANT_LOYALTIES);
+    local theElvaanGoldsmith = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
+    local distantLoyalties = player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.DISTANT_LOYALTIES);
     local distantLoyaltiesProgress = player:getCharVar("DistantLoyaltiesProgress");
-    local fatherFigure = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.FATHER_FIGURE);
+    local fatherFigure = player:getQuestStatus(BASTOK,tpz.quest.id.bastok.FATHER_FIGURE);
     
     -- THE ELVAAN GOLDSMITH
     if (theElvaanGoldsmith == QUEST_AVAILABLE) then
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         
     -- DISTANT LOYALTIES
     elseif (distantLoyalties == QUEST_ACCEPTED and distantLoyaltiesProgress >= 1 and distantLoyaltiesProgress <= 3) then
-        if (distantLoyaltiesProgress == 1 and player:hasKeyItem(dsp.ki.GOLDSMITHING_ORDER)) then
+        if (distantLoyaltiesProgress == 1 and player:hasKeyItem(tpz.ki.GOLDSMITHING_ORDER)) then
             player:startEvent(315);
         elseif (distantLoyaltiesProgress == 2) then
             player:startEvent(316);
@@ -68,16 +68,16 @@ function onEventFinish(player,csid,option)
 
     -- THE ELVAAN GOLDSMITH
     if (csid == 215) then
-        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
+        player:addQuest(BASTOK,tpz.quest.id.bastok.THE_ELVAAN_GOLDSMITH);
     elseif (csid == 216) then
-        local fame = player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH) and 8 or 100;
-        if (npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.THE_ELVAAN_GOLDSMITH, {gil=180, fame=fame})) then
+        local fame = player:hasCompletedQuest(BASTOK, tpz.quest.id.bastok.THE_ELVAAN_GOLDSMITH) and 8 or 100;
+        if (npcUtil.completeQuest(player, BASTOK, tpz.quest.id.bastok.THE_ELVAAN_GOLDSMITH, {gil=180, fame=fame})) then
             player:confirmTrade();
         end
 
     -- DISTANT LOYALTIES
     elseif (csid == 315) then
-        player:delKeyItem(dsp.ki.GOLDSMITHING_ORDER);
+        player:delKeyItem(tpz.ki.GOLDSMITHING_ORDER);
         player:setCharVar("DistantLoyaltiesProgress",2);
     elseif (csid == 317) then
         player:confirmTrade();
@@ -85,13 +85,13 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     elseif (csid == 318) then
         player:setCharVar("DistantLoyaltiesProgress",4);
-        npcUtil.giveKeyItem(player, dsp.ki.MYTHRIL_HEARTS);
+        npcUtil.giveKeyItem(player, tpz.ki.MYTHRIL_HEARTS);
         
     -- FATHER FIGURE
     elseif (csid == 240) then
-        player:addQuest(BASTOK,dsp.quest.id.bastok.FATHER_FIGURE);
+        player:addQuest(BASTOK,tpz.quest.id.bastok.FATHER_FIGURE);
     elseif (csid == 241) then
-        if (npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.FATHER_FIGURE, {gil=2200, fame=120})) then
+        if (npcUtil.completeQuest(player, BASTOK, tpz.quest.id.bastok.FATHER_FIGURE, {gil=2200, fame=120})) then
             player:confirmTrade();
         end
     end

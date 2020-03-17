@@ -12,8 +12,8 @@ end
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(dsp.effect.BLINDNESS) == true) then
-        target:delStatusEffect(dsp.effect.BLINDNESS)
+    if (target:hasStatusEffect(tpz.effect.BLINDNESS) == true) then
+        target:delStatusEffect(tpz.effect.BLINDNESS)
     end
 end
 

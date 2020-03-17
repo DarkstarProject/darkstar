@@ -12,14 +12,14 @@ end
 
 function onUseAbility(pet, target, skill, action)
     local effect
-    if (target:delStatusEffect(dsp.effect.CURSE_I)) then
-        skill:setMsg(dsp.msg.basic.JA_REMOVE_EFFECT)
-        effect = dsp.effect.CURSE_I
-    elseif (target:delStatusEffect(dsp.effect.DOOM)) then
-        skill:setMsg(dsp.msg.basic.JA_REMOVE_EFFECT)
-        effect = dsp.effect.DOOM
+    if (target:delStatusEffect(tpz.effect.CURSE_I)) then
+        skill:setMsg(tpz.msg.basic.JA_REMOVE_EFFECT)
+        effect = tpz.effect.CURSE_I
+    elseif (target:delStatusEffect(tpz.effect.DOOM)) then
+        skill:setMsg(tpz.msg.basic.JA_REMOVE_EFFECT)
+        effect = tpz.effect.DOOM
     else
-        skill:setMsg(dsp.msg.basic.JA_NO_EFFECT)
+        skill:setMsg(tpz.msg.basic.JA_NO_EFFECT)
     end
 
     return effect

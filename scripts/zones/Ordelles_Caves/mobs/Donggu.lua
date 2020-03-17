@@ -6,12 +6,12 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
-    mob:setMod(dsp.mod.DOUBLE_ATTACK, 5)
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1)
+    mob:setMod(tpz.mod.DOUBLE_ATTACK, 5)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.BLIND)
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.BLIND)
 end
 
 function onMobDeath(mob, player, isKiller)

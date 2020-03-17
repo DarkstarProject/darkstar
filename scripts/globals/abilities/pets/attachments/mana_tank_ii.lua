@@ -8,19 +8,19 @@ require("scripts/globals/status")
 function onEquip(pet)
     -- We do not have support to do a fraction of a percent so we rounded
     local frame = pet:getAutomatonFrame()
-    if frame == dsp.frames.HARLEQUIN then
-        pet:addMod(dsp.mod.MPP, 10)
-    elseif frame == dsp.frames.STORMWAKER then
-        pet:addMod(dsp.mod.MPP, 8)
+    if frame == tpz.frames.HARLEQUIN then
+        pet:addMod(tpz.mod.MPP, 10)
+    elseif frame == tpz.frames.STORMWAKER then
+        pet:addMod(tpz.mod.MPP, 8)
     end
 end
 
 function onUnequip(pet)
     local frame = pet:getAutomatonFrame()
-    if frame == dsp.frames.HARLEQUIN then
-        pet:delMod(dsp.mod.MPP, 10)
-    elseif frame == dsp.frames.STORMWAKER then
-        pet:delMod(dsp.mod.MPP, 8)
+    if frame == tpz.frames.HARLEQUIN then
+        pet:delMod(tpz.mod.MPP, 10)
+    elseif frame == tpz.frames.STORMWAKER then
+        pet:delMod(tpz.mod.MPP, 8)
     end
 end
 
@@ -37,5 +37,5 @@ function onUpdate(pet, maneuvers)
     if maneuvers > 0 then
         power = math.floor(1 + maneuvers + (pet:getMaxMP() * (0.2 + 0.2 * maneuvers) / 100))
     end
-    updateModPerformance(pet, dsp.mod.REFRESH, 'mana_tank_ii_mod', power)
+    updateModPerformance(pet, tpz.mod.REFRESH, 'mana_tank_ii_mod', power)
 end

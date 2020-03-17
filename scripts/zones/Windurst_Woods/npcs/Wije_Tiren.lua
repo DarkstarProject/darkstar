@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         5014,    98,       --Scroll of Herb Pastoral
         2864,  9200        --Federation Waystone
     }
-    dsp.shop.general(player, stock, WINDURST)
+    tpz.shop.general(player, stock, WINDURST)
 end
 
 function onEventUpdate(player,csid,option)

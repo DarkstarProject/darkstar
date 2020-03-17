@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local TCCOM = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.THE_CURIOUS_CASE_OF_MELVIEN);
-    local TCCOM_Need_KI = player:hasKeyItem(dsp.ki.MELVIENS_TURN) and (not player:hasKeyItem(dsp.ki.MELVIENS_DEATH))
-    local Order_Up = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.ORDER_UP);
+    local TCCOM = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.THE_CURIOUS_CASE_OF_MELVIEN);
+    local TCCOM_Need_KI = player:hasKeyItem(tpz.ki.MELVIENS_TURN) and (not player:hasKeyItem(tpz.ki.MELVIENS_DEATH))
+    local Order_Up = player:getQuestStatus(ADOULIN, tpz.quest.id.adoulin.ORDER_UP);
     local Order_Mastan = player:getMaskBit(player:getCharVar("Order_Up_NPCs"), 11);
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Mastan)) then
@@ -42,8 +42,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 184) then
         -- Progresses Quest: 'The Curious Case of Melvien'
         if (option == 1) then
-            player:addKeyItem(dsp.ki.MELVIENS_DEATH);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MELVIENS_DEATH);
+            player:addKeyItem(tpz.ki.MELVIENS_DEATH);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.MELVIENS_DEATH);
         end
     end
 end;

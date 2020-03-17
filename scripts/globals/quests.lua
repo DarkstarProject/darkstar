@@ -1,8 +1,8 @@
 require("scripts/globals/log_ids")
 require("scripts/globals/zone")
 
-dsp = dsp or {}
-dsp.quest = dsp.quest or {}
+tpz = tpz or {}
+tpz.quest = tpz.quest or {}
 
 -----------------------------------
 --
@@ -10,15 +10,15 @@ dsp.quest = dsp.quest or {}
 --
 -----------------------------------
 
-QUEST_AVAILABLE = 0;
-QUEST_ACCEPTED  = 1;
-QUEST_COMPLETED = 2;
+QUEST_AVAILABLE = 0
+QUEST_ACCEPTED  = 1
+QUEST_COMPLETED = 2
 
 -- Log IDs defined as "enums" here to tie into quest_rewrite
 -- branch that will be merged in at a later date. Used
 -- as keys for the quest ID tables below.
 
-dsp.quest.log_id =
+tpz.quest.log_id =
 {
     SANDORIA    =  0,
     BASTOK      =  1,
@@ -33,27 +33,27 @@ dsp.quest.log_id =
     COALITION   = 10
 }
 
-dsp.quest.area =
+tpz.quest.area =
 {
-    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
-    [dsp.quest.log_id.BASTOK]      = 'bastok',
-    [dsp.quest.log_id.WINDURST]    = 'windurst',
-    [dsp.quest.log_id.JEUNO]       = 'jeuno',
-    [dsp.quest.log_id.OTHER_AREAS] = 'otherAreas',
-    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
-    [dsp.quest.log_id.AHT_URHGAN]  = 'ahtUrhgan',
-    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystalWar',
-    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
-    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
-    [dsp.quest.log_id.COALITION]   = 'coalition'
+    [tpz.quest.log_id.SANDORIA]    = 'sandoria',
+    [tpz.quest.log_id.BASTOK]      = 'bastok',
+    [tpz.quest.log_id.WINDURST]    = 'windurst',
+    [tpz.quest.log_id.JEUNO]       = 'jeuno',
+    [tpz.quest.log_id.OTHER_AREAS] = 'otherAreas',
+    [tpz.quest.log_id.OUTLANDS]    = 'outlands',
+    [tpz.quest.log_id.AHT_URHGAN]  = 'ahtUrhgan',
+    [tpz.quest.log_id.CRYSTAL_WAR] = 'crystalWar',
+    [tpz.quest.log_id.ABYSSEA]     = 'abyssea',
+    [tpz.quest.log_id.ADOULIN]     = 'adoulin',
+    [tpz.quest.log_id.COALITION]   = 'coalition'
 }
 
-dsp.quest.id =
+tpz.quest.id =
 {
     -----------------------------------
     --  San d'Oria
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] =
+    [tpz.quest.area[tpz.quest.log_id.SANDORIA]] =
     {
         A_SENTRY_S_PERIL                = 0,  -- ± --
         WATER_OF_THE_CHEVAL             = 1,  -- ± --
@@ -141,7 +141,7 @@ dsp.quest.id =
     -----------------------------------
     --  Bastok
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.BASTOK]] =
+    [tpz.quest.area[tpz.quest.log_id.BASTOK]] =
     {
         THE_SIREN_S_TEAR                = 0,  -- ± --
         BEAUTY_AND_THE_GALKA            = 1,  -- ± --
@@ -239,7 +239,7 @@ dsp.quest.id =
     -----------------------------------
     --  Windurst
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.WINDURST]] =
+    [tpz.quest.area[tpz.quest.log_id.WINDURST]] =
     {
         HAT_IN_HAND                     = 0,  -- + --
         A_FEATHER_IN_ONE_S_CAP          = 1,  -- + --
@@ -335,7 +335,7 @@ dsp.quest.id =
     -----------------------------------
     --  Jeuno
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.JEUNO]] =
+    [tpz.quest.area[tpz.quest.log_id.JEUNO]] =
     {
         CREST_OF_DAVOI                  = 0,  -- + --
         SAVE_MY_SISTER                  = 1,  -- + --
@@ -486,7 +486,7 @@ dsp.quest.id =
     -----------------------------------
     --  Other Areas
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] =
+    [tpz.quest.area[tpz.quest.log_id.OTHER_AREAS]] =
     {
         RYCHARDE_THE_CHEF               = 0,  -- + --
         WAY_OF_THE_COOK                 = 1,  -- + --
@@ -559,7 +559,7 @@ dsp.quest.id =
     -----------------------------------
     --  Outlands
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] =
+    [tpz.quest.area[tpz.quest.log_id.OUTLANDS]] =
     {
         -- Kazham (1-15)
         THE_FIREBLOOM_TREE              = 1,
@@ -631,7 +631,7 @@ dsp.quest.id =
     -----------------------------------
     --  Aht Urhgan
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] =
+    [tpz.quest.area[tpz.quest.log_id.AHT_URHGAN]] =
     {
         KEEPING_NOTES                   = 0,
         ARTS_AND_CRAFTS                 = 1,
@@ -689,7 +689,7 @@ dsp.quest.id =
     -----------------------------------
     --  Crystal War
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] =
+    [tpz.quest.area[tpz.quest.log_id.CRYSTAL_WAR]] =
     {
         LOST_IN_TRANSLOCATION            = 0, -- + --
         MESSAGE_ON_THE_WINDS             = 1,
@@ -788,7 +788,7 @@ dsp.quest.id =
     -----------------------------------
     --  Abyssea
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] =
+    [tpz.quest.area[tpz.quest.log_id.ABYSSEA]] =
     {
         -- For some reason these did not match dat file order,
         -- had to adjust IDs >120 after using @addquest
@@ -989,7 +989,7 @@ dsp.quest.id =
     -----------------------------------
     --  Adoulin
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] =
+    [tpz.quest.area[tpz.quest.log_id.ADOULIN]] =
     {
         -- These also do not match the DAT file order, had
         -- discrepencies and swapped orders from the start.
@@ -1095,7 +1095,7 @@ dsp.quest.id =
     -----------------------------------
     --  Coalition
     -----------------------------------
-    [dsp.quest.area[dsp.quest.log_id.COALITION]] =
+    [tpz.quest.area[tpz.quest.log_id.COALITION]] =
     {
         -- Also slightly incongruent with DAT file order
         PROCURE_CEIZAK_BATTLEGROUNDS    = 0,

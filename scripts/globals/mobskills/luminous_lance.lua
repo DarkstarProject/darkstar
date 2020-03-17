@@ -10,8 +10,8 @@ require("scripts/globals/monstertpmoves")
 function onMobSkillCheck(target,mob,skill)
     local lanceTime = mob:getLocalVar("lanceTime")
     local lanceOut = mob:getLocalVar("lanceOut")
-    if (not (target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD) and target:hasStatusEffect(dsp.effect.MAGIC_SHIELD)))
-        and (lanceTime + 60 < mob:getBattleTime()) and target:getCurrentAction() ~= dsp.act.MOBABILITY_USING
+    if (not (target:hasStatusEffect(tpz.effect.PHYSICAL_SHIELD) and target:hasStatusEffect(tpz.effect.MAGIC_SHIELD)))
+        and (lanceTime + 60 < mob:getBattleTime()) and target:getCurrentAction() ~= tpz.act.MOBABILITY_USING
         and lanceOut == 1 then
 
         return 0
@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local info = MobRangedMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
 
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,tpz.attackType.RANGED,tpz.damageType.PIERCING,info.hitslanded)
 
     mob:entityAnimationPacket("ids0")
     mob:setLocalVar("lanceTime", mob:getBattleTime())
@@ -37,8 +37,8 @@ function onMobWeaponSkill(target, mob, skill)
     target:AnimationSub(3)
 
     -- Cannot be resisted
-    target:addStatusEffect(dsp.effect.STUN, 0, 0, 20)
+    target:addStatusEffect(tpz.effect.STUN, 0, 0, 20)
     
-    target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.PIERCING)
+    target:takeDamage(dmg, mob, tpz.attackType.RANGED, tpz.damageType.PIERCING)
     return dmg
 end

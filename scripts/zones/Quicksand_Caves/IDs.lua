@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.QUICKSAND_CAVES] =
+zones[tpz.zone.QUICKSAND_CAVES] =
 {
     text =
     {
@@ -17,6 +17,7 @@ zones[dsp.zone.QUICKSAND_CAVES] =
         NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING     = 6403, -- You are suddenly overcome with a sense of foreboding...
         NOW_IS_NOT_THE_TIME     = 6404, -- Now is not the time for that!
+        FELLOW_MESSAGE_OFFSET   = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
         CHEST_UNLOCKED          = 7316, -- You unlock the chest!
@@ -97,4 +98,4 @@ zones[dsp.zone.QUICKSAND_CAVES] =
     },
 }
 
-return zones[dsp.zone.QUICKSAND_CAVES]
+return zones[tpz.zone.QUICKSAND_CAVES]

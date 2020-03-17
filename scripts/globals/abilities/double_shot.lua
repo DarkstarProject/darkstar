@@ -17,5 +17,5 @@ function onUseAbility(player,target,ability)
 
     local chance = 40
 
-    player:addStatusEffect(dsp.effect.DOUBLE_SHOT,chance,0,90)
+    player:addStatusEffect(tpz.effect.DOUBLE_SHOT,chance,0,90)
 end

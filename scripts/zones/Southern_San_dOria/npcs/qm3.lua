@@ -27,7 +27,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 41 and option == 1) then
-        player:addKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STRANGE_SHEET_OF_PAPER);
+        player:addKeyItem(tpz.ki.STRANGE_SHEET_OF_PAPER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.STRANGE_SHEET_OF_PAPER);
     end
 end;

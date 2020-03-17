@@ -12,12 +12,12 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 60)
+    automaton:addRecast(tpz.recast.ABILITY, skill:getID(), 60)
     local effect = target:dispelStatusEffect()
-    if effect ~= dsp.effect.NONE then
-        skill:setMsg(dsp.msg.basic.SKILL_ERASE)
+    if effect ~= tpz.effect.NONE then
+        skill:setMsg(tpz.msg.basic.SKILL_ERASE)
     else
-        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
+        skill:setMsg(tpz.msg.basic.SKILL_NO_EFFECT)
     end
 
     return effect

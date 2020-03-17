@@ -10,7 +10,7 @@ require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
+    tpz.helm.initZone(zone, tpz.helm.type.HARVESTING)
 end;
 
 function onZoneIn(player,prevZone)
@@ -26,10 +26,10 @@ end;
 
 function onZoneWeatherChange(weather)
     local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS);
-    if (weather == dsp.weather.WIND or weather == dsp.weather.GALES) then
-        npc:setStatus(dsp.status.NORMAL);
+    if (weather == tpz.weather.WIND or weather == tpz.weather.GALES) then
+        npc:setStatus(tpz.status.NORMAL);
     else
-        npc:setStatus(dsp.status.DISAPPEAR);
+        npc:setStatus(tpz.status.DISAPPEAR);
     end
 end;
 

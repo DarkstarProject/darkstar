@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -260,13 +258,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         //ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, shadows);
     }
-    else if (num == 1 && dsprand::GetRandomNumber(100) < quadAttack)
+    else if (num == 1 && tpzrand::GetRandomNumber(100) < quadAttack)
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::QUAD, direction, 3);
 
-    else if (num == 1 && dsprand::GetRandomNumber(100) < tripleAttack)
+    else if (num == 1 && tpzrand::GetRandomNumber(100) < tripleAttack)
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::TRIPLE, direction, 2);
 
-    else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
+    else if (num == 1 && tpzrand::GetRandomNumber(100) < doubleAttack)
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
 
     // Apply Mythic OAT mods (mainhand only)
@@ -274,11 +272,11 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         int16 occAttThriceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_THRICE), 0, 100);
         int16 occAttTwiceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_TWICE), 0, 100);
-        if (num == 1 && dsprand::GetRandomNumber(100) < occAttThriceRate)
+        if (num == 1 && tpzrand::GetRandomNumber(100) < occAttThriceRate)
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 2);
         }
-        else if (num == 1 && dsprand::GetRandomNumber(100) < occAttTwiceRate)
+        else if (num == 1 && tpzrand::GetRandomNumber(100) < occAttTwiceRate)
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 1);
         }
@@ -298,7 +296,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
         // Handedness check, checking mod of the weapon for the purposes of level scaling
         if (battleutils::GetScaledItemModifier(PChar, PMain, Mod::AMMO_SWING_TYPE) == 2 &&
-            dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+            tpzrand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 1);
             ammoCount += 1;
@@ -306,13 +304,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         else
         {
             if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, Mod::AMMO_SWING_TYPE) == 1 &&
-                dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+                tpzrand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
                 AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, RIGHTATTACK, 1);
                 ammoCount += 1;
             }
             if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, Mod::AMMO_SWING_TYPE) == 1 &&
-                dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+                tpzrand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
                 AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, LEFTATTACK, 1);
                 ammoCount += 1;
@@ -335,7 +333,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     // TODO: Possible Lua function for the nitty gritty stuff below.
 
     // Iga mod: Extra attack chance whilst dual wield is on.
-    if (direction == LEFTATTACK && dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_DUAL_WIELD_ATTACK))
+    if (direction == LEFTATTACK && tpzrand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_DUAL_WIELD_ATTACK))
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, RIGHTATTACK, 1);
 
 }
@@ -359,14 +357,14 @@ void CAttackRound::CreateKickAttacks()
 
         kickAttack = std::clamp<uint16>(kickAttack, 0, 100);
 
-        if (dsprand::GetRandomNumber(100) < kickAttack)
+        if (tpzrand::GetRandomNumber(100) < kickAttack)
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::KICK, RIGHTATTACK, 1);
             m_kickAttackOccured = true;
         }
 
         // Tantra set mod: Try an extra left kick attack.
-        if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_KICK_ATTACK))
+        if (m_kickAttackOccured && tpzrand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_KICK_ATTACK))
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::KICK, LEFTATTACK, 1);
         }
@@ -386,7 +384,7 @@ void CAttackRound::CreateDakenAttack()
         if (PAmmo && PAmmo->isShuriken())
         {
             uint16 daken = m_attacker->getMod(Mod::DAKEN);
-             if (dsprand::GetRandomNumber(100) < daken)
+             if (tpzrand::GetRandomNumber(100) < daken)
              {
                 AddAttackSwing(PHYSICAL_ATTACK_TYPE::DAKEN, RIGHTATTACK, 1);
              }

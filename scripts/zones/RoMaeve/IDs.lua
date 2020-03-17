@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.ROMAEVE] =
+zones[tpz.zone.ROMAEVE] =
 {
     text =
     {
@@ -15,10 +15,11 @@ zones[dsp.zone.ROMAEVE] =
         GIL_OBTAINED             = 6389,  -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6391,  -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6402,  -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET    = 6417,  -- I'm ready. I suppose.
         CONQUEST_BASE            = 7049,  -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET   = 7208,  -- You can't fish here.
         SENSE_OMINOUS_PRESENCE   = 7394,  -- You sense an ominous presence...
-        ITEMS_ITEMS_LA_LA        = 7397,  -- You can hear a strange voice...“Items, items, la la la la la～♪”
+        ITEMS_ITEMS_LA_LA        = 7397,  -- You can hear a strange voice... Items, items, la la la la la
         GOBLIN_SLIPPED_AWAY      = 7403,  -- The Goblin slipped away when you were not looking...
         PLAYER_OBTAINS_ITEM      = 7426,  -- <name> obtains <item>!
         UNABLE_TO_OBTAIN_ITEM    = 7427,  -- You were unable to obtain the item.
@@ -65,4 +66,4 @@ zones[dsp.zone.ROMAEVE] =
     },
 }
 
-return zones[dsp.zone.ROMAEVE]
+return zones[tpz.zone.ROMAEVE]

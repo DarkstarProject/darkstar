@@ -18,16 +18,16 @@ function onAdditionalEffect(player,target,damage)
         local params = {}
         params.bonusmab = 0
         params.includemab = false
-        dmg = addBonusesAbility(player, dsp.magic.ele.ICE, target, dmg, params)
-        dmg = dmg * applyResistanceAddEffect(player,target,dsp.magic.ele.ICE,0)
-        dmg = adjustForTarget(target,dmg,dsp.magic.ele.ICE)
-        dmg = finalMagicNonSpellAdjustments(player,target,dsp.magic.ele.ICE,dmg)
+        dmg = addBonusesAbility(player, tpz.magic.ele.ICE, target, dmg, params)
+        dmg = dmg * applyResistanceAddEffect(player,target,tpz.magic.ele.ICE,0)
+        dmg = adjustForTarget(target,dmg,tpz.magic.ele.ICE)
+        dmg = finalMagicNonSpellAdjustments(player,target,tpz.magic.ele.ICE,dmg)
 
-        local message = dsp.msg.basic.ADD_EFFECT_DMG
+        local message = tpz.msg.basic.ADD_EFFECT_DMG
         if (dmg < 0) then
-            message = dsp.msg.basic.ADD_EFFECT_HEAL
+            message = tpz.msg.basic.ADD_EFFECT_HEAL
         end
 
-        return dsp.subEffect.ICE_DAMAGE,message,dmg
+        return tpz.subEffect.ICE_DAMAGE,message,dmg
     end
 end

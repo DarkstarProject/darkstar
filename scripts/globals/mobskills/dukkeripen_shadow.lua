@@ -9,7 +9,7 @@ require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if mob:getMainJob() == dsp.job.COR then
+    if mob:getMainJob() == tpz.job.COR then
         return 0
     else
         return 1
@@ -18,7 +18,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    skill:setMsg(MobBuffMove(mob, dsp.effect.BLINK, 10, 0, 120))
+    skill:setMsg(MobBuffMove(mob, tpz.effect.BLINK, 10, 0, 120))
     
-    return dsp.effect.BLINK
+    return tpz.effect.BLINK
 end

@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if player:hasKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE) then
+    if player:hasKeyItem(tpz.ki.RHINOSTERY_CERTIFICATE) then
         player:startEvent(390);
     else
         player:startEvent(264);

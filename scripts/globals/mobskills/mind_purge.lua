@@ -18,13 +18,13 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dispel =  target:dispelAllStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD))
+    local dispel =  target:dispelAllStatusEffect(bit.bor(tpz.effectFlag.DISPELABLE, tpz.effectFlag.FOOD))
     local msg -- to be set later
 
     if (dispel == 0) then
-        msg = dsp.msg.basic.SKILL_NO_EFFECT -- no effect
+        msg = tpz.msg.basic.SKILL_NO_EFFECT -- no effect
     else
-        msg = dsp.msg.basic.DISAPPEAR_NUM
+        msg = tpz.msg.basic.DISAPPEAR_NUM
     end
 
     skill:setMsg(msg)

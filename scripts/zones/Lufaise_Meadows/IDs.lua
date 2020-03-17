@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.LUFAISE_MEADOWS] =
+zones[tpz.zone.LUFAISE_MEADOWS] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
         KEYITEM_OBTAINED            = 6391, -- Obtained key item: <keyitem>.
         KEYITEM_LOST                = 6392, -- Lost key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY     = 6402, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET       = 6417, -- I'm ready. I suppose.
         CONQUEST_BASE               = 7049, -- Tallying conquest results...
         CONQUEST                    = 7217, -- You've earned conquest points!
         FISHING_MESSAGE_OFFSET      = 7551, -- You can't fish here.
@@ -62,4 +63,4 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
     },
 }
 
-return zones[dsp.zone.LUFAISE_MEADOWS]
+return zones[tpz.zone.LUFAISE_MEADOWS]

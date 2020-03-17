@@ -14,10 +14,10 @@ end;
 
 function onTrigger(player,npc)
     local fishCountVar = 0;
-    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_RIVALRY) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.THE_RIVALRY) == QUEST_ACCEPTED) then
         fishCountVar = player:getCharVar("theCompetitionFishCountVar");
         player:startEvent(309,0,0,fishCountVar);
-    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_COMPETITION) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(SANDORIA,tpz.quest.id.sandoria.THE_COMPETITION) == QUEST_ACCEPTED) then
         fishCountVar = player:getCharVar("theCompetitionFishCountVar");
         player:startEvent(309,1,0,fishCountVar);
     else

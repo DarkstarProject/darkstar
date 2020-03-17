@@ -13,5 +13,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(dsp.effect.RETALIATION,1,0,180)
+    player:addStatusEffect(tpz.effect.RETALIATION,1,0,180)
 end

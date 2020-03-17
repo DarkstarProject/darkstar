@@ -1,14 +1,14 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-dsp = dsp or {}
-dsp.msg = dsp.msg or {}
+tpz = tpz or {}
+tpz.msg = tpz.msg or {}
 
 ------------------------------------
 -- Message Channels
 ------------------------------------
 
-dsp.msg.channel =
+tpz.msg.channel =
 {
     SAY            = 0,
     SHOUT          = 1,
@@ -44,7 +44,7 @@ dsp.msg.channel =
 }
 
 -- used by PrintToArea
-dsp.msg.area =
+tpz.msg.area =
 {
     SYSTEM      = 0, -- Server wide like the purple stuff :)
     SAY         = 1, -- Will display in small area around player
@@ -57,7 +57,7 @@ dsp.msg.area =
 -- Message Basic
 ------------------------------------
 
-dsp.msg.basic =
+tpz.msg.basic =
 {
     NONE    = 0, -- Display nothing
     HIT_DMG = 1, -- <actor> hits <target> for <amount> points of damage.

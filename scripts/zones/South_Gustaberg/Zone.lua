@@ -11,7 +11,7 @@ require("scripts/globals/missions")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
-    return dsp.chocoboDig.start(player, precheck)
+    return tpz.chocoboDig.start(player, precheck)
 end
 
 function onInitialize(zone)
@@ -24,11 +24,11 @@ function onZoneIn(player, prevZone)
         player:setPos(-601.433, 35.204, -520.031, 1)
     end
 
-    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getCharVar("VowsDone") == 1 then
+    if player:getCurrentMission(COP) == tpz.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getCharVar("VowsDone") == 1 then
         cs = 906
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 901
-    elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
+    elseif player:getCurrentMission(WINDURST) == tpz.mission.id.windurst.VAIN and player:getCharVar("MissionStatus") == 1 then
         cs = 37
     end
 
@@ -36,7 +36,7 @@ function onZoneIn(player, prevZone)
 end
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    tpz.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player, region)
@@ -58,9 +58,9 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 906 then
-        if player:getCurrentMission(COP) == dsp.mission.id.cop.A_TRANSIENT_DREAM then
-            player:completeMission(COP, dsp.mission.id.cop.A_TRANSIENT_DREAM)
-            player:addMission(COP, dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING)
+        if player:getCurrentMission(COP) == tpz.mission.id.cop.A_TRANSIENT_DREAM then
+            player:completeMission(COP, tpz.mission.id.cop.A_TRANSIENT_DREAM)
+            player:addMission(COP, tpz.mission.id.cop.THE_CALL_OF_THE_WYRMKING)
         end
         player:setCharVar("VowsDone", 0)
     elseif csid == 901 then

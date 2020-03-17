@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         6078, 43740,  -- Scroll of Indi-VIT
         6077, 46440,  -- Scroll of Indi-DEX
     }
-    dsp.shop.general(player, stock);
+    tpz.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -11,14 +11,14 @@ require("scripts/globals/titles")
 
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(ID.npc.ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(ID.npc.ADAMANTOISE_QM):setStatus(tpz.status.DISAPPEAR)
     end
 
     mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.ASPIDOCHELONE_SINKER)
+    player:addTitle(tpz.title.ASPIDOCHELONE_SINKER)
 end
 
 function onMobDespawn(mob)

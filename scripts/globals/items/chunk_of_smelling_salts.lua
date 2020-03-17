@@ -10,21 +10,21 @@ require("scripts/globals/msg")
 function onItemCheck(target)
     pet = target:getPet()
     if (pet == nil) then
-        return dsp.msg.basic.REQUIRES_A_PET
-    elseif (pet:hasStatusEffect(dsp.effect.MEDICINE)) then
-        return dsp.msg.basic.ITEM_NO_USE_MEDICATED
+        return tpz.msg.basic.REQUIRES_A_PET
+    elseif (pet:hasStatusEffect(tpz.effect.MEDICINE)) then
+        return tpz.msg.basic.ITEM_NO_USE_MEDICATED
     end
     return 0
 end
 
 function onItemUse(target)
-    if (target:addStatusEffect(dsp.effect.MEDICINE,0,0,180,5320)) then
-        target:messageBasic(GAINS_EFFECT_OF_STATUS, dsp.effect.MEDICINE)
-        pet:delStatusEffect(dsp.effect.SLEEP_I)
-        pet:delStatusEffect(dsp.effect.SLEEP_II)
-        pet:delStatusEffect(dsp.effect.LULLABY)
+    if (target:addStatusEffect(tpz.effect.MEDICINE,0,0,180,5320)) then
+        target:messageBasic(GAINS_EFFECT_OF_STATUS, tpz.effect.MEDICINE)
+        pet:delStatusEffect(tpz.effect.SLEEP_I)
+        pet:delStatusEffect(tpz.effect.SLEEP_II)
+        pet:delStatusEffect(tpz.effect.LULLABY)
     else
-        target:messageBasic(dsp.msg.basic.NO_EFFECT)
+        target:messageBasic(tpz.msg.basic.NO_EFFECT)
     end
 end
 

@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(BASTOK,tpz.quest.id.bastok.AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
 
         AyameAndKaede = player:getCharVar("AyameAndKaede_Event");
 

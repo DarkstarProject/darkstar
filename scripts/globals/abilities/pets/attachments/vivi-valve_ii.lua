@@ -10,7 +10,7 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    updateModPerformance(pet, dsp.mod.CURE_POTENCY, 'vivi_valve_mod', 0)
+    updateModPerformance(pet, tpz.mod.CURE_POTENCY, 'vivi_valve_mod', 0)
 end
 
 function onManeuverGain(pet, maneuvers)
@@ -23,12 +23,12 @@ end
 
 function onUpdate(pet, maneuvers)
     if maneuvers == 0 then
-        updateModPerformance(pet, dsp.mod.CURE_POTENCY, 'vivi_valve_mod', 10)
+        updateModPerformance(pet, tpz.mod.CURE_POTENCY, 'vivi_valve_mod', 10)
     elseif maneuvers == 1 then
-        updateModPerformance(pet, dsp.mod.CURE_POTENCY, 'vivi_valve_mod', 20)
+        updateModPerformance(pet, tpz.mod.CURE_POTENCY, 'vivi_valve_mod', 20)
     elseif maneuvers == 2 then
-        updateModPerformance(pet, dsp.mod.CURE_POTENCY, 'vivi_valve_mod', 35)
+        updateModPerformance(pet, tpz.mod.CURE_POTENCY, 'vivi_valve_mod', 35)
     elseif maneuvers == 3 then
-        updateModPerformance(pet, dsp.mod.CURE_POTENCY, 'vivi_valve_mod', 45)
+        updateModPerformance(pet, tpz.mod.CURE_POTENCY, 'vivi_valve_mod', 45)
     end
 end

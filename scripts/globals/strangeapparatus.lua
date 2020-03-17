@@ -10,7 +10,7 @@ require("scripts/globals/npc_util")
 require("scripts/globals/zone")
 ------------------------------------
 
-dsp = dsp or {}
+tpz = tpz or {}
 
 local RED_CHIP          = 474
 local BLUE_CHIP         = 475
@@ -44,7 +44,7 @@ local DARK_CLUSTER      = 4111
 
 local strAppData =
 {
-    [dsp.zone.DANGRUF_WADI] =
+    [tpz.zone.DANGRUF_WADI] =
     {
         suffix  = 'DW',
         uid     = 0,
@@ -67,7 +67,7 @@ local strAppData =
               931, 1.0000, 8, -- cermet_chunk
         },
     },
-    [dsp.zone.ORDELLES_CAVES] =
+    [tpz.zone.ORDELLES_CAVES] =
     {
         suffix  = 'OC',
         uid     = 3,
@@ -90,7 +90,7 @@ local strAppData =
               931, 1.0000, 8, -- cermet_chunk
         },
     },
-    [dsp.zone.OUTER_HORUTOTO_RUINS] =
+    [tpz.zone.OUTER_HORUTOTO_RUINS] =
     {
         suffix  = 'HR',
         uid     = 5,
@@ -113,7 +113,7 @@ local strAppData =
               931, 1.0000, 8, -- cermet_chunk
         },
     },
-    [dsp.zone.THE_ELDIEME_NECROPOLIS] =
+    [tpz.zone.THE_ELDIEME_NECROPOLIS] =
     {
         suffix  = 'EN',
         uid     = 4,
@@ -136,7 +136,7 @@ local strAppData =
               931, 1.0000, 8, -- cermet_chunk
         },
     },
-    [dsp.zone.GUSGEN_MINES] =
+    [tpz.zone.GUSGEN_MINES] =
     {
         suffix  = 'GM',
         uid     = 1,
@@ -159,7 +159,7 @@ local strAppData =
               931, 1.0000, 8, -- cermet_chunk
         },
     },
-    [dsp.zone.CRAWLERS_NEST] =
+    [tpz.zone.CRAWLERS_NEST] =
     {
         suffix  = 'CN',
         uid     = 2,
@@ -182,7 +182,7 @@ local strAppData =
               931, 1.0000, 8, -- cermet_chunk
         },
     },
-    [dsp.zone.MAZE_OF_SHAKHRAMI] =
+    [tpz.zone.MAZE_OF_SHAKHRAMI] =
     {
         suffix  = 'MS',
         uid     = 7,
@@ -205,7 +205,7 @@ local strAppData =
               931, 1.0000, 8, -- cermet_chunk
         },
     },
-    [dsp.zone.GARLAIGE_CITADEL] =
+    [tpz.zone.GARLAIGE_CITADEL] =
     {
         suffix  = 'GC',
         uid     = 6,
@@ -287,7 +287,7 @@ end
 -- strangeApparatus object
 ------------------------------------
 
-dsp.strangeApparatus =
+tpz.strangeApparatus =
 {
     onTrade = function(player, trade, eventId)
         local zone = player:getZoneID()

@@ -16,8 +16,6 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
-
 ===========================================================================
 */
 
@@ -32,7 +30,7 @@ CGuildMenuPacket::CGuildMenuPacket(GUILDSTATUS status, uint8 open, uint8 close, 
 	this->type = 0x86;
 	this->size = 0x06;
 
-	//DSP_DEBUG_BREAK_IF(open > close);
+	//TPZ_DEBUG_BREAK_IF(open > close);
 
 	ref<uint8>(0x04) = status;
 

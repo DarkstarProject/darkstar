@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PETRIFICATION
+    local typeEffect = tpz.effect.PETRIFICATION
     local duration = 45
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration))

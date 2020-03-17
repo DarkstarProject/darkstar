@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.21, for Win32 (x86)
 --
--- Host: localhost    Database: dspdb
+-- Host: localhost    Database: tpzdb
 -- ------------------------------------------------------
 -- Server version   10.2.7-MariaDB, for Win64 (AMD64)
 

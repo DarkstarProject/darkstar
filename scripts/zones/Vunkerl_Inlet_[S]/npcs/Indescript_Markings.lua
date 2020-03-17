@@ -15,12 +15,12 @@ function onTrigger(player,npc)
 
     local pantsQuestProgress = player:getCharVar("AF_SCH_PANTS");
 
-    player:delStatusEffect(dsp.effect.SNEAK);
+    player:delStatusEffect(tpz.effect.SNEAK);
 
     -- SCH AF Quest - Legs
-    if (pantsQuestProgress > 0 and pantsQuestProgress < 3 and player:hasKeyItem(dsp.ki.DJINN_EMBER) == false) then
-        player:addKeyItem(dsp.ki.DJINN_EMBER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DJINN_EMBER);
+    if (pantsQuestProgress > 0 and pantsQuestProgress < 3 and player:hasKeyItem(tpz.ki.DJINN_EMBER) == false) then
+        player:addKeyItem(tpz.ki.DJINN_EMBER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, tpz.ki.DJINN_EMBER);
         player:setCharVar("AF_SCH_PANTS", pantsQuestProgress + 1);
         npc:hideNPC(60);
 

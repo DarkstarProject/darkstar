@@ -8148,6 +8148,7 @@ INSERT INTO `mob_groups` VALUES (47,2321,123,'Lake_Sahagin',0,128,0,0,0,40,45,0)
 INSERT INTO `mob_groups` VALUES (48,3441,123,'Sahagin_Patriarch',0,128,0,0,0,45,45,0);
 INSERT INTO `mob_groups` VALUES (49,2811,123,'Nasus',0,128,0,0,0,34,40,0);
 INSERT INTO `mob_groups` VALUES (50,2924,123,'Nutcracker',1,0,0,0,0,1,1,0);
+INSERT INTO `mob_groups` VALUES (51,6098,123,'Siren',0,128,0,0,0,80,80,0);
 
 -- ------------------------------------------------------------
 -- Yhoator_Jungle (Zone 124)
@@ -8309,6 +8310,7 @@ INSERT INTO `mob_groups` VALUES (44,2496,126,'Malefic_Fencer',0,128,0,0,0,32,32,
 INSERT INTO `mob_groups` VALUES (45,3531,126,'Seed_Mandragora',0,128,0,0,0,32,32,0);
 INSERT INTO `mob_groups` VALUES (46,4694,126,'Kaggen',0,128,0,0,9999,95,96,0);
 INSERT INTO `mob_groups` VALUES (47,1642,126,'Goblin_Bounty_Hunter',0,0,1031,0,0,32,36,0);
+INSERT INTO `mob_groups` VALUES (48,6097,126,'Ophiotaurus',0,128,0,0,0,43,43,0);
 INSERT INTO `mob_groups` VALUES (6802,1027,126,'Diabolos',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (6835,3584,126,'Shantotto',0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (6839,4249,126,'Volker',0,0,0,0,0,0,0,0);
@@ -9333,7 +9335,7 @@ INSERT INTO `mob_groups` VALUES (15,422,139,'Bisan',0,128,0,0,0,30,30,0);
 INSERT INTO `mob_groups` VALUES (16,2011,139,'Huntfly',0,128,0,1800,1500,35,35,0);
 INSERT INTO `mob_groups` VALUES (17,1993,139,'Houndfly',0,128,0,900,0,33,33,0);
 INSERT INTO `mob_groups` VALUES (18,1923,139,'Helltail_Harry',0,128,0,0,0,45,45,0);
-INSERT INTO `mob_groups` VALUES (19,804,139,'Cottontail',0,128,0,0,0,38,39,0);
+INSERT INTO `mob_groups` VALUES (19,804,139,'Cottontail',0,128,0,2400,0,38,39,0);
 INSERT INTO `mob_groups` VALUES (20,3693,139,'Sobbing_Eyes',0,128,0,2300,0,45,45,0);
 INSERT INTO `mob_groups` VALUES (21,773,139,'Compound_Eyes',0,128,0,1350,0,45,45,0);
 INSERT INTO `mob_groups` VALUES (22,1337,139,'Fighting_Sheep',0,128,0,5000,0,55,55,0);

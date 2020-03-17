@@ -11,7 +11,7 @@ require("scripts/globals/titles")
 
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(ID.npc.ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(ID.npc.ADAMANTOISE_QM):setStatus(tpz.status.DISAPPEAR)
     end
     if LandKingSystem_HQ == 0 then
         SetDropRate(24,3344,0) -- do not drop clump_of_red_pondweed
@@ -21,7 +21,7 @@ function onMobSpawn(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.TORTOISE_TORTURER)
+    player:addTitle(tpz.title.TORTOISE_TORTURER)
 end
 
 function onMobDespawn(mob)

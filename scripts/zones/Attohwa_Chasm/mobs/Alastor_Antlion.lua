@@ -7,16 +7,16 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
-    mob:setMobMod(dsp.mobMod.GA_CHANCE,50);
-    mob:setMobMod(dsp.mobMod.MUG_GIL,10000);
-    mob:addMod(dsp.mod.FASTCAST,10);
-    mob:addMod(dsp.mod.BINDRES,40);
-    mob:addMod(dsp.mod.SILENCERES,40);
+    mob:setMobMod(tpz.mobMod.ADD_EFFECT, 1);
+    mob:setMobMod(tpz.mobMod.GA_CHANCE,50);
+    mob:setMobMod(tpz.mobMod.MUG_GIL,10000);
+    mob:addMod(tpz.mod.FASTCAST,10);
+    mob:addMod(tpz.mod.BINDRES,40);
+    mob:addMod(tpz.mod.SILENCERES,40);
 end;
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PETRIFY)
+    return tpz.mob.onAddEffect(mob, target, damage, tpz.mob.ae.PETRIFY)
 end
 
 function onMobDeath(mob, player, isKiller)

@@ -10,7 +10,7 @@ require("scripts/globals/status")
 function onTrigger(player,npc)
     local brassDoor = GetNPCByID(npc:getID() - 1)
 
-    if player:getXPos() < -186 and npc:getAnimation() == dsp.anim.CLOSE_DOOR and brassDoor:getAnimation() == dsp.anim.CLOSE_DOOR then
+    if player:getXPos() < -186 and npc:getAnimation() == tpz.anim.CLOSE_DOOR and brassDoor:getAnimation() == tpz.anim.CLOSE_DOOR then
         npc:openDoor(6.5)
         -- Should be a ~1 second delay here before the door opens
         brassDoor:openDoor(4.5)

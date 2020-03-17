@@ -6,7 +6,7 @@ require("scripts/globals/zone")
 
 zones = zones or {}
 
-zones[dsp.zone.CAEDARVA_MIRE] =
+zones[tpz.zone.CAEDARVA_MIRE] =
 {
     text =
     {
@@ -16,6 +16,7 @@ zones[dsp.zone.CAEDARVA_MIRE] =
         GIL_OBTAINED             = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY  = 6402, -- There is nothing out of the ordinary here.
+        FELLOW_MESSAGE_OFFSET    = 6417, -- I'm ready. I suppose.
         FISHING_MESSAGE_OFFSET   = 7049, -- You can't fish here.
         MOVE_CLOSER              = 7309, -- You must move closer.
         IMPERIAL_CONTROL         = 7310, -- This gate guards an area under Imperial control.
@@ -72,4 +73,4 @@ zones[dsp.zone.CAEDARVA_MIRE] =
     },
 }
 
-return zones[dsp.zone.CAEDARVA_MIRE]
+return zones[tpz.zone.CAEDARVA_MIRE]
