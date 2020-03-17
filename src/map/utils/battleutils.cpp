@@ -2222,9 +2222,7 @@ namespace battleutils
         uint8 playerRotation = PAttacker->loc.p.rotation;
         uint8 mobRotation = PDefender->loc.p.rotation;
 
-        if (PAttacker->objtype == TYPE_PC &&
-            ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
-                (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || abs(mobRotation - playerRotation) < 23 || (abs(mobRotation - playerRotation) >= 232 && 256 - abs(mobRotation - playerRotation) < 23))) ||
+        if (PAttacker->objtype == TYPE_PC && ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && (abs(mobRotation - playerRotation) < 23 || (abs(mobRotation - playerRotation) >= 232 && 256 - abs(mobRotation - playerRotation) < 23) || PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))) ||
             (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && battleutils::getAvailableTrickAttackChar(PAttacker, PDefender))))
         {
             hitrate = 100; //attack with SA active or TA/Assassin cannot miss
@@ -2301,8 +2299,7 @@ namespace battleutils
             uint8 playerRotation = PAttacker->loc.p.rotation;
             uint8 mobRotation = PDefender->loc.p.rotation;
 
-            if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || abs(mobRotation - playerRotation) < 23 ||
-                (abs(mobRotation - playerRotation) >= 232 && 256 - abs(mobRotation - playerRotation) < 23)) // special case around rotation zero where entities are rotated toward different quadrants
+            if (abs(mobRotation - playerRotation) < 23 || (abs(mobRotation - playerRotation) >= 232 && 256 - abs(mobRotation - playerRotation) < 23) || PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
             {
                 crithitrate = 100;
             }
