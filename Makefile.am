@@ -22,7 +22,7 @@ LIBS_ALL                += -lzmq
 
 ## Add Architecture-specific stuff
 if DARKSTAR_ARCH_LINUX
-LIBS_ALL                += -ldl
+LIBS_ALL                += -ldl -lpthread
 endif
 
 if DARKSTAR_ARCH_SOLARIS
