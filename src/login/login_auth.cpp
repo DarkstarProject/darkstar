@@ -209,9 +209,20 @@ int32 login_parse(int32 fd)
         }
         break;
         case LOGIN_CREATE:
-            //looking for same login
             Sql_EscapeString(SqlHandle, escaped_name, name.c_str());
             Sql_EscapeString(SqlHandle, escaped_pass, password.c_str());
+
+           //check if account creation is disabled
+            if (!login_config.account_creation)
+            {
+                ShowWarning(CL_WHITE"login_parse" CL_RESET": New account attempt <" CL_WHITE"%s" CL_RESET"> but is disabled in config.\n", escaped_name);
+                session[fd]->wdata.resize(1);
+                ref<uint8>(session[fd]->wdata.data(), 0) = LOGIN_ERROR_CREATE;
+                do_close_login(sd, fd);
+                return 0;
+            }
+
+           //looking for same login
             if (Sql_Query(SqlHandle, "SELECT accounts.id FROM accounts WHERE accounts.login = '%s'", escaped_name) == SQL_ERROR)
             {
                 session[fd]->wdata.resize(1);
