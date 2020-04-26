@@ -35,6 +35,7 @@ end
 function onEventFinish(player, csid, option)
     if csid == 32003 and option >= 100 and option <= 102 then
         local inst = option - 99
+        player:setCharVar("bcnm_instanceid", inst)
         player:startEvent(player:getLocalVar("[OTBF]cs"), inst)
     end
 end
