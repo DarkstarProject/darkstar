@@ -1426,6 +1426,12 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
     actionList_t& list = action.getNewActionList();
 
     list.ActionTargetID = PTarget->id;
+    
+    bool tredecim = false;
+	if (this->objtype == TYPE_PC && (((CCharEntity*)this)->getEquip(SLOT_MAIN))->getID() == 18052)
+	{
+		tredecim = true;
+	}
 
     /////////////////////////////////////////////////////////////////////////
     //	Start of the attack loop.
@@ -1435,6 +1441,9 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
         actionTarget_t& actionTarget = list.getNewActionTarget();
         // Reference to the current swing.
         CAttack& attack = attackRound.GetCurrentAttack();
+        
+        if (tredecim)
+			(((CCharEntity*)this)->m_hitCounter)++;
 
         // Set the swing animation.
         actionTarget.animation = attack.GetAnimationID();
@@ -1514,7 +1523,11 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
             {
                 // Set this attack's critical flag.
                 attack.SetCritical(dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, !attack.IsFirstSwing()));
-
+                if (tredecim && ((CCharEntity*)this)->m_hitCounter > 12)
+				{
+					((CCharEntity*)this)->m_hitCounter = 0;
+				    attack.SetCritical(true);
+				}
                 // Critical hit.
                 if (attack.IsCritical())
                 {
