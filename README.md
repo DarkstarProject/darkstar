@@ -2,6 +2,7 @@
 Darkstar Project
 ========
 ***As of April 25 2020 this project is deprecated, please visit Project Topaz***
+
 Welcome to the DarkStar project, an emulation server for FFXI.
 ~~Visit our forums and Discord or IRC to keep in touch with the latest developments.
 
