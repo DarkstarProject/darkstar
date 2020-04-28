@@ -281,6 +281,7 @@ namespace luautils
     int32 OnPlayerLevelDown(CCharEntity* PChar);
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
+    int32 UpdateDigZones();                                                     // updating chocobo digging zones with items
     bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events
 
     uint16 GetDespoilDebuff(uint16 itemId);                                   // Ask the database for an effectId based on Item despoiled (returns 0 if not in db)

@@ -4428,6 +4428,23 @@ namespace luautils
         return canDig;
     }
 
+    int32 UpdateDigZones()
+    {
+        lua_prepscript("scripts/globals/chocobo_digging.lua");
+
+        if (prepFile(File, "updateDigZones"))
+            return false;
+
+        if (lua_pcall(LuaHandle, 0, 0, 0))
+        {
+            ShowError("luautils::UpdateDigZones: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return false;
+        }
+
+        return 0;
+    }
+
     /************************************************************************
     *   Loads a Lua function with a fallback hierarchy                      *
     *                                                                       *
