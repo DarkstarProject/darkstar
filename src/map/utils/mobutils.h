@@ -48,6 +48,7 @@ namespace mobutils
 	void  CalculateStats(CMobEntity* PMob);
         void  SetupJob(CMobEntity* PMob);
         void  SetupRoaming(CMobEntity* PMob);
+        void  SetupLimbusMob(CMobEntity* PMob);
         void  SetupDynamisMob(CMobEntity* PMob);
         void  SetupBattlefieldMob(CMobEntity* PMob);
         void  SetupDungeonMob(CMobEntity* PMob);

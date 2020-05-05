@@ -812,6 +812,7 @@ dsp.effect =
     SKILLCHAIN               = 799,
     DYNAMIS                  = 800,
     MEDITATE                 = 801, -- Dummy effect for SAM Meditate JA
+    ELEMENTALRES_DOWN        = 802, -- Elemental resistance down
     -- PLACEHOLDER              = 802, -- Description
     -- 802-1022
     -- PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.

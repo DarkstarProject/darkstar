@@ -27,17 +27,12 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local targetCurrentHP = target:getHP()
-    local hpset = target:getMaxHP() * 0.05
+    local currentHP = target:getHP()
+    local damage = currentHP * .90
     local typeEffect = dsp.effect.BIND
+    local dmg = MobFinalAdjustments(damage,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.NONE,MOBPARAM_IGNORE_SHADOWS)
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30)
-
-    if (targetCurrentHP > hpset) then
-        dmg = targetCurrentHP - hpset
-    else
-        dmg = 0
-    end
-
     target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.NONE)
+    mob:resetEnmity(target)
     return dmg
 end

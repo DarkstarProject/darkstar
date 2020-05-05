@@ -2,21 +2,22 @@
 -- Area: Temenos N T
 --  Mob: Praetorian Guard CCCXI
 -----------------------------------
-require("scripts/globals/limbus");
------------------------------------
-
-function onMobEngaged(mob,target)
-
-end;
+require("scripts/globals/status")
+require("scripts/globals/limbus")
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/Temenos/IDs")
 
 function onMobDeath(mob, player, isKiller)
- if (IsMobDead(16928809)==true and IsMobDead(16928810)==true  and IsMobDead(16928811)==true and IsMobDead(16928812)==true ) then
-       GetNPCByID(16928768+28):setPos(-311,80,419);
-    GetNPCByID(16928768+28):setStatus(dsp.status.NORMAL);
-    GetNPCByID(16928768+162):setPos(-311,80,417);
-    GetNPCByID(16928768+162):setStatus(dsp.status.NORMAL);
-    GetNPCByID(16928768+213):setPos(-311,80,421);
-    GetNPCByID(16928768+213):setStatus(dsp.status.NORMAL);
-    GetNPCByID(16928770+454):setStatus(dsp.status.NORMAL);
- end
-end;
+    if isKiller then
+        if GetMobByID(ID.mob.TEMENOS_N_MOB[5]):isDead() and GetMobByID(ID.mob.TEMENOS_N_MOB[5]+1):isDead() and
+            GetMobByID(ID.mob.TEMENOS_N_MOB[5]+2):isDead()
+        then
+            GetNPCByID(ID.npc.TEMENOS_N_CRATE[5]):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.TEMENOS_N_CRATE[5]+1):setStatus(dsp.status.NORMAL)
+            GetNPCByID(ID.npc.TEMENOS_N_CRATE[5]+2):setStatus(dsp.status.NORMAL)
+        end
+        if GetNPCByID(ID.npc.TEMENOS_N_GATE[5]):getAnimation() == dsp.animation.CLOSE_DOOR then
+            dsp.limbus.handleDoors(player:getBattlefield(), true, ID.npc.TEMENOS_N_GATE[5])
+        end
+    end
+end

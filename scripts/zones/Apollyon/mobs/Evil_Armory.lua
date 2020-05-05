@@ -2,31 +2,15 @@
 -- Area: Apollyon SE
 --  Mob: Evil Armory
 -----------------------------------
-require("scripts/globals/limbus");
------------------------------------
+local ID = require("scripts/zones/Apollyon/IDs")
 
-function onMobEngaged(mob,target)
-    GetMobByID(16933033):updateEnmity(target);
-    GetMobByID(16933034):updateEnmity(target);
-    GetMobByID(16933035):updateEnmity(target);
-    GetMobByID(16933036):updateEnmity(target);
-    GetMobByID(16933037):updateEnmity(target);
-    GetMobByID(16933038):updateEnmity(target);
-    GetMobByID(16933039):updateEnmity(target);
-    GetMobByID(16933040):updateEnmity(target);
-end;
+function onMobSpawn(mob)
+    mob:setMod(dsp.mod.UDMGMAGIC, -100)
+    mob:setMod(dsp.mod.UDMGPHYS, -80)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-   local mobID = mob:getID();
-  -- print(mobID);
- local mobX = mob:getXPos();
- local mobY = mob:getYPos();
- local mobZ = mob:getZPos();
-
-  GetNPCByID(16932864+263):setPos(mobX,mobY,mobZ);
-  GetNPCByID(16932864+263):setStatus(dsp.status.NORMAL);
-
-end;
+    if isKiller then
+        GetNPCByID(ID.npc.APOLLYON_SE_CRATE[4]):setStatus(dsp.status.NORMAL)
+    end
+end

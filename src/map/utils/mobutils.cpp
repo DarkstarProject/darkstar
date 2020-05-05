@@ -547,6 +547,10 @@ void CalculateStats(CMobEntity * PMob)
     {
         SetupDynamisMob(PMob);
     }
+    else if(zoneType == ZONETYPE_LIMBUS)
+    {
+        SetupLimbusMob(PMob);
+    }
 
     if(PMob->m_Type & MOBTYPE_NOTORIOUS)
     {
@@ -781,6 +785,17 @@ void SetupPetSkills(CMobEntity* PMob)
     {
         PMob->setMobMod(MOBMOD_SKILL_LIST, skillListId);
     }
+}
+
+void SetupLimbusMob(CMobEntity* PMob)
+{
+    PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+    PMob->setMobMod(MOBMOD_EXP_BONUS, -100);
+    PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, 1);
+    PMob->setMobMod(MOBMOD_GIL_MAX, -1);
+    PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+    PMob->SetDespawnTime(0s);
+    PMob->setMobMod(MOBMOD_ALLI_HATE, 200);
 }
 
 void SetupDynamisMob(CMobEntity* PMob)
