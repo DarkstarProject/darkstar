@@ -51,6 +51,7 @@ function onSpellCast(caster,target,spell)
         dmg = target:getHP()
     end
 
+    params.damageType = dsp.damageType.DARK
     dmg = BlueFinalAdjustments(caster,target,spell,dmg,params)
     caster:addHP(dmg)
 

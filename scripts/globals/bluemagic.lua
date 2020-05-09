@@ -230,7 +230,7 @@ function BlueFinalAdjustments(caster, target, spell, dmg, params)
     -- handling stoneskin
     dmg = utils.stoneskin(target, dmg)
 
-    local damageType = params.dmgType or dsp.damageType.NONE
+    local damageType = params.damageType or dsp.damageType.NONE
     target:takeSpellDamage(caster, spell, dmg, dsp.attackType.PHYSICAL, damageType)
     target:updateEnmityFromDamage(caster,dmg)
     target:handleAfflatusMiseryDamage(dmg)

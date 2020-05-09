@@ -28,6 +28,7 @@ function onSpellCast(caster,target,spell)
     if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
         multi = multi + 2.0
     end
+        params.damageType = dsp.damageType.DARK
         params.multiplier = multi
         params.tMultiplier = 1.5
         params.duppercap = 69

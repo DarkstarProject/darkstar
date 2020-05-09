@@ -23,6 +23,7 @@ end
 
 function onSpellCast(caster,target,spell)
     local params = {}
+    params.damageType = dsp.damageType.FIRE
     params.multiplier = 1.375
     params.tMultiplier = 1.0
     params.duppercap = 30
