@@ -213,19 +213,18 @@ public:
 
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
+    CTrustEntity*           PTrust;                         // Trust statistics
 
     std::vector<CTrustEntity*> PTrusts; // Active trusts
 
 
-    // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
-    // отображает более ранние миссии выплненными
+    // These missions do not need a list of completed, because client automatically
+    // displays earlier missions completed
 
-    uint16			  m_copCurrent;					// текущая миссия Chains of Promathia
-    uint16			  m_acpCurrent;					// текущая миссия A Crystalline Prophecy
-    uint16			  m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
-    uint16			  m_asaCurrent;					// текущая миссия A Shantotto Ascension
-
-    // TODO: половина этого массива должна храниться в char_vars, а не здесь, т.к. эта информация не отображается в интерфейсе клиента и сервер не проводит с ними никаких операций
+    uint16			  m_copCurrent;					// current mission of Chains of Promathia
+    uint16			  m_acpCurrent;					// current mission of A Crystalline Prophecy
+    uint16			  m_mkeCurrent;					// current mission of A Moogle Kupo d'Etat
+    uint16			  m_asaCurrent;					// current mission of A Shantotto Ascension
 
     //currency_t        m_currency;                 // conquest points, imperial standing points etc
     Teleport_t	      teleport;					    // Outposts, Runic Portals, Homepoints, Survival Guides, Maws, etc
@@ -260,10 +259,11 @@ public:
 
     CBaseEntity*	  PWideScanTarget;				// wide scane цель
 
-    SpawnIDList_t	  SpawnPCList;					// список видимых персонажей
-    SpawnIDList_t	  SpawnMOBList;					// список видимых монстров
-    SpawnIDList_t	  SpawnPETList;					// список видимых питомцев
-    SpawnIDList_t	  SpawnNPCList;					// список видимых npc
+    SpawnIDList_t	  SpawnPCList;					// list of visible characters
+    SpawnIDList_t	  SpawnMOBList;					// list of visible monsters
+    SpawnIDList_t	  SpawnPETList;					// list of visible pets
+    SpawnIDList_t	  SpawnTRUSTList;				// list of visible trust
+    SpawnIDList_t	  SpawnNPCList;					// list of visible npc's
 
     void			  SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 
@@ -328,6 +328,7 @@ public:
     bool        ReloadParty();
     void        ClearTrusts();
     void        RemoveTrust(CTrustEntity*);
+    uint8       TrustPartyPosition(CTrustEntity* PTrust);
 
     virtual void Tick(time_point) override;
     void        PostTick() override;

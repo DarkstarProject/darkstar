@@ -1,7 +1,7 @@
 -----------------------------------------
--- Spell: Shantotto
+-- Trust: Shantotto
 -----------------------------------------
--- require("scripts/globals/trust");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -9,8 +9,6 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    -- Todo: put Trusts's spawn in dialog here or in entity script?
-    -- Todo: automate entity spawn in core for trust spells?
-    caster:spawnTrust(75) -- see pet_list.sql, this should be 896 but the pet list won't let me do that
+    caster:spawnTrust(896)
     return 0
 end

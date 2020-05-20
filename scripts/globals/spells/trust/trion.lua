@@ -1,5 +1,5 @@
 -----------------------------------------
--- Trust: Shantotto II
+-- Trust: Trion
 -----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
@@ -9,6 +9,6 @@ function onMagicCastingCheck(caster,target,spell)
 end
 
 function onSpellCast(caster,target,spell)
-    caster:spawnTrust(1019)
+    caster:spawnTrust(905)
     return 0
 end

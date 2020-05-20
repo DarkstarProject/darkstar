@@ -25,11 +25,13 @@ This file is part of DarkStar-server source code.
 
 #include "../ai_container.h"
 #include "../../status_effect_container.h"
+#include "../../enmity_container.h"
 #include "../../ai/states/despawn_state.h"
 #include "../../entities/charentity.h"
 #include "../../entities/trustentity.h"
 #include "../../packets/char.h"
 #include "../../../common/utils.h"
+#include "../../lua/lua_baseentity.h"
 
 CTrustController::CTrustController(CCharEntity* PChar, CTrustEntity* PTrust) : CController(PTrust)
 {
@@ -51,17 +53,38 @@ void CTrustController::Despawn()
     if (POwner->PMaster)
     {
         POwner->PMaster = nullptr;
+        POwner->PAI->Internal_Despawn();
     }
-    CController::Despawn();
+    //CController::Despawn();
 }
 
 void CTrustController::Tick(time_point tick)
 {
     m_Tick = tick;
 
+    if (!POwner->PMaster)
+        return;
+
     if (POwner->PAI->IsEngaged())
     {
-        DoCombatTick(tick);
+        auto PTarget{ POwner->GetBattleTarget() };
+
+        if (PTarget)
+        {
+            auto PMob = static_cast<CMobEntity*>(PTarget);
+
+            if (PMob->PEnmityContainer->GetHighestEnmity() != nullptr)
+            {
+                if (PMob->PEnmityContainer->HasID(POwner->PMaster->id))
+                {
+                    DoCombatTick(tick);
+                }
+                else if (!POwner->isDead())
+                {
+                    DoRoamTick(tick);
+                }
+            }
+        }
     }
     else if (!POwner->isDead())
     {
@@ -75,11 +98,14 @@ void CTrustController::DoCombatTick(time_point tick)
     {
         POwner->PAI->Internal_Disengage();
     }
+
     if (POwner->PMaster->GetBattleTargetID() != POwner->GetBattleTargetID())
     {
         POwner->PAI->Internal_ChangeTarget(POwner->PMaster->GetBattleTargetID());
     }
+
     auto PTarget{ POwner->GetBattleTarget() };
+
     if (PTarget)
     {
         if (POwner->PAI->CanFollowPath())
@@ -105,17 +131,42 @@ void CTrustController::DoRoamTick(time_point tick)
         POwner->PAI->Internal_Engage(POwner->PMaster->GetBattleTargetID());
     }
 
-    float currentDistance = distance(POwner->loc.p, POwner->PMaster->loc.p);
+    auto master = static_cast<CCharEntity*>(POwner->PMaster);
+    auto PTrust = static_cast<CTrustEntity*>(POwner);
+    uint8 currentPartyPos = master->TrustPartyPosition(PTrust);
+    float currentDistance = 0;
 
-    if (currentDistance > RoamDistance)
+    if (currentPartyPos == 0)
     {
-        if (currentDistance < 35.0f && POwner->PAI->PathFind->PathAround(POwner->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+        currentDistance = distance(POwner->loc.p, POwner->PMaster->loc.p);
+
+        if (currentDistance > RoamDistance)
         {
-            POwner->PAI->PathFind->FollowPath();
+            if (currentDistance < 35.0f && PTrust->PAI->PathFind->PathTo(POwner->PMaster->loc.p, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+            {
+                PTrust->PAI->PathFind->FollowPath();
+            }
+            else if (POwner->GetSpeed() > 0)
+            {
+                PTrust->PAI->PathFind->WarpTo(POwner->PMaster->loc.p, RoamDistance);
+            }
         }
-        else if (POwner->GetSpeed() > 0)
+    }
+    else if(currentPartyPos > 0)
+    {
+        CBattleEntity* PFollow = (CBattleEntity*)master->PTrusts.at(currentPartyPos - 1);
+        currentDistance = distance(PTrust->loc.p, PFollow->loc.p);
+
+        if (currentDistance > 2.0f)
         {
-            POwner->PAI->PathFind->WarpTo(POwner->PMaster->loc.p, RoamDistance);
+            if (currentDistance < 35.0f && PTrust->PAI->PathFind->PathTo(PFollow->loc.p, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+            {
+                PTrust->PAI->PathFind->FollowPath();
+            }
+            else if (POwner->GetSpeed() > 0)
+            {
+                PTrust->PAI->PathFind->WarpTo(PFollow->loc.p, RoamDistance);
+            }
         }
     }
 }
