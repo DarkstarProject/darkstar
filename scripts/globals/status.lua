@@ -2120,7 +2120,6 @@ dsp.attackType =
     MAGICAL  = 2,
     RANGED   = 3,
     SPECIAL  = 4,
-    BREATH   = 5,
 }
 
 ----------------------------------
