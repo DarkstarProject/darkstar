@@ -18,11 +18,11 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_VOWS and player:getCharVar("PromathiaStatus") == 1) then
+        player:startEvent(100);
+    elseif (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(732.55,-32.5,-506.544,90); -- {R}
     end
-
     return cs;
 end;
 
@@ -39,4 +39,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
+    if csid == 100 then
+        player:setCharVar("PromathiaStatus",2);
+    end
 end;
