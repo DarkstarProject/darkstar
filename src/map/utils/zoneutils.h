@@ -46,6 +46,8 @@ namespace zoneutils
     void TOTDChange(TIMETYPE TOTD);                                                 // реакция мира на смену времени суток
     void SavePlayTime();
 
+    // returns whether or not the area is a ship that doesn't leave the middle lands
+    bool IsMiddleLandsShip(uint16 ZoneID);
     REGIONTYPE    GetCurrentRegion(uint16 ZoneID);
     CONTINENTTYPE GetCurrentContinent(uint16 ZoneID);
 
